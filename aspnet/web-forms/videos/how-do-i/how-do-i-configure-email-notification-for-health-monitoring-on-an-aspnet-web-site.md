@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-
 title: "[How Do I:] Configure Email Notification for Health Monitoring on an ASP.NET Web Site | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to configure email notification for health monitoring in an ASP.NET web site. First, see how to configure the sending of e..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/11/2008
 ms.assetid: 1fa884c0-582e-4dc6-abb6-a5ec70d43ffb
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site

@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Common Configuration Differences Between Development and Production (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In earlier tutorials we deployed our website by copying all of the pertinent files from the development environment to the production environment. However, i..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/01/2009
 ms.assetid: 721a5c37-7e21-48e0-832e-535c6351dcae
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/common-configuration-differences-between-development-and-production-cs

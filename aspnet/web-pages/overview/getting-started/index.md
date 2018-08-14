@@ -3,7 +3,7 @@ uid: web-pages/overview/getting-started/index
 title: "Getting Started with ASP.NET Web Pages | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET Web Pages ASP.NET Web Pages and the new Razor syntax provide a fast, approachable, and lightweight way to combine server code with HTML t..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/18/2012
 ms.assetid: 99253c4e-a125-4c21-85e7-a6dd74d93892
 msc.legacyurl: /web-pages/overview/getting-started

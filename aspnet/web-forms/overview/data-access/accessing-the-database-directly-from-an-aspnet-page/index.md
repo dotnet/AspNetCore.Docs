@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspn
 title: "Accessing the Database Directly from an ASP.NET Page | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show how to use the SqlDataSource control to query the database directly when you don't need a strict separation of the presentation and data..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: 134a202f-4eef-41fc-8e91-70efba338389
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page

@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-35/how-do-i/how-do-i-serialize-a-graph-with-the-ent
 title: "[How Do I:] Serialize a Graph with the Entity Framework | Microsoft Docs"
 author: rick-anderson
 description: "In this introductory video Brian Dawson will show you how to serialize a Graph when developing an ASP.NET application with the ADO.NET Entity Framework."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/22/2008
 ms.assetid: e8b41eed-5423-43d1-a54b-62f04bff371e
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-serialize-a-graph-with-the-entity-framework

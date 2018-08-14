@@ -3,7 +3,7 @@ uid: web-api/overview/formats-and-model-binding/bson-support-in-web-api-21
 title: "BSON Support in ASP.NET Web API 2.1 | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/20/2014
 ms.assetid: ce11b017-0ca6-4376-aa9d-a7f3288101de
 msc.legacyurl: /web-api/overview/formats-and-model-binding/bson-support-in-web-api-21

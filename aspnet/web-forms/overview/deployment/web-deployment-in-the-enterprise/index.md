@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/index
 title: "ASP.NET 4 - Enterprise Deployment Series 1 | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial describes how to meet lots of the challenges you'll encounter when you manage the deployment of enterprise-scale web applications to developmen..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/16/2012
 ms.assetid: 83e0a572-428f-4bea-9638-1a031c6901c0
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise

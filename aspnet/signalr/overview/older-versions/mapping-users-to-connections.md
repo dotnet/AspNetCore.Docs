@@ -3,7 +3,7 @@ uid: signalr/overview/older-versions/mapping-users-to-connections
 title: "Mapping SignalR Users to Connections in SignalR 1.x | Microsoft Docs"
 author: pfletcher
 description: "This topic shows how to retain information about users and their connections."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/17/2013
 ms.assetid: ebbc93a8-e6c4-4122-8e0d-3aa42293c747
 msc.legacyurl: /signalr/overview/older-versions/mapping-users-to-connections

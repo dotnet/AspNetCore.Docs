@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/introduction/master-pages-and-site-navigatio
 title: "Master Pages and Site Navigation (C#) | Microsoft Docs"
 author: rick-anderson
 description: "One common characteristic of user-friendly websites is that they have a consistent, site-wide page layout and navigation scheme. This tutorial looks at how y..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/31/2010
 ms.assetid: 5aee8202-a4e3-4aa9-8a95-cd5d156cea4c
 msc.legacyurl: /web-forms/overview/data-access/introduction/master-pages-and-site-navigation-cs

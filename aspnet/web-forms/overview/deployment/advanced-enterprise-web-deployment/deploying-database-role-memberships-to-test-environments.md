@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-
 title: "Deploying Database Role Memberships to Test Environments | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to add user accounts to database roles as part of a solution deployment to a test environment. When you deploy a solution containing..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/04/2012
 ms.assetid: 9b2af539-7ad9-47aa-b66e-873bd9906e79
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments

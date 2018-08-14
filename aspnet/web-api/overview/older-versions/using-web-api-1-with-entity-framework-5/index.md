@@ -3,7 +3,7 @@ uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/ind
 title: "Using ASP.NET Web API 1 with Entity Framework 5 | Microsoft Docs"
 author: rick-anderson
 description: "How to create a Web API 1 application that uses Entity Framework for database persistence."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/16/2014
 ms.assetid: b380c940-84c4-4e4a-980a-fa69986e919b
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5

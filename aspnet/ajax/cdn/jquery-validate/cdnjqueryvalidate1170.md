@@ -3,7 +3,7 @@ uid: ajax/cdn/jquery-validate/cdnjqueryvalidate1170
 title: "jQuery Validation 1.17.0 | Microsoft Docs"
 author: guardrex
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/14/2017
 ms.assetid: f038f3d6-daad-43de-8514-d2483c7e6609
 msc.legacyurl: /ajax/cdn/jquery-validate/cdnjqueryvalidate1170

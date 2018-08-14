@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-de
 title: "Provide CRUD (Create, Read, Update, Delete) Data Form Entry Support | Microsoft Docs"
 author: microsoft
 description: "Step 5 shows how to take our DinnersController class further by enable support for editing, creating and deleting Dinners with it as well."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: bbb976e5-6150-4283-a374-c22fbafe29f5
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support

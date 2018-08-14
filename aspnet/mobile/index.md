@@ -3,7 +3,7 @@ uid: mobile/index
 title: "Mobile Apps & Sites with ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "Learn how ASP.NET makes it easy to build mobile Web applications"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/28/2011
 ms.assetid: 71217425-e015-41af-b88a-1f4472f81886
 msc.legacyurl: 

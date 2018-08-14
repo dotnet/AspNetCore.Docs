@@ -3,7 +3,7 @@ uid: ajax/cdn/jquery-cycle/index
 title: "jQuery Cycle | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/23/2014
 ms.assetid: b9005f8f-1dbc-4414-abe1-dae4816141e1
 msc.legacyurl: /ajax/cdn/jquery-cycle

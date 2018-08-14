@@ -3,7 +3,7 @@ uid: web-api/overview/advanced/index
 title: "Advanced Topics for ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "More advanced topics for ASP.NET Web API development, after you've learned the basics."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/23/2014
 ms.assetid: 7404a0f1-52f7-410c-abd0-c96bab52d217
 msc.legacyurl: /web-api/overview/advanced

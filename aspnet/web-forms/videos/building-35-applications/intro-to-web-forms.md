@@ -3,7 +3,7 @@ uid: web-forms/videos/building-35-applications/intro-to-web-forms
 title: "Intro to Web Forms | Microsoft Docs"
 author: JoeStagner
 description: "ASP.NET Web Forms is the default User Interface mechanism for ASP.NET applications.. This video will demonstrate the basic of developing with Web Forms."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/09/2009
 ms.assetid: bde8ff36-4e52-4687-8de4-5ee2d367dc92
 msc.legacyurl: /web-forms/videos/building-35-applications/intro-to-web-forms

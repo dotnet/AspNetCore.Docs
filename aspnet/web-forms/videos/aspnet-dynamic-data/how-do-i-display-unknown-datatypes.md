@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-dynamic-data/how-do-i-display-unknown-datatypes
 title: "How do I Display Unknown datatypes? | Microsoft Docs"
 author: shanselman
 description: "In this video, we show you how to configure Dynamic Data to handle a totally unknown custom data type that is stored in the database as a binary BLOB."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/08/2008
 ms.assetid: ce7a9af6-d01b-46a7-8b47-e1024b693830
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-display-unknown-datatypes

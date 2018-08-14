@@ -3,7 +3,7 @@ uid: identity/overview/extensibility/index
 title: "ASP.NET Identity Extensibility | Microsoft Docs"
 author: rick-anderson
 description: "Extensibility"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/02/2013
 ms.assetid: d1c6e7d0-ead9-4f08-a5b9-9d7a30be78e3
 msc.legacyurl: /identity/overview/extensibility

@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/index
 title: "Deployment | Microsoft Docs"
 author: rick-anderson
 description: "How to deploy ASP.NET Web Forms projects to a server."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/18/2011
 ms.assetid: 05e4c88f-5101-4277-a323-b6774d98f69e
 msc.legacyurl: /web-forms/overview/deployment

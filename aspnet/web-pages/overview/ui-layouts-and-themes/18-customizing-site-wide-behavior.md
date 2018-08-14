@@ -3,7 +3,7 @@ uid: web-pages/overview/ui-layouts-and-themes/18-customizing-site-wide-behavior
 title: "Customizing Site-Wide Behavior for ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "This chapter explains how to make settings to your entire website or an entire folder, rather than just a page."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/17/2014
 ms.assetid: e158bed7-226f-4275-b02e-7553bd58c669
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/18-customizing-site-wide-behavior

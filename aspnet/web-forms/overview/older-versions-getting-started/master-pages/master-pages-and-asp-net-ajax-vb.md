@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/master-pages
 title: "Master Pages and ASP.NET AJAX (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Discusses options for using ASP.NET AJAX and master pages. Looks at using the ScriptManagerProxy class; discusses how the various JS files are loaded dependi..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/11/2008
 ms.assetid: 0ee9318c-29bb-4d58-b1dc-94e575b8ae10
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/master-pages-and-asp-net-ajax-vb

@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/how-do-i/displaying-a-table-of-database-data
 title: "Displaying a Table of Database Data | Microsoft Docs"
 author: StephenWalther
 description: "Need to display a set of database records in an ASP.NET MVC view? Learn two methods of displaying records in an HTML table. You learn how to perform all of t..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/20/2008
 ms.assetid: 00a12df9-1f89-4fc5-9d43-19a8d5b80392
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/displaying-a-table-of-database-data

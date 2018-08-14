@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-implement-a-cross-page-postback-in-aspne
 title: "[How Do I:] Implement a Cross Page PostBack in ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to create a Cross Page PostBack in ASP.NET, where a control on a source page raises a PostBack event to a different target..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/10/2008
 ms.assetid: cd88fa45-8f51-48f5-b642-5021acddec40
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-a-cross-page-postback-in-aspnet

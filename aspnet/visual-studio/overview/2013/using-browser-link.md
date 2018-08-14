@@ -3,7 +3,7 @@ uid: visual-studio/overview/2013/using-browser-link
 title: "Using Browser Link in Visual Studio 2013 | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/04/2013
 ms.assetid: 46cbfe20-b4dc-449b-9016-80657dd44fbe
 msc.legacyurl: /visual-studio/overview/2013/using-browser-link

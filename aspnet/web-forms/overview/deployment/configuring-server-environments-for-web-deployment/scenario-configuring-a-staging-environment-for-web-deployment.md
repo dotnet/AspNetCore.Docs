@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/configuring-server-environments-for-web-deplo
 title: "Scenario: Configuring a Staging Environment for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes a typical web deployment scenario for a staging environment and explains the tasks you need to complete in order to set up a similar env..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/04/2012
 ms.assetid: 5a8e49b7-5317-4125-b107-7e2466b47bb3
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/scenario-configuring-a-staging-environment-for-web-deployment

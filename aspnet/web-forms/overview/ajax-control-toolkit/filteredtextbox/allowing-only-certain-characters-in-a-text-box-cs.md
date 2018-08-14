@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/filteredtextbox/allowing-only-certa
 title: "Allowing Only Certain Characters in a Text Box (C#) | Microsoft Docs"
 author: wenz
 description: "ASP.NET validation controls can ensure that only certain characters are allowed in user input. However this still does not prevent users from typing invalid..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/02/2008
 ms.assetid: fd2a1c52-d717-44af-8a61-67c8279bb26e
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/filteredtextbox/allowing-only-certain-characters-in-a-text-box-cs

@@ -3,7 +3,7 @@ uid: web-api/overview/security/index
 title: "Security, Authentication, and Authorization in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "Security issues for Web API."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 12/11/2012
 ms.assetid: bb38add0-5223-4b04-9b12-245911af865a
 msc.legacyurl: /web-api/overview/security

@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sor
 title: "Creating a Customized Sorting User Interface (C#) | Microsoft Docs"
 author: rick-anderson
 description: "When displaying a long list of sorted data, it can be very helpful to group related data by introducing separator rows. In this tutorial we'll see how to cre..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/15/2006
 ms.assetid: 6f81b633-9d01-4e52-ae4a-2ea6bc109475
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sorting-user-interface-cs

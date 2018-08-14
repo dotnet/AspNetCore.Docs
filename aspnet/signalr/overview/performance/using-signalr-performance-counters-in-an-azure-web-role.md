@@ -4,7 +4,7 @@ title: Using SignalR performance counters in an Azure Web Role | Microsoft Docs
 author: guardrex
 description: How to install and use SignalR performance counters in an Azure Web Role.
 keywords: ASP.NET,signalr,performance counter,azure web role
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/11/2017
 ms.assetid: 2a127d3b-21ed-4cc9-bec0-cdab4e742a25
 msc.legacyurl: /signalr/overview/performance/using-signalr-performance-counters-in-an-azure-web-role

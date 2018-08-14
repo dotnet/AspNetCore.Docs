@@ -3,7 +3,7 @@ uid: web-api/overview/releases/whats-new-in-aspnet-web-api-22
 title: "What's New in ASP.NET Web API 2.2 | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 12/25/2014
 ms.assetid: 99c59ae4-167e-4f66-a6cd-d3f1098c4e4a
 msc.legacyurl: /web-api/overview/releases/whats-new-in-aspnet-web-api-22

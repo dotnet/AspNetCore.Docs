@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/index
 title: "ASP.NET 4 - Enterprise Deployment Series 4 Advanced Topics | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will show you how to perform various tasks that are required or desirable in a lot of enterprise deployment scenarios."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/16/2012
 ms.assetid: eacf0e3a-c2e9-4f77-a676-249146f393e8
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment

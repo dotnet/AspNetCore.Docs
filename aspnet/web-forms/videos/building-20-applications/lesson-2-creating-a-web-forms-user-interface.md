@@ -3,7 +3,7 @@ uid: web-forms/videos/building-20-applications/lesson-2-creating-a-web-forms-use
 title: "[Lesson 2:] Creating a Web Forms User Interface | Microsoft Docs"
 author: microsoft
 description: "In this lesson, you will explore the various ASP.NET&#160;2.0 server controls available in Visual Web Developer Express Edition. In addition, you will begin..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/25/2005
 ms.assetid: 7eac8f6b-6911-4585-87e8-ba662c1578fb
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-2-creating-a-web-forms-user-interface

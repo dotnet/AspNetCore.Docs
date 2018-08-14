@@ -3,7 +3,7 @@ uid: signalr/overview/older-versions/persistent-connection-authorization
 title: "Authentication and Authorization for SignalR Persistent Connections (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to enforce authorization on a persistent connection. For general information about integrating security into a SignalR application,..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/21/2013
 ms.assetid: c34bc627-41af-4c21-a817-e97a19a7f252
 msc.legacyurl: /signalr/overview/older-versions/persistent-connection-authorization

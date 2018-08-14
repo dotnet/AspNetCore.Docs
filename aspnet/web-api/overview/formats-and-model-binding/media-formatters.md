@@ -3,7 +3,7 @@ uid: web-api/overview/formats-and-model-binding/media-formatters
 title: "Media Formatters in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/20/2014
 ms.assetid: 4c56f64a-086a-44ce-99c2-4c69604cd7fd
 msc.legacyurl: /web-api/overview/formats-and-model-binding/media-formatters

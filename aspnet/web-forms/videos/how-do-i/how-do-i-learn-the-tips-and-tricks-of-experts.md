@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-learn-the-tips-and-tricks-of-experts
 title: "[How Do I:] Learn the Tips and Tricks of Experts? | Microsoft Docs"
 author: microsoft
 description: "View tips and tricks including encrypting sensitive information stored in the web.config file, posting content to a different page, simplifying complex URLs..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/16/2006
 ms.assetid: 77526e53-524b-4cae-9025-3e493f2895d0
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-learn-the-tips-and-tricks-of-experts

@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/in
 title: "MVC 3 - Working with the DropDownList Box and jQuery | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows you how to use the DropDownList Box with jQuery"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/19/2012
 ms.assetid: 6d64df4d-8191-4faa-ab9f-9807c1b0a020
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery

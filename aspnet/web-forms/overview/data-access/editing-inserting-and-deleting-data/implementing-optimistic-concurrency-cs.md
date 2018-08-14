@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/implemen
 title: "Implementing Optimistic Concurrency (C#) | Microsoft Docs"
 author: rick-anderson
 description: "For a web application that allows multiple users to edit data, there is the risk that two users may be editing the same data at the same time. In this tutori..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/17/2006
 ms.assetid: 56e15b33-93b8-43ad-8e19-44c6647ea05c
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/implementing-optimistic-concurrency-cs

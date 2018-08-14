@@ -3,7 +3,7 @@ uid: web-api/videos/getting-started/your-first-web-api
 title: "ASP.NET Web API, Part 1: Your First Web API | Microsoft Docs"
 author: jongalloway
 description: "Note: This video contains information from a pre-release version of ASP.NET Web API"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/15/2012
 ms.assetid: fda768fb-50f5-4046-8fda-6f199d27bce7
 msc.legacyurl: /web-api/videos/getting-started/your-first-web-api

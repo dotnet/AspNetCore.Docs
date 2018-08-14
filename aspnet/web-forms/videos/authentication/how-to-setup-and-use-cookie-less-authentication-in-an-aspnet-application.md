@@ -3,7 +3,7 @@ uid: web-forms/videos/authentication/how-to-setup-and-use-cookie-less-authentica
 title: "How to Setup and Use Cookie-less Authentication in an ASP.NET Application | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner utilizes the previous code example to demonstrate how to use cookie-less authentication. For more information on this demo, a tutorial is located..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/16/2008
 ms.assetid: 10ba9106-514c-4776-8277-9c31312ceed2
 msc.legacyurl: /web-forms/videos/authentication/how-to-setup-and-use-cookie-less-authentication-in-an-aspnet-application

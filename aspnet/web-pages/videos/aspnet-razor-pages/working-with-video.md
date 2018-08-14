@@ -3,7 +3,7 @@ uid: web-pages/videos/aspnet-razor-pages/working-with-video
 title: "Working with Video | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Working with Video tutorial"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/25/2011
 ms.assetid: 7544e93f-a754-4e1d-bd0f-461f38e11db9
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/working-with-video

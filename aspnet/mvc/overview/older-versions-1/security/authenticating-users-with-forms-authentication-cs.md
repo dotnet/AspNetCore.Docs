@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/security/authenticating-users-with-forms-auth
 title: "Authenticating Users with Forms Authentication (C#) | Microsoft Docs"
 author: microsoft
 description: "Learn how to use the [Authorize] attribute to password protect particular pages in your MVC application. You learn how to use the Web Site Administration Too..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/27/2009
 ms.assetid: 239fd3ca-5630-4b8d-bc4b-2f906b1d3504
 msc.legacyurl: /mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-cs

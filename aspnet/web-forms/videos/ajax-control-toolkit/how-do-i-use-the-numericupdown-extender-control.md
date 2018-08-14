@@ -3,7 +3,7 @@ uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-numericupdown-extend
 title: "[How Do I:] Use the NumericUpDown Extender Control? | Microsoft Docs"
 author: JoeStagner
 description: "In this video we examine the NumericUpDown extender control from the ASP.NET AJAX Control Toolkit. We see how the NumericUpDown extender adds 'up' and 'down'..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/12/2007
 ms.assetid: 2aee17e4-06d1-4875-985e-8fb817dc8bcd
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-numericupdown-extender-control

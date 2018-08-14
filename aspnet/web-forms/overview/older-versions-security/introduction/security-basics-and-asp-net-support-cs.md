@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-security/introduction/security-basics-and
 title: "Security Basics and ASP.NET Support (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This is the first tutorial in a series of tutorials that will explore techniques for authenticating visitors through a web form, authorizing access to partic..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/13/2008
 ms.assetid: 07e15538-2f29-40c6-b2e7-e6115075ac83
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/security-basics-and-asp-net-support-cs

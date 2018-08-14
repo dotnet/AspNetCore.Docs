@@ -3,7 +3,7 @@ uid: web-pages/overview/getting-started/aspnet-web-pages-razor-faq
 title: "ASP.NET Web Pages (Razor) FAQ | Microsoft Docs"
 author: tfitzmac
 description: "This article lists some frequently asked questions about ASP.NET Web Pages (Razor) and WebMatrix. Software versions used in the tutorial ASP.NET Web Pages (R..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/07/2014
 ms.assetid: b137bd04-25e1-47cb-9d96-ef2e179ecf1f
 msc.legacyurl: /web-pages/overview/getting-started/aspnet-web-pages-razor-faq

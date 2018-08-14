@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/numericupdown/creating-a-numeric-up
 title: "Creating a Numeric Up/Down Control with a Web Service Backend (C#) | Microsoft Docs"
 author: wenz
 description: "Instead of letting a user type a value into a check box, a numeric up/down control (that exists on Windows and other operating systems) could prove as more c..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/02/2008
 ms.assetid: c99bbc72-d4de-41ed-92a4-9a4632368363
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/numericupdown/creating-a-numeric-up-down-control-with-a-web-service-backend-cs
