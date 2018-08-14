@@ -56,11 +56,11 @@ Follow these steps to install a client-side library:
 
   The folder suggestion is suffixed with the library name. The following table illustrates folder suggestions when installing jQuery in a Razor Pages project.
   
-  |Launch location |Suggested folder  |
-  |---------|---------|
-  |project root (if *wwwroot* exists)       | *wwwroot/lib/jquery/* |
-  |project root (if *wwwroot* doesn't exist)| *lib/jquery/*         |
-  |*Pages* folder in project                | *Pages/jquery/*       |
+  |Launch location                           |Suggested folder      |
+  |------------------------------------------|----------------------|
+  |project root (if *wwwroot* exists)        |*wwwroot/lib/jquery/* |
+  |project root (if *wwwroot* doesn't exist) |*lib/jquery/*         |
+  |*Pages* folder in project                 |*Pages/jquery/*       |
 
 * Click the **Install** button to download the files, per the configuration in *libman.json*.
 * Review the **Library Manager** feed of the **Output** window for installation details. For example:
