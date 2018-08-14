@@ -15,20 +15,17 @@ namespace ConfigurationSample
         }
 
         #region snippet1
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("starship.json", optional: false, reloadOnChange: false)
-                .AddXmlFile("tvshow.xml", optional: false, reloadOnChange: false)
-                .AddEFConfiguration(options => options.UseInMemoryDatabase("InMemoryDb"))
-                .AddCommandLine(args)
-                .Build();
-
-            return WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(config)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.SetBasePath(Directory.GetCurrentDirectory());
+                    config.AddJsonFile("starship.json", optional: false, reloadOnChange: false);
+                    config.AddXmlFile("tvshow.xml", optional: false, reloadOnChange: false);
+                    config.AddEFConfiguration(options => options.UseInMemoryDatabase("InMemoryDb"));
+                    config.AddCommandLine(args);
+                })
                 .UseStartup<Startup>();
-        }
         #endregion
     }
 }

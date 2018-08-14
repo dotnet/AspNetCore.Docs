@@ -102,11 +102,11 @@ When the file is read into configuration, unique keys are created to maintain th
 
 ## Conventions
 
-At app startup, configuration sources are read in the order that their configuration providers are specified. The last provider to set a value for a key determines the value stored in configuration at startup. 
+At app startup, configuration sources are read in the order that their configuration providers are specified.
 
 File Configuration Providers have the ability to reload configuration when an underlying settings file is changed after startup. The File Configuration Provider is described later in this topic.
 
-[Dependency Injection (DI)](xref:fundamentals/dependency-injection) isn't functional until `Startup.ConfigureServices` executes. Therefore, the configuration system can't interact with DI until `ConfigureServices` executes.
+[IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) is available in the app's [Dependency Injection (DI)](xref:fundamentals/dependency-injection) container. Configuration providers can't utilize DI, as it's not available when they're set up by the host.
 
 Configuration keys adopt the following conventions:
 
@@ -114,14 +114,18 @@ Configuration keys adopt the following conventions:
 * If a value for the same key is set by the same or different configuration providers, the last value set on the key is the value used.
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
-  * In environment variables, a colon separator (`:`) may not work on all platforms. A double underscore (`__`) is supported by all platforms.
-  * In Azure Key Vault, hierarchical keys use `--` (two dashes) as a separator.
+  * In environment variables, a colon separator may not work on all platforms. A double underscore (`__`) is supported by all platforms and converted to a colon.
+  * In Azure Key Vault, hierarchical keys use `--` (two dashes) as a separator. You must provide code to replace the dashes with a colon when the secrets are loaded into the app's configuration.
 
 Configuration values are strings.
 
 ## Security
 
-Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in development or test environments. Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
+Adopt the following best practices:
+
+* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files.
+* Don't use production secrets in development or test environments.
+* Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
 
 Learn more about [how to use multiple environments](xref:fundamentals/environments) and managing the [safe storage of app secrets in development with the Secret Manager](xref:security/app-secrets) (includes advice on using environment variables to store sensitive data). The Secret Manager uses the File Configuration Provider to store user secrets in a JSON file on the local system. The File Configuration Provider is described later in this topic.
 
@@ -129,42 +133,49 @@ Learn more about [how to use multiple environments](xref:fundamentals/environmen
 
 ## Providers
 
-The configuration providers available from the framework and described in this topic are shown in the following table.
+The following table shows the configuration providers available to ASP.NET Core apps.
 
 ::: moniker range=">= aspnetcore-2.1"
 
 | Provider | Provides configuration from&hellip; |
 | -------- | ----------------------------------- |
+| [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
+| [Custom configuration provider](#custom-configuration-provider) | Custom source |
 | [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
 | [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
 | [Key-per-file Configuration Provider](#key-per-file-configuration-provider) | Directory files |
 | [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
+| [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-2.1"
+::: moniker range="= aspnetcore-2.0 || aspnetcore-1.1"
+
+| Provider | Provides configuration from&hellip; |
+| -------- | ----------------------------------- |
+| [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
+| [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
+| [Custom configuration provider](#custom-configuration-provider) | Custom source |
+| [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
+| [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
+| [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
+| [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-1.0"
 
 | Provider | Provides configuration from&hellip; |
 | -------- | ----------------------------------- |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
+| [Custom configuration provider](#custom-configuration-provider) | Custom source |
 | [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
 | [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
 | [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
+| [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
 
 ::: moniker-end
-
-::: moniker range=">= aspnetcore-1.1"
-
-Additional providers described in other topics are shown in the following table.
-
-| Provider | Provides configuration from&hellip; |
-| -------- | ----------------------------------- |
-| [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) | Azure Key Vault |
-
-::: moniker-end
-
-You can also create a [Custom configuration provider](#custom-configuration-provider).
 
 Except for using a File Configuration Provider's reload-on-change capability, configuration sources are read in the order that their configuration providers are specified at startup. The configuration providers described in this topic are described in alphabetical order, not in the order that your code may arrange them. Order configuration providers in your code to suit your priorities for the underlying configuration sources.
 
@@ -181,15 +192,17 @@ It's a common practice to position the Command-line Configuration Provider last 
 
 This sequence of providers is put into place when you initialize a new [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder). For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
 
-This sequence of providers can also be established for the app (not the host) with a [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder) and a call to its [Build](/dotnet/api/microsoft.extensions.configuration.configurationbuilder.build) method in `Startup`:
+Call [ConfigureAppConfiguration](/dotnet/api/microsoft.extensions.configuration.configurationbuilder) when building the Web Host to specify the app's configuration providers:
+
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet1&highlight=3)]
+
+`ConfigureAppConfiguration` *is available in ASP.NET Core 2.1 or later.*
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
 This sequence of providers can be created for the app (not the host) with a [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder) and a call to its [Build](/dotnet/api/microsoft.extensions.configuration.configurationbuilder.build) method in `Startup`:
-
-::: moniker-end
 
 ```csharp
 public Startup(IHostingEnvironment env)
@@ -222,8 +235,7 @@ public void ConfigureServices(IServiceCollection services)
 
 The environment name (`env.EnvironmentName`) and app assembly name (`env.ApplicationName`) are provided by the [IHostingEnvironment](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment). For more information, see <xref:fundamentals/environments>.
 
-> [!NOTE]
-> For an example of how to flow command-line arguments from `Program:Main` to the `Startup` class, where they can be used with the Command-line Configuration Provider, see the [1.x sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/1.x). The approach shown in the 1.x sample can also be used in 2.x or later apps.
+::: moniker-end
 
 ## Command-line Configuration Provider
 
@@ -244,8 +256,6 @@ To activate command-line configuration, call the [AddCommandLine](/dotnet/api/mi
 `CreateDefaultBuilder` adds the Command-line Configuration Provider last. Command-line arguments passed at runtime override configuration set by the other providers.
 
 `CreateDefaultBuilder` acts when the host is constructed. Therefore, command-line configuration activated by `CreateDefaultBuilder` can affect how the host is configured.
-
-For an example of how to flow command-line arguments from `Program:Main` to the `Startup` class so that configuration established in `Startup` can be overridden, see the [1.x sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/1.x). The approach shown in the 1.x sample can also be used in 2.x or later apps.
 
 When building the host manually and not calling `CreateDefaultBuilder`, call the `AddCommandLine` extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder):
 
@@ -411,7 +421,7 @@ The [EnvironmentVariablesConfigurationProvider](/dotnet/api/microsoft.extensions
 
 To activate environment variables configuration, call the [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
 
-When working with hierarchical keys in environment variables, a colon separator (`:`) may not work on all platforms. A double underscore (`__`) is supported by all platforms.
+When working with hierarchical keys in environment variables, a colon separator (`:`) may not work on all platforms. A double underscore (`__`) is supported by all platforms and replaced by a colon.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -474,6 +484,12 @@ var config = new ConfigurationBuilder()
 ```
 
 The prefix is stripped off when the configuration key-value pairs are created.
+
+::: moniker range=">= aspnetcore-2.0"
+
+The static convenience method `CreateDefaultBuilder` creates a [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) to establish the app's host. When `WebHostBuilder` is created, it finds its host configuration in environment variables prefixed with `ASPNETCORE_`.
+
+::: moniker-end
 
 **Connection string prefixes**
 
@@ -1180,6 +1196,11 @@ TvShow = _config.GetSection("tvshow").Get<TvShow>();
 
 The sample app demonstrates how to create a basic configuration provider that reads configuration key-value pairs from a database using [Entity Framework (EF)](/ef/core/).
 
+The provider has the following characteristics:
+
+* The provider reads a database table into configuration at startup. The provider doesn't query the database on a per-key basis.
+* Reload-on-change isn't implemented, so updating the database after the app starts has no effect on the app's configuration.
+
 Define an `EFConfigurationValue` entity for storing configuration values in the database.
 
 *Models/EFConfigurationValue.cs*:
@@ -1264,7 +1285,7 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet1&highlight=7)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet1&highlight=8)]
 
 ::: moniker-end
 
@@ -1276,7 +1297,7 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 
 ## Access configuration during startup
 
-Inject `IConfiguration` into the `Startup` constructor to access configuration values in `Startup.ConfigureServices`. To access configuration in `Startup.Configure`, inject `IConfiguration` directly into the method:
+Inject `IConfiguration` into the `Startup` constructor to access configuration values in `Startup.ConfigureServices`. To access configuration in `Startup.Configure`, either inject `IConfiguration` directly into the method or use the instance from the constructor:
 
 ```csharp
 public class Startup
