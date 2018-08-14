@@ -177,7 +177,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 
 ::: moniker-end
 
-Except for using a File Configuration Provider's reload-on-change capability, configuration sources are read in the order that their configuration providers are specified at startup. The configuration providers described in this topic are described in alphabetical order, not in the order that your code may arrange them. Order configuration providers in your code to suit your priorities for the underlying configuration sources.
+Configuration sources are read in the order that their configuration providers are specified at startup. The configuration providers described in this topic are described in alphabetical order, not in the order that your code may arrange them. Order configuration providers in your code to suit your priorities for the underlying configuration sources.
 
 A typical sequence of configuration providers is:
 
@@ -867,7 +867,7 @@ The previous configuration file loads the following keys with `value`:
 
 ## Key-per-file Configuration Provider
 
-The [KeyPerFileConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.keyperfile.keyperfileconfigurationprovider) uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents.
+The [KeyPerFileConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.keyperfile.keyperfileconfigurationprovider) uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-per-file Configuration Provider is used in Docker hosting scenarios.
 
 To activate key-per-file configuration, call the [AddKeyPerFile](/dotnet/api/microsoft.extensions.configuration.keyperfileconfigurationbuilderextensions.addkeyperfile) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder). The `directoryPath` to the files must be an absolute path.
 
@@ -1198,6 +1198,7 @@ The sample app demonstrates how to create a basic configuration provider that re
 
 The provider has the following characteristics:
 
+* The EF in-memory database is used for demonstration purposes. To use a database that requires a connection string, implement a secondary `ConfigurationBuilder` to supply the connection string from another configuration provider.
 * The provider reads a database table into configuration at startup. The provider doesn't query the database on a per-key basis.
 * Reload-on-change isn't implemented, so updating the database after the app starts has no effect on the app's configuration.
 
