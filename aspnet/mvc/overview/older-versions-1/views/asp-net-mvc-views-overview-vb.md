@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb
 title: "ASP.NET MVC Views Overview (VB) | Microsoft Docs"
 author: StephenWalther
 description: "What is an ASP.NET MVC View and how does it differ from a HTML page? In this tutorial, Stephen Walther introduces you to Views and demonstrates how you can t..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/16/2008
 ms.assetid: c28ba88d-3a93-47f5-a306-049bd766714d
 msc.legacyurl: /mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb

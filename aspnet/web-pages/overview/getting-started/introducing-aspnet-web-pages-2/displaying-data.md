@@ -3,7 +3,7 @@ uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/displayin
 title: "Introducing ASP.NET Web Pages - Displaying Data | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to create a database in WebMatrix and how to display database data in a page when you use ASP.NET Web Pages (Razor). It assumes y..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/28/2015
 ms.assetid: b3a006a0-3ea2-4d45-b833-e20e3a3c0a1a
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/displaying-data

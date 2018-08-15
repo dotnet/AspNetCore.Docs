@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/custom-formatting/using-templatefields-in-th
 title: "Using TemplateFields in the DetailsView Control (C#) | Microsoft Docs"
 author: rick-anderson
 description: "The same TemplateFields capabilities available with the GridView are also available with the DetailsView control. In this tutorial we'll display one product..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/31/2010
 ms.assetid: 83efb21f-b231-446e-9356-f4c6cbcc6713
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/using-templatefields-in-the-detailsview-control-cs

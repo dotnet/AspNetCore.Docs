@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-implement-site-navigation-in-aspnet
 title: "[How Do I:] Implement Site Navigation in ASP.NET? | Microsoft Docs"
 author: rick-anderson
 description: "In this video we learn how to define a sitemap and use it with the Menu, TreeView, and Sitemap server controls. We see how to use a sitemap on a master page..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/18/2007
 ms.assetid: 889e8100-a80c-41c0-bfeb-7d466c754548
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-site-navigation-in-aspnet

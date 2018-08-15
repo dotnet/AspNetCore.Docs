@@ -3,7 +3,7 @@ uid: identity/overview/extensibility/overview-of-custom-storage-providers-for-as
 title: "Overview of Custom Storage Providers for ASP.NET Identity | Microsoft Docs"
 author: tfitzmac
 description: "ASP.NET Identity is an extensible system which enables you to create your own storage provider and plug it into your application without re-working the appli..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/13/2014
 ms.assetid: 681a9204-462e-4260-9a0b-19f0644d6ad7
 msc.legacyurl: /identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity

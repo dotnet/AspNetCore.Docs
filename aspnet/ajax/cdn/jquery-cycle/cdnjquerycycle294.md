@@ -3,7 +3,7 @@ uid: ajax/cdn/jquery-cycle/cdnjquerycycle294
 title: "jQuery Cycle 2.94 | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/23/2014
 ms.assetid: 486108f8-0719-492e-85ed-46f3b7bc18d2
 msc.legacyurl: /ajax/cdn/jquery-cycle/cdnjquerycycle294

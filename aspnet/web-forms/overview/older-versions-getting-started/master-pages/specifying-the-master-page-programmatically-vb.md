@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/specifying-t
 title: "Specifying the Master Page Programmatically (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Looks at setting the content page's master page programmatically via the PreInit event handler."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/28/2008
 ms.assetid: 0edcd653-f24a-41aa-aef4-75f868fe5ac2
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-vb

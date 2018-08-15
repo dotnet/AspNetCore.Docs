@@ -3,7 +3,7 @@ uid: mvc/overview/getting-started/database-first-development/customizing-a-view
 title: "EF Database First with ASP.NET MVC: Customizing a View | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/01/2014
 ms.assetid: 269380ff-d7e1-4035-8ad1-fe1316a25f76
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/customizing-a-view

@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/custom-formatting/using-the-formview-s-templ
 title: "Using the FormView's Templates (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Unlike the DetailsView, the FormView is not composed of fields. Instead, the FormView is rendered using templates. In this tutorial we'll examine using the F..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/31/2010
 ms.assetid: d3f062af-88cf-426d-af44-e41f32c41672
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/using-the-formview-s-templates-cs

@@ -3,7 +3,7 @@ uid: web-forms/videos/authentication/simple-web-service-authentication
 title: "Simple Web Service Authentication | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner demonstrates different mechanisms that can be added to an ASP.NET application to restrict unauthorized access to ASMX web services..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/16/2010
 ms.assetid: 3b186578-16be-4e4f-a296-233df0381411
 msc.legacyurl: /web-forms/videos/authentication/simple-web-service-authentication

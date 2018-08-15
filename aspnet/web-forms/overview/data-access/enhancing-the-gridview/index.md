@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/enhancing-the-gridview/index
 title: "Enhancing the GridView | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show how to add a column of radio buttons to a GridView control to provide an intuitive way to select a single row."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: 80010898-5cb0-49ae-a678-cc2f3fe3ca6c
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview

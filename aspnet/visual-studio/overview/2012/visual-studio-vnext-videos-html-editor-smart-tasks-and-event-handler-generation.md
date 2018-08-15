@@ -3,7 +3,7 @@ uid: visual-studio/overview/2012/visual-studio-vnext-videos-html-editor-smart-ta
 title: "Visual Studio vNext Videos: HTML Editor Smart Tasks and Event Handler Generation | Microsoft Docs"
 author: madskristensen
 description: "In this video, Mads Kristensen demonstrates improvements in the Visual Studio vNext HTML editor which simplifies performing common tasks."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/30/2011
 ms.assetid: 3aa5b073-1359-41ac-8f4f-b09c1c8cb4bd
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-vnext-videos-html-editor-smart-tasks-and-event-handler-generation

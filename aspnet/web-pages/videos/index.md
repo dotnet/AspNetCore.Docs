@@ -3,7 +3,7 @@ uid: web-pages/videos/index
 title: "Videos | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/18/2012
 ms.assetid: febf2824-4e3d-4dc6-84c5-f99777ec6144
 msc.legacyurl: /web-pages/videos

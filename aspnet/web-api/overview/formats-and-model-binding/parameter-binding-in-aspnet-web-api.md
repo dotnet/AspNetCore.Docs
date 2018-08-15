@@ -3,7 +3,7 @@ uid: web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-
 title: "Parameter Binding in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/11/2013
 ms.assetid: e42c8388-04ed-4341-9fdb-41b1b4c06320
 msc.legacyurl: /web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api

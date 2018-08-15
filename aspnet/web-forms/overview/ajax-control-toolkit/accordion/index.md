@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/accordion/index
 title: "Accordion | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the Accordion control, which contains multiple panes and lets users display one of them at a time."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/11/2011
 ms.assetid: afd41278-b4c5-43ee-9845-2b665932dcff
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/accordion

@@ -3,7 +3,7 @@ uid: visual-studio/overview/2013/visual-studio-2013-web-editor-features-html-edi
 title: "Visual Studio 2013 Web Editor Features - HTML Editor | Microsoft Docs"
 author: madskristensen
 description: "Mads Kristensen shows off HTML editor features in Visual Studio 2013, including full IntelliSense for HTML elements, all CSS classes and ID's in your project..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/17/2013
 ms.assetid: 5a6b4558-0555-4cac-99c7-06865169007f
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-editor-features-html-editor

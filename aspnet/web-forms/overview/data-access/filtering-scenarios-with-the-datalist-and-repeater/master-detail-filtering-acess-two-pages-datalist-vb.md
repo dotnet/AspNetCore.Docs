@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-re
 title: "Master/Detail Filtering Across Two Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we look at how to separate a master/detail report across two pages. In the 'master' page we use a Repeater control to render a list of categ..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/30/2010
 ms.assetid: f1a1be2c-6fd9-4a09-916e-aa1b98d5cf17
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-acess-two-pages-datalist-vb

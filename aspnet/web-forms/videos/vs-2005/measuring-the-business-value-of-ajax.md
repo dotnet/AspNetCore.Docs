@@ -3,7 +3,7 @@ uid: web-forms/videos/vs-2005/measuring-the-business-value-of-ajax
 title: "Measuring the Business Value of AJAX | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET AJAX is well known for its ability to improve the user experience of Web applications. With Visual Studio Team System you can also measure the busine..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/23/2007
 ms.assetid: 60bb771b-e938-490f-944e-c80bc6bbdc12
 msc.legacyurl: /web-forms/videos/vs-2005/measuring-the-business-value-of-ajax

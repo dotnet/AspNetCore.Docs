@@ -3,7 +3,7 @@ uid: web-api/overview/testing-and-debugging/mocking-entity-framework-when-unit-t
 title: "Mocking Entity Framework when Unit Testing ASP.NET Web API 2 | Microsoft Docs"
 author: tfitzmac
 description: "This guidance and application demonstrate how to create unit tests for your Web API 2 application that uses the Entity Framework. It shows how to modify the..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 12/13/2013
 ms.assetid: cd844025-ccad-41ce-8694-595f1022a49f
 msc.legacyurl: /web-api/overview/testing-and-debugging/mocking-entity-framework-when-unit-testing-aspnet-web-api-2

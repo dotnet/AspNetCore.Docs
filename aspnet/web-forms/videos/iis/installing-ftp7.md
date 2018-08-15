@@ -3,7 +3,7 @@ uid: web-forms/videos/iis/installing-ftp7
 title: "Installing FTP7 | Microsoft Docs"
 author: JoeStagner
 description: "FTP7 is new and powerful. This video shows you how to get it up and running!"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/09/2009
 ms.assetid: 92348a5c-10a3-4cad-b3cf-5e8669f987ab
 msc.legacyurl: /web-forms/videos/iis/installing-ftp7

@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/index
 title: "How Do I? | Microsoft Docs"
 author: rick-anderson
 description: "How to perform a variety of common tasks."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: 27591afa-3c14-47e6-8323-573f8f7aa862
 msc.legacyurl: /web-forms/videos/how-do-i

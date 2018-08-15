@@ -3,7 +3,7 @@ uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-creating-and-using-the
 title: "Tailspin Spyworks - Creating and Using the Popular Products Control | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner creates and uses the Popular Products control in the Tailspin Spyworks sample Web Forms application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/26/2010
 ms.assetid: 66944300-804e-484d-8176-6cfe8c128cfc
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-creating-and-using-the-popular-products-control

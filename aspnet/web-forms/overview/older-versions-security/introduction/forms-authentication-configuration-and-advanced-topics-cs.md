@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-security/introduction/forms-authenticatio
 title: "Forms Authentication Configuration and Advanced Topics (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will examine the various forms authentication settings and see how to modify them through the forms element. This will entail a detailed..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/14/2008
 ms.assetid: b9c29865-a34e-48bb-92c0-c443a72cb860
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs

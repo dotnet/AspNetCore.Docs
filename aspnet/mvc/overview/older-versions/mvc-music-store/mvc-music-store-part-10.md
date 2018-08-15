@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-10
 title: "Part 10: Final Updates to Navigation and Site Design, Conclusion | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 10 covers Final Updates to Navigation and S..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/21/2011
 ms.assetid: 0c6e4c2f-fcdb-4978-9656-1990c6f15727
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-10

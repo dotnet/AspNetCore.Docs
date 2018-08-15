@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspi
 title: "Part 3: Layout and Category Menu | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 3 covers adding layout and a category menu."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/21/2010
 ms.assetid: 94ea1a70-a9bc-4241-8f36-08366d64bab9
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-3

@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-de
 title: "Configuring Permissions for Team Build Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to configure permissions to enable your build server to deploy content to web servers and database servers as part of an automated b..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/04/2012
 ms.assetid: 2488a91e-b0a8-465a-b874-3233f724b56b
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-permissions-for-team-build-deployment

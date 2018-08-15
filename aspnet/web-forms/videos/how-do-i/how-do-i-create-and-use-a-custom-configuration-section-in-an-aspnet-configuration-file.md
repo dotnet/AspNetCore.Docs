@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-create-and-use-a-custom-configuration-se
 title: "[How Do I:] Create and Use a Custom Configuration Section in an ASP.NET Configuration File | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to extend the standard set of ASP.NET configuration settings with your own XML configuration elements. First, see how..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/16/2008
 ms.assetid: fa9ed773-cceb-49d0-a939-5a9e6bbae00f
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-and-use-a-custom-configuration-section-in-an-aspnet-configuration-file

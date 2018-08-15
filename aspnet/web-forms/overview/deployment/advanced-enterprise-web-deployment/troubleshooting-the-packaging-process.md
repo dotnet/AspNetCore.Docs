@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/troublesho
 title: "Troubleshooting the Packaging Process | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how you can collect detailed information about the packaging process by using the EnablePackageProcessLoggingAndAssert property in the M..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/04/2012
 ms.assetid: 794bd819-00fc-47e2-876d-fc5d15e0de1c
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/troubleshooting-the-packaging-process

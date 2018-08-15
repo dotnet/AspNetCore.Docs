@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Configuring a Website that Uses Application Services (VB) | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET version 2.0 introduced a series of application services, which are part of the .NET Framework and serve as a suite of building block services that yo..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/23/2009
 ms.assetid: 9c31a42f-d8bb-4c0f-9ccc-597d4f70ac42
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-a-website-that-uses-application-services-vb

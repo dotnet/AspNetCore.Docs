@@ -3,7 +3,7 @@ uid: signalr/overview/security/introduction-to-security
 title: "Introduction to SignalR Security | Microsoft Docs"
 author: pfletcher
 description: "Describes the security issues you must consider when developing a SignalR application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/10/2014
 ms.assetid: ed562717-8591-4936-8e10-c7e63dcb570a
 msc.legacyurl: /signalr/overview/security/introduction-to-security

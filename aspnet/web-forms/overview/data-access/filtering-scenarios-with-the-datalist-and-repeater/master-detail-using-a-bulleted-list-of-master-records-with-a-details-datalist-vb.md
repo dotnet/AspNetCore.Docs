@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-re
 title: "Master/Detail Using a Bulleted List of Master Records with a Details DataList (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll compress the two-page master/detail report of the previous tutorial into a single page, showing a bulleted list of category names on t..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/17/2006
 ms.assetid: ee20742f-6fb7-49a0-a009-058fe363aacb
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb

@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/custom-formatting/displaying-summary-informa
 title: "Displaying Summary Information in the GridView's Footer (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Summary information is often displayed at the bottom of the report in a summary row. The GridView control can include a footer row into whose cells we can pr..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/31/2010
 ms.assetid: 41c818b7-603a-402b-8847-890a63547b6f
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/displaying-summary-information-in-the-gridview-s-footer-vb
