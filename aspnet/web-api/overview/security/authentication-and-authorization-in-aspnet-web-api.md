@@ -111,6 +111,6 @@ The following diagram shows the class hierarchy for the **AuthorizeAttribute** c
 
 ### Authorization Inside a Controller Action
 
-In some cases, you might allow a request to proceed, but change the behavior based on the principal. For example, the information that you return might change depending on the user's role. Within a controller method, you can get the current principle from the **ApiController.User** property.
+In some cases, you might allow a request to proceed, but change the behavior based on the principal. For example, the information that you return might change depending on the user's role. Within a controller method, you can get the current principal from the **ApiController.User** property.
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample7.cs)]
