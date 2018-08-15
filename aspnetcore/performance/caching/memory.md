@@ -28,7 +28,7 @@ The in-memory cache can store any object; the distributed cache interface is lim
 ### Cache guidelines
 
 * Code should always have a fallback option to fetch data and **not** depend on a cached value being available.
-* The cache uses a scare resource, memory. Limit cache growth:
+* The cache uses a scarce resource, memory. Limit cache growth:
   * Do **not** use external input as cache keys.
   * Use expirations to limit cache growth.
   * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size)
