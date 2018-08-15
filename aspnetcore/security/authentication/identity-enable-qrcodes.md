@@ -10,8 +10,11 @@ uid: security/authentication/identity-enable-qrcodes
 # Enable QR Code generation for TOTP authenticator apps in ASP.NET Core
 
 ::: moniker range="<= aspnetcore-2.0"
-QR Codes requires ASP.NET Core 2.0 and later.
+
+QR Codes requires ASP.NET Core 2.0 or later.
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.0"
 
 ASP.NET Core ships with support for authenticator applications for individual authentication. Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. An authenticator app provides a 6 to 8 digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smart phone.
@@ -23,15 +26,24 @@ The ASP.NET Core web app templates support authenticators, but don't provide sup
 These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcodejs/ repo.
 
 * Download the [qrcode.js javascript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
+
 * Follow the instructions in [Scaffold Identity](xref:security/authentication/scaffold-identity) to generate */Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml*.
 * In */Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml*, locate the `Scripts` section at the end of the file:
+
 ::: moniker-end
+
 ::: moniker range="= aspnetcore-2.0"
+
 * In *Pages/Account/Manage/EnableAuthenticator.cshtml* (Razor Pages) or *Views/Manage/EnableAuthenticator.cshtml* (MVC), locate the `Scripts` section at the end of the file:
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.0"
+
 ```cshtml
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
@@ -65,13 +77,18 @@ Run your app and ensure that you can scan the QR code and validate the code the 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
-The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the */Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml*.
-::: moniker-end
-::: moniker range="= aspnetcore-2.0"
-The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the *Pages/Account/Manage/EnableAuthenticator.cshtml.cs* (Razor Pages) file or the *Controllers/ManageController.cs* (MVC) file.
-::: moniker-end
-::: moniker range=">= aspnetcore-2.0"
 
+The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the */Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml*.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the *Pages/Account/Manage/EnableAuthenticator.cshtml.cs* (Razor Pages) file or the *Controllers/ManageController.cs* (MVC) file.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.0"
 
 The default code from the template looks as follows:
 
@@ -100,4 +117,5 @@ The correctly formatted URL for the QR Code is available in the:
 ## TOTP client and server time skew
 
 TOTP (Time-based One-Time Password) authentication depends on both the server and authenticator device having an accurate time. Tokens only last for 30 seconds. If TOTP 2FA logins are failing, check that the server time is accurate, and preferably synchronized to an accurate NTP service.
+
 ::: moniker-end
