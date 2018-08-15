@@ -176,7 +176,7 @@ routes.MapRoute(
 | String            | ".AspNetCore.Identity.Application"                |
 |                   | ".AspNetCore.Identity.Application,HairColor" |
 
-Accepts a single header value or a comma-separated list of header values that trigger a cache refresh when the header values(s) change. The following example looks at the cookie associated with ASP.NET Identity. When a user is authenticated the request cookie to be set which triggers a cache refresh.
+Accepts a single header value or a comma-separated list of header values that trigger a cache refresh when the header values(s) change. The following example looks at the cookie associated with ASP.NET Core Identity. When a user is authenticated the request cookie to be set which triggers a cache refresh.
 
 Example:
 

@@ -14,7 +14,7 @@ Beyond web hosting and DevOps, Azure has a wide array of Platform-as-a-Service (
 
 ## Storage and databases
 
-[Redis Cache](https://docs.microsoft.com/azure/redis-cache/) is high-throughput, low-latency data caching available as a service. It can be used for caching page output, reducing database requests, and providing ASP.NET session state across multiple instances of an app.
+[Redis Cache](https://docs.microsoft.com/azure/redis-cache/) is high-throughput, low-latency data caching available as a service. It can be used for caching page output, reducing database requests, and providing ASP.NET Core session state across multiple instances of an app.
 
 [Azure Storage](https://docs.microsoft.com/azure/storage/) is Azure's massively scalable cloud storage. Developers can take advantage of [Queue Storage](https://docs.microsoft.com/azure/storage/queues/storage-queues-introduction) for reliable message queuing, and [Table Storage](https://docs.microsoft.com/azure/storage/tables/table-storage-overview) is a NoSQL key-value store designed for rapid development using massive, semi-structured data sets.
 
