@@ -15,15 +15,36 @@
   </ItemGroup>
 
   <Target Name="CopyTarget" AfterTargets="Build">
-    <Message Importance="High" Text="Modifying deps.json file ..." />
+    <Message Importance="High" Text="Modify the deps.json file ..." />
     <Exec Command="powershell.exe -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;.\modify_deps_json.ps1&apos; &apos;$(Configuration)&apos;} &quot;" />
 
-    <Message Importance="High" Text="Creating directory for deps.json file if it doesn't exist ..." />
+    <Message Importance="High" Text="Create a directory for deps.json file in the user profile's additionalDeps folder if it doesn't exist ..." />
     <MakeDir Directories="$(USERPROFILE)\.dotnet\x64\additionalDeps\StartupDiagnostics\shared\Microsoft.NETCore.App\$(SharedFrameworkVersion)\" 
              Condition="!Exists('$(USERPROFILE)\.dotnet\x64\additionalDeps\StartupDiagnostics\shared\Microsoft.NETCore.App\$(SharedFrameworkVersion)\')" />
 
-    <Message Importance="High" Text="Moving deps.json file ..." />
+    <Message Importance="High" Text="Move deps.json file ..." />
     <Copy SourceFiles="$(OutputPath)StartupDiagnostics.deps.json" DestinationFolder="$(USERPROFILE)\.dotnet\x64\additionalDeps\StartupDiagnostics\shared\Microsoft.NETCore.App\$(SharedFrameworkVersion)\" />
+
+    <Message Importance="High" Text="Create a deployment directory if it doesn't exist ..." />
+    <MakeDir Directories="$(OutputPath)deployment" 
+             Condition="!Exists('$(OutputPath)deployment')" />
+
+    <Message Importance="High" Text="Create a deployment\assembly directory if it doesn't exist ..." />
+    <MakeDir Directories="$(OutputPath)deployment\assembly" 
+             Condition="!Exists('$(OutputPath)deployment\assembly')" />
+
+    <Message Importance="High" Text="Create a deployment\additionalDeps directory if it doesn't exist ..." />
+    <MakeDir Directories="$(OutputPath)deployment\additionalDeps" 
+             Condition="!Exists('$(OutputPath)deployment\additionalDeps')" />
+
+    <Message Importance="High" Text="Copy the hosting startup assembly to the deployment\assembly folder ..." />
+    <Copy SourceFiles="$(OutputPath)StartupDiagnostics.dll" DestinationFolder="$(OutputPath)deployment\assembly\" />
+
+    <Message Importance="High" Text="Copy the dependencies file to the deployment\additionalDeps folder ..." />
+    <Copy SourceFiles="$(OutputPath)StartupDiagnostics.deps.json" DestinationFolder="$(OutputPath)deployment\additionalDeps\" />
+
+    <Message Importance="High" Text="Copy the PowerShell script to the deployment folder ..." />
+    <Copy SourceFiles="deploy.ps1" DestinationFolder="$(OutputPath)deployment\" />
   </Target>
 
 </Project>

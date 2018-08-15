@@ -150,9 +150,9 @@ When multiple hosting startup assembles are present, their [Configure](/dotnet/a
 
 ## Activation
 
-There are three options for hosting startup activation:
+Three options for hosting startup activation are:
 
-* Doesn't require a compile-time reference for activation: [Runtime store](#runtime-store)
+* [Runtime store](#runtime-store) &ndash; Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multi-machine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
 * Compile-time reference required for activation
   - [NuGet package](#nuget-package)
   - [Project bin folder](#project-bin-folder)
@@ -226,6 +226,14 @@ For the sample app (*HostingStartupApp*) to find the dependencies file (*Hosting
 ```
 
 For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
+
+**Deployment**
+
+To facilitate the deployment of a hosting startup in a multi-machine environment, the sample app creates a *deployment* folder in published output that contains:
+
+* The hosting startup assembly.
+* The hosting startup dependencies file.
+* A PowerShell script that creates or modifies the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` and `DOTNET_ADDITIONAL_DEPS` to support the activation of the hosting startup. Run the script from an administrative PowerShell command prompt on the deployment system.
 
 ### NuGet package
 
