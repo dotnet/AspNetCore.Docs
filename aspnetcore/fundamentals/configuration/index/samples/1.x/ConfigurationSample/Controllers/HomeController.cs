@@ -36,11 +36,15 @@ namespace ConfigurationSample.Controllers
             // Uncomment the next line to render all configuration key-value pairs.
             //viewModel.FilteredConfiguration = _config.AsEnumerable();
 
+            #region snippet_starship
             var starship = new Starship();
             _config.GetSection("starship").Bind(starship);
             viewModel.Starship = starship;
+            #endregion
 
+            #region snippet_tvshow
             viewModel.TvShow = _config.GetSection("tvshow").Get<TvShow>();
+            #endregion
 
             return View(viewModel);
         }

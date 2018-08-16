@@ -509,9 +509,9 @@ When an environment variable is discovered and loaded into configuration with an
 
 | Environment variable key | Converted configuration key | Provider configuration entry                                        |
 | ------------------------ | --------------------------- | ------------------------------------------------------------------- |
-| `MYSQLCONNSTR_<KEY>`     | `ConnectionStrings:<KEY>`   | `ConnectionStrings:<KEY>_ProviderName`:<br>`MySql.Data.MySqlClient` |
-| `SQLAZURECONNSTR_<KEY>`  | `ConnectionStrings:<KEY>`   | `ConnectionStrings:<KEY>_ProviderName`:<br>`System.Data.SqlClient`  |
-| `SQLCONNSTR_<KEY>`       | `ConnectionStrings:<KEY>`   | `ConnectionStrings:<KEY>_ProviderName`:<br>`System.Data.SqlClient`  |
+| `MYSQLCONNSTR_<KEY>`     | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
+| `SQLAZURECONNSTR_<KEY>`  | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+| `SQLCONNSTR_<KEY>`       | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
 | `CUSTOMCONNSTR_<KEY>`    | `ConnectionStrings:<KEY>`   | Configuration entry not created.                                    |
 
 ## File Configuration Provider
@@ -1081,50 +1081,56 @@ Configuration values are returned as strings, but calling [ConfigurationBinder.B
 
 The sample app contains a `Starship` model (*Models/Starship.cs*):
 
-```csharp
-public class Starship
-{
-    public string Name { get; set; }
-    public string Registry { get; set; }
-    public string Class { get; set; }
-    public int Length { get; set; }
-    public bool Commissioned { get; set; }
-}
-```
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Models/Starship.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Models/Starship.cs?name=snippet1)]
+
+::: moniker-end
 
 The `starship` section of the *starship.json* file creates the configuration when the sample app uses the JSON Configuration Provider to load the configuration:
 
-```json
-{
-  "starship": {
-    "name": "USS Enterprise",
-    "registry": "NCC-1701",
-    "class": "Constitution",
-    "length": 304.8,
-    "commissioned": false
-  },
-  "trademark": "USS Enterprise® Paramount Pictures Corp. http://www.paramount.com"
-}
-```
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-json[](index/samples/2.x/ConfigurationSample/starship.json)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-json[](index/samples/1.x/ConfigurationSample/starship.json)]
+
+::: moniker-end
 
 The following configuration key-value pairs are created:
 
-| Key                   | Value                                                             |
-| --------------------- | ----------------------------------------------------------------- |
-| starship:name         | USS Enterprise                                                    |
-| starship:registry     | NCC-1701                                                          |
-| starship:class        | Constitution                                                      |
-| starship:length       | 304.8                                                             |
-| starship:commissioned | False                                                             |
-| trademark             | USS Enterprise® Paramount Pictures Corp. http://www.paramount.com |
+| Key                   | Value                                             |
+| --------------------- | ------------------------------------------------- |
+| starship:name         | USS Enterprise                                    |
+| starship:registry     | NCC-1701                                          |
+| starship:class        | Constitution                                      |
+| starship:length       | 304.8                                             |
+| starship:commissioned | False                                             |
+| trademark             | Paramount Pictures Corp. http://www.paramount.com |
 
 The sample app calls `GetSection` with the `starship` key. The `starship` key-value pairs are isolated. The `Bind` method is called on the subsection passing in an instance of the `Starship` class. After binding the instance values, the instance is assigned to a property for rendering:
 
-```csharp
-var starship = new Starship();
-_config.GetSection("starship").Bind(starship);
-Starship = starship;
-```
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_starship)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Controllers/HomeController.cs?name=snippet_starship)]
+
+::: moniker-end
 
 ## Bind configuration to an object graph
 
@@ -1132,49 +1138,35 @@ Starship = starship;
 
 The sample contains a `TvShow` model whose object graph includes `Metadata` and `Actors` classes (*Models/TvShow.cs*):
 
-```csharp
-public class TvShow
-{
-    public Metadata Metadata { get; set; }
-    public Actors Actors { get; set; }
-    public string Legal { get; set; }
-}
+::: moniker range=">= aspnetcore-2.0"
 
-public class Metadata
-{
-    public string Series { get; set; }
-    public string Title { get; set; }
-    public DateTime Airdate { get; set; }
-    public int Episodes { get; set; }
-}
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Models/TvShow.cs?name=snippet1)]
 
-public class Actors
-{
-    public string Names { get; set; }
-}
-```
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Models/TvShow.cs?name=snippet1)]
+
+::: moniker-end
 
 The sample app has a *tvshow.xml* file containing the configuration data:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-  <tvshow>
-    <metadata>
-      <series>Dr. Who</series>
-      <title>The Sun Makers</title>
-      <airdate>11/26/1977</airdate>
-      <episodes>4</episodes>
-    </metadata>
-    <actors>
-      <names>Tom Baker, Louise Jameson, John Leeson</names>
-    </actors>
-    <legal>(c)1977 BBC https://www.bbc.co.uk/programmes/b006q2x0</legal>
-  </tvshow>
-</configuration>
-```
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-xml[](index/samples/2.x/ConfigurationSample/tvshow.xml)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-xml[](index/samples/1.x/ConfigurationSample/tvshow.xml)]
+
+::: moniker-end
 
 Configuration is bound to the entire `TvShow` object graph with the `Bind` method. The bound instance is assigned to a property for rendering:
+
+::: moniker range=">= aspnetcore-2.0"
 
 ```csharp
 var tvShow = new TvShow();
@@ -1182,13 +1174,33 @@ _config.GetSection("tvshow").Bind(tvShow);
 TvShow = tvShow;
 ```
 
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+```csharp
+var tvShow = new TvShow();
+_config.GetSection("tvshow").Bind(tvShow);
+viewModel.TvShow = tvShow;
+```
+
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-1.1"
 
 [ConfigurationBinder.Get&lt;T&gt;](/dotnet/api/microsoft.extensions.configuration.configurationbinder.get) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
 
-```csharp
-TvShow = _config.GetSection("tvshow").Get<TvShow>();
-```
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_tvshow)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-1.1"
+
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Controllers/HomeController.cs?name=snippet_tvshow)]
 
 ::: moniker-end
 

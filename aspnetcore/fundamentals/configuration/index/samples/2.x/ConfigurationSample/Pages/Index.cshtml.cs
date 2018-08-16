@@ -40,11 +40,15 @@ namespace ConfigurationSample.Pages
             // Uncomment the next line to render all configuration key-value pairs.
             //FilteredConfiguration = _config.AsEnumerable();
 
+            #region snippet_starship
             var starship = new Starship();
             _config.GetSection("starship").Bind(starship);
             Starship = starship;
+            #endregion
 
+            #region snippet_tvshow
             TvShow = _config.GetSection("tvshow").Get<TvShow>();
+            #endregion
         }
     }
 }
