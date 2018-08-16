@@ -8,9 +8,13 @@ uid: azure/devops/index
 ---
 # DevOps with ASP.NET Core and Azure
 
-![Cover Image](./media/cover-large.png)
+[![Cover Image](./media/cover-large.png)](https://aka.ms/devopsbook)
 
 By [Cam Soper](https://twitter.com/camsoper) and [Scott Addie](https://twitter.com/scottaddie)
+
+This guide is available as a [downloadable PDF e-book](https://aka.ms/devopsbook).
+
+## Welcome 
 
 Welcome to the Azure Development Lifecycle guide for .NET! This guide introduces the basic concepts of building a development lifecycle around Azure using .NET tools and processes. After finishing this guide, you'll reap the benefits of a mature DevOps toolchain.
 
@@ -46,25 +50,9 @@ Use Azure's tools to monitor, troubleshoot, and tune your application.
 
 Other learning paths for the ASP.NET Core developer learning Azure.
 
-## Acknowledgments
+## Additional introductory reading
 
-Thank you to everyone in the .NET community who contributed to this guide with helpful suggestions! We'd like to especially thank the following community members who contributed feedback on this material:
-
-* [Sam Wronski](https://www.youtube.com/c/worldofzerodevelopment)
-* [Jeffrey Palermo](https://twitter.com/jeffreypalermo)
-
-Within Microsoft, the following people were instrumental for guidance, reviews, and encouragement:
-
-* [Bill Wagner](https://twitter.com/billwagner)
-* [Cesar de la Torre](https://twitter.com/cesardelatorre)
-* [Scott Hunter](https://twitter.com/coolcsh)
-* [Wade Pickett](https://twitter.com/wadeontheweb)
-
-## Conclusion
-
-This guide prepares you to build a continuous integration development lifecycle built around ASP.NET Core and Azure App Service.
-
-## Additional reading
+If this is your first exposure to cloud computing, these articles explain the basics.
 
 * [What is Cloud Computing?](https://azure.microsoft.com/overview/what-is-cloud-computing/)
 * [Examples of Cloud Computing](https://azure.microsoft.com/overview/examples-of-cloud-computing/)
