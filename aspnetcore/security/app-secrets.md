@@ -219,7 +219,7 @@ User secrets can be retrieved via the `Configuration` API:
 
 ::: moniker range="<= aspnetcore-1.1"
 
-[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=23)]
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=26)]
 
 ::: moniker-end
 
