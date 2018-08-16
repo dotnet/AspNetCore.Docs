@@ -45,28 +45,6 @@ namespace RazorPagesMovie.Migrations
 
                     b.ToTable("Movie");
                 });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Schedule", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("PrivateSchedule");
-
-                    b.Property<long>("PrivateScheduleSize");
-
-                    b.Property<string>("PublicSchedule");
-
-                    b.Property<long>("PublicScheduleSize");
-
-                    b.Property<string>("Title");
-
-                    b.Property<DateTime>("UploadDT");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Schedule");
-                });
 #pragma warning restore 612, 618
         }
     }

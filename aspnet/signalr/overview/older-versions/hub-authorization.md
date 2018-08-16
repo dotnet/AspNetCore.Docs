@@ -3,13 +3,9 @@ uid: signalr/overview/older-versions/hub-authorization
 title: "Authentication and Authorization for SignalR Hubs (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to restrict which users or roles can access hub methods."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: 3d2dfc0e-eac2-4076-a468-325d3d01cc7b
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/hub-authorization
 msc.type: authoredcontent
 ---

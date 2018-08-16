@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/specifying-t
 title: "Specifying the Title, Meta Tags, and Other HTML Headers in the Master Page (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Looks at different techniques for defining assorted &lt;head&gt; elements in the Master Page from the content page."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/21/2008
-ms.topic: article
 ms.assetid: ea8196f5-039d-43ec-8447-8997ad4d3900
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb
 msc.type: authoredcontent
 ---

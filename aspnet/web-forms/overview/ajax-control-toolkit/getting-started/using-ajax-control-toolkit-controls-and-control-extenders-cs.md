@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-
 title: "Using AJAX Control Toolkit Controls and Control Extenders (C#) | Microsoft Docs"
 author: microsoft
 description: "Learn how to add AJAX Control Toolkit controls and extenders to your ASP.NET pages."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/12/2009
-ms.topic: article
 ms.assetid: c1e6b51c-3bc3-4bf7-9916-9991197af3dd
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-toolkit-controls-and-control-extenders-cs
 msc.type: authoredcontent
 ---

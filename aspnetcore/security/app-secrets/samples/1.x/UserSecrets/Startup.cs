@@ -14,14 +14,17 @@ namespace UserSecrets
         #region snippet_StartupConstructor
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", 
+                             optional: false, 
+                             reloadOnChange: true)
+                .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
             {
                 builder.AddUserSecrets<Startup>();
             }
-
-            builder.AddEnvironmentVariables();
 
             Configuration = builder.Build();
         }
@@ -31,7 +34,7 @@ namespace UserSecrets
 
         public void ConfigureServices(IServiceCollection services)
         {
-            _moviesApiKey = Configuration["MoviesApiKey"];
+            _moviesApiKey = Configuration["Movies:ServiceApiKey"];
         }
 
         public void Configure(IApplicationBuilder app)

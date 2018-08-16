@@ -1,21 +1,20 @@
 ---
 title: Publish an ASP.NET Core SignalR app to Azure Web App
-author: rachelappel 
+author: tdykstra
 description: Publish an ASP.NET Core SignalR app to Azure Web App
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
-ms.author: rachelap
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 04/20/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: signalr/publish-to-azure-web-app
 ---
 
 # Publish an ASP.NET Core SignalR app to an Azure Web App
 
 [Azure Web App](/azure/app-service/app-service-web-overview) is a [Microsoft cloud computing](https://azure.microsoft.com/) platform service for hosting web apps, including ASP.NET Core.
+
+> [!NOTE]
+> This article refers to publishing an ASP.NET Core SignalR app from Visual Studio. Visit [SignalR service for Azure](https://azure.microsoft.com/en-gb/services/signalr-service?) for more information about using SignalR on Azure.
 
 ## Publish the app
 

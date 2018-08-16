@@ -3,13 +3,9 @@ uid: web-forms/videos/how-do-i/how-do-i-create-a-custom-user-control-in-aspnet
 title: "[How Do I:]  Create a Custom User Control in ASP.NET? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will demonstrate how to create a custom user control in ASP.NET that can be used throughout a web site or across many web sites. Sta..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/26/2007
-ms.topic: article
 ms.assetid: 76e0f17c-c31b-4237-89b5-a46efe602ece
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-custom-user-control-in-aspnet
 msc.type: video
 ---

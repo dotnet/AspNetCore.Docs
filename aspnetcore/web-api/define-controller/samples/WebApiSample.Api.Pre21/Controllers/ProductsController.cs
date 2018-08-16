@@ -22,9 +22,11 @@ namespace WebApiSample.Api.Pre21.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Product), 200)]
         [ProducesResponseType(404)]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
-            if (!_repository.TryGetProduct(id, out var product))
+            var product = await _repository.GetProductAsync(id);
+
+            if (product == null)
             {
                 return NotFound();
             }
@@ -36,17 +38,18 @@ namespace WebApiSample.Api.Pre21.Controllers
         #region snippet_BindingSourceAttributes
         [HttpGet]
         [ProducesResponseType(typeof(List<Product>), 200)]
-        public IActionResult Get([FromQuery] bool discontinuedOnly = false)
+        public async Task<IActionResult> GetAsync(
+            [FromQuery] bool discontinuedOnly = false)
         {
             List<Product> products = null;
 
             if (discontinuedOnly)
             {
-                products = _repository.GetDiscontinuedProducts();
+                products = await _repository.GetDiscontinuedProductsAsync();
             }
             else
             {
-                products = _repository.GetProducts();
+                products = await _repository.GetProductsAsync();
             }
 
             return Ok(products);
@@ -65,7 +68,7 @@ namespace WebApiSample.Api.Pre21.Controllers
 
             await _repository.AddProductAsync(product);
 
-            return CreatedAtAction(nameof(GetById),
+            return CreatedAtAction(nameof(GetByIdAsync),
                 new { id = product.Id }, product);
         }
     }

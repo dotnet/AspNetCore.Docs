@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using BackgroundTasksSample.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace BackgroundTasksSample
 {
@@ -10,19 +11,25 @@ namespace BackgroundTasksSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             #region snippet1
-            services.AddSingleton<IHostedService, TimedHostedService>();
+            services.AddHostedService<TimedHostedService>();
             #endregion
 
             #region snippet2
-            services.AddSingleton<IHostedService, ConsumeScopedServiceHostedService>();
+            services.AddHostedService<ConsumeScopedServiceHostedService>();
             services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
             #endregion
 
             #region snippet3
-            services.AddSingleton<IHostedService, QueuedHostedService>();
+            services.AddHostedService<QueuedHostedService>();
             services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
             #endregion
         }
@@ -36,9 +43,12 @@ namespace BackgroundTasksSample
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
             app.UseMvc();
         }
     }

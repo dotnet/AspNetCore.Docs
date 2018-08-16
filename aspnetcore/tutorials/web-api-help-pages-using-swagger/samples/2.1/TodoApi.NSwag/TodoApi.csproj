@@ -2,17 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ProjectUISubcaption>NSwag</ProjectUISubcaption>
+    <ProjectUISubcaption>NSwag - ASP.NET Core 2.1</ProjectUISubcaption>
   </PropertyGroup>
 
   <!-- <snippet_DocumentationFileElement> -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
   <!-- </snippet_DocumentationFileElement> -->
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-rc1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
     <PackageReference Include="NSwag.AspNetCore" Version="11.17.3" />
   </ItemGroup>
 

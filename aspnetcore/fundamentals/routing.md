@@ -2,19 +2,15 @@
 title: Routing in ASP.NET Core
 author: ardalis
 description: Discover how ASP.NET Core routing functionality is responsible for mapping an incoming request to a route handler.
-manager: wpickett
 ms.author: riande
-ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 07/25/2018
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
 
 By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the ASP.NET app and configured when the app starts up. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the ASP.NET app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or the URL corresponding to a given route handler based on route handler information.
+Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the app and configured when the app starts up. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or the URL corresponding to a given route handler based on route handler information.
 
 >[!IMPORTANT]
 > This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC routing, see [Route to controller actions](../mvc/controllers/routing.md)
@@ -72,7 +68,7 @@ Tip: Think of `Values` as being a set of overrides for the `AmbientValues`. URL 
 
 The output of `GetVirtualPath` is a `VirtualPathData`. `VirtualPathData` is a parallel of `RouteData`; it contains the `VirtualPath` for the output URL and some additional properties that should be set by the route.
 
-The `VirtualPathData.VirtualPath` property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
+The `VirtualPathData.VirtualPath` property contains the *virtual path* produced by the route. Depending on your needs, you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
 
 The `VirtualPathData.Router` is a reference to the route that successfully generated the URL.
 
@@ -84,9 +80,9 @@ Routing provides the `Route` class as the standard implementation of `IRouter`. 
 
 Most applications will create routes by calling `MapRoute` or one of the similar extension methods defined on `IRouteBuilder`. All of these methods will create an instance of `Route` and add it to the route collection.
 
-Note: `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Route to controller actions](../mvc/controllers/routing.md).
+Note: `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET Core MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Route to controller actions](../mvc/controllers/routing.md).
 
-This is an example of a `MapRoute` call used by a typical ASP.NET MVC route definition:
+This is an example of a `MapRoute` call used by a typical ASP.NET Core MVC route definition:
 
 ```csharp
 routes.MapRoute(
@@ -108,7 +104,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{id:int}");
 ```
 
-This template will match a URL path like `/Products/Details/17`, but not `/Products/Details/Apples`. The route parameter definition `{id:int}` defines a *route constraint* for the `id` route parameter. Route constraints implement `IRouteConstraint` and inspect route values to verify them. In this example the route value `id` must be convertible to an integer. See [route-constraint-reference](#route-constraint-reference) for a more detailed explanation of route constraints that are provided by the framework.
+This template will match a URL path like `/Products/Details/17`, but not `/Products/Details/Apples`. The route parameter definition `{id:int}` defines a *route constraint* for the `id` route parameter. Route constraints implement `IRouteConstraint` and inspect route values to verify them. In this example, the route value `id` must be convertible to an integer. See [route-constraint-reference](#route-constraint-reference) for a more detailed explanation of route constraints that are provided by the framework.
 
 Additional overloads of `MapRoute` accept values for `constraints`, `dataTokens`, and `defaults`. These additional parameters of `MapRoute` are defined as type `object`. The typical usage of these parameters is to pass an anonymously typed object, where the property names of the anonymous type match route parameter names.
 
@@ -149,7 +145,7 @@ routes.MapRoute(
     dataTokens: new { locale = "en-US" });
 ```
 
-This template will match a URL path like `/Products/5` and will extract the values `{ controller = Products, action = Details, id = 5 }` and the data tokens `{ locale = en-US }`.
+This template matches a URL path like `/en-US/Products/5` and extracts the values `{ controller = Products, action = Details, id = 5 }` and the data tokens `{ locale = en-US }`.
 
 ![Locals Windows tokens](routing/_static/tokens.png)
 
@@ -161,7 +157,7 @@ The `Route` class can also perform URL generation by combining a set of route va
 
 Tip: To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the `Route` class.
 
-This example uses a basic ASP.NET MVC style route:
+This example uses a basic ASP.NET Core MVC style route:
 
 ```csharp
 routes.MapRoute(
@@ -173,7 +169,7 @@ With the route values `{ controller = Products, action = List }`, this route wil
 
 With the route values `{ controller = Home, action = Index }`, this route will generate the URL `/`. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
 
-Tip: An app using ASP.NET MVC should use `UrlHelper` to generate URLs instead of calling into routing directly.
+Tip: An app using ASP.NET Core MVC should use `UrlHelper` to generate URLs instead of calling into routing directly.
 
 For more details about the URL generation process, see [url-generation-reference](#url-generation-reference).
 
@@ -258,7 +254,6 @@ Literal text other than route parameters (for example, `{id}`) and the path sepa
 URL patterns that attempt to capture a filename with an optional file extension have additional considerations. For example, using the template `files/{filename}.{ext?}` - When both `filename` and `ext` exist, both values will be populated. If only `filename` exists in the URL, the route matches because the trailing period `.` is  optional. The following URLs would match this route:
 
 * `/files/myFile.txt`
-* `/files/myFile.`
 * `/files/myFile`
 
 You can use the `*` character as a prefix to a route parameter to bind to the rest of the URI - this is called a *catch-all* parameter. For example, `blog/{*slug}` would match any URI that started with `/blog` and had any value following it (which would be assigned to the `slug` route value). Catch-all parameters can also match the empty string.
@@ -283,7 +278,17 @@ Using a template is generally the simplest approach to routing. Constraints and 
 
 Tip: Enable [Logging](xref:fundamentals/logging/index) to see how the built in routing implementations, such as `Route`, match requests.
 
-## Route Constraint Reference
+## Reserved routing names
+
+The following keywords are reserved names and can't be used as route names or parameters:
+
+* `action`
+* `area`
+* `controller`
+* `handler`
+* `page`
+
+## Route constraint reference
 
 Route constraints execute when a `Route` has matched the syntax of the incoming URL and tokenized the URL path into route values. Route constraints generally inspect the route value associated via the route template and make a simple yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the `HttpMethodRouteConstraint` can accept or reject a request based on its HTTP verb.
 
@@ -313,26 +318,33 @@ The following table demonstrates some route constraints and their expected behav
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
 | `required`  | `{name:required}` | `Rick` |  Used to enforce that a non-parameter value is present during URL generation |
 
+Multiple, colon-delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
+
+```csharp
+[Route("users/{id:int:min(1)}")]
+public User GetUserById(int id) { }
+```
+
 >[!WARNING]
 > Route constraints that verify the URL can be converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the [Float route constraint](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60) will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
-## Regular expressions 
+## Regular expressions
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See [RegexOptions Enumeration](/dotnet/api/system.text.regularexpressions.regexoptions) for a description of these members.
 
-Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/string). The `{` , `}` , '[' and ']' characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.
+Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string). The `{` , `}` , '[' and ']' characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.
 
 | Expression               | Note |
-| ----------------- | ------------ | 
+| ----------------- | ------------ |
 | `^\d{3}-\d{2}-\d{4}$` | Regular expression |
 | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` | Escaped  |
 | `^[a-z]{2}$` | Regular expression |
 | `^[[a-z]]{{2}}$` | Escaped  |
 
-Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string). The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any sub-string within the string, which is often not what you want. The table below shows some examples and explains why they match or fail to match.
+Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string). The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any substring within the string, which is often not what you want. The table below shows some examples and explains why they match or fail to match.
 
 | Expression               | String | Match | Comment |
-| ----------------- | ------------ |  ------------ |  ------------ | 
+| ----------------- | ------------ |  ------------ |  ------------ |
 | `[a-z]{2}` | hello | yes | substring matches |
 | `[a-z]{2}` | 123abc456 | yes | substring matches |
 | `[a-z]{2}` | mz | yes | matches expression |
@@ -352,7 +364,7 @@ The example below shows how to generate a link to a route given a dictionary of 
 
 The `VirtualPath` generated at the end of the sample above is `/package/create/123`.
 
-The second parameter to the `VirtualPathContext` constructor is a collection of *ambient values*. Ambient values provide convenience by limiting the number of values a developer must specify within a certain request context. The current route values of the current request are considered ambient values for link generation. For example, in an ASP.NET MVC app if you are in the `About` action of the `HomeController`, you don't need to specify the controller route value to link to the `Index` action (the ambient value of `Home` will be used).
+The second parameter to the `VirtualPathContext` constructor is a collection of *ambient values*. Ambient values provide convenience by limiting the number of values a developer must specify within a certain request context. The current route values of the current request are considered ambient values for link generation. For example, in an ASP.NET Core MVC app if you are in the `About` action of the `HomeController`, you don't need to specify the controller route value to link to the `Index` action (the ambient value of `Home` will be used).
 
 Ambient values that don't match a parameter are ignored, and ambient values are also ignored when an explicitly-provided value overrides it, going from left to right in the URL.
 

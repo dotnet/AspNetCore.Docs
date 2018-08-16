@@ -3,13 +3,9 @@ uid: ajax/cdn/jquery-mobile/cdnjquerymobile131
 title: "jQuery Mobile 1.3.1 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: b5c41c56-f5df-489e-9389-25e2523cdd28
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-mobile/cdnjquerymobile131
 msc.type: content
 ---

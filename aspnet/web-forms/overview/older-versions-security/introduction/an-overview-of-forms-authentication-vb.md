@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/introduction/an-overview-of-form
 title: "An Overview of Forms Authentication (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will turn from mere discussion to implementation; in particular, we will look at implementing forms authentication. The web application w..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/14/2008
-ms.topic: article
 ms.assetid: 83267f7d-64d9-41ee-82cf-da91b1bf534d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-vb
 msc.type: authoredcontent
 ---

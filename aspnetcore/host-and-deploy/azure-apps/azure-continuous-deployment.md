@@ -2,13 +2,9 @@
 title: Continuous deployment to Azure with Visual Studio and Git with ASP.NET Core
 author: rick-anderson
 description: Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
 ---
 # Continuous deployment to Azure with Visual Studio and Git with ASP.NET Core
@@ -44,7 +40,7 @@ This tutorial assumes the following software is installed:
 
 1. In the **New ASP.NET Core Project** dialog, select the ASP.NET Core **Empty** template, then click **OK**.
 
-   ![New ASP.NET Project dialog](azure-continuous-deployment/_static/02-web-site-template.png)
+   ![New ASP.NET Core Project dialog](azure-continuous-deployment/_static/02-web-site-template.png)
 
 > [!NOTE]
 > The most recent release of .NET Core is 2.0.

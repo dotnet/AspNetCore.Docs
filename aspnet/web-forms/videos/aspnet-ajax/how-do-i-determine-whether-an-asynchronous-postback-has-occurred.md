@@ -3,13 +3,9 @@ uid: web-forms/videos/aspnet-ajax/how-do-i-determine-whether-an-asynchronous-pos
 title: "[How Do I:] Determine Whether an Asynchronous Postback has Occurred? | Microsoft Docs"
 author: JoeStagner
 description: "The Page_Load method of an ASP.NET Web form will execute during either a standard full-page postback or an asychnronous partial-page postback. In this video..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/25/2007
-ms.topic: article
 ms.assetid: aabc168b-582a-4668-90b1-3d700285aa1a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-determine-whether-an-asynchronous-postback-has-occurred
 msc.type: video
 ---

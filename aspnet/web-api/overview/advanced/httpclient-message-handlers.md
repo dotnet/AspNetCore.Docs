@@ -3,13 +3,9 @@ uid: web-api/overview/advanced/httpclient-message-handlers
 title: "HttpClient Message Handlers in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/01/2012
-ms.topic: article
 ms.assetid: 5a4b6c80-b2e9-4710-8969-d5076f7f82b8
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/httpclient-message-handlers
 msc.type: authoredcontent
 ---

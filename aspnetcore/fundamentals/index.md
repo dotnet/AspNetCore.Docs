@@ -2,16 +2,11 @@
 title: ASP.NET Core fundamentals
 author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 09/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
+ms.date: 07/02/2018
 uid: fundamentals/index
 ---
-
 # ASP.NET Core fundamentals
 
 An ASP.NET Core application is a console app that creates a web server in its `Main` method:
@@ -73,7 +68,7 @@ For more information, see [Application startup](xref:fundamentals/startup).
 
 ## Content root
 
-The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:mvc/razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the app.
+The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the app.
 
 ## Web root
 
@@ -101,9 +96,13 @@ ASP.NET Core includes a rich set of built-in middleware:
 
 For more information, see [Middleware](xref:fundamentals/middleware/index) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
 
+::: moniker range=">= aspnetcore-2.1"
+
 ## Initiate HTTP requests
 
 For information about using `IHttpClientFactory` to access `HttpClient` instances to make HTTP requests, see [Initiate HTTP requests](xref:fundamentals/http-requests).
+
+::: moniker-end
 
 ## Environments
 
@@ -121,7 +120,7 @@ For more information, see [Configuration](xref:fundamentals/configuration/index)
 
 ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers support sending logs to one or more destinations. Third-party logging frameworks can be used.
 
-[Logging](xref:fundamentals/logging/index)
+For more information, see [Logging](xref:fundamentals/logging/index)
 
 ## Error handling
 
@@ -135,7 +134,7 @@ ASP.NET Core offers features for routing of app requests to route handlers.
 
 For more information, see [Routing](xref:fundamentals/routing).
 
-## File providers
+## File Providers
 
 ASP.NET Core abstracts file system access through the use of File Providers, which offers a common interface for working with files across platforms.
 
@@ -153,11 +152,11 @@ ASP.NET Core apps configure and launch a *host*, which is responsible for app st
 
 For more information, see [Host in ASP.NET Core](xref:fundamentals/host/index).
 
-## Session and application state
+## Session and app state
 
-Session state is a feature in ASP.NET Core that you can use to save and store user data while the user browses your web app.
+ASP.NET Core offers several approaches to preserve session and app state while the user browses a web app.
 
-For more information, see [Session and application state](xref:fundamentals/app-state).
+For more information, see [Session and app state](xref:fundamentals/app-state).
 
 ## Servers
 
@@ -187,6 +186,12 @@ Background tasks are implemented as *hosted services*. A hosted service is a cla
 
 For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
 
+## Access HttpContext
+
+Access the `HttpContext` through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor).
+
+For more information, see <xref:fundamentals/httpcontext>.
+
 ## Open Web Interface for .NET (OWIN)
 
 ASP.NET Core supports the Open Web Interface for .NET (OWIN). OWIN allows web apps to be decoupled from web servers.
@@ -199,15 +204,23 @@ For more information, see [Open Web Interface for .NET (OWIN)](xref:fundamentals
 
 For more information, see [WebSockets](xref:fundamentals/websockets).
 
+::: moniker range=">= aspnetcore-2.1"
+## Microsoft.AspNetCore.App metapackage
+
+The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage simplifies package management. For more information, see [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
+::: moniker-end
+::: moniker range="= aspnetcore-2.0"
 ## Microsoft.AspNetCore.All metapackage
 
 The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) metapackage for ASP.NET Core includes:
 
 * All supported packages by the ASP.NET Core team.
-* All supported packages by the Entity Framework Core. 
+* All supported packages by Entity Framework Core.
 * Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core.
 
 For more information, see [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
+::: moniker-end
 
 ## .NET Core vs. .NET Framework runtime
 

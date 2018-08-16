@@ -3,13 +3,9 @@ uid: visual-studio/overview/2013/aspnet-and-web-tools-20132-preview-for-visual-s
 title: "ASP.NET and Web Tools 2013.2  for Visual Studio 2013 Release Notes | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/06/2014
-ms.topic: article
 ms.assetid: 7ef5f73c-ca60-43c1-bdb2-702800347e7e
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes
 msc.type: authoredcontent
 ---

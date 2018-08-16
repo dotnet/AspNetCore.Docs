@@ -1,4 +1,4 @@
-# Adding search to a Razor Pages app
+# Add search to an ASP.NET Core Razor Pages app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

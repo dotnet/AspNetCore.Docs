@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebCache.Models
+namespace WebCacheSample.Models
 {
     public class DependentViewModel
     {

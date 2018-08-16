@@ -2,12 +2,8 @@
 title: Migration to ASP.NET Core
 author: rick-anderson
 description: Provides guidance on migrating various aspects of ASP.NET 4.x to ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.date: 05/04/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: migration/index
 ---
 # Migration to ASP.NET Core

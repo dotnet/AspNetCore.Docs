@@ -2,12 +2,8 @@
 title: Data Protection key management and lifetime in ASP.NET Core
 author: rick-anderson
 description: Learn about Data Protection key management and lifetime in ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/configuration/default-settings
 ---
 # Data Protection key management and lifetime in ASP.NET Core
@@ -44,6 +40,7 @@ Keys have a 90-day lifetime by default. When a key expires, the app automaticall
 
 The default payload protection algorithm used is AES-256-CBC for confidentiality and HMACSHA256 for authenticity. A 512-bit master key, changed every 90 days, is used to derive the two sub-keys used for these algorithms on a per-payload basis. See [subkey derivation](xref:security/data-protection/implementation/subkeyderivation#additional-authenticated-data-and-subkey-derivation) for more information.
 
-## See also
+## Additional resources
 
-* [Key management extensibility](xref:security/data-protection/extensibility/key-management)
+* <xref:security/data-protection/extensibility/key-management>
+* <xref:host-and-deploy/web-farm>

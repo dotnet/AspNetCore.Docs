@@ -3,13 +3,9 @@ uid: web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-after-processing-p
 title: "[How Do I:] Implement the AJAX After Processing Pattern? | Microsoft Docs"
 author: JoeStagner
 description: "The ASP.NET AJAX framework allows your server-side code to hook in and respond to various client-side events. In this video we learn how to implement the Aft..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/21/2007
-ms.topic: article
 ms.assetid: 9a382d8e-ea3a-4fa4-bd24-b56f9051f4db
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-after-processing-pattern
 msc.type: video
 ---

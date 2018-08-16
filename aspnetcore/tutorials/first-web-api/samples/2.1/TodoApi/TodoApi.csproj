@@ -7,7 +7,7 @@
 
   <!-- <snippet_Metapackage> -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.2" />
   </ItemGroup>
   <!-- </snippet_Metapackage> -->
 

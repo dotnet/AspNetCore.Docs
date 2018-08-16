@@ -32,7 +32,7 @@ namespace WebHTTPS
 
             services.AddHttpsRedirection(options =>
             {
-                options.RedirectStatusCode = StatusCodes.Status301MovedPermanently;
+                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
                 options.HttpsPort = 5001;
             });            
         }

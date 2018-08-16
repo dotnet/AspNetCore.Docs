@@ -3,13 +3,9 @@ uid: mobile/overview
 title: "Mobile Apps & Sites with ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "Learn how ASP.NET makes it easy to build mobile Web applications"
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/28/2011
-ms.topic: article
 ms.assetid: 1febce65-cdd4-47da-bdb5-1e6022ccd20a
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /mobile
 msc.type: content
 ---

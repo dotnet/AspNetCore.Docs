@@ -2,12 +2,8 @@
 title: Claims-based authorization in ASP.NET Core
 author: rick-anderson
 description: Learn how to add claims checks for authorization in an ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/claims
 ---
 # Claims-based authorization in ASP.NET Core

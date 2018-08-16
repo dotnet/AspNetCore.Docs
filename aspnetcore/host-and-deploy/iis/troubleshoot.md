@@ -2,13 +2,9 @@
 title: Troubleshoot ASP.NET Core on IIS
 author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -29,6 +25,9 @@ Discover how to handle errors in ASP.NET Core apps during development on a local
 
 [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
 This topic introduces the features of the Visual Studio debugger.
+
+[Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)  
+Learn about the debugging support built into Visual Studio Code.
 
 ## App startup errors
 
@@ -92,6 +91,7 @@ To enable and view stdout logs:
 1. Navigate to the site's deployment folder on the hosting system.
 1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
 1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). `stdout` in the path is the log file name prefix. A timestamp, process id, and file extension are added automatically when the log is created. Using `stdout` as the file name prefix, a typical log file is named *stdout_20180205184032_5412.log*. 
+1. Ensure your application pool's identity has write permissions to the *logs* folder.
 1. Save the updated *web.config* file.
 1. Make a request to the app.
 1. Navigate to the *logs* folder. Find and open the most recent stdout log.

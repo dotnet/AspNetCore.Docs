@@ -2,19 +2,15 @@
 title: Views in ASP.NET Core MVC
 author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
-manager: wpickett
 ms.author: riande
 ms.date: 12/12/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
 
 By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guardrex)
 
-This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:mvc/razor-pages/index).
+This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:razor-pages/index).
 
 In the Model-View-Controller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 
@@ -37,7 +33,7 @@ Views help to establish a [Separation of Concerns (SoC) design](http://deviq.com
 * The app is easier to maintain because it's better organized. Views are generally grouped by app feature. This makes it easier to find related views when working on a feature.
 * The parts of the app are loosely coupled. You can build and update the app's views separately from the business logic and data access components. You can modify the views of the app without necessarily having to update other parts of the app.
 * It's easier to test the user interface parts of the app because the views are separate units.
-* Due to better organization, it's less likely that you'll accidently repeat sections of the user interface.
+* Due to better organization, it's less likely that you'll accidentally repeat sections of the user interface.
 
 ## Creating a view
 
@@ -120,18 +116,18 @@ Follow the best practice of organizing the file structure for your views to refl
 
 Pass data to views using several approaches:
 
-* Strongly-typed data: viewmodel
-* Weakly-typed data
-  - `ViewData` (`ViewDataAttribute`)
-  - `ViewBag`
+* Strongly typed data: viewmodel
+* Weakly typed data
+  * `ViewData` (`ViewDataAttribute`)
+  * `ViewBag`
 
-### Strongly-typed data (viewmodel)
+### Strongly typed data (viewmodel)
 
 The most robust approach is to specify a [model](xref:mvc/models/model-binding) type in the view. This model is commonly referred to as a *viewmodel*. You pass an instance of the viewmodel type to the view from the action.
 
-Using a viewmodel to pass data to a view allows the view to take advantage of *strong* type checking. *Strong typing* (or *strongly-typed*) means that every variable and constant has an explicitly defined type (for example, `string`, `int`, or `DateTime`). The validity of types used in a view is checked at compile time.
+Using a viewmodel to pass data to a view allows the view to take advantage of *strong* type checking. *Strong typing* (or *strongly typed*) means that every variable and constant has an explicitly defined type (for example, `string`, `int`, or `DateTime`). The validity of types used in a view is checked at compile time.
 
-[Visual Studio](https://www.visualstudio.com/vs/) and [Visual Studio Code](https://code.visualstudio.com/) list strongly-typed class members using a feature called [IntelliSense](/visualstudio/ide/using-intellisense). When you want to see the properties of a viewmodel, type the variable name for the viewmodel followed by a period (`.`). This helps you write code faster with fewer errors.
+[Visual Studio](https://www.visualstudio.com/vs/) and [Visual Studio Code](https://code.visualstudio.com/) list strongly typed class members using a feature called [IntelliSense](/visualstudio/ide/using-intellisense). When you want to see the properties of a viewmodel, type the variable name for the viewmodel followed by a period (`.`). This helps you write code faster with fewer errors.
 
 Specify a model using the `@model` directive. Use the model with `@Model`:
 
@@ -186,11 +182,11 @@ Nothing prevents you from using the same classes for both your viewmodel types a
 
 <a name="VD_VB"></a>
 
-### Weakly-typed data (ViewData, ViewData attribute, and ViewBag)
+### Weakly typed data (ViewData, ViewData attribute, and ViewBag)
 
 `ViewBag` *isn't available in Razor Pages.*
 
-In addition to strongly-typed views, views have access to a *weakly-typed* (also called *loosely-typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly-typed data for passing small amounts of data in and out of controllers and views.
+In addition to strongly typed views, views have access to a *weakly typed* (also called *loosely typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly typed data for passing small amounts of data in and out of controllers and views.
 
 | Passing data between a ...                        | Example                                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -198,7 +194,7 @@ In addition to strongly-typed views, views have access to a *weakly-typed* (also
 | View and a [layout view](xref:mvc/views/layout)   | Setting the **\<title>** element content in the layout view from a view file.  |
 | [Partial view](xref:mvc/views/partial) and a view | A widget that displays data based on the webpage that the user requested.      |
 
-This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly-typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection.
+This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection.
 
 `ViewData` and `ViewBag` are dynamically resolved at runtime. Since they don't offer compile-time type checking, both are generally more error-prone than using a viewmodel. For that reason, some developers prefer to minimally or never use `ViewData` and `ViewBag`.
 
@@ -245,6 +241,7 @@ Work with the data in a view:
 ```
 
 ::: moniker range=">= aspnetcore-2.1"
+
 **ViewData attribute**
 
 Another approach that uses the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) is [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the dictionary.
@@ -282,6 +279,7 @@ In the layout, the title is read from the ViewData dictionary:
     <title>@ViewData["Title"] - WebApplication</title>
     ...
 ```
+
 ::: moniker-end
 
 **ViewBag**

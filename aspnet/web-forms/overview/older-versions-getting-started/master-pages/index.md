@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/index
 title: "ASP.NET 3.5 - Web Forms Master Pages | Microsoft Docs"
 author: rick-anderson
 description: "How to create and use ASP.NET master pages and content pages to create a consistent layout in Web Forms applications."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/04/2011
-ms.topic: article
 ms.assetid: bc30f0ec-cf8f-4a33-9eee-513be872ac9c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages
 msc.type: chapter
 ---

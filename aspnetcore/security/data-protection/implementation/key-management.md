@@ -2,12 +2,8 @@
 title: Key management in ASP.NET Core
 author: rick-anderson
 description: Learn implementation details of the ASP.NET Core Data Protection key management APIs.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/implementation/key-management
 ---
 # Key management in ASP.NET Core
@@ -76,8 +72,7 @@ The sample below demonstrates using the `IKeyManager` interface to inspect and m
 
 ## Key storage
 
-The data protection system has a heuristic whereby it tries to deduce an appropriate key storage location and encryption at rest mechanism automatically. This is also configurable by the app developer. The following documents discuss the in-box implementations of these mechanisms:
+The data protection system has a heuristic whereby it attempts to deduce an appropriate key storage location and encryption-at-rest mechanism automatically. The key persistence mechanism is also configurable by the app developer. The following documents discuss the in-box implementations of these mechanisms:
 
-* [In-box key storage providers](xref:security/data-protection/implementation/key-storage-providers#data-protection-implementation-key-storage-providers)
-
-* [In-box key encryption at rest providers](xref:security/data-protection/implementation/key-encryption-at-rest#data-protection-implementation-key-encryption-at-rest-providers)
+* <xref:security/data-protection/implementation/key-storage-providers>
+* <xref:security/data-protection/implementation/key-encryption-at-rest>

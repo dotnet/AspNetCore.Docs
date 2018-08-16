@@ -2,12 +2,8 @@
 title: Migrate from ASP.NET to ASP.NET Core 2.0
 author: isaac2004
 description: Receive guidance for migrating existing ASP.NET MVC or Web API applications to ASP.NET Core 2.0.
-manager: wpickett
 ms.author: scaddie
 ms.date: 08/27/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: migration/mvc2
 ---
 
@@ -109,11 +105,12 @@ services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"
 **Note:** For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
 ## Native dependency injection
-An important goal when building large, scalable applications is the loose coupling of components and services. [Dependency Injection](xref:fundamentals/dependency-injection) is a popular technique for achieving this, and it's a native component of ASP.NET Core.
 
-In ASP.NET applications, developers rely on a third-party library to implement Dependency Injection. One such library is [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices. 
+An important goal when building large, scalable applications is the loose coupling of components and services. [Dependency injection](xref:fundamentals/dependency-injection) is a popular technique for achieving this, and it's a native component of ASP.NET Core.
 
-An example of setting up Dependency Injection with Unity is implementing `IDependencyResolver` that wraps a `UnityContainer`:
+In ASP.NET applications, developers rely on a third-party library to implement dependency injection. One such library is [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices.
+
+An example of setting up dependency injection with Unity is implementing `IDependencyResolver` that wraps a `UnityContainer`:
 
 [!code-csharp[](../../../aspnet/web-api/overview/advanced/dependency-injection/samples/sample8.cs)]
 
@@ -125,15 +122,16 @@ Inject `IProductRepository` where needed:
 
 [!code-csharp[](../../../aspnet/web-api/overview/advanced/dependency-injection/samples/sample5.cs)]
 
-Because Dependency Injection is part of ASP.NET Core, you can add your service in the `ConfigureServices` method of *Startup.cs*:
+Because dependency injection is part of ASP.NET Core, you can add your service in the `Startup.ConfigureServices`:
 
 [!code-csharp[](samples/configure-services.cs)]
 
 The repository can be injected anywhere, as was true with Unity.
 
-**Note:** For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:fundamentals/dependency-injection#replacing-the-default-services-container)
+For more information on dependency injection in ASP.NET Core, see [Dependency injection](xref:fundamentals/dependency-injection).
 
 ## Serving static files
+
 An important part of web development is the ability to serve static, client-side assets. The most common examples of static files are HTML, CSS, Javascript, and images. These files need to be saved in the published location of the app (or CDN) and referenced so they can be loaded by a request. This process has changed in ASP.NET Core.
 
 In ASP.NET, static files are stored in various directories and referenced in the views.

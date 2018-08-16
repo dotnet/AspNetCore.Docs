@@ -2,20 +2,20 @@
 title: Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
 author: rick-anderson
 description: In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules.
-manager: wpickett
 ms.author: riande
-ms.date: 10/25/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
+ms.date: 6/31/2017
 uid: data/ef-rp/complex-data-model
 ---
 
 # Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
 
+[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
+
+::: moniker range=">= aspnetcore-2.1"
+
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
 The previous tutorials worked with a basic data model that was composed of three entities. In this tutorial:
 
@@ -26,7 +26,8 @@ The entity classes for the completed data model is shown in the following illust
 
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part5-complex).
+If you run into problems you can't solve, download the [completed app](
+https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 ## Customize the data model with attributes
 
@@ -38,7 +39,7 @@ The student pages currently displays the time of the enrollment date. Typically,
 
 Update *Models/Student.cs* with the following highlighted code:
 
-[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
+[!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
 The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
@@ -75,7 +76,7 @@ also provides client-side and server-side validation. The minimum value has no i
 
 Update the `Student` model with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
+[!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
 The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
@@ -107,7 +108,7 @@ The `Student` model uses `FirstMidName` for the first-name field because the fie
 
 Update the *Student.cs* file with the following highlighted code:
 
-[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Column&highlight=4,14)]
+[!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_Column&highlight=4,14)]
 
 With the preceding change, `Student.FirstMidName` in the app maps to the `FirstName` column of the `Student` table.
 
@@ -121,12 +122,23 @@ To update the DB:
 * Build the project.
 * Open a command window in the project folder. Enter the following commands to create a new migration and update the DB:
 
-	```console
-	dotnet ef migrations add ColumnFirstName
-	dotnet ef database update
-	```
+# [Visual Studio](#tab/visual-studio)
 
-The `dotnet ef migrations add ColumnFirstName` command generates the following warning message:
+```PMC
+Add-Migration ColumnFirstName
+Update-Database
+```
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+```console
+dotnet ef migrations add ColumnFirstName
+dotnet ef database update
+```
+
+------
+
+The `migrations add ColumnFirstName` command generates the following warning message:
 
 ```text
 An operation was scaffolded that may result in the loss of data.
@@ -152,7 +164,7 @@ Before migration was applied, the name columns were of type [nvarchar(MAX)](http
 
 Update *Models/Student.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
+[!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
 ### The Required attribute
 
@@ -180,10 +192,7 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 
 Create *Models/Instructor.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
-
-Notice that several properties are the same in the `Student` and `Instructor` entities. In the Implementing Inheritance tutorial later in this series, this code is refactored
-to eliminate the redundancy.
+[!code-csharp[](intro/samples/cu21/Models/Instructor.cs)]
 
 Multiple attributes can be on one line. The `HireDate` attributes could be written as follows:
 
@@ -227,7 +236,7 @@ public OfficeAssignment OfficeAssignment { get; set; }
 
 Create *Models/OfficeAssignment.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/OfficeAssignment.cs)]
+[!code-csharp[](intro/samples/cu21/Models/OfficeAssignment.cs)]
 
 ### The Key attribute
 
@@ -276,7 +285,7 @@ The preceding code specifies that there must be a related instructor. The preced
 
 Update *Models/Course.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
+[!code-csharp[](intro/samples/cu21/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
 
 The `Course` entity has a foreign key (FK) property `DepartmentID`. `DepartmentID` points to the related `Department` entity. The `Course` entity has a `Department` navigation property.
 
@@ -335,7 +344,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 Create *Models/Department.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Begin)]
+[!code-csharp[](intro/samples/cu21/Models/Department.cs?name=snippet_Begin)]
 
 ### The Column attribute
 
@@ -390,13 +399,13 @@ The preceding code disables cascade delete on the department-instructor relation
 
 ## Update the Enrollment entity
 
-An enrollment record is for a one course taken by one student.
+An enrollment record is for one course taken by one student.
 
 ![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
 Update *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
+[!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
 
 ### Foreign key and navigation properties
 
@@ -438,7 +447,7 @@ Note: EF 6.x supports implicit join tables for many-to-many relationships, but E
 
 Create *Models/CourseAssignment.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Models/CourseAssignment.cs)]
+[!code-csharp[](intro/samples/cu21/Models/CourseAssignment.cs)]
 
 ### Instructor-to-Courses
 
@@ -472,7 +481,7 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 
 Add the following highlighted code to *Data/SchoolContext.cs*:
 
-[!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
+[!code-csharp[](intro/samples/cu21/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
 The preceding code adds the new entities and configures the `CourseAssignment` entity's composite PK.
 
@@ -522,22 +531,30 @@ The preceding diagram shows:
 
 Update the code in *Data/DbInitializer.cs*:
 
-[!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Final)]
+[!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Final)]
 
 The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. The preceding code creates the following many-to-many relationships:
 
 * `Enrollments`
 * `CourseAssignment`
 
-Note: [EF Core 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap) will support [data seeding](https://github.com/aspnet/EntityFrameworkCore/issues/629).
-
 ## Add a migration
 
-Build the project. Open a command window in the project folder and enter the following command:
+Build the project.
+
+# [Visual Studio](#tab/visual-studio)
+
+```PMC
+Add-Migration ComplexDataModel
+```
+
+# [.NET Core CLI](#tab/netcore-cli)
 
 ```console
 dotnet ef migrations add ComplexDataModel
 ```
+
+------
 
 The preceding command displays a warning about possible data loss.
 
@@ -557,42 +574,40 @@ database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 When migrations are run with existing data, there may be FK constraints that are not satisfied with the exiting data. For this tutorial, a new DB is created, so there are no FK constraint violations. See
 [Fixing foreign key constraints with legacy data](#fk) for instructions on how to fix the FK violations on the current DB.
 
-## Change the connection string and update the DB
+### Drop and update the database
 
-The code in the updated `DbInitializer` adds seed data for the new entities. To force EF Core to create a new empty DB:
+The code in the updated `DbInitializer` adds seed data for the new entities. To force EF Core to create a new  DB, drop and update the DB:
 
-* Change the DB connection string name in *appsettings.json* to ContosoUniversity3. The new name must be a name that hasn't been used on the computer.
+# [Visual Studio](#tab/visual-studio)
 
-	```json
-	{
-	  "ConnectionStrings": {
-		"DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ContosoUniversity3;Trusted_Connection=True;MultipleActiveResultSets=true"
-	  },
-	```
+In the **Package Manager Console** (PMC), run the following command:
 
-* Alternatively, delete the DB using:
-
-  * **SQL Server Object Explorer** (SSOX).
-  * The `database drop` CLI command:
-
-    ```console
-    dotnet ef database drop
-    ```
-
-Run `database update` in the command window:
-
-```console
-dotnet ef database update
+```PMC
+Drop-Database
+Update-Database
 ```
 
-The preceding command runs all the migrations.
+Run `Get-Help about_EntityFrameworkCore` from the PMC to get help information.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+Open a command window and navigate to the project folder. The project folder contains the *Startup.cs* file.
+
+Enter the following in the command window:
+
+ ```console
+ dotnet ef database drop
+dotnet ef database update
+ ```
+
+------
 
 Run the app. Running the app runs the `DbInitializer.Initialize` method. The `DbInitializer.Initialize` populates the new DB.
 
 Open the DB in SSOX:
 
-* Expand the **Tables** node. The created tables are displayed.
 * If SSOX was opened previously, click the **Refresh** button.
+* Expand the **Tables** node. The created tables are displayed.
 
 ![Tables in SSOX](complex-data-model/_static/ssox-tables.png)
 
@@ -642,6 +657,8 @@ A production app would:
 * Not use the "Temp" department or the default value for `Course.DepartmentID`.
 
 The next tutorial covers related data.
+
+::: moniker-end
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/migrations)

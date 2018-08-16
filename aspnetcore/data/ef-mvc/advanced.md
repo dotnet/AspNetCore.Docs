@@ -2,16 +2,16 @@
 title: ASP.NET Core MVC with EF Core - Advanced - 10 of 10
 author: rick-anderson
 description: This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core.
-manager: wpickett
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/advanced
 ---
 
 # ASP.NET Core MVC with EF Core - Advanced - 10 of 10
+
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -182,7 +182,7 @@ The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ
 
 ## Next steps
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application.
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application.
 
 For more information about EF Core, see the [Entity Framework Core documentation](https://docs.microsoft.com/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 
@@ -194,7 +194,7 @@ For information about other topics related to ASP.NET Core MVC, such as authenti
 
 Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan Miller, Diego Vega, and other members of the Entity Framework team assisted with code reviews and helped debug issues that arose while we were writing code for the tutorials.
 
-## Common errors  
+## Common errors
 
 ### ContosoUniversity.dll used by another process
 
@@ -239,6 +239,7 @@ Error Message:
 Solution:
 
 Check the connection string. If you have manually deleted the database file, change the name of the database in the construction string to start over with a new database.
+::: moniker-end
 
 > [!div class="step-by-step"]
 > [Previous](inheritance.md)

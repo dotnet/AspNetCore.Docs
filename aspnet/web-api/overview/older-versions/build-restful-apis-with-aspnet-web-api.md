@@ -3,13 +3,9 @@ uid: web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api
 title: "Build RESTful APIs with ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "In recent years, it has become clear that HTTP is not just for serving up HTML pages. It is also a powerful platform for building Web APIs, using a handful o..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/18/2013
-ms.topic: article
 ms.assetid: 87daa99f-3810-407e-b969-dd28a192959d
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api
 msc.type: authoredcontent
 ---

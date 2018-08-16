@@ -24,8 +24,9 @@ namespace GenericHostSample
             var host = new HostBuilder()
                 .ConfigureHostConfiguration(configHost =>
                 {
-                    configHost.AddEnvironmentVariables();
+                    configHost.SetBasePath(Directory.GetCurrentDirectory());
                     configHost.AddJsonFile("hostsettings.json", optional: true);
+                    configHost.AddEnvironmentVariables(prefix: "PREFIX_");
                     configHost.AddCommandLine(args);
                 })
             #endregion
@@ -40,11 +41,12 @@ namespace GenericHostSample
             var host = new HostBuilder()
                 .ConfigureAppConfiguration((hostContext, configApp) =>
                 {
-                    configApp.AddEnvironmentVariables();
+                    configApp.SetBasePath(Directory.GetCurrentDirectory());
                     configApp.AddJsonFile("appsettings.json", optional: true);
                     configApp.AddJsonFile(
                         $"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", 
                         optional: true);
+                    configApp.AddEnvironmentVariables(prefix: "PREFIX_");
                     configApp.AddCommandLine(args);
                 })
             #endregion
@@ -121,21 +123,7 @@ namespace GenericHostSample
         {
             #region snippet_ContainerConfiguration
             var host = new HostBuilder()
-                .UseServiceProviderFactory<ServiceContainer>(new SerivceContainerFactory())
-                .ConfigureContainer<ServiceContainer>((hostContext, container) =>
-                {
-                })
-            #endregion
-                .Build();
-
-            await host.RunAsync();
-        }
-
-        public static async Task Main9(string[] args)
-        {
-            #region snippet_ContainerConfiguration
-            var host = new HostBuilder()
-                .UseServiceProviderFactory<ServiceContainer>(new SerivceContainerFactory())
+                .UseServiceProviderFactory<ServiceContainer>(new ServiceContainerFactory())
                 .ConfigureContainer<ServiceContainer>((hostContext, container) =>
                 {
                 })
