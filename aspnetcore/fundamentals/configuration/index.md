@@ -117,7 +117,10 @@ Configuration keys adopt the following conventions:
   * In environment variables, a colon separator may not work on all platforms. A double underscore (`__`) is supported by all platforms and converted to a colon.
   * In Azure Key Vault, hierarchical keys use `--` (two dashes) as a separator. You must provide code to replace the dashes with a colon when the secrets are loaded into the app's configuration.
 
-Configuration values are strings.
+Configuration values adopt the following conventions:
+
+* Values are strings.
+* Null values can't be stored in configuration or bound to objects.
 
 ## Security
 
@@ -422,6 +425,8 @@ The [EnvironmentVariablesConfigurationProvider](/dotnet/api/microsoft.extensions
 To activate environment variables configuration, call the [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
 
 When working with hierarchical keys in environment variables, a colon separator (`:`) may not work on all platforms. A double underscore (`__`) is supported by all platforms and replaced by a colon.
+
+[Azure App Service](https://azure.microsoft.com/services/app-service/) permits you to set environment variables in the Azure Portal that can override app configuration using the Environment Variables Configuration Provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -1076,6 +1081,8 @@ Given the example data, `sectionExists` is `false` because there isn't a `sectio
 ::: moniker-end
 
 ## Bind configuration to a class
+
+Configuration can be bound to classes that represent groups of related settings using the *options pattern*. For more information, see <xref:fundamentals/configuration/options>.
 
 Configuration values are returned as strings, but calling [ConfigurationBinder.Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind) enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects.
 
