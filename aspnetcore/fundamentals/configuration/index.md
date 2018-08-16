@@ -1103,20 +1103,20 @@ The `starship` section of the *starship.json* file creates the configuration whe
     "length": 304.8,
     "commissioned": false
   },
-  "trademark": "USS Enterprise is a trademark of Paramount Pictures Corp."
+  "trademark": "USS Enterprise® Paramount Pictures Corp. http://www.paramount.com"
 }
 ```
 
 The following configuration key-value pairs are created:
 
-| Key                   | Value                                                     |
-| --------------------- | --------------------------------------------------------- |
-| starship:name         | USS Enterprise                                            |
-| starship:registry     | NCC-1701                                                  |
-| starship:class        | Constitution                                              |
-| starship:length       | 304.8                                                     |
-| starship:commissioned | False                                                     |
-| trademark             | USS Enterprise is a trademark of Paramount Pictures Corp. |
+| Key                   | Value                                                             |
+| --------------------- | ----------------------------------------------------------------- |
+| starship:name         | USS Enterprise                                                    |
+| starship:registry     | NCC-1701                                                          |
+| starship:class        | Constitution                                                      |
+| starship:length       | 304.8                                                             |
+| starship:commissioned | False                                                             |
+| trademark             | USS Enterprise® Paramount Pictures Corp. http://www.paramount.com |
 
 The sample app calls `GetSection` with the `starship` key. The `starship` key-value pairs are isolated. The `Bind` method is called on the subsection passing in an instance of the `Starship` class. After binding the instance values, the instance is assigned to a property for rendering:
 
