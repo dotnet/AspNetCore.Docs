@@ -71,7 +71,7 @@ Don't write code that depends on the location or format of data saved with the S
 
 ## Install the Secret Manager tool
 
-The Secret Manager tool is bundled with the .NET Core CLI as of .NET Core SDK 2.1.300. For .NET Core SDK versions before 2.1.300, tool installation is necessary.
+The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1.300 or later. For .NET Core SDK versions before 2.1.300, tool installation is necessary.
 
 > [!TIP]
 > Run `dotnet --version` from a command shell to see the installed .NET Core SDK version number.
@@ -222,6 +222,24 @@ User secrets can be retrieved via the `Configuration` API:
 [!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=26)]
 
 ::: moniker-end
+
+Map the `Movies` object literal to a custom class using the [Bind to an object graph](xref:fundamentals/configuration/index#bind-to-an-object-graph) feature of the `Configuration` API. For example:
+
+::: moniker range=">= aspnetcore-1.1"
+
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-1.0"
+
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
+
+::: moniker-end
+
+The preceding code hydrates the following custom class:
+
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
 ## String replacement with secrets
 
