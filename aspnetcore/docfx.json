@@ -22,7 +22,9 @@
       {
         "files": [
           "**/*.png",
-          "**/*.jpg"
+          "**/*.jpg",
+          "**/*.svg",
+          "**/*.pdf"
         ],
         "exclude": [
           "**/obj/**",
@@ -35,7 +37,10 @@
       }
     ],
     "overwrite": [],
-    "externalReference": [],    
+    "externalReference": [],
+    "xrefService": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ],
     "globalMetadata": {
       "_navPath": "/foo",
       "_navRel": "/foo",
