@@ -2,8 +2,9 @@
 title: WebListener web server implementation in ASP.NET Core
 author: rick-anderson
 description: Learn about WebListener, a web server for ASP.NET Core on Windows that can be used for direct connection to the Internet without IIS.
+monikerRange: '< aspnetcore-2.0'
 ms.author: riande
-ms.date: 03/13/2018
+ms.date: 08/15/2018
 uid: fundamentals/servers/weblistener
 ---
 # WebListener web server implementation in ASP.NET Core
@@ -39,11 +40,15 @@ WebListener is useful for deployments where you need to expose the server direct
 
 ![Weblistener communicates directly with the Internet](weblistener/_static/weblistener-to-internet.png)
 
-Because it's built on Http.Sys, WebListener doesn't require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. 
+Because it's built on Http.Sys, WebListener doesn't require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys.
 
 WebListener is also a good choice for internal deployments when you need one of the features it offers that you can't get by using Kestrel.
 
 ![Weblistener communicates directly with your internal network](weblistener/_static/weblistener-to-internal.png)
+
+## Kernel mode authentication with Kerberos
+
+WebListener delegates to kernel mode authentication with the Kerberos authentication protocol. User mode authentication isn't supported with Kerberos and WebListener. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
 
 ## How to use WebListener
 
