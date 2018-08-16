@@ -223,7 +223,13 @@ User secrets can be retrieved via the `Configuration` API:
 
 ::: moniker-end
 
-Map the `Movies` object literal to a custom class using the [Bind to an object graph](xref:fundamentals/configuration/index#bind-to-an-object-graph) feature of the `Configuration` API. For example:
+## Map secrets to a POCO
+
+Mapping an entire object literal to a POCO (a simple .NET class with properties) is useful for aggregating related properties. Consider the following `Movies` object literal:
+
+[!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file.md)]
+
+To map the preceding object literal to a POCO (a simple .NET class with properties), use the `Configuration` API's [object graph binding](xref:fundamentals/configuration/index#bind-to-an-object-graph) feature. For example:
 
 ::: moniker range=">= aspnetcore-1.1"
 
@@ -237,7 +243,7 @@ Map the `Movies` object literal to a custom class using the [Bind to an object g
 
 ::: moniker-end
 
-The preceding code hydrates the following custom class:
+The POCO to which the user secrets within `Movies` are mapped follows:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
