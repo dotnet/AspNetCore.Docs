@@ -74,7 +74,7 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * Click **OK**
 
-  ![New ASP.NET Project dialog](intro/_static/new-aspnet.png)
+  ![New ASP.NET Core Project dialog](intro/_static/new-aspnet.png)
 
 ## Set up the site style
 
@@ -267,7 +267,7 @@ You'll notice that the controller takes a `SchoolContext` as a constructor param
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Context&highlight=5,7,9)]
 
-ASP.NET dependency injection will take care of passing an instance of `SchoolContext` into the controller. You configured that in the *Startup.cs* file earlier.
+ASP.NET Core dependency injection takes care of passing an instance of `SchoolContext` into the controller. You configured that in the *Startup.cs* file earlier.
 
 The controller contains an `Index` action method, which displays all students in the database. The method gets a list of students from the Students entity set by reading the `Students` property of the database context instance:
 

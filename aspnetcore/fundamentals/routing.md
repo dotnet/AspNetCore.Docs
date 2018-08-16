@@ -10,7 +10,7 @@ uid: fundamentals/routing
 
 By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the ASP.NET app and configured when the app starts up. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the ASP.NET app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or the URL corresponding to a given route handler based on route handler information.
+Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the app and configured when the app starts up. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or the URL corresponding to a given route handler based on route handler information.
 
 >[!IMPORTANT]
 > This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC routing, see [Route to controller actions](../mvc/controllers/routing.md)
@@ -80,9 +80,9 @@ Routing provides the `Route` class as the standard implementation of `IRouter`. 
 
 Most applications will create routes by calling `MapRoute` or one of the similar extension methods defined on `IRouteBuilder`. All of these methods will create an instance of `Route` and add it to the route collection.
 
-Note: `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Route to controller actions](../mvc/controllers/routing.md).
+Note: `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET Core MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Route to controller actions](../mvc/controllers/routing.md).
 
-This is an example of a `MapRoute` call used by a typical ASP.NET MVC route definition:
+This is an example of a `MapRoute` call used by a typical ASP.NET Core MVC route definition:
 
 ```csharp
 routes.MapRoute(
@@ -157,7 +157,7 @@ The `Route` class can also perform URL generation by combining a set of route va
 
 Tip: To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the `Route` class.
 
-This example uses a basic ASP.NET MVC style route:
+This example uses a basic ASP.NET Core MVC style route:
 
 ```csharp
 routes.MapRoute(
@@ -169,7 +169,7 @@ With the route values `{ controller = Products, action = List }`, this route wil
 
 With the route values `{ controller = Home, action = Index }`, this route will generate the URL `/`. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
 
-Tip: An app using ASP.NET MVC should use `UrlHelper` to generate URLs instead of calling into routing directly.
+Tip: An app using ASP.NET Core MVC should use `UrlHelper` to generate URLs instead of calling into routing directly.
 
 For more details about the URL generation process, see [url-generation-reference](#url-generation-reference).
 
@@ -364,7 +364,7 @@ The example below shows how to generate a link to a route given a dictionary of 
 
 The `VirtualPath` generated at the end of the sample above is `/package/create/123`.
 
-The second parameter to the `VirtualPathContext` constructor is a collection of *ambient values*. Ambient values provide convenience by limiting the number of values a developer must specify within a certain request context. The current route values of the current request are considered ambient values for link generation. For example, in an ASP.NET MVC app if you are in the `About` action of the `HomeController`, you don't need to specify the controller route value to link to the `Index` action (the ambient value of `Home` will be used).
+The second parameter to the `VirtualPathContext` constructor is a collection of *ambient values*. Ambient values provide convenience by limiting the number of values a developer must specify within a certain request context. The current route values of the current request are considered ambient values for link generation. For example, in an ASP.NET Core MVC app if you are in the `About` action of the `HomeController`, you don't need to specify the controller route value to link to the `Index` action (the ambient value of `Home` will be used).
 
 Ambient values that don't match a parameter are ignored, and ambient values are also ignored when an explicitly-provided value overrides it, going from left to right in the URL.
 
