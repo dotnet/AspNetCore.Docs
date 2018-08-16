@@ -20,14 +20,14 @@ Because the destination URL is specified in the querystring of the request, a ma
 
 ### An example attack
 
-A malicious user could develop an attack intended to allow the malicious user access to a user's credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site's login page, with a `returnUrl` querystring value added to the URL. For example, the [NerdDinner.com](http://nerddinner.com) sample application (written for ASP.NET MVC) includes such a login page here: `http://nerddinner.com/Account/LogOn?returnUrl=/Home/About`. The attack then follows these steps:
+A malicious user can develop an attack intended to allow the malicious user access to a user's credentials or sensitive information. To begin the attack, the malicious user convinces the user to click a link to your site's login page with a `returnUrl` querystring value added to the URL. For example, consider an app at `contoso.com` that includes a login page at `http://contoso.com/Account/LogOn?returnUrl=/Home/About`. The attack follows these steps:
 
-1. User clicks a link to `http://nerddinner.com/Account/LogOn?returnUrl=http://nerddiner.com/Account/LogOn` (note, second URL is nerddi**n**er, not nerddi**nn**er).
+1. The user clicks a malicious link to `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (the second URL is "contoso**1**.com", not "contoso.com").
 2. The user logs in successfully.
-3. The user is redirected (by the site) to `http://nerddiner.com/Account/LogOn` (malicious site that looks like real site).
+3. The user is redirected (by the site) to `http://contoso1.com/Account/LogOn` (a malicious site that looks exactly like real site).
 4. The user logs in again (giving malicious site their credentials) and is redirected back to the real site.
 
-The user will likely believe their first attempt to log in failed, and their second one was successful. They will most likely remain unaware their credentials have been compromised.
+The user likely believes that their first attempt to log in failed and that their second attempt is successful. The user most likely remains unaware that their credentials are compromised.
 
 ![Open Redirection Attack Process](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
