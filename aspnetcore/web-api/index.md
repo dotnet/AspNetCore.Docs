@@ -69,11 +69,11 @@ A binding source attribute defines the location at which an action parameter's v
 
 |Attribute|Binding source |
 |---------|---------|
-|**<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute?text=[[FromBody]]>**     | Request body |
-|**<xref:Microsoft.AspNetCore.Mvc.FromFormAttribute?text=[[FromForm]]>**     | Form data in the request body |
-|**<xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute?text=[[FromHeader]]>** | Request header |
-|**<xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute?text=[[FromQuery]]>**   | Request query string parameter |
-|**<xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute?text=[[FromRoute]]>**   | Route data from the current request |
+|**<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute?text=[FromBody]>**     | Request body |
+|**<xref:Microsoft.AspNetCore.Mvc.FromFormAttribute?text=[FromForm]>**     | Form data in the request body |
+|**<xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute?text=[FromHeader]>** | Request header |
+|**<xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute?text=[FromQuery]>**   | Request query string parameter |
+|**<xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute?text=[FromRoute]>**   | Route data from the current request |
 |**[[FromServices]](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices)** | The request service injected as an action parameter |
 
 > [!WARNING]
