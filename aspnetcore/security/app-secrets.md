@@ -229,7 +229,7 @@ Mapping an entire object literal to a POCO (a simple .NET class with properties)
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file.md)]
 
-To map the preceding object literal to a POCO (a simple .NET class with properties), use the `Configuration` API's [object graph binding](xref:fundamentals/configuration/index#bind-to-an-object-graph) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
+To map the preceding object literal to a POCO, use the `Configuration` API's [object graph binding](xref:fundamentals/configuration/index#bind-to-an-object-graph) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
 
 ::: moniker range=">= aspnetcore-1.1"
 
