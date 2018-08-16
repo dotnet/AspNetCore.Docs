@@ -37,7 +37,7 @@ The `ControllerBase` class provides access to several properties and methods. In
 
 ## Annotate class with ApiControllerAttribute
 
-ASP.NET Core 2.1 introduces the <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute?text=[ApiController]> attribute to denote a web API controller class. For example:
+ASP.NET Core 2.1 introduces the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute to denote a web API controller class. For example:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=2)]
 
@@ -69,11 +69,11 @@ A binding source attribute defines the location at which an action parameter's v
 
 |Attribute|Binding source |
 |---------|---------|
-|**<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute?text=[FromBody]>**     | Request body |
-|**<xref:Microsoft.AspNetCore.Mvc.FromFormAttribute?text=[FromForm]>**     | Form data in the request body |
-|**<xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute?text=[FromHeader]>** | Request header |
-|**<xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute?text=[FromQuery]>**   | Request query string parameter |
-|**<xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute?text=[FromRoute]>**   | Route data from the current request |
+|**[[FromBody]](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)**     | Request body |
+|**[[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)**     | Form data in the request body |
+|**[[FromHeader]](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)** | Request header |
+|**[[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)**   | Request query string parameter |
+|**[[FromRoute]](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)**   | Route data from the current request |
 |**[[FromServices]](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices)** | The request service injected as an action parameter |
 
 > [!WARNING]
@@ -99,7 +99,7 @@ The default inference rules are disabled when the <xref:Microsoft.AspNetCore.Mvc
 
 ### Multipart/form-data request inference
 
-When an action parameter is annotated with the <xref:Microsoft.AspNetCore.Mvc.FromFormAttribute?text=[FromForm]> attribute, the `multipart/form-data` request content type is inferred.
+When an action parameter is annotated with the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute, the `multipart/form-data` request content type is inferred.
 
 The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property is set to `true`. Add the following code in *Startup.ConfigureServices* after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);`:
 
