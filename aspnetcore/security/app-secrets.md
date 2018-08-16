@@ -243,7 +243,7 @@ To map the preceding object literal to a POCO (a simple .NET class with properti
 
 ::: moniker-end
 
-The POCO to which the user secrets within `Movies` are mapped follows:
+The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to the respective properties in `MovieSettings`:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
