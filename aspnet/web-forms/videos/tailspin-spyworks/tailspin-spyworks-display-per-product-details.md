@@ -3,7 +3,7 @@ uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-per-product-de
 title: "Tailspin Spyworks - Display Per Product Details | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner displays the product details in the Tailspin Spyworks sample Web Forms application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/09/2010
 ms.assetid: cc1ae79f-69ff-445a-a789-b5da2b255cb6
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-per-product-details

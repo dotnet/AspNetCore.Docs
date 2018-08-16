@@ -3,7 +3,7 @@ uid: web-api/overview/older-versions/creating-a-web-api-that-supports-crud-opera
 title: "Enabling CRUD Operations in ASP.NET Web API 1 | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to support CRUD operations in an HTTP service using ASP.NET Web API. Software versions used in the tutorial Visual Studio 2012 Web AP..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/28/2012
 ms.assetid: c125ca47-606a-4d6f-a1fc-1fc62928af93
 msc.legacyurl: /web-api/overview/older-versions/creating-a-web-api-that-supports-crud-operations

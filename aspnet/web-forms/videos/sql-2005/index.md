@@ -3,7 +3,7 @@ uid: web-forms/videos/sql-2005/index
 title: "SQL 2005 | Microsoft Docs"
 author: rick-anderson
 description: "How to work with SQL Server Express to add database capabilities to your ASP.NET applications."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: cf0b487c-f387-46dd-b3bc-6b3c4af17c9c
 msc.legacyurl: /web-forms/videos/sql-2005

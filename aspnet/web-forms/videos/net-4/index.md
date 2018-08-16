@@ -3,7 +3,7 @@ uid: web-forms/videos/net-4/index
 title: ".NET 4 | Microsoft Docs"
 author: rick-anderson
 description: "The new ASP.NET features and functionality available in the .NET Framework 4."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: bac10aee-6731-4a0f-84d7-9eef5e560ae5
 msc.legacyurl: /web-forms/videos/net-4

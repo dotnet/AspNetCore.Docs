@@ -3,7 +3,7 @@ uid: ajax/cdn/jquery-mobile/index
 title: "jQuery Mobile | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/23/2014
 ms.assetid: c13785b6-5538-4511-92de-4afdb4a1d0f1
 msc.legacyurl: /ajax/cdn/jquery-mobile

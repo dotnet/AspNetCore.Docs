@@ -3,7 +3,7 @@ uid: mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to
 title: "How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2 | Microsoft Docs"
 author: Rick-Anderson
 description: "ASP.NET MVC 5 and Web API 2 bring a host of new features, including attribute routing, authentication filters, and much more."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/17/2013
 ms.assetid: db0d02d9-58e8-4a0b-8d7d-b8df8ea97b88
 msc.legacyurl: /mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2

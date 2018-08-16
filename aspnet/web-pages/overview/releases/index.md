@@ -3,7 +3,7 @@ uid: web-pages/overview/releases/index
 title: "Web Pages Releases | Microsoft Docs"
 author: rick-anderson
 description: "What's new in each ASP.NET Web Pages release."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/16/2014
 ms.assetid: d01b3ea0-8d82-404b-bfea-eb1ba7ca4a54
 msc.legacyurl: /web-pages/overview/releases

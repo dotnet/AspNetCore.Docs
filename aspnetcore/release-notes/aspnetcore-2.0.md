@@ -101,7 +101,7 @@ return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNo
 
 The file returned to your visitors will be decorated with the appropriate HTTP headers for the `ETag` and `LastModified` values.
 
-If an application visitor requests content with a Range Request header, ASP.NET will recognize that and handle that header. If the requested content can be partially delivered, ASP.NET will appropriately skip and return just the requested set of bytes.  You don't need to write any special handlers into your methods to adapt or handle this feature; it's automatically handled for you.
+If an application visitor requests content with a Range Request header, ASP.NET Core recognizes the request and handles the header. If the requested content can be partially delivered, ASP.NET Core appropriately skips and returns just the requested set of bytes. You don't need to write any special handlers into your methods to adapt or handle this feature; it's automatically handled for you.
 
 ## Hosting startup and Application Insights
 

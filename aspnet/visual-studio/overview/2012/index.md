@@ -3,7 +3,7 @@ uid: visual-studio/overview/2012/index
 title: "ASP.NET and Visual Studio 2012 | Microsoft Docs"
 author: rick-anderson
 description: "Developing ASP.NET web apps with Visual Studio 2012"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/25/2013
 ms.assetid: 51900291-7787-4a6e-be4e-fa558486f5ff
 msc.legacyurl: /visual-studio/overview/2012

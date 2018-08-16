@@ -3,7 +3,7 @@ uid: web-forms/videos/vs-2005/index
 title: "Visual Studio 2005 | Microsoft Docs"
 author: rick-anderson
 description: "How to work with Visual Studio 2005, Team System, and add-ins to perform testing, deployment, and other tasks."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: 1bcf9a1c-ed34-4ed0-ab91-253df08fc6ff
 msc.legacyurl: /web-forms/videos/vs-2005

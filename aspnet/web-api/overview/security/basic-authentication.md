@@ -3,7 +3,7 @@ uid: web-api/overview/security/basic-authentication
 title: "Basic Authentication in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: "Describes using Basic Authentication in ASP.NET Web API."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/02/2014
 ms.assetid: 41423767-0021-47c3-9e53-0021b457c39f
 msc.legacyurl: /web-api/overview/security/basic-authentication

@@ -3,7 +3,7 @@ uid: whitepapers/aspnet-and-iis6
 title: "Running ASP.NET 1.1 with IIS 6.0 | Microsoft Docs"
 author: rick-anderson
 description: "While Windows Server 2003 includes both IIS 6.0 and ASP.NET 1.1, these components are disabled by default. This whitepaper describes how to enable IIS 6.0 an..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/10/2010
 ms.assetid: 5a5537bf-2aaa-49e7-839f-9e6522b829d8
 msc.legacyurl: /whitepapers/aspnet-and-iis6

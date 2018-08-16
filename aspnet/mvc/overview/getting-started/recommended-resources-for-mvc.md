@@ -3,7 +3,7 @@ uid: mvc/overview/getting-started/recommended-resources-for-mvc
 title: "MVC Recommended Resources | Microsoft Docs"
 author: Rick-Anderson
 description: "This topic provides links to documentation resources about ASP.NET MVC 5. If you know a great blog post, stackoverflow thread or any other link that would be..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/10/2014
 ms.assetid: 7958d725-e958-4566-a85b-535eeb985f94
 msc.legacyurl: /mvc/overview/getting-started/recommended-resources-for-mvc

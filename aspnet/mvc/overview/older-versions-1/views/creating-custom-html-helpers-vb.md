@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/views/creating-custom-html-helpers-vb
 title: "Creating Custom HTML Helpers (VB) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to demonstrate how you can create custom HTML Helpers that you can use within your MVC views. By taking advantage of HTML Helper..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/07/2008
 ms.assetid: f96f4800-19ef-44c0-b457-55e777eb5de8
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-custom-html-helpers-vb

@@ -3,7 +3,7 @@ uid: mvc/overview/index
 title: "ASP.NET MVC Guidance | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/23/2011
 ms.assetid: 946574c5-b5cb-423b-a6e1-a2cfb506ecf9
 msc.legacyurl: /mvc/overview

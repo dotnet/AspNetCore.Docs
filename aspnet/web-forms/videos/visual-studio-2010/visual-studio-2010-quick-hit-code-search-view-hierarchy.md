@@ -3,7 +3,7 @@ uid: web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-searc
 title: Visual Studio 2010 Quick Hit - Code Search View Hierarchy
 author: JoeStagner
 description: "In this video you will learn about Visual Studio's code search view hierarchy."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/11/2009
 ms.assetid: 0f24b680-e3a6-46f6-a52a-91191e09ab78
 msc.legacyurl: /web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-search-view-hierarchy

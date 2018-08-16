@@ -96,7 +96,7 @@ A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions
 
 The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method exists in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
 
-The files have been made publicly cacheable for 10 minutes (600 seconds):
+The files have been made publicly cacheable for 10 minutes (600 seconds) in the Development environment:
 
 ![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 

@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/nerddinner/secure-applications-using-authenti
 title: "Secure Applications Using Authentication and Authorization | Microsoft Docs"
 author: microsoft
 description: "Step 9 shows how to add authentication and authorization to secure our NerdDinner application, so that users need to register and login to the site to create..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: 9e4d5cac-b071-440c-b044-20b6d0c964fb
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/secure-applications-using-authentication-and-authorization

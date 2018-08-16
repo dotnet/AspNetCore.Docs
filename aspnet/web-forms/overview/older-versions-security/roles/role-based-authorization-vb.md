@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-security/roles/role-based-authorization-v
 title: "Role-Based Authorization (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial starts with a look at how the Roles framework associates a user's roles with his security context. It then examines how to apply role-based URL..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/24/2008
 ms.assetid: 83b4f5a4-4f5a-4380-ba33-f0b5c5ac6a75
 msc.legacyurl: /web-forms/overview/older-versions-security/roles/role-based-authorization-vb

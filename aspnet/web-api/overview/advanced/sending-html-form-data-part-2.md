@@ -3,7 +3,7 @@ uid: web-api/overview/advanced/sending-html-form-data-part-2
 title: "Sending HTML Form Data in ASP.NET Web API: File Upload and Multipart MIME | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/21/2012
 ms.assetid: a7f3c1b5-69d9-4261-b082-19ffafa5f16a
 msc.legacyurl: /web-api/overview/advanced/sending-html-form-data-part-2

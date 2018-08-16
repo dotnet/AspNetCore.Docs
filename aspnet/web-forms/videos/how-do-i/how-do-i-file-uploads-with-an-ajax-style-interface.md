@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-file-uploads-with-an-ajax-style-interfac
 title: "[How Do I:]  File Uploads with an AJAX Style Interface | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate, using ASP.NET, an AJAX style of uploading files from the client machine to your server. I say AJAX style because there is a..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/12/2008
 ms.assetid: fef628a1-e86d-428f-a931-e3bbae53a878
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-file-uploads-with-an-ajax-style-interface

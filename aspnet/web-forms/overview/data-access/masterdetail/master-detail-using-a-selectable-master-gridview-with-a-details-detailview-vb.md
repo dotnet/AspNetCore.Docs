@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/masterdetail/master-detail-using-a-selectabl
 title: "Master/Detail Using a Selectable Master GridView with a Details DetailView (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will have a GridView whose rows include the name and price of each product along with a Select button. Clicking the Select button for a particu..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/31/2010
 ms.assetid: 1d1a7c93-971d-4690-9c5e-dac0e5014a09
 msc.legacyurl: /web-forms/overview/data-access/masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb

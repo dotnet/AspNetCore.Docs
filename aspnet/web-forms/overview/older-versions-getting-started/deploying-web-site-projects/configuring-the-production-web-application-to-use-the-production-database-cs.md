@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Configuring the Production Web Application to Use the Production Database (C#) | Microsoft Docs"
 author: rick-anderson
 description: "As discussed in earlier tutorials, it is not uncommon for configuration information to differ between the development and production environments. This is es..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/23/2009
 ms.assetid: 0177dabd-d888-449f-91b2-24190cf5e842
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-cs

@@ -3,7 +3,7 @@ uid: signalr/overview/performance/index
 title: "SignalR Performance | Microsoft Docs"
 author: rick-anderson
 description: "How to maximize the performance of SignalR applications."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/19/2014
 ms.assetid: fda81611-b67b-4c62-915e-8adc1924a401
 msc.legacyurl: /signalr/overview/performance

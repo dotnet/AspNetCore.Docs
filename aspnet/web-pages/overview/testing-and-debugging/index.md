@@ -3,7 +3,7 @@ uid: web-pages/overview/testing-and-debugging/index
 title: "Testing and Debugging | Microsoft Docs"
 author: rick-anderson
 description: "How to test and debug ASP.NET Web Pages applications."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/08/2014
 ms.assetid: 1cc6d774-e991-4aa1-8efd-e83a4e0ba247
 msc.legacyurl: /web-pages/overview/testing-and-debugging

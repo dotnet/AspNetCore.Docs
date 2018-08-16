@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/contact-manager/index
 title: "Contact Manager | Microsoft Docs"
 author: rick-anderson
 description: "How to build an entire Contact Management application from start to finish."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/28/2011
 ms.assetid: 6b0f1fd7-6768-4549-ae9c-be9131103c4d
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager

@@ -3,7 +3,7 @@ title: Configure Windows authentication in ASP.NET Core
 author: ardalis
 description: This article describes how to configure Windows authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
 ms.author: riande
-ms.date: 10/24/2017
+ms.date: 08/15/2018
 uid: security/authentication/windowsauth
 ---
 # Configure Windows authentication in ASP.NET Core
@@ -25,6 +25,7 @@ The Visual Studio Web Application template can be configured to support Windows 
 ### Use the Windows authentication app template
 
 In Visual Studio:
+
 1. Create a new ASP.NET Core Web Application. 
 1. Select Web Application from the list of templates.
 1. Select the **Change Authentication** button and select **Windows Authentication**. 
@@ -73,21 +74,31 @@ Learn more about [publishing to IIS](xref:host-and-deploy/iis/index).
 
 Launch the app to verify Windows authentication is working.
 
-## Enable Windows authentication with HTTP.sys or WebListener
+::: moniker range=">= aspnetcore-2.0"
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+## Enable Windows authentication with HTTP.sys
 
 Although Kestrel doesn't support Windows authentication, you can use [HTTP.sys](xref:fundamentals/servers/httpsys) to support self-hosted scenarios on Windows. The following example configures the app's web host to use HTTP.sys with Windows authentication:
 
 [!code-csharp[](windowsauth/sample/Program2x.cs?highlight=9-14)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+> [!NOTE]
+> HTTP.sys delegates to kernel mode authentication with the Kerberos authentication protocol. User mode authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+## Enable Windows authentication with WebListener
 
 Although Kestrel doesn't support Windows authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
 [!code-csharp[](windowsauth/sample/Program1x.cs?highlight=6-11)]
 
----
+> [!NOTE]
+> WebListener delegates to kernel mode authentication with the Kerberos authentication protocol. User mode authentication isn't supported with Kerberos and WebListener. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
+
+::: moniker-end
 
 ## Work with Windows authentication
 
@@ -133,5 +144,3 @@ ASP.NET Core doesn't implement impersonation. Apps run with the application iden
 [!code-csharp[](windowsauth/sample/Startup.cs?name=snippet_Impersonate&highlight=10-18)]
 
 Note that `RunImpersonated` doesn't support asynchronous operations and shouldn't be used for complex scenarios. For example, wrapping entire requests or middleware chains isn't supported or recommended.
-
----

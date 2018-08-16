@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-control-the-caching-of-an-aspnet-page-ba
 title: "[How Do I:] Control the Caching of an ASP.NET Page Based Upon Custom Information | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to control the criteria for caching an ASP.NET page based upon custom information. A sample page is created and then the O..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/19/2009
 ms.assetid: f230c316-1313-4b8f-967c-62f9684fe378
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-control-the-caching-of-an-aspnet-page-based-upon-custom-information

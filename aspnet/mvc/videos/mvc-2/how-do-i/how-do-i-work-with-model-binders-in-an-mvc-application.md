@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/how-do-i/how-do-i-work-with-model-binders-in-an-mvc-applic
 title: "How Do I: Work with Model Binders in an MVC Application? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use model binders to bind form data to complex business objects in models in an MVC application. First, an MVC applicat..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 12/30/2009
 ms.assetid: 55c2fa76-d5b9-43e7-921e-51a9b57dba30
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-work-with-model-binders-in-an-mvc-application

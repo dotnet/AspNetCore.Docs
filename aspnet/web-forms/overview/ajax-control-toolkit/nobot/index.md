@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/nobot/index
 title: "NoBot | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the NoBot control, which provides an automated way to prevent bots from posting to a site."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/14/2011
 ms.assetid: cbf87e68-de7a-4216-b328-50c30f68493c
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/nobot

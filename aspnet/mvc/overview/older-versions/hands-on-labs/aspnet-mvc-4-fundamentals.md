@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-fundamentals
 title: "ASP.NET MVC 4 Fundamentals | Microsoft Docs"
 author: rick-anderson
 description: "This Hands-On Lab is based on MVC (Model View Controller) Music Store, a tutorial application that introduces and explains step-by-step how to use ASP.NET MV..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/18/2013
 ms.assetid: b7dba543-73c3-4534-a9a0-ba70fa2c6a8a
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-fundamentals

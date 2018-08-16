@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-1/conference-presentations/americas-next-top-model-view-cont
 title: "America's Next Top Model View Controller Framework | Microsoft Docs"
 author: Haacked
 description: "See how to build a simple application that highlights some of the key capabilities of ASP.NET MVC. Also, learn how to improve productivity using some of the..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/12/2009
 ms.assetid: 2ce3281d-dc92-4a43-9645-7e12ef6e72a6
 msc.legacyurl: /mvc/videos/mvc-1/conference-presentations/americas-next-top-model-view-controller-framework

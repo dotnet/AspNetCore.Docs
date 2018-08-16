@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/getting-started-with-ef/t
 title: "Getting Started with Entity Framework 4.0 Database First and ASP.NET 4 Web Forms | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET Web Forms applications using the Entity Framework 4.0 and Visual Studio 2010..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 12/03/2010
 ms.assetid: 5cb00916-8f46-491f-be25-4739a615d619
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-1

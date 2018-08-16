@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-35/aspnet-ajax/index
 title: "ASP.NET Ajax | Microsoft Docs"
 author: rick-anderson
 description: "This video series explores how to add Ajax functionality to an ASP.NET application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/14/2011
 ms.assetid: 93486ab8-7a8c-4075-935a-83900817b3db
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax

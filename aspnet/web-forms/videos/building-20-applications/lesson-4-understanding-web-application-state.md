@@ -3,7 +3,7 @@ uid: web-forms/videos/building-20-applications/lesson-4-understanding-web-applic
 title: "[Lesson 4:] Understanding Web Application State | Microsoft Docs"
 author: microsoft
 description: "In this lesson, you will see how to maintain state in ASP.NET, including the various objects you can use to store information for your ASP.NET 2.0 applicatio..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/28/2005
 ms.assetid: 22ddc59d-cd84-4def-a58b-ec3ca57f0d85
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-4-understanding-web-application-state

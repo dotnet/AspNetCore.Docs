@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-helpers-forms-and-va
 title: "ASP.NET MVC 4 Helpers, Forms and Validation | Microsoft Docs"
 author: rick-anderson
 description: "In ASP.NET MVC 4 Models and Data Access Hands-on Lab, you have been loading and displaying data from the database. In this Hands-on Lab, you will add to the..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/18/2013
 ms.assetid: 187ee9cd-bc70-479b-bfed-f568b8da96eb
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-helpers-forms-and-validation

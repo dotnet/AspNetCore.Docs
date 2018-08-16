@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinf
 title: "Validating with the IDataErrorInfo Interface (VB) | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther shows you how to display custom validation error messages by implementing the IDataErrorInfo interface in a model class."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/02/2009
 ms.assetid: 3a8a9d9f-82dd-4959-b7c6-960e9ce95df1
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-vb

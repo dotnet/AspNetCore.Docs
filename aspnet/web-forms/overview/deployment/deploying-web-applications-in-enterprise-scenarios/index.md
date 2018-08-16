@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scen
 title: "ASP.NET 4 - Enterprise Deployment Introduction | Microsoft Docs"
 author: rick-anderson
 description: "This set of tutorials describes tools and techniques you can use to deploy web applications in various enterprise scenarios."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/16/2012
 ms.assetid: 8e55d4a3-5f93-42b5-b053-4736c9152f11
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios

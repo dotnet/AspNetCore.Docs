@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/what-is-asp-net
 title: "What is ASP.NET? | Microsoft Docs"
 author: shanselman
 description: "Microsoft's Scott Hanselman gives a brief overview of ASP.NET."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/09/2010
 ms.assetid: 96b57317-72b6-4699-ae60-cc917688cfa1
 msc.legacyurl: /web-forms/videos/how-do-i/what-is-asp-net

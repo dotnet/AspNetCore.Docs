@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/limiting
 title: "Limiting Data Modification Functionality Based on the User (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In a web application that allows users to edit data, different user accounts may have different data-editing privileges. In this tutorial we'll examine how t..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/17/2006
 ms.assetid: 2b251c82-77cf-4e36-baa9-b648eddaa394
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/limiting-data-modification-functionality-based-on-the-user-cs
