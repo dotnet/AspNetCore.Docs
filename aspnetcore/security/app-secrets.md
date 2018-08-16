@@ -181,7 +181,7 @@ The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) prov
 
 Add the user secrets configuration source with a call to [AddUserSecrets](/dotnet/api/microsoft.extensions.configuration.usersecretsconfigurationextensions.addusersecrets) in the `Startup` constructor:
 
-[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=5-8)]
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=12)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-2.0"
 The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. If your project targets the .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
