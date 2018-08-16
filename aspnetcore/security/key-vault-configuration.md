@@ -149,7 +149,7 @@ Disabled and expired secrets throw a `KeyVaultClientException`. To prevent your 
 
 ## Troubleshooting
 
-When the app fails to load configuration using the provider, an error message is written to the [ASP.NET Logging infrastructure](xref:fundamentals/logging/index). The following conditions will prevent configuration from loading:
+When the app fails to load configuration using the provider, an error message is written to the [ASP.NET Core Logging infrastructure](xref:fundamentals/logging/index). The following conditions will prevent configuration from loading:
 
 * The app isn't configured correctly in Azure Active Directory.
 * The key vault doesn't exist in Azure Key Vault.

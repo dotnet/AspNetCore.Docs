@@ -182,7 +182,7 @@ The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ
 
 ## Next steps
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application.
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application.
 
 For more information about EF Core, see the [Entity Framework Core documentation](https://docs.microsoft.com/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 

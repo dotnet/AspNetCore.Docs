@@ -10,7 +10,7 @@ uid: signalr/version-differences
 
 # Differences between SignalR and ASP.NET Core SignalR
 
-ASP.NET Core SignalR is not compatible with clients or servers for ASP.NET SignalR. This article details the features which have been removed or changed in the ASP.NET Core SignalR.
+ASP.NET Core SignalR is not compatible with clients or servers for ASP.NET 4.x SignalR. This article details the features which have been removed or changed in the ASP.NET Core SignalR.
 
 ## Feature differences
 

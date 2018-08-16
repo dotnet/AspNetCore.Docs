@@ -40,7 +40,7 @@ This tutorial assumes the following software is installed:
 
 1. In the **New ASP.NET Core Project** dialog, select the ASP.NET Core **Empty** template, then click **OK**.
 
-   ![New ASP.NET Project dialog](azure-continuous-deployment/_static/02-web-site-template.png)
+   ![New ASP.NET Core Project dialog](azure-continuous-deployment/_static/02-web-site-template.png)
 
 > [!NOTE]
 > The most recent release of .NET Core is 2.0.
