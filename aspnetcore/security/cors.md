@@ -204,7 +204,7 @@ Now the HTTP response will include an Access-Control-Allow-Credentials header, w
 
 If the browser sends credentials, but the response doesn't include a valid Access-Control-Allow-Credentials header, the browser won't expose the response to the application, and the AJAX request fails.
 
-Be careful when allowing cross-origin credentials. A website at another domain can send a logged-in user's credentials to the app on the user's behalf without the user's knowledge. The CORS specification also states that setting origins to "*" (all origins) is invalid if the `Access-Control-Allow-Credentials` header is present.
+Be careful when allowing cross-origin credentials. A website at another domain can send a logged-in user's credentials to the app on the user's behalf without the user's knowledge. The CORS specification also states that setting origins to `"*"` (all origins) is invalid if the `Access-Control-Allow-Credentials` header is present.
 
 ### Set the preflight expiration time
 
