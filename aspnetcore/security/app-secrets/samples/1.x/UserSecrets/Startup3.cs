@@ -23,7 +23,7 @@ namespace UserSecrets
             #region snippet_BindToObjectGraph
             var moviesConfig = new MovieSettings();
             Configuration.GetSection("Movies").Bind(moviesConfig);
-            _moviesApiKey = Configuration["Movies:ServiceApiKey"];
+            _moviesApiKey = moviesConfig.ServiceApiKey;
             #endregion
         }
 
