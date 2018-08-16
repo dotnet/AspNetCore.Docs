@@ -72,7 +72,7 @@ The default template uses a set of `<div>` elements to render a top navbar and t
 </button>
 ```
 
-It also includes the application name, which appears in the top left. The main navigation menu is rendered by the `<ul>` element within the second div, and includes links to Home, About, and Contact. Below the navigation, the main body of each page is rendered in another `<div>`, marked with the "container" and "body-content" classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple `<footer>` is added to the end of the `<div>` element. You can see how the built-in About page appears using this template:
+It also includes the application name, which appears in the top left. The main navigation menu is rendered by the `<ul>` element within the second div, and includes links to Home, About, and Contact. Below the navigation, the main body of each page is rendered in another `<div>`, marked with the "container" and "body-content" classes. In the simple default \_Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple `<footer>` is added to the end of the `<div>` element. You can see how the built-in About page appears using this template:
 
 ![about page](bootstrap/_static/about-page-wide.png)
 
