@@ -8,9 +8,19 @@ ms.date: 06/30/2018
 uid: signalr/version-differences
 ---
 
-# Differences between SignalR and ASP.NET Core SignalR
+# Differences between ASP.NET SignalR and ASP.NET Core SignalR
 
-ASP.NET Core SignalR is not compatible with clients or servers for ASP.NET 4.x SignalR. This article details the features which have been removed or changed in the ASP.NET Core SignalR.
+ASP.NET Core SignalR is not compatible with clients or servers for ASP.NET SignalR. This article details the features which have been removed or changed in the ASP.NET Core SignalR.
+
+## How to identify which version of SignalR you are using:
+
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
+| -------------------- | --------------- | -------------------- |
+| Server NuGet Package | [Microsoft.AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) |
+| Client NuGet Packages | [Microsoft.AspNet.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/) [Microsoft.AspNet.SignalR.JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
+| Client NPM Package | [signalr](https://www.npmjs.com/package/signalr) | [@aspnet/signalr](https://www.npmjs.com/package/@aspnet/signalr) |
+| Server App Type | ASP.NET (System.Web) or OWIN Self-Host | ASP.NET Core |
+| Supported Server Platforms | .NET Framework 4.5 | .NET Framework 4.6.1<br/>.NET Core 2.1 |
 
 ## Feature differences
 
@@ -24,12 +34,12 @@ ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [M
 
 ## Differences on the server
 
-The SignalR server-side libraries are included in the `Microsoft.AspNetCore.App` package that is part of the **ASP.NET Core Web Application** template for both Razor and MVC projects.
+The ASP.NET Core SignalR server-side libraries are included in the `Microsoft.AspNetCore.App` package that is part of the **ASP.NET Core Web Application** template for both Razor and MVC projects.
 
-SignalR is an ASP.NET Core middleware, so it must be configured by calling `AddSignalR` in `Startup.ConfigureServices`.
+ASP.NET Core SignalR is an ASP.NET Core middleware, so it must be configured by calling `AddSignalR` in `Startup.ConfigureServices`.
 
 ```csharp
-services.AddSignalR();
+services.AddSignalR()
 ```
 
 To configure routing, map routes to hubs inside the `UseSignalR` method call in the `Startup.Configure` method.
@@ -43,7 +53,7 @@ app.UseSignalR(routes =>
 
 ### Sticky sessions now required
 
-Because of how scale-out worked in the previous versions of SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Now, once the client connects to the server it needs to interact with the same server for the duration of the connection.
+Because of how scale-out worked in ASP.NET SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Now, once the client connects to the server it needs to interact with the same server for the duration of the connection.
 
 ### Single hub per connection
 
@@ -51,7 +61,7 @@ In ASP.NET Core SignalR, the connection model has been simplified. Connections a
 
 ### Streaming
 
-SignalR now supports [streaming data](xref:signalr/streaming) from the hub to the client.
+ASP.NET Core SignalR now supports [streaming data](xref:signalr/streaming) from the hub to the client.
 
 ### State
 
@@ -61,7 +71,7 @@ The ability to pass arbitrary state between clients and the hub (often called Hu
 
 ### TypeScript
 
-The ASP.NET Core version of SignalR is written in [TypeScript](https://www.typescriptlang.org/). You can write in JavaScript or TypeScript when using the [JavaScript client](xref:signalr/javascript-client).
+The ASP.NET Core SignalR is written in [TypeScript](https://www.typescriptlang.org/). You can write in JavaScript or TypeScript when using the [JavaScript client](xref:signalr/javascript-client).
 
 ### The JavaScript client is hosted at [npm](https://www.npmjs.com/)
 
