@@ -21,6 +21,10 @@ namespace ConfigurationSample.Pages
 
         public TvShow TvShow { get; private set; }
 
+        public ArrayExample ArrayExample { get; private set; }
+
+        public JsonArrayExample JsonArrayExample { get; private set; }
+
         public void OnGet()
         {
             // Take a subset of the configuration entries because the 
@@ -48,6 +52,14 @@ namespace ConfigurationSample.Pages
 
             #region snippet_tvshow
             TvShow = _config.GetSection("tvshow").Get<TvShow>();
+            #endregion
+
+            #region snippet_array
+            ArrayExample = _config.GetSection("array").Get<ArrayExample>();
+            #endregion
+
+            #region snippet_json_array
+            JsonArrayExample = _config.GetSection("json_array").Get<JsonArrayExample>();
             #endregion
         }
     }

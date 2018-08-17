@@ -149,4 +149,95 @@ TvShow = tvShow;</code></pre>
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Bound array</h2>
+            </div>
+            <div class="panel-body">
+                <p>A Memory Configuration Provider loads a dictionary of configuration key-value pairs that contain array data in the <code>Program</code> class:</p>
+                <pre><code>public static Dictionary&lt;string, string&gt; arrayDict = new Dictionary&lt;string, string&gt;
+{
+    {"array:entries:0", "value0"},
+    {"array:entries:1", "value1"},
+    {"array:entries:2", "value2"},
+    {"array:entries:4", "value4"},
+    {"array:entries:5", "value5"}
+};</code></pre>
+                <pre><code>config.AddInMemoryCollection(arrayDict);</code></pre>
+                <p>An <code>ArrayExample</code> class is avaiable to hold the array data:</p>
+                <pre><code>public class ArrayExample
+{
+    public string[] Entries { get; set; }
+}</code></pre>
+                <p>The class is bound to the configuration data held in the <code>array</code> section. The configuration key index values are enumerated by the configuration binder to create array entries in the class.</p>
+                <pre><code>ArrayExample = _config.GetSection("array").Get&lt;ArrayExample&gt;();</code></pre>
+                <p>The bound data is rendered in the output:</p>
+                <pre><code>@@for (int i = 0; i &lt; Model.ArrayExample.Entries.Length; i++) 
+{
+    &lt;tr&gt;&lt;td&gt;@@i&lt;/td&gt;&lt;td&gt;@@Model.ArrayExample.Entries[i]&lt;/td&gt;&lt;/tr&gt;
+}</code></pre>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead><tr><th scope="col">ArrayExample.Entries Array Index</th><th scope="col">ArrayExample.Entries Value</th></tr></thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.ArrayExample.Entries.Length; i++) 
+                            {
+                                <tr><td>@i</td><td>@Model.ArrayExample.Entries[i]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <p>There's no direct relationship between the configuration key index values and the array index values. The configuration keys are enumerated, and the configuration values are loaded into the class instance sequentially. A null value isn't created by the configuration binder when the configuration data is read and an index isn't present. In this example, no index &num;3 exists in the configuration data array. The configuration binder assigns the configuration data for configuration key array index &num;4 to the POCO class array in <code>Entries</code> at index &num;3.</p>
+                <p>In a second example of binding an array, the sample app includes a JSON settings file, <em>json_array.json</em>, that contains an array:</p>
+                <pre><code>{
+  "json_array": {
+    "key": "valueA",
+    "subsection": [
+      "valueB",
+      "valueC",
+      "valueD"
+    ]
+  }
+}</code></pre>
+                <p>Configuration loads the contents of this file into key-value pairs.</p>
+                <table class="table table-striped">
+                    <thead><tr><th scope="col">Key</th><th scope="col">Value</th></tr></thead>
+                    <tbody>
+                        <tr><td>json_array:key</td><td>valueA</td></tr>
+                        <tr><td>json_array:subsection:0</td><td>valueB</td></tr>
+                        <tr><td>json_array:subsection:1</td><td>valueC</td></tr>
+                        <tr><td>json_array:subsection:2</td><td>valueD</td></tr>
+                    </tbody>
+                </table>
+                <p>The configuration section, <code>json_array</code>, is bound to a POCO class:</p>
+                <pre><code>public class JsonArrayExample
+{
+    public string Key { get; set; }
+    public string[] Subsection { get; set; }
+}</code></pre>
+                <pre><code>JsonArrayExample = _config.GetSection("json_array").Get&lt;JsonArrayExample&gt;();</code></pre>
+                <p>The instance can be read and rendered in the output:</p>
+                <pre><code>JsonArrayExample.Key</code>: @@Model.JsonArrayExample.Key
 
+@@for (int i = 0; i &lt; Model.JsonArrayExample.Subsection.Length; i++) 
+{
+    &lt;tr>&lt;td>@@i&lt;/td&gt;&lt;td&gt;@@Model.JsonArrayExample.Subsection[i]&lt;/td&gt;&lt;/tr&gt;
+}</code></pre>
+                <p><code>JsonArrayExample.Key</code>: @Model.JsonArrayExample.Key</p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead><tr><th scope="col">JsonArrayExample.Subsection Array Index</th><th scope="col">JsonArrayExample.Subsection Value</th></tr></thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.JsonArrayExample.Subsection.Length; i++) 
+                            {
+                                <tr><td>@i</td><td>@Model.JsonArrayExample.Subsection[i]</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

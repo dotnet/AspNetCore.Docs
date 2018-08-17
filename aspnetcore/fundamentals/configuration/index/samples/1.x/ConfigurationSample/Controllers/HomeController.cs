@@ -46,6 +46,14 @@ namespace ConfigurationSample.Controllers
             viewModel.TvShow = _config.GetSection("tvshow").Get<TvShow>();
             #endregion
 
+            #region snippet_array
+            viewModel.ArrayExample = _config.GetSection("array").Get<ArrayExample>();
+            #endregion
+
+            #region snippet_json_array
+            viewModel.JsonArrayExample = _config.GetSection("json_array").Get<JsonArrayExample>();
+            #endregion
+
             return View(viewModel);
         }
     }

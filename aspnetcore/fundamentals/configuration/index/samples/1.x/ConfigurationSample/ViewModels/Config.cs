@@ -8,5 +8,7 @@ namespace ConfigurationSample.ViewModels
         public IEnumerable<KeyValuePair<string, string>> FilteredConfiguration { get; set; }
         public Starship Starship { get; set; }
         public TvShow TvShow { get; set; }
+        public ArrayExample ArrayExample { get; set; }
+        public JsonArrayExample JsonArrayExample { get; set; }
     }
 }
