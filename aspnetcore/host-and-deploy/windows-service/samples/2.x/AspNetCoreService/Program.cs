@@ -22,6 +22,10 @@ namespace AspNetCoreService
             var pathToContentRoot = Path.GetDirectoryName(pathToExe);
 
             return WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                    // Configure the app here.
+                })
                 .UseContentRoot(pathToContentRoot)
                 .UseStartup<Startup>();
         }
@@ -55,6 +59,10 @@ namespace AspNetCoreService
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                    // Configure the app here.
+                })
                 .UseStartup<Startup>();
         #endregion
 #endif
@@ -86,6 +94,10 @@ namespace AspNetCoreService
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                    // Configure the app here.
+                })
                 .UseStartup<Startup>();
         #endregion
 #endif
