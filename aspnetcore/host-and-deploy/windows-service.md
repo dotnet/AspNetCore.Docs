@@ -66,7 +66,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
      ::: moniker range=">= aspnetcore-2.0"
 
-     [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=8-9,12)]
+     [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=8-9,16)]
 
      ::: moniker-end
 
@@ -199,7 +199,7 @@ To handle [OnStarting](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.
 
    ::: moniker range=">= aspnetcore-2.0"
 
-   [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=HandleStopStart&highlight=14)]
+   [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=HandleStopStart&highlight=17)]
 
    > [!NOTE]
    > `isService` isn't passed from `Main` into `CreateWebHostBuilder` because the signature of `CreateWebHostBuilder` must be `CreateWebHostBuilder(string[])` in order for [integration testing](xref:test/integration-tests) to work properly.
