@@ -53,7 +53,7 @@ app.UseSignalR(routes =>
 
 ### Sticky sessions now required
 
-Because of how scale-out worked in ASP.NET SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Once the client connects to the server it must interact with the same server for the duration of the connection.
+Because of how scale-out worked in ASP.NET SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Once the client connects to the server, it must interact with the same server for the duration of the connection.
 
 ### Single hub per connection
 
