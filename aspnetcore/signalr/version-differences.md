@@ -36,13 +36,13 @@ ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [M
 
 The ASP.NET Core SignalR server-side libraries are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) package that's part of the **ASP.NET Core Web Application** template for both Razor and MVC projects.
 
-ASP.NET Core SignalR is an ASP.NET Core middleware, so it must be configured by calling [AddSignalR](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr?view=aspnetcore-2.1) in `Startup.ConfigureServices`.
+ASP.NET Core SignalR is an ASP.NET Core middleware, so it must be configured by calling [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) in `Startup.ConfigureServices`.
 
 ```csharp
 services.AddSignalR()
 ```
 
-To configure routing, map routes to hubs inside the [UseSignalR](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.signalrappbuilderextensions.usesignalr?view=aspnetcore-2.1) method call in the `Startup.Configure` method.
+To configure routing, map routes to hubs inside the [UseSignalR](/dotnet/api/microsoft.aspnetcore.builder.signalrappbuilderextensions.usesignalr) method call in the `Startup.Configure` method.
 
 ```csharp
 app.UseSignalR(routes =>
@@ -88,7 +88,7 @@ The dependency on jQuery has been removed, however projects can still use jQuery
 
 ### JavaScript client method syntax
 
-The JavaScript syntax has changed from the previous version of SignalR. Rather than using the `$connection` object, create a connection using the [HubConnectionBuilder](https://docs.microsoft.com/en-us/javascript/api/%40aspnet/signalr/hubconnectionbuilder?view=signalr-js-latest) API.
+The JavaScript syntax has changed from the previous version of SignalR. Rather than using the `$connection` object, create a connection using the [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) API.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -96,7 +96,7 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-Use the [on](https://docs.microsoft.com/en-us/javascript/api/@aspnet/signalr/HubConnection?view=signalr-js-latest#on) method to specify client methods that the hub can call.
+Use the [on](/javascript/api/@aspnet/signalr/HubConnection#on) method to specify client methods that the hub can call.
 
 ```javascript
 connection.on("ReceiveMessage", (user, message) => {
@@ -114,13 +114,13 @@ connection.start().catch(err => console.error(err.toString()));
 
 ### Hub proxies
 
-Hub proxies are no longer automatically generated. Instead, the method name is passed into the [invoke](https://docs.microsoft.com/en-us/javascript/api/%40aspnet/signalr/hubconnection?view=signalr-js-latest#invoke) API as a string.
+Hub proxies are no longer automatically generated. Instead, the method name is passed into the [invoke](/javascript/api/%40aspnet/signalr/hubconnection#invoke) API as a string.
 
 ### .NET and other clients
 
 The `Microsoft.AspNetCore.SignalR.Client` NuGet package contains the .NET client libraries for ASP.NET Core SignalR.
 
-Use the [HubConnectionBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder?view=aspnetcore-2.1) to create and build an instance of a connection to a hub.
+Use the [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder) to create and build an instance of a connection to a hub.
 
 ```csharp
 connection = new HubConnectionBuilder()
