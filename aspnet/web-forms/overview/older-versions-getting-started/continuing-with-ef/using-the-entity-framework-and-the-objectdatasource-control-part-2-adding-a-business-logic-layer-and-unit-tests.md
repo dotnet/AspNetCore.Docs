@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/continuing-with-ef/using-
 title: "Using the Entity Framework 4.0 and the ObjectDataSource Control, Part 2: Adding a Business Logic Layer and Unit Tests | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series builds on the Contoso University web application that is created by the Getting Started with the Entity Framework 4.0 tutorial series. I..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/26/2011
-ms.topic: article
 ms.assetid: efb0e677-10b8-48dc-93d3-9ba3902dd807
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests
 msc.type: authoredcontent
 ---

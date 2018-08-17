@@ -21,7 +21,7 @@ Note: If you're creating a new user context, you don't have to select a file to 
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-If you have not previously installed the ASP.NET scaffolder, install it now:
+If you have not previously installed the ASP.NET Core scaffolder, install it now:
 
 ```cli
 dotnet tool install -g dotnet-aspnet-codegenerator
@@ -46,4 +46,9 @@ In the project folder, run the Identity scaffolder with the options you want. Fo
 dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files Account.Register
 ```
 
+Powershell uses semicolon as a command separator. When using powershell, escape the semi-colons in the file list or put the file list in double quotes. For example:
+
+```cli
+dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
+```
 -------------

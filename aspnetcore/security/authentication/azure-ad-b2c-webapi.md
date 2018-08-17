@@ -3,11 +3,7 @@ title: Cloud authentication in web APIs with Azure Active Directory B2C in ASP.N
 author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core Web API. Test the authenticated web API with Postman.
 ms.author: casoper
-manager: wpickett
 ms.date: 01/25/2018
-ms.topic: tutorial
-ms.technology: aspnet
-ms.prod: asp.net-core
 ms.custom: mvc
 uid: security/authentication/azure-ad-b2c-webapi
 ---
@@ -171,7 +167,7 @@ To make an authenticated request to the web API, a bearer token is required. Pos
    |      <strong>Token Name</strong>       |                                  <em>&lt;token name&gt;</em>                                  |                                                                                                                   Enter a descriptive name for the token.                                                                                                                    |
    |      <strong>Grant Type</strong>       |                                           Implicit                                            |                                                                                                                                                                                                                                                                              |
    |     <strong>Callback URL</strong>      |                               `https://getpostman.com/postman`                                |                                                                                                                                                                                                                                                                              |
-   |       <strong>Auth URL</strong>        | `https://login.microsoftonline.com/<tenant domain name>/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` |                                                                                                  Replace <em>&lt;tenant domain name&gt;</em> with the tenant's domain name.                                                                                                  |
+   |       <strong>Auth URL</strong>        | `https://login.microsoftonline.com/tfp/<tenant domain name>/B2C_1_SiUpIn/oauth2/v2.0/authorize` |                                                                                                  Replace <em>&lt;tenant domain name&gt;</em> with the tenant's domain name.                                                                                                  |
    |       <strong>Client ID</strong>       |                <em>&lt;enter the Postman app's <b>Application ID</b>&gt;</em>                 |                                                                                                                                                                                                                                                                              |
    |     <strong>Client Secret</strong>     |                                 <em>&lt;leave blank&gt;</em>                                  |                                                                                                                                                                                                                                                                              |
    |         <strong>Scope</strong>         |         `https://<tenant domain name>/<api>/user_impersonation openid offline_access`         | Replace <em>&lt;tenant domain name&gt;</em> with the tenant's domain name. Replace <em>&lt;api&gt;</em> with the Web API project name. You can also use Application ID. The pattern for the URL is: <em>https://{tenant}.onmicrosoft.com/{app_name_or_id}/{scope name}</em>. |

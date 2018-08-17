@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-vb
 title: "Fighting Bots (VB) | Microsoft Docs"
 author: wenz
 description: "Automated bots plaster weblogs and other websites with spam, submitting comment forms without any user interaction. The NoBot control in the ASP.NET AJAX Con..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: e9803150-452d-4521-97e3-d75d5599383c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-vb
 msc.type: authoredcontent
 ---

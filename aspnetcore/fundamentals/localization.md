@@ -2,12 +2,8 @@
 title: Globalization and localization in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
-manager: wpickett
 ms.author: riande
 ms.date: 01/14/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/localization
 ---
 # Globalization and localization in ASP.NET Core
@@ -27,6 +23,8 @@ App localization involves the following:
 2. Provide localized resources for the languages and cultures you support
 
 3. Implement a strategy to select the language/culture for each request
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Make the app's content localizable
 
@@ -157,6 +155,27 @@ Resource files using `@inject IViewLocalizer` in Razor views follow a similar pa
 * Resources/Views.Home.About.fr.resx
 
 If you don't use the `ResourcesPath` option, the *.resx* file for a view would be located in the same folder as the view.
+
+### RootNamespaceAttribute 
+
+The [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) attribute provides the root namespace of an assembly when the root namespace of an assembly is different than the assembly name. 
+
+If the root namespace of an assembly is different than the assembly name:
+
+* Localization does not work by default.
+* Localization fails due to the way resources are searched for within the assembly. `RootNamespace` is a build-time value which is not available to the executing process. 
+
+If the `RootNamespace` is different from the `AssemblyName`, include the following in *AssemblyInfo.cs* (with parameter values replaced with the actual values):
+
+```Csharp
+using System.Reflection;
+using Microsoft.Extensions.Localization;
+
+[assembly: ResourceLocation("Resource Folder Name")]
+[assembly: RootNamespace("App Root Namespace")]
+```
+
+The preceding code enables the successful resolution of resx files.
 
 ## Culture fallback behavior
 

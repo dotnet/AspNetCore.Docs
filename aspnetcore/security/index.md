@@ -1,13 +1,9 @@
 ---
 title: Overview of ASP.NET Core Security
-author: rachelappel
+author: tdykstra
 description: Learn about authentication, authorization, and security basics in ASP.NET Core.
-manager: wpickett
-ms.author: rachelap
+ms.author: tdykstra
 ms.date: 11/01/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/index
 ---
 # Overview of ASP.NET Core Security
@@ -33,9 +29,9 @@ ASP.NET Core and EF contain features that help you secure your apps and prevent 
 * [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery)
 * [Open redirect attacks](xref:security/preventing-open-redirects)
 
-There are more vulnerabilities that you should be aware of. For more information, see the section in this document on *ASP.NET Security Documentation*.
+There are more vulnerabilities that you should be aware of. For more information, see the section in this document on *ASP.NET Core Security Documentation*.
 
-## ASP.NET Security Documentation
+## ASP.NET Core Security Documentation
 
 *   [Authentication](xref:security/authentication/index)
     *   [Introduction to Identity](xref:security/authentication/identity)

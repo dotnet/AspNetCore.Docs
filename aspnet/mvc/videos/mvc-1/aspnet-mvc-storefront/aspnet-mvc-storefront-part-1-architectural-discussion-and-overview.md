@@ -3,13 +3,9 @@ uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-1-archite
 title: "ASP.NET MVC Storefront Part 1: Architectural Discussion and Overview | Microsoft Docs"
 author: robconery
 description: "Rob Conery covers the initial architecture here, in part 1, where he discusses the Repository Pattern with Ayende Rahien and Steve Harman. He also asks Phil..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/27/2008
-ms.topic: article
 ms.assetid: 194a163b-2aad-4cad-bf1f-e9ce3f80add0
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-1-architectural-discussion-and-overview
 msc.type: video
 ---

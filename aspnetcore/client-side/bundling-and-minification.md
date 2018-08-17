@@ -1,24 +1,19 @@
 ---
-title: Bundle and minifiy static assets in ASP.NET Core
+title: Bundle and minify static assets in ASP.NET Core
 author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
-manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2018
-ms.devlang: csharp
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/bundling-and-minification
 ---
-# Bundle and minifiy static assets in ASP.NET Core
+# Bundle and minify static assets in ASP.NET Core
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
 This article explains the benefits of applying bundling and minification, including how these features can be used with ASP.NET Core web apps.
 
-## What is bundling and minification?
+## What is bundling and minification
 
 Bundling and minification are two distinct performance optimizations you can apply in a web app. Used together, bundling and minification improve performance by reducing the number of server requests and reducing the size of the requested static assets.
 
@@ -90,7 +85,7 @@ The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/)
 > [!NOTE]
 > BuildBundlerMinifier belongs to a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues).
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
 Add the *BuildBundlerMinifier* package to your project.
 
@@ -117,7 +112,7 @@ Clean the project. The following appears in the Output window:
 ========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
 ```
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET Core CLI](#tab/netcore-cli)
 
 Add the *BuildBundlerMinifier* package to your project:
 

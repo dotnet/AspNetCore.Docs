@@ -2,13 +2,9 @@
 title: Scaffold Identity in ASP.NET Core projects
 author: rick-anderson
 description: Learn how to scaffold Identity in an ASP.NET Core project.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 5/16/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
@@ -62,6 +58,10 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more i
 ### Migrations, UseAuthentication, and layout
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
+
+<a name="useauthentication"></a>
+
+### Enable authentication
 
 In the `Configure` method of the `Startup` class, call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
 

@@ -4,16 +4,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesProject.Data;
+using RazorPagesProject.Services;
 
 namespace RazorPagesProject.Pages
 {
+    #region snippet1
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;
+        private readonly IQuoteService _quoteService;
 
-        public IndexModel(ApplicationDbContext db)
+        public IndexModel(ApplicationDbContext db, IQuoteService quoteService)
         {
             _db = db;
+            _quoteService = quoteService;
         }
 
         [BindProperty]
@@ -24,10 +28,13 @@ namespace RazorPagesProject.Pages
         [TempData]
         public string MessageAnalysisResult { get; set; }
 
-        #region snippet1
+        public string Quote { get; private set; }
+
         public async Task OnGetAsync()
         {
             Messages = await _db.GetMessagesAsync();
+
+            Quote = await _quoteService.GenerateQuote();
         }
         #endregion
 

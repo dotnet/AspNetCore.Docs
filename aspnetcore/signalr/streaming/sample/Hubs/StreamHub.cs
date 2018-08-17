@@ -25,11 +25,11 @@ namespace SignalRChat.Hubs
         {
             for (var i = 0; i < count; i++)
             {
-                await channel.Writer.WriteAsync(i);
+                await writer.WriteAsync(i);
                 await Task.Delay(delay);
             }
 
-            channel.Writer.TryComplete();
+            writer.TryComplete();
         }
     }
 }

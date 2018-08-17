@@ -2,20 +2,16 @@
 title: Work with a distributed cache in ASP.NET Core
 author: ardalis
 description: Learn how to use ASP.NET Core distributed caching to improve app performance and scalability, especially in a cloud or server farm environment.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/14/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: performance/caching/distributed
 ---
 # Work with a distributed cache in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 
-Distributed caches can improve the performance and scalability of ASP.NET Core apps, especially when hosted in a cloud or server farm environment. This article explains how to work with ASP.NET Core's built-in distributed cache abstractions and implementations.
+Distributed caches can improve the performance and scalability of ASP.NET Core apps, especially when hosted in the cloud or a server farm.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/distributed/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -77,12 +73,13 @@ The following code from *Startup.cs* shows the value being set:
 
 [!code-csharp[](distributed/sample/src/DistCacheSample/Startup.cs?name=snippet1)]
 
-> [!NOTE]
-> Since `IDistributedCache` is configured in the `ConfigureServices` method, it's available to the `Configure` method as a parameter. Adding it as a parameter will allow the configured instance to be provided through DI.
+Since `IDistributedCache` is configured in the `ConfigureServices` method, it's available to the `Configure` method as a parameter. Adding it as a parameter will allow the configured instance to be provided through DI.
 
 ## Using a Redis distributed cache
 
 [Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an [Azure Redis Cache](https://azure.microsoft.com/services/cache/) for your Azure-hosted ASP.NET Core apps. Your ASP.NET Core app configures the cache implementation using a `RedisDistributedCache` instance.
+
+The Redis cache requires [Microsoft.Extensions.Caching.Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Redis/)
 
 You configure the Redis implementation in `ConfigureServices` and access it in your app code by requesting an instance of `IDistributedCache` (see the code above).
 
@@ -90,8 +87,7 @@ In the sample code, a `RedisCache` implementation is used when the server is con
 
 [!code-csharp[](distributed/sample/src/DistCacheSample/Startup.cs?name=snippet2)]
 
-> [!NOTE]
-> To install Redis on your local machine, install the chocolatey package [https://chocolatey.org/packages/redis-64/](https://chocolatey.org/packages/redis-64/) and run `redis-server` from a command prompt.
+To install Redis on your local machine, install the chocolatey package [https://chocolatey.org/packages/redis-64/](https://chocolatey.org/packages/redis-64/) and run `redis-server` from a command prompt.
 
 ## Using a SQL Server distributed cache
 
@@ -145,9 +141,10 @@ When deciding which implementation of `IDistributedCache` is right for your app,
 
 * [Redis Cache on Azure](https://azure.microsoft.com/documentation/services/redis-cache/)
 * [SQL Database on Azure](https://azure.microsoft.com/documentation/services/sql-database/)
-* [Cache in-memory](xref:performance/caching/memory)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
-* [Response caching](xref:performance/caching/response)
-* [Response Caching Middleware](xref:performance/caching/middleware)
-* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
-* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+* <xref:performance/caching/memory>
+* <xref:fundamentals/primitives/change-tokens>
+* <xref:performance/caching/response>
+* <xref:performance/caching/middleware>
+* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
+* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* <xref:host-and-deploy/web-farm>

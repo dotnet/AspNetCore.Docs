@@ -211,11 +211,6 @@
         "redirect_document_id": false
     },
     {
-        "source_path": "aspnetcore/getting-started/index.md",
-        "redirect_url": "/aspnet/core/getting-started",
-        "redirect_document_id": false
-    },
-    {
         "source_path": "aspnetcore/getting-started/installing-on-linux.md",
         "redirect_url": "/aspnet/core/getting-started",
         "redirect_document_id": false
@@ -403,6 +398,61 @@
     {
         "source_path": "aspnetcore/mvc/razor-pages/ui-class.md",
         "redirect_url": "/aspnet/core/razor-pages/ui-class",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/aspnetcore-1.1.md",
+        "redirect_url": "/aspnet/core/release-notes/aspnetcore-1.1",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/aspnetcore-2.0.md",
+        "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.0",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/aspnetcore-2.1.md",
+        "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.1",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/choose-aspnet-framework.md",
+        "redirect_url": "/aspnet/core/fundamentals/choose-aspnet-framework",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/getting-started.md",
+        "redirect_url": "/aspnet/core/getting-started/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/angular.md",
+        "redirect_url": "/aspnet/core/client-side/spa/angular",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/index.md",
+        "redirect_url": "/aspnet/core/client-side/spa/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/react-with-redux.md",
+        "redirect_url": "/aspnet/core/client-side/spa/react-with-redux",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/spa/react.md",
+        "redirect_url": "/aspnet/core/client-side/spa/react",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/tutorials/razor-pages/uploading-files.md",
+        "redirect_url": "/aspnet/core/razor-pages/upload-files",
+        "redirect_document_id": false
+    },
+        {
+        "source_path": "aspnet/mvc/overview/getting-started/introduction/sample/code-location.md",
+        "redirect_url": "/aspnet/mvc/overview/getting-started/introduction/index",
         "redirect_document_id": false
     }
   ] 

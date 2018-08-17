@@ -2,13 +2,9 @@
 title: Kestrel web server implementation in ASP.NET Core
 author: rick-anderson
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
-manager: wpickett
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/02/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -412,7 +408,8 @@ WebHost.CreateDefaultBuilder()
                 var subExampleCert = CertificateLoader.LoadFromStoreCert(
                     "sub.example.com", "My", StoreLocation.CurrentUser, 
                     allowInvalid: true);
-                var certs = new Dictionary(StringComparer.OrdinalIgnoreCase);
+                var certs = new Dictionary<string, X509Certificate2>(
+                    StringComparer.OrdinalIgnoreCase);
                 certs["localhost"] = localhostCert;
                 certs["example.com"] = exampleCert;
                 certs["sub.example.com"] = subExampleCert;
@@ -453,12 +450,12 @@ Listen on a Unix socket with [ListenUnixSocket](/dotnet/api/microsoft.aspnetcore
 
 When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
 
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Port0&highlight=3)]
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Configure&highlight=3-4,15-21)]
 
 When the app is run, the console window output indicates the dynamic port where the app can be reached:
 
 ```console
-Now listening on: http://127.0.0.1:48508
+Listening on the following addresses: http://127.0.0.1:48508
 ```
 
 **UseUrls, --urls command-line argument, urls host configuration key, and ASPNETCORE_URLS environment variable limitations**

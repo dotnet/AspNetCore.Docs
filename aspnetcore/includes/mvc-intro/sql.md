@@ -1,4 +1,4 @@
-# Working with SQLite in an ASP.NET Core MVC project
+# Work with SQLite in an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

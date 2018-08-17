@@ -2,12 +2,8 @@
 title: Migrate Authentication and Identity to ASP.NET Core
 author: ardalis
 description: Learn how to migrate authentication and identity from an ASP.NET MVC project to an ASP.NET Core MVC project.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: migration/identity
 ---
 # Migrate Authentication and Identity to ASP.NET Core
@@ -72,8 +68,8 @@ namespace NewMvcProject.Models
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
+            // Customize the ASP.NET Core Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Core Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
     }

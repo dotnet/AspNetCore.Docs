@@ -1,6 +1,8 @@
-[Visual Studio for Windows](https://www.microsoft.com/net/download/windows).  
-Select the **ASP.NET and web development** workload.
+[Visual Studio 2017 version 15.7.3 or later](https://www.microsoft.com/net/download/windows) with the following workloads:
+
+* **ASP.NET and web development**
+* **.NET Core cross-platform development**
 
 ::: moniker range=">= aspnetcore-2.1"
-[.Net Core 2.1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300)
+[.NET Core 2.1 SDK or later](https://www.microsoft.com/net/download/windows)
 ::: moniker-end

@@ -3,13 +3,9 @@ uid: web-forms/videos/aspnet-ajax/how-do-i-customize-error-handling-for-the-aspn
 title: "How Do I: Customize Error Handling for the ASP.NET AJAX UpdatePanel | Microsoft Docs"
 author: rick-anderson
 description: "When an error occurs during the processing of a postback triggered by an ASP.NET AJAX UpdatePanel, the client-side PageRequestManager will show an alert (.NE..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 12/18/2009
-ms.topic: article
 ms.assetid: 28bd411b-e708-4eab-baed-76981d6cd0dc
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel
 msc.type: video
 ---

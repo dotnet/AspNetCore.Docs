@@ -1,4 +1,4 @@
-# Working with SQLite in and Razor Pages
+# Work with SQLite in an ASP.NET Core Razor Pages app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

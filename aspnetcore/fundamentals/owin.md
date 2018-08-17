@@ -2,32 +2,30 @@
 title: Open Web Interface for .NET (OWIN) with ASP.NET Core
 author: ardalis
 description: Discover how ASP.NET Core supports the Open Web Interface for .NET (OWIN), which allows web apps to be decoupled from web servers.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/owin
 ---
 # Open Web Interface for .NET (OWIN) with ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/) and  [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Steve Smith](https://ardalis.com/) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core supports the Open Web Interface for .NET (OWIN). OWIN allows web apps to be decoupled from web servers. It defines a standard way for middleware to be used in a pipeline to handle requests and associated responses. ASP.NET Core applications and middleware can interoperate with OWIN-based applications, servers, and middleware.
 
 OWIN provides a decoupling layer that allows two frameworks with disparate object models to be used together. The `Microsoft.AspNetCore.Owin` package provides two adapter implementations:
-- ASP.NET Core to OWIN 
-- OWIN to ASP.NET Core
 
-This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host, or for other OWIN compatible components to be run on top of ASP.NET Core.
+* ASP.NET Core to OWIN 
+* OWIN to ASP.NET Core
 
-Note: Using these adapters comes with a performance cost. Applications using only ASP.NET Core components shouldn't use the Owin package or adapters.
+This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host or for other OWIN compatible components to be run on top of ASP.NET Core.
+
+> [!NOTE]
+> Using these adapters comes with a performance cost. Apps using only ASP.NET Core components shouldn't use the `Microsoft.AspNetCore.Owin` package or adapters.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Running OWIN middleware in the ASP.NET pipeline
+## Running OWIN middleware in the ASP.NET Core pipeline
 
 ASP.NET Core's OWIN support is deployed as part of the `Microsoft.AspNetCore.Owin` package. You can import OWIN support into your project by installing this package.
 
@@ -52,7 +50,7 @@ public Task OwinHello(IDictionary<string, object> environment)
 
 The sample signature returns a `Task` and accepts an `IDictionary<string, object>` as required by OWIN.
 
-The following code shows how to add the `OwinHello` middleware (shown above) to the ASP.NET pipeline with the `UseOwin` extension method.
+The following code shows how to add the `OwinHello` middleware (shown above) to the ASP.NET Core pipeline with the `UseOwin` extension method.
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -86,9 +84,9 @@ app.UseOwin(pipeline =>
 
 <a name="hosting-on-owin"></a>
 
-## Using ASP.NET Hosting on an OWIN-based server
+## Using ASP.NET Core Hosting on an OWIN-based server
 
-OWIN-based servers can host ASP.NET applications. One such server is [Nowin](https://github.com/Bobris/Nowin), a .NET OWIN web server. In the sample for this article, I've included a project that references Nowin and uses it to create an `IServer` capable of self-hosting ASP.NET Core.
+OWIN-based servers can host ASP.NET Core apps. One such server is [Nowin](https://github.com/Bobris/Nowin), a .NET OWIN web server. In the sample for this article, I've included a project that references Nowin and uses it to create an `IServer` capable of self-hosting ASP.NET Core.
 
 [!code-csharp[](owin/sample/src/NowinSample/Program.cs?highlight=15)]
 

@@ -2,13 +2,9 @@
 title: Add a model to an ASP.NET Core Razor Pages app with Visual Studio Code
 author: rick-anderson
 description: Learn how to add a model to a Razor Pages app in ASP.NET Core using Visual Studio Code.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/27/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages-vsc/model
 ---
 
@@ -26,7 +22,14 @@ uid: tutorials/razor-pages-vsc/model
 
 [!INCLUDE [model 2a](../../includes/RP/model2a.md)]
 
-[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
+[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-4)]
+
+Add the following `using` statements at the top of *Startup.cs*:
+
+```csharp
+using RazorPagesMovie.Models;
+using Microsoft.EntityFrameworkCore;
+```
 
 Build the project to verify you don't have any errors.
 

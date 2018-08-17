@@ -2,12 +2,8 @@
 title: ASP.NET Core Data Protection
 author: rick-anderson
 description: Learn about the concept of data protection and the design principles of the ASP.NET Core Data Protection APIs.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/introduction
 ---
 # ASP.NET Core Data Protection
@@ -73,3 +69,7 @@ The data protection stack consists of five packages.
 * Microsoft.AspNetCore.DataProtection.SystemWeb can be installed into an existing ASP.NET 4.x application to redirect its &lt;machineKey&gt; operations to instead use the new data protection stack. See [compatibility](xref:security/data-protection/compatibility/replacing-machinekey#compatibility-replacing-machinekey) for more information.
 
 * Microsoft.AspNetCore.Cryptography.KeyDerivation provides an implementation of the PBKDF2 password hashing routine and can be used by systems which need to handle user passwords securely. See [Hash passwords](xref:security/data-protection/consumer-apis/password-hashing) for more information.
+
+## Additional resources
+
+<xref:host-and-deploy/web-farm>

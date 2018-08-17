@@ -2,16 +2,11 @@
 title: ASP.NET Core fundamentals
 author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 09/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
+ms.date: 07/02/2018
 uid: fundamentals/index
 ---
-
 # ASP.NET Core fundamentals
 
 An ASP.NET Core application is a console app that creates a web server in its `Main` method:
@@ -139,7 +134,7 @@ ASP.NET Core offers features for routing of app requests to route handlers.
 
 For more information, see [Routing](xref:fundamentals/routing).
 
-## File providers
+## File Providers
 
 ASP.NET Core abstracts file system access through the use of File Providers, which offers a common interface for working with files across platforms.
 
@@ -191,6 +186,12 @@ Background tasks are implemented as *hosted services*. A hosted service is a cla
 
 For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
 
+## Access HttpContext
+
+Access the `HttpContext` through the [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) interface and its default implementation [HttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.httpcontextaccessor).
+
+For more information, see <xref:fundamentals/httpcontext>.
+
 ## Open Web Interface for .NET (OWIN)
 
 ASP.NET Core supports the Open Web Interface for .NET (OWIN). OWIN allows web apps to be decoupled from web servers.
@@ -203,15 +204,23 @@ For more information, see [Open Web Interface for .NET (OWIN)](xref:fundamentals
 
 For more information, see [WebSockets](xref:fundamentals/websockets).
 
+::: moniker range=">= aspnetcore-2.1"
+## Microsoft.AspNetCore.App metapackage
+
+The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage simplifies package management. For more information, see [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
+::: moniker-end
+::: moniker range="= aspnetcore-2.0"
 ## Microsoft.AspNetCore.All metapackage
 
 The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) metapackage for ASP.NET Core includes:
 
 * All supported packages by the ASP.NET Core team.
-* All supported packages by the Entity Framework Core. 
+* All supported packages by Entity Framework Core.
 * Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core.
 
 For more information, see [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
+::: moniker-end
 
 ## .NET Core vs. .NET Framework runtime
 

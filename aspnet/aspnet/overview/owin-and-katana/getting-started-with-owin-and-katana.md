@@ -3,13 +3,9 @@ uid: aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana
 title: "Getting Started with OWIN and Katana | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/27/2013
-ms.topic: article
 ms.assetid: 6dae249f-5ac6-4f6e-bc49-13bcd5a54a70
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana
 msc.type: authoredcontent
 ---

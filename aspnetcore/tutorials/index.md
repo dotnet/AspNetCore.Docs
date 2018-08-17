@@ -2,12 +2,8 @@
 title: ASP.NET Core tutorials
 author: rick-anderson
 description: A list of step-by-step guides for learning how to develop ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/index
 ---
 # ASP.NET Core tutorials
@@ -26,6 +22,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
    * [Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/index)  
 
 * [Create a real-time SignalR web app](xref:tutorials/signalr)
+* [Create a SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
 
 * Create an ASP.NET Core MVC web app
 

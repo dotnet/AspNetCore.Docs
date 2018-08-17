@@ -3,13 +3,9 @@ uid: ajax/cdn/jquery-datatables/index
 title: "jQuery DataTables | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: c3d609b5-ad52-4ff8-a79d-58a815efdb63
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-datatables
 msc.type: folder
 ---

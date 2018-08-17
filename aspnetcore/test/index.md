@@ -2,13 +2,9 @@
 title: Test, debug, and troubleshoot in ASP.NET Core
 author: guardrex
 description: Links to resources for testing and debugging ASP.NET Core applications.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/13/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 07/03/2018
 uid: test/index
 ---
 # Test, debug, and troubleshoot in ASP.NET Core
@@ -29,14 +25,20 @@ Learn how to test controller logic in ASP.NET Core with Moq and xUnit.
 
 ## Debug
 
+[Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
+Discover the features of the Visual Studio debugger in a step-by-step walkthrough.
+
+[Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)  
+Find out about the debugging support built into Visual Studio Code.
+
 [Debug ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)  
 Learn how to debug .NET Core and ASP.NET Core sources.
 
 [Remote debugging](/visualstudio/debugger/remote-debugging-azure)  
-Discover how to set up and configure a Visual Studio 2017 ASP.NET Core app, deploy it to IIS using Azure, and attach the remote debugger from Visual Studio.
+Explore how to set up and configure a Visual Studio 2017 ASP.NET Core app, deploy it to IIS using Azure, and attach the remote debugger from Visual Studio.
 
 [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)  
-Learn how to collect snapshots on your top-throwing exceptions so that you have the information you need to diagnose issues in production.
+Find out how to collect snapshots on your top-throwing exceptions so that you have the information you need to diagnose issues in production.
 
 ## Troubleshoot
 

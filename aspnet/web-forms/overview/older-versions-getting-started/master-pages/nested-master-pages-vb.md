@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/nested-maste
 title: "Nested Master Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Shows how to nest one master page within another."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/28/2008
-ms.topic: article
 ms.assetid: 14d9aa1b-4dca-43a0-aa9d-a6e891fee019
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-vb
 msc.type: authoredcontent
 ---

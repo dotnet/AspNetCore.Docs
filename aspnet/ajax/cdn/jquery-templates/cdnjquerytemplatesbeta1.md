@@ -3,13 +3,9 @@ uid: ajax/cdn/jquery-templates/cdnjquerytemplatesbeta1
 title: "jQuery Templates Beta 1 | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: f54e7adf-237d-4098-931a-1b48164c9790
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-templates/cdnjquerytemplatesbeta1
 msc.type: content
 ---

@@ -2,13 +2,9 @@
 title: Create a Web API with ASP.NET Core and Visual Studio Code
 author: rick-anderson
 description: Build a web API on macOS, Linux, or Windows with ASP.NET Core MVC and Visual Studio Code
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
+ms.date: 07/30/2018
 uid: tutorials/web-api-vsc
 ---
 # Create a Web API with ASP.NET Core and Visual Studio Code
@@ -59,15 +55,20 @@ See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Cod
 
 ## Add support for Entity Framework Core
 
+:::moniker range=">= aspnetcore-2.1"
+
+Creating a new project in ASP.NET Core 2.1 or later adds the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) package reference to the *TodoApi.csproj* file. Add the `Version` attribute, if not already specified.
+
+[!code-xml[](first-web-api/samples/2.1/TodoApi/TodoApi.csproj?name=snippet_Metapackage&highlight=2)]
+
+:::moniker-end
+
 :::moniker range="<= aspnetcore-2.0"
+
 Creating a new project in ASP.NET Core 2.0 adds the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package reference to the *TodoApi.csproj* file:
 
 [!code-xml[](first-web-api/samples/2.0/TodoApi/TodoApi.csproj?name=snippet_Metapackage&highlight=2)]
-:::moniker-end
-:::moniker range=">= aspnetcore-2.1"
-Creating a new project in ASP.NET Core 2.1 or later adds the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) package reference to the *TodoApi.csproj* file:
 
-[!code-xml[](first-web-api/samples/2.1/TodoApi/TodoApi.csproj?name=snippet_Metapackage&highlight=2)]
 :::moniker-end
 
 There's no need to install the [Entity Framework Core InMemory](/ef/core/providers/in-memory/) database provider separately. This database provider allows Entity Framework Core to be used with an in-memory database.

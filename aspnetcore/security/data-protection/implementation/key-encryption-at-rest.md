@@ -2,105 +2,126 @@
 title: Key encryption At rest in ASP.NET Core
 author: rick-anderson
 description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
-manager: wpickett
 ms.author: riande
-ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 07/16/2018
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---
 # Key encryption at rest in ASP.NET Core
 
-<a name="data-protection-implementation-key-encryption-at-rest"></a>
+The data protection system [employs a discovery mechanism by default](xref:security/data-protection/configuration/default-settings) to determine how cryptographic keys should be encrypted at rest. The developer can override the discovery mechanism and manually specify how keys should be encrypted at rest.
 
-By default, the data protection system [employs a heuristic](xref:security/data-protection/configuration/default-settings) to determine how cryptographic key material should be encrypted at rest. The developer can override the heuristic and manually specify how keys should be encrypted at rest.
+> [!WARNING]
+> If you specify an explicit [key persistence location](xref:security/data-protection/implementation/key-storage-providers), the data protection system deregisters the default key encryption at rest mechanism. Consequently, keys are no longer encrypted at rest. We recommend that you [specify an explicit key encryption mechanism](xref:security/data-protection/implementation/key-encryption-at-rest) for production deployments. The encryption-at-rest mechanism options are described in this topic.
 
-> [!NOTE]
-> If you specify an explicit key encryption at rest mechanism, the data protection system will deregister the default key storage mechanism that the heuristic provided. You must [specify an explicit key storage mechanism](xref:security/data-protection/implementation/key-storage-providers#data-protection-implementation-key-storage-providers), otherwise the data protection system will fail to start.
+::: moniker range=">= aspnetcore-2.1"
 
-<a name="data-protection-implementation-key-encryption-at-rest-providers"></a>
+## Azure Key Vault
 
-The data protection system ships with three in-box key encryption mechanisms.
+To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure the system with [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) in the `Startup` class:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .PersistKeysToAzureBlobStorage(new Uri("<blobUriWithSasToken>"))
+        .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>");
+}
+```
+
+For more information, see [Configure ASP.NET Core Data Protection: ProtectKeysWithAzureKeyVault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault).
+
+::: moniker-end
 
 ## Windows DPAPI
 
-*This mechanism is available only on Windows.*
+**Only applies to Windows deployments.**
 
-When Windows DPAPI is used, key material will be encrypted via [CryptProtectData](https://msdn.microsoft.com/library/windows/desktop/aa380261(v=vs.85).aspx) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that will never be read outside of the current machine (though it's possible to back these keys up to Active Directory; see [DPAPI and Roaming Profiles](https://support.microsoft.com/kb/309408/#6)). For example to configure DPAPI key-at-rest encryption.
-
-```csharp
-sc.AddDataProtection()
-    // only the local user account can decrypt the keys
-    .ProtectKeysWithDpapi();
-```
-
-If `ProtectKeysWithDpapi` is called with no parameters, only the current Windows user account can decipher the persisted key material. You can optionally specify that any user account on the machine (not just the current user account) should be able to decipher the key material, as shown in the below example.
+When Windows DPAPI is used, key material is encrypted with [CryptProtectData](/windows/desktop/api/dpapi/nf-dpapi-cryptprotectdata) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that's never read outside of the current machine (though it's possible to back these keys up to Active Directory; see [DPAPI and Roaming Profiles](https://support.microsoft.com/kb/309408/#6)). To configure DPAPI key-at-rest encryption, call one of the [ProtectKeysWithDpapi](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpapi) extension methods:
 
 ```csharp
-sc.AddDataProtection()
-    // all user accounts on the machine can decrypt the keys
-    .ProtectKeysWithDpapi(protectToLocalMachine: true);
+public void ConfigureServices(IServiceCollection services)
+{
+    // Only the local user account can decrypt the keys
+    services.AddDataProtection()
+        .ProtectKeysWithDpapi();
+}
 ```
+
+If `ProtectKeysWithDpapi` is called with no parameters, only the current Windows user account can decipher the persisted key ring. You can optionally specify that any user account on the machine (not just the current user account) be able to decipher the key ring:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // All user accounts on the machine can decrypt the keys
+    services.AddDataProtection()
+        .ProtectKeysWithDpapi(protectToLocalMachine: true);
+}
+```
+
+::: moniker range=">= aspnetcore-2.0"
 
 ## X.509 certificate
 
-*This mechanism isn't available on `.NET Core 1.0` or `1.1`.*
-
-If your application is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate across the machines and to configure applications to use this certificate for encryption of keys at rest. See below for an example.
+If the app is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate across the machines and configure the hosted apps to use the certificate for encryption of keys at rest:
 
 ```csharp
-sc.AddDataProtection()
-    // searches the cert store for the cert with this thumbprint
-    .ProtectKeysWithCertificate("3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0");
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .ProtectKeysWithCertificate("3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0");
+}
 ```
 
-Due to .NET Framework limitations only certificates with CAPI private keys are supported. See [Certificate-based encryption with Windows DPAPI-NG](#data-protection-implementation-key-encryption-at-rest-dpapi-ng) below for possible workarounds to these limitations.
+Due to .NET Framework limitations, only certificates with CAPI private keys are supported. See the content below for possible workarounds to these limitations.
 
-<a name="data-protection-implementation-key-encryption-at-rest-dpapi-ng"></a>
+::: moniker-end
 
 ## Windows DPAPI-NG
 
-*This mechanism is available only on Windows 8 / Windows Server 2012 and later.*
+**This mechanism is available only on Windows 8/Windows Server 2012 or later.**
 
-Beginning with Windows 8, the operating system supports DPAPI-NG (also called CNG DPAPI). Microsoft lays out its usage scenario as follows.
+Beginning with Windows 8, Windows OS supports DPAPI-NG (also called CNG DPAPI). For more information, see [About CNG DPAPI](/windows/desktop/SecCNG/cng-dpapi).
 
-   Cloud computing, however, often requires that content encrypted on one computer be decrypted on another. Therefore, beginning with Windows 8, Microsoft extended the idea of using a relatively straightforward API to encompass cloud scenarios. This new API, called DPAPI-NG, enables you to securely share secrets (keys, passwords, key material) and messages by protecting them to a set of principals that can be used to unprotect them on different computers after proper authentication and authorization.
-
-   From [About CNG DPAPI](https://msdn.microsoft.com/library/windows/desktop/hh706794(v=vs.85).aspx)
-
-The principal is encoded as a protection descriptor rule. Consider the below example, which encrypts key material such that only the domain-joined user with the specified SID can decrypt the key material.
+The principal is encoded as a protection descriptor rule. In the following example that calls [ProtectKeysWithDpapiNG](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpaping), only the domain-joined user with the specified SID can decrypt the key ring:
 
 ```csharp
-sc.AddDataProtection()
-    // uses the descriptor rule "SID=S-1-5-21-..."
-    .ProtectKeysWithDpapiNG("SID=S-1-5-21-...",
-    flags: DpapiNGProtectionDescriptorFlags.None);
+public void ConfigureServices(IServiceCollection services)
+{
+    // Uses the descriptor rule "SID=S-1-5-21-..."
+    services.AddDataProtection()
+        .ProtectKeysWithDpapiNG("SID=S-1-5-21-...",
+        flags: DpapiNGProtectionDescriptorFlags.None);
+}
 ```
 
-There's also a parameterless overload of `ProtectKeysWithDpapiNG`. This is a convenience method for specifying the rule "SID=mine", where mine is the SID of the current Windows user account.
+There's also a parameterless overload of `ProtectKeysWithDpapiNG`. Use this convenience method to specify the rule "SID={CURRENT_ACCOUNT_SID}", where *CURRENT_ACCOUNT_SID* is the SID of the current Windows user account:
 
 ```csharp
-sc.AddDataProtection()
-    // uses the descriptor rule "SID={current account SID}"
-    .ProtectKeysWithDpapiNG();
+public void ConfigureServices(IServiceCollection services)
+{
+    // Use the descriptor rule "SID={current account SID}"
+    services.AddDataProtection()
+        .ProtectKeysWithDpapiNG();
+}
 ```
 
-In this scenario, the AD domain controller is responsible for distributing the encryption keys used by the DPAPI-NG operations. The target user will be able to decipher the encrypted payload from any domain-joined machine (provided that the process is running under their identity).
+In this scenario, the AD domain controller is responsible for distributing the encryption keys used by the DPAPI-NG operations. The target user can decipher the encrypted payload from any domain-joined machine (provided that the process is running under their identity).
 
 ## Certificate-based encryption with Windows DPAPI-NG
 
-If you're running on Windows 8.1 / Windows Server 2012 R2 or later, you can use Windows DPAPI-NG to perform certificate-based encryption, even if the application is running on .NET Core. To take advantage of this, use the rule descriptor string "CERTIFICATE=HashId:thumbprint", where thumbprint is the hex-encoded SHA1 thumbprint of the certificate to use. See below for an example.
+If the app is running on Windows 8.1/Windows Server 2012 R2 or later, you can use Windows DPAPI-NG to perform certificate-based encryption. Use the rule descriptor string "CERTIFICATE=HashId:THUMBPRINT", where *THUMBPRINT* is the hex-encoded SHA1 thumbprint of the certificate:
 
 ```csharp
-sc.AddDataProtection()
-    // searches the cert store for the cert with this thumbprint
-    .ProtectKeysWithDpapiNG("CERTIFICATE=HashId:3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0",
-        flags: DpapiNGProtectionDescriptorFlags.None);
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .ProtectKeysWithDpapiNG("CERTIFICATE=HashId:3BCE558E2...B5AEA2A9BD2575A0",
+            flags: DpapiNGProtectionDescriptorFlags.None);
+}
 ```
 
-Any application which is pointed at this repository must be running on Windows 8.1 / Windows Server 2012 R2 or later to be able to decipher this key.
+Any app pointed at this repository must be running on Windows 8.1/Windows Server 2012 R2 or later to decipher the keys.
 
 ## Custom key encryption
 
-If the in-box mechanisms are not appropriate, the developer can specify their own key encryption mechanism by providing a custom `IXmlEncryptor`.
+If the in-box mechanisms aren't appropriate, the developer can specify their own key encryption mechanism by providing a custom [IXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor).

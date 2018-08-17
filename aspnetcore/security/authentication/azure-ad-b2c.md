@@ -2,11 +2,7 @@
 title: Cloud authentication with Azure Active Directory B2C in ASP.NET Core
 author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
-manager: wpickett
 ms.date: 01/25/2018
-ms.topic: tutorial
-ms.technology: aspnet
-ms.prod: asp.net-core
 ms.custom: mvc
 uid: security/authentication/azure-ad-b2c
 ---
@@ -17,7 +13,7 @@ By [Cam Soper](https://twitter.com/camsoper)
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Additionally, Azure AD B2C can provide multi-factor authentication with minimal configuration.
 
 > [!TIP]
-> Azure Active Directory (Azure AD) Azure AD B2C are separate product offerings. An Azure AD tenant represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+> Azure Active Directory (Azure AD) and Azure AD B2C are separate product offerings. An Azure AD tenant represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
 In this tutorial, learn how to:
 
@@ -49,7 +45,7 @@ Use the following values:
 | **Name**                      | *&lt;app name&gt;*        | Enter a **Name** for the app that describes your app to consumers.                                                                                                                                 |
 | **Include web app / web API** | Yes                       |                                                                                                                                                                                                    |
 | **Allow implicit flow**       | Yes                       |                                                                                                                                                                                                    |
-| **Reply URL**                 | `https://localhost:44300` | Reply URLs are endpoints where Azure AD B2C returns any tokens that your app requests. Visual Studio provides the Reply URL to use. For now, enter `https://localhost:44300` to complete the form. |
+| **Reply URL**                 | `https://localhost:44300/signin-oidc` | Reply URLs are endpoints where Azure AD B2C returns any tokens that your app requests. Visual Studio provides the Reply URL to use. For now, enter `https://localhost:44300/signin-oidc` to complete the form. |
 | **App ID URI**                | Leave blank               | Not required for this tutorial.                                                                                                                                                                    |
 | **Include native client**     | No                        |                                                                                                                                                                                                    |
 

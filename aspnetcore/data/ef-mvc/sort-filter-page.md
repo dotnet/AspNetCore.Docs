@@ -4,13 +4,14 @@ author: rick-anderson
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/sort-filter-page
 ---
 
 # ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10
+
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -226,7 +227,7 @@ Replace the `About` method with the following code:
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseDbSet)]
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
-> [!NOTE] 
+> [!NOTE]
 > In the 1.0 version of Entity Framework Core, the entire result set is returned to the client, and grouping is done on the client. In some scenarios this could create performance problems. Be sure to test performance with production volumes of data, and if necessary use raw SQL to do the grouping on the server. For information about how to use raw SQL, see [the last tutorial in this series](advanced.md).
 
 ### Modify the About View
@@ -243,6 +244,8 @@ Run the app and go to the About page. The count of students for each enrollment 
 
 In this tutorial, you've seen how to perform sorting, filtering, paging, and grouping. In the next tutorial, you'll learn how to handle data model changes by using migrations.
 
+::: moniker-end
+
 > [!div class="step-by-step"]
 > [Previous](crud.md)
-> [Next](migrations.md)  
+> [Next](migrations.md)

@@ -1,0 +1,20 @@
+﻿@using Microsoft.Extensions.FileProviders
+@model  IDirectoryContents
+
+<h1>Folder Contents</h1>
+
+<!-- <snippet1> -->
+<ul>
+    @foreach (IFileInfo item in Model)
+    {
+        if (item.IsDirectory)
+        {
+            <li><strong>@item.Name</strong></li>
+        }
+        else
+        {
+            <li>@item.Name - @item.Length bytes</li>
+        }
+    }
+</ul>
+<!-- </snippet1> -->

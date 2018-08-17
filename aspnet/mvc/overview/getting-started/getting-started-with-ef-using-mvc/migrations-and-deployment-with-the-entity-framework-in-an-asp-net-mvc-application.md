@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-a
 title: "Code First Migrations and Deployment with the Entity Framework in an ASP.NET MVC Application | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/07/2014
-ms.topic: article
 ms.assetid: d4dfc435-bda6-4621-9762-9ba270f8de4e
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
