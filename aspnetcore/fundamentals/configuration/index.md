@@ -1334,7 +1334,7 @@ public class Startup
         var value = _config["key"];
     }
 
-    public void ConfigureServices(IApplicationBuilder app, IConfiguration config)
+    public void Configure(IApplicationBuilder app, IConfiguration config)
     {
         var value = config["key"];
     }
