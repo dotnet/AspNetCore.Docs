@@ -106,7 +106,7 @@ connection.on("ReceiveMessage", (user, message) => {
 });
 ```
 
-After creating the client method, start the hub connection. Chain a [catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) method to log or handle errors.
+After creating the client method, start the hub connection. Chain a [catch](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) method to log or handle errors.
 
 ```javascript
 connection.start().catch(err => console.error(err.toString()));
