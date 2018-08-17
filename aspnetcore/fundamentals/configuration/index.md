@@ -1053,7 +1053,7 @@ Given the example data, `sectionExists` is `false` because there isn't a `sectio
 
 ::: moniker-end
 
-## Bind configuration to a class
+## Bind to a class
 
 Configuration can be bound to classes that represent groups of related settings using the *options pattern*. For more information, see <xref:fundamentals/configuration/options>.
 
@@ -1112,7 +1112,7 @@ The sample app calls `GetSection` with the `starship` key. The `starship` key-va
 
 ::: moniker-end
 
-## Bind configuration to an object graph
+## Bind to an object graph
 
 [ConfigurationBinder.Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind) is capable of binding an entire POCO object graph.
 
@@ -1184,20 +1184,17 @@ viewModel.TvShow = tvShow;
 
 ::: moniker-end
 
-## Bind a configuration array to a class
+## Bind an array to a class
 
 *The sample app demonstrates the concepts explained in this section.*
 
 The [ConfigurationBinder](/dotnet/api/microsoft.extensions.configuration.configurationbinder) supports binding arrays to objects using array indices in configuration keys.
-
-
 
 | Configuration key | Object array assignment  |
 | :---------------: | :----------------------: |
 | array:0           | array&lbrack;0&rbrack;   |
 | array:1           | array&lbrack;1&rbrack;   |
 | array:{n}         | array&lbrack;{n}&rbrack; |
-
 
 **In-memory array processing**
 
