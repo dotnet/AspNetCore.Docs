@@ -1188,13 +1188,16 @@ viewModel.TvShow = tvShow;
 
 *The sample app demonstrates the concepts explained in this section.*
 
-The [ConfigurationBinder](/dotnet/api/microsoft.extensions.configuration.configurationbinder) supports binding arrays to objects using array indices in configuration keys.
+The [ConfigurationBinder](/dotnet/api/microsoft.extensions.configuration.configurationbinder) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment (`:0:`, `:1:`, &hellip; `:{n}:`) is capable of array binding to a POCO class array.
 
 | Configuration key | Object array assignment  |
 | :---------------: | :----------------------: |
 | array:0           | array&lbrack;0&rbrack;   |
 | array:1           | array&lbrack;1&rbrack;   |
 | array:{n}         | array&lbrack;{n}&rbrack; |
+
+> [!NOTE]
+> Binding is provided by convention. Custom configuration providers aren't required to implement array binding.
 
 **In-memory array processing**
 
