@@ -303,8 +303,8 @@ dotnet user-secrets list
 The following output appears:
 
 ```console
-Movies:ServiceApiKey = 12345
 Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true
+Movies:ServiceApiKey = 12345
 ```
 
 In the preceding example, a colon in the key names denotes the object hierarchy within *secrets.json*.
