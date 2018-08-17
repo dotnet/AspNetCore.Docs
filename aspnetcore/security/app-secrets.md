@@ -71,7 +71,7 @@ Don't write code that depends on the location or format of data saved with the S
 
 ## Install the Secret Manager tool
 
-The Secret Manager tool is bundled with the .NET Core CLI as of .NET Core SDK 2.1.300. For .NET Core SDK versions before 2.1.300, tool installation is necessary.
+The Secret Manager tool is bundled with the .NET Core CLI in .NET Core SDK 2.1.300 or later. For .NET Core SDK versions before 2.1.300, tool installation is necessary.
 
 > [!TIP]
 > Run `dotnet --version` from a command shell to see the installed .NET Core SDK version number.
@@ -137,7 +137,20 @@ The Secret Manager tool operates on project-specific configuration settings stor
 
 > [!TIP]
 > In Visual Studio, right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element, populated with a GUID, to the *.csproj* file. Visual Studio opens a *secrets.json* file in the text editor. Replace the contents of *secrets.json* with the key-value pairs to be stored. For example:
-> [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file.md)]
+> ```json
+> {
+>   "Movies": {
+>     "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true",
+>     "ServiceApiKey": "12345"
+>   }
+> }
+> ```
+> The JSON structure is flattened after modifications via `dotnet user-secrets remove` or `dotnet user-secrets set`. For example, running `dotnet user-secrets remove "Movies:ConnectionString"` collapses the `Movies` object literal. The modified file resembles the following:
+> ```json
+> {
+>   "Movies:ServiceApiKey": "12345"
+> }
+> ```
 
 Define an app secret consisting of a key and its value. The secret is associated with the project's `UserSecretsId` value. For example, run the following command from the directory in which the *.csproj* file exists:
 
@@ -222,6 +235,30 @@ User secrets can be retrieved via the `Configuration` API:
 [!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=26)]
 
 ::: moniker-end
+
+## Map secrets to a POCO
+
+Mapping an entire object literal to a POCO (a simple .NET class with properties) is useful for aggregating related properties.
+
+[!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
+
+To map the preceding secrets to a POCO, use the `Configuration` API's [object graph binding](xref:fundamentals/configuration/index#bind-to-an-object-graph) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
+
+::: moniker range=">= aspnetcore-1.1"
+
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-1.0"
+
+[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
+
+::: moniker-end
+
+The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to the respective properties in `MovieSettings`:
+
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
 ## String replacement with secrets
 
