@@ -2,8 +2,8 @@
 title: DevOps with ASP.NET Core and Azure | Continuous integration and deployment
 author: CamSoper
 description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
-ms.author: casoper
-ms.date: 08/07/2018
+ms.author: scaddie
+ms.date: 08/17/2018
 uid: azure/devops/cicd
 ---
 # Continuous integration and deployment
@@ -218,12 +218,13 @@ The build definition's **Tasks** tab lists the individual steps being used. Ther
 ![build definition tasks](media/cicd/build-definition-tasks.png)
 
 1. **Restore** &mdash; Executes the `dotnet restore` command to restore the app's NuGet packages. The default package feed used is nuget.org.
-1. **Build** &mdash; Executes the `dotnet build --configuration Release` command to compile the app's code. This `--configuration` option is used to produce an optimized version of the code, which is suitable for deployment to a production environment. Modify the *BuildConfiguration* variable on the build definition's **Variables** tab if, for example, a debug configuration is needed.
-1. **Test** &mdash; Executes the `dotnet test --configuration Release` command to run the app's unit tests. If any of the tests fail, the build fails and isn't deployed.
+1. **Build** &mdash; Executes the `dotnet build --configuration release` command to compile the app's code. This `--configuration` option is used to produce an optimized version of the code, which is suitable for deployment to a production environment. Modify the *BuildConfiguration* variable on the build definition's **Variables** tab if, for example, a debug configuration is needed.
+1. **Test** &mdash; Executes the `dotnet test --configuration release --logger trx --results-directory <local_path_on_build_agent>` command to run the app's unit tests. Unit tests are executed within any C# project matching the `**/*Tests/*.csproj` glob pattern. Test results are saved in a *.trx* file at the location specified by the `--results-directory` option. If any tests fail, the build fails and isn't deployed.
 
     > [!NOTE]
-    > To verify the unit tests are working correctly, modify *SimpleFeedReader.Tests\Services\NewsServiceTests.cs* to purposefully break one of the tests, such as by changing `Assert.True(result.Count > 0);` to `Assert.False(result.Count > 0);` in the `Returns_News_Stories_Given_Valid_Uri()` method. Commit and push the change. The build will fail and the build pipeline status changes to **failed**. Revert the change, commit, and push again, and the build succeeds.
-1. **Publish** &mdash; Executes the `dotnet publish --configuration Release --output <local_path_on_build_agent>` command to produce a *.zip* file with the artifacts to be deployed. The `--output` option specifies the publish location of the *.zip* file. That location is specified by passing a [predefined variable](https://docs.microsoft.com/vsts/pipelines/build/variables) named `$(build.artifactstagingdirectory)`. That variable expands to a local path, such as *c:\agent\_work\1\a*, on the build agent.
+    > To verify the unit tests work, modify *SimpleFeedReader.Tests\Services\NewsServiceTests.cs* to purposefully break one of the tests. For example, change `Assert.True(result.Count > 0);` to `Assert.False(result.Count > 0);` in the `Returns_News_Stories_Given_Valid_Uri` method. Commit and push the change to GitHub. The build is triggered and fails. The build pipeline status changes to **failed**. Revert the change, commit, and push again. The build succeeds.
+
+1. **Publish** &mdash; Executes the `dotnet publish --configuration release --output <local_path_on_build_agent>` command to produce a *.zip* file with the artifacts to be deployed. The `--output` option specifies the publish location of the *.zip* file. That location is specified by passing a [predefined variable](https://docs.microsoft.com/vsts/pipelines/build/variables) named `$(build.artifactstagingdirectory)`. That variable expands to a local path, such as *c:\agent\_work\1\a*, on the build agent.
 1. **Publish Artifact** &mdash; Publishes the *.zip* file produced by the **Publish** task. The task accepts the *.zip* file location as a parameter, which is the predefined variable `$(build.artifactstagingdirectory)`. The *.zip* file is published as a folder named *drop*.
 
 Click the build definition's **Summary** link to view a history of builds with the definition:
