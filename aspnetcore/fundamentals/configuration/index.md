@@ -128,7 +128,7 @@ Configuration keys adopt the following conventions:
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator may not work on all platforms. A double underscore (`__`) is supported by all platforms and converted to a colon.
   * In Azure Key Vault, hierarchical keys use `--` (two dashes) as a separator. You must provide code to replace the dashes with a colon when the secrets are loaded into the app's configuration.
-* The [ConfigurationBinder](/dotnet/api/microsoft.extensions.configuration.configurationbinder) supports binding arrays to objects using array indices in configuration keys.
+* The [ConfigurationBinder](/dotnet/api/microsoft.extensions.configuration.configurationbinder) supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array to a class](#bind-an-array-to-a-class) section.
 
 Configuration values adopt the following conventions:
 
@@ -198,7 +198,7 @@ This sequence of providers is put into place when you initialize a new [WebHostB
 
 Call [ConfigureAppConfiguration](/dotnet/api/microsoft.extensions.configuration.configurationbuilder) when building the Web Host to specify the app's configuration providers:
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet1&highlight=3)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=19)]
 
 `ConfigureAppConfiguration` *is available in ASP.NET Core 2.1 or later.*
 
@@ -513,12 +513,12 @@ When an environment variable is discovered and loaded into configuration with an
 * The configuration key is created by removing the environment variable prefix and adding a configuration key section (`ConnectionStrings`).
 * A new configuration key-value pair is created that represents the database connection provider (except for `CUSTOMCONNSTR_`, which has no stated provider).
 
-| Environment variable key | Converted configuration key | Provider configuration entry                                        |
-| ------------------------ | --------------------------- | ------------------------------------------------------------------- |
+| Environment variable key | Converted configuration key | Provider configuration entry                                                    |
+| ------------------------ | --------------------------- | ------------------------------------------------------------------------------- |
 | `MYSQLCONNSTR_<KEY>`     | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
 | `SQLAZURECONNSTR_<KEY>`  | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
 | `SQLCONNSTR_<KEY>`       | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
-| `CUSTOMCONNSTR_<KEY>`    | `ConnectionStrings:<KEY>`   | Configuration entry not created.                                    |
+| `CUSTOMCONNSTR_<KEY>`    | `ConnectionStrings:<KEY>`   | Configuration entry not created.                                                |
 
 ## File Configuration Provider
 
@@ -1190,18 +1190,12 @@ viewModel.TvShow = tvShow;
 
 The [ConfigurationBinder](/dotnet/api/microsoft.extensions.configuration.configurationbinder) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment (`:0:`, `:1:`, &hellip; `:{n}:`) is capable of array binding to a POCO class array.
 
-| Configuration key | Object array assignment  |
-| :---------------: | :----------------------: |
-| array:0           | array&lbrack;0&rbrack;   |
-| array:1           | array&lbrack;1&rbrack;   |
-| array:{n}         | array&lbrack;{n}&rbrack; |
-
 > [!NOTE]
 > Binding is provided by convention. Custom configuration providers aren't required to implement array binding.
 
 **In-memory array processing**
 
-Consider the following configuration keys and values.
+Consider the configuration keys and values shown in the following table.
 
 | Key     | Value  |
 | :-----: | :----: |
@@ -1213,31 +1207,33 @@ Consider the following configuration keys and values.
 
 These keys and values are loaded in the sample app using the Memory Configuration Provider:
 
-```csharp
-public static Dictionary<string, string> arrayDict = new Dictionary<string, string>
-    {
-        {"array:entries:0", "value0"},
-        {"array:entries:1", "value1"},
-        {"array:entries:2", "value2"},
-        {"array:entries:4", "value4"},
-        {"array:entries:5", "value5"}
-    };
-```
+::: moniker range=">= aspnetcore-2.0"
 
-```csharp
-config.AddInMemoryCollection(arrayDict);
-```
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=3-10,22)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Startup.cs?name=snippet_Startup&highlight=5-12,16)]
+
+::: moniker-end
 
 The array skips a value for index &num;3. The configuration binder isn't capable of binding null values or creating null entries in bound objects, which becomes clear in a moment when the result of binding this array to an object is demonstrated.
 
-A POCO class is prepared to hold the bound configuration data:
+In the sample app, a POCO class is available to hold the bound configuration data:
 
-```chsharp
-public class ArrayExample
-{
-    public string[] Entries { get; set; }
-}
-```
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Models/ArrayExample.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Models/ArrayExample.cs?name=snippet1)]
+
+::: moniker-end
 
 The configuration data is bound to the object:
 
@@ -1248,42 +1244,49 @@ _config.GetSection("array").Bind(arrayExample);
 
 ::: moniker range=">= aspnetcore-1.1"
 
-[ConfigurationBinder.Get&lt;T&gt;](/dotnet/api/microsoft.extensions.configuration.configurationbinder.get) syntax can also be used, which results in slightly more compact code:
+[ConfigurationBinder.Get&lt;T&gt;](/dotnet/api/microsoft.extensions.configuration.configurationbinder.get) syntax can also be used, which results in more compact code:
 
-```csharp
-ArrayExample = _config.GetSection("array").Get<ArrayExample>();
-```
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_array)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-1.1"
+
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Controllers/HomeController.cs?name=snippet_array)]
 
 ::: moniker-end
 
 The bound object, an instance of `ArrayExample`, receives the array data from configuration.
 
-| `Entries` Index | `Entries` Value |
-| :-------------: | :-------------: |
-| 0               | value0          |
-| 1               | value1          |
-| 2               | value2          |
-| 3               | value4          |
-| 4               | value5          |
+| `ArrayExamples.Entries` Index | `ArrayExamples.Entries` Value |
+| :---------------------------: | :---------------------------: |
+| 0                             | value0                        |
+| 1                             | value1                        |
+| 2                             | value2                        |
+| 3                             | value4                        |
+| 4                             | value5                        |
 
-Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are merely used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry can't be created in a bound object when an array in configuration keys skip one or more indicies.
+Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are merely used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indicies.
 
 **JSON array processing**
 
-If the JSON file contains an array, configuration keys are created for the array elements with a zero-based section index. In the following configuration file, `subsection` is an array:
+If a JSON file contains an array, configuration keys are created for the array elements with a zero-based section index. In the following configuration file, `subsection` is an array:
 
-```json
-{
-  "json_array": {
-    "key": "valueA",
-    "subsection": [
-      "valueB",
-      "valueC",
-      "valueD"
-    ]
-  }
-}
-```
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-json[](index/samples/2.x/ConfigurationSample/json_array.json)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-json[](index/samples/1.x/ConfigurationSample/json_array.json)]
+
+::: moniker-end
 
 The JSON Configuration Provider reads the configuration data into the following key-value pairs:
 
@@ -1294,23 +1297,27 @@ The JSON Configuration Provider reads the configuration data into the following 
 | json_array:subsection:1 | valueC |
 | json_array:subsection:2 | valueD |
 
-The following POCO class is available to bind the configuration key-value pairs:
+In the sample app, the following POCO class is available to bind the configuration key-value pairs:
 
-```csharp
-public class JsonArrayExample
-{
-    public string Key { get; set; }
-    public string[] Subsection { get; set; }
-}
-```
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Models/JsonArrayExample.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Models/JsonArrayExample.cs?name=snippet1)]
+
+::: moniker-end
 
 After binding, `JsonArrayExample.Key` holds the value `valueA`. The subsection values are stored in the POCO array property, `Subsection`.
 
-| `Subsection` Index | `Subsection` Value |
-| :----------------: | :----------------: |
-| 0                  | valueB             |
-| 1                  | valueC             |
-| 2                  | valueD             |
+| `JsonArrayExample.Subsection` Index | `JsonArrayExample.Subsection` Value |
+| :---------------------------------: | :---------------------------------: |
+| 0                                   | valueB                              |
+| 1                                   | valueC                              |
+| 2                                   | valueD                              |
 
 ## Custom configuration provider
 
@@ -1406,13 +1413,13 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet1&highlight=8)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=26)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-[!code-csharp[](index/samples/1.x/ConfigurationSample/Startup.cs?name=snippet1&highlight=13)]
+[!code-csharp[](index/samples/1.x/ConfigurationSample/Startup.cs?name=snippet_Startup&highlight=24)]
 
 ::: moniker-end
 

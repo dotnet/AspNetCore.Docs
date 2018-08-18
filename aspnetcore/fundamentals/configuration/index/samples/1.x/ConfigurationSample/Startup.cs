@@ -10,7 +10,7 @@ using ConfigurationSample.EFConfigurationProvider;
 
 namespace ConfigurationSample
 {
-    #region snippet1
+    #region snippet_Startup
     public class Startup
     {
         public Startup(IHostingEnvironment env)

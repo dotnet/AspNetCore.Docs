@@ -58,9 +58,7 @@ namespace ConfigurationSample.Pages
             ArrayExample = _config.GetSection("array").Get<ArrayExample>();
             #endregion
 
-            #region snippet_json_array
             JsonArrayExample = _config.GetSection("json_array").Get<JsonArrayExample>();
-            #endregion
         }
     }
 }

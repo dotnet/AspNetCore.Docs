@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace ConfigurationSample
 {
+    #region snippet_Program
     public class Program
     {
         public static Dictionary<string, string> arrayDict = new Dictionary<string, string>
@@ -24,7 +25,6 @@ namespace ConfigurationSample
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        #region snippet1
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
@@ -38,6 +38,6 @@ namespace ConfigurationSample
                     config.AddCommandLine(args);
                 })
                 .UseStartup<Startup>();
-        #endregion
     }
+    #endregion
 }

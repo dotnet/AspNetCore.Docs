@@ -50,9 +50,7 @@ namespace ConfigurationSample.Controllers
             viewModel.ArrayExample = _config.GetSection("array").Get<ArrayExample>();
             #endregion
 
-            #region snippet_json_array
             viewModel.JsonArrayExample = _config.GetSection("json_array").Get<JsonArrayExample>();
-            #endregion
 
             return View(viewModel);
         }
