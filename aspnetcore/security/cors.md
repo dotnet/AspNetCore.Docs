@@ -3,7 +3,7 @@ title: Enable Cross-Origin Requests (CORS) in ASP.NET Core
 author: rick-anderson
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
-ms.date: 05/17/2017
+ms.date: 08/17/2018
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -37,19 +37,23 @@ These URLs have different origins than the previous two:
 > [!NOTE]
 > Internet Explorer doesn't consider the port when comparing origins.
 
-## Setting up CORS
+## Enable CORS
+
+::: moniker range="<= aspnetcore-1.1"
 
 To set up CORS for your application add the `Microsoft.AspNetCore.Cors` package to your project.
 
-Add the CORS services in Startup.cs:
+::: moniker-end
+
+Call [AddCors](/dotnet/api/microsoft.extensions.dependencyinjection.corsservicecollectionextensions.addcors) in `Startup.ConfigureServices`:
 
 [!code-csharp[](cors/sample/CorsExample1/Startup.cs?name=snippet_addcors)]
 
 ## Enabling CORS with middleware
 
-To enable CORS for your entire application add the CORS middleware to your request pipeline using the `UseCors` extension method. Note that the CORS middleware must precede any defined endpoints in your app that you want to support cross-origin requests (ex. before any call to `UseMvc`).
+To enable CORS, add the CORS middleware to the request pipeline using the `UseCors` extension method. The CORS middleware must precede any defined endpoints in your app where you want to support cross-origin requests (For example, before any call to `UseMvc`).
 
-You can specify a cross-origin policy when adding the CORS middleware using the `CorsPolicyBuilder` class. There are two ways to do this. The first is to call UseCors with a lambda:
+A cross-origin policy can be specified when adding the CORS middleware using the [CorsPolicyBuilder](/dotnet/api/microsoft.extensions.dependencyinjection.corsservicecollectionextensions.addcors) class. There are two ways to do this. The first is to call `UseCors` with a lambda:
 
 [!code-csharp[](cors/sample/CorsExample1/Startup.cs?highlight=11,12&range=22-38)]
 
@@ -57,7 +61,7 @@ You can specify a cross-origin policy when adding the CORS middleware using the 
 
 The lambda takes a `CorsPolicyBuilder` object. You'll find a list of the [configuration options](#cors-policy-options) later in this topic. In this example, the policy allows cross-origin requests from `http://example.com` and no other origins.
 
-Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
+CorsPolicyBuilder has a fluent API, so you can chain method calls:
 
 [!code-csharp[](../security/cors/sample/CorsExample3/Startup.cs?highlight=3&range=29-32)]
 
@@ -113,7 +117,7 @@ This section describes the various options that you can set in a CORS policy.
 
 * [Set the preflight expiration time](#set-the-preflight-expiration-time)
 
-For some options it may be helpful to read [How CORS works](#how-cors-works) first.
+For some options, it may be helpful to read [How CORS works](#how-cors-works) first.
 
 ### Set the allowed origins
 
@@ -200,7 +204,7 @@ Now the HTTP response will include an Access-Control-Allow-Credentials header, w
 
 If the browser sends credentials, but the response doesn't include a valid Access-Control-Allow-Credentials header, the browser won't expose the response to the application, and the AJAX request fails.
 
-Be careful when allowing cross-origin credentials. A website at another domain can send a logged-in user's credentials to the app on the user's behalf without the user's knowledge. The CORS specification also states that setting origins to "*" (all origins) is invalid if the `Access-Control-Allow-Credentials` header is present.
+Be careful when allowing cross-origin credentials. A website at another domain can send a logged-in user's credentials to the app on the user's behalf without the user's knowledge. The CORS specification also states that setting origins to `"*"` (all origins) is invalid if the `Access-Control-Allow-Credentials` header is present.
 
 ### Set the preflight expiration time
 
@@ -212,7 +216,7 @@ The Access-Control-Max-Age header specifies how long the response to the preflig
 
 ## How CORS works
 
-This section describes what happens in a CORS request at the level of the HTTP messages. It's important to understand how CORS works so that the CORS policy can be configured correctly and troubleshooted when unexpected behaviors occur.
+This section describes what happens in a CORS request at the level of the HTTP messages. It's important to understand how CORS works so that the CORS policy can be configured correctly and debugged when unexpected behaviors occur.
 
 The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests. Custom JavaScript code isn't required to enable CORS.
 
