@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApp1
+namespace CompatibilityVersionSample
 {
     public class Startup
     {
@@ -12,7 +12,7 @@ namespace WebApp1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion
 

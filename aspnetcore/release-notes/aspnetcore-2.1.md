@@ -153,6 +153,12 @@ In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in th
 
 Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example of areas, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
 
+## MVC compatibility version
+
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
+
+For more information, see <xref:mvc/compatibility-version>.
+
 ## Migrate from 2.0 to 2.1
 
 See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20_21).
