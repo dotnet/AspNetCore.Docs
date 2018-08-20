@@ -124,7 +124,7 @@ If version `2.1.300-preview1-008174` is the latest preview release, the followin
 
 The version of ASP.NET Core shown in the preceding image, `2.1.300-preview1-008174`, is an example. The latest preview version of ASP.NET Core at the time the site extension is configured appears when you execute `dotnet --info`.
 
-The `dotnet --info` displays the the path to the site extension where the Preview has been installed. It shows the app is running from the site extension instead of from the default *ProgramFiles* location. If you see *ProgramFiles*, restart the site and run `dotnet --info`.
+The `dotnet --info` displays the path to the site extension where the Preview has been installed. It shows the app is running from the site extension instead of from the default *ProgramFiles* location. If you see *ProgramFiles*, restart the site and run `dotnet --info`.
 
 **Use the preview site extension with an ARM template**
 
