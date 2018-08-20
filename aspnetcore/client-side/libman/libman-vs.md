@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to use LibMan in an ASP.NET Core project with Visual Studio.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/15/2018
+ms.date: 08/20/2018
 uid: client-side/libman/libman-vs
 ---
 # Use LibMan with ASP.NET Core in Visual Studio
@@ -15,7 +15,7 @@ Visual Studio has built-in support for LibMan in ASP.NET Core projects, includin
 
 * Support for configuring and running LibMan restore operations on build.
 * Menu items for triggering LibMan restore and clean operations.
-* Search dialog for finding libraries and adding the files to your project.
+* Search dialog for finding libraries and adding the files to a project.
 * Editing support for *libman.json*&mdash;the LibMan manifest file.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/libman/samples/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
@@ -133,7 +133,7 @@ While the restore operation is running:
 LibMan can restore the defined library files as part of the build process. By default, the restore-on-build behavior is disabled. To enable and test it:
 
 * Right-click *libman.json* in **Solution Explorer** and select **Enable Restore Client-Side Libraries on Build** from the context menu.
-* Click the **Yes** button when prompted to install a NuGet package. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to your project:
+* Click the **Yes** button when prompted to install a NuGet package. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to the project:
 
   [!code-xml[](samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
 
