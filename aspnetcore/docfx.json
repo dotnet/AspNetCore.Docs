@@ -12,7 +12,8 @@
           "aspnet/**",
           "**/includes/**",
           "**/aspnet-core-conceptual/**",
-          "_site/**"
+          "_site/**",
+          "***/readme.md"
         ],
         "group": "group1",
         "src": "."
