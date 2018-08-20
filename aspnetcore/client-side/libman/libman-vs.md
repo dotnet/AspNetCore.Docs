@@ -169,7 +169,7 @@ While the restore operation is running:
 
 ## Delete library files
 
-To perform the *clean* operation, which will delete library files previously restored in Visual Studio:
+To perform the *clean* operation, which deletes library files previously restored in Visual Studio:
 
 * Right-click the *libman.json* file in **Solution Explorer**.
 * Select the **Clean Client-Side Libraries** option.
