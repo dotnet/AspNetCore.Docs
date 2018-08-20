@@ -5,7 +5,7 @@ description: In this tutorial, you create a chat app that uses SignalR for ASP.N
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/08/2018
+ms.date: 08/20/2018
 uid: tutorials/signalr
 ---
 
@@ -19,7 +19,7 @@ This tutorial teaches the basics of building a real-time app using SignalR. You 
 > * Connect to the SignalR hub from JavaScript clients.
 > * Use the hub to send messages from any client to all connected clients.
 
-At the end you'll have a working chat app:
+At the end, you'll have a working chat app:
 
 ![SignalR sample app](signalr/_static/signalr-get-started-finished.png)
 
@@ -60,7 +60,7 @@ At the end you'll have a working chat app:
 
 * Select **Web Application** to create a project that uses Razor Pages.
 
-* Make sure that the target framework is **ASP.NET Core 2.1**, and then select **OK**. 
+* Select a target framework of **.NET Core**, select **ASP.NET Core 2.1**, and click **OK**.
 
   ![New Project dialog in Visual Studio](signalr/_static/signalr-new-project-choose-type.png)
 
@@ -90,7 +90,7 @@ At the end you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the [Microsoft.AspnetCore.App metapackage](xref:fundamentals/metapackage-app). But you have to get the JavaScript client library from npm, the Node.js package manager.
+The SignalR server library is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). But you have to get the JavaScript client library from npm, the Node.js package manager.
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -98,7 +98,7 @@ The SignalR server library is included in the [Microsoft.AspnetCore.App metapack
 
   ```console
   cd SignalRChat
-  ``` 
+  ```
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
@@ -183,7 +183,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
   [!code-csharp[Startup](signalr/sample/Startup.cs?highlight=7,33,52-55)]
 
-  These changes add SignalR to the the [dependency injection](xref:fundamentals/dependency-injection) system and the [middleware](xref:fundamentals/middleware/index) pipeline.
+  These changes add SignalR to the [dependency injection](xref:fundamentals/dependency-injection) system and the [middleware](xref:fundamentals/middleware/index) pipeline.
 
 ## Create the SignalR client code
 
