@@ -1,9 +1,9 @@
 ---
 title: What's new in ASP.NET Core 2.1
 author: isaac2004
-ms.author: riande
 description: Learn about the new features in ASP.NET Core 2.1.
 monikerRange: '= aspnetcore-2.1'
+ms.author: riande
 ms.custom: mvc
 ms.date: 05/30/2018
 uid: aspnetcore-2.1

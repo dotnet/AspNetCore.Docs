@@ -1,9 +1,9 @@
 ---
 title: What's new in ASP.NET Core 1.1
 author: rick-anderson
-ms.author: riande
 description: Learn about the new features in ASP.NET Core 1.1.
 monikerRange: '= aspnetcore-1.1'
+ms.author: riande
 ms.date: 02/14/2017
 uid: aspnetcore-1.1
 ---
