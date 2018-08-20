@@ -1,6 +1,7 @@
 ---
 title: What's new in ASP.NET Core 2.0
 author: rick-anderson
+ms.author: riande
 description: Learn about the new features in ASP.NET Core 2.0.
 monikerRange: '= aspnetcore-2.0'
 ms.date: 07/10/2017
