@@ -192,6 +192,7 @@ ASP.NET Core ships with the following middleware components, as well as a descri
 | [HTTPS Redirection](xref:security/enforcing-ssl#require-https) | Redirect all HTTP requests to HTTPS (ASP.NET Core 2.1 or later). | Before components that consume the URL. |
 | [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Security enhancement middleware that adds a special response header (ASP.NET Core 2.1 or later). | Before responses are sent and after components that modify requests (for example, Forwarded Headers, URL Rewriting). |
 | [MVC](xref:mvc/overview) | Processes requests with MVC/Razor Pages (ASP.NET Core 2.0 or later). | Terminal if a request matches a route. |
+| [OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | Terminal if the OWIN Middleware fully processes the request. |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. |
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
 | [Request Localization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. |
