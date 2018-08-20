@@ -86,7 +86,7 @@ To open *libman.json* for editing, the following options exist:
 * Right-click the project in **Solution Explorer** and select **Manage Client-Side Libraries**. **&#8224;**
 * Select **Manage Client-Side Libraries** from the Visual Studio **Project** menu. **&#8224;**
 
-**&#8224;** If a *libman.json* file doesn't already exist in the project root, it's created with the default item template content.
+**&#8224;** If the *libman.json* file doesn't already exist in the project root, it will be created with the default item template content.
 
 Visual Studio offers rich JSON editing support such as colorization, formatting, IntelliSense, and schema validation. The LibMan manifest's JSON schema is found at [http://json.schemastore.org/libman](http://json.schemastore.org/libman).
 
