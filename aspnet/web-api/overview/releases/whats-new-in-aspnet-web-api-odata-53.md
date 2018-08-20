@@ -3,7 +3,7 @@ uid: web-api/overview/releases/whats-new-in-aspnet-web-api-odata-53
 title: "What's New in ASP.NET Web API OData 5.3 | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/16/2014
 ms.assetid: e39eaa25-83ff-41dc-869d-3818d59a88ae
 msc.legacyurl: /web-api/overview/releases/whats-new-in-aspnet-web-api-odata-53

@@ -189,7 +189,7 @@ Hosting can only show an error page for a captured startup error if the error oc
 
 When running on [IIS](/iis) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), a *502.5 Process Failure* is returned by the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) if the process can't be started. For information on troubleshooting startup issues when hosting with IIS, see <xref:host-and-deploy/iis/troubleshoot>. For information on troubleshooting startup issues with Azure App Service, see <xref:host-and-deploy/azure-apps/troubleshoot>.
 
-## ASP.NET MVC error handling
+## ASP.NET Core MVC error handling
 
 [MVC](xref:mvc/overview) apps have some additional options for handling errors, such as configuring exception filters and performing model validation.
 

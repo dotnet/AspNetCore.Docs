@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-bundling-and-mi
 title: "ASP.NET vNext Videos: Bundling and Minification | Microsoft Docs"
 author: madskristensen
 description: "Mads Kristensen demonstrates how the ASP.NET vNext can automatically bundle and modify JavaScript and CSS resources to improve performance."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/29/2011
 ms.assetid: 8d04a9db-fa17-4233-bc74-6c040fd1c17a
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-bundling-and-minification

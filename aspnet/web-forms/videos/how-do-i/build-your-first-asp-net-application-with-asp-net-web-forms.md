@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/build-your-first-asp-net-application-with-asp-net
 title: "Build Your First ASP.NET Application with ASP.NET Web Forms | Microsoft Docs"
 author: lmoroney
 description: "Microsoft's Laurence Moroney shows you how to build your first ASP.NET application with ASP.NET Web Forms."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/09/2010
 ms.assetid: 3cb6c701-7b39-4009-8214-47130021c616
 msc.legacyurl: /web-forms/videos/how-do-i/build-your-first-asp-net-application-with-asp-net-web-forms

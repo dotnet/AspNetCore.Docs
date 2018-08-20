@@ -25,7 +25,7 @@ This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host o
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Running OWIN middleware in the ASP.NET pipeline
+## Running OWIN middleware in the ASP.NET Core pipeline
 
 ASP.NET Core's OWIN support is deployed as part of the `Microsoft.AspNetCore.Owin` package. You can import OWIN support into your project by installing this package.
 
@@ -50,7 +50,7 @@ public Task OwinHello(IDictionary<string, object> environment)
 
 The sample signature returns a `Task` and accepts an `IDictionary<string, object>` as required by OWIN.
 
-The following code shows how to add the `OwinHello` middleware (shown above) to the ASP.NET pipeline with the `UseOwin` extension method.
+The following code shows how to add the `OwinHello` middleware (shown above) to the ASP.NET Core pipeline with the `UseOwin` extension method.
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -84,9 +84,9 @@ app.UseOwin(pipeline =>
 
 <a name="hosting-on-owin"></a>
 
-## Using ASP.NET Hosting on an OWIN-based server
+## Using ASP.NET Core Hosting on an OWIN-based server
 
-OWIN-based servers can host ASP.NET applications. One such server is [Nowin](https://github.com/Bobris/Nowin), a .NET OWIN web server. In the sample for this article, I've included a project that references Nowin and uses it to create an `IServer` capable of self-hosting ASP.NET Core.
+OWIN-based servers can host ASP.NET Core apps. One such server is [Nowin](https://github.com/Bobris/Nowin), a .NET OWIN web server. In the sample for this article, I've included a project that references Nowin and uses it to create an `IServer` capable of self-hosting ASP.NET Core.
 
 [!code-csharp[](owin/sample/src/NowinSample/Program.cs?highlight=15)]
 

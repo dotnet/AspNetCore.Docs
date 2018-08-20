@@ -3,7 +3,7 @@ uid: web-forms/videos/net-4/routing/aspnet-4-quick-hit-declarative-webforms-rout
 title: ASP.NET 4 Quick Hit - Declarative WebForms Routing
 author: JoeStagner
 description: "In this video you will learn how to do WebForms routing declaratively through markup."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/11/2009
 ms.assetid: bfeb728e-3216-4310-8303-6cdb79255c15
 msc.legacyurl: /web-forms/videos/net-4/routing/aspnet-4-quick-hit-declarative-webforms-routing

@@ -3,7 +3,7 @@ uid: web-forms/videos/building-20-applications/lesson-3-understanding-more-about
 title: "[Lesson 3:]  Understanding More About Events and Postback | Microsoft Docs"
 author: microsoft
 description: "In this lesson, you will learn how events can be used in your code, and how to react when those events occur."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/28/2005
 ms.assetid: 59f0bccd-b604-47fa-a42b-71d8ab187bd2
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-3-understanding-more-about-events-and-postback

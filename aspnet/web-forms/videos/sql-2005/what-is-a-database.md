@@ -3,7 +3,7 @@ uid: web-forms/videos/sql-2005/what-is-a-database
 title: "What is a Database? | Microsoft Docs"
 author: microsoft
 description: "This introduction covers the questions and terminology SQL Server beginners need to create and manage databases, such as: What is a SQL Server database? How..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/29/2006
 ms.assetid: 560d2455-ce08-4b2a-900d-7e9ccf82e048
 msc.legacyurl: /web-forms/videos/sql-2005/what-is-a-database

@@ -3,7 +3,7 @@ uid: signalr/videos/getting-started/signalr-and-web-sockets
 title: "SignalR and Web Sockets | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman introduces SignalR and Web Sockets."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/15/2012
 ms.assetid: d20b4bfc-2cc1-4aeb-b235-733146df1eca
 msc.legacyurl: /signalr/videos/getting-started/signalr-and-web-sockets

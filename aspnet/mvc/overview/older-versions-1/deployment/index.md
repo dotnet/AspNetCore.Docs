@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/deployment/index
 title: "Deployment | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial you learn how to use ASP.NET MVC and routing with different versions of IIS."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/28/2011
 ms.assetid: 1e9204db-664c-4376-aa50-1fb9e245a4d9
 msc.legacyurl: /mvc/overview/older-versions-1/deployment

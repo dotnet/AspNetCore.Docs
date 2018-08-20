@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-strongly-typed-
 title: "ASP.NET vNext Videos: Strongly Typed Data Controls | Microsoft Docs"
 author: DamianEdwards
 description: "In this video, Damian Edwards demonstrates strongly typed data controls in Visual Studio vNext, which provide IntelliSense and compile time checking."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/22/2011
 ms.assetid: 4eda33a1-54f8-4cb6-8cc4-4be78f5fdc00
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-strongly-typed-data-controls

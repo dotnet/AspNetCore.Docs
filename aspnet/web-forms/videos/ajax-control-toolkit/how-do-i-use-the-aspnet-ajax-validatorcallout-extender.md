@@ -3,7 +3,7 @@ uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validato
 title: "[How Do I:] Use the ASP.NET AJAX ValidatorCallout Extender? | Microsoft Docs"
 author: JoeStagner
 description: "The standard ASP.NET validation controls work on both the server and the client. Server-side validation adds to the security of your Web application, while c..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/21/2007
 ms.assetid: 9ece2688-72d3-4ff4-8d6c-c29698c39ae5
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validatorcallout-extender

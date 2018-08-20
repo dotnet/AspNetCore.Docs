@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-extend-and-customize-an-aspnet-server-co
 title: "[How Do I:] Extend and Customize an ASP.NET Server Control for a Specific Purpose | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to extend a standard ASP.NET server control and customize it for a specific purpose. Specialized controls provide an c..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/20/2008
 ms.assetid: ed460e6b-8f4e-4fcb-83c4-2495180c1f14
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-extend-and-customize-an-aspnet-server-control-for-a-specific-purpose

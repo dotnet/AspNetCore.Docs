@@ -3,7 +3,7 @@ uid: web-forms/overview/moving-to-aspnet-20/membership
 title: "Membership | Microsoft Docs"
 author: microsoft
 description: "ASP.NET Membership builds on the success of the Forms authentication model from ASP.NET 1.x. ASP.NET Forms authentication provides a convenient way to incorp..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/20/2005
 ms.assetid: f2339485-5d78-4c5e-8c0a-dc9b8a315345
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/membership

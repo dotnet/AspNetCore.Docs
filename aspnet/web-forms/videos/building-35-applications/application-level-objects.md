@@ -3,7 +3,7 @@ uid: web-forms/videos/building-35-applications/application-level-objects
 title: "Application Level Objects | Microsoft Docs"
 author: JoeStagner
 description: "This video will introduce Application Level Events and Objects and explain the concept of &quot;Scope&quot; as it pertains to them."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/20/2009
 ms.assetid: 921f8078-dcce-42ba-a79a-d3e0b0922161
 msc.legacyurl: /web-forms/videos/building-35-applications/application-level-objects

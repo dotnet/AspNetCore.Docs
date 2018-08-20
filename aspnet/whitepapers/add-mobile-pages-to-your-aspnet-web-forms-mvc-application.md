@@ -3,7 +3,7 @@ uid: whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application
 title: "How To: Add Mobile Pages to Your ASP.NET Web Forms / MVC Application | Microsoft Docs"
 author: rick-anderson
 description: "This How To describes various ways to serve pages optimized for mobile devices from your ASP.NET Web Forms / MVC application, and suggests architectural and..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/20/2011
 ms.assetid: 3124f28e-cc32-418a-afe3-519fa56f4c36
 msc.legacyurl: /whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application

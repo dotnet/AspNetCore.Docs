@@ -3,7 +3,7 @@ uid: web-pages/overview/performance-and-traffic/index
 title: "Performance | Microsoft Docs"
 author: rick-anderson
 description: "How to cache content for faster performance and how to measure site traffic."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/08/2014
 ms.assetid: ce798572-e7dc-44c1-a7fe-a029820e195e
 msc.legacyurl: /web-pages/overview/performance-and-traffic

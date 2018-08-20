@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/masterdetail/master-detail-filtering-across-
 title: "Master/Detail Filtering Across Two Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll implement this pattern by using a GridView to list the suppliers in the database. Each supplier row in the GridView will contain a Vie..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/31/2010
 ms.assetid: 361d6a44-3f1f-4daf-85df-d4c2b8bf065d
 msc.legacyurl: /web-forms/overview/data-access/masterdetail/master-detail-filtering-across-two-pages-vb

@@ -3,7 +3,7 @@ uid: web-forms/videos/vs-2005/how-do-i-practice-test-driven-development
 title: "[How Do I:] Practice Test-Driven Development? | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio Team System provides the tools necessary to practice Test-Driven Development, and this video we learn how Team System's testing functionality a..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/21/2007
 ms.assetid: 60b10049-ca02-4830-b3ce-83e9584511d0
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-practice-test-driven-development

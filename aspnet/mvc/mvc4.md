@@ -3,7 +3,7 @@ uid: mvc/mvc4
 title: "ASP.NET MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 4 ASP.NET MVC 4 is a framework for building scalable, standards-based web applications using well-established design patterns and the power of AS..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/12/2011
 ms.assetid: 1279f5b1-390f-4b4b-9e6e-f947cb1ef5f5
 msc.legacyurl: /mvc/mvc4

@@ -3,7 +3,7 @@ uid: web-forms/videos/vs-2005/introduction-to-testing-web-applications-with-team
 title: "Introduction to Testing Web Applications with Team System | Microsoft Docs"
 author: rick-anderson
 description: "In this video we see how you can automate testing of your web applications using the web testing features of Visual Studio Team System."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/09/2007
 ms.assetid: 0924e7ff-b148-4a3e-bfaf-6f866ca13495
 msc.legacyurl: /web-forms/videos/vs-2005/introduction-to-testing-web-applications-with-team-system

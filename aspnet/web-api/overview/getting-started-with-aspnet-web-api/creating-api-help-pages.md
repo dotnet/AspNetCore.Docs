@@ -3,7 +3,7 @@ uid: web-api/overview/getting-started-with-aspnet-web-api/creating-api-help-page
 title: "Creating Help Pages for ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/01/2013
 ms.assetid: 0150e67b-c50d-4613-83ea-7b4ef8cacc5a
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/creating-api-help-pages

@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-applic
 title: "Iteration #1 – Create the Application (C#) | Microsoft Docs"
 author: microsoft
 description: "In the first iteration, we create the Contact Manager in the simplest way possible. We add support for basic database operations: Create, Read, Update, and D..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/20/2009
 ms.assetid: db0f160b-901c-46d3-865e-7ab6cd4ed68d
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-cs

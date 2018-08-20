@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/how-do-i/preventing-javascript-injection-attacks
 title: "Preventing JavaScript Injection Attacks | Microsoft Docs"
 author: StephenWalther
 description: "Prevent JavaScript Injection Attacks and Cross-Site Scripting Attacks from happening to you. In this tutorial, Stephen Walther explains how you can easily de..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/20/2008
 ms.assetid: 012a91e7-fd88-4d4f-8f95-57a9043c47d9
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/preventing-javascript-injection-attacks

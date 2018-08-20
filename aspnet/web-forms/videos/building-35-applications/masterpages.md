@@ -3,7 +3,7 @@ uid: web-forms/videos/building-35-applications/masterpages
 title: "MasterPages | Microsoft Docs"
 author: JoeStagner
 description: "ASP.NET MasterPages are a key part of building agile web applications. This video will demonstrate the basics of using master pages and nested MasterPages in..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/08/2009
 ms.assetid: cd6890dd-02a5-48a7-bb05-f277c74a9cc3
 msc.legacyurl: /web-forms/videos/building-35-applications/masterpages

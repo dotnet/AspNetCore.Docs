@@ -3,7 +3,7 @@ uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-adding-user-product-re
 title: "Tailspin Spyworks - Adding User Product Reviews | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner adds reviews from customers to product details page in the Tailspin Spyworks sample Web Forms application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/21/2010
 ms.assetid: b2e8c3af-7dcf-432b-b01b-4740bcb00897
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-adding-user-product-reviews

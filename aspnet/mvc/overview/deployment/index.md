@@ -3,7 +3,7 @@ uid: mvc/overview/deployment/index
 title: "Deployment | Microsoft Docs"
 author: rick-anderson
 description: "How to deploy ASP.NET MVC projects to a server."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/18/2011
 ms.assetid: 31922c31-59df-4399-99d2-e935a476f16a
 msc.legacyurl: /mvc/overview/deployment

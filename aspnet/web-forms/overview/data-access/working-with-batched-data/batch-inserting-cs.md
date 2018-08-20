@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/working-with-batched-data/batch-inserting-cs
 title: "Batch Inserting (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to insert multiple database records in a single operation. In the User Interface Layer we extend the GridView to allow the user to enter multiple n..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/26/2007
 ms.assetid: cf025e08-48fc-4385-b176-8610aa7b5565
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-inserting-cs

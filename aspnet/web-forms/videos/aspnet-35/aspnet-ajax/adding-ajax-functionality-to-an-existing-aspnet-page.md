@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-35/aspnet-ajax/adding-ajax-functionality-to-an-exis
 title: "Adding AJAX Functionality to an Existing ASP.NET Page | Microsoft Docs"
 author: tmiranda
 description: "Using AJAX in ASP.NET pages can increase performance and improve the overall user experience of an application. It is not necessary to rewrite existing pages..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/15/2007
 ms.assetid: a4eb03b2-8efa-42ea-848d-b26918b80c33
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/adding-ajax-functionality-to-an-existing-aspnet-page

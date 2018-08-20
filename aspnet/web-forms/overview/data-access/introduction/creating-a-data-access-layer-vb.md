@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/introduction/creating-a-data-access-layer-vb
 title: "Creating a Data Access Layer (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll start from the very beginning and create the Data Access Layer (DAL), using typed DataSets, to access the information in a database."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/05/2010
 ms.assetid: 6227233a-6254-4b6b-9a89-947efef22330
 msc.legacyurl: /web-forms/overview/data-access/introduction/creating-a-data-access-layer-vb

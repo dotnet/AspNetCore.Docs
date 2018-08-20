@@ -61,7 +61,7 @@ dotnet new webapp -o WebApp1
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-If you have not previously installed the ASP.NET scaffolder, install it now:
+If you have not previously installed the ASP.NET Core scaffolder, install it now:
 
 ```cli
 dotnet tool install -g dotnet-aspnet-codegenerator

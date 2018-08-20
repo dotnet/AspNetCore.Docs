@@ -222,6 +222,12 @@
 ### [.NET client](xref:signalr/dotnet-client)
 ### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
 ### [JavaScript API](/javascript/api/?view=signalr-js-latest)
+## [Configuration](xref:signalr/configuration)
+## [Authentication and authorization](xref:signalr/authn-and-authz)
+## [Security considerations](xref:signalr/security)
+## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
+## [Streaming](xref:signalr/streaming)
+## [Differences between SignalR versions](xref:signalr/version-differences)
 
 # [Test, debug, and troubleshoot](xref:test/index)
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
@@ -267,13 +273,6 @@
 ### [Angular project template](xref:spa/angular)
 ### [React project template](xref:spa/react)
 ### [React with Redux project template](xref:spa/react-with-redux)
-
-## [Configuration](xref:signalr/configuration)
-## [Authentication and authorization](xref:signalr/authn-and-authz)
-## [Security considerations](xref:signalr/security)
-## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
-## [Streaming](xref:signalr/streaming)
-## [Differences between SignalR versions](xref:signalr/version-differences)
 
 # [Mobile](xref:mobile/index)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)

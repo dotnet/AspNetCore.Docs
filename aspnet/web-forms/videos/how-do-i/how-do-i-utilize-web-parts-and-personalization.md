@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-utilize-web-parts-and-personalization
 title: "[How Do I:] Utilize Web Parts and Personalization? | Microsoft Docs"
 author: microsoft
 description: "Learn how to use the new Web Parts and Personalization features to build customizable web pages whose content and layout can be modified by the user."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/16/2006
 ms.assetid: 1ef94d90-253f-436b-8bf9-1a7f541cc613
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-utilize-web-parts-and-personalization

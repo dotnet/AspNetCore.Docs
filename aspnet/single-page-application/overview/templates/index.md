@@ -3,7 +3,7 @@ uid: single-page-application/overview/templates/index
 title: "Templates | Microsoft Docs"
 author: rick-anderson
 description: "Introduction to using Single Page Application templates"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/14/2013
 ms.assetid: 93d4cdda-1ecc-40cc-be06-efe72c34116f
 msc.legacyurl: /single-page-application/overview/templates

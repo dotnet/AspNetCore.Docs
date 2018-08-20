@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-35/data-controls/the-listview-control
 title: "The ListView Control | Microsoft Docs"
 author: JoeStagner
 description: "By creating a new website, I will demonstrate the new ListView control. Because the ListView is data drive, we will need a data source. You can use any data..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/15/2007
 ms.assetid: ab1bcde8-898b-487b-806a-4ced0f1284a2
 msc.legacyurl: /web-forms/videos/aspnet-35/data-controls/the-listview-control

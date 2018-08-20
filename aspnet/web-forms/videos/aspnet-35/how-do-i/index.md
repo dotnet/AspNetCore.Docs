@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-35/how-do-i/index
 title: "How Do I | Microsoft Docs"
 author: rick-anderson
 description: "This multi-part video series shows you how to take advantage of new features in ASP.NET 3.5 and Visual Studio 2008."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/14/2011
 ms.assetid: 6a25069b-c80f-45f3-a901-4548442c37b6
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i

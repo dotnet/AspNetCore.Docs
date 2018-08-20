@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-security/introduction/index
 title: "ASP.NET 3.5 - Introduction to Security | Microsoft Docs"
 author: rick-anderson
 description: "This series of tutorials explores techniques for authenticating users using a login form (forms authentication) and authorizing access to individual pages in..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/04/2011
 ms.assetid: ac5fcd71-317a-41ba-91ac-95121fc68126
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction

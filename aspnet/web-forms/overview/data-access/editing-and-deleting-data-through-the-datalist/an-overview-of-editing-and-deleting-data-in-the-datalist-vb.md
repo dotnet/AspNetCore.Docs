@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datali
 title: "An Overview of Editing and Deleting Data in the DataList (VB) | Microsoft Docs"
 author: rick-anderson
 description: "While the DataList lacks built-in editing and deleting capabilities, in this tutorial we'll see how to create a DataList that supports editing and deleting o..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/30/2006
 ms.assetid: 9410a23c-9697-4f07-bd71-e62b0ceac655
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-vb

@@ -3,7 +3,7 @@ uid: identity/overview/extensibility/implementing-a-custom-mysql-aspnet-identity
 title: "Implementing a Custom MySQL ASP.NET Identity Storage Provider | Microsoft Docs"
 author: raquelsa
 description: "ASP.NET Identity is an extensible system which enables you to create your own storage provider and plug it into your application without re-working the appli..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/22/2015
 ms.assetid: 248f5fe7-39ba-40ea-ab1e-71a69b0bd649
 msc.legacyurl: /identity/overview/extensibility/implementing-a-custom-mysql-aspnet-identity-storage-provider

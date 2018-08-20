@@ -3,7 +3,7 @@ uid: web-api/videos/getting-started/getting-data
 title: "ASP.NET Web API, Part 2: Getting Data | Microsoft Docs"
 author: jongalloway
 description: "Note: This video contains information from a pre-release version of ASP.NET Web API"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/15/2012
 ms.assetid: 0fed43a5-4703-41ff-8da9-15917cbc0944
 msc.legacyurl: /web-api/videos/getting-started/getting-data

@@ -3,7 +3,7 @@ uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts
 title: "Introducing ASP.NET Web Pages - Creating a Consistent Layout | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to use layouts to create a consistent look for the pages on a site that uses ASP.NET Web Pages. It assumes you have completed the..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/28/2015
 ms.assetid: c85ec591-f8d7-4882-b763-de6ab9f3df7a
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts

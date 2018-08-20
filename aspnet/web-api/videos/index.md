@@ -3,7 +3,7 @@ uid: web-api/videos/index
 title: "ASP.NET Web API Videos | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/16/2012
 ms.assetid: 8ed7e133-707b-43e6-bce4-e9d266935573
 msc.legacyurl: /web-api/videos
