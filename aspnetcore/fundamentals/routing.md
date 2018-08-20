@@ -14,7 +14,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/)
 Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL or the URL corresponding to a given route handler based on route handler information.
 
 > [!IMPORTANT]
-> This document covers low level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>.
+> This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/routing/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -120,7 +120,7 @@ routes.MapRoute(
 > [!TIP]
 > The inline syntax for defining constraints and defaults can be convenient for simple routes. However, there are features, such as data tokens, that aren't supported by inline syntax.
 
-This example demonstrates a few more scenarios:
+The following example demonstrates a few more scenarios:
 
 ```csharp
 routes.MapRoute(
@@ -172,17 +172,33 @@ For more details about the URL generation process, see [url-generation-reference
 
 ## Use Routing Middleware
 
-::: moniker range=">= aspnetcore-2.0"
+::: moniker range=">= aspnetcore-2.1"
 
-Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and add routing to the service container in `Startup.ConfigureServices`:
+Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) in the app's project file.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+Reference the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) in the app's project file.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+Reference the [Microsoft.AspNetCore.Routing](https://www.nuget.org/packages/Microsoft.AspNetCore.Routing/) in the app's project file.
+
+::: moniker-end
+
+Add routing to the service container in `Startup.ConfigureServices`:
+
+::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](routing/samples/2.x/RoutingSample/Startup.cs?name=snippet_ConfigureServices&highlight=3)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
-
-Reference the [Microsoft.AspNetCore.Routing](https://www.nuget.org/packages/Microsoft.AspNetCore.Routing/) package and add routing to the service container in `Startup.ConfigureServices`:
 
 [!code-csharp[](routing/samples/1.x/RoutingSample/Startup.cs?name=snippet_ConfigureServices&highlight=3)]
 
