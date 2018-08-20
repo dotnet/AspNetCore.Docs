@@ -474,7 +474,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Default service container replacement
 
-The built-in service container is meant to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that it doesn't support. Some of the features supported in 3rd party contains not found in the built-in container:
+The built-in service container is meant to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that it doesn't support. Some of the features supported in 3rd party containers not found in the built-in container:
 
 * Property injection
 * Injection based on name
@@ -484,7 +484,7 @@ The built-in service container is meant to serve the needs of the framework and 
 
 See the [Dependency Injection readme.md file](https://github.com/aspnet/DependencyInjection#using-other-containers-with-microsoftextensionsdependencyinjection) for a list of some of the containers that support adapters.
 
-The built-in container can be replaced. The following sample uses [Autofac](https://autofac.org/):
+The following sample replaces the built-in container with [Autofac](https://autofac.org/):
 
 * Install the appropriate container package(s):
 
