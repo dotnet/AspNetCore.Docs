@@ -11,7 +11,7 @@ uid: client-side/libman/libman-vs
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-Visual Studio has built-in support for LibMan in ASP.NET Core projects, including:
+Visual Studio has built-in support for [LibMan](xref:client-side/libman/index) in ASP.NET Core projects, including:
 
 * Support for configuring and running LibMan restore operations on build.
 * Menu items for triggering LibMan restore and clean operations.
@@ -103,34 +103,18 @@ With the following manifest file, LibMan retrieves files per the configuration d
 
 ## Restore library files
 
-To restore library files from within Visual Studio, there must be a valid *libman.json* file in the project root. The restored files are placed in the project at the location specified for each library. Library files can be restored in an ASP.NET Core project in two ways:
+To restore library files from within Visual Studio, there must be a valid *libman.json* file in the project root. Restored files are placed in the project at the location specified for each library.
 
-1. [Restore files manually](#restore-files-manually)
+Library files can be restored in an ASP.NET Core project in two ways:
+
 1. [Restore files during build](#restore-files-during-build)
-
-### Restore files manually
-
-To trigger a restore operation for all projects in the solution, select the **Restore Client-Side Libraries** option from the solution-level context menu. To trigger a restore operation for a single project, right-click its *libman.json* file in **Solution Explorer** and select **Restore Client-Side Libraries**.
-
-While the restore operation is running:
-
-* The Task Status Center (TSC) icon on the Visual Studio status bar is animated and reads *Restore operation started*. Clicking the icon opens a tooltip listing the known background tasks.
-* Messages are sent to the status bar and the **Library Manager** feed of the **Output** window. For example:
-
-  ```console
-  Restore operation started...
-  Restoring libraries for project LibManSample
-  Restoring library jquery@3.3.1... (LibManSample)
-  wwwroot/lib/jquery/jquery.min.js written to destination (LibManSample)
-  wwwroot/lib/jquery/jquery.js written to destination (LibManSample)
-  wwwroot/lib/jquery/jquery.min.map written to destination (LibManSample)
-  Restore operation completed
-  1 libraries restored in 2.32 seconds
-  ```
+1. [Restore files manually](#restore-files-manually)
 
 ### Restore files during build
 
-LibMan can restore the defined library files as part of the build process. By default, the restore-on-build behavior is disabled. To enable and test it:
+LibMan can restore the defined library files as part of the build process. By default, the *restore-on-build* behavior is disabled.
+
+To enable and test the restore-on-build behavior:
 
 * Right-click *libman.json* in **Solution Explorer** and select **Enable Restore Client-Side Libraries on Build** from the context menu.
 * Click the **Yes** button when prompted to install a NuGet package. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to the project:
@@ -154,15 +138,47 @@ LibMan can restore the defined library files as part of the build process. By de
 
 When the restore-on-build behavior is enabled, the *libman.json* context menu displays a **Disable Restore Client-Side Libraries on Build** option. Selecting this option removes the `Microsoft.Web.LibraryManager.Build` package reference from the project file. Consequently, the client-side libraries are no longer restored on each build.
 
-Regardless of the restore-on-build setting, you can manually restore at any time. To manually restore, select the **Restore Client-Side Libraries** option from the *libman.json* context menu.
+Regardless of the restore-on-build setting, you can manually restore at any time from the *libman.json* context menu. For more information, see [Restore files manually](#restore-files-manually).
 
-## Clean library files
+### Restore files manually
 
-LibMan can remove all library files that were previously restored in Visual Studio&mdash;an operation known as *cleaning*. To clean library files, right-click the *libman.json* file in **Solution Explorer** and select **Clean Client-Side Libraries**. To prevent unintentional removal of non-library files, the clean operation doesn't delete whole directories. It only removes files that were included in the previous restore.
+To manually restore library files:
+
+* For all projects in the solution:
+  * Right-click the solution name in **Solution Explorer**.
+  * Select the **Restore Client-Side Libraries** option.
+* For a specific project:
+  * Right-click the *libman.json* file in **Solution Explorer**.
+  * Select the **Restore Client-Side Libraries** option.
+
+While the restore operation is running:
+
+* The Task Status Center (TSC) icon on the Visual Studio status bar will be animated and will read *Restore operation started*. Clicking the icon opens a tooltip listing the known background tasks.
+* Messages will be sent to the status bar and the **Library Manager** feed of the **Output** window. For example:
+
+  ```console
+  Restore operation started...
+  Restoring libraries for project LibManSample
+  Restoring library jquery@3.3.1... (LibManSample)
+  wwwroot/lib/jquery/jquery.min.js written to destination (LibManSample)
+  wwwroot/lib/jquery/jquery.js written to destination (LibManSample)
+  wwwroot/lib/jquery/jquery.min.map written to destination (LibManSample)
+  Restore operation completed
+  1 libraries restored in 2.32 seconds
+  ```
+
+## Delete library files
+
+To perform the *clean* operation, which will delete library files previously restored in Visual Studio:
+
+* Right-click the *libman.json* file in **Solution Explorer**.
+* Select the **Clean Client-Side Libraries** option.
+
+To prevent unintentional removal of non-library files, the clean operation doesn't delete whole directories. It only removes files that were included in the previous restore.
 
 While the clean operation is running:
 
-* The TSC icon on the Visual Studio status bar is animated and reads *Client libraries operation started*. Clicking the icon opens a tooltip listing the known background tasks.
+* The TSC icon on the Visual Studio status bar will be animated and will read *Client libraries operation started*. Clicking the icon opens a tooltip listing the known background tasks.
 * Messages are sent to the status bar and the **Library Manager** feed of the **Output** window. For example:
 
 ```console
@@ -170,6 +186,8 @@ Clean libraries operation started...
 Clean libraries operation completed
 2 libraries were successfully deleted in 1.91 secs
 ```
+
+The clean operation only deletes files from the project. Library files stay in the cache for faster retrieval on future restore operations. To manage library files stored in the local machine's cache, use the LibMan CLI.
 
 ## Uninstall library files
 
@@ -181,7 +199,7 @@ To uninstall library files:
 
   ![Uninstall library context menu option](_static/uninstall-menu-option.png)
 
-Alternatively, you can manually edit the *libman.json* file and save. The [restore operation](#restore-library-files) runs when the file is saved. Library files, which are no longer defined in *libman.json*, are removed from the project.
+Alternatively, you can manually edit and save the LibMan manifest (*libman.json*). The [restore operation](#restore-library-files) runs when the file is saved. Library files that are no longer defined in *libman.json* are removed from the project.
 
 ## Update library version
 
