@@ -480,7 +480,7 @@ The built-in service container is meant to serve the needs of the framework and 
 * Injection based on name
 * Child containers
 * Custom lifetime management
-* Func<T> support for lazy initialization
+* `Func<T>` support for lazy initialization
 
 See the [Dependency Injection readme.md file](https://github.com/aspnet/DependencyInjection#using-other-containers-with-microsoftextensionsdependencyinjection) for a list of some of the containers that support adapters.
 
