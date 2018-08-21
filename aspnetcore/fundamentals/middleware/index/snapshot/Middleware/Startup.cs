@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
+#region snippet1
 public class Startup
 {
     public void Configure(IApplicationBuilder app)
@@ -12,4 +13,4 @@ public class Startup
         });
     }
 }
-
+#endregion
