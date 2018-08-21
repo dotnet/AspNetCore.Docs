@@ -29,7 +29,6 @@ namespace RazorPagesProject.Tests
                 {
                     AllowAutoRedirect = false
                 });
-           
         }
         #endregion
 
