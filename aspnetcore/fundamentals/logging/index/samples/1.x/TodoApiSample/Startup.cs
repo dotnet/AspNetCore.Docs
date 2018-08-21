@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using TodoApi.Core.Interfaces;
-using TodoApi.Infrastructure;
+using TodoApiSample.Core.Interfaces;
+using TodoApiSample.Infrastructure;
 
-namespace TodoApi
+namespace TodoApiSample
 {
     public class Startup
     {
@@ -39,7 +39,7 @@ namespace TodoApi
 
             app.Run(async (context) =>
             {
-                var logger = loggerFactory.CreateLogger("TodoApi.Startup");
+                var logger = loggerFactory.CreateLogger("TodoApiSample.Startup");
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("No endpoint found - try /api/todo.");
             });
@@ -61,7 +61,7 @@ namespace TodoApi
 
             app.Run(async (context) =>
             {
-                var logger = loggerFactory.CreateLogger("TodoApi.Startup");
+                var logger = loggerFactory.CreateLogger("TodoApiSample.Startup");
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("No endpoint found - try /api/todo.");
             });
@@ -89,7 +89,7 @@ namespace TodoApi
 
             app.Run(async (context) =>
             {
-                var logger = loggerFactory.CreateLogger("TodoApi.Startup");
+                var logger = loggerFactory.CreateLogger("TodoApiSample.Startup");
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("No endpoint found - try /api/todo.");
             });
@@ -116,7 +116,7 @@ namespace TodoApi
 
             app.Run(async (context) =>
             {
-                var logger = loggerFactory.CreateLogger("TodoApi.Startup");
+                var logger = loggerFactory.CreateLogger("TodoApiSample.Startup");
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("No endpoint found - try /api/todo.");
             });
@@ -138,7 +138,7 @@ namespace TodoApi
 
             app.Run(async (context) =>
             {
-                var logger = loggerFactory.CreateLogger("TodoApi.Startup");
+                var logger = loggerFactory.CreateLogger("TodoApiSample.Startup");
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("No endpoint found - try /api/todo.");
             });

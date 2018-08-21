@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace TodoApi
+namespace TodoApiSample
 {
     public class Program
     {
@@ -121,7 +121,7 @@ namespace TodoApi
                     logBuilder.AddFilter((provider, category, logLevel) =>
                     {
                         if (provider == "Microsoft.Extensions.Logging.Console.ConsoleLoggerProvider" && 
-                            category == "TodoApi.Controllers.TodoController")
+                            category == "TodoApiSample.Controllers.TodoController")
                         {
                             return false;
                         }

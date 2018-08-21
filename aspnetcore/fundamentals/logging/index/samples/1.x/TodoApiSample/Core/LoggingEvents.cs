@@ -1,4 +1,4 @@
-﻿namespace TodoApi.Core
+﻿namespace TodoApiSample.Core
 {
     #region snippet_LoggingEvents
     public class LoggingEvents
