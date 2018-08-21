@@ -474,14 +474,24 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Default service container replacement
 
-The built-in service container is meant to serve the basic needs of the framework and most consumer apps built on it. However, developers can replace the built-in container with their preferred container. The `Startup.ConfigureServices` method typically returns `void`. If the method's signature is changed to return an [IServiceProvider](/dotnet/api/system.iserviceprovider), a different container can be configured and returned. There are many IoC containers available for .NET. In the following example, the [Autofac](https://autofac.org/) container is used:
+The built-in service container is meant to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that it doesn't support. Some of the features supported in 3rd party containers not found in the built-in container:
 
-1. Install the appropriate container package(s):
+* Property injection
+* Injection based on name
+* Child containers
+* Custom lifetime management
+* `Func<T>` support for lazy initialization
+
+See the [Dependency Injection readme.md file](https://github.com/aspnet/DependencyInjection#using-other-containers-with-microsoftextensionsdependencyinjection) for a list of some of the containers that support adapters.
+
+The following sample replaces the built-in container with [Autofac](https://autofac.org/):
+
+* Install the appropriate container package(s):
 
     * [Autofac](https://www.nuget.org/packages/Autofac/)
     * [Autofac.Extensions.DependencyInjection](https://www.nuget.org/packages/Autofac.Extensions.DependencyInjection/)
 
-2. Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
+* Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
 
     ```csharp
     public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -500,7 +510,7 @@ The built-in service container is meant to serve the basic needs of the framewor
 
     To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
 
-3. Configure Autofac in `DefaultModule`:
+* Configure Autofac in `DefaultModule`:
 
     ```csharp
     public class DefaultModule : Module
