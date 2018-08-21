@@ -1272,6 +1272,53 @@ The bound object, an instance of `ArrayExample`, receives the array data from co
 
 Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are merely used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indicies.
 
+The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExamples` instance by any configuration provider that produces the correct key-value pair in configuration. If the sample included an additional JSON Configuration Provider with the missing key-value pair, the `ArrayExamples.Entries` matches the complete configuration array:
+
+*missing_value.json*:
+
+```json
+{
+  "array:entries:3": "value3"
+}
+```
+
+::: moniker range=">= aspnetcore-2.0"
+
+In `ConfigureAppConfiguration`:
+
+```csharp
+config.AddJsonFile("missing_value.json", optional: false, reloadOnChange: false);
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+In `Startup`:
+
+```csharp
+.AddJsonFile("missing_value.json", optional: false, reloadOnChange: false);
+```
+
+::: moniker-end
+
+The key-value pair shown in the table is loaded into configuration.
+
+| Key             | Value  |
+| :-------------: | :----: |
+| array:entries:3 | value3 |
+
+If the `ArrayExamples` class instance is bound after the JSON Configuration Provider includes the entry for index &num;3, the `ArrayExamples.Entries` array includes the value.
+
+| `ArrayExamples.Entries` Index | `ArrayExamples.Entries` Value |
+| :---------------------------: | :---------------------------: |
+| 0                             | value0                        |
+| 1                             | value1                        |
+| 2                             | value2                        |
+| 3                             | value3                        |
+| 4                             | value4                        |
+| 5                             | value5                        |
+
 **JSON array processing**
 
 If a JSON file contains an array, configuration keys are created for the array elements with a zero-based section index. In the following configuration file, `subsection` is an array:
