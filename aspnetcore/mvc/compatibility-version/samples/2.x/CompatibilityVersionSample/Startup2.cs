@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApp1
+namespace CompatibilityVersionSample
 {
     public class Startup2
     {
@@ -13,18 +13,18 @@ namespace WebApp1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-             // Include the 2.1 behaviors
-             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-             // Except for the following.
-             .AddMvcOptions(options =>
-             {
-               // Don't combine authorize filters (keep 2.0 behavior).
-               options.AllowCombiningAuthorizeFilters = false;
-               // All exceptions thrown by an IInputFormatter will be treated
-               // as model state errors (keep 2.0 behavior).
-               options.InputFormatterExceptionPolicy =
-                              InputFormatterExceptionPolicy.AllExceptions;
-             });
+                // Include the 2.1 behaviors
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                // Except for the following.
+                .AddMvcOptions(options =>
+                {
+                    // Don't combine authorize filters (keep 2.0 behavior).
+                    options.AllowCombiningAuthorizeFilters = false;
+                    // All exceptions thrown by an IInputFormatter are treated
+                    // as model state errors (keep 2.0 behavior).
+                    options.InputFormatterExceptionPolicy =
+                        InputFormatterExceptionPolicy.AllExceptions;
+                });
         }
         #endregion
 

@@ -45,6 +45,8 @@ A compatibility version of 2.1 or later, set via <xref:Microsoft.Extensions.Depe
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_SetCompatibilityVersion&highlight=2)]
 
+For more information, see <xref:mvc/compatibility-version>.
+
 The `[ApiController]` attribute is commonly coupled with `ControllerBase` to enable REST-specific behavior for controllers. `ControllerBase` provides access to methods such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.File*>.
 
 Another approach is to create a custom base controller class annotated with the `[ApiController]` attribute:

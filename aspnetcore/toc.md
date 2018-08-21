@@ -201,6 +201,7 @@
 ### [Areas](xref:mvc/controllers/areas)
 ### [Application parts](xref:mvc/extensibility/app-parts)
 ### [Custom model binding](xref:mvc/advanced/custom-model-binding)
+## [Compatibility version](xref:mvc/compatibility-version)
 
 # [Web API](xref:web-api/index)
 ## [Controller action return types](xref:web-api/action-return-types)
