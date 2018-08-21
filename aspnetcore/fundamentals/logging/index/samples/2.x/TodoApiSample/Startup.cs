@@ -8,10 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using TodoApi.Core.Interfaces;
-using TodoApi.Infrastructure;
+using TodoApiSample.Core.Interfaces;
+using TodoApiSample.Infrastructure;
 
-namespace TodoApi
+namespace TodoApiSample
 {
     public class Startup
     {

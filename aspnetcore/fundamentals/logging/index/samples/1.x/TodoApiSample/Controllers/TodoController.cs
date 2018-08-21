@@ -1,15 +1,15 @@
 ﻿#define LoggerDI // or CreateLogger or LogException or Scopes
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TodoApi.Core;
-using TodoApi.Core.Interfaces;
-using TodoApi.Core.Model;
-using System;
+using TodoApiSample.Core;
+using TodoApiSample.Core.Interfaces;
+using TodoApiSample.Core.Model;
 
-namespace TodoApi.Controllers
+namespace TodoApiSample.Controllers
 {
 #if LoggerDI
     [Route("api/[controller]")]
@@ -115,7 +115,7 @@ namespace TodoApi.Controllers
             ILoggerFactory logger)
         {
             _todoRepository = todoRepository;
-            _logger = logger.CreateLogger("TodoApi.Controllers.TodoController");
+            _logger = logger.CreateLogger("TodoApiSample.Controllers.TodoController");
         }
     #endregion
         [HttpGet]
@@ -201,7 +201,7 @@ namespace TodoApi.Controllers
             ILoggerFactory logger)
         {
             _todoRepository = todoRepository;
-            _logger = logger.CreateLogger("TodoApi.Controllers.TodoController");
+            _logger = logger.CreateLogger("TodoApiSample.Controllers.TodoController");
         }
         [HttpGet]
         public IEnumerable<TodoItem> GetAll()

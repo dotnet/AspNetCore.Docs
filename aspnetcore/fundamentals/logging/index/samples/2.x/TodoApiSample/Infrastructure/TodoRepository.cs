@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using TodoApi.Core.Interfaces;
-using TodoApi.Core.Model;
+using TodoApiSample.Core.Interfaces;
+using TodoApiSample.Core.Model;
 
-namespace TodoApi.Infrastructure
+
+namespace TodoApiSample.Infrastructure
 {
     public class TodoRepository : ITodoRepository
     {
