@@ -24,11 +24,12 @@ namespace RazorPagesProject.Tests
         public IndexPageTests(
             CustomWebApplicationFactory<RazorPagesProject.Startup> factory)
         {
+            _factory = factory;
             _client = factory.CreateClient(new WebApplicationFactoryClientOptions
                 {
                     AllowAutoRedirect = false
                 });
-            _factory = factory;
+           
         }
         #endregion
 
