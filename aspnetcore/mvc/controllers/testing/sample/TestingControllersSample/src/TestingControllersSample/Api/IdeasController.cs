@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace TestingControllersSample.Api
             _sessionRepository = sessionRepository;
         }
 
+        #region snippet_ForSessionAndCreate
         [HttpGet("forsession/{sessionId}")]
         public async Task<IActionResult> ForSession(int sessionId)
         {
@@ -64,5 +66,29 @@ namespace TestingControllersSample.Api
 
             return Ok(session);
         }
+        #endregion
+
+        #region snippet_ActionResult
+        [HttpGet("forsessionactionresult/{sessionId}")]
+        public async Task<ActionResult<List<IdeaDTO>>> ForSessionActionResult(int sessionId)
+        {
+            var session = await _sessionRepository.GetByIdAsync(sessionId);
+
+            if (session == null)
+            {
+                return NotFound(sessionId);
+            }
+
+            var result = session.Ideas.Select(idea => new IdeaDTO()
+            {
+                Id = idea.Id,
+                Name = idea.Name,
+                Description = idea.Description,
+                DateCreated = idea.DateCreated
+            }).ToList();
+
+            return result;
+        }
+        #endregion
     }
 }
