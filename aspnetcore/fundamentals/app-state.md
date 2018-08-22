@@ -99,7 +99,7 @@ The following code shows how to set up the in-memory session provider with a def
 
 ::: moniker-end
 
-The order of middleware is important. In the preceding example, an `InvalidOperationException` exception occurs when `UseSession` is invoked after `UseMvc`. For more information, see [Middleware Ordering](xref:fundamentals/middleware/index#ordering).
+The order of middleware is important. In the preceding example, an `InvalidOperationException` exception occurs when `UseSession` is invoked after `UseMvc`. For more information, see [Middleware Ordering](xref:fundamentals/middleware/index#order).
 
 [HttpContext.Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session) is available after session state is configured.
 
@@ -293,7 +293,7 @@ The following `Startup` class code configures the session-based TempData provide
 
 ::: moniker-end
 
-The order of middleware is important. In the preceding example, an `InvalidOperationException` exception occurs when `UseSession` is invoked after `UseMvc`. For more information, see [Middleware Ordering](xref:fundamentals/middleware/index#ordering).
+The order of middleware is important. In the preceding example, an `InvalidOperationException` exception occurs when `UseSession` is invoked after `UseMvc`. For more information, see [Middleware Ordering](xref:fundamentals/middleware/index#order).
 
 > [!IMPORTANT]
 > If targeting .NET Framework and using the session-based TempData provider, add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package to the project.
