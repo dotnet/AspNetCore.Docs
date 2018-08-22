@@ -90,8 +90,9 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 
 [!INCLUDE [razor-pages-start](~/includes/RP/razor-pages-start.md)]
 
-[!INCLUDE [razor-pages-start](~/includes/RP/F7.md)]
+## Use F7 to toggle between Razor Page and PageModel
 
+[!INCLUDE [F7](~/includes/RP/F7.md)]
 
 ::: moniker-end
 
