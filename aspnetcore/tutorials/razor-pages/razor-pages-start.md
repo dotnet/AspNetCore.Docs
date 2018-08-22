@@ -60,6 +60,8 @@ The following image shows the app after accepting tracking:
 
 [!INCLUDE [razor-pages-start](~/includes/RP/2.1/razor-pages-start.md)]
 
+[!INCLUDE [F7](~/includes/RP/F7.md)]
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -89,10 +91,6 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
 [!INCLUDE [razor-pages-start](~/includes/RP/razor-pages-start.md)]
-
-## Use F7 to toggle between Razor Page and PageModel
-
-[!INCLUDE [F7](~/includes/RP/F7.md)]
 
 ::: moniker-end
 
