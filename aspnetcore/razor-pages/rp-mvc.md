@@ -30,7 +30,6 @@ Razor Pages advantages over controller/view development:
 
    MVC uses separate folders for Views, Controllers, and ViewModels when all three are tightly coupled. You must bounce between all three folders when you need to add/change/debug a feature. With Razor Pages, the `PageModel` (Controller + ViewModel) is in the same folder as the View.  ~Hit F7 in Visual Studio to toggle between them.~
 
-   Razor Pages follow the [Single responsibility principle](https://wikipedia.org/wiki/Single_responsibility_principle), while MVC does not.
 * **Unit Testing is easier.**  With a Controller, you might have many Actions and some of the dependencies injected that are related to only one or two Actions.  When unit testing a single Action, the dependencies must be mocked or passed in as null. With Razor Pages, the dependencies you inject in are 100% related to GET, POST, PUT, etc actions in the `PageModel`.  Unnecessary dependency injection in MVC testing can be mitigated with the [Builder pattern](https://visualstudiomagazine.com/articles/2012/07/16/the-builder-pattern-in-net.aspx).
 * **Routing is easier.**  By default in Razor Pages, routing matches the folder structure.  This makes nesting folders straightforward.  For example, consider an app where:
   * All of the HR administrator/privileged pages are under the */Administrator* folder.
