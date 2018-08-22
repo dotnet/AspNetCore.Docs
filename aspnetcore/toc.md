@@ -264,6 +264,8 @@
 # [Client-side development](xref:client-side/index)
 ## [Use Gulp](xref:client-side/using-gulp)
 ## [Use Grunt](xref:client-side/using-grunt)
+## [Use LibMan](xref:client-side/libman/index)
+### [LibMan in Visual Studio](xref:client-side/libman/libman-vs)
 ## [Manage client-side packages with Bower](xref:client-side/bower)
 ## [Build responsive sites with Bootstrap](xref:client-side/bootstrap)
 ## [Style apps with LESS, Sass, and Font Awesome](xref:client-side/less-sass-fa)
