@@ -49,7 +49,7 @@ If your project targets .NET Core, no changes are necessary.
 The ASP.NET Core 2.x project templates implicitly set the `MvcRazorCompileOnPublish` property to `true` by default. Consequently, this element can be safely removed from the *.csproj* file.
 
 > [!IMPORTANT]
-> The precompilation tool will be removed in 3.0 and we recommend migrating to [Razor Sdk](xref:razor-pages/sdk).
+> The precompilation tool will be removed in ASP.NET Core 3.0 and we recommend migrating to [Razor Sdk](xref:razor-pages/sdk).
 >
 > Razor file precompilation is unavailable when performing a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) in ASP.NET Core 2.0.
 ::: moniker-end
