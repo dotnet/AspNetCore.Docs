@@ -32,14 +32,14 @@ The following are side effects of precompiling Razor files:
 
 ## Deploy precompiled files
 
+::: moniker range=">= aspnetcore-2.1"
+
+Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. Editing Razor files after they're updated is supported at build time. By default, only the compiled *Views.dll* and no *.cshtml* files are deployed with your app.
+
 > [!IMPORTANT]
 > The precompilation tool will be removed in ASP.NET Core 3.0. We recommend migrating to [Razor Sdk](xref:razor-pages/sdk).
 >
-> Razor file precompilation is unavailable when performing a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) in ASP.NET Core 2.0.
-
-::: moniker range=">= aspnetcore-2.1"
-Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. Editing Razor files after they're updated is supported at build time. By default, only the compiled *Views.dll* and no *.cshtml* files are deployed with your app.
-
+> The Razor SDK is effective only when no precompilation-specific properties are set in the project file. For instance, setting the *.csproj* file's `MvcRazorCompileOnPublish` property to `true` disables the Razor SDK.
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -51,6 +51,10 @@ If your project targets .NET Core, no changes are necessary.
 
 The ASP.NET Core 2.x project templates implicitly set the `MvcRazorCompileOnPublish` property to `true` by default. Consequently, this element can be safely removed from the *.csproj* file.
 
+> [!IMPORTANT]
+> The precompilation tool will be removed in ASP.NET Core 3.0. We recommend migrating to [Razor Sdk](xref:razor-pages/sdk).
+>
+> Razor file precompilation is unavailable when performing a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) in ASP.NET Core 2.0.
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-1.1"
