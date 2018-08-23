@@ -156,6 +156,10 @@ Resource files using `@inject IViewLocalizer` in Razor views follow a similar pa
 
 If you don't use the `ResourcesPath` option, the *.resx* file for a view would be located in the same folder as the view.
 
+## Generic class resource file naming
+
+See [this](https://github.com/aspnet/Home/issues/3422) GitHub issue.
+
 ### RootNamespaceAttribute 
 
 The [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) attribute provides the root namespace of an assembly when the root namespace of an assembly is different than the assembly name. 
