@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to scaffold Identity in an ASP.NET Core project.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 5/16/2018
+ms.date: 8/16/2018
 uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
@@ -22,7 +22,7 @@ When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created i
 We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
 > [!NOTE]
-> Identity relies on the ability to send emails or SMS messages to notify the user regarding various acts (2FA, account confirmation, etc) by registering services. Services are not generated when scaffolding and there is no option to generate services. Services to wire up email and SMS messaging will need to be added manually. For more information on these services, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation) for an example.
+> Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs are not generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
 ## Scaffold identity into an empty project
 
