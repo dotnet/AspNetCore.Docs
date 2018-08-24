@@ -21,6 +21,10 @@ When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created i
 
 We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
+> [!NOTE]
+> Identity relies on the ability to send emails or SMS messages to notify the user regarding various acts (2FA, account confirmation, etc) by registering services. Services are not generated when scaffolding and there is no option to generate services. Services to wire up email and SMS messaging will need to be added manually. For more information on these services, see [Require Email Confirmation]
+(xref:security/authentication/accconfirm#require-email-confirmation) for an example.
+
 ## Scaffold identity into an empty project
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
