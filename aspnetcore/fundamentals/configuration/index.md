@@ -1321,7 +1321,7 @@ config.AddJsonFile("missing_value.json", optional: false, reloadOnChange: false)
 
 ::: moniker range="< aspnetcore-2.0"
 
-In `Startup`:
+In the `Startup` constructor:
 
 ```csharp
 .AddJsonFile("missing_value.json", optional: false, reloadOnChange: false);
