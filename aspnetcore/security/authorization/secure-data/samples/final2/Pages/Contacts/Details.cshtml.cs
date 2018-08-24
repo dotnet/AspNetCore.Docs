@@ -31,10 +31,14 @@ namespace ContactManager.Pages.Contacts
                 return NotFound();
             }
 
-            var isAuthorized = await AuthorizationService.AuthorizeAsync(
-                                                    User, Contact,
-                                                    ContactOperations.Approve);
-            if (!isAuthorized.Succeeded)
+            var isAuthorized = User.IsInRole(Constants.ContactManagersRole) ||
+                                          User.IsInRole(Constants.ContactAdministratorsRole);
+
+            var currentUserId = UserManager.GetUserId(User);
+
+            if (!isAuthorized
+                && currentUserId != Contact.OwnerID
+                && Contact.Status != ContactStatus.Approved)
             {
                 return new ChallengeResult();
             }

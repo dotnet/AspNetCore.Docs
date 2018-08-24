@@ -1,4 +1,4 @@
-@page
+@page "{id:int}"
 @model ContactManager.Pages.Contacts.DetailsModel
 
 @{
@@ -61,7 +61,7 @@
 @if (Model.Contact.Status != ContactStatus.Approved)
 {
     @if ((await AuthorizationService.AuthorizeAsync(
-      User, Model.Contact, ContactOperations.Approve)).Succeeded)
+     User, Model.Contact, ContactOperations.Approve)).Succeeded)
     {
         <form style="display:inline;" method="post">
             <input type="hidden" name="id" value="@Model.Contact.ContactId" />
@@ -74,7 +74,7 @@
 @if (Model.Contact.Status != ContactStatus.Rejected)
 {
     @if ((await AuthorizationService.AuthorizeAsync(
-      User, Model.Contact, ContactOperations.Reject)).Succeeded)
+     User, Model.Contact, ContactOperations.Reject)).Succeeded)
     {
         <form style="display:inline;" method="post">
             <input type="hidden" name="id" value="@Model.Contact.ContactId" />
@@ -86,8 +86,8 @@
 
 <div>
     @if ((await AuthorizationService.AuthorizeAsync(
-          User, Model.Contact,
-          ContactOperations.Update)).Succeeded)
+         User, Model.Contact,
+         ContactOperations.Update)).Succeeded)
     {
         <a asp-page="./Edit" asp-route-id="@Model.Contact.ContactId">Edit</a>
         <text> | </text>

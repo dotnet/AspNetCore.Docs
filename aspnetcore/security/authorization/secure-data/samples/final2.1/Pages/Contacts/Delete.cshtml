@@ -1,4 +1,4 @@
-@page
+@page "{id:int}"
 @model ContactManager.Pages.Contacts.DeleteModel
 
 @{
@@ -49,7 +49,7 @@
             @Html.DisplayFor(model => model.Contact.Email)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Contact.ContactId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
