@@ -14,7 +14,7 @@ namespace ConfigurationSample.Models
     {
         public string Series { get; set; }
         public string Title { get; set; }
-        public DateTime Airdate { get; set; }
+        public DateTime AirDate { get; set; }
         public int Episodes { get; set; }
     }
 

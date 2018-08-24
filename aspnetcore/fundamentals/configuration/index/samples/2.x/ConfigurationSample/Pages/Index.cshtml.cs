@@ -41,9 +41,6 @@ namespace ConfigurationSample.Pages
                 kvp => config.Any(
                     i => configEntryFilter.Any(prefix => kvp.Key.StartsWith(prefix))));
 
-            // Uncomment the next line to render all configuration key-value pairs.
-            //FilteredConfiguration = _config.AsEnumerable();
-
             #region snippet_starship
             var starship = new Starship();
             _config.GetSection("starship").Bind(starship);

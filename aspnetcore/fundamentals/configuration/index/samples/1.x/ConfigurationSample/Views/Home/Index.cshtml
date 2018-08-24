@@ -104,7 +104,7 @@ public class Metadata
 {
     public string Series { get; set; }
     public string Title { get; set; }
-    public DateTime Airdate { get; set; }
+    public DateTime AirDate { get; set; }
     public int Episodes { get; set; }
 }
 
@@ -122,7 +122,7 @@ TvShow = tvShow;</code></pre>
                 <ul>
                     <li>Series: @Model.TvShow.Metadata.Series</li>
                     <li>Title: @Model.TvShow.Metadata.Title</li>
-                    <li>Airdate: @Model.TvShow.Metadata.Airdate</li>
+                    <li>AirDate: @Model.TvShow.Metadata.AirDate</li>
                     <li>Episodes: @Model.TvShow.Metadata.Episodes</li>
                     <li>Actors:  @Model.TvShow.Actors.Names</li>
                 </ul>
@@ -138,12 +138,14 @@ TvShow = tvShow;</code></pre>
                 <h2 class="panel-title">Custom Entity Framework Configuration Provider</h2>
             </div>
             <div class="panel-body">
-                <p></p>
+                <p>This sample app demonstrates how to create a basic configuration provider, <code>EFConfigurationProviver</code>, that reads configuration key-value pairs from a database using <a href="https://docs.microsoft.com/ef/core/">Entity Framework (EF) Core</a>.</p>
+                <p>The following quotes are stored in configuration using the custom provider and rendered here:</p>
                 <ul>
                     <li>Quote1: @Configuration["quote1"]</li>
                     <li>Quote2: @Configuration["quote2"]</li>
                     <li>Quote3: @Configuration["quote3"]</li>
                 </ul>
+                <p>Quotes &copy;2005 Universal Pictures: <a href="https://www.uphe.com/movies/serenity">Serenity</a></p>
             </div>
         </div>
     </div>

@@ -140,7 +140,7 @@
 ### [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
 ### [HTTP.sys](xref:fundamentals/servers/httpsys)
 ## [Session and app state](xref:fundamentals/app-state)
-## [File Providers](fundamentals/file-providers.md)
+## [File Providers](xref:fundamentals/file-providers)
 ## [Repository pattern](xref:fundamentals/repository-pattern)
 ## [Globalization and localization](xref:fundamentals/localization)
 ### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)

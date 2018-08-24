@@ -52,9 +52,9 @@ The *options pattern* is an extension of the configuration concepts described in
 
 The examples provided in this topic rely upon:
 
-* Setting the base path of the app with [SetBasePath](/dotnet/api/microsoft.extensions.configuration.fileconfigurationextensions.setbasepath). `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package.
-* Resolving sections of configuration files with [GetSection](/dotnet/api/microsoft.extensions.configuration.configurationsection.getsection). `GetSection` is made available to an app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package.
-* Binding configuration to .NET classes with [Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind). `Bind` is made available to an app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package.
+* Setting the base path of the app with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package.
+* Resolving sections of configuration files with <xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*>. `GetSection` is made available to an app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package.
+* Binding configuration to .NET classes with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> and [Get&lt;T&gt;](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*). `Bind` and `Get<T>` are made available to an app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package. `Get<T>` is available in ASP.NET Core 1.1 or later.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -110,15 +110,15 @@ When the file is read into configuration, unique keys are created to maintain th
 * section1:key0
 * section1:key1
 
-[GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) and [GetChildren](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getchildren) methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists).
+<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists).
 
 ## Conventions
 
 At app startup, configuration sources are read in the order that their configuration providers are specified.
 
-File Configuration Providers have the ability to reload configuration when an underlying settings file is changed after startup. The File Configuration Provider is described later in this topic.
+File Configuration Providers have the ability to reload configuration when an underlying settings file is changed after app startup. The File Configuration Provider is described later in this topic.
 
-[IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) is available in the app's [Dependency Injection (DI)](xref:fundamentals/dependency-injection) container. Configuration providers can't utilize DI, as it's not available when they're set up by the host.
+<xref:Microsoft.Extensions.Configuration.IConfiguration> is available in the app's [Dependency Injection (DI)](xref:fundamentals/dependency-injection) container. Configuration providers can't utilize DI, as it's not available when they're set up by the host.
 
 Configuration keys adopt the following conventions:
 
@@ -126,9 +126,9 @@ Configuration keys adopt the following conventions:
 * If a value for the same key is set by the same or different configuration providers, the last value set on the key is the value used.
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
-  * In environment variables, a colon separator may not work on all platforms. A double underscore (`__`) is supported by all platforms and converted to a colon.
+  * In environment variables, a colon separator may not work on all platforms. A double underscore (`__`) is supported by all platforms and is converted to a colon.
   * In Azure Key Vault, hierarchical keys use `--` (two dashes) as a separator. You must provide code to replace the dashes with a colon when the secrets are loaded into the app's configuration.
-* The [ConfigurationBinder](/dotnet/api/microsoft.extensions.configuration.configurationbinder) supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array to a class](#bind-an-array-to-a-class) section.
+* The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array to a class](#bind-an-array-to-a-class) section.
 
 Configuration values adopt the following conventions:
 
@@ -194,9 +194,9 @@ It's a common practice to position the Command-line Configuration Provider last 
 
 ::: moniker range=">= aspnetcore-2.0"
 
-This sequence of providers is put into place when you initialize a new [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder). For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
+This sequence of providers is put into place when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
 
-Call [ConfigureAppConfiguration](/dotnet/api/microsoft.extensions.configuration.configurationbuilder) when building the Web Host to specify the app's configuration providers:
+Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the Web Host to specify the app's configuration providers:
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=19)]
 
@@ -206,7 +206,7 @@ Call [ConfigureAppConfiguration](/dotnet/api/microsoft.extensions.configuration.
 
 ::: moniker range="< aspnetcore-2.0"
 
-This sequence of providers can be created for the app (not the host) with a [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder) and a call to its [Build](/dotnet/api/microsoft.extensions.configuration.configurationbuilder.build) method in `Startup`:
+This sequence of providers can be created for the app (not the host) with a <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> and a call to its <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder.Build*> method in `Startup`:
 
 ```csharp
 public Startup(IHostingEnvironment env)
@@ -237,19 +237,19 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The environment name (`env.EnvironmentName`) and app assembly name (`env.ApplicationName`) are provided by the [IHostingEnvironment](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment). For more information, see <xref:fundamentals/environments>.
+In the preceding example, the environment name (`env.EnvironmentName`) and app assembly name (`env.ApplicationName`) are provided by the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment>. For more information, see <xref:fundamentals/environments>.
 
 ::: moniker-end
 
 ## Command-line Configuration Provider
 
-The [CommandLineConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.commandline.commandlineconfigurationprovider) loads configuration from command-line argument key-value pairs at runtime.
+The <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs at runtime.
 
 ::: moniker range=">= aspnetcore-2.0"
 
-To activate command-line configuration, call the [AddCommandLine](/dotnet/api/microsoft.extensions.configuration.commandlineconfigurationextensions) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
+To activate command-line configuration, call the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
-`AddCommandLine` is automatically called when you initialize a new [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder). For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
+`AddCommandLine` is automatically called when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
 
 `CreateDefaultBuilder` also loads:
 
@@ -261,17 +261,17 @@ To activate command-line configuration, call the [AddCommandLine](/dotnet/api/mi
 
 `CreateDefaultBuilder` acts when the host is constructed. Therefore, command-line configuration activated by `CreateDefaultBuilder` can affect how the host is configured.
 
-When building the host manually and not calling `CreateDefaultBuilder`, call the `AddCommandLine` extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder):
+When building the host manually and not calling `CreateDefaultBuilder`, call the `AddCommandLine` extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>:
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-To activate command-line configuration, call the [AddCommandLine](/dotnet/api/microsoft.extensions.configuration.commandlineconfigurationextensions) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
+To activate command-line configuration, call the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
 Call the provider last to allow the command-line arguments passed at runtime to override configuration set by other configuration providers.
 
-Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
+Apply the configuration to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> method:
 
 ::: moniker-end
 
@@ -290,13 +290,13 @@ var host = new WebHostBuilder()
 
 ::: moniker range=">= aspnetcore-2.0"
 
-The 2.x sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes a call to `AddCommandLine`.
+The 2.x sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes a call to <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-The 1.x sample app calls `AddCommandLine` on a `ConfigurationBuilder`.
+The 1.x sample app calls <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> on a <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
 ::: moniker-end
 
@@ -327,7 +327,7 @@ dotnet run CommandLineKey1= CommandLineKey2=value
 
 ### Switch mappings
 
-Switch mappings allow key name replacement logic. When you manually build configuration with a `ConfigurationBuilder`, you can provide a dictionary of switch replacements to the `AddCommandLine` method.
+Switch mappings allow key name replacement logic. When you manually build configuration with a <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>, you can provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method.
 
 When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value (the key replacement) is passed back to set the key-value pair into the app's configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
 
@@ -365,7 +365,7 @@ public class Program
 }
 ```
 
-As shown in the preceding example, the call to `CreateDefaultBuilder` shouldn't pass arguments when switch mappings are used. `CreateDefaultBuilder`'s `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. If the arguments include a mapped switch and are passed to `CreateDefaultBuilder`, it's `AddCommandLine` provider fails to initialize with a [System.FormatException](/dotnet/api/system.formatexception). The solution is not to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder`'s `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
+As shown in the preceding example, the call to `CreateDefaultBuilder` shouldn't pass arguments when switch mappings are used. `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. If the arguments include a mapped switch and are passed to `CreateDefaultBuilder`, its `AddCommandLine` provider fails to initialize with a <xref:System.FormatException>. The solution is not to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
 
 ::: moniker-end
 
@@ -421,17 +421,17 @@ After running the preceding command, configuration contains the values shown in 
 
 ## Environment Variables Configuration Provider
 
-The [EnvironmentVariablesConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.environmentvariables.environmentvariablesconfigurationprovider) loads configuration from environment variable key-value pairs at runtime.
+The <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs at runtime.
 
-To activate environment variables configuration, call the [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
+To activate environment variables configuration, call the <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
-When working with hierarchical keys in environment variables, a colon separator (`:`) may not work on all platforms. A double underscore (`__`) is supported by all platforms and replaced by a colon.
+When working with hierarchical keys in environment variables, a colon separator (`:`) may not work on all platforms. A double underscore (`__`) is supported by all platforms and is replaced by a colon.
 
 [Azure App Service](https://azure.microsoft.com/services/app-service/) permits you to set environment variables in the Azure Portal that can override app configuration using the Environment Variables Configuration Provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
 ::: moniker range=">= aspnetcore-2.0"
 
-`AddEnvironmentVariables` is automatically called when you initialize a new [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder). For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
+`AddEnvironmentVariables` is automatically called when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
 
 `CreateDefaultBuilder` also loads:
 
@@ -441,13 +441,13 @@ When working with hierarchical keys in environment variables, a colon separator 
 
 The Environment Variable Configuration Provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
 
-You can also directly call the `AddEnvironmentVariables` extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder):
+You can also directly call the `AddEnvironmentVariables` extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>:
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
+Apply the configuration to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with the `UseConfiguration` method:
 
 ::: moniker-end
 
@@ -477,7 +477,34 @@ The 1.x sample app calls `AddEnvironmentVariables` on a `ConfigurationBuilder`.
 ::: moniker-end
 
 1. Run the sample app. Open a browser to the app at `http://localhost:5000`.
-1. Observe that the output contains the key-value pair for the environment variable `ENVIRONMENT`. The value will reflect the environment in which the app is running, typically `Development` when running locally.
+1. Observe that the output contains the key-value pair for the environment variable `ENVIRONMENT`. The value reflects the environment in which the app is running, typically `Development` when running locally.
+
+To keep the list of environment variables rendered by the app short, the app filters environment variables to those that start with the following:
+
+* ASPNETCORE_
+* urls
+* Logging
+* ENVIRONMENT
+* contentRoot
+* AllowedHosts
+* applicationName
+* CommandLine
+
+::: moniker range=">= aspnetcore-2.0"
+
+If you wish to expose all of the environment variables available to the app, change the `FilteredConfiguration` in *Pages/Index.cshtml.cs* to the following:
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+If you wish to expose all of the environment variables available to the app, change the `FilteredConfiguration` in *Controllers/HomeController.cs* to the following:
+
+::: moniker-end
+
+```csharp
+FilteredConfiguration = _config.AsEnumerable();
+```
 
 ### Prefixes
 
@@ -493,7 +520,7 @@ The prefix is stripped off when the configuration key-value pairs are created.
 
 ::: moniker range=">= aspnetcore-2.0"
 
-The static convenience method `CreateDefaultBuilder` creates a [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) to establish the app's host. When `WebHostBuilder` is created, it finds its host configuration in environment variables prefixed with `ASPNETCORE_`.
+The static convenience method `CreateDefaultBuilder` creates a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> to establish the app's host. When `WebHostBuilder` is created, it finds its host configuration in environment variables prefixed with `ASPNETCORE_`.
 
 ::: moniker-end
 
@@ -503,10 +530,10 @@ The Configuration API has special processing rules for four connection string en
 
 | Connection string prefix | Provider |
 | ------------------------ | -------- |
-| `MYSQLCONNSTR_` | [MySQL](https://www.mysql.com/) |
-| `SQLAZURECONNSTR_` | [Azure AQL Database](https://azure.microsoft.com/en-us/services/sql-database/) |
-| `SQLCONNSTR_` | [SQL Server](https://www.microsoft.com/en-us/sql-server/) |
 | `CUSTOMCONNSTR_` | Custom provider |
+| `MYSQLCONNSTR_` | [MySQL](https://www.mysql.com/) |
+| `SQLAZURECONNSTR_` | [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) |
+| `SQLCONNSTR_` | [SQL Server](https://www.microsoft.com/sql-server/) |
 
 When an environment variable is discovered and loaded into configuration with any of the four prefixes shown in the table:
 
@@ -515,125 +542,24 @@ When an environment variable is discovered and loaded into configuration with an
 
 | Environment variable key | Converted configuration key | Provider configuration entry                                                    |
 | ------------------------ | --------------------------- | ------------------------------------------------------------------------------- |
+| `CUSTOMCONNSTR_<KEY>`    | `ConnectionStrings:<KEY>`   | Configuration entry not created.                                                |
 | `MYSQLCONNSTR_<KEY>`     | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
 | `SQLAZURECONNSTR_<KEY>`  | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
 | `SQLCONNSTR_<KEY>`       | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
-| `CUSTOMCONNSTR_<KEY>`    | `ConnectionStrings:<KEY>`   | Configuration entry not created.                                                |
 
 ## File Configuration Provider
 
-[FileConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.fileconfigurationprovider) is the base class for loading configuration from the file system. The following configuration providers are dedicated to specific file types:
+<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> is the base class for loading configuration from the file system. The following configuration providers are dedicated to specific file types:
 
-* [JSON Configuration Provider](#json-configuration-provider)
 * [INI Configuration Provider](#ini-configuration-provider)
+* [JSON Configuration Provider](#json-configuration-provider)
 * [XML Configuration Provider](#xml-configuration-provider)
-
-### JSON Configuration Provider
-
-The [JsonConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.json.jsonconfigurationprovider) loads configuration from JSON file key-value pairs during runtime.
-
-To activate JSON file configuration, call the [AddJsonFile](/dotnet/api/microsoft.extensions.configuration.jsonconfigurationextensions.addjsonfile) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
-
-Overloads permit specifying:
-
-* Whether the file is optional.
-* Whether the configuration is reloaded if the file changes.
-* The [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider) used to access the file.
-
-::: moniker range=">= aspnetcore-2.0"
-
-`AddJsonFile` is automatically called twice when you initialize a new [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder). The method is called to load configuration from:
-
-* *appsettings.json* &ndash; This file is read first. The environment version of the file can override the values provided by the *appsettings.json* file.
-* *appsettings.&lt;Environment&gt;.json* &ndash; The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment.environmentname).
-
-For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
-
-`CreateDefaultBuilder` also loads:
-
-* Environment variables.
-* [User secrets (Secret Manager)](xref:security/app-secrets) (in the Development environment).
-* Command-line arguments.
-
-The JSON Configuration Provider is established first. Therefore, user secrets, environment variables, and command-line arguments override configuration set by the *appsettings* files.
-
-You can also directly call the `AddJsonFile` extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
-
-When calling `CreateDefaultBuilder`, call `UseConfiguration` with the configuration:
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateWebHostBuilder(args).Build().Run();
-    }
-
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-    {
-        var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("config.json", optional: true, reloadOnChange: true)
-            .Build();
-
-        return WebHost.CreateDefaultBuilder(args)
-            .UseConfiguration(config)
-            .UseStartup<Startup>();
-    }
-}
-```
-
-When creating a [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) directly, call `UseConfiguration` with the configuration:
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
-
-::: moniker-end
-
-```csharp
-var config = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("config.json", optional: true, reloadOnChange: true)
-    .Build();
-
-var host = new WebHostBuilder()
-    .UseConfiguration(config)
-    .UseKestrel()
-    .UseStartup<Startup>();
-```
-
-**Example**
-
-::: moniker range=">= aspnetcore-2.0"
-
-The 2.x sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes two calls to `AddJsonFile`. Configuration is loaded from *appsettings.json* and *appsettings.&lt;Environment&gt;.json*.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-The 1.x sample app calls `AddJsonFile` twice on a `ConfigurationBuilder`. Configuration is loaded from *appsettings.json* and *appsettings.&lt;Environment&gt;.json*.
-
-::: moniker-end
-
-1. Run the sample app. Open a browser to the app at `http://localhost:5000`.
-1. Observe that the output contains key-value pairs for the configuration shown in the table depending on the environment. Logging configuration keys use the colon (`:`) as a hierarchial separator.
-
-| Key                        | Development Value | Production Value |
-| -------------------------- | :---------------: | :--------------: |
-| Logging:LogLevel:System    | Information       | Information      |
-| Logging:LogLevel:Microsoft | Information       | Information      |
-| Logging:LogLevel:Default   | Debug             | Error            |
-| AllowedHosts               | *                 | *                |
 
 ### INI Configuration Provider
 
-The [IniConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.ini.iniconfigurationprovider) loads configuration from INI file key-value pairs at runtime.
+The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
 
-To activate INI file configuration, call the [AddIniFile](/dotnet/api/microsoft.extensions.configuration.iniconfigurationextensions.addinifile) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
+To activate INI file configuration, call the <xref:Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
 The colon can be used to as a section delimiter in INI file configuration.
 
@@ -641,7 +567,7 @@ Overloads permit specifying:
 
 * Whether the file is optional.
 * Whether the configuration is reloaded if the file changes.
-* The [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider) used to access the file.
+* The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -669,13 +595,13 @@ public class Program
 }
 ```
 
-When creating a [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) directly, call `UseConfiguration` with the configuration:
+When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call `UseConfiguration` with the configuration:
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
+Apply the configuration to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with the `UseConfiguration` method:
 
 ::: moniker-end
 
@@ -716,17 +642,118 @@ The previous configuration file loads the following keys with `value`:
 * section2:subsection0:key
 * section2:subsection1:key
 
-### XML Configuration Provider
+### JSON Configuration Provider
 
-The [XmlConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.xml.xmlconfigurationprovider) loads configuration from XML file key-value pairs at runtime.
+The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs during runtime.
 
-To activate XML file configuration, call the [AddXmlFile](/dotnet/api/microsoft.extensions.configuration.xmlconfigurationextensions.addxmlfile) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
+To activate JSON file configuration, call the <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
 Overloads permit specifying:
 
 * Whether the file is optional.
 * Whether the configuration is reloaded if the file changes.
-* The [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider) used to access the file.
+* The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
+
+::: moniker range=">= aspnetcore-2.0"
+
+`AddJsonFile` is automatically called twice when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>. The method is called to load configuration from:
+
+* *appsettings.json* &ndash; This file is read first. The environment version of the file can override the values provided by the *appsettings.json* file.
+* *appsettings.&lt;Environment&gt;.json* &ndash; The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+
+For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
+
+`CreateDefaultBuilder` also loads:
+
+* Environment variables.
+* [User secrets (Secret Manager)](xref:security/app-secrets) (in the Development environment).
+* Command-line arguments.
+
+The JSON Configuration Provider is established first. Therefore, user secrets, environment variables, and command-line arguments override configuration set by the *appsettings* files.
+
+You can also directly call the `AddJsonFile` extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
+
+When calling `CreateDefaultBuilder`, call `UseConfiguration` with the configuration:
+
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateWebHostBuilder(args).Build().Run();
+    }
+
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("config.json", optional: true, reloadOnChange: true)
+            .Build();
+
+        return WebHost.CreateDefaultBuilder(args)
+            .UseConfiguration(config)
+            .UseStartup<Startup>();
+    }
+}
+```
+
+When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call `UseConfiguration` with the configuration:
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+Apply the configuration to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with the `UseConfiguration` method:
+
+::: moniker-end
+
+```csharp
+var config = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("config.json", optional: true, reloadOnChange: true)
+    .Build();
+
+var host = new WebHostBuilder()
+    .UseConfiguration(config)
+    .UseKestrel()
+    .UseStartup<Startup>();
+```
+
+**Example**
+
+::: moniker range=">= aspnetcore-2.0"
+
+The 2.x sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes two calls to `AddJsonFile`. Configuration is loaded from *appsettings.json* and *appsettings.&lt;Environment&gt;.json*.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+The 1.x sample app calls `AddJsonFile` twice on a `ConfigurationBuilder`. Configuration is loaded from *appsettings.json* and *appsettings.&lt;Environment&gt;.json*.
+
+::: moniker-end
+
+1. Run the sample app. Open a browser to the app at `http://localhost:5000`.
+1. Observe that the output contains key-value pairs for the configuration shown in the table depending on the environment. Logging configuration keys use the colon (`:`) as a hierarchical separator.
+
+| Key                        | Development Value | Production Value |
+| -------------------------- | :---------------: | :--------------: |
+| Logging:LogLevel:System    | Information       | Information      |
+| Logging:LogLevel:Microsoft | Information       | Information      |
+| Logging:LogLevel:Default   | Debug             | Error            |
+| AllowedHosts               | *                 | *                |
+
+### XML Configuration Provider
+
+The <xref:Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider> loads configuration from XML file key-value pairs at runtime.
+
+To activate XML file configuration, call the <xref:Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
+
+Overloads permit specifying:
+
+* Whether the file is optional.
+* Whether the configuration is reloaded if the file changes.
+* The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
 
 The root node of the configuration file is ignored when the configuration key-value pairs are created. Don't specify a Document Type Definition (DTD) or namespace in the file.
 
@@ -756,13 +783,13 @@ public class Program
 }
 ```
 
-When creating a [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) directly, call `UseConfiguration` with the configuration:
+When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call `UseConfiguration` with the configuration:
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
+Apply the configuration to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with the `UseConfiguration` method:
 
 ::: moniker-end
 
@@ -845,9 +872,9 @@ The previous configuration file loads the following keys with `value`:
 
 ## Key-per-file Configuration Provider
 
-The [KeyPerFileConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.keyperfile.keyperfileconfigurationprovider) uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-per-file Configuration Provider is used in Docker hosting scenarios.
+The <xref:Microsoft.Extensions.Configuration.KeyPerFile.KeyPerFileConfigurationProvider> uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-per-file Configuration Provider is used in Docker hosting scenarios.
 
-To activate key-per-file configuration, call the [AddKeyPerFile](/dotnet/api/microsoft.extensions.configuration.keyperfileconfigurationbuilderextensions.addkeyperfile) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder). The `directoryPath` to the files must be an absolute path.
+To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
 
 Overloads permit specifying:
 
@@ -878,7 +905,7 @@ public class Program
 }
 ```
 
-When creating a [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) directly, call `UseConfiguration` with the configuration:
+When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call `UseConfiguration` with the configuration:
 
 ```csharp
 var path = Path.Combine(Directory.GetCurrentDirectory(), "path/to/files");
@@ -896,9 +923,9 @@ var host = new WebHostBuilder()
 
 ## Memory Configuration Provider
 
-The [MemoryConfigurationProvider](/dotnet/api/microsoft.extensions.configuration.memory.memoryconfigurationprovider) uses an in-memory collection as configuration key-value pairs.
+The <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider> uses an in-memory collection as configuration key-value pairs.
 
-To activate in-memory collection configuration, call the [AddInMemoryCollection](/dotnet/api/microsoft.extensions.configuration.memoryconfigurationbuilderextensions.addinmemorycollection) extension method on an instance of [ConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.configurationbuilder).
+To activate in-memory collection configuration, call the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
 The configuration provider can be initialized with an `IEnumerable<KeyValuePair<String,String>>`.
 
@@ -933,13 +960,13 @@ public class Program
 }
 ```
 
-When creating a [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) directly, call `UseConfiguration` with the configuration:
+When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call `UseConfiguration` with the configuration:
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
+Apply the configuration to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with the `UseConfiguration` method:
 
 ::: moniker-end
 
@@ -962,7 +989,7 @@ var host = new WebHostBuilder()
 
 ## GetValue
 
-[ConfigurationBinder.GetValue&lt;T&gt;](/dotnet/api/microsoft.extensions.configuration.configurationbinder.getvalue) extracts a value from configuration with a specified key and converts it to the specified type. An overload permits you to provide a default value if the key isn't found.
+[ConfigurationBinder.GetValue&lt;T&gt;](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a value from configuration with a specified key and converts it to the specified type. An overload permits you to provide a default value if the key isn't found.
 
 The following example extracts the string value from configuration with the key `NumberKey`, types the value as an `int`, and stores the value in the variable `intValue`. If `NumberKey` isn't found in the configuration keys, `intValue` receives the default value of `99`:
 
@@ -1010,9 +1037,9 @@ When the file is read into configuration, the following unique hierarchical keys
 
 ### GetSection
 
-[IConfiguration.GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) extracts a configuration subsection with the specified subsection key.
+[IConfiguration.GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) extracts a configuration subsection with the specified subsection key.
 
-To return an [IConfigurationSection](/dotnet/api/microsoft.extensions.configuration.iconfigurationsection) containing only the key-value pairs in `section1`, call `GetSection` and supply the section name:
+To return an <xref:Microsoft.Extensions.Configuration.IConfigurationSection> containing only the key-value pairs in `section1`, call `GetSection` and supply the section name:
 
 ```csharp
 var configSection = _config.GetSection("section1");
@@ -1028,7 +1055,7 @@ var configSection = _config.GetSection("section2:subsection0");
 
 ### GetChildren
 
-A call to [IConfiguration.GetChildren](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getchildren) on `section2` obtains an `IEnumerable<IConfigurationSection>` that includes:
+A call to [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) on `section2` obtains an `IEnumerable<IConfigurationSection>` that includes:
 
 * `subsection0`
 * `subsection1`
@@ -1043,7 +1070,7 @@ var children = configSection.GetChildren();
 
 ### Exists
 
-Use [ConfigurationExtensions.Exists](/dotnet/api/microsoft.extensions.configuration.configurationextensions.exists) to determine if a configuration section exists:
+Use [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to determine if a configuration section exists:
 
 ```csharp
 var sectionExists = _config.GetSection("section2:subsection2").Exists();
@@ -1057,7 +1084,7 @@ Given the example data, `sectionExists` is `false` because there isn't a `sectio
 
 Configuration can be bound to classes that represent groups of related settings using the *options pattern*. For more information, see <xref:fundamentals/configuration/options>.
 
-Configuration values are returned as strings, but calling [ConfigurationBinder.Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind) enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects.
+Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects.
 
 The sample app contains a `Starship` model (*Models/Starship.cs*):
 
@@ -1114,7 +1141,7 @@ The sample app calls `GetSection` with the `starship` key. The `starship` key-va
 
 ## Bind to an object graph
 
-[ConfigurationBinder.Bind](/dotnet/api/microsoft.extensions.configuration.configurationbinder.bind) is capable of binding an entire POCO object graph.
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> is capable of binding an entire POCO object graph.
 
 The sample contains a `TvShow` model whose object graph includes `Metadata` and `Actors` classes (*Models/TvShow.cs*):
 
@@ -1168,7 +1195,7 @@ viewModel.TvShow = tvShow;
 
 ::: moniker range=">= aspnetcore-1.1"
 
-[ConfigurationBinder.Get&lt;T&gt;](/dotnet/api/microsoft.extensions.configuration.configurationbinder.get) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
+[ConfigurationBinder.Get&lt;T&gt;](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
 
 ::: moniker-end
 
@@ -1188,7 +1215,7 @@ viewModel.TvShow = tvShow;
 
 *The sample app demonstrates the concepts explained in this section.*
 
-The [ConfigurationBinder](/dotnet/api/microsoft.extensions.configuration.configurationbinder) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment (`:0:`, `:1:`, &hellip; `:{n}:`) is capable of array binding to a POCO class array.
+The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment (`:0:`, `:1:`, &hellip; `:{n}:`) is capable of array binding to a POCO class array.
 
 > [!NOTE]
 > Binding is provided by convention. Custom configuration providers aren't required to implement array binding.
@@ -1244,7 +1271,7 @@ _config.GetSection("array").Bind(arrayExample);
 
 ::: moniker range=">= aspnetcore-1.1"
 
-[ConfigurationBinder.Get&lt;T&gt;](/dotnet/api/microsoft.extensions.configuration.configurationbinder.get) syntax can also be used, which results in more compact code:
+[ConfigurationBinder.Get&lt;T&gt;](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) syntax can also be used, which results in more compact code:
 
 ::: moniker-end
 
@@ -1270,7 +1297,7 @@ The bound object, an instance of `ArrayExample`, receives the array data from co
 | 3                             | value4                        |
 | 4                             | value5                        |
 
-Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are merely used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indicies.
+Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are merely used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
 
 The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExamples` instance by any configuration provider that produces the correct key-value pair in configuration. If the sample included an additional JSON Configuration Provider with the missing key-value pair, the `ArrayExamples.Entries` matches the complete configuration array:
 
@@ -1408,7 +1435,7 @@ Add an `EFConfigurationContext` to store and access the configured values.
 
 ::: moniker-end
 
-Create a class that implements [IConfigurationSource](/dotnet/api/Microsoft.Extensions.Configuration.IConfigurationSource).
+Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigurationSource>.
 
 *EFConfigurationProvider/EFConfigurationSource.cs*:
 
@@ -1424,7 +1451,7 @@ Create a class that implements [IConfigurationSource](/dotnet/api/Microsoft.Exte
 
 ::: moniker-end
 
-Create the custom configuration provider by inheriting from [ConfigurationProvider](/dotnet/api/Microsoft.Extensions.Configuration.ConfigurationProvider). The configuration provider initializes the database when it's empty.
+Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty.
 
 *EFConfigurationProvider/EFConfigurationProvider.cs*:
 
@@ -1500,7 +1527,7 @@ For an example of accessing configuration using startup convenience methods, see
 
 ## Access configuration in a Razor Pages page or MVC view
 
-To access configuration settings in a Razor Pages page or an MVC view, add a [using directive](xref:mvc/views/razor#using) ([C# reference: using directive](/dotnet/csharp/language-reference/keywords/using-directive)) for the [Microsoft.Extensions.Configuration namespace](/dotnet/api/microsoft.extensions.configuration) and inject [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) into the page or view.
+To access configuration settings in a Razor Pages page or an MVC view, add a [using directive](xref:mvc/views/razor#using) ([C# reference: using directive](/dotnet/csharp/language-reference/keywords/using-directive)) for the [Microsoft.Extensions.Configuration namespace](xref:Microsoft.Extensions.Configuration) and inject <xref:Microsoft.Extensions.Configuration.IConfiguration> into the page or view.
 
 In a Razor Pages page:
 
@@ -1542,7 +1569,7 @@ In an MVC view:
 
 ## Add configuration from an external assembly
 
-An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
 
 ## Additional resources
 
