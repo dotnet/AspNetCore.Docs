@@ -187,7 +187,7 @@ Clean libraries operation completed
 2 libraries were successfully deleted in 1.91 secs
 ```
 
-The clean operation only deletes files from the project. Library files stay in the cache for faster retrieval on future restore operations. To manage library files stored in the local machine's cache, use the LibMan CLI.
+The clean operation only deletes files from the project. Library files stay in the cache for faster retrieval on future restore operations. To manage library files stored in the local machine's cache, use the [LibMan CLI](xref:client-side/libman/libman-cli).
 
 ## Uninstall library files
 
@@ -225,4 +225,5 @@ To downgrade to an older library version, manually edit the *libman.json* file. 
 
 ## Additional resources
 
+* <xref:client-side/libman/libman-cli>
 * [LibMan GitHub repository](https://github.com/aspnet/LibraryManager)
