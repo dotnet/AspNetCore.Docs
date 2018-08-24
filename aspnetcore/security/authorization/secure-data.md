@@ -7,8 +7,6 @@ ms.date: 7/24/2018
 uid: security/authorization/secure-data
 ---
 
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles?view=aspnetcore-2.1#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1
-
 ::: moniker range="<= aspnetcore-1.1"
 
 See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
@@ -17,6 +15,12 @@ See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/au
 ::: moniker range="= aspnetcore-2.0"
 
 See the [this pdf] (https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_July16_18.pdf)
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.1"
+
+The download code as for this tutorial requires ASP.NET Core 2.2 preview 1 or later. See [this GitHub issue](https://github.com/aspnet/Identity/issues/1813#issuecomment-394543909) for a work-around.
 
 ::: moniker-end
 
@@ -72,10 +76,6 @@ This tutorial is advanced. You should be familiar with:
 * [Authorization](xref:security/authorization/index)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
-::: moniker range="= aspnetcore-2.1"
-The download code as for this tutorial requires ASP.NET Core 2.2 preview 1 or later. See [this GitHub issue](https://github.com/aspnet/Identity/issues/1813#issuecomment-394543909) for a work-around.
-::: moniker-end
-
 ## The starter and completed app
 
 [Download](xref:tutorials/index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
@@ -107,7 +107,7 @@ dotnet ef database update
 
 ### Add Role services to Identity
 
-Append [AddRoles](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles?view=aspnetcore-2.1#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
+Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
 [!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=12)]
 
