@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-ajax/how-do-i-associate-ajax-client-behavior-with-a
 title: "[How Do I:] Associate AJAX Client Behavior with an ASP.NET Server Control? | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to create a client behavior based upon Microsoft AJAX that can be associated with an ASP.NET server control on an .aspx page. The client behavior e..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/18/2007
 ms.assetid: 3a75ac02-225d-4e30-8669-0156c3ef06c7
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control

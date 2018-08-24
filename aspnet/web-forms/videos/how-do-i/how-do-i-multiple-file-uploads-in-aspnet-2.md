@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-multiple-file-uploads-in-aspnet-2
 title: "[How Do I:]  Multiple File Uploads in ASP.NET 2 | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate uploading a dynamically determined number of files to your ASP.NET application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/12/2008
 ms.assetid: 7cf3f5ed-2a87-4208-a71d-2b39bc19832a
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-multiple-file-uploads-in-aspnet-2

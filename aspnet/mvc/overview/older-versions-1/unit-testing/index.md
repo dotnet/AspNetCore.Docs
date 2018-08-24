@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/unit-testing/index
 title: "Unit Testing | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial set shows you how to create unit tests for ASP.NET MVC controller actions."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/28/2011
 ms.assetid: b21d9a30-6b5c-41ab-a8e4-2fa18acd8e9b
 msc.legacyurl: /mvc/overview/older-versions-1/unit-testing

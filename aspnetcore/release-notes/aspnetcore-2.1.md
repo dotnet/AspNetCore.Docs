@@ -3,6 +3,7 @@ title: What's new in ASP.NET Core 2.1
 author: isaac2004
 description: Learn about the new features in ASP.NET Core 2.1.
 monikerRange: '= aspnetcore-2.1'
+ms.author: riande
 ms.custom: mvc
 ms.date: 05/30/2018
 uid: aspnetcore-2.1
@@ -108,7 +109,7 @@ public class BasicTests
 
 For more information, see the [Integration tests](xref:test/integration-tests) topic.
 
-## [ApiController], ActionResult
+## [ApiController], ActionResult\<T>
 
 ASP.NET Core 2.1 adds new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an app to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
 
@@ -151,6 +152,12 @@ In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in th
 ## Razor Pages in an area
 
 Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example of areas, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
+
+## MVC compatibility version
+
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
+
+For more information, see <xref:mvc/compatibility-version>.
 
 ## Migrate from 2.0 to 2.1
 

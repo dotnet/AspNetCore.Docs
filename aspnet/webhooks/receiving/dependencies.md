@@ -3,7 +3,7 @@ uid: webhooks/receiving/dependencies
 title: "ASP.NET WebHooks receiver dependencies | Microsoft Docs"
 author: rick-anderson
 description: "Receiver dependencies and dependency injection in ASP.NET WebHooks."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/17/2012
 ms.assetid: 5125e483-c2bb-435b-8cd1-21d3499bfaaf
 uid: webhooks/receiving/dependencies

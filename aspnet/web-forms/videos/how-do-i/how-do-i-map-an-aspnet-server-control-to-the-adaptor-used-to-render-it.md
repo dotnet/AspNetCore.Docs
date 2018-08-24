@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-map-an-aspnet-server-control-to-the-adap
 title: "[How Do I:] Map an ASP.NET Server Control to the Adaptor Used to Render It | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to use a control adaptor to provide different renderings for an ASP.NET server control without actually changing the c..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/19/2008
 ms.assetid: d4b498ef-8e1c-4fa2-9c35-1f32f20bb9b7
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-map-an-aspnet-server-control-to-the-adaptor-used-to-render-it

@@ -3,7 +3,7 @@ uid: web-forms/videos/building-35-applications/submit-and-postback
 title: "Submit and Postback | Microsoft Docs"
 author: JoeStagner
 description: "This video will introduce you the what goes on &quot;under the covers&quot; when your ASP.NET application's browser and server interact."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/20/2009
 ms.assetid: 8ccbfcee-a2e4-496d-aded-5a7119c54244
 msc.legacyurl: /web-forms/videos/building-35-applications/submit-and-postback

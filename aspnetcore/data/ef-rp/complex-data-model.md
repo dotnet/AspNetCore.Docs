@@ -397,9 +397,9 @@ If business rules required the `InstructorID` property be non-nullable, use the 
 
 The preceding code disables cascade delete on the department-instructor relationship.
 
-## Update the Enrollment entityUpdate the Enrollment entity
+## Update the Enrollment entity
 
-An enrollment record is for a one course taken by one student.
+An enrollment record is for one course taken by one student.
 
 ![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
@@ -537,8 +537,6 @@ The preceding code provides seed data for the new entities. Most of this code cr
 
 * `Enrollments`
 * `CourseAssignment`
-
-Note: [EF Core 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap) will support [data seeding](https://github.com/aspnet/EntityFrameworkCore/issues/629).
 
 ## Add a migration
 

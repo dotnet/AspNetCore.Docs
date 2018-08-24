@@ -3,7 +3,7 @@ uid: whitepapers/aspnet4/breaking-changes
 title: "ASP.NET 4 Breaking Changes | Microsoft Docs"
 author: rick-anderson
 description: "This document describes changes that have been made for the .NET Framework version 4 release that can potentially affect applications that were created using..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/10/2010
 ms.assetid: d601c540-f86b-4feb-890c-20c806b3da6c
 msc.legacyurl: /whitepapers/aspnet4/breaking-changes

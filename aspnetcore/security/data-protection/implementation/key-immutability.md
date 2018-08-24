@@ -17,7 +17,7 @@ If the developer changes any setting that affects key persistence, those changes
 
 * [The default key lifetime](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management)
 
-* [The key encryption at rest mechanism](xref:security/data-protection/implementation/key-encryption-at-rest#data-protection-implementation-key-encryption-at-rest)
+* [The key encryption at rest mechanism](xref:security/data-protection/implementation/key-encryption-at-rest)
 
 * [The algorithmic information contained within the key](xref:security/data-protection/configuration/overview#changing-algorithms-with-usecryptographicalgorithms)
 

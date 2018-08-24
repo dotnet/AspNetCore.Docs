@@ -3,7 +3,7 @@ uid: single-page-application/overview/introduction/other-libraries
 title: "Know a library other than Knockout? | Microsoft Docs"
 author: madskristensen
 description: "Know a library other than Knockout?"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/05/2013
 ms.assetid: a8367c6d-ef94-4dff-a010-5eff9e6eea96
 msc.legacyurl: /single-page-application/overview/introduction/other-libraries

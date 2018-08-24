@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/how-do-i/mvc2-stronglytyped-helpers
 title: "MVC2 - StronglyTyped Helpers | Microsoft Docs"
 author: microsoft
 description: "In this video you will learn about how you can use strongly typed HTML Helpers to gain compile-type checking when creating HTML UI Elements."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/23/2010
 ms.assetid: 017e87d7-a44e-423a-b3e9-ba44df99388b
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/mvc2-stronglytyped-helpers

@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/how-do-i/how-do-i-return-json-formatted-data-for-an-ajax-c
 title: "How Do I: Return JSON Formatted Data for an AJAX Call in an ASP.NET MVC Web Application? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the JsonResult and Json classes to return instances of classes as JSON formatted data. First, a sample MVC web appl..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/22/2009
 ms.assetid: 7ed06ca2-fab6-41a3-a1cc-a3ccebb639f6
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application

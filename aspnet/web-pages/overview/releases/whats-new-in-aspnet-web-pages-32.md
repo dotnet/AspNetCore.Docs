@@ -3,7 +3,7 @@ uid: web-pages/overview/releases/whats-new-in-aspnet-web-pages-32
 title: "What's New in ASP.NET Web Pages 3.2 | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/30/2014
 ms.assetid: a652beff-8e6b-48ad-bfe4-3703f7ccf0a5
 msc.legacyurl: /web-pages/overview/releases/whats-new-in-aspnet-web-pages-32

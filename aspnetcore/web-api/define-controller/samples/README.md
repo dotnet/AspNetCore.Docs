@@ -8,5 +8,5 @@ This sample app consists of the following projects:
 
 This sample illustrates variations of Web API controller creation:
 
-- [Derive class from ControllerBase](https://docs.microsoft.com/en-us/aspnet/core/web-api/define-controller#derive-class-from-controllerbase)
-- [Annotate class with ApiControllerAttribute](https://docs.microsoft.com/en-us/aspnet/core/web-api/define-controller#annotate-class-with-apicontrollerattribute)
+- [Derive class from ControllerBase](https://docs.microsoft.com/aspnet/core/web-api#derive-class-from-controllerbase)
+- [Annotate class with ApiControllerAttribute](https://docs.microsoft.com/aspnet/core/web-api#annotate-class-with-apicontrollerattribute)

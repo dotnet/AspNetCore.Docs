@@ -57,7 +57,7 @@ The scaffold process created and changed the following files:
 
 ### Files updates
 
-* *Startup.cs*: Changes to this file in are detailed the next section.
+* *Startup.cs*: Changes to this file are detailed in the next section.
 * *appsettings.json*: The connection string used to connect to a local database is added.
 
 ## Examine the context registered with dependency injection

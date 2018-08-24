@@ -3,7 +3,7 @@ uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-implementing-and-using
 title: "Tailspin Spyworks - Implementing and Using the Also Purchased Control | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner implements and uses the Also Purchased control in the Tailspin Spyworks sample Web Forms application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/26/2010
 ms.assetid: a95daf2f-aae4-4ad5-a142-8c58cc7a056d
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-implementing-and-using-the-also-purchased-control

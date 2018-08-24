@@ -420,6 +420,7 @@ await HttpContext.Authentication.SignInAsync(
 ## Additional resources
 
 * [Auth 2.0 Changes / Migration Announcement](https://github.com/aspnet/Announcements/issues/262)
-* [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
-* [Claims-Based Authorization](xref:security/authorization/claims)
+* <xref:security/authorization/limitingidentitybyscheme>
+* <xref:security/authorization/claims>
 * [Policy-based role checks](xref:security/authorization/roles#policy-based-role-checks)
+* <xref:host-and-deploy/web-farm>

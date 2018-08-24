@@ -3,7 +3,7 @@ uid: web-pages/readme/beta3
 title: "Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme | Microsoft Docs"
 author: rick-anderson
 description: "Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/10/2011
 ms.assetid: ffa3d5c9-91e5-4da3-b409-560b0c7fbbf0
 msc.legacyurl: /web-pages/readme/beta3

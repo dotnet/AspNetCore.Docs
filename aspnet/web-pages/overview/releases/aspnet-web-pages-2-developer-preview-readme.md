@@ -3,7 +3,7 @@ uid: web-pages/overview/releases/aspnet-web-pages-2-developer-preview-readme
 title: "ASP.NET Web Pages 2 Developer Preview ReadMe | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/14/2011
 ms.assetid: 159a92e2-e011-4da7-b61d-2edde2a967da
 msc.legacyurl: /web-pages/overview/releases/aspnet-web-pages-2-developer-preview-readme

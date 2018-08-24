@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MiddlewareExtensibilitySample.Data;
@@ -22,9 +23,9 @@ namespace MiddlewareExtensibilitySample
             services.AddDbContext<AppDbContext>(options =>
                 options.UseInMemoryDatabase("InMemoryDb"));
 
-            services.AddTransient<IMiddlewareMiddleware>();
+            services.AddTransient<FactoryActivatedMiddleware>();
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion
 
@@ -34,6 +35,7 @@ namespace MiddlewareExtensibilitySample
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -42,7 +44,7 @@ namespace MiddlewareExtensibilitySample
             }
 
             app.UseConventionalMiddleware();
-            app.UseIMiddlewareMiddleware();
+            app.UseFactoryActivatedMiddleware();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

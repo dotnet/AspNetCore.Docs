@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-entity-framework-sca
 title: "ASP.NET MVC 4 Entity Framework Scaffolding and Migrations | Microsoft Docs"
 author: rick-anderson
 description: "If you are familiar with ASP.NET MVC 4 controller methods, or have completed the &quot;Helpers, Forms and Validation&quot; Hands-On lab, you should be aware..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/18/2013
 ms.assetid: 093c1362-f10b-407c-a708-be370f4b62b0
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-entity-framework-scaffolding-and-migrations

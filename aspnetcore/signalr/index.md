@@ -1,12 +1,13 @@
 ---
 title: ASP.NET Core SignalR
-author: rachelappel
+author: tdykstra
 description: Discover topics that pertain to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: rachelap
+ms.author: tdykstra
 ms.date: 07/03/2018
 uid: signalr/index
 ---
+
 # ASP.NET Core SignalR
 
 * [Introduction](xref:signalr/introduction)
@@ -21,7 +22,11 @@ uid: signalr/index
   * [JavaScript client](xref:signalr/javascript-client)
   * [.NET client](xref:signalr/dotnet-client)
   * [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
+  * [JavaScript API](/javascript/api/?view=signalr-js-latest)
+
 * [Configuration](xref:signalr/configuration)
+* [Authentication and authorization](xref:signalr/authn-and-authz)
+* [Security considerations](xref:signalr/security)
 * [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 * [Streaming](xref:signalr/streaming)
 * [Differences between SignalR versions](xref:signalr/version-differences)

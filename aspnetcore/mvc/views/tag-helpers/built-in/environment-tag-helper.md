@@ -55,4 +55,3 @@ In contrast, the `exclude` property lets the `EnvironmentTagHelper` render the e
 ## Additional resources
 
 * <xref:fundamentals/environments>
-* <xref:fundamentals/dependency-injection#service-lifetimes-and-registration-options>

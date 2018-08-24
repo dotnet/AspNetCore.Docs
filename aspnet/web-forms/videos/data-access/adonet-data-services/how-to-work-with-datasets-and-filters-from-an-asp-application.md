@@ -3,7 +3,7 @@ uid: web-forms/videos/data-access/adonet-data-services/how-to-work-with-datasets
 title: "How to Work with Datasets and Filters from an ASP Application | Microsoft Docs"
 author: JoeStagner
 description: "In this video, part 3 of 3, Joe Stagner demonstrates how to return a filtered set of data from the overall application dataset. For additional information ab..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/07/2008
 ms.assetid: 4ea744fa-ee7f-45a5-a0de-e3b17af67d8c
 msc.legacyurl: /web-forms/videos/data-access/adonet-data-services/how-to-work-with-datasets-and-filters-from-an-asp-application

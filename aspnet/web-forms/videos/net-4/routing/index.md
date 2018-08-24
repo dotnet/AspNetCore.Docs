@@ -3,7 +3,7 @@ uid: web-forms/videos/net-4/routing/index
 title: "Routing | Microsoft Docs"
 author: rick-anderson
 description: "This video shows you how to create intuitive and SEO-friendly URLs for your Web Forms applications."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/14/2011
 ms.assetid: 8a1cfb18-df04-4607-ae93-2bebd2d3fa31
 msc.legacyurl: /web-forms/videos/net-4/routing

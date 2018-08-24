@@ -3,7 +3,7 @@ uid: webhooks/receiving/handlers
 title: "ASP.NET WebHooks handlers | Microsoft Docs"
 author: rick-anderson
 description: "How to handle requests in ASP.NET WebHooks."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/17/2012
 ms.assetid: a55b0d20-9c90-4bd3-a471-20da6f569f0c
 uid: webhooks/receiving/handlers

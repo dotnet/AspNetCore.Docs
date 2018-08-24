@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/basic-reporting/index
 title: "Basic Reporting | Microsoft Docs"
 author: rick-anderson
 description: "This set of tutorials looks at how to use the ObjectDataSource control to work with data retrieved from the BLL, all without code."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: cbd98d24-8281-4415-87df-8365f0fbe7fc
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting

@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/index
 title: "Older Versions - MVC 1 and 2 | Microsoft Docs"
 author: rick-anderson
 description: "Resources for learning how to program MVC 1 and 2."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/10/2014
 ms.assetid: 1506f70f-6919-45bd-8c75-a17aff77510c
 msc.legacyurl: /mvc/overview/older-versions-1

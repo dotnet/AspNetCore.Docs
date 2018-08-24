@@ -3,7 +3,7 @@ uid: aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role
 title: "Host OWIN in an Azure Worker Role | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to self-host OWIN in a Microsoft Azure worker role. Open Web Interface for .NET (OWIN) defines an abstraction between .NET web server..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/11/2014
 ms.assetid: 07aa855a-92ee-4d43-ba66-5bfd7de20ee6
 msc.legacyurl: /aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role

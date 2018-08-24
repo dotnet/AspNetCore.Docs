@@ -59,6 +59,10 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more i
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
+<a name="useauthentication"></a>
+
+### Enable authentication
+
 In the `Configure` method of the `Startup` class, call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
 
 [!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]

@@ -3,7 +3,7 @@ uid: ajax/cdn/jquery-ui/cdnjqueryui188
 title: "jQuery UI 1.8.8 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/23/2014
 ms.assetid: 437b0347-c5d6-4525-9208-39239f2d1ecd
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui188

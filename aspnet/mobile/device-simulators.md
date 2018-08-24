@@ -3,7 +3,7 @@ uid: mobile/device-simulators
 title: "Simulate Popular Mobile Devices for Testing | Microsoft Docs"
 author: rick-anderson
 description: "You can download emulators for popular mobile devices and browsers by following these links"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/28/2011
 ms.assetid: bfb5612e-c3ec-4f28-b43b-63d781aa2272
 msc.legacyurl: /mobile/device-simulators

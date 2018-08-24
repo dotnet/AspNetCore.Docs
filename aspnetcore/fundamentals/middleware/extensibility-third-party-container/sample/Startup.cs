@@ -34,7 +34,7 @@ namespace MiddlewareExtensibilitySample
                 return new SimpleInjectorMiddlewareFactory(_container);
             });
 
-            // Wrap ASP.NET requests in a Simple Injector execution 
+            // Wrap ASP.NET Core requests in a Simple Injector execution 
             // context.
             services.UseSimpleInjectorAspNetRequestScoping(_container);
 

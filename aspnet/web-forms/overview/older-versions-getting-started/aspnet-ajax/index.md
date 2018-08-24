@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/index
 title: "ASP.NET 3.5 - AJAX | Microsoft Docs"
 author: rick-anderson
 description: "About the ASP.NET AJAX library, including UpdatePanels and partial page updates, authentication, localization, and debugging."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: b7d13a9f-3d44-431d-bea7-eb2da524de9d
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax

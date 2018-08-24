@@ -3,7 +3,7 @@ uid: single-page-application/overview/templates/breezeknockout-template
 title: "Breeze/Knockout template | Microsoft Docs"
 author: madskristensen
 description: "Breeze/Knockout Single Page Application template"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/30/2013
 ms.assetid: 3bd94827-3c59-448f-abc3-36e6df4858db
 msc.legacyurl: /single-page-application/overview/templates/breezeknockout-template

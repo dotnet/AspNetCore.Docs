@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-35/visual-studio-editor/javascript-intellisense-sup
 title: "JavaScript Intellisense Support in Visual Studio 2008 | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will highlight some of JavaScript Intellisense built into Visual Studio 2008. I will show ways of improving the Intellisense JavaScript featu..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/15/2007
 ms.assetid: a4429553-d43e-4169-9fb3-086405ec9c93
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/javascript-intellisense-support-in-visual-studio-2008

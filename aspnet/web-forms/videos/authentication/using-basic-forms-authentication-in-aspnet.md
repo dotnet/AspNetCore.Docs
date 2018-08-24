@@ -3,7 +3,7 @@ uid: web-forms/videos/authentication/using-basic-forms-authentication-in-aspnet
 title: "Using Basic Forms Authentication in ASP.NET | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner walks through the process to utilize basic forms based authentication programmatically with ASP.NET. It is suggested that viewers read this befor..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/16/2008
 ms.assetid: 5356f9f4-63a5-4481-87a3-78bb1dfc6f0f
 msc.legacyurl: /web-forms/videos/authentication/using-basic-forms-authentication-in-aspnet

@@ -3,7 +3,7 @@ uid: single-page-application/overview/templates/breezeangular-template
 title: "Breeze/Angular template | Microsoft Docs"
 author: madskristensen
 description: "Breeze/Angular Single Page Application template"
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/08/2013
 ms.assetid: db31e909-563a-4516-aadd-62aa210ac7e4
 msc.legacyurl: /single-page-application/overview/templates/breezeangular-template

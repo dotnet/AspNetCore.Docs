@@ -11,7 +11,7 @@ uid: mvc/views/partial
 
 By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Scott Sauber](https://twitter.com/scottsauber)
 
-ASP.NET Core MVC supports partial views, which are useful for sharing reusable parts of web pages across different views.
+ASP.NET Core supports partial views. Partial views are used to share reusable parts of web pages across different views.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/partial/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -29,8 +29,7 @@ Partial views are an effective way of breaking up large views into smaller compo
 
 In a complex page composed of several logical pieces, it's helpful to work with each piece as its own partial view. Each piece of the page can be viewed in isolation from the rest of the page. The view for the page itself becomes simpler, since it only contains the overall page structure and calls to render the partial views.
 
-> [!TIP]
-> Follow the [Don't Repeat Yourself Principle](https://deviq.com/don-t-repeat-yourself/) in your views.
+ASP.NET Core MVC controllers have a [PartialView](/dotnet/api/microsoft.aspnetcore.mvc.controller.partialview#Microsoft_AspNetCore_Mvc_Controller_PartialView) method which is called from an action method. Razor Pages have no equivalent `PartialView` method on the [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
 
 ## Declare partial views
 

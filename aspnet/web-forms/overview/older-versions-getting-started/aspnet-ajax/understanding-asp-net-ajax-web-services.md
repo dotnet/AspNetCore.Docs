@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding
 title: "Understanding ASP.NET AJAX Web Services | Microsoft Docs"
 author: scottcate
 description: "Web Services are an integral part of the .NET framework that provide a cross-platform solution for exchanging data between distributed systems. Although Web..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/28/2008
 ms.assetid: 3332d6e7-e2e1-4144-b805-e71d51e7e415
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services

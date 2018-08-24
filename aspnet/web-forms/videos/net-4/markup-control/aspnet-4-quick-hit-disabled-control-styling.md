@@ -3,7 +3,7 @@ uid: web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-disabled-control-s
 title: Disabled Control Styling | Microsoft Docs
 author: JoeStagner
 description: "In this video you will learn how to use the controlRenderingCompatibility setting so disabling non-input controls will not render invalid styles."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/16/2009
 ms.assetid: edb30028-1fc4-4730-9d6f-1013b6fd5637
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-disabled-control-styling

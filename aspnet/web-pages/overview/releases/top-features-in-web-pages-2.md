@@ -3,7 +3,7 @@ uid: web-pages/overview/releases/top-features-in-web-pages-2
 title: "The Top Features in ASP.NET Web Pages 2 | Microsoft Docs"
 author: microsoft
 description: "This topic provides an overview of the top new features in the ASP.NET Web Pages 2, a lightweight web programming framework that is included with the WebMatr..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/13/2012
 ms.assetid: cc712e72-c3d0-4e43-bc2d-28cc09cd8f71
 msc.legacyurl: /web-pages/overview/releases/top-features-in-web-pages-2

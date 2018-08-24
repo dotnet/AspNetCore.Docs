@@ -3,7 +3,7 @@ uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-directory-organization
 title: "Tailspin Spyworks - Directory Organization | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner modifies the default directory structure for the Tailspin Spyworks sample Web Forms application."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/12/2010
 ms.assetid: bec45728-da0d-4876-a92e-5eea3e52c868
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-directory-organization

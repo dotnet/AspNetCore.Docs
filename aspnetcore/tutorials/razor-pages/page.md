@@ -7,13 +7,13 @@ ms.author: riande
 ms.date: 09/27/2017
 uid: tutorials/razor-pages/page
 ---
-[!INCLUDE [model1](../../includes/RP/page1.md)]
+[!INCLUDE [model1](~/includes/RP/page1.md)]
 
 Visual Studio displays the `<form method="post">` tag in a distinctive font used for Tag Helpers: 
 
 ![VS17 view of Create.cshtml page](page/_static/th.png)
 
-[!INCLUDE [model1](../../includes/RP/page2.md)]
+[!INCLUDE [model1](~/includes/RP/page2.md)]
 
 The next tutorial explains SQL Server LocalDB and seeding the database.
 

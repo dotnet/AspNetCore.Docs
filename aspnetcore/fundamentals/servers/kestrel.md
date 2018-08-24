@@ -408,7 +408,8 @@ WebHost.CreateDefaultBuilder()
                 var subExampleCert = CertificateLoader.LoadFromStoreCert(
                     "sub.example.com", "My", StoreLocation.CurrentUser, 
                     allowInvalid: true);
-                var certs = new Dictionary(StringComparer.OrdinalIgnoreCase);
+                var certs = new Dictionary<string, X509Certificate2>(
+                    StringComparer.OrdinalIgnoreCase);
                 certs["localhost"] = localhostCert;
                 certs["example.com"] = exampleCert;
                 certs["sub.example.com"] = subExampleCert;
@@ -782,7 +783,7 @@ public class HostFilteringMiddleware
 }
 ```
 
-Register the preceding `HostFilteringMiddleware` in `Startup.Configure`. Note that the [ordering of middleware registration](xref:fundamentals/middleware/index#ordering) is important. Registration should occur immediately after Diagnostic Middleware registration (for example, `app.UseExceptionHandler`).
+Register the preceding `HostFilteringMiddleware` in `Startup.Configure`. Note that the [ordering of middleware registration](xref:fundamentals/middleware/index#order) is important. Registration should occur immediately after Diagnostic Middleware registration (for example, `app.UseExceptionHandler`).
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)

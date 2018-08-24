@@ -4,7 +4,7 @@ title: "ASP.NET API reference | Microsoft Docs"
 author: rick-anderson
 description: "API reference documentation for ASP.NET."
 ms.assetid: b2203f7b-b732-42f0-8e78-b0635fcdd1de
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/30/2017
 ms.technology: aspnet
 msc.legacyurl: 
