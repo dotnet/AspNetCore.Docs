@@ -2,8 +2,9 @@
 uid: index
 layout: HubPage 
 ms.topic: hub-page
+ms.author: riande
 title: ASP.NET Documentation | Microsoft Docs 
-description: 
+description: Learn how to develop ASP.NET and ASP.NET web applications. Get documentation, example code, tutorials, and more.
 ---
 <div id="main" class="v2">
     <div class="container">
