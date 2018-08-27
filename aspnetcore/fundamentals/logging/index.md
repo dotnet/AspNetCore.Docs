@@ -4,7 +4,7 @@ author: ardalis
 description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/21/2018
+ms.date: 08/27/2018
 uid: fundamentals/logging/index
 ---
 # Logging in ASP.NET Core
@@ -750,6 +750,7 @@ Third-party logging frameworks that work with ASP.NET Core:
 * [elmah.io](https://elmah.io/) ([GitHub repo](https://github.com/elmahio/Elmah.Io.Extensions.Logging))
 * [Gelf](http://docs.graylog.org/en/2.3/pages/gelf.html) ([GitHub repo](https://github.com/mattwcole/gelf-extensions-logging))
 * [JSNLog](http://jsnlog.com/) ([GitHub repo](https://github.com/mperdeck/jsnlog))
+* [KissLog.net](https://kisslog.net/) ([GitHub repo](https://github.com/catalingavan/KissLog-net))
 * [Loggr](http://loggr.net/) ([GitHub repo](https://github.com/imobile3/Loggr.Extensions.Logging))
 * [NLog](http://nlog-project.org/) ([GitHub repo](https://github.com/NLog/NLog.Extensions.Logging))
 * [Serilog](https://serilog.net/) ([GitHub repo](https://github.com/serilog/serilog-extensions-logging))

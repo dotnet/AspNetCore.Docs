@@ -90,7 +90,7 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). But you have to get the JavaScript client library from npm, the Node.js package manager.
+The SignalR server library is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). But you have to get the JavaScript client library from [npm, the Node.js package manager](https://www.npmjs.com/get-npm).
 
 # [Visual Studio](#tab/visual-studio/)
 
