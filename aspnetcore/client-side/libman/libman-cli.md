@@ -263,21 +263,25 @@ The following options can be appended to the `libman uninstall` command:
 
 ### Examples
 
-Imagine a *libman.json* file containing the following:
+Consider the following *libman.json* file:
 
 [!code-json[](samples/LibManSample/libman.json)]
 
-To uninstall jQuery, either of the following commands succeed:
+* To uninstall jQuery, either of the following commands succeed:
 
-```console
-libman uninstall jquery
-```
+  ```console
+  libman uninstall jquery
+  ```
 
-```console
-libman uninstall jquery@3.3.1
-```
+  ```console
+  libman uninstall jquery@3.3.1
+  ```
 
-<!-- TODO: how do I uninstall a filesystem library? -->
+* To uninstall the Lodash files installed via the `filesystem` provider:
+
+  ```console
+  libman uninstall C:\temp\lodash\
+  ```
 
 ## Update library version
 
