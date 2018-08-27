@@ -783,7 +783,7 @@ public class HostFilteringMiddleware
 }
 ```
 
-Register the preceding `HostFilteringMiddleware` in `Startup.Configure`. Note that the [ordering of middleware registration](xref:fundamentals/middleware/index#ordering) is important. Registration should occur immediately after Diagnostic Middleware registration (for example, `app.UseExceptionHandler`).
+Register the preceding `HostFilteringMiddleware` in `Startup.Configure`. Note that the [ordering of middleware registration](xref:fundamentals/middleware/index#order) is important. Registration should occur immediately after Diagnostic Middleware registration (for example, `app.UseExceptionHandler`).
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -2,9 +2,9 @@
 title: HTTP.sys web server implementation in ASP.NET Core
 author: guardrex
 description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
+monikerRange: '>= aspnetcore-2.0'
 ms.author: tdykstra
-ms.custom: mvc
-ms.date: 03/13/2018
+ms.date: 08/15/2018
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -48,7 +48,11 @@ HTTP.sys is useful for deployments where:
 
   ![HTTP.sys communicates directly with the internal network](httpsys/_static/httpsys-to-internal.png)
 
-HTTP.sys is mature technology that protects against many types of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of HTTP.sys. 
+HTTP.sys is mature technology that protects against many types of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of HTTP.sys.
+
+## Kernel mode authentication with Kerberos
+
+HTTP.sys delegates to kernel mode authentication with the Kerberos authentication protocol. User mode authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
 
 ## How to use HTTP.sys
 

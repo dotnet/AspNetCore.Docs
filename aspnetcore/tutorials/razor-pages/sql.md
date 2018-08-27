@@ -24,7 +24,7 @@ The `MovieContext` object handles the task of connecting to the database and map
 For more information on the methods used in `ConfigureServices`, see:
 
 * [EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr) for `CookiePolicyOptions`.
-* [SetCompatibilityVersion](xref:fundamentals/startup#setcompatibilityversion-for-aspnet-core-mvc)
+* [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
 ::: moniker-end
 

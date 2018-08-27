@@ -245,3 +245,9 @@ Tag Helpers provide an HTML-friendly development experience and a rich IntelliSe
 ### View Components
 
 [View Components](views/view-components.md) allow you to package rendering logic and reuse it throughout the application. They're similar to [partial views](views/partial.md), but with associated logic.
+
+## Compatibility version
+
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
+
+For more information, see <xref:mvc/compatibility-version>.

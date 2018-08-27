@@ -56,7 +56,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * Middleware are configured using code rather than in *Web.config*
 
-   * [Pipeline branching](xref:fundamentals/middleware/index#middleware-run-map-use) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+   * [Pipeline branching](xref:fundamentals/middleware/index#use-run-and-map) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 **Middleware are very similar to modules:**
 
@@ -72,7 +72,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
-   * See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#creating-a-middleware-pipeline-with-iapplicationbuilder)
+   * See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder)
 
 ![Middleware](http-modules/_static/middleware.png)
 
@@ -90,7 +90,7 @@ As shown in the [Middleware](xref:fundamentals/middleware/index) page, an ASP.NE
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
-The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/index#middleware-writing-middleware).
+The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/index#write-middleware).
 
 The *MyMiddlewareExtensions* helper class makes it easier to configure your middleware in your `Startup` class. The `UseMyMiddleware` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 
@@ -112,7 +112,7 @@ HTTP modules are typically added to the request pipeline using *Web.config*:
 
 [!code-xml[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32-33,36,43,50,101)]
 
-Convert this by [adding your new middleware](xref:fundamentals/middleware/index#creating-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
+Convert this by [adding your new middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
