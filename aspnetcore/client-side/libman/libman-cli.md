@@ -19,7 +19,7 @@ The [LibMan](xref:client-side/libman/index) CLI is a cross-platform tool that's 
 
 ## Installation
 
-To install the LibMan CLI, run the following command:
+To install the LibMan CLI:
 
 ```console
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
@@ -27,7 +27,7 @@ dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.Web.LibraryManager.Cli](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) NuGet package.
 
-To install the LibMan CLI from a specific NuGet package source, run the following command:
+To install the LibMan CLI from a specific NuGet package source:
 
 ```console
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli --version 1.0.94-g606058a278 --add-source C:\Temp\
@@ -197,7 +197,7 @@ The following options can be appended to the `libman restore` command:
 
 ### Examples
 
-To restore the library files defined in *libman.json*, run the following command from the project root:
+To restore the library files defined in *libman.json*:
 
 ```console
 libman restore
@@ -373,7 +373,7 @@ The following options can be appended to the `libman cache` command:
 
 ### Examples
 
-* To view the names of cached libraries per provider, run one of the following two commands:
+* To view the names of cached libraries per provider, either of the following commands suffice:
 
   ```console
   libman cache list
@@ -402,7 +402,7 @@ The following options can be appended to the `libman cache` command:
       react
   ```
 
-* To view the names of cached library files per provider, run the following command:
+* To view the names of cached library files per provider:
 
   ```console
   libman cache list --files
@@ -455,7 +455,7 @@ The following options can be appended to the `libman cache` command:
 
   Notice the preceding output shows that jQuery versions 3.2.1 and 3.3.1 are cached under the CDNJS provider.
 
-* To empty the library cache for the CDNJS provider, run the following command:
+* To empty the library cache for the CDNJS provider:
 
   ```console
   libman cache clean cdnjs
@@ -476,7 +476,7 @@ The following options can be appended to the `libman cache` command:
       (empty)
   ```
 
-* To empty the cache for all supported providers, run the following command:
+* To empty the cache for all supported providers:
 
   ```console
   libman cache clean
