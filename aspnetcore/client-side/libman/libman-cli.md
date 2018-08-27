@@ -265,7 +265,7 @@ The following options can be appended to the `libman uninstall` command:
 
 Imagine a *libman.json* file containing the following:
 
-[!code-json[samples/LibManSample/libman.json]]
+[!code-json[](samples/LibManSample/libman.json)]
 
 To uninstall jQuery, either of the following commands succeed:
 
