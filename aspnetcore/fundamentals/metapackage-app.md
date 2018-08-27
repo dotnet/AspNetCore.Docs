@@ -51,12 +51,11 @@ The version number on the `Microsoft.AspNetCore.App` reference does **not** guar
 
 The `Microsoft.AspNetCore.App` [metapackage](/dotnet/core/packages#metapackages) isn't a traditional package that's updated from NuGet. Similar to `Microsoft.NETCore.App`, `Microsoft.AspNetCore.App` represents a shared runtime, which has special versioning semantics handled outside of NuGet. For more information, see [Packages, metapackages and frameworks](/dotnet/core/packages).
 
-### Update ASP.NET Core on development machines and build servers
+To update ASP.NET Core:
 
-Download and installed the [.NET Core SDK](https://www.microsoft.com/net/download). Applications will roll forward to the latest installed version on application restart.
+* On development machines and build servers: Download and install the [.NET Core SDK](https://www.microsoft.com/net/download).
+* On deployment servers: Download and install the [.NET Core runtime](https://www.microsoft.com/net/download).
 
-### Update ASP.NET Core on development machines and build servers
-
-Download and installed the [.NET Core runtime](https://www.microsoft.com/net/download). Applications will roll forward to the latest installed version on application restart.
+ Applications will roll forward to the latest installed version on application restart. It's not necessary to update the `Microsoft.AspNetCore.App` version number in the project file. For more information, see [Framework-dependent apps roll forward](/dotnet/core/versions/selection#framework-dependent-apps-roll-forward).
 
 If your application previously used `Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](xref:fundamentals/metapackage#migrate).
