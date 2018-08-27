@@ -43,13 +43,13 @@ After successful installation of the CLI, the following command becomes availabl
 libman
 ```
 
-To view the installed CLI version, run the following command:
+To view the installed CLI version:
 
 ```console
 libman --version
 ```
 
-To view the available CLI commands, run the following command:
+To view the available CLI commands:
 
 ```console
 libman --help
