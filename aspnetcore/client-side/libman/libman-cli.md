@@ -37,7 +37,7 @@ In the preceding example, a .NET Core Global Tool is installed from the local Wi
 
 ## Usage
 
-After successful installation of the CLI, the following command becomes available:
+After successful installation of the CLI, the following command is usable:
 
 ```console
 libman
@@ -343,9 +343,9 @@ The following options can be appended to the `libman update` command:
 
 ## Manage library cache
 
-### Synopsis
+The `libman cache` command manages the LibMan library cache. The `filesystem` provider doesn't use the library cache.
 
-The `libman cache` command manages the LibMan library cache.
+### Synopsis
 
 ```console
 libman cache clean [<PROVIDER>] [--verbosity]
@@ -396,8 +396,6 @@ The following options can be appended to the `libman cache` command:
       knockout
       react
       vue
-  filesystem:
-      (empty)
   cdnjs:
       font-awesome
       jquery
@@ -424,8 +422,6 @@ The following options can be appended to the `libman cache` command:
           <list omitted for brevity>
       vue:
           <list omitted for brevity>
-  filesystem:
-      (empty)
   cdnjs:
       font-awesome
           metadata.json
@@ -474,8 +470,6 @@ The following options can be appended to the `libman cache` command:
       knockout
       react
       vue
-  filesystem:
-      (empty)
   cdnjs:
       (empty)
   ```
@@ -492,8 +486,6 @@ The following options can be appended to the `libman cache` command:
   Cache contents:
   ---------------
   unpkg:
-      (empty)
-  filesystem:
       (empty)
   cdnjs:
       (empty)
