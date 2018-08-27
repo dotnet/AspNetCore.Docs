@@ -72,8 +72,6 @@ libman init [-h|--help]
 
 The following options can be appended to the `libman init` command:
 
-[!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
-
 * `-d|--default-destination <PATH>`
 
   The path, relative to the current directory, to install library files if no destination is defined for a given library.
@@ -84,7 +82,9 @@ The following options can be appended to the `libman init` command:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-### Example
+[!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
+
+### Examples
 
 To create a *libman.json* file in an ASP.NET Core project:
 
@@ -130,8 +130,6 @@ The name of the library to install. This name may include a version number.
 
 The following options can be appended to the `libman install` command:
 
-[!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
-
 * `-d|--destination <PATH>`
 
   The location to install the library. If not specified, the default location is used. If no `defaultDestination` property is specified in *libman.json*, this option is required.
@@ -147,6 +145,8 @@ The following options can be appended to the `libman install` command:
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
   If not specified, the default provider is used. If no `defaultProvider` property is specified in *libman.json*, this option is required.
+
+[!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
 ### Examples
 
@@ -195,7 +195,7 @@ The following options can be appended to the `libman restore` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### Example
+### Examples
 
 To restore the library files defined in *libman.json*, run the following command from the project root:
 
@@ -220,7 +220,7 @@ The following options can be appended to the `libman clean` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### Example
+### Examples
 
 To delete library files installed with LibMan, without removing the files' associated configurations from *libman.json*:
 
@@ -307,8 +307,6 @@ The name of the library to update.
 
 The following options can be appended to the `libman update` command:
 
-[!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
-
 * `-pre`
 
   Flag whose presence indicates the latest pre-release version of the library will be downloaded.
@@ -316,6 +314,8 @@ The following options can be appended to the `libman update` command:
 * `--to <VERSION>`
 
   The version to which the library should be updated.
+
+[!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
 ### Examples
 
@@ -361,8 +361,6 @@ Used only with the `clean` command. The name of the provider whose cache is to b
 
 The following options can be appended to the `libman cache` command:
 
-[!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
-
 * `--files`
 
   List the names of files that are cached.
@@ -370,6 +368,8 @@ The following options can be appended to the `libman cache` command:
 * `--libraries`
 
   List the names of libraries that are cached.
+
+[!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
 ### Examples
 
