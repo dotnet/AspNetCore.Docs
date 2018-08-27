@@ -1,11 +1,11 @@
-`-h|--help`
+* `-h|--help`
 
-Show help information.
+  Show help information.
 
-`--verbosity <LEVEL>`
+* `--verbosity <LEVEL>`
 
-Set the verbosity of the output. Replace `<LEVEL>` with one of the following values:
-
-* `quiet`
-* `normal`
-* `detailed`
+  Set the verbosity of the output. Replace `<LEVEL>` with one of the following values:
+  
+  * `quiet`
+  * `normal`
+  * `detailed`

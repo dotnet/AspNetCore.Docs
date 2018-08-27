@@ -33,21 +33,39 @@ To install the LibMan CLI from a specific NuGet package source, run the followin
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli --version 1.0.94-g606058a278 --add-source C:\Temp\
 ```
 
-In the preceding example, a .NET Core Global Tool is installed from the local machine's *C:\Temp\Microsoft.Web.LibraryManager.Cli.1.0.94-g606058a278.nupkg* file.
+In the preceding example, a .NET Core Global Tool is installed from the local Windows machine's *C:\Temp\Microsoft.Web.LibraryManager.Cli.1.0.94-g606058a278.nupkg* file.
 
-To verify proper installation of the CLI, run the following command:
+## Usage
+
+After successful installation of the CLI, the following command becomes available:
 
 ```console
 libman
 ```
 
+To view the installed CLI version, run the following command:
+
+```console
+libman --version
+```
+
+To view the available CLI commands, run the following command:
+
+```console
+libman --help
+```
+
+The following sections outline the available CLI commands.
+
 ## Initialize LibMan in the project
+
+The `libman init` command creates a *libman.json* file if one doesn't exist. The file is created with the default item template content.
 
 ### Synopsis
 
 ```console
-libman init [--verbosity] [-p|--default-provider] [-d|--default-destination]
-libman init <-h|--help>
+libman init [-d|--default-destination] [-p|--default-provider] [--verbosity]
+libman init [-h|--help]
 ```
 
 ### Options
@@ -56,17 +74,17 @@ The following options can be appended to the `libman init` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-`-p|--default-provider <PROVIDER>`
+* `-d|--default-destination <PATH>`
 
-The provider to use if no provider is defined for a given library. Replace `<PROVIDER>` with one of the following values:
+  The path, relative to the current directory, to install library files if no destination is defined for a given library.
 
-* `cdnjs`
-* `filesystem`
-* `unpkg`
+* `-p|--default-provider <PROVIDER>`
 
-`-d|--default-destination <PATH>`
+  The provider to use if no provider is defined for a given library. Replace `<PROVIDER>` with one of the following values:
 
-The path, relative to the current directory, to install library files if no destination is defined for a given library.
+  * `cdnjs`
+  * `filesystem`
+  * `unpkg`
 
 ### Example
 
@@ -85,7 +103,7 @@ To create a *libman.json* file in an ASP.NET Core project:
   * `filesystem`
   * `unpkg`
 
-A *libman.json* file is added to the project root with the following contents:
+A *libman.json* file is added to the project root with the following content:
 
 ```json
 {
@@ -97,13 +115,13 @@ A *libman.json* file is added to the project root with the following contents:
 
 ## Add library files
 
-The `libman install` command initializes a *libman.json* file if one doesn't exist.
+The `libman install` command downloads and installs library files into the project. A *libman.json* file is added, if one doesn't exist. The *libman.json* file is modified to store configuration details for the library files.
 
 ### Synopsis
 
 ```console
-libman install <LIBRARY_NAME> [--verbosity] [-p|--provider] [-d|--destination] [--files]
-libman install <-h|--help>
+libman install <LIBRARY> [-d|--destination] [--files] [-p|--provider] [--verbosity]
+libman install [-h|--help]
 ```
 
 ### Options
@@ -112,49 +130,49 @@ The following options can be appended to the `libman install` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-`-p|--provider <PROVIDER>`
+* `-d|--destination <PATH>`
 
-The provider to use. Replace `<PROVIDER>` with one of the following values:
+  The location to install the library. If not specified, the default location is used. If no `defaultDestination` property is specified in *libman.json*, this option is required.
 
-* `cdnjs`
-* `filesystem`
-* `unpkg`
+* `--files <FILE>`
 
-If not specified, the default provider is used. If no `defaultProvider` property is specified in *libman.json*, this option is required.
+  The name of the file to be installed from the specified library. If not specified, all files from the library are installed. Provide one `--files` option for each file to be installed.
 
-`-d|--destination <PATH>`
+* `-p|--provider <PROVIDER>`
 
-The location to install the library. If not specified, the default location is used. If no `defaultDestination` property is specified in *libman.json*, this option is required.
+  The provider to use. Replace `<PROVIDER>` with one of the following values:
+  
+  * `cdnjs`
+  * `filesystem`
+  * `unpkg`
 
-`--files <FILE>`
-
-The name of the file to be installed from the specified library. If not specified, all files from the library are installed. Provide one `--files` option for each file to be installed.
+  If not specified, the default provider is used. If no `defaultProvider` property is specified in *libman.json*, this option is required.
 
 ### Examples
 
-To install all files from the latest version of jQuery:
+* To install all files from the latest version of jQuery:
 
-```console
-libman install jquery
-```
+  ```console
+  libman install jquery
+  ```
 
-To install all files from jQuery version 3.2.1:
+* To install all files from jQuery version 3.2.1:
 
-```console
-libman install jquery@3.2.1
-```
+  ```console
+  libman install jquery@3.2.1
+  ```
 
-To install the latest jQuery version's *jquery.min.js* file to the *wwwroot\scripts\jquery* folder using the CDNJS provider:
+* To install the latest jQuery version's *jquery.min.js* file to the *wwwroot\scripts\jquery* folder using the CDNJS provider:
 
-```console
-libman install jquery --provider cdnjs --destination wwwroot\scripts\jquery --files jquery.min.js
-```
+  ```console
+  libman install jquery --provider cdnjs --destination wwwroot\scripts\jquery --files jquery.min.js
+  ```
 
-To install the *calendar.js* and *calendar.css* files from *C:\temp\contosoCalendar\* using the file system provider:
+* To install the *calendar.js* and *calendar.css* files from *C:\temp\contosoCalendar\* using the file system provider:
 
-```console
-libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
-```
+  ```console
+  libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
+  ```
 
 ## Restore library files
 
@@ -168,7 +186,7 @@ The `libman restore` command installs library files defined in *libman.json*. Th
 
 ```console
 libman restore [--verbosity]
-libman restore <-h|--help>
+libman restore [-h|--help]
 ```
 
 ### Options
@@ -193,7 +211,7 @@ The `libman clean` command deletes library files previously restored with the Li
 
 ```console
 libman clean [--verbosity]
-libman clean <-h|--help>
+libman clean [-h|--help]
 ```
 
 ### Options
@@ -228,7 +246,7 @@ If more than one library with the same name is installed, you're prompted to cho
 
 ```console
 libman uninstall <LIBRARY> [--verbosity]
-libman uninstall <-h|--help>
+libman uninstall [-h|--help]
 ```
 
 ### Options
@@ -269,8 +287,8 @@ If more than one library with the same name is installed, you're prompted to cho
 ### Synopsis
 
 ```console
-libman update <LIBRARY> [--verbosity] [-pre] [--to]
-libman update <-h|--help>
+libman update <LIBRARY> [-pre] [--to] [--verbosity]
+libman update [-h|--help]
 ```
 
 ### Options
@@ -279,42 +297,44 @@ The following options can be appended to the `libman update` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-`-pre`
+* `-pre`
 
-Indicates the latest pre-release version of the library to download.
+  Indicate that the latest pre-release version of the library will be downloaded.
 
-`--to <VERSION>`
+* `--to <VERSION>`
 
-The version to which the library should be updated.
+  The version to which the library should be updated.
 
 ### Examples
 
-To update jQuery to the latest version:
+* To update jQuery to the latest version:
 
-```console
-libman update jquery
-```
+  ```console
+  libman update jquery
+  ```
 
-To update jQuery to version 3.3.1:
+* To update jQuery to version 3.3.1:
 
-```console
-libman update jquery --to 3.3.1
-```
+  ```console
+  libman update jquery --to 3.3.1
+  ```
 
-To update jQuery to the latest pre-release version:
+* To update jQuery to the latest pre-release version:
 
-```console
-libman update jquery -pre
-```
+  ```console
+  libman update jquery -pre
+  ```
 
 ## Manage library cache
 
 ### Synopsis
 
+The `libman cache` command manages the LibMan library cache.
+
 ```console
-libman cache clean [--verbosity]
-libman cache list [--verbosity] [--files] [--libraries]
-libman cache <-h|--help>
+libman cache clean [<PROVIDER>] [--verbosity]
+libman cache list [--files] [--libraries] [--verbosity]
+libman cache [-h|--help]
 ```
 
 ### Options
@@ -323,44 +343,137 @@ The following options can be appended to the `libman cache` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-`--files`
+* `--files`
 
+  List the names of files that are cached.
 
+* `--libraries`
 
-`--libraries`
+  List the names of libraries that are cached.
 
+### Examples
 
-### Example
+* To view the names of cached libraries per provider, run one of the following two commands:
 
-To view the library cache:
+  ```console
+  libman cache list
+  ```
 
-```console
-libman cache list
-```
+  ```console
+  libman cache list --libraries
+  ```
 
-Output similar to the following is displayed:
+  Output similar to the following is displayed:
 
-```console
-Cache contents:
----------------
-unpkg:
-    bootstrap
-    knockout
-    react
-    vue
-filesystem:
-    (empty)
-cdnjs:
-    bootstrap
-    bootstrap-rtl
-    font-awesome
-    jquery
-    knockout
-    lodash.js
-    react
-    react-bootstrap
-    twitter-bootstrap
-```
+  ```console
+  Cache contents:
+  ---------------
+  unpkg:
+      knockout
+      react
+      vue
+  filesystem:
+      (empty)
+  cdnjs:
+      font-awesome
+      jquery
+      knockout
+      lodash.js
+      react
+  ```
+
+* To view the names of cached library files per provider, run the following command:
+
+  ```console
+  libman cache list --files
+  ```
+
+  Output similar to the following is displayed:
+
+  ```console
+  Cache contents:
+  ---------------
+  unpkg:
+      knockout:
+          <list omitted for brevity>
+      react:
+          <list omitted for brevity>
+      vue:
+          <list omitted for brevity>
+  filesystem:
+      (empty)
+  cdnjs:
+      font-awesome
+          metadata.json
+      jquery
+          metadata.json
+          3.2.1\core.js
+          3.2.1\jquery.js
+          3.2.1\jquery.min.js
+          3.2.1\jquery.min.map
+          3.2.1\jquery.slim.js
+          3.2.1\jquery.slim.min.js
+          3.2.1\jquery.slim.min.map
+          3.3.1\core.js
+          3.3.1\jquery.js
+          3.3.1\jquery.min.js
+          3.3.1\jquery.min.map
+          3.3.1\jquery.slim.js
+          3.3.1\jquery.slim.min.js
+          3.3.1\jquery.slim.min.map
+      knockout
+          metadata.json
+          3.4.2\knockout-debug.js
+          3.4.2\knockout-min.js
+      lodash.js
+          metadata.json
+          4.17.10\lodash.js
+          4.17.10\lodash.min.js
+      react
+          metadata.json
+  ```
+
+  Notice the preceding output shows that jQuery versions 3.2.1 and 3.3.1 are cached under the CDNJS provider.
+
+* To empty the library cache for the CDNJS provider, run the following command:
+
+  ```console
+  libman cache clean cdnjs
+  ```
+
+  After emptying the CDNJS provider cache, the `libman cache list` command displays the following:
+
+  ```console
+  Cache contents:
+  ---------------
+  unpkg:
+      knockout
+      react
+      vue
+  filesystem:
+      (empty)
+  cdnjs:
+      (empty)
+  ```
+
+* To empty the cache for all supported providers, run the following command:
+
+  ```console
+  libman cache clean
+  ```
+
+  After emptying all provider caches, the `libman cache list` command displays the following:
+
+  ```console
+  Cache contents:
+  ---------------
+  unpkg:
+      (empty)
+  filesystem:
+      (empty)
+  cdnjs:
+      (empty)
+  ```
 
 ## Additional resources
 
