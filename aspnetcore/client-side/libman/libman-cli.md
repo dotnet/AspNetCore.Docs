@@ -102,7 +102,7 @@ The `libman install` command initializes a *libman.json* file if one doesn't exi
 ### Synopsis
 
 ```console
-libman install <LIBRARY_NAME> [-p|--provider] [-d|--destination] [--files]
+libman install <LIBRARY_NAME> [--verbosity] [-p|--provider] [-d|--destination] [--files]
 libman install <-h|--help>
 ```
 
@@ -167,7 +167,7 @@ The `libman restore` command installs library files defined in *libman.json*. Th
 ### Synopsis
 
 ```console
-libman restore
+libman restore [--verbosity]
 libman restore <-h|--help>
 ```
 
@@ -192,7 +192,7 @@ The `libman clean` command deletes library files previously restored with the Li
 ### Synopsis
 
 ```console
-libman clean
+libman clean [--verbosity]
 libman clean <-h|--help>
 ```
 
@@ -227,7 +227,7 @@ If more than one library with the same name is installed, you're prompted to cho
 ### Synopsis
 
 ```console
-libman uninstall <LIBRARY>
+libman uninstall <LIBRARY> [--verbosity]
 libman uninstall <-h|--help>
 ```
 
@@ -269,7 +269,7 @@ If more than one library with the same name is installed, you're prompted to cho
 ### Synopsis
 
 ```console
-libman update <LIBRARY> [-pre] [--to] [--verbosity]
+libman update <LIBRARY> [--verbosity] [-pre] [--to]
 libman update <-h|--help>
 ```
 
@@ -312,8 +312,8 @@ libman update jquery -pre
 ### Synopsis
 
 ```console
-libman cache clean
-libman cache list [--files] [--libraries]
+libman cache clean [--verbosity]
+libman cache list [--verbosity] [--files] [--libraries]
 libman cache <-h|--help>
 ```
 
