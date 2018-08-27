@@ -82,9 +82,7 @@ The following options can be appended to the `libman init` command:
 
   The provider to use if no provider is defined for a given library. Replace `<PROVIDER>` with one of the following values:
 
-  * `cdnjs`
-  * `filesystem`
-  * `unpkg`
+  [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
 ### Example
 
@@ -92,16 +90,14 @@ To create a *libman.json* file in an ASP.NET Core project:
 
 * Navigate to the project root.
 * Run the following command:
-  
+
   ```console
   libman init
   ```
 
 * Type the name of the default provider to be used, or press `Enter` to use the default CDNJS provider. Valid values include:
 
-  * `cdnjs`
-  * `filesystem`
-  * `unpkg`
+  [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
 A *libman.json* file is added to the project root with the following content:
 
@@ -148,9 +144,7 @@ The following options can be appended to the `libman install` command:
 
   The provider to use. Replace `<PROVIDER>` with one of the following values:
   
-  * `cdnjs`
-  * `filesystem`
-  * `unpkg`
+  [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
   If not specified, the default provider is used. If no `defaultProvider` property is specified in *libman.json*, this option is required.
 
@@ -317,7 +311,7 @@ The following options can be appended to the `libman update` command:
 
 * `-pre`
 
-  Indicate that the latest pre-release version of the library will be downloaded.
+  Flag whose presence indicates the latest pre-release version of the library will be downloaded.
 
 * `--to <VERSION>`
 
@@ -361,9 +355,7 @@ libman cache [-h|--help]
 
 Used only with the `clean` command. The name of the provider whose cache is to be cleaned. Valid values include:
 
-* `cdnjs`
-* `filesystem`
-* `unpkg`
+[!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
 ### Options
 
