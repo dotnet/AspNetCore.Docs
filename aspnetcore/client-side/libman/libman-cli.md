@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to use the LibMan command-line interface (CLI) in an ASP.NET Core project.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/23/2018
+ms.date: 08/27/2018
 uid: client-side/libman/libman-cli
 ---
 # Use the LibMan command-line interface (CLI) with ASP.NET Core
@@ -123,6 +123,12 @@ The `libman install` command downloads and installs library files into the proje
 libman install <LIBRARY> [-d|--destination] [--files] [-p|--provider] [--verbosity]
 libman install [-h|--help]
 ```
+
+### Arguments
+
+`LIBRARY`
+
+The name of the library to install. This name may include a version number.
 
 ### Options
 
@@ -249,6 +255,12 @@ libman uninstall <LIBRARY> [--verbosity]
 libman uninstall [-h|--help]
 ```
 
+### Arguments
+
+`LIBRARY`
+
+The name of the library to uninstall. This name may include a version number.
+
 ### Options
 
 The following options can be appended to the `libman uninstall` command:
@@ -290,6 +302,12 @@ If more than one library with the same name is installed, you're prompted to cho
 libman update <LIBRARY> [-pre] [--to] [--verbosity]
 libman update [-h|--help]
 ```
+
+### Arguments
+
+`LIBRARY`
+
+The name of the library to update.
 
 ### Options
 
@@ -336,6 +354,16 @@ libman cache clean [<PROVIDER>] [--verbosity]
 libman cache list [--files] [--libraries] [--verbosity]
 libman cache [-h|--help]
 ```
+
+### Arguments
+
+`PROVIDER`
+
+Used only with the `clean` command. The name of the provider whose cache is to be cleaned. Valid values include:
+
+* `cdnjs`
+* `filesystem`
+* `unpkg`
 
 ### Options
 
