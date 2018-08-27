@@ -37,7 +37,7 @@ In the preceding example, a .NET Core Global Tool is installed from the local Wi
 
 ## Usage
 
-After successful installation of the CLI, the following command is usable:
+After successful installation of the CLI, the following command can be used:
 
 ```console
 libman
@@ -74,11 +74,11 @@ The following options can be appended to the `libman init` command:
 
 * `-d|--default-destination <PATH>`
 
-  The path, relative to the current directory, to install library files if no destination is defined for a given library.
+  A path relative to the current folder. Library files are installed in this location if no `destination` property is defined for a library in *libman.json*. The `<PATH>` value is written to the `defaultDestination` property of *libman.json*.
 
 * `-p|--default-provider <PROVIDER>`
 
-  The provider to use if no provider is defined for a given library. Replace `<PROVIDER>` with one of the following values:
+  The provider to use if no provider is defined for a given library. The `<PROVIDER>` value is written to the `defaultProvider` property of *libman.json*. Replace `<PROVIDER>` with one of the following values:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
@@ -111,7 +111,7 @@ A *libman.json* file is added to the project root with the following content:
 
 ## Add library files
 
-The `libman install` command downloads and installs library files into the project. A *libman.json* file is added, if one doesn't exist. The *libman.json* file is modified to store configuration details for the library files.
+The `libman install` command downloads and installs library files into the project. A *libman.json* file is added if one doesn't exist. The *libman.json* file is modified to store configuration details for the library files.
 
 ### Synopsis
 
@@ -124,7 +124,7 @@ libman install [-h|--help]
 
 `LIBRARY`
 
-The name of the library to install. This name may include a version number.
+The name of the library to install. This name may include version number notation (for example, `@1.2.0`).
 
 ### Options
 
@@ -136,15 +136,15 @@ The following options can be appended to the `libman install` command:
 
 * `--files <FILE>`
 
-  The name of the file to be installed from the specified library. If not specified, all files from the library are installed. Provide one `--files` option for each file to be installed.
+  The name of the file to be installed from the specified library. If not specified, all files from the library are installed. Provide one `--files` option per file to be installed.
 
 * `-p|--provider <PROVIDER>`
 
-  The provider to use. Replace `<PROVIDER>` with one of the following values:
+  The name of the provider to use for the library acquisition. Replace `<PROVIDER>` with one of the following values:
   
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-  If not specified, the default provider is used. If no `defaultProvider` property is specified in *libman.json*, this option is required.
+  If not specified, the `defaultProvider` property in *libman.json* is used. If no `defaultProvider` property is specified in *libman.json*, this option is required.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
@@ -205,7 +205,7 @@ libman restore
 
 ## Delete library files
 
-The `libman clean` command deletes library files previously restored with the LibMan CLI. Folders that become empty after this operation are deleted.
+The `libman clean` command deletes library files previously restored via LibMan. Folders that become empty after this operation are deleted. The library files' associated configurations in the `libraries` property of *libman.json* aren't removed.
 
 ### Synopsis
 
@@ -222,7 +222,7 @@ The following options can be appended to the `libman clean` command:
 
 ### Examples
 
-To delete library files installed with LibMan, without removing the files' associated configurations from *libman.json*:
+To delete library files installed via LibMan:
 
 ```console
 libman clean
@@ -253,7 +253,7 @@ libman uninstall [-h|--help]
 
 `LIBRARY`
 
-The name of the library to uninstall. This name may include a version number.
+The name of the library to uninstall. This name may include version number notation (for example, `@1.2.0`).
 
 ### Options
 
@@ -317,7 +317,7 @@ The following options can be appended to the `libman update` command:
 
 * `--to <VERSION>`
 
-  The version to which the library should be updated.
+  The version number to which the library should be updated.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
