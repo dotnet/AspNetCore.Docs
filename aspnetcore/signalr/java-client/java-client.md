@@ -41,19 +41,19 @@ If you’re using Maven you can add the following lines to the dependencies sect
 
 ## Connect to a hub
 
-To establish a connection, create a `HubConnectionBuilder` and call `build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `build`. Start the connection with `start`.
+To establish a connection, create a `HubConnectionBuilder` and call `build`. The hub URL, and log level can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `build`. Start the connection with `start`.
 
 [!code-csharp[Build hub connection](java-client/sample/src/main/java/Chat.java?highlight=17-20)]
 
 ## Call hub methods from client
 
-`send` calls methods on the hub. Pass the hub method name and any arguments defined in the hub method to `send`.
+`send` calls sends invocations to the the hub. Pass the hub method name and any arguments defined in the hub method to `send`.
 
 [!code-csharp[send method](java-client/sample/src/main/java/Chat.java?highlight=31)]
 
 ## Call client methods from hub
 
-Define methods on the client that the hub can call using `connection.On`. Be sure to define them after building, but before starting the connection.
+Define methods on the client that the hub can call using `hubConnection.On`. Be sure to define them after building, but before starting the connection.
 
 [!code-csharp[Define client methods](java-client/sample/src/main/java/Chat.java?highlight=22-24)]
 
