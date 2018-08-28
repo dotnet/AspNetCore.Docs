@@ -335,7 +335,7 @@ The following options are available for the `libman update` command:
   libman update jquery --to 3.3.1
   ```
 
-* To update jQuery to the latest pre-release version:
+* To update jQuery to the latest prerelease version:
 
   ```console
   libman update jquery -pre
