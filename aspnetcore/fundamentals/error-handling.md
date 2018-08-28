@@ -54,7 +54,7 @@ If the request has cookies, they appear on the **Cookies** tab. Headers are seen
 
 ![Headers](error-handling/_static/developer-exception-page-headers.png)
 
-## Configuring a custom exception handling page
+## Configure a custom exception handling page
 
 Configure an exception handler page to use when the app isn't running in the `Development` environment:
 
@@ -75,7 +75,7 @@ public IActionResult Error()
 }
 ```
 
-## Configuring status code pages
+## Configure status code pages
 
 By default, an app doesn't provide a rich status code page for HTTP status codes, such as *404 Not Found*. To provide status code pages, use Status Code Pages Middleware.
 
@@ -102,6 +102,8 @@ Add a line to the `Startup.Configure` method:
 ```csharp
 app.UseStatusCodePages();
 ```
+
+<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> should be called before request handling middlewares in the pipeline (for example, Static Files Middleware and MVC Middleware).
 
 By default, Status Code Pages Middleware adds text-only handlers for common status codes, such as 404:
 
