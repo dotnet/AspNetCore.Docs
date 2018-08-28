@@ -43,19 +43,19 @@ If you’re using Maven you can add the following lines to the dependencies sect
 
 To establish a connection, create a `HubConnectionBuilder` and call `build`. The hub URL, and log level can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `build`. Start the connection with `start`.
 
-[!code-csharp[Build hub connection](java-client/sample/src/main/java/Chat.java?range=17-20)]
+[!code-java[Build hub connection](java-client/sample/src/main/java/Chat.java?range=17-20)]
 
 ## Call hub methods from client
 
 `send` calls sends invocations to the the hub. Pass the hub method name and any arguments defined in the hub method to `send`.
 
-[!code-csharp[send method](java-client/sample/src/main/java/Chat.java?range=31)]
+[!code-java[send method](java-client/sample/src/main/java/Chat.java?range=31)]
 
 ## Call client methods from hub
 
 Define methods on the client that the hub can call using `hubConnection.On`. Be sure to define them after building, but before starting the connection.
 
-[!code-csharp[Define client methods](java-client/sample/src/main/java/Chat.java?range=22-24)]
+[!code-java[Define client methods](java-client/sample/src/main/java/Chat.java?range=22-24)]
 
 This is an early preview release of the Java client so there are many features that are not yet supported. We plan to close all these gaps before the RTM release:
 - Only primitive types can be accepted as parameters and return types.
