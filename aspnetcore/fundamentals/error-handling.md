@@ -19,7 +19,7 @@ This article covers common approaches to handling errors in ASP.NET Core apps.
 
 ::: moniker range=">= aspnetcore-2.1"
 
-To configure an app to display a page that shows detailed information about exceptions, use the *Developer Exception Page*. The page made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method:
+To configure an app to display a page that shows detailed information about exceptions, use the *Developer Exception Page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method:
 
 ::: moniker-end
 
