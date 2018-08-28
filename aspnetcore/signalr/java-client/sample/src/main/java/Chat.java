@@ -13,21 +13,20 @@ public class Chat {
         Scanner reader = new Scanner(System.in);  // Reading from System.in
         String input;
         input = reader.nextLine();
-        //HubConnection hubConnection = new HubConnection(input);
+
         HubConnection hubConnection = new HubConnectionBuilder()
                 .withUrl(input)
                 .configureLogging(LogLevel.Information)
                 .build();
 
         hubConnection.on("Send", (message) -> {
-            System.out.println("REGISTERED HANDLER: " + message);
+            System.out.println("New Message: " + message);
         }, String.class);
 
         //This is a blocking call
         hubConnection.start();
 
         while (!input.equals("leave")){
-            // Scans the next token of the input as an int.
             input = reader.nextLine();
             hubConnection.send("Send", input);
         }
