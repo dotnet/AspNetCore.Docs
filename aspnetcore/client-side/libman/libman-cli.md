@@ -70,7 +70,7 @@ libman init [-h|--help]
 
 ### Options
 
-The following options can be appended to the `libman init` command:
+The following options are available for the `libman init` command:
 
 * `-d|--default-destination <PATH>`
 
@@ -95,7 +95,7 @@ To create a *libman.json* file in an ASP.NET Core project:
   libman init
   ```
 
-* Type the name of the default provider to be used, or press `Enter` to use the default CDNJS provider. Valid values include:
+* Type the name of the default provider, or press `Enter` to use the default CDNJS provider. Valid values include:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
@@ -128,7 +128,7 @@ The name of the library to install. This name may include version number notatio
 
 ### Options
 
-The following options can be appended to the `libman install` command:
+The following options are available for the `libman install` command:
 
 * `-d|--destination <PATH>`
 
@@ -136,7 +136,7 @@ The following options can be appended to the `libman install` command:
 
 * `--files <FILE>`
 
-  The name of the file to be installed from the specified library. If not specified, all files from the library are installed. Provide one `--files` option per file to be installed.
+  Specify the name of the file to install from the library. If not specified, all files from the library are installed. Provide one `--files` option per file to be installed.
 
 * `-p|--provider <PROVIDER>`
 
@@ -191,7 +191,7 @@ libman restore [-h|--help]
 
 ### Options
 
-The following options can be appended to the `libman restore` command:
+The following options are available for the `libman restore` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
@@ -216,7 +216,7 @@ libman clean [-h|--help]
 
 ### Options
 
-The following options can be appended to the `libman clean` command:
+The following options are available for the `libman clean` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
@@ -257,7 +257,7 @@ The name of the library to uninstall. This name may include version number notat
 
 ### Options
 
-The following options can be appended to the `libman uninstall` command:
+The following options are available for the `libman uninstall` command:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
@@ -309,15 +309,15 @@ The name of the library to update.
 
 ### Options
 
-The following options can be appended to the `libman update` command:
+The following options are available for the `libman update` command:
 
 * `-pre`
 
-  Flag whose presence indicates the latest pre-release version of the library will be downloaded.
+  Obtain the latest prerelease version of the library.
 
 * `--to <VERSION>`
 
-  The version number to which the library should be updated.
+  Obtain a specific version of the library.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
@@ -357,13 +357,13 @@ libman cache [-h|--help]
 
 `PROVIDER`
 
-Used only with the `clean` command. The name of the provider whose cache is to be cleaned. Valid values include:
+Only used with the `clean` command. Specifies the provider cache to clean. Valid values include:
 
 [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
 ### Options
 
-The following options can be appended to the `libman cache` command:
+The following options are available for the `libman cache` command:
 
 * `--files`
 
@@ -377,7 +377,7 @@ The following options can be appended to the `libman cache` command:
 
 ### Examples
 
-* To view the names of cached libraries per provider, either of the following commands suffice:
+* To view the names of cached libraries per provider, use one of the following commands:
 
   ```console
   libman cache list
