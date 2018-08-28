@@ -57,14 +57,6 @@ Define methods on the client that the hub can call using `connection.On`. Be sur
 
 [!code-csharp[Define client methods](java-client/sample/src/main/java/Chat.java?highlight=22-24)]
 
-
-
-## Error handling and logging
-
-Handle errors with a try-catch statement. Inspect the `Exception` object to determine the proper action to take after an error occurs.
-
-[!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?range=46-54)]
-
 This is an early preview release of the Java client so there are many features that are not yet supported. We plan to close all these gaps before the RTM release:
 - Only primitive types can be accepted as parameters and return types.
 - The APIs are synchronous.
