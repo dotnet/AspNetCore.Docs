@@ -39,11 +39,11 @@ To discover loaded hosting startup assemblies, enable logging and check the app'
 To disable automatic loading of hosting startup assemblies, use one of the following approaches:
 
 * To prevent all hosting startup assemblies from loading, set one of the following to `true` or `1`:
-  - [Prevent Hosting Startup](xref:fundamentals/host/web-host#prevent-hosting-startup) host configuration setting.
-  - `ASPNETCORE_PREVENTHOSTINGSTARTUP` environment variable.
+  * [Prevent Hosting Startup](xref:fundamentals/host/web-host#prevent-hosting-startup) host configuration setting.
+  * `ASPNETCORE_PREVENTHOSTINGSTARTUP` environment variable.
 * To prevent specific hosting startup assemblies from loading, set one of the following to a semicolon-delimited string of hosting startup assemblies to exclude at startup:
-  - [Hosting Startup Exclude Assemblies](xref:fundamentals/host/web-host#hosting-startup-exclude-assemblies) host configuration setting.
-  - `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES` environment variable.
+  * [Hosting Startup Exclude Assemblies](xref:fundamentals/host/web-host#hosting-startup-exclude-assemblies) host configuration setting.
+  * `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES` environment variable.
 
 ::: moniker-end
 
@@ -111,8 +111,8 @@ A dynamic hosting startup enhancement that doesn't require a compile-time refere
 
 1. An implementation library is created from the class that contains the `IHostingStartup` implementation. The implementation library is treated as a normal package.
 1. A console app without an entry point references the implementation library package. A console app is used because:
-   - A dependencies file is a runnable app asset, so a library can't furnish a dependencies file.
-   - A library can't be added directly to the [runtime package store](/dotnet/core/deploying/runtime-store), which requires a runnable project that targets the shared runtime.
+   * A dependencies file is a runnable app asset, so a library can't furnish a dependencies file.
+   * A library can't be added directly to the [runtime package store](/dotnet/core/deploying/runtime-store), which requires a runnable project that targets the shared runtime.
 1. The console app is published to obtain the hosting startup's dependencies. A consequence of publishing the console app is that unused dependencies are trimmed from the dependencies file.
 1. The app and its dependencies file is placed into the runtime package store. To discover the hosting startup assembly and its dependencies file, they're referenced in a pair of environment variables.
 
@@ -169,15 +169,47 @@ dotnet store --manifest <PROJECT_FILE> --runtime <RUNTIME_IDENTIFIER>
 
 This command places the hosting startup assembly and other dependencies that aren't part of the shared framework in the user profile's runtime store at:
 
+# [Windows](#tab/windows)
+
 ```
-<DRIVE>\Users\<USER>\.dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
+%USERPROFILE%\.dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
 ```
+
+# [macOS](#tab/macos)
+
+```
+/Users/<USER>/.dotnet/store/x64/<TARGET_FRAMEWORK_MONIKER>/<ENHANCEMENT_ASSEMBLY_NAME>/<ENHANCEMENT_VERSION>/lib/<TARGET_FRAMEWORK_MONIKER>/
+```
+
+# [Linux](#tab/linux)
+
+```
+/Users/<USER>/.dotnet/store/x64/<TARGET_FRAMEWORK_MONIKER>/<ENHANCEMENT_ASSEMBLY_NAME>/<ENHANCEMENT_VERSION>/lib/<TARGET_FRAMEWORK_MONIKER>/
+```
+
+---
 
 If you desire to place the assembly and dependencies for global use, add the `-o|--output` switch to the `dotnet store` command with the following path:
 
+# [Windows](#tab/windows)
+
 ```
-<DRIVE>\Program Files\dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
+%PROGRAMFILES%\dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
 ```
+
+# [macOS](#tab/macos)
+
+```
+/usr/local/share/dotnet/store/x64/<TARGET_FRAMEWORK_MONIKER>/<ENHANCEMENT_ASSEMBLY_NAME>/<ENHANCEMENT_VERSION>/lib/<TARGET_FRAMEWORK_MONIKER>/
+```
+
+# [Linux](#tab/linux)
+
+```
+/usr/local/share/dotnet/store/x64/<TARGET_FRAMEWORK_MONIKER>/<ENHANCEMENT_ASSEMBLY_NAME>/<ENHANCEMENT_VERSION>/lib/<TARGET_FRAMEWORK_MONIKER>/
+```
+
+---
 
 **Modify and place the hosting startup's dependencies file**
 
@@ -191,15 +223,47 @@ The implementation's *\*.deps.json* file must be in an accessible location.
 
 For per-user use, place the file in the *additonalDeps* folder of the user profile's `.dotnet` settings:
 
+# [Windows](#tab/windows)
+
 ```
-<DRIVE>\Users\<USER>\.dotnet\x64\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\
+%USERPROFILE%\.dotnet\x64\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\
 ```
+
+# [macOS](#tab/macos)
+
+```
+/Users/<USER>/.dotnet/x64/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/
+```
+
+# [Linux](#tab/linux)
+
+```
+/Users/<USER>/.dotnet/x64/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/
+```
+
+---
 
 For global use, place the file in the *additonalDeps* folder of the .NET Core installation:
 
+# [Windows](#tab/windows)
+
 ```
-<DRIVE>\Program Files\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\
+%PROGRAMFILES%\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\
 ```
+
+# [macOS](#tab/macos)
+
+```
+/usr/local/share/dotnet/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/
+```
+
+# [Linux](#tab/linux)
+
+```
+/usr/local/share/dotnet/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/
+```
+
+---
 
 The shared framework version reflects the version of the shared runtime that the target app uses. The shared runtime is shown in the *\*.runtimeconfig.json* file. In the sample app (*HostingStartupApp*), the shared runtime is specified in the *HostingStartupApp.runtimeconfig.json* file.
 
@@ -209,21 +273,75 @@ The location of the implementation's *\*.deps.json* file is listed in the `DOTNE
 
 If the file is placed in the user profile's *.dotnet* folder for per-user use, set the environment variable's value to:
 
+# [Windows](#tab/windows)
+
 ```
-<DRIVE>\Users\<USER>\.dotnet\x64\additionalDeps\
+%USERPROFILE%\.dotnet\x64\additionalDeps\
 ```
+
+# [macOS](#tab/macos)
+
+```
+/Users/<USER>/.dotnet/x64/additionalDeps/
+```
+
+# [Linux](#tab/linux)
+
+```
+/Users/<USER>/.dotnet/x64/additionalDeps/
+```
+
+---
 
 If the file is placed in the .NET Core installation for global use, provide the full path to the file:
 
+# [Windows](#tab/windows)
+
 ```
-<DRIVE>\Program Files\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
+%PROGRAMFILES%\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
 ```
 
-For the sample app (*HostingStartupApp*) to find the dependencies file (*HostingStartupApp.runtimeconfig.json*), the dependencies file is placed in the user's profile and the `DOTNET_ADDITIONAL_DEPS` environment variable is set to the following value:
+# [macOS](#tab/macos)
+
+```
+/usr/local/share/dotnet/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
+```
+
+# [Linux](#tab/linux)
+
+```
+/usr/local/share/dotnet/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
+```
+
+---
+
+For the sample app (*HostingStartupApp*) to find the dependencies file (*HostingStartupApp.runtimeconfig.json*), the dependencies file is placed in the user's profile. and 
+
+# [Windows](#tab/windows)
+
+Set the `DOTNET_ADDITIONAL_DEPS` environment variable to the following value:
 
 ```
 %UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\
 ```
+
+# [macOS](#tab/macos)
+
+Set the `DOTNET_ADDITIONAL_DEPS` environment variable to the following value:
+
+```
+/Users/<USER>/.dotnet/x64/additionalDeps/StartupDiagnostics/
+```
+
+# [Linux](#tab/linux)
+
+Set the `DOTNET_ADDITIONAL_DEPS` environment variable to the following value:
+
+```
+/Users/<USER>/.dotnet/x64/additionalDeps/StartupDiagnostics/
+```
+
+---
 
 For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
 
@@ -260,14 +378,14 @@ A hosting startup enhancement can be provided by a *bin*-deployed assembly in th
 The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates three hosting startup implementation scenarios:
 
 * Two hosting startup assemblies (class libraries) set a pair of in-memory configuration key-value pairs each:
-  - NuGet package (*HostingStartupPackage*)
-  - Class library (*HostingStartupLibrary*)
+  * NuGet package (*HostingStartupPackage*)
+  * Class library (*HostingStartupLibrary*)
 * A hosting startup is activated from a runtime store-deployed assembly (*StartupDiagnostics*). The assembly adds two middlewares to the app at startup that provide diagnostic information on:
-  - Registered services
-  - Address (scheme, host, path base, path, query string)
-  - Connection (remote IP, remote port, local IP, local port, client certificate)
-  - Request headers
-  - Environment variables
+  * Registered services
+  * Address (scheme, host, path base, path, query string)
+  * Connection (remote IP, remote port, local IP, local port, client certificate)
+  * Request headers
+  * Environment variables
 
 To run the sample:
 
@@ -315,6 +433,6 @@ To run the sample:
    For Windows, the command uses the `win7-x64` runtime identifier (RID). When providing the hosting startup for a different runtime, substitute the correct RID.
 1. Set the environment variables:
    * Add the assembly name of *StartupDiagnostics* to the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
-   * Set the `DOTNET_ADDITIONAL_DEPS` environment variable to `%UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\`.
+   * On Windows, set the `DOTNET_ADDITIONAL_DEPS` environment variable to `%UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\`. On macOS/Linux, set the `DOTNET_ADDITIONAL_DEPS` environment variable to `/Users/<USER>/.dotnet/x64/additionalDeps/StartupDiagnostics/`, where `<USER>` is the user profile that contains the hosting startup.
 1. Run the sample app.
 1. Request the `/services` endpoint to see the app's registered services. Request the `/diag` endpoint to see the diagnostic information.
