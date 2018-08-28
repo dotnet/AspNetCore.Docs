@@ -34,6 +34,9 @@ namespace ErrorHandlingSample
 
 #if StatusCodePages
             #region snippet_StatusCodePages
+            // Expose the members of the 'Microsoft.AspNetCore.Http' namespace 
+            // at the top of the file:
+            // using Microsoft.AspNetCore.Http;
             app.UseStatusCodePages(async context =>
             {
                 context.HttpContext.Response.ContentType = "text/plain";
