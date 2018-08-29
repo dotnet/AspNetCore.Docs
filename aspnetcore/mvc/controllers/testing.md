@@ -37,9 +37,9 @@ The `HTTP GET Index` method has no looping or branching and only calls one metho
 * Mocks the `IBrainstormSessionRepository` service using the `GetTestSessions` method. `GetTestSessions` creates two mock brainstorm sessions with dates and session names.
 * Executes the `Index` method.
 * Makes assertions on the result returned by the method:
-  - A <xref:Microsoft.AspNetCore.Mvc.ViewResult> is returned.
-  - The [ViewDataDictionary.Model](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Model*) is a `StormSessionViewModel`.
-  - There are two brainstorming sessions stored in the `ViewDataDictionary.Model`.
+  * A <xref:Microsoft.AspNetCore.Mvc.ViewResult> is returned.
+  * The [ViewDataDictionary.Model](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Model*) is a `StormSessionViewModel`.
+  * There are two brainstorming sessions stored in the `ViewDataDictionary.Model`.
 
 [!code-csharp[](testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/HomeControllerTests.cs?name=snippet_Index_ReturnsAViewResult_WithAListOfBrainstormSessions&highlight=14-17)]
 
@@ -49,8 +49,8 @@ The Home controller's `HTTP POST Index` method tests verifies that:
 
 * The action method returns a Bad Request <xref:Microsoft.AspNetCore.Mvc.ViewResult> with the appropriate data when [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) is `false`.
 * When `ModelState.IsValid` is `true`:
-  - The `Add` method on the repository is called.
-  - A <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> is returned with the correct arguments.
+  * The `Add` method on the repository is called.
+  * A <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> is returned with the correct arguments.
 
 An invalid model state is tested by adding errors using <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.AddModelError*> as shown in the first test below:
 
