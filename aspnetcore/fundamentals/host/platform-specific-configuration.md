@@ -360,6 +360,13 @@ A hosting startup enhancement can be provided in a NuGet package. The package ha
 * The enhanced app's project file makes a package reference for the hosting startup in the app's project file (a compile-time reference). With the compile-time reference in place, the hosting startup assembly and all of its dependencies are incorporated into the app's dependency file (*\*.deps.json*).
 * The hosting startup's dependencies file is made available to the enhanced app as described in the [Runtime store](#runtime-store) section (without a compile-time reference).
 
+> [!IMPORTANT]
+> If you make changes to the *HostingStartupPackage* project and recompile it, clear the local NuGet package caches to ensure that the *HostingStartupApp* receives the updated package and not a stale package from the local cache. To clear the local NuGet caches, execute the following [dotnet nuget locals](/dotnet/core/tools/dotnet-nuget-locals) command:
+>
+> ```console
+> dotnet nuget locals all --clear
+> ```
+
 For more information on NuGet packages and the runtime store, see the following topics:
 
 * [How to Create a NuGet Package with Cross Platform Tools](https://docs.microsoft.com/dotnet/core/deploying/creating-nuget-packages)
@@ -401,6 +408,12 @@ To run the sample:
    </PropertyGroup>
    ```
 1. Observe that the service configuration key values rendered by the Index page match the values set by the package's `ServiceKeyInjection.Configure` method.
+
+If you make changes to the *HostingStartupPackage* project and recompile it, clear the local NuGet package caches to ensure that the *HostingStartupApp* receives the updated package and not a stale package from the local cache. To clear the local NuGet caches, execute the following [dotnet nuget locals](/dotnet/core/tools/dotnet-nuget-locals) command:
+
+```console
+dotnet nuget locals all --clear
+```
 
 **Activation from a class library**
 
