@@ -70,6 +70,7 @@ namespace TestingControllersSample.Api
 
         #region snippet_ActionResult
         [HttpGet("forsessionactionresult/{sessionId}")]
+        [ProducesResponseType(200)]
         public async Task<ActionResult<List<IdeaDTO>>> ForSessionActionResult(int sessionId)
         {
             var session = await _sessionRepository.GetByIdAsync(sessionId);
@@ -88,6 +89,36 @@ namespace TestingControllersSample.Api
             }).ToList();
 
             return result;
+        }
+        #endregion
+
+        #region snippet_ActionResult2
+        [HttpPost("createactionresult")]
+        [ProducesResponseType(201)]
+        public async Task<ActionResult<BrainstormSession>> CreateActionResult([FromBody]NewIdeaModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var session = await _sessionRepository.GetByIdAsync(model.SessionId);
+            if (session == null)
+            {
+                return NotFound(model.SessionId);
+            }
+
+            var idea = new Idea()
+            {
+                DateCreated = DateTimeOffset.Now,
+                Description = model.Description,
+                Name = model.Name
+            };
+            session.AddIdea(idea);
+
+            await _sessionRepository.UpdateAsync(session);
+
+            return session;
         }
         #endregion
     }

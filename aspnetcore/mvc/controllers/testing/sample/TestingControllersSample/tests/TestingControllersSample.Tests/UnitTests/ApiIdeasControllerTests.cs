@@ -169,6 +169,88 @@ namespace TestingControllersSample.Tests.UnitTests
         }
         #endregion
 
+        #region snippet_CreateActionResult
+        [Fact]
+        public async Task CreateActionResult_ReturnsNewlyCreatedIdeaForSession()
+        {
+            // Arrange
+            int testSessionId = 123;
+            string testName = "test name";
+            string testDescription = "test description";
+            var testSession = GetTestSession();
+            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
+                .Returns(Task.FromResult(testSession));
+            var controller = new IdeasController(mockRepo.Object);
+
+            var newIdea = new NewIdeaModel()
+            {
+                Description = testDescription,
+                Name = testName,
+                SessionId = testSessionId
+            };
+            mockRepo.Setup(repo => repo.UpdateAsync(testSession))
+                .Returns(Task.CompletedTask)
+                .Verifiable();
+
+            // Act
+            var result = await controller.CreateActionResult(newIdea);
+
+            // Assert
+            var actionResult = Assert.IsType<ActionResult<BrainstormSession>>(result);
+            var returnValue = Assert.IsType<BrainstormSession>(actionResult.Value);
+            mockRepo.Verify();
+            Assert.Equal(2, returnValue.Ideas.Count());
+            Assert.Equal(testName, returnValue.Ideas.LastOrDefault().Name);
+            Assert.Equal(testDescription, returnValue.Ideas.LastOrDefault().Description);
+        }
+        #endregion
+
+        #region snippet_CreateActionResultNotFoundObjectResult
+        [Fact]
+        public async Task CreateActionResult_ReturnsNotFoundObjectResultForNonexistentSession()
+        {
+            // Arrange
+            var nonExistentSessionId = 999;
+            string testName = "test name";
+            string testDescription = "test description";
+            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var controller = new IdeasController(mockRepo.Object);
+
+            var newIdea = new NewIdeaModel()
+            {
+                Description = testDescription,
+                Name = testName,
+                SessionId = nonExistentSessionId
+            };
+
+            // Act
+            var result = await controller.CreateActionResult(newIdea);
+
+            // Assert
+            var actionResult = Assert.IsType<ActionResult<BrainstormSession>>(result);
+            Assert.IsType<NotFoundObjectResult>(actionResult.Result);
+        }
+        #endregion
+
+        #region snippet_CreateActionResult
+        [Fact]
+        public async Task CreateActionResult_ReturnsBadRequest_GivenInvalidModel()
+        {
+            // Arrange & Act
+            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var controller = new IdeasController(mockRepo.Object);
+            controller.ModelState.AddModelError("error", "some error");
+
+            // Act
+            var result = await controller.CreateActionResult(model: null);
+
+            // Assert
+            var actionResult = Assert.IsType<ActionResult<BrainstormSession>>(result);
+            Assert.IsType<BadRequestObjectResult>(actionResult.Result);
+        }
+        #endregion
+
         private BrainstormSession GetTestSession()
         {
             var session = new BrainstormSession()
