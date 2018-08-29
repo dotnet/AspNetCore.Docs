@@ -14,7 +14,7 @@ See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/au
 
 ::: moniker range="= aspnetcore-2.0"
 
-See the [this pdf] (https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_July16_18.pdf)
+See [this pdf](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_July16_18.pdf)
 
 ::: moniker-end
 
