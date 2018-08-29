@@ -76,6 +76,7 @@ This tutorial is advanced. You should be familiar with:
 In ASP.NET Core 2.1, `User.IsInRole` fails when using `AddDefaultIdentity`. This tutorial uses `AddDefaultIdentity` and therefore requires ASP.NET Core 2.2 preview 1 or later. See [this GitHub issue](https://github.com/aspnet/Identity/issues/1813#issuecomment-394543909) for a work-around.
 
 ::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
 
 ## The starter and completed app
 
