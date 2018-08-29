@@ -73,6 +73,40 @@ public void ConfigureServices(IServiceCollection services)
 > [!IMPORTANT]
 > We recommend using [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) to encrypt the keys at rest.
 
+::: moniker range=">= aspnetcore-2.2"
+
+## Entity Framework Core
+
+The [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package allows storing data protection keys using Entity Framework Core and any of the database providers it supports. Keys can be shared across several instances of a web app using a database.
+
+To configure the EF Core provider, call the [`PersistKeysToDbContext<TContext>`](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) method:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services
+        .AddDbContext<MyKeysContext>(o => o.UseSqlServer(myConnectionString))
+        .AddDataProtection()
+        .PersistKeysToDbContext<MyKeysContext>();
+}
+```
+
+The generic parameter, `TContext`, must inherit from [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and
+[IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext).
+
+```csharp
+class MyKeysContext : DbContext, IDataProtectionKeyContext
+{
+    // A recommended constructor overload when using EF Core with dependency injection
+    public MyKeysContext(DbContextOptions<DataProtectionKeyContext> options) : base(options) { }
+
+    // this maps to a table which will store keys
+    public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
+}
+```
+
+::: moniker-end
+
 ## Custom key repository
 
 If the in-box mechanisms aren't appropriate, the developer can specify their own key persistence mechanism by providing a custom [IXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.ixmlrepository).
