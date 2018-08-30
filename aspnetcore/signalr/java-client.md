@@ -14,7 +14,7 @@ By [Mikael Mengistu](https://twitter.com/MikaelM_12)
 
 The Java client enables connecting to an ASP.NET Core SignalR server from Java code, including Android apps. Like the [JavaScript client](xref:signalr/javascript-client) and the [.NET client](xref:signalr/dotnet-client), the Java client enables you to receive and send messages to a hub in real time. The Java client is available in ASP.NET Core 2.2 and later.
 
-The sample Java console app referenced in this article uses the Java client.
+The sample Java console app referenced in this article uses the SignalR Java client.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/java-client/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
