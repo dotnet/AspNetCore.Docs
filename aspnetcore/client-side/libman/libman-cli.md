@@ -213,7 +213,7 @@ Consider the following *libman.json* file produced by running `libman init`:
   }
   ```
 
-* To install the *calendar.js* and *calendar.css* files from *C:\temp\contosoCalendar\* using the file system provider:
+* To install the *calendar.js* and *calendar.css* files from *C:\\temp\\contosoCalendar\\* using the file system provider:
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
