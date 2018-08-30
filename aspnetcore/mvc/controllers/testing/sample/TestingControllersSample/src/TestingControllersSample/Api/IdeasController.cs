@@ -71,6 +71,7 @@ namespace TestingControllersSample.Api
         #region snippet_ActionResult
         [HttpGet("forsessionactionresult/{sessionId}")]
         [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<List<IdeaDTO>>> ForSessionActionResult(int sessionId)
         {
             var session = await _sessionRepository.GetByIdAsync(sessionId);
@@ -95,6 +96,8 @@ namespace TestingControllersSample.Api
         #region snippet_ActionResult2
         [HttpPost("createactionresult")]
         [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<BrainstormSession>> CreateActionResult([FromBody]NewIdeaModel model)
         {
             if (!ModelState.IsValid)
@@ -118,7 +121,7 @@ namespace TestingControllersSample.Api
 
             await _sessionRepository.UpdateAsync(session);
 
-            return session;
+            return CreatedAtAction(nameof(CreateActionResult), new { id = session.Id }, session);
         }
         #endregion
     }

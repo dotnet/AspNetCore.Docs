@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -198,7 +199,8 @@ namespace TestingControllersSample.Tests.UnitTests
 
             // Assert
             var actionResult = Assert.IsType<ActionResult<BrainstormSession>>(result);
-            var returnValue = Assert.IsType<BrainstormSession>(actionResult.Value);
+            var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(actionResult.Result);
+            var returnValue = Assert.IsType<BrainstormSession>(createdAtActionResult.Value);
             mockRepo.Verify();
             Assert.Equal(2, returnValue.Ideas.Count());
             Assert.Equal(testName, returnValue.Ideas.LastOrDefault().Name);
