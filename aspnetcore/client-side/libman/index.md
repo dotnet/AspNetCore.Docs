@@ -28,4 +28,5 @@ LibMan isn't a package management system. If you're already using a package mana
 ## Additional resources
 
 * <xref:client-side/libman/libman-vs>
+* <xref:client-side/libman/libman-cli>
 * [LibMan GitHub repository](https://github.com/aspnet/LibraryManager)
