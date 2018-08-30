@@ -105,7 +105,7 @@ The app's Index page reads and renders the configuration values for the two keys
 
 ### Console app without an entry point
 
-*This approach is only available for .NET Core apps, not .NET 4.x.*
+*This approach is only available for .NET Core apps, not .NET Framework.*
 
 A dynamic hosting startup enhancement that doesn't require a compile-time reference for activation can be provided in a console app without an entry point. The app contains a `HostingStartup` attribute. To create a dynamic hosting startup:
 
@@ -154,8 +154,8 @@ Three options for hosting startup activation are:
 
 * [Runtime store](#runtime-store) &ndash; Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
 * Compile-time reference required for activation
-  - [NuGet package](#nuget-package)
-  - [Project bin folder](#project-bin-folder)
+  * [NuGet package](#nuget-package)
+  * [Project bin folder](#project-bin-folder)
 
 ### Runtime store
 
