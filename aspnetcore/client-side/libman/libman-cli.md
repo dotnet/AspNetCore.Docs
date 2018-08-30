@@ -70,9 +70,13 @@ Commands:
   cache      List or clean libman cache contents
   clean      Deletes all library files defined in libman.json from the project
   init       Create a new libman.json
-  install    Add a library definition to the libman.json file, and download the library to the specified location
-  restore    Downloads all files from provider and saves them to specified destination
-  uninstall  Deletes all files for the specified library from their specified destination, then removes the specified library definition from libman.json
+  install    Add a library definition to the libman.json file, and download the 
+             library to the specified location
+  restore    Downloads all files from provider and saves them to specified 
+             destination
+  uninstall  Deletes all files for the specified library from their specified 
+             destination, then removes the specified library definition from 
+             libman.json
   update     Updates the specified library
 
 Use "libman [command] --help" for more information about a command.
