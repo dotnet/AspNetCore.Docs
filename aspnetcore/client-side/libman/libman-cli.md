@@ -179,7 +179,7 @@ The following options are available for the `libman install` command:
 
 ### Examples
 
-Consider the following *libman.json* file produced by running `libman init`:
+Consider the following *libman.json* file:
 
 ```json
 {
@@ -189,69 +189,69 @@ Consider the following *libman.json* file produced by running `libman init`:
 }
 ```
 
-* To install the jQuery version 3.2.1 *jquery.min.js* file to the *wwwroot\scripts\jquery* folder using the CDNJS provider:
+To install the jQuery version 3.2.1 *jquery.min.js* file to the *wwwroot\scripts\jquery* folder using the CDNJS provider:
 
-  ```console
-  libman install jquery@3.2.1 --provider cdnjs --destination wwwroot\scripts\jquery --files jquery.min.js
-  ```
+```console
+libman install jquery@3.2.1 --provider cdnjs --destination wwwroot\scripts\jquery --files jquery.min.js
+```
 
-  The *libman.json* file resembles the following:
+The *libman.json* file resembles the following:
 
-  ```json
-  {
-    "version": "1.0",
-    "defaultProvider": "cdnjs",
-    "libraries": [
-      {
-        "library": "jquery@3.2.1",
-        "destination": "wwwroot\\scripts\\jquery",
-        "files": [
-          "jquery.min.js"
-        ]
-      }
-    ]
-  }
-  ```
+```json
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.2.1",
+      "destination": "wwwroot\\scripts\\jquery",
+      "files": [
+        "jquery.min.js"
+      ]
+    }
+  ]
+}
+```
 
-* To install the *calendar.js* and *calendar.css* files from *C:\\temp\\contosoCalendar\\* using the file system provider:
+To install the *calendar.js* and *calendar.css* files from *C:\\temp\\contosoCalendar\\* using the file system provider:
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
   ```
 
-  The following prompt appears for two reasons:
+The following prompt appears for two reasons:
 
-  * The *libman.json* file doesn't contain a `defaultDestination` property.
-  * The `libman install` command doesn't contain the `-d|--destination` option.
+* The *libman.json* file doesn't contain a `defaultDestination` property.
+* The `libman install` command doesn't contain the `-d|--destination` option.
 
-  ![libman install command - destination](_static/libman-install-destination.png)
+![libman install command - destination](_static/libman-install-destination.png)
 
-  After accepting the default destination, the *libman.json* file resembles the following:
+After accepting the default destination, the *libman.json* file resembles the following:
 
-  ```json
-  {
-    "version": "1.0",
-    "defaultProvider": "cdnjs",
-    "libraries": [
-      {
-        "library": "jquery@3.2.1",
-        "destination": "wwwroot\\scripts\\jquery",
-        "files": [
-          "jquery.min.js"
-        ]
-      },
-      {
-        "library": "C:\\temp\\contosoCalendar\\",
-        "provider": "filesystem",
-        "destination": "wwwroot\\lib\\contosoCalendar",
-        "files": [
-          "calendar.js",
-          "calendar.css"
-        ]
-      }
-    ]
-  }
-  ```
+```json
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.2.1",
+      "destination": "wwwroot\\scripts\\jquery",
+      "files": [
+        "jquery.min.js"
+      ]
+    },
+    {
+      "library": "C:\\temp\\contosoCalendar\\",
+      "provider": "filesystem",
+      "destination": "wwwroot\\lib\\contosoCalendar",
+      "files": [
+        "calendar.js",
+        "calendar.css"
+      ]
+    }
+  ]
+}
+```
 
 ## Restore library files
 
