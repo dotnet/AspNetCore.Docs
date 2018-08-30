@@ -12,7 +12,7 @@ uid: signalr/java-client
 
 By [Mikael Mengistu](https://twitter.com/MikaelM_12)
 
-The Java client enables connecting to an ASP.NET Core SignalR server from Java code, including Android apps. Like the [JavaScript client](xref:signalr/javascript-client) and the [.NET client](xref:signalr/javascript-client), the Java client enables you to receive and send and receive messages to a hub in real time. The Java client is available in ASP.NET Core 2.2 or later.
+The Java client enables connecting to an ASP.NET Core SignalR server from Java code, including Android apps. Like the [JavaScript client](xref:signalr/javascript-client) and the [.NET client](xref:signalr/dotnet-client), the Java client enables you to receive and send messages to a hub in real time. The Java client is available in ASP.NET Core 2.2 and later.
 
 The sample Java console app referenced in this article uses the Java client.
 
@@ -40,7 +40,7 @@ To establish a connection, create a `HubConnectionBuilder` and call `build`. The
 
 ## Call hub methods from client
 
-A call to `send` invokes the hub. Pass the hub method name and any arguments defined in the hub method to `send`.
+A call to `send` invokes a hub method. Pass the hub method name and any arguments defined in the hub method to `send`.
 
 [!code-java[send method](java-client/sample/src/main/java/Chat.java?range=31)]
 
@@ -52,7 +52,7 @@ Use `hubConnection.on` to define methods on the client that the hub can call. De
 
 ## Known limitations
 
-This is an early preview release of the Java client. There are many features that aren't yet supported. The RTM release will address the following gaps:
+This is an early preview release of the Java client. There are many features that aren't supported yet. The RTM release will address the following gaps:
 
 * Only primitive types can be accepted as parameters and return types.
 * The APIs are synchronous.
