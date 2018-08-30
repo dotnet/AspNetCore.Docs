@@ -68,7 +68,7 @@ namespace TestingControllersSample.Api
         }
         #endregion
 
-        #region snippet_ActionResult
+        #region snippet_ForSessionActionResult
         [HttpGet("forsessionactionresult/{sessionId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -93,7 +93,7 @@ namespace TestingControllersSample.Api
         }
         #endregion
 
-        #region snippet_ActionResult2
+        #region snippet_CreateActionResult
         [HttpPost("createactionresult")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -106,6 +106,7 @@ namespace TestingControllersSample.Api
             }
 
             var session = await _sessionRepository.GetByIdAsync(model.SessionId);
+
             if (session == null)
             {
                 return NotFound(model.SessionId);
