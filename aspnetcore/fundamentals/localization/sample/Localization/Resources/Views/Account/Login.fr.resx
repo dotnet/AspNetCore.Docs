@@ -130,7 +130,7 @@
     <value>Inscrivez-vous en tant que nouvel utilisateur?</value>
   </data>
   <data name="There are no external authentication services configured. See &lt;a href=&quot;http://go.microsoft.com/fwlink/?LinkID=532715&quot;&gt;this article&lt;/a&gt; for details on setting up this ASP.NET application to support logging in via external services." xml:space="preserve">
-    <value>Il n'y pas de services externes d'authentification configurés. Voir &lt;a href="http://go.microsoft.com/fwlink/?LinkID=532715"&gt;cet article&lt;/a&gt; pour plus de détails sur la mise en place de cette application ASP.NET pour soutenir connecter via des services externes.</value>
+    <value>Il n'y pas de services externes d'authentification configurés. Voir &lt;a href="https://go.microsoft.com/fwlink/?LinkID=532715"&gt;cet article&lt;/a&gt; pour plus de détails sur la mise en place de cette application ASP.NET pour soutenir connecter via des services externes.</value>
   </data>
   <data name="Use a local account to log in." xml:space="preserve">
     <value>Utiliser un compte local pour vous connecter.</value>
