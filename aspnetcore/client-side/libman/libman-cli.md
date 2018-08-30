@@ -165,7 +165,7 @@ The following options are available for the `libman install` command:
 
 * `--files <FILE>`
 
-  Specify the name of the file to install from the library. If not specified, all files from the library are installed. Provide one `--files` option per file to be installed.
+  Specify the name of the file to install from the library. If not specified, all files from the library are installed. Provide one `--files` option per file to be installed. Relative paths are supported too. For example: `--files dist/browser/signalr.js`.
 
 * `-p|--provider <PROVIDER>`
 
