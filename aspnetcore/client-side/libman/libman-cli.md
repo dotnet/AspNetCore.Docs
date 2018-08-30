@@ -179,28 +179,78 @@ The following options are available for the `libman install` command:
 
 ### Examples
 
-* To install all files from the latest version of jQuery:
+Consider the following *libman.json* file produced by running `libman init`:
+
+```json
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": []
+}
+```
+
+* To install the jQuery version 3.2.1 *jquery.min.js* file to the *wwwroot\scripts\jquery* folder using the CDNJS provider:
 
   ```console
-  libman install jquery
+  libman install jquery@3.2.1 --provider cdnjs --destination wwwroot\scripts\jquery --files jquery.min.js
   ```
 
-* To install all files from jQuery version 3.2.1:
+  The *libman.json* file resembles the following:
 
-  ```console
-  libman install jquery@3.2.1
-  ```
-
-* To install the latest jQuery version's *jquery.min.js* file to the *wwwroot\scripts\jquery* folder using the CDNJS provider:
-
-  ```console
-  libman install jquery --provider cdnjs --destination wwwroot\scripts\jquery --files jquery.min.js
+  ```json
+  {
+    "version": "1.0",
+    "defaultProvider": "cdnjs",
+    "libraries": [
+      {
+        "library": "jquery@3.2.1",
+        "destination": "wwwroot\\scripts\\jquery",
+        "files": [
+          "jquery.min.js"
+        ]
+      }
+    ]
+  }
   ```
 
 * To install the *calendar.js* and *calendar.css* files from *C:\temp\contosoCalendar\* using the file system provider:
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
+  ```
+
+  The following prompt appears for two reasons:
+
+  * The *libman.json* file doesn't contain a `defaultDestination` property.
+  * The `libman install` command doesn't contain the `-d|--destination` option.
+
+  ![libman install command - destination](_static/libman-install-destination.png)
+
+  After accepting the default destination, the *libman.json* file resembles the following:
+
+  ```json
+  {
+    "version": "1.0",
+    "defaultProvider": "cdnjs",
+    "libraries": [
+      {
+        "library": "jquery@3.2.1",
+        "destination": "wwwroot\\scripts\\jquery",
+        "files": [
+          "jquery.min.js"
+        ]
+      },
+      {
+        "library": "C:\\temp\\contosoCalendar\\",
+        "provider": "filesystem",
+        "destination": "wwwroot\\lib\\contosoCalendar",
+        "files": [
+          "calendar.js",
+          "calendar.css"
+        ]
+      }
+    ]
+  }
   ```
 
 ## Restore library files
