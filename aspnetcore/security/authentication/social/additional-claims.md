@@ -31,6 +31,7 @@ The OAuth authentication provider establishes a trust relationship with an app u
 * [Microsoft authentication](xref:security/authentication/microsoft-logins)
 * [Twitter authentication](xref:security/authentication/twitter-logins)
 * [Other authentication providers](xref:security/authentication/otherlogins)
+* [OpenIdConnect](xref:migration/1x-to-2x/identity-2x#openid-connect-oidc-authentication)
 
 The sample app configures the Google authentication provider with a client ID and client secret provided by Google:
 
