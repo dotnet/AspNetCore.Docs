@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to use the LibMan command-line interface (CLI) in an ASP.NET Core project.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/27/2018
+ms.date: 08/30/2018
 uid: client-side/libman/libman-cli
 ---
 # Use the LibMan command-line interface (CLI) with ASP.NET Core
@@ -125,6 +125,8 @@ To create a *libman.json* file in an ASP.NET Core project:
 * Type the name of the default provider, or press `Enter` to use the default CDNJS provider. Valid values include:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
+
+  ![libman init command - default provider](_static/libman-init-provider.png)
 
 A *libman.json* file is added to the project root with the following content:
 
