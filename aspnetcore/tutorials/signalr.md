@@ -87,7 +87,7 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). The JavaScript client library isn't automatically included in the project. For this tutorial, you use the [Library Manager (LibMan)](xref:client-side/libman/index) to get the client library from *unpkg*. [unpkg](https://unpkg.com/#/) is a [content delivery network](https://wikipedia.org/wiki/Content_delivery_network) that can deliver anything found in [npm, the Node.js package manager](https://www.npmjs.com/get-npm).
+The SignalR server library is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). The JavaScript client library isn't automatically included in the project. For this tutorial, you use [Library Manager (LibMan)](xref:client-side/libman/index) to get the client library from *unpkg*. [unpkg](https://unpkg.com/#/) is a [content delivery network](https://wikipedia.org/wiki/Content_delivery_network) that can deliver anything found in [npm, the Node.js package manager](https://www.npmjs.com/get-npm).
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -153,7 +153,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
   ```
 
   The parameters specify the following options:
-  * Usee the unpkg provider.
+  * Use the unpkg provider.
   * Copy files to the *wwwroot/lib/signalr* destination.
   * Copy only the specified files.
 
@@ -193,7 +193,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 ## Create the SignalR client code
 
-* Replace the content in *Pages\Index.cshtml* with the following:
+* Replace the content in *Pages\Index.cshtml* with the following code:
 
   [!code-cshtml[Index](signalr/sample/Pages/Index.cshtml)]
 
