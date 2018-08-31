@@ -72,6 +72,7 @@ and the first capture must be the token name to look up in the config source.
 ## Config Builders In This Project
 
 ### EnvironmentConfigBuilder
+
 ```xml
 <add name="Environment"
     [mode|prefix|stripPrefix|tokenPattern]
@@ -79,12 +80,11 @@ and the first capture must be the token name to look up in the config source.
 ```
 This is the simplest of the config builders. It draws its values from Environment, and it does not have any additional configuration options.
   * __NOTE:__ In a Windows container environment, variables set at run time are only injected into the EntryPoint process environment. 
-  Applications that run as a service or a non-EntryPoint process will not pick up these variables unless they are otherwise injected through
-  some mechanism in the container. For [IIS](https://github.com/Microsoft/iis-docker/pull/41)/[ASP.Net](https://github.com/Microsoft/aspnet-docker)-based
-  containers, the current version of [ServiceMonitor.exe](https://github.com/Microsoft/iis-docker/pull/41) handles this in the *DefaultAppPool*
-  only. Other Windows-based container variants may need to develop their own injection mechanism for non-EntryPoint processes.
+  Applications that run as a service or a non-EntryPoint process will not pick up these variables unless they are otherwise injected through some mechanism in the container. For [IIS](https://github.com/Microsoft/iis-docker/pull/41)/[ASP.Net](https://github.com/Microsoft/aspnet-docker)-based
+  containers, the current version of [ServiceMonitor.exe](https://github.com/Microsoft/iis-docker/pull/41) handles this in the *DefaultAppPool*  only. Other Windows-based container variants may need to develop their own injection mechanism for non-EntryPoint processes.
 
 ### UserSecretsConfigBuilder
+
 ```xml
 <add name="UserSecrets"
     [mode|prefix|stripPrefix|tokenPattern]
@@ -92,6 +92,7 @@ This is the simplest of the config builders. It draws its values from Environmen
     [optional="true"]
     type="Microsoft.Configuration.ConfigurationBuilders.UserSecretsConfigBuilder, Microsoft.Configuration.ConfigurationBuilders.UserSecrets" />
 ```
+
 To enable a feature similar to .Net Core's user secrets you can use this config builder. Microsoft is adding better secrets management in future releases
 of Visual Studio, and this config builder will be a part of that plan. Web Applications are the initial target for this work in Visual Studio, but this
 configuration builder can be used in any full-framework project if you specify your own secrets file. (Or define the 'UserSecretsId' property in your
@@ -133,10 +134,8 @@ and currently exposes the format of the file - which as mentioned above - should
     [preloadSecretNames="true"]
     type="Microsoft.Configuration.ConfigurationBuilders.AzureKeyVaultConfigBuilder, Microsoft.Configuration.ConfigurationBuilders.Azure" />
 ```
-If your secrets are kept in Azure Key Vault, then this config builder is for you. There are three additional attributes for this config builder. The `vaultName` is
-required. The other attributes allow you some manual control about which vault to connect to, but are only necessary if the application is not running in an
-environment that works magically with `Microsoft.Azure.Services.AppAuthentication`. The Azure Services Authentication library is used to automatically pick
-up connection information from the execution environment if possible, but you can override that feature by providing a connection string instead.
+
+If your secrets are kept in Azure Key Vault, then this config builder is for you. There are three additional attributes for this config builder. The `vaultName` is required. The other attributes allow you some manual control about which vault to connect to, but are only necessary if the application is not running in an environment that works magically with `Microsoft.Azure.Services.AppAuthentication`. The Azure Services Authentication library is used to automatically pick up connection information from the execution environment if possible, but you can override that feature by providing a connection string instead.
   * `vaultName` - This is a required attribute. It specifies the name of the vault in your Azure subscription from which to read key/value pairs.
   * `connectionString` - A connection string usable by [AzureServiceTokenProvider](https://docs.microsoft.com/en-us/azure/key-vault/service-to-service-authentication#connection-string-support)
   * `uri` - Connect to other Key Vault providers with this attribute. If not specified, Azure is the assumed Vault provider. If the uri _is_specified, then `vaultName` is no longer a required parameter.
@@ -146,6 +145,7 @@ up connection information from the execution environment if possible, but you ca
   "List" access. (NOTE: Disabling preload is incompatible with Greedy mode.)
 
 ### KeyPerFileConfigBuilder
+
 ```xml
 <add name="KeyPerFile"
     [mode|prefix|stripPrefix|tokenPattern]
@@ -166,6 +166,7 @@ their orchestrated windows containers in this key-per-file manner.
   * `optional` - Specifies whether the config builder should cause errors if the source directory doesn't exist. The default is `false`.
 
 ### SimpleJsonConfigBuilder
+
 ```xml
 <add name="SimpleJson"
     [mode|prefix|stripPrefix|tokenPattern]
@@ -174,6 +175,7 @@ their orchestrated windows containers in this key-per-file manner.
     [jsonMode="(Flat|Sectional)"]
     type="Microsoft.Configuration.ConfigurationBuilders.SimpleJsonConfigBuilder, Microsoft.Configuration.ConfigurationBuilders.Json" />
 ```
+
 Because .Net Core projects can rely heavily on json files for configuration, it makes some sense to allow those same files to be used in full-framework
 configuration as well. You can imagine that the heirarchical nature of json might enable some fantastic capabilities for building complex configuration sections.
 But this config builders is meant to be a simple mapping from a flat key/value source into specific key/value areas of full-framework configuration. Thus its name
@@ -228,8 +230,6 @@ public class CustomConfigBuilder : KeyValueConfigBuilder
 ```
 
 ## How to contribute
-
-Information on contributing to this repo is in the [Contributing Guide](CONTRIBUTING.md).
 
 ## Blog Posts
 [Announcing .NET 4.7.1 Tools for the Cloud](https://blogs.msdn.microsoft.com/webdev/2017/11/17/announcing-net-4-7-1-tools-for-the-cloud/)  
