@@ -14,8 +14,14 @@ using ServiceDescriptorsFactory;
 
 namespace StartupDiagnostics
 {
+    /// <summary>
+    /// Class used to configure the app with the hosting startup enhancements.
+    /// </summary>
     public class StartupDiagnosticsHostingStartup : IHostingStartup
     {
+        /// <summary>
+        /// Configure the IWebHostBuilder with the hosting startup enhancements.
+        /// </summary>
         public void Configure(IWebHostBuilder builder)
         {
             Console.WriteLine("StartupDiagnostics.StartupDiagnosticsHostingStartup");
@@ -38,15 +44,24 @@ namespace StartupDiagnostics
         }
     }
 
+    /// <summary>
+    /// Startup filter for diagnostic middleware.
+    /// </summary>
     public class DiagnosticMiddlewareStartupFilter : IStartupFilter
     {
         private readonly IHostingEnvironment _env;
 
+        /// <summary>
+        /// Construct diagnostic middleware startup filter.
+        /// </summary>
         public DiagnosticMiddlewareStartupFilter(IHostingEnvironment env)
         {
             _env = env;
         }
 
+        /// <summary>
+        /// Configure diagnostic middleware.
+        /// </summary>
         public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
         {
             return app =>
@@ -99,7 +114,9 @@ namespace StartupDiagnostics
         }
     }
 
-    // Use a middleware to write out diagnostic information from the app.
+    /// <summary>
+    /// A middleware to write out diagnostic information from the app.
+    /// </summary>
     public class DiagnosticMiddleware
     {
         private readonly RequestDelegate _next;
@@ -107,6 +124,9 @@ namespace StartupDiagnostics
         private readonly IHostingEnvironment _env;
         private string cr = Environment.NewLine;
 
+        /// <summary>
+        /// Construct the diagnostic middleware.
+        /// </summary>
         public DiagnosticMiddleware(RequestDelegate next, 
                                     ILoggerFactory loggerFactory,
                                     IHostingEnvironment env)
@@ -116,6 +136,9 @@ namespace StartupDiagnostics
             _env = env;
         }
 
+        /// <summary>
+        /// Invoke the diagnostic middleware.
+        /// </summary>
         public async Task Invoke(HttpContext ctx)
         {
             var path = ctx.Request.Path;

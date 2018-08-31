@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace HostingStartupSample
+namespace HostingStartupApp
 {
     public class Program
     {
@@ -21,7 +21,7 @@ namespace HostingStartupSample
                 // To scan the assembly for HostingStartupAttributes, the
                 // ApplicationName must be set. This can be done with
                 // UseSetting, Configure, or UseStartup.
-                // .UseSetting(WebHostDefaults.ApplicationKey, "HostingStartupSample")
+                // .UseSetting(WebHostDefaults.ApplicationKey, "HostingStartupApp")
                 // .Configure(_ => { })
                 .UseStartup<Startup>();
     }

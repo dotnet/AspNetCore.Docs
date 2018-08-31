@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HostingStartupSample.Pages
+namespace HostingStartupApp.Pages
 {
     public class ErrorModel : PageModel
     {
