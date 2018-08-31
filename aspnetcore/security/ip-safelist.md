@@ -1,25 +1,23 @@
 ---
 title: Share cookies among apps with ASP.NET and ASP.NET Core
 author: damienbod
-description: Learn how to share authentication cookies among ASP.NET 4.x and ASP.NET Core apps.
+description: Learn how to write Middleware to validate remote IP addresses
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 01/31/2018
 uid: security/ip-safelist
 ---
-# Share cookies among apps with ASP.NET and ASP.NET Core
+# IP-Safelist Middleware in ASP.NET Core
 
 By [Damien Bowden](https://twitter.com/damien_bod) and [Tom Dykstra](https://github.com/tdykstra)
  
 This help article shows how a client safe-list could be implemented using ASP.NET Core middleware checking the Remote IP address of the request. If the client IP is on the safe-list, no restrictions exist.
-
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/ip-safelist/samples/2.x/ClientIpAspNetCore) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 The sample illustrates cookie sharing across three apps that use cookie authentication:
 
 * ASP.NET Core 2.1 Middleware which checks the remote IP (IP4, IP6) and validates this uses a safe-list of IPs from the app.settings.
-
 
 
 The middleware uses an admin white-list parameter from the constructor to compare with the remote ip address from the HttpContext Connection property. This is different to previous versions of .NET. In the example, all GET requests are allowed. If any other request method is used, the remote IP is used to check if it exists in the safe-list. If it does not exist, a 403 is returned.
