@@ -1,5 +1,5 @@
 ---
-title: Share cookies among apps with ASP.NET and ASP.NET Core
+title: Remote IP HTTP request safe-list in ASP.NET Core
 author: damienbod
 description: Learn how to write Middleware to validate remote IP addresses
 ms.author: tdykstra
