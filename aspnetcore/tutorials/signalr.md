@@ -29,7 +29,7 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2017 version 15.7.3 or later](https://www.visualstudio.com/downloads/) with the **ASP.NET and web development** workload
+* [Visual Studio 2017 version 15.8 or later](https://www.visualstudio.com/downloads/) with the **ASP.NET and web development** workload
 * [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
 
 # [Visual Studio Code](#tab/visual-studio-code)
