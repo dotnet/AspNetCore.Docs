@@ -150,7 +150,7 @@ When multiple hosting startup assembles are present, their [Configure](/dotnet/a
 
 ## Activation
 
-Three options for hosting startup activation are:
+Options for hosting startup activation are:
 
 * [Runtime store](#runtime-store) &ndash; Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
 * Compile-time reference required for activation
@@ -189,7 +189,7 @@ This command places the hosting startup assembly and other dependencies that are
 
 ---
 
-If you desire to place the assembly and dependencies for global use, add the `-o|--output` switch to the `dotnet store` command with the following path:
+If you desire to place the assembly and dependencies for global use, add the `-o|--output` option to the `dotnet store` command with the following path:
 
 # [Windows](#tab/windows)
 
@@ -271,7 +271,7 @@ The shared framework version reflects the version of the shared runtime that the
 
 The location of the implementation's *\*.deps.json* file is listed in the `DOTNET_ADDITIONAL_DEPS` environment variable.
 
-If the file is placed in the user profile's *.dotnet* folder for per-user use, set the environment variable's value to:
+If the file is placed in the user profile's *.dotnet* folder, set the environment variable's value to:
 
 # [Windows](#tab/windows)
 
@@ -315,7 +315,7 @@ If the file is placed in the .NET Core installation for global use, provide the 
 
 ---
 
-For the sample app (*HostingStartupApp*) to find the dependencies file (*HostingStartupApp.runtimeconfig.json*), the dependencies file is placed in the user's profile. and 
+For the sample app (*HostingStartupApp*) to find the dependencies file (*HostingStartupApp.runtimeconfig.json*), the dependencies file is placed in the user's profile.
 
 # [Windows](#tab/windows)
 
@@ -369,9 +369,9 @@ A hosting startup enhancement can be provided in a NuGet package. The package ha
 
 For more information on NuGet packages and the runtime store, see the following topics:
 
-* [How to Create a NuGet Package with Cross Platform Tools](https://docs.microsoft.com/dotnet/core/deploying/creating-nuget-packages)
-* [Publishing packages](https://docs.microsoft.com/nuget/create-packages/publish-a-package)
-* [Runtime package store](https://docs.microsoft.com/dotnet/core/deploying/runtime-store)
+* [How to Create a NuGet Package with Cross Platform Tools](/dotnet/core/deploying/creating-nuget-packages)
+* [Publishing packages](/nuget/create-packages/publish-a-package)
+* [Runtime package store](/dotnet/core/deploying/runtime-store)
 
 ### Project bin folder
 
@@ -382,7 +382,7 @@ A hosting startup enhancement can be provided by a *bin*-deployed assembly in th
 
 ## Sample code
 
-The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates three hosting startup implementation scenarios:
+The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates hosting startup implementation scenarios:
 
 * Two hosting startup assemblies (class libraries) set a pair of in-memory configuration key-value pairs each:
   * NuGet package (*HostingStartupPackage*)
@@ -434,16 +434,16 @@ dotnet nuget locals all --clear
 
 **Activation from a runtime store-deployed assembly**
 
-1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows OS starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing Windows PowerShell](/powershell/scripting/setup/installing-windows-powershell).
+1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing Windows PowerShell](/powershell/scripting/setup/installing-powershell#powershell-core).
 1. Build the *StartupDiagnostics* project. After the project is built, a build target in the project file automatically:
    * Triggers the PowerShell script to modify the *StartupDiagnostics.deps.json* file.
    * Moves the *StartupDiagnostics.deps.json* file to the user profile's *additionalDeps* folder.
 1. Execute the `dotnet store` command at a command prompt in the hosting startup's directory to store the assembly and its dependencies in the user profile's runtime store:
 
    ```console
-   dotnet store --manifest StartupDiagnostics.csproj --runtime win7-x64
+   dotnet store --manifest StartupDiagnostics.csproj --runtime <RID>
    ```
-   For Windows, the command uses the `win7-x64` runtime identifier (RID). When providing the hosting startup for a different runtime, substitute the correct RID.
+   For Windows, the command uses the `win7-x64` [runtime identifier (RID)](/dotnet/core/rid-catalog). When providing the hosting startup for a different runtime, substitute the correct RID.
 1. Set the environment variables:
    * Add the assembly name of *StartupDiagnostics* to the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.
    * On Windows, set the `DOTNET_ADDITIONAL_DEPS` environment variable to `%UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\`. On macOS/Linux, set the `DOTNET_ADDITIONAL_DEPS` environment variable to `/Users/<USER>/.dotnet/x64/additionalDeps/StartupDiagnostics/`, where `<USER>` is the user profile that contains the hosting startup.
