@@ -10,7 +10,7 @@ using TestingControllersSample.Core.Model;
 namespace TestingControllersSample.Api
 {
     [Route("api/ideas")]
-    public class IdeasController : Controller
+    public class IdeasController : ControllerBase
     {
         private readonly IBrainstormSessionRepository _sessionRepository;
 
