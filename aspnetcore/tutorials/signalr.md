@@ -95,11 +95,11 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 
 * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**. 
 
-* For **Library**, enter *@aspnet/signalr@1*, and then select the latest version that isn't preview.
+* For **Library**, enter _@aspnet/signalr@1_, and then select the latest version that isn't preview.
 
   ![Add Client-Side Library dialog - select library](signalr/_static/libman1.png)
 
-* Select **Choose specific files**, and then select *signalr.js* and *signalr.min.js* from the *dist/browser* folder.
+* Select **Choose specific files**, expand the *dist/browser* folder, and then select *signalr.js* and *signalr.min.js*.
 
 * Set **Target Location** to *wwwroot/lib/signalr/*, and then select **Install**.
 
