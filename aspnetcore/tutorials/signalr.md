@@ -87,21 +87,21 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). The JavaScript client library isn't automatically included in the project. For this tutorial, you use the [Library Manager (LibMan)](xref:client-side/libman/index) to get the client libary from *unpkg*. [unpkg](https://unpkg.com/#/) is a [content delivery network](https://en.wikipedia.org/wiki/Content_delivery_network) that can deliver anything found in [npm, the Node.js package manager](https://www.npmjs.com/get-npm).
+The SignalR server library is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). The JavaScript client library isn't automatically included in the project. For this tutorial, you use the [Library Manager (LibMan)](xref:client-side/libman/index) to get the client library from *unpkg*. [unpkg](https://unpkg.com/#/) is a [content delivery network](https://wikipedia.org/wiki/Content_delivery_network) that can deliver anything found in [npm, the Node.js package manager](https://www.npmjs.com/get-npm).
 
 # [Visual Studio](#tab/visual-studio/)
 
-* In **Solution Explorer**, right-click the project, and then select **Add > Client-Side Library**.
+* In **Solution Explorer**, right-click the project, and select **Add** > **Client-Side Library**.
 
 * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**. 
 
-* For **Library**, enter _@aspnet/signalr@1_, and then select the latest version that isn't preview.
+* For **Library**, enter _@aspnet/signalr@1_, and select the latest version that isn't preview.
 
   ![Add Client-Side Library dialog - select library](signalr/_static/libman1.png)
 
-* Select **Choose specific files**, expand the *dist/browser* folder, and then select *signalr.js* and *signalr.min.js*.
+* Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
 
-* Set **Target Location** to *wwwroot/lib/signalr/*, and then select **Install**.
+* Set **Target Location** to *wwwroot/lib/signalr/*, and select **Install**.
 
   ![Add Client-Side Library dialog - select files and destination](signalr/_static/libman2.png)
 
@@ -109,13 +109,13 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-* In the **Integrated Terminal**, navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
-
-* Run the following command to install LibMan.
+* In the **Integrated Terminal**, run the following command to install LibMan.
 
   ```console
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
+
+* Navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
 
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.
 
@@ -138,13 +138,13 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In the **Integrated Terminal**, navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
-
-* Run the following command to install LibMan.
+* In the **Terminal**, run the following command to install LibMan.
 
   ```console
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
+
+* Navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
 
 * Run the following command to get the SignalR client library by using LibMan.
 
