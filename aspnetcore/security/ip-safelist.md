@@ -17,10 +17,10 @@ This help article shows how a client safe-list could be implemented using ASP.NE
 
 The sample illustrates cookie sharing across three apps that use cookie authentication:
 
-* ASP.NET Core 2.1 Middleware which checks the remote IP (IP4, IP6) and validates this uses a safe-list of IPs from the app.settings.
+* ASP.NET Core 2.x Middleware which checks the remote IP (IP4, IP6) and validates this uses a safe-list of IPs from the app.settings.
 
 
-The middleware uses an admin white-list parameter from the constructor to compare with the remote ip address from the HttpContext Connection property. This is different to previous versions of .NET. In the example, all GET requests are allowed. If any other request method is used, the remote IP is used to check if it exists in the safe-list. If it does not exist, a 403 is returned.
+The middleware uses an admin white-list parameter from the constructor to compare with the remote IP address from the HttpContext Connection property. This is different to previous versions of .NET. In the example, all GET requests are allowed. If any other request method is used, the remote IP is used to check if it exists in the safe-list. If it does not exist, a 403 is returned.
 
 ```csharp
 using System;
@@ -114,8 +114,8 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 If a request is sent, other that a GET method, and it is not in the safe-list, the 403 response is returned to the client and logged.
 
 ```
-2016-12-18 16:45:42.8891|0|ClientIpAspNetCore.AdminWhiteListMiddleware|INFO|  Request from Remote IP address: 192.168.1.4 
-2016-12-18 16:45:42.9031|0|ClientIpAspNetCore.AdminWhiteListMiddleware|INFO|  Forbidden Request from Remote IP address: 192.168.1.4 
+2017-09-31 16:45:42.8891|0|ClientIpAspNetCore.AdminWhiteListMiddleware|INFO|  Request from Remote IP address: 192.168.1.4 
+2016-09-31 16:45:42.9031|0|ClientIpAspNetCore.AdminWhiteListMiddleware|INFO|  Forbidden Request from Remote IP address: 192.168.1.4 
 ```
 
 An ActionFilter could also be used to implement this, for example if more specific logic is required. 
@@ -172,5 +172,3 @@ public class ValuesController : Controller
 ## Links:
 
 https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware
-
-http://odetocode.com/blogs/scott/archive/2016/11/22/asp-net-core-and-the-enterprise-part-3-middleware.aspx
