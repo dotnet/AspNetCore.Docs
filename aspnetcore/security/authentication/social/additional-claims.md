@@ -74,7 +74,7 @@ The sample app sets the value of `SaveTokens` to `true` in <xref:Microsoft.AspNe
 
 [!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=9)]
 
-When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) from the external provider into the `ApplicationUser`'s `AuthenticationProperties`.
+When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
 
 The sample app saves the access token in:
 
@@ -104,8 +104,7 @@ To use the sample app:
 
 1. Register the app and obtain a valid client ID and client secret for Google authentication. For more information, see <xref:security/authentication/google-logins>.
 1. Provide the client ID and client secret to the app in the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> of `Startup.ConfigureServices`.
-1. Run the app and request the My Claims page. When the user isn't signed in, the app redirects to Google. Sign in with Google. Google redirects the user back to the app (`/Home/MyClaims`).
-1. The user is authenticated, and the My Claims page is loaded. The gender claim is present under **User Claims** with the value obtained from Google. The access token appears in the **Authentication Properties**.
+1. Run the app and request the My Claims page. When the user isn't signed in, the app redirects to Google. Sign in with Google. Google redirects the user back to the app (`/Home/MyClaims`). The user is authenticated, and the My Claims page is loaded. The gender claim is present under **User Claims** with the value obtained from Google. The access token appears in the **Authentication Properties**.
 
 ```
 User Claims
