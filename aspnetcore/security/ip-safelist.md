@@ -15,7 +15,7 @@ This help article shows how a client safe-list could be implemented using ASP.NE
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/ip-safelist/samples/2.x/ClientIpAspNetCore) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-The sample illustrates cookie sharing across three apps that use cookie authentication:
+The sample illustrates middleware which validtes the remote IPof every client request.
 
 * ASP.NET Core 2.x Middleware which checks the remote IP (IP4, IP6) and validates this uses a safe-list of IPs from the app.settings.
 
