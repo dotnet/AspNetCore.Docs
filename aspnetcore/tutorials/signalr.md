@@ -5,7 +5,7 @@ description: In this tutorial, you create a chat app that uses SignalR for ASP.N
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/20/2018
+ms.date: 08/31/2018
 uid: tutorials/signalr
 ---
 
