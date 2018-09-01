@@ -56,4 +56,4 @@ In the sample app, the filter is applied to the Get method. So when you test the
 
 ## Next steps
 
-[Learn more about ASP.NET Core Middleware](xref:fundamentals/middleware).
+[Learn more about ASP.NET Core Middleware](xref:fundamentals/middleware/index).
