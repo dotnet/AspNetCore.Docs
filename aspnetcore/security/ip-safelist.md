@@ -1,174 +1,64 @@
 ---
-title: Remote IP HTTP request safe-list in ASP.NET Core
+title: Client IP safelist for ASP.NET Core web API
 author: damienbod
-description: Learn how to write Middleware to validate remote IP addresses
+description: Learn how to write Middleware or action filters to validate remote IP addresses.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/31/2018
+ms.date: 08/31/2018
 uid: security/ip-safelist
 ---
-# IP-Safelist Middleware in ASP.NET Core
+# Client IP safelist for ASP.NET Core web API
 
 By [Damien Bowden](https://twitter.com/damien_bod) and [Tom Dykstra](https://github.com/tdykstra)
  
-This help article shows how a client safe-list could be implemented using ASP.NET Core middleware checking the Remote IP address of the request. If the client IP is on the safe-list, no restrictions exist.
+This article shows two ways to implement a safelist (also known as a whitelist):
+
+* By using ASP.NET Core middleware to check the remote IP address of every request.
+* By using ASP.NET Core action filters to check the remote IP address of requests for specific action methods.
+
+The sample app illustrates the middleware approach. A string containing approved client IP addresses is stored in an app setting. The middleware parses the string into a list, and for each request it checks if the remote IP is in the list. If not, it returns an HTTP 403.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/ip-safelist/samples/2.x/ClientIpAspNetCore) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-The sample illustrates middleware which validtes the remote IPof every client request.
+## The safelist
 
-* ASP.NET Core 2.x Middleware which checks the remote IP (IP4, IP6) and validates this uses a safe-list of IPs from the app.settings.
+The list is configured in the *appsettings.json* file. It's a semicolon-delimited list and can contain IPv4 and IPv6 addresses.
 
+[!code-json[](ip-safelist/samples/2.x/ClientIpAspNetCore/appsettings.json?highlight=2)]
 
-The middleware uses an admin white-list parameter from the constructor to compare with the remote IP address from the HttpContext Connection property. This is different to previous versions of .NET. In the example, all GET requests are allowed. If any other request method is used, the remote IP is used to check if it exists in the safe-list. If it does not exist, a 403 is returned.
+## The Startup class
 
-```csharp
-using System;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+The `Configure` method adds the middleware and passes the safelist string to it in a constructor parameter.
 
-namespace ClientIpAspNetCore
-{
-    public class AdminSafeListMiddleware
-    {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<AdminSafeListMiddleware> _logger;
-        private readonly string _adminSafeList;
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_Configure&highlight=7)]
 
-        public AdminSafeListMiddleware(RequestDelegate next, ILogger<AdminSafeListMiddleware> logger, string adminWhiteList)
-        {
-            _adminSafeList = adminWhiteList;
-            _next = next;
-            _logger = logger;
-        }
+## The middleware
 
-        public async Task Invoke(HttpContext context)
-        {
-            if (context.Request.Method != "GET")
-            {
-                var remoteIp = context.Connection.RemoteIpAddress;
-                _logger.LogDebug($"Request from Remote IP address: {remoteIp}");
+The middleware parses the string into an array and looks for the remote IP address in the array. If the remote IP address is not found, the middleware returns an HTTP 403. This validation process is not done for HTTP Get requests.
 
-                string[] ip = _adminSafeList.Split(';');
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/AdminSafeListMiddleware.cs?name=snippet_ClassOnly)]
 
-                var bytes = remoteIp.GetAddressBytes();
-                var badIp = true;
-                foreach (var address in ip)
-                {
-                    var testIp = IPAddress.Parse(address);
-                    if(testIp.GetAddressBytes().SequenceEqual(bytes))
-                    {
-                        badIp = false;
-                        break;
-                    }
-                }
-
-                if(badIp)
-                {
-                    _logger.LogInformation($"Forbidden Request from Remote IP address: {remoteIp}");
-                    context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                    return;
-                }
-            }
-
-            await _next.Invoke(context);
-
-        }
-    }
-}
-```
-
-The safe-list is configured in the appsettings.config. This is a ';' separated list which is split in the middleware class.
-
-```csharp
-{
-  "AdminSafeList": "127.0.0.1;192.168.1.5;::1",
-  "Logging": {
-    "IncludeScopes": false,
-    "LogLevel": {
-      "Default": "Debug",
-      "System": "Information",
-      "Microsoft": "Information"
-    }
-  }
-}
-```
-
-In the startup class, the AdminSafeListMiddleware type is added using the appsettings configuration.
-
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-{
-	...
-
-	app.UseStaticFiles();
-
-	app.UseMiddleware<AdminSafeListMiddleware>(Configuration["AdminSafeList"]);
-	app.UseMvc();
-}
-```
-
-If a request is sent, other that a GET method, and it is not in the safe-list, the 403 response is returned to the client and logged.
+All non-Get requests are logged at Debug level, and rejected requests are logged at Information level. Here's an example of Debug logging output:
 
 ```
 2017-09-31 16:45:42.8891|0|ClientIpAspNetCore.AdminWhiteListMiddleware|INFO|  Request from Remote IP address: 192.168.1.4 
 2016-09-31 16:45:42.9031|0|ClientIpAspNetCore.AdminWhiteListMiddleware|INFO|  Forbidden Request from Remote IP address: 192.168.1.4 
 ```
 
-An ActionFilter could also be used to implement this, for example if more specific logic is required. 
+## Action filter alternative
 
-```csharp
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
+If you want to implement a safelist only for specific controllers or action methods, use an action filter. Here's an action filter example: 
 
-namespace ClientIpAspNetCore.Filters
-{
-    public class ClientIdCheckFilter : ActionFilterAttribute
-    {
-        private readonly ILogger _logger;
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Filters/ClientIdCheckFilter.cs)]
 
-        public ClientIdCheckFilter(ILoggerFactory loggerFactory)
-        {
-            _logger = loggerFactory.CreateLogger("ClassConsoleLogActionOneFilter");
-        }
+The action filter is added to the services container.
 
-        public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            _logger.LogInformation($"Remote IpAddress: {context.HttpContext.Connection.RemoteIpAddress}");
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_ConfigureServices&highlight=3)]
 
-            // TODO implement some business logic for this...
+The filter can then be used on a controller or action method.
 
-            base.OnActionExecuting(context);
-        }
-    }
-}
-```
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Controllers/ValuesController.cs?name=snippet_FilterController&highlight=1)]
 
-The ActionFilter can be added to the services.
+## Next steps
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-	services.AddScoped<ClientIdCheckFilter>();
-
-	services.AddMvc();
-}
-```
-
-And can be used specifically on any controller as required.
-
-```csharp
-[ServiceFilter(typeof(ClientIdCheckFilter))]
-[Route("api/[controller]")]
-public class ValuesController : Controller
-```
-
-## Links:
-
-https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware
+[Learn more about ASP.NET Core Middleware](xref:fundamentals/middleware).

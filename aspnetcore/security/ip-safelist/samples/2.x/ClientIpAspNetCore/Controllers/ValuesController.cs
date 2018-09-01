@@ -5,9 +5,11 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientIpAspNetCore.Controllers
 {
+    #region snippet_FilterController
     [ServiceFilter(typeof(ClientIdCheckFilter))]
     [Route("api/[controller]")]
     public class ValuesController : Controller
+    #endregion
     {
         private ILogger<ValuesController> _logger;
 

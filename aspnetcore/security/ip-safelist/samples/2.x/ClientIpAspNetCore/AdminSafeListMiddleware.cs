@@ -7,15 +7,16 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientIpAspNetCore
 {
+    #region snippet_ClassOnly
     public class AdminSafeListMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<AdminSafeListMiddleware> _logger;
         private readonly string _adminSafeList;
 
-        public AdminSafeListMiddleware(RequestDelegate next, ILogger<AdminSafeListMiddleware> logger, string adminWhiteList)
+        public AdminSafeListMiddleware(RequestDelegate next, ILogger<AdminSafeListMiddleware> logger, string adminSafeList)
         {
-            _adminSafeList = adminWhiteList;
+            _adminSafeList = adminSafeList;
             _next = next;
             _logger = logger;
         }
@@ -53,4 +54,5 @@ namespace ClientIpAspNetCore
 
         }
     }
+    #endregion
 }

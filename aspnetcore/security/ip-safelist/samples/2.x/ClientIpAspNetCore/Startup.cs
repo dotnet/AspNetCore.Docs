@@ -27,13 +27,16 @@ namespace ClientIpAspNetCore
 
         public IConfigurationRoot Configuration { get; }
         
+        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ClientIdCheckFilter>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
+        #endregion
         
+        #region snippet_Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddNLog();
@@ -43,5 +46,6 @@ namespace ClientIpAspNetCore
             app.UseMiddleware<AdminSafeListMiddleware>(Configuration["AdminSafeList"]);
             app.UseMvc();
         }
+        #endregion
     }
 }
