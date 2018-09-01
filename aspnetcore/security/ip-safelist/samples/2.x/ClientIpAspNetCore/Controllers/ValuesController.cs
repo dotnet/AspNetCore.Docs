@@ -5,11 +5,8 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientIpAspNetCore.Controllers
 {
-    #region snippet_FilterController
-    [ServiceFilter(typeof(ClientIdCheckFilter))]
     [Route("api/[controller]")]
     public class ValuesController : Controller
-    #endregion
     {
         private ILogger<ValuesController> _logger;
 
@@ -19,8 +16,11 @@ namespace ClientIpAspNetCore.Controllers
         }
 
         // GET api/values
+        #region snippet_Filter
+        [ServiceFilter(typeof(ClientIdCheckFilter))]
         [HttpGet]
         public IEnumerable<string> Get()
+        #endregion
         {
             _logger.LogDebug("successful get.");
             return new string[] { "value1", "value2" };
