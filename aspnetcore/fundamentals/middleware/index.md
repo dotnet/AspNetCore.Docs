@@ -52,14 +52,18 @@ Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builde
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is critical for security, performance, and functionality.
 
-The following `Configure` method adds the following middleware components:
-
-1. Exception/error handling
-2. Static file server
-3. Authentication
-4. MVC
+The following `Configure` method adds middleware components for common app scenarios:
 
 ::: moniker range=">= aspnetcore-2.0"
+
+1. Exception/error handling
+1. HTTP Strict Transport Security Protocol
+1. HTTPS redirection
+1. Static file server
+1. Cookie policy enforcement
+1. Authentication
+1. Session
+1. MVC
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -90,11 +94,15 @@ public void Configure(IApplicationBuilder app)
     app.UseStaticFiles();
 
     // Use Cookie Policy Middleware to conform to EU General Data 
-    //   Protection Regulation (GDPR) regulations.
+    // Protection Regulation (GDPR) regulations.
     app.UseCookiePolicy();
 
     // Authenticate before the user accesses secure resources.
     app.UseAuthentication();
+
+    // If the app uses session state, call Session Middleware after Cookie 
+    // Policy Middleware and before MVC Middleware.
+    app.UseSession();
 
     // Add MVC to the request pipeline.
     app.UseMvc();
@@ -104,6 +112,12 @@ public void Configure(IApplicationBuilder app)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
+
+1. Exception/error handling
+1. Static files
+1. Authentication
+1. Session
+1. MVC
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -117,6 +131,10 @@ public void Configure(IApplicationBuilder app)
 
     // Authenticate before you access secure resources.
     app.UseIdentity();
+
+    // If the app uses session state, call Session Middleware after Cookie 
+    // Policy Middleware and before MVC Middleware.
+    app.UseSession();
 
     // Add MVC to the request pipeline.
     app.UseMvcWithDefaultRoute();
@@ -209,6 +227,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | Middleware | Description | Order |
 | ---------- | ----------- | ----- |
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
+| [Cookie Policy](xref:security/gdpr) | Ask for (and track) consent from users for storing personal information. | Before Session Middleware, if present. |
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
 | [Diagnostics](xref:fundamentals/error-handling) | Configures diagnostics. | Before components that generate errors. |
 | [Forwarded Headers](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields (examples: scheme, host, client IP, method). |
