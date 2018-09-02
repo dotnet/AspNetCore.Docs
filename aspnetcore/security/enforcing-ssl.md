@@ -35,7 +35,10 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 The preceding highlighted code:
 
 * Uses the default [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) (`Status307TemporaryRedirect`). Production apps should call [UseHsts](#hsts).
-* Uses the port configured with [HttpsRedirectionOptions](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions), in `HTTPS_PORT` variable or [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
+* Uses the port configured with:
+  * [HttpsRedirectionOptions](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions).
+  * the `ASPNETCORE_HTTPS_PORT` environment variable.
+  * [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
 
 The following code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
 
@@ -45,7 +48,7 @@ The preceding highlighted code:
 
 * Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) to `Status307TemporaryRedirect`, which is the default value. Production apps should call [UseHsts](#hsts).
 * Sets the HTTPS port to 5001.
-* Can be used to configure HTTPS redirection to 443 port
+* Can be used to configure HTTPS redirection to port 443.
 
 The following mechanisms set the port automatically:
 
