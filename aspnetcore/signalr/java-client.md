@@ -34,7 +34,7 @@ If using Maven, add the following lines inside the `<dependencies>` element of y
 
 ## Connect to a hub
 
-To establish a connection, create a `HubConnectionBuilder` and call `build`. The hub URL and log level can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `build`. Start the connection with `start`.
+To establish a `HubConnection`, the `HubConnectionBuilder` should be used. The hub URL and log level can be configured while building a connection. Configure any required options by calling any of the `HubConnectionBuilder` methods before `build`. Start the connection with `start`.
 
 [!code-java[Build hub connection](java-client/sample/src/main/java/Chat.java?range=17-20)]
 
@@ -52,7 +52,7 @@ Use `hubConnection.on` to define methods on the client that the hub can call. De
 
 ## Known limitations
 
-This is an early preview release of the Java client. There are many features that aren't supported yet. The RTM release will address the following gaps:
+This is an early preview release of the Java client. There are many features that aren't supported yet. The following gaps are being worked on for future releases:
 
 * Only primitive types can be accepted as parameters and return types.
 * The APIs are synchronous.
