@@ -21,11 +21,13 @@
     </build>
 
     <dependencies>
+        <!-- <snippet_dependencyElement> -->
         <dependency>
             <groupId>com.microsoft.aspnet</groupId>
             <artifactId>signalr</artifactId>
             <version>0.1.0-preview1-35029</version>
         </dependency>
+        <!-- </snippet_dependencyElement> -->
     </dependencies>
 
 </project>
