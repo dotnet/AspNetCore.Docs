@@ -26,15 +26,13 @@ The list is configured in the *appsettings.json* file. It's a semicolon-delimite
 
 [!code-json[](ip-safelist/samples/2.x/ClientIpAspNetCore/appsettings.json?highlight=2)]
 
-## The Startup class
+## Middleware
 
 The `Configure` method adds the middleware and passes the safelist string to it in a constructor parameter.
 
-[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_Configure&highlight=8)]
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_Configure&highlight=7)]
 
-## The middleware
-
-The middleware parses the string into an array and looks for the remote IP address in the array. If the remote IP address is not found, the middleware returns HTTP 403 Forbidden. This validation process is bypassed for HTTP Get requests.
+The middleware parses the string into an array and looks for the remote IP address in the array. If the remote IP address is not found, the middleware returns HTTP 401 Forbidden. This validation process is bypassed for HTTP Get requests.
 
 [!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/AdminSafeListMiddleware.cs?name=snippet_ClassOnly)]
 
