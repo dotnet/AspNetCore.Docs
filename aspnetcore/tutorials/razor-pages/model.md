@@ -97,7 +97,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-Alternatively, the following .NET Core CLI commands can be used:
+Alternatively, the following .NET Core CLI commands can be used from the project folder:
 
 ```console
 dotnet ef migrations add Initial
