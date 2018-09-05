@@ -31,7 +31,7 @@ No API can prevent a client from sending sensitive data on the first request.
 We recommend all production ASP.NET Core web apps call:
 
 * The HTTPS Redirection Middleware ([UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection)) to redirect all HTTP requests to HTTPS.
-* [UseHsts](#hsts)
+* [UseHsts](#hsts), HTTP Strict Transport Security Protocol (HSTS).
 
 ### UseHttpsRedirection
 
@@ -44,18 +44,19 @@ The preceding highlighted code:
 * Uses the default [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) (`Status307TemporaryRedirect`).
 * Uses the default [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (443) unless overridden by the `ASPNETCORE_HTTPS_PORT` environment variable or [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
 
-> [!WARNING]
->A port must be available for the middleware to redirect to HTTPS. If no port is available, redirection to HTTPS does not occur. The HTTPS port can be specified by setting:
->
->* `HttpsRedirectionOptions.HttpsPort` or
->* The `ASPNETCORE_HTTPS_PORT` environment variable, or 
->* An HTTPS url in *launchsettings.json*
+> [!WARNING] 
+>A port must be available for the middleware to redirect to HTTPS. If no port is available, redirection to HTTPS does not occur. The HTTPS port can be specified by any of the following setting:
+> 
+>* `HttpsRedirectionOptions.HttpsPort` 
+>* The `ASPNETCORE_HTTPS_PORT` environment variable. 
+>* In development, an HTTPS url in *launchsettings.json*. 
+>* An HTTPS url configured directly on Kestrel or HttpSys. 
 
-The following code highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
+The following highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=14-99)]
 
-It's not necessary to call `AddHttpsRedirection`. Call `AddHttpsRedirection` to change the ` HttpsPort` or ` RedirectStatusCode`;
+Calling `AddHttpsRedirection` is only necessary to change the values of ` HttpsPort` or ` RedirectStatusCode`;
 
 The preceding highlighted code:
 
@@ -65,8 +66,10 @@ The preceding highlighted code:
 The following mechanisms set the port automatically:
 
 * The middleware can discover the ports via [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature) when the following conditions apply:
+
    * Kestrel or HTTP.sys is used directly with HTTPS endpoints (also applies to running the app with Visual Studio Code's debugger).
    * Only **one HTTPS port** is used by the app.
+
 * Visual Studio is used:
    * IIS Express has HTTPS enabled.
    * *launchSettings.json* sets the `sslPort` for IIS Express.
@@ -76,10 +79,10 @@ The following mechanisms set the port automatically:
 
 The port can be configured by setting the [https_port Web Host configuration setting](xref:fundamentals/host/web-host#https-port):
 
-**Key**: https_port 
-**Type**: *string* 
-**Default**: A default value isn't set. 
-**Set using**: `UseSetting` 
+**Key**: https_port  
+**Type**: *string*  
+**Default**: A default value isn't set.  
+**Set using**: `UseSetting`  
 **Environment variable**: `<PREFIX_>HTTPS_PORT` (The prefix is `ASPNETCORE_` when using the Web Host.)
 
 ```csharp
@@ -93,7 +96,7 @@ WebHost.CreateDefaultBuilder(args)
 If no port is set:
 
 * Requests aren't redirected.
-* The middleware logs a warning.
+* The middleware logs the warning "Failed to determine the https port for redirect."
 
 > [!NOTE]
 > An alternative to using HTTPS Redirection Middleware (`UseHttpsRedirection`) is to use URL Rewriting Middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
@@ -124,23 +127,22 @@ Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) i
 <a name="hsts"></a>
 ## HTTP Strict Transport Security Protocol (HSTS)
 
-Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that's specified by a web app through the use of a response header. When a browser that supports HSTS receives this header:
+Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that's specified by a web app through the use of a response header. When a [browser that supports HSTS](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support) receives this header:
 
-* The browser stores configuration for the domain that prevents sending any communication over HTTP. The browser forces all communication over HTTPS. 
+* The browser stores configuration for the domain that prevents sending any communication over HTTP. The browser forces all communication over HTTPS.
 * The browser prevents the user from using untrusted or invalid certificates. The browser disables prompts that allow a user to temporarily trust such a certificate.
 
-HSTS is a client-side performance optimization to avoid an extra request to the server. HSTS limitations:
+Because HSTS is enforced by the client it has some limitations:
 
-* The client needing to support HSTS.
-* HSTS is not guaranteed to limit traffic to HTTPS only.
+* The client must support HSTS.
 * HSTS requires at least one successful HTTPS request to establish the HSTS policy.
-* Application must check every HTTP request and redirect, reject, etc.
+* The application must check every HTTP request and redirect or reject the HTTP request.
 
 ASP.NET Core 2.1 or later implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet1&highlight=10)]
 
-`UseHsts` isn't recommended in development because the HSTS header is highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
+`UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
 For production environments implementing HTTPS for the first time, set the initial HSTS value to a small value. Set the value from hours to no more than a single day in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS max-age value; a commonly used value is one year. 
 
@@ -148,7 +150,7 @@ The following code:
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=5-12)]
 
-* Sets the preload parameter of the Strict-Transport-Security header. Preload is not part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. See [https://hstspreload.org/](https://hstspreload.org/) for more information.
+* Sets the preload parameter of the Strict-Transport-Security header. Preload isn't part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. See [https://hstspreload.org/](https://hstspreload.org/) for more information.
 * Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains. 
 * Explicitly sets the max-age parameter of the Strict-Transport-Security header to 60 days. If not set, defaults to 30 days. See the [max-age directive](https://tools.ietf.org/html/rfc6797#section-6.1.1) for more information.
 * Adds `example.com` to the list of hosts to exclude.
@@ -167,7 +169,7 @@ The preceding example shows how to add additional hosts.
 <a name="https"></a>
 ## Opt-out of HTTPS on project creation
 
-The ASP.NET Core 2.1 or later web application templates (from Visual Studio or the dotnet command line) enable [HTTPS redirection](#require) and [HSTS](#hsts). For deployments that don't require HTTPS, you can opt-out of HTTPS. For example, some backend services where HTTPS is being handled externally at the edge, using HTTPS at each node is not needed.
+The ASP.NET Core 2.1 or later web application templates (from Visual Studio or the dotnet command line) enable [HTTPS redirection](#require) and [HSTS](#hsts). For deployments that don't require HTTPS, you can opt-out of HTTPS. For example, some backend services where HTTPS is being handled externally at the edge, using HTTPS at each node isn't needed.
 
 To opt-out of HTTPS:
 
@@ -198,3 +200,7 @@ dotnet new webapp --no-https
 See [this GitHub issue](https://github.com/aspnet/Docs/issues/6199).
 
 ::: moniker-end
+
+## Additional information
+
+* [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)
