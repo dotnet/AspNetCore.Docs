@@ -8,8 +8,6 @@ uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
 
-Production apps should call [UseHsts](#hsts).
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This document shows how to:
@@ -44,7 +42,7 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 The preceding highlighted code:
 
 * Uses the default [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) (`Status307TemporaryRedirect`).
-* Uses the default [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (443) unless overriden by the  the `ASPNETCORE_HTTPS_PORT` environment variable or [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
+* Uses the default [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (443) unless overridden by the `ASPNETCORE_HTTPS_PORT` environment variable or [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
 
 > [!WARNING]
 >A port must be available for the middleware to redirect to HTTPS. If no port is available, redirection to HTTPS does not occur. The HTTPS port can be specified by setting:
@@ -131,7 +129,7 @@ Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Secur
 * The browser stores configuration for the domain that prevents sending any communication over HTTP. The browser forces all communication over HTTPS. 
 * The browser prevents the user from using untrusted or invalid certificates. The browser disables prompts that allow a user to temporarily trust such a certificate.
 
-HSTS is a client side performance optimization to avoid an extra request to the server. HSTS limitations:
+HSTS is a client-side performance optimization to avoid an extra request to the server. HSTS limitations:
 
 * The client needing to support HSTS.
 * HSTS is not guaranteed to limit traffic to HTTPS only.
@@ -152,7 +150,7 @@ The following code:
 
 * Sets the preload parameter of the Strict-Transport-Security header. Preload is not part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. See [https://hstspreload.org/](https://hstspreload.org/) for more information.
 * Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains. 
-* Explicitly sets the max-age parameter of the Strict-Transport-Security header to to 60 days. If not set, defaults to 30 days. See the [max-age directive](https://tools.ietf.org/html/rfc6797#section-6.1.1) for more information.
+* Explicitly sets the max-age parameter of the Strict-Transport-Security header to 60 days. If not set, defaults to 30 days. See the [max-age directive](https://tools.ietf.org/html/rfc6797#section-6.1.1) for more information.
 * Adds `example.com` to the list of hosts to exclude.
 
 `UseHsts` excludes the following loopback hosts:
@@ -195,7 +193,7 @@ dotnet new webapp --no-https
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## How to setup a developer certificate for Docker
+## How to set up a developer certificate for Docker
 
 See [this GitHub issue](https://github.com/aspnet/Docs/issues/6199).
 
