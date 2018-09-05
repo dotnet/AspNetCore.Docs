@@ -3,7 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using ConfigurationSample.EFConfigurationProvider;
+using ConfigurationSample.Extensions;
 using System.Collections.Generic;
 
 namespace ConfigurationSample
