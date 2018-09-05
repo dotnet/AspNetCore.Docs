@@ -11,7 +11,7 @@ uid: security/cors
 
 By [Mike Wasson](https://github.com/mikewasson), [Shayne Boyer](https://twitter.com/spboyer), and [Tom Dykstra](https://github.com/tdykstra)
 
-Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites make cross-origin requests to your app.
+Browser security prevents a web page from making requests to a different domain than served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites make cross-origin requests to your app.
 
 [Cross Origin Resource Sharing](http://www.w3.org/TR/cors/) (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques, such as [JSONP](https://wikipedia.org/wiki/JSONP). This topic shows how to enable CORS in an ASP.NET Core app.
 
@@ -132,7 +132,7 @@ To allow all origins, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPo
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=28-32&highlight=4)]
 
-Consider carefully before allowing requests from any origin. Allowing requests from any origin means that *any website* can make AJAX calls to your app.
+Consider carefully before allowing requests from any origin. Allowing requests from any origin means that *any website* can make cross-origin requests to your app.
 
 This setting affects [preflight requests and the Access-Control-Allow-Origin header](#preflight-requests) (described later in this topic).
 
@@ -172,7 +172,7 @@ CORS Middleware declines a preflight request with the following request header b
 Access-Control-Request-Headers: Cache-Control, Content-Language
 ```
 
-The app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the AJAX request.
+The app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
 
 ::: moniker-end
 
@@ -245,7 +245,7 @@ In addition, the server must allow the credentials. To allow cross-origin creden
 
 The HTTP response includes an `Access-Control-Allow-Credentials` header, which tells the browser that the server allows credentials for a cross-origin request.
 
-If the browser sends credentials but the response doesn't include a valid `Access-Control-Allow-Credentials` header, the browser doesn't expose the response to the app, and the AJAX request fails.
+If the browser sends credentials but the response doesn't include a valid `Access-Control-Allow-Credentials` header, the browser doesn't expose the response to the app, and the cross-origin request fails.
 
 Be careful when allowing cross-origin credentials. A website at another domain can send a signed-in user's credentials to the app on the user's behalf without the user's knowledge.
 
@@ -310,7 +310,7 @@ Date: Wed, 20 May 2015 06:33:22 GMT
 
 The response includes an `Access-Control-Allow-Methods` header that lists the allowed methods and optionally an `Access-Control-Allow-Headers` header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request.
 
-If the preflight request is denied, the app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the AJAX request.
+If the preflight request is denied, the app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
 
 ### Set the preflight expiration time
 
@@ -351,4 +351,8 @@ Content-Length: 12
 Test message
 ```
 
-If the response doesn't include the `Access-Control-Allow-Origin` header, the AJAX request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client app.
+If the response doesn't include the `Access-Control-Allow-Origin` header, the cross-origin request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client app.
+
+## Additional resources
+
+* [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS)
