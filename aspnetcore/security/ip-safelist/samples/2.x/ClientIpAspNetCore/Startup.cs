@@ -15,8 +15,12 @@ namespace ClientIpAspNetCore
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        ILoggerFactory _loggerFactory;
+      
+        public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env)
         {
+            _loggerFactory = loggerFactory;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -32,7 +36,10 @@ namespace ClientIpAspNetCore
         {
             services.AddScoped<ClientIdCheckFilter>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new ClientIdCheckPageFilter(_loggerFactory, Configuration));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion
         
