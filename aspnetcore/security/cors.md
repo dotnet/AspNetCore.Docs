@@ -134,6 +134,8 @@ To allow all origins, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPo
 
 Consider carefully before allowing requests from any origin. Allowing requests from any origin means that *any website* can make AJAX calls to your app.
 
+This setting affects [preflight requests and the Access-Control-Allow-Origin header](#preflight-requests) (described later in this topic).
+
 ### Set the allowed HTTP methods
 
 To allow all HTTP methods, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyMethod*>:
@@ -170,7 +172,7 @@ CORS Middleware declines a preflight request with the following request header b
 Access-Control-Request-Headers: Cache-Control, Content-Language
 ```
 
-The app returns a *400 Bad Request* response.
+The app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the AJAX request.
 
 ::: moniker-end
 
@@ -307,6 +309,8 @@ Date: Wed, 20 May 2015 06:33:22 GMT
 ```
 
 The response includes an `Access-Control-Allow-Methods` header that lists the allowed methods and optionally an `Access-Control-Allow-Headers` header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request.
+
+If the preflight request is denied, the app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the AJAX request.
 
 ### Set the preflight expiration time
 
