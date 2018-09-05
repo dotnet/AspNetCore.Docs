@@ -98,17 +98,10 @@ To specify the CORS policy for a specific controller, add the [&lbrack;EnableCor
 
 [!code-csharp[](cors/sample/CorsMVC/Controllers/ValuesController.cs?name=EnableOnController&highlight=2)]
 
-### Globally
-
-You can enable CORS globally for all controllers by adding the <xref:Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory> filter to the global filter collection:
-
-[!code-csharp[](cors/sample/CorsMVC/Startup2.cs?name=snippet_configureservices&highlight=6)]
-
 The precedence order is:
 
 1. action
 1. controller
-1. global
 
 ### Disable CORS
 
@@ -151,7 +144,7 @@ This setting affects [preflight requests and the Access-Control-Allow-Methods he
 
 ### Set the allowed request headers
 
-To whitelist specific headers, called *author request headers*, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> and specify the allowed headers:
+To allow specific headers to be sent in a CORS request, called *author request headers*, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> and specify the allowed headers:
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=54-59&highlight=5)]
 
@@ -290,7 +283,7 @@ The pre-flight request uses the HTTP OPTIONS method. It includes two special hea
 
 A CORS preflight request might include an `Access-Control-Request-Headers` header, which indicates to the server the headers that are sent with the actual request.
 
-To whitelist specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>:
+To allow specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>:
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=54-59&highlight=5)]
 
