@@ -30,7 +30,7 @@ The list is configured in the *appsettings.json* file. It's a semicolon-delimite
 
 The `Configure` method adds the middleware and passes the safelist string to it in a constructor parameter.
 
-[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_Configure&highlight=7)]
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_Configure&highlight=8)]
 
 ## The middleware
 
@@ -38,7 +38,7 @@ The middleware parses the string into an array and looks for the remote IP addre
 
 [!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/AdminSafeListMiddleware.cs?name=snippet_ClassOnly)]
 
-## Action filter alternative
+## Action filter
 
 If you want a safelist only for specific controllers or action methods, use an action filter. Here's an example: 
 
@@ -52,7 +52,19 @@ The filter can then be used on a controller or action method.
 
 [!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Controllers/ValuesController.cs?name=snippet_Filter&highlight=1)]
 
-In the sample app, the filter is applied to the Get method. So when you test the app by sending a Get request, the attribute is validating the client IP address. When you test by sending any other HTTP method, the middleware is validating the client IP.
+In the sample app, the filter is applied to the `Get` method. So when you test the app by sending a `Get` API request, the attribute is validating the client IP address. When you test by calling the API with any other HTTP method, the middleware is validating the client IP.
+
+## Razor Pages filter 
+
+If you want a safelist for a Razor Pages app, use a Razor Pages filter. Here's an example: 
+
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Filters/ClientIdCheckPageFilter.cs)]
+
+This filter is enabled by adding it to the MVC Filters collection.
+
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_ConfigureServices&highlight=7-9)]
+
+When you run the app and request a Razor page, the Razor Pages filter is validating the client IP.
 
 ## Next steps
 

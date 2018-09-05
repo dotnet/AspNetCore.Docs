@@ -38,7 +38,9 @@ namespace ClientIpAspNetCore
 
             services.AddMvc(options =>
             {
-                options.Filters.Add(new ClientIdCheckPageFilter(_loggerFactory, Configuration));
+                options.Filters.Add
+                    (new ClientIdCheckPageFilter
+                        (_loggerFactory, Configuration));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion
