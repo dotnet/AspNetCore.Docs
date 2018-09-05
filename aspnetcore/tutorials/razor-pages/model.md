@@ -104,7 +104,7 @@ dotnet ef migrations add Initial
 dotnet ef database update
 ```
 
-Ignore the following warning message, you fix that in the next tutorial:
+Ignore the following warning message, you fix that in a a later tutorial:
 
 `Microsoft.EntityFrameworkCore.Model.Validation[30000]`
 
