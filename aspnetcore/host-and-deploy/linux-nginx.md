@@ -23,6 +23,9 @@ This guide:
 * Ensures the web app runs on startup as a daemon.
 * Configures a process management tool to help restart the web app.
 
+> [!NOTE]
+> Ubuntu isn't the only Linux operating system supported by ASP.NET Core. For more information, see the [.NET Core Supported OS Lifecycle Policy: .NET Core supported OS versions](https://github.com/dotnet/core/blob/master/os-lifecycle-policy.md).
+
 ## Prerequisites
 
 1. Access to an Ubuntu 16.04 server with a standard user account with sudo privilege.
