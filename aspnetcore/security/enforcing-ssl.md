@@ -8,12 +8,16 @@ uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
 
+Production apps should call [UseHsts](#hsts).
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This document shows how to:
 
 * Require HTTPS for all requests.
 * Redirect all HTTP requests to HTTPS.
+
+No API can prevent a client from sending sensitive data on the first request.
 
 > [!WARNING]
 > Do **not** use [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) on Web APIs that receive sensitive information. `RequireHttpsAttribute` uses HTTP status codes to redirect browsers from HTTP to HTTPS. API clients may not understand or obey redirects from HTTP to HTTPS. Such clients may send information over HTTP. Web APIs should either:
@@ -26,7 +30,12 @@ This document shows how to:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-We recommend all ASP.NET Core web apps call HTTPS Redirection Middleware ([UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection)) to redirect all HTTP requests to HTTPS.
+We recommend all production ASP.NET Core web apps call:
+
+* The HTTPS Redirection Middleware ([UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection)) to redirect all HTTP requests to HTTPS.
+* [UseHsts](#hsts)
+
+### UseHttpsRedirection
 
 The following code calls `UseHttpsRedirection` in the `Startup` class:
 
@@ -34,40 +43,45 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 
 The preceding highlighted code:
 
-* Uses the default [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) (`Status307TemporaryRedirect`). Production apps should call [UseHsts](#hsts).
-* Uses the port configured with:
-  * [HttpsRedirectionOptions](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions).
-  * the `ASPNETCORE_HTTPS_PORT` environment variable.
-  * [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
+* Uses the default [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) (`Status307TemporaryRedirect`).
+* Uses the default [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (443) unless overriden by the  the `ASPNETCORE_HTTPS_PORT` environment variable or [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
 
-The following code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
+> [!WARNING]
+>A port must be available for the middleware to redirect to HTTPS. If no port is available, redirection to HTTPS does not occur. The HTTPS port can be specified by setting:
+>
+>* `HttpsRedirectionOptions.HttpsPort` or
+>* The `ASPNETCORE_HTTPS_PORT` environment variable, or 
+>* An HTTPS url in *launchsettings.json*
+
+The following code highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
 
 [!code-csharp[](enforcing-ssl/sample/Startup.cs?name=snippet2&highlight=14-99)]
 
+It's not necessary to call `AddHttpsRedirection`. Call `AddHttpsRedirection` to change the ` HttpsPort` or ` RedirectStatusCode`;
+
 The preceding highlighted code:
 
-* Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) to `Status307TemporaryRedirect`, which is the default value. Production apps should call [UseHsts](#hsts).
-* Sets the HTTPS port to 5001.
-* Can be used to configure HTTPS redirection to port 443.
+* Sets [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) to `Status307TemporaryRedirect`, which is the default value.
+* Sets the HTTPS port to 5001. The default value is 443.
 
 The following mechanisms set the port automatically:
 
 * The middleware can discover the ports via [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature) when the following conditions apply:
-  - Kestrel or HTTP.sys is used directly with HTTPS endpoints (also applies to running the app with Visual Studio Code's debugger).
-  - Only **one HTTPS port** is used by the app.
+  * Kestrel or HTTP.sys is used directly with HTTPS endpoints (also applies to running the app with Visual Studio Code's debugger).
+  * Only **one HTTPS port** is used by the app.
 * Visual Studio is used:
-  - IIS Express has HTTPS enabled.
-  - *launchSettings.json* sets the `sslPort` for IIS Express.
+  * IIS Express has HTTPS enabled.
+  * *launchSettings.json* sets the `sslPort` for IIS Express.
 
 > [!NOTE]
 > When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured. When the port isn't set, requests aren't redirected.
 
 The port can be configured by setting the [https_port Web Host configuration setting](xref:fundamentals/host/web-host#https-port):
 
-**Key**: https_port
-**Type**: *string*
-**Default**: A default value isn't set.
-**Set using**: `UseSetting`
+**Key**: https_port 
+**Type**: *string* 
+**Default**: A default value isn't set. 
+**Set using**: `UseSetting` 
 **Environment variable**: `<PREFIX_>HTTPS_PORT` (The prefix is `ASPNETCORE_` when using the Web Host.)
 
 ```csharp
@@ -116,6 +130,13 @@ Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Secur
 
 * The browser stores configuration for the domain that prevents sending any communication over HTTP. The browser forces all communication over HTTPS. 
 * The browser prevents the user from using untrusted or invalid certificates. The browser disables prompts that allow a user to temporarily trust such a certificate.
+
+HSTS is a client side performance optimization to avoid an extra request to the server. HSTS limitations:
+
+* The client needing to support HSTS.
+* HSTS is not guaranteed to limit traffic to HTTPS only.
+* HSTS requires at least one successful HTTPS request to establish the HSTS policy.
+* Application must check every HTTP request and redirect, reject, etc.
 
 ASP.NET Core 2.1 or later implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
