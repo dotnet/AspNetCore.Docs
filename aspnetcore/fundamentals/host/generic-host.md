@@ -203,10 +203,10 @@ await host.StartAsync();
 An app establishes the `UseHostedService` extension method to register the hosted service passed in `T`:
 
 ```csharp
-// Add the following namespaces for this example:
-// using System;
-// using Microsoft.Extensions.DependencyInjection;
-// using Microsoft.Extensions.Hosting;
+using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 public static class Extensions
 {
     public static IHostBuilder UseHostedService<T>(this IHostBuilder hostBuilder)
