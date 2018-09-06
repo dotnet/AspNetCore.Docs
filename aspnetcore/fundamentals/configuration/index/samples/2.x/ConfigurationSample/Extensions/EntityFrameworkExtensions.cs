@@ -1,8 +1,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using ConfigurationSample.EFConfigurationProvider;
 
-namespace ConfigurationSample.EFConfigurationProvider
+namespace ConfigurationSample.Extensions
 {
     #region snippet1
     public static class EntityFrameworkExtensions

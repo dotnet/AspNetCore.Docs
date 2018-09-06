@@ -50,7 +50,7 @@ Run the app and register a user. Depending on your screen size, you might need t
 <a name="pw"></a>
 ### Configure Identity services
 
-Services are added in `ConfigureServices`.
+Services are added in `ConfigureServices`. The following code doesn't include the template generated `CookiePolicyOptions`:
 
 ::: moniker range=">= aspnetcore-2.1"
 
