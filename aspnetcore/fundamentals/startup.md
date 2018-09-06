@@ -80,7 +80,7 @@ For more information on how to use `IApplicationBuilder` and the order of middle
 
 [!code-csharp[](startup/snapshot_sample/Program.cs?highlight=18,22)]
 
-## Startup filters
+## Extend Startup with startup filters
 
 Use [IStartupFilter](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter) to configure middleware at the beginning or end of an app's [Configure](#the-configure-method) middleware pipeline. `IStartupFilter` is useful to ensure that a middleware runs before or after middleware added by libraries at the start or end of the app's request processing pipeline.
 
@@ -96,9 +96,9 @@ The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartup
 
 [!code-csharp[](startup/sample/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
 
-The `IStartupFilter` is registered in the service container in `ConfigureServices`:
+The `IStartupFilter` is registered in the service container in [IWebHostBuilder.ConfigureServices](xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder.ConfigureServices*) to demonstrate how the startup filter augments `Startup` from outside of the `Startup` class:
 
-[!code-csharp[](startup/sample/Startup.cs?name=snippet1&highlight=3)]
+[!code-csharp[](startup/sample/Program.cs?name=snippet1&highlight=4-5)]
 
 When a query string parameter for `option` is provided, the middleware processes the value assignment before the MVC middleware renders the response:
 
