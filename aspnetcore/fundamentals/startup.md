@@ -80,7 +80,7 @@ For more information on how to use `IApplicationBuilder` and the order of middle
 
 [!code-csharp[](startup/snapshot_sample/Program.cs?highlight=18,22)]
 
-## Extending Startup with startup filters
+## Extend Startup with startup filters
 
 Use [IStartupFilter](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter) to configure middleware at the beginning or end of an app's [Configure](#the-configure-method) middleware pipeline. `IStartupFilter` is useful to ensure that a middleware runs before or after middleware added by libraries at the start or end of the app's request processing pipeline.
 
