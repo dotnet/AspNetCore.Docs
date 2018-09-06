@@ -234,7 +234,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
-&dagger;When converting an IPv4 address to IPv6, add 96 to the CIDR Prefix Length to account for the additional "::ffff:" IPv6 prefix.
+&dagger;When converting an IPv4 address to IPv6, add 96 to the CIDR Prefix Length to account for the additional `::ffff:` IPv6 prefix.
 
 ## Troubleshoot
 
