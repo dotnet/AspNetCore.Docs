@@ -214,7 +214,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6 format (for example, `10.0.0.1` in IPv4 represented in IPv6 as `::ffff:10.0.0.1`). See [IPAddress.MapToIPv6](xref:System.Net.IPAddress.MapToIPv6*). You can confirm if this format is required by looking at the [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress*).
 
-In the following example, two network addresses that supply forwarded headers are added to the `KnownNetworks` in IPv6 format:
+In the following example, a network address that supplies forwarded headers is added to the `KnownNetworks` in IPv6 format:
 
 Short format IPv6 for `10.11.12.1/8`:
 
