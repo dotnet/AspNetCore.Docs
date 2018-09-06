@@ -21,15 +21,15 @@ Two URLs have the same origin if they have identical schemes, hosts, and ports (
 
 These two URLs have the same origin:
 
-* `http://example.com/foo.html`
-* `http://example.com/bar.html`
+* `https://example.com/foo.html`
+* `https://example.com/bar.html`
 
 These URLs have different origins than the previous two URLs:
 
-* `http://example.net` &ndash; Different domain
-* `http://www.example.com/foo.html` &ndash; Different subdomain
-* `https://example.com/foo.html` &ndash; Different scheme
-* `http://example.com:9000/foo.html` &ndash; Different port
+* `https://example.net` &ndash; Different domain
+* `https://www.example.com/foo.html` &ndash; Different subdomain
+* `http://example.com/foo.html` &ndash; Different scheme
+* `https://example.com:9000/foo.html` &ndash; Different port
 
 > [!NOTE]
 > Internet Explorer doesn't consider the port when comparing origins.
@@ -77,7 +77,7 @@ A *cross-origin policy* can be specified when adding the CORS Middleware using t
 
   [!code-csharp[](cors/sample/CorsExample1/Startup.cs?highlight=11,12&range=22-38)]
 
-  The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this topic. In the preceding example, the policy allows cross-origin requests from `http://example.com` and no other origins.
+  The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this topic. In the preceding example, the policy allows cross-origin requests from `https://example.com` and no other origins.
 
   The URL must be specified without a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
@@ -208,7 +208,7 @@ Access-Control-Request-Headers: Cache-Control, Content-Language
 
 ### Set the exposed response headers
 
-By default, the browser doesn't expose all of the response headers to the app. For more information, see [W3C Cross-Origin Resource Sharing (Terminology): Simple Response Header](http://www.w3.org/TR/cors/#simple-response-header).
+By default, the browser doesn't expose all of the response headers to the app. For more information, see [W3C Cross-Origin Resource Sharing (Terminology): Simple Response Header](https://www.w3.org/TR/cors/#simple-response-header).
 
 The response headers that are available by default are:
 
@@ -231,7 +231,7 @@ Using `XMLHttpRequest` directly:
 
 ```javascript
 var xhr = new XMLHttpRequest();
-xhr.open('get', 'http://www.example.com/api/test');
+xhr.open('get', 'https://www.example.com/api/test');
 xhr.withCredentials = true;
 ```
 
@@ -240,7 +240,7 @@ In jQuery:
 ```jQuery
 $.ajax({
   type: 'get',
-  url: 'http://www.example.com/home',
+  url: 'https://www.example.com/home',
   xhrFields: {
     withCredentials: true
 }
@@ -274,9 +274,9 @@ The rule on request headers set for the client request applies to headers that t
 The following is an example of a preflight request:
 
 ```
-OPTIONS http://myservice.azurewebsites.net/api/test HTTP/1.1
+OPTIONS https://myservice.azurewebsites.net/api/test HTTP/1.1
 Accept: */*
-Origin: http://myclient.azurewebsites.net
+Origin: https://myclient.azurewebsites.net
 Access-Control-Request-Method: PUT
 Access-Control-Request-Headers: accept, x-my-custom-header
 Accept-Encoding: gzip, deflate
@@ -300,7 +300,7 @@ To allow all author request headers, call <xref:Microsoft.AspNetCore.Cors.Infras
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=63-68&highlight=5)]
 
-Browsers are not entirely consistent in how they set `Access-Control-Request-Headers`. If you set headers to anything other than `"*"` (or use <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader*>), you should include at least `Accept`, `Content-Type`, and `Origin`, plus any custom headers that you want to support.
+Browsers aren't entirely consistent in how they set `Access-Control-Request-Headers`. If you set headers to anything other than `"*"` (or use <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader*>), you should include at least `Accept`, `Content-Type`, and `Origin`, plus any custom headers that you want to support.
 
 The following is an example response to the preflight request (assuming that the server allows the request):
 
@@ -309,7 +309,7 @@ HTTP/1.1 200 OK
 Cache-Control: no-cache
 Pragma: no-cache
 Content-Length: 0
-Access-Control-Allow-Origin: http://myclient.azurewebsites.net
+Access-Control-Allow-Origin: https://myclient.azurewebsites.net
 Access-Control-Allow-Headers: x-my-custom-header
 Access-Control-Allow-Methods: PUT
 Date: Wed, 20 May 2015 06:33:22 GMT
@@ -334,11 +334,11 @@ The CORS specification introduces several new HTTP headers that enable cross-ori
 The following is an example of a cross-origin request. The `Origin` header provides the domain of the site that's making the request:
 
 ```
-GET http://myservice.azurewebsites.net/api/test HTTP/1.1
-Referer: http://myclient.azurewebsites.net/
+GET https://myservice.azurewebsites.net/api/test HTTP/1.1
+Referer: https://myclient.azurewebsites.net/
 Accept: */*
 Accept-Language: en-US
-Origin: http://myclient.azurewebsites.net
+Origin: https://myclient.azurewebsites.net
 Accept-Encoding: gzip, deflate
 User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
 Host: myservice.azurewebsites.net
@@ -351,7 +351,7 @@ HTTP/1.1 200 OK
 Cache-Control: no-cache
 Pragma: no-cache
 Content-Type: text/plain; charset=utf-8
-Access-Control-Allow-Origin: http://myclient.azurewebsites.net
+Access-Control-Allow-Origin: https://myclient.azurewebsites.net
 Date: Wed, 20 May 2015 06:27:30 GMT
 Content-Length: 12
 
