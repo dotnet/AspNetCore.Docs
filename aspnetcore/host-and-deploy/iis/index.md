@@ -172,7 +172,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 
 1. Restart the system or execute **net stop was /y** followed by **net start w3svc** from a command prompt. Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer.
 
-   If an ASP.NET Core Module installer detects that IIS requires a reset in order to complete installation, the installer resets IIS. If the installer triggers an IIS reset, all of the IIS app pools are restarted.
+   If the Windows Hosting Bundle installer detects that IIS requires a reset in order to complete installation, the installer resets IIS. If the installer triggers an IIS reset, all of the IIS app pools and websites are restarted.
 
 > [!NOTE]
 > For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
