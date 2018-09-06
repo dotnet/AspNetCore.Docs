@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -54,7 +55,7 @@ namespace CorsExample4
                     builder =>
                     {
                         builder.WithOrigins("http://example.com")
-                               .WithHeaders("accept", "content-type", "origin", "x-custom-header");
+                               .WithHeaders(HeaderNames.ContentType, "x-custom-header");
                     });
                 // END05
 

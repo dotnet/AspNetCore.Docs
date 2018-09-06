@@ -1,37 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using ClientIpAspNetCore.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Logging;
 
-namespace CorsMVC.Controllers
+namespace ClientIpAspNetCore.Controllers
 {
-    #region EnableOnController
     [Route("api/[controller]")]
-    [EnableCors("AllowSpecificOrigin")]
-    public class ValuesController : ControllerBase
-#endregion
+    public class ValuesController : Controller
     {
-        // GET api/values
-        #region EnableOnAction
-        [HttpGet]
-        [EnableCors("AllowSpecificOrigin")]
-        public IEnumerable<string> Get()
+        private ILogger<ValuesController> _logger;
+
+        public ValuesController(ILogger<ValuesController> logger)
         {
+            _logger = logger;
+        }
+
+        // GET api/values
+        #region snippet_Filter
+        [ServiceFilter(typeof(ClientIdCheckFilter))]
+        [HttpGet]
+        public IEnumerable<string> Get()
+        #endregion
+        {
+            _logger.LogDebug("successful get.");
             return new string[] { "value1", "value2" };
         }
-        #endregion
 
         // GET api/values/5
-        #region DisableOnAction
         [HttpGet("{id}")]
-        [DisableCors]
         public string Get(int id)
         {
             return "value";
         }
-        #endregion
 
         // POST api/values
         [HttpPost]
