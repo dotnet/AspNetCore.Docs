@@ -5,7 +5,7 @@ description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: mimengis
 ms.custom: mvc
-ms.date: 08/30/2018
+ms.date: 09/06/2018
 uid: signalr/java-client
 ---
 # ASP.NET Core SignalR Java Client
@@ -20,7 +20,7 @@ The sample Java console app referenced in this article uses the SignalR Java cli
 
 ## Install the SignalR Java client package
 
-The *signalr-0.1.0-preview1-35029* JAR file allows clients to connect to SignalR hubs.
+The *signalr-0.1.0-preview1-35029* JAR file allows clients to connect to SignalR hubs. To find the latest JAR file version number, see the [Maven search results](https://search.maven.org/search?q=g:com.microsoft.aspnet%20AND%20a:signalr&core=gav).
 
 If using Gradle, add the following line to the `dependencies` section of your *build.gradle* file:
 
