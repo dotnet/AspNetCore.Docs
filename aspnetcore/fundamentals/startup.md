@@ -50,6 +50,8 @@ The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.con
 * Called by the web host before the `Configure` method to configure the app's services.
 * Where [configuration options](xref:fundamentals/configuration/index) are set by convention.
 
+The typical pattern is to call all the `Add{Service}` methods, and then call all the `services.Configure{Service}` methods. For example, see [Configure Identity services](xref:security/authentication/identity#pw).
+
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices).
 
 The web host may configure some services before `Startup` methods are called. Details are available in the [Host in ASP.NET Core](xref:fundamentals/host/index) topic.
