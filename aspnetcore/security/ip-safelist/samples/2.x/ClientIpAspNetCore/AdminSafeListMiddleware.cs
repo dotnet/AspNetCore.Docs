@@ -14,7 +14,10 @@ namespace ClientIpAspNetCore
         private readonly ILogger<AdminSafeListMiddleware> _logger;
         private readonly string _adminSafeList;
 
-        public AdminSafeListMiddleware(RequestDelegate next, ILogger<AdminSafeListMiddleware> logger, string adminSafeList)
+        public AdminSafeListMiddleware(
+            RequestDelegate next, 
+            ILogger<AdminSafeListMiddleware> logger, 
+            string adminSafeList)
         {
             _adminSafeList = adminSafeList;
             _next = next;
@@ -44,7 +47,8 @@ namespace ClientIpAspNetCore
 
                 if(badIp)
                 {
-                    _logger.LogInformation($"Forbidden Request from Remote IP address: {remoteIp}");
+                    _logger.LogInformation(
+                        $"Forbidden Request from Remote IP address: {remoteIp}");
                     context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                     return;
                 }

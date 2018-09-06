@@ -13,7 +13,8 @@ namespace ClientIpAspNetCore
         private readonly ILogger _logger;
         private readonly string _safelist;
 
-        public ClientIdCheckPageFilter(ILoggerFactory loggerFactory, IConfiguration configuration)
+        public ClientIdCheckPageFilter
+            (ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _logger = loggerFactory.CreateLogger("ClientIdCheckPageFilter");
             _safelist = configuration["AdminSafeList"];
@@ -21,7 +22,8 @@ namespace ClientIpAspNetCore
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            _logger.LogInformation($"Remote IpAddress: {context.HttpContext.Connection.RemoteIpAddress}");
+            _logger.LogInformation(
+                $"Remote IpAddress: {context.HttpContext.Connection.RemoteIpAddress}");
 
             var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
             _logger.LogDebug($"Request from Remote IP address: {remoteIp}");
@@ -42,7 +44,8 @@ namespace ClientIpAspNetCore
 
             if (badIp)
             {
-                _logger.LogInformation($"Forbidden Request from Remote IP address: {remoteIp}");
+                _logger.LogInformation(
+                    $"Forbidden Request from Remote IP address: {remoteIp}");
                 context.Result = new StatusCodeResult(401);
                 return;
             }

@@ -46,13 +46,17 @@ namespace ClientIpAspNetCore
         #endregion
         
         #region snippet_Configure
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory)
         {
             loggerFactory.AddNLog();
 
             app.UseStaticFiles();
 
-            app.UseMiddleware<AdminSafeListMiddleware>(Configuration["AdminSafeList"]);
+            app.UseMiddleware<AdminSafeListMiddleware>(
+                Configuration["AdminSafeList"]);
             app.UseMvc();
         }
         #endregion
