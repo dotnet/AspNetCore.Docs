@@ -24,7 +24,7 @@ This guide:
 * Configures a process management tool to help restart the web app.
 
 > [!NOTE]
-> Ubuntu isn't the only Linux operating system supported by ASP.NET Core. For more information, see the [.NET Core supported OS versions](/dotnet/core/windows-prerequisites#net-core-supported-operating-systems).
+> Ubuntu isn't the only Linux operating system supported by ASP.NET Core. For more information, see the [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
 
 ## Prerequisites
 
@@ -380,6 +380,7 @@ Add the line `add_header X-Content-Type-Options "nosniff";` and save the file, t
 
 ## Additional resources
 
+* [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
