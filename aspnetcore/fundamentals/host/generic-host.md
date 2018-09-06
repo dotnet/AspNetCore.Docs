@@ -213,7 +213,7 @@ public static class Extensions
         where T : class, IHostedService, IDisposable
     {
         return hostBuilder.ConfigureServices(services =>
-            services.AddHostedService<T>();
+            services.AddHostedService<T>());
     }
 }
 ```
