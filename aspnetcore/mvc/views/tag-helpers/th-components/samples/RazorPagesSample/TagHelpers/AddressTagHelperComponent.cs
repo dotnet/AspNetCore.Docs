@@ -33,9 +33,10 @@
                     StringComparison.OrdinalIgnoreCase) && 
                 output.Attributes.ContainsName("printable"))
             {
-                var content = await output.GetChildContentAsync();
+                TagHelperContent childContent = await output.GetChildContentAsync();
+                string content = childContent.GetContent();
                 output.Content.SetHtmlContent(
-                    $"<div>{content.GetContent()}<br/>{_markup}</div>{_printableButton}");
+                    $"<div>{content}<br/>{_markup}</div>{_printableButton}");
             }
         }
         #endregion
