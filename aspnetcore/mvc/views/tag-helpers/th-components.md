@@ -29,8 +29,8 @@ public class HeadTagHelper : TagHelperComponentTagHelper
 }
 ```
 
-* A custom Tag Helper Component class inherits from the `TagHelperComponentTagHelper` base class.
-* With `[HtmlTargetElement]` attribute, you can target any HTML element by passing the element name as a parameter.
+* A custom Tag Helper Component class derives from `TagHelperComponentTagHelper`.
+* With the `[HtmlTargetElement]` attribute, you can target any HTML element by passing the element name as a parameter.
 * The `[EditorBrowsable]` attribute determines whether to display a type's information in IntelliSense. This attribute is optional.
 * `ITagHelperComponentMananger` manages a collection of Tag Helper Components used throughout the app.
 
@@ -42,7 +42,7 @@ The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNe
 
 ### `head` Tag Helper Component
 
-A typical usage of `<head>` element is to define page-wide markup styles with the `<style>` element. The following code dynamically adds styles in the `<head>` element using the `head` Tag Helper Component.
+A typical usage of the `<head>` element is to define page-wide markup styles with the `<style>` element. The following code dynamically adds styles in the `<head>` element using the `head` Tag Helper Component.
 
 [!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/StyleTagHelperComponent.cs?name=snippet_StyleTagHelperComponentClass)]
 
@@ -56,11 +56,11 @@ In the preceding code:
 
 ### `body` Tag Helper Component
 
-Similarly, you can use the `body` Tag Helper Component to inject JavaScript scripts inside your `<body>` element. The following code demonstrates such example:
+Similarly, you can use the `body` Tag Helper Component to inject JavaScript scripts inside your `<body>` element. The following code demonstrates this technique:
 
 [!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/ScriptTagHelperComponent.cs?name=snippet_ScriptTagHelperComponentClass)]
 
-You can use separate HTML files to store your `<script>` and `<style>` elements. It makes the code cleaner and more maintainable. The preceding code reads the contents of *AddressToolTipScript.html* and appends it with the Tag Helper output. The *AddressToolTipScript.html* file includes the following markup:
+Use separate HTML files to store your `<script>` and `<style>` elements. It makes the code cleaner and more maintainable. The preceding code reads the contents of *AddressToolTipScript.html* and appends it with the Tag Helper output. The *AddressToolTipScript.html* file includes the following markup:
 
 [!code-html[](th-components/samples/RazorPagesSample/Files/AddressToolTipScript.html)]
 
@@ -106,7 +106,7 @@ public class AddressTagHelperComponent : ITagHelperComponent
 }
 ```
 
-In the preceding code, `ProcessAsync` checks for equality of the `TagName` and the `address` element. If matched, it injects HTML markup to `<address>` elements with an attribute of `printable`.
+In the preceding code, `ProcessAsync` tests for equality of the `TagName` and the `address` element. If matched, it injects HTML markup to `<address>` elements with an attribute of `printable`.
 
 ## Manage Components with `ITagHelperComponentManager`
 
