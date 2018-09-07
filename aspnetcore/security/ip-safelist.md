@@ -11,10 +11,11 @@ uid: security/ip-safelist
 
 By [Damien Bowden](https://twitter.com/damien_bod) and [Tom Dykstra](https://github.com/tdykstra)
  
-This article shows two ways to implement an IP safelist (also known as a whitelist):
+This article shows three ways to implement an IP safelist (also known as a whitelist) in an ASP.NET Core app. You can use:
 
-* By using ASP.NET Core middleware to check the remote IP address of every request.
-* By using ASP.NET Core action filters to check the remote IP address of requests for specific action methods.
+* Middleware to check the remote IP address of every request.
+* Action filters to check the remote IP address of requests for specific controllers or action methods.
+* Razor Pages filters to check the remote IP address of requests for Razor pages.
 
 The sample app illustrates both approaches. In each case, a string containing approved client IP addresses is stored in an app setting. The middleware or filter parses the string into a list and  checks if the remote IP is in the list. If not, an HTTP 403 Forbidden status code is returned.
 
