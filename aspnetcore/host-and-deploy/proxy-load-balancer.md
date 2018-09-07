@@ -216,10 +216,10 @@ If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6
 
 In the following example, a network address that supplies forwarded headers is added to the `KnownNetworks` list in IPv6 format:
 
-Short format IPv6 for `10.11.12.1/8`:
+Short format IPv6 for `10.11.12.1/8`&dagger;:
 
-* `::ffff:0a0b:0c01`
-* Prefix length: 104 (8 + 96&dagger;)
+* `::ffff:10.11.12.1`
+* Prefix length: 104 (8 + 96)
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
@@ -230,11 +230,11 @@ services.Configure<ForwardedHeadersOptions>(options =>
     options.ForwardedHeaders =
         ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     options.KnownNetworks.Add(new IPNetwork(
-        IPAddress.Parse("::ffff:0a0b:0c01"), 104));
+        IPAddress.Parse("::ffff:10.11.12.1"), 104));
 });
 ```
 
-&dagger;When converting an IPv4 address to IPv6, add 96 to the CIDR Prefix Length to account for the additional `::ffff:` IPv6 prefix.
+&dagger;When converting an IPv4 address to IPv6, add 96 to the CIDR Prefix Length to account for the additional `::ffff:` IPv6 prefix. You can also supply the address in hexadecimal format (`10.11.12.1` represented as `::ffff:0a0b:0c01`).
 
 ## Troubleshoot
 
