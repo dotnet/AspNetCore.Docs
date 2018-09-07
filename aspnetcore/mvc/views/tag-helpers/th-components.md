@@ -11,6 +11,8 @@ uid: mvc/views/tag-helpers/th-components
 
 By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan) and [Scott Addie](https://twitter.com/Scott_Addie)
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
 ## Overview
 
 In theory, a Tag Helper Component is a regular Tag Helper. The main difference is a Tag Helper Component allows you to conditionally modify or add HTML elements from server-side code. ASP.NET Core ships with two built-in Tag Helper Components: `head` and `body`. They can be used in both MVC and Razor Pages. The following code is for the built-in `head` Tag Helper Component:
@@ -34,7 +36,7 @@ public class HeadTagHelper : TagHelperComponentTagHelper
 
 The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNetCore.Mvc.TagHelpers` namespace along with the other Tag Helpers. In a MVC or Razor Pages app, all built-in Tag Helpers are imported with the following `@addTagHelper` directive in the *_ViewImports.cshtml* file:
 
-[!code-cshtml[](th-components/sample/RazorPagesSample/Pages/_ViewImports.cshtml?name=snippet_AddTagHelperDirective)]
+[!code-cshtml[](th-components/samples/RazorPagesSample/Pages/_ViewImports.cshtml?name=snippet_AddTagHelperDirective)]
 
 ## Use cases
 
@@ -42,7 +44,7 @@ The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNe
 
 A typical usage of `<head>` element is to define page-wide markup styles with the `<style>` element. The following code dynamically adds styles in the `<head>` element using the `head` Tag Helper Component.
 
-[!code-csharp[](th-components/sample/RazorPagesSample/TagHelpers/StyleTagHelperComponent.cs?name=snippet_StyleTagHelperComponentClass)]
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/StyleTagHelperComponent.cs?name=snippet_StyleTagHelperComponentClass)]
 
 In the preceding code:
 
@@ -56,11 +58,11 @@ In the preceding code:
 
 Similarly, you can use the `body` Tag Helper Component to inject JavaScript scripts inside your `<body>` element. The following code demonstrates such example:
 
-[!code-csharp[](th-components/sample/RazorPagesSample/TagHelpers/ScriptTagHelperComponent.cs?name=snippet_ScriptTagHelperComponentClass)]
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/ScriptTagHelperComponent.cs?name=snippet_ScriptTagHelperComponentClass)]
 
 You can use separate HTML files to store your `<script>` and `<style>` elements. It makes the code cleaner and more maintainable. The preceding code reads the contents of *AddressToolTipScript.html* and appends it with the Tag Helper output. The *AddressToolTipScript.html* file includes the following markup:
 
-[!code-html[](th-components/sample/RazorPagesSample/Files/AddressToolTipScript.html)]
+[!code-html[](th-components/samples/RazorPagesSample/Files/AddressToolTipScript.html)]
 
 The preceding code dynamically adds a Bootstrap tooltip menu on a `<address>` element with an attached attribute of `printable`. The effect is visible when a mouse pointer hovers over the element.
 
@@ -70,7 +72,7 @@ The preceding code dynamically adds a Bootstrap tooltip menu on a `<address>` el
 
 Implemented Tag Helper Component classes must be registered with the dependency injection (DI) system if you're not managing the instances with `ITagHelperComponentManager`. The following `Startup.ConfigureServices` code registers both the `StyleTagHelperComponent` and `ScriptTagHelperComponent` with a transient lifetime.
 
-[!code-csharp[](th-components/sample/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=11-12)]
+[!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=11-12)]
 
 ## Custom Tag Helper Components
 
@@ -78,7 +80,7 @@ You can build your own custom Tag Helper Component, following the same technique
 
 *AddressTagHelperComponentTagHelper.cs*
 
-[!code-csharp[](th-components/sample/RazorPagesSample/TagHelpers/AddressTagHelperComponentTagHelper.cs?name=snippet_AddressTagHelperComponentTagHelperClass)]
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressTagHelperComponentTagHelper.cs?name=snippet_AddressTagHelperComponentTagHelperClass)]
 
 You can use the custom `address` Tag Helper Component to inject HTML elements as follows:
 
@@ -110,7 +112,7 @@ In the preceding code, `ProcessAsync` checks for equality of the `TagName` and t
 
 You can register the `AddressTagHelperComponent` with the DI system like the other ones. However, you can also initialize and add the component directly from the Razor markup. `ITagHelperComponentManager` is used to add or remove Tag Helper Components from the app. The following code demonstrates this example:
 
-[!code-cshtml[](th-components/sample/RazorPagesSample/Pages/Contact.cshtml?name=snippet_ITagHelperComponentManager)]
+[!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_ITagHelperComponentManager)]
 
 In the preceding code:
 
