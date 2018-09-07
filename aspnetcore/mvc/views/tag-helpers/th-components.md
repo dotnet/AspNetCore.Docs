@@ -7,7 +7,7 @@ ms.author: scaddie
 ms.date: 09/07/2018
 uid: mvc/views/tag-helpers/th-components
 ---
-# ASP.NET Core Tag Helper Components
+# Tag Helper Components in ASP.NET Core
 
 By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan) and [Scott Addie](https://twitter.com/Scott_Addie)
 
@@ -32,11 +32,11 @@ public class HeadTagHelper : TagHelperComponentTagHelper
 * The `[EditorBrowsable]` attribute determines whether to display a type's information in IntelliSense. This attribute is optional.
 * `ITagHelperComponentMananger` manages a collection of Tag Helper Components used throughout the app.
 
-The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNetCore.Mvc,TagHelpers` namespace like other Tag Helpers. In a MVC/Razor Pages app, all Tag Helpers are imported with the `@addTagHelper` directive in the `_ViewImports.cshtml` file:
+The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNetCore.Mvc.TagHelpers` namespace along with the other Tag Helpers. In a MVC or Razor Pages app, all built-in Tag Helpers are imported with the following `@addTagHelper` directive in the *_ViewImports.cshtml* file:
 
 [!code-cshtml[](th-components/sample/RazorPagesSample/Pages/_ViewImports.cshtml?name=snippet_AddTagHelperDirective)]
 
-## Use Cases
+## Use cases
 
 ### `head` Tag Helper Component
 
@@ -50,7 +50,7 @@ In the preceding code:
 * If you have multiple usages of Tag Helper Components in an app, `Order` defines the order in which the Components are rendered.
 * `ProcessAsync` checks for a `TagName` inside the running context that matches the `head` element. If matched, it appends the content of the `_style` field with the `output` of the `<head>` element.
 
-![StyleTagHelper Sample Snapshot](th-Components/_static/style-tag-helper-component.png)
+![StyleTagHelper sample snapshot](th-components/_static/style-tag-helper-component.png)
 
 ### `body` Tag Helper Component
 
@@ -62,9 +62,9 @@ You can use separate HTML files to store your `<script>` and `<style>` elements.
 
 [!code-html[](th-components/sample/RazorPagesSample/Files/AddressToolTipScript.html)]
 
-> The script dynamically adds a Bootstrap tooltip menu on a `<address>` element with an attached attribute of `printable`. The effect is visible when a mouse pointer hovers over the element.
+The preceding code dynamically adds a Bootstrap tooltip menu on a `<address>` element with an attached attribute of `printable`. The effect is visible when a mouse pointer hovers over the element.
 
-![ScriptTagHelper Sample Snapshot](th-components/_static/script-tag-helper-component.png)
+![ScriptTagHelper sample snapshot](th-components/_static/script-tag-helper-component.png)
 
 ## Dependency injection
 
