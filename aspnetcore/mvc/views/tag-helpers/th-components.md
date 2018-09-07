@@ -34,7 +34,7 @@ public class HeadTagHelper : TagHelperComponentTagHelper
 * The `[EditorBrowsable]` attribute determines whether to display a type's information in IntelliSense. This attribute is optional.
 * `ITagHelperComponentMananger` manages a collection of Tag Helper Components used throughout the app.
 
-The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNetCore.Mvc.TagHelpers` namespace along with the other Tag Helpers. In a MVC or Razor Pages app, all built-in Tag Helpers are imported with the following `@addTagHelper` directive in the *_ViewImports.cshtml* file:
+The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNetCore.Mvc.Razor.TagHelpers` namespace. In an MVC or Razor Pages app, all built-in Tag Helpers are imported with the following `@addTagHelper` directive in the *_ViewImports.cshtml* file:
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/_ViewImports.cshtml?name=snippet_AddTagHelperDirective)]
 
@@ -42,7 +42,7 @@ The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNe
 
 ### `head` Tag Helper Component
 
-A typical usage of the `<head>` element is to define page-wide markup styles with the `<style>` element. The following code dynamically adds styles in the `<head>` element using the `head` Tag Helper Component.
+A typical usage of the `<head>` element is to define page-wide markup styles with the `<style>` element. The following code injects styles into the `<head>` element using the `head` Tag Helper Component.
 
 [!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/StyleTagHelperComponent.cs?name=snippet_StyleTagHelperComponentClass)]
 
@@ -56,7 +56,7 @@ In the preceding code:
 
 ### `body` Tag Helper Component
 
-Similarly, you can use the `body` Tag Helper Component to inject JavaScript scripts inside your `<body>` element. The following code demonstrates this technique:
+Similarly, the `body` Tag Helper Component can inject `<script>` elements into the `<body>` element. The following code demonstrates this technique:
 
 [!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/ScriptTagHelperComponent.cs?name=snippet_ScriptTagHelperComponentClass)]
 
