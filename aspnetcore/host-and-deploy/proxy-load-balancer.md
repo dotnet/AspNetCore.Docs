@@ -221,7 +221,7 @@ IPv4 address: `10.11.12.1/8`
 Converted IPv6 address: `::ffff:10.11.12.1`  
 Converted prefix length: 104
 
-You can also supply the address in hexadecimal format (`10.11.12.1` represented in IPv6 as `::ffff:0a0b:0c01`). When converting an IPv4 address to IPv6, add 96 to the CIDR Prefix Length (`8`) to account for the additional `::ffff:` IPv6 prefix (8 + 96 = 104). 
+You can also supply the address in hexadecimal format (`10.11.12.1` represented in IPv6 as `::ffff:0a0b:0c01`). When converting an IPv4 address to IPv6, add 96 to the CIDR Prefix Length (`8` in the example) to account for the additional `::ffff:` IPv6 prefix (8 + 96 = 104). 
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
