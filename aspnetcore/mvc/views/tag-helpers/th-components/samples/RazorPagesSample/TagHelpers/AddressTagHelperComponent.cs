@@ -25,6 +25,7 @@
 
         public void Init(TagHelperContext context) { }
 
+        #region snippet_ProcessAsync
         public async Task ProcessAsync(TagHelperContext context, 
                                        TagHelperOutput output)
         {
@@ -37,6 +38,7 @@
                     $"<div>{content.GetContent()}<br/>{_markup}</div>{_printableButton}");
             }
         }
+        #endregion
     }
     #endregion
 }

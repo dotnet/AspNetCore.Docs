@@ -76,13 +76,13 @@ Implemented Tag Helper Component classes must be registered with the dependency 
 
 ## Custom Tag Helper Components
 
-You can build your own custom Tag Helper Component, following the same technique used for the built-in `head` and `body` Tag Helpers. The following code creates a custom Tag Helper Component that targets the `<address>` HTML element:
+To build a custom Tag Helper Component, follow the same technique used for the built-in `head` and `body` Tag Helpers. The following code creates a custom Tag Helper Component that targets the `<address>` HTML element:
 
 *AddressTagHelperComponentTagHelper.cs*
 
 [!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressTagHelperComponentTagHelper.cs?name=snippet_AddressTagHelperComponentTagHelperClass)]
 
-You can use the custom `address` Tag Helper Component to inject HTML elements as follows:
+Use the custom `address` Tag Helper Component to inject HTML elements as follows:
 
 ```csharp
 public class AddressTagHelperComponent : ITagHelperComponent
@@ -110,7 +110,7 @@ In the preceding code, `ProcessAsync` checks for equality of the `TagName` and t
 
 ## Manage Components with `ITagHelperComponentManager`
 
-You can register the `AddressTagHelperComponent` with the DI system like the other ones. However, you can also initialize and add the component directly from the Razor markup. `ITagHelperComponentManager` is used to add or remove Tag Helper Components from the app. The following code demonstrates this example:
+You can register the `AddressTagHelperComponent` with the DI system like the other ones. However, you can also initialize and add the component directly from the Razor markup. `ITagHelperComponentManager` is used to add or remove Tag Helper Components from the app. The following code demonstrates this technique:
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_ITagHelperComponentManager)]
 
@@ -136,15 +136,6 @@ public AddressTagHelperComponent(string markup = "", int order = 1)
 
 The provided `markup` parameter is used in `ProcessAsync` as follows:
 
-```csharp
-public async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-{
-	if (string.Equals(context.TagName, "address", StringComparison.OrdinalIgnoreCase) && output.Attributes.ContainsName("printable"))
-    {
-		var content = await output.GetChildContentAsync();
-		output.Content.SetHtmlContent($"<div>{content.GetContent()}<br/>{_markup}</div>{_printableButton}");
-    }
-}
-```
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressTagHelperComponent.cs?name=snippet_ProcessAsync)]
 
 ![AddressTagHelperComponent sample snapshot](th-components/_static/address-tag-helper-component.png)
