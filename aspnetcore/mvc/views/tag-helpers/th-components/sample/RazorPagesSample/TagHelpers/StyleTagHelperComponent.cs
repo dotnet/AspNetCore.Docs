@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
-using System;
-using System.Threading.Tasks;
-
-namespace RazorPagesSample.TagHelpers
+﻿namespace RazorPagesSample.TagHelpers
 {
+    #region snippet_StyleTagHelperComponentClass
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Razor.TagHelpers;
+
     public class StyleTagHelperComponent : ITagHelperComponent
     {
         private string style = "<style>" +
@@ -23,7 +24,8 @@ namespace RazorPagesSample.TagHelpers
 
         public Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            if (string.Equals(context.TagName, "head", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(context.TagName, "head", 
+                              StringComparison.OrdinalIgnoreCase))
             {
                 output.PostContent.AppendHtml(style);
             }
@@ -31,4 +33,5 @@ namespace RazorPagesSample.TagHelpers
             return Task.CompletedTask;
         }
     }
+    #endregion
 }

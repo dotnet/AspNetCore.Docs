@@ -3,22 +3,26 @@
 @{
     ViewData["Title"] = "Contact";
 }
+<!-- <snippet_ITagHelperComponentManager> -->
 @using RazorPagesSample.TagHelpers;
-@inject Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager manager;
+@using Microsoft.AspNetCore.Mvc.Razor.TagHelpers;
+@inject ITagHelperComponentManager manager;
+
 @{
     string markup;
 
-    if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+    if (Model.IsWeekend)
     {
-        markup = "<i class='text-warning'>Office closed today!</i>";
+        markup = "<em class='text-warning'>Office closed today!</em>";
     }
     else
     {
-        markup = "<i class='text-info'>Office open today!</i>";
+        markup = "<em class='text-info'>Office open today!</em>";
     }
 
     manager.Components.Add(new AddressTagHelperComponent(markup, 1));
 }
+<!-- </snippet_ITagHelperComponentManager> -->
 
 <h2>@ViewData["Title"]</h2>
 <h3>@Model.Message</h3>

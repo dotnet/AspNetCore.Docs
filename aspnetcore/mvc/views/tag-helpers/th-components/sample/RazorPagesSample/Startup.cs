@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,23 +18,22 @@ namespace RazorPagesSample
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<ITagHelperComponent, StyleTagHelperComponent>();
-            services.AddTransient<ITagHelperComponent, ScriptTagHelperComponent>();
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            services.AddTransient<ITagHelperComponent, ScriptTagHelperComponent>();
+            services.AddTransient<ITagHelperComponent, StyleTagHelperComponent>();
+        }
+        #endregion
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -52,7 +47,6 @@ namespace RazorPagesSample
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseMvc();
         }
     }
