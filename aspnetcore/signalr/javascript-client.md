@@ -5,10 +5,9 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/29/2018
+ms.date: 08/14/2018
 uid: signalr/javascript-client
 ---
-
 # ASP.NET Core SignalR JavaScript client
 
 By [Rachel Appel](http://twitter.com/rachelappel)
@@ -22,11 +21,11 @@ The ASP.NET Core SignalR JavaScript client library enables developers to call se
 The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. If you're using Visual Studio, run `npm install` from the **Package Manager Console** while in the root folder. For Visual Studio Code, run the command from the **Integrated Terminal**.
 
   ```console
-   npm init -y
-   npm install @aspnet/signalr
+  npm init -y
+  npm install @aspnet/signalr
   ```
 
-Npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
+npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
 
 ## Use the SignalR JavaScript client
 
@@ -52,50 +51,51 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 ## Call hub methods from client
 
-JavaScript clients call public methods on hubs by using `connection.invoke`. The `invoke` method accepts two arguments:
+JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40aspnet/signalr/hubconnection#invoke) method of the [HubConnection](/javascript/api/%40aspnet/signalr/hubconnection). The `invoke` method accepts two arguments:
 
-* The name of the hub method. In the following example, the hub name is `SendMessage`.
+* The name of the hub method. In the following example, the method name on the hub is `SendMessage`.
 * Any arguments defined in the hub method. In the following example, the argument name is `message`.
 
-[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
+  [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
 
 ## Call client methods from hub
 
-To receive messages from the hub, define a method using the `connection.on` method.
+To receive messages from the hub, define a method using the [on](/javascript/api/%40aspnet/signalr/hubconnection#on) method of the `HubConnection`.
 
 * The name of the JavaScript client method. In the following example, the method name is `ReceiveMessage`.
 * Arguments the hub passes to the method. In the following example, the argument value is `message`.
 
 [!code-javascript[Receive calls from hub](javascript-client/sample/wwwroot/js/chat.js?range=14-19)]
 
-The preceding code in `connection.on` runs when server-side code calls it using the `SendAsync` method.
+The preceding code in `connection.on` runs when server-side code calls it using the [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) method.
 
 [!code-csharp[Call client-side](javascript-client/sample/hubs/chathub.cs?range=8-11)]
 
 SignalR determines which client method to call by matching the method name and arguments defined in `SendAsync` and `connection.on`.
 
 > [!NOTE]
-> As a best practice, call `connection.start` after `connection.on` so your handlers are registered before any messages are received.
+> As a best practice, call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start) method on the `HubConnection` after `on`. Doing so ensures your handlers are registered before any messages are received.
 
 ## Error handling and logging
 
-Chain a `catch` method to the end of the `connection.start` method to handle client-side errors. Use `console.error` to output errors to the browser's console.
+Chain a `catch` method to the end of the `start` method to handle client-side errors. Use `console.error` to output errors to the browser's console.
 
 [!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=28)]
 
 Setup client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
 
-* `signalR.LogLevel.Error` : Error messages. Logs `Error` messages only.
-* `signalR.LogLevel.Warning` : Warning messages about potential errors. Logs `Warning`, and `Error` messages.
-* `signalR.LogLevel.Information` : Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
-* `signalR.LogLevel.Trace` : Trace messages. Logs everything, including data transported between hub and client.
+* `signalR.LogLevel.Error` &ndash; Error messages. Logs `Error` messages only.
+* `signalR.LogLevel.Warning` &ndash; Warning messages about potential errors. Logs `Warning`, and `Error` messages.
+* `signalR.LogLevel.Information` &ndash; Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
+* `signalR.LogLevel.Trace` &ndash; Trace messages. Logs everything, including data transported between hub and client.
 
-Use the `configureLogging` method on `HubConnectionBuilder` to configure the log level. Messages are logged to the browser console.
+Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console.
 
 [!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
 
 ## Related resources
 
+* [JavaScript API reference](/javascript/api/)
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)

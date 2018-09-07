@@ -3,7 +3,7 @@ uid: ajax/cdn/jquery-validate/index
 title: "jQuery Validate | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/14/2017
 ms.assetid: a266cc44-f514-4913-9768-5b382380184d
 msc.legacyurl: /ajax/cdn/jquery-validate

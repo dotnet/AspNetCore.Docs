@@ -3,7 +3,7 @@ uid: whitepapers/request-validation
 title: "Request Validation - Preventing Script Attacks | Microsoft Docs"
 author: rick-anderson
 description: "This paper describes the request validation feature of ASP.NET where, by default, the application is prevented from processing unencoded HTML content submitt..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/10/2010
 ms.assetid: fa429113-5f8f-4ef4-97c5-5c04900a19fa
 msc.legacyurl: /whitepapers/request-validation

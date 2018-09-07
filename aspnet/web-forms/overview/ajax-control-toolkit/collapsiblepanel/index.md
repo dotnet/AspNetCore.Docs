@@ -3,7 +3,7 @@ uid: web-forms/overview/ajax-control-toolkit/collapsiblepanel/index
 title: "CollapsiblePanel | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the CollapsiblePanel control to let users expand and collapse areas on the page."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/14/2011
 ms.assetid: 3bdbb6ea-917e-4fff-a1cc-f194606a7869
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/collapsiblepanel

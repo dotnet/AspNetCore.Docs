@@ -3,7 +3,7 @@ uid: web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-custom
 title: "[How Do I:] LINQ to SQL: Custom LinqDataSource | Microsoft Docs"
 author: scottstanfield
 description: "The LinqDataSource control can be customized declaritively, as shown in Part 5, or through code by handling the Selecting method."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/10/2008
 ms.assetid: 9d020ec8-a7a8-4753-b73a-d9d0584d72e3
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-custom-linqdatasource

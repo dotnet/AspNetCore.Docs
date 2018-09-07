@@ -3,7 +3,7 @@ uid: signalr/overview/older-versions/dependency-injection
 title: "Dependency Injection in SignalR 1.x | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/15/2013
 ms.assetid: eaa206c4-edb3-487e-8fcb-54a3261fed36
 msc.legacyurl: /signalr/overview/older-versions/dependency-injection

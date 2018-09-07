@@ -3,7 +3,7 @@ uid: web-forms/videos/vs-2005/web-application-projects-web-deployment-projects
 title: "Web Application Projects & Web Deployment Projects | Microsoft Docs"
 author: BradleyBartz
 description: "Bradley Bartz shows how the Web Application Projects and Web Deployment Projects for Visual Studio 2005 make developing and deploying ASP.NET projects simila..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/20/2006
 ms.assetid: 66d242f5-0306-4df2-8f05-c93e405f9847
 msc.legacyurl: /web-forms/videos/vs-2005/web-application-projects-web-deployment-projects

@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-persist-the-state-of-a-user-control-duri
 title: "[How Do I]: Persist the State of a User Control During a Postback | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to persist the state of one or more objects in a user control. First, a user control is created that represents the abilit..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/02/2009
 ms.assetid: d1bca4c6-838c-40f7-87ec-80bb67e483e5
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-persist-the-state-of-a-user-control-during-a-postback

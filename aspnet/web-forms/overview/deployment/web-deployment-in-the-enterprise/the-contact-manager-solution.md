@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/the-contact-
 title: "The Contact Manager Solution | Microsoft Docs"
 author: jrjlee
 description: "This series of tutorials uses a sample solution&#x2014;the Contact Manager solution&#x2014;to represent an enterprise-scale application with a realistic leve..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/04/2012
 ms.assetid: 4d8c8d19-055b-4b70-9ee1-f748f0db3a01
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/the-contact-manager-solution

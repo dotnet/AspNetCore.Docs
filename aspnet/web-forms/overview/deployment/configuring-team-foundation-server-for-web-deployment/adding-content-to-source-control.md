@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-de
 title: "Adding Content to Source Control | Microsoft Docs"
 author: jrjlee
 description: "This topic explains how to add content to source control in Team Foundation Server (TFS) 2010. It describes how to add solutions and projects to a team proje..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/04/2012
 ms.assetid: 86c14aab-c2dd-4f73-b40c-c6d52fa44950
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/adding-content-to-source-control

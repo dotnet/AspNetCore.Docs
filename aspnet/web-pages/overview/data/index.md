@@ -3,7 +3,7 @@ uid: web-pages/overview/data/index
 title: "Working with Data | Microsoft Docs"
 author: rick-anderson
 description: "How to work with databases and files in Web Pages and how to display and update data."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/08/2014
 ms.assetid: b5d61ce5-0dd4-40ef-939f-c4b17bcb9c3b
 msc.legacyurl: /web-pages/overview/data

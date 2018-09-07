@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/how-do-i/what-is-aspnet-mvc-80-minute-technical-video-for-
 title: "What is ASP.NET MVC? 80 minute technical video for developers, building NerdDinner | Microsoft Docs"
 author: robconery
 description: "An in-depth tutorial on building an application with ASP.NET MVC. In this video we build the basics of Nerddinner.com and cover issues such as Unit Testing,..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/21/2009
 ms.assetid: a9f317b0-28c3-4838-bae0-cfa5ed5b3110
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner

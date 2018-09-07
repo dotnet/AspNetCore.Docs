@@ -29,7 +29,7 @@ Partial views are an effective way of breaking up large views into smaller compo
 
 In a complex page composed of several logical pieces, it's helpful to work with each piece as its own partial view. Each piece of the page can be viewed in isolation from the rest of the page. The view for the page itself becomes simpler, since it only contains the overall page structure and calls to render the partial views.
 
-ASP.NET Core MVC controllers have a [PartialView](/dotnet/api/microsoft.aspnetcore.mvc.controller.partialview#Microsoft_AspNetCore_Mvc_Controller_PartialView) method which is called from an action method. Razor Pages have no equivalent `PartialView` method.
+ASP.NET Core MVC controllers have a [PartialView](/dotnet/api/microsoft.aspnetcore.mvc.controller.partialview#Microsoft_AspNetCore_Mvc_Controller_PartialView) method which is called from an action method. Razor Pages have no equivalent `PartialView` method on the [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
 
 ## Declare partial views
 

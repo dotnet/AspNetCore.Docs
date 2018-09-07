@@ -101,7 +101,7 @@ Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in 
 
 ## Run the app
 
-In Visual Studio, press **F5** to build and run the app. After the web app launches, select **Sign in**.
+In Visual Studio, press **F5** to build and run the app. After the web app launches, select **Accept** to accept the use of cookies (if prompted), and then select **Sign in**.
 
 ![Sign into the app](./azure-ad-b2c/_static/signin.png)
 

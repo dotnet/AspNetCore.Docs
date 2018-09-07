@@ -3,7 +3,7 @@ uid: web-forms/videos/ajax-control-toolkit/index
 title: "Ajax Control Toolkit | Microsoft Docs"
 author: rick-anderson
 description: "How to create very responsive ASP.NET Web pages using the Ajax Control Toolkit."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/05/2011
 ms.assetid: 6f7b1c74-cc73-42f9-8ef0-8b3d058dabfa
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit

@@ -3,7 +3,7 @@ uid: web-api/overview/older-versions/index
 title: "Documentation on Older Versions of Web API | Microsoft Docs"
 author: rick-anderson
 description: "Documentation on older versions of Web API."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/23/2014
 ms.assetid: f5bc7426-27c6-492c-914f-b9d2eb49753d
 msc.legacyurl: /web-api/overview/older-versions

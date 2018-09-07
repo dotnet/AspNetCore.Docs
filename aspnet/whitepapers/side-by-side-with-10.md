@@ -3,7 +3,7 @@ uid: whitepapers/side-by-side-with-10
 title: "ASP.NET Side-by-Side Execution of .NET Framework 1.0 and 1.1 | Microsoft Docs"
 author: rick-anderson
 description: "This whitepaper describes how to install both .NET 1.0 and .NET 1.1 on your machine, allowing an ASP.NET Web application to run on either version of the fram..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/10/2010
 ms.assetid: bdea2003-e964-4db5-9092-d56cc7560616
 msc.legacyurl: /whitepapers/side-by-side-with-10

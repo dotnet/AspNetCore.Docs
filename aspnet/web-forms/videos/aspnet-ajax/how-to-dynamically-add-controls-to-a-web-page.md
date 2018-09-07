@@ -3,7 +3,7 @@ uid: web-forms/videos/aspnet-ajax/how-to-dynamically-add-controls-to-a-web-page
 title: "How To Dynamically Add Controls to a Web Page | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate a technique to dynamically add an indeterminate number of controls to your web page."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/16/2008
 ms.assetid: 718e7b1d-e02c-41fe-85d5-44c0d288201f
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-to-dynamically-add-controls-to-a-web-page

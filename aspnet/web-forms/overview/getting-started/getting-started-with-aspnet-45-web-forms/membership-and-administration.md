@@ -3,7 +3,7 @@ uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms
 title: "Membership and Administration | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/08/2014
 ms.assetid: 732a2316-e49f-4f72-becd-0cd72f14457e
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/membership-and-administration

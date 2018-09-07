@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-create-an-efficient-and-standardized-app
 title: "How Do I: Create an Efficient and Standardized Approach for Implementing CSS Styles? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to organize and implement CSS styles that provide a standardized look and feel to a web site. In addition, the styles are..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/15/2010
 ms.assetid: 1d902492-c6a3-4ab8-8e3d-57384ac893d5
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-an-efficient-and-standardized-approach-for-implementing-css-styles

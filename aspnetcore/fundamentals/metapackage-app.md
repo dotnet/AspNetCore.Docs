@@ -47,6 +47,15 @@ The following project file references the `Microsoft.AspNetCore.App` metapackage
 
 The version number on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be used. For example, suppose version `2.1.1` is specified, but `2.1.3` is installed. In that case, the app uses `2.1.3`. Although not recommended, you can disable roll-forward behavior (patch and/or minor). For more information on package version roll-forward behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
 
+## Update ASP.NET Core
+
 The `Microsoft.AspNetCore.App` [metapackage](/dotnet/core/packages#metapackages) isn't a traditional package that's updated from NuGet. Similar to `Microsoft.NETCore.App`, `Microsoft.AspNetCore.App` represents a shared runtime, which has special versioning semantics handled outside of NuGet. For more information, see [Packages, metapackages and frameworks](/dotnet/core/packages).
+
+To update ASP.NET Core:
+
+* On development machines and build servers: Download and install the [.NET Core SDK](https://www.microsoft.com/net/download).
+* On deployment servers: Download and install the [.NET Core runtime](https://www.microsoft.com/net/download).
+
+ Applications will roll forward to the latest installed version on application restart. It's not necessary to update the `Microsoft.AspNetCore.App` version number in the project file. For more information, see [Framework-dependent apps roll forward](/dotnet/core/versions/selection#framework-dependent-apps-roll-forward).
 
 If your application previously used `Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](xref:fundamentals/metapackage#migrate).

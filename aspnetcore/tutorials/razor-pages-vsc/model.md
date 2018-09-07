@@ -22,6 +22,14 @@ uid: tutorials/razor-pages-vsc/model
 
 [!INCLUDE [model 2a](../../includes/RP/model2a.md)]
 
+### Entity Framework Core NuGet package for SQLite
+
+From the command line, run the following .NET Core CLI command:
+
+```console
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+```
+
 [!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-4)]
 
 Add the following `using` statements at the top of *Startup.cs*:

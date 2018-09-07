@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/interacting-
 title: "Interacting with the Master Page from the Content Page (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Examines how to call methods, set properties, etc. of the Master Page from code in the Content Page."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/11/2008
 ms.assetid: 081fe010-ba0f-4e7d-b4ba-774840b601c2
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-master-page-from-the-content-page-vb

@@ -3,7 +3,7 @@ uid: whitepapers/whats-new-in-aspnet-45-and-visual-studio-2012
 title: "What's New in ASP.NET 4.5 and Visual Studio 2012 | Microsoft Docs"
 author: rick-anderson
 description: "This document describes new features and enhancements that are being introduced in ASP.NET 4.5. It also describes improvements being made for web development..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/29/2012
 ms.assetid: ba1fabb4-31a3-4ebf-8327-41a6bbba6eaf
 msc.legacyurl: /whitepapers/whats-new-in-aspnet-45-and-visual-studio-2012

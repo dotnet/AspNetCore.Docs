@@ -3,7 +3,7 @@ uid: web-api/overview/security/individual-accounts-in-web-api
 title: "Secure a Web API with Individual Accounts and Local Login in ASP.NET Web API 2.2 | Microsoft Docs"
 author: MikeWasson
 description: "This topic shows how to secure a web API using OAuth2 to authenticate against a membership database. Software versions used in the tutorial Visual Studio 201..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/15/2014
 ms.assetid: 92c84846-f0ea-4b5e-94b6-5004874eb060
 msc.legacyurl: /web-api/overview/security/individual-accounts-in-web-api

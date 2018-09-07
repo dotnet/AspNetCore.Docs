@@ -3,7 +3,7 @@ uid: signalr/overview/older-versions/working-with-groups
 title: "Working with Groups in SignalR 1.x | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to persist group membership information with the Hub API."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/21/2013
 ms.assetid: 22929efd-68c9-4609-b76d-f8ba42fda01e
 msc.legacyurl: /signalr/overview/older-versions/working-with-groups

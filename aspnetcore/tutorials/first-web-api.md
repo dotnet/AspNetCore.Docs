@@ -1,13 +1,13 @@
 ---
-title: Create a Web API with ASP.NET Core and Visual Studio for Windows
+title: Create a Web API with ASP.NET Core and Visual Studio
 author: rick-anderson
-description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
+description: Build a web API with ASP.NET Core MVC and Visual Studio on  Windows
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/17/2018
 uid: tutorials/first-web-api
 ---
-# Create a Web API with ASP.NET Core and Visual Studio for Windows
+# Create a Web API with ASP.NET Core and Visual Studio
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
@@ -15,7 +15,7 @@ This tutorial builds a web API for managing a list of "to-do" items. A user inte
 
 There are three versions of this tutorial:
 
-* Windows: Web API with Visual Studio for Windows (This tutorial)
+* Windows: Web API with Visual Studio on Windows (This tutorial)
 * macOS: [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 * macOS, Linux, Windows: [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
 

@@ -3,7 +3,7 @@ uid: web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-stud
 title: "Programming ASP.NET Web Pages (Razor) Using Visual Studio | Microsoft Docs"
 author: tfitzmac
 description: "This appendix explains how you can use Visual Studio 2010 or Visual Web Developer 2010 Express to program ASP.NET Web Pages with the Razor syntax."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/13/2014
 ms.assetid: 0acfec5a-48f2-4766-a801-a0f426966f0a
 msc.legacyurl: /web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio

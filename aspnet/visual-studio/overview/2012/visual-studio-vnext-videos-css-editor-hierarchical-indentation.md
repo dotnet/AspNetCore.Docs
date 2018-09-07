@@ -3,7 +3,7 @@ uid: visual-studio/overview/2012/visual-studio-vnext-videos-css-editor-hierarchi
 title: "Visual Studio vNext Videos: CSS Editor Hierarchical Indentation | Microsoft Docs"
 author: madskristensen
 description: "In this video, Mads Kristensen demonstrates improvements in the Visual Studio vNext CSS editor which automatically indents style rules based on their selecto..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/30/2011
 ms.assetid: 6e34a1b0-4108-4524-b858-430e742abe44
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-vnext-videos-css-editor-hierarchical-indentation

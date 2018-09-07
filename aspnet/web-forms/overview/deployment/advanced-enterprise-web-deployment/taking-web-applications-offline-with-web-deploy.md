@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/taking-web
 title: "Taking Web Applications Offline with Web Deploy | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to take a web application offline for the duration of an automated deployment using the Internet Information Services (IIS) Web Depl..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/04/2012
 ms.assetid: 3e9f6e7d-8967-4586-94d5-d3a122f12529
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/taking-web-applications-offline-with-web-deploy

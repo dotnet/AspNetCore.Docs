@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Core Differences Between IIS and the ASP.NET Development Server (VB) | Microsoft Docs"
 author: rick-anderson
 description: "When testing an ASP.NET application locally, chances are you are using the ASP.NET Development Web Server. However, the production website is most likely pow..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/01/2009
 ms.assetid: 090e9205-52f3-4d72-ae31-44775b8b8421
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/core-differences-between-iis-and-the-asp-net-development-server-vb

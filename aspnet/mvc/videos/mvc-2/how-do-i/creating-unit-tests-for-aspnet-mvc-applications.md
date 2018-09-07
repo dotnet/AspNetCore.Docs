@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/how-do-i/creating-unit-tests-for-aspnet-mvc-applications
 title: "Creating Unit Tests for ASP.NET MVC Applications | Microsoft Docs"
 author: StephenWalther
 description: "Learn how to create unit tests for controller actions. In this tutorial, Stephen Walther demonstrates how to test whether a controller action returns a parti..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/20/2008
 ms.assetid: 490a8588-aa5a-418e-a9b9-6215f694055a
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/creating-unit-tests-for-aspnet-mvc-applications

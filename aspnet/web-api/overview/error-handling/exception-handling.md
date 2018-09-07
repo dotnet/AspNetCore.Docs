@@ -3,7 +3,7 @@ uid: web-api/overview/error-handling/exception-handling
 title: "Exception Handling in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/12/2012
 ms.assetid: cbebeb37-2594-41f2-b71a-f4f26520d512
 msc.legacyurl: /web-api/overview/error-handling/exception-handling

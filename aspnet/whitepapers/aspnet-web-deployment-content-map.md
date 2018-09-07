@@ -3,7 +3,7 @@ uid: whitepapers/aspnet-web-deployment-content-map
 title: "ASP.NET Web Deployment - Recommended Resources | Microsoft Docs"
 author: rick-anderson
 description: "This topic provides links to documentation resources about how to deploy (publish) ASP.NET web applications to IIS by using Visual Studio 2010, Visual Web De..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/14/2014
 ms.assetid: 58b583cd-c4ab-47a3-8527-8c92c298c91f
 msc.legacyurl: /whitepapers/aspnet-web-deployment-content-map
