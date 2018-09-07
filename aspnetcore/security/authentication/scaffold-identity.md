@@ -169,3 +169,8 @@ Register an `IEmailSender` implementation, for example:
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet)]
+
+## Additional resources
+
+* [Changes to authentication code to ASP.NET Core 2.1 and later](xref:/migration/20_21#changes-to-authentication-code)
+* [AddDefaultIdentity vs. AddIdentity](xref:security/authentication/identity#adi)
