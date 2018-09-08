@@ -128,6 +128,19 @@ connection = new HubConnectionBuilder()
     .Build();
 ```
 
+# Scaleout differences
+
+ASP.NET SignalR supports both SQL Server and Redis. However, ASP.NET Core SignalR supports only Redis currently.
+
+## ASP.NET
+[SignalR Scaleout with SQL Server](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-with-sql-server)  
+[SignalR Scaleout with Redis](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-with-redis)  
+[SignalR Scaleout with Azure Service Bus](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
+
+## ASP.NET Core
+[Azure SignalR Service Documentation](https://docs.microsoft.com/en-us/azure/azure-signalr/)  
+The documentation for Redis is coming soon!
+
 ## Additional resources
 
 * [Hubs](xref:signalr/hubs)
