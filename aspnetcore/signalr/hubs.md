@@ -64,6 +64,26 @@ Additionally, `Hub.Clients` contains the following methods:
 
 Each property or method in the preceding tables returns an object with a `SendAsync` method. The `SendAsync` method allows you to supply the name and parameters of the client method to call.
 
+## The Context object
+
+Each instance of the `Hub` class has a property named `Context` that contains the following properties with information about the client and the connection:
+
+| Property | Description |
+| ------ | ----------- |
+| `ConnectionId` | Gets the connection ID. |
+| `UserIdentifier` | Gets the user identifier. |
+| `User` | Gets the user as an instance of `ClaimsPrincipal`. |
+| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. |
+| `Features` | Gets the collection of HTTP features available on the connection. |
+| `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
+
+Additionally, `Hub.Context` contains the following methods:
+
+| Method | Description |
+| ------ | ----------- |
+| `GetHttpContext` | Returns the `HttpContext` for the connection, or `null` if the connection is not associated with an HTTP request. |
+| `Abort` | Aborts the connection. |
+
 ## Send messages to clients
 
 To make calls to specific clients, use the properties of the `Clients` object. In the following example, the `SendMessageToCaller` method demonstrates sending a message to the connection that invoked the hub method. The `SendMessageToGroups` method sends a message to the groups stored in a `List` named `groups`.
