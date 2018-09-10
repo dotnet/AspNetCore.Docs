@@ -48,7 +48,7 @@ Azure DevOps Services provides a number of features to assist you with applicati
 
 For more information on the continuous integration and delivery features of Azure DevOps Services, see [the Azure DevOps documentation](/azure/devops/index).
 
-If you're looking for a turn-key project management, team collaboration, and source control solution, check out Azure DevOps Services. The service is free for up to 5 users, and you can sign up for it at [Azure DevOps Services](https://dev.azure.com/).
+If you're looking for a turn-key project management, team collaboration, and source control solution, check out Azure DevOps Services. Sign up at [Azure DevOps Services](https://dev.azure.com/).
 
 ## Summary
 
