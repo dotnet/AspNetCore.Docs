@@ -44,8 +44,8 @@ Each instance of the `Hub` class has a property named `Context` that contains th
 | Property | Description |
 | ------ | ----------- |
 | `ConnectionId` | Gets the unique ID for the connection, assigned by SignalR. There is one connection ID for each connection, and the same connection ID is used by all hubs if there are multiple hubs in an application.|
-| `UserIdentifier` | Gets the user identifier. |
-| `User` | Gets the user (an instance of `ClaimsPrincipal`). |
+| `UserIdentifier` | Gets the user identifier. By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. |
+| `User` | Gets the `ClaimsPrincipal`. |
 | `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. |
 | `Features` | Gets the collection of [HTTP features](xref:fundamentals/request-features) available on the connection. |
 | `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
