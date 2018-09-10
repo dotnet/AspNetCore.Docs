@@ -38,7 +38,7 @@ Now, with access to an instance of `IHubContext`, you can call hub methods as if
 Access the `IHubContext` within the middleware pipeline like so:
 
 ```csharp
-app.Use(next => (context) =>
+app.Use(next => async (context) =>
 {
     var hubContext = context.RequestServices
                             .GetRequiredService<IHubContext<MyHub>>();
