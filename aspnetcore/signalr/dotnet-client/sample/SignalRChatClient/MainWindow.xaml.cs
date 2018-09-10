@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region snippet_MainWindowClass
+using System;
 using System.Windows;
 using Microsoft.AspNetCore.SignalR.Client;
 
@@ -18,6 +19,7 @@ namespace SignalRChatClient
 
         private async void connectButton_Click(object sender, RoutedEventArgs e)
         {
+            #region snippet_ConnectionOn
             connection.On<string, string>("ReceiveMessage", (user, message) =>
             {
                 this.Dispatcher.Invoke(() =>
@@ -26,6 +28,7 @@ namespace SignalRChatClient
                    messagesList.Items.Add(newMessage);
                 });
             });
+            #endregion
 
             try
             {
@@ -42,15 +45,20 @@ namespace SignalRChatClient
 
         private async void sendButton_Click(object sender, RoutedEventArgs e)
         {
+            #region snippet_ErrorHandling
             try
             {
+                #region snippet_InvokeAsync
                 await connection.InvokeAsync("SendMessage", 
                     userTextBox.Text, messageTextBox.Text);
+                #endregion
             }
             catch (Exception ex)
             {                
                 messagesList.Items.Add(ex.Message);                
             }
+            #endregion
         }
     }
 }
+#endregion
