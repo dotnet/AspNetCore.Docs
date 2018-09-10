@@ -37,9 +37,29 @@ Create a hub by declaring a class that inherits from `Hub`, and add public metho
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
+## The Context object
+
+Each instance of the `Hub` class has a property named `Context` that contains the following properties with information about the connection:
+
+| Property | Description |
+| ------ | ----------- |
+| `ConnectionId` | Gets the unique ID for the connection, assigned by SignalR. There is one connection ID for each connection, and the same connection ID is used by all hubs if there are multiple hubs in an application.|
+| `UserIdentifier` | Gets the user identifier. |
+| `User` | Gets the user (an instance of `ClaimsPrincipal`). |
+| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. |
+| `Features` | Gets the collection of [HTTP features](xref:fundamentals/request-features) available on the connection. |
+| `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
+
+`Hub.Context` also contains the following methods:
+
+| Method | Description |
+| ------ | ----------- |
+| `GetHttpContext` | Returns the `HttpContext` for the connection, or `null` if the connection is not associated with an HTTP request. For HTTP connections, you can use this method to get information such as HTTP header and query string data. |
+| `Abort` | Aborts the connection. |
+
 ## The Clients object
 
-Each instance of the `Hub` class has a property named `Clients` that contains the following members for communication between server and client:
+Each instance of the `Hub` class has a property named `Clients` that contains the following properties for communication between server and client:
 
 | Property | Description |
 | ------ | ----------- |
@@ -48,7 +68,7 @@ Each instance of the `Hub` class has a property named `Clients` that contains th
 | `Others` | Calls a method on all connected clients except the client that invoked the method |
 
 
-Additionally, `Hub.Clients` contains the following methods:
+`Hub.Clients` also contains the following methods:
 
 | Method | Description |
 | ------ | ----------- |
@@ -63,26 +83,6 @@ Additionally, `Hub.Clients` contains the following methods:
 | `Users` | Calls a method to all connections associated with the specified users |
 
 Each property or method in the preceding tables returns an object with a `SendAsync` method. The `SendAsync` method allows you to supply the name and parameters of the client method to call.
-
-## The Context object
-
-Each instance of the `Hub` class has a property named `Context` that contains the following properties with information about the client and the connection:
-
-| Property | Description |
-| ------ | ----------- |
-| `ConnectionId` | Gets the connection ID. |
-| `UserIdentifier` | Gets the user identifier. |
-| `User` | Gets the user as an instance of `ClaimsPrincipal`. |
-| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. |
-| `Features` | Gets the collection of HTTP features available on the connection. |
-| `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
-
-Additionally, `Hub.Context` contains the following methods:
-
-| Method | Description |
-| ------ | ----------- |
-| `GetHttpContext` | Returns the `HttpContext` for the connection, or `null` if the connection is not associated with an HTTP request. |
-| `Abort` | Aborts the connection. |
 
 ## Send messages to clients
 
