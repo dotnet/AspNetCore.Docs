@@ -43,10 +43,10 @@ Each instance of the `Hub` class has a property named `Context` that contains th
 
 | Property | Description |
 | ------ | ----------- |
-| `ConnectionId` | Gets the unique ID for the connection, assigned by SignalR. There is one connection ID for each connection, and the same connection ID is used by all hubs if there are multiple hubs in an application.|
+| `ConnectionId` | Gets the unique ID for the connection, assigned by SignalR. There is one connection ID for each connection.|
 | `UserIdentifier` | Gets the user identifier. By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. |
 | `User` | Gets the `ClaimsPrincipal`. |
-| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. |
+| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. You can store items in this collection and they will persist for that connection across different hub method invocations. |
 | `Features` | Gets the collection of [HTTP features](xref:fundamentals/request-features) available on the connection. |
 | `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
 
@@ -54,7 +54,7 @@ Each instance of the `Hub` class has a property named `Context` that contains th
 
 | Method | Description |
 | ------ | ----------- |
-| `GetHttpContext` | Returns the `HttpContext` for the connection, or `null` if the connection is not associated with an HTTP request. For HTTP connections, you can use this method to get information such as HTTP header and query string data. |
+| `GetHttpContext` | Returns the `HttpContext` for the connection, or `null` if the connection is not associated with an HTTP request. For HTTP connections, you can use this method to get information such as HTTP headers and query strings. |
 | `Abort` | Aborts the connection. |
 
 ## The Clients object
