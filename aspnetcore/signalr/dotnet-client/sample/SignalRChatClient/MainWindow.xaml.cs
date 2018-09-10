@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Windows;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace SignalRChatClient
 {
@@ -13,8 +12,8 @@ namespace SignalRChatClient
             InitializeComponent();
 
             connection = new HubConnectionBuilder()
-            .WithUrl("https://localhost:44317/ChatHub")
-            .Build();        
+                .WithUrl("http://localhost:53353/ChatHub")
+                .Build();        
         }
 
         private async void connectButton_Click(object sender, RoutedEventArgs e)
