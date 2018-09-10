@@ -57,7 +57,7 @@ Remove the local Git deployment with the following steps. Azure Pipelines (an Az
 1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 
-## Create an Azure DevOps
+## Create an Azure DevOps organization
 
 1. Open a browser, and navigate to the [Azure DevOps organization creation page](https://go.microsoft.com/fwlink/?LinkId=307137).
 1. Type a unique name into the **Pick a memorable name** textbox to form the URL for accessing your Azure DevOps organization.
