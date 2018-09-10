@@ -228,7 +228,7 @@ In this section, the following tasks were completed:
 * Deployed an update to the staging slot.
 * Swapped the staging and production slots.
 
-In the next section, you'll learn how to build a DevOps pipeline with Azure and Visual Studio Team Services.
+In the next section, you'll learn how to build a DevOps pipeline with Azure Pipelines.
 
 ## Additional reading
 
