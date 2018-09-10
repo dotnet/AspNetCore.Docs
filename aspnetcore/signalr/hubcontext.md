@@ -40,9 +40,8 @@ Access the `IHubContext` within the middleware pipeline like so:
 ```csharp
 app.Use(next => (context) =>
 {
-    var hubContext = (IHubContext<MyHub>)context
-                        .RequestServices
-                        .GetServices<IHubContext<MyHub>>();
+    var hubContext = context.RequestServices
+                            .GetRequiredService<IHubContext<MyHub>>();
     //...
 });
 ```
