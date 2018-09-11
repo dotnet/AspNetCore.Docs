@@ -50,6 +50,8 @@ The [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.con
 * Called by the web host before the `Configure` method to configure the app's services.
 * Where [configuration options](xref:fundamentals/configuration/index) are set by convention.
 
+The typical pattern is to call all the `Add{Service}` methods, and then call all the `services.Configure{Service}` methods. For example, see [Configure Identity services](xref:security/authentication/identity#pw).
+
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices).
 
 The web host may configure some services before `Startup` methods are called. Details are available in the [Host in ASP.NET Core](xref:fundamentals/host/index) topic.
@@ -60,7 +62,7 @@ For features that require substantial setup, there are `Add[Service]` extension 
 
 ## The Configure method
 
-The [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) method is used to specify how the app responds to HTTP requests. The request pipeline is configured by adding [middleware](xref:fundamentals/middleware/index) components to an [IApplicationBuilder](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder) instance. `IApplicationBuilder` is available to the `Configure` method, but it isn't registered in the service container. Hosting creates an `IApplicationBuilder` and passes it directly to `Configure` ([reference source](https://github.com/aspnet/Hosting/blob/release/2.0.0/src/Microsoft.AspNetCore.Hosting/Internal/WebHost.cs#L179-L192)).
+The [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) method is used to specify how the app responds to HTTP requests. The request pipeline is configured by adding [middleware](xref:fundamentals/middleware/index) components to an [IApplicationBuilder](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder) instance. `IApplicationBuilder` is available to the `Configure` method, but it isn't registered in the service container. Hosting creates an `IApplicationBuilder` and passes it directly to `Configure`.
 
 The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeline with support for a developer exception page, [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, and ASP.NET Core MVC:
 
@@ -80,7 +82,7 @@ For more information on how to use `IApplicationBuilder` and the order of middle
 
 [!code-csharp[](startup/snapshot_sample/Program.cs?highlight=18,22)]
 
-## Startup filters
+## Extend Startup with startup filters
 
 Use [IStartupFilter](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter) to configure middleware at the beginning or end of an app's [Configure](#the-configure-method) middleware pipeline. `IStartupFilter` is useful to ensure that a middleware runs before or after middleware added by libraries at the start or end of the app's request processing pipeline.
 
@@ -96,9 +98,9 @@ The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartup
 
 [!code-csharp[](startup/sample/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
 
-The `IStartupFilter` is registered in the service container in `ConfigureServices`:
+The `IStartupFilter` is registered in the service container in [IWebHostBuilder.ConfigureServices](xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder.ConfigureServices*) to demonstrate how the startup filter augments `Startup` from outside of the `Startup` class:
 
-[!code-csharp[](startup/sample/Startup.cs?name=snippet1&highlight=3)]
+[!code-csharp[](startup/sample/Program.cs?name=snippet1&highlight=4-5)]
 
 When a query string parameter for `option` is provided, the middleware processes the value assignment before the MVC middleware renders the response:
 
@@ -109,7 +111,7 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 * Multiple `IStartupFilter` implementations may interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
 * Libraries may add middleware with one or more `IStartupFilter` implementations that run before or after other app middleware registered with `IStartupFilter`. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`, position the service registration before the library is added to the service container. To invoke it afterward, position the service registration after the library is added.
 
-## Adding configuration at startup from an external assembly
+## Add configuration at startup from an external assembly
 
 An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration).
 
@@ -120,4 +122,3 @@ An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) i
 * <xref:fundamentals/middleware/index>
 * <xref:fundamentals/logging/index>
 * <xref:fundamentals/configuration/index>
-* [StartupLoader class: FindStartupType method (reference source)](https://github.com/aspnet/Hosting/blob/rel/2.0.0/src/Microsoft.AspNetCore.Hosting/Internal/StartupLoader.cs#L66-L116)

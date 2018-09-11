@@ -98,3 +98,4 @@ There are more vulnerabilities that you should be aware of. For more information
 *   [Prevent Cross-Site Scripting](xref:security/cross-site-scripting)
 *   [Enable Cross-Origin Requests (CORS)](xref:security/cors)
 *   [Share cookies among apps](xref:security/cookie-sharing)
+*   [IP safelist](xref:security/ip-safelist)

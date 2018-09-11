@@ -233,7 +233,7 @@ The `AdditionalFields` property of the `[Remote]` attribute is useful for valida
 
 [!code-csharp[](validation/sample/User.cs?range=10-13)]
 
-`AdditionalFields` could've been set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/nameof) operator like this simplifies later refactoring. The action method to perform the validation must then accept two arguments, one for the value of `FirstName` and one for the value of `LastName`.
+`AdditionalFields` could've been set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](/dotnet/csharp/language-reference/keywords/nameof) operator like this simplifies later refactoring. The action method to perform the validation must then accept two arguments, one for the value of `FirstName` and one for the value of `LastName`.
 
 [!code-csharp[](validation/sample/UsersController.cs?range=30-39)]
 

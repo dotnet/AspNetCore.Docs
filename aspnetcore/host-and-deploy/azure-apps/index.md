@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to host ASP.NET Core apps in Azure App Service with links to helpful resources.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/24/2018
+ms.date: 08/29/2018
 uid: host-and-deploy/azure-apps/index
 ---
 # Host ASP.NET Core on Azure App Service
@@ -32,7 +32,7 @@ Learn how to publish an ASP.NET Core app to Azure App Service using the Git comm
 [Continuous deployment to Azure with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)  
 Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
 
-[Continuous deployment to Azure with VSTS](https://www.visualstudio.com/docs/build/aspnet/core/quick-to-azure)  
+[Create your first pipeline with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)  
 Set up a CI build for an ASP.NET Core app, then create a continuous deployment release to Azure App Service.
 
 [Azure Web App sandbox](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
@@ -51,6 +51,14 @@ In ASP.NET Core 2.0 or later, the following NuGet packages provide automatic log
 If targeting .NET Core and referencing the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), the packages are already included. The packages are absent from the newer [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, reference the individual logging packages.
 
 ::: moniker-end
+
+## Override app configuration using the Azure Portal
+
+The **App Settings** area of the **Application settings** blade permits you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+
+When an app uses the [Web Host](xref:fundamentals/host/web-host) and builds the host using [WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder), environment variables that configure the host use the `ASPNETCORE_` prefix. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+
+When an app uses the [Generic Host](xref:fundamentals/host/generic-host), environment variables aren't loaded into an app's configuration by default and the configuration provider must be added by the developer. The developer determines the environment variable prefix when the configuration provider is added. For more information, see <xref:fundamentals/host/generic-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
 ## Proxy server and load balancer scenarios
 
@@ -96,35 +104,55 @@ ASP.NET Core preview apps can be deployed to Azure App Service with the followin
 <!-- * [Deploy the app self-contained](#deploy-the-app-self-contained) -->
 * [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
 
-If a problem occurs using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
-
 ### Install the preview site extension
+
+If a problem occurs using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
 
 1. From the Azure portal, navigate to the App Service blade.
 1. Select the web app.
-1. Enter "ex" in the search box or scroll down the list of management panes to **DEVELOPMENT TOOLS**.
+1. Type "ex" in the search box or scroll down the list of management sections to **DEVELOPMENT TOOLS**.
 1. Select **DEVELOPMENT TOOLS** > **Extensions**.
 1. Select **Add**.
-
-   ![Azure App blade with preceding steps](index/_static/x1.png)
-
-1. Select **ASP.NET Core Extensions**.
+1. Select the **ASP.NET Core &lt;x.y&gt; (x86) Runtime** extension from the list, where `<x.y>` is the ASP.NET Core preview version (for example, **ASP.NET Core 2.2 (x86) Runtime**). The x86 runtime is appropriate for [framework-dependent deployments](/dotnet/core/deploying/#framework-dependent-deployments-fdd) that rely on out-of-process hosting by the ASP.NET Core Module.
 1. Select **OK** to accept the legal terms.
 1. Select **OK** to install the extension.
 
-When the add operations complete, the latest .NET Core preview is installed. Verify the installation by running `dotnet --info` in the console. From the **App Service** blade:
+When the operation completes, the latest .NET Core preview is installed. Verify the installation:
 
-1. Enter "con" in the search box or scroll down the list of management panes to **DEVELOPMENT TOOLS**.
-1. Select **DEVELOPMENT TOOLS** > **Console**.
-1. Enter `dotnet --info` in the console.
+1. Select **Advanced Tools** under **DEVELOPMENT TOOLS**.
+1. Select **Go** on the **Advanced Tools** blade.
+1. Select the **Debug console** > **PowerShell** menu item.
+1. At the PowerShell prompt, execute the following command. Substitute the ASP.NET Core runtime version for `<x.y>` in the command:
 
-If version `2.1.300-preview1-008174` is the latest preview release, the following output is obtained by running `dotnet --info` at the command prompt:
+   ```powershell
+   Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.<x.y>.x86\
+   ```
+   If the installed preview runtime is for ASP.NET Core 2.2, the command is:
+   ```powershell
+   Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.2.2.x86\
+   ```
+   The command returns `True` when the x64 preview runtime is installed.
 
-![Azure App blade with preceding steps](index/_static/cons.png)
+::: moniker range=">= aspnetcore-2.2"
 
-The version of ASP.NET Core shown in the preceding image, `2.1.300-preview1-008174`, is an example. The latest preview version of ASP.NET Core at the time the site extension is configured appears when you execute `dotnet --info`.
+> [!NOTE]
+> The platform architecture (x86/x64) of an App Services app is set in the **Application Settings** blade under **General Settings** for apps that are hosted on an A-series compute or better hosting tier. If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core &lt;x.y&gt; (x64) Runtime** extension (for example, **ASP.NET Core 2.2 (x64) Runtime**).
+>
+> After installing the x64 preview runtime, run the following command in the Kudu PowerShell command window to verify the installation. Substitute the ASP.NET Core runtime version for `<x.y>` in the command:
+>
+> ```powershell
+> Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.<x.y>.x64\
+> ```
+> If the installed preview runtime is for ASP.NET Core 2.2, the command is:
+> ```powershell
+> Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.2.2.x64\
+> ```
+> The command returns `True` when the x64 preview runtime is installed.
 
-The `dotnet --info` displays the path to the site extension where the Preview has been installed. It shows the app is running from the site extension instead of from the default *ProgramFiles* location. If you see *ProgramFiles*, restart the site and run `dotnet --info`.
+::: moniker-end
+
+> [!NOTE]
+> **ASP.NET Core Extensions** enables additional functionality for ASP.NET Core on Azure App Services, such as enabling Azure logging. The extension is installed automatically when deploying from Visual Studio. If the extension isn't installed, install it for the app.
 
 **Use the preview site extension with an ARM template**
 

@@ -49,7 +49,7 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        await _myDependency.WriteMessage(
+        await _dependency.WriteMessage(
             "IndexModel.OnGetAsync created this message.");
     }
 }
@@ -68,7 +68,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        await _myDependency.WriteMessage(
+        await _dependency.WriteMessage(
             "HomeController.Index created this message.");
 
         return View();

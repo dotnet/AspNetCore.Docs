@@ -5,7 +5,7 @@ description: A collection of guidance for getting the most out of Azure services
 ms.author: casoper
 ms.date: 08/07/2018
 layout: LandingPage
-ms.topic: landing-page
+ms.topic: conceptual
 uid: azure/index
 ---
 # Azure guidance

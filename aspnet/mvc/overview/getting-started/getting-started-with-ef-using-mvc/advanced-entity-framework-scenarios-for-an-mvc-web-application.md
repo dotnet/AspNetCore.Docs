@@ -148,7 +148,7 @@ Now set a breakpoint on the `return` statement (F9 with the cursor on that line)
 
 [!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.json)]
 
-Click the magnifying class to see the query in the **Text Visualizer**.
+Click the magnifying glass to see the query in the **Text Visualizer**.
 
 ![](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image10.png)
 
