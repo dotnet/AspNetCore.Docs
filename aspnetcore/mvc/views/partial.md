@@ -185,7 +185,7 @@ When a partial view is referenced by name without a file extension, the followin
 **Razor Pages**
 
 1. Currently executing page's folder
-1. `/Pages`
+1. Directory graph above the page's folder
 1. `/Shared`
 1. `/Pages/Shared`
 1. `/Views/Shared`
@@ -197,6 +197,12 @@ When a partial view is referenced by name without a file extension, the followin
 1. Currently executing view's folder
 1. `/Views/Shared`
 1. `/Pages/Shared`
+
+If the partial view is called from an Area view, the following locations are searched:
+
+1. `/Areas/<Area-Name>/Views/<Controller-Name>`
+1. `/Areas/<Area-Name>/Views/Shared`
+1. `/Views/Shared`
 
 The following conventions apply to partial view discovery:
 
