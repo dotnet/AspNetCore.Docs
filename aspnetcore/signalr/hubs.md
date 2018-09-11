@@ -39,15 +39,15 @@ You can specify a return type and parameters, including complex types and arrays
 
 ## The Context object
 
-Each instance of the `Hub` class has a property named `Context` that contains the following properties with information about the connection:
+The `Hub` class has a `Context` property that contains the following properties with information about the connection:
 
 | Property | Description |
 | ------ | ----------- |
 | `ConnectionId` | Gets the unique ID for the connection, assigned by SignalR. There is one connection ID for each connection.|
-| `UserIdentifier` | Gets the user identifier. By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. |
-| `User` | Gets the `ClaimsPrincipal`. |
-| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. You can store items in this collection and they will persist for that connection across different hub method invocations. |
-| `Features` | Gets the collection of [HTTP features](xref:fundamentals/request-features) available on the connection. |
+| `UserIdentifier` | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. |
+| `User` | Gets the `ClaimsPrincipal` associated with the current user. |
+| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it will persist for the connection across different hub method invocations. |
+| `Features` | Gets the collection of features available on the connection. For now, this collection doesn't have anything you need to get or set, so it isn't documented in detail. |
 | `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
 
 `Hub.Context` also contains the following methods:
@@ -59,7 +59,7 @@ Each instance of the `Hub` class has a property named `Context` that contains th
 
 ## The Clients object
 
-Each instance of the `Hub` class has a property named `Clients` that contains the following properties for communication between server and client:
+The `Hub` class has a `Clients` property that contains the following properties for communication between server and client:
 
 | Property | Description |
 | ------ | ----------- |
