@@ -39,7 +39,7 @@ The following project file references the `Microsoft.AspNetCore.App` metapackage
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.3" />
   </ItemGroup>
 
 </Project>
