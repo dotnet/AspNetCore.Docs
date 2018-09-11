@@ -42,9 +42,9 @@ Don't use a partial view where complex rendering logic or code execution is requ
 
 A partial view is a *.cshtml* markup file maintained within the *Views* folder (MVC) or *Pages* folder (Razor Pages).
 
-In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view. An analogous capability is planned for Razor Pages in ASP.NET Core 2.2. In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>'s <xref:Microsoft.AspNetCore.Mvc.IActionResult> can return a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult>. Referencing and rendering partial views is described in detail in the next section.
+In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view. An analogous capability is planned for Razor Pages in ASP.NET Core 2.2. In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>'s <xref:Microsoft.AspNetCore.Mvc.IActionResult> can return a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult>. Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
 
-Unlike view or page rendering, a partial view doesn't run *_ViewStart.cshtml*. For more information on *_ViewStart.cshtml*, see <xref:mvc/views/layout>.
+Unlike MVC view or page rendering, a partial view doesn't run *_ViewStart.cshtml*. For more information on *_ViewStart.cshtml*, see <xref:mvc/views/layout>.
 
 Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views and pages. Razor Pages ignores files that start with an underscore, even if the page includes an `@page` directive.
 
@@ -56,7 +56,7 @@ A partial view is a *.cshtml* markup file maintained within the *Views* folder.
 
 A controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view.
 
-Unlike view rendering, a partial view doesn't run *_ViewStart.cshtml*. For more information on *_ViewStart.cshtml*, see <xref:mvc/views/layout>.
+Unlike MVC view rendering, a partial view doesn't run *_ViewStart.cshtml*. For more information on *_ViewStart.cshtml*, see <xref:mvc/views/layout>.
 
 Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views.
 
@@ -64,7 +64,10 @@ Partial view file names often begin with an underscore (`_`). This naming conven
 
 ## Reference a partial view
 
-Within a markup file, there are several ways to reference a partial view. We recommend that apps use one of the asynchronous rendering approaches.
+Within a markup file, there are several ways to reference a partial view. We recommend that apps use one of the asynchronous rendering approaches:
+
+* [Partial Tag Helper](#partial-tag-helper)
+* [Asynchronous HTML Helper](#asynchronous-html-helper)
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -78,7 +81,7 @@ The Partial Tag Helper renders content asynchronously and uses an HTML-like synt
 <partial name="_PartialName" />
 ```
 
-When a file extension is present, the tag helper references a partial view that must be in the same folder as the markup file calling the partial view:
+When a file extension is present, the Tag Helper references a partial view that must be in the same folder as the markup file calling the partial view:
 
 ```cshtml
 <partial name="_PartialName.cshtml" />
@@ -175,7 +178,7 @@ Replace calls to `@Html.Partial` with `@await Html.PartialAsync` or the [Partial
 
 ## Partial view discovery
 
-When a partial view is referenced by name without a file extension, the following locations are searched in the following order:
+When a partial view is referenced by name without a file extension, the following locations are searched in the stated order:
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -198,7 +201,7 @@ When a partial view is referenced by name without a file extension, the followin
 The following conventions apply to partial view discovery:
 
 * Different partial views with the same file name are allowed when the partial views are in different folders.
-* When referencing a partial view by name without a file extension and the partial view isn't present in the caller's folder, the partial view in the *Shared* folder supplies the content. Partial views in the *Shared* folder are called *shared partial views* or *default partial views*. This convention for partial view discovery permits override behavior, where the local partial view to the markup file overrides the shared partial view.
+* When referencing a partial view by name without a file extension and the partial view is present in both the caller's folder and the *Shared* folder, the partial view in the caller's folder supplies the partial view. If the partial view isn't present in the caller's folder, the partial view is provided from the *Shared* folder. Partial views in the *Shared* folder are called *shared partial views* or *default partial views*.
 * Partial views can be *chained*&mdash;a partial view can call another partial view if a loop isn't formed by the calls. Relative paths are always relative to the current file, not to the root or parent of the file.
 
 > [!NOTE]
