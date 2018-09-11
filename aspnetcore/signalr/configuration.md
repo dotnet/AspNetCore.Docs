@@ -34,10 +34,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 // When constructing your connection:
 var connection = new HubConnectionBuilder()
-.AddJsonProtocol(options => {
-    options.PayloadSerializerSettings.ContractResolver = 
-        new DefaultContractResolver();
-});
+    .AddJsonProtocol(options => {
+        options.PayloadSerializerSettings.ContractResolver = 
+            new DefaultContractResolver();
+    });
 ```
 
 > [!NOTE]
