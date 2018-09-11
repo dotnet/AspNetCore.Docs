@@ -1,5 +1,6 @@
 ﻿#region snippet_MainWindowClass
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.AspNetCore.SignalR.Client;
 
@@ -14,7 +15,18 @@ namespace SignalRChatClient
 
             connection = new HubConnectionBuilder()
                 .WithUrl("http://localhost:53353/ChatHub")
-                .Build();        
+                .Build();
+
+            #region snippet_ClosedRestart
+            connection.Closed += async (error) =>
+            {
+                // Consider waiting for some random delay 
+                // to prevent overloading the server, in case the
+                // connection was lost because the server went down.
+                await Task.Delay(3000);
+                await connection.StartAsync();
+            };
+            #endregion
         }
 
         private async void connectButton_Click(object sender, RoutedEventArgs e)

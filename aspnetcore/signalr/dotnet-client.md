@@ -36,6 +36,20 @@ To establish a connection, create a `HubConnectionBuilder` and call `Build`. The
 
 [!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=14-16,32)]
 
+### Handle lost connection
+
+You can use the `Closed` event to respond to a lost connection. For example, you might want to automate reconnection. The `Closed` event requires a delegate that returns a `Task`. The reason for that return type is to allow you to run async code without having to use `async void`. If your `Closed` handler doesn't use `await`, you can return `Task.CompletedTask` to satisfy the delegate signature, as in the following example:
+
+```csharp
+connection.Closed += (error) => {
+    // Do your close logic
+    return Task.CompletedTask;
+}
+
+The main reason for the async support is so you can restart the connection. Starting a connection is an async action, as shown in the following example:
+
+[!code-csharp[Use Closed event handler to automate reconnection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ClosedRestart)]
+
 ## Call hub methods from client
 
 `InvokeAsync` calls methods on the hub. Pass the hub method name and any arguments defined in the hub method to `InvokeAsync`. SignalR is asynchronous, so use `async` and `await` when making the calls.
