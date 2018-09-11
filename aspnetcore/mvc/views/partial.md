@@ -46,7 +46,7 @@ In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> i
 
 Unlike view or page rendering, a partial view doesn't run *_ViewStart.cshtml*. For more information on *_ViewStart.cshtml*, see <xref:mvc/views/layout>.
 
-Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views and pages.
+Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views and pages. Razor Pages ignores files that start with an underscore, even if the page includes an `@page` directive.
 
 ::: moniker-end
 
