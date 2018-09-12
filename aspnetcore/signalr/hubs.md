@@ -100,7 +100,7 @@ An alternative to using `SendAsync` is to strongly type the `Hub` with <xref:Mic
 
 This interface can be used to refactor the preceding `ChatHub` example.
 
-[!code-csharp[Strongly typed ChatHub](hubs/sample/hubs/StronglyTypedChatHub.cs?range=8-18,37)]
+[!code-csharp[Strongly typed ChatHub](hubs/sample/hubs/StronglyTypedChatHub.cs?range=8-18,36)]
 
 Using `Hub<IChatClient>` enables compile-time checking of the client methods. This prevents issues caused by using magic strings, since `Hub<T>` can only provide access to the methods defined in the interface.
 
