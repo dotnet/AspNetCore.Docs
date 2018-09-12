@@ -194,15 +194,26 @@ When a partial view is referenced by name without a file extension, the followin
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-2.0"
+
 1. Currently executing view's folder
 1. `/Views/Shared`
-1. `/Pages/Shared`
-
-If the partial view is called from an Area view, the following locations are searched:
-
 1. `/Areas/<Area-Name>/Views/<Controller-Name>`
 1. `/Areas/<Area-Name>/Views/Shared`
 1. `/Views/Shared`
+1. `/Pages/Shared`
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+1. Currently executing view's folder
+1. `/Views/Shared`
+1. `/Areas/<Area-Name>/Views/<Controller-Name>`
+1. `/Areas/<Area-Name>/Views/Shared`
+1. `/Views/Shared`
+
+::: moniker-end
 
 The following conventions apply to partial view discovery:
 
@@ -265,7 +276,7 @@ At runtime, the partials are rendered into the parent markup file's rendered out
 
 > Abraham Lincoln
 >
-> This partial view from &lt;shared partial view file path from *Views/Shared* (MVC) or *Pages/Shared* (Razor Pages)&gt;.
+> This partial view from &lt;shared partial view file path&gt;.
 > 11/19/1863 12:00:00 AM
 
 The second partial view renders the article's sections:
@@ -290,6 +301,7 @@ The second partial view renders the article's sections:
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>
 * <xref:mvc/views/view-components>
+* <xref:mvc/controllers/areas>
 
 ::: moniker-end
 
@@ -297,5 +309,6 @@ The second partial view renders the article's sections:
 
 * <xref:mvc/views/razor>
 * <xref:mvc/views/view-components>
+* <xref:mvc/controllers/areas>
 
 ::: moniker-end

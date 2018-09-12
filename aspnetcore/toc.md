@@ -160,7 +160,6 @@
 ## [Filter methods for Razor Pages](xref:razor-pages/filter)
 ## [Create a Razor Class Library](xref:razor-pages/ui-class)
 ## [Route and app conventions](xref:razor-pages/razor-pages-conventions)
-## [Partial views](xref:mvc/views/partial)
 ## [Upload files to a Razor Page](xref:razor-pages/upload-files)
 ## [Razor SDK](xref:razor-pages/sdk)
 
