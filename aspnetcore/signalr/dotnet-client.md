@@ -11,8 +11,6 @@ uid: signalr/dotnet-client
 
 # ASP.NET Core SignalR .NET Client
 
-By [Rachel Appel](http://twitter.com/rachelappel)
-
 The ASP.NET Core SignalR .NET client library lets you communicate with SignalR hubs from .NET apps.
 
 > [!NOTE]
@@ -34,17 +32,20 @@ Install-Package Microsoft.AspNetCore.SignalR.Client
 
 To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `Build`. Start the connection with `StartAsync`.
 
-[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=14-16,32)]
+[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,42)]
 
 ### Handle lost connection
 
-You can use the `Closed` event to respond to a lost connection. For example, you might want to automate reconnection. The `Closed` event requires a delegate that returns a `Task`. The reason for that return type is to allow you to run async code without having to use `async void`. If your `Closed` handler doesn't use `await`, you can return `Task.CompletedTask` to satisfy the delegate signature, as in the following example:
+You can use the `Closed` event to respond to a lost connection. For example, you might want to automate reconnection.
+
+The `Closed` event requires a delegate that returns a `Task`. The reason for that return type is to allow you to run async code without having to use `async void`. If your `Closed` handler doesn't use `await`, you can return `Task.CompletedTask` to satisfy the delegate signature, as in the following example:
 
 ```csharp
 connection.Closed += (error) => {
     // Do your close logic
     return Task.CompletedTask;
-}
+};
+```
 
 The main reason for the async support is so you can restart the connection. Starting a connection is an async action, as shown in the following example:
 
