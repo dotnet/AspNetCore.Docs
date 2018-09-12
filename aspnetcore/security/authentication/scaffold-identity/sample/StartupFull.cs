@@ -42,7 +42,8 @@ namespace Web6990
             #region snippet2
             services.AddIdentity<IdentityUser, IdentityRole>()
                 // services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
             #endregion
 
             #region snippet3
