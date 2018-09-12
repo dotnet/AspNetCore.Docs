@@ -4,7 +4,7 @@ author: spboyer
 description: Learn how to use Visual Studio 2017 tooling and Docker for Windows to containerize an ASP.NET Core app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/26/2018
+ms.date: 09/12/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Tools for Docker with ASP.NET Core
@@ -96,6 +96,10 @@ The *docker-compose.yml* file references the name of the image that's created wh
 In the preceding example, `image: hellodockertools` generates the image `hellodockertools:dev` when the app runs in **Debug** mode. The `hellodockertools:latest` image is generated when the app runs in **Release** mode.
 
 Prefix the image name with the [Docker Hub](https://hub.docker.com/) username (for example, `dockerhubusername/hellodockertools`) if the image is pushed to the registry. Alternatively, change the image name to include the private registry URL (for example, `privateregistry.domain.com/hellodockertools`) depending on the configuration.
+
+If you want different behavior based on the build configuration (for example, Debug or Release), add configuration-specific *docker-compose* files. The files should be named according to the build configuration (for example, *docker-compose.vs.debug.yml* and *docker-compose.vs.release.yml*) and placed in the same location as the *docker-compose-override.yml* file. 
+
+Using the configuration-specific override files, you can specify different configuration settings (such as environment variables or entry points) for Debug and Release build configurations.
 
 ### Service Fabric
 
