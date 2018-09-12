@@ -20,7 +20,7 @@ namespace SignalRChatClient
             #region snippet_ClosedRestart
             connection.Closed += async (error) =>
             {
-                await Task.Delay(3000);
+                await Task.Delay(new Random().Next(0,5) * 1000);
                 await connection.StartAsync();
             };
             #endregion

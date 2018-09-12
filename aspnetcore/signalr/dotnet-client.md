@@ -38,7 +38,7 @@ To establish a connection, create a `HubConnectionBuilder` and call `Build`. The
 
 Use the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Closed> event to respond to a lost connection. For example, you might want to automate reconnection.
 
-The `Closed` event requires a delegate that returns a `Task`, which allows async code to run without using `async void`. To satisfy the delegate signature in a `Closed` event handler that doesn't have async code (doesn't use `await`), return `Task.CompletedTask`:
+The `Closed` event requires a delegate that returns a `Task`, which allows async code to run without using `async void`. To satisfy the delegate signature in a `Closed` event handler that runs synchronously, return `Task.CompletedTask`:
 
 ```csharp
 connection.Closed += (error) => {
