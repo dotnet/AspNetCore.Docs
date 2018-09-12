@@ -37,9 +37,29 @@ Create a hub by declaring a class that inherits from `Hub`, and add public metho
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
+## The Context object
+
+The `Hub` class has a `Context` property that contains the following properties with information about the connection:
+
+| Property | Description |
+| ------ | ----------- |
+| `ConnectionId` | Gets the unique ID for the connection, assigned by SignalR. There is one connection ID for each connection.|
+| `UserIdentifier` | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. |
+| `User` | Gets the `ClaimsPrincipal` associated with the current user. |
+| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it will persist for the connection across different hub method invocations. |
+| `Features` | Gets the collection of features available on the connection. For now, this collection isn't needed in most scenarios, so it isn't documented in detail yet. |
+| `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
+
+`Hub.Context` also contains the following methods:
+
+| Method | Description |
+| ------ | ----------- |
+| `GetHttpContext` | Returns the `HttpContext` for the connection, or `null` if the connection is not associated with an HTTP request. For HTTP connections, you can use this method to get information such as HTTP headers and query strings. |
+| `Abort` | Aborts the connection. |
+
 ## The Clients object
 
-Each instance of the `Hub` class has a property named `Clients` that contains the following members for communication between server and client:
+The `Hub` class has a `Clients` property that contains the following properties for communication between server and client:
 
 | Property | Description |
 | ------ | ----------- |
@@ -48,7 +68,7 @@ Each instance of the `Hub` class has a property named `Clients` that contains th
 | `Others` | Calls a method on all connected clients except the client that invoked the method |
 
 
-Additionally, `Hub.Clients` contains the following methods:
+`Hub.Clients` also contains the following methods:
 
 | Method | Description |
 | ------ | ----------- |

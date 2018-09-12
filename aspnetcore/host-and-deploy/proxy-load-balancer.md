@@ -214,12 +214,14 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 If the server is using dual-mode sockets, IPv4 addresses are supplied in an IPv6 format (for example, `10.0.0.1` in IPv4 represented in IPv6 as `::ffff:10.0.0.1` or `::ffff:a00:1`). See [IPAddress.MapToIPv6](xref:System.Net.IPAddress.MapToIPv6*). Determine if this format is required by looking at the [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress*).
 
-In the following example, a network address that supplies forwarded headers is added to the `KnownNetworks` list in IPv6 format:
+In the following example, a network address that supplies forwarded headers is added to the `KnownNetworks` list in IPv6 format.
 
-Short format IPv6 for `10.11.12.1/8`:
+IPv4 address: `10.11.12.1/8`
 
-* `::ffff:0a0b:0c01`
-* Prefix length: 104 (8 + 96&dagger;)
+Converted IPv6 address: `::ffff:10.11.12.1`  
+Converted prefix length: 104
+
+You can also supply the address in hexadecimal format (`10.11.12.1` represented in IPv6 as `::ffff:0a0b:0c01`). When converting an IPv4 address to IPv6, add 96 to the CIDR Prefix Length (`8` in the example) to account for the additional `::ffff:` IPv6 prefix (8 + 96 = 104). 
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
@@ -230,11 +232,9 @@ services.Configure<ForwardedHeadersOptions>(options =>
     options.ForwardedHeaders =
         ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     options.KnownNetworks.Add(new IPNetwork(
-        IPAddress.Parse("::ffff:0a0b:0c01"), 104));
+        IPAddress.Parse("::ffff:10.11.12.1"), 104));
 });
 ```
-
-&dagger;When converting an IPv4 address to IPv6, add 96 to the CIDR Prefix Length to account for the additional `::ffff:` IPv6 prefix.
 
 ## Troubleshoot
 
