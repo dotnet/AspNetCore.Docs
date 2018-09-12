@@ -173,4 +173,3 @@ Register an `IEmailSender` implementation, for example:
 ## Additional resources
 
 * [Changes to authentication code to ASP.NET Core 2.1 and later](xref:migration/20_21#changes-to-authentication-code)
-* [AddDefaultIdentity vs. AddIdentity](xref:security/authentication/identity#adi)
