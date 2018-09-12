@@ -47,7 +47,7 @@ The `Hub` class has a `Context` property that contains the following properties 
 | `UserIdentifier` | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. |
 | `User` | Gets the `ClaimsPrincipal` associated with the current user. |
 | `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it will persist for the connection across different hub method invocations. |
-| `Features` | Gets the collection of features available on the connection. For now, this collection doesn't have anything you need to get or set, so it isn't documented in detail. |
+| `Features` | Gets the collection of features available on the connection. For now, this collection isn't needed in most scenarios, so it isn't documented in detail yet. |
 | `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
 
 `Hub.Context` also contains the following methods:
