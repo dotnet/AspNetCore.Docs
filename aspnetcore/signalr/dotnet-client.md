@@ -32,22 +32,24 @@ Install-Package Microsoft.AspNetCore.SignalR.Client
 
 To establish a connection, create a `HubConnectionBuilder` and call `Build`. The hub URL, protocol, transport type, log level, headers, and other options can be configured while building a connection. Configure any required options by inserting any of the `HubConnectionBuilder` methods into `Build`. Start the connection with `StartAsync`.
 
-[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,42)]
+[!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
 
-### Handle lost connection
+## Handle lost connection
 
-You can use the `Closed` event to respond to a lost connection. For example, you might want to automate reconnection.
+Use the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Closed> event to respond to a lost connection. For example, you might want to automate reconnection.
 
-The `Closed` event requires a delegate that returns a `Task`. The reason for that return type is to allow you to run async code without having to use `async void`. If your `Closed` handler doesn't use `await`, you can return `Task.CompletedTask` to satisfy the delegate signature, as in the following example:
+The `Closed` event requires a delegate that returns a `Task`, which allows async code to run without using `async void`. To satisfy the delegate signature in a `Closed` event handler that doesn't have async code (doesn't use `await`), return `Task.CompletedTask`:
 
 ```csharp
 connection.Closed += (error) => {
-    // Do your close logic
+    // Do your close logic.
     return Task.CompletedTask;
 };
 ```
 
-The main reason for the async support is so you can restart the connection. Starting a connection is an async action, as shown in the following example:
+The main reason for the async support is so you can restart the connection. Starting a connection is an async action.
+
+In a `Closed` handler that restarts the connection, consider waiting for some random delay to prevent overloading the server, as shown in the following example:
 
 [!code-csharp[Use Closed event handler to automate reconnection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ClosedRestart)]
 

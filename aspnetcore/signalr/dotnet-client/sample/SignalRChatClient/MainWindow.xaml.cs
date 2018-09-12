@@ -20,9 +20,6 @@ namespace SignalRChatClient
             #region snippet_ClosedRestart
             connection.Closed += async (error) =>
             {
-                // Consider waiting for some random delay 
-                // to prevent overloading the server, in case the
-                // connection was lost because the server went down.
                 await Task.Delay(3000);
                 await connection.StartAsync();
             };
