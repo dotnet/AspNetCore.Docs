@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/01/2018
+ms.date: 09/13/2018
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -15,13 +15,49 @@ Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/serv
 
 Kestrel supports the following features:
 
+::: moniker range=">= aspnetcore-2.2"
+
+* HTTPS
+* Opaque upgrade used to enable [WebSockets](https://github.com/aspnet/websockets)
+* Unix sockets for high performance behind Nginx
+* HTTP/2 (except on macOS&dagger;)
+
+&dagger;HTTP/2 will be supported on macOS in a future release.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
 * HTTPS
 * Opaque upgrade used to enable [WebSockets](https://github.com/aspnet/websockets)
 * Unix sockets for high performance behind Nginx
 
+::: moniker-end
+
 Kestrel is supported on all platforms and versions that .NET Core supports.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
+::: moniker range=">= aspnetcore-2.2"
+
+## HTTP/2 support
+
+[HTTP/2](https://httpwg.org/specs/rfc7540.html) is available for ASP.NET Core apps if the following base requirements are met:
+
+* Operating system&dagger;
+  * Windows Server 2012 R2/Windows 8.1 or later
+  * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
+* Target framework: ASP.NET Core 2.2 or later
+* [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
+* TLS 1.2 or later connection
+
+&dagger;HTTP/2 will be supported on macOS in a future release.
+
+If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
+
+HTTP/2 is disabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [Endpoint configuration](#endpoint-configuration) sections.
+
+::: moniker-end
 
 ## When to use Kestrel with a reverse proxy
 
@@ -253,6 +289,49 @@ You can configure the rates per request in middleware:
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-2.2"
+
+**MaxStreamsPerConnection**
+
+`MaxStreamsPerConnection` limits the number of concurrent request streams per HTTP/2 connection. Excess streams are refused.
+
+```csharp
+.ConfigureKestrel((context, options) =>
+{
+    options.Limits.MaxStreamsPerConnection = 100;
+});
+```
+
+The default value is 100.
+
+**HeaderTableSize**
+
+The HPACK decoder decompresses HTTP headers for HTTP/2 connections. `HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses. The value is provided in octets and must be greater than zero (0).
+
+```csharp
+.ConfigureKestrel((context, options) =>
+{
+    options.Limits.HeaderTableSize = 4096;
+});
+```
+
+The default value is 4096.
+
+**MaxFrameSize**
+
+`MaxFrameSize` indicates the maximum size of the HTTP/2 connection frame payload to receive. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
+
+```csharp
+.ConfigureKestrel((context, options) =>
+{
+    options.Limits.MaxFrameSize = 16384;
+});
+```
+
+The default value is 2^14 (16,384).
+
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.0"
 
 For information about other Kestrel options and limits, see:
@@ -326,6 +405,10 @@ Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `Conf
 
 **Configure(IConfiguration)**  
 Creates a configuration loader for setting up Kestrel that takes an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) as input. The configuration must be scoped to the configuration section for Kestrel.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
 
 **ListenOptions.UseHttps**  
 Configure Kestrel to use HTTPS.
@@ -698,6 +781,129 @@ When using IIS, the URL bindings for IIS override bindings set by `UseUrls`. For
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-2.2"
+
+**ListenOptions.Protocols**
+
+The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enabled on a connection endpoint or for the server. Assign a value to the `Protocols` property from the `HttpProtocols` enum.
+
+| `HttpProtocols` enum value | Connection protocol permitted |
+| -------------------------- | ----------------------------- |
+| `Http1`                    | HTTP/1.1 only                 |
+| `Http2`                    | HTTP/2 only                   |
+| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2           |
+
+The default protocol is HTTP/1.1.
+
+TLS restrictions for HTTP/2:
+
+* TLS version 1.2 or later
+* Renegotiation disabled
+* Compression disabled
+* Minimum ephemeral key exchange sizes:
+  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bits minimum
+  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack; &ndash; 2048 bits minimum
+* Cipher suite not blacklisted
+
+`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.
+
+The following example permits HTTP/1.1 and HTTP/2 connections on port 8000. Connections are secured by TLS with a supplied certificate:
+
+```csharp
+options.Listen(IPAddress.Any, 8000, listenOptions =>
+{
+    listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+    listenOptions.UseHttps("testCert.pfx", "testPassword");
+});
+```
+
+Optionally create an `IConnectionAdapter` implementation to filter TLS handshakes on a per-connection basis for specific ciphers:
+
+```csharp
+options.Listen(IPAddress.Any, 8000, listenOptions =>
+{
+    listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+    listenOptions.UseHttps("testCert.pfx", "testPassword");
+    listenOptions.ConnectionAdapters.Add(new TlsFilterAdapter());
+});
+```
+
+```csharp
+private class TlsFilterAdapter : IConnectionAdapter
+{
+    public bool IsHttps => false;
+
+    public Task<IAdaptedConnection> OnConnectionAsync(ConnectionAdapterContext context)
+    {
+        var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
+
+        // Throw NotSupportedException for any cipher algorithm that you don't 
+        // wish to support. Alternatively, define and compare 
+        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher 
+        // suites.
+        //
+        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null 
+        // indicates that no cipher algorithm supported by Kestrel matches the 
+        // requested algorithm(s).
+        if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
+        {
+            throw new NotSupportedException("Prohibited cipher: " + tlsFeature.CipherAlgorithm);
+        }
+
+        return Task.FromResult<IAdaptedConnection>(new AdaptedConnection(context.ConnectionStream));
+    }
+
+    private class AdaptedConnection : IAdaptedConnection
+    {
+        public AdaptedConnection(Stream adaptedStream)
+        {
+            ConnectionStream = adaptedStream;
+        }
+
+        public Stream ConnectionStream { get; }
+
+        public void Dispose()
+        {
+        }
+    }
+}
+```
+
+*Set the protocol from configuration*
+
+[WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
+
+In the following *appsettings.json* example, a default connection protocol (HTTP/1.1 and HTTP/2) is established for all of Kestrel's endpoints:
+
+```json
+{
+  "Kestrel": {
+    "EndPointDefaults": {
+      "Protocols": "Http1AndHttp2"
+    }
+  }
+}
+```
+
+The following configuration file example establishes a connection protocol for a specific endpoint:
+
+```json
+{
+  "Kestrel": {
+    "EndPoints": {
+      "HttpsDefaultCert": {
+        "Url": "https://localhost:5001",
+        "Protocols": "Http1AndHttp2"
+      }
+    }
+  }
+}
+```
+
+Protocols specified in code override values set by configuration.
+
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
 
 ## Transport configuration
@@ -713,7 +919,7 @@ For ASP.NET Core 2.1 or later projects that use the [Microsoft.AspNetCore.App me
 
     ```xml
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
-                      Version="2.1.0" />
+                      Version="<LATEST_VERSION>" />
     ```
 
 * Call [WebHostBuilderLibuvExtensions.UseLibuv](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderlibuvextensions.uselibuv):

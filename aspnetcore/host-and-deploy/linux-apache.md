@@ -4,7 +4,7 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 03/13/2018
+ms.date: 09/13/2018
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -21,6 +21,21 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
    1. Select the latest non-preview runtime from the list under **Runtime**.
    1. Select and follow the instructions for CentOS/Oracle.
 1. An existing ASP.NET Core app.
+
+::: moniker range=">= aspnetcore-2.2"
+
+## HTTP/2 support
+
+[HTTP/2](https://httpwg.org/specs/rfc7540.html) is available for ASP.NET Core apps running directly on the [Kestrel server](xref:fundamentals/servers/kestrel#http2-support) if the following base requirements are met:
+
+* OpenSSL 1.0.2 or later
+* Target framework: ASP.NET Core 2.2 or later
+* [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) active
+* TLS 1.2 or later connection
+
+If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
+
+::: moniker-end
 
 ## Publish and copy over the app
 
