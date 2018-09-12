@@ -90,6 +90,22 @@ To make calls to specific clients, use the properties of the `Clients` object. I
 
 [!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?range=15-24)]
 
+## Strongly typed Hubs
+
+The drawback with using `SendAsync` is that it relies on a magic string to provide the method to be called on the client.  This leaves code open to runtime errors if the method name is misspelled or missing from the client.
+
+An alternative to using `SendAsync` is to strongly type your `Hub` with `Hub<T>`.  In the example below, the `ChatHub` client methods have been extracted out into an interface called `IChatClient`.  
+
+[!code-csharp[Interface for IChatClient](hubs/sample/hubs/ichatclient.cs?range=3-7)]
+
+This interface can be used to refactor the `ChatHub` example above.
+
+[!code-csharp[Strongly typed ChatHub](hubs/sample/hubs/StronglyTypedChatHub.cs?range=8-18,37)]
+
+By using `Hub<IChatClient>`, there is compile time checking of our client methods. This prevents issues caused by using magic strings, because `Hub<T>` can only provide access to the methods defined in the interface.
+
+Note: Using a strongly typed `Hub<T>` will disable the ability to use `SendAsync`.
+
 ## Handle events for a connection
 
 The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the Hub, such as adding it to a group.
