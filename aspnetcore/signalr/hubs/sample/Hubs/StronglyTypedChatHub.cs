@@ -19,8 +19,7 @@ namespace SignalRChat.Hubs
 
         public Task SendMessageToGroups(string message)
         {
-            List<string> groups = new List<string>() { "SignalR Users" };
-            return Clients.Groups(groups).ReceiveMessage(message);
+            return Clients.Group("SignalR Users").ReceiveMessage(message);
         }
 
         public override async Task OnConnectedAsync()
