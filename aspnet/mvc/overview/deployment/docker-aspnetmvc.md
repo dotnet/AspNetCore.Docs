@@ -5,7 +5,7 @@ description: Learn how to take an existing ASP.NET MVC application and run it in
 keywords: Windows Containers,Docker,ASP.NET MVC
 author: BillWagner
 ms.author: wiwagn
-ms.date: 02/01/2017
+ms.date: 09/13/2018
 ms.assetid: c9f1d52c-b4bd-4b5d-b7f9-8f9ceaf778c4
 uid: mvc/overview/deployment/docker
 ---
@@ -49,7 +49,7 @@ The development machine must be running
 > If you are using Windows Server 2016, follow the
 > instructions for [Container Host Deployment - Windows Server](https://msdn.microsoft.com/virtualization/windowscontainers/deployment/deployment).
 
-After installing and starting Docker,  right-click on the
+After installing and starting Docker, right-click on the
 tray icon and select **Switch to Windows containers**. This is required to run
 Docker images based on Windows. This command takes a few seconds to
 execute:
@@ -65,7 +65,7 @@ profile will put all the assets in one directory tree that you copy to your targ
 
 **Publish Steps**
 
-1. Right click on the web project in Visual Studio, and select **Publish**.
+1. Right click on the web project (our example uses one called mvcrandomanswers) in Visual Studio, and select **Publish**.
 1. Click the **Custom profile button**, and then select **File System** as the method.
 1. Choose the directory. By convention, the downloaded sample uses `bin\Release\PublishOutput`.
 
@@ -107,16 +107,10 @@ COPY ./bin/Release/PublishOutput/ /inetpub/wwwroot
 
 There is no `ENTRYPOINT` command in this Dockerfile. You don't need one. When running Windows Server with IIS, the IIS process is the entrypoint, which is configured to start in the aspnet base image.
 
-Run the Docker build command to create the image that
-runs your ASP.NET app. To do this, open a PowerShell
-window in the directory of your project and type the following command in the solution directory:
+In Visual Studio 2017, with Docker support added to your project, you can right-click on the project node in Solution Explorer and choose **Build Docker Image**.
 
-```console
-docker build -t mvcrandomanswers .
-```
-
-This command will build the new image using the instructions in your
-Dockerfile, naming (-t tagging) the image as mvcrandomanswers. This may include pulling the base image from [Docker Hub](http://hub.docker.com),
+This menu command runs the Docker command that builds the new image using the instructions in your
+Dockerfile, naming the image based on the project name. This may include pulling the base image from [Docker Hub](http://hub.docker.com),
 and then adding your app to that image.
 
 Once that command completes, you can run the `docker images` command
