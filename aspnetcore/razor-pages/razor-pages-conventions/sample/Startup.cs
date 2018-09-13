@@ -48,7 +48,7 @@ namespace ModelProvidersSample
                             {
                                 AttributeRouteModel = new AttributeRouteModel
                                 {
-                                    Order = 1,
+                                    Order = 2,
                                     Template = AttributeRouteModel.CombineTemplates(
                                         selector.AttributeRouteModel.Template, 
                                         "{otherPagesTemplate?}"),
@@ -69,7 +69,7 @@ namespace ModelProvidersSample
                             {
                                 AttributeRouteModel = new AttributeRouteModel
                                 {
-                                    Order = 1,
+                                    Order = 2,
                                     Template = AttributeRouteModel.CombineTemplates(
                                         selector.AttributeRouteModel.Template, 
                                         "{aboutTemplate?}"),
