@@ -60,9 +60,10 @@ This sample can be created from scratch by the following steps in Visual Studio:
 
 * Create a solution.
 
-* **Add New Project > Web > ASP.NET Core Web Application (.NET Framework)**
+* **Add** > **New Project** > **Web** > **ASP.NET Core Web Application**
+  * In project template selection dialog, select API and .NET Framework in dropdown
 
-* **Add New Project > Windows Classic Desktop > Class Library (.NET Framework)**
+* **Add** > **New Project** > **Windows Desktop** > **Class Library (.NET Framework)**
 
 * In **Package Manager Console** (PMC) for both projects, run the command `Install-Package Entityframework`.
 
