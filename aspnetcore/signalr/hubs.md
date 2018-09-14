@@ -5,7 +5,7 @@ description: Learn how to use hubs in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/01/2018
+ms.date: 09/12/2018
 uid: signalr/hubs
 ---
 
@@ -37,9 +37,29 @@ Create a hub by declaring a class that inherits from `Hub`, and add public metho
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
+## The Context object
+
+The `Hub` class has a `Context` property that contains the following properties with information about the connection:
+
+| Property | Description |
+| ------ | ----------- |
+| `ConnectionId` | Gets the unique ID for the connection, assigned by SignalR. There is one connection ID for each connection.|
+| `UserIdentifier` | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. |
+| `User` | Gets the `ClaimsPrincipal` associated with the current user. |
+| `Items` | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it will persist for the connection across different hub method invocations. |
+| `Features` | Gets the collection of features available on the connection. For now, this collection isn't needed in most scenarios, so it isn't documented in detail yet. |
+| `ConnectionAborted` | Gets a `CancellationToken` that notifies when the connection is aborted. |
+
+`Hub.Context` also contains the following methods:
+
+| Method | Description |
+| ------ | ----------- |
+| `GetHttpContext` | Returns the `HttpContext` for the connection, or `null` if the connection is not associated with an HTTP request. For HTTP connections, you can use this method to get information such as HTTP headers and query strings. |
+| `Abort` | Aborts the connection. |
+
 ## The Clients object
 
-Each instance of the `Hub` class has a property named `Clients` that contains the following members for communication between server and client:
+The `Hub` class has a `Clients` property that contains the following properties for communication between server and client:
 
 | Property | Description |
 | ------ | ----------- |
@@ -48,7 +68,7 @@ Each instance of the `Hub` class has a property named `Clients` that contains th
 | `Others` | Calls a method on all connected clients except the client that invoked the method |
 
 
-Additionally, `Hub.Clients` contains the following methods:
+`Hub.Clients` also contains the following methods:
 
 | Method | Description |
 | ------ | ----------- |
@@ -69,6 +89,22 @@ Each property or method in the preceding tables returns an object with a `SendAs
 To make calls to specific clients, use the properties of the `Clients` object. In the following example, the `SendMessageToCaller` method demonstrates sending a message to the connection that invoked the hub method. The `SendMessageToGroups` method sends a message to the groups stored in a `List` named `groups`.
 
 [!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?range=15-24)]
+
+## Strongly typed hubs
+
+A drawback of using `SendAsync` is that it relies on a magic string to specify the client method to be called. This leaves code open to runtime errors if the method name is misspelled or missing from the client.
+
+An alternative to using `SendAsync` is to strongly type the `Hub` with <xref:Microsoft.AspNetCore.SignalR.Hub`1>. In the following example, the `ChatHub` client methods have been extracted out into an interface called `IChatClient`.  
+
+[!code-csharp[Interface for IChatClient](hubs/sample/hubs/ichatclient.cs?name=snippet_IChatClient)]
+
+This interface can be used to refactor the preceding `ChatHub` example.
+
+[!code-csharp[Strongly typed ChatHub](hubs/sample/hubs/StronglyTypedChatHub.cs?range=8-18,36)]
+
+Using `Hub<IChatClient>` enables compile-time checking of the client methods. This prevents issues caused by using magic strings, since `Hub<T>` can only provide access to the methods defined in the interface.
+
+Using a strongly typed `Hub<T>` disables the ability to use `SendAsync`.
 
 ## Handle events for a connection
 

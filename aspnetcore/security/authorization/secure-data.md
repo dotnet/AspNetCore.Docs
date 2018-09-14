@@ -264,6 +264,10 @@ Update the details page model:
 
 [!code-csharp[](secure-data/samples/final2.1/Pages/Contacts/Details.cshtml.cs?name=snippet)]
 
+## Add a user to a role
+
+Roles are stored in the Identity cookie. Changes made to user roles are not persisted to the cookie until the cookie is regenerated or the user signs out and signs in. Applications that add users to a role should call `SignInManager.RefreshSignInAsync(user)` to update the cookie.
+
 ## Test the completed app
 
 If the app has contacts:
