@@ -64,10 +64,20 @@ Partial view file names often begin with an underscore (`_`). This naming conven
 
 ## Reference a partial view
 
+::: moniker range=">= aspnetcore-2.1"
+
 Within a markup file, there are several ways to reference a partial view. We recommend that apps use one of the asynchronous rendering approaches:
 
 * [Partial Tag Helper](#partial-tag-helper)
 * [Asynchronous HTML Helper](#asynchronous-html-helper)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.1"
+
+Within a markup file, there are two ways to reference a partial view. We recommend that apps use the [Asynchronous HTML Helper](#asynchronous-html-helper).
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -215,7 +225,7 @@ The following conventions apply to partial view discovery:
 
 * Different partial views with the same file name are allowed when the partial views are in different folders.
 * When referencing a partial view by name without a file extension and the partial view is present in both the caller's folder and the *Shared* folder, the partial view in the caller's folder supplies the partial view. If the partial view isn't present in the caller's folder, the partial view is provided from the *Shared* folder. Partial views in the *Shared* folder are called *shared partial views* or *default partial views*.
-* Partial views can be *chained*&mdash;a partial view can call another partial view if a loop isn't formed by the calls. Relative paths are always relative to the current file, not to the root or parent of the file.
+* Partial views can be *chained*&mdash;a partial view can call another partial view if a circular reference isn't formed by the calls. Relative paths are always relative to the current file, not to the root or parent of the file.
 
 > [!NOTE]
 > A [Razor](xref:mvc/views/razor) `section` defined in a partial view is invisible to parent markup files. The `section` is only visible to the partial view in which it's defined.
