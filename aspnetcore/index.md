@@ -46,7 +46,7 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#buil
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 * Built-in support for [multiple data formats and content negotiation](xref:web-api/advanced/formatting) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * [Model binding](xref:mvc/models/model-binding) automatically maps data from HTTP requests to action method parameters.
-* [Model validation](xref:mvc/models/validation) automatically performs client- and server-side validation.
+* [Model validation](xref:mvc/models/validation) automatically performs client-side and server-side validation.
 
 ## Client-side development
 
