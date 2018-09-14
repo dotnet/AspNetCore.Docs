@@ -66,7 +66,7 @@ Partial view file names often begin with an underscore (`_`). This naming conven
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Within a markup file, there are several ways to reference a partial view. We recommend that apps use one of the asynchronous rendering approaches:
+Within a markup file, there are several ways to reference a partial view. We recommend that apps use one of the following asynchronous rendering approaches:
 
 * [Partial Tag Helper](#partial-tag-helper)
 * [Asynchronous HTML Helper](#asynchronous-html-helper)
@@ -75,7 +75,12 @@ Within a markup file, there are several ways to reference a partial view. We rec
 
 ::: moniker range="< aspnetcore-2.1"
 
-Within a markup file, there are two ways to reference a partial view. We recommend that apps use the [Asynchronous HTML Helper](#asynchronous-html-helper).
+Within a markup file, there are two ways to reference a partial view:
+
+* [Asynchronous HTML Helper](#asynchronous-html-helper)
+* [Synchronous HTML Helper](#synchronous-html-helper)
+
+We recommend that apps use the [Asynchronous HTML Helper](#asynchronous-html-helper).
 
 ::: moniker-end
 
