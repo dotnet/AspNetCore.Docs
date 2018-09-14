@@ -10,7 +10,9 @@
     {
         public int Order => 2;
 
-        public void Init(TagHelperContext context) { }
+        public void Init(TagHelperContext context)
+        {
+        }
 
         public async Task ProcessAsync(TagHelperContext context,
                                        TagHelperOutput output)

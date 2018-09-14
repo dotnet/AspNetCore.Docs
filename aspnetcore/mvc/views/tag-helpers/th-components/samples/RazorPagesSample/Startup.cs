@@ -30,7 +30,7 @@ namespace RazorPagesSample
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddTransient<ITagHelperComponent, ScriptTagHelperComponent>();
-            services.AddTransient<ITagHelperComponent, StyleTagHelperComponent>();
+            services.AddTransient<ITagHelperComponent, AddressStyleTagHelperComponent>();
         }
         #endregion
 

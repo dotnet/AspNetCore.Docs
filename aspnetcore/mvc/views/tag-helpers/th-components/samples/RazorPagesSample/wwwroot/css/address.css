@@ -1,0 +1,10 @@
+﻿address[printable] {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    background: whitesmoke;
+    height: 100px;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 5px;
+}

@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn what Tag Helper Components are and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
-ms.date: 09/07/2018
+ms.date: 09/14/2018
 uid: mvc/views/tag-helpers/th-components
 ---
 # Tag Helper Components in ASP.NET Core
@@ -15,7 +15,9 @@ By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan) and [Scott Addie](https:/
 
 ## Overview
 
-In theory, a Tag Helper Component is a regular Tag Helper. The main difference is a Tag Helper Component allows you to conditionally modify or add HTML elements from server-side code. ASP.NET Core ships with two built-in Tag Helper Components: `head` and `body`. They can be used in both MVC and Razor Pages. The following code is for the built-in `head` Tag Helper Component:
+A Tag Helper Component is a Tag Helper that allows you to conditionally modify or add HTML elements from server-side code.
+
+ASP.NET Core ships with two built-in Tag Helper Components: `head` and `body`. They can be used in both MVC and Razor Pages. Consider the following code for the built-in `head` Tag Helper Component:
 
 ```csharp
 [HtmlTargetElement("head")]
@@ -29,32 +31,34 @@ public class HeadTagHelper : TagHelperComponentTagHelper
 }
 ```
 
+In the preceding code:
+
 * A custom Tag Helper Component class derives from `TagHelperComponentTagHelper`.
 * With the `[HtmlTargetElement]` attribute, you can target any HTML element by passing the element name as a parameter.
 * The `[EditorBrowsable]` attribute determines whether to display a type's information in IntelliSense. This attribute is optional.
-* `ITagHelperComponentMananger` manages a collection of Tag Helper Components used throughout the app.
+* `ITagHelperComponentManager` manages a collection of Tag Helper Components used throughout the app.
 
-The `head` and `body` Tag Helper Components are declared in the `Microsoft.AspNetCore.Mvc.Razor.TagHelpers` namespace. In an MVC or Razor Pages app, all built-in Tag Helpers are imported with the following `@addTagHelper` directive in the *_ViewImports.cshtml* file:
+The `head` and `body` Tag Helper Components are found in the `Microsoft.AspNetCore.Mvc.Razor.TagHelpers` namespace. In an MVC or Razor Pages app, all built-in Tag Helpers are imported with the following `@addTagHelper` directive in the *_ViewImports.cshtml* file:
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/_ViewImports.cshtml?name=snippet_AddTagHelperDirective)]
 
 ## Use cases
 
-### `head` Tag Helper Component
+### head Tag Helper Component
 
-A typical usage of the `<head>` element is to define page-wide markup styles with the `<style>` element. The following code injects styles into the `<head>` element using the `head` Tag Helper Component.
+Inside the HTML `<head>` element, page-wide CSS is commonly imported with the HTML `<link>` element. The following code injects a `<link>` element into the `<head>` element using the `head` Tag Helper Component:
 
-[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/StyleTagHelperComponent.cs?name=snippet_StyleTagHelperComponentClass)]
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressStyleTagHelperComponent.cs?name=snippet_AddressStyleTagHelperComponent)]
 
 In the preceding code:
 
-* `StyleTagHelperComponent` implements `ITagHelperComponent`. The abstraction allows the class to be initialized with a `TagHelperContext`. It ensures it can use Tag Helper Components to add or modify HTML elements.
+* `AddressStyleTagHelperComponent` implements `ITagHelperComponent`. The abstraction allows initialization of the class with a `TagHelperContext`. It ensures it can use Tag Helper Components to add or modify HTML elements.
 * If you have multiple usages of Tag Helper Components in an app, `Order` defines the order in which the Components are rendered.
-* `ProcessAsync` checks for a `TagName` inside the running context that matches the `head` element. If matched, it appends the content of the `_style` field with the `output` of the `<head>` element.
+* `ProcessAsync` compares the running context's `TagName` property value to `head`. If the comparison evaluates to true, the HTML `<head>` element exists. In that case, the content of the `_style` field is injected into the HTML `<head>` element.
 
 ![StyleTagHelper sample snapshot](th-components/_static/style-tag-helper-component.png)
 
-### `body` Tag Helper Component
+### body Tag Helper Component
 
 Similarly, the `body` Tag Helper Component can inject `<script>` elements into the `<body>` element. The following code demonstrates this technique:
 
@@ -70,7 +74,7 @@ The preceding code dynamically adds a Bootstrap tooltip menu on a `<address>` el
 
 ## Dependency injection
 
-Implemented Tag Helper Component classes must be registered with the dependency injection (DI) system if you're not managing the instances with `ITagHelperComponentManager`. The following `Startup.ConfigureServices` code registers both the `StyleTagHelperComponent` and `ScriptTagHelperComponent` with a transient lifetime.
+Implemented Tag Helper Component classes must be registered with the dependency injection (DI) system if you're not managing the instances with `ITagHelperComponentManager`. The following `Startup.ConfigureServices` code registers both the `AddressStyleTagHelperComponent` and `ScriptTagHelperComponent` with a transient lifetime.
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=11-12)]
 
@@ -108,7 +112,7 @@ public class AddressTagHelperComponent : ITagHelperComponent
 
 In the preceding code, `ProcessAsync` tests for equality of the `TagName` and the `address` element. If matched, it injects HTML markup to `<address>` elements with an attribute of `printable`.
 
-## Manage Components with `ITagHelperComponentManager`
+## Manage Components with ITagHelperComponentManager
 
 You can register the `AddressTagHelperComponent` with the DI system like the other ones. However, you can also initialize and add the component directly from the Razor markup. `ITagHelperComponentManager` is used to add or remove Tag Helper Components from the app. The following code demonstrates this technique:
 
