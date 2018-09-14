@@ -3,7 +3,7 @@ name: Doc issue
 about: Create an issue to help us improve
 ---
 
-**Before you open an issue**
+# Before you open an issue
 
 If the issue is:
 
@@ -13,11 +13,11 @@ If the issue is:
 - A problem completing a tutorial, compare your code with the completed sample.
 - A duplicate of an open or closed issue, leave a comment on that issue.
 
-**Issue description**
+# Issue description
 
 &lt;include description here&gt;
 
-**Target framework**
+# Software versions
 
 Check the .NET target framework(s) being used, and include the version number(s).
 
