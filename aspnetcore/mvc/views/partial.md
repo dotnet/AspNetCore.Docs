@@ -196,8 +196,6 @@ When a partial view is referenced by name without a file extension, the followin
 
 ::: moniker range=">= aspnetcore-2.0"
 
-1. Currently executing view's folder
-1. `/Views/Shared`
 1. `/Areas/<Area-Name>/Views/<Controller-Name>`
 1. `/Areas/<Area-Name>/Views/Shared`
 1. `/Views/Shared`
@@ -207,8 +205,6 @@ When a partial view is referenced by name without a file extension, the followin
 
 ::: moniker range="< aspnetcore-2.0"
 
-1. Currently executing view's folder
-1. `/Views/Shared`
 1. `/Areas/<Area-Name>/Views/<Controller-Name>`
 1. `/Areas/<Area-Name>/Views/Shared`
 1. `/Views/Shared`
