@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using PartialViewsSample.ViewModels;
-using System;
 
-namespace PartialViewsSample.Controllers
+namespace PartialViewsSample.Pages
 {
-    public class ArticlesController : Controller
+    public class ReadRPModel : PageModel
     {
-        public IActionResult Read()
+        public Article Article { get; private set; }
+
+        public void OnGet()
         {
-            var viewModel = GetArticle();
-            return View(viewModel);
+            Article = GetArticle();
         }
 
         private Article GetArticle()

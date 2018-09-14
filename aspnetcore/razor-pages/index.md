@@ -372,6 +372,8 @@ The updated *Pages/Create.cshtml* view file:
 
 The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml*, which hooks up client-side validation.
 
+For more information on partial views, see <xref:mvc/views/partial>.
+
 <a name="url_gen"></a>
 
 ## URL generation for Pages
@@ -554,11 +556,12 @@ services.AddMvc()
     .WithRazorPagesRoot("/path/to/razor/pages");
 ```
 
-## See also
+## Additional resources
 
-* [Introduction to ASP.NET Core](xref:index)
-* [Razor syntax](xref:mvc/views/razor)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
-* [Razor Pages custom route and page model providers](xref:razor-pages/razor-pages-conventions)
-* [Razor Pages unit tests](xref:test/razor-pages-tests)
+* <xref:index>
+* <xref:mvc/views/razor>
+* <xref:tutorials/razor-pages/razor-pages-start>
+* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/razor-pages-conventions>
+* <xref:test/razor-pages-tests>
+* <xref:mvc/views/partial>
