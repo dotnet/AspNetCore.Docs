@@ -49,7 +49,7 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        await _dependency.WriteMessage(
+        await _myDependency.WriteMessage(
             "IndexModel.OnGetAsync created this message.");
     }
 }
@@ -68,7 +68,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        await _dependency.WriteMessage(
+        await _myDependency.WriteMessage(
             "HomeController.Index created this message.");
 
         return View();
@@ -137,7 +137,7 @@ In the sample app, the `IMyDependency` service is registered with the concrete t
 ::: moniker-end
 
 > [!NOTE]
-> Each `services.Add{SERVICE_NAME}` extension method adds (and potentially configures) services. For example, `services.AddMvc()` adds the services Razor Pages and MVC require. We recommended that apps follow this convention. Place extension methods in the [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) namespace to encapsulate groups of service registrations.
+> Each `services.Add<ServiceName>` extension method adds (and potentially configures) services. For example, `services.AddMvc()` adds the services Razor Pages and MVC require. We recommended that apps follow this convention. Place extension methods in the [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) namespace to encapsulate groups of service registrations.
 
 If the service's constructor requires a primitive, such as a `string`, the primitive can be injected by using [configuration](xref:fundamentals/configuration/index) or the [options pattern](xref:fundamentals/configuration/options):
 
@@ -192,7 +192,7 @@ The `Startup.ConfigureServices` method is responsible for defining the services 
 | [System.Diagnostics.DiagnosticSource](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.diagnosticsource) | Singleton |
 | [System.Diagnostics.DiagnosticListener](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.diagnosticlistener) | Singleton |
 
-When a service collection extension method is available to register a service (and its dependent services, if required), the convention is to use a single `Add{SERVICE_NAME}` extension method to register all of the services required by that service. The following code is an example of how to add additional services to the container using the extension methods [AddDbContext](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext), [AddIdentity](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.addidentity), and [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc):
+When a service collection extension method is available to register a service (and its dependent services, if required), the convention is to use a single `Add<ServiceName>` extension method to register all of the services required by that service. The following code is an example of how to add additional services to the container using the extension methods [AddDbContext](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext), [AddIdentity](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.addidentity), and [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc):
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -474,24 +474,14 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Default service container replacement
 
-The built-in service container is meant to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that it doesn't support. Some of the features supported in 3rd party containers not found in the built-in container:
+The built-in service container is meant to serve the basic needs of the framework and most consumer apps built on it. However, developers can replace the built-in container with their preferred container. The `Startup.ConfigureServices` method typically returns `void`. If the method's signature is changed to return an [IServiceProvider](/dotnet/api/system.iserviceprovider), a different container can be configured and returned. There are many IoC containers available for .NET. In the following example, the [Autofac](https://autofac.org/) container is used:
 
-* Property injection
-* Injection based on name
-* Child containers
-* Custom lifetime management
-* `Func<T>` support for lazy initialization
-
-See the [Dependency Injection readme.md file](https://github.com/aspnet/DependencyInjection#using-other-containers-with-microsoftextensionsdependencyinjection) for a list of some of the containers that support adapters.
-
-The following sample replaces the built-in container with [Autofac](https://autofac.org/):
-
-* Install the appropriate container package(s):
+1. Install the appropriate container package(s):
 
     * [Autofac](https://www.nuget.org/packages/Autofac/)
     * [Autofac.Extensions.DependencyInjection](https://www.nuget.org/packages/Autofac.Extensions.DependencyInjection/)
 
-* Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
+2. Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
 
     ```csharp
     public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -510,7 +500,7 @@ The following sample replaces the built-in container with [Autofac](https://auto
 
     To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
 
-* Configure Autofac in `DefaultModule`:
+3. Configure Autofac in `DefaultModule`:
 
     ```csharp
     public class DefaultModule : Module

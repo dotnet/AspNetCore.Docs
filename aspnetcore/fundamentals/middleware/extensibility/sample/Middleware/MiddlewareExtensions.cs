@@ -11,10 +11,10 @@ namespace MiddlewareExtensibilitySample.Middleware
             return builder.UseMiddleware<ConventionalMiddleware>();
         }
 
-        public static IApplicationBuilder UseFactoryActivatedMiddleware(
+        public static IApplicationBuilder UseIMiddlewareMiddleware(
             this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<FactoryActivatedMiddleware>();
+            return builder.UseMiddleware<IMiddlewareMiddleware>();
         }
     }
     #endregion

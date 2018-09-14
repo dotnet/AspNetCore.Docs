@@ -45,7 +45,6 @@ namespace ResponseCachingMiddleware
 
             app.Use(async (context, next) =>
             {
-                // For GetTypedHeaders, add: using Microsoft.AspNetCore.Http;
                 context.Response.GetTypedHeaders().CacheControl = 
                     new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
                     {

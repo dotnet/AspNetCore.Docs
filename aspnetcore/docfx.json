@@ -12,8 +12,7 @@
           "aspnet/**",
           "**/includes/**",
           "**/aspnet-core-conceptual/**",
-          "_site/**",
-          "***/readme.md"
+          "_site/**"
         ],
         "group": "group1",
         "src": "."
@@ -23,9 +22,7 @@
       {
         "files": [
           "**/*.png",
-          "**/*.jpg",
-          "**/*.svg",
-          "**/*.pdf"
+          "**/*.jpg"
         ],
         "exclude": [
           "**/obj/**",
@@ -38,10 +35,7 @@
       }
     ],
     "overwrite": [],
-    "externalReference": [],
-    "xrefService": [
-      "https://xref.docs.microsoft.com/query?uid={uid}"
-    ],
+    "externalReference": [],    
     "globalMetadata": {
       "_navPath": "/foo",
       "_navRel": "/foo",
@@ -56,7 +50,6 @@
     },
     "fileMetadata": {
       "ms.technology": {
-        "azure/**/**.md": "aspnetcore-azure",
         "client-side/**/**.md": "aspnetcore-clientside",
         "data/**/**.md": "aspnetcore-data",
         "fundamentals/**/**.md": "aspnetcore-fundamentals",
@@ -76,7 +69,6 @@
         "web-api/**/**.md": "aspnetcore-webapi"
       },
       "ms.topic": {
-        "azure/**/**.md": "conceptual",
         "client-side/**/**.md": "conceptual",
         "data/**/**.md": "conceptual",
         "fundamentals/**/**.md": "conceptual",

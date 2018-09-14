@@ -3,7 +3,7 @@ uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms
 title: "Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 | Microsoft Docs"
 author: Erikre
 description: "This step-by-step tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Expres..."
-ms.author: riande
+ms.author: aspnetcontent
 ms.date: 09/08/2014
 ms.assetid: 9b96eaa1-8ef0-4338-a2e8-e0f970bfaf68
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/introduction-and-overview
@@ -15,7 +15,9 @@ by [Erik Reitan](https://github.com/Erikre)
 
 [Download Wingtip Toys Sample Project (C#)](http://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) or [Download E-book (PDF)](http://download.microsoft.com/download/0/F/B/0FBFAA46-2BFD-478F-8E56-7BF3C672DF9D/Getting%20Started%20with%20ASP.NET%204.5%20Web%20Forms%20and%20Visual%20Studio%202013.pdf)
 
-This step-by-step tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for Web. [ASP.NET Web Forms Quiz](http://quizapp.cloudapp.net/?quiz=ASP.NET)  
+> This step-by-step tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for Web. [ASP.NET Web Forms Quiz](http://quizapp.cloudapp.net/?quiz=ASP.NET)  
+> Test your knowledge and reinforce key concepts by taking the ASP.NET Web Forms Quiz. This quiz was specifically designed from content contained in this tutorial series. Each question in the quiz provides an explanation along with links to additional guidance.
+
 
 ## Introduction
 

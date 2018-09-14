@@ -28,7 +28,7 @@ The in-memory cache can store any object; the distributed cache interface is lim
 ### Cache guidelines
 
 * Code should always have a fallback option to fetch data and **not** depend on a cached value being available.
-* The cache uses a scarce resource, memory. Limit cache growth:
+* The cache uses a scare resource, memory. Limit cache growth:
   * Do **not** use external input as cache keys.
   * Use expirations to limit cache growth.
   * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size)
@@ -121,11 +121,11 @@ The following code registers `MyMemoryCache` with the [dependency injection](xre
 
 The following code uses `MyMemoryCache`:
 
-[!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet)]
+[!code-csharp [](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet)]
 
 The size of the cache entry can be set by [Size](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.size?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_Size) or the [SetSize](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryextensions.setsize?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryExtensions_SetSize_Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_System_Int64_) extension method:
 
-[!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet2&highlight=9,10,14,15)]
+[!code-csharp [](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet2&highlight=9,10,14,15)]
 
 ::: moniker-end
 

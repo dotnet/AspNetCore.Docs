@@ -3,7 +3,7 @@ uid: webhooks/diagnostics/logging
 title: "ASP.NET WebHooks logging | Microsoft Docs"
 author: rick-anderson
 description: "How to do logging in ASP.NET WebHooks."
-ms.author: riande
+ms.author: aspnetcontent
 ms.date: 01/17/2012
 ms.assetid: f71bc442-5f80-481b-a32c-a0ec18dee9d6
 uid: webhooks/diagnostics/logging

@@ -37,7 +37,7 @@ In the examples that follow:
 
 When using ASP.NET Core Identity:
 
-::: moniker range=">= aspnetcore-2.0"
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 In the `ConfigureServices` method, use the [ConfigureApplicationCookie](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie) extension method to set up the data protection service for cookies.
 
@@ -53,9 +53,7 @@ options.Cookie.Domain = ".contoso.com";
 
 See the *CookieAuthWithIdentity.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 In the `Configure` method, use the [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions) to set up:
 
@@ -83,11 +81,11 @@ app.AddIdentity<ApplicationUser, IdentityRole>(options =>
 });
 ```
 
-::: moniker-end
+---
 
 When using cookies directly:
 
-::: moniker range=">= aspnetcore-2.0"
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 [!code-csharp[](cookie-sharing/sample/CookieAuth.Core/Startup.cs?name=snippet1)]
 
@@ -101,10 +99,7 @@ options.Cookie.Domain = ".contoso.com";
 
 See the *CookieAuth.Core* project in the [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/cookie-sharing/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 ```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -115,22 +110,20 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 });
 ```
 
-::: moniker-end
+---
 
 ## Encrypting data protection keys at rest
 
 For production deployments, configure the `DataProtectionProvider` to encrypt keys at rest with DPAPI or an X509Certificate. See [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest) for more information.
 
-::: moniker range=">= aspnetcore-2.0"
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 services.AddDataProtection()
     .ProtectKeysWithCertificate("thumbprint");
 ```
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -144,7 +137,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 });
 ```
 
-::: moniker-end
+---
 
 ## Sharing authentication cookies between ASP.NET 4.x and ASP.NET Core apps
 

@@ -3,7 +3,7 @@ uid: ajax/cdn/jquery-ui/index
 title: "jQuery UI | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 ms.date: 07/21/2014
 ms.assetid: bd72bb7e-bdcb-490b-8bc1-9b669329632b
 msc.legacyurl: /ajax/cdn/jquery-ui

@@ -1,3 +1,0 @@
-* `cdnjs`
-* `filesystem`
-* `unpkg`

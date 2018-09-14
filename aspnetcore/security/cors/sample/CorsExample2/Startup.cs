@@ -18,8 +18,7 @@ namespace CorsExample2
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
-            ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
 
@@ -30,7 +29,6 @@ namespace CorsExample2
 
             // Shows UseCors with named policy.
             app.UseCors("AllowSpecificOrigin");
-
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");

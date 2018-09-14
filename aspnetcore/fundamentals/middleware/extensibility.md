@@ -2,10 +2,9 @@
 title: Factory-based middleware activation in ASP.NET Core
 author: guardrex
 description: Learn how to use strongly-typed middleware with a factory-based activation implementation in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2018
+ms.date: 01/29/2018
 uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core
@@ -42,7 +41,7 @@ Middleware activated by convention:
 
 Middleware activated by `MiddlewareFactory`:
 
-[!code-csharp[](extensibility/sample/Middleware/FactoryActivatedMiddleware.cs?name=snippet1)]
+[!code-csharp[](extensibility/sample/Middleware/IMiddlewareMiddleware.cs?name=snippet1)]
 
 Extensions are created for the middlewares:
 
@@ -51,11 +50,11 @@ Extensions are created for the middlewares:
 It isn't possible to pass objects to the factory-activated middleware with `UseMiddleware`:
 
 ```csharp
-public static IApplicationBuilder UseFactoryActivatedMiddleware(
+public static IApplicationBuilder UseIMiddlewareMiddleware(
     this IApplicationBuilder builder, bool option)
 {
     // Passing 'option' as an argument throws a NotSupportedException at runtime.
-    return builder.UseMiddleware<FactoryActivatedMiddleware>(option);
+    return builder.UseMiddleware<IMiddlewareMiddleware>(option);
 }
 ```
 
@@ -65,15 +64,15 @@ The factory-activated middleware is added to the built-in container in *Startup.
 
 Both middlewares are registered in the request processing pipeline in `Configure`:
 
-[!code-csharp[](extensibility/sample/Startup.cs?name=snippet2&highlight=14-15)]
+[!code-csharp[](extensibility/sample/Startup.cs?name=snippet2&highlight=13-14)]
 
 ## IMiddlewareFactory
 
 [IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) provides methods to create middleware. The middleware factory implementation is registered in the container as a scoped service.
 
-The default `IMiddlewareFactory` implementation, [MiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.middlewarefactory), is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
+The default `IMiddlewareFactory` implementation, [MiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.middlewarefactory), is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package ([reference source](https://github.com/aspnet/HttpAbstractions/blob/release/2.0/src/Microsoft.AspNetCore.Http/MiddlewareFactory.cs)).
 
 ## Additional resources
 
-* <xref:fundamentals/middleware/index>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
+* [Middleware](xref:fundamentals/middleware/index)
+* [Middleware activation with a third-party container](xref:fundamentals/middleware/extensibility-third-party-container)

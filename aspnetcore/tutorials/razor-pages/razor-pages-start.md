@@ -60,8 +60,6 @@ The following image shows the app after accepting tracking:
 
 [!INCLUDE [razor-pages-start](~/includes/RP/2.1/razor-pages-start.md)]
 
-[!INCLUDE [F7](~/includes/RP/F7.md)]
-
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
