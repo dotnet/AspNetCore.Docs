@@ -264,9 +264,12 @@ Update the details page model:
 
 [!code-csharp[](secure-data/samples/final2.1/Pages/Contacts/Details.cshtml.cs?name=snippet)]
 
-## Add a user to a role
+## Add or remove a user to a role
 
-Roles are stored in the Identity cookie. Changes made to user roles are not persisted to the cookie until the cookie is regenerated or the user signs out and signs in. Applications that add users to a role should call `SignInManager.RefreshSignInAsync(user)` to update the cookie.
+See [this issue](https://github.com/aspnet/Docs/issues/8502) for information on:
+
+* Removing privileges from a user. For example muting a user in a chat app.
+* Adding privileges to a user.
 
 ## Test the completed app
 
