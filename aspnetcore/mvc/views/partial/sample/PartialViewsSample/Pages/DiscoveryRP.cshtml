@@ -1,6 +1,8 @@
-﻿@using PartialViewsSample.ViewModels
+﻿@page
+@model DiscoveryModel
+@using PartialViewsSample.ViewModels
 @{
-    ViewData["Title"] = "Partial view discovery (MVC)";
+    ViewData["Title"] = "Partial view discovery (Razor Pages)";
     ViewData["index"] = 0;
 }
 
@@ -18,63 +20,63 @@
         <tr>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""_AuthorPartial"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""_AuthorPartialRP"" />"))
                 </code>
                 <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
-                <!-- <snippet_PartialTagHelper> -->
-                <partial name="_AuthorPartial" />
-                <!-- </snippet_PartialTagHelper> -->
+                <!-- <snippet_PartialTagHelperRP> -->
+                <partial name="_AuthorPartialRP" />
+                <!-- </snippet_PartialTagHelperRP> -->
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""_AuthorPartial.cshtml"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""_AuthorPartialRP.cshtml"" />"))
                 </code>
                 <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
-                <partial name="_AuthorPartial.cshtml" />
+                <partial name="_AuthorPartialRP.cshtml" />
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""~/Views/Home/_AuthorPartial.cshtml"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""~/Pages/_AuthorPartialRP.cshtml"" />"))
                 </code>
                 <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
-                <partial name="~/Views/Home/_AuthorPartial.cshtml" />
+                <partial name="~/Pages/_AuthorPartialRP.cshtml" />
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""/Views/Home/_AuthorPartial.cshtml"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""/Pages/_AuthorPartialRP.cshtml"" />"))
                 </code>
                 <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
-                <partial name="/Views/Home/_AuthorPartial.cshtml" />
+                <partial name="/Pages/_AuthorPartialRP.cshtml" />
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""../Articles/_ArticleSection.cshtml"" model='new ArticleSection { Title=""Section 1"", Content=""Coming soon"" }' view-data=""ViewData"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""ArticlesRP/_ArticleSectionRP.cshtml"" model='new ArticleSection { Title=""Section 1"", Content=""Coming soon"" }' view-data=""ViewData"" />"))
                 </code>
                 <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
-                <partial name="../Articles/_ArticleSection.cshtml"
+                <partial name="ArticlesRP/_ArticleSectionRP.cshtml"
                          model='new ArticleSection { Title="Section 1", Content="Coming soon" }'
                          view-data="ViewData" />
             </td>
@@ -82,27 +84,27 @@
         <tr>
             <td>
                 <code>
-                    &#64;await Html.PartialAsync("_AuthorPartial")
+                    &#64;await Html.PartialAsync("_AuthorPartialRP")
                 </code>
             </td>
             <td>
-                <!-- <snippet_PartialAsync> -->
-                @await Html.PartialAsync("_AuthorPartial")
-                <!-- </snippet_PartialAsync> -->
+                <!-- <snippet_PartialAsyncRP> -->
+                @await Html.PartialAsync("_AuthorPartialRP")
+                <!-- </snippet_PartialAsync_RP> -->
             </td>
         </tr>
         <tr>
             <td>
                 <code>
-                    &#64;{ await Html.RenderPartialAsync("_AuthorPartial"); }
+                    &#64;{ await Html.RenderPartialAsync("_AuthorPartialRP"); }
                 </code>
             </td>
             <td>
-                <!-- <snippet_RenderPartialAsync> -->
+                <!-- <snippet_RenderPartialAsyncRP> -->
                 @{
-                    await Html.RenderPartialAsync("_AuthorPartial");
+                    await Html.RenderPartialAsync("_AuthorPartialRP");
                 }
-                <!-- </snippet_RenderPartialAsync> -->
+                <!-- </snippet_RenderPartialAsyncRP> -->
             </td>
         </tr>
     </tbody>
