@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to cache data in memory in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 7/22/2018
+ms.date: 09/15/2018
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
@@ -25,7 +25,15 @@ The `IMemoryCache` cache will evict cache entries under memory pressure unless t
 
 The in-memory cache can store any object; the distributed cache interface is limited to `byte[]`.
 
-### Cache guidelines
+## System.Runtime.Caching/MemoryCache
+
+<xref:System.Runtime.Caching>/<xref:System.Runtime.Caching.MemoryCache> ([NuGet package](https://www.nuget.org/packages/System.Runtime.Caching/)) is available for use in .NET Standard 2.0 or later libraries and implementations of .NET, including apps that target ASP.NET Core 2.0 or later and .NET Framework 4.5 or later.
+
+[Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/)/`IMemoryCache` (described in this topic) is recommended over `System.Runtime.Caching`/`MemoryCache` because it's better integrated into ASP.NET Core (for example, `IMemoryCache` works natively with ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection)).
+
+Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when porting code to ASP.NET Core.
+
+## Cache guidelines
 
 * Code should always have a fallback option to fetch data and **not** depend on a cached value being available.
 * The cache uses a scarce resource, memory. Limit cache growth:
