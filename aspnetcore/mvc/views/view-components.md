@@ -69,7 +69,7 @@ A view component defines its logic in an `InvokeAsync` method that returns an `I
 
 The runtime searches for the view in the following paths:
 
-* /Pages/Components/<component name>/\<view_name>
+* /Pages/Components/\<view_component_name>/\<view_name>
 * Views/\<controller_name>/Components/\<view_component_name>/\<view_name>
 * Views/Shared/Components/\<view_component_name>/\<view_name>
 
