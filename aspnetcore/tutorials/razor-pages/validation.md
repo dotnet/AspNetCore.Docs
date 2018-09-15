@@ -26,6 +26,7 @@ Open the *Movie.cs* file. [DataAnnotations](https://docs.microsoft.com/aspnet/mv
 Update the `Movie` class to take advantage of the `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 ::: moniker-end
@@ -107,7 +108,9 @@ The `DataType` Enumeration provides for many data types, such as Date, Time, Pho
 `DataType.Date` doesn't specify the format of the date that's displayed. By default, the data field is displayed according to the default formats based on the server's `CultureInfo`.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
+
 ::: moniker-end
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
@@ -136,11 +139,13 @@ It's generally not a good practice to compile hard dates in your models, so usin
 The following code shows combining attributes on one line:
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 ::: moniker-end
