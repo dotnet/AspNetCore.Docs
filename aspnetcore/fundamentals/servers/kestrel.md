@@ -293,12 +293,12 @@ You can configure the rates per request in middleware:
 
 **MaxStreamsPerConnection**
 
-`MaxStreamsPerConnection` limits the number of concurrent request streams per HTTP/2 connection. Excess streams are refused.
+`Http2.MaxStreamsPerConnection` limits the number of concurrent request streams per HTTP/2 connection. Excess streams are refused.
 
 ```csharp
 .ConfigureKestrel((context, options) =>
 {
-    options.Limits.MaxStreamsPerConnection = 100;
+    options.Limits.Http2.MaxStreamsPerConnection = 100;
 });
 ```
 
@@ -306,12 +306,12 @@ The default value is 100.
 
 **HeaderTableSize**
 
-The HPACK decoder decompresses HTTP headers for HTTP/2 connections. `HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses. The value is provided in octets and must be greater than zero (0).
+The HPACK decoder decompresses HTTP headers for HTTP/2 connections. `Http2.HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses. The value is provided in octets and must be greater than zero (0).
 
 ```csharp
 .ConfigureKestrel((context, options) =>
 {
-    options.Limits.HeaderTableSize = 4096;
+    options.Limits.Http2.HeaderTableSize = 4096;
 });
 ```
 
@@ -319,12 +319,12 @@ The default value is 4096.
 
 **MaxFrameSize**
 
-`MaxFrameSize` indicates the maximum size of the HTTP/2 connection frame payload to receive. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
+`Http2.MaxFrameSize` indicates the maximum size of the HTTP/2 connection frame payload to receive. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
 
 ```csharp
 .ConfigureKestrel((context, options) =>
 {
-    options.Limits.MaxFrameSize = 16384;
+    options.Limits.Http2.MaxFrameSize = 16384;
 });
 ```
 
@@ -789,9 +789,9 @@ The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enable
 
 | `HttpProtocols` enum value | Connection protocol permitted |
 | -------------------------- | ----------------------------- |
-| `Http1`                    | HTTP/1.1 only                 |
-| `Http2`                    | HTTP/2 only                   |
-| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2           |
+| `Http1`                    | HTTP/1.1 only. Can be used with or without TLS. |
+| `Http2`                    | HTTP/2 only. Primarily used with TLS 1.2 or later. May be used without TLS 1.2 or later only if the client supports a Prior Knowledge mode. |
+| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. Requires a TLS 1.2 or later and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1. |
 
 The default protocol is HTTP/1.1.
 
