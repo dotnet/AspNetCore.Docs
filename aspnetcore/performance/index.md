@@ -1,15 +1,18 @@
 ---
 title: Performance in ASP.NET Core
-author: ardalis
+author: guardrex
 description: Discover topics pertaining to ASP.NET Core app performance.
 ms.author: riande
-ms.date: 10/14/2016
+ms.custom: mvc
+ms.date: 09/16/2018
 uid: performance/index
 ---
 # Performance in ASP.NET Core
 
-* [Cache responses](caching/index.md)
-  * [Cache in-memory](caching/memory.md)
-  * [Work with a distributed cache](caching/distributed.md)
-  * [Response caching](caching/response.md)
-* [Response compression middleware](response-compression.md)
+The following topic areas cover performance scenarios in ASP.NET Core:
+
+[Cache responses](xref:performance/caching/index)  
+Learn how to cache data and responses in ASP.NET Core.
+
+[Response compression](xref:performance/response-compression)  
+Learn about response compression and how to use Response Compression Middleware in ASP.NET Core apps.

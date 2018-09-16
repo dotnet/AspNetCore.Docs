@@ -401,7 +401,7 @@
 ### [Work with a distributed cache](xref:performance/caching/distributed)
 ### [Response caching](xref:performance/caching/response)
 ### [Response caching middleware](xref:performance/caching/middleware)
-## [Response compression middleware](xref:performance/response-compression)
+## [Response compression](xref:performance/response-compression)
 
 # [Migration](xref:migration/index)
 ## [ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
