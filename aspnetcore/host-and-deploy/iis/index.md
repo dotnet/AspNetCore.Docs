@@ -28,12 +28,12 @@ The following operating systems are supported:
 
 * In-process
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Shared framework: .NET Core 2.2 or later
+  * Target framework: .NET Core 2.2 or later
   * TLS 1.2 or later connection
 * Out-of-process
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Edge connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
-  * Shared framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
+  * Target framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
   * TLS 1.2 or later connection
 
 For an in-process deployment when an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
@@ -46,7 +46,7 @@ For an in-process deployment when an HTTP/2 connection is established, [HttpRequ
 
 * Windows Server 2016/Windows 10 or later; IIS 10 or later
 * Edge connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
-* Shared framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
+* Target framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
 * TLS 1.2 or later connection
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
