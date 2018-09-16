@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/13/2018
+ms.date: 03/13/2018
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -33,21 +33,6 @@ This guide:
    1. Select the latest non-preview runtime from the list under **Runtime**.
    1. Select and follow the instructions for Ubuntu that match the Ubuntu version of the server.
 1. An existing ASP.NET Core app.
-
-::: moniker range=">= aspnetcore-2.2"
-
-## HTTP/2 support
-
-[HTTP/2](https://httpwg.org/specs/rfc7540.html) is available for ASP.NET Core apps running directly on the [Kestrel server](xref:fundamentals/servers/kestrel#http2-support) if the following base requirements are met:
-
-* OpenSSL 1.0.2 or later
-* Target framework: ASP.NET Core 2.2 or later
-* [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
-* TLS 1.2 or later connection
-
-If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
-
-::: moniker-end
 
 ## Publish and copy over the app
 

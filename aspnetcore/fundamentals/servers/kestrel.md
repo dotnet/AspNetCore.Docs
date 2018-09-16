@@ -790,7 +790,7 @@ The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enable
 | `HttpProtocols` enum value | Connection protocol permitted |
 | -------------------------- | ----------------------------- |
 | `Http1`                    | HTTP/1.1 only. Can be used with or without TLS. |
-| `Http2`                    | HTTP/2 only. Primarily used with TLS 1.2 or later. May be used without TLS 1.2 or later only if the client supports a Prior Knowledge mode. |
+| `Http2`                    | HTTP/2 only. Primarily used with TLS 1.2 or later. May be used without TLS 1.2 or later only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
 | `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. Requires a TLS 1.2 or later and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1. |
 
 The default protocol is HTTP/1.1.
