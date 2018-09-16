@@ -47,7 +47,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 * Operating system&dagger;
   * Windows Server 2012 R2/Windows 8.1 or later
   * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
-* Target framework: ASP.NET Core 2.2 or later
+* Shared framework: .NET Core 2.2 or later
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
@@ -790,8 +790,8 @@ The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enable
 | `HttpProtocols` enum value | Connection protocol permitted |
 | -------------------------- | ----------------------------- |
 | `Http1`                    | HTTP/1.1 only. Can be used with or without TLS. |
-| `Http2`                    | HTTP/2 only. Primarily used with TLS 1.2 or later. May be used without TLS 1.2 or later only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
-| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. Requires a TLS 1.2 or later and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1. |
+| `Http2`                    | HTTP/2 only. Primarily used with TLS. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
+| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. Requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1. |
 
 The default protocol is HTTP/1.1.
 

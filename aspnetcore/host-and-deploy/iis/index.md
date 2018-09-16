@@ -28,13 +28,15 @@ The following operating systems are supported:
 
 * In-process
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Target framework: ASP.NET Core 2.2 or later
+  * Shared framework: .NET Core 2.2 or later
   * TLS 1.2 or later connection
 * Out-of-process
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Edge connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
-  * Target framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
+  * Shared framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
   * TLS 1.2 or later connection
+
+For an in-process deployment when an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
 
 ::: moniker-end
 
@@ -44,11 +46,12 @@ The following operating systems are supported:
 
 * Windows Server 2016/Windows 10 or later; IIS 10 or later
 * Edge connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
-* Target framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
+* Shared framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
+* TLS 1.2 or later connection
+
+If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
 
 ::: moniker-end
-
-If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
 
 HTTP/2 is enabled by default. Connections fall back to HTTP/1.1 if an HTTP/2 connection isn't established. For more information on HTTP/2 configuration with IIS deployments, see [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis).
 

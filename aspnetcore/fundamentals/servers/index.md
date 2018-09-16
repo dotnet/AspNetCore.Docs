@@ -117,17 +117,17 @@ When launching an app from a command prompt in the project's folder, [dotnet run
     * Windows Server 2012 R2/Windows 8.1 or later
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * HTTP/2 will be supported on macOS in a future release.
-  * Target framework: ASP.NET Core 2.2 or later
+  * Shared framework: .NET Core 2.2 or later
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
-  * Target framework: Not applicable to HTTP.sys deployments.
+  * Shared framework: Not applicable to HTTP.sys deployments.
 * [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Target framework: ASP.NET Core 2.2 or later
+  * Shared framework: .NET Core 2.2 or later
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Edge connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
-  * Target framework: Not applicable to IIS out-of-process deployments.
+  * Shared framework: Not applicable to IIS out-of-process deployments.
 
 ::: moniker-end
 
@@ -135,11 +135,11 @@ When launching an app from a command prompt in the project's folder, [dotnet run
 
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
-  * Target framework: Not applicable to HTTP.sys deployments.
+  * Shared framework: Not applicable to HTTP.sys deployments.
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Edge connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
-  * Target framework: Not applicable to IIS out-of-process deployments.
+  * Shared framework: Not applicable to IIS out-of-process deployments.
 
 ::: moniker-end
 
