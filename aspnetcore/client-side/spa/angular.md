@@ -28,6 +28,7 @@ The template is equivalent to creating an ASP.NET Core project to act as an API 
 If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index#installation).
 
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
 
 If you have ASP.NET Core 2.1 installed, there's no need to install the Angular project template.

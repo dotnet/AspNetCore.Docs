@@ -239,6 +239,7 @@ Error Message:
 Solution:
 
 Check the connection string. If you have manually deleted the database file, change the name of the database in the construction string to start over with a new database.
+
 ::: moniker-end
 
 > [!div class="step-by-step"]

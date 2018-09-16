@@ -70,6 +70,7 @@ The following code enables the `SamplePageFilter`:
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
 ::: moniker range=">= aspnetcore-2.1"
+
 ## Implement Razor Page filters by overriding filter methods
 
 The following code overrides the synchronous Razor Page filters:

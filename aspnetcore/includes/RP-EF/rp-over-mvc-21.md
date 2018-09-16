@@ -14,4 +14,5 @@ The 2.0 tutorial teaches ASP.NET Core MVC and Entity Framework Core with control
 * Is the preferred approach for new application development.
 
 If you choose this tutorial over the [Razor Pages](xref:data/ef-rp/intro) version, let us know why in [this GitHub discussion](https://github.com/aspnet/Docs/issues/6146).
+
 ::: moniker-end
