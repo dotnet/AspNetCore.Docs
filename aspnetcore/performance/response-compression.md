@@ -41,7 +41,7 @@ When a client can process compressed content, the client must inform the server 
 | `Accept-Encoding` header values | Middleware Supported | Description |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Yes (default)        | [Brotli compressed data format](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | No                   | [DEFLATE compressed data format](https://www.ietf.org/rfc/rfc1951.txt) |
+| `deflate`                       | No                   | [DEFLATE compressed data format](https://tools.ietf.org/html/rfc1951) |
 | `exi`                           | No                   | [W3C Efficient XML Interchange](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | Yes                  | [Gzip file format](https://tools.ietf.org/html/rfc1952) |
 | `identity`                      | Yes                  | "No encoding" identifier: The response must not be encoded. |
@@ -55,7 +55,7 @@ When a client can process compressed content, the client must inform the server 
 | `Accept-Encoding` header values | Middleware Supported | Description |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | No                   | [Brotli compressed data format](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | No                   | [DEFLATE compressed data format](https://www.ietf.org/rfc/rfc1951.txt) |
+| `deflate`                       | No                   | [DEFLATE compressed data format](https://tools.ietf.org/html/rfc1951) |
 | `exi`                           | No                   | [W3C Efficient XML Interchange](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | Yes (default)        | [Gzip file format](https://tools.ietf.org/html/rfc1952) |
 | `identity`                      | Yes                  | "No encoding" identifier: The response must not be encoded. |
