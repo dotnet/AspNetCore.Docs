@@ -91,3 +91,5 @@ To create a password and sign in using your email that you set during the sign i
 * This article introduced external authentication and explained the prerequisites required to add external logins to your ASP.NET Core app.
 
 * Reference provider-specific pages to configure logins for the providers required by your app.
+
+* You may want to persist additional data about the user and their access and refresh tokens. For more information, see <xref:security/authentication/social/additional-claims>.

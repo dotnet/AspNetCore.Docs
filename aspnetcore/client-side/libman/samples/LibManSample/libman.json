@@ -18,7 +18,7 @@
     },
     {
       "provider": "filesystem",
-      "library": "C:\\tmp\\",
+      "library": "C:\\temp\\lodash\\",
       "files": [
         "lodash.js",
         "lodash.min.js"

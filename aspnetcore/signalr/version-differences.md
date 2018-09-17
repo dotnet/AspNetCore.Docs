@@ -4,7 +4,7 @@ author: tdykstra
 description: Differences between SignalR and ASP.NET Core SignalR 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 08/20/2018
+ms.date: 09/10/2018
 uid: signalr/version-differences
 ---
 
@@ -127,6 +127,20 @@ connection = new HubConnectionBuilder()
     .WithUrl("url")
     .Build();
 ```
+
+## Scaleout differences
+
+ASP.NET SignalR supports both SQL Server and Redis. ASP.NET Core SignalR supports both Azure SignalR Service and Redis.
+
+### ASP.NET
+
+* [SignalR scaleout with Azure Service Bus](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
+* [SignalR scaleout with Redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
+* [SignalR scaleout with SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
+
+### ASP.NET Core
+
+* [Azure SignalR Service](/azure/azure-signalr/)
 
 ## Additional resources
 

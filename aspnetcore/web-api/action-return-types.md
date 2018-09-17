@@ -79,13 +79,13 @@ ASP.NET Core 2.1 introduces the [ActionResult\<T>](/dotnet/api/microsoft.aspnetc
 
 C# doesn't support implicit cast operators on interfaces. Consequently, conversion of the interface to a concrete type is necessary to use `ActionResult<T>`. For example, use of `IEnumerable` in the following example doesn't work:
 
-    ```csharp
-    [HttpGet]
-    public ActionResult<IEnumerable<Product>> Get()
-    {
-        return _repository.GetProducts();
-    }
-    ```
+```csharp
+[HttpGet]
+public ActionResult<IEnumerable<Product>> Get()
+{
+    return _repository.GetProducts();
+}
+```
 
 One option to fix the preceding code is to return `_repository.GetProducts().ToList();`.
 
