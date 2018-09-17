@@ -38,7 +38,7 @@ namespace TestingControllersSample.Tests.UnitTests
             int testSessionId = 1;
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult((BrainstormSession)null));
+                .ReturnsAsync((BrainstormSession)null);
             var controller = new SessionController(mockRepo.Object);
 
             // Act
@@ -56,8 +56,8 @@ namespace TestingControllersSample.Tests.UnitTests
             int testSessionId = 1;
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult(GetTestSessions().FirstOrDefault(
-                    s => s.Id == testSessionId)));
+                .ReturnsAsync(GetTestSessions().FirstOrDefault(
+                    s => s.Id == testSessionId));
             var controller = new SessionController(mockRepo.Object);
 
             // Act

@@ -39,7 +39,7 @@ namespace TestingControllersSample.Tests.UnitTests
             int testSessionId = 123;
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult((BrainstormSession)null));
+                .ReturnsAsync((BrainstormSession)null);
             var controller = new IdeasController(mockRepo.Object);
 
             // Act
@@ -61,7 +61,7 @@ namespace TestingControllersSample.Tests.UnitTests
             var testSession = GetTestSession();
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult(testSession));
+                .ReturnsAsync(testSession);
             var controller = new IdeasController(mockRepo.Object);
 
             var newIdea = new NewIdeaModel()
@@ -95,7 +95,7 @@ namespace TestingControllersSample.Tests.UnitTests
             int testSessionId = 123;
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult((BrainstormSession)null));
+                .ReturnsAsync((BrainstormSession)null);
             var controller = new IdeasController(mockRepo.Object);
 
             // Act
@@ -115,7 +115,7 @@ namespace TestingControllersSample.Tests.UnitTests
             int testSessionId = 123;
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult(GetTestSession()));
+                .ReturnsAsync(GetTestSession());
             var controller = new IdeasController(mockRepo.Object);
 
             // Act
@@ -155,7 +155,7 @@ namespace TestingControllersSample.Tests.UnitTests
             int testSessionId = 123;
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult(GetTestSession()));
+                .ReturnsAsync(GetTestSession());
             var controller = new IdeasController(mockRepo.Object);
 
             // Act
@@ -225,7 +225,7 @@ namespace TestingControllersSample.Tests.UnitTests
             var testSession = GetTestSession();
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult(testSession));
+                .ReturnsAsync(testSession);
             var controller = new IdeasController(mockRepo.Object);
 
             var newIdea = new NewIdeaModel()

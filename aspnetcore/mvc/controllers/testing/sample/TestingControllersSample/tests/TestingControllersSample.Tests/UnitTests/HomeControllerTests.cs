@@ -20,8 +20,8 @@ namespace TestingControllersSample.Tests.UnitTests
         {
             // Arrange
             var mockRepo = new Mock<IBrainstormSessionRepository>();
-            mockRepo.Setup(repo => repo.ListAsync()).Returns(
-                Task.FromResult(GetTestSessions()));
+            mockRepo.Setup(repo => repo.ListAsync())
+                .ReturnsAsync(GetTestSessions());
             var controller = new HomeController(mockRepo.Object);
 
             // Act
@@ -41,8 +41,8 @@ namespace TestingControllersSample.Tests.UnitTests
         {
             // Arrange
             var mockRepo = new Mock<IBrainstormSessionRepository>();
-            mockRepo.Setup(repo => repo.ListAsync()).Returns(
-                Task.FromResult(GetTestSessions()));
+            mockRepo.Setup(repo => repo.ListAsync())
+                .ReturnsAsync(GetTestSessions());
             var controller = new HomeController(mockRepo.Object);
             controller.ModelState.AddModelError("SessionName", "Required");
             var newSession = new HomeController.NewSessionModel();
