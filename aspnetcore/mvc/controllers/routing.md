@@ -371,6 +371,8 @@ Attribute routes can configure an order, using the `Order` property of all of th
 > [!TIP]
 > Avoid depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using route name as an override is usually simpler than applying the `Order` property.
 
+Razor Pages routing and MVC controller routing share an implementation. Information on route order in the Razor Pages topics is available at [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order).
+
 <a name="routing-token-replacement-templates-ref-label"></a>
 
 ## Token replacement in route templates ([controller], [action], [area])
