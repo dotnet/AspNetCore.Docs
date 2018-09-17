@@ -23,9 +23,9 @@ By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https
 
 ::: moniker-end
 
-Using [NSwag](https://github.com/RSuter/NSwag) with ASP.NET Core middleware requires the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. The package consists of a Swagger generator, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc).
+First, we register the NSwag middlewares to generate the Swagger specification for the implemented Web API and serve the Swagger UI to browse and test the API. To use the [NSwag](https://github.com/RSuter/NSwag) ASP.NET Core middlewares you have to install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package: This package contains the middlewares to generate and serve the Swagger specification, Swagger UI (v2 and v3) and [ReDoc UI](https://github.com/Rebilly/ReDoc).
 
-It's highly recommended to make use of NSwag's code generation capabilities. Choose one of the following options for code generation:
+Additionally, it is highly recommended to make use of NSwag's code generation capabilities. Choose one of the following options to use the code generation capabilities:
 
 * Use [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), a Windows desktop app for generating client code in C# and TypeScript for your API.
 * Use the [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages to do code generation inside your project.
@@ -34,7 +34,7 @@ It's highly recommended to make use of NSwag's code generation capabilities. Cho
 
 ## Features
 
-The main reason to use NSwag is the ability to not only introduce the Swagger UI and Swagger generator, but to make use of the flexible code generation capabilities. You don't need an existing API&mdash;you can use third-party APIs that incorporate Swagger and let NSwag generate a client implementation. Either way, the development cycle is expedited and you can more easily adapt to API changes.
+The main reason to use NSwag is the ability to not only introduce the Swagger UI and Swagger generator, but to also make use of the flexible code generation capabilities. You don't need an existing API&mdash;you can use third-party APIs that incorporate Swagger and let NSwag generate a client implementation. Either way, the development cycle is expedited and you can more easily adapt to API changes.
 
 ## Package installation
 
@@ -86,9 +86,13 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 
 Import the following namespaces in the `Startup` class:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_StartupConfigureImports)]
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8-8)]
 
-In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
+In the `Startup.ConfigureServices` method, register the required Swagger services: 
+
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-10)]
+
+In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI v3:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-10)]
 
