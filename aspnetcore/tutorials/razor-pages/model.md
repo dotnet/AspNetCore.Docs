@@ -97,14 +97,14 @@ Add-Migration Initial
 Update-Database
 ```
 
-Alternatively, the following .NET Core CLI commands can be used:
+Alternatively, the following .NET Core CLI commands can be used from the project folder:
 
 ```console
 dotnet ef migrations add Initial
 dotnet ef database update
 ```
 
-Ignore the following warning message, you fix that in the next tutorial:
+Ignore the following warning message, you fix that in a a later tutorial:
 
 `Microsoft.EntityFrameworkCore.Model.Validation[30000]`
 
@@ -120,6 +120,7 @@ SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by th
 Login failed for user 'User-name'.
 
 You missed the [migrations step](#pmc).
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"

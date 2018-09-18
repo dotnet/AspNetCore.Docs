@@ -1,19 +1,21 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PartialViewsSample</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Partial Views Sample</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="~/css/site.css">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"
+              crossorigin="anonymous"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u">
     </environment>
 </head>
 <body>
@@ -26,26 +28,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Discovery" class="navbar-brand">PartialViewsSample</a>
+                <a asp-area="" asp-controller="Home" asp-action="Discovery" class="navbar-brand">Partial Views Sample</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Discovery">Partial view discovery</a></li>
-                    <li><a asp-area="" asp-controller="Articles" asp-action="Read">Partial view data access</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Discovery">Discovery (MVC)</a></li>
+                    <li><a asp-area="" asp-controller="Articles" asp-action="Read">Data access (MVC)</a></li>
+                    <li><a asp-area="" asp-page="/DiscoveryRP">Discovery (Razor Pages)</a></li>
+                    <li><a asp-area="" asp-page="/ArticlesRP/ReadRP">Data access (Razor Pages)</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- <snippet_CookieConsentPartial> -->
     <partial name="_CookieConsentPartial" />
-    <!-- </snippet_CookieConsentPartial> -->
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        <hr>
         <footer>
-            <p>&copy; 2018 - PartialViewsSample</p>
+            <p>&copy;@System.DateTime.Now.Year - Partial Views Sample</p>
         </footer>
     </div>
 

@@ -276,6 +276,7 @@ If you run into problems you can't solve, download the [completed app for this s
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 
 In the next tutorial, the app uses migrations to update the data model.
+
 ::: moniker-end
 
 > [!div class="step-by-step"]
