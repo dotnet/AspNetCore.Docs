@@ -5,32 +5,32 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace RazorPagesSample.TagHelpers
 {
-    public class AddressTagHelperComponent : ITagHelperComponent
+    public class AddressTagHelperComponent : TagHelperComponent
     {
-        private readonly string _printableButton = 
+        private readonly string _printableButton =
             "<button type='button' class='btn btn-info' onclick=\"window.open(" +
             "'https://binged.it/2AXRRYw')\">" +
             "<span class='glyphicon glyphicon-road' aria-hidden='true'></span>" +
             "</button>";
 
-        public int Order { get; }
-
+        #region snippet_Constructor
         private readonly string _markup;
+
+        public override int Order { get; }
 
         public AddressTagHelperComponent(string markup = "", int order = 1)
         {
             _markup = markup;
             Order = order;
         }
-
-        public void Init(TagHelperContext context) { }
+        #endregion
 
         #region snippet_ProcessAsync
-        public async Task ProcessAsync(TagHelperContext context, 
-                                       TagHelperOutput output)
+        public override async Task ProcessAsync(TagHelperContext context,
+                                                TagHelperOutput output)
         {
-            if (string.Equals(context.TagName, "address", 
-                    StringComparison.OrdinalIgnoreCase) && 
+            if (string.Equals(context.TagName, "address",
+                    StringComparison.OrdinalIgnoreCase) &&
                 output.Attributes.ContainsName("printable"))
             {
                 TagHelperContent childContent = await output.GetChildContentAsync();

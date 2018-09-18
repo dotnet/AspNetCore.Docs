@@ -5,16 +5,12 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace RazorPagesSample.TagHelpers
 {
-    public class AddressScriptTagHelperComponent : ITagHelperComponent
+    public class AddressScriptTagHelperComponent : TagHelperComponent
     {
-        public int Order => 2;
-
-        public void Init(TagHelperContext context)
-        {
-        }
-
-        public async Task ProcessAsync(TagHelperContext context,
-                                       TagHelperOutput output)
+        public override int Order => 2;
+        
+        public override async Task ProcessAsync(TagHelperContext context,
+                                                TagHelperOutput output)
         {
             if (string.Equals(context.TagName, "body",
                               StringComparison.OrdinalIgnoreCase))
