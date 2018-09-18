@@ -20,7 +20,7 @@ The following operating systems are supported:
 
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
-For information on hosting to Azure, see  [Host ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps).
+For information in hosting to Azure, see [](xref:host-and-deploy/azure-apps/index).
 
 ## HTTP/2 support
 
