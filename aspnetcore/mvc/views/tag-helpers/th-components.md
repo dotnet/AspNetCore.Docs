@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn what Tag Helper Components are and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
-ms.date: 09/17/2018
+ms.date: 09/18/2018
 uid: mvc/views/tag-helpers/th-components
 ---
 # Tag Helper Components in ASP.NET Core
@@ -13,9 +13,7 @@ By [Scott Addie](https://twitter.com/Scott_Addie) and [Fiyaz Bin Hasan](https://
 
 A Tag Helper Component is a Tag Helper that allows you to conditionally modify or add HTML elements from server-side code. This feature is available in ASP.NET Core 2.0 or later.
 
-ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the `Microsoft.AspNetCore.Mvc.Razor.TagHelpers` namespace and can be used in both MVC and Razor Pages. The Tag Helper Components are registered with the app in *_ViewImports.cshtml* like any other Tag Helper:
-
-[!code-cshtml[](th-components/samples/RazorPagesSample/Pages/_ViewImports.cshtml?name=snippet_TagHelperRegistration)]
+ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the `Microsoft.AspNetCore.Mvc.Razor.TagHelpers` namespace and can be used in both MVC and Razor Pages. Tag Helper Components don't require registration with the app in *_ViewImports.cshtml*.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -24,7 +22,7 @@ ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. The
 Two common use cases of Tag Helper Components include:
 
 1. [Injecting a `<link>` into the `<head>`.](#inject-into-html-head-element)
-2. [Injecting a `<script>` into the `<body>`.](#inject-into-html-body-element)
+1. [Injecting a `<script>` into the `<body>`.](#inject-into-html-body-element)
 
 The following sections describe these use cases.
 
@@ -32,7 +30,7 @@ The following sections describe these use cases.
 
 Inside the HTML `<head>` element, CSS files are commonly imported with the HTML `<link>` element. The following code injects a `<link>` element into the `<head>` element using the `head` Tag Helper Component:
 
-[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressStyleTagHelperComponent.cs?name=snippet_AddressStyleTagHelperComponentClass)]
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressStyleTagHelperComponent.cs)]
 
 In the preceding code:
 
@@ -44,15 +42,15 @@ In the preceding code:
 
 ### Inject into HTML body element
 
-Similarly, the `body` Tag Helper Component can inject a `<script>` element into the `<body>` element. The following code demonstrates this technique:
+The `body` Tag Helper Component can inject a `<script>` element into the `<body>` element. The following code demonstrates this technique:
 
-[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressScriptTagHelperComponent.cs?name=snippet_AddressScriptTagHelperComponentClass)]
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressScriptTagHelperComponent.cs)]
 
-A separate HTML file is used to store the `<script>` element. It makes the code cleaner and more maintainable. The preceding code reads the contents of *AddressToolTipScript.html* and appends it with the Tag Helper output. The *AddressToolTipScript.html* file includes the following markup:
+A separate HTML file is used to store the `<script>` element. The HTML file makes the code cleaner and more maintainable. The preceding code reads the contents of *TagHelpers/Templates/AddressToolTipScript.html* and appends it with the Tag Helper output. The *AddressToolTipScript.html* file includes the following markup:
 
 [!code-html[](th-components/samples/RazorPagesSample/TagHelpers/Templates/AddressToolTipScript.html)]
 
-The preceding code binds a Bootstrap tooltip widget to any `<address>` element that includes a `printable` attribute. The effect is visible when a mouse pointer hovers over the element.
+The preceding code binds a [Bootstrap tooltip widget](https://getbootstrap.com/docs/3.3/javascript/#tooltips) to any `<address>` element that includes a `printable` attribute. The effect is visible when a mouse pointer hovers over the element.
 
 ## Register a Component
 
@@ -64,15 +62,15 @@ A Tag Helper Component must be added to the app's Tag Helper Components collecti
 
 ### Registration via services container
 
-If the Tag Helper Component class isn't managed with `ITagHelperComponentManager`, it must be registered with the dependency injection (DI) system. The following `Startup.ConfigureServices` code registers the `AddressStyleTagHelperComponent` and `AddressScriptTagHelperComponent` classes with a transient lifetime:
+If the Tag Helper Component class isn't managed with `ITagHelperComponentManager`, it must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) system. The following `Startup.ConfigureServices` code registers the `AddressStyleTagHelperComponent` and `AddressScriptTagHelperComponent` classes with a [transient lifetime](xref:fundamentals/dependency-injection#lifetime-and-registration-options):
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=12-15)]
 
 ### Registration via Razor file
 
-If the Tag Helper Component wasn't registered with DI, it can be registered from a Razor Pages page or an MVC view. This technique is used for controlling the injected markup and the component execution order from a Razor file.
+If the Tag Helper Component isn't registered with DI, it can be registered from a Razor Pages page or an MVC view. This technique is used for controlling the injected markup and the component execution order from a Razor file.
 
-`ITagHelperComponentManager` is used to add or remove Tag Helper Components from the app. The following code demonstrates this technique with `AddressTagHelperComponent`:
+`ITagHelperComponentManager` is used to add Tag Helper Components or remove them from the app. The following code demonstrates this technique with `AddressTagHelperComponent`:
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_ITagHelperComponentManager)]
 
@@ -100,7 +98,7 @@ The provided `markup` parameter is used in `ProcessAsync` as follows:
 
 ### Registration via Page Model or controller
 
-If the Tag Helper Component wasn't registered with DI, it can be registered from a Razor Pages page model or an MVC controller. This technique is useful for separating C# logic from Razor files.
+If the Tag Helper Component isn't registered with DI, it can be registered from a Razor Pages page model or an MVC controller. This technique is useful for separating C# logic from Razor files.
 
 Constructor injection is used to access an instance of `ITagHelperComponentManager`. The Tag Helper Component is added to the instance's Tag Helper Components collection. The following Razor Pages page model demonstrates this technique with `AddressTagHelperComponent`:
 
@@ -116,12 +114,12 @@ In the preceding code:
 To create a custom Tag Helper Component:
 
 * Create a public class deriving from `TagHelperComponentTagHelper`.
-* Apply an `[HtmlTargetElement]` attribute to the class. Specify the name of the HTML element to be targeted.
+* Apply an `[HtmlTargetElement]` attribute to the class. Specify the name of the target HTML element.
 * *Optional*: Apply an `[EditorBrowsable(EditorBrowsableState.Never)]` attribute to the class to suppress the type's display in IntelliSense.
 
 The following code creates a custom Tag Helper Component that targets the `<address>` HTML element:
 
-[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressTagHelperComponentTagHelper.cs?name=snippet_AddressTagHelperComponentTagHelperClass)]
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressTagHelperComponentTagHelper.cs)]
 
 Use the custom `address` Tag Helper Component to inject HTML markup as follows:
 
