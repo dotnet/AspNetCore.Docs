@@ -227,13 +227,13 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | Middleware | Description | Order |
 | ---------- | ----------- | ----- |
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
-| [Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before middleware that issues cookies, such as Authentication, Session, MVC (TempData), and others. |
+| [Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData). |
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
 | [Diagnostics](xref:fundamentals/error-handling) | Configures diagnostics. | Before components that generate errors. |
-| [Forwarded Headers](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields (examples: scheme, host, client IP, method). |
+| [Forwarded Headers](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields. Examples: scheme, host, client IP, method. |
 | [HTTP Method Override](/dotnet/api/microsoft.aspnetcore.builder.httpmethodoverrideextensions) | Allows an incoming POST request to override the method. | Before components that consume the updated method. |
 | [HTTPS Redirection](xref:security/enforcing-ssl#require-https) | Redirect all HTTP requests to HTTPS (ASP.NET Core 2.1 or later). | Before components that consume the URL. |
-| [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Security enhancement middleware that adds a special response header (ASP.NET Core 2.1 or later). | Before responses are sent and after components that modify requests (for example, Forwarded Headers, URL Rewriting). |
+| [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Security enhancement middleware that adds a special response header (ASP.NET Core 2.1 or later). | Before responses are sent and after components that modify requests. Examples: Forwarded Headers, URL Rewriting. |
 | [MVC](xref:mvc/overview) | Processes requests with MVC/Razor Pages (ASP.NET Core 2.0 or later). | Terminal if a request matches a route. |
 | [OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | Terminal if the OWIN Middleware fully processes the request. |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. |
