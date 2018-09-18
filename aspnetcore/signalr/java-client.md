@@ -20,12 +20,12 @@ The sample Java console app referenced in this article uses the SignalR Java cli
 
 ## Install the SignalR Java client package
 
-The *signalr-0.1.0-preview1-35029* JAR file allows clients to connect to SignalR hubs. To find the latest JAR file version number, see the [Maven search results](https://search.maven.org/search?q=g:com.microsoft.aspnet%20AND%20a:signalr&core=gav).
+The *signalr-0.1.0-preview1-35174* JAR file allows clients to connect to SignalR hubs. To find the latest JAR file version number, see the [Maven search results](https://search.maven.org/search?q=g:com.microsoft.aspnet%20AND%20a:signalr&core=gav).
 
 If using Gradle, add the following line to the `dependencies` section of your *build.gradle* file:
 
 ```gradle
-implementation 'com.microsoft.aspnet:signalr:0.1.0-preview1-35029'
+implementation 'com.microsoft.aspnet:signalr:0.1.0-preview1-35174'
 ```
 
 If using Maven, add the following lines inside the `<dependencies>` element of your *pom.xml* file:
@@ -57,7 +57,6 @@ This is an early preview release of the Java client. There are many features tha
 * Only primitive types can be accepted as parameters and return types.
 * The APIs are synchronous.
 * Only the "Send" call type is supported at this time. "Invoke" and streaming of return values aren't supported.
-* The client doesn't currently support the [Azure SignalR Service](/azure/azure-signalr/).
 * Only the JSON protocol is supported.
 * Only the WebSockets transport is supported.
 
