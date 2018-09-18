@@ -1,10 +1,9 @@
-﻿namespace RazorPagesSample.TagHelpers
-{
-    #region snippet_AddressStyleTagHelperComponentClass
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
+namespace RazorPagesSample.TagHelpers
+{
     public class AddressStyleTagHelperComponent : ITagHelperComponent
     {
         private readonly string _style = 
@@ -27,5 +26,4 @@
             return Task.CompletedTask;
         }
     }
-    #endregion
 }
