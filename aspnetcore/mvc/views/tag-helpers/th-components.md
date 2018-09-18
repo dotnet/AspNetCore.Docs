@@ -34,7 +34,7 @@ Inside the HTML `<head>` element, CSS files are commonly imported with the HTML 
 
 In the preceding code:
 
-* `AddressStyleTagHelperComponent` implements `ITagHelperComponent`. The abstraction:
+* `AddressStyleTagHelperComponent` implements `TagHelperComponent`. The abstraction:
   * Allows initialization of the class with a `TagHelperContext`.
   * Enables the use of Tag Helper Components to add or modify HTML elements.
 * The `Order` property defines the order in which the Components are rendered. `Order` is necessary when there are multiple usages of Tag Helper Components in an app.
@@ -81,20 +81,11 @@ In the preceding code:
 
 `AddressTagHelperComponent` is modified to accommodate a constructor that accepts the `markup` and `order` parameters:
 
-```csharp
-private readonly string _markup;
-private readonly int _order;
-
-public AddressTagHelperComponent(string markup = "", int order = 1)
-{
-    _markup = markup;
-    _order = order;
-}
-```
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressTagHelperComponent.cs?name=snippet_Constructor)]
 
 The provided `markup` parameter is used in `ProcessAsync` as follows:
 
-[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressTagHelperComponent.cs?name=snippet_ProcessAsync)]
+[!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressTagHelperComponent.cs?name=snippet_ProcessAsync&highlight=10-11)]
 
 ### Registration via Page Model or controller
 
@@ -124,21 +115,18 @@ The following code creates a custom Tag Helper Component that targets the `<addr
 Use the custom `address` Tag Helper Component to inject HTML markup as follows:
 
 ```csharp
-public class AddressTagHelperComponent : ITagHelperComponent
+public class AddressTagHelperComponent : TagHelperComponent
 {
-    var _printableButton =
+    private readonly string _printableButton =
         "<button type='button' class='btn btn-info' onclick=\"window.open("
         "'https://binged.it/2AXRRYw')\">" +
         "<span class='glyphicon glyphicon-road' aria-hidden='true'></span>" +
         "</button>";
 
-    public int Order => 3;
+    public override int Order => 3;
 
-    public void Init(TagHelperContext context)
-    {
-    }
-
-    public async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public override async Task ProcessAsync(TagHelperContext context,
+                                            TagHelperOutput output)
     {
         if (string.Equals(context.TagName, "address",
                 StringComparison.OrdinalIgnoreCase) &&
