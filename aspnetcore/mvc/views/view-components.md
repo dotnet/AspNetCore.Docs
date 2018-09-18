@@ -69,9 +69,9 @@ A view component defines its logic in an `InvokeAsync` method that returns an `I
 
 The runtime searches for the view in the following paths:
 
-* /Pages/Components/<component name>/\<view_name>
-* Views/\<controller_name>/Components/\<view_component_name>/\<view_name>
-* Views/Shared/Components/\<view_component_name>/\<view_name>
+* /Pages/Components/\<view_component_name>/\<view_name>
+* /Views/\<controller_name>/Components/\<view_component_name>/\<view_name>
+* /Views/Shared/Components/\<view_component_name>/\<view_name>
 
 The default view name for a view component is *Default*, which means your view file will typically be named *Default.cshtml*. You can specify a different view name when creating the view component result or when calling the `View` method.
 

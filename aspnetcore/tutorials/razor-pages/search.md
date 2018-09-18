@@ -63,11 +63,15 @@ The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-for
 Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
+
 ::: moniker-end
 
 

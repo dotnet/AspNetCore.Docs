@@ -415,6 +415,7 @@ URL generation for pages supports relative names. The following table shows whic
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
 ::: moniker range=">= aspnetcore-2.1"
+
 ## ViewData attribute
 
 Data can be passed to a page with [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
@@ -448,6 +449,7 @@ In the layout, the title is read from the ViewData dictionary:
     <title>@ViewData["Title"] - WebApplication</title>
     ...
 ```
+
 ::: moniker-end
 
 ## TempData

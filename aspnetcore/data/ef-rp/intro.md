@@ -304,6 +304,7 @@ Some things to be aware of when writing asynchronous code that uses EF Core:
 For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/articles/standard/async) and [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/).
 
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
+
 ::: moniker-end
 
 > [!div class="step-by-step"]

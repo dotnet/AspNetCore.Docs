@@ -98,6 +98,7 @@ From the **Tools** menu, select **NuGet Package Manager > Package Manager Consol
 In the PMC, enter the following commands:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 ``` PMC
 Add-Migration Initial
 Update-Database
@@ -109,6 +110,7 @@ Ignore the following error message, we fix it in the next tutorial:
       *No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.*
 
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
 
 ``` PMC
@@ -149,10 +151,15 @@ You probably have not run `dotnet ef database update`.
 [!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model3.md)]
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Startup.cs?name=ConfigureServices&highlight=13-99)]
+
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+
 ::: moniker-end
 
 [!INCLUDE [adding-model](~/Includes/mvc-intro/adding-model4.md)]

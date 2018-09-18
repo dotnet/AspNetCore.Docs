@@ -120,6 +120,7 @@ SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by th
 Login failed for user 'User-name'.
 
 You missed the [migrations step](#pmc).
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"

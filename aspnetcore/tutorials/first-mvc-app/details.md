@@ -14,10 +14,13 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 Open the Movie controller and examine the `Details` method:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](start-mvc/sample/MvcMovie21/Controllers/MoviesController.cs?name=snippet_details)]
 
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_details)]
 
 ::: moniker-end
@@ -31,10 +34,13 @@ EF makes it easy to search for data using the `SingleOrDefaultAsync` method. An 
 Examine the `Delete` and `DeleteConfirmed` methods.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](start-mvc/sample/MvcMovie21/Controllers/MoviesController.cs?name=snippet_delete)]
 
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_delete)]
 
 ::: moniker-end

@@ -7,14 +7,19 @@ In the following sections, `Create`, `Update`, and `Delete` methods are added to
 Add the following `Create` method:
 
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
 The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
 The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. MVC gets the value of the to-do item from the body of the HTTP request.
+
 ::: moniker-end
 
 The `CreatedAtRoute` method:
@@ -24,10 +29,15 @@ The `CreatedAtRoute` method:
 * Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetById`:
 
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+
 ::: moniker-end
 
 ### Use Postman to send a Create request
@@ -54,8 +64,10 @@ The `CreatedAtRoute` method:
 * Click the **Send** button.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 > [!TIP]
 > If no response displays after clicking **Send**, disable the **SSL certification verification** option. This is found under **File** > **Settings**. Click the **Send** button again after disabling the setting.
+
 ::: moniker-end
 
 Click the **Headers** tab in the **Response** pane and copy the **Location** header value:
@@ -69,10 +81,15 @@ The Location header URI can be used to access the new item.
 Add the following `Update` method:
 
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](../../tutorials/first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](../../tutorials/first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+
 ::: moniker-end
 
 `Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
