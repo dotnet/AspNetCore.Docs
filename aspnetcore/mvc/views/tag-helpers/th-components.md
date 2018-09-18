@@ -13,7 +13,7 @@ By [Scott Addie](https://twitter.com/Scott_Addie) and [Fiyaz Bin Hasan](https://
 
 A Tag Helper Component is a Tag Helper that allows you to conditionally modify or add HTML elements from server-side code. This feature is available in ASP.NET Core 2.0 or later.
 
-ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the `Microsoft.AspNetCore.Mvc.Razor.TagHelpers` namespace and can be used in both MVC and Razor Pages. Tag Helper Components don't require registration with the app in *_ViewImports.cshtml*.
+ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> namespace and can be used in both MVC and Razor Pages. Tag Helper Components don't require registration with the app in *_ViewImports.cshtml*.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -34,11 +34,11 @@ Inside the HTML `<head>` element, CSS files are commonly imported with the HTML 
 
 In the preceding code:
 
-* `AddressStyleTagHelperComponent` implements `TagHelperComponent`. The abstraction:
-  * Allows initialization of the class with a `TagHelperContext`.
+* `AddressStyleTagHelperComponent` implements <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>. The abstraction:
+  * Allows initialization of the class with a <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext>.
   * Enables the use of Tag Helper Components to add or modify HTML elements.
-* The `Order` property defines the order in which the Components are rendered. `Order` is necessary when there are multiple usages of Tag Helper Components in an app.
-* `ProcessAsync` compares the execution context's `TagName` property value to `head`. If the comparison evaluates to true, the content of the `_style` field is injected into the HTML `<head>` element.
+* The <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.Order*> property defines the order in which the Components are rendered. `Order` is necessary when there are multiple usages of Tag Helper Components in an app.
+* <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.ProcessAsync*> compares the execution context's <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.TagName*> property value to `head`. If the comparison evaluates to true, the content of the `_style` field is injected into the HTML `<head>` element.
 
 ### Inject into HTML body element
 
@@ -62,7 +62,7 @@ A Tag Helper Component must be added to the app's Tag Helper Components collecti
 
 ### Registration via services container
 
-If the Tag Helper Component class isn't managed with `ITagHelperComponentManager`, it must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) system. The following `Startup.ConfigureServices` code registers the `AddressStyleTagHelperComponent` and `AddressScriptTagHelperComponent` classes with a [transient lifetime](xref:fundamentals/dependency-injection#lifetime-and-registration-options):
+If the Tag Helper Component class isn't managed with <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager>, it must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) system. The following `Startup.ConfigureServices` code registers the `AddressStyleTagHelperComponent` and `AddressScriptTagHelperComponent` classes with a [transient lifetime](xref:fundamentals/dependency-injection#lifetime-and-registration-options):
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=12-15)]
 
@@ -104,9 +104,9 @@ In the preceding code:
 
 To create a custom Tag Helper Component:
 
-* Create a public class deriving from `TagHelperComponentTagHelper`.
-* Apply an `[HtmlTargetElement]` attribute to the class. Specify the name of the target HTML element.
-* *Optional*: Apply an `[EditorBrowsable(EditorBrowsableState.Never)]` attribute to the class to suppress the type's display in IntelliSense.
+* Create a public class deriving from <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper>.
+* Apply an [[HtmlTargetElement]](xref:Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute) attribute to the class. Specify the name of the target HTML element.
+* *Optional*: Apply an [[EditorBrowsable(EditorBrowsableState.Never)]](xref:System.ComponentModel.EditorBrowsableAttribute) attribute to the class to suppress the type's display in IntelliSense.
 
 The following code creates a custom Tag Helper Component that targets the `<address>` HTML element:
 
@@ -140,7 +140,7 @@ public class AddressTagHelperComponent : TagHelperComponent
 }
 ```
 
-The preceding `ProcessAsync` method injects the HTML provided to `SetHtmlContent` into the matching `<address>` element. The injection occurs when:
+The preceding `ProcessAsync` method injects the HTML provided to <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent.SetHtmlContent*> into the matching `<address>` element. The injection occurs when:
 
 * The execution context's `TagName` property value equals `address`.
 * The corresponding `<address>` element has a `printable` attribute.

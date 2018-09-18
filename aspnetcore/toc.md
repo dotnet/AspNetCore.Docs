@@ -173,6 +173,7 @@
 ### [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 #### [Create Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 #### [Use Tag Helpers in forms](xref:mvc/views/working-with-forms)
+#### [Tag Helper Components](xref:mvc/views/tag-helpers/th-components)
 #### [Built-in Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/Index)
 ##### [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)
 ##### [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
