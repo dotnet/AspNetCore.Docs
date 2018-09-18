@@ -52,7 +52,7 @@ Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builde
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is critical for security, performance, and functionality.
 
-The following `Configure` method adds middleware components for common app scenarios:
+The following `Startup.Configure` method adds middleware components for common app scenarios:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -132,8 +132,8 @@ public void Configure(IApplicationBuilder app)
     // Authenticate before you access secure resources.
     app.UseIdentity();
 
-    // If the app uses session state, call Session Middleware after Cookie 
-    // Policy Middleware and before MVC Middleware.
+    // If the app uses session state, call UseSession before 
+    // MVC Middleware.
     app.UseSession();
 
     // Add MVC to the request pipeline.
