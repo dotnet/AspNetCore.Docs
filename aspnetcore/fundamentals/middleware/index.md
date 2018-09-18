@@ -227,7 +227,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | Middleware | Description | Order |
 | ---------- | ----------- | ----- |
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
-| [Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before Session Middleware, if present. |
+| [Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before middleware that issues cookies, such as Authentication, Session, MVC (TempData), and others. |
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
 | [Diagnostics](xref:fundamentals/error-handling) | Configures diagnostics. | Before components that generate errors. |
 | [Forwarded Headers](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Forwards proxied headers onto the current request. | Before components that consume the updated fields (examples: scheme, host, client IP, method). |
