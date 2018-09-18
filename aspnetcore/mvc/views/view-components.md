@@ -69,13 +69,14 @@ A view component defines its logic in an `InvokeAsync` method that returns an `I
 
 The runtime searches for the view in the following paths:
 
-* /Pages/Components/\<view_component_name>/\<view_name>
-* /Views/\<controller_name>/Components/\<view_component_name>/\<view_name>
-* /Views/Shared/Components/\<view_component_name>/\<view_name>
+* /Pages/Components/`<view_component_name>`/`<view_name>`
+* /Views/`<controller_name>`/Components/`<view_component_name>`/`<view_name>`
+* /Views/Shared/Components/`<view_component_name>`/`<view_name>`
+<!-- Could you please confirm if the components between < and > needs to be left as it or maybe they should be -->
 
 The default view name for a view component is *Default*, which means your view file will typically be named *Default.cshtml*. You can specify a different view name when creating the view component result or when calling the `View` method.
 
-We recommend you name the view file *Default.cshtml* and use the *Views/Shared/Components/\<view_component_name>/\<view_name>* path. The `PriorityList` view component used in this sample uses *Views/Shared/Components/PriorityList/Default.cshtml* for the view component view.
+We recommend you name the view file *Default.cshtml* and use the *Views/Shared/Components/`<view_component_name>`/`<view_name>`* path. The `PriorityList` view component used in this sample uses *Views/Shared/Components/PriorityList/Default.cshtml* for the view component view.
 
 ## Invoking a view component
 
