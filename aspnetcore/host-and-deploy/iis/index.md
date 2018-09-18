@@ -9,7 +9,7 @@ uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
 
-By [Luke Latham](https://github.com/guardrex) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Luke Latham](https://github.com/guardrex)
 
 ## Supported operating systems
 
@@ -19,6 +19,8 @@ The following operating systems are supported:
 * Windows Server 2008 R2 or later
 
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
+
+For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>.
 
 ## HTTP/2 support
 
