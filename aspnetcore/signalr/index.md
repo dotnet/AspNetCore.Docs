@@ -21,6 +21,7 @@ uid: signalr/index
 * [Clients](xref:signalr/javascript-client)
   * [.NET client](xref:signalr/dotnet-client)
   * [Java client](xref:signalr/java-client)
+  * [Java API](/java/api/com.microsoft.aspnet.signalr?view=aspnet-signalr-java)
   * [JavaScript client](xref:signalr/javascript-client)
   * [JavaScript API](/javascript/api/?view=signalr-js-latest)
   * [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
