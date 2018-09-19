@@ -538,7 +538,7 @@ When working with dependency injection, keep the following recommendations in mi
 
 * Avoid static access to services (for example, statically-typing [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices) for use elsewhere).
 
-* Avoid using the service locator pattern (for example, [IServiceProvider.GetService](/dotnet/api/system.iserviceprovider.getservice)).
+* Avoid using the service locator pattern. One example of this is injecting `IServiceProvider` and then invoking [IServiceProvider.GetService](/dotnet/api/system.iserviceprovider.getservice). Another common variation to avoid is injecting a "generic factory" that is responsible for resolving dependencies at runtime. Both of these practices mix Inversion of Control strategies and wherever possible dependency injection should be preferred.
 
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor.httpcontext)).
 
