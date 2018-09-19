@@ -26,15 +26,28 @@ The most common usage of Configuration Builders is to provide a basic key/value 
 
 ### Mode
 
-The basic concept of these configuration builders is to draw on an external source of key/value information to populate parts of the configuration system that are key/value in nature. Specifically, the `appSettings` and `connectionStrings` sections receive special treatment from these key/value configuration builders. These builders can be set to run in three different modes:
+The configuration builders use an external source of key/value information to populate selected key/value elements of the configuration system. Specifically, the `appSettings` and `connectionStrings` sections receive special treatment from the configuration builders. These builders can be set to run in three different modes:
 
-* `Strict` - This is the default. In this mode, the configuration builder will only operate on well-known key/value-centric configuration sections. It will enumerate each key in the section, and if a matching key is found in the external source, it will replace the value in the resulting configuration section with the value from the	external source.
-* `Greedy` - This mode is closely related to `Strict` mode, but instead of being limited to keys that already exist in the original configuration, the configuration builders will dump all key/value pairs from the external source into the resulting configuration section.
-* `Expand` - This last mode operates on the raw xml before it gets parsed into a configuration section object. It can be thought of as a simple expansion of tokens in a string. Any part of the raw xml string that matches the pattern __`${token}`__ is a candidate for token expansion. If no corresponding value is found in the external source, then the token is left alone.
+* `Strict` - The default mode. In this mode, the configuration builder will only operate on well-known key/value-centric configuration sections. `Strict` mode enumerates each key in the section. If a matching key is found in the external source:
+
+   * The configuration builders replace the value in the resulting configuration section with the value from the external source.
+* `Greedy` - This mode is closely related to `Strict` mode. Rather than being limited to keys that already exist in the original configuration:
+
+  * The configuration builders dump all key/value pairs from the external source into the resulting configuration section.
+
+* `Expand` - Operates on the raw XML before it's parsed into a configuration section object. It can be thought of as an expansion of tokens in a string. Any part of the raw XML string that matches the pattern `${token}` is a candidate for token expansion. If no corresponding value is found in the external source, then the token is not changed.
 
 ### Prefix handling
 
-Because the .Net Framework configuration is complex and nested, and external key/value sources are by nature basic and flat, leveraging key prefixes can be useful. For example, if you want to inject both App Settings and Connection Strings into your configuration via environment variables, you could accomplish this in two ways. Use the `EnvironmentConfigBuilder` in the default `Strict` mode and make sure you have the appropriate key names already coded into your configuration file. __OR__ you could use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes so they can slurp up any setting or connection string you provide without needing to update the raw configuration file in advance. Like this:
+Key prefixes can simplify setting keys because:
+
+* The .Net Framework configuration is complex and nested.
+* External key/value sources are by nature basic and flat.
+
+For example, use either approach to inject both App Settings and Connection Strings into your configuration via environment variables:
+
+* With the `EnvironmentConfigBuilder` in the default `Strict` mode and use the appropriate key names coded into the configuration file.
+* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. Using this approach your app can read App Setting and connection strings without needing to update the raw configuration file in advance. For example:
 
 ```xml
 <configBuilders>
@@ -48,16 +61,17 @@ Because the .Net Framework configuration is complex and nested, and external key
 
 <connectionStrings configBuilders="CS_Environment" />
 ```
-This way the same flat key/value source can be used to populate configuration for two different sections.
+
+With the preceding markup the same flat key/value source can be used to populate configuration for two different sections.
 
 ### stripPrefix
-A related setting that is common among all of these key/value builders is `stripPrefix`. The code above does a good job of separating app settings from connection
-strings... but now all the keys in AppSettings start with "AppSetting_". Maybe this is fine for code you wrote. Chances are that prefix is better off stripped from the
-key name before being inserted into AppSettings. `stripPrefix` is a simple boolean value, and accomplishes just that. Its default value is `false`.
+
+A related setting that is common among all of these key/value builders is `stripPrefix`. The code above does a good job of separating app settings from connection strings... but now all the keys in AppSettings start with "AppSetting_". Maybe this is fine for code you wrote. Chances are that prefix is better off stripped from the
+key name before being inserted into AppSettings. `stripPrefix` is a boolean value, and accomplishes just that. Its default value is `false`.
 
 ### tokenPattern
 The final setting that is shared between all KeyValueConfigBuilder-derived builders is `tokenPattern`. When describing the `Expand` behavior of these builders
-above, it was mentioned that the raw xml is searched for tokens that look like __`${token}`__. This is done with a regular expression. `@"\$\{(\w+)\}"` to be exact.
+above, it was mentioned that the raw xml is searched for tokens that look like `${token}`. This is done with a regular expression. `@"\$\{(\w+)\}"` to be exact.
 The set of characters that matches `\w` is more strict than xml and many sources of configuration values allow, and some applications may need to allow more exotic characters
 in their token names. Additionally there might be scenarios where the `${}` pattern is not acceptable.
 
@@ -75,7 +89,7 @@ and the first capture must be the token name to look up in the configuration sou
     type="Microsoft.Configuration.ConfigurationBuilders.EnvironmentConfigBuilder, Microsoft.Configuration.ConfigurationBuilders.Environment" />
 ```
 This is the simplest of the configuration builders. It draws its values from Environment, and it does not have any additional configuration options.
-  * __NOTE:__ In a Windows container environment, variables set at run time are only injected into the EntryPoint process environment. 
+  * **NOTE:** In a Windows container environment, variables set at run time are only injected into the EntryPoint process environment. 
   Applications that run as a service or a non-EntryPoint process will not pick up these variables unless they are otherwise injected through some mechanism in the container. For [IIS](https://github.com/Microsoft/iis-docker/pull/41)/[ASP.Net](https://github.com/Microsoft/aspnet-docker)-based
   containers, the current version of [ServiceMonitor.exe](https://github.com/Microsoft/iis-docker/pull/41) handles this in the *DefaultAppPool*  only. Other Windows-based container variants may need to develop their own injection mechanism for non-EntryPoint processes.
 
@@ -136,7 +150,7 @@ If your secrets are kept in Azure Key Vault, then this configuration builder is 
   * `connectionString` - A connection string usable by [AzureServiceTokenProvider](https://docs.microsoft.com/en-us/azure/key-vault/service-to-service-authentication#connection-string-support)
   * `uri` - Connect to other Key Vault providers with this attribute. If not specified, Azure is the assumed Vault provider. If the uri _is_specified, then `vaultName` is no longer a required parameter.
   * `version` - Azure Key Vault provides a versioning feature for secrets. If this is specified, the builder will only retrieve secrets matching this version.
-  * `preloadSecretNames` - By default, this builder will query __all__ the key names in the key vault when it is initialized. If this is a concern, set
+  * `preloadSecretNames` - By default, this builder will query **all** the key names in the key vault when it is initialized. If this is a concern, set
   this attribute to 'false', and secrets will be retrieved one at a time. This could also be useful if the vault allows "Get" access but not
   "List" access. (NOTE: Disabling preload is incompatible with Greedy mode.)
 
