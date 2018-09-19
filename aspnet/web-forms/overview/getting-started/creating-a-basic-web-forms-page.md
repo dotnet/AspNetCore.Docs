@@ -13,6 +13,8 @@ Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013
 ====================
 by [Erik Reitan](https://github.com/Erikre)
 
+[!INCLUDE[](~/includes/rp.md)]
+
 This walkthrough provides you with an introduction to the Web development environment in [Microsoft Visual Studio 2013](https://www.microsoft.com/visualstudio/11/downloads#vs) and in [Microsoft Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/11/downloads#express-web). This walkthrough guides you through creating a simple ASP.NET Web Forms page and illustrates the basic techniques of creating a new page, adding controls, and writing code.
 
 Tasks illustrated in this walkthrough include:
