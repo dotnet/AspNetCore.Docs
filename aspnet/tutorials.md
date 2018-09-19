@@ -10,7 +10,7 @@ ms.technology: aspnet
 ---
 # ASP.NET tutorials
 
-[!INCLUDE[](~/includes/net-core-sdk-download-link.md)]
+[!INCLUDE[](~/includes/rp.md)]
 
 The following step-by-step guides for developing ASP.NET applications are available.
 
