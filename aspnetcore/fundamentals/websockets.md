@@ -88,6 +88,11 @@ When accepting the WebSocket connection before beginning the loop, the middlewar
 
 Windows Server 2012 or later and Windows 8 or later with IIS/IIS Express 8 or later has support for the WebSocket protocol.
 
+> [!NOTE]
+> WebSockets are always enabled when using IIS Express.
+
+### Enabling WebSockets on IIS
+
 To enable support for the WebSocket protocol on Windows Server 2012 or later:
 
 1. Use the **Add Roles and Features** wizard from the **Manage** menu or the link in **Server Manager**.
