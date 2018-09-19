@@ -30,7 +30,7 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
   * Windows 8 / Windows Server 2012 or later
   * IIS 8 / IIS 8 Express
-  * WebSockets must be enabled in IIS (See the [IIS/IIS Express support](#iisiis-express-support) section.)
+  * WebSockets must be enabled (See the [IIS/IIS Express support](#iisiis-express-support) section.).
   
 * If the app runs on [HTTP.sys](xref:fundamentals/servers/httpsys):
 
@@ -95,6 +95,9 @@ Windows Server 2012 or later and Windows 8 or later with IIS/IIS Express 8 or la
 
 To enable support for the WebSocket protocol on Windows Server 2012 or later:
 
+> [!NOTE]
+> These steps are not required when using IIS Express
+
 1. Use the **Add Roles and Features** wizard from the **Manage** menu or the link in **Server Manager**.
 1. Select **Role-based or Feature-based Installation**. Select **Next**.
 1. Select the appropriate server (the local server is selected by default). Select **Next**.
@@ -105,6 +108,9 @@ To enable support for the WebSocket protocol on Windows Server 2012 or later:
 1. When the installation completes, select **Close** to exit the wizard.
 
 To enable support for the WebSocket protocol on Windows 8 or later:
+
+> [!NOTE]
+> These steps are not required when using IIS Express
 
 1. Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
 1. Open the following nodes: **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
