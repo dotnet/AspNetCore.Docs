@@ -311,7 +311,7 @@ The request's original remote IP must match an entry in the `KnownProxies` or `K
 September 20th 2018, 15:49:44.168 Unknown proxy: 10.0.0.100:54321
 ```
 
-In the preceding example if the server at 10.0.0.100 is a trusted proxy server, add the IP address to `KnownProxies` (or add a trusted network to `KnownNetworks`) in `Startup.ConfigureServices`. For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
+In the preceding example if the server at 10.0.0.100 is a trusted proxy server, add the server's IP address to `KnownProxies` (or add a trusted network to `KnownNetworks`) in `Startup.ConfigureServices`. For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
 
 ```csharp
 services.Configure<ForwardedHeadersOptions>(options =>
