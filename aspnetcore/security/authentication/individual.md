@@ -41,7 +41,7 @@ Projects created with no authentication:
 * Don't contain web pages and UI to sign in and sign out.
 * Don't contain authentication code.
 
-## Addition resources
+## Additional resources
 
 The following articles show how to use the code generated in ASP.NET Core templates that use individual user accounts:
 
