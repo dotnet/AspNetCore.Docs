@@ -35,12 +35,19 @@ dotnet new razor -au Individual
 <a name="no"></a>
 ## No Authentication
 
-Authentication is specified in the .NET Core CLI with `-au` option. In Visual Studio, the **Change Authentication** dialog is available for new web applications. The default for new web apps in Visual Studio is **No Authentication**.
+Authentication is specified in the .NET Core CLI with the `-au` option. In Visual Studio, the **Change Authentication** dialog is available for new web applications. The default for new web apps in Visual Studio is **No Authentication**.
 
 Projects created with no authentication:
 
 * Don't contain web pages and UI to sign in and sign out.
 * Don't contain authentication code.
+
+<a name="win"></a>
+## Windows authentication
+
+Windows authentication is specified for new web apps in the .NET Core CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
+
+If Windows authentication is selected, the app will be configured to use the Windows authentication IIS module. Windows authentication is intended for Intranet web sites.
 
 ## Additional resources
 
