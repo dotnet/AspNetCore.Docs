@@ -243,44 +243,85 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. The headers can be written to an app response using inline middleware:
+When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers. Place either of the following code examples immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`.
+
+To write the headers to the app's response, use the following terminal inline middleware:
 
 ```csharp
-public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
+app.Run(async (context) =>
 {
-    app.Run(async (context) =>
+    context.Response.ContentType = "text/plain";
+
+    // Request method, scheme, and path
+    await context.Response.WriteAsync(
+        $"Request Method: {context.Request.Method}{Environment.NewLine}");
+    await context.Response.WriteAsync(
+        $"Request Scheme: {context.Request.Scheme}{Environment.NewLine}");
+    await context.Response.WriteAsync(
+        $"Request Path: {context.Request.Path}{Environment.NewLine}");
+
+    // Headers
+    await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
+
+    foreach (var header in context.Request.Headers)
     {
-        context.Response.ContentType = "text/plain";
+        await context.Response.WriteAsync($"{header.Key}: " +
+            $"{header.Value}{Environment.NewLine}");
+    }
 
-        // Request method, scheme, and path
-        await context.Response.WriteAsync(
-            $"Request Method: {context.Request.Method}{Environment.NewLine}");
-        await context.Response.WriteAsync(
-            $"Request Scheme: {context.Request.Scheme}{Environment.NewLine}");
-        await context.Response.WriteAsync(
-            $"Request Path: {context.Request.Path}{Environment.NewLine}");
+    await context.Response.WriteAsync(Environment.NewLine);
 
-        // Headers
-        await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
-
-        foreach (var header in context.Request.Headers)
-        {
-            await context.Response.WriteAsync($"{header.Key}: " +
-                $"{header.Value}{Environment.NewLine}");
-        }
-
-        await context.Response.WriteAsync(Environment.NewLine);
-
-        // Connection: RemoteIp
-        await context.Response.WriteAsync(
-            $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
-    });
-}
+    // Connection: RemoteIp
+    await context.Response.WriteAsync(
+        $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
+});
 ```
 
-Ensure that the X-Forwarded-* headers are received by the server with the expected values. If there are multiple values in a given header, note Forwarded Headers Middleware processes headers in reverse order from right to left.
+You can also write to logs instead of the response body by using the following inline middleware. This allows the site to function normally while debugging.
 
-The request's original remote IP must match an entry in the `KnownProxies` or `KnownNetworks` lists before `X-Forwarded-For` is processed. This limits header spoofing by not accepting forwarders from untrusted proxies.
+```csharp
+var logger = _loggerFactory.CreateLogger<Startup>();
+
+app.Use(async (context, next) =>
+{
+    // Request method, scheme, and path
+    logger.LogDebug("Request Method: {METHOD}", context.Request.Method);
+    logger.LogDebug("Request Scheme: {SCHEME}", context.Request.Scheme);
+    logger.LogDebug("Request Path: {PATH}", context.Request.Path);
+
+    // Headers
+    foreach (var header in context.Request.Headers)
+    {
+        logger.LogDebug("Header: {KEY}: {VALUE}", header.Key, header.Value);
+    }
+
+    // Connection: RemoteIp
+    logger.LogDebug("Request RemoteIp: {REMOTE_IP_ADDRESS}", 
+        context.Connection.RemoteIpAddress);
+
+    await next();
+});
+```
+
+When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, note Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is 1 (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
+
+The request's original remote IP must match an entry in the `KnownProxies` or `KnownNetworks` lists before forwarded headers are processed. This limits header spoofing by not accepting forwarders from untrusted proxies. When an unknown proxy is detected, logging indicates the address of the proxy:
+
+```console
+September 20th 2018, 15:49:44.168 Unknown proxy: 10.0.0.100:54321
+```
+
+In the preceding example, 10.0.0.100 is a proxy server. If the server is a trusted proxy, add the server's IP address to `KnownProxies` (or add a trusted network to `KnownNetworks`) in `Startup.ConfigureServices`. For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
+
+```csharp
+services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+});
+```
+
+> [!IMPORTANT]
+> Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
 
 ## Additional resources
 
