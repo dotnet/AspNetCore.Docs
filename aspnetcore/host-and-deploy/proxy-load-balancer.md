@@ -320,7 +320,8 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
-**Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.**
+> [!IMPORTANT]
+> Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
 
 ## Additional resources
 
