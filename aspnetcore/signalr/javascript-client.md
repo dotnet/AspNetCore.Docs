@@ -93,9 +93,9 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 
 [!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
 
-## Related resources
+## Additional resources
 
-* [JavaScript API reference](/javascript/api/)
+* [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)

@@ -38,6 +38,8 @@ namespace RPauth
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            // If the app uses session state, call AddSession.
+            // services.AddSession();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -62,6 +64,10 @@ namespace RPauth
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            // If the app uses session state, call Session Middleware after Cookie 
+            // Policy Middleware and before MVC Middleware.
+            // app.UseSession();
 
             app.UseMvc();
         }

@@ -4,10 +4,9 @@ author: tdykstra
 description: Discover topics that pertain to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 08/30/2018
+ms.date: 09/19/2018
 uid: signalr/index
 ---
-
 # ASP.NET Core SignalR
 
 * [Introduction](xref:signalr/introduction)
@@ -21,8 +20,9 @@ uid: signalr/index
 * [Clients](xref:signalr/javascript-client)
   * [.NET client](xref:signalr/dotnet-client)
   * [Java client](xref:signalr/java-client)
+  * [Java API reference](/java/api/com.microsoft.aspnet.signalr?view=aspnet-signalr-java)
   * [JavaScript client](xref:signalr/javascript-client)
-  * [JavaScript API](/javascript/api/?view=signalr-js-latest)
+  * [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
   * [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
 * [Configuration](xref:signalr/configuration)
 * [Authentication and authorization](xref:signalr/authn-and-authz)
