@@ -52,7 +52,7 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
   The preceding class represents a role in the Identity system. In the following example, the default `string` type is replaced with `Guid`.
 
-3. Create a custom database context class deriving from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext`3>&mdash;the Entity Framework Core database context class used for Identity:
+3. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext`3> class:
 
 ::: moniker range="<= aspnetcore-1.1"
 
@@ -66,7 +66,7 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
 ::: moniker-end
 
- The `TUser` and `TRole` types reference the custom `ApplicationUser` and `ApplicationRole` classes created in the previous step, respectively. The `Guid` data type is defined for the primary key.
+ The preceding class is the Entity Framework Core database context used for managing Identity. The `TUser` and `TRole` types reference the custom `ApplicationUser` and `ApplicationRole` classes created in the previous step, respectively. The `Guid` data type is defined for the primary key.
 
 4. Register the custom database context class when adding the Identity service in `Startup.ConfigureServices`:
 
