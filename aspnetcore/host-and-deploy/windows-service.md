@@ -54,7 +54,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
       </PropertyGroup>
       ```
       
-      If mulitple Runtime Identifiers (RIDs) are listed, use the property name `<RuntimeIdentifiers>` (plural). For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
+      If mulitple Runtime Identifiers (RIDs) are listed in a semi-colon-delimited list, use the property name `<RuntimeIdentifiers>` (plural). For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
 
       ::: moniker-end
 
