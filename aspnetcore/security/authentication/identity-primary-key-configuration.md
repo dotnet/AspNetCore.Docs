@@ -18,7 +18,7 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
 ::: moniker range="<= aspnetcore-1.1"
 
-1. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser`1> class: 
+1. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser`1> class:
 
   [!code-csharp[](identity-primary-key-configuration/samples/1.1/MvcSampleApp/Models/ApplicationUser.cs?highlight=6)]
 
@@ -26,7 +26,7 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
 ::: moniker range=">= aspnetcore-2.0"
 
-1. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.IdentityUser`1> class.
+1. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.IdentityUser`1> class:
 
   [!code-csharp[](identity-primary-key-configuration/samples/2.0/RazorPagesSampleApp/Data/ApplicationUser.cs?highlight=6)]
 
@@ -36,7 +36,7 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
 ::: moniker range="<= aspnetcore-1.1"
 
-2. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole`1> class.
+2. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole`1> class:
 
   [!code-csharp[](identity-primary-key-configuration/samples/1.1/MvcSampleApp/Models/ApplicationRole.cs?highlight=6)]
 
@@ -44,7 +44,7 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
 ::: moniker range=">= aspnetcore-2.0"
 
-2. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.IdentityRole`1> class.
+2. Create a custom implementation of the <xref:Microsoft.AspNetCore.Identity.IdentityRole`1> class:
 
   [!code-csharp[](identity-primary-key-configuration/samples/2.0/RazorPagesSampleApp/Data/ApplicationRole.cs?highlight=6)]
 
