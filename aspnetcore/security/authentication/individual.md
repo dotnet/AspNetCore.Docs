@@ -43,11 +43,11 @@ Projects created with no authentication:
 * Don't contain authentication code.
 
 <a name="win"></a>
-## Windows authentication
+## Windows Authentication
 
-Windows authentication is specified for new web apps in the .NET Core CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
+Windows Authentication is specified for new web apps in the .NET Core CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
 
-If Windows authentication is selected, the app will be configured to use the Windows authentication IIS module. Windows authentication is intended for Intranet web sites.
+If Windows Authentication is selected, the app is configured to use the [Windows Authentication IIS module](xref:host-and-deploy/iis/modules). Windows Authentication is intended for Intranet web sites.
 
 ## Additional resources
 
