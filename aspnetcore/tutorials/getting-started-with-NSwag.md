@@ -4,7 +4,7 @@ author: zuckerthoben
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/29/2018
+ms.date: 09/20/2018
 uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
@@ -23,9 +23,14 @@ By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https
 
 ::: moniker-end
 
-First, we register the NSwag middlewares to generate the Swagger specification for the implemented Web API and serve the Swagger UI to browse and test the API. To use the [NSwag](https://github.com/RSuter/NSwag) ASP.NET Core middlewares you have to install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package: This package contains the middlewares to generate and serve the Swagger specification, Swagger UI (v2 and v3) and [ReDoc UI](https://github.com/Rebilly/ReDoc).
+Register the NSwag middlewares to:
 
-Additionally, it is highly recommended to make use of NSwag's code generation capabilities. Choose one of the following options to use the code generation capabilities:
+* Generate the Swagger specification for the implemented web API.
+* Serve the Swagger UI to browse and test the web API.
+
+To use the [NSwag](https://github.com/RSuter/NSwag) ASP.NET Core middlewares, install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. This package contains the middlewares to generate and serve the Swagger specification, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc).
+
+Additionally, it's highly recommended to make use of NSwag's code generation capabilities. Choose one of the following options to use the code generation capabilities:
 
 * Use [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), a Windows desktop app for generating client code in C# and TypeScript for your API.
 * Use the [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages to do code generation inside your project.
