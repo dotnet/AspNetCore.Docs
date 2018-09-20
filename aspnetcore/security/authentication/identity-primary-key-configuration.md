@@ -100,4 +100,4 @@ In the preceding code, `_userManager` is an instance of `UserManager<Application
 
 ## Additional resources
 
-* <xref:xref:security/authentication/scaffold-identity>
+* <xref:security/authentication/scaffold-identity>
