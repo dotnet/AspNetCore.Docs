@@ -4,7 +4,7 @@ author: rsuter
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a Web API app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/09/2018
+ms.date: 09/20/2018
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core Web API help pages with Swagger / OpenAPI
@@ -17,7 +17,7 @@ In this article, the [Swashbuckle.AspNetCore](https://github.com/domaindrivendev
 
 * **Swashbuckle.AspNetCore** is an open source project for generating Swagger documents for ASP.NET Core Web APIs.
 
-* **NSwag** is another open source project for generating Swagger documents and integrating [Swagger UI](https://swagger.io/swagger-ui/) or [ReDoc](https://github.com/Rebilly/ReDoc) into ASP.NET Core Web APIs. Additionally it offers approaches to generate C# and TypeScript client code for your API.
+* **NSwag** is another open source project for generating Swagger documents and integrating [Swagger UI](https://swagger.io/swagger-ui/) or [ReDoc](https://github.com/Rebilly/ReDoc) into ASP.NET Core web APIs. Additionally, NSwag offers approaches to generate C# and TypeScript client code for your API.
 
 ## What is Swagger / OpenAPI?
 
