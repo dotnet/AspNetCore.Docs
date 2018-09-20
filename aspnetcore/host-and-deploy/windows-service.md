@@ -53,10 +53,10 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
         <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
       </PropertyGroup>
       ```
-      
-      If mulitple Runtime Identifiers (RIDs) are provided in a semicolon-delimited list, use the property name `<RuntimeIdentifiers>` (plural). For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
 
       ::: moniker-end
+      
+      If mulitple Runtime Identifiers (RIDs) are provided in a semicolon-delimited list, use the property name `<RuntimeIdentifiers>` (plural). For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
 
    1. Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/).
 
