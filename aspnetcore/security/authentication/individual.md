@@ -32,6 +32,7 @@ dotnet new razor -au Individual
 
 ::: moniker-end
 
+<a name="no"></a>
 ## No Authentication
 
 Authentication is specified in the .NET Core CLI with `-au` option. In Visual Studio, the **Change Authentication** dialog is available for new web applications. The default for new web apps in Visual Studio is **No Authentication**.
