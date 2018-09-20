@@ -303,7 +303,7 @@ app.Use(async (context, next) =>
 });
 ```
 
-When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, note Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is 1 (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased (an example follows).
+When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, note Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is 1 (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
 
 The request's original remote IP must match an entry in the `KnownProxies` or `KnownNetworks` lists before forwarded headers are processed. This limits header spoofing by not accepting forwarders from untrusted proxies. When an unknown proxy is detected, logging indicates the address of the proxy:
 
@@ -316,7 +316,6 @@ In the preceding example if the server at 10.0.0.100 is a trusted proxy server, 
 ```csharp
 services.Configure<ForwardedHeadersOptions>(options =>
 {
-    options.ForwardLimit = 2;
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
 });
 ```

@@ -96,7 +96,6 @@ Only proxies running on localhost (127.0.0.1, [::1]) are trusted by default. If 
 ```csharp
 services.Configure<ForwardedHeadersOptions>(options =>
 {
-    options.ForwardLimit = 2;
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
 });
 ```
