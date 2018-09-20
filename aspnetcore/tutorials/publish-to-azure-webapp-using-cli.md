@@ -50,8 +50,6 @@ REM Run the app
 dotnet run
 ```
 
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -83,8 +81,6 @@ cd MyApplication
 # Run the app
 dotnet run
 ```
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 

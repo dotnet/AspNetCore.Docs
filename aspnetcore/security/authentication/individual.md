@@ -20,8 +20,6 @@ dotnet new webapi -au Individual
 dotnet new webapp -au Individual
 ```
 
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
