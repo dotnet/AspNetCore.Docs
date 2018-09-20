@@ -56,7 +56,7 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
 ::: moniker range="<= aspnetcore-1.1"
 
-  [!code-csharp[](identity-primary-key-configuration/samples/1.1/MvcSampleApp/Data/ApplicationDbContext.cs?highlight=7-8)]
+  [!code-csharp[](identity-primary-key-configuration/samples/1.1/MvcSampleApp/Data/ApplicationDbContext.cs?highlight=8-9)]
 
 ::: moniker-end
 
