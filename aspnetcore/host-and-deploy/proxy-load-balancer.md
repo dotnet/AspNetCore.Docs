@@ -277,7 +277,7 @@ app.Run(async (context) =>
 });
 ```
 
-To log the headers, use the following inline middleware (requests continue to process after the headers are logged):
+You can also write to logs instead of the response body by using the following inline middleware. This allows the site to function normally while debugging.
 
 ```csharp
 var logger = _loggerFactory.CreateLogger<Startup>();
@@ -303,7 +303,7 @@ app.Use(async (context, next) =>
 });
 ```
 
-Ensure that the `X-Forwarded-{For|Proto|Host}` headers are received by the server with the expected values. If there are multiple values in a given header, note Forwarded Headers Middleware processes headers in reverse order from right to left.
+When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, note Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is 1 (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased (an example follows).
 
 The request's original remote IP must match an entry in the `KnownProxies` or `KnownNetworks` lists before forwarded headers are processed. This limits header spoofing by not accepting forwarders from untrusted proxies. When an unknown proxy is detected, logging indicates the address of the proxy:
 
@@ -311,7 +311,7 @@ The request's original remote IP must match an entry in the `KnownProxies` or `K
 September 20th 2018, 15:49:44.168 Unknown proxy: 10.0.0.100:54321
 ```
 
-In the preceding example, the server at 10.0.0.100 is a trusted proxy server. Add the trusted proxy address to `KnownProxies` (or add a trusted network to `KnownNetworks`) in `Startup.ConfigureServices`. For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
+In the preceding example if the server at 10.0.0.100 is a trusted proxy server, add the IP address to `KnownProxies` (or add a trusted network to `KnownNetworks`) in `Startup.ConfigureServices`. For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
 
 ```csharp
 services.Configure<ForwardedHeadersOptions>(options =>
