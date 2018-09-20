@@ -164,6 +164,13 @@
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="WebPrefixStrip.config" />
+    <Content Include="WebPrefixStrip.Debug.config">
+      <DependentUpon>WebPrefixStrip.config</DependentUpon>
+    </Content>
+    <Content Include="WebPrefixStrip.Release.config">
+      <DependentUpon>WebPrefixStrip.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -223,6 +230,27 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="WebCustom.config" />
+    <Content Include="WebCustom.Debug.config">
+      <DependentUpon>WebCustom.config</DependentUpon>
+    </Content>
+    <Content Include="WebCustom.Release.config">
+      <DependentUpon>WebCustom.config</DependentUpon>
+    </Content>
+    <Content Include="WebPrefix.config" />
+    <Content Include="WebPrefix.Debug.config">
+      <DependentUpon>WebPrefix.config</DependentUpon>
+    </Content>
+    <Content Include="WebPrefix.Release.config">
+      <DependentUpon>WebPrefix.config</DependentUpon>
+    </Content>
+    <Content Include="WebDefault.config" />
+    <Content Include="WebDefault.Debug.config">
+      <DependentUpon>WebDefault.config</DependentUpon>
+    </Content>
+    <Content Include="WebDefault.Release.config">
+      <DependentUpon>WebDefault.config</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

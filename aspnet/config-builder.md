@@ -47,7 +47,9 @@ Key prefixes can simplify setting keys because:
 For example, use either approach to inject both App Settings and Connection Strings into the configuration via environment variables:
 
 * With the `EnvironmentConfigBuilder` in the default `Strict` mode and use the appropriate key names coded into the configuration file.
-* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. Using this approach your app can read App Setting and connection strings without needing to update the raw configuration file in advance. For example:
+* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. Using this approach the app can read App Setting and connection strings without needing to update the raw configuration file in advance. For example:
+
+[!code-xml[Main](config-builder/MyConfigBuilders/WebPrefix.config?name=snippet&highlight=11-99)]
 
 ```xml
 <configBuilders>
@@ -66,8 +68,11 @@ With the preceding markup the same flat key/value source can be used to populate
 
 ### stripPrefix
 
-A related setting that is common among all of these key/value builders is `stripPrefix`. The code above does a good job of separating app settings from connection strings... but now all the keys in AppSettings start with "AppSetting_". Maybe this is fine for code you wrote. Chances are that prefix is better off stripped from the
-key name before being inserted into AppSettings. `stripPrefix` is a boolean value, and accomplishes just that. Its default value is `false`.
+`stripPrefix`: boolean, defaults to `false`.
+The preceding code separates app settings from connection strings but requires all the keys to use the prefix. For example, "AppSetting_ServiceID". <!-- Review, shouldn't that be "AS_EnvironmentServiceID" --> It's generally preferred to strip off the prefix. The following markup strips the prefix:
+
+[!code-xml[Main](config-builder/MyConfigBuilders/WebPrefixStrip.config?name=snippet&highlight=11-99)]
+
 
 ### tokenPattern
 The final setting that is shared between all KeyValueConfigBuilder-derived builders is `tokenPattern`. When describing the `Expand` behavior of these builders
