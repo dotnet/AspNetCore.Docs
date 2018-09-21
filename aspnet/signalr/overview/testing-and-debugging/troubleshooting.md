@@ -151,7 +151,7 @@ A connection in a .NET client application that uses Domain security may fail if 
 
 ## Configuring IIS websockets to ping/pong to detect a dead client
 
-SignalR servers don't know if the client is dead or not and they rely on notification from the underlying websocket for connection failures, that is, the OnClose callback. One solution to this problem is to configure IIS websockets to do the ping/pong for you. This ensures that your connection will close if it breaks unexpectedly. For more information see [this stackoverflow post](http://stackoverflow.com/questions/19502755/websocket-clients-state-not-changing-on-network-loss).
+SignalR servers don't know if the client is dead or not and they rely on notification from the underlying websocket for connection failures, that is, the `OnClose` callback. One solution to this problem is to configure IIS websockets to do the ping/pong for you. This ensures that your connection will close if it breaks unexpectedly. For more information see [this stackoverflow post](http://stackoverflow.com/questions/19502755/websocket-clients-state-not-changing-on-network-loss).
 
 <a id="other"></a>
 
