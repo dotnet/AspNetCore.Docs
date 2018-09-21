@@ -95,7 +95,7 @@ Import the following namespaces in the `Startup` class:
 
 In the `Startup.ConfigureServices` method, register the required Swagger services: 
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8-8)]
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
 
 In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI v3:
 
