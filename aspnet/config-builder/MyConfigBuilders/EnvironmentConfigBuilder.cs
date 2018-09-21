@@ -18,12 +18,10 @@ namespace MyConfigBuilders
             if (_EnvVars.Count == 0) _EnvVars = Environment.GetEnvironmentVariables();
 
             Debug.WriteLine(_EnvVars.Count);
-
         }
 
         public override XmlNode ProcessRawXml(XmlNode rawXml)
         {
-
             foreach (DictionaryEntry envVar in _EnvVars)
             {
 
@@ -35,9 +33,7 @@ namespace MyConfigBuilders
                     rawXml.SelectSingleNode($"add[@key='{pair.Key}']")
                         .Attributes["value"].Value = pair.Value;
                 }
-
             }
-
             return rawXml;
         }
 
@@ -46,6 +42,5 @@ namespace MyConfigBuilders
         {
             return base.ProcessConfigurationSection(configSection);
         }
-
     }
 }

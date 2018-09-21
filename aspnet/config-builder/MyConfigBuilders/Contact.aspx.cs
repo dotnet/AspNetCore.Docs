@@ -1,17 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Configuration;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace MyConfigBuilders
 {
     public partial class Contact : Page
     {
+        public string ServiceID { get; set; }
+        public string ServiceKey { get; set; }
+        public string ConString { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ServiceID = ConfigurationManager.AppSettings["ServiceID"];
+            ServiceKey = ConfigurationManager.AppSettings["ServiceKey"];
+            ConString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
         }
     }
 }
