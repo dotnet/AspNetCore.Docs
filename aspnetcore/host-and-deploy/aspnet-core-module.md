@@ -19,7 +19,7 @@ This document provides instructions on how to configure the ASP.NET Core Module 
 
 For apps running on .NET Core 2.2 or later, the module supports an in-process hosting model for improved performance compared to reverse-proxy (out-of-process) hosting. For more information, see <xref:fundamentals/servers/aspnet-core-module#aspnet-core-module-description>.
 
-In-procsess hosting is opt-in, but [dotnet new](/dotnet/core/tools/dotnet-new) templates default to the in-process hosting model for all IIS Express scenarios.
+In-procsess hosting is opt-in for existing apps, but [dotnet new](/dotnet/core/tools/dotnet-new) templates default to the in-process hosting model for all IIS and IIS Express scenarios.
 
 To configure an app for in-process hosting, add the `<AspNetCoreModuleHostingModel>` property to the app's project file with a value of `inprocess` (out-of-process hosting is set with `outofprocess`):
 

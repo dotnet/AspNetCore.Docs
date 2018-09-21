@@ -68,7 +68,7 @@ IIS, Nginx, and Apache can't be used without Kestrel or a [custom server impleme
 
 ::: moniker range=">= aspnetcore-2.2"
 
-When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture), the ASP.NET Core app either runs in the same process as the IIS worker process (the *in-process* hosting model) or in a process separate from the IIS worker process (the *out-of-process* hosting model). When using [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), the app always runs with the in-process hosting model.
+When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), the ASP.NET Core app either runs in the same process as the IIS worker process (the *in-process* hosting model) or in a process separate from the IIS worker process (the *out-of-process* hosting model).
 
 The [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) is a native IIS module that handles native IIS requests between either the in-process IIS Http Server or the out-of-process Kestrel server. For more information, see <xref:fundamentals/servers/aspnet-core-module>.
 
