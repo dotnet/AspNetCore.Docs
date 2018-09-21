@@ -5,7 +5,7 @@ description: Learn about response compression and how to use Response Compressio
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/17/2018
+ms.date: 09/21/2018
 uid: performance/response-compression
 ---
 # Response compression in ASP.NET Core
@@ -350,14 +350,14 @@ Submit a request to the sample app with the `Accept-Encoding: mycustomcompressio
 
 The middleware specifies a default set of MIME types for compression:
 
-* `text/plain`
-* `text/css`
 * `application/javascript`
-* `text/html`
-* `application/xml`
-* `text/xml`
 * `application/json`
+* `application/xml`
+* `text/css`
+* `text/html`
 * `text/json`
+* `text/plain`
+* `text/xml`
 
 Replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` aren't supported. The sample app adds a MIME type for `image/svg+xml` and compresses and serves the ASP.NET Core banner image (*banner.svg*).
 
@@ -422,7 +422,7 @@ If you have an active IIS Dynamic Compression Module configured at the server le
 
 ## Troubleshooting
 
-Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
+Use a tool like [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/), or [Postman](https://www.getpostman.com/), which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
 
 ::: moniker range=">= aspnetcore-2.2"
 
