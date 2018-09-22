@@ -71,8 +71,6 @@ At the end, you'll have a working chat app:
    dotnet new webapp -o SignalRChat
    ```
 
-   [!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the menu, select **File > New Solution**.

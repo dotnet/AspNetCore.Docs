@@ -9,8 +9,6 @@ uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 When the Data Protection system is initialized, it applies [default settings](xref:security/data-protection/configuration/default-settings) based on the operational environment. These settings are generally appropriate for apps running on a single machine. There are cases where a developer may want to change the default settings:
 
 * The app is spread across multiple machines.

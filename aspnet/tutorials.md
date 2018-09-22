@@ -10,6 +10,8 @@ ms.technology: aspnet
 ---
 # ASP.NET tutorials
 
+[!INCLUDE[](~/includes/rp.md)]
+
 The following step-by-step guides for developing ASP.NET applications are available.
 
 > [!NOTE]
@@ -17,8 +19,6 @@ The following step-by-step guides for developing ASP.NET applications are availa
 
 ## Web Forms
 
-* [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013](web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/index.md)
-* [Creating a Basic Web Forms Page in Visual Studio 2013](web-forms/overview/getting-started/creating-a-basic-web-forms-page.md)
 * [Code Editing ASP.NET Web Forms in Visual Studio 2013](web-forms/overview/getting-started/code-editing-in-web-forms-pages.md)
 * [Using Page Inspector in Visual Studio 2012](web-forms/overview/getting-started/hands-on-labs/using-page-inspector-in-visual-studio-2012.md)
 * [Model Binding and Web Forms in Visual Studio 2013](web-forms/overview/presenting-and-managing-data/model-binding/index.md)
@@ -39,9 +39,6 @@ The following step-by-step guides for developing ASP.NET applications are availa
 
 ## MVC
 
-* [Getting Started with ASP.NET MVC 5 ](mvc/overview/getting-started/introduction/index.md)
-* [Getting Started with EF 6 using MVC 5](mvc/overview/getting-started/getting-started-with-ef-using-mvc/index.md)
-* [EF Database First with ASP.NET MVC](mvc/overview/getting-started/database-first-development/index.md)
 * [Using Page Inspector in ASP.NET MVC](mvc/overview/views/using-page-inspector-in-aspnet-mvc.md)
 * [Create an ASP.NET MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#)](mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md)
 * [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset (C#)](mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md)

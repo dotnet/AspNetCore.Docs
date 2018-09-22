@@ -4,7 +4,7 @@ author: ardalis
 description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/27/2018
+ms.date: 09/19/2018
 uid: fundamentals/logging/index
 ---
 # Logging in ASP.NET Core
@@ -110,7 +110,7 @@ For example, logging configuration is commonly provided by the `Logging` section
     },
     "Console":
     {
-      "IncludeScopes": "true"
+      "IncludeScopes": true
     }
   }
 }

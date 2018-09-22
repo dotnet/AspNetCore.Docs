@@ -35,8 +35,6 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 Run `dotnet new webapp` from the command line.
 
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -53,8 +51,6 @@ Open the generated *.csproj* file from Visual Studio for Mac.
 
 Run `dotnet new webapp` from the command line.
 
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -68,8 +64,6 @@ Run `dotnet new razor` from the command line.
 ::: moniker range=">= aspnetcore-2.1"
 
 Run `dotnet new webapp` from the command line.
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 

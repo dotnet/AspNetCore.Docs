@@ -18,6 +18,9 @@ namespace TodoApi
             services.AddDbContext<TodoContext>(opt =>
                 opt.UseInMemoryDatabase("TodoList"));
             services.AddMvc();
+
+            // Register the Swagger services
+            services.AddSwagger();
         }
         #endregion snippet_ConfigureServices
 
@@ -27,8 +30,8 @@ namespace TodoApi
             app.UseStaticFiles();
 
             #region snippet_UseSwagger
-            // Register the Swagger generator
-            app.UseSwagger(typeof(Startup).Assembly, settings =>
+            // Register the Swagger generator middleware
+            app.UseSwaggerWithApiExplorer(settings =>
             {
                 settings.PostProcess = document =>
                 {
@@ -51,12 +54,8 @@ namespace TodoApi
             });
             #endregion snippet_UseSwagger
 
-            // Enable the Swagger UI middleware and the Swagger generator
-            app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly, settings =>
-            {
-                settings.GeneratorSettings.DefaultPropertyNameHandling =
-                    PropertyNameHandling.CamelCase;
-            });
+            // Register the Swagger UI middleware
+            app.UseSwaggerUi3();
 
             app.UseMvc();
         }
