@@ -12,9 +12,9 @@ namespace MyConfigBuilders
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ServiceID = ConfigurationManager.AppSettings["ServiceID"];
-            ServiceKey = ConfigurationManager.AppSettings["ServiceKey"];
-            ConString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+            ServiceID = ConfigurationManager.AppSettings["AppSetting_ServiceID"];
+            ServiceKey = ConfigurationManager.AppSettings["AppSetting_ServiceKey"];
+            ConString = ConfigurationManager.ConnectionStrings["ConnStr_default"].ConnectionString;
         }
     }
 }
