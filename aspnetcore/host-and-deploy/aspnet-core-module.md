@@ -43,32 +43,11 @@ The following characteristics apply when hosting in-process:
 
 * If setting up the app's host manually with `WebHostBuilder` (not using [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host)) and the app is ever run directly on the Kestrel server (self-hosted), call `UseKestrel` before calling `UseIISIntegration`. If the order is reversed, the host fails to start.
 
-* Don't use <xref:System.IO.Directory.GetCurrentDirectory*> to set the content root with <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseContentRoot*>. See the [Content Root](#content-root) section for details.
-
 ### Hosting model changes
 
 If the `hostingModel` setting is changed in the *web.config* file (explained in the [Configuration with web.config](#configuration-with-webconfig) section), the module recycles the worker process for IIS.
 
 For IIS Express, the module doesn't recycle the worker process but instead triggers a graceful shutdown of the current IIS Express process. The next request to the app spawns a new IIS Express process.
-
-### Content root
-
-When running an app in-process, the current directory reported by <xref:System.IO.Directory.GetCurrentDirectory*> is *C:\\Windows\\System32\\inetsrv\\*. To set the content root, use [AppDomain.CurrentDomain.BaseDirectory](xref:System.AppDomain.BaseDirectory*) with <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseContentRoot*>:
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateWebHostBuilder(args).Build().Run();
-    }
-
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .UseContentRoot(AppDomain.CurrentDomain.BaseDirectory)
-            .UseStartup<Startup>();
-}
-```
 
 ### Process name
 

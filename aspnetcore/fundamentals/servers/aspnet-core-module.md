@@ -30,6 +30,8 @@ Supported Windows versions:
 
 ::: moniker range=">= aspnetcore-2.2"
 
+When hosting in-process, the module has its own server implementation, `IISHttpServer`.
+
 When hosting out-of-process, the module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)).
 
 ::: moniker-end
