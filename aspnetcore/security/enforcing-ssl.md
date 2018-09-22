@@ -162,6 +162,7 @@ The following code:
 * `[::1]` : The IPv6 loopback address.
 
 The preceding example shows how to add additional hosts.
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
@@ -186,8 +187,6 @@ Use the `--no-https` option. For example
 ```console
 dotnet new webapp --no-https
 ```
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ---
 

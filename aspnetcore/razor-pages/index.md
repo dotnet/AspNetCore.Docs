@@ -35,8 +35,6 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 Run `dotnet new webapp` from the command line.
 
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -53,8 +51,6 @@ Open the generated *.csproj* file from Visual Studio for Mac.
 
 Run `dotnet new webapp` from the command line.
 
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -68,8 +64,6 @@ Run `dotnet new razor` from the command line.
 ::: moniker range=">= aspnetcore-2.1"
 
 Run `dotnet new webapp` from the command line.
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 
@@ -372,6 +366,8 @@ The updated *Pages/Create.cshtml* view file:
 
 The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml*, which hooks up client-side validation.
 
+For more information on partial views, see <xref:mvc/views/partial>.
+
 <a name="url_gen"></a>
 
 ## URL generation for Pages
@@ -413,6 +409,7 @@ URL generation for pages supports relative names. The following table shows whic
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
 ::: moniker range=">= aspnetcore-2.1"
+
 ## ViewData attribute
 
 Data can be passed to a page with [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
@@ -446,6 +443,7 @@ In the layout, the title is read from the ViewData dictionary:
     <title>@ViewData["Title"] - WebApplication</title>
     ...
 ```
+
 ::: moniker-end
 
 ## TempData
@@ -554,11 +552,12 @@ services.AddMvc()
     .WithRazorPagesRoot("/path/to/razor/pages");
 ```
 
-## See also
+## Additional resources
 
-* [Introduction to ASP.NET Core](xref:index)
-* [Razor syntax](xref:mvc/views/razor)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
-* [Razor Pages custom route and page model providers](xref:razor-pages/razor-pages-conventions)
-* [Razor Pages unit tests](xref:test/razor-pages-tests)
+* <xref:index>
+* <xref:mvc/views/razor>
+* <xref:tutorials/razor-pages/razor-pages-start>
+* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/razor-pages-conventions>
+* <xref:test/razor-pages-tests>
+* <xref:mvc/views/partial>

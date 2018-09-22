@@ -13,6 +13,8 @@ Introducing ASP.NET Web Pages - Getting Started
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
+[!INCLUDE[](~/includes/rp.md)]
+
 > > [!NOTE] 
 > > 
 > > WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](../program-asp-net-web-pages-in-visual-studio.md) or [Visual Studio Code](https://code.visualstudio.com/).

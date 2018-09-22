@@ -37,7 +37,8 @@ var connection = new HubConnectionBuilder()
     .AddJsonProtocol(options => {
         options.PayloadSerializerSettings.ContractResolver = 
             new DefaultContractResolver();
-    });
+    })
+    .Build();
 ```
 
 > [!NOTE]
@@ -70,7 +71,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         hubOptions.EnableDetailedErrors = true;
         hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
-    })
+    });
 }
 ```
 
@@ -80,7 +81,7 @@ Options for a single hub override the global options provided in `AddSignalR` an
 services.AddSignalR().AddHubOptions<MyHub>(options =>
 {
     options.EnableDetailedErrors = true;
-}
+});
 ```
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to [MapHub\<T>](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub).
@@ -185,7 +186,7 @@ var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/myhub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
-        }
+        };
     })
     .Build();
 ```
@@ -254,7 +255,7 @@ let connection = new signalR.HubConnectionBuilder()
     .withUrl("/myhub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
-    });
+    })
     .build();
 ```
 
