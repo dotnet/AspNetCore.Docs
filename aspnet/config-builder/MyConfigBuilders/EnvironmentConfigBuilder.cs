@@ -13,8 +13,8 @@ namespace MyConfigBuilders
 
         public EnvironmentConfigBuilder()
         {
-
-            _EnvVars = Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Process);
+            _EnvVars = 
+                Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Process);
             if (_EnvVars.Count == 0) _EnvVars = Environment.GetEnvironmentVariables();
 
             Debug.WriteLine(_EnvVars.Count);
@@ -24,7 +24,6 @@ namespace MyConfigBuilders
         {
             foreach (DictionaryEntry envVar in _EnvVars)
             {
-
                 var pair = (Key: envVar.Key.ToString(), Value: envVar.Value.ToString());
 
                 if (rawXml.HasChildNodes

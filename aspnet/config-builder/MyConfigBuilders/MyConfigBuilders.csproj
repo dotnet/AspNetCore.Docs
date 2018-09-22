@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Configuration.ConfigurationBuilders.Base.1.0.1\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Base.dll</HintPath>
+      <HintPath>packages\Microsoft.Configuration.ConfigurationBuilders.Base.1.0.2\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Base.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Environment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Configuration.ConfigurationBuilders.Environment.1.0.2\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Environment.dll</HintPath>
@@ -200,6 +200,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MyCustomConfigBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
