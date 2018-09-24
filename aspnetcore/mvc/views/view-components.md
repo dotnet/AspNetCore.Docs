@@ -104,13 +104,13 @@ Pascal-cased class and method parameters for Tag Helpers are translated into the
 </vc:[view-component-name]>
 ```
 
-Note: In order to use a View Component as a Tag Helper, you must register the assembly containing the View Component using the `@addTagHelper` directive. For example, if your View Component is in an assembly called "MyWebApp", add the following directive to the `_ViewImports.cshtml` file:
+Note: In order to use a View Component as a Tag Helper, you must register the assembly containing the View Component using the `@addTagHelper` directive. For example, if your view component is in an assembly called `MyWebApp`, add the following directive to the `_ViewImports.cshtml` file:
 
 ```cshtml
 @addTagHelper *, MyWebApp
 ```
 
-You can register a View Component as a Tag Helper to any file that references the View Component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
+You can register a view component as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
 The `InvokeAsync` method used in this tutorial:
 
@@ -268,10 +268,28 @@ The view component's Razor file lists the strings passed to the `Invoke` method 
 </ul>
 ```
 
-The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml*) with:
+The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml*) using one of the following approaches:
+
+* <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
+* [Tag Helper](xref:mvc/views/tag-helpers/intro)
+
+To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
 ```cshtml
 @await Component.InvokeAsync(nameof(PriorityList), new { maxPriority = 4, isDone = true })
+```
+
+To use the Tag Helper, register the assembly containing the View Component using the `@addTagHelper` directive (the view component is in an assembly called `MyWebApp`):
+
+```cshtml
+@addTagHelper *, MyWebApp
+```
+
+Use the view component Tag Helper in the Razor markup file:
+
+```cshtml
+<vc:priority-list max-priority="999" is-done="false">
+</vc:priority-list>
 ```
 
 The method signature of `PriorityList.Invoke` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.
