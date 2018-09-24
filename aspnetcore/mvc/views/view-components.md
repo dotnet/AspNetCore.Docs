@@ -89,6 +89,8 @@ The parameters will be passed to the `InvokeAsync` method. The `PriorityList` vi
 
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
+::: moniker range=">= aspnetcore-1.1"
+
 ## Invoking a view component as a Tag Helper
 
 For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
@@ -104,7 +106,7 @@ Pascal-cased class and method parameters for Tag Helpers are translated into the
 </vc:[view-component-name]>
 ```
 
-Note: In order to use a View Component as a Tag Helper, you must register the assembly containing the View Component using the `@addTagHelper` directive. For example, if your view component is in an assembly called `MyWebApp`, add the following directive to the `_ViewImports.cshtml` file:
+To use a view component as a Tag Helper, register the assembly containing the view component using the `@addTagHelper` directive. If your view component is in an assembly called `MyWebApp`, add the following directive to the *_ViewImports.cshtml* file:
 
 ```cshtml
 @addTagHelper *, MyWebApp
@@ -121,6 +123,8 @@ In Tag Helper markup:
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
 
 In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in lower kebab case.
+
+::: moniker-end
 
 ### Invoking a view component directly from a controller
 
@@ -268,6 +272,8 @@ The view component's Razor file lists the strings passed to the `Invoke` method 
 </ul>
 ```
 
+::: moniker range=">= aspnetcore-1.1"
+
 The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml*) using one of the following approaches:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
@@ -275,9 +281,21 @@ The view component is invoked in a Razor file (for example, *Views/Home/Index.cs
 
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
+::: moniker-end
+
+::: moniker range="< aspnetcore-1.1"
+
+The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml*) with <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>.
+
+Call `Component.InvokeAsync`:
+
+::: moniker-end
+
 ```cshtml
 @await Component.InvokeAsync(nameof(PriorityList), new { maxPriority = 4, isDone = true })
 ```
+
+::: moniker range=">= aspnetcore-1.1"
 
 To use the Tag Helper, register the assembly containing the View Component using the `@addTagHelper` directive (the view component is in an assembly called `MyWebApp`):
 
@@ -291,6 +309,7 @@ Use the view component Tag Helper in the Razor markup file:
 <vc:priority-list max-priority="999" is-done="false">
 </vc:priority-list>
 ```
+::: moniker-end
 
 The method signature of `PriorityList.Invoke` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.
 
