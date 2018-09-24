@@ -420,13 +420,13 @@ Follow these steps to change the PK type:
 
     ::: moniker range="<= aspnetcore-1.1"
 
-    [!code-csharp[](customize-identity-model/samples/1.1/MvcSampleApp/Models/ApplicationUser.cs?name=snippet_ApplicationUser&highlight=7)]
+    [!code-csharp[](customize-identity-model/samples/1.1/MvcSampleApp/Models/ApplicationUser.cs?name=snippet_ApplicationUser&highlight=4)]
 
     ::: moniker-end
 
     ::: moniker range=">= aspnetcore-2.0"
 
-    [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationUser.cs?name=snippet_ApplicationUser&highlight=7)]
+    [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationUser.cs?name=snippet_ApplicationUser&highlight=4)]
 
     ::: moniker-end
 
