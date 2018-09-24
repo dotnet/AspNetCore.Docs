@@ -461,7 +461,7 @@
         "redirect_document_id": false
     },
     {
-        "source_path": "aspnetcore/security/authentication/identity-primary-key-configuration",
+        "source_path": "aspnetcore/security/authentication/identity-primary-key-configuration.md",
         "redirect_url": "/aspnet/core/security/authentication/customize_identity_model#change-the-primary-key-type",
         "redirect_document_id": false
     }
