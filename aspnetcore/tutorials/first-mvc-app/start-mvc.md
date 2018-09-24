@@ -156,7 +156,9 @@ The default template gives you working **Home, About** and **Contact** links. Th
 
 If you were running in debug mode, tap **Shift-F5** to stop debugging.
 
-In the next part of this tutorial, we'll learn about MVC and start writing some code.
+In the next part of this tutorial, you learn about MVC and start writing some code.
+
+[!INCLUDE [deploy to azure](~/includes/deploy2azure.md)]
 
 ::: moniker-end
 
