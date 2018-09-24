@@ -254,9 +254,7 @@ public class PriorityList : ViewComponent
 }
 ```
 
-The view component's Razor file lists the strings passed to the `Invoke` method.
-
-*Views/Home/Components/PriorityList/Default.cshtml*:
+The view component's Razor file lists the strings passed to the `Invoke` method (*Views/Home/Components/PriorityList/Default.cshtml*):
 
 ```cshtml
 @model List<string>
@@ -276,7 +274,7 @@ The view component is invoked in a Razor file (for example, *Views/Home/Index.cs
 @await Component.InvokeAsync(nameof(PriorityList), new { maxPriority = 4, isDone = true })
 ```
 
-The method signature of the `PriorityList` isn't asynchronous, but the framework finds and calls the method.
+The method signature of `PriorityList` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.
 
 ## Additional resources
 
