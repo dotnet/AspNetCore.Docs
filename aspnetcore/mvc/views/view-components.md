@@ -239,6 +239,45 @@ Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,35-)]
 
+## Perform synchronous work
+
+The framework handles invoking a synchronous `Invoke` method if you don't need to perform asynchronous work. The following method creates a synchronous `Invoke` view component:
+
+```csharp
+public class PriorityList : ViewComponent
+{
+    public IViewComponentResult Invoke(int maxPriority, bool isDone)
+    {
+        var items = new List<string> { $"maxPriority: {maxPriority}", $"isDone: {isDone}" };
+        return View(items);
+    }
+}
+```
+
+The view component's Razor file lists the strings passed to the `Invoke` method.
+
+*Views/Home/Components/PriorityList/Default.cshtml*:
+
+```cshtml
+@model List<string>
+
+<h3>Priority Items</h3>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item</li>
+    }
+</ul>
+```
+
+The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml*) with:
+
+```cshtml
+@await Component.InvokeAsync(nameof(PriorityList), new { maxPriority = 4, isDone = true })
+```
+
+The method signature of the `PriorityList` isn't asynchronous, but the framework finds and calls the method.
+
 ## Additional resources
 
 * [Dependency injection into views](xref:mvc/views/dependency-injection)
