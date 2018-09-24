@@ -5,5 +5,6 @@ namespace RazorPagesSampleApp.Data
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
+        public string CustomTag { get; set; }        
     }
 }
