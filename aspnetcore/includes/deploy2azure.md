@@ -1,0 +1,1 @@
+For information on deploying to Azure, See [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet). You don't need to create a new app, start at [Launch the publish wizard](/azure/app-service/app-service-web-get-started-dotnet#launch-the-publish-wizard).
