@@ -944,6 +944,8 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
+::: moniker range=">= aspnetcore-2.1"
+
 ### Lazy loading
 
 In this section, support for lazy-loading proxies in the Identity model is added. Lazy-loading is useful since it allows navigation properties to be used without first ensuring they're loaded.
@@ -966,8 +968,6 @@ services
 ```
 
 Refer to the preceding examples for guidance on adding navigation properties to the entity types.
-
-::: moniker range=">= aspnetcore-2.1"
 
 ## Additional resources
 
