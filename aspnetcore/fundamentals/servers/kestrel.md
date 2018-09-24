@@ -154,7 +154,7 @@ Call the [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkes
 
 ::: moniker-end
 
-### Kestrel options
+## Kestrel options
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -166,7 +166,7 @@ The Kestrel web server has constraint configuration options that are especially 
 
 Set these and other constraints on the [Limits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.limits) property of the [KestrelServerOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions) class. The `Limits` property holds an instance of the [KestrelServerLimits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits) class.
 
-**Maximum client connections**
+### Maximum client connections
 
 [MaxConcurrentConnections](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.maxconcurrentconnections)  
 [MaxConcurrentUpgradedConnections](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.maxconcurrentupgradedconnections)
@@ -221,7 +221,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 The maximum number of connections is unlimited (null) by default.
 
-**Maximum request body size**
+### Maximum request body size
 
 [MaxRequestBodySize](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.maxrequestbodysize)
 
@@ -266,7 +266,7 @@ You can override the setting on a specific request in middleware:
 
 An exception is thrown if you attempt to configure the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
-**Minimum request body data rate**
+### Minimum request body data rate
 
 [MinRequestBodyDataRate](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.minrequestbodydatarate)  
 [MinResponseDataRate](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.minresponsedatarate)
@@ -310,7 +310,7 @@ You can configure the rates per request in middleware:
 
 ::: moniker range=">= aspnetcore-2.2"
 
-**MaxStreamsPerConnection**
+### Maximum streams per connection
 
 `Http2.MaxStreamsPerConnection` limits the number of concurrent request streams per HTTP/2 connection. Excess streams are refused.
 
@@ -326,7 +326,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 The default value is 100.
 
-**HeaderTableSize**
+### Header table size
 
 The HPACK decoder decompresses HTTP headers for HTTP/2 connections. `Http2.HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses. The value is provided in octets and must be greater than zero (0).
 
@@ -342,7 +342,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 The default value is 4096.
 
-**MaxFrameSize**
+### Maximum frame size
 
 `Http2.MaxFrameSize` indicates the maximum size of the HTTP/2 connection frame payload to receive. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
 
@@ -379,7 +379,7 @@ For information about Kestrel options and limits, see:
 
 ::: moniker-end
 
-### Endpoint configuration
+## Endpoint configuration
 
 ::: moniker range="= aspnetcore-2.0"
 
@@ -425,20 +425,24 @@ Call [Listen](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserver
 
 ASP.NET Core 2.1 `KestrelServerOptions` configuration:
 
-**ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)**  
+### ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)
+
 Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
-**ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)**  
+### ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)
+
 Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
-**Configure(IConfiguration)**  
+### Configure(IConfiguration)
+
 Creates a configuration loader for setting up Kestrel that takes an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) as input. The configuration must be scoped to the configuration section for Kestrel.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**ListenOptions.UseHttps**  
+### ListenOptions.UseHttps
+
 Configure Kestrel to use HTTPS.
 
 `ListenOptions.UseHttps` extensions:
@@ -697,7 +701,7 @@ public static IWebHost BuildWebHost(string[] args) =>
 
 ::: moniker-end
 
-**Bind to a TCP socket**
+### Bind to a TCP socket
 
 The [Listen](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.listen) method binds to a TCP socket, and an options lambda permits SSL certificate configuration:
 
@@ -736,7 +740,7 @@ The example configures SSL for an endpoint with [ListenOptions](/dotnet/api/micr
 
 [!INCLUDE [How to make an X.509 cert](~/includes/make-x509-cert.md)]
 
-**Bind to a Unix socket**
+### Bind to a Unix socket
 
 Listen on a Unix socket with [ListenUnixSocket](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.listenunixsocket) for improved performance with Nginx, as shown in this example:
 
@@ -768,7 +772,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker range=">= aspnetcore-2.0"
 
-**Port 0**
+### Port 0
 
 When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
 
@@ -780,7 +784,7 @@ When the app is run, the console window output indicates the dynamic port where 
 Listening on the following addresses: http://127.0.0.1:48508
 ```
 
-**UseUrls, --urls command-line argument, urls host configuration key, and ASPNETCORE_URLS environment variable limitations**
+### Limitations
 
 Configure endpoints with the following approaches:
 
@@ -789,12 +793,12 @@ Configure endpoints with the following approaches:
 * `urls` host configuration key
 * `ASPNETCORE_URLS` environment variable
 
-These methods are useful for making code work with servers other than Kestrel. However, be aware of these limitations:
+These methods are useful for making code work with servers other than Kestrel. However, be aware of the following limitations:
 
 * SSL can't be used with these approaches unless a default certificate is provided in the HTTPS endpoint configuration (for example, using `KestrelServerOptions` configuration or a configuration file as shown earlier in this topic).
 * When both the `Listen` and `UseUrls` approaches are used simultaneously, the `Listen` endpoints override the `UseUrls` endpoints.
 
-**IIS endpoint configuration**
+### IIS endpoint configuration
 
 When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic.
 
@@ -811,7 +815,7 @@ By default, ASP.NET Core binds to `http://localhost:5000`. Configure URL prefixe
 
 For more information on these methods, see [Hosting](xref:fundamentals/host/index).
 
-**IIS endpoint configuration**
+### IIS endpoint configuration
 
 When using IIS, the URL bindings for IIS override bindings set by `UseUrls`. For more information, see the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic.
 
@@ -819,7 +823,7 @@ When using IIS, the URL bindings for IIS override bindings set by `UseUrls`. For
 
 ::: moniker range=">= aspnetcore-2.2"
 
-**ListenOptions.Protocols**
+### ListenOptions.Protocols
 
 The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enabled on a connection endpoint or for the server. Assign a value to the `Protocols` property from the `HttpProtocols` enum.
 
