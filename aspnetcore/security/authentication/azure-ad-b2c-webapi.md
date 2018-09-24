@@ -51,11 +51,11 @@ Use the following values:
 
 | Setting                       | Value               | Notes                                                                                  |
 |-------------------------------|---------------------|----------------------------------------------------------------------------------------|
-| **Name**                      | *&lt;API name&gt;*  | Enter a **Name** for the app that describes your app to consumers.                     |
+| **Name**                      | *{API name}*        | Enter a **Name** for the app that describes your app to consumers.                     |
 | **Include web app / web API** | Yes                 |                                                                                        |
 | **Allow implicit flow**       | Yes                 |                                                                                        |
-| **Reply URL**                 | `https://localhost` | Reply URLs are endpoints where Azure AD B2C returns any tokens that your app requests. |
-| **App ID URI**                | *api*               | The URI doesn't need to resolve to a physical address. It only needs to be unique.     |
+| **Reply URL**                 | https://localhost   | Reply URLs are endpoints where Azure AD B2C returns any tokens that your app requests. |
+| **App ID URI**                | api                 | The URI doesn't need to resolve to a physical address. It only needs to be unique.     |
 | **Include native client**     | No                  |                                                                                        |
 
 After the API is registered, the list of apps and APIs in the tenant is displayed. Select the API that was just registered. Select the **Copy** icon to the right of the **Application ID** field to copy it to the clipboard. Select **Published scopes** and verify the default *user_impersonation* scope is present.
@@ -80,9 +80,9 @@ In Visual Studio:
 
     | Setting                       | Value                                                 |
     |-------------------------------|-------------------------------------------------------|
-    | **Domain Name**               | *&lt;the domain name of your B2C tenant&gt;*          |
-    | **Application ID**            | *&lt;paste the Application ID from the clipboard&gt;* |
-    | **Sign-up or sign-in policy** | `B2C_1_SiUpIn`                                        |
+    | **Domain Name**               | *{the domain name of your B2C tenant}*                |
+    | **Application ID**            | *{paste the Application ID from the clipboard}*       |
+    | **Sign-up or sign-in policy** | B2C_1_SiUpIn                                          |
 
     Select **OK** to close the **Change Authentication** dialog. Select **OK** to create the web app.
 
@@ -110,8 +110,8 @@ Use the following values:
 | **Name**                      | Postman                          |                                 |
 | **Include web app / web API** | Yes                              |                                 |
 | **Allow implicit flow**       | Yes                              |                                 |
-| **Reply URL**                 | `https://getpostman.com/postman` |                                 |
-| **App ID URI**                | *&lt;leave blank&gt;*            | Not required for this tutorial. |
+| **Reply URL**                 | https://getpostman.com/postman   |                                 |
+| **App ID URI**                | *{leave blank}*                  | Not required for this tutorial. |
 | **Include native client**     | No                               |                                 |
 
 The newly registered web app needs permission to access the web API on the user's behalf.  
@@ -167,17 +167,17 @@ To make an authenticated request to the web API, a bearer token is required. Pos
 
    |                Setting                 |                                             Value                                             |                                                                                                                                    Notes                                                                                                                                     |
    |----------------------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-   |      <strong>Token Name</strong>       |                                  <em>&lt;token name&gt;</em>                                  |                                                                                                                   Enter a descriptive name for the token.                                                                                                                    |
+   |      <strong>Token Name</strong>       |                                          *{token name}*                                       |                                                                                                                   Enter a descriptive name for the token.                                                                                                                    |
    |      <strong>Grant Type</strong>       |                                           Implicit                                            |                                                                                                                                                                                                                                                                              |
-   |     <strong>Callback URL</strong>      |                               `https://getpostman.com/postman`                                |                                                                                                                                                                                                                                                                              |
-   |       <strong>Auth URL</strong>        | `https://login.microsoftonline.com/<tenant domain name>/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` |  Replace <em>&lt;tenant domain name&gt;</em> with the tenant's domain name. **IMPORTANT**: This URL must have the same domain name as what is found in `AzureAdB2C.Instance` in the web API's *appsettings.json* file. See NOTE&dagger;.            |
-   |       <strong>Client ID</strong>       |                <em>&lt;enter the Postman app's <b>Application ID</b>&gt;</em>                 |                                                                                                                                                                                                                                                                              |
-   |         <strong>Scope</strong>         |         `https://<tenant domain name>/<api>/user_impersonation openid offline_access`         | Replace <em>&lt;tenant domain name&gt;</em> with the tenant's domain name. Replace <em>&lt;api&gt;</em> with the App ID URI you gave the web API when you first registered it (in this case, `api`). The pattern for the URL is: <em>https://{tenant}.onmicrosoft.com/{api-id-uri}/{scope name}</em>. |
-   |         <strong>State</strong>         |                                 <em>&lt;leave blank&gt;</em>                                  |                                                                                                                                                                                                                                                                              |
+   |     <strong>Callback URL</strong>      |                                 https://getpostman.com/postman                                |                                                                                                                                                                                                                                                                              |
+   |       <strong>Auth URL</strong>        | https://login.microsoftonline.com/*{tenant domain name}*/oauth2/v2.0/authorize?p=B2C_1_SiUpIn |  Replace *{tenant domain name}* with the tenant's domain name. **IMPORTANT**: This URL must have the same domain name as what is found in `AzureAdB2C.Instance` in the web API's *appsettings.json* file. See NOTE&dagger;.                                                  |
+   |       <strong>Client ID</strong>       |                *{enter the Postman app's <b>Application ID</b>}*                              |                                                                                                                                                                                                                                                                              |
+   |         <strong>Scope</strong>         |         https://*{tenant domain name}*/*{api}*/user_impersonation openid offline_access       | Replace *{tenant domain name}* with the tenant's domain name. Replace *{api}* with the App ID URI you gave the web API when you first registered it (in this case, `api`). The pattern for the URL is: *https://{tenant}.onmicrosoft.com/{api-id-uri}/{scope name}*.         |
+   |         <strong>State</strong>         |                                      *{leave blank}*                                          |                                                                                                                                                                                                                                                                              |
    | <strong>Client Authentication</strong> |                                Send client credentials in body                                |                                                                                                                                                                                                                                                                              |
 
     > [!NOTE]
-    > &dagger; The **Auth URL** can be confusing. The policy settings dialog in the Azure Active Directory B2C portal displays two possible URLs, one in the format `https://login.microsoftonline.com/<tenant domain name>/<additional path information>`, and the other in the format `https://<tenant name>.b2clogin.com/<tenant domain name>/<additional path information>`. It's **critical** that the domain found in in `AzureAdB2C.Instance` in the web API's *appsettings.json* file matches the one used in the web app's *appsettings.json* file. This is the same domain used for the Auth URL field in Postman. Additionally, note that Visual Studio uses a slightly different URL format than what's displayed in the portal. As long as the domains match, the URL works.
+    > &dagger;The **Auth URL** can be confusing. The policy settings dialog in the Azure Active Directory B2C portal displays two possible URLs: One in the format *https://login.microsoftonline.com/{tenant domain name}/{additional path information}*, and the other in the format *https://{tenant name}.b2clogin.com/{tenant domain name}/{additional path information}*. It's **critical** that the domain found in in `AzureAdB2C.Instance` in the web API's *appsettings.json* file matches the one used in the web app's *appsettings.json* file. This is the same domain used for the Auth URL field in Postman. Additionally, note that Visual Studio uses a slightly different URL format than what's displayed in the portal. As long as the domains match, the URL works.
 
 3. Select the **Request Token** button.
 
