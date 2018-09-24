@@ -89,7 +89,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!NOTE]
-> `.AddIdenity()` is already providing the `.AddHttpContextAccessor()` registration. Sources: https://github.com/aspnet/Identity/blob/9b385180a9abcb264507efc23279f083bfc50520/src/Identity/IdentityServiceCollectionExtensions.cs#L79 . You can add the explicit registration without any problems related to the twice registration or performance. Discussion: https://github.com/aspnet/Hosting/issues/793#issuecomment-224831136
+> <xref:System.Security.Claims.ClaimsPrincipal.AddIdentity*> provides `AddHttpContextAccessor()` registration. Sources: https://github.com/aspnet/Identity/blob/9b385180a9abcb264507efc23279f083bfc50520/src/Identity/IdentityServiceCollectionExtensions.cs#L79. An additional explicit registration can be provided without generating an error or performance penalty. Discussion: https://github.com/aspnet/Hosting/issues/793#issuecomment-224831136
 
 ::: moniker-end
 
