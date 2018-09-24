@@ -274,7 +274,7 @@ The view component is invoked in a Razor file (for example, *Views/Home/Index.cs
 @await Component.InvokeAsync(nameof(PriorityList), new { maxPriority = 4, isDone = true })
 ```
 
-The method signature of `PriorityList` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.
+The method signature of `PriorityList.Invoke` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.
 
 ## Additional resources
 
