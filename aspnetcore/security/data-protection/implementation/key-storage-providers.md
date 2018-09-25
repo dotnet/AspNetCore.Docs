@@ -77,33 +77,18 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Entity Framework Core
 
-The [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package allows storing data protection keys using Entity Framework Core and any of the database providers it supports. Keys can be shared across several instances of a web app using a database.
+The [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package provides a mechanism for storing data protection keys using Entity Framework Core. `Microsoft.AspNetCore.DataProtection.EntityFrameworkCore` must be added to the project file, it's not part of the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
+With this package, keys can be shared across multiple instances of a web app.
 
 To configure the EF Core provider, call the [`PersistKeysToDbContext<TContext>`](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) method:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services
-        .AddDbContext<MyKeysContext>(o => o.UseSqlServer(myConnectionString))
-        .AddDataProtection()
-        .PersistKeysToDbContext<MyKeysContext>();
-}
-```
+[!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-15)]
 
 The generic parameter, `TContext`, must inherit from [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and
-[IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext).
+[IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
 
-```csharp
-class MyKeysContext : DbContext, IDataProtectionKeyContext
-{
-    // A recommended constructor overload when using EF Core with dependency injection
-    public MyKeysContext(DbContextOptions<DataProtectionKeyContext> options) : base(options) { }
-
-    // this maps to a table which will store keys
-    public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
-}
-```
+[!code-csharp[Main](key-storage-providers/sample/MyKeysContext.cs)]
 
 ::: moniker-end
 
