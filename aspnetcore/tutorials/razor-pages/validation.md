@@ -154,7 +154,7 @@ The following code shows combining attributes on one line:
 
 ### Publish to Azure
 
-See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish this app to Azure.
+For information on deploying to Azure, See [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet). You don't need to create a new app, start at [Launch the publish wizard](/azure/app-service/app-service-web-get-started-dotnet#launch-the-publish-wizard).
 
 Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 
