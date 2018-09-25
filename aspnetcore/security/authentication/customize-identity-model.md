@@ -399,9 +399,9 @@ Follow these steps to change the PK type:
     ::: moniker range="= aspnetcore-2.0"
 
     ```csharp
-      services.AddIdentity<IdentityUser<Guid>, IdentityRole>()
-              .AddEntityFrameworkStores<ApplicationDbContext>()
-              .AddDefaultTokenProviders();
+    services.AddIdentity<IdentityUser<Guid>, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
     ```
 
     ::: moniker-end
