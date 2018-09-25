@@ -12,11 +12,6 @@ namespace RazorPagesSampleApp.Data
             : base(options)
         {
         }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-        }
     }
     #endregion
 }
