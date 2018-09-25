@@ -2,12 +2,8 @@
 title: Get started with ASP.NET Core MVC and Visual Studio
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC and Visual Studio.
-manager: wpickett
 ms.author: riande
 ms.date: 10/07/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC and Visual Studio
@@ -163,5 +159,6 @@ If you were running in debug mode, tap **Shift-F5** to stop debugging.
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 
 ::: moniker-end
+
 > [!div class="step-by-step"]
 > [Next](adding-controller.md)  

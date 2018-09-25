@@ -2,13 +2,9 @@
 title: Scaffold Identity in ASP.NET Core projects
 author: rick-anderson
 description: Learn how to scaffold Identity in an ASP.NET Core project.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 5/16/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 08/16/2018
 uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
@@ -24,6 +20,9 @@ Although the scaffolder generates most of the necessary code, you'll have to upd
 When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created in the project directory. The *ScaffoldingReadme.txt* file contains general instructions on what's needed to complete the Identity scaffolding update. This document contains more complete instructions than the *ScaffoldingReadme.txt* file.
 
 We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
+
+> [!NOTE]
+> Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
 ## Scaffold identity into an empty project
 
@@ -63,6 +62,10 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more i
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
+<a name="useauthentication"></a>
+
+### Enable authentication
+
 In the `Configure` method of the `Startup` class, call [UseAuthentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
 
 [!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
@@ -80,12 +83,14 @@ Optional: Add the login partial (`_LoginPartial`) to the layout file:
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
 Use = 2.0: dotnet new razor -au Individual -o RPauth
+
+dotnet new webapp -au Individual -o RPauth
+
+dotnet new razor -au Individual -o RPauth
 cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files Account.Register
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
@@ -160,3 +165,9 @@ The following the code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.aut
 Register an `IEmailSender` implementation, for example:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
+
+[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet)]
+
+## Additional resources
+
+* [Changes to authentication code to ASP.NET Core 2.1 and later](xref:migration/20_21#changes-to-authentication-code)

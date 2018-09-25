@@ -2,12 +2,8 @@
 title: Examine the Details and Delete methods of an ASP.NET Core app
 author: rick-anderson
 description: Learn about the Details controller method and view in a basic ASP.NET Core MVC app.
-manager: wpickett
 ms.author: riande
 ms.date: 03/07/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app/details
 ---
 
@@ -18,10 +14,13 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 Open the Movie controller and examine the `Details` method:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](start-mvc/sample/MvcMovie21/Controllers/MoviesController.cs?name=snippet_details)]
 
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_details)]
 
 ::: moniker-end
@@ -35,10 +34,13 @@ EF makes it easy to search for data using the `SingleOrDefaultAsync` method. An 
 Examine the `Delete` and `DeleteConfirmed` methods.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](start-mvc/sample/MvcMovie21/Controllers/MoviesController.cs?name=snippet_delete)]
 
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_delete)]
 
 ::: moniker-end

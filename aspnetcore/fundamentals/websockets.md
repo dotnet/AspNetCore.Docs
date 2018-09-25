@@ -2,13 +2,10 @@
 title: WebSockets support in ASP.NET Core
 author: rick-anderson
 description: Learn how to get started with WebSockets in ASP.NET Core.
-manager: wpickett
+monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/15/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 06/28/2018
 uid: fundamentals/websockets
 ---
 
@@ -45,16 +42,9 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
 Use WebSockets to work directly with a socket connection. For example, use WebSockets for the best possible performance with a real-time game.
 
-[ASP.NET SignalR](/aspnet/signalr/overview/getting-started/introduction-to-signalr) provides a richer app model for real-time functionality, but it only runs on ASP.NET 4.x, not ASP.NET Core. An ASP.NET Core version of SignalR is scheduled for release with ASP.NET Core 2.1. See [ASP.NET Core 2.1 high-level planning](https://github.com/aspnet/Announcements/issues/288).
+[ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
 
-Until SignalR Core is released, WebSockets can be used. However, features that SignalR provides must be provided and supported by the developer. For example:
-
-* Support for a broader range of browser versions by using automatic fallback to alternative transport methods.
-* Automatic reconnection when a connection drops.
-* Support for clients calling methods on the server or vice versa.
-* Support for scaling to multiple servers.
-
-## How to use it
+## How to use WebSockets
 
 * Install the [Microsoft.AspNetCore.WebSockets](https://www.nuget.org/packages/Microsoft.AspNetCore.WebSockets/) package.
 * Configure the middleware.

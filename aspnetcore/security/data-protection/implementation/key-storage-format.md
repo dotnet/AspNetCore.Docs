@@ -2,12 +2,8 @@
 title: Key storage format in ASP.NET Core
 author: rick-anderson
 description: Learn implementation details of the ASP.NET Core Data Protection key storage format.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/implementation/key-storage-format
 ---
 # Key storage format in ASP.NET Core
@@ -61,7 +57,7 @@ The particular format of the \<descriptor> element depends on the authenticated 
 
 ## The \<encryptedSecret> element
 
-An <encryptedSecret> element which contains the encrypted form of the secret key material may be present if [encryption of secrets at rest is enabled](xref:security/data-protection/implementation/key-encryption-at-rest#data-protection-implementation-key-encryption-at-rest). The attribute decryptorType will be the assembly-qualified name of a type which implements IXmlDecryptor. This type is responsible for reading the inner <encryptedKey> element and decrypting it to recover the original plaintext.
+An **&lt;encryptedSecret&gt;** element which contains the encrypted form of the secret key material may be present if [encryption of secrets at rest is enabled](xref:security/data-protection/implementation/key-encryption-at-rest). The attribute `decryptorType` is the assembly-qualified name of a type which implements [IXmlDecryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmldecryptor). This type is responsible for reading the inner **&lt;encryptedKey&gt;** element and decrypting it to recover the original plaintext.
 
 As with \<descriptor>, the particular format of the <encryptedSecret> element depends on the at-rest encryption mechanism in use. In the above example, the master key is encrypted using Windows DPAPI per the comment.
 

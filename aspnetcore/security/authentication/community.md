@@ -2,12 +2,8 @@
 title: Community OSS authentication options for ASP.NET Core
 author: rick-anderson
 description: Discover open-source authentication options for ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.date: 03/12/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/community
 ---
 # Community OSS authentication options for ASP.NET Core

@@ -2,14 +2,9 @@
 title: Static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/18/2018
-ms.devlang: csharp
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -101,7 +96,7 @@ A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions
 
 The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method exists in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
 
-The files have been made publicly cacheable for 10 minutes (600 seconds):
+The files have been made publicly cacheable for 10 minutes (600 seconds) in the Development environment:
 
 ![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 

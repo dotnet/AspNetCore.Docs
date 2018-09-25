@@ -2,12 +2,8 @@
 title: Controller methods and views in ASP.NET Core
 author: rick-anderson
 description: Learn how to work with controller methods, views, and DataAnnotations in ASP.NET Core.
-manager: wpickett
 ms.author: riande
 ms.date: 03/07/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 
@@ -22,10 +18,15 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 Open the *Models/Movie.cs* file and add the highlighted lines shown below:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](start-mvc/sample/MvcMovie21/Models/MovieDateFixed.cs?name=snippet_1&highlight=2,3,12-13,17)]
+
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](start-mvc/sample/MvcMovie/Models/MovieDateWithExtraUsings.cs?name=snippet_1&highlight=13-14)]
+
 ::: moniker-end
 
 [!INCLUDE [adding-model](~/includes/mvc-intro/controller-methods-views.md)]

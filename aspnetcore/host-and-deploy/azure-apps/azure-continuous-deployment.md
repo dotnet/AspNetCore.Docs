@@ -2,13 +2,9 @@
 title: Continuous deployment to Azure with Visual Studio and Git with ASP.NET Core
 author: rick-anderson
 description: Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
 ---
 # Continuous deployment to Azure with Visual Studio and Git with ASP.NET Core
@@ -19,7 +15,7 @@ By [Erik Reitan](https://github.com/Erikre)
 
 This tutorial shows how to create an ASP.NET Core web app using Visual Studio and deploy it from Visual Studio to Azure App Service using continuous deployment.
 
-See also [Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment](/vsts/build-release/archive/apps/aspnet/aspnet-4-ci-cd-azure-automatic), which shows how to configure a continuous delivery (CD) workflow for [Azure App Service](/azure/app-service/app-service-web-overview) using Visual Studio Team Services. Azure Continuous Delivery in Team Services simplifies setting up a robust deployment pipeline to publish updates for apps hosted in Azure App Service. The pipeline can be configured from the Azure portal to build, run tests, deploy to a staging slot, and then deploy to production.
+See also [Create your first pipeline with Azure Pipelines](/azure/devops/pipelines/get-started-yaml), which shows how to configure a continuous delivery (CD) workflow for [Azure App Service](/azure/app-service/app-service-web-overview) using Azure DevOps Services. Azure Pipelines (an Azure DevOps Services service) simplifies setting up a robust deployment pipeline to publish updates for apps hosted in Azure App Service. The pipeline can be configured from the Azure portal to build, run tests, deploy to a staging slot, and then deploy to production.
 
 > [!NOTE]
 > To complete this tutorial, a Microsoft Azure account is required. To obtain an account, [activate MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) or [sign up for a free trial](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
@@ -44,7 +40,7 @@ This tutorial assumes the following software is installed:
 
 1. In the **New ASP.NET Core Project** dialog, select the ASP.NET Core **Empty** template, then click **OK**.
 
-   ![New ASP.NET Project dialog](azure-continuous-deployment/_static/02-web-site-template.png)
+   ![New ASP.NET Core Project dialog](azure-continuous-deployment/_static/02-web-site-template.png)
 
 > [!NOTE]
 > The most recent release of .NET Core is 2.0.
@@ -226,5 +222,5 @@ View the updated web app by selecting **Browse** from the web app blade in the A
 
 ## Additional resources
 
-* [Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment](/vsts/build-release/archive/apps/aspnet/aspnet-4-ci-cd-azure-automatic)
+* [Create your first pipeline with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 * [Project Kudu](https://github.com/projectkudu/kudu/wiki)

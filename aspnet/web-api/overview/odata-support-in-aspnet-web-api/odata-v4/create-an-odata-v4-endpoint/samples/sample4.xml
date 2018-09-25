@@ -5,7 +5,7 @@
 
   <!-- Add this: -->
   <connectionStrings>
-    <add name="ProductsContext" connectionString="Data Source=(localdb)\v11.0; 
+    <add name="ProductsContext" connectionString="Data Source=(localdb)\mssqllocaldb; 
         Initial Catalog=ProductsContext; Integrated Security=True; MultipleActiveResultSets=True; 
         AttachDbFilename=|DataDirectory|ProductsContext.mdf"
       providerName="System.Data.SqlClient" />

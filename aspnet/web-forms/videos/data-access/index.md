@@ -3,13 +3,9 @@ uid: web-forms/videos/data-access/index
 title: "Data Access | Microsoft Docs"
 author: rick-anderson
 description: "How to create a Data Access Layer (DAL)."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/14/2011
-ms.topic: article
 ms.assetid: a923735c-2d34-456c-8327-40aa62a4c1d6
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access
 msc.type: chapter
 ---

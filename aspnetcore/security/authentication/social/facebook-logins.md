@@ -2,12 +2,8 @@
 title: Facebook external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Facebook account user authentication into an existing ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.date: 08/01/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/facebook-logins
 ---
 # Facebook external login setup in ASP.NET Core
@@ -47,11 +43,10 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Click **Save Changes**.
 
-* Click the **Dashboard** link in the left navigation. 
+* Click **Settings > Basic** link in the left navigation. 
 
     On this page, make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
 
-   ![Facebook Developer Dashboard](index/_static/FBDashboard.png)
 
 * When deploying the site you need to revisit the **Facebook Login** setup page and register a new public URI.
 

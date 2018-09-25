@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/visual-studio-web-deployment/introduction
 title: "ASP.NET Web Deployment using Visual Studio: Introduction | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or a third-party hosting provider, by using V..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/15/2013
-ms.topic: article
 ms.assetid: 24ad086d-865e-433c-9ac9-05f1a553da16
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/introduction
 msc.type: authoredcontent
 ---

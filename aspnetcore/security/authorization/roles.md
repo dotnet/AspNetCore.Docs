@@ -2,12 +2,8 @@
 title: Role-based authorization in ASP.NET Core
 author: rick-anderson
 description: Learn how to restrict ASP.NET Core controller and action access by passing roles to the Authorize attribute.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
@@ -15,6 +11,13 @@ uid: security/authorization/roles
 <a name="security-authorization-role-based"></a>
 
 When an identity is created it may belong to one or more roles. For example, Tracy may belong to the Administrator and User roles whilst Scott may only belong to the User role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](/dotnet/api/system.security.principal.genericprincipal.isinrole) method on the [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal) class.
+
+::: moniker range=">= aspnetcore-2.0"
+
+> [!IMPORTANT]
+> This topic does **not** apply to Razor Pages. Razor Pages supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter). For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+
+::: moniker-end
 
 ## Adding role checks
 

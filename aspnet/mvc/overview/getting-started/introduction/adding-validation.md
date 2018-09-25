@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/introduction/adding-validation
 title: "Adding Validation | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: 9f35ca15-e216-4db6-9ebf-24380b0f31b4
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-validation
 msc.type: authoredcontent
 ---
@@ -51,7 +47,7 @@ When this command finishes, Visual Studio opens the class file that defines the 
 
 [!code-csharp[Main](adding-validation/samples/sample3.cs)]
 
-The `Genre` field is are no longer nullable (that is, you must enter a value). The `Rating` field has a maximum length of 5 and `Title` has a maximum length of 60. The minimum length of 3 on `Title` and the range on `Price` did not create schema changes.
+The `Genre` field is no longer nullable (that is, you must enter a value). The `Rating` field has a maximum length of 5 and `Title` has a maximum length of 60. The minimum length of 3 on `Title` and the range on `Price` did not create schema changes.
 
 Examine the Movie schema:
 

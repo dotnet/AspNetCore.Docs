@@ -14,6 +14,7 @@ namespace TestingControllersSample.Tests.UnitTests
 {
     public class SessionControllerTests
     {
+        #region snippet_SessionControllerTests
         [Fact]
         public async Task IndexReturnsARedirectToIndexHomeWhenIdIsNull()
         {
@@ -24,7 +25,8 @@ namespace TestingControllersSample.Tests.UnitTests
             var result = await controller.Index(id: null);
 
             // Assert
-            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+            var redirectToActionResult = 
+                Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Home", redirectToActionResult.ControllerName);
             Assert.Equal("Index", redirectToActionResult.ActionName);
         }
@@ -36,7 +38,7 @@ namespace TestingControllersSample.Tests.UnitTests
             int testSessionId = 1;
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult((BrainstormSession)null));
+                .ReturnsAsync((BrainstormSession)null);
             var controller = new SessionController(mockRepo.Object);
 
             // Act
@@ -54,7 +56,8 @@ namespace TestingControllersSample.Tests.UnitTests
             int testSessionId = 1;
             var mockRepo = new Mock<IBrainstormSessionRepository>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
-                .Returns(Task.FromResult(GetTestSessions().FirstOrDefault(s => s.Id == testSessionId)));
+                .ReturnsAsync(GetTestSessions().FirstOrDefault(
+                    s => s.Id == testSessionId));
             var controller = new SessionController(mockRepo.Object);
 
             // Act
@@ -62,11 +65,13 @@ namespace TestingControllersSample.Tests.UnitTests
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsType<StormSessionViewModel>(viewResult.ViewData.Model);
+            var model = Assert.IsType<StormSessionViewModel>(
+                viewResult.ViewData.Model);
             Assert.Equal("Test One", model.Name);
             Assert.Equal(2, model.DateCreated.Day);
             Assert.Equal(testSessionId, model.Id);
         }
+        #endregion
 
         private List<BrainstormSession> GetTestSessions()
         {

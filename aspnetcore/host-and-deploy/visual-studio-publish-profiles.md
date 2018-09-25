@@ -2,13 +2,9 @@
 title: Visual Studio publish profiles for ASP.NET Core app deployment
 author: rick-anderson
 description: Learn how to create publish profiles in Visual Studio and use them for managing ASP.NET Core app deployments to various targets.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/10/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles for ASP.NET Core app deployment
@@ -29,7 +25,7 @@ The following project file was created with the command `dotnet new mvc`:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -503,3 +499,4 @@ Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console
 
 * [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifies deployment of web apps and websites to IIS servers.
 * [https://github.com/aspnet/websdk](https://github.com/aspnet/websdk/issues): File issues and request features for deployment.
+* [Publish an ASP.NET Web App to an Azure VM from Visual Studio](/azure/virtual-machines/windows/publish-web-app-from-visual-studio)

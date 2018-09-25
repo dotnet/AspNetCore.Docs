@@ -2,17 +2,13 @@
 title: View-based authorization in ASP.NET Core MVC
 author: rick-anderson
 description: This document demonstrates how to inject and utilize the authorization service inside of an ASP.NET Core Razor view.
-manager: wpickett
 ms.author: riande
 ms.date: 10/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/views
 ---
 # View-based authorization in ASP.NET Core MVC
 
-A developer often wants to show, hide, or otherwise modify a UI based on the current user identity. You can access the authorization service within MVC views via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection). To inject the authorization service into a Razor view, use the `@inject` directive:
+A developer often wants to show, hide, or otherwise modify a UI based on the current user identity. You can access the authorization service within MVC views via [dependency injection](xref:fundamentals/dependency-injection). To inject the authorization service into a Razor view, use the `@inject` directive:
 
 ```cshtml
 @using Microsoft.AspNetCore.Authorization

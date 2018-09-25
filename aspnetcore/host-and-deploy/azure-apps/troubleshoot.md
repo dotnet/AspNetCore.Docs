@@ -2,13 +2,9 @@
 title: Troubleshoot ASP.NET Core on Azure App Service
 author: guardrex
 description: Learn how to diagnose problems with ASP.NET Core Azure App Service deployments.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/31/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/azure-apps/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on Azure App Service
@@ -176,7 +172,7 @@ For more information, see [Enable diagnostics logging for web apps in Azure App 
 * [Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)
 * [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
 * [Troubleshoot a web app in Azure App Service using Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio)
-* [Troubleshoot HTTP errors of "502 bad gateway" and "503 service unavailable" in your Azure web apps](/app-service/app-service-web-troubleshoot-http-502-http-503)
+* [Troubleshoot HTTP errors of "502 bad gateway" and "503 service unavailable" in your Azure web apps](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
 * [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
 * [Application performance FAQs for Web Apps in Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
 * [Azure Web App sandbox (App Service runtime execution limitations)](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)

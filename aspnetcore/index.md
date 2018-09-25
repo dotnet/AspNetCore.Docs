@@ -2,12 +2,8 @@
 title: Introduction to ASP.NET Core
 author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
-manager: wpickett
 ms.author: riande
 ms.date: 02/28/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -50,7 +46,7 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#buil
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 * Built-in support for [multiple data formats and content negotiation](xref:web-api/advanced/formatting) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * [Model binding](xref:mvc/models/model-binding) automatically maps data from HTTP requests to action method parameters.
-* [Model validation](xref:mvc/models/validation) automatically performs client- and server-side validation.
+* [Model validation](xref:mvc/models/validation) automatically performs client-side and server-side validation.
 
 ## Client-side development
 
@@ -76,5 +72,6 @@ For more information, see the following resources:
 
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [ASP.NET Core tutorials](xref:tutorials/index)
+* <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.

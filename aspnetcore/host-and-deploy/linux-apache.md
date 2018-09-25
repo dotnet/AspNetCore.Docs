@@ -2,13 +2,9 @@
 title: Host ASP.NET Core on Linux with Apache
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web app running on Kestrel.
 author: spboyer
-manager: wpickett
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 03/13/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 09/08/2018
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -54,8 +50,10 @@ Because requests are forwarded by reverse proxy, use the [Forwarded Headers Midd
 Any component that depends on the scheme, such as authentication, link generation, redirects, and geolocation, must be placed after invoking the Forwarded Headers Middleware. As a general rule, Forwarded Headers Middleware should run before other middleware except diagnostics and error handling middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing.
 
 ::: moniker range=">= aspnetcore-2.0"
+
 > [!NOTE]
 > Either configuration&mdash;with or without a reverse proxy server&mdash;is a valid and supported hosting configuration for ASP.NET Core 2.0 or later apps. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+
 ::: moniker-end
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
@@ -93,7 +91,16 @@ app.UseFacebookAuthentication(new FacebookOptions()
 
 If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified to the middleware, the default headers to forward are `None`.
 
-Additional configuration might be required for apps hosted behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+Only proxies running on localhost (127.0.0.1, [::1]) are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
+
+```csharp
+services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+});
+```
+
+For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
 ### Install Apache
 
@@ -152,7 +159,7 @@ Create a configuration file, named *hellomvc.conf*, for the app:
 </VirtualHost>
 ```
 
-The `VirtualHost` block can appear multiple times, in one or more files on a server. In the preceding configuration file, Apache accepts public traffic on port 80. The domain `www.example.com` is being served, and the `*.example.com` alias resolves to the same website. See [Name-based virtual host support](https://httpd.apache.org/docs/current/vhosts/name-based.html) for more information. Requests are proxied at the root to port 5000 of the server at 127.0.0.1. For bi-directional communication, `ProxyPass` and `ProxyPassReverse` are required.
+The `VirtualHost` block can appear multiple times, in one or more files on a server. In the preceding configuration file, Apache accepts public traffic on port 80. The domain `www.example.com` is being served, and the `*.example.com` alias resolves to the same website. See [Name-based virtual host support](https://httpd.apache.org/docs/current/vhosts/name-based.html) for more information. Requests are proxied at the root to port 5000 of the server at 127.0.0.1. For bi-directional communication, `ProxyPass` and `ProxyPassReverse` are required. To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 > [!WARNING]
 > Failure to specify a proper [ServerName directive](https://httpd.apache.org/docs/current/mod/core.html#servername) in the **VirtualHost** block exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
@@ -194,8 +201,9 @@ Description=Example .NET Web API App running on CentOS 7
 WorkingDirectory=/var/aspnetcore/hellomvc
 ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 Restart=always
-# Restart service after 10 seconds if dotnet service crashes
+# Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
+KillSignal=SIGINT
 SyslogIdentifier=dotnet-example
 User=apache
 Environment=ASPNETCORE_ENVIRONMENT=Production 
@@ -204,27 +212,32 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-> [!NOTE]
-> **User** &mdash; If the user *apache* isn't used by the configuration, the user must be created first and given proper ownership for files.
+If the user *apache* isn't used by the configuration, the user must be created first and given proper ownership of files.
 
-> [!NOTE]
-> Some values (for example, SQL connection strings) must be escaped for the configuration providers to read the environment variables. Use the following command to generate a properly escaped value for use in the configuration file:
->
-> ```console
-> systemd-escape "<value-to-escape>"
-> ```
+Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial interrupt signal. If the app doesn't shut down in this period, SIGKILL is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or `infinity` to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf*, *user.conf.d*). The default timeout for most distributions is 90 seconds.
+
+```
+# The default value is 90 seconds for most distributions.
+TimeoutStopSec=90
+```
+
+Some values (for example, SQL connection strings) must be escaped for the configuration providers to read the environment variables. Use the following command to generate a properly escaped value for use in the configuration file:
+
+```console
+systemd-escape "<value-to-escape>"
+```
 
 Save the file and enable the service:
 
 ```bash
-systemctl enable kestrel-hellomvc.service
+sudo systemctl enable kestrel-hellomvc.service
 ```
 
 Start the service and verify that it's running:
 
 ```bash
-systemctl start kestrel-hellomvc.service
-systemctl status kestrel-hellomvc.service
+sudo systemctl start kestrel-hellomvc.service
+sudo systemctl status kestrel-hellomvc.service
 
 ● kestrel-hellomvc.service - Example .NET Web API App running on CentOS 7
     Loaded: loaded (/etc/systemd/system/kestrel-hellomvc.service; enabled)
@@ -258,6 +271,21 @@ For time filtering, specify time options with the command. For example, use `--s
 ```bash
 sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-10-18 04:00"
 ```
+
+## Data protection
+
+The [ASP.NET Core Data Protection stack](xref:security/data-protection/index) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+
+If the key ring is stored in memory when the app restarts:
+
+* All cookie-based authentication tokens are invalidated.
+* Users are required to sign in again on their next request.
+* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+
+To configure data protection to persist and encrypt the key ring, see:
+
+* <xref:security/data-protection/implementation/key-storage-providers>
+* <xref:security/data-protection/implementation/key-encryption-at-rest>
 
 ## Securing the app
 

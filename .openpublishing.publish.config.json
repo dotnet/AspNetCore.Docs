@@ -19,10 +19,6 @@
     "master": [
       "Publish",
       "Pdf"
-    ],
-    "aspnetmigration": [
-      "Publish",
-      "Pdf"
     ]
   },
   "docsets_to_publish": [

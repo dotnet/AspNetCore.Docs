@@ -1,13 +1,9 @@
 ---
-title: Get started with Razor Pages in ASP.NET Core
+title: Tutorial: Get started with Razor Pages in ASP.NET Core
 author: rick-anderson
-description: Discover the basics of building an ASP.NET Core Razor Pages web app. Razor Pages is recommended for web workloads in ASP.NET Core.
-manager: wpickett
+description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages that use Entity Framework Core, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
 ms.date: 05/30/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages/razor-pages-start
 ---
 # Get started with Razor Pages in ASP.NET Core
@@ -22,7 +18,7 @@ We recommend you follow the ASP.NET Core 2.1 version of this tutorial. It's **mu
 
 ::: moniker-end
 
-This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. Razor Pages is the recommended way to build UI for web apps in ASP.NET Core.
+This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages that use Entity Framework Core, add search functionality, add input validation, and use migrations to update the model.
 
 There are three versions of this tutorial:
 
@@ -36,7 +32,7 @@ There are three versions of this tutorial:
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE [Prerequisites](~/includes/net-core-prereqs-windows.md)]
 
 ## Create a Razor web app
 
@@ -59,10 +55,12 @@ The following image shows the app after accepting tracking:
 
 ![Home or Index page](razor-pages-start/_static/home2.1.png)
 
-* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5000. When you run the app, you'll see a different port number.
+* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5001. When you run the app, you'll see a different port number.
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
 [!INCLUDE [razor-pages-start](~/includes/RP/2.1/razor-pages-start.md)]
+
+[!INCLUDE [F7](~/includes/RP/F7.md)]
 
 ::: moniker-end
 
@@ -70,7 +68,7 @@ The following image shows the app after accepting tracking:
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE [Prerequisites](~/includes/net-core-prereqs-windows.md)]
 
 ## Create a Razor web app
 
@@ -92,7 +90,7 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 * Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5000. When you run the app, you'll see a different port number.
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
-[!INCLUDE [razor-pages-start](~/includes/RP/2.1/razor-pages-start.md)]
+[!INCLUDE [razor-pages-start](~/includes/RP/razor-pages-start.md)]
 
 ::: moniker-end
 

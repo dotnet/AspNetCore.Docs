@@ -2,12 +2,8 @@
 title: Articles based on ASP.NET Core projects created with individual user accounts
 author: rick-anderson
 description: Discover articles based on ASP.NET Core projects created with individual user accounts.
-manager: wpickett
 ms.author: riande
 ms.date: 11/30/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual user accounts
@@ -24,8 +20,6 @@ dotnet new webapi -au Individual
 dotnet new webapp -au Individual
 ```
 
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
@@ -37,6 +31,25 @@ dotnet new razor -au Individual
 ```
 
 ::: moniker-end
+
+<a name="no"></a>
+## No Authentication
+
+Authentication is specified in the .NET Core CLI with the `-au` option. In Visual Studio, the **Change Authentication** dialog is available for new web applications. The default for new web apps in Visual Studio is **No Authentication**.
+
+Projects created with no authentication:
+
+* Don't contain web pages and UI to sign in and sign out.
+* Don't contain authentication code.
+
+<a name="win"></a>
+## Windows Authentication
+
+Windows Authentication is specified for new web apps in the .NET Core CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
+
+If Windows Authentication is selected, the app is configured to use the [Windows Authentication IIS module](xref:host-and-deploy/iis/modules). Windows Authentication is intended for Intranet web sites.
+
+## Additional resources
 
 The following articles show how to use the code generated in ASP.NET Core templates that use individual user accounts:
 

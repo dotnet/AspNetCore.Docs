@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/database-first-development/changing-the-databa
 title: "EF Database First with ASP.NET MVC: Changing the Database | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/01/2014
-ms.topic: article
 ms.assetid: cfd5c083-a319-482e-8f25-5b38caa93954
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/changing-the-database
 msc.type: authoredcontent
 ---

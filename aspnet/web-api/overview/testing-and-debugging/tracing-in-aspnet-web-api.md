@@ -3,13 +3,9 @@ uid: web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
 title: "Tracing in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to enable tracing in ASP.NET Web API."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/25/2014
-ms.topic: article
 ms.assetid: 66a837e9-600b-4b72-97a9-19804231c64a
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
 msc.type: authoredcontent
 ---
@@ -112,7 +108,7 @@ Only one trace writer can be active. By default, Web API sets a &quot;no-op&quot
 
 ## How Web API Tracing Works
 
-Tracing in Web API uses a in Web API uses a *facade* pattern: When tracing is enabled, Web API wraps various parts of the request pipeline with classes that perform trace calls.
+Tracing in Web API uses a *facade* pattern: When tracing is enabled, Web API wraps various parts of the request pipeline with classes that perform trace calls.
 
 For example, when selecting a controller, the pipeline uses the **IHttpControllerSelector** interface. With tracing enabled, the pipleline inserts a class that implements **IHttpControllerSelector** but calls through to the real implementation:
 

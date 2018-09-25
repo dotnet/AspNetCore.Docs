@@ -17,5 +17,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.1.0" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <Content Include="**\*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

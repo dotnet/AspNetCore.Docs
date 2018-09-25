@@ -2,13 +2,9 @@
 title: IIS modules with ASP.NET Core
 author: guardrex
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/04/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
@@ -28,7 +24,7 @@ The table indicates native IIS modules that are functional on reverse proxy requ
 | **Client Certification Mapping Authentication**<br>`CertificateMappingAuthenticationModule` | Yes | |
 | **CGI**<br>`CgiModule` | No | |
 | **Configuration Validation**<br>`ConfigurationValidationModule` | Yes | |
-| **HTTP Errors**<br>`CustomErrorModule` | No | [Status Code Pages Middleware](xref:fundamentals/error-handling#configuring-status-code-pages) |
+| **HTTP Errors**<br>`CustomErrorModule` | No | [Status Code Pages Middleware](xref:fundamentals/error-handling#configure-status-code-pages) |
 | **Custom Logging**<br>`CustomLoggingModule` | Yes | |
 | **Default Document**<br>`DefaultDocumentModule` | No | [Default Files Middleware](xref:fundamentals/static-files#serve-a-default-document) |
 | **Digest Authentication**<br>`DigestAuthenticationModule` | Yes | |

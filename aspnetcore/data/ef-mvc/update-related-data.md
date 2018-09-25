@@ -2,16 +2,16 @@
 title: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
 author: rick-anderson
 description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
-manager: wpickett
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/update-related-data
 ---
 
 # ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
+
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -133,7 +133,7 @@ The code does the following:
         "",
         i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
 	```
-	
+
 -   If the office location is blank, sets the Instructor.OfficeAssignment property to null so that the related row in the OfficeAssignment table will be deleted.
 
     <!-- Snippets don't play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
@@ -212,7 +212,7 @@ If the check box for a course wasn't selected, but the course is in the `Instruc
 In *Views/Instructors/Edit.cshtml*, add a **Courses** field with an array of check boxes by adding the following code immediately after the `div` elements for the **Office** field and before the `div` element for the **Save** button.
 
 <a id="notepad"></a>
-> [!NOTE] 
+> [!NOTE]
 > When you paste the code in Visual Studio, line breaks will be changed in a way that breaks the code.  Press Ctrl+Z one time to undo the automatic formatting.  This will fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown or you'll get a runtime error. With the block of new code selected, press Tab three times to line up the new code with the existing code. You can check the status of this problem [here](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
 
 [!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
@@ -227,7 +227,7 @@ Run the app, select the **Instructors** tab, and click **Edit** on an instructor
 
 Change some course assignments and click Save. The changes you make are reflected on the Index page.
 
-> [!NOTE] 
+> [!NOTE]
 > The approach taken here to edit instructor course data works well when there's a limited number of courses. For collections that are much larger, a different UI and a different updating method would be required.
 
 ## Update the Delete page
@@ -281,7 +281,7 @@ In *Views/Instructor/Create.cshtml*, add an office location text box and check b
 
 [!code-html[](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
 
-Test by running the app and creating an instructor. 
+Test by running the app and creating an instructor.
 
 ## Handling Transactions
 
@@ -291,6 +291,8 @@ As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly im
 
 You have now completed the introduction to working with related data. In the next tutorial you'll see how to handle concurrency conflicts.
 
+::: moniker-end
+
 > [!div class="step-by-step"]
 > [Previous](read-related-data.md)
-> [Next](concurrency.md)  
+> [Next](concurrency.md)

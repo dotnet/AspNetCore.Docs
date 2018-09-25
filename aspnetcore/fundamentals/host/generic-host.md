@@ -2,21 +2,17 @@
 title: .NET Generic Host
 author: guardrex
 description: Learn about the Generic Host in .NET, which is responsible for app startup and lifetime management.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/16/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
 
 By [Luke Latham](https://github.com/guardrex)
 
-.NET apps configure and launch a *host*. The host is responsible for app startup and lifetime management. This topic covers the ASP.NET Core Generic Host ([HostBuilder](/dotnet/api/microsoft.extensions.hosting.hostbuilder)), which is useful for hosting apps that don't process HTTP requests. For coverage of the Web Host ([WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder)), see the [Web Host](xref:fundamentals/host/web-host) topic.
+.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. This topic covers the ASP.NET Core Generic Host ([HostBuilder](/dotnet/api/microsoft.extensions.hosting.hostbuilder)), which is useful for hosting apps that don't process HTTP requests. For coverage of the Web Host ([WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder)), see <xref:fundamentals/host/web-host>.
 
 The goal of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on the Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
 
@@ -56,7 +52,7 @@ Host builder configuration is created by calling [ConfigureHostConfiguration](/d
 
 Environment variable configuration isn't added by default. Call [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) on the host builder to configure the host from environment variables. `AddEnvironmentVariables` accepts an optional user-defined prefix. The sample app uses a prefix of `PREFIX_`. The prefix is removed when the environment variables are read. When the sample app's host is configured, the environment variable value for `PREFIX_ENVIRONMENT` becomes the host configuration value for the `environment` key.
 
-During development when using [Visual Studio](https://www.visualstudio.com/) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file during development. For more information, see [Use multiple environments](xref:fundamentals/environments).
+During development when using [Visual Studio](https://www.visualstudio.com/) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file during development. For more information, see <xref:fundamentals/environments>.
 
 `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last.
 
@@ -74,6 +70,24 @@ Example `HostBuilder` configuration using `ConfigureHostConfiguration`:
 ### Extension method configuration
 
 Extension methods are called on the `IHostBuilder` implementation to configure the content root and the environment.
+
+#### Application Key (Name)
+
+The [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment.applicationname) property is set from host configuration during host construction. To set the value explicitly, use the [HostDefaults.ApplicationKey](/dotnet/api/microsoft.extensions.hosting.hostdefaults.applicationkey):
+
+**Key**: applicationName  
+**Type**: *string*  
+**Default**: The name of the assembly containing the app's entry point.  
+**Set using**: `HostBuilderContext.HostingEnvironment.ApplicationName`  
+**Environment variable**: `<PREFIX_>APPLICATIONKEY` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
+
+```csharp
+var host = new HostBuilder()
+    .ConfigureAppConfiguration((hostContext, configApp) =>
+    {
+        hostContext.HostingEnvironment.ApplicationName = "CustomApplicationName";
+    })
+```
 
 #### Content Root
 
@@ -126,11 +140,19 @@ Example app configuration using `ConfigureAppConfiguration`:
 > [!NOTE]
 > The [AddConfiguration](/dotnet/api/microsoft.extensions.configuration.chainedbuilderextensions.addconfiguration) extension method isn't currently capable of parsing a configuration section returned by [GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) (for example, `.AddConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:Logging:LogLevel:Default`). The `AddConfiguration` method expects an exact match to configuration keys (for example, `Logging:LogLevel:Default`). The presence of the section name on the keys prevents the section's values from configuring the app. This issue will be addressed in an upcoming release. For more information and workarounds, see [Passing configuration section into WebHostBuilder.UseConfiguration uses full keys](https://github.com/aspnet/Hosting/issues/839).
 
+To move settings files to the output directory, specify the settings files as [MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items) in the project file. The sample app moves its JSON app settings files and *hostsettings.json* with the following **&lt;Content:&gt;** item:
+
+```xml
+<ItemGroup>
+  <Content Include="**\*.json" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
+
 ## ConfigureServices
 
 [ConfigureServices](/dotnet/api/microsoft.extensions.hosting.hostinghostbuilderextensions.configureservices) adds services to the app's [dependency injection](xref:fundamentals/dependency-injection) container. `ConfigureServices` can be called multiple times with additive results.
 
-A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface. For more information, see the [Background tasks with hosted services](xref:fundamentals/host/hosted-services) topic.
+A hosted service is a class with background task logic that implements the [IHostedService](/dotnet/api/microsoft.extensions.hosting.ihostedservice) interface. For more information, see <xref:fundamentals/host/hosted-services>.
 
 The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses the `AddHostedService` extension method to add a service for lifetime events, `LifetimeEventsHostedService`, and a timed background task, `TimedHostedService`, to the app:
 
@@ -168,16 +190,32 @@ Use the factory and configure the custom service container for the app:
 
 ## Extensibility
 
-Host extensibility is performed with extension methods on `IHostBuilder`. The following example shows how an extension method extends an `IHostBuilder` implementation with [RabbitMQ](https://www.rabbitmq.com/). The extension method (elsewhere in the app) registers a RabbitMQ `IHostedService`:
+Host extensibility is performed with extension methods on `IHostBuilder`. The following example shows how an extension method extends an `IHostBuilder` implementation with the [TimedHostedService](xref:fundamentals/host/hosted-services#timed-background-tasks) example demonstrated in <xref:fundamentals/host/hosted-services>.
 
 ```csharp
-// UseRabbitMq is an extension method that sets up RabbitMQ to handle incoming
-// messages.
 var host = new HostBuilder()
-    .UseRabbitMq<MyMessageHandler>()
+    .UseHostedService<TimedHostedService>()
     .Build();
 
 await host.StartAsync();
+```
+
+An app establishes the `UseHostedService` extension method to register the hosted service passed in `T`:
+
+```csharp
+using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+public static class Extensions
+{
+    public static IHostBuilder UseHostedService<T>(this IHostBuilder hostBuilder)
+        where T : class, IHostedService, IDisposable
+    {
+        return hostBuilder.ConfigureServices(services =>
+            services.AddHostedService<T>());
+    }
+}
 ```
 
 ## Manage the host
@@ -380,7 +418,7 @@ public class MyClass
 }
 ```
 
-For more information, see [Use multiple environments](xref:fundamentals/environments).
+For more information, see <xref:fundamentals/environments>.
 
 ## IApplicationLifetime interface
 
@@ -392,7 +430,7 @@ For more information, see [Use multiple environments](xref:fundamentals/environm
 | [ApplicationStopped](/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime.applicationstopped) | The host is completing a graceful shutdown. All requests should be processed. Shutdown blocks until this event completes. |
 | [ApplicationStopping](/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime.applicationstopping) | The host is performing a graceful shutdown. Requests may still be processing. Shutdown blocks until this event completes. |
 
-Constructor-inject the `IApplicationLifetime` service into any class. The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses contructor injection into a `LifetimeEventsHostedService` class (an `IHostedService` implementation) to register the events.
+Constructor-inject the `IApplicationLifetime` service into any class. The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses constructor injection into a `LifetimeEventsHostedService` class (an `IHostedService` implementation) to register the events.
 
 *LifetimeEventsHostedService.cs*:
 
@@ -419,5 +457,5 @@ public class MyClass
 
 ## Additional resources
 
-* [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
+* <xref:fundamentals/host/hosted-services>
 * [Hosting repo samples on GitHub](https://github.com/aspnet/Hosting/tree/release/2.1/samples)

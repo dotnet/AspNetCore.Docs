@@ -3,13 +3,9 @@ uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dynamicp
 title: "[How Do I:] Use the ASP.NET AJAX DynamicPopulate Extender? | Microsoft Docs"
 author: JoeStagner
 description: "Watch a demonstration of using the ASP.NET AJAX DynamicPopulate extender to dynamically populate an area of a web page with the results of an asynchronous ca..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/31/2007
-ms.topic: article
 ms.assetid: 1c83e543-3f56-42ed-9d10-ac3f8dd26093
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dynamicpopulate-extender
 msc.type: video
 ---

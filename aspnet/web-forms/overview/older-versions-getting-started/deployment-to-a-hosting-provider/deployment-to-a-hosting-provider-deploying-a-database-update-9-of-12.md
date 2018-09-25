@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-p
 title: "Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio or Visual Web Developer: Deploying a Database Update - 9 of 12 | Microsoft Docs"
 author: tdykstra
 description: "This series of tutorials shows you how to deploy (publish) an ASP.NET web application project that includes a SQL Server Compact database by using Visual Stu..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/17/2011
-ms.topic: article
 ms.assetid: a8d776af-4735-4612-87f6-9f326587f2d3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12
 msc.type: authoredcontent
 ---

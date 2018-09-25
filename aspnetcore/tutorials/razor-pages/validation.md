@@ -2,13 +2,9 @@
 title: Add validation to an ASP.NET Core Razor Page
 author: rick-anderson
 description: Discover how to add validation to a Razor Page in ASP.NET Core.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/07/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages/validation
 ---
 # Add validation to an ASP.NET Core Razor Page
@@ -30,20 +26,21 @@ Open the *Movie.cs* file. [DataAnnotations](https://docs.microsoft.com/aspnet/mv
 Update the `Movie` class to take advantage of the `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRatingDA.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 ::: moniker-end
 
 Validation attributes specify behavior that's enforced on model properties:
 
 * The `Required` and `MinimumLength` attributes indicate that a property must have a value. However, nothing prevents a user from entering whitespace to satisfy the validation constraint for a nullable type. Non-nullable [value types](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute.
-* The `RegularExpression` attribute limits the characters that the user can enter. In the preceding code, `Genre` and `Rating` must use only letters (whitespace, numbers, and special characters aren't allowed).
+* The `RegularExpression` attribute limits the characters that the user can enter. In the preceding code, `Genre` must start with one or more capital letters and follow with zero or more letters, single or double quotes, whitespace characters, or dashes. `Rating` must start with one or more capital letters and follow with zero or more letters, numbers, single or double quotes, whitespace characters, or dashes.
 * The `Range` attribute constrains a value to a specified range.
 * The `StringLength` attribute sets the maximum length of a string, and optionally the minimum length. 
 
@@ -111,7 +108,9 @@ The `DataType` Enumeration provides for many data types, such as Date, Time, Pho
 `DataType.Date` doesn't specify the format of the date that's displayed. By default, the data field is displayed according to the default formats based on the server's `CultureInfo`.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
+
 ::: moniker-end
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
@@ -140,11 +139,13 @@ It's generally not a good practice to compile hard dates in your models, so usin
 The following code shows combining attributes on one line:
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 ::: moniker-end
@@ -155,6 +156,8 @@ The following code shows combining attributes on one line:
 
 See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish this app to Azure.
 
+Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
+
 ## Additional resources
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
@@ -164,4 +167,3 @@ See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](x
 
 > [!div class="step-by-step"]
 > [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)
-> [Next: Uploading files](xref:tutorials/razor-pages/uploading-files)

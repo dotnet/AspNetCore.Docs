@@ -3,13 +3,9 @@ uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-displaying-user-review
 title: "Tailspin Spyworks - Displaying User Reviews | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner displays reviews from customers in the Tailspin Spyworks sample Web Forms application."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/21/2010
-ms.topic: article
 ms.assetid: 55d5652a-bcf3-451e-89e4-8b907d88708f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-displaying-user-reviews
 msc.type: video
 ---

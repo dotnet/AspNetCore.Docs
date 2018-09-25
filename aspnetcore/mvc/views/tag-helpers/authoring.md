@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to author Tag Helpers in ASP.NET Core.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 01/19/2018
+ms.date: 08/20/2018
 uid: mvc/views/tag-helpers/authoring
 ---
 # Author Tag Helpers in ASP.NET Core
@@ -29,7 +29,7 @@ In this section, you write a tag helper that updates an email tag. For example:
 
 ```html
 <email>Support</email>
-   ```
+```
 
 The server will use our email tag helper to convert that markup into the following:
 
@@ -175,7 +175,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
 
 ```csharp
 [HtmlTargetElement("MyBold")]
-   ```
+```
 
 ## Pass a model to a Tag Helper
 
@@ -241,26 +241,8 @@ The condition tag helper renders output when passed a true value.
 
 2. Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
 
-   ```cshtml
-   @using AuthoringTagHelpers.Models
-   @model WebsiteContext
-    
-   @{
-       ViewData["Title"] = "Home Page";
-   }
-    
-   <div>
-       <h3>Information about our website (outdated):</h3>
-       <website-information info=@Model />
-       <div condition="@Model.Approved">
-           <p>
-               This website has <strong surround="em"> @Model.Approved </strong> been approved yet.
-               Visit www.contoso.com for more information.
-           </p>
-       </div>
-   </div>
-   ```
-    
+   [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml)]
+
 3. Replace the `Index` method in the `Home` controller with the following code:
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Controllers/HomeController.cs?range=9-18)]

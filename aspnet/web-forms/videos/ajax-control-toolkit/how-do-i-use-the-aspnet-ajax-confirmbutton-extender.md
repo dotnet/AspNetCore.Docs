@@ -3,13 +3,9 @@ uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-confirmb
 title: "[How Do I:] Use the ASP.NET AJAX ConfirmButton Extender? | Microsoft Docs"
 author: JoeStagner
 description: "Learn how the ConfirmButton extender in the ASP.NET AJAX Control Toolkit provides a simple way to add a confirmation dialog to the click event of a Button, L..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/05/2007
-ms.topic: article
 ms.assetid: 40287d43-6e0d-47ec-881f-c4dff970d1b9
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-confirmbutton-extender
 msc.type: video
 ---

@@ -2,14 +2,9 @@
 title: Resource-based authorization in ASP.NET Core
 author: scottaddie
 description: Learn how to implement resource-based authorization in an ASP.NET Core app when an Authorize attribute won't suffice.
-manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/07/2017
-ms.devlang: csharp
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/resourcebased
 ---
 # Resource-based authorization in ASP.NET Core
@@ -24,7 +19,7 @@ Use the [sample apps](https://github.com/aspnet/Docs/tree/master/aspnetcore/secu
 
 ## Use imperative authorization
 
-Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) to page handlers or actions.
+Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection) to page handlers or actions.
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6)]
 

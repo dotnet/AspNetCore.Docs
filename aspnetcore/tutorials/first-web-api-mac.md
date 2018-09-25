@@ -2,14 +2,9 @@
 title: Create a Web API with ASP.NET Core and Visual Studio for Mac
 author: rick-anderson
 description: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
-helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Service, HTTP Service
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/08/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-web-api-mac
 ---
 # Create a Web API with ASP.NET Core and Visual Studio for Mac
@@ -125,14 +120,19 @@ We'll add `Create`, `Update`, and `Delete` methods to the controller. These meth
 ### Create
 
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
 The preceding method responds to an HTTP POST, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [[FromBody]](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
 The preceding method responds to an HTTP POST, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. MVC gets the value of the to-do item from the body of the HTTP request.
+
 ::: moniker-end
 
 The `CreatedAtRoute` method returns a 201 response. It's the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
@@ -161,8 +161,10 @@ The `CreatedAtRoute` method returns a 201 response. It's the standard response f
 * Click the **Send** button.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 > [!TIP]
 > If no response displays after clicking **Send**, disable the **SSL certification verification** option. This is found under **File** > **Settings**. Click the **Send** button again after disabling the setting.
+
 ::: moniker-end
 
 Click the **Headers** tab in the **Response** pane and copy the **Location** header value:
@@ -178,10 +180,15 @@ You can use the Location header URI to access the resource you created. The `Cre
 ### Update
 
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](first-web-api/samples/2.1/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+
 ::: moniker-end
 
 `Update` is similar to `Create`, but uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP spec, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.

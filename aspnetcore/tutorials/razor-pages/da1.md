@@ -2,13 +2,9 @@
 title: Update the generated pages in an ASP.NET Core app
 author: rick-anderson
 description: Learn how to update the generated pages in an ASP.NET Core app.
-manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 05/30/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages/da1
 ---
 # Update the generated pages in an ASP.NET Core app
@@ -24,11 +20,15 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/MovieDate.cs?name=snippet_1&highlight=10-11)]
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/MovieDate.cs?name=snippet_1&highlight=10-11,15)]
+
 ::: moniker-end
 
 Right click on a red squiggly line > **Quick Actions and Refactorings**.

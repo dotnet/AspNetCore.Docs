@@ -25,7 +25,7 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 ## Creating a Razor Pages project
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
 See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
 
@@ -34,8 +34,6 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 ::: moniker range=">= aspnetcore-2.1"
 
 Run `dotnet new webapp` from the command line.
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 
@@ -47,13 +45,11 @@ Run `dotnet new razor` from the command line.
 
 Open the generated *.csproj* file from Visual Studio for Mac.
 
-# [Visual Studio Code](#tab/visual-studio-code) 
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ::: moniker range=">= aspnetcore-2.1"
 
 Run `dotnet new webapp` from the command line.
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 
@@ -63,13 +59,11 @@ Run `dotnet new razor` from the command line.
 
 ::: moniker-end
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET Core CLI](#tab/netcore-cli)
 
 ::: moniker range=">= aspnetcore-2.1"
 
 Run `dotnet new webapp` from the command line.
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 
@@ -257,7 +251,7 @@ public void OnHead()
 }
 ```
 
-If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. Opt in to this behavior with the [SetCompatibilityVersion method](xref:fundamentals/startup#setcompatibilityversion-for-aspnet-core-mvc) in `Startup.Configure` for ASP.NET Core 2.1 to 2.x:
+If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. Opt in to this behavior with the [SetCompatibilityVersion method](xref:mvc/compatibility-version) in `Startup.Configure` for ASP.NET Core 2.1 to 2.x:
 
 ```csharp
 services.AddMvc()
@@ -268,7 +262,6 @@ services.AddMvc()
 
 Rather than opting into all 2.1 behaviors with `SetCompatibilityVersion`, you can explicitly opt-in to specific behaviors. The following code opts into the mapping HEAD requests to the GET handler.
 
-
 ```csharp
 services.AddMvc()
     .AddRazorPagesOptions(options =>
@@ -276,6 +269,7 @@ services.AddMvc()
         options.AllowMappingHeadRequestsToGetHandler = true;
     });
 ```
+
 ::: moniker-end
 
 <a name="xsrf"></a>
@@ -291,7 +285,17 @@ Pages work with all the capabilities of the Razor view engine. Layouts, partials
 
 Let's declutter this page by taking advantage of some of those capabilities.
 
+::: moniker range=">= aspnetcore-2.1"
+
+Add a [layout page](xref:mvc/views/layout) to *Pages/Shared/_Layout.cshtml*:
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 Add a [layout page](xref:mvc/views/layout) to *Pages/_Layout.cshtml*:
+
+::: moniker-end
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
 
@@ -306,7 +310,19 @@ The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Page
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
+::: moniker range=">= aspnetcore-2.1"
+
+The layout is in the *Pages/Shared* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages/Shared* folder can be used from any Razor page under the *Pages* folder.
+
+The layout file should go in the *Pages/Shared* folder.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
 The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
+
+::: moniker-end
 
 We recommend you **not** put the layout file in the *Views/Shared* folder. *Views/Shared* is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.
 
@@ -350,6 +366,8 @@ The updated *Pages/Create.cshtml* view file:
 
 The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml*, which hooks up client-side validation.
 
+For more information on partial views, see <xref:mvc/views/partial>.
+
 <a name="url_gen"></a>
 
 ## URL generation for Pages
@@ -391,6 +409,7 @@ URL generation for pages supports relative names. The following table shows whic
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
 ::: moniker range=">= aspnetcore-2.1"
+
 ## ViewData attribute
 
 Data can be passed to a page with [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
@@ -424,6 +443,7 @@ In the layout, the title is read from the ViewData dictionary:
     <title>@ViewData["Title"] - WebApplication</title>
     ...
 ```
+
 ::: moniker-end
 
 ## TempData
@@ -532,11 +552,12 @@ services.AddMvc()
     .WithRazorPagesRoot("/path/to/razor/pages");
 ```
 
-## See also
+## Additional resources
 
-* [Introduction to ASP.NET Core](xref:index)
-* [Razor syntax](xref:mvc/views/razor)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
-* [Razor Pages custom route and page model providers](xref:razor-pages/razor-pages-conventions)
-* [Razor Pages unit tests](xref:test/razor-pages-tests)
+* <xref:index>
+* <xref:mvc/views/razor>
+* <xref:tutorials/razor-pages/razor-pages-start>
+* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/razor-pages-conventions>
+* <xref:test/razor-pages-tests>
+* <xref:mvc/views/partial>

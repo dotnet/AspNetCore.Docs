@@ -3,13 +3,9 @@ uid: mvc/videos/mvc-2/index
 title: "ASP.NET MVC 2 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 2"
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/14/2011
-ms.topic: article
 ms.assetid: 68968b8a-4f60-449e-8639-978fc40aed70
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2
 msc.type: chapter
 ---

@@ -20,17 +20,21 @@ namespace WebApiSample.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Pet>), 200)]
-        public IActionResult Get()
+        public async Task<IActionResult> GetAllAsync()
         {
-            return Ok(_repository.GetPets());
+            var pets = await _repository.GetPetsAsync();
+
+            return Ok(pets);
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Pet), 200)]
         [ProducesResponseType(404)]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
-            if (!_repository.TryGetPet(id, out var pet))
+            var pet = await _repository.GetPetAsync(id);
+
+            if (pet == null)
             {
                 return NotFound();
             }
@@ -43,14 +47,16 @@ namespace WebApiSample.Api.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateAsync([FromBody] Pet pet)
         {
+            #region snippet_ModelStateIsValidCheck
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            #endregion
 
             await _repository.AddPetAsync(pet);
 
-            return CreatedAtAction(nameof(GetById),
+            return CreatedAtAction(nameof(GetByIdAsync),
                 new { id = pet.Id }, pet);
         }
     }

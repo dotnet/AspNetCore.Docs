@@ -36,14 +36,32 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
       "_navPath": "/foo",
       "_navRel": "/foo",
+      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
+      "ms.prod": "aspnet-framework",
+      "ms.topic": "conceptual",
       "searchScope": [
         "ASP.NET"
       ]
     },
-    "fileMetadata": {},
+    "fileMetadata": {
+      "ms.technology": {
+        "ajax/**/**.md": "aspnet-ajax",
+        "aspnet/**/**.md": "aspnet-aspnet",
+        "identity/**/**.md": "aspnet-identity",
+        "mobile/**/**.md": "aspnet-mobile",
+        "mvc/**/**.md": "aspnet-mvc",
+        "signalr/**/**.md": "aspnet-signalr",
+        "single-page-application/**/**.md": "aspnet-spa",
+        "visual-studio/**/**.md": "aspnet-visualstudio",
+        "web-api/**/**.md": "aspnet-webapi",
+        "web-forms/**/**.md": "aspnet-webforms",
+        "web-pages/**/**.md": "aspnet-webpages",
+        "webhooks/**/**.md": "aspnet-webhooks",
+        "whitepapers/**/**.md": "aspnet-whitepapers"
+      }
+    },
     "template": [],
     "dest": "_site",
     "markdownEngineName": "markdig"

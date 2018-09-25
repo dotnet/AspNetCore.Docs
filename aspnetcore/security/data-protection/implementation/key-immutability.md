@@ -2,12 +2,8 @@
 title: Key immutability and key settings in ASP.NET Core
 author: rick-anderson
 description: Learn the implementation details of the ASP.NET Core Data Protection key immutability APIs.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/implementation/key-immutability
 ---
 
@@ -21,7 +17,7 @@ If the developer changes any setting that affects key persistence, those changes
 
 * [The default key lifetime](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management)
 
-* [The key encryption at rest mechanism](xref:security/data-protection/implementation/key-encryption-at-rest#data-protection-implementation-key-encryption-at-rest)
+* [The key encryption at rest mechanism](xref:security/data-protection/implementation/key-encryption-at-rest)
 
 * [The algorithmic information contained within the key](xref:security/data-protection/configuration/overview#changing-algorithms-with-usecryptographicalgorithms)
 

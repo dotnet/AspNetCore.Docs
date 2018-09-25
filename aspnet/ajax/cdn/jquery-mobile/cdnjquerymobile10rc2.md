@@ -3,13 +3,9 @@ uid: ajax/cdn/jquery-mobile/cdnjquerymobile10rc2
 title: "jQuery Mobile 1.0 RC2 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/23/2014
-ms.topic: article
 ms.assetid: 8e588bfd-15f7-4bbd-8b3e-97223b70af52
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-mobile/cdnjquerymobile10rc2
 msc.type: content
 ---

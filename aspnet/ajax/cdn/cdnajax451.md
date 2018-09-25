@@ -3,13 +3,9 @@ uid: ajax/cdn/cdnajax451
 title: "ASP.NET Web Forms and Ajax 4.5.1 | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/18/2015
-ms.topic: article
 ms.assetid: d7ec655d-49b0-4968-af5e-3064616aff9a
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/cdnajax451
 msc.type: content
 ---

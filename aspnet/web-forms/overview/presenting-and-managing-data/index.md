@@ -3,13 +3,9 @@ uid: web-forms/overview/presenting-and-managing-data/index
 title: "Working with Data in ASP.NET Web Forms | Microsoft Docs"
 author: rick-anderson
 description: "How to access data using controls and how to persist information between requests."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/08/2011
-ms.topic: article
 ms.assetid: bb2b79bd-aaf4-4f5e-82a1-fc199514a3e2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data
 msc.type: chapter
 ---

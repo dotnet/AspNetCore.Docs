@@ -3,13 +3,9 @@ uid: web-forms/videos/aspnet-ajax/how-do-i-create-an-aspnet-ajax-extender-from-s
 title: "[How Do I:] Create an ASP.NET AJAX Extender from Scratch? | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to create an ASP.NET AJAX extender for a standard ASP.NET server control. We are shown how to add server-side properties and client-side JavaScript..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/01/2007
-ms.topic: article
 ms.assetid: 526b4ec1-4a80-4fae-bf0d-af5cb78f5d02
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-create-an-aspnet-ajax-extender-from-scratch
 msc.type: video
 ---

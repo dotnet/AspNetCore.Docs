@@ -2,13 +2,9 @@
 title: Add search to ASP.NET Core Razor Pages
 author: rick-anderson
 description: Shows how to add search to ASP.NET Core Razor Pages
-manager: wpickett
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 05/30/2018
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages/search
 ---
 # Add search to ASP.NET Core Razor Pages
@@ -67,11 +63,15 @@ The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-for
 Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
+
 ::: moniker-end
 
 
