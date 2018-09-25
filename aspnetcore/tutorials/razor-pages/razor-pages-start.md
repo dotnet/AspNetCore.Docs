@@ -1,12 +1,12 @@
 ---
-title: Tutorial: Get started with Razor Pages in ASP.NET Core
+title: "Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
-description: Tutorial: Get started with Razor Pages in ASP.NET Core. This series covers how to add a model, scaffold, search, and more.
+description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages, use Entity Framework Core and SQL Server for data access, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
 ms.date: 05/30/2018
 uid: tutorials/razor-pages/razor-pages-start
 ---
-# Get started with Razor Pages in ASP.NET Core
+# Tutorial: Get started with Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
