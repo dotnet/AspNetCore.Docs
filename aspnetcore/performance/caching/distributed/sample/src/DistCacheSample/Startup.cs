@@ -45,11 +45,11 @@ namespace DistCacheSample
         public void Configure(IApplicationBuilder app,
             IDistributedCache cache)
         {
-            var serverStartTimeString = DateTime.Now.ToString();
-            byte[] val = Encoding.UTF8.GetBytes(serverStartTimeString);
+            var startTimeUTC = DateTime.UtcNow.ToString();
+            byte[] encodedStartTimeUTC = Encoding.UTF8.GetBytes(startTimeUTC);
             var cacheEntryOptions = new DistributedCacheEntryOptions()
                 .SetSlidingExpiration(TimeSpan.FromSeconds(30));
-            cache.Set("lastServerStartTime", val, cacheEntryOptions);
+            cache.Set("lastServerStartTimeUTC", encodedStartTimeUTC, cacheEntryOptions);
         #endregion
 
             app.UseStartTimeHeader();

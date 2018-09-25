@@ -21,15 +21,16 @@ namespace DistCacheSample
 
         public async Task Invoke(HttpContext httpContext)
         {
-            string startTimeString = "Not found.";
-            var value = await _cache.GetAsync("lastServerStartTime");
-            if (value != null)
+            var startTimeUTC = "Not found";
+            var cacheStartTimeUTC = await _cache.GetAsync("lastServerStartTimeUTC");
+
+            if (cacheStartTimeUTC != null)
             {
-                startTimeString = Encoding.UTF8.GetString(value);
+                startTimeUTC = Encoding.UTF8.GetString(cacheStartTimeUTC);
             }
 
             httpContext.Response.Headers.Append(
-                "Last-Server-Start-Time", startTimeString);
+                "Last-Server-Start-Time-UTC", startTimeUTC);
 
             await _next.Invoke(httpContext);
         }
