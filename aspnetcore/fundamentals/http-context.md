@@ -88,6 +88,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+> [!NOTE]
+> <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*> provides <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*> registration. An additional explicit registration can be added without generating an error or performance penalty.
+
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.0"
