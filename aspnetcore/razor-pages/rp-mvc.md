@@ -11,14 +11,14 @@ uid: razor-pages/rp-mvc
 
 By [Scott Sauber](https://twitter.com/scottsauber) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor Pages is a feature of the ASP.NET Core framework. Razor Pages follows the [MVVM](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/mvvm) pattern. Developers and teams familiar with ASP.NET MVC development:
+Razor Pages is a feature of the ASP.NET Core framework. Razor Pages follows the [MVVM](/xamarin/xamarin-forms/enterprise-application-patterns/mvvm) pattern. Developers and teams familiar with ASP.NET MVC Core development:
 
 * Can continue app development featuring controllers and views.
 * Can be assured the ASP.NET Core framework will provide improvements to controller/view development.
 
 Razor Pages can be added to controller/view projects. The controller-view approach to MVC may be preferred by larger teams.
 
-This article compares Razor Pages to controller/views for creating server rendered HTML. ASP.NET Core MVC controllers are used to build Web APIs. For example, a front-end like React, Angular, Vue, etc. would use ASP.NET MVC controllers.
+This article compares Razor Pages to controller/views for creating server-rendered HTML. ASP.NET Core MVC controllers are used to build web APIs. For example, a front-end like React, Angular, Vue, etc. would use ASP.NET Core MVC controllers.
 
 If you haven't tried Razor Pages, consider using them. Many developers find Razor Pages development simpler and more productive than using controllers and views.
 
