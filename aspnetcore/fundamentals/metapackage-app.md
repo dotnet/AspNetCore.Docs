@@ -51,11 +51,12 @@ The implicit version is set to `major.minor.0` for portable apps. The shared fra
 
 Specifying a version number on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be chosen. For example, suppose version "2.1.1" is specified, but "2.1.3" is installed. In that case, the app will use "2.1.3". Although not recommended, you can disable roll forward (patch and/or minor). For more information regarding dotnet host roll-forward and how to configure its behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
 
-`<Project Sdk` must be set to `Microsoft.NET.Sdk.Web` to use the implicit version `Microsoft.AspNetCore.App`.  When `<Project Sdk="Microsoft.NET.Sdk">` (without the trailing `.Web`) is used, the following warning is generated:
+`<Project Sdk` must be set to `Microsoft.NET.Sdk.Web` to use the implicit version `Microsoft.AspNetCore.App`.  When `<Project Sdk="Microsoft.NET.Sdk">` (without the trailing `.Web`) is used:
 
- *Warning NU1604: Project dependency Microsoft.AspNetCore.App does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.*
+* The following warning is generated:
 
-The version number (if specified) on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be used. For example, suppose version `2.1.1` is specified, but `2.1.3` is installed. In that case, the app uses `2.1.3`. Although not recommended, you can disable roll-forward behavior (patch and/or minor). For more information on package version roll-forward behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
+     *Warning NU1604: Project dependency Microsoft.AspNetCore.App does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.*
+* This is a known issue with the .NET Core 2.1 SDK and will be fixed in the .NET Core 2.2 SDK.
 
 <a name="update"></a>
 
