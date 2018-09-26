@@ -292,9 +292,10 @@ The context is used to configure the model in two ways:
 
 When overriding `OnModelCreating`, `base.OnModelCreating` should be called first; the overriding configuration should be called next. EF Core generally has a last-one-wins policy for configuration. For example, if the `ToTable` method for an entity type is called first with one table name and then again later with a different table name, the table name in the second call is used.
 
-### Use a custom User type
+### Custom user data
 
-To use a custom User type, create the type and have it inherit from `IdentityUser`. It's customary to name this type `ApplicationUser`. This type typically has additional properties not included in the base type, otherwise there would be no value in creating it. For example:
+[Custom user data](xref:security/authentication/add-user-data) is supported by inheriting from `IdentityUser`. It's customary to name this type `ApplicationUser`:
+
 
 ```csharp
 public class ApplicationUser : IdentityUser
@@ -303,7 +304,7 @@ public class ApplicationUser : IdentityUser
 }
 ```
 
-Next, use the `ApplicationUser` type as a generic argument for the context:
+Use the `ApplicationUser` type as a generic argument for the context:
 
 ```csharp
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -327,7 +328,10 @@ services.AddDefaultIdentity<ApplicationUser>()
         .AddDefaultUI();
 ```
 
-In ASP.NET Core 2.1 or later, Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
+In ASP.NET Core 2.1 or later, Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
+
+* [Scaffold Identity](security/authentication/scaffold-identity)
+* [Add, download, and delete custom user data to Identity](xref:security/authentication/add-user-data)
 
 ::: moniker-end
 
