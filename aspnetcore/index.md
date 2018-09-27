@@ -3,7 +3,7 @@ title: Introduction to ASP.NET Core
 author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
-ms.date: 02/28/2018
+ms.date: 9/28/2018
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -33,8 +33,6 @@ ASP.NET Core provides the following benefits:
 * Tooling that simplifies modern web development.
 * Ability to build and run on Windows, macOS, and Linux.
 * Open-source and [community-focused](https://live.asp.net/).
-
-ASP.NET Core ships entirely as [NuGet](https://www.nuget.org/) packages. Using NuGet packages allows you to optimize your app to include only the necessary dependencies. In fact, ASP.NET Core 2.x apps targeting .NET Core only require a [single NuGet package](xref:fundamentals/metapackage). The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 
