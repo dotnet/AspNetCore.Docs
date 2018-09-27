@@ -21,20 +21,7 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 
 Millions of developers have used (and continue to use) [ASP.NET 4.x](https://docs.microsoft.com/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
-ASP.NET Core provides the following benefits:
-
-* A unified story for building web UI and web APIs.
-* Integration of [modern, client-side frameworks](xref:client-side/index) and development workflows.
-* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
-* Built-in [dependency injection](xref:fundamentals/dependency-injection).
-* A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
-* Ability to host on [IIS](xref:host-and-deploy/iis/index), [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), [Docker](xref:host-and-deploy/docker/index), or self-host in your own process.
-* Side-by-side app versioning when targeting [.NET Core](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
-* Tooling that simplifies modern web development.
-* Ability to build and run on Windows, macOS, and Linux.
-* Open-source and [community-focused](https://live.asp.net/).
-
-ASP.NET Core ships entirely as [NuGet](https://www.nuget.org/) packages. Using NuGet packages allows you to optimize your app to include only the necessary dependencies. In fact, ASP.NET Core 2.x apps targeting .NET Core only require a [single NuGet package](xref:fundamentals/metapackage). The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.
+[!INCLUDE[](~/includes/benefits.md)]
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 

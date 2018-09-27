@@ -8,24 +8,21 @@ uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET and ASP.NET Core
 
-ASP.NET supports creating web apps for a wide variety of applications, including:
-
-* Web apps targeting the cloud.
-* Enterprise web apps targeting Windows Server.
-* Small microservices targeting Linux containers.
-* Rest applications and web APIs.
+ASP.NET Core is a redesign of ASP.NET. This article lists the differences between them.
 
 ## ASP.NET Core
 
 ASP.NET Core is an open-source, cross-platform framework for building modern, cloud-based web apps on Windows, macOS, or Linux.
 
+[!INCLUDE[](~/includes/benefits.md)]
+
 ## ASP.NET
 
-ASP.NET is a mature framework that provides all the services needed to build enterprise-grade, server-based web apps on Windows.
+ASP.NET is a mature framework that provides the services needed to build enterprise-grade, server-based web apps on Windows.
 
 ## Framework selection
 
-Review the table below to determine which framework is most appropriate for your needs.
+The following table compares ASP.NET core to ASP.NET Framework.
 
 | ASP.NET Core | ASP.NET |
 |---|---|
