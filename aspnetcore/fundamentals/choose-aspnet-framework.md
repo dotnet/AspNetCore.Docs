@@ -1,5 +1,5 @@
 ---
-title: ASP.NET vs. ASP.NET Core
+title: Choose between ASP.NET and ASP.NET Core
 author: rick-anderson
 description: Explains ASP.NET Core vs. ASP.NET and how to choose between them.
 ms.author: riande
