@@ -3,7 +3,7 @@ title: ASP.NET vs. ASP.NET Core
 author: rick-anderson
 description: Explains ASP.NET Core vs. ASP.NET and how to choose between them.
 ms.author: riande
-ms.date: 05/11/2018
+ms.date: 09/11/2018
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET and ASP.NET Core
@@ -55,3 +55,4 @@ Review the table below to determine which framework is most appropriate for your
 
 * [Introduction to ASP.NET](/aspnet/overview)
 * [Introduction to ASP.NET Core](xref:index)
+* <xref:aspnet/core/host-and-deploy/azure-apps>
