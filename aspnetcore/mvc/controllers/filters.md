@@ -227,6 +227,8 @@ The following example demonstrates how to pass arguments to a type using `TypeFi
 
 [!code-csharp[](../../mvc/controllers/filters/sample/src/FiltersSample/Controllers/HomeController.cs?name=snippet_TypeFilter&highlight=1,2)]
 
+### IFilterFactory implemented on your attribute
+
 If you have a filter that:
 
 * Doesn't require any arguments.

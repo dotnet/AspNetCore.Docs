@@ -42,6 +42,9 @@ Internal links should use the `uid` of the target article with an xref link:
 
 See [DocFX Cross Reference](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#cross-reference) for more info.
 
+## Images and screenshots
+As an optional step, you can ensure that any images and screenshots you use in the documentation are compressed, which helps with file size and page load performance. A few popular tools include TinyPNG (the [site itself](https://tinypng.com/) or [the API](https://tinypng.com/developers)) or the [Image Optimizer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ImageOptimizer) Visual Studio extension. 
+
 ## Code snippets
 
 Articles frequently contain code snippets to illustrate points. DFM lets you copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible, to minimize the chance of errors in the code. The code files should be stored in the repo using the folder structure described above for sample projects. 
