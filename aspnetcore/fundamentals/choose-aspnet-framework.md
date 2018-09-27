@@ -46,9 +46,9 @@ The following table compares ASP.NET core to ASP.NET Framework.
 * [Websites](/aspnet/mvc)
 * [APIs](/aspnet/web-api)
 * [Real-time](/aspnet/signalr)
-* [Create an ASP.NET Framework web app in Azure](/azure/app-service/app-service-web-get-started-dotnet-framework)
+* [Create an ASP.NET 4.x web app in Azure](/azure/app-service/app-service-web-get-started-dotnet-framework)
 
-## Resources
+## Additional resources
 
 * [Introduction to ASP.NET](/aspnet/overview)
 * [Introduction to ASP.NET Core](xref:index)
