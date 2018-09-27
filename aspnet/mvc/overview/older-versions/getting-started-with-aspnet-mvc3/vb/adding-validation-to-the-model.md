@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-vali
 title: "Adding Validation to the Model (VB) | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express Service Pack 1, which is..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/12/2011
-ms.topic: article
 ms.assetid: 878f6c31-972d-45f4-8849-5c633b511409
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-validation-to-the-model
 msc.type: authoredcontent
 ---
@@ -118,6 +114,6 @@ Run the application and browse to the `Movies` controller.
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods..
 
->[!div class="step-by-step"]
-[Previous](adding-a-new-field.md)
-[Next](improving-the-details-and-delete-methods.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-new-field.md)
+> [Next](improving-the-details-and-delete-methods.md)

@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspn
 title: "Using Parameterized Queries with the SqlDataSource (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial, we continue our look at the SqlDataSource control and learn how to define parameterized queries. The parameters can be specified both decla..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/20/2007
-ms.topic: article
 ms.assetid: 9128aaac-afe2-449f-84b2-bb1d035083c4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs
 msc.type: authoredcontent
 ---
@@ -307,6 +303,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Scott Clyde, Randell Schmidt, and Ken Pespisa. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](querying-data-with-the-sqldatasource-control-cs.md)
-[Next](inserting-updating-and-deleting-data-with-the-sqldatasource-cs.md)
+> [!div class="step-by-step"]
+> [Previous](querying-data-with-the-sqldatasource-control-cs.md)
+> [Next](inserting-updating-and-deleting-data-with-the-sqldatasource-cs.md)

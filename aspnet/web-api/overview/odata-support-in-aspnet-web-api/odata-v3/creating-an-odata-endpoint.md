@@ -3,13 +3,9 @@ uid: web-api/overview/odata-support-in-aspnet-web-api/odata-v3/creating-an-odata
 title: "Creating an OData v3 Endpoint with Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "The Open Data Protocol (OData) is a data access protocol for the web. OData provides a uniform way to structure data, query the data, and manipulate the data..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/25/2014
-ms.topic: article
 ms.assetid: 262843d6-43a2-4f1c-82d9-0b90ae6df0cf
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v3/creating-an-odata-endpoint
 msc.type: authoredcontent
 ---
@@ -145,7 +141,7 @@ The **MapODataRoute** method adds a route for the OData endpoint.
 
 [!code-csharp[Main](creating-an-odata-endpoint/samples/sample4.cs)]
 
-The first parameter is a friendly name for the route. Clients of your service do not see this name. The second parameter is the URI prefix for the endpoint. Given this code, the URI for the Products entity set is http://*hostname*/odata/Products. Your application can have more than one OData endpoint. For each endpoint, call **MapODataRoute** and provide a unique route name and a unique URI prefix.
+The first parameter is a friendly name for the route. Clients of your service do not see this name. The second parameter is the URI prefix for the endpoint. Given this code, the URI for the Products entity set is http://<em>hostname</em>/odata/Products. Your application can have more than one OData endpoint. For each endpoint, call <strong>MapODataRoute</strong> and provide a unique route name and a unique URI prefix.
 
 <a id="seed-db"></a>
 ## Seed the Database (Optional)

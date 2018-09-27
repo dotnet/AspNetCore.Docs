@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding
 title: "Understanding ASP.NET AJAX Authentication and Profile Application Services | Microsoft Docs"
 author: scottcate
 description: "The Authentication service allows users to provide credentials in order to receive an authentication cookie, and is the gateway service to allow custom user..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/14/2008
-ms.topic: article
 ms.assetid: 6ab4efb6-aab6-45ac-ad2c-bdec5848ef9e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-authentication-and-profile-application-services
 msc.type: authoredcontent
 ---
@@ -340,6 +336,6 @@ Furthermore, by creating simplified web service implementations with equivalent 
 
 Scott Cate has been working with Microsoft Web technologies since 1997 and is the President of myKB.com ([www.myKB.com](http://www.myKB.com)) where he specializes in writing ASP.NET based applications focused on Knowledge Base Software solutions. Scott can be contacted via email at [scott.cate@myKB.com](mailto:scott.cate@myKB.com) or his blog at [ScottCate.com](http://ScottCate.com)
 
->[!div class="step-by-step"]
-[Previous](understanding-asp-net-ajax-updatepanel-triggers.md)
-[Next](understanding-asp-net-ajax-localization.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-asp-net-ajax-updatepanel-triggers.md)
+> [Next](understanding-asp-net-ajax-localization.md)

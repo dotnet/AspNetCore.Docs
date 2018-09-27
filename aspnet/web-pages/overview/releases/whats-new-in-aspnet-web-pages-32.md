@@ -3,13 +3,9 @@ uid: web-pages/overview/releases/whats-new-in-aspnet-web-pages-32
 title: "What's New in ASP.NET Web Pages 3.2 | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/30/2014
-ms.topic: article
 ms.assetid: a652beff-8e6b-48ad-bfe4-3703f7ccf0a5
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/whats-new-in-aspnet-web-pages-32
 msc.type: authoredcontent
 ---
@@ -60,7 +56,8 @@ Below is a table demonstrating the results of analyzing a [perfview](https://cha
 | CPU / request (samples/req) | 19.73 | 16.47 | -16.50% |
 
 | Color coding: | <font style="background-color: #00ff00">Core Improvement</font> | <font style="background-color: #4bacc6">Positive impact on performance</font> |
-| --- | --- | --- |
+|---------------|-----------------------------------------------------------------|-------------------------------------------------------------------------------|
+|               |                                                                 |                                                                               |
 
 ## ASP.NET Web Pages 3.2.3 beta1
 

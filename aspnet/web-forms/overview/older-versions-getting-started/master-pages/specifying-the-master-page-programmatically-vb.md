@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/specifying-t
 title: "Specifying the Master Page Programmatically (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Looks at setting the content page's master page programmatically via the PreInit event handler."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/28/2008
-ms.topic: article
 ms.assetid: 0edcd653-f24a-41aa-aef4-75f868fe5ac2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-vb
 msc.type: authoredcontent
 ---
@@ -283,6 +279,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Suchi Banerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](master-pages-and-asp-net-ajax-vb.md)
-[Next](nested-master-pages-vb.md)
+> [!div class="step-by-step"]
+> [Previous](master-pages-and-asp-net-ajax-vb.md)
+> [Next](nested-master-pages-vb.md)

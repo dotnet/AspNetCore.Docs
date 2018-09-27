@@ -3,13 +3,9 @@ uid: aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websi
 title: "Hands on Lab: Maintainable Azure Websites: Managing Change and Scale | Microsoft Docs"
 author: rick-anderson
 description: "In this lab, learn how Microsoft Azure makes it easy to build and deploy websites to production."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/16/2014
-ms.topic: article
 ms.assetid: ecfd0eb4-c4ad-44e6-9db9-a2a66611ff6a
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
 msc.type: authoredcontent
 ---
@@ -276,13 +272,13 @@ In this task, you will create a web app in **Azure App Service** from the manage
     *Customizing the new web app*
 5. Specify the following information for the database settings:
 
-    - In the **Name** text box, enter a database name (e.g. *geekquiz\_db*)
-    - In the Server **drop-down** list, select **New SQL database server**. Alternatively, you can select an existing server.
-    - In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL database server. If you select a server you have already created, you will be prompted for the password.
+   - In the **Name** text box, enter a database name (e.g. *geekquiz\_db*)
+   - In the Server **drop-down** list, select **New SQL database server**. Alternatively, you can select an existing server.
+   - In the **Database username** and **Database password** boxes, enter the administrator username and password for the SQL database server. If you select a server you have already created, you will be prompted for the password.
 
-    ![Specifying the database settings](maintainable-azure-websites-managing-change-and-scale/_static/image17.png)
+     ![Specifying the database settings](maintainable-azure-websites-managing-change-and-scale/_static/image17.png)
 
-    *Specifying the database settings*
+     *Specifying the database settings*
 6. Click **Next** to continue.
 7. Select **Local Git repository** for the source control to use and click **Next**.
 
@@ -792,13 +788,13 @@ Now that **Autoscale** has been configured, you will create a **Web Performance 
     *Adding a loop to WebTest1*
 6. In the **Add Conditional Rule and Items to Loop** dialog box, select the **For Loop** rule and modify the following properties.
 
-    1. **Terminating value:** 1000
-    2. **Context Parameter Name:** Iterator
-    3. **Increment Value:** 1
+   1. **Terminating value:** 1000
+   2. **Context Parameter Name:** Iterator
+   3. **Increment Value:** 1
 
-    ![Selecting the For Loop rule and updating the properties](maintainable-azure-websites-managing-change-and-scale/_static/image84.png "Selecting the For Loop rule and updating the properties")
+      ![Selecting the For Loop rule and updating the properties](maintainable-azure-websites-managing-change-and-scale/_static/image84.png "Selecting the For Loop rule and updating the properties")
 
-    *Selecting the For Loop rule and updating the properties*
+      *Selecting the For Loop rule and updating the properties*
 7. Under the **Items in loop** section, select the request you created previously to be the first and last item for the loop. Click **OK** to continue.
 
     ![Selecting the first and last items for the loop](maintainable-azure-websites-managing-change-and-scale/_static/image85.png "Selecting the first and last items for the loop")

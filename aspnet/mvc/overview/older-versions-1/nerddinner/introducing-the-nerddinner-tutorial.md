@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/nerddinner/introducing-the-nerddinner-tutoria
 title: "Introducing the NerdDinner Tutorial | Microsoft Docs"
 author: shanselman
 description: "The best way to learn a new framework is to build something with it. This tutorial walks through how to build a small, but complete, application using ASP.NE..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/27/2010
-ms.topic: article
 ms.assetid: 397522d5-0402-4b94-b810-a2fb564f869d
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/introducing-the-nerddinner-tutorial
 msc.type: authoredcontent
 ---
@@ -83,5 +79,5 @@ Now that we've covered what NerdDinner is, let's roll up our sleeves and write s
 
 We'll begin by using File-&gt;New Project within Visual Studio to create the NerdDinner application.
 
->[!div class="step-by-step"]
-[Next](create-a-new-aspnet-mvc-project.md)
+> [!div class="step-by-step"]
+> [Next](create-a-new-aspnet-mvc-project.md)

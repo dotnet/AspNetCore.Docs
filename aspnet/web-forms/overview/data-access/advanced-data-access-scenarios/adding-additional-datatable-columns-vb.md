@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/advanced-data-access-scenarios/adding-additi
 title: "Adding Additional DataTable Columns (VB) | Microsoft Docs"
 author: rick-anderson
 description: "When using the TableAdapter Wizard to create a Typed DataSet, the corresponding DataTable contains the columns returned by the main database query. But there..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/18/2007
-ms.topic: article
 ms.assetid: 1e8e65f9-fe3e-4250-810b-c90227786bed
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/adding-additional-datatable-columns-vb
 msc.type: authoredcontent
 ---
@@ -210,6 +206,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Randy Schmidt, Jacky Goor, Bernadette Leigh, and Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](updating-the-tableadapter-to-use-joins-vb.md)
-[Next](working-with-computed-columns-vb.md)
+> [!div class="step-by-step"]
+> [Previous](updating-the-tableadapter-to-use-joins-vb.md)
+> [Next](working-with-computed-columns-vb.md)

@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/basic-reporting/programmatically-setting-the
 title: "Programmatically Setting the ObjectDataSource's Parameter Values (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at adding a method to our DAL and BLL that accepts a single input parameter and returns data. The example will set this parameter..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: 0ecb03b6-52a0-4731-8c7a-436391d36838
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-vb
 msc.type: authoredcontent
 ---
@@ -148,5 +144,5 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](declarative-parameters-vb.md)
+> [!div class="step-by-step"]
+> [Previous](declarative-parameters-vb.md)

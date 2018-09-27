@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/admin/recovering-and-changing-pa
 title: "Recovering and Changing Passwords (C#) | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET includes two Web controls for assisting with recovering and changing passwords. The PasswordRecovery control enables a visitor to recover his lost pa..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/01/2008
-ms.topic: article
 ms.assetid: 19c4d042-4e34-4b44-9f1d-6bf2253ba366
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/recovering-and-changing-passwords-cs
 msc.type: authoredcontent
 ---
@@ -305,6 +301,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial include Michael Emmings and Suchi Banerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](building-an-interface-to-select-one-user-account-from-many-cs.md)
-[Next](unlocking-and-approving-user-accounts-cs.md)
+> [!div class="step-by-step"]
+> [Previous](building-an-interface-to-select-one-user-account-from-many-cs.md)
+> [Next](unlocking-and-approving-user-accounts-cs.md)

@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/models-data/validating-with-a-service-layer-v
 title: "Validating with a Service Layer (VB) | Microsoft Docs"
 author: StephenWalther
 description: "Learn how to move your validation logic out of your controller actions and into a separate service layer. In this tutorial, Stephen Walther explains how you..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/02/2009
-ms.topic: article
 ms.assetid: 344bb38e-4965-4c47-bda1-f6d29ae5b83a
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validating-with-a-service-layer-vb
 msc.type: authoredcontent
 ---
@@ -94,6 +90,6 @@ Using the IValidationDictionary interface and the ModelStateWrapper class enable
 
 The goal of this tutorial was to discuss one approach to performing validation in an ASP.NET MVC application. In this tutorial, you learned how to move all of your validation logic out of your controllers and into a separate service layer. You also learned how to isolate your service layer from your controller layer by creating a ModelStateWrapper class.
 
->[!div class="step-by-step"]
-[Previous](validating-with-the-idataerrorinfo-interface-vb.md)
-[Next](validation-with-the-data-annotation-validators-vb.md)
+> [!div class="step-by-step"]
+> [Previous](validating-with-the-idataerrorinfo-interface-vb.md)
+> [Next](validation-with-the-data-annotation-validators-vb.md)

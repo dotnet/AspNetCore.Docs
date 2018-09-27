@@ -3,12 +3,8 @@ title: Middleware activation with a third-party container in ASP.NET Core
 author: guardrex
 description: Learn how to use strongly-typed middleware with factory-based activation and a third-party container in ASP.NET Core.
 ms.author: riande
-manager: wpickett
 ms.custom: mvc
 ms.date: 02/02/2018
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
 uid: fundamentals/middleware/extensibility-third-party-container
 ---
 # Middleware activation with a third-party container in ASP.NET Core
@@ -56,7 +52,7 @@ An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*
 
 The middleware is registered in the request processing pipeline in `Startup.Configure`:
 
-[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet2&highlight=12)]
+[!code-csharp[](extensibility-third-party-container/sample/Startup.cs?name=snippet2&highlight=13)]
 
 ## Additional resources
 

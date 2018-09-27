@@ -2,12 +2,8 @@
 title: Data Protection machine-wide policy support in ASP.NET Core
 author: rick-anderson
 description: Learn about support for setting a default machine-wide policy for all apps that consume ASP.NET Core Data Protection.
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/configuration/machine-wide-policy
 ---
 # Data Protection machine-wide policy support in ASP.NET Core
@@ -66,4 +62,4 @@ If EncryptionType is Managed, the system is configured to use a managed Symmetri
 If EncryptionType has any other value other than null or empty, the Data Protection system throws an exception at startup.
 
 > [!WARNING]
-> When configuring a default policy setting that involves type names (EncryptionAlgorithmType, ValidationAlgorithmType, KeyEscrowSinks), the types must be available to the app. This means that for apps running on Desktop CLR, the assemblies that contain these types should be present in the Global Assembly Cache (GAC). For ASP.NET Core apps running on [.NET Core](https://www.microsoft.com/net/core), the packages that contain these types should be installed.
+> When configuring a default policy setting that involves type names (EncryptionAlgorithmType, ValidationAlgorithmType, KeyEscrowSinks), the types must be available to the app. This means that for apps running on Desktop CLR, the assemblies that contain these types should be present in the Global Assembly Cache (GAC). For ASP.NET Core apps running on .NET Core, the packages that contain these types should be installed.

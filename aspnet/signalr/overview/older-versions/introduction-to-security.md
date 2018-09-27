@@ -3,13 +3,9 @@ uid: signalr/overview/older-versions/introduction-to-security
 title: "Introduction to SignalR Security (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "Describes the security issues you must consider when developing a SignalR application."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: 715a4059-d307-4631-abbb-c789c95d6eb4
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/introduction-to-security
 msc.type: authoredcontent
 ---
@@ -87,13 +83,13 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a re
 
 Here is an example of a CSRF attack:
 
-1. A user logs into www.example.com, using forms authentication.
+1. A user logs into `www.example.com`, using forms authentication.
 2. The server authenticates the user. The response from the server includes an authentication cookie.
 3. Without logging out, the user visits a malicious web site. This malicious site contains the following HTML form: 
 
     [!code-html[Main](introduction-to-security/samples/sample1.html)]
 
- Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
+   Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 4. The user clicks the submit button. The browser includes the authentication cookie with the request.
 5. The request runs on the example.com server with the user's authentication context, and can do anything that an authenticated user is allowed to do.
 

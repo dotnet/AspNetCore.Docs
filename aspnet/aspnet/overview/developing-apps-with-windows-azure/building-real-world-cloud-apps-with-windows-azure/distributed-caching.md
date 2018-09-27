@@ -3,13 +3,9 @@ uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-clou
 title: "Distributed Caching (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/20/2015
-ms.topic: article
 ms.assetid: 406518e9-3817-49ce-8b90-e82bc461e2c0
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/distributed-caching
 msc.type: authoredcontent
 ---
@@ -106,6 +102,6 @@ Code sample
 
 - [Cloud Service Fundamentals in Azure](https://code.msdn.microsoft.com/Cloud-Service-Fundamentals-4ca72649). Sample application that implements distributed caching. See the accompanying blog post [Cloud Service Fundamentals – Caching Basics](https://blogs.msdn.com/b/windowsazure/archive/2013/10/03/cloud-service-fundamentals-caching-basics.aspx).
 
->[!div class="step-by-step"]
-[Previous](transient-fault-handling.md)
-[Next](queue-centric-work-pattern.md)
+> [!div class="step-by-step"]
+> [Previous](transient-fault-handling.md)
+> [Next](queue-centric-work-pattern.md)

@@ -1,16 +1,12 @@
 ---
-title: Handling requests with controllers in ASP.NET Core MVC
+title: Handle requests with controllers in ASP.NET Core MVC
 author: ardalis
 description: 
-manager: wpickett
 ms.author: riande
 ms.date: 07/03/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/controllers/actions
 ---
-# Handling requests with controllers in ASP.NET Core MVC
+# Handle requests with controllers in ASP.NET Core MVC
 
 By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://github.com/scottaddie)
 
@@ -31,11 +27,11 @@ A controller is an instantiable class in which at least one of the following con
 
 A controller class must not have an associated `[NonController]` attribute.
 
-Controllers should follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/). There are a couple approaches to implementing this principle. If multiple controller actions require the same service, consider using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to request those dependencies. If the service is needed by only a single action method, consider using [Action Injection](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) to request the dependency.
+Controllers should follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/). There are a couple of approaches to implementing this principle. If multiple controller actions require the same service, consider using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to request those dependencies. If the service is needed by only a single action method, consider using [Action Injection](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) to request the dependency.
 
 Within the **M**odel-**V**iew-**C**ontroller pattern, a controller is responsible for the initial processing of the request and instantiation of the model. Generally, business decisions should be performed within the model.
 
-The controller takes the result of the model's processing (if any) and returns either the proper view and its associated view data or the result of the API call. Learn more at [Overview of ASP.NET Core MVC](xref:mvc/overview) and [Getting started with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
+The controller takes the result of the model's processing (if any) and returns either the proper view and its associated view data or the result of the API call. Learn more at [Overview of ASP.NET Core MVC](xref:mvc/overview) and [Get started with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
 
 The controller is a *UI-level* abstraction. Its responsibilities are to ensure request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps, it doesn't directly include data access or business logic. Instead, the controller delegates to services handling these responsibilities.
 
@@ -49,7 +45,7 @@ Actions can return anything, but frequently return an instance of `IActionResult
 
 ### Controller Helper Methods
 
-Controllers usually inherit from [Controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller), although this isn't required. Deriving from `Controller` provides access to three categories of helper methods:
+Controllers usually inherit from [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller), although this isn't required. Deriving from `Controller` provides access to three categories of helper methods:
 
 #### 1. Methods resulting in an empty response body
 
@@ -59,7 +55,7 @@ There are two result types within this category: Redirect and HTTP Status Code.
 
 * **HTTP Status Code**
 
-    This type returns an HTTP status code. A couple helper methods of this type are `BadRequest`, `NotFound`, and `Ok`. For example, `return BadRequest();` produces a 400 status code when executed. When methods such as `BadRequest`, `NotFound`, and `Ok` are overloaded, they no longer qualify as HTTP Status Code responders, since content negotiation is taking place.
+    This type returns an HTTP status code. A couple of helper methods of this type are `BadRequest`, `NotFound`, and `Ok`. For example, `return BadRequest();` produces a 400 status code when executed. When methods such as `BadRequest`, `NotFound`, and `Ok` are overloaded, they no longer qualify as HTTP Status Code responders, since content negotiation is taking place.
 
 * **Redirect**
 
@@ -71,7 +67,7 @@ There are two result types within this category: Redirect and HTTP Status Code.
 
 Most helper methods in this category include a `ContentType` property, allowing you to set the `Content-Type` response header to describe the response body.
 
-There are two result types within this category: [View](xref:mvc/views/overview) and [Formatted Response](xref:mvc/models/formatting).
+There are two result types within this category: [View](xref:mvc/views/overview) and [Formatted Response](xref:web-api/advanced/formatting).
 
 * **View**
 
@@ -85,7 +81,7 @@ There are two result types within this category: [View](xref:mvc/views/overview)
 
 #### 3. Methods resulting in a non-empty response body formatted in a content type negotiated with the client
 
-This category is better known as **Content Negotiation**. [Content negotiation](xref:mvc/models/formatting#content-negotiation) applies whenever an action returns an [ObjectResult](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.objectresult) type or something other than an [IActionResult](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.iactionresult) implementation. An action that returns a non-`IActionResult` implementation (for example, `object`) also returns a Formatted Response.
+This category is better known as **Content Negotiation**. [Content negotiation](xref:web-api/advanced/formatting#content-negotiation) applies whenever an action returns an [ObjectResult](/dotnet/api/microsoft.aspnetcore.mvc.objectresult) type or something other than an [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult) implementation. An action that returns a non-`IActionResult` implementation (for example, `object`) also returns a Formatted Response.
 
 Some helper methods of this type include `BadRequest`, `CreatedAtRoute`, and `Ok`. Examples of these methods include `return BadRequest(modelState);`, `return CreatedAtRoute("routename", values, newobject);`, and `return Ok(value);`, respectively. Note that `BadRequest` and `Ok` perform content negotiation only when passed a value; without being passed a value, they instead serve as HTTP Status Code result types. The `CreatedAtRoute` method, on the other hand, always performs content negotiation since its overloads all require that a value be passed.
 
@@ -96,7 +92,7 @@ Applications typically share parts of their workflow. Examples include an app th
 Most filter attributes, such as `[Authorize]`, can be applied at the controller or action level depending upon the desired level of granularity.
 
 Error handling and response caching are often cross-cutting concerns:
-   * [Error handling](xref:mvc/controllers/filters#exception-filters)
+   * [Handle errors](xref:mvc/controllers/filters#exception-filters)
    * [Response Caching](xref:performance/caching/response)
 
 Many cross-cutting concerns can be handled using filters or custom [middleware](xref:fundamentals/middleware/index).

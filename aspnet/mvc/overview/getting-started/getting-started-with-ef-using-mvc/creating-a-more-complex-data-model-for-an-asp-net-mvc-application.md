@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-m
 title: "Creating a More Complex Data Model for an ASP.NET MVC Application | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/07/2014
-ms.topic: article
 ms.assetid: 46f7f3c9-274f-4649-811d-92222a9b27e2
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
@@ -265,8 +261,8 @@ The foreign key and navigation properties reflect the following relationships:
 
     [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample23.cs)]
 
- > [!NOTE]
- > By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. For example, if you didn't define the `Department.InstructorID` property as nullable, you'd get the following exception message: "The referential relationship will result in a cyclical reference that's not allowed." If your business rules required `InstructorID` property to be non-nullable, you would have to use the following fluent API statement to disable cascade delete on the relationship: 
+  > [!NOTE]
+  > By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. For example, if you didn't define the `Department.InstructorID` property as nullable, you'd get the following exception message: "The referential relationship will result in a cyclical reference that's not allowed." If your business rules required `InstructorID` property to be non-nullable, you would have to use the following fluent API statement to disable cascade delete on the relationship: 
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample24.cs)]
 
@@ -408,6 +404,6 @@ Please leave feedback on how you liked this tutorial and what we could improve. 
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)

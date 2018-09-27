@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "ASP.NET Hosting Options (C#) | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET web applications are typically designed, created, and tested in a local development environment and need to be deployed to a production environment o..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/01/2009
-ms.topic: article
 ms.assetid: 89a1d2bc-fdfd-4c5c-a3b0-49a08baaf63a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/asp-net-hosting-options-cs
 msc.type: authoredcontent
 ---
@@ -90,5 +86,5 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Next](determining-what-files-need-to-be-deployed-cs.md)
+> [!div class="step-by-step"]
+> [Next](determining-what-files-need-to-be-deployed-cs.md)

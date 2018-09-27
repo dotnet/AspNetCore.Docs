@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/manually-ins
 title: "Manually Installing Web Packages | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to manually import a web deployment package into Internet Information Services (IIS). The topic Building and Packaging Web Applicati..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: f11d22a7-5d32-4ad0-8a9b-276460a61c06
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/manually-installing-web-packages
 msc.type: authoredcontent
 ---
@@ -128,5 +124,5 @@ This topic described how to import a web deployment package into an IIS website 
 
 For guidance on how to configure an IIS web server to support manually importing a web package, see [Configure a Web Server for Web Deploy Publishing (Offline Deployment)](../configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md). For more general guidance on deploying web packages, see [Walkthrough: Deploying a Web Application Project Using a Web Deployment Package (Part 1 of 4)](https://msdn.microsoft.com/library/dd483479.aspx).
 
->[!div class="step-by-step"]
-[Previous](creating-and-running-a-deployment-command-file.md)
+> [!div class="step-by-step"]
+> [Previous](creating-and-running-a-deployment-command-file.md)

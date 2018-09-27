@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/ex
 title: "Examining  how  ASP.NET MVC scaffolds the DropDownList Helper | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/12/2012
-ms.topic: article
 ms.assetid: 8921d7f2-21f0-427a-8b27-2df7251174b0
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper
 msc.type: authoredcontent
 ---
@@ -201,6 +197,6 @@ Some developers prefer the ViewModel approach. Others consider the more verbose 
 
 In this section we have learned three approaches to using the **DropDownList** with category data. In the next section, we'll show how to add a new category.
 
->[!div class="step-by-step"]
-[Previous](using-the-dropdownlist-helper-with-aspnet-mvc.md)
-[Next](adding-a-new-category-to-the-dropdownlist-using-jquery-ui.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-dropdownlist-helper-with-aspnet-mvc.md)
+> [Next](adding-a-new-category-to-the-dropdownlist-using-jquery-ui.md)

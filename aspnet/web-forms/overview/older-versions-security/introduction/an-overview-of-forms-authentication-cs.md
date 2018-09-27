@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/introduction/an-overview-of-form
 title: "An Overview of Forms Authentication (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Creating Custom Routes"
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/14/2008
-ms.topic: article
 ms.assetid: de2d65b9-aadc-42ba-abe1-4e87e66521a0
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs
 msc.type: authoredcontent
 ---
@@ -468,6 +464,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial include Alicja Maziarz, John Suru, and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](security-basics-and-asp-net-support-cs.md)
-[Next](forms-authentication-configuration-and-advanced-topics-cs.md)
+> [!div class="step-by-step"]
+> [Previous](security-basics-and-asp-net-support-cs.md)
+> [Next](forms-authentication-configuration-and-advanced-topics-cs.md)

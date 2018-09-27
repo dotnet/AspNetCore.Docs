@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/membership/creating-user-account
 title: "Creating User Accounts (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will explore using the Membership framework (via the SqlMembershipProvider) to create new user accounts. We will see how to create new us..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/18/2008
-ms.topic: article
 ms.assetid: 9ef3e893-bebe-4b13-9fe5-8b71720dd85e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/creating-user-accounts-vb
 msc.type: authoredcontent
 ---
@@ -378,6 +374,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4guysfromrolla.com).
 
->[!div class="step-by-step"]
-[Previous](creating-the-membership-schema-in-sql-server-vb.md)
-[Next](validating-user-credentials-against-the-membership-user-store-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-the-membership-schema-in-sql-server-vb.md)
+> [Next](validating-user-credentials-against-the-membership-user-store-vb.md)

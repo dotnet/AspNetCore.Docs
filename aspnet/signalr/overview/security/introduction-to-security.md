@@ -3,13 +3,9 @@ uid: signalr/overview/security/introduction-to-security
 title: "Introduction to SignalR Security | Microsoft Docs"
 author: pfletcher
 description: "Describes the security issues you must consider when developing a SignalR application."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: ed562717-8591-4936-8e10-c7e63dcb570a
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/security/introduction-to-security
 msc.type: authoredcontent
 ---
@@ -110,7 +106,7 @@ Here is an example of a CSRF attack:
 
     [!code-html[Main](introduction-to-security/samples/sample1.html)]
 
- Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
+   Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 4. The user clicks the submit button. The browser includes the authentication cookie with the request.
 5. The request runs on the example.com server with the user's authentication context, and can do anything that an authenticated user is allowed to do.
 

@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/modalpopup/positioning-a-modalpopup
 title: "Positioning a ModalPopup (VB) | Microsoft Docs"
 author: wenz
 description: "The ModalPopup control in the AJAX Control Toolkit offers a simple way to create a modal popup using client-side means. However the control does not offer a..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 8a07210c-eb0e-485e-9ee8-82a101520e65
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/modalpopup/positioning-a-modalpopup-vb
 msc.type: authoredcontent
 ---
@@ -57,5 +53,5 @@ And the `stopMoving()` function comes into play when the popup is closed this ca
 
 The modal popup appears at the designated position ([Click to view full-size image](positioning-a-modalpopup-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](handling-postbacks-from-a-modalpopup-vb.md)
+> [!div class="step-by-step"]
+> [Previous](handling-postbacks-from-a-modalpopup-vb.md)

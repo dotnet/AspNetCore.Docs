@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/modalpopup/launching-a-modal-popup-
 title: "Launching a Modal Popup Window from Server Code (VB) | Microsoft Docs"
 author: wenz
 description: "The ModalPopup control in the AJAX Control Toolkit offers a simple way to create a modal popup using client-side means. However some scenarios require that t..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 36ca81d7-906d-4db2-952b-add18a4ff421
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/modalpopup/launching-a-modal-popup-window-from-server-code-vb
 msc.type: authoredcontent
 ---
@@ -67,6 +63,6 @@ The `$find()` function is looking for a named element on the page and expects th
 
 The modal popup appears when either of the buttons is clicked ([Click to view full-size image](launching-a-modal-popup-window-from-server-code-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](positioning-a-modalpopup-cs.md)
-[Next](using-modalpopup-with-a-repeater-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](positioning-a-modalpopup-cs.md)
+> [Next](using-modalpopup-with-a-repeater-control-vb.md)

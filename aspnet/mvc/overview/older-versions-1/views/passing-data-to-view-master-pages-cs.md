@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs
 title: "Passing Data to View Master Pages (C#) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to explain how you can pass data from a controller to a view master page. We examine two strategies for passing data to a view m..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/16/2008
-ms.topic: article
 ms.assetid: 5fee879b-8bde-42a9-a434-60ba6b1cf747
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs
 msc.type: authoredcontent
 ---
@@ -110,6 +106,6 @@ In this tutorial, we discussed two approaches to passing view data from a contro
 
 Next, we examined a much better strategy for adding data required by a view master page to view data. Instead of adding the view data in each and every controller action, we added the view data only once within an Application controller. That way, you can avoid duplicate code when passing data to a view master page in an ASP.NET MVC application.
 
->[!div class="step-by-step"]
-[Previous](creating-page-layouts-with-view-master-pages-cs.md)
-[Next](asp-net-mvc-views-overview-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-page-layouts-with-view-master-pages-cs.md)
+> [Next](asp-net-mvc-views-overview-vb.md)

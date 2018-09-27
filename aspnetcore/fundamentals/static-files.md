@@ -1,18 +1,13 @@
 ---
-title: Work with static files in ASP.NET Core
+title: Static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/18/2018
-ms.devlang: csharp
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: fundamentals/static-files
 ---
-# Work with static files in ASP.NET Core
+# Static files in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Scott Addie](https://twitter.com/Scott_Addie)
 
@@ -26,13 +21,13 @@ Static files are stored within your project's web root directory. The default di
 
 The app's web host must be made aware of the content root directory.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 The `WebHost.CreateDefaultBuilder` method sets the content root to the current directory:
 
 [!code-csharp[](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=9)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 Set the content root to the current directory by invoking [UseContentRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usecontentroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseContentRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) inside of `Program.Main`:
 
@@ -101,7 +96,7 @@ A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions
 
 The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method exists in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
 
-The files have been made publicly cacheable for 10 minutes (600 seconds):
+The files have been made publicly cacheable for 10 minutes (600 seconds) in the Development environment:
 
 ![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 
@@ -231,7 +226,7 @@ With the preceding code, a request for a file with an unknown content type is re
 > [!WARNING]
 > `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via `UseStaticFiles` or `UseDirectoryBrowser`. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as *\<content_root>/wwwroot*. Separate these files from MVC views, Razor Pages (2.x only), configuration files, etc.
 
-* The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive&mdash;Mac and Linux aren't.
+* The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive&mdash;macOS and Linux aren't.
 
 * ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used. It has no chance to handle requests before they're handled by the module.
 

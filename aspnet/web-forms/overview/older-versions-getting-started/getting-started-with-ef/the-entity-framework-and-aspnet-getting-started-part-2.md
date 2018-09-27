@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/getting-started-with-ef/t
 title: "Getting Started with Entity Framework 4.0 Database First and ASP.NET 4 Web Forms - Part 2 | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET Web Forms applications using the Entity Framework. The sample application is..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 12/03/2010
-ms.topic: article
 ms.assetid: fb63a326-a4ae-4b0c-a4f5-412327197216
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-2
 msc.type: authoredcontent
 ---
@@ -244,6 +240,6 @@ Run the page and you can select a department from the drop-down list.
 
 This completes the introduction to using the `EntityDataSource` control. Working with this control is generally no different from working with other ASP.NET data source controls, except that you reference entities and properties instead of tables and columns. The only exception is when you want to access navigation properties. In the next tutorial you'll see that the syntax you use with `EntityDataSource` control might also differ from other data source controls when you filter, group, and order data.
 
->[!div class="step-by-step"]
-[Previous](the-entity-framework-and-aspnet-getting-started-part-1.md)
-[Next](the-entity-framework-and-aspnet-getting-started-part-3.md)
+> [!div class="step-by-step"]
+> [Previous](the-entity-framework-and-aspnet-getting-started-part-1.md)
+> [Next](the-entity-framework-and-aspnet-getting-started-part-3.md)

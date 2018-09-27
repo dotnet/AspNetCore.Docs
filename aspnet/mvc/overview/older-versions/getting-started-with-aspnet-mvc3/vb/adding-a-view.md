@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-vi
 title: "Adding a View (VB) | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express Service Pack 1, which is..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/12/2011
-ms.topic: article
 ms.assetid: d3633f64-5d3c-45c9-ae4b-cb1563e3739f
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-view
 msc.type: authoredcontent
 ---
@@ -106,7 +102,7 @@ Here's what your **Add View** dialog box looks like.
 
 [![3AddWelcomeView](adding-a-view/_static/image12.png "3AddWelcomeView")](adding-a-view/_static/image11.png)
 
-Add the following code under the `<h2>` element in the new *Welcome.*vbhtml file. We'll make a loop and say &quot;Hello&quot; as many times as the user says we should!
+Add the following code under the `<h2>` element in the new <em>Welcome.</em>vbhtml file. We'll make a loop and say &quot;Hello&quot; as many times as the user says we should!
 
 [!code-vbhtml[Main](adding-a-view/samples/sample8.vbhtml)]
 
@@ -118,6 +114,6 @@ Now data is taken from the URL and passed to the controller automatically. The c
 
 Well, that was a kind of an &quot;M&quot; for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[!div class="step-by-step"]
-[Previous](adding-a-controller.md)
-[Next](adding-a-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-controller.md)
+> [Next](adding-a-model.md)

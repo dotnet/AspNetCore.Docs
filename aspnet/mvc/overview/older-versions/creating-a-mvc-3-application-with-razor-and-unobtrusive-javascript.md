@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/creating-a-mvc-3-application-with-razor-and-uno
 title: "Creating a MVC 3 Application with Razor and Unobtrusive JavaScript | Microsoft Docs"
 author: microsoft
 description: "The User List sample web application demonstrates how simple it is to create ASP.NET MVC 3 applications using the Razor view engine. The sample application s..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/01/2010
-ms.topic: article
 ms.assetid: 658b149b-d770-46bf-8b4b-4e47cca242f3
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript
 msc.type: authoredcontent
 ---
@@ -49,7 +45,7 @@ In this tutorial you will not be using the ASP.NET membership provider, so you c
 
 ![Soln Exp](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/_static/image5.png)
 
-Edit the *\_Layout.cshtml* file and replace the markup inside the `<div>` element named `logindisplay` with the message *&quot;*Login Disabled&quot;. The following example shows the new markup:
+Edit the <em>\_Layout.cshtml</em> file and replace the markup inside the `<div>` element named `logindisplay` with the message <em>&quot;</em>Login Disabled&quot;. The following example shows the new markup:
 
 [!code-cshtml[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample1.cshtml)]
 
@@ -117,7 +113,7 @@ Add the following `Details` method to the home controller:
 
 [!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample8.cs)]
 
-Right-click inside the `Details` method and then select **Add View**. Verify that the **View data class** box contains **Mvc3Razor.Models.UserModel***.* Set **View content** to **Details** and then click **Add**.
+Right-click inside the `Details` method and then select <strong>Add View</strong>. Verify that the <strong>View data class</strong> box contains <strong>Mvc3Razor.Models.UserModel</strong><em>.</em> Set <strong>View content</strong> to <strong>Details</strong> and then click <strong>Add</strong>.
 
 ![Add details view](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/_static/image11.png)
 

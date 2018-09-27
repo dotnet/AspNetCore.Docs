@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/database-first-development/customizing-a-view
 title: "EF Database First with ASP.NET MVC: Customizing a View | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/01/2014
-ms.topic: article
 ms.assetid: 269380ff-d7e1-4035-8ad1-fe1316a25f76
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/customizing-a-view
 msc.type: authoredcontent
 ---
@@ -36,6 +32,6 @@ Browse to the Students/Index view again and select **Details** for one of the st
 
 ![student with enrollment](customizing-a-view/_static/image1.png)
 
->[!div class="step-by-step"]
-[Previous](changing-the-database.md)
-[Next](enhancing-data-validation.md)
+> [!div class="step-by-step"]
+> [Previous](changing-the-database.md)
+> [Next](enhancing-data-validation.md)

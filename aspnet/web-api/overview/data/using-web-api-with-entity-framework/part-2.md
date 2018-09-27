@@ -3,13 +3,9 @@ uid: web-api/overview/data/using-web-api-with-entity-framework/part-2
 title: "Add Models and Controllers | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: 88908ff8-51a9-40eb-931c-a8139128b680
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-2
 msc.type: authoredcontent
 ---
@@ -88,6 +84,6 @@ At this point, build the project again. Now go through the same steps to add an 
 
 ![](part-2/_static/image8.png)
 
->[!div class="step-by-step"]
-[Previous](part-1.md)
-[Next](part-3.md)
+> [!div class="step-by-step"]
+> [Previous](part-1.md)
+> [Next](part-3.md)

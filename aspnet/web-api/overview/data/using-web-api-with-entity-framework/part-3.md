@@ -3,13 +3,9 @@ uid: web-api/overview/data/using-web-api-with-entity-framework/part-3
 title: "Use Code First Migrations to Seed the Database | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: 76e2013a-65b7-488c-834d-9448ecea378e
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-3
 msc.type: authoredcontent
 ---
@@ -97,6 +93,6 @@ The following screenshot shows the results for the Books table. Notice that EF p
 
 ![](part-3/_static/image9.png)
 
->[!div class="step-by-step"]
-[Previous](part-2.md)
-[Next](part-4.md)
+> [!div class="step-by-step"]
+> [Previous](part-2.md)
+> [Next](part-4.md)

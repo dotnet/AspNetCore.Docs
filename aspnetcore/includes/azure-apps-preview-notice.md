@@ -1,4 +1,4 @@
 > [!IMPORTANT]
-> **Notice for using ASP.NET Core 2.1 preview releases**
+> **ASP.NET Core preview releases with Azure App Service**
 >
-> Unlike previous preview releases, ASP.NET Core 2.1 preview releases won't be deployed to Azure App Service. To install an ASP.NET Core 2.1 preview release for use with Azure App Service, see [ASP.NET Core 2.1.0-preview1: Using ASP.NET Core Previews on Azure App Service](https://blogs.msdn.microsoft.com/webdev/2018/02/27/asp-net-core-2-1-0-preview1-using-asp-net-core-previews-on-azure-app-service/).
+> ASP.NET Core preview releases aren't deployed to Azure App Service by default. To host an app that uses an ASP.NET Core preview release, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service).

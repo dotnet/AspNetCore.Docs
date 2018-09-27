@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-re
 title: "Master/Detail Filtering Across Two Pages (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we look at how to separate a master/detail report across two pages. In the 'master' page we use a Repeater control to render a list of categ..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/30/2010
-ms.topic: article
 ms.assetid: 68b8c023-92fa-4df6-9563-1764e16e4b04
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-acess-two-pages-datalist-cs
 msc.type: authoredcontent
 ---
@@ -177,6 +173,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Zack Jones and Liz Shulok. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](master-detail-filtering-with-a-dropdownlist-datalist-cs.md)
-[Next](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs.md)
+> [!div class="step-by-step"]
+> [Previous](master-detail-filtering-with-a-dropdownlist-datalist-cs.md)
+> [Next](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs.md)

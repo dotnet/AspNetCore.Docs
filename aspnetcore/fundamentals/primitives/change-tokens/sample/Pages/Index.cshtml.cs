@@ -35,7 +35,6 @@ namespace ChangeTokenSample.Pages
         }
         #endregion
 
-        public string IncludeScopes { get; private set; }
         public string DefaultLogLevel { get; private set; }
         public string SystemLogLevel { get; private set; }
         public string MicrosoftLogLevel { get; private set; }
@@ -46,7 +45,6 @@ namespace ChangeTokenSample.Pages
 
         public async Task OnGet()
         {
-            IncludeScopes = _config["Logging:IncludeScopes"];
             DefaultLogLevel = _config["Logging:LogLevel:Default"];
             SystemLogLevel = _config["Logging:LogLevel:System"];
             MicrosoftLogLevel = _config["Logging:LogLevel:Microsoft"];
@@ -68,7 +66,7 @@ namespace ChangeTokenSample.Pages
         public IActionResult OnPostStartMonitoring()
         {
             _monitor.MonitoringEnabled = true;
-            _monitor.CurrentState = string.Empty;
+            _monitor.CurrentState = "Monitoring!";
 
             return RedirectToPage();
         }

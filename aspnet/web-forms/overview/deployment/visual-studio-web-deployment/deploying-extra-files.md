@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-
 title: "ASP.NET Web Deployment using Visual Studio: Deploying Extra Files | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/23/2015
-ms.topic: article
 ms.assetid: 1cd91055-84bc-42c6-9d80-646f41429d4d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files
 msc.type: authoredcontent
 ---
@@ -99,6 +95,6 @@ I would like to thank the following people who made significant contributions to
 - [Srđan Božović, Serbia](http://msforge.net/blogs/zmajcek/)
 - [Vishal Joshi, Microsoft](http://vishaljoshi.blogspot.com/) (twitter: [@vishalrjoshi](http://twitter.com/vishalrjoshi))
 
->[!div class="step-by-step"]
-[Previous](command-line-deployment.md)
-[Next](troubleshooting.md)
+> [!div class="step-by-step"]
+> [Previous](command-line-deployment.md)
+> [Next](troubleshooting.md)

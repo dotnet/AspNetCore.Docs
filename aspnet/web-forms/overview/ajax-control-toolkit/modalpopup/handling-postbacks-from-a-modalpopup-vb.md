@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/modalpopup/handling-postbacks-from-
 title: "Handling Postbacks from a ModalPopup (VB) | Microsoft Docs"
 author: wenz
 description: "The ModalPopup control in the AJAX Control Toolkit offers a simple way to create a modal popup using client-side means. Special care must be taken when a pos..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: f70ac2b3-900f-40fa-858f-ab057904506b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/modalpopup/handling-postbacks-from-a-modalpopup-vb
 msc.type: authoredcontent
 ---
@@ -57,6 +53,6 @@ Also, the textbox controls within the modal popup should be filled with the curr
 
 The modal popup causes a postback ([Click to view full-size image](handling-postbacks-from-a-modalpopup-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-modalpopup-with-a-repeater-control-vb.md)
-[Next](positioning-a-modalpopup-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-modalpopup-with-a-repeater-control-vb.md)
+> [Next](positioning-a-modalpopup-vb.md)

@@ -3,13 +3,9 @@ uid: signalr/overview/performance/scaleout-with-sql-server
 title: "SignalR Scaleout with SQL Server | Microsoft Docs"
 author: MikeWasson
 description: "Software versions used in this topic Visual Studio 2013 .NET 4.5 SignalR version 2 Previous versions of this topic For information about earlier versions of..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: 98358b6e-9139-4239-ba3a-2d7dd74dd664
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/scaleout-with-sql-server
 msc.type: authoredcontent
 ---
@@ -57,7 +53,7 @@ Before we get to the detailed tutorial, here is a quick overview of what you wil
 
     [!code-csharp[Main](scaleout-with-sql-server/samples/sample1.cs)]
 
- This code configures the backplane with the default values for [TableCount](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.sqlscaleoutconfiguration.tablecount(v=vs.118).aspx) and [MaxQueueLength](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.messaging.scaleoutconfiguration.maxqueuelength(v=vs.118).aspx). For information on changing these values, see [SignalR Performance: Scaleout Metrics](signalr-performance.md#scaleout_metrics). 
+   This code configures the backplane with the default values for [TableCount](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.sqlscaleoutconfiguration.tablecount(v=vs.118).aspx) and [MaxQueueLength](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.messaging.scaleoutconfiguration.maxqueuelength(v=vs.118).aspx). For information on changing these values, see [SignalR Performance: Scaleout Metrics](signalr-performance.md#scaleout_metrics). 
 
 ## Configure the Database
 

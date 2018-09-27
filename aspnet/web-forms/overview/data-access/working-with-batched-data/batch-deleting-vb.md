@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/working-with-batched-data/batch-deleting-vb
 title: "Batch Deleting (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to delete multiple database records in a single operation. In the User Interface Layer we build upon an enhanced GridView created in an earlier tut..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/26/2007
-ms.topic: article
 ms.assetid: 4fb72f75-32ab-4bf7-a764-be20367be726
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-deleting-vb
 msc.type: authoredcontent
 ---
@@ -110,6 +106,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Hilton Giesenow and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](batch-updating-vb.md)
-[Next](batch-inserting-vb.md)
+> [!div class="step-by-step"]
+> [Previous](batch-updating-vb.md)
+> [Next](batch-inserting-vb.md)

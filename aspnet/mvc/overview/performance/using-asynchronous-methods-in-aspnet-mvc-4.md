@@ -3,13 +3,9 @@ uid: mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4
 title: "Using Asynchronous Methods in ASP.NET MVC 4 | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using Visual Studio Express 2012 for Web, which is a free ve..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/06/2012
-ms.topic: article
 ms.assetid: a56572ba-81c3-47af-826d-941e9c4775ec
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4
 msc.type: authoredcontent
 ---
@@ -18,7 +14,7 @@ Using Asynchronous Methods in ASP.NET MVC 4
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
 > This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11), which is a free version of Microsoft Visual Studio. You can also use [Visual Studio 2012](https://www.microsoft.com/visualstudio/11).
-
+> 
 > A complete sample is provided for this tutorial on github
 >  [https://github.com/RickAndMSFT/Async-ASP.NET/](https://github.com/RickAndMSFT/Async-ASP.NET/)
 
@@ -39,7 +35,7 @@ This might not be a problem, because the thread pool can be made large enough to
 
 ## Processing Asynchronous Requests
 
-In web applications that sees a large number of concurrent requests at start-up or has a bursty load (where concurrency increases suddenly), making these web service calls asynchronous will increase the responsiveness of your application. An asynchronous request takes the same amount of time to process as a synchronous request. For example, if a request makes a web service call that requires two seconds to complete, the request takes two seconds whether it is performed synchronously or asynchronously. However, during an asynchronous call, a thread is not blocked from responding to other requests while it waits for the first request to complete. Therefore, asynchronous requests prevent request queuing and thread pool growth when there are many concurrent requests that invoke long-running operations.
+In a web app that sees a large number of concurrent requests at start-up or has a bursty load (where concurrency increases suddenly), making web service calls asynchronous increases the responsiveness of the app. An asynchronous request takes the same amount of time to process as a synchronous request. If a request makes a web service call that requires two seconds to complete, the request takes two seconds whether it's performed synchronously or asynchronously. However during an asynchronous call, a thread isn't blocked from responding to other requests while it waits for the first request to complete. Therefore, asynchronous requests prevent request queuing and thread pool growth when there are many concurrent requests that invoke long-running operations.
 
 ## <a id="ChoosingSyncVasync"></a>  Choosing Synchronous or Asynchronous Action Methods
 
@@ -51,16 +47,16 @@ In general, use synchronous methods for the following conditions:
 - Simplicity is more important than efficiency.
 - The operations are primarily CPU operations instead of operations that involve extensive disk or network overhead. Using asynchronous action methods on CPU-bound operations provides no benefits and results in more overhead.
 
- In general, use asynchronous methods for the following conditions:
+  In general, use asynchronous methods for the following conditions:
 
 - You're calling services that can be consumed through asynchronous methods, and you're using .NET 4.5 or higher.
 - The operations are network-bound or I/O-bound instead of CPU-bound.
 - Parallelism is more important than simplicity of code.
 - You want to provide a mechanism that lets users cancel a long-running request.
-- When the benefit of switching threads out weights the cost of the context switch. In general, you should make a method asynchronous if the synchronous method waits on the ASP.NET request thread while doing no work. By making the call asynchronous, the ASP.NET request thread is not stalled doing no work while it waits for the web service request to complete.
+- When the benefit of switching threads outweighs the cost of the context switch. In general, you should make a method asynchronous if the synchronous method waits on the ASP.NET request thread while doing no work. By making the call asynchronous, the ASP.NET request thread is not stalled doing no work while it waits for the web service request to complete.
 - Testing shows that the blocking operations are a bottleneck in site performance and that IIS can service more requests by using asynchronous methods for these blocking calls.
 
- The downloadable sample shows how to use asynchronous action methods effectively. The sample provided was designed to provide a simple demonstration of asynchronous programming in ASP.NET MVC 4 using .NET 4.5. The sample is not intended to be a reference architecture for asynchronous programming in ASP.NET MVC. The sample program calls [ASP.NET Web API](../../../web-api/index.md) methods which in turn call [Task.Delay](https://msdn.microsoft.com/library/hh139096(VS.110).aspx) to simulate long-running web service calls. Most production applications will not show such obvious benefits to using asynchronous action methods.   
+  The downloadable sample shows how to use asynchronous action methods effectively. The sample provided was designed to provide a simple demonstration of asynchronous programming in ASP.NET MVC 4 using .NET 4.5. The sample is not intended to be a reference architecture for asynchronous programming in ASP.NET MVC. The sample program calls [ASP.NET Web API](../../../web-api/index.md) methods which in turn call [Task.Delay](https://msdn.microsoft.com/library/hh139096(VS.110).aspx) to simulate long-running web service calls. Most production applications will not show such obvious benefits to using asynchronous action methods.   
   
 Few applications require all action methods to be asynchronous. Often, converting a few synchronous action methods to asynchronous methods provides the best efficiency increase for the amount of work required.
 
@@ -159,8 +155,8 @@ To realize the benefits of an asynchronous web application, you might need to ma
 
 - Windows 7, Windows Vista and all Windows client operating systems have a maximum of 10 concurrent requests. You'll need a Windows Server operating system to see the benefits of asynchronous methods under high load.
 - Register .NET 4.5 with IIS from an elevated command prompt:  
- %windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet\_regiis -i  
- See    [ASP.NET IIS Registration Tool (Aspnet\_regiis.exe)](https://msdn.microsoft.com/library/k6h9cz8h.aspx)
+  %windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet\_regiis -i  
+  See    [ASP.NET IIS Registration Tool (Aspnet\_regiis.exe)](https://msdn.microsoft.com/library/k6h9cz8h.aspx)
 - You might need to increase the [HTTP.sys](https://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture) queue limit from the default value of 1,000 to 5,000. If the setting is too low, you may see [HTTP.sys](https://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture) reject requests with a HTTP 503 status. To change the HTTP.sys queue limit:
 
     - Open IIS manager and navigate to the Application Pools pane.
@@ -169,7 +165,7 @@ To realize the benefits of an asynchronous web application, you might need to ma
     - In the **Advanced Settings** dialog box, change *Queue Length* from 1,000 to 5,000.  
         ![Queue length](using-asynchronous-methods-in-aspnet-mvc-4/_static/image5.png)  
   
- Note in the images above, the .NET framework is listed as v4.0, even though the application pool is using .NET 4.5. To understand this discrepancy, see the following:
+  Note in the images above, the .NET framework is listed as v4.0, even though the application pool is using .NET 4.5. To understand this discrepancy, see the following:
 
     - [.NET Versioning and Multi-Targeting - .NET 4.5 is an in-place upgrade to .NET 4.0](http://www.hanselman.com/blog/NETVersioningAndMultiTargetingNET45IsAnInplaceUpgradeToNET40.aspx)
     - [How to set an IIS Application or AppPool to use ASP.NET 3.5 rather than 2.0](http://www.hanselman.com/blog/HowToSetAnIISApplicationOrAppPoolToUseASPNET35RatherThan20.aspx)

@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/security/preventing-javascript-injection-atta
 title: "Preventing JavaScript Injection Attacks (VB) | Microsoft Docs"
 author: StephenWalther
 description: "Prevent JavaScript Injection Attacks and Cross-Site Scripting Attacks from happening to you. In this tutorial, Stephen Walther explains how you can easily de..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/19/2008
-ms.topic: article
 ms.assetid: 9274a72e-34dd-4dae-8452-ed733ae71377
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/security/preventing-javascript-injection-attacks-vb
 msc.type: authoredcontent
 ---
@@ -60,7 +56,7 @@ Imagine that you enter the following text into the customer feedback form:
 
 [!code-html[Main](preventing-javascript-injection-attacks-vb/samples/sample3.html)]
 
-This text represents a JavaScript script that displays an alert message box. After someone submits this script into the feedback form, the message *Boo!*will appear whenever anyone visits the customer feedback website in the future (see Figure 2).
+This text represents a JavaScript script that displays an alert message box. After someone submits this script into the feedback form, the message <em>Boo!</em>will appear whenever anyone visits the customer feedback website in the future (see Figure 2).
 
 
 [![JavaScript Injection](preventing-javascript-injection-attacks-vb/_static/image5.png)](preventing-javascript-injection-attacks-vb/_static/image4.png)
@@ -116,5 +112,5 @@ Why is this bad? If you ever need to display the database data in something othe
 
 The purpose of this tutorial was to scare you about the prospect of a JavaScript injection attack. This tutorial discussed two approaches for defending your ASP.NET MVC applications against JavaScript injection attacks: you can either HTML encode user submitted data in the view or you can HTML encode user submitted data in the controller.
 
->[!div class="step-by-step"]
-[Previous](authenticating-users-with-windows-authentication-vb.md)
+> [!div class="step-by-step"]
+> [Previous](authenticating-users-with-windows-authentication-vb.md)

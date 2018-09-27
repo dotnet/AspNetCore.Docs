@@ -3,13 +3,9 @@ uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-clou
 title: "Source Control (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/23/2015
-ms.topic: article
 ms.assetid: 2a0370d3-c2fb-4bf3-88b8-aad5a736c793
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control
 msc.type: authoredcontent
 ---
@@ -216,6 +212,6 @@ For more information about how to handle sensitive information that should not b
 
 For information about other methods for keeping sensitive information out of source control, see [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
 
->[!div class="step-by-step"]
-[Previous](automate-everything.md)
-[Next](continuous-integration-and-continuous-delivery.md)
+> [!div class="step-by-step"]
+> [Previous](automate-everything.md)
+> [Next](continuous-integration-and-continuous-delivery.md)

@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/database-first-development/publish-to-azure
 title: "Publish MVC Database First site to Azure | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 12/22/2014
-ms.topic: article
 ms.assetid: 7131f1c1-cef3-4396-ab44-ed4519676546
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/publish-to-azure
 msc.type: authoredcontent
 ---
@@ -161,5 +157,5 @@ For an introductory example of Code First development, see [Getting Started with
 
 For a more advanced example, see [Creating an Entity Framework Data Model for an ASP.NET MVC 4 App](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md). Note that the DbContext API that you use for working with data in Database First is the same as the API you use for working with data in Code First. Even if you intend to use Database First, you can learn how to handle more complex scenarios such as reading and updating related data, handling concurrency conflicts, and so forth from a Code First tutorial. The only difference is in how the database, context class, and entity classes are created.
 
->[!div class="step-by-step"]
-[Previous](enhancing-data-validation.md)
+> [!div class="step-by-step"]
+> [Previous](enhancing-data-validation.md)

@@ -3,13 +3,9 @@ uid: web-forms/overview/presenting-and-managing-data/model-binding/using-query-s
 title: "Using query string values to filter data with model binding and web forms | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial series demonstrates basic aspects of using model binding with an ASP.NET Web Forms project. Model binding makes data interaction more straight-..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/27/2014
-ms.topic: article
 ms.assetid: b90978bd-795d-4871-9ade-1671caff5730
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/using-query-string-values-to-retrieve-data
 msc.type: authoredcontent
 ---
@@ -80,6 +76,6 @@ In this tutorial, you added a link with a query string value. You used that quer
 
 In the next [tutorial](adding-business-logic-layer.md), you will move the code from the code-behind files into a business logic layer and a data access layer.
 
->[!div class="step-by-step"]
-[Previous](integrating-jquery-ui.md)
-[Next](adding-business-logic-layer.md)
+> [!div class="step-by-step"]
+> [Previous](integrating-jquery-ui.md)
+> [Next](adding-business-logic-layer.md)

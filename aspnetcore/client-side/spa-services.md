@@ -1,36 +1,32 @@
 ---
-title: Using JavaScriptServices for Creating Single Page Applications
+title: Use JavaScriptServices to Create Single Page Applications in ASP.NET Core
 author: scottaddie
 description: Learn about the benefits of using JavaScriptServices to create a Single Page Application (SPA) backed by ASP.NET Core.
-manager: wpickett
 ms.author: scaddie
 ms.custom: H1Hack27Feb2017
 ms.date: 08/02/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/spa-services
 ---
-# Using JavaScriptServices for Creating Single Page Applications with ASP.NET Core
+# Use JavaScriptServices to Create Single Page Applications in ASP.NET Core
 
 By [Scott Addie](https://github.com/scottaddie) and [Fiyaz Hasan](http://fiyazhasan.me/)
 
 A Single Page Application (SPA) is a popular type of web application due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks like ASP.NET Core can be difficult. [JavaScriptServices](https://github.com/aspnet/JavaScriptServices) was developed to reduce friction in the integration process. It enables seamless operation between the different client and server technology stacks.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/spa-services/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
-
 <a name="what-is-js-services"></a>
 
-## What is JavaScriptServices?
+## What is JavaScriptServices
 
 JavaScriptServices is a collection of client-side technologies for ASP.NET Core. Its goal is to position ASP.NET Core as developers' preferred server-side platform for building SPAs.
 
 JavaScriptServices consists of three distinct NuGet packages:
+
 * [Microsoft.AspNetCore.NodeServices](https://www.nuget.org/packages/Microsoft.AspNetCore.NodeServices/) (NodeServices)
 * [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) (SpaServices)
 * [Microsoft.AspNetCore.SpaTemplates](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaTemplates/) (SpaTemplates)
 
 These packages are useful if you:
+
 * Run JavaScript on the server
 * Use a SPA framework or library
 * Build client-side assets with Webpack
@@ -39,11 +35,12 @@ Much of the focus in this article is placed on using the SpaServices package.
 
 <a name="what-is-spa-services"></a>
 
-## What is SpaServices?
+## What is SpaServices
 
 SpaServices was created to position ASP.NET Core as developers' preferred server-side platform for building SPAs. SpaServices isn't required to develop SPAs with ASP.NET Core, and it doesn't lock you into a particular client framework.
 
 SpaServices provides useful infrastructure such as:
+
 * [Server-side prerendering](#server-prerendering)
 * [Webpack Dev Middleware](#webpack-dev-middleware)
 * [Hot Module Replacement](#hot-module-replacement)
@@ -56,8 +53,9 @@ Collectively, these infrastructure components enhance both the development workf
 ## Prerequisites for using SpaServices
 
 To work with SpaServices, install the following:
+
 * [Node.js](https://nodejs.org/) (version 6 or later) with npm
-    * To verify these components are installed and can be found, run the following from the command line:
+  * To verify these components are installed and can be found, run the following from the command line:
 
     ```console
     node -v && npm -v
@@ -65,8 +63,9 @@ To work with SpaServices, install the following:
 
 Note: If you're deploying to an Azure web site, you don't need to do anything here &mdash; Node.js is installed and available in the server environments.
 
-* [.NET Core SDK](https://www.microsoft.com/net/download/core) 1.0 (or later)
-    * If you're on Windows, this can be installed by selecting Visual Studio 2017's **.NET Core cross-platform development** workload.
+* [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
+
+  * If you're on Windows using Visual Studio 2017, the SDK is installed by selecting the **.NET Core cross-platform development** workload.
 
 * [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
 
@@ -81,6 +80,7 @@ ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) provided by SpaServ
 ### Prerequisites
 
 Install the following:
+
 * [aspnet-prerendering](https://www.npmjs.com/package/aspnet-prerendering) npm package:
 
     ```console
@@ -133,11 +133,14 @@ The `postList` array defined inside the `globals` object is attached to the brow
 
 [Webpack Dev Middleware](https://webpack.github.io/docs/webpack-dev-middleware.html) introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate approach is to manually invoke Webpack via the project's npm build script when a third-party dependency or the custom code changes. An npm build script in the *package.json* file is shown in the following example:
 
-[!code-json[](../client-side/spa-services/sample/SpaServicesSampleApp/package.json?range=5)]
+```json
+"build": "npm run build:vendor && npm run build:custom",
+```
 
 ### Prerequisites
 
 Install the following:
+
 * [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package:
 
     ```console
@@ -160,11 +163,12 @@ The *webpack.config.js* file's `output.publicPath` property tells the middleware
 
 ## Hot Module Replacement
 
-Think of Webpack's [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html) (HMR) feature as an evolution of [Webpack Dev Middleware](#webpack-dev-middleware). HMR introduces all the same benefits, but it further streamlines the development workflow by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There's a live link between the Webpack Dev Middleware service and the browser, which means changes are pushed to the browser.
+Think of Webpack's [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/) (HMR) feature as an evolution of [Webpack Dev Middleware](#webpack-dev-middleware). HMR introduces all the same benefits, but it further streamlines the development workflow by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There's a live link between the Webpack Dev Middleware service and the browser, which means changes are pushed to the browser.
 
 ### Prerequisites
 
 Install the following:
+
 * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware) npm package:
 
     ```console
@@ -202,6 +206,7 @@ Consider the scenario in which an extensionless route of `/some/page` is used. A
 ### Prerequisites
 
 Install the following:
+
 * The client-side routing npm package. Using Angular as an example:
 
     ```console
@@ -220,7 +225,7 @@ Tip: Routes are evaluated in the order in which they're configured. Consequently
 
 ## Creating a new project
 
-JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, Aurelia, Knockout, React, and Vue.
+JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, React, and Redux.
 
 These templates can be installed via the .NET Core CLI by running the following command:
 
@@ -233,11 +238,8 @@ A list of available SPA templates is displayed:
 | Templates                                 | Short Name | Language | Tags        |
 |:------------------------------------------|:-----------|:---------|:------------|
 | MVC ASP.NET Core with Angular             | angular    | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Aurelia             | aurelia    | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Knockout.js         | knockout   | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with React.js            | react      | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with React.js and Redux  | reactredux | [C#]     | Web/MVC/SPA |
-| MVC ASP.NET Core with Vue.js              | vue        | [C#]     | Web/MVC/SPA | 
 
 To create a new project using one of the SPA templates, include the **Short Name** of the template in the [dotnet new](/dotnet/core/tools/dotnet-new) command. The following command creates an Angular application with ASP.NET Core MVC configured for the server side:
 
@@ -250,14 +252,15 @@ dotnet new angular
 ### Set the runtime configuration mode
 
 Two primary runtime configuration modes exist:
-* **Development**:
-    * Includes source maps to ease debugging.
-    * Doesn't optimize the client-side code for performance.
-* **Production**:
-    * Excludes source maps.
-    * Optimizes the client-side code via bundling & minification.
 
-ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. See **[Setting the environment](xref:fundamentals/environments#setting-the-environment)** for more information.
+* **Development**:
+  * Includes source maps to ease debugging.
+  * Doesn't optimize the client-side code for performance.
+* **Production**:
+  * Excludes source maps.
+  * Optimizes the client-side code via bundling & minification.
+
+ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. See **[Set the environment](xref:fundamentals/environments#set-the-environment)** for more information.
 
 ### Running with .NET Core CLI
 
@@ -277,7 +280,7 @@ The application starts on localhost according to the [runtime configuration mode
 
 ### Running with Visual Studio 2017
 
-Open the *.csproj* file generated by the [dotnet new](/dotnet/core/tools/dotnet-new) command. The required NuGet and npm packages are restored automatically upon project open. This restoration process may take up to a few minutes, and the application is ready to run when it completes. Click the green run button or press `Ctrl + F5`, and the browser opens to the application's landing page. The application runs on localhost according to the [runtime configuration mode](#runtime-config-mode). 
+Open the *.csproj* file generated by the [dotnet new](/dotnet/core/tools/dotnet-new) command. The required NuGet and npm packages are restored automatically upon project open. This restoration process may take up to a few minutes, and the application is ready to run when it completes. Click the green run button or press `Ctrl + F5`, and the browser opens to the application's landing page. The application runs on localhost according to the [runtime configuration mode](#runtime-config-mode).
 
 <a name="app-testing"></a>
 
@@ -289,7 +292,7 @@ Using the Angular application as an example, two Jasmine test cases are already 
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/app/components/counter/counter.component.spec.ts?range=15-28)]
 
-Open the command prompt at the project root, and run the following command:
+Open the command prompt in the *ClientApp* directory. Run the following command:
 
 ```console
 npm test
@@ -308,6 +311,7 @@ Combining the generated client-side assets and the published ASP.NET Core artifa
 [!code-xml[](../client-side/spa-services/sample/SpaServicesSampleApp/SpaServicesSampleApp.csproj?range=31-45)]
 
 The MSBuild target has the following responsibilities:
+
 1. Restore the npm packages
 1. Create a production-grade build of the third-party, client-side assets
 1. Create a production-grade build of the custom client-side assets

@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/setting-up-t
 title: "Setting Up the Contact Manager Solution | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to download and configure the Contact Manager solution to run locally on a developer workstation."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 200b973c-776b-4a9b-9e82-39fda6120a52
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/setting-up-the-contact-manager-solution
 msc.type: authoredcontent
 ---
@@ -120,6 +116,6 @@ At this point, the Contact Manager solution should be fully configured to run on
 
 The next topic, [Understanding the Project File](understanding-the-project-file.md), explains how you can use the custom Microsoft Build Engine (MSBuild) project files within the Contact Manager solution to control the deployment process.
 
->[!div class="step-by-step"]
-[Previous](the-contact-manager-solution.md)
-[Next](understanding-the-project-file.md)
+> [!div class="step-by-step"]
+> [Previous](the-contact-manager-solution.md)
+> [Next](understanding-the-project-file.md)

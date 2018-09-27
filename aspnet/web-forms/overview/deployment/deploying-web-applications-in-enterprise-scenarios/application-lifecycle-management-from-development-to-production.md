@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scen
 title: "Application Lifecycle Management: From Development to Production | Microsoft Docs"
 author: jrjlee
 description: "This topic illustrates how a fictional company manages the deployment of an ASP.NET web application through test, staging, and production environments as par..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: f97a1145-6470-4bca-8f15-ccfb25fb903c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/application-lifecycle-management-from-development-to-production
 msc.type: authoredcontent
 ---
@@ -222,5 +218,5 @@ This topic forms part of a series of tutorials that provide guidance on various 
 - [Configuring Team Foundation Server for Automated Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md). This tutorial provides guidance on how to integrate deployment logic into TFS build processes.
 - [Advanced Enterprise Web Deployment](../advanced-enterprise-web-deployment/advanced-enterprise-web-deployment.md). This tutorial provides guidance on how to meet some of the more complex deployment challenges that organizations face.
 
->[!div class="step-by-step"]
-[Previous](enterprise-web-deployment-scenario-overview.md)
+> [!div class="step-by-step"]
+> [Previous](enterprise-web-deployment-scenario-overview.md)

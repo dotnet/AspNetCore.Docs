@@ -3,13 +3,9 @@ uid: web-forms/videos/how-do-i/how-do-i-write-web-events-to-a-sql-server-databas
 title: "[How Do I:] Write Web Events to a SQL Server Database Using the SqlWebEventProvider | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the ASP.NET health monitoring SqlWebEventProvider to log errors in a web site to a SQL Server database. First, lear..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/28/2008
-ms.topic: article
 ms.assetid: d4c08844-fe1c-4759-9ec7-66263ba678fb
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-write-web-events-to-a-sql-server-database-using-the-sqlwebeventprovider
 msc.type: video
 ---

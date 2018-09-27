@@ -3,13 +3,9 @@ uid: aspnet/overview/owin-and-katana/owin-middleware-in-the-iis-integrated-pipel
 title: "OWIN Middleware in the IIS integrated pipeline | Microsoft Docs"
 author: Praburaj
 description: "This article shows how to run OWIN middleware Components (OMCs) in the IIS integrated pipeline, and how to set the pipeline event an OMC runs on. You should..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/07/2013
-ms.topic: article
 ms.assetid: d031c021-33c2-45a5-bf9f-98f8fa78c2ab
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-middleware-in-the-iis-integrated-pipeline
 msc.type: authoredcontent
 ---
@@ -78,13 +74,13 @@ Owin middleware components (OMC) can be configured to run at the following OWIN 
 
     [!code-console[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample9.cmd)]
 
- calls to `app.UseStageMarker` passing `Authenticate` or `PostAuthenticate` will not be honored, and no exception will be thrown. OMCs run at the latest stage, which by default is `PreHandlerExecute`. The stage markers are used to make them to run earlier. If you specify stage markers out of order, we round to the earlier marker. In other words, adding a stage marker says "Run no later than stage X". OMC's run at the earliest stage marker added after them in the OWIN pipeline.
+   calls to `app.UseStageMarker` passing `Authenticate` or `PostAuthenticate` will not be honored, and no exception will be thrown. OMCs run at the latest stage, which by default is `PreHandlerExecute`. The stage markers are used to make them to run earlier. If you specify stage markers out of order, we round to the earlier marker. In other words, adding a stage marker says "Run no later than stage X". OMC's run at the earliest stage marker added after them in the OWIN pipeline.
 4. The earliest stage of calls to `app.UseStageMarker` wins. For example, if you switch the order of `app.UseStageMarker` calls from our previous example:
 
     [!code-csharp[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample10.cs?highlight=13,19)]
 
- The output window will display: 
+   The output window will display: 
 
     [!code-console[Main](owin-middleware-in-the-iis-integrated-pipeline/samples/sample11.cmd)]
 
- The OMCs all run in the `AuthenticateRequest` stage, because the last OMC registered with the `Authenticate` event, and the `Authenticate` event precedes all other events.
+   The OMCs all run in the `AuthenticateRequest` stage, because the last OMC registered with the `Authenticate` event, and the `Authenticate` event precedes all other events.

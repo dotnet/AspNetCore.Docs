@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-v
 title: "Adding Validation Controls to the Editing and Inserting Interfaces (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how easy it is to add validation controls to the EditItemTemplate and InsertItemTemplate of a data Web control, to provide a more..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: e3d7028a-7a22-4a4f-babe-d53afc41c0e2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-vb
 msc.type: authoredcontent
 ---
@@ -270,6 +266,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Liz Shulok and Zack Jones. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb.md)
-[Next](customizing-the-data-modification-interface-vb.md)
+> [!div class="step-by-step"]
+> [Previous](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb.md)
+> [Next](customizing-the-data-modification-interface-vb.md)

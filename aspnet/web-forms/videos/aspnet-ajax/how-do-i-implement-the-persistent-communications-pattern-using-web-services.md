@@ -3,13 +3,9 @@ uid: web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communicatio
 title: "[How Do I:] Implement the Persistent Communications Pattern using Web Services? | Microsoft Docs"
 author: JoeStagner
 description: "In a traditional Web site the browser and the server do not maintain an ongoing communication, but communicate only in response to the user performing an act..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/22/2007
-ms.topic: article
 ms.assetid: 424c06cd-6d61-43cd-a1f2-d1a6b62e47b1
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-using-web-services
 msc.type: video
 ---
@@ -21,6 +17,6 @@ In a traditional Web site the browser and the server do not maintain an ongoing 
 
 [&#9654; Watch video (16 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-the-persistent-communications-pattern-using-web-services)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-localize-an-aspnet-ajax-application.md)
-[Next](how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-localize-an-aspnet-ajax-application.md)
+> [Next](how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control.md)

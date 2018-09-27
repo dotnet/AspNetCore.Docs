@@ -1,4 +1,5 @@
-﻿using FiltersSample.Helper;
+﻿#region snippet1
+using FiltersSample.Helper;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
@@ -18,3 +19,4 @@ namespace FiltersSample.Filters
     }
     #endregion
 }
+#endregion

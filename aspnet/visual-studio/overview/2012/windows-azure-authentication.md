@@ -3,13 +3,9 @@ uid: visual-studio/overview/2012/windows-azure-authentication
 title: "Windows Azure Authentication | Microsoft Docs"
 author: Rick-Anderson
 description: "Microsoft ASP.NET tools for Windows Azure Active Directory makes it simple to enable authentication for web applications hosted on Windows Azure Web Sites ...."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/20/2013
-ms.topic: article
 ms.assetid: a3cef801-a54b-4ebd-93c3-55764e2e14b1
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/windows-azure-authentication
 msc.type: authoredcontent
 ---
@@ -45,7 +41,7 @@ If you do not have an existing Windows Azure Active Directory tenant (For exampl
 
 1. From the Project menu select **Enable Windows Azure Authentication**:  
   
- ![](windows-azure-authentication/_static/image2.png)
+   ![](windows-azure-authentication/_static/image2.png)
 
 2. Enter the domain for your Windows Azure Active Directory tenant (for example, contoso.onmicrosoft.com) and click **Enable**:
 
@@ -53,7 +49,7 @@ If you do not have an existing Windows Azure Active Directory tenant (For exampl
 
 3. In the Web Authentication dialog sign in as an administrator for your Windows Azure Active Directory tenant:  
   
- ![](windows-azure-authentication/_static/image4.png)
+   ![](windows-azure-authentication/_static/image4.png)
 
 ![](windows-azure-authentication/_static/image5.png)
 

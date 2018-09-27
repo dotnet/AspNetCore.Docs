@@ -3,13 +3,9 @@ uid: mvc/overview/security/preventing-open-redirection-attacks
 title: "Preventing Open Redirection Attacks (C#) | Microsoft Docs"
 author: jongalloway
 description: "This tutorial explains how you can prevent open redirection attacks in your ASP.NET MVC applications. This tutorial discusses the changes that have been made..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/27/2014
-ms.topic: article
 ms.assetid: 69fb02e0-f5b7-4c35-878c-fa87164fc785
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/preventing-open-redirection-attacks
 msc.type: authoredcontent
 ---
@@ -34,7 +30,7 @@ In the screenshot below, we can see that an attempt to access the /Account/Chang
 
 **Figure 01**: Login page with an open redirection
 
-Since the ReturnUrl querystring parameter is not validated, an attacker can modify it to inject any URL address into the parameter to conduct an open redirection attack. To demonstrate this, we can modify the ReturnUrl parameter to [http://bing.com](http://bing.com), so the resulting login URL will be /Account/LogOn?ReturnUrl=http://www.bing.com/. Upon successfully logging in to the site, we are redirected to [http://bing.com](http://bing.com). Since this redirection is not validated, it could instead point to a malicious site that attempts to trick the user.
+Since the ReturnUrl querystring parameter is not validated, an attacker can modify it to inject any URL address into the parameter to conduct an open redirection attack. To demonstrate this, we can modify the ReturnUrl parameter to [http://bing.com](http://bing.com), so the resulting login URL will be /Account/LogOn?ReturnUrl=<http://www.bing.com/>. Upon successfully logging in to the site, we are redirected to [http://bing.com](http://bing.com). Since this redirection is not validated, it could instead point to a malicious site that attempts to trick the user.
 
 ### A more complex Open Redirection Attack
 
@@ -102,7 +98,7 @@ Now that the IsLocalUrl() method is in place, we can call it from our LogOn acti
 
 [!code-csharp[Main](preventing-open-redirection-attacks/samples/sample6.cs)]
 
-Now we can test an open redirection attack by attempting to log in using an external return URL. Let's use /Account/LogOn?ReturnUrl=http://www.bing.com/ again.
+Now we can test an open redirection attack by attempting to log in using an external return URL. Let's use /Account/LogOn?ReturnUrl=<http://www.bing.com/> again.
 
 [![](preventing-open-redirection-attacks/_static/image8.png)](preventing-open-redirection-attacks/_static/image7.png)
 

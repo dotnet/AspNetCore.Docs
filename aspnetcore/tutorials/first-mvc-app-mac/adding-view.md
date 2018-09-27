@@ -1,17 +1,13 @@
 ---
-title: Adding a view
+title: Add a view to an ASP.NET Core app
 author: rick-anderson
-description: Adding a view to a simple ASP.NET Core MVC app
-manager: wpickett
+description: Learn how to add a view to an ASP.NET Core app.
 ms.author: riande
 ms.date: 03/04/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app-mac/adding-view
 ---
 
-[!INCLUDE[adding-view](../../includes/mvc-intro/adding_view1.md)]
+[!INCLUDE [adding-view](../../includes/mvc-intro/adding_view1.md)]
 
 ## Add a view 
 
@@ -26,8 +22,8 @@ uid: tutorials/first-mvc-app-mac/adding-view
 
 ![Add New Item dialog](adding-view/_static/add_view.png)
 
-[!INCLUDE[adding-view22](../../includes/mvc-intro/adding_view2.md)]
+[!INCLUDE [adding-view22](../../includes/mvc-intro/adding_view2.md)]
 
->[!div class="step-by-step"]
-[Previous](adding-controller.md)
-[Next](adding-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-controller.md)
+> [Next](adding-model.md)

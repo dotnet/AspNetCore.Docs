@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/introduction/master-pages-and-site-navigatio
 title: "Master Pages and Site Navigation (C#) | Microsoft Docs"
 author: rick-anderson
 description: "One common characteristic of user-friendly websites is that they have a consistent, site-wide page layout and navigation scheme. This tutorial looks at how y..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: 5aee8202-a4e3-4aa9-8a95-cd5d156cea4c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction/master-pages-and-site-navigation-cs
 msc.type: authoredcontent
 ---
@@ -310,6 +306,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Liz Shulok, Dennis Patterson, and Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](creating-a-business-logic-layer-cs.md)
-[Next](creating-a-data-access-layer-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-business-logic-layer-cs.md)
+> [Next](creating-a-data-access-layer-vb.md)

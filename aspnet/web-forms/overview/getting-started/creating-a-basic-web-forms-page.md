@@ -3,19 +3,17 @@ uid: web-forms/overview/getting-started/creating-a-basic-web-forms-page
 title: "Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013 | Microsoft Docs"
 author: Erikre
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/03/2014
-ms.topic: article
 ms.assetid: a2f1c635-0817-4a9a-8c13-d5b5d29727c0
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/creating-a-basic-web-forms-page
 msc.type: authoredcontent
 ---
 Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013
 ====================
 by [Erik Reitan](https://github.com/Erikre)
+
+[!INCLUDE[](~/includes/rp.md)]
 
 This walkthrough provides you with an introduction to the Web development environment in [Microsoft Visual Studio 2013](https://www.microsoft.com/visualstudio/11/downloads#vs) and in [Microsoft Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/11/downloads#express-web). This walkthrough guides you through creating a simple ASP.NET Web Forms page and illustrates the basic techniques of creating a new page, adding controls, and writing code.
 
@@ -226,7 +224,7 @@ For this walkthrough, you will write code that reads the name that the user ente
 2. Double-click the [Button](https://msdn.microsoft.com/library/system.web.ui.webcontrols.button.aspx) control.
 
     By default, Visual Studio switches to a code-behind file and creates a skeleton event handler for the [Button](https://msdn.microsoft.com/library/system.web.ui.webcontrols.button.aspx) control's default event, the [Click](https://msdn.microsoft.com/library/system.web.ui.webcontrols.button.click.aspx) event. The code-behind file separates your UI markup (such as HTML) from your server code (such as C#).   
-The cursor is positioned to added code for this event handler.
+   The cursor is positioned to added code for this event handler.
 
     > [!NOTE] 
     > 
@@ -310,13 +308,12 @@ In this section, you will program the [Calendar](https://msdn.microsoft.com/libr
     A new event handler is created and displayed in the code-behind file named *FirstWebPage.aspx.cs*.
 2. Finish the [SelectionChanged](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.selectionchanged.aspx) event handler with the following code.
 
-
     [!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample3.cs?highlight=3)]
 
 
     [!code-vb[Main](creating-a-basic-web-forms-page/samples/sample4.vb?highlight=2)]
 
- The above code sets the text of the label control to the selected date of the calendar control.
+    The above code sets the text of the label control to the selected date of the calendar control.
 
 
 ### Running the Page

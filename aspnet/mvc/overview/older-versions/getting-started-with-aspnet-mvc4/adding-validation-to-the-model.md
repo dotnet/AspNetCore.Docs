@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-validat
 title: "Adding Validation to the Model | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demo..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/28/2012
-ms.topic: article
 ms.assetid: 5d9a2999-fcc4-4c45-a018-271fddf74a3b
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-validation-to-the-model
 msc.type: authoredcontent
 ---
@@ -160,6 +156,6 @@ The image below shows the same data displayed with the default culture (English 
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 
->[!div class="step-by-step"]
-[Previous](adding-a-new-field-to-the-movie-model-and-table.md)
-[Next](examining-the-details-and-delete-methods.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-new-field-to-the-movie-model-and-table.md)
+> [Next](examining-the-details-and-delete-methods.md)

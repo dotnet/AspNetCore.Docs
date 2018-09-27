@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspn
 title: "Querying Data with the SqlDataSource Control (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In the preceding tutorials we used the ObjectDataSource control to fully separate the presentation layer from the Data Access layer. Starting with this tutor..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/20/2007
-ms.topic: article
 ms.assetid: b12f752d-3502-40a4-b695-fc7b7d08cfd3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-vb
 msc.type: authoredcontent
 ---
@@ -257,6 +253,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Susan Connery, Bernadette Leigh, and David Suru. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](implementing-optimistic-concurrency-with-the-sqldatasource-cs.md)
-[Next](using-parameterized-queries-with-the-sqldatasource-vb.md)
+> [!div class="step-by-step"]
+> [Previous](implementing-optimistic-concurrency-with-the-sqldatasource-cs.md)
+> [Next](using-parameterized-queries-with-the-sqldatasource-vb.md)

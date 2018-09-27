@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/specifying-t
 title: "Specifying the Master Page Programmatically (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Looks at setting the content page's master page programmatically via the PreInit event handler."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/28/2008
-ms.topic: article
 ms.assetid: 7c4a3445-2440-4aee-b9fd-779c05e6abb2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-cs
 msc.type: authoredcontent
 ---
@@ -134,7 +130,7 @@ Next, add the following declarative markup to `Alternate.master`. As you can see
 
 ### Testing the New Master Page
 
-To test this new master page update the `BasePage` class's `OnPreInit` method so that the `MasterPageFile` property is assigned the value "~/Alternate.maser" and then visit the website. Every page should function without error except for two: `~/Admin/AddProduct.aspx` and `~/Admin/Products.aspx`. Adding a product to the DetailsView in `~/Admin/AddProduct.aspx` results in a `NullReferenceException` from the line of code that attempts to set the master page's `GridMessageText` property. When visiting `~/Admin/Products.aspx` an `InvalidCastException` is thrown on page load with the message: "Unable to cast object of type 'ASP.alternate\_master' to type 'ASP.site\_master'."
+To test this new master page update the `BasePage` class's `OnPreInit` method so that the `MasterPageFile` property is assigned the value "~/Alternate.master" and then visit the website. Every page should function without error except for two: `~/Admin/AddProduct.aspx` and `~/Admin/Products.aspx`. Adding a product to the DetailsView in `~/Admin/AddProduct.aspx` results in a `NullReferenceException` from the line of code that attempts to set the master page's `GridMessageText` property. When visiting `~/Admin/Products.aspx` an `InvalidCastException` is thrown on page load with the message: "Unable to cast object of type 'ASP.alternate\_master' to type 'ASP.site\_master'."
 
 These errors occur because the `Site.master` code-behind class includes public events, properties, and methods that are not defined in `Alternate.master`. The markup portion of these two pages have a `@MasterType` directive that references the `Site.master` master page.
 
@@ -283,6 +279,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Suchi Banerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](master-pages-and-asp-net-ajax-cs.md)
-[Next](nested-master-pages-cs.md)
+> [!div class="step-by-step"]
+> [Previous](master-pages-and-asp-net-ajax-cs.md)
+> [Next](nested-master-pages-cs.md)

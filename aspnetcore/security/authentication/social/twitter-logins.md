@@ -1,20 +1,16 @@
 ---
-title: Twitter external login setup
+title: Twitter external login setup with ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.date: 11/01/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authentication/twitter-logins
 ---
-# Configuring Twitter authentication
+# Twitter external login setup with ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core 2.0 project created on the [previous page](index.md).
+This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core 2.0 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the app in Twitter
 
@@ -26,7 +22,10 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 ![Create an application page](index/_static/TwitterCreate.png)
 
-* Enter your development URI with */signin-twitter* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-twitter`). The Twitter authentication scheme configured later in this tutorial will automatically handle requests at */signin-twitter* route to implement the OAuth flow.
+* Enter your development URI with `/signin-twitter` appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-twitter`). The Twitter authentication scheme configured later in this tutorial will automatically handle requests at `/signin-twitter` route to implement the OAuth flow.
+
+> [!NOTE]
+> The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) class.
 
 * Fill out the rest of the form and tap **Create your Twitter application**. New application details are displayed:
 
@@ -36,7 +35,7 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 ## Storing Twitter ConsumerKey and ConsumerSecret
 
-Link sensitive settings like Twitter `Consumer Key` and `Consumer Secret` to your application configuration using the [Secret Manager](../../app-secrets.md). For the purposes of this tutorial, name the tokens `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret`.
+Link sensitive settings like Twitter `Consumer Key` and `Consumer Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret`.
 
 These tokens can be found on the **Keys and Access Tokens** tab after creating your new Twitter application:
 
@@ -51,7 +50,7 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 Add the Twitter service in the `ConfigureServices` method in *Startup.cs* file:
 
@@ -67,9 +66,11 @@ services.AddAuthentication().AddTwitter(twitterOptions =>
 });
 ```
 
-[!INCLUDE[default settings configuration](includes/default-settings.md)]
+[!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+[!INCLUDE[](~/includes/chain-auth-providers.md)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 Add the Twitter middleware in the `Configure` method in *Startup.cs* file:
 
@@ -83,7 +84,7 @@ app.UseTwitterAuthentication(new TwitterOptions()
 
 ---
 
-See the [TwitterOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.twitteroptions) API reference for more information on configuration options supported by Twitter authentication. This can be used to request different information about the user.
+See the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) API reference for more information on configuration options supported by Twitter authentication. This can be used to request different information about the user.
 
 ## Sign in with Twitter
 
@@ -108,7 +109,7 @@ You are now logged in using your Twitter credentials:
 
 ## Next steps
 
-* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
+* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 
 * Once you publish your web site to Azure web app, you should reset the `ConsumerSecret` in the Twitter developer portal.
 

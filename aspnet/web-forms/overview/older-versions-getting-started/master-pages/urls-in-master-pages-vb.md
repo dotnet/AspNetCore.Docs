@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/urls-in-mast
 title: "URLs in Master Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Addresses how URLs in the master page can break due to the master page file being in a different relative directory than the content page. Looks at rebasing..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/10/2008
-ms.topic: article
 ms.assetid: 43d1e83c-0092-4dcf-977c-e709c4dce7c3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/urls-in-master-pages-vb
 msc.type: authoredcontent
 ---
@@ -183,6 +179,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Previous](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb.md)
-[Next](control-id-naming-in-content-pages-vb.md)
+> [!div class="step-by-step"]
+> [Previous](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb.md)
+> [Next](control-id-naming-in-content-pages-vb.md)

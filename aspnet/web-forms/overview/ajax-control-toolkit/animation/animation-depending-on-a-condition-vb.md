@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/animation/animation-depending-on-a-
 title: "Animation Depending On a Condition (VB) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. Whether an animation is..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 1b87d8d6-b3f7-4126-b51c-d41442fbf947
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/animation-depending-on-a-condition-vb
 msc.type: authoredcontent
 ---
@@ -55,6 +51,6 @@ Note that the less than sign (`<`) in the `ConditionScript` attribute must be es
 
 The panel is fading out without resizing, so the second animation runs, the first one didn't ([Click to view full-size image](animation-depending-on-a-condition-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](executing-several-animations-after-each-other-vb.md)
-[Next](picking-one-animation-out-of-a-list-vb.md)
+> [!div class="step-by-step"]
+> [Previous](executing-several-animations-after-each-other-vb.md)
+> [Next](picking-one-animation-out-of-a-list-vb.md)

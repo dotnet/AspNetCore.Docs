@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/advanced-data-access-scenarios/creating-stor
 title: "Creating Stored Procedures and User-Defined Functions with Managed Code (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Microsoft SQL Server 2005 integrates with the .NET Common Language Runtime to allow developers to create database objects through managed code. This tutorial..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/03/2007
-ms.topic: article
 ms.assetid: 8be9a51b-ea6b-46c7-bfa2-476d9b14c24c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-vb
 msc.type: authoredcontent
 ---
@@ -570,5 +566,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was S ren Jacob Lauritsen. In addition to reviewing this article, S ren also created the Visual C# Express Edition project included in this article s download for manually compiling the managed database objects. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](debugging-stored-procedures-vb.md)
+> [!div class="step-by-step"]
+> [Previous](debugging-stored-procedures-vb.md)

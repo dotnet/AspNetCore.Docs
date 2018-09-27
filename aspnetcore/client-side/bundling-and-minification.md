@@ -1,24 +1,19 @@
 ---
-title: Bundling and minification in ASP.NET Core
+title: Bundle and minify static assets in ASP.NET Core
 author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
-manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2018
-ms.devlang: csharp
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/bundling-and-minification
 ---
-# Bundling and minification
+# Bundle and minify static assets in ASP.NET Core
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
 This article explains the benefits of applying bundling and minification, including how these features can be used with ASP.NET Core web apps.
 
-## What is bundling and minification?
+## What is bundling and minification
 
 Bundling and minification are two distinct performance optimizations you can apply in a web app. Used together, bundling and minification improve performance by reducing the number of server requests and reducing the size of the requested static assets.
 
@@ -90,7 +85,7 @@ The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/)
 > [!NOTE]
 > BuildBundlerMinifier belongs to a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues).
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
 Add the *BuildBundlerMinifier* package to your project.
 
@@ -100,8 +95,8 @@ Build the project. The following appears in the Output window:
 1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
 1>
 1>Bundler: Begin processing bundleconfig.json
-1>	Minified wwwroot/css/site.min.css
-1>	Minified wwwroot/js/site.min.js
+1>  Minified wwwroot/css/site.min.css
+1>  Minified wwwroot/js/site.min.js
 1>Bundler: Done processing bundleconfig.json
 1>BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
 ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
@@ -117,7 +112,7 @@ Clean the project. The following appears in the Output window:
 ========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
 ```
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET Core CLI](#tab/netcore-cli)
 
 Add the *BuildBundlerMinifier* package to your project:
 
@@ -200,7 +195,7 @@ To minify *custom.css* and bundle it with *site.css* into a *site.min.css* file,
 > Alternatively, the following globbing pattern could be used:
 >
 > ```json
-> "inputFiles": ["wwwroot/**/*(*.css|!(*.min.css)"]
+> "inputFiles": ["wwwroot/**/*(*.css|!(*.min.css))"]
 > ```
 >
 > This globbing pattern matches all CSS files and excludes the minified file pattern.
@@ -215,11 +210,11 @@ Specify which files to include in your pages by using the [Environment Tag Helpe
 
 The following `environment` tag renders the unprocessed CSS files when running in the `Development` environment:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 [!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=21-24)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 [!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=9-12)]
 
@@ -227,11 +222,11 @@ The following `environment` tag renders the unprocessed CSS files when running i
 
 The following `environment` tag renders the bundled and minified CSS files when running in an environment other than `Development`. For example, running in `Production` or `Staging` triggers the rendering of these stylesheets:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 [!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=5&range=25-30)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 [!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=13-18)]
 
@@ -312,7 +307,7 @@ Alternatively, Visual Studio's Task Runner Explorer may be used to bind Gulp tas
 
 ## Additional resources
 
-* [Using Gulp](xref:client-side/using-gulp)
-* [Using Grunt](xref:client-side/using-grunt)
-* [Working with Multiple Environments](xref:fundamentals/environments)
+* [Use Gulp](xref:client-side/using-gulp)
+* [Use Grunt](xref:client-side/using-grunt)
+* [Use multiple environments](xref:fundamentals/environments)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)

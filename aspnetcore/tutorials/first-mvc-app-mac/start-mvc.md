@@ -1,22 +1,18 @@
 ---
-title: Getting started with ASP.NET Core MVC and Visual Studio for Mac
+title: Get started with ASP.NET Core MVC and Visual Studio for Mac
 author: rick-anderson
-description: Getting started with ASP.NET Core MVC and Visual Studio
-manager: wpickett
+description: Learn how to get started with ASP.NET Core MVC and Visual Studio
 ms.author: riande
 ms.date: 8/23/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: tutorials/first-mvc-app-mac/start-mvc
 ---
-# Getting started with ASP.NET Core MVC and Visual Studio for Mac
+# Get started with ASP.NET Core MVC and Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial teaches you the basics of building an ASP.NET Core MVC web app using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/). 
 
-[!INCLUDE[consider RP](../../includes/razor.md)]
+[!INCLUDE [consider RP](../../includes/razor.md)]
 
 There are 3 versions of this tutorial:
 
@@ -26,12 +22,7 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
-This tutorial requires the [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
-
-Install the following:
-
-- [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later
-- [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
+[!INCLUDE [](~/includes/net-core-prereqs-macos.md)]
 
 ## Create a web app
 
@@ -62,5 +53,5 @@ The default template gives you **Home, About** and **Contact** links. The browse
 
 In the next part of this tutorial, you learn about MVC and start writing some code.
 
->[!div class="step-by-step"]
-[Next](adding-controller.md)  
+> [!div class="step-by-step"]
+> [Next](adding-controller.md)  

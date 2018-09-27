@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/advanced-data-access-scenarios/debugging-sto
 title: "Debugging Stored Procedures (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio Professional and Team System editions allow you to set breakpoints and step in to stored procedures within SQL Server, making debugging stored..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/03/2007
-ms.topic: article
 ms.assetid: 9ed8ccb5-5f31-4eb4-976d-cabf4b45ca09
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/debugging-stored-procedures-vb
 msc.type: authoredcontent
 ---
@@ -187,6 +183,6 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Previous](protecting-connection-strings-and-other-configuration-information-vb.md)
-[Next](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb.md)
+> [!div class="step-by-step"]
+> [Previous](protecting-connection-strings-and-other-configuration-information-vb.md)
+> [Next](creating-stored-procedures-and-user-defined-functions-with-managed-code-vb.md)

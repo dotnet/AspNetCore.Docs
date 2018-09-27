@@ -1,120 +1,244 @@
 ---
-title: Host in a Windows Service
-author: tdykstra
+title: Host ASP.NET Core in a Windows Service
+author: guardrex
 description: Learn how to host an ASP.NET Core app in a Windows Service.
-manager: wpickett
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/30/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 09/25/2018
 uid: host-and-deploy/windows-service
 ---
-# Host an ASP.NET Core app in a Windows Service
+# Host ASP.NET Core in a Windows Service
 
-By [Tom Dykstra](https://github.com/tdykstra)
+By [Luke Latham](https://github.com/guardrex) and [Tom Dykstra](https://github.com/tdykstra)
 
-The recommended way to host an ASP.NET Core app on Windows without using IIS is to run it in a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications). When hosted as a Windows Service, the app can automatically start after reboots and crashes without requiring human intervention.
+An ASP.NET Core app can be hosted on Windows without using IIS as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications). When hosted as a Windows Service, the app can automatically start after reboots and crashes without requiring human intervention.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)). For instructions on how to run the sample app, see the sample's *README.md* file.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Prerequisites
+## Convert a project into a Windows Service
 
-* The app must run on the .NET Framework runtime. In the *.csproj* file, specify appropriate values for [TargetFramework](/nuget/schema/target-frameworks) and [RuntimeIdentifier](/dotnet/articles/core/rid-catalog). Here's an example:
+The following minimum changes are required to set up an existing ASP.NET Core project to run as a service:
 
-  [!code-xml[](windows-service/sample/AspNetCoreService.csproj?range=3-6)]
+1. In the project file:
 
-  When creating a project in Visual Studio, use the **ASP.NET Core Application (.NET Framework)** template.
+   * Confirm the presence of a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) or add it to the `<PropertyGroup>` that contains the target framework:
 
-* If the app receives requests from the Internet (not just from an internal network), it must use the [HTTP.sys](xref:fundamentals/servers/httpsys) web server (formerly known as [WebListener](xref:fundamentals/servers/weblistener) for ASP.NET Core 1.x apps) rather than [Kestrel](xref:fundamentals/servers/kestrel). IIS is recommended for use as a reverse proxy server with Kestrel for edge deployments. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+      ::: moniker range=">= aspnetcore-2.1"
 
-## Getting started
+      ```xml
+      <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+      </PropertyGroup>
+      ```
 
-This section explains the minimum changes required to set up an existing ASP.NET Core project to run in a service.
+      ::: moniker-end
 
-1. Install the NuGet package [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/).
+      ::: moniker range="= aspnetcore-2.0"
+
+      ```xml
+      <PropertyGroup>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+      </PropertyGroup>
+      ```
+
+      ::: moniker-end
+
+      ::: moniker range="< aspnetcore-2.0"
+
+      ```xml
+      <PropertyGroup>
+        <TargetFramework>netcoreapp1.1</TargetFramework>
+        <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+      </PropertyGroup>
+      ```
+
+      ::: moniker-end
+
+      To publish for multiple RIDs:
+
+      * Provide the RIDs in a semicolon-delimited list.
+      * Use the property name `<RuntimeIdentifiers>` (plural).
+
+      For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
+
+   * Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices).
 
 1. Make the following changes in `Program.Main`:
-  
-   * Call `host.RunAsService` instead of `host.Run`.
-  
-   * If the code calls `UseContentRoot`, use a path to the publish location instead of `Directory.GetCurrentDirectory()`.
 
-   # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+   * Call [host.RunAsService](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.webhostwindowsserviceextensions.runasservice) instead of `host.Run`.
 
-   [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOnly&highlight=3-4,7,12)]
+   * Call [UseContentRoot](xref:fundamentals/host/web-host#content-root) and use a path to the app's published location instead of `Directory.GetCurrentDirectory()`.
 
-   # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+     ::: moniker range=">= aspnetcore-2.0"
 
-   [!code-csharp[](windows-service/sample_snapshot/Program.cs?name=ServiceOnly&highlight=3-4,8,14)]
+     [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=8-9,16)]
 
-   ---
+     ::: moniker-end
 
-1. Publish the app to a folder. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles) that publishes to a folder.
+     ::: moniker range="< aspnetcore-2.0"
 
-1. Test by creating and starting the service.
+     [!code-csharp[](windows-service/samples_snapshot/1.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=3-4,8,13)]
 
-   Open a command shell with administrative privileges to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create and start a service. If the service is named MyService, published to `c:\svc`, and named AspNetCoreService, the commands are:
+     ::: moniker-end
+
+1. Publish the app. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles). When using a Visual Studio, select the **FolderProfile**.
+
+   To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder. The RID must be specified in the `<RuntimeIdenfifier>` (or `<RuntimeIdentifiers>`) property of the project file. In the following example, the app is published in Release configuration for the `win7-x64` runtime:
 
    ```console
-   sc create MyService binPath="c:\svc\aspnetcoreservice.exe"
+   dotnet publish --configuration Release --runtime win7-x64
+   ```
+
+1. Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character at the start of the path is required.**
+
+   ```console
+   sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"
+   ```
+
+   For a service published in the project folder, use the path to the *publish* folder to create the service. In the following example:
+
+   * The project resides in the *c:\\my_services\\AspNetCoreService* folder.
+   * The project is published in `Release` configuration.
+   * The Target Framework Moniker (TFM) is `netcoreapp2.1`.
+   * The Runtime Identifer (RID) is `win7-x64`.
+   * The app executable is named *AspNetCoreService.exe*.
+   * The service is named **MyService**.
+
+   Example:
+
+   ```console
+   sc create MyService binPath= "c:\my_services\AspNetCoreService\bin\Release\netcoreapp2.1\win7-x64\publish\AspNetCoreService.exe"
+   ```
+
+   > [!IMPORTANT]
+   > Make sure the space is present between the `binPath=` argument and its value.
+
+   To publish and start the service from a different folder:
+
+      * Use the [--output &lt;OUTPUT_DIRECTORY&gt;](/dotnet/core/tools/dotnet-publish#options) option on the `dotnet publish` command. If using Visual Studio, configure the **Target Location** in the **FolderProfile** publish property page before selecting the **Publish** button.
+      * Create the service with the `sc.exe` command using the output folder path. Include the name of the service's executable in the path provided to `binPath`.
+
+1. Start the service with the `sc start <SERVICE_NAME>` command.
+
+   To start the sample app service, use the following command:
+
+   ```console
    sc start MyService
    ```
 
-   The `binPath` value is the path to the app's executable, which includes the executable file name.
+   The command takes a few seconds to start the service.
 
-   ![Console window create and start example](windows-service/_static/create-start.png)
+1. To check the status of the service, use the `sc query <SERVICE_NAME>` command. The status is reported as one of the following values:
 
-   When these commands finish, browse to the same path as when running as a console app (by default, `http://localhost:5000`):
+   * `START_PENDING`
+   * `RUNNING`
+   * `STOP_PENDING`
+   * `STOPPED`
 
-   ![Running in a service](windows-service/_static/running-in-service.png)
+   Use the following command to check the status of the sample app service:
 
-## Provide a way to run outside of a service
+   ```console
+   sc query MyService
+   ```
+
+1. When the service is in the `RUNNING` state and if the service is a web app, browse the app at its path (by default, `http://localhost:5000`, which redirects to `https://localhost:5001` when using [HTTPS Redirection Middleware](xref:security/enforcing-ssl)).
+
+   For the sample app service, browse the app at `http://localhost:5000`.
+
+1. Stop the service with the `sc stop <SERVICE_NAME>` command.
+
+   The following command stops the sample app service:
+
+   ```console
+   sc stop MyService
+   ```
+
+1. After a short delay to stop a service, uninstall the service with the `sc delete <SERVICE_NAME>` command.
+
+   Check the status of the sample app service:
+
+   ```console
+   sc query MyService
+   ```
+
+   When the sample app service is in the `STOPPED` state, use the following command to uninstall the sample app service:
+
+   ```console
+   sc delete MyService
+   ```
+
+## Run the app outside of a service
 
 It's easier to test and debug when running outside of a service, so it's customary to add code that calls `RunAsService` only under certain conditions. For example, the app can run as a console app with a `--console` command-line argument or if the debugger is attached:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.0"
 
-[!code-csharp[](windows-service/sample/Program.cs?name=ServiceOrConsole)]
+[!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOrConsole)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+Because ASP.NET Core configuration requires name-value pairs for command-line arguments, the `--console` switch is removed before the arguments are passed to [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder).
 
-[!code-csharp[](windows-service/sample_snapshot/Program.cs?name=ServiceOrConsole)]
+> [!NOTE]
+> `isService` isn't passed from `Main` into `CreateWebHostBuilder` because the signature of `CreateWebHostBuilder` must be `CreateWebHostBuilder(string[])` in order for [integration testing](xref:test/integration-tests) to work properly.
 
----
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-csharp[](windows-service/samples_snapshot/1.x/AspNetCoreService/Program.cs?name=ServiceOrConsole)]
+
+::: moniker-end
 
 ## Handle stopping and starting events
 
-To handle `OnStarting`, `OnStarted`, and `OnStopping` events, make the following additional changes:
+To handle [OnStarting](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.webhostservice.onstarting), [OnStarted](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.webhostservice.onstarted), and [OnStopping](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.webhostservice.onstopping) events, make the following additional changes:
 
-1. Create a class that derives from `WebHostService`:
+1. Create a class that derives from [WebHostService](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.webhostservice):
 
-   [!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=NoLogging)]
+   [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/CustomWebHostService.cs?name=NoLogging)]
 
-1. Create an extension method for `IWebHost` that passes the custom `WebHostService` to `ServiceBase.Run`:
+2. Create an extension method for [IWebHost](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost) that passes the custom `WebHostService` to [ServiceBase.Run](/dotnet/api/system.serviceprocess.servicebase.run):
 
-   [!code-csharp[](windows-service/sample/WebHostServiceExtensions.cs?name=ExtensionsClass)]
+   [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/WebHostServiceExtensions.cs?name=ExtensionsClass)]
 
-1. In `Program.Main`, call the new extension method, `RunAsCustomService`, instead of `RunAsService`:
+3. In `Program.Main`, call the new extension method, `RunAsCustomService`, instead of [RunAsService](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.webhostwindowsserviceextensions.runasservice):
 
-   # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+   ::: moniker range=">= aspnetcore-2.0"
 
-   [!code-csharp[](windows-service/sample/Program.cs?name=HandleStopStart&highlight=24)]
+   [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=HandleStopStart&highlight=17)]
 
-   # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+   > [!NOTE]
+   > `isService` isn't passed from `Main` into `CreateWebHostBuilder` because the signature of `CreateWebHostBuilder` must be `CreateWebHostBuilder(string[])` in order for [integration testing](xref:test/integration-tests) to work properly.
 
-   [!code-csharp[](windows-service/sample_snapshot/Program.cs?name=HandleStopStart&highlight=26)]
+   ::: moniker-end
 
-   ---
+   ::: moniker range="< aspnetcore-2.0"
 
-If the custom `WebHostService` code requires a service from dependency injection (such as a logger), obtain it from the `Services` property of `IWebHost`:
+   [!code-csharp[](windows-service/samples_snapshot/1.x/AspNetCoreService/Program.cs?name=HandleStopStart&highlight=27)]
 
-[!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=Logging&highlight=7)]
+   ::: moniker-end
 
-## Acknowledgments
+If the custom `WebHostService` code requires a service from dependency injection (such as a logger), obtain it from the [IWebHost.Services](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost.services) property:
 
-This article was written with the help of published sources:
+[!code-csharp[](windows-service/samples/2.x/AspNetCoreService/CustomWebHostService.cs?name=Logging&highlight=7-8)]
 
-* [Hosting ASP.NET Core as Windows service](https://stackoverflow.com/questions/37346383/hosting-asp-net-core-as-windows-service/37464074)
-* [How to host your ASP.NET Core in a Windows Service](https://dotnetthoughts.net/how-to-host-your-aspnet-core-in-a-windows-service/)
+## Proxy server and load balancer scenarios
+
+Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
+
+## Configure HTTPS
+
+Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+## Current directory and content root
+
+The current working directory returned by calling `Directory.GetCurrentDirectory()` for a Windows Service is the *C:\\WINDOWS\\system32* folder. The *system32* folder isn't a suitable location to store a service's files (for example, settings files). Use one of the following approaches to maintain and access a service's assets and settings files with [FileConfigurationExtensions.SetBasePath](/dotnet/api/microsoft.extensions.configuration.fileconfigurationextensions.setbasepath) when using an [IConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.iconfigurationbuilder):
+
+* Use the content root path. The `IHostingEnvironment.ContentRootPath` is the same path provided to the `binPath` argument when the service is created. Instead of using `Directory.GetCurrentDirectory()` to create paths to settings files, use the content root path and maintain the files in the app's content root.
+* Store the files in a suitable location on disk. Specify an absolute path with `SetBasePath` to the folder containing the files.
+
+## Additional resources
+
+* [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) (includes HTTPS configuration and SNI support)
+* <xref:fundamentals/host/web-host>

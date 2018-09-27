@@ -1,17 +1,13 @@
 ---
-title: Controller methods and views
+title: Controller methods and views in ASP.NET Core
 author: rick-anderson
-description: Working with controller methods, views and DataAnnotations
-manager: wpickett
+description: Learn how to work with controller methods, views, and DataAnnotations in ASP.NET Core.
 ms.author: riande
 ms.date: 03/07/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 
-# Controller methods and views
+# Controller methods and views in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -21,31 +17,20 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown below:
 
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](start-mvc/sample/MvcMovie21/Models/MovieDateFixed.cs?name=snippet_1&highlight=2,3,12-13,17)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](start-mvc/sample/MvcMovie/Models/MovieDateWithExtraUsings.cs?name=snippet_1&highlight=13-14)]
 
-Right click on a red squiggly line **> Quick Actions and Refactorings**.
+::: moniker-end
 
-  ![Contextual menu shows **> Quick Actions and Refactorings**.](controller-methods-views/_static/qa.png)
+[!INCLUDE [adding-model](~/includes/mvc-intro/controller-methods-views.md)]
 
-
-Tap `using System.ComponentModel.DataAnnotations;`
-
-  ![using System.ComponentModel.DataAnnotations at top of list](controller-methods-views/_static/da.png)
-
-  Visual studio adds `using System.ComponentModel.DataAnnotations;`.
-
-Let's remove the `using` statements that are not needed. They show up by default in a light grey font. Right click anywhere in the *Movie.cs* file **> Remove and Sort Usings**.
-
-![Remove and Sort Usings](controller-methods-views/_static/rm.png)
-
-The updated code:
-
-[!code-csharp[](./start-mvc/sample/MvcMovie/Models/MovieDate.cs?name=snippet_1)]
-
-<!-- include start -->
-
-[!INCLUDE[adding-model](../../includes/mvc-intro/controller-methods-views.md)]
-
->[!div class="step-by-step"]
-[Previous](working-with-sql.md)
-[Next](search.md)  
+> [!div class="step-by-step"]
+> [Previous](working-with-sql.md)
+> [Next](search.md)  

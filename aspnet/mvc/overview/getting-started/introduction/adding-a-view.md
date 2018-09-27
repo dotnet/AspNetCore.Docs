@@ -3,18 +3,14 @@ title: Adding a View to an MVC app
 author: Rick-Anderson
 description: Adding a view to an MVC app
 ms.author: riande
-manager: wpickett
 ms.date: 09/1721/2017
-ms.topic: article
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 uid: mvc/overview/getting-started/introduction/adding-a-view
 ---
 Adding a View
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 In this section you're going to modify the `HelloWorldController` class to use view template files to cleanly encapsulate the process of generating HTML responses to a client. 
 
@@ -146,6 +142,6 @@ In the sample above, we used a `ViewBag` object to pass data from the controller
 
 Well, that was a kind of an &quot;M&quot; for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[!div class="step-by-step"]
-[Previous](adding-a-controller.md)
-[Next](adding-a-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-controller.md)
+> [Next](adding-a-model.md)

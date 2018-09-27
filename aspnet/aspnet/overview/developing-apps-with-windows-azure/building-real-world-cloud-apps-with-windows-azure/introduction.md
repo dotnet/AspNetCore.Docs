@@ -3,13 +3,9 @@ uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-clou
 title: "Building Real-World Cloud Apps with Azure | Microsoft Docs"
 author: MikeWasson
 description: "This e-book walks you through a patterns-based approach to building real-world cloud solutions. The patterns apply to the development process as well as to a..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: accfa16a-ab15-4c26-9ad4-babdc2a77d2e
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction
 msc.type: authoredcontent
 ---
@@ -55,7 +51,7 @@ This e-book explains thirteen recommended patterns for cloud development. "Patte
     - Keep web tier stateless.
     - Demo: scaling and auto-scaling in Web Apps in Azure App Service.
     - Avoid session state.
-    - Use a CDN.
+    - Use a CDN with a fallback when the CDN is unavailable.
     - Use asynchronous programming model.
     - Demo: async in ASP.NET MVC and Entity Framework.
 - [Single sign-on](single-sign-on.md). 
@@ -172,5 +168,5 @@ Videos:
 - [Web Sites Architecture - with Stefan Schackow](https://azure.microsoft.com/documentation/videos/why-azure-web-sites-plus-architecture/).
 - [Azure Web Sites Internals with Nir Mashkowski](https://channel9.msdn.com/Shows/Web+Camps+TV/Windows-Azure-Web-Sites-Internals-with-Nir-Mashkowski).
 
->[!div class="step-by-step"]
-[Next](automate-everything.md)
+> [!div class="step-by-step"]
+> [Next](automate-everything.md)

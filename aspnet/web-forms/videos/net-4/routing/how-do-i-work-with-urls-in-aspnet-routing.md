@@ -3,13 +3,9 @@ uid: web-forms/videos/net-4/routing/how-do-i-work-with-urls-in-aspnet-routing
 title: "How Do I: Work with URLs in ASP.NET Routing? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to specify URLs in a web site that utilizes ASP.NET routing. First, a web site is created and routing is defined in the Gl..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/15/2010
-ms.topic: article
 ms.assetid: 08f9d0a7-cfa0-4914-a672-8a64295d7ba8
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/how-do-i-work-with-urls-in-aspnet-routing
 msc.type: video
 ---
@@ -21,5 +17,5 @@ In this video Chris Pels shows how to specify URLs in a web site that utilizes A
 
 [&#9654; Watch video (20 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-work-with-urls-in-aspnet-routing)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-routing-with-aspnet-web-forms.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-routing-with-aspnet-web-forms.md)

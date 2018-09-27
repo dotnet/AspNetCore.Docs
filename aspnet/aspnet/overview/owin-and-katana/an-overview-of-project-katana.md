@@ -3,13 +3,9 @@ uid: aspnet/overview/owin-and-katana/an-overview-of-project-katana
 title: "An Overview of Project Katana | Microsoft Docs"
 author: howarddierking
 description: "The ASP.NET Framework has been around for over ten years, and the platform has enabled the development of countless Web sites and services. As Web applicatio..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/30/2013
-ms.topic: article
 ms.assetid: 0ee21741-c1bf-4025-a9b0-24580cae24bc
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/an-overview-of-project-katana
 msc.type: authoredcontent
 ---
@@ -139,7 +135,7 @@ From the command line, we can then navigate to the project root folder and simpl
 - Managing the underlying process.
 - Orchestrating the workflow that results in the selection of a server and the construction of an OWIN pipeline through which requests will be handled.
 
- At present, there are 3 primary hosting options for Katana-based applications:  
+  At present, there are 3 primary hosting options for Katana-based applications:  
   
 **IIS/ASP.NET**: Using the standard HttpModule and HttpHandler types, OWIN pipelines can run on IIS as a part of an ASP.NET request flow. ASP.NET hosting support is enabled by installing the Microsoft.AspNet.Host.SystemWeb NuGet package into a Web application project. Additionally, because IIS acts as both a host and a server, the OWIN server/host distinction is conflated in this NuGet package, meaning that if using the SystemWeb host, a developer cannot substitute an alternate server implementation.  
   

@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeat
 title: "Displaying Data with the DataList and Repeater Controls (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In the preceding tutorials we have used the GridView control to display data. Starting with this tutorial, we look at building common reporting patterns with..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/13/2006
-ms.topic: article
 ms.assetid: 0591cacc-b34b-4cf6-885e-2c9953bb0946
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/displaying-data-with-the-datalist-and-repeater-controls-cs
 msc.type: authoredcontent
 ---
@@ -313,5 +309,5 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Yaakov Ellis, Liz Shulok, Randy Schmidt, and Stacy Park. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](formatting-the-datalist-and-repeater-based-upon-data-cs.md)
+> [!div class="step-by-step"]
+> [Next](formatting-the-datalist-and-repeater-based-upon-data-cs.md)

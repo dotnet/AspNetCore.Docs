@@ -3,13 +3,9 @@ uid: signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
 title: "Tutorial: Server Broadcast with SignalR 2 | Microsoft Docs"
 author: tdykstra
 description: "This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality. Server broadcast means that commun..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/13/2014
-ms.topic: article
 ms.assetid: 1568247f-60b5-4eca-96e0-e661fbb2b273
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
 msc.type: authoredcontent
 ---
@@ -191,7 +187,7 @@ You only want one instance of the StockTicker class to run on the server, so you
 
 ### Register the SignalR route
 
-The server needs to know which URL to intercept and direct to SignalR. To do that you'll add and OWIN startup class.
+The server needs to know which URL to intercept and direct to SignalR. To do that, add an OWIN startup class:
 
 1. In **Solution Explorer**, right-click the project, and then click **Add | OWIN Startup Class**. Name the class **Startup.cs**.
 2. Replace the code in **Startup.cs** with the following.
@@ -213,7 +209,7 @@ You have now completed setting up the server code. In the next section you'll se
 
     The script tags specify the jQuery script file, the SignalR core script file, the SignalR proxies script file, and a StockTicker script file that you'll create later. The SignalR proxies script file, which specifies the "/signalr/hubs" URL, is dynamically generated and defines proxy methods for the methods on the Hub class, in this case for StockTickerHub.GetAllStocks. If you prefer, you can generate this JavaScript file manually by using [SignalR Utilities](http://nuget.org/packages/Microsoft.AspNet.SignalR.Utils/) and disable dynamic file creation in the MapHubs method call.
 3. > [!IMPORTANT]
- > Make sure that the JavaScript file references in *StockTicker.html* are correct. That is, make sure that the jQuery version in your script tag (1.10.2 in the example) is the same as the jQuery version in your project's *Scripts* folder, and make sure that the SignalR version in your script tag is the same as the SignalR version in your project's *Scripts* folder. Change the file names in the script tags if necessary.
+   > Make sure that the JavaScript file references in *StockTicker.html* are correct. That is, make sure that the jQuery version in your script tag (1.10.2 in the example) is the same as the jQuery version in your project's *Scripts* folder, and make sure that the SignalR version in your script tag is the same as the SignalR version in your project's *Scripts* folder. Change the file names in the script tags if necessary.
 4. In **Solution Explorer**, right-click *StockTicker.html*, and then click **Set as Start Page**.
 5. Create a new JavaScript file in the project folder and name it *StockTicker.js*..
 6. Replace the template code with the following code:

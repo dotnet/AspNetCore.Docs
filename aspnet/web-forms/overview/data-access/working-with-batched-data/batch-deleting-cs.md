@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/working-with-batched-data/batch-deleting-cs
 title: "Batch Deleting (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to delete multiple database records in a single operation. In the User Interface Layer we build upon an enhanced GridView created in an earlier tut..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/26/2007
-ms.topic: article
 ms.assetid: ac6916d0-a5ab-4218-9760-7ba9e72d258c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-deleting-cs
 msc.type: authoredcontent
 ---
@@ -110,6 +106,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Hilton Giesenow and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](batch-updating-cs.md)
-[Next](batch-inserting-cs.md)
+> [!div class="step-by-step"]
+> [Previous](batch-updating-cs.md)
+> [Next](batch-inserting-cs.md)

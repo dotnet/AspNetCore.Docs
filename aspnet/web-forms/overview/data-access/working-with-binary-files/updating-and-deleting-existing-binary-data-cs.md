@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/working-with-binary-files/updating-and-delet
 title: "Updating and Deleting Existing Binary Data (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In earlier tutorials we saw how the GridView control makes it simple to edit and delete text data. In this tutorial we see how the GridView control also make..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/27/2007
-ms.topic: article
 ms.assetid: 35798f21-1606-434b-83f8-30166906ef49
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/updating-and-deleting-existing-binary-data-cs
 msc.type: authoredcontent
 ---
@@ -363,6 +359,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](including-a-file-upload-option-when-adding-a-new-record-cs.md)
-[Next](uploading-files-vb.md)
+> [!div class="step-by-step"]
+> [Previous](including-a-file-upload-option-when-adding-a-new-record-cs.md)
+> [Next](uploading-files-vb.md)

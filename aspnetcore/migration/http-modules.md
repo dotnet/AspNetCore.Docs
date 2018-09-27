@@ -1,20 +1,16 @@
 ---
-title: Migrating HTTP handlers and modules to ASP.NET Core middleware
+title: Migrate HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
 description: 
-manager: wpickett
 ms.author: tdykstra
 ms.date: 12/07/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: migration/http-modules
 ---
-# Migrating HTTP handlers and modules to ASP.NET Core middleware 
+# Migrate HTTP handlers and modules to ASP.NET Core middleware
 
 By [Matt Perdeck](https://www.linkedin.com/in/mattperdeck)
 
-This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](https://docs.microsoft.com/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
+This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
 
 ## Modules and handlers revisited
 
@@ -24,15 +20,15 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 **Handlers are:**
 
-   * Classes that implement [IHttpHandler](https://docs.microsoft.com/dotnet/api/system.web.ihttphandler)
+   * Classes that implement [IHttpHandler](/dotnet/api/system.web.ihttphandler)
 
    * Used to handle requests with a given file name or extension, such as *.report*
 
-   * [Configured](https://docs.microsoft.com//iis/configuration/system.webserver/handlers/) in *Web.config*
+   * [Configured](/iis/configuration/system.webserver/handlers/) in *Web.config*
 
 **Modules are:**
 
-   * Classes that implement [IHttpModule](https://docs.microsoft.com/dotnet/api/system.web.ihttpmodule)
+   * Classes that implement [IHttpModule](/dotnet/api/system.web.ihttpmodule)
 
    * Invoked for every request
 
@@ -40,11 +36,11 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
    * Able to add to the HTTP response, or create their own
 
-   * [Configured](https://docs.microsoft.com//iis/configuration/system.webserver/modules/) in *Web.config*
+   * [Configured](/iis/configuration/system.webserver/modules/) in *Web.config*
 
 **The order in which modules process incoming requests is determined by:**
 
-   1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](https://docs.microsoft.com/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](https://docs.microsoft.com/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
+   1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
 
    2. For the same event, the order in which they're configured in *Web.config*.
 
@@ -60,7 +56,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * Middleware are configured using code rather than in *Web.config*
 
-   * [Pipeline branching](xref:fundamentals/middleware/index#middleware-run-map-use) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+   * [Pipeline branching](xref:fundamentals/middleware/index#use-run-and-map) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 **Middleware are very similar to modules:**
 
@@ -76,7 +72,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
-   * See [Creating a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#creating-a-middleware-pipeline-with-iapplicationbuilder)
+   * See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder)
 
 ![Middleware](http-modules/_static/middleware.png)
 
@@ -94,7 +90,7 @@ As shown in the [Middleware](xref:fundamentals/middleware/index) page, an ASP.NE
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
-The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/index#middleware-writing-middleware).
+The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/index#write-middleware).
 
 The *MyMiddlewareExtensions* helper class makes it easier to configure your middleware in your `Startup` class. The `UseMyMiddleware` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 
@@ -116,7 +112,7 @@ HTTP modules are typically added to the request pipeline using *Web.config*:
 
 [!code-xml[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32-33,36,43,50,101)]
 
-Convert this by [adding your new middleware](xref:fundamentals/middleware/index#creating-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
+Convert this by [adding your new middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
@@ -168,17 +164,17 @@ The new [configuration system](xref:fundamentals/configuration/index) gives you 
 
 * Use the [options pattern](xref:fundamentals/configuration/options):
 
-1.  Create a class to hold your middleware options, for example:
+1. Create a class to hold your middleware options, for example:
 
-    [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Options)]
+   [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Options)]
 
-2.  Store the option values
+2. Store the option values
 
-    The configuration system allows you to store option values anywhere you want. However, most sites use *appsettings.json*, so we'll take that approach:
+   The configuration system allows you to store option values anywhere you want. However, most sites use *appsettings.json*, so we'll take that approach:
 
-    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
+   [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
-    *MyMiddlewareOptionsSection* here is a section name. It doesn't have to be the same as the name of your options class.
+   *MyMiddlewareOptionsSection* here is a section name. It doesn't have to be the same as the name of your options class.
 
 3. Associate the option values with the options class
 
@@ -186,25 +182,25 @@ The new [configuration system](xref:fundamentals/configuration/index) gives you 
 
     Update your `Startup` class:
 
-    1.  If you're using *appsettings.json*, add it to the configuration builder in the `Startup` constructor:
+   1. If you're using *appsettings.json*, add it to the configuration builder in the `Startup` constructor:
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
 
-    2.  Configure the options service:
+   2. Configure the options service:
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
 
-    3.  Associate your options with your options class:
+   3. Associate your options with your options class:
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_ConfigureServices&highlight=6-8)]
 
-4.  Inject the options into your middleware constructor. This is similar to injecting options into a controller.
+4. Inject the options into your middleware constructor. This is similar to injecting options into a controller.
 
-  [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_MiddlewareWithParams&highlight=4,7,10,15-16)]
+   [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_MiddlewareWithParams&highlight=4,7,10,15-16)]
 
-  The [UseMiddleware](#http-modules-usemiddleware) extension method that adds your middleware to the `IApplicationBuilder` takes care of dependency injection.
+   The [UseMiddleware](#http-modules-usemiddleware) extension method that adds your middleware to the `IApplicationBuilder` takes care of dependency injection.
 
-  This isn't limited to `IOptions` objects. Any other object that your middleware requires can be injected this way.
+   This isn't limited to `IOptions` objects. Any other object that your middleware requires can be injected this way.
 
 ## Loading middleware options through direct injection
 
@@ -214,21 +210,21 @@ This breaks down though if you want to use the same middleware twice, with diffe
 
 The solution is to get the options objects with the actual options values in your `Startup` class and pass those directly to each instance of your middleware.
 
-1.  Add a second key to *appsettings.json*
+1. Add a second key to *appsettings.json*
 
-    To add a second set of options to the *appsettings.json* file, use a new key to uniquely identify it:
+   To add a second set of options to the *appsettings.json* file, use a new key to uniquely identify it:
 
-    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
+   [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
-2.  Retrieve options values and pass them to middleware. The `Use...` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values: 
+2. Retrieve options values and pass them to middleware. The `Use...` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values: 
 
-    [!code-csharp[](http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=20-23)]
+   [!code-csharp[](http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=20-23)]
 
-4.  Enable middleware to take an options parameter. Provide an overload of the `Use...` extension method (that takes the options parameter and passes it to `UseMiddleware`). When `UseMiddleware` is called with parameters, it passes the parameters to your middleware constructor when it instantiates the middleware object.
+3. Enable middleware to take an options parameter. Provide an overload of the `Use...` extension method (that takes the options parameter and passes it to `UseMiddleware`). When `UseMiddleware` is called with parameters, it passes the parameters to your middleware constructor when it instantiates the middleware object.
 
-    [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Extensions&highlight=9-14)]
+   [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Extensions&highlight=9-14)]
 
-    Note how this wraps the options object in an `OptionsWrapper` object. This implements `IOptions`, as expected by the middleware constructor.
+   Note how this wraps the options object in an `OptionsWrapper` object. This implements `IOptions`, as expected by the middleware constructor.
 
 ## Migrating to the new HttpContext
 
@@ -238,7 +234,7 @@ You saw earlier that the `Invoke` method in your middleware takes a parameter of
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](https://docs.microsoft.com/dotnet/api/system.web.httpcontext) to the new `Microsoft.AspNetCore.Http.HttpContext`.
+`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](/dotnet/api/system.web.httpcontext) to the new `Microsoft.AspNetCore.Http.HttpContext`.
 
 ### HttpContext
 

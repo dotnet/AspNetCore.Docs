@@ -1,20 +1,16 @@
 ---
-title: Using Grunt in ASP.NET Core
+title: Use Grunt in ASP.NET Core
 author: rick-anderson
 description: 
-manager: wpickett
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: client-side/using-grunt
 ---
-# Using Grunt in ASP.NET Core 
+# Use Grunt in ASP.NET Core
 
 By [Noel Rice](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/)
 
-Grunt is a JavaScript task runner that automates script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Grunt is fully supported in Visual Studio, though the ASP.NET project templates use Gulp by default (see [Using Gulp](using-gulp.md)).
+Grunt is a JavaScript task runner that automates script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Grunt is fully supported in Visual Studio, though the ASP.NET project templates use Gulp by default (see [Use Gulp](using-gulp.md)).
 
 This example uses an empty ASP.NET Core project as its starting point, to show how to automate the client build process from scratch.
 
@@ -124,16 +120,16 @@ The packages for each devDependencies item will download, along with any files t
 
 Grunt is configured using a manifest named *Gruntfile.js* that defines, loads and registers tasks that can be run manually or configured to run automatically based on events in Visual Studio.
 
-1.  Right-click the project and select **Add > New Item**. Select the **Grunt Configuration file** option, leave the default name, *Gruntfile.js*, and click the **Add** button.
+1. Right-click the project and select **Add > New Item**. Select the **Grunt Configuration file** option, leave the default name, *Gruntfile.js*, and click the **Add** button.
 
-    The initial code includes a module definition and the `grunt.initConfig()` method. The `initConfig()` is used to set options for each package, and the remainder of the module will load and register tasks.
+   The initial code includes a module definition and the `grunt.initConfig()` method. The `initConfig()` is used to set options for each package, and the remainder of the module will load and register tasks.
     
-    ```javascript
-    module.exports = function (grunt) {
-      grunt.initConfig({
-      });
-    };
-    ```
+   ```javascript
+   module.exports = function (grunt) {
+     grunt.initConfig({
+     });
+   };
+   ```
 
 2. Inside the `initConfig()` method, add options for the `clean` task as shown in the example *Gruntfile.js* below. The clean task accepts an array of directory strings. This task removes files from wwwroot/lib and removes the entire /temp directory.
 
@@ -202,16 +198,16 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
     > [!NOTE]
     > The option "-W069" is an error produced by jshint when JavaScript uses bracket syntax to assign a property instead of dot notation, i.e. `Tastes["Sweet"]` instead of `Tastes.Sweet`. The option turns off the warning to allow the rest of the process to continue.
 
-10.  Add the `uglify` task using the code below.
+10. Add the `uglify` task using the code below.
 
     The task minifies the *combined.js* file found in the temp directory and creates the result file in wwwroot/lib following the standard naming convention *\<file name\>.min.js*.
     
     ```javascript
     uglify: {
-      all: {
-        src: ['temp/combined.js'],
-        dest: 'wwwroot/lib/combined.min.js'
-      }
+     all: {
+       src: ['temp/combined.js'],
+       dest: 'wwwroot/lib/combined.min.js'
+     }
     },
     ```
 
@@ -287,4 +283,4 @@ Grunt is a powerful task runner that can be used to automate most client-build t
 
 ## Additional resources
 
-   * [Using Gulp](using-gulp.md)
+   * [Use Gulp](using-gulp.md)

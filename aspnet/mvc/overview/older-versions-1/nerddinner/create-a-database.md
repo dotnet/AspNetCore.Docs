@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/nerddinner/create-a-database
 title: "Create a Database | Microsoft Docs"
 author: microsoft
 description: "Step 2 shows the steps to create the database holding all of the dinner and RSVP data for our NerdDinner application."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/27/2010
-ms.topic: article
 ms.assetid: 983f3ffa-08b8-4868-b8c9-aa34593fc683
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/create-a-database
 msc.type: authoredcontent
 ---
@@ -126,6 +122,6 @@ We'll add a few rows of Dinner data that we can use later as we start implementi
 
 We've finished creating our database. Let's now create model classes that we can use to query and update it.
 
->[!div class="step-by-step"]
-[Previous](create-a-new-aspnet-mvc-project.md)
-[Next](build-a-model-with-business-rule-validations.md)
+> [!div class="step-by-step"]
+> [Previous](create-a-new-aspnet-mvc-project.md)
+> [Next](build-a-model-with-business-rule-validations.md)

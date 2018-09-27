@@ -1,16 +1,12 @@
 ---
-title: Getting Started with the Data Protection APIs
+title: Get started with the Data Protection APIs in ASP.NET Core
 author: rick-anderson
-description: This document explains how to use the ASP.NET Core data protection APIs for protecting and unprotecting data in an app.
-manager: wpickett
+description: Learn how to use the ASP.NET Core data protection APIs for protecting and unprotecting data in an app.
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/using-data-protection
 ---
-# Getting Started with the Data Protection APIs
+# Get started with the Data Protection APIs in ASP.NET Core
 
 <a name="security-data-protection-getting-started"></a>
 
@@ -22,11 +18,11 @@ At its simplest, protecting data consists of the following steps:
 
 3. Call the `Unprotect` method with the data you want to turn back into plain text.
 
-Most frameworks and app models, such as ASP.NET or SignalR, already configure the data protection system and add it to a service container you access via dependency injection. The following sample demonstrates configuring a service container for dependency injection and registering the data protection stack, receiving the data protection provider via DI, creating a protector and protecting then unprotecting data
+Most frameworks and app models, such as ASP.NET Core or SignalR, already configure the data protection system and add it to a service container you access via dependency injection. The following sample demonstrates configuring a service container for dependency injection and registering the data protection stack, receiving the data protection provider via DI, creating a protector and protecting then unprotecting data.
 
 [!code-csharp[](../../security/data-protection/using-data-protection/samples/protectunprotect.cs?highlight=26,34,35,36,37,38,39,40)]
 
-When you create a protector you must provide one or more [Purpose Strings](consumer-apis/purpose-strings.md). A purpose string provides isolation between consumers. For example, a protector created with a purpose string of "green" wouldn't be able to unprotect data provided by a protector with a purpose of "purple".
+When you create a protector you must provide one or more [Purpose Strings](xref:security/data-protection/consumer-apis/purpose-strings). A purpose string provides isolation between consumers. For example, a protector created with a purpose string of "green" wouldn't be able to unprotect data provided by a protector with a purpose of "purple".
 
 >[!TIP]
 > Instances of `IDataProtectionProvider` and `IDataProtector` are thread-safe for multiple callers. It's intended that once a component gets a reference to an `IDataProtector` via a call to `CreateProtector`, it will use that reference for multiple calls to `Protect` and `Unprotect`.

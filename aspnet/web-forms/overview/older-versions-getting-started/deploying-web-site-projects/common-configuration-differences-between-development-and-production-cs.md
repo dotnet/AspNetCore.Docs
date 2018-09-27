@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Common Configuration Differences Between Development and Production (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In earlier tutorials we deployed our website by copying all of the pertinent files from the development environment to the production environment. However, i..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/01/2009
-ms.topic: article
 ms.assetid: 721a5c37-7e21-48e0-832e-535c6351dcae
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/common-configuration-differences-between-development-and-production-cs
 msc.type: authoredcontent
 ---
@@ -131,6 +127,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [VS 2008 Web Deployment Projects](https://weblogs.asp.net/scottgu/archive/2005/11/06/429723.aspx) | [VS 2008 Web Deployment Project Support Released](https://weblogs.asp.net/scottgu/archive/2008/01/28/vs-2008-web-deployment-project-support-released.aspx)
 - [Web Deployment Projects](https://msdn.microsoft.com/magazine/cc163448.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-your-site-using-visual-studio-cs.md)
-[Next](core-differences-between-iis-and-the-asp-net-development-server-cs.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-your-site-using-visual-studio-cs.md)
+> [Next](core-differences-between-iis-and-the-asp-net-development-server-cs.md)

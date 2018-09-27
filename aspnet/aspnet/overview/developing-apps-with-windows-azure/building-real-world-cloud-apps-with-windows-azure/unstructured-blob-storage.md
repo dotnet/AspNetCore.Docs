@@ -3,13 +3,9 @@ uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-clou
 title: "Unstructured Blob Storage (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/30/2015
-ms.topic: article
 ms.assetid: 9f05ccb1-2004-4661-ad8b-c370e6c09c8e
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage
 msc.type: authoredcontent
 ---
@@ -143,6 +139,6 @@ For more information see the following resources:
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part video series by Ulrich Homann, Marc Mercuri, and Mark Simms. Presents high-level concepts and architectural principles in a very accessible and interesting way, with stories drawn from Microsoft Customer Advisory Team (CAT) experience with actual customers. For a discussion of Azure Storage service and blobs, see episode 5 starting at 35:13.
 - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See Valet Key pattern.
 
->[!div class="step-by-step"]
-[Previous](data-partitioning-strategies.md)
-[Next](design-to-survive-failures.md)
+> [!div class="step-by-step"]
+> [Previous](data-partitioning-strategies.md)
+> [Next](design-to-survive-failures.md)

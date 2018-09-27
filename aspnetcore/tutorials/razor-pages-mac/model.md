@@ -1,19 +1,16 @@
 ---
-title: Adding a model to a Razor Pages app with Visual Studio for Mac
+title: Add a model to an ASP.NET Core Razor Pages app with Visual Studio for Mac
 author: rick-anderson
-description: Adding a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac
-manager: wpickett
+description: Learn how to add a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac.
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/27/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages-mac/model
 ---
 
-# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio for Mac
+# Add a model to an ASP.NET Core Razor Pages app with Visual Studio for Mac
 
-[!INCLUDE[model1](../../includes/RP/model1.md)]
+[!INCLUDE [model1](../../includes/RP/model1.md)]
 
 ## Add a data model
 
@@ -25,8 +22,9 @@ uid: tutorials/razor-pages-mac/model
   * Select **Empty Class** in the center pain.
   * Name the class **Movie** and select **New**.
 
-[!INCLUDE[model 2](../../includes/RP/model2.md)]
-[!INCLUDE[model 2a](../../includes/RP/model2a.md)]
+[!INCLUDE [model 2](../../includes/RP/model2.md)]
+
+[!INCLUDE [model 2a](../../includes/RP/model2a.md)]
 
 [!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
 
@@ -54,21 +52,22 @@ Add the `Microsoft.EntityFrameworkCore.Tools.DotNet` tool reference to the secon
 
 The version numbers shown in the following code were correct at the time of writing.
 
-[!INCLUDE[model3](../../includes/RP/model3.md)]
-[!INCLUDE[model 4x](../../includes/RP/model4x.md)]
+[!INCLUDE [model3](../../includes/RP/model3.md)]
 
-[!INCLUDE[model 4 exit](../../includes/RP/model4exit.md)]
+[!INCLUDE [model 4x](../../includes/RP/model4x.md)]
 
-[!INCLUDE[model 4](../../includes/RP/model4.md)]
+[!INCLUDE [model 4 exit](../../includes/RP/model4exit.md)]
+
+[!INCLUDE [model 4](../../includes/RP/model4.md)]
 
 ### Add the Pages/Movies files to the project
 
 * In Visual Studio, Right-click the *Pages* folder and select **Add > Add existing Folder**.
 * Select the *Movies* folder.
-* In the *Chosse files to include in the project* dialog, select **Include All**.
+* In the *Choose files to include in the project* dialog, select **Include All**.
 
 The next tutorial explains the files created by scaffolding.
 
->[!div class="step-by-step"]
-[Previous: Getting Started](xref:tutorials/razor-pages-mac/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
+> [!div class="step-by-step"]
+> [Previous: Get Started](xref:tutorials/razor-pages-mac/razor-pages-start)
+> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)

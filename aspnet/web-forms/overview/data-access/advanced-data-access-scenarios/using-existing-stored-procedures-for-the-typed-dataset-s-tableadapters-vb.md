@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/advanced-data-access-scenarios/using-existin
 title: "Using Existing Stored Procedures for the Typed DataSet's TableAdapters (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In the previous tutorial we learned how to use the TableAdapter Wizard to generate new stored procedures. In this tutorial we learn how the same TableAdapter..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/18/2007
-ms.topic: article
 ms.assetid: 2da25f6a-757e-4e7b-a812-1575288d8f7a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb
 msc.type: authoredcontent
 ---
@@ -274,6 +270,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Hilton Geisenow, S ren Jacob Lauritsen, and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.md)
-[Next](updating-the-tableadapter-to-use-joins-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.md)
+> [Next](updating-the-tableadapter-to-use-joins-vb.md)

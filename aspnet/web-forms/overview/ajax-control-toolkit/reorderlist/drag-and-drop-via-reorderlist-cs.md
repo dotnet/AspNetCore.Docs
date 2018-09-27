@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/reorderlist/drag-and-drop-via-reord
 title: "Drag and Drop via ReorderList (C#) | Microsoft Docs"
 author: wenz
 description: "The ReorderList control in the AJAX Control Toolkit provides a list that can be reordered by the user via drag and drop. The current order of the list shall..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 6350ee8e-11d6-4aff-b51c-942878014835
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/reorderlist/drag-and-drop-via-reorderlist-cs
 msc.type: authoredcontent
 ---
@@ -85,6 +81,6 @@ Run this example in the browser and rearrange the list items a bit. Then, reload
 
 The data in the database changes according to the new list item order ([Click to view full-size image](drag-and-drop-via-reorderlist-cs/_static/image9.png))
 
->[!div class="step-by-step"]
-[Previous](using-postbacks-with-reorderlist-cs.md)
-[Next](using-postbacks-with-reorderlist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-postbacks-with-reorderlist-cs.md)
+> [Next](using-postbacks-with-reorderlist-vb.md)

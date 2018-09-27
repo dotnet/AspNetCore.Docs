@@ -3,13 +3,9 @@ uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-clou
 title: "Queue-Centric Work Pattern (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: cc1ad51b-40c3-4c68-8620-9aaa0fd1f6cf
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern
 msc.type: authoredcontent
 ---
@@ -189,6 +185,6 @@ Video:
 
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part video series by Ulrich Homann, Marc Mercuri, and Mark Simms. Presents high-level concepts and architectural principles in a very accessible and interesting way, with stories drawn from Microsoft Customer Advisory Team (CAT) experience with actual customers. For an introduction to the Azure Storage service and queues, see episode 5 starting at 35:13.
 
->[!div class="step-by-step"]
-[Previous](distributed-caching.md)
-[Next](more-patterns-and-guidance.md)
+> [!div class="step-by-step"]
+> [Previous](distributed-caching.md)
+> [Next](more-patterns-and-guidance.md)

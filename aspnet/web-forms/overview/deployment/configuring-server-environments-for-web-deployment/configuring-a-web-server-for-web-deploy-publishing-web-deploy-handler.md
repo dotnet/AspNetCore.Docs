@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/configuring-server-environments-for-web-deplo
 title: "Configuring a Web Server for Web Deploy Publishing (Web Deploy Handler) | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to configure an Internet Information Services (IIS) web server to support web publishing and deployment using the IIS Web Deploy Han..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 90ebf911-1c46-4470-b876-1335bd0f590f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler
 msc.type: authoredcontent
 ---
@@ -231,7 +227,7 @@ In order for your website to serve content, the application pool identity must h
 
 To grant permissions to an application pool identity on a file or folder, you have two options:
 
-- Assign permissions to the application pool identity directly, using the format **IIS AppPool\***[application pool name]*(for example, **IIS AppPool\DemoSite**).
+- Assign permissions to the application pool identity directly, using the format <strong>IIS AppPool\</strong><em>[application pool name]</em>(for example, <strong>IIS AppPool\DemoSite</strong>).
 - Assign permissions to the **IIS\_IUSRS** group.
 
 The most common approach is to assign permissions to the local **IIS\_IUSRS** group, because this approach lets you change application pools without reconfiguring file system permissions. The next procedure uses this group-based approach.
@@ -249,8 +245,8 @@ The most common approach is to assign permissions to the local **IIS\_IUSRS** gr
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image15.png)
 5. In the **Select Users or Groups** dialog box, type **IIS\_IUSRS**, click **Check Names**, and then click **OK**.
-6. In the **Permissions for***[folder name]* dialog box, notice that the new group has been assigned the **Read &amp; execute**, **List folder contents**, and **Read** permissions by default. Leave this unchanged and click **OK**.
-7. Click **OK** to close the *[folder name]***Properties** dialog box.
+6. In the <strong>Permissions for</strong><em>[folder name]</em> dialog box, notice that the new group has been assigned the <strong>Read &amp; execute</strong>, <strong>List folder contents</strong>, and <strong>Read</strong> permissions by default. Leave this unchanged and click <strong>OK</strong>.
+7. Click <strong>OK</strong> to close the <em>[folder name]</em><strong>Properties</strong> dialog box.
 
 As a final task, you must grant the appropriate permissions to the non-administrator user whose credentials you'll use to deploy content. This user requires the permissions to deploy content remotely to your website.
 
@@ -301,6 +297,6 @@ Your web server should now be ready to accept remote deployments to the Web Depl
 
 For guidance on how to configure custom Microsoft Build Engine (MSBuild) project files to deploy web packages to the Web Deploy Handler, see [Configuring Deployment Properties for a Target Environment](configuring-deployment-properties-for-a-target-environment.md).
 
->[!div class="step-by-step"]
-[Previous](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md)
-[Next](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md)
+> [Next](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)

@@ -1,9 +1,12 @@
 ---
 uid: index
-layout: HubPage 
-ms.topic: hub-page
-title: ASP.NET Documentation | Microsoft Docs 
-description: 
+layout: HubPage
+ms.topic: conceptual
+author: Rick-Anderson
+ms.author: riande
+title: ASP.NET Documentation
+ms.date: 08/24/2018
+description: Learn how to develop ASP.NET and ASP.NET web applications. Get documentation, example code, tutorials, and more.
 ---
 <div id="main" class="v2">
     <div class="container">
@@ -19,8 +22,8 @@ description:
                                 <div class="container intro">
                                     <p>ASP.NET Core is a new open-source and cross-platform .NET framework for building modern
                                         cloud-based web applications on Windows, Mac, or Linux.</p>
-                                    <p>[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)
-                                        and choose the one that's right for you.</p>
+                                    <p><a href="https://docs.microsoft.com/aspnet/core/choose-aspnet-framework" data-raw-source="[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)">Learn the benefits of both ASP.NET Core and ASP.NET</a>
+                                        and choose the one that&#39;s right for you.</p>
                                 </div>
                             </li>
                             <li>
@@ -152,7 +155,7 @@ description:
                         <ul id="core_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
-                                    <p>Featured tutorials | [View all ASP.NET Core tutorials](https://docs.microsoft.com/aspnet/core/tutorials/)</p>
+                                    <p>Featured tutorials | <a href="https://docs.microsoft.com/aspnet/core/tutorials/" data-raw-source="[View all ASP.NET Core tutorials](https://docs.microsoft.com/aspnet/core/tutorials/)">View all ASP.NET Core tutorials</a></p>
                                 </div>
                             </li>
                             <li>
@@ -294,8 +297,8 @@ description:
                                 <div class="container intro">
                                     <p>ASP.NET is a mature web platform that provides all the services that you require to build
                                         enterprise-class server-based web applications using .NET on Windows.</p>
-                                    <p>[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)
-                                        and choose the one that's right for you.</p>
+                                    <p><a href="https://docs.microsoft.com/aspnet/core/choose-aspnet-framework" data-raw-source="[Learn the benefits of both ASP.NET Core and ASP.NET](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework)">Learn the benefits of both ASP.NET Core and ASP.NET</a>
+                                        and choose the one that&#39;s right for you.</p>
                                 </div>
                             </li>
                             <li>
@@ -446,7 +449,7 @@ description:
                         <ul id="aspnet_framework" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p><a href="/aspnet/overview#websites-and-web-applications">Learn about the different options for building websites with ASP.NET</a> and choose the one that's right for you.</p>
+                                    <p><a href="/aspnet/overview#websites-and-web-applications">Learn about the different options for building websites with ASP.NET</a> and choose the one that&#39;s right for you.</p>
                                 </div>
                             </li>
                             <li>
@@ -579,7 +582,7 @@ description:
                         <ul id="aspnet_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
-                                    <p>Featured tutorials | [View all ASP.NET tutorials](https://docs.microsoft.com/aspnet/tutorials/)</p>
+                                    <p>Featured tutorials | <a href="https://docs.microsoft.com/aspnet/tutorials/" data-raw-source="[View all ASP.NET tutorials](https://docs.microsoft.com/aspnet/tutorials/)">View all ASP.NET tutorials</a></p>
                                 </div>
                             </li>
                             <li>

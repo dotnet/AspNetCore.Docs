@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/introduction/examining-the-edit-methods-and-ed
 title: "Examining the Edit Methods and Edit View | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/22/2015
-ms.topic: article
 ms.assetid: 52a4d5fe-aa31-4471-b3cb-a064f82cb791
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view
 msc.type: authoredcontent
 ---
@@ -17,7 +13,7 @@ Examining the Edit Methods and Edit View
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 In this section, you'll examine the generated `Edit` action methods and views for the movie controller. But first will take a short diversion to make the release date look better. Open the *Models\Movie.cs* file and add the highlighted lines shown below:
 
@@ -101,12 +97,12 @@ If you are using a US-English computer, you can skip this section and go to the 
 1. From the **Tools** menu click **NuGetLibrary Package Manager**, and then click **Manage NuGet Packages for Solution**.  
   
     ![](examining-the-edit-methods-and-edit-view/_static/image5.png)
-2. On the left pane, select **Browse*.***(See the image below.)
+2. On the left pane, select <strong>Browse*.</strong>*(See the image below.)
 3. In the input box, enter *Globalize**.  
   
     ![](examining-the-edit-methods-and-edit-view/_static/image6.png) Choose `jQuery.Validation.Globalize`, choose `MvcMovie` and click **Install**. The *Scripts\jquery.globalize\globalize.js* file will be added to your project. The *Scripts\jquery.globalize\cultures\* folder will contain many culture JavaScript files. Note, it may take five minutes to install this package.
 
- The following code shows the modifications to the Views\Movies\Edit.cshtml file: 
+   The following code shows the modifications to the Views\Movies\Edit.cshtml file: 
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample10.cshtml)]
 
@@ -120,6 +116,6 @@ As a temporary fix, if you can't get validation working in your locale, you can 
 
 <a id="gettingstarted"></a><a id="jQueryAjaxJSON"></a> In the next tutorial, we'll implement search functionality.
 
->[!div class="step-by-step"]
-[Previous](accessing-your-models-data-from-a-controller.md)
-[Next](adding-search.md)
+> [!div class="step-by-step"]
+> [Previous](accessing-your-models-data-from-a-controller.md)
+> [Next](adding-search.md)

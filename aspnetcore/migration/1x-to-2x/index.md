@@ -1,27 +1,23 @@
 ---
-title: Migrating from ASP.NET Core 1.x to 2.0
+title: Migrate from ASP.NET Core 1.x to 2.0
 author: scottaddie
 description: This article outlines the prerequisites and most common steps for migrating an ASP.NET Core 1.x project to ASP.NET Core 2.0.
-manager: wpickett
 ms.author: scaddie
 ms.date: 10/03/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: migration/1x-to-2x/index
 ---
-# Migrating from ASP.NET Core 1.x to ASP.NET Core 2.0
+# Migrate from ASP.NET Core 1.x to 2.0
 
 By [Scott Addie](https://github.com/scottaddie)
 
-In this article, we'll walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](https://docs.microsoft.com/aspnet/core/aspnetcore-2.0). 
+In this article, we walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](xref:aspnetcore-2.0).
 
 Existing ASP.NET Core 1.x applications are based off of version-specific project templates. As the ASP.NET Core framework evolves, so do the project templates and the starter code contained within them. In addition to updating the ASP.NET Core framework, you need to update the code for your application.
 
 <a name="prerequisites"></a>
 
 ## Prerequisites
-Please see [Getting Started with ASP.NET Core](xref:getting-started).
+See [Get Started with ASP.NET Core](xref:getting-started).
 
 <a name="tfm"></a>
 
@@ -174,7 +170,7 @@ If you are using the Application Insights SDK directly, continue to do so. The 2
 <a name="auth-and-identity"></a>
 
 ## Adopt authentication/Identity improvements
-ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x).
+ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x).
 
 ## Additional resources
 

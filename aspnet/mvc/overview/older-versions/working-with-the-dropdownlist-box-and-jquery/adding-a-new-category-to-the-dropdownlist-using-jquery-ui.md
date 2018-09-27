@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/ad
 title: "Adding a New Category to the DropDownList using jQuery UI | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/12/2012
-ms.topic: article
 ms.assetid: 44aa1ac4-6ea2-48a2-972d-52710c48eae5
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/adding-a-new-category-to-the-dropdownlist-using-jquery-ui
 msc.type: authoredcontent
 ---
@@ -31,7 +27,7 @@ When a new genre name is entered and the **Save** button is pushed, the followin
 2. JavaScript adds the new genre data to the select list.
 3. JavaScript makes the new genre the selected item.
 
- In the image below, **Opera** was added to the database and selected in the **Genre** drop down list. 
+   In the image below, **Opera** was added to the database and selected in the **Genre** drop down list. 
 
 ![](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/_static/image3.png)
 
@@ -97,7 +93,7 @@ The jQuery `$.post` line makes an AJAX call to the action attribute (`/StoreMana
 3. In the search box, enter GenreID.
 4. Using the next icon,   
     ![](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/_static/image9.png)  
- navigate to the following select tag:
+   navigate to the following select tag:
 
     [!code-html[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample9.html)]
 5. Expand the last option value.
@@ -136,5 +132,5 @@ Rick.Anderson[at]Microsoft.com
 - Mike Pope
 - Tom Dykstra
 
->[!div class="step-by-step"]
-[Previous](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper.md)
+> [!div class="step-by-step"]
+> [Previous](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper.md)

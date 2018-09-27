@@ -3,13 +3,9 @@ uid: identity/overview/getting-started/aspnet-identity-recommended-resources
 title: "ASP.NET Identity Recommended Resources | Microsoft Docs"
 author: Rick-Anderson
 description: "This topic provides links to documentation resources about how to use ASP.NET Identity. If you know a great blog post, stackoverflow thread, or any other lin..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/09/2015
-ms.topic: article
 ms.assetid: 0f78aec2-f509-46fa-b20f-d5208425d8ec
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/aspnet-identity-recommended-resources
 msc.type: authoredcontent
 ---
@@ -89,7 +85,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
     - [Understanding the Owin External Authentication Pipeline](http://coding.abel.nu/2014/06/understanding-the-owin-external-authentication-pipeline/)
     - [ASP.NET Identity and Owin Overview](http://coding.abel.nu/2014/06/asp-net-identity-and-owin-overview/)
 
- By [K. Scott Allen](https://twitter.com/OdeToCode) on Ode to Code
+  By [K. Scott Allen](https://twitter.com/OdeToCode) on Ode to Code
 
     - [ASP.NET Core Identity](http://odetocode.com/blogs/scott/archive/2013/11/25/asp-net-core-identity.aspx) This blog examines the core abstractions, including IUser, IUserStore and the I\*Store interfaces.
     - [ASP.NET Identity with the Entity Framework](http://odetocode.com/blogs/scott/archive/2014/01/03/asp-net-identity-with-the-entity-framework.aspx) Individual User Accounts in MVC 5, Web API and SPA apps, connection strings and managing contexts

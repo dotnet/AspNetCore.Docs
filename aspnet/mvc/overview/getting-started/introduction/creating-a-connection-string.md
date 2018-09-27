@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/introduction/creating-a-connection-string
 title: "Creating a Connection String and Working with SQL Server LocalDB | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/17/2013
-ms.topic: article
 ms.assetid: 6127804d-c1a9-414d-8429-7f3dd0f56e97
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/creating-a-connection-string
 msc.type: authoredcontent
 ---
@@ -17,7 +13,7 @@ Creating a Connection String and Working with SQL Server LocalDB
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 ## Creating a Connection String and Working with SQL Server LocalDB
 
@@ -59,6 +55,6 @@ You don't actually need to add the `MovieDBContext` connection string. If you do
 
 Next, you'll build a new `MoviesController` class that you can use to display the movie data and allow users to create new movie listings.
 
->[!div class="step-by-step"]
-[Previous](adding-a-model.md)
-[Next](accessing-your-models-data-from-a-controller.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-model.md)
+> [Next](accessing-your-models-data-from-a-controller.md)

@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-model
 title: "Adding a Model | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demo..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/28/2012
-ms.topic: article
 ms.assetid: 53db72da-e0b9-44d9-b60b-6e6988c00b28
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-model
 msc.type: authoredcontent
 ---
@@ -73,6 +69,6 @@ This small amount of code and XML is everything you need to write in order to re
 
 Next, you'll build a new `MoviesController` class that you can use to display the movie data and allow users to create new movie listings.
 
->[!div class="step-by-step"]
-[Previous](adding-a-view.md)
-[Next](accessing-your-models-data-from-a-controller.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-view.md)
+> [Next](accessing-your-models-data-from-a-controller.md)

@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/caching-data/caching-data-in-the-architectur
 title: "Caching Data in the Architecture (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In the previous tutorial we learned how to apply caching at the Presentation Layer. In this tutorial we learn how to take advantage of our layered architectu..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/30/2007
-ms.topic: article
 ms.assetid: d29a7c41-0628-4a23-9dfc-bfea9c6c1054
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-in-the-architecture-cs
 msc.type: authoredcontent
 ---
@@ -199,6 +195,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Teresa Murph. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](caching-data-with-the-objectdatasource-cs.md)
-[Next](caching-data-at-application-startup-cs.md)
+> [!div class="step-by-step"]
+> [Previous](caching-data-with-the-objectdatasource-cs.md)
+> [Next](caching-data-at-application-startup-cs.md)

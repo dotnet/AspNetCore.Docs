@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-v
 title: "Using ASP.NET MVC with Different Versions of IIS (C#) | Microsoft Docs"
 author: microsoft
 description: "In this tutorial, you learn how to use ASP.NET MVC, and URL Routing, with different versions of Internet Information Services. You learn different strategies..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/19/2008
-ms.topic: article
 ms.assetid: b0cf4a34-2c1d-4717-bb54-ff029e722990
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs
 msc.type: authoredcontent
 ---
@@ -207,5 +203,5 @@ The first option requires you to modify the URLs used in your ASP.NET MVC applic
 
 The second option is to create a wildcard script map. The advantage of this second option is that you do not need to modify your URLs. The disadvantage of this second option is that it can impact the performance of your ASP.NET MVC application.
 
->[!div class="step-by-step"]
-[Next](using-asp-net-mvc-with-different-versions-of-iis-vb.md)
+> [!div class="step-by-step"]
+> [Next](using-asp-net-mvc-with-different-versions-of-iis-vb.md)

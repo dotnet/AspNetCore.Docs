@@ -3,13 +3,9 @@ uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/updating-
 title: "Introducing ASP.NET Web Pages - Updating Database Data | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to update (change) an existing database entry when you use ASP.NET Web Pages (Razor). It assumes you have completed the series th..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/02/2018
-ms.topic: article
 ms.assetid: ac86ec9c-6b69-485b-b9e0-8b9127b13e6b
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/updating-data
 msc.type: authoredcontent
 ---
@@ -103,7 +99,7 @@ Once you know about the `format` property, it's easier to understand how the new
 
 The column consists *only* of the markup that renders the link, plus some information (the ID) that's extracted from the database record for the row.
 
-> [!TIP] 
+> [!TIP]
 > 
 > **Named Parameters and Positional Parameters for a Method**
 > 
@@ -306,6 +302,6 @@ In the next tutorial, you'll see how to delete a movie record.
 - [Introduction to ASP.NET Web Programming by Using the Razor Syntax](../../getting-started/introducing-razor-syntax-c.md)
 - [SQL UPDATE Statement](http://www.w3schools.com/sql/sql_update.asp) on the W3Schools site
 
->[!div class="step-by-step"]
-[Previous](entering-data.md)
-[Next](deleting-data.md)
+> [!div class="step-by-step"]
+> [Previous](entering-data.md)
+> [Next](deleting-data.md)

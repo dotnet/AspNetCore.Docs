@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/masterdetail/master-detail-filtering-with-a-
 title: "Master/Detail Filtering With a DropDownList (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how to display the master records in a DropDownList control and the details of the selected list item in a GridView."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: 53e659cc-eefb-40c1-a1dc-559481c99443
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/masterdetail/master-detail-filtering-with-a-dropdownlist-cs
 msc.type: authoredcontent
 ---
@@ -166,5 +162,5 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Next](master-detail-filtering-with-two-dropdownlists-cs.md)
+> [!div class="step-by-step"]
+> [Next](master-detail-filtering-with-two-dropdownlists-cs.md)

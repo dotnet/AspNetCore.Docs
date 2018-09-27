@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/animation/dynamically-controlling-u
 title: "Dynamically Controlling UpdatePanel Animations (C#) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. For the contents of an..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 5138b8fe-98ff-4e73-a00b-e263fc3ff11d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/dynamically-controlling-updatepanel-animations-cs
 msc.type: authoredcontent
 ---
@@ -60,6 +56,6 @@ Run the file in the browser. Whenever you click on the button, the current time 
 
 The current time is fading in ([Click to view full-size image](dynamically-controlling-updatepanel-animations-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](animating-an-updatepanel-control-cs.md)
-[Next](adding-animation-to-a-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](animating-an-updatepanel-control-cs.md)
+> [Next](adding-animation-to-a-control-vb.md)

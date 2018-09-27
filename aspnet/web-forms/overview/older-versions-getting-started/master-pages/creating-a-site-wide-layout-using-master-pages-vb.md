@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/creating-a-s
 title: "Creating a Site-Wide Layout Using Master Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will show master page basics. Namely, what are master pages, how does one create a master page, what are content place holders, how does one cr..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/21/2008
-ms.topic: article
 ms.assetid: 30945276-8ed9-4b27-8e50-4309244d3559
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/creating-a-site-wide-layout-using-master-pages-vb
 msc.type: authoredcontent
 ---
@@ -29,7 +25,7 @@ One attribute of a well-designed website is a consistent site-wide page layout. 
 
 [![The www.asp.net Website Employs a Consistent Look and Feel Across All Pages](creating-a-site-wide-layout-using-master-pages-vb/_static/image2.png)](creating-a-site-wide-layout-using-master-pages-vb/_static/image1.png)
 
-**Figure 01**: The www.asp.net Website Employs a Consistent Look and Feel Across All Pages  ([Click to view full-size image](creating-a-site-wide-layout-using-master-pages-vb/_static/image3.png))
+<strong>Figure 01</strong>: The www.asp.net Website Employs a Consistent Look and Feel Across All Pages  ([Click to view full-size image](creating-a-site-wide-layout-using-master-pages-vb/_static/image3.png))
 
 
 Another attribute of a well-designed site is the ease with which the site's appearance can be changed. Figure 1 shows the www.asp.net homepage as of March 2008, but between now and this tutorial's publication, the look and feel may have changed. Perhaps the menu items along the top will expand to include a new section for the MVC framework. Or maybe a radically new design with different colors, fonts, and layout will be unveiled. Applying such changes to the entire site should be a fast and simple process that does not require modifying the thousands of web pages that make up the site.
@@ -282,6 +278,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Previous](nested-master-pages-cs.md)
-[Next](multiple-contentplaceholders-and-default-content-vb.md)
+> [!div class="step-by-step"]
+> [Previous](nested-master-pages-cs.md)
+> [Next](multiple-contentplaceholders-and-default-content-vb.md)

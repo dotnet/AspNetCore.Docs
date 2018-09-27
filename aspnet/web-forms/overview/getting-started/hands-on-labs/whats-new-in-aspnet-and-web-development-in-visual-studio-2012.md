@@ -3,13 +3,9 @@ uid: web-forms/overview/getting-started/hands-on-labs/whats-new-in-aspnet-and-we
 title: "What's New in ASP.NET and Web Development in Visual Studio 2012 | Microsoft Docs"
 author: rick-anderson
 description: "The new version of Visual Studio introduces a number of enhancements focused on improving the experience and performance when working with Web technologies...."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/18/2013
-ms.topic: article
 ms.assetid: 6d40d276-1642-4a77-b6c9-02ac914f6805
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/hands-on-labs/whats-new-in-aspnet-and-web-development-in-visual-studio-2012
 msc.type: authoredcontent
 ---
@@ -254,7 +250,6 @@ Visual Studio now updates the HTML opening or closing tags of the element that y
 
 1. On the **Default.aspx** page, add an **H3** element with a title (for example, Visual Studio 2012 Rocks!).
 
-
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample5.aspx)]
 2. Change the **H3** tag and type **H2** or **H1.**
 
@@ -280,7 +275,6 @@ Visual Studio now includes several HTML5 code snippets. In this task, you will u
 
     *Inserting HTML5 Code Snippets*
 3. Update the audio source to point to an existing audio file.
-
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample6.aspx)]
 
@@ -540,18 +534,15 @@ In this task, you will learn how to enable and reference the bundled and minifie
 
     Notice that the new **Microsoft.Web.Optimization** namespace is commented out at the beginning of the file. Uncomment the using directive to include the bundling and minification features.
 
-
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample10.cs)]
 4. Locate the **Application\_Start** method.
 
     In this method, uncomment the EnableDefaultBundles call as shown in the snippet below. This enables us to reference a bundled collection of CSS files in a folder by using the path to that folder, plus the &quot;CSS&quot; or the &quot;JS&quot; suffix.
 
-
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample11.cs)]
 5. Open the **Optimization.aspx** file and locate the content control for **HeadContent**.
 
     Notice the CSS files and the JS files have a single referenced tag.
-
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample12.aspx)]
 
@@ -560,7 +551,6 @@ In this task, you will learn how to enable and reference the bundled and minifie
 6. Notice that the links are using the bundling conventions in the **href** attribute to get all the CSS or JS files from the Styles and Scripts\custom folder respectively.
 
     You can use the path **Scripts/custom/JS** as shown below to bundle and minify all the JS files inside a **Scripts/custom** folder. This is the default behavior with the default bundles.
-
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample13.aspx)]
 7. Open the **Styles\Site.css** file.
@@ -603,12 +593,10 @@ In this task, you will configure a static bundle to define a specific set of fil
 
     Notice that the files are not located in the same place; this is another advantage over the default bundling.
 
-
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample14.cs)]
 4. Open the **Optimization.aspx** file.
 
     Notice that the link to **Static JS Bundle** is using the path you have declared when you configured the static bundle in the Global.asax.cs file: **/StaticBundle**.
-
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample15.aspx)]
 5. Press **F5** to run the application, and then navigate to the **Optimization** page.
@@ -635,7 +623,6 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     You are defining a dynamic folder bundle that will use the **CoffeeMinify** custom minification processor that will only apply to the files with the &quot;**.coffee**&quot; extension (CoffeeScript files). Notice that you can use a search pattern to select the files to bundle within a folder, like '\*.coffee'.
 
-
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample16.cs)]
 3. Open the NuGet Package Manager Console. To do this, use the menu **View** | **Other Windows** | **Package Manager Console**.
 4. In the **Package Manager Console,** type **Install-Package CoffeeSharp** and press **ENTER**.
@@ -653,7 +640,6 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     This class inherits from JsMinify to minify the JavaScript output resulting from the CoffeeScript code compilation. It calls the CoffeeScript compiler to generate the JavaScript code first, and then it sends it to the JsMinify.Process method to minify the resulting code.
 
-
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample17.cs)]
 8. Open the **Script1.coffee** and **Script2.coffee** files from the **Scripts/bundle** folder.
 
@@ -670,7 +656,6 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 9. Open the **Optimization.aspx** file and locate the bundle links.
 
     Notice that the link to **Dynamic JS Bundle** is referencing the **Scripts/bundle** folder by using the **/Coffee** suffix you configured for the dynamic folder bundle.
-
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample18.aspx)]
 10. Press **F5** to run the application, and then navigate to the **Optimization** page.
@@ -700,7 +685,7 @@ By completing this Hands-On Lab, you have learnt how to use the new features and
 
 You can install **Microsoft Visual Studio Express 2012 for Web** or another &quot;Express&quot; version using the **[Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx)**. The following instructions guide you through the steps required to install *Visual studio Express 2012 for Web* using *Microsoft Web Platform Installer*.
 
-1. Go to [[https://go.microsoft.com/?linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;*Visual Studio Express 2012 for Web with Windows Azure SDK*&quot;.
+1. Go to [[https://go.microsoft.com/?linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;<em>Visual Studio Express 2012 for Web with Windows Azure SDK</em>&quot;.
 2. Click on **Install Now**. If you do not have **Web Platform Installer** you will be redirected to download and install it first.
 3. Once **Web Platform Installer** is open, click **Install** to start the setup.
 
@@ -846,14 +831,14 @@ If your application makes use of SQL Server databases you will need to create a 
     *Web deploy configuration*
 5. Configure the database connection as follows:
 
-    - In the **Server name** type your SQL Database server URL using the *tcp:* prefix.
-    - In **User name** type your server administrator login name.
-    - In **Password** type your server administrator login password.
-    - Type a new database name, for example: *MVC4SampleDB*.
+   - In the **Server name** type your SQL Database server URL using the *tcp:* prefix.
+   - In **User name** type your server administrator login name.
+   - In **Password** type your server administrator login password.
+   - Type a new database name, for example: *MVC4SampleDB*.
 
-    ![Configuring destination connection string](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image80.png "Configuring destination connection string")
+     ![Configuring destination connection string](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image80.png "Configuring destination connection string")
 
-    *Configuring destination connection string*
+     *Configuring destination connection string*
 6. Then click **OK**. When prompted to create the database click **Yes**.
 
     ![Creating the database](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image81.png "Creating the database string")

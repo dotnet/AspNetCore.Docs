@@ -3,13 +3,9 @@ uid: web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communicatio
 title: "[How Do I:] Implement the Persistent Communications Pattern with the UpdatePanel? | Microsoft Docs"
 author: JoeStagner
 description: "In a traditional Web site the browser and the server do not maintain an ongoing communication, but communicate only in response to the user performing an act..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/01/2007
-ms.topic: article
 ms.assetid: 49c7a74d-dce7-4d5c-8282-c7846f478e11
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel
 msc.type: video
 ---
@@ -21,6 +17,6 @@ In a traditional Web site the browser and the server do not maintain an ongoing 
 
 [&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel)
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-conditional-updatemode-of-the-updatepanel.md)
-[Next](how-do-i-localize-an-aspnet-ajax-application.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-conditional-updatemode-of-the-updatepanel.md)
+> [Next](how-do-i-localize-an-aspnet-ajax-application.md)

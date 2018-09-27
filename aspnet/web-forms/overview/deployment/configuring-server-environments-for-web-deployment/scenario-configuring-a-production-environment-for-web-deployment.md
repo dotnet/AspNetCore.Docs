@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/configuring-server-environments-for-web-deplo
 title: "Scenario: Configuring a Production Environment for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes a typical web deployment scenario for a production environment and explains the tasks you need to complete in order to set up a similar..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 2e861511-450e-4752-a61e-4a01933f9b6e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/scenario-configuring-a-production-environment-for-web-deployment
 msc.type: authoredcontent
 ---
@@ -54,6 +50,6 @@ These topics provide all the information you need in order to complete these tas
 
 For guidance on configuring a typical developer test environment, see [Scenario: Configuring a Test Environment for Web Deployment](scenario-configuring-a-test-environment-for-web-deployment.md). For guidance on configuring a typical staging environment, see [Scenario: Configuring a Staging Environment for Web Deployment](scenario-configuring-a-staging-environment-for-web-deployment.md).
 
->[!div class="step-by-step"]
-[Previous](scenario-configuring-a-staging-environment-for-web-deployment.md)
-[Next](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md)
+> [!div class="step-by-step"]
+> [Previous](scenario-configuring-a-staging-environment-for-web-deployment.md)
+> [Next](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md)

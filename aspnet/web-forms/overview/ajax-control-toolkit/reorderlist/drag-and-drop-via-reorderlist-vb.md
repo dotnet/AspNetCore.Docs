@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/reorderlist/drag-and-drop-via-reord
 title: "Drag and Drop via ReorderList (VB) | Microsoft Docs"
 author: wenz
 description: "/data-access/tutorials/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb"
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 848e6bcf-4c3f-4d14-974d-e45b9444ab79
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/reorderlist/drag-and-drop-via-reorderlist-vb
 msc.type: authoredcontent
 ---
@@ -85,5 +81,5 @@ Run this example in the browser and rearrange the list items a bit. Then, reload
 
 The data in the database changes according to the new list item order ([Click to view full-size image](drag-and-drop-via-reorderlist-vb/_static/image9.png))
 
->[!div class="step-by-step"]
-[Previous](using-postbacks-with-reorderlist-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-postbacks-with-reorderlist-vb.md)

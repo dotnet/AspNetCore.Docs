@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/configuring-server-environments-for-web-deplo
 title: "Choosing the Right Approach to Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "When you work with the Internet Information Services (IIS) Web Deployment Tool (Web Deploy) 2.0 or later, there are three main approaches you can use to get..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 787a53fd-9901-4a11-9d58-61e0509cda45
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/choosing-the-right-approach-to-web-deployment
 msc.type: authoredcontent
 ---
@@ -145,6 +141,6 @@ For more information on Web Deploy command-line operations and syntax, see [Web 
 
 For more general guidance on the different ways in which you can deploy web packages from a remote computer, see [Using Web Deploy Remotely](https://technet.microsoft.com/library/ee461175(WS.10).aspx). For more information on using Web Deploy On Demand, see [Web Deploy On Demand](https://technet.microsoft.com/library/ee517345(WS.10).aspx).
 
->[!div class="step-by-step"]
-[Previous](configuring-server-environments-for-web-deployment.md)
-[Next](scenario-configuring-a-test-environment-for-web-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-server-environments-for-web-deployment.md)
+> [Next](scenario-configuring-a-test-environment-for-web-deployment.md)

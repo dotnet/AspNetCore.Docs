@@ -1,17 +1,17 @@
 ---
 title: ASP.NET Core MVC with EF Core - Advanced - 10 of 10
-author: tdykstra
+author: rick-anderson
 description: This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core.
-manager: wpickett
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-mvc/advanced
 ---
 
-# Advanced topics - EF Core with ASP.NET Core MVC tutorial (10 of 10)
+# ASP.NET Core MVC with EF Core - Advanced - 10 of 10
+
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -143,9 +143,9 @@ Many developers write code to implement the repository and unit of work patterns
 
 * EF includes features for implementing TDD without writing repository code.
 
-For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
+For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
 
-Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Testing with InMemory](https://docs.microsoft.com/ef/core/miscellaneous/testing/in-memory).
+Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Test with InMemory](/ef/core/miscellaneous/testing/in-memory).
 
 ## Automatic change detection
 
@@ -182,19 +182,19 @@ The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ
 
 ## Next steps
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application.
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application.
 
 For more information about EF Core, see the [Entity Framework Core documentation](https://docs.microsoft.com/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 
 For information on how to deploy a web app, see [Host and deploy](xref:host-and-deploy/index).
 
-For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](https://docs.microsoft.com/aspnet/core/).
+For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](xref:index).
 
 ## Acknowledgments
 
 Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan Miller, Diego Vega, and other members of the Entity Framework team assisted with code reviews and helped debug issues that arose while we were writing code for the tutorials.
 
-## Common errors  
+## Common errors
 
 ### ContosoUniversity.dll used by another process
 
@@ -240,5 +240,7 @@ Solution:
 
 Check the connection string. If you have manually deleted the database file, change the name of the database in the construction string to start over with a new database.
 
->[!div class="step-by-step"]
-[Previous](inheritance.md)
+::: moniker-end
+
+> [!div class="step-by-step"]
+> [Previous](inheritance.md)

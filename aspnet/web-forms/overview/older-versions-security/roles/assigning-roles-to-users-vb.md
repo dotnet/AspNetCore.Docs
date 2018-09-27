@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/roles/assigning-roles-to-users-v
 title: "Assigning Roles to Users (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will build two ASP.NET pages to assist with managing what users belong to what roles. The first page will include facilities to see what..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/24/2008
-ms.topic: article
 ms.assetid: fd208ee9-69cc-4467-9783-b4e039bdd1d3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/roles/assigning-roles-to-users-vb
 msc.type: authoredcontent
 ---
@@ -363,6 +359,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](creating-and-managing-roles-vb.md)
-[Next](role-based-authorization-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-and-managing-roles-vb.md)
+> [Next](role-based-authorization-vb.md)

@@ -51,7 +51,7 @@ namespace ContactManager
             });
             #endregion
 
-            services.AddMvc();
+            // services.AddMvc();
                 //.AddRazorPagesOptions(options =>
                 //{
                 //    options.Conventions.AuthorizeFolder("/Account/Manage");
@@ -100,7 +100,7 @@ namespace ContactManager
 
             app.UseAuthentication();
 
-            app.UseMvcWithDefaultRoute();           
+            app.UseMvc();           
         }
     }
 }

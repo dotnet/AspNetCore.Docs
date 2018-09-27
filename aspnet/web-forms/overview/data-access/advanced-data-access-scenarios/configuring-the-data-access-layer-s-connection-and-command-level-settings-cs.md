@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/advanced-data-access-scenarios/configuring-t
 title: "Configuring the Data Access Layer's Connection- and Command-Level Settings (C#) | Microsoft Docs"
 author: rick-anderson
 description: "The TableAdapters within a Typed DataSet automatically take care of connecting to the database, issuing commands, and populating a DataTable with the results..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/03/2007
-ms.topic: article
 ms.assetid: cd330dd9-6254-4305-9351-dd727384c83b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/configuring-the-data-access-layer-s-connection-and-command-level-settings-cs
 msc.type: authoredcontent
 ---
@@ -170,6 +166,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Burnadette Leigh, S ren Jacob Lauritsen, Teresa Murphy, and Hilton Geisenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](working-with-computed-columns-cs.md)
-[Next](protecting-connection-strings-and-other-configuration-information-cs.md)
+> [!div class="step-by-step"]
+> [Previous](working-with-computed-columns-cs.md)
+> [Next](protecting-connection-strings-and-other-configuration-information-cs.md)

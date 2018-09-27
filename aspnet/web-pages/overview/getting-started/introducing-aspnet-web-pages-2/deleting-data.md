@@ -3,13 +3,9 @@ uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/deleting-
 title: "Introducing ASP.NET Web Pages - Deleting Database Data | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to delete an individual database entry. It assumes you have completed the series through Updating Database Data in ASP.NET Web Pa..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/02/2018
-ms.topic: article
 ms.assetid: 75b5c1cf-84bd-434f-8a86-85c568eb5b09
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/deleting-data
 msc.type: authoredcontent
 ---
@@ -167,6 +163,6 @@ The next tutorial shows you how to give all the pages on your site a common look
 - [Introduction to ASP.NET Web Programming by Using the Razor Syntax](../introducing-razor-syntax-c.md)
 - [SQL DELETE Statement](http://www.w3schools.com/sql/sql_delete.asp) on the W3Schools site
 
->[!div class="step-by-step"]
-[Previous](updating-data.md)
-[Next](layouts.md)
+> [!div class="step-by-step"]
+> [Previous](updating-data.md)
+> [Next](layouts.md)

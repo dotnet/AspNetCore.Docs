@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/implemen
 title: "Implementing Optimistic Concurrency (VB) | Microsoft Docs"
 author: rick-anderson
 description: "For a web application that allows multiple users to edit data, there is the risk that two users may be editing the same data at the same time. In this tutori..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: 2646968c-2826-4418-b1d0-62610ed177e3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/implementing-optimistic-concurrency-vb
 msc.type: authoredcontent
 ---
@@ -426,6 +422,6 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Previous](customizing-the-data-modification-interface-vb.md)
-[Next](adding-client-side-confirmation-when-deleting-vb.md)
+> [!div class="step-by-step"]
+> [Previous](customizing-the-data-modification-interface-vb.md)
+> [Next](adding-client-side-confirmation-when-deleting-vb.md)

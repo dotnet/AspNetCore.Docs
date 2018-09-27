@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-contr
 title: "Adding a Controller | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demo..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/28/2012
-ms.topic: article
 ms.assetid: 0267d31c-892f-49a1-9e7a-3ae8cc12b2ca
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-controller
 msc.type: authoredcontent
 ---
@@ -69,6 +65,6 @@ Run your application and browse to the example URL (`http://localhost:xxxx/Hello
 
 In both these examples the controller has been doing the &quot;VC&quot; portion of MVC — that is, the view and controller work. The controller is returning HTML directly. Ordinarily you don't want controllers returning HTML directly, since that becomes very cumbersome to code. Instead we'll typically use a separate view template file to help generate the HTML response. Let's look next at how we can do this.
 
->[!div class="step-by-step"]
-[Previous](intro-to-aspnet-mvc-4.md)
-[Next](adding-a-view.md)
+> [!div class="step-by-step"]
+> [Previous](intro-to-aspnet-mvc-4.md)
+> [Next](adding-a-view.md)

@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/control-id-n
 title: "Control ID Naming in Content Pages (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Illustrates how ContentPlaceHolder controls serve as a naming container and therefore make programmatically working with a control difficult (via FindConrol)..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/10/2008
-ms.topic: article
 ms.assetid: 1c7d0916-0988-4b4f-9a03-935e4b5af6af
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/control-id-naming-in-content-pages-cs
 msc.type: authoredcontent
 ---
@@ -266,6 +262,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Zack Jones and Suchi Barnerjee. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Previous](urls-in-master-pages-cs.md)
-[Next](interacting-with-the-master-page-from-the-content-page-cs.md)
+> [!div class="step-by-step"]
+> [Previous](urls-in-master-pages-cs.md)
+> [Next](interacting-with-the-master-page-from-the-content-page-cs.md)

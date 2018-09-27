@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-rep
 title: "Sorting Data in a DataList or Repeater Control (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll examine how to include sorting support in the DataList and Repeater, as well as how to construct a DataList or Repeater whose data can..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/13/2006
-ms.topic: article
 ms.assetid: 97c13898-0741-45f9-b3fa-7540ab1679e6
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-vb
 msc.type: authoredcontent
 ---
@@ -391,5 +387,5 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was David Suru. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](paging-report-data-in-a-datalist-or-repeater-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](paging-report-data-in-a-datalist-or-repeater-control-vb.md)

@@ -3,13 +3,9 @@ uid: web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribu
 title: "Create a REST API with Attribute Routing in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/26/2013
-ms.topic: article
 ms.assetid: 23fc77da-2725-4434-99a0-ff872d96336b
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing
 msc.type: authoredcontent
 ---
@@ -179,7 +175,7 @@ If you request `/api/books/1/details`, the response looks like this:
 
 ## Get Books By Genre
 
-To get a list of books in a specific genre, the client will send a GET request to `/api/books/genre`, where *genre* is the name of the genre. (For example, `/get/books/fantasy`.)
+To get a list of books in a specific genre, the client will send a GET request to `/api/books/genre`, where *genre* is the name of the genre. (For example, `/api/books/fantasy`.)
 
 Add the following method to `BooksController`.
 

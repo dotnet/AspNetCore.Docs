@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scen
 title: "Enterprise Web Deployment: Scenario Overview | Microsoft Docs"
 author: jrjlee
 description: "This set of tutorials uses a sample solution with a realistic level of complexity, together with a fictional enterprise deployment scenario, to provide a ref..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/03/2012
-ms.topic: article
 ms.assetid: aa862153-4cd8-4e33-beeb-abf502c6664f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview
 msc.type: authoredcontent
 ---
@@ -117,6 +113,6 @@ In addition, managing deployment when updates are frequent and incremental throw
 - You want to log deployment activities. The deployment process should send email notifications of successful or failed deployments to designated recipients.
 - If an automated deployment fails, the deployment process should retry the current deployment or deploy the previous web package instead.
 
->[!div class="step-by-step"]
-[Previous](deploying-web-applications-in-enterprise-scenarios.md)
-[Next](application-lifecycle-management-from-development-to-production.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-web-applications-in-enterprise-scenarios.md)
+> [Next](application-lifecycle-management-from-development-to-production.md)

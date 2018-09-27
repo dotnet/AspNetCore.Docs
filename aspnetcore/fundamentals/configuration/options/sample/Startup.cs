@@ -1,5 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using UsingOptionsSample.Models;
@@ -10,7 +16,7 @@ namespace UsingOptionsSample
     {
         public Startup(IConfiguration config)
         {
-            // Configruation from appsettings.json has already been loaded by
+            // Configuration from appsettings.json has already been loaded by
             // CreateDefaultBuilder on WebHost in Program.cs. Use DI to load
             // the configuration into the Configuration property.
             Configuration = config;
@@ -20,12 +26,18 @@ namespace UsingOptionsSample
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             // Add the service required for using options.
             services.AddOptions();
 
             #region snippet_Example1
             // Example #1: Basic options
-            // Register the ConfigurationBuilder instance which MyOptions binds against.
+            // Register the Configuration instance which MyOptions binds against.
             services.Configure<MyOptions>(Configuration);
             #endregion
 
@@ -61,7 +73,7 @@ namespace UsingOptionsSample
             });
             #endregion
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -74,10 +86,12 @@ namespace UsingOptionsSample
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCookiePolicy();
             app.UseMvc();
         }
     }

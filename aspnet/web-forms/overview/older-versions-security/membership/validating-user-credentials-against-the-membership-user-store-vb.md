@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/membership/validating-user-crede
 title: "Validating User Credentials Against the Membership User Store (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will examine how to validate a user's credentials against the Membership user store using both programmatic means and the Login control...."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/18/2008
-ms.topic: article
 ms.assetid: 17772912-b47b-4557-9ce9-80f22df642f7
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-vb
 msc.type: authoredcontent
 ---
@@ -311,6 +307,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Teresa Murphy and Michael Olivero. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"]
-[Previous](creating-user-accounts-vb.md)
-[Next](user-based-authorization-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-user-accounts-vb.md)
+> [Next](user-based-authorization-vb.md)

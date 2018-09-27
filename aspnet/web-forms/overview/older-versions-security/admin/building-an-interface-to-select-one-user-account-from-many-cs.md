@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/admin/building-an-interface-to-s
 title: "Building an Interface to Select One User Account from Many (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will build a user interface with a paged, filterable grid. In particular, our user interface will consist of a series of LinkButtons for..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/01/2008
-ms.topic: article
 ms.assetid: 9e4e687c-b4ec-434f-a4ef-edb0b8f365e4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/building-an-interface-to-select-one-user-account-from-many-cs
 msc.type: authoredcontent
 ---
@@ -259,5 +255,5 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Alicja Maziarz. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](recovering-and-changing-passwords-cs.md)
+> [!div class="step-by-step"]
+> [Next](recovering-and-changing-passwords-cs.md)

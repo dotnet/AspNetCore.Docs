@@ -1,17 +1,13 @@
 ---
-title: Controller methods and views
+title: Controller methods and views in ASP.NET Core
 author: rick-anderson
-description: Working with controller methods, views and DataAnnotations
-manager: wpickett
+description: Learn how to work with controller methods, views,  and DataAnnotations in ASP.NET Core.
 ms.author: riande
 ms.date: 04/07/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app-xplat/controller-methods-views
 ---
 
-# Controller methods and views
+# Controller methods and views in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -30,8 +26,8 @@ Build and run the app.
 
  -->
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/controller-methods-views.md)]
+[!INCLUDE [adding-model](../../includes/mvc-intro/controller-methods-views.md)]
 
->[!div class="step-by-step"]
-[Previous - Working with SQLite](working-with-sql.md)
-[Next - Add search](search.md)  
+> [!div class="step-by-step"]
+> [Previous - Working with SQLite](working-with-sql.md)
+> [Next - Add search](search.md)  

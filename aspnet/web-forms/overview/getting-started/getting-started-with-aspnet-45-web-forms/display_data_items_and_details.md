@@ -3,13 +3,9 @@ uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms
 title: "Display Data Items and Details | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/08/2014
-ms.topic: article
 ms.assetid: 64a491a8-0ed6-4c2f-9c1c-412962eb6006
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/display_data_items_and_details
 msc.type: authoredcontent
 ---
@@ -126,7 +122,7 @@ This code uses a **FormView** control to display details about an individual pro
 To connect the above markup to the database, you must add additional code to the *ProductDetails.aspx* code.
 
 1. In **Solution Explorer**, right-click *ProductDetails.aspx* and then click **View Code**.  
- The *ProductDetails.aspx.cs* file will be displayed.
+   The *ProductDetails.aspx.cs* file will be displayed.
 2. Replace the existing code with the following code:   
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample6.cs)]
@@ -155,6 +151,6 @@ In this tutorial of the series you have add markup and code to display a product
 
 [Retrieving and displaying data with model binding and web forms](../../presenting-and-managing-data/model-binding/retrieving-data.md)
 
->[!div class="step-by-step"]
-[Previous](ui_and_navigation.md)
-[Next](shopping-cart.md)
+> [!div class="step-by-step"]
+> [Previous](ui_and_navigation.md)
+> [Next](shopping-cart.md)

@@ -1,0 +1,35 @@
+﻿@page
+@{
+    ViewData["Title"] = "Unreliable endpoint consumer";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>This button will make an ajax call to an endpoint calls an "external" unreliabale endpoint. ~50% of the time the unreliabale endpoint will fail.</p>
+
+<p>Calls to the unreliable external endpoint use a typed client configured with a Polly WaitAndRetry policy, added using the AddTransientHttpErrorPolicy extension. It will rety up to 3 times, each time with a 600ms delay.</p>
+
+<p>This handles the tranisent error from the unreliable endpoint so that our code succeeds. You will notice that on some occasions the response is updated more quickly than others. This is due to the retries occuring for us.</p>
+
+<button id="mybutton">Click to fetch data from unreliable source!</button>
+
+<div><p><br/><span id="result"></span></p></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('#mybutton').click(function (event) {
+            $('#result').empty();
+            $.ajax({
+                url: '/unreliable-consumer',
+                type: 'GET',
+                dataType: 'text',
+                success: function(data) {
+                    $('#result').text(data);
+                },
+                error: function() {
+                    alert('There was an error');
+                }
+            });
+        });
+    </script>
+}

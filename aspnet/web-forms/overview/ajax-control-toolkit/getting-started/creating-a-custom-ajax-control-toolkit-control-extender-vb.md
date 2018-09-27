@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-a
 title: "Creating a Custom AJAX Control Toolkit Control Extender (VB) | Microsoft Docs"
 author: microsoft
 description: "Custom Extenders enable you to customize and extend the capabilities of ASP.NET controls without having to create new classes."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/12/2009
-ms.topic: article
 ms.assetid: 18b29834-c991-4e0c-b533-44d358fbfc9c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-vb
 msc.type: authoredcontent
 ---
@@ -193,7 +189,7 @@ Next, we need to create a new ASP.NET page. Follow these steps:
 2. Drag a ScriptManager onto the page.
 3. Drag a TextBox control onto the page.
 4. Drag a Button control onto the page.
-5. In the Properties window, change the Button ID property to the value *btnSave* and the Text property to the value *Save\**.
+5. In the Properties window, change the Button ID property to the value <em>btnSave</em> and the Text property to the value *Save\**.
   
 
 We created a page with a standard ASP.NET TextBox and Button control.
@@ -233,5 +229,5 @@ When you run the page (by hitting F5), the Button control is initially disabled.
 
 The goal of this tutorial was to explain how you can extend the AJAX Control Toolkit with custom extender controls. In this tutorial, we created a simple DisabledButton control extender. We implemented this extender by creating a DisabledButtonExtender class, a DisabledButtonBehavior JavaScript behavior, and a DisabledButtonDesigner class. You follow a similar set of steps whenever you create a custom control extender.
 
->[!div class="step-by-step"]
-[Previous](using-ajax-control-toolkit-controls-and-control-extenders-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-ajax-control-toolkit-controls-and-control-extenders-vb.md)

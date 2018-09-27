@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/understandin
 title: "Understanding the Build Process | Microsoft Docs"
 author: jrjlee
 description: "This topic provides a walkthrough of an enterprise-scale build and deployment process. The approach described in this topic uses custom Microsoft Build Engin..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 5b982451-547b-4a2f-a5dc-79bc64d84d40
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-build-process
 msc.type: authoredcontent
 ---
@@ -246,6 +242,6 @@ This topic provided a walkthrough of how split project files are used to control
 
 For a more in-depth introduction to project files and the WPP, see [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build](http://amzn.com/0735645248) by Sayed Ibrahim Hashimi and William Bartholomew, ISBN: 978-0-7356-4524-0.
 
->[!div class="step-by-step"]
-[Previous](understanding-the-project-file.md)
-[Next](building-and-packaging-web-application-projects.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-the-project-file.md)
+> [Next](building-and-packaging-web-application-projects.md)

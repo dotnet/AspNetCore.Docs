@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-cons
 title: "Creating a Route Constraint (C#) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther demonstrates how you can control how browser requests match routes by creating route constraints with regular expressions."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/16/2009
-ms.topic: article
 ms.assetid: 0bfd06b1-12d3-4fbb-9779-a82e5eb7fe7d
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-cs
 msc.type: authoredcontent
 ---
@@ -72,6 +68,6 @@ But not the following URLs:
 
 - These browser requests will be handled by another route or, if there are no matching routes, a *The resource could not be found* error will be returned.
 
->[!div class="step-by-step"]
-[Previous](creating-custom-routes-cs.md)
-[Next](creating-a-custom-route-constraint-cs.md)
+> [!div class="step-by-step"]
+> [Previous](creating-custom-routes-cs.md)
+> [Next](creating-a-custom-route-constraint-cs.md)

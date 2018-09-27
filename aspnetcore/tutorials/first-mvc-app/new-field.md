@@ -1,16 +1,12 @@
 ---
-title: Adding a New Field
+title: Add a new field to an ASP.NET Core MVC app
 author: rick-anderson
-description: 
-manager: wpickett
+description: Learn how to use Entity Framework Code First Migrations to add a new field to a model and migrate that change to a database.
 ms.author: riande
-ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
+ms.date: 10/06/2017
 uid: tutorials/first-mvc-app/new-field
 ---
-# Adding a New Field
+# Add a new field to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -22,7 +18,17 @@ When you use EF Code First to automatically create a database, Code First adds a
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
 
-[!code-csharp[](start-mvc/sample/MvcMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
+
+::: moniker-end
 
 Build the app (Ctrl+Shift+B).
 
@@ -81,6 +87,6 @@ If you delete all the records in the DB, the initialize will seed the DB and inc
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. You should also add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 
->[!div class="step-by-step"]
-[Previous](search.md)
-[Next](validation.md)  
+> [!div class="step-by-step"]
+> [Previous](search.md)
+> [Next](validation.md)  

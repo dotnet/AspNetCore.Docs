@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datali
 title: "Performing Batch Updates (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to create a fully-editable DataList where all of its items are in edit mode and whose values can be saved by clicking an 'Update All' button on the..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/30/2006
-ms.topic: article
 ms.assetid: 57743ca7-5695-4e07-aed1-44b297f245a9
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/performing-batch-updates-cs
 msc.type: authoredcontent
 ---
@@ -164,6 +160,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Zack Jones and Ken Pespisa. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](an-overview-of-editing-and-deleting-data-in-the-datalist-cs.md)
-[Next](handling-bll-and-dal-level-exceptions-cs.md)
+> [!div class="step-by-step"]
+> [Previous](an-overview-of-editing-and-deleting-data-in-the-datalist-cs.md)
+> [Next](handling-bll-and-dal-level-exceptions-cs.md)

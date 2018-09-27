@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Configuring a Website that Uses Application Services (C#) | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET version 2.0 introduced a series of application services, which are part of the .NET Framework and serve as a suite of building block services that yo..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/23/2009
-ms.topic: article
 ms.assetid: 1e33d1c6-3f9f-4c26-81e2-2a8f8907bb05
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-a-website-that-uses-application-services-cs
 msc.type: authoredcontent
 ---
@@ -195,6 +191,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [*Website Security Tutorials*](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md)
 - [*Web Site Administration Tool Overview*](https://msdn.microsoft.com/library/yy40ytx0.aspx)
 
->[!div class="step-by-step"]
-[Previous](configuring-the-production-web-application-to-use-the-production-database-cs.md)
-[Next](strategies-for-database-development-and-deployment-cs.md)
+> [!div class="step-by-step"]
+> [Previous](configuring-the-production-web-application-to-use-the-production-database-cs.md)
+> [Next](strategies-for-database-development-and-deployment-cs.md)

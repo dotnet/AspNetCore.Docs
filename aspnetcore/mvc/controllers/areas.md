@@ -1,16 +1,12 @@
 ---
-title: Areas
+title: Areas in ASP.NET Core
 author: rick-anderson
-description: Shows how to work with areas.
-manager: wpickett
+description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 ms.author: riande
 ms.date: 02/14/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/controllers/areas
 ---
-# Areas
+# Areas in ASP.NET Core
 
 By [Dhananjay Kumar](https://twitter.com/debug_mode)  and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -28,13 +24,13 @@ Consider using Areas in an MVC project when:
 
 Area features:
 
-* An ASP.NET Core MVC app can have any number of areas
+* An ASP.NET Core MVC app can have any number of areas.
 
-* Each area has its own controllers, models, and views
+* Each area has its own controllers, models, and views.
 
-* Allows you to organize large MVC projects into multiple high-level components that can be worked on independently
+* Areas allow you to organize large MVC projects into multiple high-level components that can be worked on independently.
 
-* Supports multiple controllers with the same name - as long as they have different *areas*
+* Areas support multiple controllers with the same name, as long as they have different *areas*.
 
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
 
@@ -120,7 +116,7 @@ Once you've defined the folder hierarchy, you need to tell MVC that each control
    }
    ```
 
-Set up a route definition that works with your newly created areas. The [Routing to Controller Actions](routing.md) article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, open the *Startup.cs* file and modify it by adding the `areaRoute` named route definition below.
+Set up a route definition that works with your newly created areas. The [Route to controller actions](routing.md) article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, open the *Startup.cs* file and modify it by adding the `areaRoute` named route definition below.
 
 ```csharp
 ...

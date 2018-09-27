@@ -1,16 +1,12 @@
 ---
-title: Claims-Based Authorization
+title: Claims-based authorization in ASP.NET Core
 author: rick-anderson
-description: This document explains how to add claims checks for authorization in an ASP.NET Core app.
-manager: wpickett
+description: Learn how to add claims checks for authorization in an ASP.NET Core app.
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/claims
 ---
-# Claims-Based Authorization
+# Claims-based authorization in ASP.NET Core
 
 <a name="security-authorization-claims-based"></a>
 
@@ -96,6 +92,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+### Add a generic claim check
+
+If the claim value isn't a single value or a transformation is required, use [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). For more information, see [Using a func to fulfill a policy](xref:security/authorization/policies#using-a-func-to-fulfill-a-policy).
+
 ## Multiple Policy Evaluation
 
 If you apply multiple policies to a controller or action, then all policies must pass before access is granted. For example:
@@ -117,4 +117,4 @@ public class SalaryController : Controller
 
 In the above example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
 
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](policies.md).
+If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).

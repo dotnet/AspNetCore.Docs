@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/taking-web
 title: "Taking Web Applications Offline with Web Deploy | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to take a web application offline for the duration of an automated deployment using the Internet Information Services (IIS) Web Depl..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 3e9f6e7d-8967-4586-94d5-d3a122f12529
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/taking-web-applications-offline-with-web-deploy
 msc.type: authoredcontent
 ---
@@ -170,6 +166,6 @@ For more information on the packaging and deployment process, see [Building and 
 
 If you publish your web applications directly from Visual Studio, rather than using the custom MSBuild project file approach described in these tutorials, you'll need to use a slightly different approach to take your application offline during the publishing process. For more information, see [How to take your web app offline during publishing](https://go.microsoft.com/?linkid=9805135) (blog post).
 
->[!div class="step-by-step"]
-[Previous](excluding-files-and-folders-from-deployment.md)
-[Next](running-windows-powershell-scripts-from-msbuild-project-files.md)
+> [!div class="step-by-step"]
+> [Previous](excluding-files-and-folders-from-deployment.md)
+> [Next](running-windows-powershell-scripts-from-msbuild-project-files.md)

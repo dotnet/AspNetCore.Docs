@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/enhancing-the-gridview/inserting-a-new-recor
 title: "Inserting a New Record from the GridView's Footer (C#) | Microsoft Docs"
 author: rick-anderson
 description: "While the GridView control does not provide built-in support for inserting a new record of data, this tutorial shows how to augment the GridView to include a..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/06/2007
-ms.topic: article
 ms.assetid: 49545652-98af-46ba-9dbc-9ab529805d9b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/inserting-a-new-record-from-the-gridview-s-footer-cs
 msc.type: authoredcontent
 ---
@@ -263,6 +259,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Bernadette Leigh. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](adding-a-gridview-column-of-checkboxes-cs.md)
-[Next](adding-a-gridview-column-of-radio-buttons-vb.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-gridview-column-of-checkboxes-cs.md)
+> [Next](adding-a-gridview-column-of-radio-buttons-vb.md)

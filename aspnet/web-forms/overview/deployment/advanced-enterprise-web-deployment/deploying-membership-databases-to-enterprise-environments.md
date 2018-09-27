@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-
 title: "Deploying Membership Databases to Enterprise Environments | Microsoft Docs"
 author: jrjlee
 description: "This topic explains the key considerations and challenges you'll need to overcome when you provision ASP.NET application services databases (more common..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 3cf765df-d311-4f68-a295-c9685ceea830
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-membership-databases-to-enterprise-environments
 msc.type: authoredcontent
 ---
@@ -63,6 +59,6 @@ This topic described some of the challenges you may face when you need to provis
 
 For more guidance and examples of how to use VSDBCMD, see [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/library/dd193283.aspx) and [How to: Import a Schema from a Command Prompt](https://msdn.microsoft.com/library/dd172135.aspx). For more information on using aspnet\_regsql.exe to create membership databases, see [ASP.NET SQL Server Registration Tool (aspnet\_regsql.exe)](https://msdn.microsoft.com/library/ms229862(v=vs.100).aspx). For more general guidance on deploying membership databases, see [How to: Deploy the ASP.NET Membership Database Without Including User Accounts](https://msdn.microsoft.com/library/ff361972(v=vs.100).aspx).
 
->[!div class="step-by-step"]
-[Previous](deploying-database-role-memberships-to-test-environments.md)
-[Next](excluding-files-and-folders-from-deployment.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-database-role-memberships-to-test-environments.md)
+> [Next](excluding-files-and-folders-from-deployment.md)

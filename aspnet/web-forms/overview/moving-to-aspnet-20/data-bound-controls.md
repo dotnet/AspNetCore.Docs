@@ -3,13 +3,9 @@ uid: web-forms/overview/moving-to-aspnet-20/data-bound-controls
 title: "Data Bound Controls | Microsoft Docs"
 author: microsoft
 description: "Most ASP.NET applications rely on some degree of data presentation from a back-end data source. Data-bound controls have been a pivotal part of interacting w..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/20/2005
-ms.topic: article
 ms.assetid: 0e23ff32-646d-43f3-8bec-6b2313d3abd6
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/data-bound-controls
 msc.type: authoredcontent
 ---
@@ -702,7 +698,7 @@ This exercise assumes that you have SQL Server running locally and that the Nort
 22. Change the ID of the SqlDataSource control to **Details**.
 23. From the SqlDataSource Tasks menu, choose **Configure Data Source**.
 24. Choose **Northwind** from the dropdown and click **Next**.
-25. Select **Products** from the **Name** dropdown and check the **\*** checkbox in the **Columns** listbox.
+25. Select <strong>Products</strong> from the <strong>Name</strong> dropdown and check the <strong>\</strong>* checkbox in the <strong>Columns</strong> listbox.
 26. Click the **WHERE** button.
 27. Select **ProductID** from the **Column** dropdown.
 28. Select **=** in the Operator dropdown.

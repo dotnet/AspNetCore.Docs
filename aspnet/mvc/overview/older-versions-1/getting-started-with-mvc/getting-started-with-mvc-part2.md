@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with
 title: "Adding a Controller | Microsoft Docs"
 author: shanselman
 description: "An updated version if this tutorial is available here using Visual Studio 2013. The new tutorial uses ASP.NET MVC 5, which provides many improvements over t..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/14/2010
-ms.topic: article
 ms.assetid: ff03dcc0-da97-458d-838f-0823e7482642
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part2
 msc.type: authoredcontent
 ---
@@ -72,6 +68,6 @@ Run your application and visit `http://localhost:xx/HelloWorld/Welcome?name=Scot
 
 In both these examples the controller has been doing all the work, and has been returning HTML directly. Ordinarily we don't want our Controllers returning HTML directly - since that ends up being very cumbersome to code. Instead we'll typically use a separate View template file to help generate the HTML response. Let's look at how we can do this. Close your browser and return to the IDE.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part1.md)
-[Next](getting-started-with-mvc-part3.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part1.md)
+> [Next](getting-started-with-mvc-part3.md)

@@ -3,13 +3,9 @@ uid: web-pages/overview/testing-and-debugging/introduction-to-debugging
 title: "Introduction to Debugging ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "Debugging is the process of finding and fixing errors in your code pages. This chapter shows you some tools and techniques you can use to debug and to analyz..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/20/2014
-ms.topic: article
 ms.assetid: 68de4326-7611-4b9b-b5f6-79b7adc3069f
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/testing-and-debugging/introduction-to-debugging
 msc.type: authoredcontent
 ---
@@ -61,12 +57,12 @@ The `ServerInfo` helper is a diagnostic tool that gives you an overview of infor
 
     The `ServerInfo` helper displays four tables of information in the page:
 
-    - Server Configuration. This section provides information about the hosting web server, including computer name, the version of ASP.NET you're running, the domain name, and server time.
-    - ASP.NET Server Variables. This section provides details about the many HTTP protocol details (called HTTP variables) and values that are part of each web page request.
-    - HTTP Runtime Information. This section provides details about that the version of the Microsoft .NET Framework that your web page is running under, the path, details about the cache, and so on. (As you learned in [Introduction to ASP.NET Web Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkId=202890), ASP.NET Web Pages using the Razor syntax are built on Microsoft's ASP.NET web server technology, which is itself built on an extensive software development library called the .NET Framework.)
-    - Environment Variables. This section provides a list of all the local environment variables and their values on the web server.
+   - Server Configuration. This section provides information about the hosting web server, including computer name, the version of ASP.NET you're running, the domain name, and server time.
+   - ASP.NET Server Variables. This section provides details about the many HTTP protocol details (called HTTP variables) and values that are part of each web page request.
+   - HTTP Runtime Information. This section provides details about that the version of the Microsoft .NET Framework that your web page is running under, the path, details about the cache, and so on. (As you learned in [Introduction to ASP.NET Web Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkId=202890), ASP.NET Web Pages using the Razor syntax are built on Microsoft's ASP.NET web server technology, which is itself built on an extensive software development library called the .NET Framework.)
+   - Environment Variables. This section provides a list of all the local environment variables and their values on the web server.
 
-    A full description of all the server and request information is beyond the scope of this article, but you can see that the `ServerInfo` helper returns a lot of diagnostic information. For more information about the values that `ServerInfo` returns, see [Recognized Environment Variables](https://technet.microsoft.com/library/dd560744(WS.10).aspx) on the Microsoft TechNet website and [IIS Server Variables](https://msdn.microsoft.com/library/ms524602(VS.90).aspx) on the MSDN website.
+     A full description of all the server and request information is beyond the scope of this article, but you can see that the `ServerInfo` helper returns a lot of diagnostic information. For more information about the values that `ServerInfo` returns, see [Recognized Environment Variables](https://technet.microsoft.com/library/dd560744(WS.10).aspx) on the Microsoft TechNet website and [IIS Server Variables](https://msdn.microsoft.com/library/ms524602(VS.90).aspx) on the MSDN website.
 
 ## Embedding Output Expressions to Display Page Values
 
@@ -110,10 +106,10 @@ The `ObjectInfo` helper displays the type and the value of each object you pass 
 
     In this example, the `ObjectInfo` helper displays two items:
 
-    - The type. For the first variable, the type is `DayOfWeek`. For the second variable, the type is `String`.
-    - The value. In this case, because you already display the value of the greeting variable in the page, the value is displayed again when you pass the variable to `ObjectInfo`.
+   - The type. For the first variable, the type is `DayOfWeek`. For the second variable, the type is `String`.
+   - The value. In this case, because you already display the value of the greeting variable in the page, the value is displayed again when you pass the variable to `ObjectInfo`.
 
-    For more complex objects, the `ObjectInfo` helper can display more information &#8212; basically, it can display the types and values of all of an object's properties.
+     For more complex objects, the `ObjectInfo` helper can display more information &#8212; basically, it can display the types and values of all of an object's properties.
 
 ## Using Debugging Tools in Visual Studio
 

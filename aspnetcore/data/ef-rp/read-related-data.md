@@ -1,25 +1,21 @@
 ---
-title: Razor Pages with EF Core - Read Related Data - 6 of 8
+title: Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
 author: rick-anderson
 description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
-manager: wpickett
 ms.author: riande
 ms.date: 11/05/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: data/ef-rp/read-related-data
 ---
 
-# Reading related data - EF Core with Razor Pages (6 of 8)
+# Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
+[!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, related data is read and displayed. Related data is data that EF Core loads into navigation properties.
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part6-related).
+If you run into problems you can't solve, [download or view the completed app.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:tutorials/index#how-to-download-a-sample).
 
 The following illustrations show the completed pages for this tutorial:
 
@@ -33,22 +29,22 @@ There are several ways that EF Core can load related data into the navigation pr
 
 * [Eager loading](https://docs.microsoft.com/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than was the case for some queries in EF6 where there was a single query. Eager loading is specified with the `Include` and `ThenInclude` methods.
 
- ![Eager loading example](read-related-data/_static/eager-loading.png)
+  ![Eager loading example](read-related-data/_static/eager-loading.png)
  
- Eager loading sends multiple queries when a collection nvavigation is included:
+  Eager loading sends multiple queries when a collection navigation is included:
 
- * One query for the main query 
- * One query for each collection "edge" in the load tree.
+  * One query for the main query 
+  * One query for each collection "edge" in the load tree.
 
 * Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explict loading than eager loading.
 
- ![Separate queries example](read-related-data/_static/separate-queries.png)
+  ![Separate queries example](read-related-data/_static/separate-queries.png)
 
- Note: EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
+  Note: EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
 
 * [Explicit loading](https://docs.microsoft.com/ef/core/querying/related-data#explicit-loading). When the entity is first read, related data isn't retrieved. Code must be written to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the DB. With explicit loading, the code specifies the navigation properties to be loaded. Use the `Load` method to do explicit loading. For example:
 
- ![Explicit loading example](read-related-data/_static/explicit-loading.png)
+  ![Explicit loading example](read-related-data/_static/explicit-loading.png)
 
 * [Lazy loading](https://docs.microsoft.com/ef/core/querying/related-data#lazy-loading). [EF Core doesn't currently support lazy loading](https://github.com/aspnet/EntityFrameworkCore/issues/3797). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the DB each time a navigation property is accessed for the first time.
 
@@ -68,24 +64,21 @@ To display the name of the assigned department in a list of courses:
 <a name="scaffold"></a>
 ### Scaffold the Course model
 
-* Exit Visual Studio.
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
+# [Visual Studio](#tab/visual-studio) 
 
- ```console
-dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
- ```
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Course` for the model class.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+ Run the following command:
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
+  ```
+
+------
 
 The preceding command scaffolds the `Course` model. Open the project in Visual Studio.
-
-Build the project. The build generates errors like the following:
-
-`1>Pages/Courses/Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' does not
- contain a definition for 'Course' and no extension method 'Course' accepting a first
- argument of type 'SchoolContext' could be found (are you missing a using directive or
- an assembly reference?)`
-
- Globally change `_context.Course` to `_context.Courses` (that is, add an "s" to `Course`). 7 occurrences are found and updated.
 
 Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
 
@@ -97,7 +90,7 @@ Update the `OnGetAsync` method with the following code:
 
 The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities are not tracked because they're not updated in the current context.
 
-Update *Views/Courses/Index.cshtml* with the following highlighted markup:
+Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
 
 [!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
@@ -157,29 +150,30 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 ### Scaffold the Instructor model
 
-* Exit Visual Studio.
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
+# [Visual Studio](#tab/visual-studio) 
 
- ```console
-dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
- ```
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Instructor` for the model class.
 
-The preceding command scaffolds the `Instructor` model. Open the project in Visual Studio.
+# [.NET Core CLI](#tab/netcore-cli)
 
-Build the project. The build generates errors.
+ Run the following command:
 
-Globally change `_context.Instructor` to `_context.Instructors` (that is, add an "s" to `Instructor`). 7 occurrences are found and updated.
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
+  ```
 
+------
+
+The preceding command scaffolds the `Instructor` model. 
 Run the app and navigate to the instructors page.
 
 Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,20-99)]
+[!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,18-99)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
-Examine the query on the *Pages/Instructors/Index.cshtml* page:
+Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
 
@@ -246,6 +240,10 @@ Update the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the f
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-999)]
 
+Add `public int CourseID { get; set; }`
+
+[!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_1&highlight=12)]
+
 Examine the updated query:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_ThenInclude)]
@@ -269,7 +267,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
 
-Add the following markup to the end of the *Pages/Courses/Index.cshtml* Razor Page:
+Add the following markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
 
 [!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 
@@ -301,7 +299,7 @@ Refresh the page and select an instructor. Select a course to see the list of en
 
 The `Single` method can pass in the `Where` condition instead of calling the `Where` method separately:
 
-[!code-csharp[](intro/samples/cu/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21,28-29)]
+[!code-csharp[](intro/samples/cu/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21-22,30-31)]
 
 The preceding `Single` approach provides no benefits over using `Where`. Some developers prefer the `Single` approach style.
 

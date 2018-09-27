@@ -1,17 +1,17 @@
 ---
 title: ASP.NET Core MVC with EF Core - Migrations - 4 of 10
-author: tdykstra
+author: rick-anderson
 description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application.
-manager: wpickett
 ms.author: tdykstra
-ms.date: 03/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
+ms.date: 03/15/2018
 uid: data/ef-mvc/migrations
 ---
 
-# Migrations - EF Core with ASP.NET Core MVC tutorial (4 of 10)
+# ASP.NET Core MVC with EF Core - Migrations - 4 of 10
+
+[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
+
+::: moniker range="= aspnetcore-2.0"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -33,7 +33,7 @@ The EF tools for the command-line interface (CLI) are provided in [Microsoft.Ent
 
 [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=12-15&highlight=2)]
   
-(The version numbers in this example were current when the tutorial was written.) 
+(The version numbers in this example were current when the tutorial was written.)
 
 ## Change the connection string
 
@@ -41,7 +41,7 @@ In the *appsettings.json* file, change the name of the database in the connectio
 
 [!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
 
-This change sets up the project so that the first migration will create a new database. This isn't required for getting started with migrations, but you'll see later why it's a good idea.
+This change sets up the project so that the first migration will create a new database. This isn't required to get started with migrations, but you'll see later why it's a good idea.
 
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
@@ -95,15 +95,13 @@ This code is for the initial migration that was created when you entered the `mi
 
 If you created the initial migration when the database already exists, the database creation code is generated but it doesn't have to run because the database already matches the data model. When you deploy the app to another environment where the database doesn't exist yet, this code will run to create your database, so it's a good idea to test it first. That's why you changed the name of the database in the connection string earlier -- so that migrations can create a new one from scratch.
 
-## Examine the data model snapshot
+## The data model snapshot
 
-Migrations also creates a *snapshot* of the current database schema in *Migrations/SchoolContextModelSnapshot.cs*. Here's what that code looks like:
+Migrations creates a *snapshot* of the current database schema in *Migrations/SchoolContextModelSnapshot.cs*. When you add a migration, EF determines what changed by comparing the data model to the snapshot file.
 
-[!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
+When deleting a migration, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command. `dotnet ef migrations remove` deletes the migration and ensures the snapshot is correctly reset.
 
-Because the current database schema is represented in code, EF Core doesn't have to interact with the database to create migrations. When you add a migration, EF determines what changed by comparing the data model to the snapshot file. EF interacts with the database only when it has to update the database. 
-
-The snapshot file has to be kept in sync with the migrations that create it, so you can't remove a migration just by deleting the file named  *\<timestamp>_\<migrationname>.cs*. If you delete that file, the remaining migrations will be out of sync with the database snapshot file. To delete the last migration that you added, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
+See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migrations/teams) for more information about how the snapshot file is used.
 
 ## Apply the migration to the database
 
@@ -155,7 +153,7 @@ The EF commands for the PMC commands are in the [Microsoft.EntityFrameworkCore.T
 
 **Important:** This isn't the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 
-For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet). 
+For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet).
 
 For more information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell).
 
@@ -163,6 +161,8 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 
 In this tutorial, you've seen how to create and apply your first migration. In the next tutorial, you'll begin looking at more advanced topics by expanding the data model. Along the way you'll create and apply additional migrations.
 
->[!div class="step-by-step"]
-[Previous](sort-filter-page.md)
-[Next](complex-data-model.md)  
+::: moniker-end
+
+> [!div class="step-by-step"]
+> [Previous](sort-filter-page.md)
+> [Next](complex-data-model.md)

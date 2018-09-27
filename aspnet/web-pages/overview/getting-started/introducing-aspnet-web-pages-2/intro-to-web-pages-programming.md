@@ -3,13 +3,9 @@ uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/intro-to-
 title: "Introducing ASP.NET Web Pages - Programming Basics | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial gives you an overview of how to program in ASP.NET Web Pages with Razor syntax. What you'll learn: The basic 'Razor' syntax that you use for pr..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/17/2015
-ms.topic: article
 ms.assetid: 7526ed45-a97d-4e8a-8301-01324ef0eff9
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/intro-to-web-pages-programming
 msc.type: authoredcontent
 ---
@@ -160,7 +156,7 @@ Here are a few examples of conditions you can test in an if statement:
 
 [!code-csharp[Main](intro-to-web-pages-programming/samples/sample7.cs)]
 
-You can test variables against values or against expressions by using a *logical operator* or *comparison operator*: equal to (==), greater than (&gt;), less than (&lt;), greater than or equal to (&gt;=), and less than or equal to (&lt;=). The != operator means not equal to — for example, if(a != 0) means *if* *a**is not equal to 0*.
+You can test variables against values or against expressions by using a <em>logical operator</em> or <em>comparison operator</em>: equal to (==), greater than (&gt;), less than (&lt;), greater than or equal to (&gt;=), and less than or equal to (&lt;=). The != operator means not equal to — for example, if(a != 0) means <em>if</em> <em>a</em><em>is not equal to 0</em>.
 
 > [!NOTE]
 > Make sure you notice that the comparison operator for equals to (==) is not the same as =. The = operator is used only to assign values (var a=2). If you mix these operators up, you'll either get an error or you'll get some strange results.
@@ -202,7 +198,7 @@ Run the page and click **Submit**. This time you not only see a different messag
 
 ### Testing the value of a query string
 
-One more test. This time, you'll add an if block that tests a value named show that might be passed in the query string. (Like this: ``http://localhost:43097/TestRazorPart2.cshtml`?show=true`) You'll change the page so that the message you've been displaying ("This is the first time ...", etc.) is only displayed if the value of show is true.
+One more test. This time, you'll add an if block that tests a value named show that might be passed in the query string. (Like this: `http://localhost:43097/TestRazorPart2.cshtml?show=true`) You'll change the page so that the message you've been displaying ("This is the first time ...", etc.) is only displayed if the value of show is true.
 
 At the bottom (but inside) the code block at the top of the page, add the following:
 
@@ -355,6 +351,6 @@ The next tutorial introduces you to working with a database. In that tutorial, y
 - [Introduction to ASP.NET Web Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkID=202890)
 - [Twitter helper](../../ui-layouts-and-themes/twitter-helper.md)
 
->[!div class="step-by-step"]
-[Previous](getting-started.md)
-[Next](displaying-data.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started.md)
+> [Next](displaying-data.md)

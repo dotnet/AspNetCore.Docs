@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/database-driven-site-maps/building-a-custom-
 title: "Building a Custom Database-Driven Site Map Provider (VB) | Microsoft Docs"
 author: rick-anderson
 description: "The default site map provider in ASP.NET 2.0 retrieves its data from a static XML file. While the XML-based provider is suitable to many small and medium-siz..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/26/2007
-ms.topic: article
 ms.assetid: f904cd2c-a408-4484-9324-8b8d7fe33893
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/database-driven-site-maps/building-a-custom-database-driven-site-map-provider-vb
 msc.type: authoredcontent
 ---
@@ -363,5 +359,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Dave Gardner, Zack Jones, Teresa Murphy, and Bernadette Leigh. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](building-a-custom-database-driven-site-map-provider-cs.md)
+> [!div class="step-by-step"]
+> [Previous](building-a-custom-database-driven-site-map-provider-cs.md)

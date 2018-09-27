@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/master-pages/interacting-
 title: "Interacting with the Master Page from the Content Page (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Examines how to call methods, set properties, etc. of the Master Page from code in the Content Page."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/11/2008
-ms.topic: article
 ms.assetid: 081fe010-ba0f-4e7d-b4ba-774840b601c2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-master-page-from-the-content-page-vb
 msc.type: authoredcontent
 ---
@@ -268,6 +264,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Zack Jones. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](control-id-naming-in-content-pages-vb.md)
-[Next](interacting-with-the-content-page-from-the-master-page-vb.md)
+> [!div class="step-by-step"]
+> [Previous](control-id-naming-in-content-pages-vb.md)
+> [Next](interacting-with-the-content-page-from-the-master-page-vb.md)

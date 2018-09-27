@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-col
 title: "Adding a GridView Column of Radio Buttons (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial looks at how to add a column of radio buttons to a GridView control to provide the user with a more intuitive way of selecting a single row of..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/06/2007
-ms.topic: article
 ms.assetid: 32377145-ec25-4715-8370-a1c590a331d5
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-cs
 msc.type: authoredcontent
 ---
@@ -336,5 +332,5 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was David Suru. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](adding-a-gridview-column-of-checkboxes-cs.md)
+> [!div class="step-by-step"]
+> [Next](adding-a-gridview-column-of-checkboxes-cs.md)

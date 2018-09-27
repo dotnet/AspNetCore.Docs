@@ -3,13 +3,9 @@ uid: whitepapers/aspnet4/breaking-changes
 title: "ASP.NET 4 Breaking Changes | Microsoft Docs"
 author: rick-anderson
 description: "This document describes changes that have been made for the .NET Framework version 4 release that can potentially affect applications that were created using..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/10/2010
-ms.topic: article
 ms.assetid: d601c540-f86b-4feb-890c-20c806b3da6c
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet4/breaking-changes
 msc.type: content
 ---
@@ -365,7 +361,7 @@ When you revert to the legacy CAS model, the following old CAS behaviors are ena
 - Multiple different permission sets in a single application domain are allowed.
 - Explicit permission assertions are not required for assemblies in the GAC that are invoked when only ASP.NET or other .NET Framework code is on the stack.
 
-One scenario cannot be reverted in the .NET Framework 4: non-Web partial-trust applications can no longer call certain APIs in System.Web.dll and System.Web.Extensions.dll. In previous versions of the .NET Framework, it was possible for non-Web partial-trust applications to be explicitly granted **AspNetHostingPermission** permissions. These applications could then use **System.Web.HttpUtility**, types in the **System.Web.ClientServices.\*** namespaces, and types related to membership, roles, and profiles. Calling these types from non-Web partial trust applications is no longer supported in the .NET Framework 4.
+One scenario cannot be reverted in the .NET Framework 4: non-Web partial-trust applications can no longer call certain APIs in System.Web.dll and System.Web.Extensions.dll. In previous versions of the .NET Framework, it was possible for non-Web partial-trust applications to be explicitly granted <strong>AspNetHostingPermission</strong> permissions. These applications could then use <strong>System.Web.HttpUtility</strong>, types in the <strong>System.Web.ClientServices.\</strong>* namespaces, and types related to membership, roles, and profiles. Calling these types from non-Web partial trust applications is no longer supported in the .NET Framework 4.
 
 > [!NOTE]
 > The **HtmlEncode** and **HtmlDecode** functionality of the **System.Web.HttpUtility** class was moved to the new .NET Framework 4 **System.Net.WebUtility** class. If that was the only ASP.NET functionality that was being used, modify the application's code to use the new **WebUtility** class instead.

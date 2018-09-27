@@ -1,28 +1,26 @@
 ---
-title: Two-factor authentication with SMS
+title: Two-factor authentication with SMS in ASP.NET Core
 author: rick-anderson
-description: Shows how to set up two-factor authentication (2FA) with ASP.NET Core
-manager: wpickett
+description: Learn how to set up two-factor authentication (2FA) with an ASP.NET Core app.
+monikerRange: '< aspnetcore-2.0'
 ms.author: riande
-ms.date: 08/15/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
+ms.date: 09/22/2018
 uid: security/authentication/2fa
 ---
-# Two-factor authentication with SMS
+# Two-factor authentication with SMS in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
-This tutorial applies to ASP.NET Core 1.x only. See [Enabling QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
+>[!WARNING]
+> Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. For more information, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
 
-This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
+This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm) before starting this tutorial.
 
 View the [completed sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/2fa/sample/Web2FA). [How to download](xref:tutorials/index#how-to-download-a-sample).
 
 ## Create a new ASP.NET Core project
 
-Create a new ASP.NET Core web app named `Web2FA` with individual user accounts. Follow the instructions in [Enforcing SSL in an ASP.NET Core app](xref:security/enforcing-ssl) to set up and require SSL.
+Create a new ASP.NET Core web app named `Web2FA` with individual user accounts. Follow the instructions in [Enforce SSL in an ASP.NET Core app](xref:security/enforcing-ssl) to set up and require SSL.
 
 ### Create an SMS account
 
@@ -30,28 +28,28 @@ Create an SMS account, for example, from [twilio](https://www.twilio.com/) or [A
 
 #### Figuring out SMS Provider credentials
 
-**Twilio:**  
+**Twilio:**
 From the Dashboard tab of your Twilio account, copy the **Account SID** and **Auth token**.
 
-**ASPSMS:**  
+**ASPSMS:**
 From your account settings, navigate to **Userkey** and copy it together with your **Password**.
 
 We will later store these values in with the secret-manager tool within the keys `SMSAccountIdentification` and `SMSAccountPassword`.
 
 #### Specifying SenderID / Originator
 
-**Twilio:**  
-From the Numbers tab, copy your Twilio **phone number**. 
+**Twilio:**
+From the Numbers tab, copy your Twilio **phone number**.
 
-**ASPSMS:**  
-Within the Unlock Originators Menu, unlock one or more Originators or choose an alphanumeric Originator (Not supported by all networks). 
+**ASPSMS:**
+Within the Unlock Originators Menu, unlock one or more Originators or choose an alphanumeric Originator (Not supported by all networks).
 
 We will later store this value with the secret-manager tool within the key `SMSAccountFrom`.
 
 
 ### Provide credentials for the SMS service
 
-We'll use the [Options pattern](xref:fundamentals/configuration/options) to access the user account and key settings. 
+We'll use the [Options pattern](xref:fundamentals/configuration/options) to access the user account and key settings.
 
    * Create a class to fetch the secure SMS key. For this sample, the `SMSoptions` class is created in the *Services/SMSoptions.cs* file.
 
@@ -65,20 +63,20 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 ```
 * Add the NuGet package for the SMS provider. From the Package Manager Console (PMC) run:
 
-**Twilio:**  
+**Twilio:**
 `Install-Package Twilio`
 
-**ASPSMS:**  
+**ASPSMS:**
 `Install-Package ASPSMS`
 
 
 * Add code in the *Services/MessageServices.cs* file to enable SMS. Use either the Twilio or the ASPSMS section:
 
 
-**Twilio:**  
+**Twilio:**
 [!code-csharp[](2fa/sample/Web2FA/Services/MessageServices_twilio.cs)]
 
-**ASPSMS:**  
+**ASPSMS:**
 [!code-csharp[](2fa/sample/Web2FA/Services/MessageServices_ASPSMS.cs)]
 
 ### Configure startup to use `SMSoptions`
@@ -137,6 +135,13 @@ If you don't get a text message, see twilio log page.
 
 ## Account lockout for protecting against brute force attacks
 
-We recommend you use account lockout with 2FA. Once a user logs in (through a local account or social account), each failed attempt at 2FA is stored, and if the maximum attempts (default is 5) is reached, the user is locked out for five minutes (you can set the lock out time with `DefaultAccountLockoutTimeSpan`). The following configures Account to be locked out for 10 minutes after 10 failed attempts.
+Account lockout is recommended with 2FA. Once a user signs in through a local account or social account, each failed attempt at 2FA is stored. If the maximum failed access attempts is reached, the user is locked out (default: 5 minute lockout after 5 failed access attempts). A successful authentication resets the failed access attempts count and resets the clock. The maximum failed access attempts and lockout time can be set with [MaxFailedAccessAttempts](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.maxfailedaccessattempts) and [DefaultLockoutTimeSpan](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan). The following configures account lockout for 10 minutes after 10 failed access attempts:
 
-[!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet2&highlight=13-17)] 
+[!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet2&highlight=13-17)]
+
+Confirm that [PasswordSignInAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync) sets `lockoutOnFailure` to `true`:
+
+```csharp
+var result = await _signInManager.PasswordSignInAsync(
+                 Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+```

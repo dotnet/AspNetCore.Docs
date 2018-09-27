@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/database-first-development/generating-views
 title: "EF Database First with ASP.NET MVC: Generating Views | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 12/29/2014
-ms.topic: article
 ms.assetid: 669367cf-8e30-4eb6-821d-10a7d9bb906c
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/generating-views
 msc.type: authoredcontent
 ---
@@ -104,6 +100,6 @@ Furthermore, validation of the provided values is automatically applied based on
 
 You have verified that the automatically-generated views enable users to work with the data in the database. In the next tutorial in this series, you will update the database and make the corresponding changes in the web application.
 
->[!div class="step-by-step"]
-[Previous](creating-the-web-application.md)
-[Next](changing-the-database.md)
+> [!div class="step-by-step"]
+> [Previous](creating-the-web-application.md)
+> [Next](changing-the-database.md)

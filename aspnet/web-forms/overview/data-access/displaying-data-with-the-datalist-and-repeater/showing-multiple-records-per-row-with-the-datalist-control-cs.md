@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeat
 title: "Showing Multiple Records per Row with the DataList Control (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this short tutorial we'll explore how to customize the DataList's layout through its RepeatColumns and RepeatDirection properties."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/13/2006
-ms.topic: article
 ms.assetid: cf5acaf5-d4f6-4957-badc-b89956b285f3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-cs
 msc.type: authoredcontent
 ---
@@ -114,6 +110,6 @@ The DataList, by default, lists its items in a single-column, multi-row table, w
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was John Suru. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](formatting-the-datalist-and-repeater-based-upon-data-cs.md)
-[Next](nested-data-web-controls-cs.md)
+> [!div class="step-by-step"]
+> [Previous](formatting-the-datalist-and-repeater-based-upon-data-cs.md)
+> [Next](nested-data-web-controls-cs.md)

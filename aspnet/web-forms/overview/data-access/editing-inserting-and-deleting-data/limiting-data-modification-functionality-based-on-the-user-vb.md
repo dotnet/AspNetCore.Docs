@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/limiting
 title: "Limiting Data Modification Functionality Based on the User (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In a web application that allows users to edit data, different user accounts may have different data-editing privileges. In this tutorial we'll examine how t..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: 9dc264a6-feb8-474b-8b91-008c50708065
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/limiting-data-modification-functionality-based-on-the-user-vb
 msc.type: authoredcontent
 ---
@@ -243,5 +239,5 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Previous](adding-client-side-confirmation-when-deleting-vb.md)
+> [!div class="step-by-step"]
+> [Previous](adding-client-side-confirmation-when-deleting-vb.md)

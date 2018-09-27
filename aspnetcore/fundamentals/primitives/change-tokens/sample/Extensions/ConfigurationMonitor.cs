@@ -26,10 +26,10 @@ namespace ChangeTokenSample
         {
             _env = env;
 
-            ChangeToken.OnChange<string>(
+            ChangeToken.OnChange<IConfigurationMonitor>(
                 () => config.GetReloadToken(),
-                (state) => InvokeChanged(state),
-                "Not monitoring");
+                InvokeChanged,
+                this);
         }
 
         public bool MonitoringEnabled { get; set; } = false;
@@ -37,7 +37,7 @@ namespace ChangeTokenSample
         #endregion
 
         #region snippet3
-        private void InvokeChanged(string state)
+        private void InvokeChanged(IConfigurationMonitor state)
         {
             if (MonitoringEnabled)
             {
@@ -48,13 +48,13 @@ namespace ChangeTokenSample
                 if (!_appsettingsHash.SequenceEqual(appsettingsHash) || 
                     !_appsettingsEnvHash.SequenceEqual(appsettingsEnvHash))
                 {
-                    state = $"State updated at {DateTime.Now}";
-                    CurrentState = state;
+                    string message = $"State updated at {DateTime.Now}";
+                  
 
                     _appsettingsHash = appsettingsHash;
                     _appsettingsEnvHash = appsettingsEnvHash;
 
-                    WriteConsole($"Configuration changed (ConfigurationMonitor Class) {state}");
+                    WriteConsole($"Configuration changed (ConfigurationMonitor Class) {message}, state:{state.CurrentState}");
                 }
             }
         }

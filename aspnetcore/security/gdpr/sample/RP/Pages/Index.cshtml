@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2> Home Page</h2>
+
+    Consent:
+<ul>
+    <li>IsNeeded: @Model.TrackingConsentFeature.IsConsentNeeded</li>
+    <li>Has: @Model.TrackingConsentFeature.HasConsent</li>
+    <li>Can track: @Model.TrackingConsentFeature.CanTrack</li>
+
+</ul>
+
+<h3>Non Antiforgery request cookies</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Key
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.RequestCookieCollection)
+        {
+            if (!item.Key.Contains("Antiforgery"))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Key)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Response cookies </h3>
+
+ @Model.ResponseCookies

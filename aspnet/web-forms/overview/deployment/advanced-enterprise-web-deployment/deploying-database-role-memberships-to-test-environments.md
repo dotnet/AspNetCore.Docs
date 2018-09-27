@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-
 title: "Deploying Database Role Memberships to Test Environments | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to add user accounts to database roles as part of a solution deployment to a test environment. When you deploy a solution containing..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: 9b2af539-7ad9-47aa-b66e-873bd9906e79
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments
 msc.type: authoredcontent
 ---
@@ -127,6 +123,6 @@ This topic described one way in which you can add database users and role member
 
 For more information on using VSDBCMD to deploy database projects, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md). For guidance on customizing database deployments for different target environments, see [Customizing Database Deployments for Multiple Environments](customizing-database-deployments-for-multiple-environments.md). For more information on using custom MSBuild project files to control the deployment process, see [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md) and [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md). For more information on sqlcmd command-line options, see [sqlcmd Utility](https://msdn.microsoft.com/library/ms162773.aspx).
 
->[!div class="step-by-step"]
-[Previous](customizing-database-deployments-for-multiple-environments.md)
-[Next](deploying-membership-databases-to-enterprise-environments.md)
+> [!div class="step-by-step"]
+> [Previous](customizing-database-deployments-for-multiple-environments.md)
+> [Next](deploying-membership-databases-to-enterprise-environments.md)

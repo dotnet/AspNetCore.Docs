@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-col
 title: "Adding a GridView Column of Checkboxes (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial looks at how to add a column of check boxes to a GridView control to provide the user with an intuitive way of selecting multiple rows of the G..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/06/2007
-ms.topic: article
 ms.assetid: 39253d05-75c0-41c7-b9d4-a6c58ecf69ce
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-checkboxes-vb
 msc.type: authoredcontent
 ---
@@ -155,6 +151,6 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Previous](adding-a-gridview-column-of-radio-buttons-vb.md)
-[Next](inserting-a-new-record-from-the-gridview-s-footer-vb.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-gridview-column-of-radio-buttons-vb.md)
+> [Next](inserting-a-new-record-from-the-gridview-s-footer-vb.md)

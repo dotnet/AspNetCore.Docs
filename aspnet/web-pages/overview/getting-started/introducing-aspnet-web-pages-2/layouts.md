@@ -3,13 +3,9 @@ uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts
 title: "Introducing ASP.NET Web Pages - Creating a Consistent Layout | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to use layouts to create a consistent look for the pages on a site that uses ASP.NET Web Pages. It assumes you have completed the..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/28/2015
-ms.topic: article
 ms.assetid: c85ec591-f8d7-4882-b763-de6ab9f3df7a
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/layouts
 msc.type: authoredcontent
 ---
@@ -144,7 +140,7 @@ Open the *Movies.cshtml* page again. In the code at the top, add the following l
 
 The `Page` object is available on all *.cshtml* pages and is for this purpose, namely to share information between a page and its layout.
 
-Open the*\_Layout.cshtml* page. Change the `<title>` element so that it looks like this markup:
+Open the<em>\_Layout.cshtml</em> page. Change the `<title>` element so that it looks like this markup:
 
 [!code-html[Main](layouts/samples/sample9.html)]
 
@@ -232,6 +228,6 @@ In the next tutorial, you'll learn how to publish your site to the Internet so e
 - [Creating a Consistent Look](https://go.microsoft.com/fwlink/?LinkID=202891) — An article that provides some more detail on working with layouts. It also describes how to pass a value to a layout page that shows or hides some of the content.
 - [Nested Layout Pages with Razor](http://www.mikesdotnetting.com/Article/164/Nested-Layout-Pages-with-Razor) — Mike Brind blogs an example of how to nest layout pages. (Includes a download of the pages.)
 
->[!div class="step-by-step"]
-[Previous](deleting-data.md)
-[Next](publishing.md)
+> [!div class="step-by-step"]
+> [Previous](deleting-data.md)
+> [Next](publishing.md)

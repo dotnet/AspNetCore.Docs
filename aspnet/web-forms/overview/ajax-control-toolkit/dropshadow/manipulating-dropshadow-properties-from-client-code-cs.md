@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/dropshadow/manipulating-dropshadow-
 title: "Manipulating DropShadow Properties from Client Code (C#) | Microsoft Docs"
 author: wenz
 description: "Customizing the DataList's Editing Interface"
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: c83ca3e6-c0bf-4158-a166-40c1ab0f33da
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dropshadow/manipulating-dropshadow-properties-from-client-code-cs
 msc.type: authoredcontent
 ---
@@ -57,6 +53,6 @@ The JavaScript function `changeOpacity()` must then first find the `DropShadowEx
 
 The opacity is changed on the client side ([Click to view full-size image](manipulating-dropshadow-properties-from-client-code-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](adjusting-the-z-index-of-a-dropshadow-cs.md)
-[Next](adjusting-the-z-index-of-a-dropshadow-vb.md)
+> [!div class="step-by-step"]
+> [Previous](adjusting-the-z-index-of-a-dropshadow-cs.md)
+> [Next](adjusting-the-z-index-of-a-dropshadow-vb.md)

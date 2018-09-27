@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/basic-reporting/displaying-data-with-the-obj
 title: "Displaying Data With the ObjectDataSource (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial looks at the ObjectDataSource control Using this control you can bind data retrieved from the BLL created in the previous tutorial without havi..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: af882aef-56f5-4e9a-8f95-3977fde20e74
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting/displaying-data-with-the-objectdatasource-cs
 msc.type: authoredcontent
 ---
@@ -266,5 +262,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](declarative-parameters-cs.md)
+> [!div class="step-by-step"]
+> [Next](declarative-parameters-cs.md)

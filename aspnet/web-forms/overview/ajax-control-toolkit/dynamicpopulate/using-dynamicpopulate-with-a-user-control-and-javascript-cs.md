@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopula
 title: "Using DynamicPopulate with a User Control And JavaScript (C#) | Microsoft Docs"
 author: wenz
 description: "The DynamicPopulate control in the ASP.NET AJAX Control Toolkit calls a web service (or page method) and fills the resulting value into a target control on t..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 38ac8250-8854-444c-b9ab-8998faa41c5a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopulate-with-a-user-control-and-javascript-cs
 msc.type: authoredcontent
 ---
@@ -69,6 +65,6 @@ And that's it! The page behaves as expected: A user clicks on one of the radio b
 
 The radio buttons reside in a user control ([Click to view full-size image](using-dynamicpopulate-with-a-user-control-and-javascript-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](dynamically-populating-a-control-using-javascript-code-cs.md)
-[Next](dynamically-populating-a-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](dynamically-populating-a-control-using-javascript-code-cs.md)
+> [Next](dynamically-populating-a-control-vb.md)

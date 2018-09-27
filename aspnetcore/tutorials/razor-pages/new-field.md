@@ -1,28 +1,40 @@
 ---
-title: Adding a New Field to a Razor Page
+title: Add a new field to a Razor Page in ASP.NET Core
 author: rick-anderson
 description: Shows how to add a new field to a Razor Page with Entity Framework Core
-manager: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 08/07/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
+ms.date: 05/30/2018
 uid: tutorials/razor-pages/new-field
 ---
-# Adding a new field to a Razor Page
+# Add a new field to a Razor Page in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this section you'll use [Entity Framework](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db) Code First Migrations to add a new field to the model and migrate that change to the database.
+In this section you use [Entity Framework](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db) Code First Migrations to add a new field to the model and migrate that change to the database.
 
-When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
+When using EF Code First to automatically create a database, Code First:
+
+* Adds a table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
+* If the model classes aren't in sync with the DB, EF throws an exception. 
+
+Automatic verification of schema/model in sync makes it easier to find inconsistent database/code issues.
 
 ## Adding a Rating Property to the Movie Model
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
 
+::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+
+::: moniker-end
 
 Build the app (Ctrl+Shift+B).
 
@@ -64,7 +76,17 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
+::: moniker range="= aspnetcore-2.0"
+
 See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+
+See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/SeedDataRating.cs).
+
+::: moniker-end
 
 Build the solution.
 
@@ -99,6 +121,6 @@ If you delete all the records in the DB, the initializer will seed the DB and in
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, stop IIS Express, and then run the app.
 
->[!div class="step-by-step"]
-[Previous: Adding Search](xref:tutorials/razor-pages/search)
-[Next: Adding Validation](xref:tutorials/razor-pages/validation)
+> [!div class="step-by-step"]
+> [Previous: Adding Search](xref:tutorials/razor-pages/search)
+> [Next: Adding Validation](xref:tutorials/razor-pages/validation)

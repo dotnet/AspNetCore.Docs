@@ -3,13 +3,9 @@ uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-clou
 title: "Web Development Best Practices (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: 52d6c941-2cd9-442f-9872-2c798d6d90cd
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices
 msc.type: authoredcontent
 ---
@@ -160,6 +156,6 @@ For additional web development best practices, see the following resources:
 - [The Fix It Sample Application - Best Practices](the-fix-it-sample-application.md#bestpractices). The appendix to this e-book lists a number of best practices that were implemented in the Fix It application.
 - [Web Developer Checklist](http://webdevchecklist.com/asp.net)
 
->[!div class="step-by-step"]
-[Previous](continuous-integration-and-continuous-delivery.md)
-[Next](single-sign-on.md)
+> [!div class="step-by-step"]
+> [Previous](continuous-integration-and-continuous-delivery.md)
+> [Next](single-sign-on.md)

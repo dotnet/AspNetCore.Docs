@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/cascadingdropdown/filling-a-list-us
 title: "Filling a List Using CascadingDropDown (VB) | Microsoft Docs"
 author: wenz
 description: "The CascadingDropDown control in the AJAX Control Toolkit extends a DropDownList control so that changes in one DropDownList loads associated values in anoth..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 5236695e-5c70-4887-baee-0bfb0afb3448
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/cascadingdropdown/filling-a-list-using-cascadingdropdown-vb
 msc.type: authoredcontent
 ---
@@ -63,6 +59,6 @@ Loading the page in the browser will trigger the list to be filled with three ve
 
 The list is filled automatically ([Click to view full-size image](filling-a-list-using-cascadingdropdown-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-auto-postback-with-cascadingdropdown-cs.md)
-[Next](using-cascadingdropdown-with-a-database-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-auto-postback-with-cascadingdropdown-cs.md)
+> [Next](using-cascadingdropdown-with-a-database-vb.md)

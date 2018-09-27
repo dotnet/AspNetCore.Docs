@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/slider/databinding-the-slider-contr
 title: "Databinding the Slider Control (C#) | Microsoft Docs"
 author: wenz
 description: "The Slider control in the AJAX Control Toolkit provides a graphical slider that can be controlled using the mouse. It is possible to bind the current positio..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: b7f77869-aa1d-4025-924f-622c57112db6
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/slider/databinding-the-slider-control-cs
 msc.type: authoredcontent
 ---
@@ -47,6 +43,6 @@ As you can see in the browser, the data binding works in both directions: enteri
 
 Slider and text box are in sync ([Click to view full-size image](databinding-the-slider-control-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-the-slider-control-with-auto-postback-cs.md)
-[Next](using-the-slider-control-with-auto-postback-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-slider-control-with-auto-postback-cs.md)
+> [Next](using-the-slider-control-with-auto-postback-vb.md)

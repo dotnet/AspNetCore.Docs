@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Configuring the Production Web Application to Use the Production Database (VB) | Microsoft Docs"
 author: rick-anderson
 description: "As discussed in earlier tutorials, it is not uncommon for configuration information to differ between the development and production environments. This is es..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/23/2009
-ms.topic: article
 ms.assetid: a64a7aa0-6608-449e-83bf-1ef8cceee504
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-vb
 msc.type: authoredcontent
 ---
@@ -66,7 +62,7 @@ Next, specify the various database connection information (see Figure 2). When y
 
 The production environment database should now be listed in the Server Explorer. Select the database from the Server Explorer and go to the Properties window. There you will find a property named Connection String with the database s connection string. Assuming you are using a Microsoft SQL Server database on production and the SqlClient provider your connection string should look similar to the following:
 
-**Data Source=*serverName*; Initial Catalog=*databaseName*; Persist Security Info=True; User ID=*username*; Password=*password***
+<strong>Data Source=<em>serverName</em>; Initial Catalog=<em>databaseName</em>; Persist Security Info=True; User ID=<em>username</em>; Password=*password</strong>*
 
 Where *serverName*, *databaseName*, *username*, and *password* are with the values for the database server name, the database name, and the username and password supplied to you by your web host company.
 
@@ -147,6 +143,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Move Settings Out of the Web.config File](http://www.asp101.com/tips/index.asp?id=154)
 - [Technical Documentation for the &lt;connectionStrings&gt; Element](https://msdn.microsoft.com/library/bf7sd233.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-a-database-vb.md)
-[Next](configuring-a-website-that-uses-application-services-vb.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-a-database-vb.md)
+> [Next](configuring-a-website-that-uses-application-services-vb.md)

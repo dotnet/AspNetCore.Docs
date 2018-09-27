@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/controllers-and-routing/creating-a-custom-rou
 title: "Creating a Custom Route Constraint (C#) | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther demonstrates how you can create a custom route constraint. We implement a simple custom constraint that prevents a route from being matched w..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/16/2009
-ms.topic: article
 ms.assetid: a4f4bf4e-abcc-4650-8f43-527e48b52fe6
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-a-custom-route-constraint-cs
 msc.type: authoredcontent
 ---
@@ -48,6 +44,6 @@ The Localhost constraint is used in the definition of the Admin route. This rout
 
 Notice that the Default route has been commented out from the Global.asax file in Listing 2. If you include the Default route, then the Default route would match requests for the Admin controller. In that case, remote users could still invoke actions of the Admin controller even though their requests wouldn't match the Admin route.
 
->[!div class="step-by-step"]
-[Previous](creating-a-route-constraint-cs.md)
-[Next](asp-net-mvc-controller-overview-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-route-constraint-cs.md)
+> [Next](asp-net-mvc-controller-overview-vb.md)

@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/continuing-with-ef/handli
 title: "Handling Concurrency with the Entity Framework 4.0 in an ASP.NET 4 Web Application | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series builds on the Contoso University web application that is created by the Getting Started with the Entity Framework 4.0 tutorial series. I..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/26/2011
-ms.topic: article
 ms.assetid: a5aa22a6-fb7f-4f41-9c7f-addda151940b
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application
 msc.type: authoredcontent
 ---
@@ -299,6 +295,6 @@ Run the page and create a concurrency conflict again. This time you see an error
 
 This completes the introduction to handling concurrency conflicts. The next tutorial will provide guidance on how to improve performance in a web application that uses the Entity Framework.
 
->[!div class="step-by-step"]
-[Previous](using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
-[Next](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
+> [Next](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)

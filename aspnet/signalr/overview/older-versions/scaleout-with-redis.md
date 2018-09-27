@@ -3,13 +3,9 @@ uid: signalr/overview/older-versions/scaleout-with-redis
 title: "SignalR Scaleout with Redis (SignalR 1.x) | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/01/2013
-ms.topic: article
 ms.assetid: 6abecf80-8ffa-41ba-b0d9-1d9edbe7687b
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/scaleout-with-redis
 msc.type: authoredcontent
 ---

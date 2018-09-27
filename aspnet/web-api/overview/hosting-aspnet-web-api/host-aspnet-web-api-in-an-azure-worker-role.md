@@ -3,13 +3,9 @@ uid: web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-wor
 title: "Host ASP.NET Web API 2 in an Azure Worker Role | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to host ASP.NET Web API in an Azure Worker Role, using OWIN to self-host the Web API framework. Open Web Interface for .NET (OWIN) de..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/02/2014
-ms.topic: article
 ms.assetid: 6980ee2e-d6b0-4a08-8fb6-ab96362dd0e3
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-worker-role
 msc.type: authoredcontent
 ---
@@ -126,7 +122,7 @@ The compute emulator assigns a local IP address to the endpoint. You can find th
 
 [![](host-aspnet-web-api-in-an-azure-worker-role/_static/image11.png)](host-aspnet-web-api-in-an-azure-worker-role/_static/image10.png)
 
-Find the IP address under Service Deployments, deployment [id], Service Details. Open a web browser and navigate to http://*address*/test/1, where *address* is the IP address assigned by the compute emulator; for example, `http://127.0.0.1:80/test/1`. You should see the response from the Web API controller:
+Find the IP address under Service Deployments, deployment [id], Service Details. Open a web browser and navigate to http://<em>address</em>/test/1, where <em>address</em> is the IP address assigned by the compute emulator; for example, `http://127.0.0.1:80/test/1`. You should see the response from the Web API controller:
 
 ![](host-aspnet-web-api-in-an-azure-worker-role/_static/image12.png)
 

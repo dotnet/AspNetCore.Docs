@@ -3,13 +3,9 @@ uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-clou
 title: "Data Storage Options (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/12/2014
-ms.topic: article
 ms.assetid: e51fcecb-cb33-4f9e-8428-6d2b3d0fe1bf
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-storage-options
 msc.type: authoredcontent
 ---
@@ -296,6 +292,6 @@ HDInsight (Hadoop on Azure):
 - [Hadoop and HDInsight: Big Data in Azure](https://msdn.microsoft.com/magazine/dn385705.aspx). MSDN Magazine article by Bruno Terkaly and Ricardo Villalobos, introducing Hadoop on Azure.
 - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/dn568099.aspx). See MapReduce pattern.
 
->[!div class="step-by-step"]
-[Previous](single-sign-on.md)
-[Next](data-partitioning-strategies.md)
+> [!div class="step-by-step"]
+> [Previous](single-sign-on.md)
+> [Next](data-partitioning-strategies.md)

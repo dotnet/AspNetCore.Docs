@@ -2,16 +2,12 @@
 title: Policy-based authorization in ASP.NET Core
 author: rick-anderson
 description: Learn how to create and use authorization policy handlers for enforcing authorization requirements in an ASP.NET Core app.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/21/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/authorization/policies
 ---
-# Policy-based authorization
+# Policy-based authorization in ASP.NET Core
 
 Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a pre-configured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 

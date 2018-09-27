@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with
 title: "Adding a View | Microsoft Docs"
 author: shanselman
 description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. Create a simple web application that reads and writes from a database."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/14/2010
-ms.topic: article
 ms.assetid: e8f1515c-c277-47ff-a23e-224118f13f02
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part3
 msc.type: authoredcontent
 ---
@@ -115,6 +111,6 @@ Run your application and visit `http://localhost:xx/HelloWorld/Welcome?name=Scot
 
 Well, that was a kind of an "M" for Model, but not the database kind. Let's take what we've learned and create a database of Movies.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part2.md)
-[Next](getting-started-with-mvc-part4.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part2.md)
+> [Next](getting-started-with-mvc-part4.md)

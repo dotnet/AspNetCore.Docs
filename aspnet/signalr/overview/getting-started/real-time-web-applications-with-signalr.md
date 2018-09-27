@@ -3,13 +3,9 @@ uid: signalr/overview/getting-started/real-time-web-applications-with-signalr
 title: "Hands On Lab: Real-Time Web Applications with SignalR | Microsoft Docs"
 author: rick-anderson
 description: "Real-time Web applications feature the ability to push server-side content to the connected clients as it happens, in real-time. For ASP.NET developers, ASP...."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/16/2014
-ms.topic: article
 ms.assetid: ba07958c-42e1-4da0-81db-ba6925ed6db0
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/real-time-web-applications-with-signalr
 msc.type: authoredcontent
 ---
@@ -155,12 +151,12 @@ In this task, you will add SignalR to the solution and send updates to the clien
 
     *SignalR package installation*
 
-    > [!NOTE]
-    > When installing **SignalR** NuGet packages version 2.0.2 from a brand new MVC 5 application, you will need to manually update **OWIN** packages to version 2.0.1 (or higher) before installing SignalR. To do this, you can execute the following script in the **Package Manager Console**:
-    > 
-    > [!code-powershell[Main](real-time-web-applications-with-signalr/samples/sample2.ps1)]
-    > 
-    > In a future release of SignalR, OWIN dependencies will be automatically updated.
+   > [!NOTE]
+   > When installing **SignalR** NuGet packages version 2.0.2 from a brand new MVC 5 application, you will need to manually update **OWIN** packages to version 2.0.1 (or higher) before installing SignalR. To do this, you can execute the following script in the **Package Manager Console**:
+   > 
+   > [!code-powershell[Main](real-time-web-applications-with-signalr/samples/sample2.ps1)]
+   > 
+   > In a future release of SignalR, OWIN dependencies will be automatically updated.
 3. In **Solution Explorer**, expand the **Scripts** folder and notice that the SignalR *js* files were added to the solution.
 
     ![SignalR JavaScript references](real-time-web-applications-with-signalr/_static/image10.png "SignalR JavaScript references")

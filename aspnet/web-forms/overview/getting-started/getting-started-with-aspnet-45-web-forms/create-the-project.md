@@ -3,13 +3,9 @@ uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms
 title: "Create the Project | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/08/2014
-ms.topic: article
 ms.assetid: 2ce36f78-8ecb-4ab1-b748-6d0ab633ea3f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/create-the-project
 msc.type: authoredcontent
 ---
@@ -47,7 +43,10 @@ In this tutorial you will create, review, and run the default project in Visual 
 
     > [!NOTE]
     > The name of the project in this tutorial series is **WingtipToys**. It is recommended that you use this *exact* project name so that the code provided throughout the tutorial series functions as expected.
-6. Next, select the **Web Forms** template and choose the **Create Project** button.  
+
+6. Click the **Change Authentication** button. Select **Individual User Accounts** and click the **OK** button.
+
+7. Select the **Web Forms** template and click the **OK** button.
 
     ![Create the Project - New Project Template](create-the-project/_static/image3.png)
 
@@ -190,6 +189,6 @@ In this tutorial you have created, reviewed and run the default Web Forms applic
 [Web Application Projects versus Web Site Projects](https://msdn.microsoft.com/library/dd547590.aspx)   
 [ASP.NET Web Forms Pages Overview](https://msdn.microsoft.com/library/428509ah.aspx)
 
->[!div class="step-by-step"]
-[Previous](introduction-and-overview.md)
-[Next](create_the_data_access_layer.md)
+> [!div class="step-by-step"]
+> [Previous](introduction-and-overview.md)
+> [Next](create_the_data_access_layer.md)

@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwater
 title: "Using TextBoxWatermark in a FormView (VB) | Microsoft Docs"
 author: wenz
 description: "The TextBoxWatermark control in the AJAX Control Toolkit extends a text box so that a text is displayed within the box. When a user clicks into the box, it i..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: 41497361-7fba-4825-b36c-f58d79522a88
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-in-a-formview-vb
 msc.type: authoredcontent
 ---
@@ -51,6 +47,6 @@ Now when the user changes into the insert mode of the `FormView` control, the te
 
 The watermark in the field comes from the extender ([Click to view full-size image](using-textboxwatermark-in-a-formview-vb/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-textboxwatermark-with-validation-controls-cs.md)
-[Next](using-textboxwatermark-with-validation-controls-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-textboxwatermark-with-validation-controls-cs.md)
+> [Next](using-textboxwatermark-with-validation-controls-vb.md)

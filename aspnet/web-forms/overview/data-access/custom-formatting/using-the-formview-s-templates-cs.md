@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/custom-formatting/using-the-formview-s-templ
 title: "Using the FormView's Templates (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Unlike the DetailsView, the FormView is not composed of fields. Instead, the FormView is rendered using templates. In this tutorial we'll examine using the F..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: d3f062af-88cf-426d-af44-e41f32c41672
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/using-the-formview-s-templates-cs
 msc.type: authoredcontent
 ---
@@ -112,6 +108,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was E.R. Gilmore. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](using-templatefields-in-the-detailsview-control-cs.md)
-[Next](displaying-summary-information-in-the-gridview-s-footer-cs.md)
+> [!div class="step-by-step"]
+> [Previous](using-templatefields-in-the-detailsview-control-cs.md)
+> [Next](displaying-summary-information-in-the-gridview-s-footer-cs.md)

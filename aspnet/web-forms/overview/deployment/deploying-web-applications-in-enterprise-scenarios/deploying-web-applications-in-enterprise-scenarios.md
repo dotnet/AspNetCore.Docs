@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scen
 title: "Deploying Web Applications in Enterprise Scenarios using Visual Studio 2010 | Microsoft Docs"
 author: jrjlee
 description: "This set of tutorials describes tools and techniques you can use to deploy web applications in various enterprise scenarios. It explains how to make best use..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/03/2012
-ms.topic: article
 ms.assetid: 48cfe378-d62a-48c6-a4db-6be3cead6898
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios
 msc.type: authoredcontent
 ---
@@ -75,5 +71,5 @@ The series includes four tutorial sets. Each focuses on different aspects of web
 
 This set of tutorials uses a sample solution with a realistic level of complexity, together with a fictional enterprise deployment scenario, to provide a reference implementation and to give the tasks and walkthroughs a common context. The next topic, [Enterprise Web Deployment: Scenario Overview](enterprise-web-deployment-scenario-overview.md), introduces the scenario and the sample solution. From there you can work through the tutorials and topics that most closely match your needs.
 
->[!div class="step-by-step"]
-[Next](enterprise-web-deployment-scenario-overview.md)
+> [!div class="step-by-step"]
+> [Next](enterprise-web-deployment-scenario-overview.md)

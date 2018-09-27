@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Primitives;
-using WebCache.Models;
+using WebCacheSample.Models;
 
 #region snippet_ctor
 public class HomeController : Controller

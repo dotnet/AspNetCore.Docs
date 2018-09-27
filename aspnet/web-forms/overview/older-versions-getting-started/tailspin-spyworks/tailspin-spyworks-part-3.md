@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspi
 title: "Part 3: Layout and Category Menu | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 3 covers adding layout and a category menu."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/21/2010
-ms.topic: article
 ms.assetid: 94ea1a70-a9bc-4241-8f36-08366d64bab9
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-3
 msc.type: authoredcontent
 ---
@@ -72,6 +68,6 @@ Lets run the application now.
 
 Note that our product category menu is now displayed and when we hover over one of the category menu items we can see the menu item link points to a page we have yet to implement named ProductsList.aspx and that we have built a dynamic query string argument that contains the category id.
 
->[!div class="step-by-step"]
-[Previous](tailspin-spyworks-part-2.md)
-[Next](tailspin-spyworks-part-4.md)
+> [!div class="step-by-step"]
+> [Previous](tailspin-spyworks-part-2.md)
+> [Next](tailspin-spyworks-part-4.md)

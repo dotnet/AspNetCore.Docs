@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/updating-
 title: "Updating Related Data with the Entity Framework in an ASP.NET MVC Application (6 of 10) | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 4 applications using the Entity Framework 5 Code First and Visual Studio..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/30/2013
-ms.topic: article
 ms.assetid: 7871dc05-2750-470f-8b4c-3a52511949bc
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
@@ -209,6 +205,6 @@ You have now completed this introduction to working with related data. So far in
 
 Links to other Entity Framework resources, can be found at the end of [the last tutorial in this series](advanced-entity-framework-scenarios-for-an-mvc-web-application.md).
 
->[!div class="step-by-step"]
-[Previous](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)

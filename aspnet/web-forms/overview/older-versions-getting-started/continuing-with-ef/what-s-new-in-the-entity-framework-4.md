@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/continuing-with-ef/what-s
 title: "What's New in the Entity Framework 4.0 | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series builds on the Contoso University web application that is created by the Getting Started with the Entity Framework 4.0 tutorial series. I..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/26/2011
-ms.topic: article
 ms.assetid: 393df4a8-b1db-44c4-9db7-2b533ca887d0
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/what-s-new-in-the-entity-framework-4
 msc.type: authoredcontent
 ---
@@ -207,5 +203,5 @@ This completes the overview to what's new in the Entity Framework and this Conti
 - [What's New in ADO.NET](https://msdn.microsoft.com/library/ex6y04yf.aspx) MSDN topic on new features in version 4 of the Entity Framework.
 - [Announcing the release of Entity Framework 4](https://blogs.msdn.com/b/efdesign/archive/2010/04/12/announcing-the-release-of-entity-framework-4.aspx) The Entity Framework development team's blog post about new features in version 4.
 
->[!div class="step-by-step"]
-[Previous](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)

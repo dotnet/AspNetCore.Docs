@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-controlle
 title: "ASP.NET MVC Controller Overview (VB) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther introduces you to ASP.NET MVC controllers. You learn how to create new controllers and return different types of action res..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/16/2008
-ms.topic: article
 ms.assetid: 94c3e5d9-a904-445e-a34e-d92fd1ca108a
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-controller-overview-vb
 msc.type: authoredcontent
 ---
@@ -98,8 +94,8 @@ The ContentResult action result is special. You can use the ContentResult action
 **Listing 4 - Controllers\StatusController.vb**
 
 > StatusController
-
-
+> 
+> 
 > System.Web.Mvc.Controller
 
 
@@ -119,6 +115,6 @@ The Index() action in Listing 5 returns a DateTime object. The ASP.NET MVC frame
 
 The purpose of this tutorial was to introduce you to the concepts of ASP.NET MVC controllers, controller actions, and controller action results. In the first section, you learned how to add new controllers to an ASP.NET MVC project. Next, you learned how public methods of a controller are exposed to the universe as controller actions. Finally, we discussed the different types of action results that can be returned from a controller action. In particular, we discussed how to return a ViewResult, RedirectToActionResult, and ContentResult from a controller action.
 
->[!div class="step-by-step"]
-[Previous](creating-a-custom-route-constraint-cs.md)
-[Next](creating-custom-routes-vb.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-custom-route-constraint-cs.md)
+> [Next](creating-custom-routes-vb.md)

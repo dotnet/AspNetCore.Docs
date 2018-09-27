@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwater
 title: "Using TextBoxWatermark With Validation Controls (C#) | Microsoft Docs"
 author: wenz
 description: "The TextBoxWatermark control in the AJAX Control Toolkit extends a text box so that a text is displayed within the box. When a user clicks into the box, it i..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/02/2008
-ms.topic: article
 ms.assetid: d49940cb-d38c-456a-b800-5f0eb705d09f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-with-validation-controls-cs
 msc.type: authoredcontent
 ---
@@ -51,6 +47,6 @@ Finally, add some server-side code to output the text in the field if no validat
 
 The validator complains that there is no text in the field ([Click to view full-size image](using-textboxwatermark-with-validation-controls-cs/_static/image3.png))
 
->[!div class="step-by-step"]
-[Previous](using-textboxwatermark-in-a-formview-cs.md)
-[Next](using-textboxwatermark-in-a-formview-vb.md)
+> [!div class="step-by-step"]
+> [Previous](using-textboxwatermark-in-a-formview-cs.md)
+> [Next](using-textboxwatermark-in-a-formview-vb.md)

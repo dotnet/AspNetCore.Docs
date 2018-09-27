@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-view
 title: "Adding a View | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demo..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/28/2012
-ms.topic: article
 ms.assetid: dde851d7-882e-4d99-9b96-cf96daed81cc
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-view
 msc.type: authoredcontent
 ---
@@ -143,6 +139,6 @@ In the sample above, we used a `ViewBag` object to pass data from the controller
 
 Well, that was a kind of an &quot;M&quot; for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[!div class="step-by-step"]
-[Previous](adding-a-controller.md)
-[Next](adding-a-model.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-controller.md)
+> [Next](adding-a-model.md)

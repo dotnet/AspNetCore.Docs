@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/visual-studio-web-deployment/preparing-databa
 title: "ASP.NET Web Deployment using Visual Studio: Preparing for Database Deployment | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/15/2013
-ms.topic: article
 ms.assetid: ae4def81-fa37-4883-a13e-d9896cbf6c36
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/preparing-databases
 msc.type: authoredcontent
 ---
@@ -210,11 +206,11 @@ Since you haven't run the project with the production database, it isn't attache
 1. In the SSMS **Object Explorer**, right-click **Databases** and click **Attach**.
 
     ![SSMS Attach](preparing-databases/_static/image15.png)
-- In the **Attach Databases** dialog box, click **Add** and then navigate to the *aspnet-ContosoUniversity-Prod.mdf* file in the *App\_Data* folder.
+2. In the **Attach Databases** dialog box, click **Add** and then navigate to the *aspnet-ContosoUniversity-Prod.mdf* file in the *App\_Data* folder.
 
-    ![SSMS Add .mdf file to attach](preparing-databases/_static/image16.png)
-- Click **OK**.
-- Follow the same procedure you used earlier to create a script for the production file. Name the script file *aspnet-data-prod.sql*.
+     ![SSMS Add .mdf file to attach](preparing-databases/_static/image16.png)
+3. Click **OK**.
+4. Follow the same procedure you used earlier to create a script for the production file. Name the script file *aspnet-data-prod.sql*.
 
 ## Summary
 
@@ -228,6 +224,6 @@ In the following tutorial you configure project settings that affect deployment,
 
 For more information on NuGet, see [Manage Project Libraries with NuGet](https://msdn.microsoft.com/magazine/hh547106.aspx) and [NuGet Documentation](http://docs.nuget.org/docs/start-here/overview). If you don't want to use NuGet, you'll need to learn how to analyze a NuGet package to determine what it does when it is installed. (For example, it might configure *Web.config* transformations, configure PowerShell scripts to run at build time, etc.) To learn more about how NuGet works, see [Creating and Publishing a Package](http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package) and [Configuration File and Source Code Transformations](http://docs.nuget.org/docs/creating-packages/configuration-file-and-source-code-transformations).
 
->[!div class="step-by-step"]
-[Previous](introduction.md)
-[Next](web-config-transformations.md)
+> [!div class="step-by-step"]
+> [Previous](introduction.md)
+> [Next](web-config-transformations.md)

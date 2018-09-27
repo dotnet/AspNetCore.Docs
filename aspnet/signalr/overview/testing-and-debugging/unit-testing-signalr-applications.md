@@ -3,13 +3,9 @@ uid: signalr/overview/testing-and-debugging/unit-testing-signalr-applications
 title: "Unit Testing SignalR Applications | Microsoft Docs"
 author: pfletcher
 description: "This article describes how to use the Unit Testing features of SignalR 2.0."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: d1983524-e0d5-4ee6-9d87-1f552f7cb964
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/testing-and-debugging/unit-testing-signalr-applications
 msc.type: authoredcontent
 ---
@@ -67,11 +63,11 @@ In this section, you'll add a unit test for the application created in the [Gett
     ![Add Project Reference](unit-testing-signalr-applications/_static/image3.png)
 6. Add the SignalR, Moq, and XUnit packages to the **TestLibrary** project. In the **Package Manager Console**, set the **Default Project** dropdown to **TestLibrary**. Run the following commands in the console window:
 
-    - `Install-Package Microsoft.AspNet.SignalR`
-    - `Install-Package Moq`
-    - `Install-Package XUnit`
+   - `Install-Package Microsoft.AspNet.SignalR`
+   - `Install-Package Moq`
+   - `Install-Package XUnit`
 
-    ![Install Packages](unit-testing-signalr-applications/_static/image4.png)
+     ![Install Packages](unit-testing-signalr-applications/_static/image4.png)
 7. Create the test file. Right-click the **TestLibrary** project and click **Add...**, **Class**. Name the new class **Tests.cs**.
 8. Replace the contents of Tests.cs with the following code.
 

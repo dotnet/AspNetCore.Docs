@@ -3,13 +3,9 @@ uid: web-forms/overview/presenting-and-managing-data/model-binding/retrieving-da
 title: "Retrieving and displaying data with model binding and web forms | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial series demonstrates basic aspects of using model binding with an ASP.NET Web Forms project. Model binding makes data interaction more straight-..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/27/2014
-ms.topic: article
 ms.assetid: 9f24fb82-c7ac-48da-b8e2-51b3da17e365
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/retrieving-data
 msc.type: authoredcontent
 ---
@@ -177,5 +173,5 @@ In this tutorial, you created data model classes and generated a database from t
 
 In the next [tutorial](updating-deleting-and-creating-data.md) in this series, you will enable updating, deleting, and creating data.
 
->[!div class="step-by-step"]
-[Next](updating-deleting-and-creating-data.md)
+> [!div class="step-by-step"]
+> [Next](updating-deleting-and-creating-data.md)

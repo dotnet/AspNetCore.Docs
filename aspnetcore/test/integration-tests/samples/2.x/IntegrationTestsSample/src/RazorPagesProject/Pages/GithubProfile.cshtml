@@ -1,0 +1,40 @@
+@page "{userName?}"
+@model GithubProfileModel
+@{
+    ViewData["Title"] = "Github Profile";
+}
+
+<h1>GithubProfile</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="user-profile" method="post">
+                <h2>Introduce a Github user name.</h2>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.UserName"></label>
+                    <input asp-for="Input.UserName" class="form-control" />
+                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Show user profile!</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @if (Model.GithubUser != null)
+        {
+            <p class="h3">Login</p>
+            <p id="user-login">@Model.GithubUser.Login</p>
+            <p class="h3">Name</p>
+            <p>@Model.GithubUser.Name</p>
+            <p class="h3">Company</p>
+            <p>@Model.GithubUser.Company</p>
+        }
+    </div>
+</div>

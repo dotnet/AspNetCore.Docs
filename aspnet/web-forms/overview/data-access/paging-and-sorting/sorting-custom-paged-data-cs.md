@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data
 title: "Sorting Custom Paged Data (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In the previous tutorial we learned how to implement custom paging when presentating data on a web page. In this tutorial we see how to extend the preceding..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/15/2006
-ms.topic: article
 ms.assetid: 778baa4e-4af8-4665-947e-7a01d1a4dff2
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data-cs
 msc.type: authoredcontent
 ---
@@ -185,6 +181,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Carlos Santos. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](efficiently-paging-through-large-amounts-of-data-cs.md)
-[Next](creating-a-customized-sorting-user-interface-cs.md)
+> [!div class="step-by-step"]
+> [Previous](efficiently-paging-through-large-amounts-of-data-cs.md)
+> [Next](creating-a-customized-sorting-user-interface-cs.md)

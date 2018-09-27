@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/an-overv
 title: "An Overview of Inserting, Updating, and Deleting Data (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how to map an ObjectDataSource's Insert(), Update(), and Delete() methods to the methods of BLL classes, as well as how to configu..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/17/2006
-ms.topic: article
 ms.assetid: b651dc58-93c7-4f83-a74e-3b99f6d60848
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-cs
 msc.type: authoredcontent
 ---
@@ -437,5 +433,5 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Next](examining-the-events-associated-with-inserting-updating-and-deleting-cs.md)
+> [!div class="step-by-step"]
+> [Next](examining-the-events-associated-with-inserting-updating-and-deleting-cs.md)

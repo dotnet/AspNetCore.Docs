@@ -1,16 +1,12 @@
 ---
-title: Dependency injection into views
+title: Dependency injection into views in ASP.NET Core
 author: ardalis
-description: 
-manager: wpickett
+description: Learn how ASP.NET Core supports dependency injection into MVC views.
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mvc/views/dependency-injection
 ---
-# Dependency injection into views
+# Dependency injection into views in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -35,7 +31,7 @@ This view displays a list of `ToDoItem` instances, along with a summary showing 
 
 The `StatisticsService` performs some calculations on the set of `ToDoItem` instances, which it accesses via a repository:
 
-[!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Model/Services/StatisticsService.cs?highlight=15,20,26)]
+[!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Model/Services/StatisticsService.cs?highlight=15,20,25)]
 
 The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) isn't recommended for large, remotely accessed data sets.
 
@@ -63,8 +59,8 @@ The `ProfileOptionsService` is a UI-level service designed to provide just the d
 
 [!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Model/Services/ProfileOptionsService.cs?highlight=7,13,24)]
 
->[!TIP]
-> Don't forget to register types you will request through dependency injection in the  `ConfigureServices` method in *Startup.cs*.
+> [!IMPORTANT]
+> Don't forget to register types you request through dependency injection in `Startup.ConfigureServices`. An unregistered type throws an exception at runtime because the service provider is internally queried via [GetRequiredService](/dotnet/api/microsoft.extensions.dependencyinjection.serviceproviderserviceextensions.getrequiredservice).
 
 ## Overriding Services
 

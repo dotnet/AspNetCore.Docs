@@ -3,13 +3,9 @@ uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/usi
 title: "Part 2: Creating the Domain Models | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/03/2012
-ms.topic: article
 ms.assetid: fe3ef85f-bdc6-4e10-9768-25aa565c01d0
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-2
 msc.type: authoredcontent
 ---
@@ -79,6 +75,6 @@ In Solution Explorer, expand the App\_Start folder and open the file named WebAp
 
 This code sets the JSON formatter to preserve object references, and removes the XML formatter from the pipeline entirely. (You can configure the XML formatter to preserve object references, but it's a little more work, and we only need JSON for this application. For more information, see [Handling Circular Object References](../../formats-and-model-binding/json-and-xml-serialization.md#handling_circular_object_references).)
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-1.md)
-[Next](using-web-api-with-entity-framework-part-3.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-1.md)
+> [Next](using-web-api-with-entity-framework-part-3.md)

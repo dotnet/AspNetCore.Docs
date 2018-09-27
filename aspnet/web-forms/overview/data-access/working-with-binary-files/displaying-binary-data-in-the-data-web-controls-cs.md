@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/working-with-binary-files/displaying-binary-
 title: "Displaying Binary Data in the Data Web Controls (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we look at the options to present binary data on a Web page, including the display of an image file and the provision of a 'Download' link f..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/27/2007
-ms.topic: article
 ms.assetid: 5cbeb9f8-5f92-4ba8-87ae-0b4d460ae6d4
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/displaying-binary-data-in-the-data-web-controls-cs
 msc.type: authoredcontent
 ---
@@ -227,6 +223,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Teresa Murphy and Dave Gardner. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](uploading-files-cs.md)
-[Next](including-a-file-upload-option-when-adding-a-new-record-cs.md)
+> [!div class="step-by-step"]
+> [Previous](uploading-files-cs.md)
+> [Next](including-a-file-upload-option-when-adding-a-new-record-cs.md)

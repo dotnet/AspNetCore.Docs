@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/advanced-data-access-scenarios/creating-new-
 title: "Creating New Stored Procedures for the Typed DataSet's TableAdapters (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In earlier tutorials we have created SQL statements in our code and passed the statements to the database to be executed. An alternative approach is to use s..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/18/2007
-ms.topic: article
 ms.assetid: 751282ca-5870-4d66-84e4-6cefae23eb4a
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs
 msc.type: authoredcontent
 ---
@@ -393,5 +389,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Hilton Geisenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md)
+> [!div class="step-by-step"]
+> [Next](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md)

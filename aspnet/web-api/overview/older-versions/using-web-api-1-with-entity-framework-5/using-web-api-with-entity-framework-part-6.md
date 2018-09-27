@@ -3,13 +3,9 @@ uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/usi
 title: "Part 6: Creating Product and Order Controllers | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/04/2012
-ms.topic: article
 ms.assetid: 91ee29ee-0689-40ee-914a-e7dd733b6622
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-6
 msc.type: authoredcontent
 ---
@@ -112,6 +108,6 @@ Finally, add the **Authorize** attribute to the controller:
 
 Now only registered users can create or view orders.
 
->[!div class="step-by-step"]
-[Previous](using-web-api-with-entity-framework-part-5.md)
-[Next](using-web-api-with-entity-framework-part-7.md)
+> [!div class="step-by-step"]
+> [Previous](using-web-api-with-entity-framework-part-5.md)
+> [Next](using-web-api-with-entity-framework-part-7.md)

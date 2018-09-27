@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Core Differences Between IIS and the ASP.NET Development Server (C#) | Microsoft Docs"
 author: rick-anderson
 description: "When testing an ASP.NET application locally, chances are you are using the ASP.NET Development Web Server. However, the production website is most likely pow..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/01/2009
-ms.topic: article
 ms.assetid: 13a5a423-9235-4dde-b408-2fd10f791d63
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/core-differences-between-iis-and-the-asp-net-development-server-cs
 msc.type: authoredcontent
 ---
@@ -135,6 +131,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Using ASP.NET Forums Authentication With All Types of Content on IIS 7](https://blogs.iis.net/bills/archive/2007/05/19/using-asp-net-forms-authentication-with-all-types-of-content-with-iis7-video.aspx) (Video)
 - [Web Servers in Visual Web Developer](https://msdn.microsoft.com/library/58wxa9w5.aspx)
 
->[!div class="step-by-step"]
-[Previous](common-configuration-differences-between-development-and-production-cs.md)
-[Next](deploying-a-database-cs.md)
+> [!div class="step-by-step"]
+> [Previous](common-configuration-differences-between-development-and-production-cs.md)
+> [Next](deploying-a-database-cs.md)

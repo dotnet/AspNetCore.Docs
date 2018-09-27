@@ -3,13 +3,9 @@ uid: whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application
 title: "How To: Add Mobile Pages to Your ASP.NET Web Forms / MVC Application | Microsoft Docs"
 author: rick-anderson
 description: "This How To describes various ways to serve pages optimized for mobile devices from your ASP.NET Web Forms / MVC application, and suggests architectural and..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/20/2011
-ms.topic: article
 ms.assetid: 3124f28e-cc32-418a-afe3-519fa56f4c36
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application
 msc.type: content
 ---
@@ -180,7 +176,7 @@ Note that Forms Authentication makes certain assumptions about where it can redi
 
     [!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample4.cs)]
   
- This code assumes your page has a Login server control called LoginUser, as in the default project template.
+  This code assumes your page has a Login server control called LoginUser, as in the default project template.
 
 ### Working with Output Caching
 
@@ -238,7 +234,7 @@ Next, note that by adding a second HomeController to your application (i.e., the
 
 [!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample9.cs)]
 
-Now the error will go away, and the URL http://*yoursite*/ will reach the desktop homepage, and http://*yoursite*/mobile/ will reach the mobile homepage.
+Now the error will go away, and the URL http://<em>yoursite</em>/ will reach the desktop homepage, and http://<em>yoursite</em>/mobile/ will reach the mobile homepage.
 
 ### Redirecting mobile visitors to your mobile area
 

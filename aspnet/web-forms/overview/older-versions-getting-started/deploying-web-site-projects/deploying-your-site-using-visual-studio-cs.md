@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projec
 title: "Deploying Your Site Using Visual Studio (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio includes tools for deploying a website. Learn more about these tools in this tutorial."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 04/01/2009
-ms.topic: article
 ms.assetid: cde4ee53-a5d0-4937-a54b-67877e8266c3
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-visual-studio-cs
 msc.type: authoredcontent
 ---
@@ -150,6 +146,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [How To: Publish Web Sites](https://msdn.microsoft.com/library/20yh9f1b.aspx)
 - [Setup and Deployment Projects in Visual Studio](https://msdn.microsoft.com/library/wx3b589t.aspx)
 
->[!div class="step-by-step"]
-[Previous](deploying-your-site-using-an-ftp-client-cs.md)
-[Next](common-configuration-differences-between-development-and-production-cs.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-your-site-using-an-ftp-client-cs.md)
+> [Next](common-configuration-differences-between-development-and-production-cs.md)

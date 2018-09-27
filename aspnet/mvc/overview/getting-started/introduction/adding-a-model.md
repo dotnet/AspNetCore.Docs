@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/introduction/adding-a-model
 title: "Adding a Model | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/28/2015
-ms.topic: article
 ms.assetid: 276552b5-f349-4fcf-8f40-6d042f7aa88e
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-a-model
 msc.type: authoredcontent
 ---
@@ -17,7 +13,7 @@ Adding a Model
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-[!INCLUDE[Tutorial Note](sample/code-location.md)]
+[!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 In this section you'll add some classes for managing movies in a database. These classes will be the &quot;model&quot; part of the ASP.NET MVC app.
 
@@ -59,6 +55,6 @@ Note: Several unused `using` statements have been removed. Visual Studio will sh
 
 We've finally added a model (the M in MVC). In the next section you'll work with the database connection string.
 
->[!div class="step-by-step"]
-[Previous](adding-a-view.md)
-[Next](creating-a-connection-string.md)
+> [!div class="step-by-step"]
+> [Previous](adding-a-view.md)
+> [Next](creating-a-connection-string.md)

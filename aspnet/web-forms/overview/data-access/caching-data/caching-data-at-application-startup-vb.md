@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/caching-data/caching-data-at-application-sta
 title: "Caching Data at Application Startup (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In any Web application some data will be frequently used and some data will be infrequently used. We can improve the performance of our ASP.NET application b..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/30/2007
-ms.topic: article
 ms.assetid: 84afe4ac-cc53-4f2e-a867-27eaf692c2df
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-at-application-startup-vb
 msc.type: authoredcontent
 ---
@@ -195,6 +191,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Teresa Murphy and Zack Jones. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](caching-data-in-the-architecture-vb.md)
-[Next](using-sql-cache-dependencies-vb.md)
+> [!div class="step-by-step"]
+> [Previous](caching-data-in-the-architecture-vb.md)
+> [Next](using-sql-cache-dependencies-vb.md)

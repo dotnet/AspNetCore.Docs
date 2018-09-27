@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/continuing-with-ef/using-
 title: "Using the Entity Framework 4.0 and the ObjectDataSource Control, Part 3: Sorting and Filtering | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series builds on the Contoso University web application that is created by the Getting Started with the Entity Framework 4.0 tutorial series. I..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/26/2011
-ms.topic: article
 ms.assetid: 2990bd10-590d-43d5-9529-6b503ce5455d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering
 msc.type: authoredcontent
 ---
@@ -149,6 +145,6 @@ Run the page. In addition to the sorting and filtering capability that you added
 
 This completes the introduction to sorting, filtering, and master-detail scenarios. In the next tutorial, you'll see how to handle concurrency.
 
->[!div class="step-by-step"]
-[Previous](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests.md)
-[Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests.md)
+> [Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)

@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/advanced-data-access-scenarios/working-with-
 title: "Working with Computed Columns (C#) | Microsoft Docs"
 author: rick-anderson
 description: "When creating a database table, Microsoft SQL Server allows you to define a computed column whose value is calculated from an expression that usually referen..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/03/2007
-ms.topic: article
 ms.assetid: 57459065-ed7c-4dfe-ac9c-54c093abc261
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/working-with-computed-columns-cs
 msc.type: authoredcontent
 ---
@@ -262,6 +258,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Hilton Geisenow and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](adding-additional-datatable-columns-cs.md)
-[Next](configuring-the-data-access-layer-s-connection-and-command-level-settings-cs.md)
+> [!div class="step-by-step"]
+> [Previous](adding-additional-datatable-columns-cs.md)
+> [Next](configuring-the-data-access-layer-s-connection-and-command-level-settings-cs.md)

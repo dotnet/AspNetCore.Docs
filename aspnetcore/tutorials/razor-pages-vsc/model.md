@@ -1,19 +1,16 @@
 ---
-title: Adding a model to a Razor Pages app with Visual Studio for Mac
+title: Add a model to an ASP.NET Core Razor Pages app with Visual Studio Code
 author: rick-anderson
-description: Adding a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac
-manager: wpickett
+description: Learn how to add a model to a Razor Pages app in ASP.NET Core using Visual Studio Code.
+monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 08/27/2017
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/razor-pages-vsc/model
 ---
 
-# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio Code
+# Add a model to an ASP.NET Core Razor Pages app with Visual Studio Code
 
-[!INCLUDE[model1](../../includes/RP/model1.md)]
+[!INCLUDE [model1](../../includes/RP/model1.md)]
 
 ## Add a data model
 
@@ -21,10 +18,26 @@ uid: tutorials/razor-pages-vsc/model
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
 
-[!INCLUDE[model 2](../../includes/RP/model2.md)]
-[!INCLUDE[model 2a](../../includes/RP/model2a.md)]
+[!INCLUDE [model 2](../../includes/RP/model2.md)]
 
-[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
+[!INCLUDE [model 2a](../../includes/RP/model2a.md)]
+
+### Entity Framework Core NuGet package for SQLite
+
+From the command line, run the following .NET Core CLI command:
+
+```console
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+```
+
+[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-4)]
+
+Add the following `using` statements at the top of *Startup.cs*:
+
+```csharp
+using RazorPagesMovie.Models;
+using Microsoft.EntityFrameworkCore;
+```
 
 Build the project to verify you don't have any errors.
 
@@ -39,7 +52,7 @@ Edit the *RazorPagesMovie.csproj* file:
 
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj)]
 
-[!INCLUDE[model 3](../../includes/RP/model3.md)]
+[!INCLUDE [model 3](../../includes/RP/model3.md)]
 
 <a name="scaffold"></a>
 ### Scaffold the Movie model
@@ -68,9 +81,10 @@ If you get the error:
 
 Exit Visual Studio and run the command again.
 
-[!INCLUDE[model 4](../../includes/RP/model4.md)]
+[!INCLUDE [model 4](../../includes/RP/model4.md)]
+
 The next tutorial explains the files created by scaffolding.
 
->[!div class="step-by-step"]
-[Previous: Getting Started](xref:tutorials/razor-pages-vsc/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
+> [!div class="step-by-step"]
+> [Previous: Get Started](xref:tutorials/razor-pages-vsc/razor-pages-start)
+> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)

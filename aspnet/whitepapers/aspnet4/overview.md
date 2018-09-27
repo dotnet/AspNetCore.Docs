@@ -3,13 +3,9 @@ uid: whitepapers/aspnet4/overview
 title: "ASP.NET 4 and Visual Studio 2010 Web Development Overview | Microsoft Docs"
 author: rick-anderson
 description: "This document provides an overview of many of the new features for ASP.NET that are included in the.NET Framework 4 and in Visual Studio 2010."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/10/2010
-ms.topic: article
 ms.assetid: d7729af4-1eda-4ff2-8b61-dbbe4fc11d10
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet4
 msc.type: content
 ---
@@ -200,7 +196,7 @@ ASP.NET 4 also enables you to configure the characters that are used by the URL 
 
 [!code-xml[Main](overview/samples/sample11.xml)]
 
-By default, the *requestPathInvalidChars* attribute defines eight characters as invalid. (In the string that is assigned to *requestPathInvalidChars* by default*,*the less than (&lt;), greater than (&gt;), and ampersand (&amp;) characters are encoded, because the `Web.config` file is an XML file.) You can customize the set of invalid characters as needed.
+By default, the <em>requestPathInvalidChars</em> attribute defines eight characters as invalid. (In the string that is assigned to <em>requestPathInvalidChars</em> by default<em>,</em>the less than (&lt;), greater than (&gt;), and ampersand (&amp;) characters are encoded, because the `Web.config` file is an XML file.) You can customize the set of invalid characters as needed.
 
 > [!NOTE]
 > Note ASP.NET 4 always rejects URL paths that contain characters in the ASCII range of 0x00 to 0x1F, because those are invalid URL characters as defined in RFC 2396 of the IETF ([http://www.ietf.org/rfc/rfc2396.txt](http://www.ietf.org/rfc/rfc2396.txt)). On versions of Windows Server that run IIS 6 or higher, the http.sys protocol device driver automatically rejects URLs with these characters.
@@ -320,6 +316,8 @@ The Microsoft Ajax Content Delivery Network (CDN) enables you to easily add ASP.
 By taking advantage of the Microsoft Ajax CDN, you can significantly improve the performance of your Ajax applications. The contents of the Microsoft Ajax CDN are cached on servers located around the world. In addition, the Microsoft Ajax CDN enables browsers to reuse cached JavaScript files for Web sites that are located in different domains.
 
 The Microsoft Ajax Content Delivery Network supports SSL (HTTPS) in case you need to serve a web page using the Secure Sockets Layer.
+
+Implement a fallback when the CDN is unavailable. Test the fallback.
 
 To learn more about the Microsoft Ajax CDN, visit the following website:
 
@@ -624,7 +622,7 @@ The *RouteParameter* class lets you specify route data as a parameter value for 
 
 [!code-aspx[Main](overview/samples/sample46.aspx)]
 
-In this case, the value of the route parameter searchterm will be used for the @companyname parameter in the *Select* statement.
+In this case, the value of the route parameter searchterm will be used for the @companyname parameter in the <em>Select</em> statement.
 
 <a id="0.2__Toc224729037"></a><a id="0.2__Toc253429261"></a><a id="0.2__Toc243304635"></a>
 

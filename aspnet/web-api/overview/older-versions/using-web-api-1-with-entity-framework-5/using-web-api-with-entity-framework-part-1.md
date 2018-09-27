@@ -3,13 +3,9 @@ uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/usi
 title: "Part 1: Overview and Creating the Project | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/03/2012
-ms.topic: article
 ms.assetid: 94421d86-68c4-4471-bf5f-82d654a17252
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-1
 msc.type: authoredcontent
 ---
@@ -89,5 +85,5 @@ In Solution Explorer, expand the Content folder and open the file named Site.css
 
 [!code-css[Main](using-web-api-with-entity-framework-part-1/samples/sample1.css)]
 
->[!div class="step-by-step"]
-[Next](using-web-api-with-entity-framework-part-2.md)
+> [!div class="step-by-step"]
+> [Next](using-web-api-with-entity-framework-part-2.md)

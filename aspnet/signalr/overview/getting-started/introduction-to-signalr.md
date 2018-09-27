@@ -3,18 +3,17 @@ uid: signalr/overview/getting-started/introduction-to-signalr
 title: "Introduction to SignalR | Microsoft Docs"
 author: pfletcher
 description: "This article describes what SignalR is, and some of the solutions it was designed to create."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/10/2014
-ms.topic: article
 ms.assetid: 0fab5e35-8c1f-43d4-8635-b8aba8766a71
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/introduction-to-signalr
 msc.type: authoredcontent
 ---
 Introduction to SignalR
 ====================
+
+An updated version of this tutorial is available [here](/aspnet/core/tutorials/signalr) using the latest version of Visual Studio. The new tutorial uses [ASP.NET Core](/aspnet/core/), which provides many improvements over this tutorial.
+
 by [Patrick Fletcher](https://github.com/pfletcher)
 
 > This article describes what SignalR is, and some of the solutions it was designed to create. 
@@ -80,11 +79,11 @@ The following list shows the steps that SignalR uses to decide which transport t
 2. If JSONP is configured (that is, the `jsonp` parameter is set to `true` when the connection is started), Long Polling is used.
 3. If a cross-domain connection is being made (that is, if the SignalR endpoint is not in the same domain as the hosting page), then WebSocket will be used if the following criteria are met:
 
-    - The client supports CORS (Cross-Origin Resource Sharing). For details on which clients support CORS, see [CORS at caniuse.com](http://www.caniuse.com/CORS).
-    - The client supports WebSocket
-    - The server supports WebSocket
+   - The client supports CORS (Cross-Origin Resource Sharing). For details on which clients support CORS, see [CORS at caniuse.com](http://www.caniuse.com/CORS).
+   - The client supports WebSocket
+   - The server supports WebSocket
 
-    If any of these criteria are not met, Long Polling will be used. For more information on cross-domain connections, see [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain).
+     If any of these criteria are not met, Long Polling will be used. For more information on cross-domain connections, see [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain).
 4. If JSONP is not configured and the connection is not cross-domain, WebSocket will be used if both the client and server support it.
 5. If either the client or server do not support WebSocket, Server Sent Events is used if it is available.
 6. If Server Sent Events is not available, Forever Frame is attempted.

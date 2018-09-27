@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/working-with-batched-data/wrapping-database-
 title: "Wrapping Database Modifications within a Transaction (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial is the first of four that looks at updating, deleting, and inserting batches of data. In this tutorial we learn how database transactions allow..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/26/2007
-ms.topic: article
 ms.assetid: b45fede3-c53a-4ea1-824b-20200808dbae
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/wrapping-database-modifications-within-a-transaction-cs
 msc.type: authoredcontent
 ---
@@ -254,5 +250,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Dave Gardner, Hilton Giesenow, and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](batch-updating-cs.md)
+> [!div class="step-by-step"]
+> [Next](batch-updating-cs.md)

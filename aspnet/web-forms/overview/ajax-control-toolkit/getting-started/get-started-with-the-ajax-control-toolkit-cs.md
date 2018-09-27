@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-th
 title: "Get Started with the AJAX Control Toolkit (C#) | Microsoft Docs"
 author: microsoft
 description: "Learn all you need to know to get started using the AJAX Control Toolkit."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/12/2009
-ms.topic: article
 ms.assetid: 16dc5c11-65be-4eae-a818-9fad7f8259c6
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-cs
 msc.type: authoredcontent
 ---
@@ -84,5 +80,5 @@ If you were using an older release of the Toolkit and now need to move to a late
 - Binaries - Delete the old version of the AjaxControlToolkit.dll assembly from your website Bin folder.
 - Toolbox Items - Delete the AJAX Control Toolkit tab and follow the steps above to re-create the tab with the new version of the AjaxControlToolkit.dll assembly.
 
->[!div class="step-by-step"]
-[Next](using-ajax-control-toolkit-controls-and-control-extenders-cs.md)
+> [!div class="step-by-step"]
+> [Next](using-ajax-control-toolkit-controls-and-control-extenders-cs.md)

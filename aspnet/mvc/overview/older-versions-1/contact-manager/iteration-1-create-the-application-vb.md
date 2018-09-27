@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-applic
 title: "Iteration #1 – Create the Application (VB) | Microsoft Docs"
 author: microsoft
 description: "In the first iteration, we create the Contact Manager in the simplest way possible. We add support for basic database operations: Create, Read, Update, and D..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/20/2009
-ms.topic: article
 ms.assetid: 5b033582-1646-42c2-b20d-7edc8814e970
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-vb
 msc.type: authoredcontent
 ---
@@ -34,7 +30,7 @@ We build the application over multiple iterations. With each iteration, we gradu
 
 - Iteration #3 - Add form validation. In the third iteration, we add basic form validation. We prevent people from submitting a form without completing required form fields. We also validate email addresses and phone numbers.
 
-- Iteration #4 - Make the application loosely coupled. In this third iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For example, we refactor our application to use the Repository pattern and the Dependency Injection pattern.
+- Iteration #4 - Make the application loosely coupled. In this fourth iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For example, we refactor our application to use the Repository pattern and the Dependency Injection pattern.
 
 - Iteration #5 - Create unit tests. In the fifth iteration, we make our application easier to maintain and modify by adding unit tests. We mock our data model classes and build unit tests for our controllers and validation logic.
 
@@ -485,6 +481,6 @@ Second, we have not implemented any form validation. For example, there is nothi
 
 Finally, and most importantly, the current iteration of the Contact Manager application cannot be easily modified or maintained. For example, the database access logic is baked right into the controller actions. This means that we cannot modify our data access code without modifying our controllers. In later iterations, we explore software design patterns that we can implement to make the Contact Manager more resilient to change.
 
->[!div class="step-by-step"]
-[Previous](iteration-7-add-ajax-functionality-cs.md)
-[Next](iteration-2-make-the-application-look-nice-vb.md)
+> [!div class="step-by-step"]
+> [Previous](iteration-7-add-ajax-functionality-cs.md)
+> [Next](iteration-2-make-the-application-look-nice-vb.md)

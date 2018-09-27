@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting
 title: "ASP.NET Web Deployment using Visual Studio: Troubleshooting | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/01/2015
-ms.topic: article
 ms.assetid: c0090595-ab3b-4b9b-9e16-7a1891e8cb2f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting
 msc.type: authoredcontent
 ---
@@ -287,8 +283,8 @@ Code First is attempting to create the database but the App\_Data folder does no
 
 You have been successfully using one-click publish to deploy your application and then you start getting this error:
 
-Web deployment task failed. (Could not complete the request to remote agent URL 'https://serverurl.com/msdeploy.axd?site=sitename'.)  
- Could not complete the request to remote agent URL 'https://url/msdeploy.axd?site=sitename'.  
+Web deployment task failed. (Could not complete the request to remote agent URL '<https://serverurl.com/msdeploy.axd?site=sitename>'.)  
+ Could not complete the request to remote agent URL '<https://url/msdeploy.axd?site=sitename>'.  
 The request was aborted: The request was canceled.  
 COM object that has been separated from its underlying RCW cannot be used.
 
@@ -372,5 +368,5 @@ The requested content appears to be script and will not be served by the static 
 
 ASP.NET 4.5 might not be installed on your computer. See the steps in the Deploying to IIS as a Test Environment tutorial in this series that explain how to install ASP.NET 4.5.
 
->[!div class="step-by-step"]
-[Previous](deploying-extra-files.md)
+> [!div class="step-by-step"]
+> [Previous](deploying-extra-files.md)

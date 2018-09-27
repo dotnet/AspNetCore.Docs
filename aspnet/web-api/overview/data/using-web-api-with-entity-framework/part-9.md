@@ -3,13 +3,9 @@ uid: web-api/overview/data/using-web-api-with-entity-framework/part-9
 title: "Add a New Item to the Database | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/16/2014
-ms.topic: article
 ms.assetid: 0967c29e-e124-4db0-a788-c45d0ff5aff2
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-9
 msc.type: authoredcontent
 ---
@@ -39,6 +35,6 @@ The submit handler on the form is bound to the `addBook` function:
 
 The `addBook` function reads the current values of the data-bound form inputs to create a JSON object. Then it POSTs the JSON object to `/api/books`.
 
->[!div class="step-by-step"]
-[Previous](part-8.md)
-[Next](part-10.md)
+> [!div class="step-by-step"]
+> [Previous](part-8.md)
+> [Next](part-10.md)

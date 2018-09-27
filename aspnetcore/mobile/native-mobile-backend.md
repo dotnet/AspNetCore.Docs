@@ -1,16 +1,12 @@
 ---
-title: Creating Backend Services for Native Mobile Applications
+title: Create backend services for native mobile apps with ASP.NET Core
 author: ardalis
-description: 
-manager: wpickett
+description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: mobile/native-mobile-backend
 ---
-# Creating Backend Services for Native Mobile Applications
+# Create backend services for native mobile apps with ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -20,7 +16,7 @@ Mobile apps can easily communicate with ASP.NET Core backend services.
 
 ## The Sample Native Mobile App
 
-This tutorial demonstrates how to create backend services using ASP.NET Core MVC to support native mobile apps. It uses the [Xamarin Forms ToDoRest app](https://developer.xamarin.com/guides/xamarin-forms/web-services/consuming/rest/) as its native client, which includes separate native clients for Android, iOS, Windows Universal, and Window Phone devices. You can follow the linked tutorial to create the native app (and install the necessary free Xamarin tools), as well as download the Xamarin sample solution. The Xamarin sample includes an ASP.NET Web API 2 services project, which this article's ASP.NET Core app replaces (with no changes required by the client).
+This tutorial demonstrates how to create backend services using ASP.NET Core MVC to support native mobile apps. It uses the [Xamarin Forms ToDoRest app](/xamarin/xamarin-forms/data-cloud/consuming/rest) as its native client, which includes separate native clients for Android, iOS, Windows Universal, and Window Phone devices. You can follow the linked tutorial to create the native app (and install the necessary free Xamarin tools), as well as download the Xamarin sample solution. The Xamarin sample includes an ASP.NET Web API 2 services project, which this article's ASP.NET Core app replaces (with no changes required by the client).
 
 ![To Do Rest application running on an Android smartphone](native-mobile-backend/_static/todo-android.png)
 
@@ -80,7 +76,7 @@ Configure the implementation in *Startup.cs*:
 At this point, you're ready to create the *ToDoItemsController*.
 
 > [!TIP]
-> Learn more about creating web APIs in [Building Your First Web API with ASP.NET Core MVC and Visual Studio](../tutorials/first-web-api.md).
+> Learn more about creating web APIs in [Build your first Web API with ASP.NET Core MVC and Visual Studio](../tutorials/first-web-api.md).
 
 ## Creating the Controller
 
@@ -149,3 +145,7 @@ Note that when testing the delete functionality, nothing is required in the Body
 As you develop the backend services for your app, you will want to come up with a consistent set of conventions or policies for handling cross-cutting concerns. For example, in the service shown above, requests for specific records that weren't found received a `NotFound` response, rather than a `BadRequest` response. Similarly, commands made to this service that passed in model bound types always checked `ModelState.IsValid` and returned a `BadRequest` for invalid model types.
 
 Once you've identified a common policy for your APIs, you can usually encapsulate it in a [filter](../mvc/controllers/filters.md). Learn more about [how to encapsulate common API policies in ASP.NET Core MVC applications](https://msdn.microsoft.com/magazine/mt767699.aspx).
+
+## Additional resources
+
+* [Authentication and Authorization](/xamarin/xamarin-forms/enterprise-application-patterns/authentication-and-authorization)

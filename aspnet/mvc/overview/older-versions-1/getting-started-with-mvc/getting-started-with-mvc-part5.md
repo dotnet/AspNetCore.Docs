@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with
 title: "Accessing your Model's Data from a Controller | Microsoft Docs"
 author: shanselman
 description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. Create a simple web application that reads and writes from a database."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/14/2010
-ms.topic: article
 ms.assetid: 004703cd-e0e9-4ba7-9974-1b0475c71222
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part5
 msc.type: authoredcontent
 ---
@@ -58,6 +54,6 @@ It's creating links that we won't need, so we'll delete them for this example. W
 
 We now have a simple listing of our movie data. However, if we click the "Create New" link, we'll get an error as it's not hooked up! Let's implement a Create Action method and enable a user to enter new movies in our database.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part4.md)
-[Next](getting-started-with-mvc-part6.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part4.md)
+> [Next](getting-started-with-mvc-part6.md)

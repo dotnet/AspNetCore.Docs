@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/working-with-binary-files/uploading-files-vb
 title: "Uploading Files (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to allow users to upload binary files (such as Word or PDF documents) to your Web site where they may be stored in either the server's file system..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/27/2007
-ms.topic: article
 ms.assetid: f7c00fbd-652c-433d-8ed3-0e5168a4d4df
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/uploading-files-vb
 msc.type: authoredcontent
 ---
@@ -288,6 +284,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Teresa Murphy and Bernadette Leigh. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](updating-and-deleting-existing-binary-data-cs.md)
-[Next](displaying-binary-data-in-the-data-web-controls-vb.md)
+> [!div class="step-by-step"]
+> [Previous](updating-and-deleting-existing-binary-data-cs.md)
+> [Next](displaying-binary-data-in-the-data-web-controls-vb.md)

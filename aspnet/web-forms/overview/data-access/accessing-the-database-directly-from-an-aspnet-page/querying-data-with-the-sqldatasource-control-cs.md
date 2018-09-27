@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspn
 title: "Querying Data with the SqlDataSource Control (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In the preceding tutorials we used the ObjectDataSource control to fully separate the presentation layer from the Data Access layer. Starting with this tutor..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/20/2007
-ms.topic: article
 ms.assetid: 60512d6a-b572-4b7a-beb3-3e44b4d2020c
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-cs
 msc.type: authoredcontent
 ---
@@ -257,5 +253,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Susan Connery, Bernadette Leigh, and David Suru. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](using-parameterized-queries-with-the-sqldatasource-cs.md)
+> [!div class="step-by-step"]
+> [Next](using-parameterized-queries-with-the-sqldatasource-cs.md)

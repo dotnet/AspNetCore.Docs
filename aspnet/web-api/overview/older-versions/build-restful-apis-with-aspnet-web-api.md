@@ -3,13 +3,9 @@ uid: web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api
 title: "Build RESTful APIs with ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "In recent years, it has become clear that HTTP is not just for serving up HTML pages. It is also a powerful platform for building Web APIs, using a handful o..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/18/2013
-ms.topic: article
 ms.assetid: 87daa99f-3810-407e-b969-dd28a192959d
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api
 msc.type: authoredcontent
 ---
@@ -20,7 +16,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > In recent years, it has become clear that HTTP is not just for serving up HTML pages. It is also a powerful platform for building Web APIs, using a handful of verbs (GET, POST, and so forth) plus a few simple concepts such as *URIs* and *headers*. ASP.NET Web API is a set of components that simplify HTTP programming. Because it is built on top of the ASP.NET MVC runtime, Web API automatically handles the low-level transport details of HTTP. At the same time, Web API naturally exposes the HTTP programming model. In fact, one goal of Web API is to *not* abstract away the reality of HTTP. As a result, Web API is both flexible and easy to extend. In this hands-on lab, you will use Web API to build a simple REST API for a contact manager application. You will also build a client to consume the API. The REST architectural style has proven to be an effective way to leverage HTTP - although it is certainly not the only valid approach to HTTP. The contact manager will expose the RESTful for listing, adding and removing contacts, among others. This lab requires a basic understanding of HTTP, REST, and assumes you have a basic working knowledge of HTML, JavaScript, and jQuery.
 > 
 > > [!NOTE]
-> > The ASP.NET Web site has an area dedicated to the ASP.NET Web API framework at [[https://asp.net/web-api](https://asp.net/web-api)](https://asp.net/web-api). This site will continue to provide late-breaking information, samples, and news related to Web API, so check it frequently if you'd like to delve deeper into the art of creating custom Web APIs available to virtually any device or development framework.
+> > The ASP.NET Web site has an area dedicated to the ASP.NET Web API framework at [https://asp.net/web-api](https://asp.net/web-api). This site will continue to provide late-breaking information, samples, and news related to Web API, so check it frequently if you'd like to delve deeper into the art of creating custom Web APIs available to virtually any device or development framework.
 > > 
 > > ASP.NET Web API, similar to ASP.NET MVC 4, has great flexibility in terms of separating the service layer from the controllers allowing you to use several of the available Dependency Injection frameworks fairly easy. There is a good sample in MSDN that shows how to use Ninject for dependency injection in an ASP.NET Web API project that you can download it from [here](https://code.msdn.microsoft.com/ASPNET-Web-API-JavaScript-d0d64dd7).
 > 
@@ -166,7 +162,6 @@ In this task, you will create the controller classes in which API methods will r
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Class*)
 
-
     [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample2.cs)]
 4. In the **ContactController** class, select the word **string** in method definition of the **Get** method, and type the word *Contact*. Once the word is typed in, an indicator will appear at the beginning of the word **Contact**. Either hold down the **Ctrl** key and press the period (.) key or click the icon using your mouse to open up the assistance dialog in the code editor, to automatically fill in the **using** directive for the Models namespace.
 
@@ -180,16 +175,16 @@ In this task, you will create the controller classes in which API methods will r
     [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample3.cs)]
 6. Press **F5** to debug the web application in the browser. To view the changes made to the response output of the API, perform the following steps.
 
-    1. Once the browser opens, press **F12** if the developer tools are not open yet.
-    2. Click the **Network** tab.
-    3. Press the **Start Capturing** button.
-    4. Add the URL suffix **/api/contact** to the URL in the address bar and press the **Enter** key.
-    5. Press the **Go to detailed view** button.
-    6. Select the **Response body** tab. You should see a JSON string representing the serialized form of an array of Contact instances.
+   1. Once the browser opens, press **F12** if the developer tools are not open yet.
+   2. Click the **Network** tab.
+   3. Press the **Start Capturing** button.
+   4. Add the URL suffix **/api/contact** to the URL in the address bar and press the **Enter** key.
+   5. Press the **Go to detailed view** button.
+   6. Select the **Response body** tab. You should see a JSON string representing the serialized form of an array of Contact instances.
 
-    ![JSON serialized output of a complex Web API method call](build-restful-apis-with-aspnet-web-api/_static/image13.png "JSON serialized output of a complex Web API method call")
+      ![JSON serialized output of a complex Web API method call](build-restful-apis-with-aspnet-web-api/_static/image13.png "JSON serialized output of a complex Web API method call")
 
-    *JSON serialized output of a complex Web API method call*
+      *JSON serialized output of a complex Web API method call*
 
 <a id="Ex1Task4"></a>
 
@@ -215,7 +210,6 @@ This task will demonstrate how to extract functionality into a Service layer to 
     *Creating a class file to contain the code for the Contact Repository service layer*
 4. Add a using directive to the **ContactRepository.cs** file to include the models namespace.
 
-
     [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample4.cs)]
 5. Add the following highlighted code to the **ContactRepository.cs** file to implement GetAllContacts method.
 
@@ -224,7 +218,6 @@ This task will demonstrate how to extract functionality into a Service layer to 
     [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample5.cs)]
 6. Open the **ContactController.cs** file if it is not already open.
 7. Add the following using statement to the namespace declaration section of the file.
-
 
     [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample6.cs)]
 8. Add the following highlighted code to the **ContactController.cs** class to add a private field to represent the instance of the repository, so that the rest of the class members can make use of the service implementation.
@@ -239,9 +232,9 @@ This task will demonstrate how to extract functionality into a Service layer to 
     [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample8.cs)]
 10. Put a breakpoint on the **ContactController**'s **Get** method definition.
 
-    ![Adding breakpoints to the contact controller](build-restful-apis-with-aspnet-web-api/_static/image17.png "Adding breakpoints to the contact controller")
+   ![Adding breakpoints to the contact controller](build-restful-apis-with-aspnet-web-api/_static/image17.png "Adding breakpoints to the contact controller")
 
-    *Adding breakpoints to the contact controller*
+   *Adding breakpoints to the contact controller*
 11. Press **F5** to run the application.
 12. When the browser opens, press **F12** to open the developer tools.
 13. Click the **Network** tab.
@@ -249,9 +242,9 @@ This task will demonstrate how to extract functionality into a Service layer to 
 15. Append the URL in the address bar with the suffix **/api/contact** and press **Enter** to load the API controller.
 16. Visual Studio 2012 should break once **Get** method begins execution.
 
-    ![Breaking within the Get method](build-restful-apis-with-aspnet-web-api/_static/image18.png "Breaking within the Get method")
+   ![Breaking within the Get method](build-restful-apis-with-aspnet-web-api/_static/image18.png "Breaking within the Get method")
 
-    *Breaking within the Get method*
+   *Breaking within the Get method*
 17. Press **F5** to continue.
 18. Go back to Internet Explorer if it is not already in focus. Note the network capture window.
 
@@ -282,12 +275,12 @@ In this task, you will prepare to enhance the Web API project created in Exercis
 1. Run **Visual Studio 2012 Express for Web**, to do this go to **Start** and type **VS Express for Web** then press **Enter**.
 2. Open the **Begin** solution located at **Source/Ex02-ReadWriteWebAPI/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
-    1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 3. Open the **Services/ContactRepository.cs** file.
 
 <a id="Ex2Task2"></a>
@@ -336,19 +329,17 @@ In this task, you will modify the default Index view of the web application to s
 1. Open **Visual Studio 2012 Express for Web** if it is not already open.
 2. Open the **Begin** solution located at **Source/Ex03-ConsumingWebAPI/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
-    1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
-    2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
-    3. Finally, build the solution by clicking **Build** | **Build Solution**.
+   1. If you opened the provided **Begin** solution, you will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+   2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
+   3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE]
-    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+      > [!NOTE]
+      > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 3. Open the **Index.cshtml** file located at **Views/Home** folder.
 4. Replace the HTML code within the div element with id **body** so that it looks like the following code.
 
-
     [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample13.html)]
 5. Add the following Javascript code at the bottom of the file to perform the HTTP request to the Web API.
-
 
     [!code-cshtml[Main](build-restful-apis-with-aspnet-web-api/samples/sample14.cshtml)]
 6. Open the **ContactController.cs** file if it is not already open.
@@ -385,11 +376,9 @@ In this task, you will continue to modify the Index view of the MVC application.
 
     (Code Snippet - *Web API Lab - Ex03 - Post Method*)
 
-
     [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample15.cs)]
 3. Open the **Index.cshtml** file in Visual Studio if it is not already open.
 4. Add the HTML code below to the file just after the unordered list you added in the previous task.
-
 
     [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample16.html)]
 5. Within the script element at the bottom of the document, add the following highlighted code to handle button-click events, which will post the data to the Web API using an HTTP POST call.
@@ -409,14 +398,14 @@ In this task, you will continue to modify the Index view of the MVC application.
     *The Contact object being sent to the Web API from the client*
 10. Step through the method in the debugger until the **response** variable has been created. Upon inspection in the **Locals** window in the debugger, you'll see that all the properties have been set.
 
-    ![The response following creation in the debugger](build-restful-apis-with-aspnet-web-api/_static/image26.png "The response following creation in the debugger")
+   ![The response following creation in the debugger](build-restful-apis-with-aspnet-web-api/_static/image26.png "The response following creation in the debugger")
 
-    *The response following creation in the debugger*
+   *The response following creation in the debugger*
 11. If you press **F5** or click **Continue** in the debugger the request will complete. Once you switch back to the browser, the new contact has been added to the list of contacts stored by the **ContactRepository** implementation.
 
-    ![The browser reflects successful creation of the new contact instance](build-restful-apis-with-aspnet-web-api/_static/image27.png "The browser reflects successful creation of the new contact instance")
+   ![The browser reflects successful creation of the new contact instance](build-restful-apis-with-aspnet-web-api/_static/image27.png "The browser reflects successful creation of the new contact instance")
 
-    *The browser reflects successful creation of the new contact instance*
+   *The browser reflects successful creation of the new contact instance*
 
 > [!NOTE]
 > Additionally, you can deploy this application to Azure following [Appendix C: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixC).
@@ -489,7 +478,7 @@ With code snippets, you have all the code you need at your fingertips. The lab d
 
 You can install **Microsoft Visual Studio Express 2012 for Web** or another &quot;Express&quot; version using the **[Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx)**. The following instructions guide you through the steps required to install *Visual studio Express 2012 for Web* using *Microsoft Web Platform Installer*.
 
-1. Go to [[https://go.microsoft.com/?linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;*Visual Studio Express 2012 for Web with Azure SDK*&quot;.
+1. Go to [[https://go.microsoft.com/?linkid=9810169](https://go.microsoft.com/?linkid=9810169)](https://go.microsoft.com/?linkid=9810169). Alternatively, if you already have installed Web Platform Installer, you can open it and search for the product &quot;<em>Visual Studio Express 2012 for Web with Azure SDK</em>&quot;.
 2. Click on **Install Now**. If you do not have **Web Platform Installer** you will be redirected to download and install it first.
 3. Once **Web Platform Installer** is open, click **Install** to start the setup.
 
@@ -633,14 +622,14 @@ If your application makes use of SQL Server databases you will need to create a 
     *Web deploy configuration*
 5. Configure the database connection as follows:
 
-    - In the **Server name** type your SQL Database server URL using the *tcp:* prefix.
-    - In **User name** type your server administrator login name.
-    - In **Password** type your server administrator login password.
-    - Type a new database name, for example: *MVC4SampleDB*.
+   - In the **Server name** type your SQL Database server URL using the *tcp:* prefix.
+   - In **User name** type your server administrator login name.
+   - In **Password** type your server administrator login password.
+   - Type a new database name, for example: *MVC4SampleDB*.
 
-    ![Configuring destination connection string](build-restful-apis-with-aspnet-web-api/_static/image55.png "Configuring destination connection string")
+     ![Configuring destination connection string](build-restful-apis-with-aspnet-web-api/_static/image55.png "Configuring destination connection string")
 
-    *Configuring destination connection string*
+     *Configuring destination connection string*
 6. Then click **OK**. When prompted to create the database click **Yes**.
 
     ![Creating the database](build-restful-apis-with-aspnet-web-api/_static/image56.png "Creating the database string")

@@ -3,13 +3,9 @@ uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/performing
 title: Performing a What If Deployment | Microsoft Docs
 author: jrjlee
 description: This topic describes how to perform 'what if' (or simulated) deployments using the Internet Information Services (IIS) Web Deployment Tool (Web Deploy) and V...
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/04/2012
-ms.topic: article
 ms.assetid: c711b453-01ac-4e65-a48c-93d99bf22e58
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/performing-a-what-if-deployment
 msc.type: authoredcontent
 ---
@@ -139,6 +135,6 @@ This topic described how to run "what if" deployments using Web Deploy, VSDBCMD,
 
 For more information on Web Deploy command-line syntax, see [Web Deploy Operation Settings](https://technet.microsoft.com/library/dd569089(WS.10).aspx). For guidance on command-line options when you use the *.deploy.cmd* file, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/library/ff356104.aspx). For guidance on VSDBCMD command-line syntax, see [Command-Line Reference for VSDBCMD.EXE (Deployment and Schema Import)](https://msdn.microsoft.com/library/dd193283.aspx).
 
->[!div class="step-by-step"]
-[Previous](advanced-enterprise-web-deployment.md)
-[Next](customizing-database-deployments-for-multiple-environments.md)
+> [!div class="step-by-step"]
+> [Previous](advanced-enterprise-web-deployment.md)
+> [Next](customizing-database-deployments-for-multiple-environments.md)

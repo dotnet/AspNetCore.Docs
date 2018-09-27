@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/working-with-binary-files/including-a-file-u
 title: "Including a File Upload Option When Adding a New Record (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to create a Web interface that allows the user to both enter text data and upload binary files. To illustrate the options available t..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/27/2007
-ms.topic: article
 ms.assetid: 362ade25-3965-4fb2-88d2-835c4786244f
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs
 msc.type: authoredcontent
 ---
@@ -281,6 +277,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Dave Gardner, Teresa Murphy, and Bernadette Leigh. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](displaying-binary-data-in-the-data-web-controls-cs.md)
-[Next](updating-and-deleting-existing-binary-data-cs.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-binary-data-in-the-data-web-controls-cs.md)
+> [Next](updating-and-deleting-existing-binary-data-cs.md)

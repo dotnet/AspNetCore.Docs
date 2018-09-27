@@ -1,22 +1,28 @@
 ---
-title: Working with SQL Server LocalDB
+title: Work with SQL Server LocalDB in an ASP.NET Core MVC app
 author: rick-anderson
-description: Using SQL Server LocalDB with a simple MVC app
-manager: wpickett
+description: Learn about using SQL Server LocalDB in a simple ASP.NET Core MVC app.
 ms.author: riande
 ms.date: 03/07/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/first-mvc-app/working-with-sql
 ---
-# Working with SQL Server LocalDB
+# Work with SQL Server LocalDB in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
-[!code-csharp[](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Startup.cs?name=ConfigureServices&highlight=13-99)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+
+::: moniker-end
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 
@@ -64,19 +70,31 @@ if (context.Movie.Any())
 <a name="si"></a>
 ### Add the seed initializer
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+Replace the contents of *Program.cs* with the following code:
+
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Program.cs)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Program.cs?highlight=6,14-32)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
 
 Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file.
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
 
 ---
+
+::: moniker-end
 
 Test the app
 
@@ -89,13 +107,13 @@ Test the app
 
     ![Contextual menu](working-with-sql/_static/stopIIS.png)
 
-   * If you were running VS in non-debug mode, press F5 to run in debug mode
-   * If you were running VS in debug mode, stop the debugger and press F5
-   
+    * If you were running VS in non-debug mode, press F5 to run in debug mode
+    * If you were running VS in debug mode, stop the debugger and press F5
+
 The app shows the seeded data.
 
 ![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55.png)
 
->[!div class="step-by-step"]
-[Previous](adding-model.md)
-[Next](controller-methods-views.md)  
+> [!div class="step-by-step"]
+> [Previous](adding-model.md)
+> [Next](controller-methods-views.md)  

@@ -3,13 +3,9 @@ uid: web-pages/overview/data/5-working-with-data
 title: "Introduction to Working with a Database in ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "This chapter describes how to access data from a database and display it using ASP.NET Web Pages."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/18/2014
-ms.topic: article
 ms.assetid: 673d502f-2c16-4a6f-bb63-dbfd9a77ef47
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/data/5-working-with-data
 msc.type: authoredcontent
 ---
@@ -356,7 +352,7 @@ This section shows how to let users delete a product from the *Product* database
 6. Click the **Delete** link for one of the products. The *DeleteProduct.cshtml* page is displayed to confirm that you want to delete that record.
 7. Click the **Delete** button. The product record is deleted and the page is refreshed with an updated product listing.
 
-> [!TIP] 
+> [!TIP]
 > 
 > <a id="SB_ConnectingToADatabase"></a>
 > ### Connecting to a Database

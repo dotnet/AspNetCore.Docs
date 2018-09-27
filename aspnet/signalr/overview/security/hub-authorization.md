@@ -3,13 +3,9 @@ uid: signalr/overview/security/hub-authorization
 title: "Authentication and Authorization for SignalR Hubs | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to restrict which users or roles can access hub methods. Software versions used in this topic Visual Studio 2013 .NET 4.5 SignalR ve..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/05/2015
-ms.topic: article
 ms.assetid: a610c796-c131-473c-baef-2e6c568cb2a2
-ms.technology: dotnet-signalr
-ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/security/hub-authorization
 msc.type: authoredcontent
 ---
@@ -121,7 +117,7 @@ When your .NET client interacts with a hub that uses ASP.NET Forms Authenticatio
 
 [!code-csharp[Main](hub-authorization/samples/sample7.cs)]
 
-The console app posts the credentials to **www.contoso.com/RemoteLogin** which could refer to an empty page that contains the following code-behind file.
+The console app posts the credentials to <strong>www.contoso.com/RemoteLogin</strong> which could refer to an empty page that contains the following code-behind file.
 
 [!code-csharp[Main](hub-authorization/samples/sample8.cs)]
 

@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/masterdetail/master-detail-filtering-across-
 title: "Master/Detail Filtering Across Two Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll implement this pattern by using a GridView to list the suppliers in the database. Each supplier row in the GridView will contain a Vie..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/31/2010
-ms.topic: article
 ms.assetid: 361d6a44-3f1f-4daf-85df-d4c2b8bf065d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/masterdetail/master-detail-filtering-across-two-pages-vb
 msc.type: authoredcontent
 ---
@@ -221,6 +217,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Hilton Giesenow. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](master-detail-filtering-with-two-dropdownlists-vb.md)
-[Next](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb.md)
+> [!div class="step-by-step"]
+> [Previous](master-detail-filtering-with-two-dropdownlists-vb.md)
+> [Next](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb.md)

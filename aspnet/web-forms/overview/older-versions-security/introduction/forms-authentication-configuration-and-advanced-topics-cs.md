@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/introduction/forms-authenticatio
 title: "Forms Authentication Configuration and Advanced Topics (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will examine the various forms authentication settings and see how to modify them through the forms element. This will entail a detailed..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/14/2008
-ms.topic: article
 ms.assetid: b9c29865-a34e-48bb-92c0-c443a72cb860
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs
 msc.type: authoredcontent
 ---
@@ -36,19 +32,20 @@ The forms authentication system in ASP.NET offers a number of configuration sett
 
 Table 1 summarizes the properties that can be customized through the &lt;forms&gt; element. Since Web.config is an XML file, the attribute names in the left column are case-sensitive.
 
-| **Attribute** | **Description** |
-| --- | --- |
-| cookieless | This attribute specifies under what conditions the authentication ticket is stored in a cookie versus being embedded in the URL. Allowable values are: UseCookies; UseUri; AutoDetect; and UseDeviceProfile (the default). Step 2 examines this setting in more detail. |
-| defaultUrl | Indicates the URL that users are redirected to after signing in from the login page if there is no RedirectUrl value specified in the querystring. The default value is default.aspx. |
-| domain | When using cookie-based authentication tickets, this setting specifies the cookie's domain value. The default value is an empty string, which causes the browser to use the domain from which it was issued (such as www.yourdomain.com). In this case, the cookie will **not** be sent when making requests to subdomains, such as admin.yourdomain.com. If you want the cookie to be passed to all subdomains you need to customize the domain attribute setting it to yourdomain.com. |
-| enableCrossAppRedirects | A Boolean value indicating whether authenticated users are remembered when redirected to URLs in other web applications on the same server. The default is false. |
-| loginUrl | The URL of the login page. The default value is login.aspx. |
-| name | When using cookie-based authentication tickets, the name of the cookie. The default is .ASPXAUTH. |
-| path | When using cookie-based authentication tickets, this setting specifies the cookie's path attribute. The path attribute enables a developer to limit the scope of a cookie to a particular directory hierarchy. The default value is /, which informs the browser to send the authentication ticket cookie to any request made to the domain. |
-| protection | Indicates what techniques are used to protect the forms authentication ticket. The allowable values are: All (the default); Encryption; None; and Validation. These settings are discussed in detail in Step 3. |
-| requireSSL | A Boolean value that indicates whether an SSL connection is required to transmit the authentication cookie. The default value is false. |
-| slidingExpiration | A Boolean value that indicates whether the authentication cookie's timeout is reset each time the user visits the site during a single session. The default value is true. The authentication ticket timeout policy is discussed in more detail in the Specifying the Ticket's Timeout Value section. |
-| timeout | Specifies the time, in minutes, after which the authentication ticket cookie expires. The default value is 30. The authentication ticket timeout policy is discussed in more detail in the Specifying the Ticket's Timeout Value section. |
+
+| <strong>Attribute</strong> |                                                                                                                                                                                                                                     <strong>Description</strong>                                                                                                                                                                                                                                      |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|         cookieless         |                                                                                                                This attribute specifies under what conditions the authentication ticket is stored in a cookie versus being embedded in the URL. Allowable values are: UseCookies; UseUri; AutoDetect; and UseDeviceProfile (the default). Step 2 examines this setting in more detail.                                                                                                                |
+|         defaultUrl         |                                                                                                                                                         Indicates the URL that users are redirected to after signing in from the login page if there is no RedirectUrl value specified in the querystring. The default value is default.aspx.                                                                                                                                                         |
+|           domain           | When using cookie-based authentication tickets, this setting specifies the cookie's domain value. The default value is an empty string, which causes the browser to use the domain from which it was issued (such as www.yourdomain.com). In this case, the cookie will <strong>not</strong> be sent when making requests to subdomains, such as admin.yourdomain.com. If you want the cookie to be passed to all subdomains you need to customize the domain attribute setting it to yourdomain.com. |
+|  enableCrossAppRedirects   |                                                                                                                                                                   A Boolean value indicating whether authenticated users are remembered when redirected to URLs in other web applications on the same server. The default is false.                                                                                                                                                                   |
+|          loginUrl          |                                                                                                                                                                                                                      The URL of the login page. The default value is login.aspx.                                                                                                                                                                                                                      |
+|            name            |                                                                                                                                                                                                   When using cookie-based authentication tickets, the name of the cookie. The default is .ASPXAUTH.                                                                                                                                                                                                   |
+|            path            |                                                                             When using cookie-based authentication tickets, this setting specifies the cookie's path attribute. The path attribute enables a developer to limit the scope of a cookie to a particular directory hierarchy. The default value is /, which informs the browser to send the authentication ticket cookie to any request made to the domain.                                                                              |
+|         protection         |                                                                                                                                            Indicates what techniques are used to protect the forms authentication ticket. The allowable values are: All (the default); Encryption; None; and Validation. These settings are discussed in detail in Step 3.                                                                                                                                            |
+|         requireSSL         |                                                                                                                                                                                A Boolean value that indicates whether an SSL connection is required to transmit the authentication cookie. The default value is false.                                                                                                                                                                                |
+|     slidingExpiration      |                                                                                                 A Boolean value that indicates whether the authentication cookie's timeout is reset each time the user visits the site during a single session. The default value is true. The authentication ticket timeout policy is discussed in more detail in the Specifying the Ticket's Timeout Value section.                                                                                                 |
+|          timeout           |                                                                                                                               Specifies the time, in minutes, after which the authentication ticket cookie expires. The default value is 30. The authentication ticket timeout policy is discussed in more detail in the Specifying the Ticket's Timeout Value section.                                                                                                                               |
 
 **Table 1**: A Summary of the &lt;forms&gt; Element's Attributes
 
@@ -161,7 +158,7 @@ Save the changes to Default.aspx and then visit it through a browser. Log on to 
 
 `http://localhost:2448/ASPNET\_Security\_Tutorial\_03\_CS/(F(jaIOIDTJxIr12xYS-VVgkqKCVAuIoW30Bu0diWi6flQC-FyMaLXJfow\_Vd9GZkB2Cv-rfezq0gKadKX0YPZCkA2))/SomePage.aspx`
 
-The URL SomePage.aspx in the link was automatically converted into a URL that included the authentication ticket - we didn't have to write a lick of code! The form authentication ticket will automatically be embedded in the URL for any hyperlinks that do not start with http:// or /. It doesn't matter if the hyperlink appears in a call to Response.Redirect, in a HyperLink control, or in an anchor HTML element (i.e., &lt;a href="..."&gt;...&lt;/a&gt;). As long as the URL isn't something like http://www.someserver.com/SomePage.aspx or /SomePage.aspx, the forms authentication ticket will be embedded for us.
+The URL SomePage.aspx in the link was automatically converted into a URL that included the authentication ticket - we didn't have to write a lick of code! The form authentication ticket will automatically be embedded in the URL for any hyperlinks that do not start with `http://` or `/`. It doesn't matter if the hyperlink appears in a call to Response.Redirect, in a HyperLink control, or in an anchor HTML element (i.e., `<a href="...">...</a>`). As long as the URL isn't something like `http://www.someserver.com/SomePage.aspx` or `/SomePage.aspx`, the forms authentication ticket will be embedded for us.
 
 > [!NOTE]
 > Cookieless forms authentication tickets adhere to the same timeout policies as cookie-based authentication tickets. However, cookieless authentication tickets are more prone to replay attacks since the authentication ticket is embedded directly in the URL. Imagine a user who visits a website, logs in, and then pastes the URL in an email to a colleague. If the colleague clicks on that link before the expiry is reached, they will be logged in as the user who sent the email!
@@ -433,6 +430,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Alicja Maziarz. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4guysfromrolla.com).
 
->[!div class="step-by-step"]
-[Previous](an-overview-of-forms-authentication-cs.md)
-[Next](security-basics-and-asp-net-support-vb.md)
+> [!div class="step-by-step"]
+> [Previous](an-overview-of-forms-authentication-cs.md)
+> [Next](security-basics-and-asp-net-support-vb.md)

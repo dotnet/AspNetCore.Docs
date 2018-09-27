@@ -2,13 +2,9 @@
 title: Host ASP.NET Core in Docker containers
 author: rick-anderson
 description: Discover links to resources for learning how to host ASP.NET Core apps in Docker containers.
-manager: wpickett
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/08/2018
-ms.prod: aspnet-core
-ms.technology: aspnet
-ms.topic: article
 uid: host-and-deploy/docker/index
 ---
 # Host ASP.NET Core in Docker containers
@@ -27,7 +23,7 @@ Learn terms and definitions for Docker technology.
 [Docker containers, images, and registries](/dotnet/standard/microservices-architecture/container-docker-introduction/docker-containers-images-registries)  
 Find out how Docker container images are stored in an image registry for consistent deployment across environments.
 
-[Building Docker Images for .NET Core Applications](/dotnet/articles/core/docker/building-net-docker-images)  
+[Build Docker Images for .NET Core Applications](/dotnet/articles/core/docker/building-net-docker-images)  
 Learn how to build and dockerize an ASP.NET Core app. Explore Docker images maintained by Microsoft and examine use cases.
 
 [Visual Studio Tools for Docker](xref:host-and-deploy/docker/visual-studio-tools-for-docker)  
@@ -35,3 +31,6 @@ Discover how Visual Studio 2017 supports building, debugging, and running ASP.NE
 
 [Publish to a Docker Image](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)  
 Find out how to use the Visual Studio Tools for Docker extension to deploy an ASP.NET Core app to a Docker host on Azure using PowerShell.
+
+[Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)  
+Additional configuration might be required for apps hosted behind proxy servers and load balancers. Passing requests through a proxy often obscures information about the original request, such as the scheme and client IP. It might be necessary to forwarded some information about the request manually to the app.

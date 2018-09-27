@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-security/introduction/security-basics-and
 title: "Security Basics and ASP.NET Support (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This is the first tutorial in a series of tutorials that will explore techniques for authenticating visitors through a web form, authorizing access to partic..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 01/13/2008
-ms.topic: article
 ms.assetid: 07e15538-2f29-40c6-b2e7-e6115075ac83
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/security-basics-and-asp-net-support-cs
 msc.type: authoredcontent
 ---
@@ -189,5 +185,5 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial include Alicja Maziarz, John Suru, and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](an-overview-of-forms-authentication-cs.md)
+> [!div class="step-by-step"]
+> [Next](an-overview-of-forms-authentication-cs.md)

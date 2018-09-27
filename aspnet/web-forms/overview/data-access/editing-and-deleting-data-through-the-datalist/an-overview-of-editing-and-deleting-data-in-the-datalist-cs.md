@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datali
 title: "An Overview of Editing and Deleting Data in the DataList (C#) | Microsoft Docs"
 author: rick-anderson
 description: "While the DataList lacks built-in editing and deleting capabilities, in this tutorial we'll see how to create a DataList that supports editing and deleting o..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 10/30/2006
-ms.topic: article
 ms.assetid: c3b0c86e-fe98-41ee-b26f-ca38cddaa75e
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-cs
 msc.type: authoredcontent
 ---
@@ -340,5 +336,5 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Zack Jones, Ken Pespisa, and Randy Schmidt. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Next](performing-batch-updates-cs.md)
+> [!div class="step-by-step"]
+> [Next](performing-batch-updates-cs.md)

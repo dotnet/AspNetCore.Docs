@@ -3,13 +3,9 @@ uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding
 title: "Understanding ASP.NET AJAX Localization | Microsoft Docs"
 author: scottcate
 description: "Localization is the process of designing and integrating support for a specific language and culture into an application or an application component. The Mic..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 03/14/2008
-ms.topic: article
 ms.assetid: c1a35f18-bab9-41f7-8497-15530c37a09d
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-localization
 msc.type: authoredcontent
 ---
@@ -148,6 +144,6 @@ The .NET Framework intrinsically supports a rich localization framework, utilizi
 
 Scott Cate has been working with Microsoft Web technologies since 1997 and is the President of myKB.com ([www.myKB.com](http://www.myKB.com)) where he specializes in writing ASP.NET based applications focused on Knowledge Base Software solutions. Scott can be contacted via email at [scott.cate@myKB.com](mailto:scott.cate@myKB.com) or his blog at [ScottCate.com](http://ScottCate.com)
 
->[!div class="step-by-step"]
-[Previous](understanding-asp-net-ajax-authentication-and-profile-application-services.md)
-[Next](understanding-asp-net-ajax-web-services.md)
+> [!div class="step-by-step"]
+> [Previous](understanding-asp-net-ajax-authentication-and-profile-application-services.md)
+> [Next](understanding-asp-net-ajax-web-services.md)

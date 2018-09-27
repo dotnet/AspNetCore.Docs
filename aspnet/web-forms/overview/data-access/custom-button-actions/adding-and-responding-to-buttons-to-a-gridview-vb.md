@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/custom-button-actions/adding-and-responding-
 title: "Adding and Responding to Buttons to a GridView (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at how to add custom buttons, both to a template and to the fields of a GridView or DetailsView control. In particular, we'll bui..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/13/2006
-ms.topic: article
 ms.assetid: 06c6bbd2-4bdc-435b-87a3-df2c868f4baa
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb
 msc.type: authoredcontent
 ---
@@ -309,5 +305,5 @@ Happy Programming!
 
 [Scott Mitchell](http://www.4guysfromrolla.com/ScottMitchell.shtml), author of seven ASP/ASP.NET books and founder of [4GuysFromRolla.com](http://www.4guysfromrolla.com), has been working with Microsoft Web technologies since 1998. Scott works as an independent consultant, trainer, and writer. His latest book is [*Sams Teach Yourself ASP.NET 2.0 in 24 Hours*](https://www.amazon.com/exec/obidos/ASIN/0672327384/4guysfromrollaco). He can be reached at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com) or via his blog, which can be found at [http://ScottOnWriting.NET](http://ScottOnWriting.NET).
 
->[!div class="step-by-step"]
-[Previous](adding-and-responding-to-buttons-to-a-gridview-cs.md)
+> [!div class="step-by-step"]
+> [Previous](adding-and-responding-to-buttons-to-a-gridview-cs.md)

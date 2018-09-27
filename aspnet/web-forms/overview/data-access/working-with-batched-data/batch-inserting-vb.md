@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/working-with-batched-data/batch-inserting-vb
 title: "Batch Inserting (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to insert multiple database records in a single operation. In the User Interface Layer we extend the GridView to allow the user to enter multiple n..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 06/26/2007
-ms.topic: article
 ms.assetid: 48e2a4ae-77ca-4208-a204-c38c690ffb59
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-inserting-vb
 msc.type: authoredcontent
 ---
@@ -270,5 +266,5 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Hilton Giesenow and S ren Jacob Lauritsen. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](batch-deleting-vb.md)
+> [!div class="step-by-step"]
+> [Previous](batch-deleting-vb.md)

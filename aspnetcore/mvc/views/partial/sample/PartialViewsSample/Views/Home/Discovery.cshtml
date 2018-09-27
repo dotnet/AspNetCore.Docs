@@ -1,0 +1,116 @@
+﻿@using PartialViewsSample.ViewModels
+@{
+    ViewData["Title"] = "Partial view discovery (MVC)";
+    ViewData["index"] = 0;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-hover">
+    <caption>Partial view discovery examples</caption>
+    <thead>
+        <tr>
+            <th>Syntax</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""_AuthorPartial"" />"))
+                </code>
+                <br>
+                <span class="badge">2.1+</span>
+            </td>
+            <td>
+                <!-- <snippet_PartialTagHelper> -->
+                <partial name="_AuthorPartial" />
+                <!-- </snippet_PartialTagHelper> -->
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""_AuthorPartial.cshtml"" />"))
+                </code>
+                <br>
+                <span class="badge">2.1+</span>
+            </td>
+            <td>
+                <partial name="_AuthorPartial.cshtml" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""~/Views/Home/_AuthorPartial.cshtml"" />"))
+                </code>
+                <br>
+                <span class="badge">2.1+</span>
+            </td>
+            <td>
+                <partial name="~/Views/Home/_AuthorPartial.cshtml" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""/Views/Home/_AuthorPartial.cshtml"" />"))
+                </code>
+                <br>
+                <span class="badge">2.1+</span>
+            </td>
+            <td>
+                <partial name="/Views/Home/_AuthorPartial.cshtml" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<partial name=""../Articles/_ArticleSection.cshtml"" model='new ArticleSection { Title=""Section 1"", Content=""Coming soon"" }' view-data=""ViewData"" />"))
+                </code>
+                <br>
+                <span class="badge">2.1+</span>
+            </td>
+            <td>
+                <partial name="../Articles/_ArticleSection.cshtml"
+                         model='new ArticleSection { Title="Section 1", Content="Coming soon" }'
+                         view-data="ViewData" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    &#64;await Html.PartialAsync("_AuthorPartial")
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_PartialAsync> -->
+                @await Html.PartialAsync("_AuthorPartial")
+                <!-- </snippet_PartialAsync> -->
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    &#64;{ await Html.RenderPartialAsync("_AuthorPartial"); }
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_RenderPartialAsync> -->
+                @{
+                    await Html.RenderPartialAsync("_AuthorPartial");
+                }
+                <!-- </snippet_RenderPartialAsync> -->
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">
+                <span class="badge">2.1+</span> Supported in ASP.NET Core 2.1 or later
+            </td>
+        </tr>
+    </tfoot>
+</table>

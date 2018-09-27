@@ -1,16 +1,12 @@
 ---
-title: Context headers
+title: Context headers in ASP.NET Core
 author: rick-anderson
-description: This document outlines the implementation details of ASP.NET Core data protection context headers.
-manager: wpickett
+description: Learn implementation details of ASP.NET Core Data Protection context headers.
 ms.author: riande
 ms.date: 10/14/2016
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: article
 uid: security/data-protection/implementation/context-headers
 ---
-# Context headers
+# Context headers in ASP.NET Core
 
 <a name="data-protection-implementation-context-headers"></a>
 
@@ -22,7 +18,7 @@ Most systems which support cryptographic agility do so by including some identif
 
 Stepping back, we decided that we were approaching the problem from the wrong direction. An OID tells you what the algorithm is, but we don't actually care about this. If we need to use a single entropic value securely in two different algorithms, it's not necessary for us to know what the algorithms actually are. What we actually care about is how they behave. Any decent symmetric block cipher algorithm is also a strong pseudorandom permutation (PRP): fix the inputs (key, chaining mode, IV, plaintext) and the ciphertext output will with overwhelming probability be distinct from any other symmetric block cipher algorithm given the same inputs. Similarly, any decent keyed hash function is also a strong pseudorandom function (PRF), and given a fixed input set its output will overwhelmingly be distinct from any other keyed hash function.
 
-We use this concept of strong PRPs and PRFs to build up a context header. This context header essentially acts as a stable thumbprint over the algorithms in use for any given operation, and it provides the cryptographic agility needed by the data protection system. This header is reproducible and is used later as part of the [subkey derivation process](subkeyderivation.md#data-protection-implementation-subkey-derivation). There are two different ways to build the context header depending on the modes of operation of the underlying algorithms.
+We use this concept of strong PRPs and PRFs to build up a context header. This context header essentially acts as a stable thumbprint over the algorithms in use for any given operation, and it provides the cryptographic agility needed by the data protection system. This header is reproducible and is used later as part of the [subkey derivation process](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation). There are two different ways to build the context header depending on the modes of operation of the underlying algorithms.
 
 ## CBC-mode encryption + HMAC authentication
 

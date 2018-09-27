@@ -3,13 +3,9 @@ uid: web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-ap
 title: "Hands On Lab: Build a Single Page Application (SPA) with ASP.NET Web API and Angular.js | Microsoft Docs"
 author: rick-anderson
 description: "In traditional web applications, the client (browser) initiates the communication with the server by requesting a page. The server then processes the request..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/30/2015
-ms.topic: article
 ms.assetid: 719727b7-bef3-45ad-bfe9-ba5bcdb2305f
-ms.technology: dotnet-webapi
-ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs
 msc.type: authoredcontent
 ---

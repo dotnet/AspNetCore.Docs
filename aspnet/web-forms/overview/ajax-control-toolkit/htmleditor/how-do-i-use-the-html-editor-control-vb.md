@@ -3,13 +3,9 @@ uid: web-forms/overview/ajax-control-toolkit/htmleditor/how-do-i-use-the-html-ed
 title: "How do I use the HTML Editor Control? (VB) | Microsoft Docs"
 author: microsoft
 description: "HTMLEditor is an ASP.NET AJAX Control that allows you to easily create and edit HTML content via buttons in a toolbar."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 05/12/2009
-ms.topic: article
 ms.assetid: 32ec9321-7c8c-4b0f-8234-99acb56df6b5
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/htmleditor/how-do-i-use-the-html-editor-control-vb
 msc.type: authoredcontent
 ---
@@ -106,5 +102,5 @@ Imagine, for example, that you are creating a blog application. In this situatio
 
 In this tutorial, you were provided with a brief overview of the HTML Editor control included in the AJAX Control Toolkit. You learned how to use the HTML Editor to accept rich content from a user and submit the content to the server. We also discussed how you can customize the toolbar buttons that are displayed by the HTML Editor. Finally, you learned how to avoid Cross-Site Scripting Attacks when using the HTML Editor to accept potentially malicious input.
 
->[!div class="step-by-step"]
-[Previous](how-do-i-use-the-html-editor-control-cs.md)
+> [!div class="step-by-step"]
+> [Previous](how-do-i-use-the-html-editor-control-cs.md)

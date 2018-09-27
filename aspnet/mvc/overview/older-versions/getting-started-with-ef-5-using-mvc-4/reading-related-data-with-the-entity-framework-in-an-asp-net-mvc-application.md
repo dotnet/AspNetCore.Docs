@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/reading-r
 title: "Reading Related Data with the Entity Framework in an ASP.NET MVC Application (5 of 10) | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 4 applications using the Entity Framework 5 Code First and Visual Studio..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 07/30/2013
-ms.topic: article
 ms.assetid: 0d6fb83b-71f7-425d-8dec-981197d7ec42
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
@@ -144,7 +140,7 @@ Replace the `Index` method with the following code to load additional related da
 
 The method accepts optional route data (`id`) and a query string parameter (`courseID`) that provide the ID values of the selected instructor and selected course, and passes all of the required data to the view. The parameters are provided by the **Select** hyperlinks on the page.
 
-> [!TIP] 
+> [!TIP]
 > 
 > **Route data**
 > 
@@ -277,6 +273,6 @@ You've now used all three ways (lazy, eager, and explicit) to load related data 
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
-[Next](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [!div class="step-by-step"]
+> [Previous](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
+> [Next](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)

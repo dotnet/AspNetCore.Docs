@@ -3,13 +3,9 @@ uid: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeat
 title: "Formatting the DataList and Repeater Based Upon Data (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll step through examples of how we format the appearance of the DataList and Repeater controls, either by using formatting functions with..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 09/13/2006
-ms.topic: article
 ms.assetid: e2f401ae-37bb-4b19-aa97-d6b385d40f88
-ms.technology: dotnet-webforms
-ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-vb
 msc.type: authoredcontent
 ---
@@ -45,7 +41,7 @@ The following steps outline the data binding process for the DataList control.
 1. The DataList s [`DataBinding` event](https://msdn.microsoft.com/library/system.web.ui.control.databinding.aspx) fires
 2. The data is bound to the DataList  
   
- For each record in the data source 
+   For each record in the data source 
 
     1. Create a `DataListItem` object
     2. Fire the [`ItemCreated` event](https://msdn.microsoft.com/library/system.web.ui.webcontrols.datalist.itemcreated.aspx)
@@ -201,6 +197,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were Yaakov Ellis, Randy Schmidt, and Liz Shulok. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"]
-[Previous](displaying-data-with-the-datalist-and-repeater-controls-vb.md)
-[Next](showing-multiple-records-per-row-with-the-datalist-control-vb.md)
+> [!div class="step-by-step"]
+> [Previous](displaying-data-with-the-datalist-and-repeater-controls-vb.md)
+> [Next](showing-multiple-records-per-row-with-the-datalist-control-vb.md)

@@ -3,13 +3,9 @@ uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing
 title: "Implementing Inheritance with the Entity Framework 6 in an ASP.NET MVC 5 Application (11 of 12) | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 11/07/2014
-ms.topic: article
 ms.assetid: 08834147-77ec-454a-bb7a-d931d2a40dab
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
@@ -147,7 +143,7 @@ This section requires you to have completed the optional **Deploying the app to 
   
     ![publish](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)  
   
- The Web app will open in your default browser.
+   The Web app will open in your default browser.
 3. Test the application to verify it's working.
 
     The first time you run a page that accesses the database, the Entity Framework runs all of the migrations `Up` methods required to bring the database up to date with the current data model.
@@ -158,6 +154,6 @@ You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, 
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"]
-[Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)
+> [!div class="step-by-step"]
+> [Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)

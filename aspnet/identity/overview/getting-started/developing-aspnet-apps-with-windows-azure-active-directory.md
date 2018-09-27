@@ -3,13 +3,9 @@ uid: identity/overview/getting-started/developing-aspnet-apps-with-windows-azure
 title: "Developing ASP.NET Apps with Azure Active Directory | Microsoft Docs"
 author: Rick-Anderson
 description: "Microsoft ASP.NET tools for Azure Active Directory makes it simple to enable authentication for web applications hosted on Azure. You can use Azure Authenti..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/14/2014
-ms.topic: article
 ms.assetid: 457d7eaf-ee76-4ceb-9082-c7c1721435ad
-ms.technology: 
-ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/developing-aspnet-apps-with-windows-azure-active-directory
 msc.type: authoredcontent
 ---
@@ -17,10 +13,7 @@ Developing ASP.NET Apps with Azure Active Directory
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> Microsoft ASP.NET tools for Azure Active Directory makes it simple to enable authentication for web applications hosted on [Azure](https://www.windowsazure.com/home/features/web-sites/). You can use Azure Authentication to authenticate Office 365 users from your organization, corporate accounts synced from your on-premise Active Directory or users created in your own custom Azure Active Directory domain. Enabling Windows Azure Authentication configures your application to authenticate users using a single [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/) tenant.
-> 
->  This tutorial was written by Rick Anderson [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT)
-
+Microsoft ASP.NET tools for Azure Active Directory simplifies enabling authentication for web apps hosted on [Azure](https://www.windowsazure.com/home/features/web-sites/). You can use Azure Authentication to authenticate Office 365 users from your organization, corporate accounts synced from your on-premise Active Directory or users created in your own custom Azure Active Directory domain. Enabling Windows Azure Authentication configures your application to authenticate users using a single [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/) tenant.
 
 This tutorial will show you how to create an ASP.NET application that is configured for sign-on with [Azure Active Directory](https://msdn.microsoft.com/library/azure/mt168838.aspx) (Azure AD). You will also learn how to call the Graph API to get information about the currently signed-in user and how to deploy the application to Azure.
 
@@ -47,7 +40,7 @@ This tutorial will show you how to create an ASP.NET application that is configu
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image4.png)  
   
- Save the password, you will be required to change the password after the first log in. The following image shows the new admin account. You must use the Azure Active Directory to log into your app, not the Microsoft account also shown on this page.  
+   Save the password, you will be required to change the password after the first log in. The following image shows the new admin account. You must use the Azure Active Directory to log into your app, not the Microsoft account also shown on this page.  
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image5.png)
 
@@ -60,11 +53,11 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image6.png)
 3. On the **Change Authentication** dialog, select **Organizational Accounts**. These options can be used to automatically register your application with Azure AD as well as automatically configure your application to integrate with Azure AD. You don't have to use the **Change Authentication** dialog to register and configure your application, but it makes it much easier. If you are using Visual Studio 2012 for example, you can still manually register the application in the Azure Management Portal and update its configuration to integrate with Azure AD.  
- In the drop-down menus, select **Cloud - Single Organization** and **Single Sign On, Read directory data**. Enter the domain for your Azure AD directory, for example (in the images below) *aricka0yahoo.onmicrosoft.com*, and then click **OK**. You can get the domain name from the Domains tab for the Default Directory on the azure portal (see the next image down).   
+   In the drop-down menus, select **Cloud - Single Organization** and **Single Sign On, Read directory data**. Enter the domain for your Azure AD directory, for example (in the images below) *aricka0yahoo.onmicrosoft.com*, and then click **OK**. You can get the domain name from the Domains tab for the Default Directory on the azure portal (see the next image down).   
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image7.png)  
   
- The following image shows the domain name from the Azure portal.  
+   The following image shows the domain name from the Azure portal.  
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image8.png)  
 
@@ -89,11 +82,11 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image13.png)  
   
- If you get the error:  
- Value cannot be null or empty. Parameter name: linkText   
+   If you get the error:  
+   Value cannot be null or empty. Parameter name: linkText   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image14.png)  
   
- see the [debug](#dbg) section at the end of the tutorial.
+   see the [debug](#dbg) section at the end of the tutorial.
 
 ## Basics of the Graph API
 

@@ -3,13 +3,9 @@ uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with
 title: "Adding a Create Method and Create View | Microsoft Docs"
 author: shanselman
 description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. Create a simple web application that reads and writes from a database."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 08/14/2010
-ms.topic: article
 ms.assetid: a3a90963-0286-4fa0-9b3d-c230cc18b0a3
-ms.technology: dotnet-mvc
-ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part6
 msc.type: authoredcontent
 ---
@@ -60,6 +56,6 @@ This Movie object was then passed to the [HttpPost] version of our Create action
 
 We aren't checking if our movies are correct, though, and the database won't allow us to save a movie with no Title. It'd be nice if we could tell the user that before the database threw an error. We'll do this next by adding validation support to our application.
 
->[!div class="step-by-step"]
-[Previous](getting-started-with-mvc-part5.md)
-[Next](getting-started-with-mvc-part7.md)
+> [!div class="step-by-step"]
+> [Previous](getting-started-with-mvc-part5.md)
+> [Next](getting-started-with-mvc-part7.md)

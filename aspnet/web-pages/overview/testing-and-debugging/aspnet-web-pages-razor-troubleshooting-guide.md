@@ -3,13 +3,9 @@ uid: web-pages/overview/testing-and-debugging/aspnet-web-pages-razor-troubleshoo
 title: "ASP.NET Web Pages (Razor) Troubleshooting Guide | Microsoft Docs"
 author: tfitzmac
 description: "This article describes issues that you might have when working with ASP.NET Web Pages (Razor) and some suggested solutions. Software versions ASP.NET Web Pag..."
-ms.author: aspnetcontent
-manager: wpickett
+ms.author: riande
 ms.date: 02/10/2014
-ms.topic: article
 ms.assetid: 2a2c1833-0bfe-4e2e-9cc0-341b52c7b121
-ms.technology: dotnet-webpages
-ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/testing-and-debugging/aspnet-web-pages-razor-troubleshooting-guide
 msc.type: authoredcontent
 ---
@@ -139,7 +135,7 @@ Substitute the appropriate values for `your-SMTP-server-name`, and so on. Some o
     *A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond*
 
     This error usually means that the application could not connect to the SMTP server. Check the server name and port number.
-- *Mailbox unavailable. The server response was: 5.1.0 &lt;someuser@invaliddomain&gt; sender rejected : invalid sender domain*
+- <em>Mailbox unavailable. The server response was: 5.1.0 &lt;someuser@invaliddomain&gt; sender rejected : invalid sender domain</em>
 
     This message can indicate that the `From` address is not correct or is missing.
 - *The specified string is not in the form required for an email address.*

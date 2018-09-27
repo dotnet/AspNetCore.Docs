@@ -1,26 +1,24 @@
 ---
-title: Publish an ASP.NET Core app to Azure using Visual Studio
+title: Publish an ASP.NET Core app to Azure with Visual Studio
 author: rick-anderson
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
-manager: wpickett
 ms.author: riande
 ms.date: 12/16/2017
-ms.prod: asp.net-core
-ms.technology: aspnet
-ms.topic: get-started-article
 uid: tutorials/publish-to-azure-webapp-using-vs
 ---
-# Publish an ASP.NET Core web app to Azure App Service using Visual Studio
+# Publish an ASP.NET Core app to Azure with Visual Studio
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https://github.com/cesarbs), and [Rachel Appel](https://twitter.com/rachelappel)
 
-[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
+[!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-See [Publish to Azure from Visual Studio for Mac](https://blog.xamarin.com/publish-azure-visual-studio-mac/) if you are working on a Mac.
+See [Publish to Azure from Visual Studio for Mac](https://blog.xamarin.com/publish-azure-visual-studio-mac/) if you are working on macOS.
+
+To troubleshoot an App Service deployment issue, see [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot).
 
 ## Set up
 
-* Open a [free Azure account](https://aka.ms/K5y5yh) if you don't have one. 
+* Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one. 
 
 ## Create a web app
 
@@ -183,3 +181,4 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 * [Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-web-overview)
 * [Azure resource groups](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Azure SQL Database](https://docs.microsoft.com/azure/sql-database/)
+* [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
