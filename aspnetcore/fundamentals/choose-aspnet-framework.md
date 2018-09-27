@@ -1,14 +1,19 @@
 ---
-title: Choose between ASP.NET and ASP.NET Core
+title: ASP.NET vs. ASP.NET Core
 author: rick-anderson
-description: Learn how to choose between ASP.NET and ASP.NET Core.
+description: Explains ASP.NET Core vs. ASP.NET and how to choose between them.
 ms.author: riande
 ms.date: 05/11/2018
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET and ASP.NET Core
 
-No matter the web app you're creating, ASP.NET has a solution for you: from enterprise web apps targeting Windows Server, to small microservices targeting Linux containers, and everything in between.
+ASP.NET supports creating web apps for a wide variety of applications, including:
+
+* Web apps targeting the cloud.
+* Enterprise web apps targeting Windows Server.
+* Small microservices targeting Linux containers.
+* Rest applications and web APIs.
 
 ## ASP.NET Core
 
@@ -37,12 +42,14 @@ Review the table below to determine which framework is most appropriate for your
 * [Websites](xref:tutorials/first-mvc-app/index)
 * [APIs](xref:tutorials/first-web-api)
 * [Real-time](xref:signalr/index)
+* [Deploy an ASP.NET Core app to Azure](/azure/app-service/app-service-web-get-started-dotnet)
 
 ## ASP.NET scenarios
 
 * [Websites](/aspnet/mvc)
 * [APIs](/aspnet/web-api)
 * [Real-time](/aspnet/signalr)
+* [Create an ASP.NET Framework web app in Azure](/azure/app-service/app-service-web-get-started-dotnet-framework)
 
 ## Resources
 
