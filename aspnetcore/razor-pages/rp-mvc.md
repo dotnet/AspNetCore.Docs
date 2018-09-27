@@ -11,7 +11,7 @@ uid: razor-pages/rp-mvc
 
 By [Scott Sauber](https://twitter.com/scottsauber) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor Pages is a feature of the ASP.NET Core framework. Razor Pages follows the [MVVM](/xamarin/xamarin-forms/enterprise-application-patterns/mvvm) pattern. Developers and teams familiar with ASP.NET MVC Core development:
+Razor Pages is a feature of the ASP.NET Core framework. Razor Pages follows the [MVVM](/xamarin/xamarin-forms/enterprise-application-patterns/mvvm) pattern. Developers and teams familiar with ASP.NET Core MVC development:
 
 * Can continue app development featuring controllers and views.
 * Can be assured the ASP.NET Core framework will provide improvements to controller/view development.
@@ -30,13 +30,13 @@ Razor Pages advantages over controller/view development:
 
    MVC uses separate folders for Views, Controllers, and ViewModels when all three are tightly coupled. You must bounce between all three folders when you need to add/change/debug a feature. With Razor Pages, the `PageModel` (Controller + ViewModel) is in the same folder as the View.  ~Hit F7 in Visual Studio to toggle between them.~
 
-* **Routing is easier.**  By default in Razor Pages, routing matches the folder structure.  This makes nesting folders straightforward.  For example, consider an app where:
+* **Routing is easier.**  By default in Razor Pages, routing matches the folder structure. This makes nesting folders straightforward.  For example, consider an app where:
   * All of the HR administrator/privileged pages are under the */Administrator* folder.
   * All the Employee pages are under the */Employee* folder.  
   * The app can authorize an entire folder and require the user to be an Administrator to get to any subfolder of */Administrator*. The code to do this is more straightforward than using multiple Controllers for Administrator features.
 * **More secure by default.**  Razor Pages provides:
   * [AntiForgeryToken validation](xref:razor-pages/index#xsrfcsrf-and-razor-pages) by default.
-  * You opt-in to the properties that need to be model bound via `[BindProperty]`.  `[BindProperty]` prevents [mass assignment/over-posting](https://www.owasp.org/index.php/Mass_Assignment_Cheat_Sheet) attacks.
+  * You opt-in to the properties that need to be model bound via `[BindProperty]`. `[BindProperty]` prevents [mass assignment/over-posting](https://www.owasp.org/index.php/Mass_Assignment_Cheat_Sheet) attacks.
   * The `PageModel` acts like a view model.
 
 ## Razor Pages compared to Web Forms
