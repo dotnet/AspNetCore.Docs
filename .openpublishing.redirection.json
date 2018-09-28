@@ -1,6 +1,11 @@
 { 
   "redirections": [ 
     {   
+        "source_path": "aspnetcore/tutorials/publish-to-azure-webapp-using-cli.md", 
+        "redirect_url": "/azure/app-service/app-service-web-get-started-dotnet", 
+        "redirect_document_id": false 
+    }, 
+    {   
         "source_path": "aspnetcore/publishing/vsts-continuous-deployment.md", 
         "redirect_url": "/vsts/build-release/apps/cd/azure/aspnet-core-to-azure-webapp?tabs=vsts", 
         "redirect_document_id": false 
