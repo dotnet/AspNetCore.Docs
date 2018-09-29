@@ -33,6 +33,8 @@ The following table compares ASP.NET core to ASP.NET Framework.
 |Higher performance than ASP.NET|Good performance|
 |[Choose .NET Framework or .NET Core runtime](/dotnet/articles/standard/choosing-core-framework-server)|Use .NET Framework runtime|
 
+See [ASP.NET Core targeting .NET Framework](xref:index#target-framework") for information on ASP.NET Core 2.x support on .NET Framework.
+
 ## ASP.NET Core scenarios
 
 * [Razor Pages](xref:razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x.
