@@ -51,4 +51,6 @@ Powershell uses semicolon as a command separator. When using powershell, escape 
 ```cli
 dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
 ```
+
+If you run the Identity scaffolder without specifying the `--files` flag or the `--useDefaultUI` flag, all the available Identity UI pages will be created in your project.
 -------------

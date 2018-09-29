@@ -1,13 +1,13 @@
 ---
-title: Host ASP.NET Core on Azure App Service
+title: Deploy ASP.NET Core apps to Azure App Service
 author: guardrex
-description: Discover how to host ASP.NET Core apps in Azure App Service with links to helpful resources.
+description: This article contains links to Azure host and deploy resources.
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/29/2018
 uid: host-and-deploy/azure-apps/index
 ---
-# Host ASP.NET Core on Azure App Service
+# Deploy ASP.NET Core apps to Azure App Service
 
 [Azure App Service](https://azure.microsoft.com/services/app-service/) is a [Microsoft cloud computing platform service](https://azure.microsoft.com/) for hosting web apps, including ASP.NET Core.
 
