@@ -118,7 +118,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.
 
   ```console
-  libman install @aspnet/signalr -p unpkg -d wwwroot\lib\signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @aspnet/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   The parameters specify the following options:
@@ -131,7 +131,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
   ```console
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@1.0.3" to "wwwroot\lib\signalr"
+  Installed library "@aspnet/signalr@1.0.3" to "wwwroot/lib/signalr"
   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -147,7 +147,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 * Run the following command to get the SignalR client library by using LibMan.
 
   ```console
-  libman install @aspnet/signalr -p unpkg -d wwwroot\lib\signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @aspnet/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   The parameters specify the following options:
@@ -160,7 +160,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
   ```console
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@1.0.3" to "wwwroot\lib\signalr"
+  Installed library "@aspnet/signalr@1.0.3" to "wwwroot/lib/signalr"
   ```
 
 ---

@@ -64,7 +64,7 @@ By using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-
 
 ## Publishing to Azure
 
-See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish an app to Azure using Visual Studio. The app can also be published to Azure from the [command line](xref:tutorials/publish-to-azure-webapp-using-cli).
+See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish an app to Azure using Visual Studio. The app can also be published to Azure from the [command line](/azure/app-service/app-service-web-get-started-dotnet).
 
 ## Host in a web farm
 

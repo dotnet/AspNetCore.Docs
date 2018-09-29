@@ -20,6 +20,7 @@ Update the Index page's `OnGetAsync` method with the following code:
 The first line of the `OnGetAsync` method creates a [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) query to select the movies:
 
 ```csharp
+// using System.Linq;
 var movies = from m in _context.Movie
              select m;
 ```
