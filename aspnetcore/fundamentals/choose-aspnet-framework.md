@@ -33,7 +33,7 @@ The following table compares ASP.NET core to ASP.NET Framework.
 |Higher performance than ASP.NET|Good performance|
 |[Choose .NET Framework or .NET Core runtime](/dotnet/articles/standard/choosing-core-framework-server)|Use .NET Framework runtime|
 
-See [ASP.NET Core targeting .NET Framework](xref:index#target-framework") for information on ASP.NET Core 2.x support on .NET Framework.
+See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for information on ASP.NET Core 2.x support on .NET Framework.
 
 ## ASP.NET Core scenarios
 
@@ -54,4 +54,4 @@ See [ASP.NET Core targeting .NET Framework](xref:index#target-framework") for in
 
 * [Introduction to ASP.NET](/aspnet/overview)
 * [Introduction to ASP.NET Core](xref:index)
-* <xref:aspnet/core/host-and-deploy/azure-apps/index>
+* <xref:host-and-deploy/azure-apps/index>
