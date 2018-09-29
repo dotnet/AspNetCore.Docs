@@ -1,10 +1,10 @@
 ---
 title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 author: Rick-Anderson
-description: The Microsoft.AspNetCore.All metapackage includes all supported ASP.NET Core and Entity Framework Core packages, along with their dependencies.
+description: The Microsoft.AspNetCore.All metapackage is not recommended for ASP.NET Core 2.1 and later.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 09/20/2017
+ms.date: 09/20/2018
 uid: fundamentals/metapackage
 ---
 
@@ -60,3 +60,11 @@ Any dependencies of the preceding packages that otherwise aren't dependencies of
 
 * `StackExchange.Redis` as a dependency of `Microsoft.Extensions.Caching.Redis`
 * `Microsoft.ApplicationInsights` as a dependency of `Microsoft.AspNetCore.ApplicationInsights.HostingStartup`
+
+## Update ASP.NET Core 2.1
+
+We recommend migrating migrating to the `Microsoft.AspNetCore.App` metapackage for 2.1 and later. To keep using the `Microsoft.AspNetCore.All` metapackage and ensure the latest patch version is deployed:
+
+* On development machines and build servers: Install the latest [.NET Core SDK](https://www.microsoft.com/net/download).
+* On deployment servers: Install the latest [.NET Core runtime](https://www.microsoft.com/net/download).
+ Your app will roll forward to the latest installed version on an application restart.
