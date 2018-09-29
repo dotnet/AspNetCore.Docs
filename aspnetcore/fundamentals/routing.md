@@ -267,7 +267,9 @@ The catch-all parameter will escape all characters when the route is used to gen
 
 Route parameters may have *default values*, designated by specifying the default after the parameter name, separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. In addition to default values, route parameters may be optional, specified by appending a question mark (`?`) to the end of the parameter name, as in `id?`. The difference between optional values and default route parameters is that a route parameter with a default value always produces a value; an optional parameter has a value only when a value is provided by the request URL.
 
-Route parameters may also have constraints, which must match the route value bound from the URL. Adding a colon `:` and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're provided in enclosed in parentheses `( )` after the constraint name. Multiple inline constraints can be specified by appending another colon `:` and constraint name. The constraint name is passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a listing of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
+Route parameters may have constraints, which must match the route value bound from the URL. Adding a colon `:` and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're provided in enclosed in parentheses `( )` after the constraint name. Multiple inline constraints can be specified by appending another colon `:` and constraint name. The constraint name is passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a listing of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
+
+Route parameters may also have parameter transformers, which transform a parameter's value when generating links and matching actions and pages to URIs. Like constraints, parameter transforms can be added inline to a route parameter by adding a colon `:` and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer.
 
 The following table demonstrates some route templates and their behavior.
 
@@ -360,6 +362,20 @@ Regular expressions used in routing often start with the `^` character (match st
 Refer to [.NET Framework Regular Expressions](https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference) for more information on regular expression syntax.
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
+
+## Parameter transformer reference
+
+Parameter transformers execute when generating a link for a `Route`. Parameter transformers take the parameter's route value and transform it to a new string value. The transformed value will be used in the generated link. For example, a custom slugify parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` will generate `blog\my-test-article`. A parameter transformer is configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
+
+Parameter transformers are also used by frameworks to transform the URI that an endpoint will resolve to. For example, ASP.NET Core MVC will use parameter transformers to transform the route value used to match an `area`, `controller`, `action` and `page`.
+
+```csharp
+routes.MapRoute(
+    name: "default",
+    template: "{controller=Home:slugify}/{action=Index:slugify}/{id?}");
+```
+
+With this route the action `SubscriptionManagementController.GetAll()` will be matched with the URI `/subscription-management/get-all`.
 
 ## URL Generation Reference
 
