@@ -39,9 +39,16 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#buil
 
 ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](xref:client-side/bootstrap). For more information, see [Client-side development](xref:client-side/index).
 
+<a name="target-framework"></a>
+
 ## ASP.NET Core targeting .NET Framework
 
 ASP.NET Core can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. There are no plans to remove support for targeting .NET Framework in ASP.NET Core. Generally, ASP.NET Core is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is supported.
+
+ASP.NET Core 2.x is supported on .NET Framework versions compatible with .NET Standard 2.0:
+
+* .NET Framework 4.7.1 and later is strongly recommended.
+* .NET Framework 4.6.1 and later.
 
 There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 

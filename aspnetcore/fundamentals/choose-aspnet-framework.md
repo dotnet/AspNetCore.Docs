@@ -52,4 +52,4 @@ The following table compares ASP.NET core to ASP.NET Framework.
 
 * [Introduction to ASP.NET](/aspnet/overview)
 * [Introduction to ASP.NET Core](xref:index)
-* <xref:aspnet/core/host-and-deploy/azure-apps>
+* <xref:aspnet/core/host-and-deploy/azure-apps/index>
