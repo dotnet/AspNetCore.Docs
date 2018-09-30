@@ -21,7 +21,7 @@ The validation support provided by Razor Pages and Entity Framework is a good ex
 
 ### Adding validation rules to the movie model
 
-Open the *Movie.cs* file. [DataAnnotations](https://docs.microsoft.com/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) provides a built-in set of validation attributes that are applied declaratively to a class or property. DataAnnotations also contains formatting attributes like `DataType` that help with formatting and don't provide validation.
+Open the *Models/Movie.cs* file. [DataAnnotations](https://docs.microsoft.com/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) provides a built-in set of validation attributes that are applied declaratively to a class or property. DataAnnotations also contains formatting attributes like `DataType` that help with formatting and don't provide validation.
 
 Update the `Movie` class to take advantage of the `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
@@ -48,7 +48,7 @@ Having validation rules automatically enforced by ASP.NET Core helps make an app
 
 ### Validation Error UI in Razor Pages
 
-Run the app and navigate to Pages/Movies.
+Run the app and navigate to *Pages/Movies*.
 
 Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
@@ -73,7 +73,7 @@ When JavaScript is disabled in the browser, submitting the form with errors will
 
 Optional, test server-side validation:
 
-* Disable JavaScript in the browser. If you can't disable JavaScript in the browser, try another browser.
+* Disable JavaScript in the browser. You can do this using your browser's developer tools. If you can't disable JavaScript in the browser, try another browser.
 * Set a break point in the `OnPostAsync` method of the Create or Edit page.
 * Submit a form with validation errors.
 * Verify the model state is invalid:
