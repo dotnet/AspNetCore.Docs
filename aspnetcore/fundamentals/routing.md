@@ -365,7 +365,7 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 ## Parameter transformer reference
 
-Parameter transformers execute when generating a link for a `Route`. Parameter transformers take the parameter's route value and transform it to a new string value. The transformed value will be used in the generated link. For example, a custom slugify parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` will generate `blog\my-test-article`. A parameter transformer is configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
+Parameter transformers execute when generating a link for a `Route`. Parameter transformers take the parameter's route value and transform it to a new string value. The transformed value will be used in the generated link. For example, a custom slugify parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` will generate `blog\my-test-article`. Parameter transformers implement <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and are configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
 
 Parameter transformers are also used by frameworks to transform the URI that an endpoint will resolve to. For example, ASP.NET Core MVC will use parameter transformers to transform the route value used to match an `area`, `controller`, `action` and `page`.
 
@@ -375,7 +375,9 @@ routes.MapRoute(
     template: "{controller=Home:slugify}/{action=Index:slugify}/{id?}");
 ```
 
-With this route the action `SubscriptionManagementController.GetAll()` will be matched with the URI `/subscription-management/get-all`.
+With this route the action `SubscriptionManagementController.GetAll()` will be matched with the URI `/subscription-management/get-all`. Note that a parameter transformer doesn't change the route values used to generated a link. `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
+
+ASP.NET Core MVC also comes with the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> API convention that applies a specified parameter transformer to all attribute route tokens in the application.
 
 ## URL Generation Reference
 
