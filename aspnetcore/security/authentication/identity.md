@@ -39,7 +39,7 @@ Create an ASP.NET Core Web Application project with Individual User Accounts.
 
 # [Visual Studio](#tab/visual-studio)
 
-* Select **File** > **New** > **Project**. 
+* Select **File** > **New** > **Project**.
 * Select **ASP.NET Core Web Application**. Name the project **WebApp1** to have the same namespace as the project download. Click **OK**.
 * Select an ASP.NET Core **Web Application** for ASP.NET Core 2.1, then select **Change Authentication**.
 * Select **Individual User Accounts** and click **OK**.
@@ -113,15 +113,12 @@ Follow the [Scaffold identity into a Razor project with authorization](xref:secu
 
 Add the Register, Login, and LogOut files.
 
-
 # [.NET Core CLI](#tab/netcore-cli)
 
 If you created the project with name **WebApp1**, run the following commands. Otherwise, use the correct namespace for the `ApplicationDbContext`:
 
-
 ```cli
 dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
-
 ```
 
 PowerShell uses semicolon as a command separator. When using PowerShell, escape the semicolons in the file list or put the file list in double quotes, as the preceding example shows.
@@ -157,7 +154,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 The Login form is displayed when:
 
 * The **Log in** link  is selected.
-* When a user accesses a page where they are not authenticated **or** authorized, they are redirected to the Login page. 
+* When a user accesses a page where they are not authenticated **or** authorized, they are redirected to the Login page.
 
 When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object (provided by dependency injection).
 
@@ -248,7 +245,6 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>
-* [Configure Identity primary keys data type](xref:security/authentication/identity-primary-key-configuration).
 * <xref:migration/identity>
 * <xref:security/authentication/accconfirm>
 * <xref:security/authentication/2fa>
