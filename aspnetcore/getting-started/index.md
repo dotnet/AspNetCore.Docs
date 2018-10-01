@@ -9,7 +9,7 @@ uid: getting-started
 ---
 # Get started with ASP.NET Core
 
-This document provides a tutorial for quickly creating and running an ASP.NET Core app.
+This document provides steps for creating and running an ASP.NET Core app.
 
 ::: moniker range=">= aspnetcore-2.1"
 
