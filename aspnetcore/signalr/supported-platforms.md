@@ -17,7 +17,7 @@ SignalR for ASP.NET Core supports any server platform ASP.NET Core supports.
 
 ## JavaScript client
 
-The [JavaScript client](https://www.npmjs.com/package/@aspnet/signalr) runs on NodeJS and the following browsers:
+The [JavaScript client](https://www.npmjs.com/package/@aspnet/signalr) runs on NodeJS 8 and later versions and the following browsers:
 
 | Browser | Version |
 | ------- | ------- |
@@ -35,7 +35,7 @@ When the server runs IIS, the WebSockets transport requires IIS 8.0 or higher, o
 
 ## Java client
 
-A [Java client](https://search.maven.org/artifact/com.microsoft.aspnet/signalr) is supported.
+The [Java client](https://search.maven.org/artifact/com.microsoft.aspnet/signalr) supports Java 8 and later versions.
 
 ## Unsupported clients
 
