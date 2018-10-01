@@ -23,9 +23,9 @@ uid: getting-started
 
 # [Windows](#tab/windows)
 
-    ```console
-    dotnet dev-certs https --trust
-    ```
+  ```console
+  dotnet dev-certs https --trust
+  ```
 
    The preceding command displays the following dialog:
 
@@ -35,9 +35,9 @@ uid: getting-started
 
 # [macOS](#tab/macos)
 
-    ```console
-    dotnet dev-certs https --trust
-    ```
+  ```console
+  dotnet dev-certs https --trust
+  ```
 
    The preceding command displays the following message:
 
