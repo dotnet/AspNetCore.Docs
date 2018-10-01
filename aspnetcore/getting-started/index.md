@@ -9,6 +9,8 @@ uid: getting-started
 ---
 # Get started with ASP.NET Core
 
+This document provides steps for creating and running an ASP.NET Core app.
+
 ::: moniker range=">= aspnetcore-2.1"
 
 1. Install the [!INCLUDE [](~/includes/2.1-SDK.md)].
@@ -50,7 +52,7 @@ uid: getting-started
 
 # [Linux](#tab/linux)
 
-  See the documentation for your Linux distribution on how to trust the HTTPS development certificate
+  See the documentation for your Linux distribution on how to trust the HTTPS development certificate.
    
 ---
 
