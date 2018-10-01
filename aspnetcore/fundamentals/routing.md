@@ -385,7 +385,7 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 ## Parameter transformer reference
 
-Parameter transformers execute when generating a link for a `Route`. Parameter transformers take the parameter's route value and transform it to a new string value. The transformed value is used in the generated link. For example, a custom `slugify` parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` generates `blog\my-test-article`. Parameter transformers implement <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and are configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
+Parameter transformers execute when generating a link for a `Route`. Parameter transformers take the parameter's route value and transform it to a new string value. The transformed value is used in the generated link. For example, a custom `slugify` parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` generates `blog\my-test-article`. Parameter transformers implement `Microsoft.AspNetCore.Routing.IOutboundParameterTransformer` and are configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
 
 Parameter transformers are also used by frameworks to transform the URI to which an endpoint resolves. For example, ASP.NET Core MVC uses parameter transformers to transform the route value used to match an `area`, `controller`, `action`, and `page`.
 
@@ -397,7 +397,7 @@ routes.MapRoute(
 
 With the preceding route, the action `SubscriptionManagementController.GetAll()` is matched with the URI `/subscription-management/get-all`. A parameter transformer doesn't change the route values used to generate a link. `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
 
-ASP.NET Core MVC also comes with the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> API convention. The convention applies a specified parameter transformer to all attribute route tokens in the app.
+ASP.NET Core MVC also comes with the `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention` API convention. The convention applies a specified parameter transformer to all attribute route tokens in the app.
 
 ::: moniker-end
 
