@@ -219,7 +219,7 @@
 ### [HubContext](xref:signalr/hubcontext)
 ### [Users and groups](xref:signalr/groups)
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-## [Clients](xref:signalr/javascript-client)
+## [Clients](xref:signalr/clients)
 ### [.NET client](xref:signalr/dotnet-client)
 ### [Java client](xref:signalr/java-client)
 ### [Java API reference](/java/api/com.microsoft.aspnet.signalr?view=aspnet-signalr-java)

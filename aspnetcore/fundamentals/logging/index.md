@@ -19,7 +19,7 @@ For information on stdout logging when hosting with IIS, see <xref:host-and-depl
 
 ## How to create logs
 
-To create logs, implement an [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) object from the [dependency injection](xref:fundamentals/dependency-injection) container:
+To create logs, obtain an [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) from the [dependency injection](xref:fundamentals/dependency-injection) container:
 
 ::: moniker range=">= aspnetcore-2.0"
 
