@@ -10,9 +10,9 @@ namespace RazorPagesMovie.Pages.Movies
 {
     public class CreateModel : PageModel
     {
-        private readonly RazorPagesMovie.Models.MovieContext _context;
+        private readonly MovieContext _context;
 
-        public CreateModel(RazorPagesMovie.Models.MovieContext context)
+        public CreateModel(MovieContext context)
         {
             _context = context;
         }
