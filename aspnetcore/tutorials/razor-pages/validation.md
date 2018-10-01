@@ -48,7 +48,7 @@ Having validation rules automatically enforced by ASP.NET Core helps make an app
 
 ### Validation Error UI in Razor Pages
 
-Run the app and navigate to *Pages/Movies*.
+Run the app and navigate to Pages/Movies.
 
 Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
