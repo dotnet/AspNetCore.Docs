@@ -26,9 +26,6 @@ The following articles are available in ASP.NET Core documentation:
 [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
-[Publish to Azure with CLI tools](xref:tutorials/publish-to-azure-webapp-using-cli)  
-Learn how to publish an ASP.NET Core app to Azure App Service using the Git command-line client.
-
 [Continuous deployment to Azure with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)  
 Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
 
