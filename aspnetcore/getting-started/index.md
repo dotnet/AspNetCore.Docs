@@ -15,57 +15,57 @@ uid: getting-started
 
 2. Create an ASP.NET Core project. Open a command shell and enter the following command:
 
-    ```console
-    dotnet new webapp -o aspnetcoreapp
-    ```
+   ```console
+   dotnet new webapp -o aspnetcoreapp
+   ```
 
 3. Trust the HTTPS development certificate:
 
 # [Windows](#tab/windows)
 
-    ```console
-    dotnet dev-certs https --trust
-    ```
+  ```console
+  dotnet dev-certs https --trust
+  ```
 
-   The preceding command displays the following dialog:
+  The preceding command displays the following dialog:
 
-   ![Security warning dialog](_static/cert.png)
+  ![Security warning dialog](_static/cert.png)
 
-   Select **Yes** if you agree to trust the development certificate.
+  Select **Yes** if you agree to trust the development certificate.
 
 # [macOS](#tab/macos)
 
-    ```console
-    dotnet dev-certs https --trust
-    ```
+  ```console
+  dotnet dev-certs https --trust
+  ```
 
-   The preceding command displays the following message:
+  The preceding command displays the following message:
 
-   *Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:*
-   `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
-   *This command might prompt you for your password to install the certificate on the system keychain.
-   Password:*
+  *Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`.  
+  *This command might prompt you for your password to install the certificate on the system keychain.
+  
+  Password:*
 
-   Enter your password if you agree to trust the development certificate.
+  Enter your password if you agree to trust the development certificate.
 
 # [Linux](#tab/linux)
 
-   See the documentation for your Linux distribution on how to trust the HTTPS development certificate
+  See the documentation for your Linux distribution on how to trust the HTTPS development certificate
    
 ---
 
 4. Run the app:
 
-    ```console
-    cd aspnetcoreapp
-    dotnet run
-    ```
+   ```console
+   cd aspnetcoreapp
+   dotnet run
+   ```
 
 5. Browse to [http://localhost:5001](http://localhost:5001).  Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
 
 6. Open *Pages/About.cshtml* and modify the page with the following highlighted markup:
 
-    [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9)]
+   [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9)]
 
 7. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes are displayed.
 
@@ -81,22 +81,22 @@ uid: getting-started
 
    Open a command shell. Enter the following command:
 
-    ```console
-    dotnet new razor -o aspnetcoreapp
-    ```
+   ```console
+   dotnet new razor -o aspnetcoreapp
+   ```
 
 3. Run the app with the following commands:
 
-    ```console
-    cd aspnetcoreapp
-    dotnet run
-    ```
+   ```console
+   cd aspnetcoreapp
+   dotnet run
+   ```
 
 4. Browse to [http://localhost:5000](http://localhost:5000).
 
 5. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
 
-    [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9&range=1-9)]
+   [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9&range=1-9)]
 
 6. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
 
@@ -133,9 +133,9 @@ uid: getting-started
 
 5. Restore the packages.
 
-    ```console
-    dotnet restore
-    ```
+   ```console
+   dotnet restore
+   ```
 
 6. Run the app.
 
