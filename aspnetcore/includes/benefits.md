@@ -1,7 +1,7 @@
 ASP.NET Core provides the following benefits:
 
 * A unified story for building web UI and web APIs.
-* Architected for [testability](xref:test/index)
+* Architected for [testability](xref:test/index).
 * [Razor Pages](xref:razor-pages/index) makes coding page-focused scenarios easier and more productive.
 * Ability to develope and run on Windows, macOS, and Linux.
 * Open-source and [community-focused](https://live.asp.net/).
@@ -10,5 +10,5 @@ ASP.NET Core provides the following benefits:
 * Built-in [dependency injection](xref:fundamentals/dependency-injection).
 * A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
 * Ability to host on [IIS](xref:host-and-deploy/iis/index), [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), [Docker](xref:host-and-deploy/docker/index), or self-host in your own process.
-* Side-by-side app versioning when targeting [.NET Core](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+* Side-by-side app versioning when targeting [.NET Core](/dotnet/articles/standard/choosing-core-framework-server).
 * Tooling that simplifies modern web development.
