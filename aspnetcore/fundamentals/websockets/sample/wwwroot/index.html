@@ -102,14 +102,14 @@
         }
 
         closeButton.onclick = function () {
-            if (!socket || socket.readyState != WebSocket.OPEN) {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
                 alert("socket not connected");
             }
             socket.close(1000, "Closing from client");
         }
 
         sendButton.onclick = function () {
-            if (!socket || socket.readyState != WebSocket.OPEN) {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
                 alert("socket not connected");
             }
             var data = sendMessage.value;
@@ -145,7 +145,7 @@
         };
 
         function htmlEscape(str) {
-            return str
+            return str.toString()
                 .replace(/&/g, '&amp;')
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#39;')
