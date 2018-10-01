@@ -52,7 +52,7 @@ This document provides a tutorial for quickly creating and running an ASP.NET Co
 
 # [Linux](#tab/linux)
 
-  See the documentation for your Linux distribution on how to trust the HTTPS development certificate
+  See the documentation for your Linux distribution on how to trust the HTTPS development certificate.
    
 ---
 
