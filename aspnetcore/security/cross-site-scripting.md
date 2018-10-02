@@ -30,9 +30,9 @@ At a basic level XSS works by tricking your application into inserting a `<scrip
 
 The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work really hard to prevent it doing so. It uses HTML Attribute encoding rules whenever you use the *@* directive. As HTML attribute encoding is a superset of HTML encoding this means you don't have to concern yourself with whether you should use HTML encoding or HTML attribute encoding. You must ensure that you only use @ in an HTML context, not when attempting to insert untrusted input directly into JavaScript. Tag helpers will also encode input you use in tag parameters.
 
-Take the following Razor view;
+Take the following Razor view:
 
-```none
+```cshtml
 @{
        var untrustedInput = "<\"123\">";
    }
@@ -53,7 +53,7 @@ This view outputs the contents of the *untrustedInput* variable. This variable i
 
 There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert  values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
 
-```none
+```cshtml
 @{
        var untrustedInput = "<\"123\">";
    }
@@ -108,9 +108,9 @@ Which, when it runs, will render the following;
    <"123">
    ```
 
-You can also call the JavaScript encoder directly,
+You can also call the JavaScript encoder directly:
 
-```none
+```cshtml
 @using System.Text.Encodings.Web;
    @inject JavaScriptEncoder encoder;
 
