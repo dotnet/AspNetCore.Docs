@@ -412,7 +412,7 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 
 ::: moniker-end
 
-## Middleware issue when behind an Nginx reverse proxy
+## Middleware issue when behind a Nginx reverse proxy
 
 When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
