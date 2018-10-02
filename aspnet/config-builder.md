@@ -9,15 +9,6 @@ ms.technology: aspnet
 msc.type: content
 ---
 
-<!-- Search for review for embedded review questions
-https://docs.microsoft.com/en-us/dotnet/api/?view=netframework-4.7.2&term=KeyValueConfigBuilder
-no results. Will this be published? `KeyValueConfigBuilder` abstract methods is needed to create a custom builder.
-
-Should I PR your NuGet packages and change 
-"A simple key/value Configuration Builder for the .Net Desktop Framework ..." to
-"A simple key/value Configuration Builder for the .NET Framework .."
--->
-
 # Configuration builders for ASP.NET
 
 By [Stephen Molloy](https://github.com/StephenMolloy) and [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -55,9 +46,23 @@ The following markup from *web.config* enables the [EnvironmentConfigBuilder](ht
 
 [!code-xml[Main](config-builder/MyConfigBuilders/WebDefault.config?name=snippet)]
 
-The following code reads the `<appSettings/>` and `<connectionStrings/>` from the environment, if available:
+The following code reads the `<appSettings/>` and `<connectionStrings/>` shown in the preceding *web.config* file:
 
 [!code-csharp[Main](config-builder/MyConfigBuilders/About.aspx.cs)]
+
+The preceding code will set the property values to:
+
+* The values in the *web.config* file if the keys are not set in environment variables.
+* The values of the environment variable, if set.
+
+For example, `ServiceID` will contain:
+
+* "ServiceID value from web.config", if the environment variable `ServiceID` is not set.
+* The value of the `ServiceID` environment variable, if set.
+
+The following image shows the `<appSettings/>` keys/values from the preceding *web.config* file set in the environment editor:
+
+![environment editor](config-builder/static/env.png)
 
 ### Prefix handling
 
@@ -249,8 +254,6 @@ Attribute details:
 > [!WARNING]
 > Never store passwords, sensitive connection strings, or other sensitive data in source code. Production secrets should not be used for development or test.
 
-<!-- Review: I don't think barry AKA @blowdart will approve of a connection string here. I probably need this warning in other places. Please advise.  -->
-
 ## Implementing a custom key/value configuration builder
 
 If the configuration builders don't meet your needs, you can write a custom one. The `KeyValueConfigBuilder` base class handles substitution modes and most prefix concerns. An implementing project need only:
@@ -262,15 +265,7 @@ If the configuration builders don't meet your needs, you can write a custom one.
 
 The `KeyValueConfigBuilder` base class provides much of the work and consistent behavior across key/value configuration builders.
 
-The following sample implements a custom environment configuration builder:
-
-[!code-csharp[Main](config-builder/MyConfigBuilders/EnvironmentConfigBuilder.cs)]
-
-The following *web.config* markup enables the preceding custom environment configuration builder:
-
-[!code-xml[Main](config-builder/MyConfigBuilders/WebCustom.config?name=snippet)]
-
 ## Additional resources
 
-* [Service-to-service authentication to Azure Key Vault using .NET](/azure/key-vault/service-to-service-authentication#connection-string-support)
 * [Configuration Builders GitHub repository](https://github.com/aspnet/MicrosoftConfigurationBuilders)
+* [Service-to-service authentication to Azure Key Vault using .NET](/azure/key-vault/service-to-service-authentication#connection-string-support)
