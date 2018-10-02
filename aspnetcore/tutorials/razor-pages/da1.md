@@ -39,7 +39,7 @@ Select `using System.ComponentModel.DataAnnotations;`
 
   ![using System.ComponentModel.DataAnnotations at top of list](da1/da.png)
 
-  Visual studio adds `using System.ComponentModel.DataAnnotations;`.
+  Visual Studio adds `using System.ComponentModel.DataAnnotations;`.
 
 [!INCLUDE [model1](~/includes/RP/da2.md)]
 
