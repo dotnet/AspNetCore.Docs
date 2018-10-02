@@ -264,7 +264,7 @@ For some CORS requests, the browser sends an additional request before making th
 
 * The request method is GET, HEAD, or POST.
 * The app doesn't set request headers other than `Accept`, `Accept-Language`, `Content-Language`, `Content-Type`, or `Last-Event-ID`.
-* The `Content-Type` header, if set, has one of the one of the following values:
+* The `Content-Type` header, if set, has one of the following values:
   * `application/x-www-form-urlencoded`
   * `multipart/form-data`
   * `text/plain`
