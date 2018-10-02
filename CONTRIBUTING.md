@@ -1,10 +1,10 @@
 # Contributing to the ASP.NET documentation
 
-This document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET documentation site](https://docs.microsoft.com/aspnet/). Contributions may be as simple as typo corrections or as complex as new articles.
+This document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET documentation site](https://docs.microsoft.com/aspnet/). Contributions may be as simple as typo corrections or as complex as creating new articles.
 
 ## How to make a simple correction or suggestion
 
-Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file can be made in the browser by selecting the **Edit** link in the upper right corner of the browser window. (In narrow browser windows you'll need to expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). We will review the PR and accept it or suggest changes.
+Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file can be made in the browser by selecting the **Edit** link in the upper right corner of the browser window. (In narrow browser windows, you'll need to expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). We will review the PR and accept it or suggest changes.
 
 ## How to make a more complex submission
 
@@ -24,7 +24,7 @@ Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/
 
 ## Folder structure conventions
 
-For each Markdown file there may be a folder for images and a folder for sample code. For example, if the article is [fundamentals/configuration/index.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) and the sample application project files are in [fundamentals/configuration/index/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown.
+For each Markdown file, there may be a folder for images and a folder for sample code. For example, if the article is [fundamentals/configuration/index.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) and the sample application project files are in [fundamentals/configuration/index/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown:
 
 ```
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
@@ -32,7 +32,7 @@ For each Markdown file there may be a folder for images and a folder for sample 
 
 **All** images should have [alt text](https://wikipedia.org/wiki/Alt_attribute).
 
-Markdown file names and image file names should be all lower case.
+Markdown file names and image file names should all be in lowercase.
 
 ## Internal links
 
@@ -40,16 +40,16 @@ Internal links should use the `uid` of the target article with an xref link:
 
 `[link_text](xref:uid_of_the_topic)`
 
-See [DocFX Cross Reference](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#cross-reference) for more info.
+See [DocFX Cross Reference](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#cross-reference) for more info.
 
 ## Images and screenshots
-As an optional step, you can ensure that any images and screenshots you use in the documentation are compressed, which helps with file size and page load performance. A few popular tools include TinyPNG (the [site itself](https://tinypng.com/) or [the API](https://tinypng.com/developers)) or the [Image Optimizer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ImageOptimizer) Visual Studio extension. 
+As an optional step, ensure that any images and screenshots you use in the documentation are compressed, which helps with file size and page load performance. A few popular tools include TinyPNG (the [site itself](https://tinypng.com/) or [the API](https://tinypng.com/developers)) or the [Image Optimizer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ImageOptimizer) Visual Studio extension. 
 
 ## Code snippets
 
 Articles frequently contain code snippets to illustrate points. DFM lets you copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible, to minimize the chance of errors in the code. The code files should be stored in the repo using the folder structure described above for sample projects. 
 
-Here are some examples of [DFM code snippet syntax](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) that would be used in a *configuration/index.md* file.
+Here are some examples of [DFM code snippet syntax](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) that would be used in a *configuration/index.md* file.
 
 To render an entire code file as a snippet:
 
@@ -128,4 +128,4 @@ The [Microsoft Writing Style Guide](https://docs.microsoft.com/style-guide/welco
 
 ## Redirects
 
-If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article won't get 404s.  Add redirects to the [master redirect file](https://github.com/aspnet/Docs/blob/master/.openpublishing.redirection.json).
+If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article won't get 404s. Add redirects to the [master redirect file](https://github.com/aspnet/Docs/blob/master/.openpublishing.redirection.json).
