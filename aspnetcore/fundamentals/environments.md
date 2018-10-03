@@ -239,7 +239,6 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable for an app running in a
 > [!IMPORTANT]
 > When hosting an app in IIS and adding or changing the `ASPNETCORE_ENVIRONMENT` environment variable, use any one of the following approaches to have the new value picked up by apps:
 >
-> * Restart an app's app pool.
 > * Execute `net stop was /y` followed by `net start w3svc` from a command prompt.
 > * Restart the server.
 
