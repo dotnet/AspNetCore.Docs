@@ -1,4 +1,4 @@
-# Contributing to the ASP.NET documentation
+# Contribute to the ASP.NET documentation
 
 This document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET documentation site](https://docs.microsoft.com/aspnet/). Typo corrections and new articles are welcome contributions.
 
@@ -51,6 +51,7 @@ If the title of the article is unsuitable for link text (for example, a word or 
 For more information, see the [DocFX Cross Reference](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#cross-reference).
 
 ## Images and screenshots
+
 As an optional step, ensure that any images and screenshots used in the documentation are compressed, which helps with file size and page load performance. A few popular tools include TinyPNG (using the [TinyPNG website](https://tinypng.com/) or the [TinyPNG API](https://tinypng.com/developers)) or the [Image Optimizer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ImageOptimizer) Visual Studio extension. 
 
 ## Code snippets
@@ -89,7 +90,7 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 [!code-javascript[](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3]
 ```
 
-## Test your changes with DocFX
+## Test changes with DocFX
 
 Test your changes with the [DocFX command-line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. DocFX doesn't render style and site extensions created for docs.microsoft.com.
 
