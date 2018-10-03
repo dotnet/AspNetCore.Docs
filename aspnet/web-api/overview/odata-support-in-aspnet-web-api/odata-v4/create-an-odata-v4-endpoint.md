@@ -19,13 +19,13 @@ by [Mike Wasson](https://github.com/MikeWasson)
 >
 > This tutorial shows how to create an OData v4 endpoint that supports CRUD operations.
 >
-> ## Software versions used in the tutorial>
+> ## Software versions used in the tutorial
 >
 > - Web API 2.2
 > - OData v4
 > - Visual Studio 2013 (download Visual Studio 2017 [here](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017))
 > - Entity Framework 6
-> - .NET 4.5>
+> - .NET 4.5
 >
 > ## Tutorial versions
 >

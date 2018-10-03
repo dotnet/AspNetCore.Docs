@@ -21,7 +21,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 >
 > The unit tests in this topic are intentionally limited to simple data scenarios. For unit testing more advanced data scenarios, see [Mocking Entity Framework when Unit Testing ASP.NET Web API 2](mocking-entity-framework-when-unit-testing-aspnet-web-api-2.md).
 >
-> ## Software versions used in the tutorial>
+> ## Software versions used in the tutorial
 >
 > - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 > - Web API 2
