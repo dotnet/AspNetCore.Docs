@@ -144,9 +144,21 @@ Submit a request to the sample app without the `Accept-Encoding` header and obse
 
 ![Fiddler window showing result of a request without the Accept-Encoding header. The response isn't compressed.](response-compression/_static/request-uncompressed.png)
 
+::: moniker range=">= aspnetcore-2.2"
+
+Submit a request to the sample app with the `Accept-Encoding: br` header (Brotli compression) and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
+
+![Fiddler window showing result of a request with the Accept-Encoding header and a value of br. The Vary and Content-Encoding headers are added to the response. The response is compressed.](response-compression/_static/request-compressed-br.png)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
 Submit a request to the sample app with the `Accept-Encoding: gzip` header and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
 
 ![Fiddler window showing result of a request with the Accept-Encoding header and a value of gzip. The Vary and Content-Encoding headers are added to the response. The response is compressed.](response-compression/_static/request-compressed.png)
+
+::: moniker-end
 
 ## Providers
 
