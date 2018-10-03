@@ -4,19 +4,19 @@ This document covers the process for contributing to the articles and code sampl
 
 ## How to make a simple correction or suggestion
 
-Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file are made in the browser by selecting the **Edit** link in the upper-right corner of the browser window. (In narrow browser windows, expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). We will review the PR and accept it or suggest changes.
+Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file are made in the browser by selecting the **Edit** link in the upper-right corner of the browser window. (In a narrow browser window, expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). We will review the PR and accept it or suggest changes.
 
 ## How to make a more complex submission
 
-You'll need a basic understanding of [Git and GitHub.com](https://guides.github.com/activities/hello-world/).
+You need a basic understanding of [Git and GitHub.com](https://guides.github.com/activities/hello-world/).
 
-* Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as changing an existing article or creating a new one. Wait for approval from the team before you invest much time. 
+* Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as changing an existing article or creating a new one. We often request an outline for a new topic suggestion. Wait for approval from the team before you invest much time.
 * Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
 * Submit a pull request (PR) to master with your changes.
-* If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla.dotnetfoundation.org/)
+* If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla.dotnetfoundation.org/).
 * Respond to PR feedback.
 
-For an example where this process led to publication of a new article, see [Issue 67](https://github.com/dotnet/docs/issues/67) and [Pull Request 798](https://github.com/dotnet/docs/pull/798) in the .NET repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
+For an example where this process led to publication of a new article, see [Issue &num;67](https://github.com/dotnet/docs/issues/67) and [Pull Request &num;798](https://github.com/dotnet/docs/pull/798) in the .NET repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
 
 ## Markdown syntax
 
@@ -30,7 +30,7 @@ For each Markdown file, a folder for images and a folder for sample code may exi
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
 ```
 
-**All** images should have [alt text](https://wikipedia.org/wiki/Alt_attribute).
+All images should have [alternative (alt) text](https://wikipedia.org/wiki/Alt_attribute). For advice on specifying alt text, see online resources, such as [WebAIM: Alternative Text](https://webaim.org/techniques/alttext/).
 
 Use lowercase for Markdown file names and image file names.
 
@@ -56,7 +56,7 @@ As an optional step, ensure that any images and screenshots used in the document
 
 ## Code snippets
 
-Articles frequently contain code snippets to illustrate points. DFM lets you copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible to minimize the chance of errors in the code. The code files are stored in the repo using the folder structure described earlier for sample projects. 
+Articles frequently contain code snippets to illustrate points. DFM allows you to copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible to minimize the chance of errors in the code. The code files are stored in the repo using the folder structure described earlier for sample projects. 
 
 The following examples illustrate [DFM code snippet syntax](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) for use in a *configuration/index.md* file.
 
@@ -73,7 +73,7 @@ To render a portion of a file as a snippet by using line numbers:
 [!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
 ```
 
-For C# snippets, reference a [C# region](https://docs.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region). Whenever possible, use regions rather than line numbers because line numbers in a code file tend to change and become out of sync with line number references in Markdown. C# regions can be nested; and if you reference the outer region, the inner `#region` and `#endregion` directives aren't rendered in a snippet. 
+For C# snippets, reference a [C# region](https://docs.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region). Whenever possible, use regions rather than line numbers because line numbers in a code file tend to change and become out of sync with line number references in Markdown. C# regions can be nested. If referencing the outer region, the inner `#region` and `#endregion` directives aren't rendered in a snippet. 
 
 To render a C# region named "snippet_Example":
 
