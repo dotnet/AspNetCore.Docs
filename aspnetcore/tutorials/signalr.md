@@ -89,7 +89,7 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). The JavaScript client library isn't automatically included in the project. For this tutorial, you use [Library Manager (LibMan)](xref:client-side/libman/index) to get the client library from *unpkg*. [unpkg](https://unpkg.com/#/) is a [content delivery network](https://wikipedia.org/wiki/Content_delivery_network) that can deliver anything found in [npm, the Node.js package manager](https://www.npmjs.com/get-npm).
+The SignalR server library is included in the `Microsoft.AspNetCore.App metapackage`. The JavaScript client library isn't automatically included in the project. For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*. unpkg is a content delivery network (CDN)) that can deliver anything found in npm, the Node.js package manager.
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -107,7 +107,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 
   ![Add Client-Side Library dialog - select files and destination](signalr/_static/libman2.png)
 
-  [LibMan](xref:client-side/libman/index) creates a *wwwroot/lib/signalr* folder and copies the selected files to it.
+  LibMan creates a *wwwroot/lib/signalr* folder and copies the selected files to it.
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
@@ -171,7 +171,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 
 ## Create a SignalR hub
 
-A [hub](xref:signalr/hubs) is a class that serves as a high-level pipeline that handles client-server communication.
+A *hub* is a class that serves as a high-level pipeline that handles client-server communication.
 
 * In the SignalRChat project folder, create a *Hubs* folder.
 
@@ -179,7 +179,7 @@ A [hub](xref:signalr/hubs) is a class that serves as a high-level pipeline that 
 
   [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs)]
 
-  The `ChatHub` class inherits from the SignalR [Hub](/dotnet/api/microsoft.aspnetcore.signalr.hub) class. The `Hub` class manages connections, groups, and messaging.
+  The `ChatHub` class inherits from the SignalR `Hub` class. The `Hub` class manages connections, groups, and messaging.
 
   The `SendMessage` method can be called by any connected client. It sends the received message to all clients. SignalR code is asynchronous to provide maximum scalability.
 
@@ -191,7 +191,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
   [!code-csharp[Startup](signalr/sample/Startup.cs?highlight=7,33,52-55)]
 
-  These changes add SignalR to the [dependency injection](xref:fundamentals/dependency-injection) system and the [middleware](xref:fundamentals/middleware/index) pipeline.
+  These changes add SignalR to the ASP.NET Core dependency injection system and the middleware pipeline.
 
 ## Add SignalR client code
 
