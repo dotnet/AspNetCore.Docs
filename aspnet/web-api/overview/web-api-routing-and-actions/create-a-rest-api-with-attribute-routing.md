@@ -40,13 +40,13 @@ For most requests, however, the API will return a subset of this data (title, au
 
 ## Prerequisites
 
-[Visual Studio 2017](https://www.visualstudio.com/vs/) Community, Professional or Enterprise edition.
+[Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Community, Professional or Enterprise edition.
 
 ## Create the Visual Studio Project
 
 Start by running Visual Studio. From the **File** menu, select **New** and then select **Project**.
 
-In the **Templates** pane, select **Installed Templates** and expand the **Visual C#** node. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET MVC 4 Web Application**. Name the project &quot;BooksAPI&quot;.
+Expand the **Installed** > **Visual C#** category. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET MVC 4 Web Application**. Name the project &quot;BooksAPI&quot;.
 
 ![](create-a-rest-api-with-attribute-routing/_static/image1.png)
 

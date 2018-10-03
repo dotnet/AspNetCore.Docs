@@ -11,7 +11,7 @@ msc.type: categoryindex
 ---
 # Visual Studio 2012 and 2013 with ASP.NET
 
-For current information about Visual Studio, go to [visualstudio.com](https://www.visualstudio.com).
+For current information about Visual Studio, go to [visualstudio.microsoft.com](https://visualstudio.microsoft.com).
 
 The following pages link to information about how to use older versions of Visual Studio with ASP.NET.
 
