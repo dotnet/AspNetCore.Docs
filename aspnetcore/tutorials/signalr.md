@@ -1,11 +1,10 @@
 ---
-title: "Get started with SignalR on ASP.NET Core"
+title: Get started with SignalR on ASP.NET Core
 author: tdykstra
 description: In this tutorial, you create a chat app that uses SignalR for ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.topic: tutorial
 ms.date: 08/31/2018
 uid: tutorials/signalr
 
@@ -253,8 +252,6 @@ In this tutorial, you learned how to:
 > * Create a SignalR hub.
 > * Configure the project to use SignalR.
 > * Add code that uses the hub to send messages from any client to all connected clients.
-
-If you want clients to connect to a SignalR app from different domains, you have to enable Cross-Origin Resource Sharing (CORS). For more information, see [Cross-origin resource sharing](xref:signalr/security?view=aspnetcore-2.1#cross-origin-resource-sharing).
 
 To learn more about SignalR, see the introduction:
 
