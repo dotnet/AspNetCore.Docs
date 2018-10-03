@@ -12,15 +12,15 @@ You need a basic understanding of [Git and GitHub.com](https://guides.github.com
 
 * Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as changing an existing article or creating a new one. We often request an outline for a new topic suggestion. Wait for approval from the team before you invest much time.
 * Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
-* Submit a pull request (PR) to master with your changes.
+* Submit a PR to master with your changes.
 * If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla.dotnetfoundation.org/).
 * Respond to PR feedback.
 
-For an example where this process led to publication of a new article, see [Issue &num;67](https://github.com/dotnet/docs/issues/67) and [Pull Request &num;798](https://github.com/dotnet/docs/pull/798) in the .NET repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
+For an example where this process led to publication of a new article, see [Issue &num;67](https://github.com/dotnet/docs/issues/67) and [Pull Request &num;798](https://github.com/dotnet/docs/pull/798) in the .NET Docs repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
 
 ## Markdown syntax
 
-Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), which is a superset of [GitHub-flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/). For examples of DFM syntax for UI features commonly used in the ASP.NET documentation, see [Metadata and Markdown Template](https://github.com/dotnet/docs/blob/master/styleguide/template.md) in the .NET repo style guide. 
+Articles are written in [DocFx-flavored Markdown](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), which is a superset of [GitHub-flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/). For examples of DFM syntax for UI features commonly used in the ASP.NET documentation, see [Metadata and Markdown Template](https://github.com/dotnet/docs/blob/master/styleguide/template.md) in the .NET Docs repo style guide. 
 
 ## Folder structure conventions
 
