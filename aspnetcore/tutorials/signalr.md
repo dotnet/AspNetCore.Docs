@@ -1,12 +1,15 @@
 ---
-title: "Tutorial: Get started with SignalR on ASP.NET Core"
+title: "Get started with SignalR on ASP.NET Core"
 author: tdykstra
 description: In this tutorial, you create a chat app that uses SignalR for ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
+ms.topic: tutorial
 ms.date: 08/31/2018
 uid: tutorials/signalr
+
+# Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to SignalR for ASP.NET Core.
 ---
 
 # Tutorial: Get started with SignalR on ASP.NET Core
@@ -14,10 +17,11 @@ uid: tutorials/signalr
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
 > [!div class="checklist"]
-> * Create a web app that uses SignalR on ASP.NET Core.
-> * Create a SignalR hub on the server.
-> * Connect to the SignalR hub from JavaScript clients.
-> * Use the hub to send messages from any client to all connected clients.
+> * Create a web app project.
+> * Add the SignalR client library.
+> * Create a SignalR hub.
+> * Configure the project to use SignalR.
+> * Add code that uses the hub to send messages from any client to all connected clients.
 
 At the end, you'll have a working chat app:
 
@@ -45,7 +49,7 @@ At the end, you'll have a working chat app:
 
 ---
 
-## Create the project
+## Create a web project
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -165,7 +169,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 
 ---
 
-## Create the SignalR hub
+## Create a SignalR hub
 
 A [hub](xref:signalr/hubs) is a class that serves as a high-level pipeline that handles client-server communication.
 
@@ -179,7 +183,7 @@ A [hub](xref:signalr/hubs) is a class that serves as a high-level pipeline that 
 
   The `SendMessage` method can be called by any connected client. It sends the received message to all clients. SignalR code is asynchronous to provide maximum scalability.
 
-## Configure the project to use SignalR
+## Configure SignalR
 
 The SignalR server must be configured to pass SignalR requests to SignalR.
 
@@ -189,7 +193,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
   These changes add SignalR to the [dependency injection](xref:fundamentals/dependency-injection) system and the [middleware](xref:fundamentals/middleware/index) pipeline.
 
-## Create the SignalR client code
+## Add SignalR client code
 
 * Replace the content in *Pages\Index.cshtml* with the following code:
 
@@ -241,10 +245,18 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 ## Next steps
 
+In this tutorial, you learned how to:
+
+> [!div class="checklist"]
+> * Create a web app project.
+> * Add the SignalR client library.
+> * Create a SignalR hub.
+> * Configure the project to use SignalR.
+> * Add code that uses the hub to send messages from any client to all connected clients.
+
 If you want clients to connect to a SignalR app from different domains, you have to enable Cross-Origin Resource Sharing (CORS). For more information, see [Cross-origin resource sharing](xref:signalr/security?view=aspnetcore-2.1#cross-origin-resource-sharing).
 
-To learn more about SignalR, hubs, and JavaScript clients, see these resources:
+To learn more about SignalR, see the introduction:
 
-* [Introduction to SignalR for ASP.NET Core](xref:signalr/introduction)
-* [Use hubs in SignalR for ASP.NET Core](xref:signalr/hubs)
-* [ASP.NET Core SignalR JavaScript client](xref:signalr/javascript-client)
+> [!div class="nextstepaction"]
+> [Introduction to SignalR for ASP.NET Core](xref:signalr/introduction)
