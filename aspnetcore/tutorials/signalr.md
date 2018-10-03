@@ -93,7 +93,7 @@ The SignalR server library is included in the [Microsoft.AspNetCore.App metapack
 
 * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**. 
 
-* For **Library**, enter _@aspnet/signalr@1_, and select the latest version that isn't preview.
+* For **Library**, enter `@aspnet/signalr@1`, and select the latest version that isn't preview.
 
   ![Add Client-Side Library dialog - select library](signalr/_static/libman1.png)
 
