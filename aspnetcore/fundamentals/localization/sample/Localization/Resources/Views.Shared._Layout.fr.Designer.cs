@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Localization.StarterWeb.Resources {
+namespace Localization.Resources {
     using System;
     using System.Reflection;
     
@@ -38,7 +38,7 @@ namespace Localization.StarterWeb.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Localization.StarterWeb.Resources.Views.Shared._Layout", typeof(Views_Shared__Layout).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Localization.Resources.Views.Shared._Layout", typeof(Views_Shared__Layout).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

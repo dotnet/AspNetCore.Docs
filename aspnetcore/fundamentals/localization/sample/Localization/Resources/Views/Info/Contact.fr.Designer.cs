@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Localization.StarterWeb.Resources.Views.Zebra {
+namespace Localization.Resources.Views.Zebra {
     using System;
     using System.Reflection;
     
@@ -38,7 +38,7 @@ namespace Localization.StarterWeb.Resources.Views.Zebra {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Localization.StarterWeb.Resources.Views.Zebra.Contact", typeof(Contact).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Localization.Resources.Views.Zebra.Contact", typeof(Contact).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

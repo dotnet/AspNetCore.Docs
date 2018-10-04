@@ -10,10 +10,10 @@ using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Localization.StarterWeb.Models;
-using Localization.StarterWeb.Services;
+using Localization.Models;
+using Localization.Services;
 
-namespace Localization.StarterWeb
+namespace Localization
 {
     public class Program
     {
