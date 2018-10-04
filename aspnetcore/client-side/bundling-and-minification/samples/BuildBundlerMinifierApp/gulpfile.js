@@ -1,78 +1,67 @@
-﻿"use strict";
+﻿'use strict';
 
-var gulp = require("gulp"),
-    concat = require("gulp-concat"),
-    cssmin = require("gulp-cssmin"),
-    htmlmin = require("gulp-htmlmin"),
-    uglify = require("gulp-uglify"),
-    merge = require("merge-stream"),
-    del = require("del"),
-    bundleconfig = require("./bundleconfig.json");
+var gulp = require('gulp'),
+    concat = require('gulp-concat'),
+    cssmin = require('gulp-cssmin'),
+    htmlmin = require('gulp-htmlmin'),
+    uglify = require('gulp-uglify'),
+    merge = require('merge-stream'),
+    del = require('del'),
+    bundleconfig = require('./bundleconfig.json');
 
 // Code omitted for brevity
 
-var regex = {
+const regex = {
     css: /\.css$/,
     html: /\.(html|htm)$/,
     js: /\.js$/
 };
 
-gulp.task("min", ["min:js", "min:css", "min:html"]);
-
-gulp.task("min:js", function () {
-    var tasks = getBundles(regex.js).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, { base: "." })
+gulp.task('min:js',
+    () => merge(getBundles(regex.js).map(bundle => {
+        return gulp.src(bundle.inputFiles, { base: '.' })
             .pipe(concat(bundle.outputFileName))
             .pipe(uglify())
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
+            .pipe(gulp.dest('.'));
+    })));
 
-gulp.task("min:css", function () {
-    var tasks = getBundles(regex.css).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, { base: "." })
+gulp.task('min:css',
+    () => merge(getBundles(regex.css).map(bundle => {
+        return gulp.src(bundle.inputFiles, { base: '.' })
             .pipe(concat(bundle.outputFileName))
             .pipe(cssmin())
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
+            .pipe(gulp.dest('.'));
+    })));
 
-gulp.task("min:html", function () {
-    var tasks = getBundles(regex.html).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, { base: "." })
+gulp.task('min:html',
+    () => merge(getBundles(regex.html).map(bundle => {
+        return gulp.src(bundle.inputFiles, { base: '.' })
             .pipe(concat(bundle.outputFileName))
             .pipe(htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }))
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
+            .pipe(gulp.dest('.'));
+    })));
+
+gulp.task('min', gulp.series(['min:js', 'min:css', 'min:html']));
+
+gulp.task('clean', () => {
+    return del(bundleconfig.map(bundle => bundle.outputFileName));
 });
 
-gulp.task("clean", function () {
-    var files = bundleconfig.map(function (bundle) {
-        return bundle.outputFileName;
-    });
+gulp.task('watch', () => {
+    getBundles(regex.js).forEach(
+        bundle => gulp.watch(bundle.inputFiles, gulp.series(["min:js"])));
 
-    return del(files);
+    getBundles(regex.css).forEach(
+        bundle => gulp.watch(bundle.inputFiles, gulp.series(["min:css"])));
+
+    getBundles(regex.html).forEach(
+        bundle => gulp.watch(bundle.inputFiles, gulp.series(['min:html'])));
 });
 
-gulp.task("watch", function () {
-    getBundles(regex.js).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:js"]);
-    });
-
-    getBundles(regex.css).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:css"]);
-    });
-
-    getBundles(regex.html).forEach(function (bundle) {
-        gulp.watch(bundle.inputFiles, ["min:html"]);
-    });
-});
-
-function getBundles(regexPattern) {
-    return bundleconfig.filter(function (bundle) {
+const getBundles = (regexPattern) => {
+    return bundleconfig.filter(bundle => {
         return regexPattern.test(bundle.outputFileName);
     });
-}
+};
+
+gulp.task('default', gulp.series(['min']));

@@ -265,15 +265,7 @@ If Visual Studio and/or the Bundler & Minifier extension aren't available, conve
 
 Add a *package.json* file, with the following `devDependencies`, to the project root:
 
-# [Gulp 4.x](#tab/gulp4x/)
-
-[!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package2.json?range=5-13)]
-
-# [Gulp 3.x](#tab/gulp3x/)
-
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
-
----
 
 Install the dependencies by running the following command at the same level as *package.json*:
 
@@ -289,15 +281,7 @@ npm i -g gulp-cli
 
 Copy the *gulpfile.js* file below to the project root:
 
-# [Gulp 4.x](#tab/gulp4x/)
-
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile2.js?range=1-11,14-)]
-
-# [Gulp 3.x](#tab/gulp3x/)
-
 [!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-11,14-)]
-
----
 
 ### Run Gulp tasks
 

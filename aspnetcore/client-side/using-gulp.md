@@ -60,11 +60,6 @@ The above code specifies which Node modules are required. The `require` function
 
 Once the requisite modules are imported, the tasks can be specified. Here there are six tasks registered, represented by the following code:
 
-> [!NOTE]
-> Gulp 4 introduced some significant API changes. Please be aware of the version you're using and look through the [change log](https://github.com/gulpjs/gulp/blob/master/CHANGELOG.md) for more details.
-
-# [Gulp 4.x](#tab/gulp4x/)
-
 ```javascript
 gulp.task("clean:js", done => rimraf(paths.concatJsDest, done));
 gulp.task("clean:css", done => rimraf(paths.concatCssDest, done));
@@ -90,37 +85,6 @@ gulp.task("min", gulp.series(["min:js", "min:css"]));
 gulp.task("default", gulp.series(["min"]));
 ```
 
-# [Gulp 3.x](#tab/gulp3x/)
-
-```javascript
-gulp.task("clean:js", function (cb) {
-  rimraf(paths.concatJsDest, cb);
-});
-
-
-gulp.task("clean:css", function (cb) {
-  rimraf(paths.concatCssDest, cb);
-});
-
-gulp.task("clean", ["clean:js", "clean:css"]);
-
-gulp.task("min:js", function () {
-  return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
-    .pipe(concat(paths.concatJsDest))
-    .pipe(uglify())
-    .pipe(gulp.dest("."));
-});
-
-gulp.task("min:css", function () {
-  return gulp.src([paths.css, "!" + paths.minCss])
-    .pipe(concat(paths.concatCssDest))
-    .pipe(cssmin())
-    .pipe(gulp.dest("."));
-});
-
-gulp.task("min", ["min:js", "min:css"]);
-```
-
 ---
 
 The following table provides an explanation of the tasks specified in the code above:
@@ -140,8 +104,6 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
 
 1.  Open the *package.json* file (add if not there) and add the following.
 
-	# [Gulp 4.x](#tab/gulp4x/)
-
     ```json
     {
       "devDependencies": {
@@ -153,23 +115,8 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
       }
     }
     ```
-	# [Gulp 3.x](#tab/gulp3x/)
-
-    ```json
-    {
-      "devDependencies": {
-        "gulp": "3.9.1",
-        "gulp-concat": "2.6.1",
-        "gulp-cssmin": "0.1.7",
-        "gulp-uglify": "2.0.1",
-        "rimraf": "2.6.1"
-      }
-    }
-    ```
 
 2.  Add a new JavaScript file to your project and name it *gulpfile.js*, then copy the following code.
-
-	# [Gulp 4.x](#tab/gulp4x/)
 
     ```javascript
     /// <binding Clean='clean' />
@@ -215,55 +162,6 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
 	// A 'default' task is required by Gulp v4
 	gulp.task("default", gulp.series(["min"]));
     ```
-	# [Gulp 3.x](#tab/gulp3x/)
-
-    ```javascript
-    /// <binding Clean='clean' />
-    "use strict";
-    
-    var gulp = require("gulp"),
-      rimraf = require("rimraf"),
-      concat = require("gulp-concat"),
-      cssmin = require("gulp-cssmin"),
-      uglify = require("gulp-uglify");
-    
-    var paths = {
-      webroot: "./wwwroot/"
-    };
-    
-    paths.js = paths.webroot + "js/**/*.js";
-    paths.minJs = paths.webroot + "js/**/*.min.js";
-    paths.css = paths.webroot + "css/**/*.css";
-    paths.minCss = paths.webroot + "css/**/*.min.css";
-    paths.concatJsDest = paths.webroot + "js/site.min.js";
-    paths.concatCssDest = paths.webroot + "css/site.min.css";
-    
-    gulp.task("clean:js", function (cb) {
-      rimraf(paths.concatJsDest, cb);
-    });
-    
-    gulp.task("clean:css", function (cb) {
-      rimraf(paths.concatCssDest, cb);
-    });
-    
-    gulp.task("clean", ["clean:js", "clean:css"]);
-    
-    gulp.task("min:js", function () {
-      return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
-        .pipe(concat(paths.concatJsDest))
-        .pipe(uglify())
-        .pipe(gulp.dest("."));
-    });
-    
-    gulp.task("min:css", function () {
-      return gulp.src([paths.css, "!" + paths.minCss])
-        .pipe(concat(paths.concatCssDest))
-        .pipe(cssmin())
-        .pipe(gulp.dest("."));
-    });
-    
-    gulp.task("min", ["min:js", "min:css"]);
-    ```
 
 3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
     
@@ -304,17 +202,10 @@ To define a new Gulp task, modify *gulpfile.js*.
 
 1.  Add the following JavaScript to the end of *gulpfile.js*:
 
-	# [Gulp 4.x](#tab/gulp4x/)
 	```javascript
     gulp.task('first', done => {
       console.log('first task! <-----');
       done(); // signal completion
-    });
-    ```
-	# [Gulp 3.x](#tab/gulp3x/)
-    ```javascript
-    gulp.task("first", function () {
-      console.log('first task! <-----');
     });
     ```
 
@@ -336,7 +227,6 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
 
 1.  To define a series of tasks to run in order, replace the `first` task that you added above in *gulpfile.js* with the following:
 
-	# [Gulp 4.x](#tab/gulp4x/)
 	```javascript
 	gulp.task('series:first', done => {
 	  console.log('first task! <-----');
@@ -351,18 +241,6 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
 
 	// A 'default' task is required by Gulp v4
 	gulp.task('default', gulp.series('series'));
-    ```
-	# [Gulp 3.x](#tab/gulp3x/)
-    ```javascript
-    gulp.task("series:first", function () {
-      console.log('first task! <-----');
-    });
- 
-    gulp.task("series:second", ["series:first"], function () {
-      console.log('second task! <-----');
-    });
- 
-    gulp.task("series", ["series:first", "series:second"], function () {});
     ```
  
     You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run. As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
@@ -379,16 +257,9 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
 
 IntelliSense provides code completion, parameter descriptions, and other features to boost productivity and to decrease errors. Gulp tasks are written in JavaScript; therefore, IntelliSense can provide assistance while developing. As you work with JavaScript, IntelliSense lists the objects, functions, properties, and parameters that are available based on your current context. Select a coding option from the pop-up list provided by IntelliSense to complete the code.
 
-# [Gulp 4.x](#tab/gulp4x/)
-![gulp IntelliSense](using-gulp/_static/08-IntelliSense-1.png)
-
-# [Gulp 3.x](#tab/gulp3x/)
 ![gulp IntelliSense](using-gulp/_static/08-IntelliSense.png)
 
----
-
 For more information about IntelliSense, see [JavaScript IntelliSense](/visualstudio/ide/javascript-intellisense).
-
 
 ## Development, staging, and production environments
 
