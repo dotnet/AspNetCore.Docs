@@ -287,7 +287,7 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
 
 ## Log event ID
 
-Each log can specify an *event ID*. The sample app does this by using a locally-defined `LoggingEvents` class:
+Each log can specify an *event ID*. The sample app does this by using a locally defined `LoggingEvents` class:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -426,8 +426,8 @@ When an `ILogger` object is created, the `ILoggerFactory` object selects a singl
 
 The following algorithm is used for each provider when an `ILogger` is created for a given category:
 
-* Select all rules that match the provider or its alias. If none are found, select all rules with an empty provider.
-* From the result of the preceding step, select rules with longest matching category prefix. If none are found, select all rules that don't specify a category.
+* Select all rules that match the provider or its alias. If no match is found, select all rules with an empty provider.
+* From the result of the preceding step, select rules with longest matching category prefix. If no match is found, select all rules that don't specify a category.
 * If multiple rules are selected take the **last** one.
 * If no rules are selected, use `MinimumLevel`.
 
@@ -569,7 +569,7 @@ logging.AddConsole();
 loggerFactory.AddConsole();
 ```
 
-[AddConsole overloads](/dotnet/api/microsoft.extensions.logging.consoleloggerextensions) let you pass in an a minimum log level, a filter function, and a boolean that indicates whether scopes are supported. Another option is to pass in an `IConfiguration` object, which can specify scopes support and logging levels.
+[AddConsole overloads](/dotnet/api/microsoft.extensions.logging.consoleloggerextensions) let you pass in a minimum log level, a filter function, and a boolean that indicates whether scopes are supported. Another option is to pass in an `IConfiguration` object, which can specify scopes support and logging levels.
 
 The console provider has a significant impact on performance and is generally not appropriate for use in production.
 
