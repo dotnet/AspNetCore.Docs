@@ -100,9 +100,9 @@ For more information, see [Key storage providers](xref:security/data-protection/
 
 Use one of the following approaches:
 
-* [Install the preview site extension](#install-the-preview-site-extension)
-* [Deploy the app self-contained](#deploy-the-app-self-contained)
-* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
+* [Install the preview site extension](#install-the-preview-site-extension).
+* [Deploy the app self-contained](#deploy-the-app-self-contained).
+* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
 
 ### Install the preview site extension
 
@@ -167,12 +167,12 @@ A [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deplo
 When deploying a self-contained app:
 
 * The site in Azure App Service doesn't require the [preview site extension](#install-the-preview-site-extension).
-* The app must be published differently than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
+* The app must be published following a different approach than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
 
 **Publish from Visual Studio**
 
 1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
-1. In the **Pick a publish target** dialog, confirm that **App Service** is selected as the target in the dialog's sidebar.
+1. In the **Pick a publish target** dialog, confirm that **App Service** is selected.
 1. Select **Advanced**. The **Publish** dialog opens.
 1. In the **Publish** dialog:
    * Confirm that the **Release** configuration is selected.
@@ -184,7 +184,7 @@ When deploying a self-contained app:
 
 **Publish using command-line interface (CLI) tools**
 
-1. Specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog) in the project file. Use `<RuntimeIdentifier>` for a single RID, or use `<RuntimeIdentifiers>` to provide a semicolon-delimited list of multiple RIDs. In the following example, the `win-x86` RID is specified:
+1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) for a single RID, or use `<RuntimeIdentifiers>` (plural) to provide a semicolon-delimited list of multiple RIDs. In the following example, the `win-x86` RID is specified:
 
    ```xml
    <PropertyGroup>
@@ -192,7 +192,7 @@ When deploying a self-contained app:
      <RuntimeIdentifier>win-x86</RuntimeIdentifier>
    </PropertyGroup>
    ```
-1. From a command prompt, publish the app in Release configuration and for the runtime of the host with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
+1. From a command prompt, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
 
    ```console
    dotnet publish --configuration Release --runtime win-x86
