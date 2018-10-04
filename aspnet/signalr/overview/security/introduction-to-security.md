@@ -13,23 +13,23 @@ Introduction to SignalR Security
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
-> This article describes the security issues you must consider when developing a SignalR application. 
-> 
+> This article describes the security issues you must consider when developing a SignalR application.
+>
 > ## Software versions used in this topic
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
 > - SignalR version 2
->   
-> 
-> 
+>
+>
+>
 > ## Previous versions of this topic
-> 
+>
 > For information about earlier versions of SignalR, see [SignalR Older Versions](../older-versions/index.md).
-> 
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
@@ -102,7 +102,7 @@ Here is an example of a CSRF attack:
 
 1. A user logs into www.example.com, using forms authentication.
 2. The server authenticates the user. The response from the server includes an authentication cookie.
-3. Without logging out, the user visits a malicious web site. This malicious site contains the following HTML form: 
+3. Without logging out, the user visits a malicious web site. This malicious site contains the following HTML form:
 
     [!code-html[Main](introduction-to-security/samples/sample1.html)]
 
@@ -118,11 +118,11 @@ Typically, CSRF attacks are possible against web sites that use cookies for auth
 
 SignalR takes the following steps to prevent a malicious site from creating valid requests to your application. SignalR takes these steps by default, you do not need to take any action in your code.
 
-- **Disable cross domain requests**  
+- **Disable cross domain requests**
  SignalR disables cross domain requests to prevent users from calling a SignalR endpoint from an external domain. SignalR considers any request from an external domain to be invalid and blocks the request. We recommend that you keep this default behavior; otherwise, a malicious site could trick users into sending commands to your site. If you need to use cross domain requests, see     [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain) .
-- **Pass connection token in query string, not cookie**  
+- **Pass connection token in query string, not cookie**
  SignalR passes the connection token as a query string value, instead of as a cookie. Storing the connection token in a cookie is unsafe because the browser can inadvertently forward the connection token when malicious code is encountered. Also, passing the connection token in the query string prevents the connection token from persisting beyond the current connection. Therefore, a malicious user cannot make a request under another user's authentication credentials.
-- **Verify connection token**  
+- **Verify connection token**
  As described in the     [Connection token](#connectiontoken) section, the server knows which connection id is associated with each authenticated user. The server does not process any request from a connection id that does not match the user name. It is unlikely a malicious user could guess a valid request because the malicious user would have to know the user name and the current randomly-generated connection id. That connection id becomes invalid as soon as the connection is ended. Anonymous users should not have access to any sensitive information.
 
 <a id="recommendations"></a>
