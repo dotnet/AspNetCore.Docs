@@ -9,7 +9,7 @@ ms.assetid: 81d46f14-8f48-4d8c-830d-cc8d594dc11b
 msc.legacyurl: /web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks
 msc.type: authoredcontent
 ---
-Preventing Cross-Site Request Forgery (CSRF) Attacks in ASP.NET Web API
+Preventing Cross-Site Request Forgery (CSRF) Attacks in ASP.NET MVC Application
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)
 
