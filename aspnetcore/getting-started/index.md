@@ -83,7 +83,7 @@ At the end, you'll have a working web app running on your local machine.
    dotnet run
    ```
 
-* Browse to [http://localhost:5001](http://localhost:5001).  Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
+* Browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
 
 ## Edit a Razor page
 
@@ -91,7 +91,7 @@ At the end, you'll have a working web app running on your local machine.
 
    [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9)]
 
-* Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes are displayed.
+* Browse to [https://localhost:5001/About](https://localhost:5001/About) and verify the changes are displayed.
 
 ## Next steps
 
