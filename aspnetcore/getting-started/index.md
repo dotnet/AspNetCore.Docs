@@ -106,4 +106,4 @@ In this tutorial, you learned how to:
 To learn more about ASP.NET Core, see the introduction:
 
 > [!div class="nextstepaction"]
-> [Introduction to ASP.NET Core](xref:index)
+> <xref:index>
