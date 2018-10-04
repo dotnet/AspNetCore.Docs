@@ -22,7 +22,7 @@ ASP.NET 4.x is a mature framework that provides the services needed to build ent
 
 ## Framework selection
 
-The following table compares ASP.NET Core to ASP.NET Framework 4.x.
+The following table compares ASP.NET Core to ASP.NET 4.x.
 
 | ASP.NET Core | ASP.NET 4.x |
 |---|---|
