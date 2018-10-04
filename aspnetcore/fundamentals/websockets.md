@@ -2,13 +2,12 @@
 title: WebSockets support in ASP.NET Core
 author: rick-anderson
 description: Learn how to get started with WebSockets in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-1.1'
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 06/28/2018
 uid: fundamentals/websockets
 ---
-
 # WebSockets support in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Andrew Stanton-Nurse](https://github.com/anurse)
@@ -105,7 +104,7 @@ To enable support for the WebSocket protocol on Windows 8 or later:
 1. Open the following nodes: **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
 1. Select the **WebSocket Protocol** feature. Select **OK**.
 
-**Disable WebSocket when using socket.io on node.js**
+### Disable WebSocket when using socket.io on Node.js
 
 If using the WebSocket support in [socket.io](https://socket.io/) on [Node.js](https://nodejs.org/), disable the default IIS WebSocket module using the `webSocket` element in *web.config* or *applicationHost.config*. If this step isn't performed, the IIS WebSocket module attempts to handle the WebSocket communication rather than Node.js and the app.
 

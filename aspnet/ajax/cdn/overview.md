@@ -793,6 +793,7 @@ The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstr
 
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/bootstrap.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/bootstrap.bundle.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/css/bootstrap.css
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/css/bootstrap.css.map
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/css/bootstrap.min.css
@@ -807,6 +808,7 @@ The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstr
 
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.bundle.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css.map
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.min.css

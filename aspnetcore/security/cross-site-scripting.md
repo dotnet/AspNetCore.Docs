@@ -3,7 +3,7 @@ title: Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 author: rick-anderson
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 10/02/2018
 uid: security/cross-site-scripting
 ---
 # Prevent Cross-Site Scripting (XSS) in ASP.NET Core
@@ -30,9 +30,9 @@ At a basic level XSS works by tricking your application into inserting a `<scrip
 
 The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work really hard to prevent it doing so. It uses HTML Attribute encoding rules whenever you use the *@* directive. As HTML attribute encoding is a superset of HTML encoding this means you don't have to concern yourself with whether you should use HTML encoding or HTML attribute encoding. You must ensure that you only use @ in an HTML context, not when attempting to insert untrusted input directly into JavaScript. Tag helpers will also encode input you use in tag parameters.
 
-Take the following Razor view;
+Take the following Razor view:
 
-```none
+```cshtml
 @{
        var untrustedInput = "<\"123\">";
    }
@@ -53,7 +53,7 @@ This view outputs the contents of the *untrustedInput* variable. This variable i
 
 There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert  values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
 
-```none
+```cshtml
 @{
        var untrustedInput = "<\"123\">";
    }
@@ -108,9 +108,9 @@ Which, when it runs, will render the following;
    <"123">
    ```
 
-You can also call the JavaScript encoder directly,
+You can also call the JavaScript encoder directly:
 
-```none
+```cshtml
 @using System.Text.Encodings.Web;
    @inject JavaScriptEncoder encoder;
 
@@ -219,4 +219,4 @@ The general accepted practice is that encoding takes place at the point of outpu
 
 ## Validation as an XSS prevention technique
 
-Validation can be a useful tool in limiting XSS attacks. For example, a numeric string containing only the characters 0-9 won't trigger an XSS attack. Validation becomes more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.
+Validation can be a useful tool in limiting XSS attacks. For example, a numeric string containing only the characters 0-9 won't trigger an XSS attack. Validation becomes more complicated when accepting HTML in user input. Parsing HTML input is difficult, if not impossible. Markdown, coupled with a parser that strips embedded HTML, is a safer option for accepting rich input. Never rely on validation alone. Always encode untrusted input before output, no matter what validation or sanitization has been performed.
