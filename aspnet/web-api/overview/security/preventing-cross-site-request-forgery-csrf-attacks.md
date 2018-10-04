@@ -1,8 +1,8 @@
 ---
 uid: web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks
-title: "Preventing Cross-Site Request Forgery (CSRF) Attacks in ASP.NET Web API | Microsoft Docs"
+title: "Preventing Cross-Site Request Forgery (CSRF) Attacks in ASP.NET MVC"
 author: MikeWasson
-description: "Describes the cross-site request forgery (CSRF) attack and how to implement anti-CSRF measures in ASP.NET Web API."
+description: "Describes the cross-site request forgery (CSRF) attack and how to implement anti-CSRF measures in ASP.NET Web MVC."
 ms.author: riande
 ms.date: 12/12/2012
 ms.assetid: 81d46f14-8f48-4d8c-830d-cc8d594dc11b
