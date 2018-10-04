@@ -28,8 +28,6 @@ Obj/
 
 # Visual Studio 2015 cache/options directory
 .vs/
-/wwwroot/dist/
-/ClientApp/dist/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -184,8 +182,6 @@ ClientBin/
 orleans.codegen.cs
 
 /node_modules
-
-/yarn.lock
 
 # RIA/Silverlight projects
 Generated_Code/
