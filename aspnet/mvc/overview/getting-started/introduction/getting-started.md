@@ -10,7 +10,7 @@ msc.type: authoredcontent
 ---
 Getting started with ASP.NET MVC 5
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [consider RP](../../../../includes/razor.md)]
 

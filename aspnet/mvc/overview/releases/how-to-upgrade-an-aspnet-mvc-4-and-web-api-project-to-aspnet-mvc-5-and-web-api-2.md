@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > ASP.NET MVC 5 and Web API 2 bring a host of new features, including attribute routing, authentication filters, and much more. See [https://www.asp.net/vnext](https://www.asp.net/core) for more details.
 > 

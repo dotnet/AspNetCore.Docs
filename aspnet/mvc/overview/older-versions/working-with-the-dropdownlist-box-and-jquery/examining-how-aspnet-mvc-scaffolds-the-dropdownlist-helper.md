@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Examining  how  ASP.NET MVC scaffolds the DropDownList Helper
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 In **Solution Explorer**, right-click the *Controllers* folder and then select **Add Controller**. Name the controller **StoreManagerController**. Set the options for the **Add Controller** dialog as shown in the image below.
 
