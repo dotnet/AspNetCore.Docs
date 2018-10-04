@@ -4,7 +4,6 @@ author: rick-anderson
 description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core. 
 ms.author: riande
 ms.custom: mvc
-ms.topic: tutorial
 ms.date: 05/31/2018
 uid: getting-started
 
