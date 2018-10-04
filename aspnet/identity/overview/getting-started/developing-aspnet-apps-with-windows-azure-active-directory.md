@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Developing ASP.NET Apps with Azure Active Directory
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 Microsoft ASP.NET tools for Azure Active Directory simplifies enabling authentication for web apps hosted on [Azure](https://www.windowsazure.com/home/features/web-sites/). You can use Azure Authentication to authenticate Office 365 users from your organization, corporate accounts synced from your on-premise Active Directory or users created in your own custom Azure Active Directory domain. Enabling Windows Azure Authentication configures your application to authenticate users using a single [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/) tenant.
 

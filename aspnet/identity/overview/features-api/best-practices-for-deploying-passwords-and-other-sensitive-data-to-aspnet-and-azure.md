@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Best practices for deploying passwords and other sensitive data to ASP.NET and Azure App Service
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > This tutorial shows how your code can securely store and access secure information. The most important point is you should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development and test mode.
 > 

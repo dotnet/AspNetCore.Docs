@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Using the HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 1
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > This tutorial will teach you the basics of how to work with editor templates, display templates, and the jQuery UI datepicker popup calendar in an ASP.NET MVC Web application.
 
