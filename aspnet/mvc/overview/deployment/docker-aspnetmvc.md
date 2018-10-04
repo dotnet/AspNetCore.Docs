@@ -11,22 +11,13 @@ uid: mvc/overview/deployment/docker
 ---
 # Migrating ASP.NET MVC Applications to Windows Containers
 
-Running an existing .NET Framework-based application in a Windows container doesn't require any changes to your app. To run your app in a Windows container you create a Docker image containing your app and
-start the container. This topic explains
-how to take an existing [ASP.NET MVC application](http://www.asp.net/mvc)
-and deploy it in a Windows container.
+Running an existing .NET Framework-based application in a Windows container doesn't require any changes to your app. To run your app in a Windows container you create a Docker image containing your app and start the container. This topic explains how to take an existing [ASP.NET MVC application](http://www.asp.net/mvc) and deploy it in a Windows container.
 
-You start with an existing ASP.NET MVC app, then build the published assets using Visual Studio. You use Docker
-to create the image that contains and runs your app. You'll browse to the site running in a Windows container and verify the app is
-working.
+You start with an existing ASP.NET MVC app, then build the published assets using Visual Studio. You use Docker to create the image that contains and runs your app. You'll browse to the site running in a Windows container and verify the app is working.
 
 This article assumes a basic understanding of Docker. You can learn about Docker by reading the [Docker Overview](https://docs.docker.com/engine/understanding-docker/).
 
-The app you'll run in a container is a simple website that
-answers questions randomly. This app is a basic MVC application
-with no authentication or database storage; it lets you focus
-on moving the web tier to a container. Future topics will show how to
-move and manage persistent storage in containerized applications.
+The app you'll run in a container is a simple website that answers questions randomly. This app is a basic MVC application with no authentication or database storage; it lets you focus on moving the web tier to a container. Future topics will show how to move and manage persistent storage in containerized applications.
 
 Moving your application involves these steps:
 
@@ -39,29 +30,23 @@ The [finished application](https://github.com/dotnet/docs/tree/master/samples/fr
 
 ## Prerequisites
 
-The development machine must be running
+The development machine must have the following software:
 
-- [Windows 10 Anniversary Update](https://www.microsoft.com/software-download/windows10/) (or higher) or [Windows Server 2016](https://www.microsoft.com/cloud-platform/windows-server) (or higher).
+- [Windows 10 Anniversary Update](https://www.microsoft.com/software-download/windows10/) (or higher) or [Windows Server 2016](https://www.microsoft.com/cloud-platform/windows-server) (or higher)
 - [Docker for Windows](https://docs.docker.com/docker-for-windows/) - version Stable 1.13.0 or 1.12 Beta 26 (or newer versions)
-- [Visual Studio 2017](https://www.visualstudio.com/visual-studio-homepage-vs.aspx).
+- [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 
 > [!IMPORTANT]
-> If you are using Windows Server 2016, follow the
-> instructions for [Container Host Deployment - Windows Server](https://msdn.microsoft.com/virtualization/windowscontainers/deployment/deployment).
+> If you are using Windows Server 2016, follow the instructions for [Container Host Deployment - Windows Server](https://msdn.microsoft.com/virtualization/windowscontainers/deployment/deployment).
 
-After installing and starting Docker,  right-click on the
-tray icon and select **Switch to Windows containers**. This is required to run
-Docker images based on Windows. This command takes a few seconds to
-execute:
+After installing and starting Docker, right-click on the tray icon and select **Switch to Windows containers**. This is required to run
+Docker images based on Windows. This command takes a few seconds to execute:
 
 ![Windows Container][windows-container]
 
 ## Publish script
 
-Collect all the assets that you need to load into
-a Docker image in one place. You can use the Visual Studio
-**Publish** command to create a publish profile for your app. This
-profile will put all the assets in one directory tree that you copy to your target image later in this tutorial.
+Collect all the assets that you need to load into a Docker image in one place. You can use the Visual Studio **Publish** command to create a publish profile for your app. This profile will put all the assets in one directory tree that you copy to your target image later in this tutorial.
 
 **Publish Steps**
 
@@ -140,7 +125,7 @@ docker run -d --name randomanswers mvcrandomanswers
 The `-d` argument tells Docker to start the image in detached mode. That
 means the Docker image runs disconnected from the current shell.
 
-In many docker examples, you may see -p to map the container and host ports. The default aspnet image has already configured the container to listen on port 80 and expose it. 
+In many docker examples, you may see -p to map the container and host ports. The default aspnet image has already configured the container to listen on port 80 and expose it.
 
 The `--name randomanswers` gives a name to the running container. You can use
 this name instead of the container ID in most commands.
