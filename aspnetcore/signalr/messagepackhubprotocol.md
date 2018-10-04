@@ -46,6 +46,9 @@ services.AddSignalR()
 
 ## Configure MessagePack on the client
 
+> [!NOTE]
+> JSON is enabled by default for the supported clients. Clients can only support a single protocol. Adding MessagePack support will replace any previously configured protocols.
+
 ### .NET client
 
 To enable MessagePack in the .NET Client, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package and call `AddMessagePackProtocol` on `HubConnectionBuilder`.

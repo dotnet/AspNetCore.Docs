@@ -14,18 +14,16 @@ Tracing in ASP.NET Web API 2
 by [Mike Wasson](https://github.com/MikeWasson)
 
 > When you are trying to debug a web-based application, there is no substitute for a good set of trace logs. This tutorial shows how to enable tracing in ASP.NET Web API. You can use this feature to trace what the Web API framework does before and after it invokes your controller. You can also use it to trace your own code.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2017](https://www.visualstudio.com/downloads/) (also works with Visual Studio 2015)
+>
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) (also works with Visual Studio 2015)
 > - Web API 2
 > - [Microsoft.AspNet.WebApi.Tracing](http://www.nuget.org/packages/Microsoft.AspNet.WebApi.Tracing)
 
-
 ## Enable System.Diagnostics Tracing in Web API
 
-First, we'll create a new ASP.NET Web Application project. In Visual Studio, from the **File** menu, select **New**, then **Project**. Under **Templates**, **Web**, select **ASP.NET Web Application**.
+First, we'll create a new ASP.NET Web Application project. In Visual Studio, from the **File** menu, select **New** > **Project**. Under **Templates**, **Web**, select **ASP.NET Web Application**.
 
 [![](tracing-in-aspnet-web-api/_static/image2.png)](tracing-in-aspnet-web-api/_static/image1.png)
 
