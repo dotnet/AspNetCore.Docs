@@ -9,7 +9,7 @@ uid: client-side/bundling-and-minification
 ---
 # Bundle and minify static assets in ASP.NET Core
 
-By [Scott Addie](https://twitter.com/Scott_Addie)
+By [Scott Addie](https://twitter.com/Scott_Addie) and [David Pine](https://twitter.com/davidpine7)
 
 This article explains the benefits of applying bundling and minification, including how these features can be used with ASP.NET Core web apps.
 
@@ -265,7 +265,15 @@ If Visual Studio and/or the Bundler & Minifier extension aren't available, conve
 
 Add a *package.json* file, with the following `devDependencies`, to the project root:
 
+# [Gulp 4.x](#tab/gulp4x/)
+
+[!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package2.json?range=5-13)]
+
+# [Gulp 3.x](#tab/gulp3x/)
+
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
+
+---
 
 Install the dependencies by running the following command at the same level as *package.json*:
 
@@ -281,7 +289,15 @@ npm i -g gulp-cli
 
 Copy the *gulpfile.js* file below to the project root:
 
+# [Gulp 4.x](#tab/gulp4x/)
+
+[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile2.js?range=1-11,14-)]
+
+# [Gulp 3.x](#tab/gulp3x/)
+
 [!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-11,14-)]
+
+---
 
 ### Run Gulp tasks
 
