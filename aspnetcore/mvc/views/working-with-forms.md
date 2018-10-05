@@ -407,7 +407,7 @@ Sample:
 
 The `Index` method initializes the `CountryViewModel`, sets the selected country and passes it to the `Index` view.
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=8-13)]
 
 The HTTP POST `Index` method displays the selection:
 
