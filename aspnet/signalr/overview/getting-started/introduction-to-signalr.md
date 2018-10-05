@@ -47,7 +47,6 @@ SignalR is open-source, accessible through [GitHub](https://github.com/signalr).
 
 SignalR uses the new WebSocket transport where available, and falls back to older transports where necessary. While you could certainly write your application using WebSocket directly, using SignalR means that a lot of the extra functionality you would need to implement will already have been done for you. Most importantly, this means that you can code your application to take advantage of WebSocket without having to worry about creating a separate code path for older clients. SignalR also shields you from having to worry about updates to WebSocket, since SignalR will continue to be updated to support changes in the underlying transport, providing your application a consistent interface across versions of WebSocket.
 
-While you could certainly create a solution using WebSocket alone, SignalR provides all of the functionality you would need to write yourself, such as fallback to other transports and revising your application for updates to WebSocket implementations.
 
 <a id="transports"></a>
 
