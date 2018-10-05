@@ -400,7 +400,7 @@ Right-click the `CourseInstructor` table and select **Show Table Data** to verif
 
 You now have a more complex data model and corresponding database. In the following tutorial you'll learn more about different ways to access related data.
 
-Please leave feedback on how you liked this tutorial and what we could improve. You can also request new topics at [Show Me How With Code](http://aspnet.uservoice.com/forums/228522-show-me-how-with-code).
+Please leave feedback on how you liked this tutorial and what we could improve.
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
