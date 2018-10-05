@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Localization.StarterWeb.ViewModels.Manage
+namespace Localization.ViewModels.Manage
 {
     public class FactorViewModel
     {
