@@ -345,6 +345,7 @@ Test that the app seeded the database. If there are any rows in the contact DB, 
 
 ### Additional resources
 
+* [Build a .NET Core and SQL Database web app in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop). This lab goes into more detail on the security features introduced in this tutorial.
 * [Authorization in ASP.NET Core: Simple, role, claims-based, and custom](xref:security/authorization/index)
 * [Custom policy-based authorization](xref:security/authorization/policies)
