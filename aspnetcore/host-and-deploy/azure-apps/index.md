@@ -169,7 +169,7 @@ When deploying a self-contained app:
 * The site in Azure App Service doesn't require the [preview site extension](#install-the-preview-site-extension).
 * The app must be published following a different approach than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
 
-**Publish from Visual Studio**
+#### Publish from Visual Studio
 
 1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
 1. In the **Pick a publish target** dialog, confirm that **App Service** is selected.
@@ -182,9 +182,9 @@ When deploying a self-contained app:
    * Select **Save**.
 1. Create a new site or update an existing site by following the remaining prompts of the publish wizard.
 
-**Publish using command-line interface (CLI) tools**
+#### Publish using command-line interface (CLI) tools
 
-1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) for a single RID, or use `<RuntimeIdentifiers>` (plural) to provide a semicolon-delimited list of multiple RIDs. In the following example, the `win-x86` RID is specified:
+1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) for a single RID, or use `<RuntimeIdentifiers>` (plural) to provide a semicolon-delimited list of RIDs. In the following example, the `win-x86` RID is specified:
 
    ```xml
    <PropertyGroup>
@@ -192,7 +192,7 @@ When deploying a self-contained app:
      <RuntimeIdentifier>win-x86</RuntimeIdentifier>
    </PropertyGroup>
    ```
-1. From a command prompt, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
+1. From a command shell, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
 
    ```console
    dotnet publish --configuration Release --runtime win-x86
