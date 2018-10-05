@@ -50,7 +50,7 @@ In the following URL, the default route maps `Instructor` as the `controller`, `
 
 `http://localhost:1230/Instructor/Index/1?courseID=2021`
 
-"?courseID=2021" is a query string value. The model binder will also work if you pass the `id` as a query string value:
+`?courseID=2021` is a query string value. The model binder will also work if you pass the `id` as a query string value:
 
 `http://localhost:1230/Instructor/Index?id=1&CourseID=2021`
 
@@ -62,7 +62,11 @@ In the following code, `courseID` doesn't match a parameter in the default route
 
 [!code-cshtml[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample4.cshtml)]
 
-1. Open *Views\Student\Details.cshtml*. Each field is displayed using a `DisplayFor` helper, as shown in the following example:
+### To create the Details page
+
+1. Open *Views\Student\Details.cshtml*.
+
+   Each field is displayed using a `DisplayFor` helper, as shown in the following example:
 
     [!code-cshtml[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample5.cshtml)]
 
@@ -70,19 +74,21 @@ In the following code, `courseID` doesn't match a parameter in the default route
 
     [!code-cshtml[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample6.cshtml?highlight=8-29)]
 
-    If code indentation is wrong after you paste the code, press **Ctrl**+**K**,**D** to format it.
+    If code indentation is wrong after you paste the code, press **Ctrl**+**K**, **Ctrl**+**D** to format it.
 
     This code loops through the entities in the `Enrollments` navigation property. For each `Enrollment` entity in the property, it displays the course title and the grade. The course title is retrieved from the `Course` entity that's stored in the `Course` navigation property of the `Enrollments` entity. All of this data is retrieved from the database automatically when it's needed. In other words, you are using lazy loading here. You did not specify *eager loading* for the `Courses` navigation property, so the enrollments were not retrieved in the same query that got the students. Instead, the first time you try to access the `Enrollments` navigation property, a new query is sent to the database to retrieve the data. You can read more about lazy loading and eager loading in the [Reading Related Data](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md) tutorial later in this series.
 
-3. Run the page by selecting the **Students** tab and clicking a **Details** link for Alexander Carson. (If you press **Ctrl**+**F5** while the *Details.cshtml* file is open, you get an HTTP 400 error because Visual Studio tries to run the Details page but it wasn't reached from a link that specifies the student to display. If that happens, remove "Student/Details" from the URL and try again, or, close the browser, right-click the project, and click **View** > **View in Browser**.)
+3. Open the Details page by starting the program (**Ctrl**+**F5**), selecting the **Students** tab, and then clicking the **Details** link for Alexander Carson. (If you press **Ctrl**+**F5** while the *Details.cshtml* file is open, you get an HTTP 400 error. This is because Visual Studio tries to run the Details page, but it wasn't reached from a link that specifies the student to display. If that happens, remove "Student/Details" from the URL and try again, or, close the browser, right-click the project, and click **View** > **View in Browser**.)
 
     You see the list of courses and grades for the selected student:
 
     ![Student_Details_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image4.png)
 
+4. Close the browser.
+
 ## Update the Create page
 
-1. In *Controllers\StudentController.cs*, replace the `HttpPost Create` action method with the following code to add a `try-catch` block and remove `ID` from the <xref:System.Web.Mvc.BindAttribute> attribute for the scaffolded method:
+1. In *Controllers\StudentController.cs*, replace the <xref:System.Web.Mvc.HttpPostAttribute> `Create` action method with the following code. This code adds a `try-catch` block and removes `ID` from the <xref:System.Web.Mvc.BindAttribute> attribute for the scaffolded method:
 
     [!code-csharp[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample7.cs?highlight=3,5-6,13-18)]
 
@@ -120,13 +126,13 @@ In the following code, `courseID` doesn't match a parameter in the default route
 
     No changes are required in *Create.cshtml*.
 
-2. Run the page by selecting the **Students** tab and clicking **Create New**.
+2. Run the page by starting the program, selecting the **Students** tab, and then clicking **Create New**.
 
 3. Enter names and an invalid date and click **Create** to see the error message.
 
     ![Students_Create_page_error_message](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image6.png)
 
-    This is server-side validation that you get by default; in a later tutorial you'll see how to add attributes that will generate code for client-side validation also. The following highlighted code shows the model validation check in the **Create** method.
+    This is server-side validation that you get by default. In a later tutorial, you'll see how to add attributes that generate code for client-side validation. The following highlighted code shows the model validation check in the **Create** method.
 
     [!code-csharp[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample10.cs?highlight=1)]
 
@@ -134,67 +140,72 @@ In the following code, `courseID` doesn't match a parameter in the default route
 
     ![Students_Index_page_with_new_student](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image7.png)
 
+5. Close the browser.
+
 ## Update the Edit HttpPost method
 
-In *Controllers\StudentController.cs*, the `HttpGet Edit` method (the one without the `HttpPost` attribute) uses the `Find` method to retrieve the selected `Student` entity, as you saw in the `Details` method. You don't need to change this method.
+1. Replace the <xref:System.Web.Mvc.HttpPostAttribute> `Edit` action method with the following code:
 
-However, replace the `HttpPost` `Edit` action method with the following code:
+   [!code-csharp[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample11.cs)]
 
-[!code-csharp[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample11.cs)]
+   > [!NOTE]
+   > In *Controllers\StudentController.cs*, the `HttpGet Edit` method (the one without the `HttpPost` attribute) uses the `Find` method to retrieve the selected `Student` entity, as you saw in the `Details` method. You don't need to change this method.
 
-These changes implement a security best practice to prevent [overposting](#overpost), The scaffolder generated a `Bind` attribute and added the entity created by the model binder to the entity set with a Modified flag. That code is no longer recommended because the `Bind` attribute clears out any pre-existing data in fields not listed in the `Include` parameter. In the future, the MVC controller scaffolder will be updated so that it doesn't generate `Bind` attributes for Edit methods.
+   These changes implement a security best practice to prevent [overposting](#overpost), The scaffolder generated a `Bind` attribute and added the entity created by the model binder to the entity set with a Modified flag. That code is no longer recommended because the `Bind` attribute clears out any pre-existing data in fields not listed in the `Include` parameter. In the future, the MVC controller scaffolder will be updated so that it doesn't generate `Bind` attributes for Edit methods.
 
-The new code reads the existing entity and calls <xref:System.Web.Mvc.Controller.TryUpdateModel%2A> to update fields from user input in the posted form data. The Entity Framework's automatic change tracking sets the [EntityState.Modified](<xref:System.Data.EntityState.Modified>) flag on the entity. When the [SaveChanges](https://msdn.microsoft.com/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method is called, the <xref:System.Data.EntityState.Modified> flag causes the Entity Framework to create SQL statements to update the database row. [Concurrency conflicts](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md) are ignored, and all columns of the database row are updated, including those that the user didn't change. (A later tutorial shows how to handle concurrency conflicts, and if you only want individual fields to be updated in the database, you can set the entity to [EntityState.Unchanged](<xref:System.Data.EntityState.Unchanged>) and set individual fields to [EntityState.Modified](<xref:System.Data.EntityState.Modified>).)
+   The new code reads the existing entity and calls <xref:System.Web.Mvc.Controller.TryUpdateModel%2A> to update fields from user input in the posted form data. The Entity Framework's automatic change tracking sets the [EntityState.Modified](<xref:System.Data.EntityState.Modified>) flag on the entity. When the [SaveChanges](https://msdn.microsoft.com/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method is called, the <xref:System.Data.EntityState.Modified> flag causes the Entity Framework to create SQL statements to update the database row. [Concurrency conflicts](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md) are ignored, and all columns of the database row are updated, including those that the user didn't change. (A later tutorial shows how to handle concurrency conflicts, and if you only want individual fields to be updated in the database, you can set the entity to [EntityState.Unchanged](<xref:System.Data.EntityState.Unchanged>) and set individual fields to [EntityState.Modified](<xref:System.Data.EntityState.Modified>).)
 
-To prevent overposting, the fields that you want to be updateable by the Edit page are whitelisted in the `TryUpdateModel` parameters. Currently there are no extra fields that you're protecting, but listing the fields that you want the model binder to bind ensures that if you add fields to the data model in the future, they're automatically protected until you explicitly add them here.
+   To prevent overposting, the fields that you want to be updateable by the Edit page are whitelisted in the `TryUpdateModel` parameters. Currently there are no extra fields that you're protecting, but listing the fields that you want the model binder to bind ensures that if you add fields to the data model in the future, they're automatically protected until you explicitly add them here.
 
-As a result of these changes, the method signature of the HttpPost Edit method is the same as the HttpGet edit method; therefore you've renamed the method EditPost.
+   As a result of these changes, the method signature of the HttpPost Edit method is the same as the HttpGet edit method; therefore you've renamed the method EditPost.
 
-> [!TIP]
->
-> **Entity States and the Attach and SaveChanges Methods**
->
-> The database context keeps track of whether entities in memory are in sync with their corresponding rows in the database, and this information determines what happens when you call the `SaveChanges` method. For example, when you pass a new entity to the [Add](https://msdn.microsoft.com/library/system.data.entity.dbset.add(v=vs.103).aspx) method, that entity's state is set to `Added`. Then when you call the [SaveChanges](https://msdn.microsoft.com/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method, the database context issues a SQL `INSERT` command.
->
-> An entity may be in one of the following [states](xref:System.Data.EntityState):
->
-> - `Added`. The entity does not yet exist in the database. The `SaveChanges` method must issue an `INSERT` statement.
-> - `Unchanged`. Nothing needs to be done with this entity by the `SaveChanges` method. When you read an entity from the database, the entity starts out with this status.
-> - `Modified`. Some or all of the entity's property values have been modified. The `SaveChanges` method must issue an `UPDATE` statement.
-> - `Deleted`. The entity has been marked for deletion. The `SaveChanges` method must issue a `DELETE` statement.
-> - `Detached`. The entity isn't being tracked by the database context.
->
-> In a desktop application, state changes are typically set automatically. In a desktop type of application, you read an entity and make changes to some of its property values. This causes its entity state to automatically be changed to `Modified`. Then when you call `SaveChanges`, the Entity Framework generates a SQL `UPDATE` statement that updates only the actual properties that you changed.
->
-> The disconnected nature of web apps doesn't allow for this continuous sequence. The [DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext(v=VS.103).aspx) that reads an entity is disposed after a page is rendered. When the `HttpPost` `Edit` action method is called, a new request is made and you have a new instance of the [DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext(v=VS.103).aspx), so you have to manually set the entity state to `Modified.` Then when you call `SaveChanges`, the Entity Framework updates all columns of the database row, because the context has no way to know which properties you changed.
->
-> If you want the SQL `Update` statement to update only the fields that the user actually changed, you can save the original values in some way (such as hidden fields) so that they are available when the `HttpPost` `Edit` method is called. Then you can create a `Student` entity using the original values, call the `Attach` method with that original version of the entity, update the entity's values to the new values, and then call `SaveChanges.` For more information, see [Entity states and SaveChanges](/ef/ef6/saving/change-tracking/entity-state) and [Local Data](/ef/ef6/querying/local-data).
+   > [!TIP]
+   >
+   > **Entity States and the Attach and SaveChanges Methods**
+   >
+   > The database context keeps track of whether entities in memory are in sync with their corresponding rows in the database, and this information determines what happens when you call the `SaveChanges` method. For example, when you pass a new entity to the [Add](https://msdn.microsoft.com/library/system.data.entity.dbset.add(v=vs.103).aspx) method, that entity's state is set to `Added`. Then when you call the [SaveChanges](https://msdn.microsoft.com/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method, the database context issues a SQL `INSERT` command.
+   >
+   > An entity may be in one of the following [states](xref:System.Data.EntityState):
+   >
+   > - `Added`. The entity does not yet exist in the database. The `SaveChanges` method must issue an `INSERT` statement.
+   > - `Unchanged`. Nothing needs to be done with this entity by the `SaveChanges` method. When you read an entity from the database, the entity starts out with this status.
+   > - `Modified`. Some or all of the entity's property values have been modified. The `SaveChanges` method must issue an `UPDATE` statement.
+   > - `Deleted`. The entity has been marked for deletion. The `SaveChanges` method must issue a `DELETE` statement.
+   > - `Detached`. The entity isn't being tracked by the database context.
+   >
+   > In a desktop application, state changes are typically set automatically. In a desktop type of application, you read an entity and make changes to some of its property values. This causes its entity state to automatically be changed to `Modified`. Then when you call `SaveChanges`, the Entity Framework generates a SQL `UPDATE` statement that updates only the actual properties that you changed.
+   >
+   > The disconnected nature of web apps doesn't allow for this continuous sequence. The [DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext(v=VS.103).aspx) that reads an entity is disposed after a page is rendered. When the `HttpPost` `Edit` action method is called, a new request is made and you have a new instance of the [DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext(v=VS.103).aspx), so you have to manually set the entity state to `Modified.` Then when you call `SaveChanges`, the Entity Framework updates all columns of the database row, because the context has no way to know which properties you changed.
+   >
+   > If you want the SQL `Update` statement to update only the fields that the user actually changed, you can save the original values in some way (such as hidden fields) so that they are available when the `HttpPost` `Edit` method is called. Then you can create a `Student` entity using the original values, call the `Attach` method with that original version of the entity, update the entity's values to the new values, and then call `SaveChanges.` For more information, see [Entity states and SaveChanges](/ef/ef6/saving/change-tracking/entity-state) and [Local Data](/ef/ef6/querying/local-data).
 
-The HTML and Razor code in *Views\Student\Edit.cshtml* is similar to what you saw in *Create.cshtml*, and no changes are required.
+   The HTML and Razor code in *Views\Student\Edit.cshtml* is similar to what you saw in *Create.cshtml*, and no changes are required.
 
-Run the page by selecting the **Students** tab and then clicking an **Edit** hyperlink.
+2. Run the page by starting the program, selecting the **Students** tab, and then clicking an **Edit** hyperlink.
 
-![Student_Edit_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image8.png)
+   ![Student_Edit_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image8.png)
 
-Change some of the data and click **Save**. You see the changed data in the Index page.
+3. Change some of the data and click **Save**. You see the changed data in the Index page.
 
-![Students_Index_page_after_edit](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image9.png)
+   ![Students_Index_page_after_edit](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image9.png)
+
+4. Close the browser.
 
 ## Update the Delete page
 
-In *Controllers\StudentController.cs*, the template code for the `HttpGet` `Delete` method uses the `Find` method to retrieve the selected `Student` entity, as you saw in the `Details` and `Edit` methods. However, to implement a custom error message when the call to `SaveChanges` fails, you'll add some functionality to this method and its corresponding view.
+In *Controllers\StudentController.cs*, the template code for the <xref:System.Web.Mvc.HttpGetAttribute> `Delete` method uses the `Find` method to retrieve the selected `Student` entity, as you saw in the `Details` and `Edit` methods. However, to implement a custom error message when the call to `SaveChanges` fails, you'll add some functionality to this method and its corresponding view.
 
 As you saw for update and create operations, delete operations require two action methods. The method that is called in response to a GET request displays a view that gives the user a chance to approve or cancel the delete operation. If the user approves it, a POST request is created. When that happens, the `HttpPost` `Delete` method is called and then that method actually performs the delete operation.
 
-You'll add a `try-catch` block to the `HttpPost` `Delete` method to handle any errors that might occur when the database is updated. If an error occurs, the `HttpPost` `Delete` method calls the `HttpGet` `Delete` method, passing it a parameter that indicates that an error has occurred. The `HttpGet Delete` method then redisplays the confirmation page along with the error message, giving the user an opportunity to cancel or try again.
+You'll add a `try-catch` block to the <xref:System.Web.Mvc.HttpPostAttribute> `Delete` method to handle any errors that might occur when the database is updated. If an error occurs, the <xref:System.Web.Mvc.HttpPostAttribute> `Delete` method calls the <xref:System.Web.Mvc.HttpGetAttribute> `Delete` method, passing it a parameter that indicates that an error has occurred. The <xref:System.Web.Mvc.HttpGetAttribute> `Delete` method then redisplays the confirmation page along with the error message, giving the user an opportunity to cancel or try again.
 
-1. Replace the `HttpGet` `Delete` action method with the following code, which manages error reporting:
+1. Replace the <xref:System.Web.Mvc.HttpGetAttribute> `Delete` action method with the following code, which manages error reporting:
 
     [!code-csharp[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample12.cs?highlight=1,7-10)]
 
     This code accepts an [optional parameter](https://msdn.microsoft.com/library/dd264739.aspx) that indicates whether the method was called after a failure to save changes. This parameter is `false` when the `HttpGet` `Delete` method is called without a previous failure. When it is called by the `HttpPost` `Delete` method in response to a database update error, the parameter is `true` and an error message is passed to the view.
 
-2. Replace the `HttpPost` `Delete` action method (named `DeleteConfirmed`) with the following code, which performs the actual delete operation and catches any database update errors.
+2. Replace the <xref:System.Web.Mvc.HttpPostAttribute> `Delete` action method (named `DeleteConfirmed`) with the following code, which performs the actual delete operation and catches any database update errors.
 
     [!code-csharp[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample13.cs)]
 
@@ -210,13 +221,15 @@ You'll add a `try-catch` block to the `HttpPost` `Delete` method to handle any e
 
 3. In *Views\Student\Delete.cshtml*, add an error message between the `h2` heading and the `h3` heading, as shown in the following example:
 
-     [!code-cshtml[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample15.cshtml?highlight=2)]
+    [!code-cshtml[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample15.cshtml?highlight=2)]
 
-     Run the page by selecting the **Students** tab and clicking a **Delete** hyperlink:
+4. Run the page by starting the program, selecting the **Students** tab, and then clicking a **Delete** hyperlink:
 
-     ![Student_Delete_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image10.png)
+    ![Student_Delete_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image10.png)
 
-4. Click **Delete**. The Index page is displayed without the deleted student. (You'll see an example of the error handling code in action in the [concurrency tutorial](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md).)
+5. Choose **Delete** on the page that says **Are you sure you want to delete this?**.
+
+    The Index page displays without the deleted student. (You'll see an example of the error handling code in action in the [concurrency tutorial](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md).)
 
 ## Close database connections
 
@@ -228,7 +241,7 @@ The base `Controller` class already implements the `IDisposable` interface, so t
 
 ## Handle transactions
 
-By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Working with Transactions](/ef/ef6/saving/transactions).
+By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control&mdash;for example, if you want to include operations done outside of Entity Framework in a transaction&mdash;see [Working with Transactions](/ef/ef6/saving/transactions).
 
 ## Summary
 
