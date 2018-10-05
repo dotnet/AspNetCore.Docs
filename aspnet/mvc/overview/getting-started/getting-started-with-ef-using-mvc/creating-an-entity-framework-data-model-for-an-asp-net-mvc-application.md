@@ -14,10 +14,16 @@ by [Tom Dykstra](https://github.com/tdykstra)
 
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
-> > [!NOTE]
-> >
-> > A newer version of this tutorial series is available: [Get started with ASP.NET Core and Entity Framework Core using Visual Studio 2015](https://docs.asp.net/en/latest/data/ef-mvc/intro.html).
+> [!NOTE]
+> A [newer version of this tutorial series](/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-2.1) is available that uses [Razor Pages](xref:data/ef-rp/intro). Razor Pages is a page-based programming model that makes building web UI easier and more productive. We recommend the Razor Pages tutorial over the MVC version. The Razor Pages tutorial:
 >
+> * Is easier to follow.
+> * Provides more EF Core best practices.
+> * Uses more efficient queries.
+> * Is more current with the latest API.
+> * Covers more features.
+> * Is the preferred approach for new application development.
+
 > This article demonstrates how to create ASP.NET MVC 5 applications using Entity Framework 6 and Visual Studio. This tutorial uses the Code First workflow. For information about how to choose between Code First, Database First, and Model First, see [Create a model](/ef/ef6/modeling/).
 >
 > The sample application is a web site for a fictional university named Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This tutorial series explains how to build the Contoso University sample application. You can [download the completed application](https://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8).

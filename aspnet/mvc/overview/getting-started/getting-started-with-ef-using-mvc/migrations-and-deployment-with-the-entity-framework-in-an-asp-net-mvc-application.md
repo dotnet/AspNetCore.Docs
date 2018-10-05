@@ -13,7 +13,7 @@ Code First Migrations and Deployment with the Entity Framework in an ASP.NET MVC
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8) or [Download PDF](http://download.microsoft.com/download/0/F/B/0FBFAA46-2BFD-478F-8E56-7BF3C672DF9D/Getting%20Started%20with%20Entity%20Framework%206%20Code%20First%20using%20MVC%205.pdf)
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 > The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio 2013. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 
@@ -45,7 +45,7 @@ This method of keeping the database in sync with the data model works well until
     ![Selecting_Package_Manager_Console](https://asp.net/media/4336350/1pm.png)
 4. At the `PM>` prompt enter the following commands:
 
-    `enable-migrations`  
+    `enable-migrations`
     `add-migration InitialCreate`
 
     ![enable-migrations command](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
@@ -68,7 +68,7 @@ When you are dropping and re-creating the database for every data model change, 
 
 For this tutorial, you'll be using Migrations for deployment, but your `Seed` method will insert test data anyway in order to make it easier to see how application functionality works without having to manually insert a lot of data.
 
-1. Replace the contents of the *Configuration.cs* file with the following code, which will load test data into the new database. 
+1. Replace the contents of the *Configuration.cs* file with the following code, which will load test data into the new database.
 
     [!code-csharp[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs)]
 
@@ -167,19 +167,19 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
 11. Enter an administrator **SQL Admin Username** and **SQL Admin Password**. If you selected **New SQL Database server**, you aren't entering an existing name and password here, you're entering a new name and password that you're defining now to use later when you access the database. If you selected a server that you created previously, you'll enter credentials for that server.
 12. Telemetry collection can be enabled for App Service using Application Insights. Application Insights with little configuration collects valuable event, exception, dependency, request, and trace information. To learn more about Application Insights, get started in [Azure Docs](https://azure.microsoft.com/services/application-insights/).
 13. Click **Create** at the bottom of the blade to indicate that you're finished.
-  
+
     The Management Portal returns to the Dashboards page, and the **Notifications** blade at the top of the page shows that the site is being created. After a while (typically less than a minute), there will be a notification that the Deployment succeeded. In the navigation bar at the left, the new **App Service** appears in the *App Services* section and the new **SQL Database** appears in the *SQL Databases* section.
 
 ### Deploy the application to Azure
 
 1. In Visual Studio, right-click the project in **Solution Explorer** and select **Publish** from the context menu.
-  
+
     ![Publish in project context menu](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
 2. In the **Profile** tab of the **Publish Web** wizard, click **Microsoft Azure App Service**.
-  
+
     ![Import publish settings](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-ChooseTarget.png)
 3. If you have not previously added your Azure subscription in Visual Studio, perform the steps on the screen. These steps enable Visual Studio to connect to your Azure subscription so that the list of **App Services** will include your web site.
- 
+
 4. Select the **Subscription** you added the App Service to, then the **App Service Plan** folder your App Service is a part of, and finally the **App Service** itself followed by **Ok**.
 
     ![Select App Service](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-AppService.png)
@@ -187,7 +187,7 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
 
     ![Validate connection](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Connection.png)
 6. When the connection has been validated, a green check mark is shown next to the **Validate Connection** button. Click **Next**.
-  
+
     ![Successfully validated connection](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-SettingsValidated.png)
 7. Open the **Remote connection string** drop-down list under **SchoolContext** and select the connection string for the database you created.
 8. Select **Update database**.
@@ -197,20 +197,20 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
     This setting causes the deployment process to automatically configure the application *Web.config* file on the destination server so that Code First uses the `MigrateDatabaseToLatestVersion` initializer class.
 9. Click **Next**.
 10. In the **Preview** tab, click **Start Preview**.
-  
+
     ![StartPreview button in the Preview tab](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Preview.png)
-  
+
     The tab displays a list of the files that will be copied to the server. Displaying the preview isn't required to publish the application but is a useful function to be aware of. In this case, you don't need to do anything with the list of files that is displayed. The next time you deploy this application, only the files that have changed will be in this list.
     ![StartPreview file output](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-PreviewLoaded.png)
 
 11. Click **Publish**.
     Visual Studio begins the process of copying the files to the Azure server.
 12. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.
-  
+
     ![Output window reporting successful deployment](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-BuildOutput.png)
 13. Upon successful deployment, the default browser automatically opens to the URL of the deployed web site.
-    The application you created is now running in the cloud. 
-  
+    The application you created is now running in the cloud.
+
     ![Students_index_page_with_paging](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Site.png)
 
 At this point your *SchoolContext* database has been created in the Azure SQL Database because you selected **Execute Code First Migrations (runs on app start)**. The *Web.config* file in the deployed web site has been changed so that the [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) initializer runs the first time your code reads or writes data in the database (which happened when you selected the **Students** tab):
