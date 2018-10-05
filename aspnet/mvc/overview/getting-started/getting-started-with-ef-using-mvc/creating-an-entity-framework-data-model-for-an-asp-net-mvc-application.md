@@ -15,7 +15,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 > [!NOTE]
-> A [newer version of this tutorial series](/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-2.1) is available that uses [Razor Pages](xref:data/ef-rp/intro). Razor Pages is a page-based programming model that makes building web UI easier and more productive. We recommend the Razor Pages tutorial over the MVC version. The Razor Pages tutorial:
+> A [newer version of this tutorial series](/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-2.1) is available that uses [Razor Pages](/aspnet/core/razor-pages). Razor Pages is a page-based programming model that makes building web UI easier and more productive. We recommend the Razor Pages tutorial over the MVC version. The Razor Pages tutorial:
 >
 > * Is easier to follow.
 > * Provides more EF Core best practices.
