@@ -244,6 +244,8 @@ named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
 * The `named_options_2` delegate in `ConfigureServices` for `Option1`.
 * The default value for `Option2` provided by the `MyOptions` class.
 
+## Configure all options with the ConfigureAll method
+
 Configure all options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method. The following code configures `Option1` for all configuration instances with a common value. Add the following code manually to the `Configure` method:
 
 ```csharp
