@@ -15,7 +15,7 @@ namespace MyConfigBuilders
             ServiceID = ConfigurationManager.AppSettings["ServiceID"];
             ServiceKey = ConfigurationManager.AppSettings["ServiceKey"];
             ConString = ConfigurationManager.ConnectionStrings["default"]
-                                            .ConnectionString;
+                                            ?.ConnectionString;
         }
     }
 }
