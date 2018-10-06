@@ -4,7 +4,7 @@ title: Configuration builders for ASP.NET
 author: rick-anderson
 description: Learn how to get configuration data from sources other than web.config
 ms.author: riande
-ms.date: 9/9/2018
+ms.date: 10/9/2018
 ms.technology: aspnet
 msc.type: content
 ---
@@ -80,20 +80,13 @@ Use either of the following approaches to inject both `<appSettings/>` and `<con
 
 With the preceding markup, the same flat key/value source can be used to populate configuration for two different sections.
 
-<!-- review
- Using this approach the app can read `<appSettings/>` and `<connectionStrings/>` without needing to update the configuration file. 
-But you need to add the prefix to each config file?
-
-Q2: Why do we need prefix="AppSetting_" in WebPrefix.config? WHy is it needed if we're not stripping it?
--->
-
 The following image shows the `<appSettings/>` and `<connectionStrings/>` keys/values from the preceding *web.config* file set in the environment editor:
 
 ![environment editor](config-builder/static/prefix.png)
 
 The following code reads the `<appSettings/>` and `<connectionStrings/>` keys/values contained in the preceding *web.config* file:
 
-[!code-csharp[Main](config-builder/MyConfigBuilders/Contact.aspx.cs&name=snippet)]
+[!code-csharp[Main](config-builder/MyConfigBuilders/Contact.aspx.cs?name=snippet)]
 
 The preceding code will set the property values to:
 
@@ -112,7 +105,7 @@ For example, using the previous *web.config* file, the keys/values in the previo
 
 `stripPrefix`: boolean, defaults to `false`. 
 
-The preceding XML markup separates app settings from connection strings but requires all the keys to use the specified prefix. For example, the prefix `AppSetting` must be added to the `ServiceID` key ("AppSetting_ServiceID"). With `stripPrefix`, the prefix is not used in the *web.config* file. The prefix is required in the configuration builder source (for example, in the environment.)
+The preceding XML markup separates app settings from connection strings but requires all the keys to use the specified prefix. For example, the prefix `AppSetting` must be added to the `ServiceID` key ("AppSetting_ServiceID"). With `stripPrefix`, the prefix is not used in the *web.config* file. The prefix is required in the configuration builder source (for example, in the environment.) We anticipate most developers will use `stripPrefix`.
 
 Applications typically strip off the prefix. The following *web.config* strips the prefix:
 
@@ -126,7 +119,7 @@ The following image shows the `<appSettings/>` and `<connectionStrings/>` keys/v
 
 The following code reads the `<appSettings/>` and `<connectionStrings/>` keys/values contained in the preceding *web.config* file:
 
-[!code-csharp[Main](config-builder/MyConfigBuilders/About2.aspx.cs&name=snippet)]
+[!code-csharp[Main](config-builder/MyConfigBuilders/About2.aspx.cs?name=snippet)]
 
 The preceding code will set the property values to:
 
