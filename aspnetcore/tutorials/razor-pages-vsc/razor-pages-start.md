@@ -15,7 +15,7 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs-vscode.md)]
+[!INCLUDE](~/includes/net-core-prereqs-vscode.md)]
 
 ## Create a Razor web app
 
