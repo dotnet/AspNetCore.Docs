@@ -38,7 +38,7 @@ The configuration builders use an external source of key/value information to po
    * The configuration builders replace the value in the resulting configuration section with the value from the external source.
 * `Greedy` - This mode is closely related to `Strict` mode. Rather than being limited to keys that already exist in the original configuration:
 
-  * The configuration builders dump all key/value pairs from the external source into the resulting configuration section.
+  * The configuration builders adds all key/value pairs from the external source into the resulting configuration section.
 
 * `Expand` - Operates on the raw XML before it's parsed into a configuration section object. It can be thought of as an expansion of tokens in a string. Any part of the raw XML string that matches the pattern `${token}` is a candidate for token expansion. If no corresponding value is found in the external source, then the token is not changed.
 
@@ -69,12 +69,12 @@ The following image shows the `<appSettings/>` keys/values from the preceding *w
 Key prefixes can simplify setting keys because:
 
 * The .Net Framework configuration is complex and nested.
-* External key/value sources are by nature basic and flat.
+* External key/value sources are by nature basic and flat. For example, environment variables are not nested.
 
-For example, use either approach to inject both `<appSettings/>` and `<connectionStrings/>` into the configuration via environment variables:
+Use either of the following approaches to inject both `<appSettings/>` and `<connectionStrings/>` into the configuration via environment variables:
 
-* With the `EnvironmentConfigBuilder` in the default `Strict` mode and the appropriate key names in the configuration file. The preceding code and markup takes this approach.
-* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. Using this approach the app can read `<appSettings/>` and `<connectionStrings/>` without needing to update the configuration file. For example:
+* With the `EnvironmentConfigBuilder` in the default `Strict` mode and the appropriate key names in the configuration file. The preceding code and markup takes this approach. Using this approach you can **not** have identically named keys in both `<appSettings/>` and `<connectionStrings/>`.
+* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. ~Using this approach the app can read `<appSettings/>` and `<connectionStrings/>` without needing to update the configuration file.~ With this approach you can't have duplicate key names as they must differ by prefix.  For example:
 
 [!code-xml[Main](config-builder/MyConfigBuilders/WebPrefix.config?name=snippet&highlight=11-99)]
 
@@ -82,22 +82,64 @@ With the preceding markup, the same flat key/value source can be used to populat
 
 <!-- review
  Using this approach the app can read `<appSettings/>` and `<connectionStrings/>` without needing to update the configuration file. 
-But you need to add the attribute/value configBuilders="AS_Environment" to
-  <appSettings configBuilders="AS_Environment">
+But you need to add the prefix to each config file?
+
+Q2: Why do we need prefix="AppSetting_" in WebPrefix.config? WHy is it needed if we're not stripping it?
 -->
+
+The following image shows the `<appSettings/>` and `<connectionStrings/>` keys/values from the preceding *web.config* file set in the environment editor:
+
+![environment editor](config-builder/static/prefix.png)
+
+The following code reads the `<appSettings/>` and `<connectionStrings/>` keys/values contained in the preceding *web.config* file:
+
+[!code-csharp[Main](config-builder/MyConfigBuilders/Contact.aspx.cs&name=snippet)]
+
+The preceding code will set the property values to:
+
+* The values in the *web.config* file if the keys are not set in environment variables.
+* The values of the environment variable, if set.
+
+For example, using the previous *web.config* file, the keys/values in the previous  environment editor image, and the previous code, the following values are set:
+
+|  Key              | Value |
+| ----------------- | ------------ |
+|     AppSetting_ServiceID           | AppSetting_ServiceID from env variables|
+|    AppSetting_default            | AppSetting_default value from env |
+|       ConnStr_default         | ConnStr_default val from env|
+
 ### stripPrefix
 
 `stripPrefix`: boolean, defaults to `false`. 
 
-The preceding XML markup separates app settings from connection strings but requires all the keys to use the specified prefix. For example, the prefix `AppSetting` must be added to the `ServiceID` key ("AppSetting_ServiceID"). `stripPrefix` is used to remove the prefix added by the `prefix` attribute.
+The preceding XML markup separates app settings from connection strings but requires all the keys to use the specified prefix. For example, the prefix `AppSetting` must be added to the `ServiceID` key ("AppSetting_ServiceID"). With `stripPrefix`, the prefix is not used in the *web.config* file. The prefix is required in the configuration builder source (for example, in the environment.)
 
-Applications typically strip off the prefix. The following markup strips the prefix:
+Applications typically strip off the prefix. The following *web.config* strips the prefix:
 
-[!code-xml[Main](config-builder/MyConfigBuilders/WebPrefixStrip.config?name=snippet&highlight=11-99)]
+[!code-xml[Main](config-builder/MyConfigBuilders/WebPrefixStrip.config?name=snippet&highlight=14,19)]
 
-<!-- My sample doesn't work
-Copy WebPrefixStrip.config to Web.config and test the about page.
--->
+In the preceding *web.config* file, the `default` key is in both the `<appSettings/>` and `<connectionStrings/>`.
+
+The following image shows the `<appSettings/>` and `<connectionStrings/>` keys/values from the preceding *web.config* file set in the environment editor:
+
+![environment editor](config-builder/static/prefix.png)
+
+The following code reads the `<appSettings/>` and `<connectionStrings/>` keys/values contained in the preceding *web.config* file:
+
+[!code-csharp[Main](config-builder/MyConfigBuilders/About2.aspx.cs&name=snippet)]
+
+The preceding code will set the property values to:
+
+* The values in the *web.config* file if the keys are not set in environment variables.
+* The values of the environment variable, if set.
+
+For example, using the previous *web.config* file, the keys/values in the previous  environment editor image, and the previous code, the following values are set:
+
+|  Key              | Value |
+| ----------------- | ------------ |
+|     AppSetting_ServiceID           | AppSetting_ServiceID from env variables|
+|    AppSetting_default            | AppSetting_default value from env |
+|       ConnStr_default         | ConnStr_default val from env|
 
 ### tokenPattern
 

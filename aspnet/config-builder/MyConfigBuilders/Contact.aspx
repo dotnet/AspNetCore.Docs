@@ -5,6 +5,6 @@
     <h3>Your contact page.</h3>
 
   <p>ServiceID: <%= ServiceID %></p>
-  <p>ServiceKey: <%= ServiceKey %></p>
+  <p>AppSetting_default: <%= AppSetting_default %></p>
   <p>ConString: <%= ConString %></p>
 </asp:Content>

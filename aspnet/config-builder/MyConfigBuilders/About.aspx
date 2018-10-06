@@ -5,6 +5,6 @@
     <h3>Your application description page.</h3>
     <p>ServiceID: <%= ServiceID %></p>
     <p>ServiceKey: <%= ServiceKey %></p>
-        <p>ConString: <%= ConString %></p>
+    <p>ConString: <%= ConString %></p>
 
 </asp:Content>
