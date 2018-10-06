@@ -74,7 +74,13 @@ Key prefixes can simplify setting keys because:
 Use either of the following approaches to inject both `<appSettings/>` and `<connectionStrings/>` into the configuration via environment variables:
 
 * With the `EnvironmentConfigBuilder` in the default `Strict` mode and the appropriate key names in the configuration file. The preceding code and markup takes this approach. Using this approach you can **not** have identically named keys in both `<appSettings/>` and `<connectionStrings/>`.
-* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. ~Using this approach the app can read `<appSettings/>` and `<connectionStrings/>` without needing to update the configuration file.~ With this approach you can't have duplicate key names as they must differ by prefix.  For example:
+* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. With this approach you can't have duplicate key names as they must differ by prefix.  For example:
+
+<!--Review: 
+Removed:
+~Using this approach the app can read `<appSettings/>` and `<connectionStrings/>` without needing to update the configuration file.~ 
+But you need to update the config file with the prefixes - unless you use strip prefix.
+ -->
 
 [!code-xml[Main](config-builder/MyConfigBuilders/WebPrefix.config?name=snippet&highlight=11-99)]
 
