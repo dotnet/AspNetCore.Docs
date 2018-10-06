@@ -71,16 +71,11 @@ Key prefixes can simplify setting keys because:
 * The .Net Framework configuration is complex and nested.
 * External key/value sources are by nature basic and flat. For example, environment variables are not nested.
 
-Use either of the following approaches to inject both `<appSettings/>` and `<connectionStrings/>` into the configuration via environment variables:
+Use any of the following approaches to inject both `<appSettings/>` and `<connectionStrings/>` into the configuration via environment variables:
 
 * With the `EnvironmentConfigBuilder` in the default `Strict` mode and the appropriate key names in the configuration file. The preceding code and markup takes this approach. Using this approach you can **not** have identically named keys in both `<appSettings/>` and `<connectionStrings/>`.
-* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. With this approach you can't have duplicate key names as they must differ by prefix.  For example:
-
-<!--Review: 
-Removed:
-~Using this approach the app can read `<appSettings/>` and `<connectionStrings/>` without needing to update the configuration file.~ 
-But you need to update the config file with the prefixes - unless you use strip prefix.
- -->
+* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes and `stripPrefix`. With this approach, the app can read `<appSettings/>` and `<connectionStrings/>` without needing to update the configuration file. The next section,  [stripPrefix](#stripprefix),  shows how to do this.
+* Use two `EnvironmentConfigBuilder`s in `Greedy` mode with distinct prefixes. With this approach you can't have duplicate key names as key names must differ by prefix.  For example:
 
 [!code-xml[Main](config-builder/MyConfigBuilders/WebPrefix.config?name=snippet&highlight=11-99)]
 
