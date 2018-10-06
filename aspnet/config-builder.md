@@ -131,9 +131,9 @@ For example, using the previous *web.config* file, the keys/values in the previo
 
 |  Key              | Value |
 | ----------------- | ------------ |
-|     AppSetting_ServiceID           | AppSetting_ServiceID from env variables|
-|    AppSetting_default            | AppSetting_default value from env |
-|       ConnStr_default         | ConnStr_default val from env|
+|     ServiceID           | AppSetting_ServiceID from env variables|
+|    default            | AppSetting_default value from env |
+|    default         | ConnStr_default val from env|
 
 ### tokenPattern
 
