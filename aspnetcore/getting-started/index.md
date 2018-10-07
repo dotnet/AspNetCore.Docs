@@ -27,7 +27,7 @@ At the end, you'll have a working web app running on your local machine.
 
 ## Prerequisites
 
-* Install the [!INCLUDE [](~/includes/2.1-SDK.md)].
+* Install the [!INCLUDE [2.1-SDK](../includes/2.1-SDK.md)].
 
 ## Create a web app project
 
