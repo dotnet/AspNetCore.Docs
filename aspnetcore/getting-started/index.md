@@ -14,11 +14,10 @@ uid: getting-started
 
 This tutorial shows how to use the .NET Core command-line interface to create an ASP.NET Core web app. You'll learn how to:
 
-> [!div class="checklist"]
-> * Create a web app project.
-> * Enable local HTTPS.
-> * Run the app.
-> * Edit a Razor page.
+- [ ] Create a web app project.
+- [ ] Enable local HTTPS.
+- [ ] Run the app.
+- [ ] Edit a Razor page.
 
 At the end, you'll have a working web app running on your local machine.
 
@@ -97,11 +96,10 @@ At the end, you'll have a working web app running on your local machine.
 
 In this tutorial, you learned how to:
 
-> [!div class="checklist"]
-> * Create a web app project.
-> * Enable local HTTPS.
-> * Run the project.
-> * Make a change.
+- [ ] Create a web app project.
+- [ ] Enable local HTTPS.
+- [ ] Run the project.
+- [ ] Make a change.
 
 To learn more about ASP.NET Core, see the introduction:
 
