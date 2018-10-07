@@ -2,7 +2,7 @@
 title: Build Web APIs with ASP.NET Core and MongoDB
 author: pratik-khandelwal
 description: Get an introduction to MongoDB, an open-source, non-relational database and how to build APIs using MongoDBand ASP.NET Core.
-uid: index
+uid: tutorial/first-mongo-app
 ---
 # Build Web APIs with ASP.NET Core and MongoDB
 
@@ -28,17 +28,23 @@ To use MongoDB, we have to create a DB, make collections and store documents in 
 
 Open the Powershell or command promt and run the following command
 
-![Inititialize DB Powershell](_static/mongoPS1.png)
+```console
+mongod --dbpath <Enter the path>
+```
 
 (Replace dbpath value with your own path) This will connect to MongoDB on port 27017.
 
-Open another Powershell instance and run 'mongo'.
+Open another Powershell instance and run 'mongo'.	
 
-![Run Mongo](_static/runMongo.png)
+```console
+mongo
+```
 
 This will connect to default test database. Run the following command on > (Powershell)
 
-![Create DB](_static/createDB.png)
+```console
+useBookstoreDb
+```
 
 This will create a database named 'BookstoreDb' if it doesn't already exists, else it will open the existing Database for transactions.
 

@@ -32,6 +32,7 @@
 ### [Add validation](tutorials/first-mvc-app/validation.md)
 ### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
+## [Build Web APIs with ASP.NET Core and MongoDB](tutorials/first-mongo-app/first-mongo-app.md)
 ## [Build Web APIs](xref:web-api/index)
 ### [Create a Web API in Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [Create a Web API in Visual Studio for Mac](xref:tutorials/first-web-api-mac)
