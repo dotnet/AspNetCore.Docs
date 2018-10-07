@@ -5,7 +5,7 @@
         <TypeScriptToolsVersion>2.9</TypeScriptToolsVersion>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.4" />
+        <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
     </ItemGroup>
     <Target Name="CopySignalR" BeforeTargets="AfterBuild">
