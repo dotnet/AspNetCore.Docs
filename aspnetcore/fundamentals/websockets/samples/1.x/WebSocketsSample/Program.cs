@@ -17,6 +17,7 @@ namespace EchoApp
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
+
             host.Run();
         }
     }
