@@ -15,12 +15,11 @@ uid: tutorials/signalr
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
-> [!div class="checklist"]
-> * Create a web app project.
-> * Add the SignalR client library.
-> * Create a SignalR hub.
-> * Configure the project to use SignalR.
-> * Add code that uses the hub to send messages from any client to all connected clients.
+- [ ] Create a web app project.
+- [ ] Add the SignalR client library.
+- [ ] Create a SignalR hub.
+- [ ] Configure the project to use SignalR.
+- [ ] Add code that uses the hub to send messages from any client to all connected clients.
 
 At the end, you'll have a working chat app:
 
@@ -246,12 +245,11 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 In this tutorial, you learned how to:
 
-> [!div class="checklist"]
-> * Create a web app project.
-> * Add the SignalR client library.
-> * Create a SignalR hub.
-> * Configure the project to use SignalR.
-> * Add code that uses the hub to send messages from any client to all connected clients.
+- [ ] Create a web app project.
+- [ ] Add the SignalR client library.
+- [ ] Create a SignalR hub.
+- [ ] Configure the project to use SignalR.
+- [ ] Add code that uses the hub to send messages from any client to all connected clients.
 
 To learn more about SignalR, see the introduction:
 
