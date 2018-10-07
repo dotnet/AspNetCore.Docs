@@ -56,13 +56,13 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-csharp[](websockets/samples/2.x/WebSocketSample/Startup.cs?name=UseWebSockets)]
+[!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=UseWebSockets)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-[!code-csharp[](websockets/samples/1.x/WebSocketSample/Startup.cs?name=UseWebSockets)]
+[!code-csharp[](websockets/samples/1.x/WebSocketsSample/Startup.cs?name=UseWebSockets)]
 
 ::: moniker-end
 
@@ -73,13 +73,13 @@ The following settings can be configured:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-csharp[](websockets/samples/2.x/WebSocketSample/Startup.cs?name=UseWebSocketsOptions)]
+[!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=UseWebSocketsOptions)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-[!code-csharp[](websockets/samples/1.x/WebSocketSample/Startup.cs?name=UseWebSocketsOptions)]
+[!code-csharp[](websockets/samples/1.x/WebSocketsSample/Startup.cs?name=UseWebSocketsOptions)]
 
 ::: moniker-end
 
@@ -91,13 +91,13 @@ The following example is from later in the `Configure` method:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-csharp[](websockets/samples/2.x/WebSocketSample/Startup.cs?name=AcceptWebSocket&highlight=7)]
+[!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=AcceptWebSocket&highlight=7)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-[!code-csharp[](websockets/samples/1.x/WebSocketSample/Startup.cs?name=AcceptWebSocket&highlight=7)]
+[!code-csharp[](websockets/samples/1.x/WebSocketsSample/Startup.cs?name=AcceptWebSocket&highlight=7)]
 
 ::: moniker-end
 
@@ -111,13 +111,13 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-csharp[](websockets/samples/2.x/WebSocketSample/Startup.cs?name=Echo)]
+[!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=Echo)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-[!code-csharp[](websockets/samples/1.x/WebSocketSample/Startup.cs?name=Echo)]
+[!code-csharp[](websockets/samples/1.x/WebSocketsSample/Startup.cs?name=Echo)]
 
 ::: moniker-end
 
