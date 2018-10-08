@@ -39,18 +39,23 @@ namespace TodoApiSample
             var todoRepository = host.Services.GetRequiredService<ITodoRepository>();
             todoRepository.Add(new Core.Model.TodoItem() { Name = "Feed the dog" });
             todoRepository.Add(new Core.Model.TodoItem() { Name = "Walk the dog" });
-            todoRepository.Add(new Core.Model.TodoItem() { Name = "Brush the dog" });
 
             var logger = host.Services.GetRequiredService<ILogger<Program>>();
             logger.LogInformation("Seeded the database.");
 
             host.Run();
         }
-        #endregion
+        
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                })
                 .Build();
+        #endregion
 #elif ExpandDefault
         #region snippet_ExpandDefault
         public static void Main(string[] args)
@@ -70,6 +75,7 @@ namespace TodoApiSample
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                     logging.AddConsole();
                     logging.AddDebug();
+                    logging.AddEventSourceLogger();
                 })
                 .UseStartup<Startup>()
                 .Build();

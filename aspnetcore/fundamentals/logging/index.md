@@ -33,7 +33,9 @@ The default project template calls the [CreateDefaultBuilder](/dotnet/api/micros
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
-To remove the providers that were added by default, call
+To replace the default providers with your own choices, call [ClearProviders](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.clearproviders), and add the providers you want.
+
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=19-23)]
 
 ::: moniker-end
 
@@ -604,9 +606,10 @@ ASP.NET Core ships the following providers:
 * [EventSource](#eventsource-provider)
 * [EventLog](#windows-eventlog-provider)
 * [TraceSource](#tracesource-provider)
-* [Azure App Service](#azure-app-service-provider)
 
-For information on stdout logging, see <xref:host-and-deploy/iis/troubleshoot#aspnet-core-module-stdout-log> and <xref:host-and-deploy/azure-apps/troubleshoot#aspnet-core-module-stdout-log>.
+Options for [Logging in Azure](#logging-in-azure) are coverred later in this article.
+
+For information about stdout logging, see <xref:host-and-deploy/iis/troubleshoot#aspnet-core-module-stdout-log> and <xref:host-and-deploy/azure-apps/troubleshoot#aspnet-core-module-stdout-log>.
 
 ### Console provider
 
@@ -760,6 +763,14 @@ The following example configures a `TraceSource` provider that logs `Warning` an
 
 ::: moniker-end
 
+## Logging in Azure
+
+For information about logging in Azure, see the following sections:
+
+* [Azure App Service provider](#azure-app-service-provider)
+* [Azure log streaming](#azure-log-streaming)
+* [Azure Application Insights trace logging](#azure-application-insights-trace-logging)
+
 ### Azure App Service provider
 
 The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider package is available for apps targeting .NET Core 1.1 or later.
@@ -797,6 +808,29 @@ The default location for log files is in the *D:\\home\\LogFiles\\Application* f
 
 The provider only works when the project runs in the Azure environment. It has no effect when the project is run locally&mdash;it doesn't write to local files or local development storage for blobs.
 
+### Azure log streaming
+
+Azure log streaming lets you view log activity in real time from:
+
+* The application server
+* The web server
+* Failed request tracing
+
+To configure Azure log streaming:
+
+* Navigate to the **Diagnostics Logs** page from your application's portal page
+* Set **Application Logging (Filesystem)** to on.
+
+![Azure portal diagnostic logs page](index/_static/azure-diagnostic-logs.png)
+
+Navigate to the **Log Streaming** page to view application messages. They're logged by the application through the `ILogger` interface.
+
+![Azure portal application log streaming](index/_static/azure-log-streaming.png)
+
+### Azure Application Insights trace logging
+
+The [Application Insights](https://azure.microsoft.com/services/application-insights/) SDK is capable of collecting trace telemetry from logs generated via the ASP.NET Core logging infrastructure. For more information, see [Application Insights for ASP.NET Core](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net-core) and [Microsoft/ApplicationInsights-aspnetcore Wiki: Logging](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Logging).
+
 ## Third-party logging providers
 
 Third-party logging frameworks that work with ASP.NET Core:
@@ -818,29 +852,6 @@ Using a third-party framework is similar to using one of the built-in providers:
 1. Call an extension method on `ILoggerFactory`.
 
 For more information, see each provider's documentation. Third-party logging providers aren't supported by Microsoft.
-
-## Azure log streaming
-
-Azure log streaming lets you view log activity in real time from:
-
-* The application server
-* The web server
-* Failed request tracing
-
-To configure Azure log streaming:
-
-* Navigate to the **Diagnostics Logs** page from your application's portal page
-* Set **Application Logging (Filesystem)** to on.
-
-![Azure portal diagnostic logs page](index/_static/azure-diagnostic-logs.png)
-
-Navigate to the **Log Streaming** page to view application messages. They're logged by application through the `ILogger` interface.
-
-![Azure portal application log streaming](index/_static/azure-log-streaming.png)
-
-## Azure Application Insights trace logging
-
-The [Application Insights](https://azure.microsoft.com/services/application-insights/) SDK is capable of collecting trace telemetry from logs generated via the ASP.NET Core logging infrastructure. For more information, see [Application Insights for ASP.NET Core](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net-core) and [Microsoft/ApplicationInsights-aspnetcore Wiki: Logging](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Logging).
 
 ## Additional resources
 
