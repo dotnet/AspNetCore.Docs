@@ -11,7 +11,7 @@ uid: fundamentals/logging/index
 
 By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra)
 
-ASP.NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
+ASP.NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers. It also provides a list of compatible third-party logging providers.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -52,17 +52,17 @@ Get an [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.i
 
 ::: moniker range=">= aspnetcore-2.0"
 
+The following controller example creates logs with `Information` and `Warning` as the *level* and `TodoController` class as the *category*:
+
 [!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
-The preceding controller example creates logs with `Information` and `Warning` as the *level* and `TodoController` class as the *category*. 
+The following Razor page example creates logs with `Information` as the *level* and `AboutModel` class as the *category*:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3, 7)]
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
-
-The preceding Razor page example creates logs with `Information` as the *level* and `AboutModel` class as the *category*. 
 
 ::: moniker-end
 
@@ -76,9 +76,9 @@ The preceding example creates logs with `Information` and `Warning` as the *leve
 
 ::: moniker-end
 
-[Levels](#log-level) and [categories](#log-category) are explained later in this article.
+Log *level* indicates the severity of the logged event. For example, in production you might want to see only `Warning`, `Error`, and `Critical` logs. Log *category* is a string that is associated with each log. When you request an instance of `ILogger<T>`, the `ILogger` object creates logs that have the fully qualified name of type `T` as the category. Since a log's category is usually the name of the class that created it, you can readily differentiate logs created by ASP.NET Core system classes and your application classes.
 
-ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If your logging data store is slow, consider writing the log messages to a fast store first, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
+[Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article. 
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -95,6 +95,10 @@ To write logs from *Program.cs*, get an `ILogger` object from the dependency inj
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=10,11)]
 
 ::: moniker-end
+
+### Async logger methods
+
+ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If your logging data store is slow, consider writing the log messages to a fast store first, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
 
 ## Configuration
 
@@ -199,6 +203,20 @@ The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Loggi
 
 When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that `Ilogger`. The category may be any string, but a convention is to use the fully qualified name of the class from which the logs are written. For example: "TodoApi.Controllers.TodoController".
 
+Use `ILogger<T>` to get an `ILogger` object that uses fully qualified type name of `T` as the category:
+
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+[!code-csharp[](index/samples/1.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
+
+::: moniker-end
+
 To explicitly specify the category, call `CreateLogger` on an `ILoggerFactory` instance, as shown in the following example:
 
 ::: moniker range=">= aspnetcore-2.0"
@@ -213,21 +231,7 @@ To explicitly specify the category, call `CreateLogger` on an `ILoggerFactory` i
 
 ::: moniker-end
 
-Most of the time, it will be easier to use `ILogger<T>`, as in the following example.
-
-::: moniker range=">= aspnetcore-2.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-[!code-csharp[](index/samples/1.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
-
-::: moniker-end
-
-This is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
+`ILogger<T>` is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
 ## Log level
 
@@ -579,7 +583,7 @@ For information on stdout logging, see <xref:host-and-deploy/iis/troubleshoot#as
 
 ### Console provider
 
-The [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) provider package sends log output to the console.
+The [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) provider package sends log output to the console. 
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -612,6 +616,12 @@ This code refers to the `Logging` section of the *appSettings.json* file:
 The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 ::: moniker-end
+
+To see console logging output, open a command prompt in the project folder and run this command:
+
+```console
+dotnet run
+```
 
 ### Debug provider
 

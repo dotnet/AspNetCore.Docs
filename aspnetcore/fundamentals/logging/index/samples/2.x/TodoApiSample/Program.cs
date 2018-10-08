@@ -1,4 +1,4 @@
-﻿#define LogFromMain // TemplateCode // or ExpandDefault or FilterInCode or MinLevel or FilterFunction
+﻿#define TemplateCode // or LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction
 
 using System;
 using System.Collections.Generic;
