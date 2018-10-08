@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Building the Chapter Downloads for the EF 5 MVC 4 Tutorials
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [Download Completed Project](http://code.msdn.microsoft.com/Getting-Started-with-dd0e2ed8)
 

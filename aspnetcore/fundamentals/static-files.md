@@ -210,7 +210,7 @@ See [MIME content types](http://www.iana.org/assignments/media-types/media-types
 
 ## Non-standard content types
 
-The static file middleware understands almost 400 known file content types. If the user requests a file of an unknown file type, the static file middleware returns a HTTP 404 (Not Found) response. If directory browsing is enabled, a link to the file is displayed. The URI returns an HTTP 404 error.
+Static File Middleware understands almost 400 known file content types. If the user requests a file with an unknown file type, Static File Middleware passes the request to the next middleware in the pipeline. If no middleware handles the request, a *404 Not Found* response is returned. If directory browsing is enabled, a link to the file is displayed in a directory listing.
 
 The following code enables serving unknown types and renders the unknown file as an image:
 

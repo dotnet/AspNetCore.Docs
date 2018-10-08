@@ -16,9 +16,7 @@ uid: tutorials/razor-pages/model
 
 In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
 
-Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie** and add the following properties:
-
-Replace the contents of the `Movie` class with the following code:
+Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie** and replace the contents of the `Movie` class with the following code:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie21/Models/Movie1.cs?name=snippet)]
 
@@ -35,7 +33,7 @@ In **Solution Explorer**, right click on the *Pages/Movies* folder > **Add** > *
 
 ![Image from the previous instructions.](model/_static/sca.png)
 
-In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **ADD**.
+In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
 ![Image from the previous instructions.](model/_static/add_scaffold.png)
 
@@ -52,10 +50,10 @@ The scaffold process created and changed the following files:
 
 ### Files created
 
-* *Pages/Movies* Create, Delete, Details, Edit, Index. These pages are detailed in the next tutorial.
+* *Pages/Movies*: Create, Delete, Details, Edit, Index. These pages are detailed in the next tutorial.
 * *Data/RazorPagesMovieContext.cs*
 
-### Files updates
+### File updates
 
 * *Startup.cs*: Changes to this file are detailed in the next section.
 * *appsettings.json*: The connection string used to connect to a local database is added.
@@ -116,8 +114,8 @@ The `Update-Database` command runs the `Up` method in the *Migrations/{time-stam
 
 If you get the error:
 
-SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
-Login failed for user 'User-name'.
+`SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
+Login failed for user 'User-name'.`
 
 You missed the [migrations step](#pmc).
 

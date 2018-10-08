@@ -4,7 +4,7 @@ author: ardalis
 description: Discover how ASP.NET Core routing functionality is responsible for mapping an incoming request to a route handler.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/20/2018
+ms.date: 10/01/2018
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -31,7 +31,7 @@ Routing is connected to the [middleware](xref:fundamentals/middleware/index) pip
 
 ### URL matching
 
-URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is generally based on data in the URL path but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an app.
+URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is based on data in the URL path but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an app.
 
 Incoming requests enter the `RouterMiddleware`, which calls the <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> method on each route in sequence. The <xref:Microsoft.AspNetCore.Routing.IRouter> instance chooses whether to *handle* the request by setting the [RouteContext.Handler](xref:Microsoft.AspNetCore.Routing.RouteContext.Handler*) to a non-null <xref:Microsoft.AspNetCore.Http.RequestDelegate>. If a route sets a handler for the request, route processing stops, and the handler is invoked to process the request. If all routes are tried and no handler is found for the request, the middleware calls *next*, and the next middleware in the request pipeline is invoked.
 
@@ -102,7 +102,7 @@ routes.MapRoute(
 
 This template matches a URL path like `/Products/Details/17` but not `/Products/Details/Apples`. The route parameter definition `{id:int}` defines a [route constraint](#route-constraint-reference) for the `id` route parameter. Route constraints implement <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> and inspect route values to verify them. In this example, the route value `id` must be convertible to an integer. See [route-constraint-reference](#route-constraint-reference) for a more detailed explanation of route constraints that are provided by the framework.
 
-Additional overloads of `MapRoute` accept values for `constraints`, `dataTokens`, and `defaults`. These additional parameters of `MapRoute` are defined as type `object`. The typical usage of these parameters is to pass an anonymously-typed object, where the property names of the anonymous type match route parameter names.
+Additional overloads of `MapRoute` accept values for `constraints`, `dataTokens`, and `defaults`. These additional parameters of `MapRoute` are defined as type `object`. The typical usage of these parameters is to pass an anonymously typed object, where the property names of the anonymous type match route parameter names.
 
 The following two examples create equivalent routes:
 
@@ -163,12 +163,12 @@ routes.MapRoute(
 
 With the route values `{ controller = Products, action = List }`, this route generates the URL `/Products/List`. The route values are substituted for the corresponding route parameters to form the URL path. Since `id` is an optional route parameter, it's no problem that it doesn't have a value.
 
-With the route values `{ controller = Home, action = Index }`, this route generates the URL `/`. The route values that were provided match the default values so that the segments corresponding to those values can be safely omitted. Note that both URLs generated round-trip with this route definition and produce the same route values that were used to generate the URL.
+With the route values `{ controller = Home, action = Index }`, this route generates the URL `/`. The route values that were provided match the default values so that the segments corresponding to those values can be safely omitted. Both URLs generated round-trip with this route definition and produce the same route values that were used to generate the URL.
 
 > [!TIP]
 > An app using ASP.NET Core MVC should use <xref:Microsoft.AspNetCore.Mvc.Routing.UrlHelper> to generate URLs instead of calling into routing directly.
 
-For more details about the URL generation process, see [url-generation-reference](#url-generation-reference).
+For more information about URL generation, see [url-generation-reference](#url-generation-reference).
 
 ## Use Routing Middleware
 
@@ -250,7 +250,7 @@ Some of these methods, such as `MapGet`, require a `RequestDelegate` to be provi
 
 The `Map[Verb]` methods use constraints to limit the route to the HTTP Verb in the method name. For example, see <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*> and <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapVerb*>.
 
-## Route Template Reference
+## Route template reference
 
 Tokens within curly braces (`{ ... }`) define *route parameters* that are bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. These route parameters must have a name and may have additional attributes specified.
 
@@ -263,9 +263,31 @@ URL patterns that attempt to capture a filename with an optional file extension 
 
 You can use the `*` character as a prefix to a route parameter to bind to the rest of the URI. This is called a *catch-all* parameter. For example, `blog/{*slug}` matches any URI that starts with `/blog` and had any value following it (which is assigned to the `slug` route value). Catch-all parameters can also match the empty string.
 
+::: moniker range=">= aspnetcore-2.2"
+
+The catch-all parameter escapes the appropriate characters when the route is used to generate a URL, including path separator (`/`) characters. For example, the route `foo/{*path}` with route values `{ path = "my/path" }` generates `foo/my%2Fpath`. Note the escaped forward slash. To round-trip path separator characters, use the `**` route parameter prefix. The route `foo/{**path}` with `{ path = "my/path" }` generates `foo/my/path`.
+
+::: moniker-end
+
 Route parameters may have *default values*, designated by specifying the default after the parameter name, separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. In addition to default values, route parameters may be optional, specified by appending a question mark (`?`) to the end of the parameter name, as in `id?`. The difference between optional values and default route parameters is that a route parameter with a default value always produces a value; an optional parameter has a value only when a value is provided by the request URL.
 
-Route parameters may also have constraints, which must match the route value bound from the URL. Adding a colon `:` and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're provided in enclosed in parentheses `( )` after the constraint name. Multiple inline constraints can be specified by appending another colon `:` and constraint name. The constraint name is passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a listing of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
+::: moniker range=">= aspnetcore-2.2"
+
+Route parameters may have constraints, which must match the route value bound from the URL. Adding a colon (`:`) and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `( )` after the constraint name. Multiple inline constraints can be specified by appending another colon (`:`) and constraint name. The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. If the constraint constructor requires services, they're resolved from dependency injection's app services. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a listing of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+Route parameters may have constraints, which must match the route value bound from the URL. Adding a colon (`:`) and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `( )` after the constraint name. Multiple inline constraints can be specified by appending another colon (`:`) and constraint name. The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a listing of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+Route parameters may also have parameter transformers, which transform a parameter's value when generating links and matching actions and pages to URIs. Like constraints, parameter transformers can be added inline to a route parameter by adding a colon (`:`) and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer.
+
+::: moniker-end
 
 The following table demonstrates some route templates and their behavior.
 
@@ -295,7 +317,7 @@ The following keywords are reserved names and can't be used as route names or pa
 
 ## Route constraint reference
 
-Route constraints execute when a `Route` has matched the syntax of the incoming URL and tokenized the URL path into route values. Route constraints generally inspect the route value associated via the route template and make a simple yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb.
+Route constraints execute when a `Route` has matched the syntax of the incoming URL and tokenized the URL path into route values. Route constraints generally inspect the route value associated via the route template and make a yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb.
 
 > [!WARNING]
 > Avoid using constraints for **input validation** because doing so means that invalid input results in a *404 - Not Found* response instead of a *400 - Bad Request* with an appropriate error message. Route constraints are used to **disambiguate** between similar routes, not to validate the inputs for a particular route.
@@ -337,7 +359,7 @@ public User GetUserById(int id) { }
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
 
-Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, the expression must have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string). The `{` , `}` , `[` and `]` characters must be escaped by doubling them to escape the Routing parameter delimiter characters. The table below shows a regular expression and the escaped version.
+Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, the expression must have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string). The `{`, `}`, `[`, and `]` characters must be escaped by doubling them to escape the Routing parameter delimiter characters. The table below shows a regular expression and the escaped version.
 
 | Expression            | Escaped                        |
 | --------------------- | ------------------------------ |
@@ -355,11 +377,31 @@ Regular expressions used in routing often start with the `^` character (match st
 | `^[a-z]{2}$` |  hello    | No    | See `^` and `$` above |
 | `^[a-z]{2}$` | 123abc456 | No    | See `^` and `$` above |
 
-Refer to [.NET Framework Regular Expressions](https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference) for more information on regular expression syntax.
+For more information on regular expression syntax, see [.NET Framework Regular Expressions](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
-## URL Generation Reference
+::: moniker range=">= aspnetcore-2.2"
+
+## Parameter transformer reference
+
+Parameter transformers execute when generating a link for a `Route`. Parameter transformers take the parameter's route value and transform it to a new string value. The transformed value is used in the generated link. For example, a custom `slugify` parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` generates `blog\my-test-article`. Parameter transformers implement `Microsoft.AspNetCore.Routing.IOutboundParameterTransformer` and are configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
+
+Parameter transformers are also used by frameworks to transform the URI to which an endpoint resolves. For example, ASP.NET Core MVC uses parameter transformers to transform the route value used to match an `area`, `controller`, `action`, and `page`.
+
+```csharp
+routes.MapRoute(
+    name: "default",
+    template: "{controller=Home:slugify}/{action=Index:slugify}/{id?}");
+```
+
+With the preceding route, the action `SubscriptionManagementController.GetAll()` is matched with the URI `/subscription-management/get-all`. A parameter transformer doesn't change the route values used to generate a link. `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
+
+ASP.NET Core MVC also comes with the `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention` API convention. The convention applies a specified parameter transformer to all attribute route tokens in the app.
+
+::: moniker-end
+
+## URL generation reference
 
 The following example shows how to generate a link to a route given a dictionary of route values and a <xref:Microsoft.AspNetCore.Routing.RouteCollection>.
 
@@ -379,7 +421,7 @@ The `VirtualPath` generated at the end of the preceding sample is `/package/crea
 
 The second parameter to the `VirtualPathContext` constructor is a collection of *ambient values*. Ambient values provide convenience by limiting the number of values a developer must specify within a certain request context. The current route values of the current request are considered ambient values for link generation. In an ASP.NET Core MVC app if you are in the `About` action of the `HomeController`, you don't need to specify the controller route value to link to the `Index` action&mdash;the ambient value of `Home` is used.
 
-Ambient values that don't match a parameter are ignored, and ambient values are also ignored when an explicitly-provided value overrides it, going from left to right in the URL.
+Ambient values that don't match a parameter are ignored, and ambient values are also ignored when an explicitly provided value overrides it, going from left to right in the URL.
 
 Values that are explicitly provided but which don't match anything are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
 

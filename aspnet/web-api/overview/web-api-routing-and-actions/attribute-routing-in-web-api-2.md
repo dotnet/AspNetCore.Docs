@@ -19,10 +19,9 @@ The earlier style of routing, called convention-based routing, is still fully su
 
 This topic shows how to enable attribute routing and describes the various options for attribute routing. For an end-to-end tutorial that uses attribute routing, see [Create a REST API with Attribute Routing in Web API 2](create-a-rest-api-with-attribute-routing.md).
 
-
 ## Prerequisites
 
-[Visual Studio 2017](https://www.visualstudio.com/vs/) Community, Professional, or Enterprise Edition
+[Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Community, Professional, or Enterprise edition
 
 Alternatively, use NuGet Package Manager to install the necessary packages. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. Enter the following command in the Package Manager Console window:
 
@@ -49,21 +48,21 @@ Here are some other patterns that attribute routing makes easy.
 
 In this example, "/api/v1/products" would be routed to a different controller than "/api/v2/products".
 
-`/api/v1/products`  
+`/api/v1/products`
 `/api/v2/products`
 
 **Overloaded URI segments**
 
 In this example, "1" is an order number, but "pending" maps to a collection.
 
-`/orders/1`  
+`/orders/1`
 `/orders/pending`
 
 **Multiple parameter types**
 
 In this example, "1" is an order number, but "2013/06/16" specifies a date.
 
-`/orders/1`  
+`/orders/1`
 `/orders/2013/06/16`
 
 <a id="enable"></a>
@@ -245,7 +244,7 @@ When the framework tries to match a URI with a route, it evaluates the routes in
 Here is how the total ordering is determined:
 
 1. Compare the **RouteOrder** property of the route attribute.
-2. Look at each URI segment in the route template. For each segment, order as follows: 
+2. Look at each URI segment in the route template. For each segment, order as follows:
 
     1. Literal segments.
     2. Route parameters with constraints.
