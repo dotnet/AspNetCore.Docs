@@ -11,7 +11,7 @@ uid: fundamentals/logging/index
 
 By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra)
 
-ASP.NET Core supports a logging API that works with a variety of logging providers. There are built-in providers for selected data stores, and you can plug in a third-party logging framework. This article shows how to use the built-in logging API and providers.
+ASP.NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -25,7 +25,7 @@ To use a provider, call the provider's `Add<ProviderName>` extension method in *
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=16,17)]
 
-The default project template enables the Console and Debug logging providers with a call to the [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) extension method in *Program.cs*:
+The [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) extension method calls `AddConsole` and `AddDebug` behind the scenes:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
@@ -48,13 +48,21 @@ Learn more about the [built-in logging providers](#built-in-logging-providers) a
 
 ## How to create logs
 
-Get an [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) from the [dependency injection](xref:fundamentals/dependency-injection) container, and call its logging methods:
+Get an [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) from the [dependency injection](xref:fundamentals/dependency-injection) container:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+
+The preceding controller example creates logs with `Information` and `Warning` as the *level* and `TodoController` class as the *category*. 
+
+[!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3, 7)]
+
+[!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
+
+The preceding Razor page example creates logs with `Information` as the *level* and `AboutModel` class as the *category*. 
 
 ::: moniker-end
 
@@ -64,11 +72,29 @@ Get an [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.i
 
 [!code-csharp[](index/samples/1.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
+The preceding example creates logs with `Information` and `Warning` as the *level* and `TodoController` class as the *category*. 
+
 ::: moniker-end
 
-This example creates logs with `Information` and `Warning` as the *level* and `TodoController` class as the *category*. [Levels](#log-level) and [categories](#log-category) are explained later in this article.
+[Levels](#log-level) and [categories](#log-category) are explained later in this article.
 
-ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async. For projects where that isn't true, consider changing the way you log. If the logging data store is slow, write the log messages to a fast store first, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
+ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If your logging data store is slow, consider writing the log messages to a fast store first, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
+
+::: moniker range=">= aspnetcore-2.0"
+
+### Writing logs in Startup.cs
+
+To write logs from *Startup.cs*, inject an `ILogger` object in the constructor just as you would in a controller or Razor page.
+
+[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,8,20,28)]
+
+### Writing logs in Program.cs
+
+To write logs from *Program.cs*, get an `ILogger` object from the dependency injection container.
+
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=10,11)]
+
+::: moniker-end
 
 ## Configuration
 

@@ -13,11 +13,16 @@ using TodoApiSample.Infrastructure;
 
 namespace TodoApiSample
 {
+
+    #region snippet_Startup
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly ILogger _logger;
+
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            _logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -28,7 +33,8 @@ namespace TodoApiSample
             services.AddMvc();
 
             // Add our repository type
-            services.AddScoped<ITodoRepository, TodoRepository>();
+            services.AddSingleton<ITodoRepository, TodoRepository>();
+            _logger.LogInformation("Added TodoRepository to services");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +42,7 @@ namespace TodoApiSample
         {
             if (env.IsDevelopment())
             {
+                _logger.LogInformation("In Development environment");
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -51,4 +58,5 @@ namespace TodoApiSample
             app.UseMvc();
         }
     }
+    #endregion
 }
