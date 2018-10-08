@@ -515,6 +515,25 @@ The `WithFilter` extension method is provided by the [Microsoft.Extensions.Loggi
 
 ::: moniker-end
 
+### Sample categories
+
+Here are some categories used by ASP.NET and what you can expect from them:
+
+|Category  | Level |Notes  |
+|---------|---------|------|
+|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>DefaultKeyResolver|Debug|Which keys were considered|
+|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>KeyRingProvider|Debug|Which key was used.|
+|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>XmlKeyManager|Debug|Which keys were found.|
+|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>XmlKeyManager|Debug|Location of user profile that was used.|
+|Microsoft.AspNetCore.<br/>Hosting.Internal.WebHost | Information | How long HTTP requests took to complete and what time they started. |
+|Microsoft.AspNetCore.<br/>HttpsPolicy.<br/>HttpsRedirectionMiddleware|Warning|Failed to determine HTTPS port for redirect.|
+|Microsoft.AspNetCore.<br/>Mvc.ModelBinding.<br/>ModelBinderFactory|Debug|Model binding providers.|
+|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker|Debug|Execution plan of filters.
+|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker | Information |How long page actions took, model state validity, routes matched.  |
+|Microsoft.AspNetCore.<br/>Routing.Tree.TreeRouter|Debug|Route matching information.|
+|Microsoft.AspNetCore.<br/>Server.Kestrel|Debug|Connection starts, stops, and keep alive responses.|
+|Microsoft.AspNetCore.<br/>StaticFiles.StaticFileMiddleware|Information| Files served.|
+
 ## Log scopes
 
 You can group a set of logical operations within a *scope* in order to attach the same data to each log that's created as part of that set. For example, every log created as part of processing a transaction can include the transaction ID.
