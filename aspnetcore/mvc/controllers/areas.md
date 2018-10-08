@@ -10,9 +10,9 @@ uid: mvc/controllers/areas
 
 By [Dhananjay Kumar](https://twitter.com/debug_mode)  and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller` and `action`.
+Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller`, `action` and `page`.
 
-Areas provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC structure inside an application. In an MVC project, logical components like Model, Controller, View, and Razor Pages are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the  app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, models, and razor pages. In this scenario, you can use Areas to physically partition the business components in the same project.
+Areas provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC structure inside an application. In an MVC project, logical components like Model, Controller, View, and Razor Page are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the  app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, models, and razor pages. In this scenario, you can use Areas to physically partition the business components in the same project.
 
 An area can be defined as smaller functional units in an ASP.NET Core MVC project with its own set of controllers, views, models, and razor pages.
 
@@ -30,7 +30,9 @@ Area features:
 
 * Areas allow you to organize large MVC projects into multiple high-level components that can be worked on independently.
 
-* Areas support multiple controllers with the same name, as long as they have different *areas*, this is also true for razor pages.
+* Areas support multiple controllers with the same name, as long as they have different *areas*.
+
+* Areas support multiple razor pages with the same name, as long as they have different *areas*.
 
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings: Products and Services. A typical folder structure for that using areas looks like below:
 
@@ -58,7 +60,9 @@ Let's take a look at an example to illustrate how Areas are created and used. Le
           
       * Pages
           
-          Catalog.cshtml
+          * Catalog.cshtml
+          
+          * Cart.cshtml
           
     * Services
 
@@ -76,7 +80,7 @@ Let's take a look at an example to illustrate how Areas are created and used. Le
       
         * About.cshtml
 
-## Configuring Areas for Controllers/Views
+## Configuring Areas for Controllers
 When MVC tries to render a view in an Area, by default, it tries to look in the following locations:
 
 ```text
@@ -158,9 +162,11 @@ services.AddMvc().AddRazorPagesOptions(options =>
 });
 ```
 
-The routing of Razor pages is determined by the location of the page in the heirarchy and the pages' name. In the above example folder structure, the `Catalog` page would respond to `http://<yourApp>/products/catalog` and the `About` page would respond to `http://<yourApp>/services/about`.
+The routing of Razor pages is determined by the location of the page in the heirarchy and the page name. In the above example folder structure, the `Catalog` page would respond to `http://<yourApp>/products/catalog` and the `About` page would respond to `http://<yourApp>/services/about`.
 
 ## Link Generation
+
+### Controllers
 
 * Generating links from an action within an area based controller to another action within the same controller.
 
@@ -200,6 +206,30 @@ The routing of Razor pages is determined by the location of the page in the heir
 
   Since we want to generate links to a non-area based controller action, we empty the ambient value for 'area' here.
 
+### Pages
+* Generating links from a page in an area to another page in the same area.
+  
+  Let's say the current request's path is like `/Products/Catalog`
+  
+  TagHelper syntax: `<a asp-page="/Cart">Cart</a>`
+  
+  Note: We can use relative paths for `asp-page` if the tag helper is used inside a razor page. However, we must write
+  the absolute path (starting with a `/`) if it's used inside a view.
+  
+* Generating links from a page in an area to a different page in a different area.
+  
+  Let's say the current request's path is like `/Products/Catalog`
+  
+  TagHelper syntax: `<a asp-page="/About" asp-area="Services">Our services</a>`
+
+* Generating links from a page in an area to a different page **not** in an area.
+ 
+  TagHelper syntax: `<a asp-page="/Index" asp-area="">Home</a>`
+
+* Getting the url of a page.
+  
+  `@Url.Page("/About", new { area = "Products" })`
+  
 ## Publishing Areas
 
 All `*.cshtml` and `wwwroot/**` files are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj* file.
