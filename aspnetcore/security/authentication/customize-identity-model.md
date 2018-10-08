@@ -954,7 +954,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 In this section, support for lazy-loading proxies in the Identity model is added. Lazy-loading is useful since it allows navigation properties to be used without first ensuring they're loaded.
 
-Entity types can be made suitable for lazy-loading in several ways, as described in the [EF Core documentation](/ef/core/querying/related-data#lazy-loading). For simplicity, use lazy-loading proxies, which requires:
+Entity types can be made suitable for lazy-loading in several ways, as described in the [EF Core documentation](https://docs.microsoft.com/en-us/ef/core/querying/related-data#lazy-loading). For simplicity, use lazy-loading proxies, which requires:
 
 * Installation of the [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) package.
 * A call to <xref:Microsoft.EntityFrameworkCore.ProxiesExtensions.UseLazyLoadingProxies*> inside <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*>.
