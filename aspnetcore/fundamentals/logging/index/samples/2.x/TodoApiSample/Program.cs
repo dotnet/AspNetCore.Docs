@@ -31,6 +31,7 @@ namespace TodoApiSample
                 .Build();
         #endregion
 #elif LogFromMain
+        #region snippet_LogFromMain
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
@@ -45,7 +46,7 @@ namespace TodoApiSample
 
             host.Run();
         }
-
+        #endregion
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
