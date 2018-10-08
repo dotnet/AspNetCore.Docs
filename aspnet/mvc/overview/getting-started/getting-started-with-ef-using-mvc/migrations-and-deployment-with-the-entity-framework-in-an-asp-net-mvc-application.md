@@ -169,8 +169,8 @@ You'll deploy the database to Azure SQL database. SQL database is a cloud-based 
 10. Modify [collation](/sql/relational-databases/collations/collation-and-unicode-support) as needed.
 11. Enter an administrator **SQL Admin Username** and **SQL Admin Password**.
 
-   - If you selected **New SQL Database server**, you aren't entering an existing name and password here. You're defining a new name and password that you'll use later when you access the database.
-   - If you selected a server that you created previously, you'll enter credentials for that server.
+   - If you selected **New SQL Database server**, define a new name and password that you'll use later when you access the database.
+   - If you selected a server that you created previously, enter credentials for that server.
 
 12. Telemetry collection can be enabled for App Service using Application Insights. With little configuration, Application Insights collects valuable event, exception, dependency, request, and trace information. To learn more about Application Insights, see [Azure Monitor](https://azure.microsoft.com/services/monitor/).
 13. Click **Create** at the bottom of the blade to indicate that you're finished.
@@ -183,7 +183,7 @@ You'll deploy the database to Azure SQL database. SQL database is a cloud-based 
 
     ![Publish menu item in Solution Explorer](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
 
-2. On the **Pick a publish target** page, choose **Select Existing**, and then choose **Publish**.
+2. On the **Pick a publish target** page, choose **App Service** and then **Select Existing**, and then choose **Publish**.
 
     ![Pick a publish target page](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/publish-select-existing-azure-app-service.png)
 
