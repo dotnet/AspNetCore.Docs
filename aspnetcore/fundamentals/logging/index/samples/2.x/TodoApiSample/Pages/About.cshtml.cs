@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace RazorPagesProject.Pages
+namespace TodoApiSample.Pages
 {
     #region snippet_LoggerDI
     public class AboutModel : PageModel
