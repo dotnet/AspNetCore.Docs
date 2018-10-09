@@ -14,11 +14,11 @@ Create an ASP.NET MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 S
 by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > This tutorial shows you how to build an ASP.NET MVC 5 web application that enables users to log in using [OAuth 2.0](http://oauth.net/2/) with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google.
->
+> 
 > Enabling these credentials in your web sites provides a significant advantage because millions of users already have accounts with these external providers. These users may be more inclined to sign up for your site if they do not have to create and remember a new set of credentials.
->
+> 
 > See also [ASP.NET MVC 5 app with SMS and email Two-Factor Authentication](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md).
->
+> 
 > The tutorial also shows how to add profile data for the user, and how to use the Membership API to add roles. This tutorial was written by [Rick Anderson](https://blogs.msdn.com/rickAndy) ( Please follow me on Twitter: [@RickAndMSFT](https://twitter.com/RickAndMSFT) ).
 
 
@@ -33,8 +33,8 @@ Start by installing and running [Visual Studio Express 2013 for Web](https://go.
 
 Click **New Project** from the **Start** page, or you can use the menu and select **File**, and then **New Project**.
 
-![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image1.png)
-
+![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image1.png)  
+ 
 
 <a id="1st"></a>
 ## Creating Your First Application
@@ -68,8 +68,8 @@ Press **F5** or **Ctrl+F5** to run the application. In the image below, the port
 
 Depending on the size of your browser window, you might need to click the navigation icon to see the **Home**, **About**, **Contact**, **Register** and **Log in** links.
 
-![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image7.png)
-![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image8.png)
+![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image7.png)  
+![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image8.png) 
 
 <a id="ssl"></a>
 ## Setting up SSL in the Project
@@ -78,28 +78,28 @@ To connect to authentication providers like Google and Facebook, you will need t
 
 1. In **Solution Explorer**, click the **MvcAuth** project.
 2. Hit the F4 key to show the project properties. Alternatively, from the **View** menu you can select **Properties Window**.
-3. Change **SSL Enabled** to True.
-
+3. Change **SSL Enabled** to True.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image9.png)
 4. Copy the SSL URL (which will be `https://localhost:44300/` unless you've created other SSL projects).
 5. In **Solution Explorer**, right click the **MvcAuth** project and select **Properties**.
-6. Select the **Web** tab, and then paste the SSL URL into the **Project Url** box. Save the file (Ctl+S). You will need this URL to configure Facebook and Google authentication apps.
-
+6. Select the **Web** tab, and then paste the SSL URL into the **Project Url** box. Save the file (Ctl+S). You will need this URL to configure Facebook and Google authentication apps.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image10.png)
 7. Add the [RequireHttps](https://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) attribute to the `Home` controller to require all requests must use HTTPS. A more secure approach is to add the [RequireHttps](https://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) filter to the application. See the section &quot;Protect the Application with SSL and the Authorize Attribute&quot; in my tutoral [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). A portion of the Home controller is shown below.
 
     [!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample1.cs?highlight=1)]
-8. Press CTRL+F5 to run the application. If you've installed the certificate in the past, you can skip the rest of this section and jump to [Creating a Google app for OAuth 2 and connecting the app to the project](#goog), otherwise, follow the instructions to trust the self-signed certificate that IIS Express has generated.
-
+8. Press CTRL+F5 to run the application. If you've installed the certificate in the past, you can skip the rest of this section and jump to [Creating a Google app for OAuth 2 and connecting the app to the project](#goog), otherwise, follow the instructions to trust the self-signed certificate that IIS Express has generated.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image11.png)
-9. Read the **Security Warning** dialog and then click **Yes** if you want to install the certificate representing localhost.
-
+9. Read the **Security Warning** dialog and then click **Yes** if you want to install the certificate representing localhost.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image12.png)
-10. IE shows the *Home* page and there are no SSL warnings.
-
+10. IE shows the *Home* page and there are no SSL warnings.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image13.png)
-11. Google Chrome also accepts the certificate and will show HTTPS content without a warning. Firefox uses its own certificate store, so it will display a warning. For our application you can safely click **I Understand the Risks**.
-
+11. Google Chrome also accepts the certificate and will show HTTPS content without a warning. Firefox uses its own certificate store, so it will display a warning. For our application you can safely click **I Understand the Risks**.   
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image14.png)
 
 <a id="goog"></a>
@@ -111,19 +111,19 @@ To connect to authentication providers like Google and Facebook, you will need t
 1. Navigate to the [Google Developers Console](https://console.developers.google.com/).
 2. If you haven't created a project before, select **Credentials** in the left tab, and then select **Create**.
 3. In the left tab, click **Credentials**.
-4. Click **Create credentials** then **OAuth client ID**.
+4. Click **Create credentials** then **OAuth client ID**. 
 
     1. In the **Create Client ID** dialog, keep the default **Web application** for the application type.
     2. Set the **Authorized JavaScript** origins to the SSL URL you used above (`https://localhost:44300/` unless you've created other SSL projects)
-    3. Set the **Authorized redirect URI** to:
+    3. Set the **Authorized redirect URI** to:  
          `https://localhost:44300/signin-google`
 5. Click the OAuth Consent screen menu item, then set your email address and product name. When you have completed the form click **Save**.
 6. Click the Library menu item, search **Google+ API**, click on it then press Enable.
-
-    ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image15.png)
-
-   The image below shows the enabled APIs.
-
+  
+    ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image15.png)  
+  
+   The image below shows the enabled APIs.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image16.png)
 7. From the Google APIs API Manager, visit the **Credentials** tab to obtain the **Client ID**. Download to save a JSON file with application secrets. Copy and paste the **ClientId** and **ClientSecret** into the `UseGoogleAuthentication` method found in the *Startup.Auth.cs* file in the *App_Start* folder. The **ClientId** and **ClientSecret** values shown below are samples and don't work.
 
@@ -131,23 +131,23 @@ To connect to authentication providers like Google and Facebook, you will need t
 
     > [!WARNING]
     > Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure App Service](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md).
-8. Press **CTRL+F5** to build and run the application. Click the **Log in** link.
-
+8. Press **CTRL+F5** to build and run the application. Click the **Log in** link.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image17.png)
-9. Under **Use another service to log in**, click **Google**.
-
+9. Under **Use another service to log in**, click **Google**.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image18.png)
 
     > [!NOTE]
     > If you miss any of the steps above you will get a HTTP 401 error. Recheck your steps above. If you miss a required setting (for example **product name**), add the missing item and save; it can take a few minutes for authentication to work.
-10. You will be redirected to the Google site where you will enter your credentials.
-
+10. You will be redirected to the Google site where you will enter your credentials.   
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image19.png)
 11. After you enter your credentials, you will be prompted to give permissions to the web application you just created:
-
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image20.png)
-12. Click **Accept**. You will now be redirected back to the **Register** page of the MvcAuth application where you can register your Google account. You have the option of changing the local email registration name used for your Gmail account, but you generally want to keep the default email alias (that is, the one you used for authentication). Click **Register**.
-
+12. Click **Accept**. You will now be redirected back to the **Register** page of the MvcAuth application where you can register your Google account. You have the option of changing the local email registration name used for your Gmail account, but you generally want to keep the default email alias (that is, the one you used for authentication). Click **Register**.  
+  
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image21.png)
 
 <a id="fb"></a>
@@ -237,6 +237,6 @@ Follow my tutorial [Create an ASP.NET MVC app with auth and SQL DB and deploy to
 3. How to secure your app with the [RequireHttps](https://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute(v=vs.108).aspx) and [Authorize](https://msdn.microsoft.com/library/system.web.mvc.authorizeattribute(v=vs.100).aspx) filters.
 4. How to use the membership API to add users and roles.
 
-Please leave feedback on how you liked this tutorial and what we could improve. You can even ask for and vote on new features to be added to ASP.NET. For example, you can vote for a tool to [create and manage users and roles.](http://aspnet.uservoice.com/forums/41199-general-asp-net/suggestions/5646857-asp-net-identity-membership-db-tool-to-mangage-use)
+Please leave feedback on how you liked this tutorial and what we could improve. You can also request new topics at [Show Me How With Code](http://aspnet.uservoice.com/forums/228522-show-me-how-with-code). You can even ask for and vote on new features to be added to ASP.NET. For example, you can vote for a tool to [create and manage users and roles.](http://aspnet.uservoice.com/forums/41199-general-asp-net/suggestions/5646857-asp-net-identity-membership-db-tool-to-mangage-use)
 
 For an good explanation of how ASP.NET External Authentication Services work, see Robert McMurray's [External Authentication Services](https://asp.net/web-api/overview/security/external-authentication-services). Robert's article also goes into detail in enabling Microsoft and Twitter authentication. Tom Dykstra's excellent [EF/MVC tutorial](../getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md) shows how to work with the Entity Framework.
