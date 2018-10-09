@@ -64,6 +64,8 @@ The following image shows the `<appSettings/>` keys/values from the preceding *w
 
 ![environment editor](config-builder/static/env.png)
 
+Note: You might need to exit and restart Visual Studio to see changes in environment variables.
+
 ### Prefix handling
 
 Key prefixes can simplify setting keys because:
@@ -186,7 +188,7 @@ The [UserSecretsConfigBuilder](https://www.nuget.org/packages/Microsoft.Configur
 Configuration attributes for `UserSecretsConfigBuilder`:
 
 * `userSecretsId` - This is the preferred method for identifying an XML secrets file. It works similar to .Net Core, which uses a `UserSecretsId` project property to store this identifier. The string must be unique, it doesn't need to be a GUID. With this attribute, the `UserSecretsConfigBuilder` look in a well-known local location (`%APPDATA%\Microsoft\UserSecrets\<UserSecrets Id>\secrets.xml`) for a secrets file belonging to this identifier.
-* `userSecretsFile` - An optional attribute specifying the file containing the secrets. The `~` character can be used at the start to reference the application root. Either this attribute or the `userSecretsId` attribute is required. If both are specified, `userSecretsFile` takes precedence. <!-- review: | userSecretsFile="~\secrets.file" -  isn't ~/ a security risk? .NET Core secret manager stores values in %APPDATA%\Microsoft\UserSecrets so it won't be checked into github -->
+* `userSecretsFile` - An optional attribute specifying the file containing the secrets. The `~` character can be used at the start to reference the application root. Either this attribute or the `userSecretsId` attribute is required. If both are specified, `userSecretsFile` takes precedence.
 * `optional`: boolean, default value `true` - Prevents an exception if the secrets file cannot be found. 
 * The `name` attribute value is arbitrary.
 
