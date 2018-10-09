@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspi
 title: "Part 1: File-> New Project | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 1 covers Overview and File/New Project."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/21/2010
 ms.assetid: 15d4652b-d5aa-4172-b186-2c7f96ba316d
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-1

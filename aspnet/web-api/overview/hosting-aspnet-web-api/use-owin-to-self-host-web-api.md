@@ -3,7 +3,7 @@ uid: web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 title: "Use OWIN to Self-Host ASP.NET Web API 2 | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to host ASP.NET Web API in a console application, using OWIN to self-host the Web API framework. Open Web Interface for .NET (OWIN) d..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/09/2013
 ms.assetid: a90a04ce-9d07-43ad-8250-8a92fb2bd3d5
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
@@ -14,13 +14,13 @@ Use OWIN to Self-Host ASP.NET Web API 2
 by [Kanchan Mehrotra](https://twitter.com/kanchanmeh)
 
 > This tutorial shows how to host ASP.NET Web API in a console application, using OWIN to self-host the Web API framework.
-> 
+>
 > [Open Web Interface for .NET](http://owin.org) (OWIN) defines an abstraction between .NET web servers and web applications. OWIN decouples the web application from the server, which makes OWIN ideal for self-hosting a web application in your own process, outside of IIS.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads) (also works with Visual Studio 2012)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013) (also works with Visual Studio 2012)
 > - Web API 2
 
 

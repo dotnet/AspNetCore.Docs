@@ -3,7 +3,7 @@ uid: web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-wor
 title: "Host ASP.NET Web API 2 in an Azure Worker Role | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to host ASP.NET Web API in an Azure Worker Role, using OWIN to self-host the Web API framework. Open Web Interface for .NET (OWIN) de..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/02/2014
 ms.assetid: 6980ee2e-d6b0-4a08-8fb6-ab96362dd0e3
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-worker-role
@@ -14,15 +14,15 @@ Host ASP.NET Web API 2 in an Azure Worker Role
 by [Mike Wasson](https://github.com/MikeWasson)
 
 > This tutorial shows how to host ASP.NET Web API in an Azure Worker Role, using OWIN to self-host the Web API framework.
-> 
+>
 > [Open Web Interface for .NET](http://owin.org/) (OWIN) defines an abstraction between .NET web servers and web applications. OWIN decouples the web application from the server, which makes OWIN ideal for self-hosting a web application in your own process, outside of IIS–for example, inside an Azure worker role.
-> 
+>
 > In this tutorial, you'll use the Microsoft.Owin.Host.HttpListener package, which provides an HTTP server that be used to self-host OWIN applications.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - Web API 2
 > - [Azure SDK for .NET 2.3](https://azure.microsoft.com/downloads/)
 

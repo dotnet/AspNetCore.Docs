@@ -3,7 +3,7 @@ uid: mvc/overview/getting-started/introduction/adding-validation
 title: "Adding Validation | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/17/2013
 ms.assetid: 9f35ca15-e216-4db6-9ebf-24380b0f31b4
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-validation
@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Adding Validation
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [Tutorial Note](sample/code-location.md)]
 

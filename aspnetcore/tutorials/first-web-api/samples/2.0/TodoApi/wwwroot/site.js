@@ -83,7 +83,7 @@ function editItem(id) {
         if (item.id === id) {
             $('#edit-name').val(item.name);
             $('#edit-id').val(item.id);
-            $('#edit-isComplete').val(item.isComplete);
+            $('#edit-isComplete')[0].checked = item.isComplete;
         }
     });
     $('#spoiler').css({ 'display': 'block' });

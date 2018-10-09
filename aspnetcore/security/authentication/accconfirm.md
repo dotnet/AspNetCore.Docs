@@ -73,24 +73,11 @@ Follow the instructions in [Enable authentication](xref:security/authentication/
 
 Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't log in until their email is validated.
 
-## View the Identity database
-
-# [Visual Studio](#tab/visual-studio) 
-
-* From the **View** menu, select **SQL Server Object Explorer** (SSOX).
-* Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right-click on **dbo.AspNetUsers** > **View Data**:
-
-![Contextual menu on AspNetUsers table in SQL Server Object Explorer](accconfirm/_static/ssox.png)
+[!INCLUDE[](~/includes/view-identity-db.md)]
 
 Note the table's `EmailConfirmed` field is `False`.
 
 You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias makes it easier in the following steps.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-See [Work with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite database.
-
-------
 
 <a name="prevent-login-at-registration"></a>
 ## Require email confirmation
@@ -108,8 +95,6 @@ Update *Areas/Identity/IdentityHostingStartup.cs*  to require a confirmed email:
 ### Configure email provider
 
 In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You need a SendGrid account and key to send email. You can use other email providers. ASP.NET Core 2.x includes `System.Net.Mail`, which allows you to send email from your app. We recommend you use SendGrid or another email service to send email. SMTP is difficult to secure and set up correctly.
-
-The [Options pattern](xref:fundamentals/configuration/options) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration/index).
 
 Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
 
@@ -138,6 +123,8 @@ The contents of the *secrets.json* file aren't encrypted. The *secrets.json* fil
     "SendGridKey": "<key removed>"
   }
   ```
+ 
+For more information, see the [Options pattern](xref:fundamentals/configuration/options) and [configuration](xref:fundamentals/configuration/index).
 
 ### Install SendGrid
 

@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-security/admin/building-an-interface-to-s
 title: "Building an Interface to Select One User Account from Many (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will build a user interface with a paged, filterable grid. In particular, our user interface will consist of a series of LinkButtons for..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 04/01/2008
 ms.assetid: da53380c-a16b-41c7-a20d-24343c735c52
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/building-an-interface-to-select-one-user-account-from-many-vb

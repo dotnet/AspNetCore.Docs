@@ -23,12 +23,15 @@ Automatic verification of schema/model in sync makes it easier to find inconsist
 ## Adding a Rating Property to the Movie Model
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
+
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
 ::: moniker-end
@@ -74,11 +77,15 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
 ::: moniker range="= aspnetcore-2.0"
+
 See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs).
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/SeedDataRating.cs).
+
 ::: moniker-end
 
 Build the solution.

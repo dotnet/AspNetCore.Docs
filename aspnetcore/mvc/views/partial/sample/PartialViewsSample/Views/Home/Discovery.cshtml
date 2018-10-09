@@ -1,11 +1,13 @@
 ﻿@using PartialViewsSample.ViewModels
 @{
-    ViewData["Title"] = "Partial view discovery";
+    ViewData["Title"] = "Partial view discovery (MVC)";
     ViewData["index"] = 0;
 }
 
+<h1>@ViewData["Title"]</h1>
+
 <table class="table table-hover">
-    <caption>Asynchronous partial view discovery examples</caption>
+    <caption>Partial view discovery examples</caption>
     <thead>
         <tr>
             <th>Syntax</th>
@@ -18,7 +20,7 @@
                 <code>
                     @Html.Raw(Html.Encode(@"<partial name=""_AuthorPartial"" />"))
                 </code>
-                <br />
+                <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
@@ -32,7 +34,7 @@
                 <code>
                     @Html.Raw(Html.Encode(@"<partial name=""_AuthorPartial.cshtml"" />"))
                 </code>
-                <br />
+                <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
@@ -44,7 +46,7 @@
                 <code>
                     @Html.Raw(Html.Encode(@"<partial name=""~/Views/Home/_AuthorPartial.cshtml"" />"))
                 </code>
-                <br />
+                <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
@@ -56,7 +58,7 @@
                 <code>
                     @Html.Raw(Html.Encode(@"<partial name=""/Views/Home/_AuthorPartial.cshtml"" />"))
                 </code>
-                <br />
+                <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>
@@ -68,7 +70,7 @@
                 <code>
                     @Html.Raw(Html.Encode(@"<partial name=""../Articles/_ArticleSection.cshtml"" model='new ArticleSection { Title=""Section 1"", Content=""Coming soon"" }' view-data=""ViewData"" />"))
                 </code>
-                <br />
+                <br>
                 <span class="badge">2.1+</span>
             </td>
             <td>

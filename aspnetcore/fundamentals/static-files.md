@@ -96,7 +96,7 @@ A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions
 
 The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method exists in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
 
-The files have been made publicly cacheable for 10 minutes (600 seconds):
+The files have been made publicly cacheable for 10 minutes (600 seconds) in the Development environment:
 
 ![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 
@@ -210,7 +210,7 @@ See [MIME content types](http://www.iana.org/assignments/media-types/media-types
 
 ## Non-standard content types
 
-The static file middleware understands almost 400 known file content types. If the user requests a file of an unknown file type, the static file middleware returns a HTTP 404 (Not Found) response. If directory browsing is enabled, a link to the file is displayed. The URI returns an HTTP 404 error.
+Static File Middleware understands almost 400 known file content types. If the user requests a file with an unknown file type, Static File Middleware passes the request to the next middleware in the pipeline. If no middleware handles the request, a *404 Not Found* response is returned. If directory browsing is enabled, a link to the file is displayed in a directory listing.
 
 The following code enables serving unknown types and renders the unknown file as an image:
 

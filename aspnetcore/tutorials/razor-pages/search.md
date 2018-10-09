@@ -20,6 +20,7 @@ Update the Index page's `OnGetAsync` method with the following code:
 The first line of the `OnGetAsync` method creates a [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) query to select the movies:
 
 ```csharp
+// using System.Linq;
 var movies = from m in _context.Movie
              select m;
 ```
@@ -63,15 +64,19 @@ The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-for
 Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
+
 ::: moniker-end
 
 
-The `SelectList Genres` contains the list of genres. This allows the user to select a genre from the list.
+The `Genres` property contains the list of genres. This allows the user to select a genre from the list.
 
 The `MovieGenre` property contains the specific genre the user selects (for example, "Western").
 

@@ -3,7 +3,7 @@ uid: mvc/overview/getting-started/introduction/adding-a-model
 title: "Adding a Model | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/28/2015
 ms.assetid: 276552b5-f349-4fcf-8f40-6d042f7aa88e
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-a-model
@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Adding a Model
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [Tutorial Note](sample/code-location.md)]
 

@@ -3,7 +3,7 @@ uid: signalr/overview/testing-and-debugging/unit-testing-signalr-applications
 title: "Unit Testing SignalR Applications | Microsoft Docs"
 author: pfletcher
 description: "This article describes how to use the Unit Testing features of SignalR 2.0."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/10/2014
 ms.assetid: d1983524-e0d5-4ee6-9d87-1f552f7cb964
 msc.legacyurl: /signalr/overview/testing-and-debugging/unit-testing-signalr-applications
@@ -13,19 +13,19 @@ Unit Testing SignalR Applications
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
-> This article describes using the Unit Testing features of SignalR 2. 
-> 
+> This article describes using the Unit Testing features of SignalR 2.
+>
 > ## Software versions used in this topic
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
 > - SignalR version 2
->   
-> 
-> 
+>
+>
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 

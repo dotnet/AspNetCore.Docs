@@ -41,7 +41,7 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) is called in `Startup.Configure`:
 
-[!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=49)]
+[!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
 
 ### _CookieConsentPartial.cshtml partial view
 
@@ -111,4 +111,4 @@ For databases that don't provide built-in encryption at rest, you may be able to
 
 ## Additional resources
 
-* [Microsoft.com/GDPR](https://www.microsoft.com/en-us/trustcenter/Privacy/GDPR)
+* [Microsoft.com/GDPR](https://www.microsoft.com/trustcenter/Privacy/GDPR)

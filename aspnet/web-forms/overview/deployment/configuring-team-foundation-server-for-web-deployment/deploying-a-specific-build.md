@@ -3,7 +3,7 @@ uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-de
 title: "Deploying a Specific Build | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to deploy web packages and database scripts from a specific previous build to a new destination, like a staging or production enviro..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/04/2012
 ms.assetid: c979535f-48a3-4ec4-a633-a77889b86ddb
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build

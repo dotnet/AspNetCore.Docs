@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host an ASP.NET Core app in a Windows Service.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/04/2018
+ms.date: 09/25/2018
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -15,13 +15,13 @@ An ASP.NET Core app can be hosted on Windows without using IIS as a [Windows Ser
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## Get started
+## Convert a project into a Windows Service
 
-The following minimum changes are required to set up an existing ASP.NET Core project to run in a service:
+The following minimum changes are required to set up an existing ASP.NET Core project to run as a service:
 
 1. In the project file:
 
-   1. Confirm the presence of the runtime identifier or add it to the **\<PropertyGroup>** that contains the target framework:
+   * Confirm the presence of a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) or add it to the `<PropertyGroup>` that contains the target framework:
 
       ::: moniker range=">= aspnetcore-2.1"
 
@@ -56,7 +56,14 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
       ::: moniker-end
 
-   1. Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/).
+      To publish for multiple RIDs:
+
+      * Provide the RIDs in a semicolon-delimited list.
+      * Use the property name `<RuntimeIdentifiers>` (plural).
+
+      For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
+
+   * Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices).
 
 1. Make the following changes in `Program.Main`:
 
@@ -66,7 +73,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
      ::: moniker range=">= aspnetcore-2.0"
 
-     [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=8-9,12)]
+     [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=8-9,16)]
 
      ::: moniker-end
 
@@ -76,12 +83,12 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
      ::: moniker-end
 
-1. Publish the app. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles).
+1. Publish the app. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles). When using a Visual Studio, select the **FolderProfile**.
 
-   To publish the sample app from the command line, run the following command in a console window from the project folder:
+   To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder. The RID must be specified in the `<RuntimeIdenfifier>` (or `<RuntimeIdentifiers>`) property of the project file. In the following example, the app is published in Release configuration for the `win7-x64` runtime:
 
    ```console
-   dotnet publish --configuration Release
+   dotnet publish --configuration Release --runtime win7-x64
    ```
 
 1. Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character at the start of the path is required.**
@@ -90,25 +97,28 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"
    ```
 
-   For a service published in the project folder, use the path to the *publish* folder to create the service. In the following example, the service is:
+   For a service published in the project folder, use the path to the *publish* folder to create the service. In the following example:
 
-   * Named **MyService**.
-   * Published to the *c:\\my_services\\AspNetCoreService\\bin\\Release\\&lt;TARGET_FRAMEWORK&gt;\\publish* folder.
-   * Represented by an app executable named *AspNetCoreService.exe*.
+   * The project resides in the *c:\\my_services\\AspNetCoreService* folder.
+   * The project is published in `Release` configuration.
+   * The Target Framework Moniker (TFM) is `netcoreapp2.1`.
+   * The Runtime Identifer (RID) is `win7-x64`.
+   * The app executable is named *AspNetCoreService.exe*.
+   * The service is named **MyService**.
 
-   Open a command shell with administrative privileges and run the following command:
+   Example:
 
    ```console
-   sc create MyService binPath= "c:\my_services\AspNetCoreService\bin\Release\<TARGET_FRAMEWORK>\publish\AspNetCoreService.exe"
+   sc create MyService binPath= "c:\my_services\AspNetCoreService\bin\Release\netcoreapp2.1\win7-x64\publish\AspNetCoreService.exe"
    ```
-   
+
    > [!IMPORTANT]
    > Make sure the space is present between the `binPath=` argument and its value.
-   
+
    To publish and start the service from a different folder:
-   
-   1. Use the [--output &lt;OUTPUT_DIRECTORY&gt;](/dotnet/core/tools/dotnet-publish#options) option on the `dotnet publish` command.
-   1. Create the service with the `sc.exe` command using the output folder path. Include the name of the service's executable in the path provided to `binPath`.
+
+      * Use the [--output &lt;OUTPUT_DIRECTORY&gt;](/dotnet/core/tools/dotnet-publish#options) option on the `dotnet publish` command. If using Visual Studio, configure the **Target Location** in the **FolderProfile** publish property page before selecting the **Publish** button.
+      * Create the service with the `sc.exe` command using the output folder path. Include the name of the service's executable in the path provided to `binPath`.
 
 1. Start the service with the `sc start <SERVICE_NAME>` command.
 
@@ -120,7 +130,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
    The command takes a few seconds to start the service.
 
-1. The `sc query <SERVICE_NAME>` command can be used to check the status of the service to determine its status:
+1. To check the status of the service, use the `sc query <SERVICE_NAME>` command. The status is reported as one of the following values:
 
    * `START_PENDING`
    * `RUNNING`
@@ -159,7 +169,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    sc delete MyService
    ```
 
-## Provide a way to run outside of a service
+## Run the app outside of a service
 
 It's easier to test and debug when running outside of a service, so it's customary to add code that calls `RunAsService` only under certain conditions. For example, the app can run as a console app with a `--console` command-line argument or if the debugger is attached:
 
@@ -196,7 +206,7 @@ To handle [OnStarting](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.
 
    ::: moniker range=">= aspnetcore-2.0"
 
-   [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=HandleStopStart&highlight=14)]
+   [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=HandleStopStart&highlight=17)]
 
    > [!NOTE]
    > `isService` isn't passed from `Main` into `CreateWebHostBuilder` because the signature of `CreateWebHostBuilder` must be `CreateWebHostBuilder(string[])` in order for [integration testing](xref:test/integration-tests) to work properly.
@@ -215,8 +225,20 @@ If the custom `WebHostService` code requires a service from dependency injection
 
 ## Proxy server and load balancer scenarios
 
-Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
-## Kestrel endpoint configuration
+## Configure HTTPS
 
-For information on Kestrel endpoint configuration, including HTTPS configuration and SNI support, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+## Current directory and content root
+
+The current working directory returned by calling `Directory.GetCurrentDirectory()` for a Windows Service is the *C:\\WINDOWS\\system32* folder. The *system32* folder isn't a suitable location to store a service's files (for example, settings files). Use one of the following approaches to maintain and access a service's assets and settings files with [FileConfigurationExtensions.SetBasePath](/dotnet/api/microsoft.extensions.configuration.fileconfigurationextensions.setbasepath) when using an [IConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.iconfigurationbuilder):
+
+* Use the content root path. The `IHostingEnvironment.ContentRootPath` is the same path provided to the `binPath` argument when the service is created. Instead of using `Directory.GetCurrentDirectory()` to create paths to settings files, use the content root path and maintain the files in the app's content root.
+* Store the files in a suitable location on disk. Specify an absolute path with `SetBasePath` to the folder containing the files.
+
+## Additional resources
+
+* [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) (includes HTTPS configuration and SNI support)
+* <xref:fundamentals/host/web-host>

@@ -40,18 +40,16 @@
     </table>
 
     <script>
-        var connectionForm = document.getElementById("connectionForm");
         var connectionUrl = document.getElementById("connectionUrl");
         var connectButton = document.getElementById("connectButton");
         var stateLabel = document.getElementById("stateLabel");
         var sendMessage = document.getElementById("sendMessage");
         var sendButton = document.getElementById("sendButton");
-        var sendForm = document.getElementById("sendForm");
         var commsLog = document.getElementById("commsLog");
         var closeButton = document.getElementById("closeButton");
         var socket;
 
-        var scheme = document.location.protocol == "https:" ? "wss" : "ws";
+        var scheme = document.location.protocol === "https:" ? "wss" : "ws";
         var port = document.location.port ? (":" + document.location.port) : "";
 
         connectionUrl.value = scheme + "://" + document.location.hostname + port + "/ws" ;
@@ -102,14 +100,14 @@
         }
 
         closeButton.onclick = function () {
-            if (!socket || socket.readyState != WebSocket.OPEN) {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
                 alert("socket not connected");
             }
             socket.close(1000, "Closing from client");
-        }
+        };
 
         sendButton.onclick = function () {
-            if (!socket || socket.readyState != WebSocket.OPEN) {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
                 alert("socket not connected");
             }
             var data = sendMessage.value;
@@ -118,7 +116,7 @@
                 '<td class="commslog-client">Client</td>' +
                 '<td class="commslog-server">Server</td>' +
                 '<td class="commslog-data">' + htmlEscape(data) + '</td></tr>';
-        }
+        };
 
         connectButton.onclick = function() {
             stateLabel.innerHTML = "Connecting";
@@ -145,7 +143,7 @@
         };
 
         function htmlEscape(str) {
-            return str
+            return str.toString()
                 .replace(/&/g, '&amp;')
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#39;')

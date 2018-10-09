@@ -3,7 +3,7 @@ uid: web-pages/videos/aspnet-razor-pages/index
 title: "ASP.NET Razor Pages | Microsoft Docs"
 author: rick-anderson
 description: "Which videos you can view to drill down into Web Pages and WebMatrix."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/18/2012
 ms.assetid: ffad842d-548c-40c6-84c5-10858133e972
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages

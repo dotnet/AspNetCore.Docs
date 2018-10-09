@@ -61,7 +61,7 @@ Run the app, go to the Students Index page and notice that times are no longer d
 
 ### The StringLength attribute
 
-You can also specify data validation rules and validation error messages using attributes. The `StringLength` attribute sets the maximum length  in the database and provides client side and server side validation for ASP.NET MVC. You can also specify the minimum string length in this attribute, but the minimum value has no impact on the database schema.
+You can also specify data validation rules and validation error messages using attributes. The `StringLength` attribute sets the maximum length  in the database and provides client side and server side validation for ASP.NET Core MVC. You can also specify the minimum string length in this attribute, but the minimum value has no impact on the database schema.
 
 Suppose you want to ensure that users don't enter more than 50 characters for a name. To add this limitation, add `StringLength` attributes to the `LastName` and `FirstMidName` properties, as shown in the following example:
 
@@ -490,6 +490,7 @@ Right-click the **CourseAssignment** table and select **View Data** to verify th
 ## Summary
 
 You now have a more complex data model and corresponding database. In the following tutorial, you'll learn more about how to access related data.
+
 ::: moniker-end
 
 > [!div class="step-by-step"]

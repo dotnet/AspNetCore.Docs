@@ -3,7 +3,7 @@ uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-autocomp
 title: "[How Do I:] Use the ASP.NET AJAX AutoComplete Control | Microsoft Docs"
 author: JoeStagner
 description: "The AutoComplete extender control from the ASP.NET AJAX Control Toolkit provides real-time suggestions to the user as he or she types in a text box on the We..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/20/2007
 ms.assetid: 636a88fa-bafa-4310-8163-dba4a3461ce3
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-autocomplete-control

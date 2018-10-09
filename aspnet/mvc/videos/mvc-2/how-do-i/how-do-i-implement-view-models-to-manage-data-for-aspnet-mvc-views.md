@@ -3,7 +3,7 @@ uid: mvc/videos/mvc-2/how-do-i/how-do-i-implement-view-models-to-manage-data-for
 title: "How Do I: Implement View  Models to Manage Data for ASP.NET MVC Views? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the concept of a &quot;View Model&quot; for managing data for ASP.NET MVC views. First, a sample MVC project is cre..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 12/11/2009
 ms.assetid: 22f55d63-78f7-44fd-9107-f74cbe16022b
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views

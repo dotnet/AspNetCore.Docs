@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs
 title: "Passing Data to View Master Pages (C#) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to explain how you can pass data from a controller to a view master page. We examine two strategies for passing data to a view m..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/16/2008
 ms.assetid: 5fee879b-8bde-42a9-a434-60ba6b1cf747
 msc.legacyurl: /mvc/overview/older-versions-1/views/passing-data-to-view-master-pages-cs

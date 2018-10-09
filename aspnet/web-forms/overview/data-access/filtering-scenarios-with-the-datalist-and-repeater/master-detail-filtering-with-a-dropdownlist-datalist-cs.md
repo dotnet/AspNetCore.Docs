@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-re
 title: "Master/Detail Filtering With a DropDownList (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we see how to display master/detail reports in a single web page using DropDownLists to display the 'master' records and a DataList to displ..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/18/2007
 ms.assetid: 07fa47ae-e491-4a2f-b265-d342b9ddef46
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-with-a-dropdownlist-datalist-cs

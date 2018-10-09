@@ -20,11 +20,15 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
 ::: moniker range="= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/MovieDate.cs?name=snippet_1&highlight=10-11)]
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/MovieDate.cs?name=snippet_1&highlight=10-11,15)]
+
 ::: moniker-end
 
 Right click on a red squiggly line > **Quick Actions and Refactorings**.
@@ -35,7 +39,7 @@ Select `using System.ComponentModel.DataAnnotations;`
 
   ![using System.ComponentModel.DataAnnotations at top of list](da1/da.png)
 
-  Visual studio adds `using System.ComponentModel.DataAnnotations;`.
+  Visual Studio adds `using System.ComponentModel.DataAnnotations;`.
 
 [!INCLUDE [model1](~/includes/RP/da2.md)]
 

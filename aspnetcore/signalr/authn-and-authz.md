@@ -39,7 +39,7 @@ In the .NET client, there is a similar [AccessTokenProvider](xref:signalr/config
 var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/myhub", options =>
     { 
-        options.AccessTokenProvider = () => _myAccessToken;
+        options.AccessTokenProvider = () => Task.FromResult(_myAccessToken);
     })
     .Build();
 ```

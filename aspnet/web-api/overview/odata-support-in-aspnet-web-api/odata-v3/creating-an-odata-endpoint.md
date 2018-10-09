@@ -3,7 +3,7 @@ uid: web-api/overview/odata-support-in-aspnet-web-api/odata-v3/creating-an-odata
 title: "Creating an OData v3 Endpoint with Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "The Open Data Protocol (OData) is a data access protocol for the web. OData provides a uniform way to structure data, query the data, and manipulate the data..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/25/2014
 ms.assetid: 262843d6-43a2-4f1c-82d9-0b90ae6df0cf
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v3/creating-an-odata-endpoint
@@ -16,18 +16,18 @@ by [Mike Wasson](https://github.com/MikeWasson)
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-Web-API-OData-cecdb524)
 
 > The [Open Data Protocol](http://www.odata.org/) (OData) is a data access protocol for the web. OData provides a uniform way to structure data, query the data, and manipulate the data set through CRUD operations (create, read, update, and delete). OData supports both AtomPub (XML) and JSON formats. OData also defines a way to expose metadata about the data. Clients can use the metadata to discover the type information and relationships for the data set.
-> 
+>
 > ASP.NET Web API makes it easy to create an OData endpoint for a data set. You can control exactly which OData operations the endpoint supports. You can host multiple OData endpoints, alongside non-OData endpoints. You have full control over your data model, back-end business logic, and data layer.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - Web API 2
 > - OData Version 3
 > - Entity Framework 6
 > - [Fiddler Web Debugging Proxy (Optional)](http://www.fiddler2.com)
-> 
+>
 > Web API OData support was added in [ASP.NET and Web Tools 2012.2 Update](https://go.microsoft.com/fwlink/?LinkId=282650). However, this tutorial uses scaffolding that was added in Visual Studio 2013.
 
 
@@ -234,7 +234,7 @@ OData supports several serialization formats:
 - JSON "light" (introduced in OData v3)
 - JSON "verbose" (OData v2)
 
-By default, Web API uses AtomPubJSON "light" format. 
+By default, Web API uses AtomPubJSON "light" format.
 
 To get AtomPub format, set the Accept header to "application/atom+xml". Here is an example response body:
 

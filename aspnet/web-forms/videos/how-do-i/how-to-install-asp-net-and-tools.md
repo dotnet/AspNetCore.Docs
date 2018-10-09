@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-to-install-asp-net-and-tools
 title: "How to Install ASP.NET and Tools | Microsoft Docs"
 author: shanselman
 description: "Microsoft's Scott Hanselman shows you how to download and install ASP.NET and tools so you can start developing your web applications."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 11/10/2011
 ms.assetid: 84007aa5-4f60-4417-9cc0-44cb8b7b9323
 msc.legacyurl: /web-forms/videos/how-do-i/how-to-install-asp-net-and-tools

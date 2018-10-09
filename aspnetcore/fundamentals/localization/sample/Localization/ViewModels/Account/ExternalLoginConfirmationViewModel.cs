@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Localization.StarterWeb.ViewModels.Account
+namespace Localization.ViewModels.Account
 {
     public class ExternalLoginConfirmationViewModel
     {

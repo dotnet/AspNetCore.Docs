@@ -3,7 +3,7 @@ uid: web-api/videos/getting-started/index
 title: "ASP.NET Web API Overview and Getting Started Videos | Microsoft Docs"
 author: rick-anderson
 description: "This is a series of videos to get you started with ASP.NET Web API."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/16/2012
 ms.assetid: 1c7cc326-04f5-4578-bf62-a7d381f380f7
 msc.legacyurl: /web-api/videos/getting-started

@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-use-roles-to-segment-functionality-in-an
 title: "[How Do I:] Use Roles to Segment Functionality in an ASP.NET Web Site | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to maximize the use of roles in an ASP.NET web site after setting up ASP.NET Membership. First, learn how to setup rol..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/29/2008
 ms.assetid: 9ac277a9-2149-4a51-b61b-a44ad0535267
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-roles-to-segment-functionality-in-an-aspnet-web-site

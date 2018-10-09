@@ -3,7 +3,7 @@ uid: mvc/overview/advanced/custom-mvc-templates
 title: "Custom MVC Template | Microsoft Docs"
 author: joeloff
 description: "Create a template as a VSIX extension."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 12/10/2012
 ms.assetid: b0a214c7-2f38-4dbc-b47f-bd7bd9df97bd
 msc.legacyurl: /mvc/overview/advanced/custom-mvc-templates

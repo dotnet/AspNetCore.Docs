@@ -3,7 +3,7 @@ uid: signalr/overview/guide-to-the-api/working-with-groups
 title: "Working with Groups in SignalR | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to persist group membership information with the Hub API."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/10/2014
 ms.assetid: cd378ecd-3e9e-4236-b902-65916d85a048
 msc.legacyurl: /signalr/overview/guide-to-the-api/working-with-groups
@@ -13,23 +13,23 @@ Working with Groups in SignalR
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
-> This topic describes how to add users to groups and persist group membership information. 
-> 
+> This topic describes how to add users to groups and persist group membership information.
+>
 > ## Software versions used in this topic
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
 > - SignalR version 2
->   
-> 
-> 
+>
+>
+>
 > ## Previous versions of this topic
-> 
+>
 > For information about earlier versions of SignalR, see [SignalR Older Versions](../older-versions/index.md).
-> 
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
@@ -75,13 +75,13 @@ In general, you should not include `await` when calling the `Groups.Remove` meth
 
 You can send messages to all of the members of a group or only specified members of the group, as shown in the following examples.
 
-- **All** connected clients in a specified group. 
+- **All** connected clients in a specified group.
 
     [!code-css[Main](working-with-groups/samples/sample3.css)]
-- All connected clients in a specified group **except the specified clients**, identified by connection ID. 
+- All connected clients in a specified group **except the specified clients**, identified by connection ID.
 
     [!code-csharp[Main](working-with-groups/samples/sample4.cs)]
-- All connected clients in a specified group **except the calling client**. 
+- All connected clients in a specified group **except the calling client**.
 
     [!code-css[Main](working-with-groups/samples/sample5.css)]
 

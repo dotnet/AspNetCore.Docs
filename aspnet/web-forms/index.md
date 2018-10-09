@@ -3,7 +3,7 @@ uid: web-forms/index
 title: "ASP.NET Web Forms | Microsoft Docs"
 author: rick-anderson
 description: "Download Visual Web Developer Express & learn how to quickly build web apps using easy-to-understand controls on ASP.NET Web Forms in a visual design environ..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/08/2011
 ms.assetid: 7e4ce5d2-ab22-44f0-9825-c12eed7b8fcb
 msc.legacyurl: /web-forms

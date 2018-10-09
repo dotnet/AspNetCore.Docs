@@ -1,2 +1,0 @@
-> [!NOTE]
-> This document is part of the [Getting Started with ASP.NET MVC 5](xref:mvc/overview/getting-started/introduction/getting-started) tutorial. Final Source for tutorial located on [GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/overview/getting-started/introduction/sample/MvcMovie/MvcMovie)

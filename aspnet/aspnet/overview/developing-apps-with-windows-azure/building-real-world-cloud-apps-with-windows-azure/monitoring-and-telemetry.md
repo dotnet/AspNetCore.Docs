@@ -3,7 +3,7 @@ uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-clou
 title: "Monitoring and Telemetry (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/09/2015
 ms.assetid: 7e986ab5-6615-4638-add7-4614ce7b51db
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry
@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Monitoring and Telemetry (Building Real-World Cloud Apps with Azure)
 ====================
-by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)
+by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson]((https://twitter.com/RickAndMSFT)), [Tom Dykstra](https://github.com/tdykstra)
 
 [Download Fix It Project](http://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4) or [Download E-book](http://blogs.msdn.com/b/microsoft_press/archive/2014/07/23/free-ebook-building-cloud-apps-with-microsoft-azure.aspx)
 
@@ -23,7 +23,7 @@ A lot of people rely on customers to let them know when their application is dow
 ## Buy or rent a telemetry solution
 
 > [!NOTE]
-> This article was written before [Application Insights](https://azure.microsoft.com/services/application-insights/) was released. Application Insights is the preferred approach for telemetry solutions on Azure. See [Set up Application Insights for your ASP.NET website](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net) for more information.
+> This article was written before [Application Insights](/azure/application-insights/app-insights-overview) was released. Application Insights is the preferred approach for telemetry solutions on Azure. See [Set up Application Insights for your ASP.NET website](/azure/application-insights/app-insights-asp-net) for more information.
 
 
 One of the things that's great about the cloud environment is that it's really easy to buy or rent your way to victory. Telemetry is an example. Without a lot of effort you can get a really good telemetry system up and running, very cost-effectively. There are a bunch of great partners that integrate with Azure, and some of them have free tiers – so you can get basic telemetry for nothing. Here are just a few of the ones currently available on Azure:
@@ -32,7 +32,7 @@ One of the things that's great about the cloud environment is that it's really e
 - [AppDynamics](http://www.appdynamics.com/)
 - [Dynatrace](https://datamarket.azure.com/application/b4011de2-1212-4375-9211-e882766121ff)
 
-As of March 2015, [Microsoft Application Insights for Visual Studio Online](https://azure.microsoft.com/documentation/articles/app-insights-get-started/) is not released yet but is available in preview to try out. [Microsoft System Center](http://www.petri.co.il/microsoft-system-center-introduction.htm#) also includes monitoring features.
+[Microsoft System Center](http://www.petri.co.il/microsoft-system-center-introduction.htm#) also includes monitoring features.
 
 We'll quickly walk through setting up New Relic to show how easy it can be to use a telemetry system.
 

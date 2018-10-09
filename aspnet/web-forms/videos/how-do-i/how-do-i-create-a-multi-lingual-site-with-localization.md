@@ -3,7 +3,7 @@ uid: web-forms/videos/how-do-i/how-do-i-create-a-multi-lingual-site-with-localiz
 title: "[How Do I:] Create a Multi-Lingual Site with Localization? | Microsoft Docs"
 author: microsoft
 description: "Learn how to create culture-aware and locale-specific web content with no additional code. Use the Resource Editor to create page-level and application-level..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/06/2006
 ms.assetid: 93190bb9-83fa-4318-a261-0de41ff72b24
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-multi-lingual-site-with-localization

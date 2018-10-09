@@ -21,6 +21,11 @@ public class Program
             })
             .Configure(app =>
             {
+                var loggerFactory = app.ApplicationServices
+                    .GetRequiredService<ILoggerFactory>();
+                var logger = loggerFactory.CreateLogger<Program>();
+                logger.LogInformation("Logged in Configure");
+
                 if (HostingEnvironment.IsDevelopment())
                 {
                     app.UseDeveloperExceptionPage();

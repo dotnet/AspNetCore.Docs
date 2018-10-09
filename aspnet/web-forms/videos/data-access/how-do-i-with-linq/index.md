@@ -3,7 +3,7 @@ uid: web-forms/videos/data-access/how-do-i-with-linq/index
 title: "How Do I with LINQ | Microsoft Docs"
 author: rick-anderson
 description: "This video series walks you through everything you need to know to become proficient in using LINQ as a web developer."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/24/2012
 ms.assetid: 11b3547a-7c4f-4849-8e27-3cfbe255034e
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq

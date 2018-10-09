@@ -3,7 +3,7 @@ uid: mvc/overview/performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse
 title: "Profile and debug your ASP.NET MVC app with Glimpse | Microsoft Docs"
 author: Rick-Anderson
 description: "Glimpse is a thriving and growing family of open source NuGet packages that provides detailed performance, debugging and diagnostic information for ASP.NET a..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 03/26/2015
 ms.assetid: c205805f-efdd-4fa7-9616-f26eab180611
 msc.legacyurl: /mvc/overview/performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse
@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Profile and debug your ASP.NET MVC app with Glimpse
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > Glimpse is a thriving and growing family of open source NuGet packages that provides detailed performance, debugging and diagnostic information for ASP.NET apps. It's trivial to install, lightweight, ultra-fast, and displays key performance metrics at the bottom of every page. It allows you to drill down into your app when you need to find out what's going on at the server. Glimpse provides so much valuable information we recommend you use it throughout your development cycle, including your Azure test environment. While [Fiddler](http://www.telerik.com/fiddler) and the [F-12 development tools](https://msdn.microsoft.com/library/ie/gg589512(v=vs.85).aspx) provide a client side view, Glimpse provides a detailed view from the server. This tutorial will focus on using the Glimpse ASP.NET MVC and EF packages, but many other packages are available. Where possible I will link to the appropriate [Glimpse docs](http://getglimpse.com/Docs/) which I help maintain. Glimpse is an open source project, you too can contribute to the source code and the docs.
 

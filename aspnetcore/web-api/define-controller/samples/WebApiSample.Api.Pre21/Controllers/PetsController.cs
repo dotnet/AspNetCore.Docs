@@ -47,10 +47,12 @@ namespace WebApiSample.Api.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateAsync([FromBody] Pet pet)
         {
+            #region snippet_ModelStateIsValidCheck
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            #endregion
 
             await _repository.AddPetAsync(pet);
 

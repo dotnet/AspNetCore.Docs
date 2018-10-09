@@ -3,7 +3,7 @@ uid: mvc/overview/getting-started/introduction/examining-the-edit-methods-and-ed
 title: "Examining the Edit Methods and Edit View | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 05/22/2015
 ms.assetid: 52a4d5fe-aa31-4471-b3cb-a064f82cb791
 msc.legacyurl: /mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view
@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Examining the Edit Methods and Edit View
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [Tutorial Note](sample/code-location.md)]
 

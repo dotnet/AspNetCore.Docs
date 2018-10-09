@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with
 title: "Adding a Controller | Microsoft Docs"
 author: shanselman
 description: "An updated version if this tutorial is available here using Visual Studio 2013. The new tutorial uses ASP.NET MVC 5, which provides many improvements over t..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/14/2010
 ms.assetid: ff03dcc0-da97-458d-838f-0823e7482642
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part2
@@ -14,9 +14,9 @@ Adding a Controller
 by [Scott Hanselman](https://github.com/shanselman)
 
 > > [!NOTE]
-> > An updated version if this tutorial is available [here](../../getting-started/introduction/getting-started.md) using [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads). The new tutorial uses ASP.NET MVC 5, which provides many improvements over this tutorial.
-> 
-> 
+> > An updated version if this tutorial is available [here](../../getting-started/introduction/getting-started.md) using [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013). The new tutorial uses ASP.NET MVC 5, which provides many improvements over this tutorial.
+>
+>
 > This is a beginner tutorial that introduces the basics of ASP.NET MVC. You'll create a simple web application that reads and writes from a database. Visit the [ASP.NET MVC learning center](../../../index.md) to find other ASP.NET MVC tutorials and samples.
 
 

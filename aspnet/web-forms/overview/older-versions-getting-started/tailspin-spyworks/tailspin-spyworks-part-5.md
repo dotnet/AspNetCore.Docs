@@ -3,7 +3,7 @@ uid: web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspi
 title: "Part 5: Business Logic | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 5 adds some business logic."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/21/2010
 ms.assetid: eaef475a-ca91-47ea-a4a7-d074005ed80c
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-5

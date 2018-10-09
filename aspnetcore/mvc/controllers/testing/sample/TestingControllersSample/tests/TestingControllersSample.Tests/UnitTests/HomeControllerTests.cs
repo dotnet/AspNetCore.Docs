@@ -14,12 +14,14 @@ namespace TestingControllersSample.Tests.UnitTests
 {
     public class HomeControllerTests
     {
+        #region snippet_Index_ReturnsAViewResult_WithAListOfBrainstormSessions
         [Fact]
         public async Task Index_ReturnsAViewResult_WithAListOfBrainstormSessions()
         {
             // Arrange
             var mockRepo = new Mock<IBrainstormSessionRepository>();
-            mockRepo.Setup(repo => repo.ListAsync()).Returns(Task.FromResult(GetTestSessions()));
+            mockRepo.Setup(repo => repo.ListAsync())
+                .ReturnsAsync(GetTestSessions());
             var controller = new HomeController(mockRepo.Object);
 
             // Act
@@ -31,13 +33,16 @@ namespace TestingControllersSample.Tests.UnitTests
                 viewResult.ViewData.Model);
             Assert.Equal(2, model.Count());
         }
+        #endregion
 
+        #region snippet_ModelState_ValidOrInvalid
         [Fact]
         public async Task IndexPost_ReturnsBadRequestResult_WhenModelStateIsInvalid()
         {
             // Arrange
             var mockRepo = new Mock<IBrainstormSessionRepository>();
-            mockRepo.Setup(repo => repo.ListAsync()).Returns(Task.FromResult(GetTestSessions()));
+            mockRepo.Setup(repo => repo.ListAsync())
+                .ReturnsAsync(GetTestSessions());
             var controller = new HomeController(mockRepo.Object);
             controller.ModelState.AddModelError("SessionName", "Required");
             var newSession = new HomeController.NewSessionModel();
@@ -73,7 +78,9 @@ namespace TestingControllersSample.Tests.UnitTests
             Assert.Equal("Index", redirectToActionResult.ActionName);
             mockRepo.Verify();
         }
+        #endregion
 
+        #region snippet_GetTestSessions
         private List<BrainstormSession> GetTestSessions()
         {
             var sessions = new List<BrainstormSession>();
@@ -91,5 +98,6 @@ namespace TestingControllersSample.Tests.UnitTests
             });
             return sessions;
         }
+        #endregion
     }
 }

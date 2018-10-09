@@ -3,7 +3,7 @@ uid: mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/ad
 title: "Adding a New Category to the DropDownList using jQuery UI | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 01/12/2012
 ms.assetid: 44aa1ac4-6ea2-48a2-972d-52710c48eae5
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/adding-a-new-category-to-the-dropdownlist-using-jquery-ui
@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Adding a New Category to the DropDownList using jQuery UI
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 The HTML `Select` tag is ideal for presenting a list of fixed category data, but often times you need to add a new category. Suppose we want to add the genre "Opera" to the categories in our database? In this section, we will use jQuery UI to add a dialog box we can use to add a new category. The image below shows how the UI will present in the browser.
 

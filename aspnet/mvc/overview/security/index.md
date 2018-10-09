@@ -3,7 +3,7 @@ uid: mvc/overview/security/index
 title: "Security, Authentication, and Authorization with ASP.NET MVC | Microsoft Docs"
 author: rick-anderson
 description: "How to make an ASP.NET site more secure, and how to implement authentication and authorization."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 08/10/2011
 ms.assetid: 1c1aa6a6-82f4-4553-8495-dc99814162df
 msc.legacyurl: /mvc/overview/security

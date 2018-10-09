@@ -3,7 +3,7 @@ uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datali
 title: "Customizing the DataList's Editing Interface (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will create a richer editing interface for the DataList, one that includes DropDownLists and a CheckBox."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 10/30/2006
 ms.assetid: a5d13067-ddfb-4c36-8209-0f69fd40e45c
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/customizing-the-datalist-s-editing-interface-cs

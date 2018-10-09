@@ -3,7 +3,7 @@ uid: web-api/overview/testing-and-debugging/unit-testing-controllers-in-web-api
 title: "Unit Testing Controllers in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "This topic describes some specific techniques for unit testing controllers in Web API 2. Before reading this topic, you might want to read the tutorial Unit..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/11/2014
 ms.assetid: 43a6cce7-a3ef-42aa-ad06-90d36d49f098
 msc.legacyurl: /web-api/overview/testing-and-debugging/unit-testing-controllers-in-web-api
@@ -14,10 +14,10 @@ Unit Testing Controllers in ASP.NET Web API 2
 by [Mike Wasson](https://github.com/MikeWasson)
 
 > This topic describes some specific techniques for unit testing controllers in Web API 2. Before reading this topic, you might want to read the tutorial [Unit Testing ASP.NET Web API 2](unit-testing-with-aspnet-web-api.md), which shows how to add a unit-test project to your solution.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> - [Visual Studio 2017](https://www.visualstudio.com/vs/)
+>
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 > - Web API 2
 > - [Moq](https://github.com/Moq) 4.5.30
 

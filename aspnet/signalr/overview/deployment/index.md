@@ -3,7 +3,7 @@ uid: signalr/overview/deployment/index
 title: "SignalR Deployment and Hosting | Microsoft Docs"
 author: rick-anderson
 description: "How to deploy and host SignalR applications."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 09/19/2014
 ms.assetid: 62482bdd-e2a4-46e5-b909-6d0c6bc07114
 msc.legacyurl: /signalr/overview/deployment

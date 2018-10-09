@@ -3,7 +3,7 @@ uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/usi
 title: "Part 1: Overview and Creating the Project | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 07/03/2012
 ms.assetid: 94421d86-68c4-4471-bf5f-82d654a17252
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-1

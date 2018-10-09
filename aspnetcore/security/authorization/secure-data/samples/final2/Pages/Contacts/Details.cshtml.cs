@@ -30,6 +30,19 @@ namespace ContactManager.Pages.Contacts
             {
                 return NotFound();
             }
+
+            var isAuthorized = User.IsInRole(Constants.ContactManagersRole) ||
+                                          User.IsInRole(Constants.ContactAdministratorsRole);
+
+            var currentUserId = UserManager.GetUserId(User);
+
+            if (!isAuthorized
+                && currentUserId != Contact.OwnerID
+                && Contact.Status != ContactStatus.Approved)
+            {
+                return new ChallengeResult();
+            }
+
             return Page();
         }
 

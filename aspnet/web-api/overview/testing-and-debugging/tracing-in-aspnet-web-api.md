@@ -3,7 +3,7 @@ uid: web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
 title: "Tracing in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to enable tracing in ASP.NET Web API."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 02/25/2014
 ms.assetid: 66a837e9-600b-4b72-97a9-19804231c64a
 msc.legacyurl: /web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
@@ -14,18 +14,16 @@ Tracing in ASP.NET Web API 2
 by [Mike Wasson](https://github.com/MikeWasson)
 
 > When you are trying to debug a web-based application, there is no substitute for a good set of trace logs. This tutorial shows how to enable tracing in ASP.NET Web API. You can use this feature to trace what the Web API framework does before and after it invokes your controller. You can also use it to trace your own code.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2017](https://www.visualstudio.com/downloads/) (also works with Visual Studio 2015)
+>
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) (also works with Visual Studio 2015)
 > - Web API 2
 > - [Microsoft.AspNet.WebApi.Tracing](http://www.nuget.org/packages/Microsoft.AspNet.WebApi.Tracing)
 
-
 ## Enable System.Diagnostics Tracing in Web API
 
-First, we'll create a new ASP.NET Web Application project. In Visual Studio, from the **File** menu, select **New**, then **Project**. Under **Templates**, **Web**, select **ASP.NET Web Application**.
+First, we'll create a new ASP.NET Web Application project. In Visual Studio, from the **File** menu, select **New** > **Project**. Under **Templates**, **Web**, select **ASP.NET Web Application**.
 
 [![](tracing-in-aspnet-web-api/_static/image2.png)](tracing-in-aspnet-web-api/_static/image1.png)
 
@@ -108,7 +106,7 @@ Only one trace writer can be active. By default, Web API sets a &quot;no-op&quot
 
 ## How Web API Tracing Works
 
-Tracing in Web API uses a in Web API uses a *facade* pattern: When tracing is enabled, Web API wraps various parts of the request pipeline with classes that perform trace calls.
+Tracing in Web API uses a *facade* pattern: When tracing is enabled, Web API wraps various parts of the request pipeline with classes that perform trace calls.
 
 For example, when selecting a controller, the pipeline uses the **IHttpControllerSelector** interface. With tracing enabled, the pipleline inserts a class that implements **IHttpControllerSelector** but calls through to the real implementation:
 

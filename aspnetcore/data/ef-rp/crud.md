@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
-To minimize complexity and keep these tutorials focused on EF Core, EF Core code is used in the page models. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
+To minimize complexity and keep these tutorials focused on EF Core, EF Core code is used in the page models. Some developers use a service layer or [repository pattern](xref:fundamentals/repository-pattern) in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
 
 In this tutorial, the Create, Edit, Delete, and Details Razor Pages in the *Student* folder are examined.
 
@@ -29,7 +29,7 @@ The scaffolded code uses the following pattern for Create, Edit, and Delete page
 
 The Index and Details pages get and display the requested data with the HTTP GET method `OnGetAsync`
 
-## SingleOrDefaultAsync vs FirstOrDefaultAsync
+## SingleOrDefaultAsync vs. FirstOrDefaultAsync
 
 The generated code uses [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_), which is generally preferred over [SingleOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
 

@@ -3,7 +3,7 @@ uid: mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4
 title: "Using Asynchronous Methods in ASP.NET MVC 4 | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using Visual Studio Express 2012 for Web, which is a free ve..."
-ms.author: aspnetcontent
+ms.author: riande
 ms.date: 06/06/2012
 ms.assetid: a56572ba-81c3-47af-826d-941e9c4775ec
 msc.legacyurl: /mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4
@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Using Asynchronous Methods in ASP.NET MVC 4
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11), which is a free version of Microsoft Visual Studio. You can also use [Visual Studio 2012](https://www.microsoft.com/visualstudio/11).
 > 
