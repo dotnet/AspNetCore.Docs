@@ -10,74 +10,53 @@ uid: mvc/controllers/areas
 
 By [Dhananjay Kumar](https://twitter.com/debug_mode)  and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller`, `action` and `page`.
+Areas are a mechanism in ASP.NET Core to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views and Razor Pages). Areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller`, `action` and `page`.
 
-Areas provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC structure inside an application. In an MVC project, logical components like Model, Controller, View, and Razor Page are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the  app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, models, and razor pages. In this scenario, you can use Areas to physically partition the business components in the same project.
+Areas provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC or Razor Pages structure inside an app. In an ASP.NET Core web project:
 
-An area can be defined as smaller functional units in an ASP.NET Core MVC project with its own set of controllers, views, models, and razor pages.
+* Logical components like Model, Controller, View, and Razor Pages are kept in different folders.
+* Naming conventions create the relationship between these components.
+
+For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with checkout, billing, search, etc. Each of these units have their own logical component views, controllers, models, and razor pages. In this scenario, you can use Areas to physically partition the business components in the same project.
+
+An area can be defined as smaller functional units in an ASP.NET Core project with its own set of controllers, views, models, and razor pages.
 
 Consider using Areas in an MVC project when:
 
-* Your application is made of multiple high-level functional components that should be logically separated
-
-* You want to partition your MVC project so that each functional area can be worked on independently
+* Your application is made of multiple high-level functional components that should be logically separated.
+* You want to partition your MVC project so that each functional area can be worked on independently.
 
 Area features:
 
 * An ASP.NET Core MVC app can have any number of areas.
-
 * Each area has its own controllers, models, views, and razor pages.
-
 * Areas allow you to organize large MVC projects into multiple high-level components that can be worked on independently.
-
 * Areas support multiple controllers with the same name, as long as they have different *areas*.
-
 * Areas support multiple razor pages with the same name, as long as they have different *areas*.
 
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings: Products and Services. A typical folder structure for that using areas looks like below:
 
 * Project name
-
   * Areas
-
     * Products
-
       * Controllers
-
         * HomeController.cs
-
         * ManageController.cs
-
       * Views
-
         * Home
-
-          * Index.cshtml
- 
+          * Index.cshtml 
         * Manage
-
-          * Index.cshtml
-          
-      * Pages
-          
-          * Catalog.cshtml
-          
-          * Cart.cshtml
-          
+          * Index.cshtml          
+      * Pages          
+          * Catalog.cshtml          
+          * Cart.cshtml          
     * Services
-
       * Controllers
-
         * HomeController.cs
-
       * Views
-
         * Home
-
-          * Index.cshtml
-          
-      * Pages
-      
+          * Index.cshtml          
+      * Pages      
         * About.cshtml
 
 ## Configuring Areas for Controllers
