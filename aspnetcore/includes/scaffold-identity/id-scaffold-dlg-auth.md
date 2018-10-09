@@ -5,7 +5,7 @@ Run the Identity scaffolder:
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, select the options you want.
-  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing _Layout.cshtml file is selected, it is **not** overwritten.
+  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing *\_Layout.cshtml* file is selected, it is **not** overwritten.
 
  For example
   `~/Pages/Shared/_Layout.cshtml` for Razor Pages
