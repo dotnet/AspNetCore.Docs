@@ -68,7 +68,7 @@ The following *web.config* file is published for a [framework-dependent deployme
 <configuration>
   <system.webServer>
     <handlers>
-      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
+      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
     </handlers>
     <aspNetCore processPath="dotnet" 
                 arguments=".\MyApp.dll" 
@@ -109,7 +109,7 @@ The following *web.config* is published for a [self-contained deployment](/dotne
 <configuration>
   <system.webServer>
     <handlers>
-      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
+      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
     </handlers>
     <aspNetCore processPath=".\MyApp.exe" 
                 stdoutLogEnabled="false" 
