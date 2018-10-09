@@ -405,6 +405,38 @@ Token replacement also applies to route names defined by attribute routes. `[Rou
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
+::: moniker range=">= aspnetcore-2.2"
+
+<a name="routing-token-replacement-transformers-ref-label"></a>
+
+### Using parameter transformers to customize token replacement
+
+Token replacement can be customized using a parameter transformer. A parameter transformer is a type that implements `IOutboundParameterTransformer`, and will to transform the value of parameters passed to it. For example, a custom slugify parameter transformer would change the `SubscriptionManagement` route value to `subscription-management`.
+
+The `RouteTokenTransformerConvention` is an application model convention that applies a parameter transformer to all attribute routes in an application, and will customize the attribute route token values as they are replaced.
+
+```csharp
+public class SubscriptionManagementController : Controller
+{
+    [HttpGet("[controller]/[action]")] // Matches '/subscription-management/list-all'
+    public IActionResult ListAll() { ... }
+}
+```
+
+The `RouteTokenTransformerConvention` is registered as an option in Startup.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc(options =>
+    {
+        options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+    });
+}
+```
+
+::: moniker-end
+
 <a name="routing-multiple-routes-ref-label"></a>
 
 ### Multiple Routes
