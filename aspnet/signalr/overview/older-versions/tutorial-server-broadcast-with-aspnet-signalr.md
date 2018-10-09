@@ -74,7 +74,7 @@ If you have Visual Studio 2010, make sure that [NuGet](https://visualstudiogalle
 
 You can add SignalR functionality to a project by installing a NuGet package.
 
-1. Click **Tools | Library Package Manager | Package Manager Console**.
+1. Click **Tools | NuGet Package Manager | Package Manager Console**.
 2. Enter the following command in the package manager.
 
     [!code-powershell[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample1.ps1)]

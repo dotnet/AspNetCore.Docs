@@ -50,7 +50,7 @@ In general, an Azure application can contain multiple roles, although this tutor
 
 ## Add the Web API and OWIN Packages
 
-From the **Tools** menu, click **Library Package Manager**, then click **Package Manager Console**.
+From the **Tools** menu, click **NuGet Package Manager**, then click **Package Manager Console**.
 
 In the Package Manager Console window, enter the following command:
 

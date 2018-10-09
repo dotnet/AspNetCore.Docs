@@ -26,7 +26,7 @@ by [Rick Anderson]((https://twitter.com/RickAndMSFT))
     ![](building-the-ef5-mvc4-chapter-downloads/_static/image1.png)
 3. Unzip the file.
 4. Double-click the *CUx.sln* file to launch Visual Studio.
-5. From the **Tools** menu, click **Library Package Manager**, then **Package Manager Console**.  
+5. From the **Tools** menu, click **NuGet Package Manager**, then **Package Manager Console**.  
   
     ![](building-the-ef5-mvc4-chapter-downloads/_static/image2.png)
 6. In the Package Manager Console (PMC), click **Restore**.  

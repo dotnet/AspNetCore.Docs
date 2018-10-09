@@ -148,7 +148,7 @@ The first parameter is a friendly name for the route. Clients of your service do
 
 In this step, you will use Entity Framework to seed the database with some test data. This step is optional, but it lets you test out your OData endpoint right away.
 
-From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+From the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-console[Main](creating-an-odata-endpoint/samples/sample5.cmd)]
 

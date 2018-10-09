@@ -23,7 +23,7 @@ This topic shows how to enable attribute routing and describes the various optio
 
 [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Community, Professional, or Enterprise edition
 
-Alternatively, use NuGet Package Manager to install the necessary packages. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. Enter the following command in the Package Manager Console window:
+Alternatively, use NuGet Package Manager to install the necessary packages. From the **Tools** menu in Visual Studio, select **NuGet Package Manager**, then select **Package Manager Console**. Enter the following command in the Package Manager Console window:
 
 `Install-Package Microsoft.AspNet.WebApi.WebHost`
 

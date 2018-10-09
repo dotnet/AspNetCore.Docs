@@ -30,7 +30,6 @@ Katana currently provides two servers, both of which support Windows Integrated 
 > [!NOTE]
 > Katana does not currently provide OWIN middleware for Windows Authentication, because this functionality is already available in the servers.
 
-
 ## Windows Authentication in IIS
 
 Using Microsoft.Owin.Host.SystemWeb, you can simply enable Windows Authentication in IIS.
@@ -39,7 +38,7 @@ Let's start by creating a new ASP.NET application, using the "ASP.NET Empty Web 
 
 ![](enabling-windows-authentication-in-katana/_static/image1.png)
 
-Next, add NuGet packages. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+Next, add NuGet packages. From the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-console[Main](enabling-windows-authentication-in-katana/samples/sample1.cmd)]
 
@@ -69,7 +68,7 @@ Later, when you deploy the application to a server, follow [these steps](https:/
 
 If you are using Microsoft.Owin.Host.HttpListener to self-host Katana, you can enable Windows Authentication directly on the **HttpListener** instance.
 
-First, create a new console application. Next, add NuGet packages. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+First, create a new console application. Next, add NuGet packages. From the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-console[Main](enabling-windows-authentication-in-katana/samples/sample4.cmd)]
 
