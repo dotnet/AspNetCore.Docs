@@ -143,13 +143,13 @@ Your web app in Azure will run in a shared hosting environment, which means it r
 
 You'll deploy the database to Azure SQL database. SQL database is a cloud-based relational database service that is built on SQL Server technologies. Tools and applications that work with SQL Server also work with SQL database.
 
-1. In the [Azure Management Portal](https://portal.azure.com), click **Create a resource** in the left tab, click **See all** in new blade, and then click **Web App + SQL** in the **Web** section. Finally, click **Create**.
+1. In the [Azure Management Portal](https://portal.azure.com), choose **Create a resource** in the left tab and then choose **See all** on the **New** pane (or *blade*) to see all available resources. Choose **Web App + SQL** in the **Web** section of the **Everything** blade. Finally, choose **Create**.
 
     ![Create a resource in Azure portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/create-azure-resource.png)
 
-   The **New Web App + SQL - Create** wizard opens.
+   The form to create a new **New Web App + SQL** resource opens.
 
-2. In the blade, enter a string in the **App name** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the default domain of Azure App Services (.azurewebsites.net). If the **App name** is already taken, the Wizard notifies you with a red *The app name is not available* message. If the **App name** is available, you see a green checkmark.
+2. Enter a string in the **App name** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the default domain of Azure App Services (.azurewebsites.net). If the **App name** is already taken, the Wizard notifies you with a red *The app name is not available* message. If the **App name** is available, you see a green checkmark.
 
     ![Create with Database link in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/create-web-app-sql-resource.png)
 
@@ -173,9 +173,9 @@ You'll deploy the database to Azure SQL database. SQL database is a cloud-based 
    - If you selected a server that you created previously, enter credentials for that server.
 
 12. Telemetry collection can be enabled for App Service using Application Insights. With little configuration, Application Insights collects valuable event, exception, dependency, request, and trace information. To learn more about Application Insights, see [Azure Monitor](https://azure.microsoft.com/services/monitor/).
-13. Click **Create** at the bottom of the blade to indicate that you're finished.
+13. Click **Create** at the bottom to indicate that you're finished.
 
-    The Management Portal returns to the Dashboard page, and the **Notifications** blade at the top of the page shows that the site is being created. After a while (typically less than a minute), there's a notification that the Deployment succeeded. In the navigation bar at the left, the new App Service appears in the **App Services** section and the new SQL database appears in the **SQL databases** section.
+    The Management Portal returns to the Dashboard page, and the **Notifications** area at the top of the page shows that the site is being created. After a while (typically less than a minute), there's a notification that the Deployment succeeded. In the navigation bar at the left, the new App Service appears in the **App Services** section and the new SQL database appears in the **SQL databases** section.
 
 ### Deploy the app to Azure
 
