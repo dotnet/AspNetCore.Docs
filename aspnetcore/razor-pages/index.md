@@ -253,14 +253,14 @@ public void OnHead()
 }
 ```
 
-If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. In ASP.NET Core 2.1 to 2.x, this behavior occurs with the [`SetCompatibilityVersion` method](xref:mvc/compatibility-version) in `Startup.Configure`:
+If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. In ASP.NET Core 2.1 and 2.2, this behavior occurs with the [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.Configure`:
 
 ```csharp
 services.AddMvc()
     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 ```
 
-By default, you will see this method in *Startup.cs* since it is shipped with the Razor Pages template, where `CompatibilityVersion` is your version of the ASP.NET Core SDK. If you removed it, add it back to take advantage of this behavior.
+The default templates generate the `SetCompatibilityVersion` call in In ASP.NET Core 2.1 and 2.2.
 
 `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
 
