@@ -17,7 +17,7 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 
 ## How to add providers
 
-A logging provider takes messages created by an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
+A logging provider displays or stores logs. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -35,7 +35,7 @@ The default project template calls the [CreateDefaultBuilder](/dotnet/api/micros
 
 To replace the default providers with your own choices, call [ClearProviders](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.clearproviders), and add the providers you want.
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=19-23)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=18-22)]
 
 ::: moniker-end
 
@@ -534,15 +534,29 @@ Here are some categories used by ASP.NET and what to expect from them:
 |Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>DefaultKeyResolver|Debug|Which keys were considered|
 |Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>KeyRingProvider|Debug|Which key was used.|
 |Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>XmlKeyManager|Debug|Which keys were found.|
-|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>XmlKeyManager|Debug|Location of user profile that was used.|
-|Microsoft.AspNetCore.<br/>Hosting.Internal.WebHost | Information | How long HTTP requests took to complete and what time they started. |
-|Microsoft.AspNetCore.<br/>HttpsPolicy.<br/>HttpsRedirectionMiddleware|Warning|Failed to determine HTTPS port for redirect.|
+|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>XmlKeyManager|Information|Location of user profile that was used.|
+|Microsoft.AspNetCore.<br/>HostFiltering.<br/>HostFilteringMiddleware|Trace, Debug|Hosts allowed.|
+|Microsoft.AspNetCore.<br/>Hosting.Internal.WebHost | Information | How long HTTP requests took to complete and what time they started. Which hosting startup assemblies were loaded. |
+|Microsoft.AspNetCore.<br/>Mvc.ModelBinding.<br/>ParameterBinder|Debug|Binding and validation of each parameter.|
 |Microsoft.AspNetCore.<br/>Mvc.ModelBinding.<br/>ModelBinderFactory|Debug|Model binding providers.|
+|Microsoft.AspNetCore.<br/>Mvc.ModelBinding.<br/>Binders|Debug|Binding activity for various binder types.|
+|Microsoft.AspNetCore.<br/>Mvc.MvcOptions|Debug|Compatibility switch values.
+|Microsoft.AspNetCore.<br/>Mvc.Razor.Internal.<br/>RazorViewCompiler|Debug|Razor view compilation.|
 |Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker|Debug|Execution plan of filters.
-|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker | Information |How long page actions took, model state validity, routes matched.  |
-|Microsoft.AspNetCore.<br/>Routing.Tree.TreeRouter|Debug|Route matching information.|
+|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker|Trace|Filter execution &mdash start and stop of each method.|
+|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker |Information |How long page actions took, model state validity, routes matched.  |
+|Microsoft.AspNetCore.<br/>Routing.Tree.<br/>TreeRouter|Debug|Route matching information.|
 |Microsoft.AspNetCore.<br/>Server.Kestrel|Debug|Connection starts, stops, and keep alive responses.|
-|Microsoft.AspNetCore.<br/>StaticFiles.StaticFileMiddleware|Information| Files served.|
+|Microsoft.AspNetCore.<br/>Server.Kestrel.Core.<br/>KestrelServer|Debug|SSL certificate information.|
+|Microsoft.AspNetCore.<br/>StaticFiles.<br/>StaticFileMiddleware|Information| Files served.|
+|Microsoft.EntityFrameworkCore.<br/>ChangeTracking|Debug|Temporary values, change detection start and end, status changes (for example, from `Added` to `Unchanged`).
+|Microsoft.EntityFrameworkCore.<br/>Database.Command|Debug, Information|SQL commands: executing (Debug) and executed (Information).|
+|Microsoft.EntityFrameworkCore.<br/>Database.Connection|Debug|Connection opens and closes.|
+|Microsoft.EntityFrameworkCore.<br/>Database.Transaction|Debug|Begin and end of transactions.|
+|Microsoft.EntityFrameworkCore.<br/>Infrastructure|Information|EF Core version, context name, database provider used.|
+|Microsoft.EntityFrameworkCore.<br/>Migrations|Information|Migrations applied to the database.|
+|Microsoft.EntityFrameworkCore.<br/>Update|Debug|Number of SQL commands executed as a batch (transaction).|
+
 
 ## Log scopes
 
