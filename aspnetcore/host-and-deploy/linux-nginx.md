@@ -181,12 +181,6 @@ To directly run the app on the server:
 1. Navigate to the app's directory.
 1. Run the app: `dotnet <app_assembly.dll>`, where `app_assembly.dll` is the assembly file name of the app.
 
-If a permissions error occurs, change the permissions:
-
-```console
-chmod u+x <app_assembly.dll>
-```
-
 If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm that port 80 is open. If using an Azure Ubuntu VM, add a Network Security Group (NSG) rule that enables inbound port 80 traffic. There's no need to enable an outbound port 80 rule, as the outbound traffic is automatically granted when the inbound rule is enabled.
 
 When done testing the app, shut the app down with `Ctrl+C` at the command prompt.
