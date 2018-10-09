@@ -242,7 +242,7 @@ See [Model validation](xref:mvc/models/validation) for more information.
 
 ## Manage HEAD requests with the OnGet handler
 
-HEAD requests allow you to retrieve the headers for a specific resource. Unlike GET requests, HEAD requests do not return a response body. 
+HEAD requests allow you to retrieve the headers for a specific resource. Unlike GET requests, HEAD requests don't return a response body. 
 
 Ordinarily, a HEAD handler is created and called for HEAD requests: 
 
