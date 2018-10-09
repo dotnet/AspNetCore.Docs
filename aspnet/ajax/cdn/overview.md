@@ -678,6 +678,7 @@ The following releases of the jQuery DataTables plugin are hosted on this CDN. C
 
 The following releases of [Modernizr](http://www.modernizr.com "Modernizr") are hosted on the CDN:
 
+- https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-3.5.0.js
 - https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js
 - https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.2.js
 - https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.1.js
