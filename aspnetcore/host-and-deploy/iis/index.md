@@ -230,8 +230,13 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
    1. Run the installer on the server.
 
    **Important!** If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
-   
-   To prevent the installer from installing x86 packages on an x64 OS, run the installer from an administrator command prompt with the switch `OPT_NO_X86=1`.
+
+   Run the installer from an administrator command prompt with one or more switches to control the behavior of the installer:
+
+   * `OPT_NO_ANCM=1` &ndash; Skip installing the ASP.NET Core Module.
+   * `OPT_NO_RUNTIME=1` &ndash; Skip installing the .NET Core runtime.
+   * `OPT_NO_SHAREDFX=1` &ndash; Skip installing the ASP.NET Shared Framework (ASP.NET runtime).
+   * `OPT_NO_X86=1` &ndash; Skip installing x86 runtimes. Use this switch when the ASP.NET Core Module is running on a 64-bit OS.
 
 1. Restart the system or execute **net stop was /y** followed by **net start w3svc** from a command prompt. Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer.
 
