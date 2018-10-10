@@ -569,10 +569,9 @@ In VB.NET or in a strongly-typed hub, the caller state object can't be accessed 
 
 ## How to handle errors in the Hub class
 
-To handle errors that occur in your Hub class methods, use one or more of the following methods:
+To handle errors that occur in your Hub class methods, first ensure you "observe" any exceptions from async operations (such as invoking client methods) by using `await`. Then use one or more of the following methods:
 
 - Wrap your method code in try-catch blocks and log the exception object. For debugging purposes you can send the exception to the client, but for security reasons sending detailed information to clients in production is not recommended.
-- Use `await` when invoking client methods to ensure that any exceptions that occur while trying to send the message are observed and can be caught in a try-catch block.
 - Create a Hubs pipeline module that handles the [OnIncomingError](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.hubpipelinemodule.onincomingerror(v=vs.111).aspx) method. The following example shows a pipeline module that logs errors, followed by code in Startup.cs that injects the module into the Hubs pipeline.
 
     [!code-csharp[Main](hubs-api-guide-server/samples/sample61.cs)]
