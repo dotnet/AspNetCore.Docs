@@ -92,13 +92,13 @@ Log *category* is a string that is associated with each log. When you get an ins
 
 ::: moniker range=">= aspnetcore-2.0"
 
-### Writing logs in Startup.cs
+### How to create logs in Startup.cs
 
 To write logs from *Startup.cs*, inject an `ILogger` object in the constructor just as you would in a controller or Razor page.
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,4,8,20,28)]
 
-### Writing logs in Program.cs
+### How to create logs in Program.cs
 
 To write logs from *Program.cs*, get an `ILogger` object from the dependency injection container.
 
@@ -211,7 +211,7 @@ The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Loggi
 
 ## Log category
 
-When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that `Ilogger`. The category may be any string, but a convention is to use the fully qualified name of the class from which the logs are written. For example: "TodoApi.Controllers.TodoController".
+When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that `Ilogger`. The category may be any string, but the convention is to use the fully qualified class name. For example: "TodoApi.Controllers.TodoController".
 
 Use `ILogger<T>` to get an `ILogger` object that uses fully qualified type name of `T` as the category:
 
@@ -245,7 +245,7 @@ To explicitly specify the category, call `CreateLogger` on an `ILoggerFactory` i
 
 ## Log level
 
-Every log specifies a [LogLevel](/dotnet/api/microsoft.extensions.logging.logLevel) value. The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log for an unexpected exception.
+Every log specifies a [LogLevel](/dotnet/api/microsoft.extensions.logging.logLevel) value. The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a 404 return code.
 
 In the following code example, the names of the methods (for example, `LogWarning`) specify the log level. The first parameter is the [Log event ID](#log-event-id). The second parameter is a [message template](#log-message-template) with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in more detail later in this article.
 
@@ -279,7 +279,7 @@ ASP.NET Core defines the following [log levels](/dotnet/api/microsoft.extensions
 
 * Warning = 3
 
-  For abnormal or unexpected events in the application flow. These may include errors or other conditions that don't cause the application to stop, but which may need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException for file quotes.txt.`
+  For abnormal or unexpected events in the application flow. These may include errors or other conditions that don't cause the application to stop, but might need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException for file quotes.txt.`
 
 * Error = 4
 
@@ -290,11 +290,13 @@ ASP.NET Core defines the following [log levels](/dotnet/api/microsoft.extensions
   For failures that require immediate attention. Examples: data loss scenarios, out of disk space.
 
 Use the log level to control how much log output is written to a particular storage medium or display window. For example:
-* In production send all logs of `Information` level and lower to a volume data store, and all logs of `Warning` level and higher to a value data store.
-* During development, send logs of `Warning` or higher severity to the console normally, `Debug` level when troubleshooting.
+
+* In production send `Trace` through `Information` level to a volume data store, and `Warning` through `Critical` to a value data store.
+* During development, send `Warning` through `Critical` to the console, add `Trace` through `Information` when troubleshooting.
+
 The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
-The ASP.NET Core framework writes `Debug` level logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` level logs were shown. Here's an example of console logs produced by running the sample application configured to show `Debug` and higher logs for the console provider.
+The ASP.NET Core framework writes `Debug` level logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were shown. Here's an example of console logs produced by running the sample application configured to show `Debug` and higher logs for the console provider.
 
 ```console
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
@@ -372,7 +374,7 @@ Each log specifies a message template. The message template can be a string or i
 
 ::: moniker-end
 
-The order of placeholders, not their names, determines which parameters are used to provide their values. The following code:
+The order of placeholders, not their names, determines which parameters are used to provide their values. In the following code, notice that the parameter names are out of sequence in the message template:
 
 ```csharp
 string p1 = "parm1";
@@ -380,13 +382,13 @@ string p2 = "parm2";
 _logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
 ```
 
-Results in a log message like this:
+This code creates a log message with the parameter values in sequence:
 
 ```
 Parameter values: parm1, parm2
 ```
 
-The logging framework does message formatting in this way to make it possible for logging providers to implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). Because the arguments themselves are passed to the logging system, not just the formatted message template, logging providers can store the parameter values as fields in addition to the message template. For example, suppose logs are going to Azure Table Storage and logger method calls look like this:
+The logging framework does message formatting in this way to make it possible for logging providers to implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This information enables logging providers to store the parameter values as fields, besides using them to construct the message text. For example, suppose logs are going to Azure Table Storage and logger method calls look like this:
 
 ```csharp
 _logger.LogInformation("Getting item {ID} at {RequestTime}", id, DateTime.Now);
@@ -437,7 +439,7 @@ The configuration data specifies minimum log levels by provider and category, as
 
 [!code-json[](index/samples/2.x/TodoApiSample/appsettings.json)]
 
-This JSON creates six filter rules, one for the Debug provider, four for the Console provider, and one that applies to all providers. Just one of these rules is chosen for each provider when an `ILogger` object is created.
+This JSON creates six filter rules: one for the Debug provider, four for the Console provider, and one for all providers. Just one of these rules is chosen for each provider when an `ILogger` object is created.
 
 ### Filter rules in code
 
@@ -468,7 +470,7 @@ The following algorithm is used for each provider when an `ILogger` is created f
 
 * Select all rules that match the provider or its alias. If no match is found, select all rules with an empty provider.
 * From the result of the preceding step, select rules with longest matching category prefix. If no match is found, select all rules that don't specify a category.
-* If multiple rules are selected take the **last** one.
+* If multiple rules are selected, take the **last** one.
 * If no rules are selected, use `MinimumLevel`.
 
 For example, with the preceding list of rules suppose you create an `ILogger` object for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine":
@@ -476,7 +478,7 @@ For example, with the preceding list of rules suppose you create an `ILogger` ob
 * For the Debug provider, rules 1, 6, and 8 apply. Rule 8 is most specific, so that's the one selected.
 * For the Console provider, rules 3, 4, 5, and 6 apply. Rule 3 is most specific.
 
-`ILogger` objects for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine", will send logs of `Trace` level and above to the Debug provider, and logs of `Debug` level and above will go to the Console provider.
+The resulting `ILogger` object sends logs of `Trace` level and above to the Debug provider.  Logs of `Debug` level and above are sent to the Console provider.
 
 ### Provider aliases
 
@@ -499,7 +501,7 @@ If you don't explicitly set the minimum level, the default value is `Information
 
 ### Filter functions
 
-A filter function is invoked for all providers and categories that don't have rules assigned to them by configuration or code. Code in the function has access to the provider type, category, and log level to decide whether or not a message should be logged. For example:
+A filter function is invoked for all providers and categories that don't have rules assigned to them by configuration or code. Code in the function has access to the provider type, category, and log level. For example:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
 
@@ -519,7 +521,7 @@ To set filtering rules for all providers that are registered with an `ILoggerFac
 
 [!code-csharp[](index/samples/1.x/TodoApiSample/Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
 
-To use filtering to prevent all logs from being written for a particular category, specify `LogLevel.None` as the minimum log level for that category. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
+To prevent all logs from being written for a particular category, specify `LogLevel.None` as the minimum log level. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
 
 The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It doesn't affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
 
@@ -543,13 +545,13 @@ Here are some categories used by ASP.NET Core and Entity Framework Core, with no
 |Microsoft.AspNetCore.<br/>Mvc.MvcOptions|Debug|Compatibility switch values.
 |Microsoft.AspNetCore.<br/>Mvc.Razor.Internal.<br/>RazorViewCompiler|Debug|Razor view compilation.|
 |Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker|Debug|Execution plan of filters.
-|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker|Trace|Filter execution &mdash start and stop of each method.|
+|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker|Trace|Filter execution &mdash; start and stop of each method.|
 |Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker |Information |How long page actions took, model state validity, routes matched.  |
 |Microsoft.AspNetCore.<br/>Routing.Tree.<br/>TreeRouter|Debug|Route matching information.|
-|Microsoft.AspNetCore.<br/>Server.Kestrel|Debug|Connection starts, stops, and keep alive responses.|
+|Microsoft.AspNetCore.<br/>Server.Kestrel|Debug|Connection start, stop, and keep alive responses.|
 |Microsoft.AspNetCore.<br/>Server.Kestrel.Core.<br/>KestrelServer|Debug|SSL certificate information.|
 |Microsoft.AspNetCore.<br/>StaticFiles.<br/>StaticFileMiddleware|Information| Files served.|
-|Microsoft.EntityFrameworkCore.<br/>ChangeTracking|Debug|Temporary values, change detection start and end, status changes (for example, from `Added` to `Unchanged`).
+|Microsoft.EntityFrameworkCore.<br/>ChangeTracking|Debug|Change detection activity, entity status changes (for example, from `Added` to `Unchanged`).
 |Microsoft.EntityFrameworkCore.<br/>Database.Command|Debug, Information|SQL commands: executing (Debug) and executed (Information).|
 |Microsoft.EntityFrameworkCore.<br/>Database.Connection|Debug|Connection opens and closes.|
 |Microsoft.EntityFrameworkCore.<br/>Database.Transaction|Debug|Begin and end of transactions.|
@@ -560,7 +562,7 @@ Here are some categories used by ASP.NET Core and Entity Framework Core, with no
 
 ## Log scopes
 
- A *scope* can group a set of logical operations in order to attach the same data to each log that's created as part of that set. For example, every log created as part of processing a transaction can include the transaction ID.
+ A *scope* can group a set of logical operations. This grouping can be used to attach the same data to each log that's created as part of a set. For example, every log created as part of processing a transaction can include the transaction ID.
 
 A scope is an `IDisposable` type that's returned by the [ILogger.BeginScope&lt;TState&gt;](/dotnet/api/microsoft.extensions.logging.ilogger.beginscope) method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block, as shown here:
 
