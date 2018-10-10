@@ -204,7 +204,7 @@ When you first start to develop an application, your data model changes frequent
 
 ### Enable Code First Migrations
 
-1. From the **Tools** menu, click **Library Package Manager** and then **Package Manager Console**.
+1. From the **Tools** menu, click **NuGet Package Manager** and then **Package Manager Console**.
 
     ![Selecting_Package_Manager_Console](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image10.png)
 2. At the `PM>` prompt enter the following command:

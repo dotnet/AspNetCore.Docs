@@ -91,7 +91,7 @@ This section shows how to create an ASP.NET MVC 5 application, add the SignalR l
     > [!NOTE]
     > If you select a different authentication provider for your application, a `Startup.cs` class will be created for you; you will not need to create your own `Startup.cs` class in step 10 below.
 4. Click **OK** in the **New ASP.NET Project** dialog.
-5. Open the **Tools | Library Package Manager | Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
+5. Open the **Tools > NuGet Package Manager > Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
 
     `install-package Microsoft.AspNet.SignalR`
 6. In **Solution Explorer**, expand the Scripts folder. Note that script libraries for SignalR have been added to the project.

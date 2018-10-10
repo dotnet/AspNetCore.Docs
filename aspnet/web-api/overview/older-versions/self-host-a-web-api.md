@@ -44,7 +44,7 @@ In Solution Explorer, right-click the project and select **Properties**. In the 
 
 The NuGet Package Manager is the easiest way to add the Web API assemblies to a non-ASP.NET project.
 
-To check if NuGet Package Manager is installed, click the **Tools** menu in Visual Studio. If you see a menu item called **Library Package Manager**, then you have NuGet Package Manager.
+To check if NuGet Package Manager is installed, click the **Tools** menu in Visual Studio. If you see a menu item called **NuGet Package Manager**, then you have NuGet Package Manager.
 
 To install NuGet Package Manager:
 
@@ -62,8 +62,8 @@ To install NuGet Package Manager:
 
 After NuGet Package Manager is installed, add the Web API Self-Host package to your project.
 
-1. From the **Tools** menu, select **Library Package Manager**. *Note*: If do you not see this menu item, make sure that NuGet Package Manager installed correctly.
-2. Select **Manage NuGet Packages for Solution...**
+1. From the **Tools** menu, select **NuGet Package Manager**. *Note*: If do you not see this menu item, make sure that NuGet Package Manager installed correctly.
+2. Select **Manage NuGet Packages for Solution**
 3. In the **Manage NugGet Packages** dialog, select **Online**.
 4. In the search box, type &quot;Microsoft.AspNet.WebApi.SelfHost&quot;.
 5. Select the ASP.NET Web API Self Host package and click **Install**.
@@ -71,7 +71,6 @@ After NuGet Package Manager is installed, add the Web API Self-Host package to y
 
 > [!NOTE]
 > Make sure to install the package named Microsoft.AspNet.WebApi.SelfHost, not AspNetWebApi.SelfHost.
-
 
 ![](self-host-a-web-api/_static/image4.png)
 
@@ -135,8 +134,8 @@ Add a new console application project to the solution:
 
 Use NuGet Package Manager to add the ASP.NET Web API Core Libraries package:
 
-- From the Tools menu, select **Library Package Manager**.
-- Select **Manage NuGet Packages for Solution...**
+- From the Tools menu, select **NuGet Package Manager**.
+- Select **Manage NuGet Packages for Solution**
 - In the **Manage NuGet Packages** dialog, select **Online**.
 - In the search box, type &quot;Microsoft.AspNet.WebApi.Client&quot;.
 - Select the Microsoft ASP.NET Web API Client Libraries package and click **Install**.

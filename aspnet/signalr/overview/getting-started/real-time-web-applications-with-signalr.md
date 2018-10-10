@@ -142,7 +142,7 @@ In this task, you will go through the application and verify how the statistics 
 
 In this task, you will add SignalR to the solution and send updates to the clients automatically when a new answer is sent to the server.
 
-1. From the **Tools** menu in Visual Studio, select **Library Package Manager**, and then click **Package Manager Console**.
+1. From the **Tools** menu in Visual Studio, select **NuGet Package Manager**, and then click **Package Manager Console**.
 2. In the **Package Manager Console** window, execute the following command:
 
     [!code-powershell[Main](real-time-web-applications-with-signalr/samples/sample1.ps1)]
@@ -356,7 +356,7 @@ In this task, you will create a database that will serve as a backplane for the 
 
 In this task, you will configure **Geek Quiz** to connect to the SQL Server backplane. You will first add the **SignalR.SqlServer** NuGet package and set the connection string to your backplane database.
 
-1. Open the **Package Manager Console** from **Tools** | **Library Package Manager**. Make sure that **GeekQuiz** project is selected in the **Default project** drop-down list. Type the following command to install the **Microsoft.AspNet.SignalR.SqlServer** NuGet package.
+1. Open the **Package Manager Console** from **Tools** > **NuGet Package Manager**. Make sure that **GeekQuiz** project is selected in the **Default project** drop-down list. Type the following command to install the **Microsoft.AspNet.SignalR.SqlServer** NuGet package.
 
     [!code-powershell[Main](real-time-web-applications-with-signalr/samples/sample13.ps1)]
 2. Repeat the previous step but this time for project **GeekQuiz2**.

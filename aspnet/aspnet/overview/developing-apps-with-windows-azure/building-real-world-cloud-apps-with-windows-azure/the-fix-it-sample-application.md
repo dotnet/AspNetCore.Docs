@@ -215,7 +215,7 @@ There are two ways to run the Fix It app:
 4. In File Explorer, right-click the .zip file and click Properties, then in the Properties window click Unblock.
 5. Unzip the file.
 6. Double-click the .sln file to launch Visual Studio.
-7. From the Tools menu, click Library Package Manager, then Package Manager Console.
+7. From the **Tools** menu, click **NuGet Package Manager**, then **Package Manager Console**.
 8. In the Package Manager Console (PMC), click Restore.
 9. Exit Visual Studio.
 10. Start the [Azure storage emulator](/azure/storage/common/storage-use-emulator).

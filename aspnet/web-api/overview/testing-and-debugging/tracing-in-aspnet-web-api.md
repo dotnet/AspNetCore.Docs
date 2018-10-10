@@ -31,7 +31,7 @@ Choose the Web API project template.
 
 [![](tracing-in-aspnet-web-api/_static/image4.png)](tracing-in-aspnet-web-api/_static/image3.png)
 
-From the **Tools** menu, select **Library Package Manager**, then **Package Manage Console**.
+From the **Tools** menu, select **NuGet Package Manager**, then **Package Manage Console**.
 
 In the Package Manager Console window, type the following commands.
 
@@ -41,7 +41,6 @@ The first command installs the latest Web API tracing package. It also updates t
 
 > [!NOTE]
 > If you want to target a specific version of Web API, use the -Version flag when you install the tracing package.
-
 
 Open the file WebApiConfig.cs in the App\_Start folder. Add the following code to the **Register** method.
 

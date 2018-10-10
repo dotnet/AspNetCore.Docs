@@ -98,7 +98,7 @@ Click **Add** in the **Add Controller** dialog. The scaffolding adds a class nam
 
 ### Seed the Database
 
-From the Tools menu, select **Library Package Manager**, and then select **Package Manager Console**.
+From the Tools menu, select **NuGet Package Manager**, and then select **Package Manager Console**.
 
 In the Package Manager Console window, enter the following command:
 

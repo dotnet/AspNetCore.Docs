@@ -51,7 +51,7 @@ by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https:/
 
 ## Create an ASP.NET Web App using OWIN Startup
 
-1. Create an empty Asp.Net web application and name it **StartupDemo**. - Install `Microsoft.Owin.Host.SystemWeb` using the NuGet package manager. From the **Tools** menu, select **Library Package Manager**, and then **Package Manager Console**. Enter the following command:
+1. Create an empty Asp.Net web application and name it **StartupDemo**. - Install `Microsoft.Owin.Host.SystemWeb` using the NuGet package manager. From the **Tools** menu, select **NuGet Package Manager**, and then **Package Manager Console**. Enter the following command:
 
     [!code-powershell[Main](owin-startup-class-detection/samples/sample7.ps1)]
 2. Add an OWIN startup class. In Visual Studio 2013 right click the project and select **Add Class**.- In the **Add New Item** dialog box, enter *OWIN* in the search field, and change the name to Startup.cs, and then click **Add**.

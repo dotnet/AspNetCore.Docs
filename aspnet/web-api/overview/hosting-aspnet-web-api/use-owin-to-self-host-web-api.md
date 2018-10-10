@@ -36,7 +36,7 @@ On the **File** menu, click **New**, then click **Project**. From **Installed Te
 
 ## Add the Web API and OWIN Packages
 
-From the **Tools** menu, click **Library Package Manager**, then click **Package Manager Console**. In the Package Manager Console window, enter the following command:
+From the **Tools** menu, click **NuGet Package Manager**, then click **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 `Install-Package Microsoft.AspNet.WebApi.OwinSelfHost`
 
