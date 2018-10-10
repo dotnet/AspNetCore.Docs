@@ -409,7 +409,7 @@ To match the literal token replacement delimiter `[` or  `]`, escape it by repea
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
 
-### Using parameter transformers to customize token replacement
+### Use a parameter transformer to customize token replacement
 
 Token replacement can be customized using a parameter transformer. A parameter transformer implements `IOutboundParameterTransformer` and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`.
 
@@ -426,7 +426,7 @@ public class SubscriptionManagementController : Controller
 }
 ```
 
-The `RouteTokenTransformerConvention` is registered as an option in `Startup`.
+The `RouteTokenTransformerConvention` is registered as an option in `ConfigureServices`.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
