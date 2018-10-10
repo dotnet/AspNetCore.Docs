@@ -541,7 +541,7 @@ builder.Entity<TUser>(b =>
 {
     // Each User can have many UserClaims
     b.HasMany<TUserClaim>()
-     .WithOne()
+     .WithOne(e => e.User)
      .HasForeignKey(uc => uc.UserId)
      .IsRequired();
 });
@@ -578,7 +578,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
             // Each User can have many UserClaims
             b.HasMany(e => e.Claims)
-                .WithOne()
+                .WithOne(e => e.User)
                 .HasForeignKey(uc => uc.UserId)
                 .IsRequired();
         });
@@ -620,25 +620,25 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
             // Each User can have many UserClaims
             b.HasMany(e => e.Claims)
-                .WithOne()
+                .WithOne(e => e.User)
                 .HasForeignKey(uc => uc.UserId)
                 .IsRequired();
 
             // Each User can have many UserLogins
             b.HasMany(e => e.Logins)
-                .WithOne()
+                .WithOne(e => e.User)
                 .HasForeignKey(ul => ul.UserId)
                 .IsRequired();
 
             // Each User can have many UserTokens
             b.HasMany(e => e.Tokens)
-                .WithOne()
+                .WithOne(e => e.User)
                 .HasForeignKey(ut => ut.UserId)
                 .IsRequired();
 
             // Each User can have many entries in the UserRole join table
             b.HasMany(e => e.UserRoles)
-                .WithOne()
+                .WithOne(e => e.User)
                 .HasForeignKey(ur => ur.UserId)
                 .IsRequired();
         });
@@ -691,19 +691,19 @@ public class ApplicationDbContext
         {
             // Each User can have many UserClaims
             b.HasMany(e => e.Claims)
-                .WithOne()
+                .WithOne(e => e.User)
                 .HasForeignKey(uc => uc.UserId)
                 .IsRequired();
 
             // Each User can have many UserLogins
             b.HasMany(e => e.Logins)
-                .WithOne()
+                .WithOne(e => e.User)
                 .HasForeignKey(ul => ul.UserId)
                 .IsRequired();
 
             // Each User can have many UserTokens
             b.HasMany(e => e.Tokens)
-                .WithOne()
+                .WithOne(e => e.User)
                 .HasForeignKey(ut => ut.UserId)
                 .IsRequired();
 
