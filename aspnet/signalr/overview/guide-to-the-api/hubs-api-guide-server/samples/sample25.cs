@@ -1,4 +1,4 @@
-public void SendMessage(string name, string message)
+public async Task SendMessage(string name, string message)
 {
-    Clients.All.addContosoChatMessageToPage(new ContosoChatMessage() { UserName = name, Message = message });
+    await Clients.All.addContosoChatMessageToPage(new ContosoChatMessage() { UserName = name, Message = message });
 }
