@@ -78,7 +78,7 @@ The name of the connection string is passed in to the context by calling a metho
 <a name="pmc"></a>
 ## Perform initial migration
 
-In this section, you will use the Package Manager Console (PMC) to:
+In this section, you use the Package Manager Console (PMC) to:
 
 * Add an initial migration.
 * Update the database with the initial migration.
