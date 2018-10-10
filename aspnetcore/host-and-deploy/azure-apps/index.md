@@ -95,11 +95,11 @@ For more information, see [Key storage providers](xref:security/data-protection/
 
 ## Deploy ASP.NET Core preview release to Azure App Service
 
-ASP.NET Core preview apps can be deployed to Azure App Service with the following approaches:
+Use one of the following approaches:
 
-* [Install the preview site extension](#install-the-preview-site-extension)
-<!-- * [Deploy the app self-contained](#deploy-the-app-self-contained) -->
-* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
+* [Install the preview site extension](#install-the-preview-site-extension).
+* [Deploy the app self-contained](#deploy-the-app-self-contained).
+* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
 
 ### Install the preview site extension
 
@@ -155,18 +155,46 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 
 If an ARM template is used to create and deploy apps, the `siteextensions` resource type can be used to add the site extension to a web app. For example:
 
-[!code-json[Main](index/sample/arm.json?highlight=2)]
+[!code-json[](index/sample/arm.json?highlight=2)]
 
-<!--
 ### Deploy the app self-contained
 
-A [self-contained app](/dotnet/core/deploying/#self-contained-deployments-scd) can be deployed that carries the preview runtime in the deployment. When deploying a self-contained app:
+A [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) that targets a preview runtime carries the preview runtime in the deployment.
 
-* The site doesn't need to be prepared.
-* The app must be published differently than when publishing for a framework-dependent deployment with the shared runtime and host on the server.
+When deploying a self-contained app:
 
-Self-contained apps are an option for all ASP.NET Core apps.
--->
+* The site in Azure App Service doesn't require the [preview site extension](#install-the-preview-site-extension).
+* The app must be published following a different approach than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
+
+#### Publish from Visual Studio
+
+1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
+1. In the **Pick a publish target** dialog, confirm that **App Service** is selected.
+1. Select **Advanced**. The **Publish** dialog opens.
+1. In the **Publish** dialog:
+   * Confirm that the **Release** configuration is selected.
+   * Open the **Deployment Mode** drop-down list and select **Self-Contained**.
+   * Select the target runtime from the **Target Runtime** drop-down list. The default is `win-x86`.
+   * If you need to remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
+   * Select **Save**.
+1. Create a new site or update an existing site by following the remaining prompts of the publish wizard.
+
+#### Publish using command-line interface (CLI) tools
+
+1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) for a single RID, or use `<RuntimeIdentifiers>` (plural) to provide a semicolon-delimited list of RIDs. In the following example, the `win-x86` RID is specified:
+
+   ```xml
+   <PropertyGroup>
+     <TargetFramework>netcoreapp2.1</TargetFramework>
+     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+   </PropertyGroup>
+   ```
+1. From a command shell, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
+
+   ```console
+   dotnet publish --configuration Release --runtime win-x86
+   ```
+1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* directory to the site in App Service.
 
 ### Use Docker with Web Apps for containers
 

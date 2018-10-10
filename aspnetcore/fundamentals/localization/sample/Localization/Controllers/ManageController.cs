@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Localization.StarterWeb.Models;
-using Localization.StarterWeb.Services;
-using Localization.StarterWeb.ViewModels.Manage;
+using Localization.Models;
+using Localization.Services;
+using Localization.ViewModels.Manage;
 
-namespace Localization.StarterWeb.Controllers
+namespace Localization.Controllers
 {
     [Authorize]
     public class ManageController : Controller

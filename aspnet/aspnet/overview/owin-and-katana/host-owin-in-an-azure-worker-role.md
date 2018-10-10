@@ -14,15 +14,15 @@ Host OWIN in an Azure Worker Role
 by [Mike Wasson](https://github.com/MikeWasson)
 
 > This tutorial shows how to self-host OWIN in a Microsoft Azure worker role.
-> 
+>
 > [Open Web Interface for .NET](http://owin.org/) (OWIN) defines an abstraction between .NET web servers and web applications. OWIN decouples the web application from the server, which makes OWIN ideal for self-hosting a web application in your own process, outside of IIS–for example, inside an Azure worker role.
-> 
+>
 > In this tutorial, you'll learn how to self-host an OWIN applications inside a Microsoft Azure worker role. To learn more about worker roles, see [Azure Execution Models](https://azure.microsoft.com/documentation/articles/fundamentals-application-models/#CloudServices).
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - [Azure SDK for .NET 2.3](https://azure.microsoft.com/downloads/)
 > - [Microsoft.Owin.Selfhost 2.1.0](http://www.nuget.org/packages/Microsoft.Owin.SelfHost/2.1.0)
 
@@ -50,7 +50,7 @@ In general, an Azure application can contain multiple roles, although this tutor
 
 ## Add the OWIN Self-Host Packages
 
-From the **Tools** menu, click **Library Package Manager**, then click **Package Manager Console**.
+From the **Tools** menu, click **NuGet Package Manager**, then click **Package Manager Console**.
 
 In the Package Manager Console window, enter the following command:
 

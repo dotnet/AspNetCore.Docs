@@ -118,7 +118,7 @@ In this task, you will go through the steps of enabling **Entity Framework Code 
 
 1. Open Visual Studio and open the **GeekQuiz.sln** solution file from **Source\Ex1-UsingEntityFrameworkMigrations\Begin**.
 2. Build the solution in order to download and install the **NuGet** package dependencies. To do this, right-click the solution and click **Build Solution** or press **Ctrl + Shift + B**.
-3. From the **Tools** menu in Visual Studio, select **Library Package Manager**, and then click **Package Manager Console**.
+3. From the **Tools** menu in Visual Studio, select **NuGet Package Manager**, and then click **Package Manager Console**.
 4. In the **Package Manager Console**, enter the following command and then press **Enter**. An initial migration based on the existing model will be created.
 
     [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample1.ps1)]

@@ -336,7 +336,7 @@ Terms:
 
 ## Additional resources
 
-* [Localization.StarterWeb project](https://github.com/aspnet/entropy) used in the article.
-* [Resource Files in Visual Studio](/cpp/windows/resource-files-visual-studio)
+* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
+* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)

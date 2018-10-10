@@ -1,6 +1,8 @@
 ﻿#define DefaultBuilder
-// or any of: Limits TCPSocket UnixSocket FileDescriptor Port0
-// TCPSocket UnixSocket FileDescriptor Limits require a PFX X.509 certificate
+// Define any of the following for the scenarios described in the Kestrel topic:
+// DefaultBuilder Limits TCPSocket UnixSocket FileDescriptor Port0
+// The following require an X.509 certificate:
+// TCPSocket UnixSocket FileDescriptor Limits
 
 using System;
 using System.Net;
@@ -38,10 +40,10 @@ namespace KestrelSample
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseKestrel(options =>
+                .ConfigureKestrel((context, options) =>
                 {
-                    options.Listen(IPAddress.Loopback, 8000);
-                    options.Listen(IPAddress.Loopback, 8001, listenOptions =>
+                    options.Listen(IPAddress.Loopback, 5000);
+                    options.Listen(IPAddress.Loopback, 5001, listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
@@ -57,7 +59,7 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_UnixSocket
-                .UseKestrel(options =>
+                .ConfigureKestrel((context, options) =>
                 {
                     options.ListenUnixSocket("/tmp/kestrel-test.sock");
                     options.ListenUnixSocket("/tmp/kestrel-test.sock", listenOptions =>
@@ -76,7 +78,7 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_FileDescriptor
-                .UseKestrel(options =>
+                .ConfigureKestrel((context, options) =>
                 {
                     var fds = Environment.GetEnvironmentVariable("SD_LISTEN_FDS_START");
                     ulong fd = ulong.Parse(fds);
@@ -98,7 +100,7 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_Limits
-                .UseKestrel(options =>
+                .ConfigureKestrel((context, options) =>
                 {
                     options.Limits.MaxConcurrentConnections = 100;
                     options.Limits.MaxConcurrentUpgradedConnections = 100;
@@ -124,7 +126,7 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_Port0
-                .UseKestrel(options =>
+                .ConfigureKestrel((context, options) =>
                 {
                     options.Listen(IPAddress.Loopback, 0);
                 });

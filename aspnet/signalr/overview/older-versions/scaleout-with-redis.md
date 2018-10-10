@@ -88,7 +88,7 @@ Create a SignalR application by following either of these tutorials:
 - [Getting Started with SignalR](../getting-started/tutorial-getting-started-with-signalr.md)
 - [Getting Started with SignalR and MVC 4](tutorial-getting-started-with-signalr-and-mvc-4.md)
 
-Next, we'll modify the chat application to support scaleout with Redis. First, add the SignalR.Redis NuGet package to your project. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+Next, we'll modify the chat application to support scaleout with Redis. First, add the SignalR.Redis NuGet package to your project. In Visual Studio, from the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-powershell[Main](scaleout-with-redis/samples/sample5.ps1)]
 
