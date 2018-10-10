@@ -11,17 +11,17 @@ uid: fundamentals/logging/index
 
 By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra)
 
-ASP.NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers. It also provides a list of compatible third-party logging providers.
+ASP.NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## How to add providers
 
-A logging provider displays or stores logs. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
+A logging provider displays or stores logs. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage. An app can send logs to more than one destination by adding more than one provider.
 
 ::: moniker range=">= aspnetcore-2.0"
 
-To use a provider, call the provider's `Add<ProviderName>` extension method in *Program.cs*:
+To add a provider, call the provider's `Add<ProviderName>` extension method in *Program.cs*:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=16-18)]
 
@@ -33,7 +33,7 @@ The default project template calls the [CreateDefaultBuilder](/dotnet/api/micros
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
-To replace the default providers with your own choices, call [ClearProviders](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.clearproviders), and add the providers you want.
+If you use `CreateDefaultBuilder`, you can replace the default providers with your own choices.  Call [ClearProviders](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.clearproviders), and add the providers you want.
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=18-22)]
 
@@ -52,15 +52,15 @@ ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection) (DI)
 
 ::: moniker-end
 
-Learn more about the [built-in logging providers](#built-in-logging-providers) and find links to [third-party logging providers](#third-party-logging-providers) later in the article.
+Learn more about [built-in logging providers](#built-in-logging-providers) and [third-party logging providers](#third-party-logging-providers) later in the article.
 
 ## How to create logs
 
-Get an [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) from the [dependency injection](xref:fundamentals/dependency-injection) container:
+Get an [ILogger&lt;T&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) object from the [dependency injection](xref:fundamentals/dependency-injection) container.
 
 ::: moniker range=">= aspnetcore-2.0"
 
-The following controller example creates logs with `Information` and `Warning` as the *level*. The *category* is `TodoApiSample.Controllers.TodoController`, the fully qualified class name in the sample app:
+The following controller example creates `Information` and `Warning` logs. The logs' *category* will be `TodoApiSample.Controllers.TodoController` (the fully qualified class name of `TodoController` in the sample app):
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
 
@@ -84,7 +84,7 @@ The preceding example creates logs with `Information` and `Warning` as the *leve
 
 ::: moniker-end
 
-Log *level* indicates the severity of the logged event. For example, in production you might want to see only `Warning`, `Error`, and `Critical` logs. 
+Log *level* indicates the severity of the logged event. For example, in production you might want to see only `Warning`, `Error`, and `Critical` logs. While debugging in development, you would choose to see also `Trace`, `Debug`, and `Information` logs. 
 
 Log *category* is a string that is associated with each log. When you get an instance of `ILogger<T>`, the `ILogger` object creates logs that have the fully qualified name of type `T` as the category. By convention, a log's category is the name of the class that created it.
 
@@ -96,13 +96,13 @@ Log *category* is a string that is associated with each log. When you get an ins
 
 To write logs from *Startup.cs*, inject an `ILogger` object in the constructor just as you would in a controller or Razor page.
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,8,20,28)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,4,8,20,28)]
 
 ### Writing logs in Program.cs
 
 To write logs from *Program.cs*, get an `ILogger` object from the dependency injection container.
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=10,11)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
 ::: moniker-end
 
@@ -525,9 +525,9 @@ The `WithFilter` extension method is provided by the [Microsoft.Extensions.Loggi
 
 ::: moniker-end
 
-### Sample categories
+## System categories and levels
 
-Here are some categories used by ASP.NET and what to expect from them:
+Here are some categories used by ASP.NET Core and Entity Framework Core, with notes about what logs to expect from them:
 
 |Category  | Level |Notes  |
 |---------|---------|------|
@@ -621,7 +621,7 @@ ASP.NET Core ships the following providers:
 * [EventLog](#windows-eventlog-provider)
 * [TraceSource](#tracesource-provider)
 
-Options for [Logging in Azure](#logging-in-azure) are coverred later in this article.
+Options for [Logging in Azure](#logging-in-azure) are covered later in this article.
 
 For information about stdout logging, see <xref:host-and-deploy/iis/troubleshoot#aspnet-core-module-stdout-log> and <xref:host-and-deploy/azure-apps/troubleshoot#aspnet-core-module-stdout-log>.
 
