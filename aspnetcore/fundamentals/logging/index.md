@@ -17,7 +17,7 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 
 ## How to add providers
 
-A logging provider displays or stores logs. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage. An app can send logs to more than one destination by adding more than one provider.
+A logging provider displays or stores logs. For example, the Console provider displays messages on the console, and the Azure App Service provider stores logs in Azure blob storage. Logs can be sent to multiple destinations by adding multiple providers.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -25,13 +25,22 @@ To add a provider, call the provider's `Add<ProviderName>` extension method in *
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=16-18)]
 
-The default project template calls the [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) extension method, which adds the following providers by default:
+The default project template calls the [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) extension method, which adds the following logging providers:
 
 * Console
 * Debug
-* EventSource (in ASP.NET Core 2.2)
+::: moniker-end
+::: moniker range=">= aspnetcore-2.2"
+* EventSource
+::: moniker-end
+::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
+
+<!-- Consider getting rid of all the you's which don't add any clarity - something like:
+
+Call [ClearProviders](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.clearproviders) to clear the default providers and then add selected providers:
+ -->
 
 If you use `CreateDefaultBuilder`, you can replace the default providers with your own choices.  Call [ClearProviders](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.clearproviders), and add the providers you want.
 
@@ -84,23 +93,25 @@ The preceding example creates logs with `Information` and `Warning` as the *leve
 
 ::: moniker-end
 
-Log *level* indicates the severity of the logged event. For example, in production you might want to see only `Warning`, `Error`, and `Critical` logs. While debugging in development, you would choose to see also `Trace`, `Debug`, and `Information` logs. 
+<!-- Why tease about this here, why not move it to section where it's detailed? -->
 
-Log *category* is a string that is associated with each log. When you get an instance of `ILogger<T>`, the `ILogger` object creates logs that have the fully qualified name of type `T` as the category. By convention, a log's category is the name of the class that created it.
+Log *level* indicates the severity of the logged event. For example, in production you might want to see only `Warning`, `Error`, and `Critical` logs. While debugging in development, you might include `Trace`, `Debug`, and `Information` logs.
+
+Log *category* is a string that is associated with each log. The `ILogger<T>` instance creates logs that have a fully qualified name of type `T` as the category. By convention, a log's category is the name of the class that created it.
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article. 
 
 ::: moniker range=">= aspnetcore-2.0"
 
-### How to create logs in Startup.cs
+### How to create logs in Startup
 
-To write logs from *Startup.cs*, inject an `ILogger` object in the constructor just as you would in a controller or Razor page.
+To write logs in `Startup`, inject an `ILogger` object in the constructor:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,4,8,20,28)]
 
-### How to create logs in Program.cs
+### How to create logs in Program
 
-To write logs from *Program.cs*, get an `ILogger` object from the dependency injection container.
+To write logs  in `Program`, get an `ILogger` object from the dependency injection container:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
@@ -108,7 +119,7 @@ To write logs from *Program.cs*, get an `ILogger` object from the dependency inj
 
 ### Async logger methods
 
-ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If your logging data store is slow, consider writing the log messages to a fast store first, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
+ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If your logging data store is slow, consider writing the log messages to a fast store, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
 
 ## Configuration
 
@@ -142,7 +153,9 @@ For example, logging configuration is commonly provided by the `Logging` section
 }
 ```
 
-`LogLevel` keys represent log names. The `Default` key applies to logs not explicitly listed. The value represents the [log level](#log-level) applied to the given log. Log keys that set `IncludeScopes` (`Console` in the example), specify if [log scopes](#log-scopes) are enabled for the indicated log.
+`LogLevel` keys represent log names. The `Default` key applies to logs not explicitly listed. The value represents the [log level](#log-level) applied to the given log. Log keys that set `IncludeScopes` (Console in the example), specify if [log scopes](#log-scopes) are enabled for the indicated log.
+
+<!-- `Console` makes it hard to read  -->
 
 ::: moniker-end
 
@@ -168,7 +181,7 @@ For information on implementing configuration providers, see <xref:fundamentals/
 
 ## Sample logging output
 
-With the sample code shown in the preceding section, logs appear in the console when you run from the command line. Here's an example of console output:
+With the sample code shown in the preceding section, logs appear in the console when the app is run from the command line. Here's an example of console output:
 
 ```console
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
@@ -187,9 +200,10 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
       Request finished in 148.889ms 404
 ```
 
-These logs were created by going to `http://localhost:5000/api/todo/0`, which triggers execution of both `ILogger` calls shown in the preceding section.
+The preceding log was generated by calling `http://localhost:5000/api/todo/0` on the sample app.
 
-Here's an example of the same logs as they appear in the Debug window when you run the sample application in Visual Studio:
+The following log appears from running the sample app in the Visual Studio Debug window:
+
 
 ```console
 Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request starting HTTP/1.1 GET http://localhost:53104/api/todo/0  
@@ -201,7 +215,7 @@ Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executed 
 Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request finished in 316.3195ms 404
 ```
 
-The logs that were created by the `ILogger` calls shown in the preceding section begin with "TodoApi.Controllers.TodoController". The logs that begin with "Microsoft" categories are from ASP.NET Core. ASP.NET Core itself and your application code are using the same logging API and the same logging providers.
+The logs that were created by the `ILogger` calls shown in the preceding section begin with "TodoApi.Controllers.TodoController". The logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and the application code are using the same logging API and providers.
 
 The remainder of this article explains some details and options for logging.
 
@@ -211,7 +225,12 @@ The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Loggi
 
 ## Log category
 
-When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that `Ilogger`. The category may be any string, but the convention is to use the fully qualified class name. For example: "TodoApi.Controllers.TodoController".
+*category* is specified when creating `ILogger` objects. The category is included with each log message. Category may be any string, but the convention is to use the fully qualified class name. For example: "TodoApi.Controllers.TodoController".
+
+<!-- The following steve compiler speak is confusing. Why try to put in english the following code?  Just say what it's doing without using all the type details  
+The following code creates two loggers,  "TodoApi.Controllers.TodoController" and ...
+or something like that.
+-->
 
 Use `ILogger<T>` to get an `ILogger` object that uses fully qualified type name of `T` as the category:
 
@@ -227,7 +246,7 @@ Use `ILogger<T>` to get an `ILogger` object that uses fully qualified type name 
 
 ::: moniker-end
 
-To explicitly specify the category, call `CreateLogger` on an `ILoggerFactory` instance, as shown in the following example:
+To explicitly specify the category, call `CreateLogger`:  ~on an `ILoggerFactory` instance, as shown in the following example:~
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -247,7 +266,7 @@ To explicitly specify the category, call `CreateLogger` on an `ILoggerFactory` i
 
 Every log specifies a [LogLevel](/dotnet/api/microsoft.extensions.logging.logLevel) value. The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a 404 return code.
 
-In the following code example, the names of the methods (for example, `LogWarning`) specify the log level. The first parameter is the [Log event ID](#log-event-id). The second parameter is a [message template](#log-message-template) with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in more detail later in this article.
+The following code calls `LogInformation` and `LogWarning`, which create informational and warning level logs:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -261,17 +280,19 @@ In the following code example, the names of the methods (for example, `LogWarnin
 
 ::: moniker-end
 
-Log methods that include the level in the method name are [extension methods for ILogger](/dotnet/api/microsoft.extensions.logging.loggerextensions). Behind the scenes, these methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the [ILogger interface](/dotnet/api/microsoft.extensions.logging.ilogger) and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
+In the preceding code, the first parameter is the [Log event ID](#log-event-id). The second parameter is a [message template](#log-message-template) with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in more detail later in this article.
 
-ASP.NET Core defines the following [log levels](/dotnet/api/microsoft.extensions.logging.loglevel), ordered here from least to highest severity.
+Log methods that include the level in the method name (for example `LogInformation` and `LogWarning`) are [extension methods for ILogger](/dotnet/api/microsoft.extensions.logging.loggerextensions). These methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the [ILogger interface](/dotnet/api/microsoft.extensions.logging.ilogger) and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
+
+ASP.NET Core defines the following [log levels](/dotnet/api/microsoft.extensions.logging.loglevel), ordered here from lowest to highest severity.
 
 * Trace = 0
 
-  For information that's valuable only to a developer debugging an issue. These messages may contain sensitive application data and so shouldn't be enabled in a production environment. *Disabled by default.* Example: `Credentials: {"User":"someuser", "Password":"P@ssword"}`
+  For information that's typically valuable only for development debugging. These messages may contain sensitive application data and so should **not** be enabled in a production environment. *Disabled by default.* Example: `Credentials: {"User":"someuser", "Password":"P@ssword"}`
 
 * Debug = 1
 
-  For information that has short-term usefulness during development and debugging. Example: `Entering method Configure with flag set to true.` Enable `Debug` level logs in production only when troubleshooting, due to the high volume of logs.
+  For information that may be useful in development and debugging. Example: `Entering method Configure with flag set to true.` Enable `Debug` level logs in production only when troubleshooting, due to the high volume of logs.
 
 * Information = 2
 
@@ -296,7 +317,7 @@ Use the log level to control how much log output is written to a particular stor
 
 The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
-The ASP.NET Core framework writes `Debug` level logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were shown. Here's an example of console logs produced by running the sample application configured to show `Debug` and higher logs for the console provider.
+The ASP.NET Core framework writes `Debug` level logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were shown. The following log was created by the sample app with `Debug` and higher enabled using the console provider:
 
 ```console
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
@@ -347,9 +368,9 @@ Each log can specify an *event ID*. The sample app does this by using a locally 
 
 ::: moniker-end
 
-An event ID is an integer value that associates a set of logged events with one another. For instance, a log for adding an item to a shopping cart could be event ID 1000 and a log for completing a purchase could be event ID 1001.
+Event ID's are used to associate events. For example, in the preceding code, event ID's are provided for generating, listing, getting, etc.
 
-In logging output, the event ID may be stored in a field or included in the text message, depending on the provider. The Debug provider doesn't show event IDs, but the console provider shows them in brackets after the category:
+The logging provider may store the event ID in an ID field, in the logging message, or not at all. The Debug provider doesn't show event IDs. The console provider shows event ID's in brackets after the category:
 
 ```console
 info: TodoApi.Controllers.TodoController[1002]
