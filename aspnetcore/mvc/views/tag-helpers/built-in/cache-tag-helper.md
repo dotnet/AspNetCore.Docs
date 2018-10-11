@@ -9,7 +9,7 @@ uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
 
-By [Peter Kellner](http://peterkellner.net)
+By [Peter Kellner](http://peterkellner.net) and [Luke Latham](https://github.com/guardrex) 
 
 The Cache Tag Helper provides the ability to improve the performance of your ASP.NET Core app by caching its content to the internal ASP.NET Core cache provider.
 
@@ -31,7 +31,7 @@ The first request to the page that contains the Tag Helper displays the current 
 | --------------- | --------------- | ------- |
 | Boolean         | `true`, `false` | `true`  |
 
-`enabled` determines if the content enclosed by the Cache Tag Helper is cached. The default is `true`. If set to `false`, the Cache Tag Helper has no caching effect on the rendered output.
+`enabled` determines if the content enclosed by the Cache Tag Helper is cached. The default is `true`. If set to `false`, the rendered output is not cached.
 
 Example:
 
@@ -155,7 +155,7 @@ routes.MapRoute(
 | -------------- | -------------------------------------------------------------------------------- |
 | String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
-`vary-by-cookie` accepts a comma-delimited list of header values that trigger a cache refresh when the header valuess change.
+`vary-by-cookie` accepts a comma-delimited list of header values that trigger a cache refresh when the header values change.
 
 The following example monitors the cookie associated with ASP.NET Core Identity. When a user is authenticated, a change in the Identity cookie triggers a cache refresh:
 
@@ -181,7 +181,7 @@ The following example monitors the current logged in user to trigger a cache ref
 </cache>
 ```
 
-Using this attribute maintains the contents in cache through a sign-in and sign-out cycle. When the value is set to `true`, an authentication cycle invalidates the cache for the authenticated user. The cache is invalidated because a new unique cookie value is generated when a user is authenticated. Cache is maintained for the anonymous state when no cookie is present or the cookie has expired. This means that if no user is authenticated, the cache is maintained.
+Using this attribute maintains the contents in cache through a sign-in and sign-out cycle. When the value is set to `true`, an authentication cycle invalidates the cache for the authenticated user. The cache is invalidated because a new unique cookie value is generated when a user is authenticated. Cache is maintained for the anonymous state when no cookie is present or the cookie has expired. If the user is **not** authenticated, the cache is maintained.
 
 ### vary-by
 
