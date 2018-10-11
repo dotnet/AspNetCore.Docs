@@ -49,7 +49,7 @@ The dialog enables you to change the default authentication options for many of 
 
 - No Authentication
 - Individual User Accounts (ASP.NET membership or social provider log in)
-- Organizational Accounts (Active Directory in an internet application)
+- Work or School Accounts (Active Directory in an internet application)
 - Windows Authentication (Active Directory in an intranet application)
 
 ![Authentication options](mvc5/_static/change-authentication-dialog.png)
