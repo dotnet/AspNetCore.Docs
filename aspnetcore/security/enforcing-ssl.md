@@ -46,13 +46,15 @@ The preceding highlighted code:
 * Uses the default [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) ([Status307TemporaryRedirect](/dotnet/api/microsoft.aspnetcore.http.statuscodes.status307temporaryredirect)).
 * Uses the default [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (null) unless overridden by the `ASPNETCORE_HTTPS_PORT` environment variable or [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
 
-> [!WARNING] 
->A port must be available for the middleware to redirect to HTTPS. If no port is available, redirection to HTTPS does not occur. The HTTPS port can be specified by any of the following setting:
+> [!WARNING]
+> A port must be available for the middleware to redirect to HTTPS. If no port is available, redirection to HTTPS doesn't occur. The HTTPS port can be specified using any of the following approaches:
 >
->* `HttpsRedirectionOptions.HttpsPort`.
->* The `ASPNETCORE_HTTPS_PORT` environment variable.
->* In development, an HTTPS URL in *launchsettings.json*.
->* An HTTPS URL configured directly on [Kestrel](xref:fundamentals/servers/kestrel) or [HttpSys](xref:fundamentals/servers/httpsys).
+> * Set `HttpsRedirectionOptions.HttpsPort`.
+> * Set the `ASPNETCORE_HTTPS_PORT` environment variable.
+> * In development, set an HTTPS URL in *launchsettings.json*.
+> * Configure an HTTPS URL endpoint for [Kestrel](xref:fundamentals/servers/kestrel) or [HTTP.sys](xref:fundamentals/servers/httpsys).
+>
+> When Kestrel or HTTP.sys is used as an edge server, Kestrel or Windows Server must be configured to listen on both the secure port where the client is redirected (typically, 443 in production and 5001 in development) and the insecure port (typically, 80 in production and 5000 in development). The insecure port must be accessible by the client in order for the app to receive an insecure request and redirect it to the secure port. Any firewall between the client and server must also have the ports open for traffic. For more information, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) or [HTTP.sys Windows Server configuration](xref:fundamentals/servers/httpsys#configure-windows-server).
 
 The following highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
 
@@ -73,6 +75,7 @@ The following mechanisms set the port automatically:
   * Only **one HTTPS port** is used by the app.
 
 * Visual Studio is used:
+
   * IIS Express has HTTPS enabled.
   * *launchSettings.json* sets the `sslPort` for IIS Express.
 
