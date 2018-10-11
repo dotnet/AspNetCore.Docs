@@ -3,7 +3,7 @@ title: Filters in ASP.NET Core
 author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core MVC.
 ms.author: riande
-ms.date: 08/15/2018
+ms.date: 10/15/2018
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -199,11 +199,13 @@ If your filters have dependencies that you need to access from DI, there are sev
 
 ### ServiceFilterAttribute
 
-A `ServiceFilter` retrieves an instance of the filter from DI. You add the filter to the container in `ConfigureServices`, and reference it in a `ServiceFilter` attribute
+A `ServiceFilter` retrieves an instance of the filter from DI. Add the `ServiceFilter` to the container in `ConfigureServices`, and reference it in a `ServiceFilter` attribute:
 
 [!code-csharp[](./filters/sample/src/FiltersSample/Startup.cs?name=snippet_ConfigureServices&highlight=11)]
 
 [!code-csharp[](../../mvc/controllers/filters/sample/src/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
+
+When using `ServiceFilterAttribute`,  setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created or the filter will not be re-requested from the DI container at some later point. Avoid using `IsReusable` when using a filter that depends on services with a lifetime other than singleton.
 
 Using `ServiceFilter` without registering the filter type results in an exception:
 
@@ -221,7 +223,9 @@ System.InvalidOperationException: No service for type
 Because of this difference:
 
 * Types that are referenced using the `TypeFilterAttribute` don't need to be registered with the container first.  They do have their dependencies fulfilled by the container. 
-* `TypeFilterAttribute` can optionally accept constructor arguments for the type. 
+* `TypeFilterAttribute` can optionally accept constructor arguments for the type.
+
+When using `TypeFilterAttribute`, setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created. Avoid using `IsReusable` when using a filter that depends on services with a lifetime other than singleton.
 
 The following example demonstrates how to pass arguments to a type using `TypeFilterAttribute`:
 
