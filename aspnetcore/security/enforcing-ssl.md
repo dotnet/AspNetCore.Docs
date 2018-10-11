@@ -46,6 +46,8 @@ The preceding highlighted code:
 * Uses the default [HttpsRedirectionOptions.RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) ([Status307TemporaryRedirect](/dotnet/api/microsoft.aspnetcore.http.statuscodes.status307temporaryredirect)).
 * Uses the default [HttpsRedirectionOptions.HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (null) unless overridden by the `ASPNETCORE_HTTPS_PORT` environment variable or [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
 
+We recommend using temporary redirects rather than permanent redirects, as link caching can cause unstable behavior in development environments. We recommend using [HSTS](#hsts) to signal to clients that only secure resource requests should be sent to the app (only in production).
+
 > [!WARNING]
 > A port must be available for the middleware to redirect to HTTPS. If no port is available, redirection to HTTPS doesn't occur. The HTTPS port can be specified using any of the following approaches:
 >
