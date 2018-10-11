@@ -12,7 +12,12 @@ uid: mvc/views/tag-helpers/builtin-th/Index
 
 By [Peter Kellner](http://peterkellner.net)
 
-ASP.NET Core includes built-in Tag Helpers to boost your productivity. This section provides a list of the built-in Tag Helpers.
+Tag Helpers:
+
+* Allow server-side code to participate in rendering HTML elements in Razor files.
+* Target HTML elements based on element and attribute names.
+* Reduce explicit transitions between HTML and C# in Razor files.
+* Take advantage of the composition and tooling benefits of HTML in Integrated Development Environments (IDEs).
 
 For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 

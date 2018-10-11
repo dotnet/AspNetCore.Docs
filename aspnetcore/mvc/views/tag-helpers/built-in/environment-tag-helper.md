@@ -9,7 +9,7 @@ uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
 ---
 # Environment Tag Helper in ASP.NET Core
 
-By [Peter Kellner](http://peterkellner.net) and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
+By [Peter Kellner](http://peterkellner.net), [Hisham Bin Ateya](https://twitter.com/hishambinateya), and [Luke Latham](https://github.com/guardrex)
 
 The Environment Tag Helper conditionally renders its enclosed content based on the current [hosting environment](xref:fundamentals/environments). The Environment Tag Helper's single attribute, `names`, is a comma-separated list of environment names. If any of the provided environment names match the current environment, the enclosed content is rendered.
 
@@ -21,9 +21,9 @@ For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 `names` accepts a single hosting environment name or a comma-separated list of hosting environment names that trigger the rendering of the enclosed content.
 
-Environment values are compared to the current value returned from the ASP.NET Core static property [IHostingEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*). The comparison ignores case.
+Environment values are compared to the current value returned by [IHostingEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*). The comparison ignores case.
 
-The following example shows an Environment Tag Helper in use. The content is rendered if the hosting environment is Staging or Production:
+The following example uses an Environment Tag Helper. The content is rendered if the hosting environment is Staging or Production:
 
 ```cshtml
 <environment names="Staging,Production">
