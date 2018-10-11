@@ -260,7 +260,7 @@ services.AddMvc()
     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 ```
 
-The default templates generate the `SetCompatibilityVersion` call in In ASP.NET Core 2.1 and 2.2.
+The default templates generate the `SetCompatibilityVersion` call in ASP.NET Core 2.1 and 2.2.
 
 `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
 
