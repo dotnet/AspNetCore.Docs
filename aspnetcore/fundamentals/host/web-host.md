@@ -40,7 +40,7 @@ public class Program
 * Loads [host configuration](#host-configuration-values) from:
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`).
   * Command-line arguments.
-* Loads app configuration from:
+* Loads app configuration in the following order from:
   * *appsettings.json*.
   * *appsettings.{Environment}.json*.
   * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
