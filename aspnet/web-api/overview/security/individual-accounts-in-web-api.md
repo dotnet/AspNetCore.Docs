@@ -4,7 +4,7 @@ title: "Secure a Web API with Individual Accounts and Local Login in ASP.NET Web
 author: MikeWasson
 description: "This topic shows how to secure a web API using OAuth2 to authenticate against a membership database. Software versions used in the tutorial Visual Studio 201..."
 ms.author: riande
-ms.date: 10/15/2014
+ms.date: 10/11/2018
 ms.assetid: 92c84846-f0ea-4b5e-94b6-5004874eb060
 msc.legacyurl: /web-api/overview/security/individual-accounts-in-web-api
 msc.type: authoredcontent
@@ -16,22 +16,20 @@ by [Mike Wasson](https://github.com/MikeWasson)
 [Download Sample App](https://github.com/MikeWasson/LocalAccountsApp)
 
 > This topic shows how to secure a web API using OAuth2 to authenticate against a membership database.
-> 
-> ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013 Update 3](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+> ## Software used in the tutorial
+>
+> - [Visual Studio](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 > - [Web API 2.2](../releases/whats-new-in-aspnet-web-api-22.md)
 > - [ASP.NET Identity 2.1](../../../identity/index.md)
 
-
-In Visual Studio 2013, the Web API project template gives you three options for authentication:
+In Visual Studio 2017, the Web API project template gives you three options for authentication:
 
 - **Individual accounts.** The app uses a membership database.
-- **Organizational accounts.** Users sign in with their Azure Active Directory, Office 365, or on-premise Active Directory credentials.
+- **Work or school accounts.** Users sign in with their Azure Active Directory, Office 365, or on-premise Active Directory credentials.
 - **Windows authentication.** This option is intended for Intranet applications, and uses the Windows Authentication IIS module.
 
-For more details about these options, see [Creating ASP.NET Web Projects in Visual Studio 2013](../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#auth).
+For more details about these options, see [Creating ASP.NET Web Projects in Visual Studio](../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#authentication-methods).
 
 Individual accounts provide two ways for a user to log in:
 
@@ -40,13 +38,13 @@ Individual accounts provide two ways for a user to log in:
 
 This article looks at the local login scenario. For both local and social login, Web API uses OAuth2 to authenticate requests. However, the credential flows are different for local and social login.
 
-In this article, I'll demonstrate a simple app that lets the user log in and send authenticated AJAX calls to a web API. You can download the sample code [here](https://github.com/MikeWasson/LocalAccountsApp). The readme describes how to create the sample from scratch in Visual Studio.
+This article demonstrates a simple app that lets the user log in and send authenticated AJAX calls to a web API. You can download the sample code [here](https://github.com/MikeWasson/LocalAccountsApp). The readme describes how to create the sample from scratch in Visual Studio.
 
 [![](individual-accounts-in-web-api/_static/image2.png)](individual-accounts-in-web-api/_static/image1.png)
 
-The sample app uses Knockout.js for data-binding and jQuery for sending AJAX requests. I'll be focusing on the AJAX calls, so you don't need to know Knockout.js for this article.
+The sample app uses Knockout.js for data-binding and jQuery for sending AJAX requests. The article focuses on the AJAX calls so you don't need to know Knockout.js.
 
-Along the way, I'll describe:
+Along the way, the article describes:
 
 - What the app is doing on the client side.
 - What's happening on the server.
@@ -233,7 +231,6 @@ The **SuppressDefaultHostAuthentication** method tells Web API to ignore any aut
 
 > [!NOTE]
 > In particular, the MVC portion of your app might use forms authentication, which stores credentials in a cookie. Cookie-based authentication requires the use of anti-forgery tokens, to prevent CSRF attacks. That's a problem for web APIs, because there is no convenient way for the web API to send the anti-forgery token to the client. (For more background on this issue, see [Preventing CSRF Attacks in Web API](preventing-cross-site-request-forgery-csrf-attacks.md).) Calling **SuppressDefaultHostAuthentication** ensures that Web API is not vulnerable to CSRF attacks from credentials stored in cookies.
-
 
 When the client requests a protected resource, here is what happens in the Web API pipeline:
 
