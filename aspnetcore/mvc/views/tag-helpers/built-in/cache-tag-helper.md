@@ -31,7 +31,7 @@ The first request to the page that contains the Tag Helper displays the current 
 | --------------- | --------------- | ------- |
 | Boolean         | `true`, `false` | `true`  |
 
-`enabled` determines if the content enclosed by the Cache Tag Helper is cached. The default is `true`. If set to `false`, the rendered output is not cached.
+`enabled` determines if the content enclosed by the Cache Tag Helper is cached. The default is `true`. If set to `false`, the rendered output is **not** cached.
 
 Example:
 
