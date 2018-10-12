@@ -100,7 +100,7 @@ Add the `ExampleHealthCheck` with `AddCheck` and call `UseHealthChecks` in the p
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecks()
-        .AddCheck(new ExampleHealthCheck);
+        .AddCheck<ExampleHealthCheck>();
 }
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
