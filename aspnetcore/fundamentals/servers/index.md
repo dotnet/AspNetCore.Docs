@@ -56,7 +56,7 @@ If the app is exposed to the Internet, Kestrel must use IIS, Nginx, or Apache as
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. The 1.x versions of Kestrel don't have important security features to defend against attacks from the Internet. This includes, but isn't limited to, appropriate timeouts, request size limits, and concurrent connection limits.
+The most important reason for using a reverse proxy for public-facing edge server deployments that are exposed directly the Internet is security. The 1.x versions of Kestrel don't have important security features to defend against attacks from the Internet. This includes, but isn't limited to, appropriate timeouts, request size limits, and concurrent connection limits.
 
 For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 
@@ -150,7 +150,7 @@ When launching an app from a command prompt in the project's folder, [dotnet run
   * Target framework: .NET Core 2.2 or later
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Edge connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
+  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
 
 ::: moniker-end
@@ -162,7 +162,7 @@ When launching an app from a command prompt in the project's folder, [dotnet run
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Edge connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
+  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
 
 ::: moniker-end

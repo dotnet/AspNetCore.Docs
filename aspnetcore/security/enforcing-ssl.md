@@ -186,11 +186,11 @@ The preceding example shows how to add additional hosts.
 
 <a name="https"></a>
 
-## Opt-out of HTTPS on project creation
+## Opt-out of HTTPS/HSTS on project creation
 
-The ASP.NET Core 2.1 or later web application templates (from Visual Studio or the dotnet command line) enable [HTTPS redirection](#require) and [HSTS](#hsts). For deployments that don't require HTTPS, you can opt-out of HTTPS. For example, some backend services where HTTPS is being handled externally at the edge, using HTTPS at each node isn't needed.
+In some backend service scenarios where connection security is handled at the public-facing edge of the network, configuring connection security at each node isn't required. Web apps generated from the templates in Visual Studio or from the [dotnet new](/dotnet/core/tools/dotnet-new) command enable [HTTPS redirection](#require) and [HSTS](#hsts). For deployments that don't require these scenarios, you can opt-out of HTTPS/HSTS when the app is created from the template.
 
-To opt-out of HTTPS:
+To opt-out of HTTPS/HSTS:
 
 # [Visual Studio](#tab/visual-studio) 
 
