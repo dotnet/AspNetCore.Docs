@@ -96,7 +96,7 @@ The Log *level* indicates the severity of the logged event. The log *category* i
 
 To write logs in the `Startup` class, inject an `ILogger` object in the constructor:
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,18,24)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,19,26)]
 
 ### Create logs in Program.cs
 
@@ -573,7 +573,7 @@ Here are some categories used by ASP.NET Core and Entity Framework Core, with no
 
  A *scope* can group a set of logical operations. This grouping can be used to attach the same data to each log that's created as part of a set. For example, every log created as part of processing a transaction can include the transaction ID.
 
-A scope is an `IDisposable` type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope%2A> method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block, as shown here:
+A scope is an `IDisposable` type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block, as shown here:
 
 [!code-csharp[](index/samples/1.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
 
