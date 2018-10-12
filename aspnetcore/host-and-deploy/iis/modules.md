@@ -117,7 +117,7 @@ If opting to remove a module with a setting in *web.config*, unlock the module a
    </configuration>
    ```
 
-An IIS module can also be removed with `Appcmd.exe`. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command:
+An IIS module can also be removed with *Appcmd.exe*. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command:
 
 ```console
 Appcmd.exe delete module MODULE_NAME /app.name:APPLICATION_NAME
