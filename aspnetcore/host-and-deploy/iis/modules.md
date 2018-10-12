@@ -4,7 +4,7 @@ author: guardrex
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/03/2018
+ms.date: 10/12/2018
 uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
@@ -14,48 +14,6 @@ By [Luke Latham](https://github.com/guardrex)
 Some of the native IIS modules and all of the IIS managed modules aren't able to process requests for ASP.NET Core apps. In many cases, ASP.NET Core offers an alternative to the scenarios addressed by IIS native and managed modules.
 
 ## Native modules
-
-::: moniker range=">= aspnetcore-2.2"
-
-The table indicates native IIS modules that are functional with ASP.NET Core apps. For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
-
-| Module | Functional under the in-process hosting model | Functional under the out-of-process hosting model | ASP.NET Core Option |
-| --- | :---: | :---: | --- |
-| **Anonymous Authentication**<br>`AnonymousAuthenticationModule`                                  | Yes | Yes | |
-| **Basic Authentication**<br>`BasicAuthenticationModule`                                          | Yes | Yes | |
-| **Client Certification Mapping Authentication**<br>`CertificateMappingAuthenticationModule`      | Yes | Yes | |
-| **CGI**<br>`CgiModule`                                                                           | No  | No  | |
-| **Configuration Validation**<br>`ConfigurationValidationModule`                                  | Yes | Yes | |
-| **HTTP Errors**<br>`CustomErrorModule`                                                           | No  | No  | [Status Code Pages Middleware](xref:fundamentals/error-handling#configure-status-code-pages) |
-| **Custom Logging**<br>`CustomLoggingModule`                                                      | Yes | Yes | |
-| **Default Document**<br>`DefaultDocumentModule`                                                  | No  | No  | [Default Files Middleware](xref:fundamentals/static-files#serve-a-default-document) |
-| **Digest Authentication**<br>`DigestAuthenticationModule`                                        | Yes | Yes | |
-| **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | No  | [Directory Browsing Middleware](xref:fundamentals/static-files#enable-directory-browsing) |
-| **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | Yes | [Response Compression Middleware](xref:performance/response-compression) |
-| **Tracing**<br>`FailedRequestsTracingModule`                                                     | Yes | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index#tracesource-provider) |
-| **File Caching**<br>`FileCacheModule`                                                            | No  | No  | [Response Caching Middleware](xref:performance/caching/middleware) |
-| **HTTP Caching**<br>`HttpCacheModule`                                                            | No  | No  | [Response Caching Middleware](xref:performance/caching/middleware) |
-| **HTTP Logging**<br>`HttpLoggingModule`                                                          | Yes | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index) |
-| **HTTP Redirection**<br>`HttpRedirectionModule`                                                  | Yes | Yes | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) |
-| **IIS Client Certificate Mapping Authentication**<br>`IISCertificateMappingAuthenticationModule` | Yes | Yes | |
-| **IP and Domain Restrictions**<br>`IpRestrictionModule`                                          | Yes | Yes | |
-| **ISAPI Filters**<br>`IsapiFilterModule`                                                         | Yes | Yes | [Middleware](xref:fundamentals/middleware/index) |
-| **ISAPI**<br>`IsapiModule`                                                                       | Yes | Yes | [Middleware](xref:fundamentals/middleware/index) |
-| **Protocol Support**<br>`ProtocolSupportModule`                                                  | Yes | Yes | |
-| **Request Filtering**<br>`RequestFilteringModule`                                                | Yes | Yes | [URL Rewriting Middleware `IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
-| **Request Monitor**<br>`RequestMonitorModule`                                                    | Yes | Yes | |
-| **URL Rewriting**&#8224;<br>`RewriteModule`                                                      | Yes | Yes | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) |
-| **Server-Side Includes**<br>`ServerSideIncludeModule`                                            | No  | No  | |
-| **Static Compression**<br>`StaticCompressionModule`                                              | No  | No  | [Response Compression Middleware](xref:performance/response-compression) |
-| **Static Content**<br>`StaticFileModule`                                                         | No  | No  | [Static File Middleware](xref:fundamentals/static-files) |
-| **Token Caching**<br>`TokenCacheModule`                                                          | Yes | Yes | |
-| **URI Caching**<br>`UriCacheModule`                                                              | Yes | Yes | |
-| **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | Yes | [ASP.NET Core Identity](xref:security/authentication/identity) |
-| **Windows Authentication**<br>`WindowsAuthenticationModule`                                      | Yes | Yes | |
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.2"
 
 The table indicates native IIS modules that are functional on reverse proxy requests to ASP.NET Core apps.
 
@@ -92,8 +50,6 @@ The table indicates native IIS modules that are functional on reverse proxy requ
 | **URI Caching**<br>`UriCacheModule`                                                              | Yes | |
 | **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | **Windows Authentication**<br>`WindowsAuthenticationModule`                                      | Yes | |
-
-::: moniker-end
 
 &#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](xref:host-and-deploy/directory-structure).
 
