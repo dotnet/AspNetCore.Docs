@@ -70,7 +70,7 @@ The following controller example creates `Information` and `Warning` logs. The l
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
-The following Razor pages example creates logs with `Information` as the *level* and `TodoApiSample.Pages.AboutModel` as the *category*:
+The following Razor Pages example creates logs with `Information` as the *level* and `TodoApiSample.Pages.AboutModel` as the *category*:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3, 7)]
 
@@ -301,7 +301,7 @@ ASP.NET Core defines the following log levels, ordered here from lowest to highe
 Use the log level to control how much log output is written to a particular storage medium or display window. For example:
 
 * In production send `Trace` through `Information` level to a volume data store, and `Warning` through `Critical` to a value data store.
-* During development, send `Warning` through `Critical` to the console, add `Trace` through `Information` when troubleshooting.
+* During development, send `Warning` through `Critical` to the console, and add `Trace` through `Information` when troubleshooting.
 
 The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
@@ -448,7 +448,7 @@ The configuration data specifies minimum log levels by provider and category, as
 
 [!code-json[](index/samples/2.x/TodoApiSample/appsettings.json)]
 
-This JSON creates six filter rules: one for the Debug provider, four for the Console provider, and one for all providers. Just one of these rules is chosen for each provider when an `ILogger` object is created.
+This JSON creates six filter rules: one for the Debug provider, four for the Console provider, and one for all providers. A single rule is chosen for each provider when an `ILogger` object is created.
 
 ### Filter rules in code
 
@@ -473,7 +473,7 @@ The configuration data and the `AddFilter` code shown in the preceding examples 
 | 7      | All providers | System                                  | Debug             |
 | 8      | Debug         | Microsoft                               | Trace             |
 
-When an `ILogger` object is created, the `ILoggerFactory` object selects a single rule per provider to apply to that logger. All messages written by an `ILogger` object are filtered based on the selected rules. The most specific rule possible for each provider and category pair is selected from the available rules.
+When an `ILogger` object is created, the `ILoggerFactory` object selects a single rule per provider to apply to that logger. All messages written by an `ILogger` instance are filtered based on the selected rules. The most specific rule possible for each provider and category pair is selected from the available rules.
 
 The following algorithm is used for each provider when an `ILogger` is created for a given category:
 
