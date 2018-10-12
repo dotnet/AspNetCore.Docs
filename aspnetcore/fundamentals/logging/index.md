@@ -817,9 +817,9 @@ If targeting .NET Core, note the following points:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Don't explicitly call <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics>. The provider is automatically made available to the app when the app is deployed to Azure App Service.
+* Don't explicitly call <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics%2A>. The provider is automatically made available to the app when the app is deployed to Azure App Service.
 
-If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. Invoke `AddAzureWebAppDiagnostics` on an <xref:Microsoft.Extensions.Logging.ILoggerfactory> instance:
+If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. Invoke `AddAzureWebAppDiagnostics` on an <xref:Microsoft.Extensions.Logging.ILoggerFactory> instance:
 
 ```csharp
 logging.AddAzureWebAppDiagnostics();
