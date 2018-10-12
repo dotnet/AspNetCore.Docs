@@ -837,7 +837,7 @@ loggerFactory.AddAzureWebAppDiagnostics();
 
 ::: moniker range=">= aspnetcore-1.1"
 
-An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics> overload lets you pass in <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureAppServicesDiagnosticsSettings> which can override default settings, such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of what's provided with an `ILogger` method call.)
+An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*> overload lets you pass in <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureAppServicesDiagnosticsSettings> which can override default settings, such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of what's provided with an `ILogger` method call.)
 
 When you deploy to an App Service app, the app honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
