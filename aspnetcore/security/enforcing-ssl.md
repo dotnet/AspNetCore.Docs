@@ -56,7 +56,16 @@ We recommend using temporary redirects rather than permanent redirects, as link 
 > * In development, set an HTTPS URL in *launchsettings.json*.
 > * Configure an HTTPS URL endpoint for [Kestrel](xref:fundamentals/servers/kestrel) or [HTTP.sys](xref:fundamentals/servers/httpsys).
 >
-> When Kestrel or HTTP.sys is used as an edge server, Kestrel or HTTP.sys must be configured to listen on both the secure port where the client is redirected (typically, 443 in production and 5001 in development) and the insecure port (typically, 80 in production and 5000 in development). The insecure port must be accessible by the client in order for the app to receive an insecure request and redirect it to the secure port. Any firewall between the client and server must also have the ports open for traffic. For more information, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) or <xref:fundamentals/servers/httpsys>.
+> When Kestrel or HTTP.sys is used as a public-facing edge server, Kestrel or HTTP.sys must be configured to listen on both:
+>
+> * The secure port where the client is redirected (typically, 443 in production and 5001 in development).
+> * The insecure port (typically, 80 in production and 5000 in development).
+>
+> The insecure port must be accessible by the client in order for the app to receive an insecure request and redirect it to the secure port.
+>
+> Any firewall between the client and server must also have the ports open for traffic.
+>
+> For more information, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) or <xref:fundamentals/servers/httpsys>.
 
 The following highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
 
