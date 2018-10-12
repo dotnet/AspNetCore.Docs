@@ -243,7 +243,7 @@ Constructors can accept arguments that aren't provided by dependency injection, 
 
 When services are resolved by `IServiceProvider` or `ActivatorUtilities`, constructor injection requires a *public* constructor.
 
-When services are resolved by `ActivatorUtilities`, constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection.
+When services are resolved by `ActivatorUtilities`, constructor injection requires that only one applicable constructor exists. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection.
 
 ## Entity Framework contexts
 
