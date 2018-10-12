@@ -141,4 +141,4 @@ The following step-by-step guides for developing ASP.NET applications are availa
 ## OWIN and Katana
 
 * [Getting Started with OWIN and Katana](aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana.md)
-* [Host OWIN in an Azure Worker Role](aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role.md)
+* [Host OWIN in an Azure Worker Role](aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role.md)  
