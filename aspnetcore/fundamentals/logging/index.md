@@ -94,21 +94,21 @@ The Log *level* indicates the severity of the logged event. The log *category* i
 
 ### Create logs in Startup.cs
 
-To write logs in the `Startup` class, inject an `ILogger` object in the constructor:
+To write logs in the `Startup` class, include an `ILogger` parameter in the constructor signature:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,19,26)]
 
 ### Create logs in Program.cs
 
-To write logs  in the `Program` class, get an `ILogger` object from the dependency injection container:
+To write logs  in the `Program` class, get an `ILogger` instance from DI:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
 ::: moniker-end
 
-### Async logger methods
+### No async logger methods
 
-ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async. If your logging data store is slow, consider writing the log messages to a fast store initially, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
+Logging should be so fast that it isn't worth the cost of asynchronous code. If your logging data store is slow, don't write to it directly. Consider writing the log messages to a fast store initially, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
 
 ## Configuration
 
@@ -144,9 +144,9 @@ For example, logging configuration is commonly provided by the `Logging` section
 
 The `Logging` property can have `LogLevel` and log provider properties (Console is shown).
 
-The `LogLevel` property under `Logging` specifies the minimum [level](#log-level) to log for selected categories. In the example, System and Microsoft categories log at Information level, and all others log at `Debug` level.
+The `LogLevel` property under `Logging` specifies the minimum [level](#log-level) to log for selected categories. In the example, `System` and `Microsoft` categories log at `Information` level, and all others log at `Debug` level.
 
-Other properties under `Logging` specify logging providers. The example is for the Console provider. If a provider supports [log scopes](#log-scopes), `IncludeScopes` indicates whether they are enabled. A provider property (such as `Console` in the example) may also specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider.
+Other properties under `Logging` specify logging providers. The example is for the Console provider. If a provider supports [log scopes](#log-scopes), `IncludeScopes` indicates whether they're enabled. A provider property (such as `Console` in the example) may also specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider.
 
 If levels to log are specified in `Logging.<providername>.LogLevel`, they override anything set in `Logging.LogLevel`.
 
@@ -220,7 +220,7 @@ The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Loggi
 
 When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that instance of `Ilogger`. The category may be any string, but the convention is to use the class name. For example: "TodoApi.Controllers.TodoController".
 
-Use `ILogger<T>` to get an `ILogger` object that uses the fully qualified type name of `T` as the category:
+Use `ILogger<T>` to get an `ILogger` instance that uses the fully qualified type name of `T` as the category:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -305,7 +305,7 @@ Use the log level to control how much log output is written to a particular stor
 
 The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
-The ASP.NET Core framework writes `Debug` level logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were shown. Here's an example of console logs produced by running the sample application configured to show `Debug` logs:
+ASP.NET Core writes logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were shown. Here's an example of console logs produced by running the sample application configured to show `Debug` logs:
 
 ```console
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
