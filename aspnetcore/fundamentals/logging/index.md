@@ -15,17 +15,17 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-## How to add providers
+## Add providers
 
 A logging provider displays or stores logs. For example, the Console provider displays logs on the console, and the Azure Application Insights provider stores them in Azure Application Insights. Logs can be sent to multiple destinations by adding multiple providers.
 
 ::: moniker range=">= aspnetcore-2.0"
 
-To add a provider, call the provider's `Add<ProviderName>` extension method in *Program.cs*:
+To add a provider, call the provider's `Add{provider name}` extension method in *Program.cs*:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=16-18)]
 
-The default project template calls the [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) extension method, which adds the following logging providers:
+The default project template calls the <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> extension method, which adds the following logging providers:
 
 * Console
 * Debug
@@ -37,7 +37,7 @@ The default project template calls the [CreateDefaultBuilder](/dotnet/api/micros
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
-If you use `CreateDefaultBuilder`, you can replace the default providers with your own choices.  Call [ClearProviders](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.clearproviders), and add the providers you want.
+If you use `CreateDefaultBuilder`, you can replace the default providers with your own choices. Call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A>, and add the providers you want.
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=18-22)]
 
@@ -45,7 +45,7 @@ If you use `CreateDefaultBuilder`, you can replace the default providers with yo
 
 ::: moniker range="< aspnetcore-2.0"
 
-To use a provider, install its NuGet package and call the provider's extension method on an instance of [ILoggerFactory](/dotnet/api/microsoft.extensions.logging.iloggerfactory), as shown in the following example:
+To use a provider, install its NuGet package and call the provider's extension method on an instance of <xref:Microsoft.Extensions.Logging.ILoggerFactory>:
 
 [!code-csharp[](index/samples/1.x/TodoApiSample//Startup.cs?name=snippet_AddConsoleAndDebug&highlight=3,5-7)]
 
@@ -58,9 +58,9 @@ ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection) (DI)
 
 Learn more about [built-in logging providers](#built-in-logging-providers) and [third-party logging providers](#third-party-logging-providers) later in the article.
 
-## How to create logs
+## Create logs
 
-Get an [ILogger&lt;T&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) object from the [dependency injection](xref:fundamentals/dependency-injection) container.
+Get an <xref:Microsoft.Extensions.Logging.ILogger`1> object from DI.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -96,7 +96,7 @@ The Log *level* indicates the severity of the logged event. The log *category* i
 
 To write logs in the `Startup` class, inject an `ILogger` object in the constructor:
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,4,8,20,28)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,18,24)]
 
 ### Create logs in Program.cs
 
@@ -252,7 +252,7 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 ## Log level
 
-Every log specifies a [LogLevel](/dotnet/api/microsoft.extensions.logging.logLevel) value. The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a 404 return code.
+Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a 404 return code.
 
 The following code creates `Information` and `Warning` logs:
 
@@ -270,9 +270,9 @@ The following code creates `Information` and `Warning` logs:
 
 In the preceding code, the first parameter is the [Log event ID](#log-event-id). The second parameter is a message template with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in the [message template section](#log-message-template) later in this article.
 
-Log methods that include the level in the method name (for example `LogInformation` and `LogWarning`) are [extension methods for ILogger](/dotnet/api/microsoft.extensions.logging.loggerextensions). These methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the [ILogger interface](/dotnet/api/microsoft.extensions.logging.ilogger) and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
+Log methods that include the level in the method name (for example `LogInformation` and `LogWarning`) are [extension methods for ILogger](xref:Microsoft.Extensions.Logging.LoggerExtensions). These methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see <xref:Microsoft.Extensions.Logging.ILogger> and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
 
-ASP.NET Core defines the following [log levels](/dotnet/api/microsoft.extensions.logging.loglevel), ordered here from lowest to highest severity.
+ASP.NET Core defines the following log levels, ordered here from lowest to highest severity.
 
 * Trace = 0
 
@@ -482,12 +482,12 @@ The following algorithm is used for each provider when an `ILogger` is created f
 * If multiple rules are selected, take the **last** one.
 * If no rules are selected, use `MinimumLevel`.
 
-For example, with the preceding list of rules suppose you create an `ILogger` object for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine":
+With the preceding list of rules, suppose you create an `ILogger` object for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine":
 
 * For the Debug provider, rules 1, 6, and 8 apply. Rule 8 is most specific, so that's the one selected.
 * For the Console provider, rules 3, 4, 5, and 6 apply. Rule 3 is most specific.
 
-The resulting `ILogger` object sends logs of `Trace` level and above to the Debug provider.  Logs of `Debug` level and above are sent to the Console provider.
+The resulting `ILogger` instance sends logs of `Trace` level and above to the Debug provider. Logs of `Debug` level and above are sent to the Console provider.
 
 ### Provider aliases
 
@@ -573,7 +573,7 @@ Here are some categories used by ASP.NET Core and Entity Framework Core, with no
 
  A *scope* can group a set of logical operations. This grouping can be used to attach the same data to each log that's created as part of a set. For example, every log created as part of processing a transaction can include the transaction ID.
 
-A scope is an `IDisposable` type that's returned by the [ILogger.BeginScope&lt;TState&gt;](/dotnet/api/microsoft.extensions.logging.ilogger.beginscope) method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block, as shown here:
+A scope is an `IDisposable` type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope%2A> method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block, as shown here:
 
 [!code-csharp[](index/samples/1.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
 
@@ -654,7 +654,7 @@ logging.AddConsole();
 loggerFactory.AddConsole();
 ```
 
-[AddConsole overloads](/dotnet/api/microsoft.extensions.logging.consoleloggerextensions) let you pass in a minimum log level, a filter function, and a boolean that indicates whether scopes are supported. Another option is to pass in an `IConfiguration` object, which can specify scopes support and logging levels.
+[AddConsole overloads](xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions) let you pass in a minimum log level, a filter function, and a boolean that indicates whether scopes are supported. Another option is to pass in an `IConfiguration` object, which can specify scopes support and logging levels.
 
 The console provider has a significant impact on performance and is generally not appropriate for use in production.
 
@@ -698,7 +698,7 @@ logging.AddDebug();
 loggerFactory.AddDebug();
 ```
 
-[AddDebug overloads](/dotnet/api/microsoft.extensions.logging.debugloggerfactoryextensions) let you pass in a minimum log level or a filter function.
+[AddDebug overloads](xref:Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions) let you pass in a minimum log level or a filter function.
 
 ::: moniker-end
 
@@ -746,13 +746,13 @@ logging.AddEventLog();
 loggerFactory.AddEventLog();
 ```
 
-[AddEventLog overloads](/dotnet/api/microsoft.extensions.logging.eventloggerfactoryextensions) let you pass in `EventLogSettings` or a minimum log level.
+[AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) let you pass in `EventLogSettings` or a minimum log level.
 
 ::: moniker-end
 
 ### TraceSource provider
 
-The [Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource) provider package uses the [System.Diagnostics.TraceSource](/dotnet/api/system.diagnostics.tracesource) libraries and providers.
+The [Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource) provider package uses the <xref:System.Diagnostics.TraceSource> libraries and providers.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -770,19 +770,13 @@ loggerFactory.AddTraceSource(sourceSwitchName);
 
 ::: moniker-end
 
-[AddTraceSource overloads](/dotnet/api/microsoft.extensions.logging.tracesourcefactoryextensions) let you pass in a source switch and a trace listener.
+[AddTraceSource overloads](xref:Microsoft.Extensions.Logging.TraceSourceFactoryExtensions) let you pass in a source switch and a trace listener.
 
-To use this provider, an application has to run on the .NET Framework (rather than .NET Core). The provider can route messages to a variety of [listeners](/dotnet/framework/debug-trace-profile/trace-listeners), such as the [TextWriterTraceListener](/dotnet/api/system.diagnostics.textwritertracelistenerr) used in the sample application.
-
-The following example configures a `TraceSource` provider that logs `Warning` and higher messages to the console window.
-
-::: moniker range=">= aspnetcore-2.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_TraceSource&highlight=9-12)]
-
-::: moniker-end
+To use this provider, an application has to run on the .NET Framework (rather than .NET Core). The provider can route messages to a variety of [listeners](/dotnet/framework/debug-trace-profile/trace-listeners), such as the <xref:System.Diagnostics.TextWriterTraceListener> used in the sample application.
 
 ::: moniker range="< aspnetcore-2.0"
+
+The following example configures a `TraceSource` provider that logs `Warning` and higher messages to the console window.
 
 [!code-csharp[](index/samples/1.x/TodoApiSample/Startup.cs?name=snippet_TraceSource&highlight=9-12)]
 
@@ -794,20 +788,38 @@ For information about logging in Azure, see the following sections:
 
 * [Azure App Service provider](#azure-app-service-provider)
 * [Azure log streaming](#azure-log-streaming)
+::: moniker range=">= aspnetcore-1.1"
 * [Azure Application Insights trace logging](#azure-application-insights-trace-logging)
 
 ### Azure App Service provider
 
 The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider package is available for apps targeting .NET Core 1.1 or later.
 
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.0"
 
 If targeting .NET Core, note the following points:
 
-* The provider package is included in the ASP.NET Core [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) but not in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
-* Don't explicitly call [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics). The provider is automatically made available to the app when the app is deployed to Azure App Service.
+::: moniker-end
 
-If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. Invoke `AddAzureWebAppDiagnostics` on an [ILoggerFactory](/dotnet/api/microsoft.extensions.logging.iloggerfactory) instance:
+::: moniker range="= aspnetcore-2.0"
+
+* The provider package is included in the ASP.NET Core [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+
+* The provider package is not included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.0"
+
+* Don't explicitly call <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics>. The provider is automatically made available to the app when the app is deployed to Azure App Service.
+
+If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. Invoke `AddAzureWebAppDiagnostics` on an <xref:Microsoft.Extensions.Logging.ILoggerfactory> instance:
 
 ```csharp
 logging.AddAzureWebAppDiagnostics();
@@ -823,15 +835,19 @@ loggerFactory.AddAzureWebAppDiagnostics();
 
 ::: moniker-end
 
-An [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics) overload lets you pass in [AzureAppServicesDiagnosticsSettings](/dotnet/api/microsoft.extensions.logging.azureappservices.azureappservicesdiagnosticssettings) which can override default settings, such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of what's provided with an `ILogger` method call.)
+::: moniker range=">= aspnetcore-1.1"
+
+An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics> overload lets you pass in <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureAppServicesDiagnosticsSettings> which can override default settings, such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of what's provided with an `ILogger` method call.)
 
 When you deploy to an App Service app, the app honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
 ![Azure logging settings](index/_static/azure-logging-settings.png)
 
-The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*. For more information about default behavior, see [AzureAppServicesDiagnosticsSettings](/dotnet/api/microsoft.extensions.logging.azureappservices.azureappservicesdiagnosticssettings).
+The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*. For more information about default behavior, see <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureAppServicesDiagnosticsSettings>.
 
 The provider only works when the project runs in the Azure environment. It has no effect when the project is run locally&mdash;it doesn't write to local files or local development storage for blobs.
+
+::: moniker-end
 
 ### Azure log streaming
 
@@ -854,7 +870,11 @@ Navigate to the **Log Streaming** page to view application messages. They're log
 
 ### Azure Application Insights trace logging
 
-The [Application Insights](https://azure.microsoft.com/services/application-insights/) SDK is capable of collecting trace telemetry from logs generated via the ASP.NET Core logging infrastructure. For more information, see [Application Insights for ASP.NET Core](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net-core) and [Microsoft/ApplicationInsights-aspnetcore Wiki: Logging](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Logging).
+The Application Insights SDK can collect and report logs generated by the ASP.NET Core logging infrastructure. For more information, see the following resources:
+
+* [Application Insights overview](/azure/application-insights/app-insights-overview)
+* [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core)
+* [Microsoft/ApplicationInsights-aspnetcore Wiki: Logging](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Logging).
 
 ## Third-party logging providers
 
