@@ -148,7 +148,7 @@ The `LogLevel` property under `Logging` specifies the minimum [level](#log-level
 
 Other properties under `Logging` specify logging providers. The example is for the Console provider. If a provider supports [log scopes](#log-scopes), `IncludeScopes` indicates whether they're enabled. A provider property (such as `Console` in the example) may also specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider.
 
-If levels to log are specified in `Logging.<providername>.LogLevel`, they override anything set in `Logging.LogLevel`.
+If levels to log are specified in `Logging.{providername}.LogLevel`, they override anything set in `Logging.LogLevel`.
 
 ::: moniker-end
 
