@@ -206,7 +206,7 @@ Service filter implementation types are registered in DI. A `ServiceFilterAttrib
 
 [!code-csharp[](../../mvc/controllers/filters/sample/src/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
 
-When using `ServiceFilterAttribute`,  setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created or the filter will not be re-requested from the DI container at some later point. Avoid using `IsReusable` when using a filter that depends on services with a lifetime other than singleton.
+When using `ServiceFilterAttribute`, setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created or the filter will not be re-requested from the DI container at some later point. Avoid using `IsReusable` when using a filter that depends on services with a lifetime other than singleton.
 
 Using `ServiceFilterAttribute` without registering the filter type results in an exception:
 
