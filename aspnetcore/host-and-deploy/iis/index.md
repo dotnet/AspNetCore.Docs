@@ -83,7 +83,7 @@ The ASP.NET Core Module generates a dynamic port to assign to the backend proces
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
-* [Configuration](xref:fundamentals/configuration/index) (or command-line `--urls` option)
+* [Configuration](xref:fundamentals/configuration/index) (or [command-line --urls option](xref:fundamentals/host/web-host#override-configuration))
 
 Therefore, calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the module. If `UseUrls` or `Listen` is called, Kestrel *only* listens on the ports specified when running the app without IIS.
 
@@ -105,7 +105,7 @@ The ASP.NET Core Module generates a dynamic port to assign to the backend proces
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
-* [Configuration](xref:fundamentals/configuration/index) (or command-line `--urls` option)
+* [Configuration](xref:fundamentals/configuration/index) (or [command-line --urls option](xref:fundamentals/host/web-host#override-configuration))
 
 Therefore, calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the module. If `UseUrls` or `Listen` is called, Kestrel listens on the port specified when running the app without IIS.
 
@@ -125,7 +125,7 @@ The ASP.NET Core Module generates a dynamic port to assign to the backend proces
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
-* [Configuration](xref:fundamentals/configuration/index) (or command-line `--urls` option)
+* [Configuration](xref:fundamentals/configuration/index) (or [command-line --urls option](xref:fundamentals/host/web-host#override-configuration))
 
 Therefore, calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the module. If `UseUrls` or `Listen` is called, Kestrel listens on the port specified when running the app without IIS.
 
@@ -147,7 +147,7 @@ Both [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrel
 The ASP.NET Core Module generates a dynamic port to assign to the backend process. The `UseIISIntegration` method picks up the dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This configuration replaces other URL configurations provided by:
 
 * `UseUrls`
-* [Configuration](xref:fundamentals/configuration/index) (or command-line `--urls` option)
+* [Configuration](xref:fundamentals/configuration/index) (or [command-line --urls option](xref:fundamentals/host/web-host#override-configuration))
 
 Therefore, a call to `UseUrls` isn't required when using the module. If `UseUrls` is called, Kestrel listens on the port specified when running the app without IIS.
 
