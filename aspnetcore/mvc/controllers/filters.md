@@ -200,7 +200,7 @@ If your filters have dependencies that you need to access from DI, there are sev
 
 ### ServiceFilterAttribute
 
-Service filter implementation types are registered in DI. A `ServiceFilterAttribute` retrieves an instance of the filter from DI. Add the `ServiceFilterAttribute` to the container in `ConfigureServices`, and reference it in a `[ServiceFilter]` attribute:
+Service filter implementation types are registered in DI. A `ServiceFilterAttribute` retrieves an instance of the filter from DI. Add the `ServiceFilterAttribute` to the container in `Startup.ConfigureServices`, and reference it in a `[ServiceFilter]` attribute:
 
 [!code-csharp[](./filters/sample/src/FiltersSample/Startup.cs?name=snippet_ConfigureServices&highlight=11)]
 
