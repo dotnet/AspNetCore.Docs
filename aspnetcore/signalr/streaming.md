@@ -57,7 +57,7 @@ JavaScript clients call streaming methods on hubs by using `connection.stream`. 
 
 [!code-javascript[Streaming javascript](streaming/sample/wwwroot/js/stream.js?range=19-36)]
 
-To end the stream from the client call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method.
+To end the stream from the client, call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method.
 
 ## Related resources
 
