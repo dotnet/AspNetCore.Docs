@@ -50,7 +50,7 @@ There are several ways that EF Core can load related data into the navigation pr
 
 * The `Select` operator loads only the related data needed.
 
-## Create a Courses page that displays department name
+## Create a Course page that displays department name
 
 The Course entity includes a navigation property that contains the `Department` entity. The `Department` entity contains the department that the course is assigned to.
 
