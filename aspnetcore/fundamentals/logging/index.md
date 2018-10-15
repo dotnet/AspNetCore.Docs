@@ -540,33 +540,17 @@ The `WithFilter` extension method is provided by the [Microsoft.Extensions.Loggi
 
 Here are some categories used by ASP.NET Core and Entity Framework Core, with notes about what logs to expect from them:
 
-|Category  | Level |Notes  |
-|---------|---------|------|
-|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>DefaultKeyResolver|Debug|Which keys were considered|
-|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>KeyRingProvider|Debug|Which key was used.|
-|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>XmlKeyManager|Debug|Which keys were found.|
-|Microsoft.AspNetCore.<br/>DataProtection.KeyManagement.<br/>XmlKeyManager|Information|Location of user profile that was used.|
-|Microsoft.AspNetCore.<br/>HostFiltering.<br/>HostFilteringMiddleware|Trace, Debug|Hosts allowed.|
-|Microsoft.AspNetCore.<br/>Hosting.Internal.WebHost | Information | How long HTTP requests took to complete and what time they started. Which hosting startup assemblies were loaded. |
-|Microsoft.AspNetCore.<br/>Mvc.ModelBinding.<br/>ParameterBinder|Debug|Binding and validation of each parameter.|
-|Microsoft.AspNetCore.<br/>Mvc.ModelBinding.<br/>ModelBinderFactory|Debug|Model binding providers.|
-|Microsoft.AspNetCore.<br/>Mvc.ModelBinding.<br/>Binders|Debug|Binding activity for various binder types.|
-|Microsoft.AspNetCore.<br/>Mvc.MvcOptions|Debug|Compatibility switch values.
-|Microsoft.AspNetCore.<br/>Mvc.Razor.Internal.<br/>RazorViewCompiler|Debug|Razor view compilation.|
-|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker|Debug|Execution plan of filters.
-|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker|Trace|Filter execution &mdash; start and stop of each method.|
-|Microsoft.AspNetCore.<br/>Mvc.RazorPages.Internal.<br/>PageActionInvoker |Information |How long page actions took, model state validity, routes matched.  |
-|Microsoft.AspNetCore.<br/>Routing.Tree.<br/>TreeRouter|Debug|Route matching information.|
-|Microsoft.AspNetCore.<br/>Server.Kestrel|Debug|Connection start, stop, and keep alive responses.|
-|Microsoft.AspNetCore.<br/>Server.Kestrel.Core.<br/>KestrelServer|Debug|SSL certificate information.|
-|Microsoft.AspNetCore.<br/>StaticFiles.<br/>StaticFileMiddleware|Information| Files served.|
-|Microsoft.EntityFrameworkCore.<br/>ChangeTracking|Debug|Change detection activity, entity status changes (for example, from `Added` to `Unchanged`).
-|Microsoft.EntityFrameworkCore.<br/>Database.Command|Debug, Information|SQL commands: executing (Debug) and executed (Information).|
-|Microsoft.EntityFrameworkCore.<br/>Database.Connection|Debug|Connection opens and closes.|
-|Microsoft.EntityFrameworkCore.<br/>Database.Transaction|Debug|Begin and end of transactions.|
-|Microsoft.EntityFrameworkCore.<br/>Infrastructure|Information|EF Core version, context name, database provider used.|
-|Microsoft.EntityFrameworkCore.<br/>Migrations|Information|Migrations applied to the database.|
-|Microsoft.EntityFrameworkCore.<br/>Update|Debug|Number of SQL commands executed as a batch (transaction).|
+|Category  | Notes  |
+|----------|--------|
+|Microsoft.AspNetCore               |General ASP.NET Core diagnostics.|
+|Microsoft.AspNetCore.DataProtection|Which keys were considered, found, and used.|
+|Microsoft.AspNetCore.HostFiltering |Hosts allowed.|
+|Microsoft.AspNetCore.Hosting       |How long HTTP requests took to complete and what time they started. Which hosting startup assemblies were loaded. |
+|Microsoft.AspNetCore.Mvc           |MVC and Razor diagnostics. Model binding, filter execution, view compilation, action selection.|
+|Microsoft.AspNetCore.Routing       |Route matching information.|
+|Microsoft.AspNetCore.Server        |Connection start, stop, and keep alive responses. HTTPS certificate information.|
+|Microsoft.AspNetCore.StaticFiles   |Files served.|
+|Microsoft.EntityFrameworkCore      |General Entity Framework Core diagnostics. Database activity and configuration, change detection, migrations.|
 
 ## Log scopes
 
