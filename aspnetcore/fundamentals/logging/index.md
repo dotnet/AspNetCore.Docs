@@ -369,7 +369,7 @@ warn: TodoApi.Controllers.TodoController[4000]
 
 ## Log message template
 
-Each log specifies a message template. The message template can be a string or it can contain named placeholders into which argument values are placed. The template isn't a format string, and placeholders should be named, not numbered.
+Each log specifies a message template. The message template can contain placeholders for which arguments are provided. The placeholders should be named, not numbered.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -397,13 +397,13 @@ This code creates a log message with the parameter values in sequence:
 Parameter values: parm1, parm2
 ```
 
-The logging framework does message formatting in this way to make it possible for logging providers to implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This information enables logging providers to store the parameter values as fields, besides using them to construct the message text. For example, suppose logs are going to Azure Table Storage and logger method calls look like this:
+The logging framework does message formatting in this way so that logging providers can implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This information enables logging providers to store the parameter values as fields. For example, suppose logs are going to Azure Table Storage, and logger method calls look like this:
 
 ```csharp
 _logger.LogInformation("Getting item {ID} at {RequestTime}", id, DateTime.Now);
 ```
 
-Each Azure Table entity can have `ID` and `RequestTime` properties, which simplifies queries on log data. A query can find all logs within a particular `RequestTime` range without the need to parse the time out of the text message.
+Each Azure Table entity can have `ID` and `RequestTime` properties, which simplifies queries on log data. A query can find all logs within a particular `RequestTime` range without parsing the time out of the text message.
 
 ## Logging exceptions
 
@@ -440,7 +440,7 @@ To suppress all logs, specify `LogLevel.None` as the minimum log level. The inte
 
 ### Create filter rules in configuration
 
-The project templates create code that calls `CreateDefaultBuilder` to set up logging for the Console and Debug providers. The `CreateDefaultBuilder` method also sets up logging to look for configuration in a `Logging` section, using code like the following:
+The project template code calls `CreateDefaultBuilder` to set up logging for the Console and Debug providers. The `CreateDefaultBuilder` method also sets up logging to look for configuration in a `Logging` section, using code like the following:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=15)]
 
@@ -567,7 +567,6 @@ Here are some categories used by ASP.NET Core and Entity Framework Core, with no
 |Microsoft.EntityFrameworkCore.<br/>Infrastructure|Information|EF Core version, context name, database provider used.|
 |Microsoft.EntityFrameworkCore.<br/>Migrations|Information|Migrations applied to the database.|
 |Microsoft.EntityFrameworkCore.<br/>Update|Debug|Number of SQL commands executed as a batch (transaction).|
-
 
 ## Log scopes
 
