@@ -105,7 +105,7 @@ The ASP.NET Core Module generates a dynamic port to assign to the backend proces
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
-* [Configuration](xref:fundamentals/configuration/index)
+* [Configuration](xref:fundamentals/configuration/index) (or command-line `--urls` option)
 
 Therefore, calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the module. If `UseUrls` or `Listen` is called, Kestrel listens on the port specified when running the app without IIS.
 
@@ -125,7 +125,7 @@ The ASP.NET Core Module generates a dynamic port to assign to the backend proces
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
-* [Configuration](xref:fundamentals/configuration/index)
+* [Configuration](xref:fundamentals/configuration/index) (or command-line `--urls` option)
 
 Therefore, calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the module. If `UseUrls` or `Listen` is called, Kestrel listens on the port specified when running the app without IIS.
 
@@ -144,7 +144,12 @@ var host = new WebHostBuilder()
 
 Both [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel) and [UseIISIntegration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions.useiisintegration) are required. Code calling `UseIISIntegration` doesn't affect code portability. If the app isn't run behind IIS (for example, the app is run directly on Kestrel), `UseIISIntegration` doesn't operate.
 
-The ASP.NET Core Module generates a dynamic port to assign to the backend process. The `UseIISIntegration` method picks up the dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This configuration replaces other URL configurations provided by `UseUrls`. Therefore, a call to `UseUrls` isn't required when using the module. If `UseUrls` is called, Kestrel listens on the port specified when running the app without IIS.
+The ASP.NET Core Module generates a dynamic port to assign to the backend process. The `UseIISIntegration` method picks up the dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This configuration replaces other URL configurations provided by:
+
+* `UseUrls`
+* [Configuration](xref:fundamentals/configuration/index) (or command-line `--urls` option)
+
+Therefore, a call to `UseUrls` isn't required when using the module. If `UseUrls` is called, Kestrel listens on the port specified when running the app without IIS.
 
 If `UseUrls` is called in an ASP.NET Core 1.0 app, call it **before** calling `UseIISIntegration` so that the module-configured port isn't overwritten. This calling order isn't required with ASP.NET Core 1.1 because the module setting overrides `UseUrls`.
 
