@@ -243,7 +243,7 @@ Constructors can accept arguments that aren't provided by dependency injection, 
 
 When services are resolved by `IServiceProvider` or `ActivatorUtilities`, constructor injection requires a *public* constructor.
 
-When services are resolved by `ActivatorUtilities`, constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection.
+When services are resolved by `ActivatorUtilities`, constructor injection requires that only one applicable constructor exists. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection.
 
 ## Entity Framework contexts
 
@@ -281,9 +281,9 @@ The interfaces are implemented in the `Operation` class. The `Operation` constru
 
 An `OperationService` is registered that depends on each of the other `Operation` types. When `OperationService` is requested via dependency injection, it receives either a new instance of each service or an existing instance based on the lifetime of the dependent service.
 
-* If transient services are created when requested, the `OperationsId` of the `IOperationTransient` service is different than the `OperationsId` of the `OperationService`. `OperationService` receives a new instance of the `IOperationTransient` class. The new instance yields a different `OperationsId`.
-* If scoped services are created per request, the `OperationsId` of the `IOperationScoped` service is the same as that of `OperationService` within a request. Across requests, both services share a different `OperationsId` value.
-* If singleton and singleton-instance services are created once and used across all requests and all services, the `OperationsId` is constant across all service requests.
+* If transient services are created when requested, the `OperationId` of the `IOperationTransient` service is different than the `OperationId` of the `OperationService`. `OperationService` receives a new instance of the `IOperationTransient` class. The new instance yields a different `OperationId`.
+* If scoped services are created per request, the `OperationId` of the `IOperationScoped` service is the same as that of `OperationService` within a request. Across requests, both services share a different `OperationId` value.
+* If singleton and singleton-instance services are created once and used across all requests and all services, the `OperationId` is constant across all service requests.
 
 ::: moniker range=">= aspnetcore-2.1"
 

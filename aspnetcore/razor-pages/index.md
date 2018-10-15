@@ -217,7 +217,7 @@ Here is an example of a rendered delete button with a customer contact ID of `1`
 <button type="submit" formaction="/?id=1&amp;handler=delete">delete</button>
 ```
 
-When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
+When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based on the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
 
 Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a page handler method with the name `OnPostRemoveAsync` is selected.
 
@@ -260,7 +260,7 @@ services.AddMvc()
     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 ```
 
-The default templates generate the `SetCompatibilityVersion` call in In ASP.NET Core 2.1 and 2.2.
+The default templates generate the `SetCompatibilityVersion` call in ASP.NET Core 2.1 and 2.2.
 
 `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
 

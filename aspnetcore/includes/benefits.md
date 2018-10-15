@@ -3,7 +3,7 @@ ASP.NET Core provides the following benefits:
 * A unified story for building web UI and web APIs.
 * Architected for [testability](xref:test/index).
 * [Razor Pages](xref:razor-pages/index) makes coding page-focused scenarios easier and more productive.
-* Ability to develope and run on Windows, macOS, and Linux.
+* Ability to develop and run on Windows, macOS, and Linux.
 * Open-source and [community-focused](https://live.asp.net/).
 * Integration of [modern, client-side frameworks](xref:client-side/index) and development workflows.
 * A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
