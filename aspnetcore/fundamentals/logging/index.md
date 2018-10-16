@@ -23,7 +23,7 @@ A logging provider displays or stores logs. For example, the Console provider di
 
 To add a provider, call the provider's `Add{provider name}` extension method in *Program.cs*:
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=16-18)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=17-19)]
 
 The default project template calls the <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> extension method, which adds the following logging providers:
 
