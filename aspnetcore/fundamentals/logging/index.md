@@ -778,8 +778,6 @@ For information about logging in Azure, see the following sections:
 
 The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider package is available for apps targeting .NET Core 1.1 or later.
 
-::: moniker-end
-
 ::: moniker range=">= aspnetcore-2.0"
 
 If targeting .NET Core, note the following points:
