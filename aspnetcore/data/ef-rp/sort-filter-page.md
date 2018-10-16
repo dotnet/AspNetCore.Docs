@@ -92,9 +92,9 @@ To verify that sorting works:
 
 To get a better understanding of the code:
 
-* In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
+* In *Students/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
 * Add a watch for `NameSort` and `DateSort`.
-* In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
+* In *Students/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
 
 Step through the debugger.
 
@@ -230,9 +230,9 @@ Run the app and navigate to the students page.
 
 To get a better understanding of the code:
 
-* In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
+* In *Students/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
 * Add a watch for `NameSort`, `DateSort`, `CurrentSort`, and `Model.Student.PageIndex`.
-* In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
+* In *Students/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
 
 Step through the debugger.
 
