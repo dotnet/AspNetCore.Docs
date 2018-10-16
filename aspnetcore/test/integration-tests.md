@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/30/2018
+ms.date: 10/16/2018
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -183,6 +183,71 @@ The `Post_DeleteMessageHandler_ReturnsRedirectToRoot` test method of the [sample
 Because another test in the `IndexPageTests` class performs an operation that deletes all of the records in the database and may run before the `Post_DeleteMessageHandler_ReturnsRedirectToRoot` method, the database is seeded in this test method to ensure that a record is present for the SUT to delete. Selecting the `deleteBtn1` button of the `messages` form in the SUT is simulated in the request to the SUT:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3)]
+
+### Set the environment
+
+If the app requires special testing configuration when tests are executed:
+
+* Provide test environment-specific configuration using one or both of the following approaches:
+  * Provide conditional configuration in the app's `Startup.ConfigureServices`/`Startup.Configure`:
+  
+    When configuring an `IWebHostBuilder` in *Startup.cs*:
+    
+    ```csharp
+    // IHostingEnvironment (stored in _env) is injected into the Startup class.
+    if (_env.IsStaging())
+    {
+        // Code runs in the Staging environment
+    }
+    ```
+    
+    When configuring an `IWebHost` in *Program.cs*:
+    
+    ```csharp
+    public static IHostingEnvironment Environment { get; set; }
+    
+    public static IWebHostBuilder BuildWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                Environment = hostingContext.HostingEnvironment;
+            })
+            .ConfigureServices(services =>
+            {
+                if (Environment.IsStaging())
+                {
+                    // Code runs in the Staging environment
+                }
+                ...
+    ```
+  * Provide test environment-specific configuration in an app settings file (for example, *appsettings.staging.json*).
+* Specify the environment for the test system using **either** of the following approaches:
+  * Set the `ASPNETCORE_ENVIRONMENT` environment variable on the test system to the test environment name (for example, set the environment variable value to `Staging` to consume configuration from *appsettings.staging.json* or `if (_env.IsStaging())`/`if (Environment.IsStaging())` code in `Startup`).
+  * Supply the environment for tests in code:
+    * Using a [CustomWebApplicationFactory](#customize-webapplicationfactory), call `UseEnvironment` on the `IWebHostBuilder`:
+    
+      ```csharp
+      protected override void ConfigureWebHost(IWebHostBuilder builder)
+      {
+          // The SUT consumes configuration from appsettings.staging.json or 
+          // `if (_env.IsStaging())`/`if (Environment.IsStaging())` code 
+          // in `Startup`
+          builder.UseEnvironment("Staging")
+          ...
+      ```
+    * When calling [WithWebHostBuilder](#customize-the-client-with-withwebhostbuilder), call `UseSetting` on the `Environment` key:
+    
+      ```csharp
+      var client = _factory.WithWebHostBuilder(builder =>
+      {
+          // The SUT consumes configuration from appsettings.staging.json or 
+          // `if (_env.IsStaging())`/`if (Environment.IsStaging())` code 
+          // in `Startup`
+          builder.UseSetting("Environment", "Staging");
+          ...
+      ```
+      
+For more information, see <xref:fundamentals/environments> and <xref:fundamentals/startup>.
 
 ## Client options
 
