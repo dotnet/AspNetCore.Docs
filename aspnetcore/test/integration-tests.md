@@ -186,10 +186,10 @@ Because another test in the `IndexPageTests` class performs an operation that de
 
 ### Set the environment
 
-If the app requires special testing configuration when tests are executed:
+If the SUT requires special testing configuration when tests are executed:
 
 * Provide test environment-specific configuration using one or both of the following approaches:
-  * Provide conditional configuration in the app's `Startup.ConfigureServices`/`Startup.Configure`:
+  * Provide conditional configuration in the SUT's `Startup.ConfigureServices`/`Startup.Configure`:
   
     When configuring an `IWebHostBuilder` in *Startup.cs*:
     
@@ -220,7 +220,7 @@ If the app requires special testing configuration when tests are executed:
                 }
                 ...
     ```
-  * Provide test environment-specific configuration in an app settings file (for example, *appsettings.staging.json*).
+  * Provide test environment-specific configuration in an SUT settings file (for example, *appsettings.staging.json*).
 * Specify the environment for the test system using **either** of the following approaches:
   * Set the `ASPNETCORE_ENVIRONMENT` environment variable on the test system to the test environment name (for example, set the environment variable value to `Staging` to consume configuration from *appsettings.staging.json* or `if (_env.IsStaging())`/`if (Environment.IsStaging())` code in `Startup`).
   * Supply the environment for tests in code:
