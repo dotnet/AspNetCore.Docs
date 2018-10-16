@@ -60,13 +60,6 @@ Test the app:
 
 A reverse proxy is a common setup for serving dynamic web apps. A reverse proxy terminates the HTTP request and forwards it to the ASP.NET Core app.
 
-::: moniker range=">= aspnetcore-2.0"
-
-> [!NOTE]
-> Either configuration&mdash;with or without a reverse proxy server&mdash;is a valid and supported hosting configuration for ASP.NET Core 2.0 or later apps. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
-
-::: moniker-end
-
 ### Use a reverse proxy server
 
 Kestrel is great for serving dynamic content from ASP.NET Core. However, the web serving capabilities aren't as feature rich as servers such as IIS, Apache, or Nginx. A reverse proxy server can offload work such as serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
@@ -327,7 +320,7 @@ sudo ufw enable
 
 Edit *src/http/ngx_http_header_filter_module.c*:
 
-```c
+```
 static char ngx_http_server_string[] = "Server: Web Server" CRLF;
 static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 ```
@@ -342,9 +335,9 @@ Configure the server with additional required modules. Consider using a web app 
 
 * Harden the security by employing some of the practices depicted in the following */etc/nginx/nginx.conf* file. Examples include choosing a stronger cipher and redirecting all traffic over HTTP to HTTPS.
 
-* Adding an `HTTP Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS only.
+* Adding an `HTTP Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS.
 
-* Don't add the Strict-Transport-Security header or chose an appropriate `max-age` if SSL will be disabled in the future.
+* Don't add the HSTS header or chose an appropriate `max-age` if SSL will be disabled in the future.
 
 Add the */etc/nginx/proxy.conf* configuration file:
 
@@ -355,7 +348,8 @@ Edit the */etc/nginx/nginx.conf* configuration file. The example contains both `
 [!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
 
 #### Secure Nginx from clickjacking
-Clickjacking is a malicious technique to collect an infected user's clicks. Clickjacking tricks the victim (visitor) into clicking on an infected site. Use X-FRAME-OPTIONS to secure the site.
+
+[Clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), also known as a *UI redress attack*, is a malicious attack where a website visitor is tricked into clicking a link or button on a different page than they're currently visiting. Use `X-FRAME-OPTIONS` to secure the site.
 
 Edit the *nginx.conf* file:
 
@@ -363,7 +357,7 @@ Edit the *nginx.conf* file:
 sudo nano /etc/nginx/nginx.conf
 ```
 
-Add the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
+Add the line `add_header X-Frame-Options "SAMEORIGIN";`. Save the file. Restart Nginx.
 
 #### MIME-type sniffing
 
