@@ -6,6 +6,10 @@ This tutorial has not been upgraded to ASP.NET Core 2.1. The ASP.NET Core 2.0 ve
 
 ![Version selector in TOC](~/includes/RP-EF/2.1.png)
 
+![Version selector in TOC](21version.png)
+
+![Version selector in TOC](~/includes/RP-EF/21version.png)
+
 The ASP.NET Core 2.1 Razor Pages version of this tutorial has many improvements over the 2.0 version.
 
 The 2.0 tutorial teaches ASP.NET Core MVC and Entity Framework Core with controllers and views. Razor Pages is a page-based programming model that makes building web UI easier and more productive. We recommend the [Razor Pages](xref:data/ef-rp/intro) tutorial over the MVC version. The Razor Pages tutorial:
