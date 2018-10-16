@@ -27,6 +27,8 @@ There are three versions of this tutorial:
 
 [!INCLUDE[prerequisites](~/includes/net-core-prereqs-vscode.md)]
 
+See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Code.
+
 ## Create the project
 
 From a console, run the following commands:
@@ -51,7 +53,7 @@ Press **Debug** (F5) to build and run the program. In a browser, navigate to htt
 ["value1","value2"]
 ```
 
-See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Code.
+
 
 ## Add support for Entity Framework Core
 
