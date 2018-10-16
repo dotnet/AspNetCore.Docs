@@ -88,21 +88,21 @@ The Log *level* indicates the severity of the logged event. The log *category* i
 
 ::: moniker range=">= aspnetcore-2.0"
 
-### Create logs in Startup.cs
+### Create logs in Startup
 
 To write logs in the `Startup` class, include an `ILogger` parameter in the constructor signature:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,19,26)]
 
-### Create logs in Program.cs
+### Create logs in Program
 
-To write logs  in the `Program` class, get an `ILogger` instance from DI:
+To write logs in the `Program` class, get an `ILogger` instance from DI:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
 ::: moniker-end
 
-### No async logger methods
+### No asynchronous logger methods
 
 Logging should be so fast that it isn't worth the performance cost of asynchronous code. If your logging data store is slow, don't write to it directly. Consider writing the log messages to a fast store initially, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
 
@@ -248,7 +248,7 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 ## Log level
 
-Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a *404 Not Found* status code.
+Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a *404 Not Found* status code.
 
 The following code creates `Information` and `Warning` logs:
 
@@ -354,7 +354,7 @@ Each log can specify an *event ID*. The sample app does this by using a locally 
 
 An event ID associates a set of events. For example, all logs related to displaying a list of items on a page might be 1001.
 
-The logging provider may store the event ID in an ID field, in the logging message, or not at all. The Debug provider doesn't show event IDs. The console provider shows event ID's in brackets after the category:
+The logging provider may store the event ID in an ID field, in the logging message, or not at all. The Debug provider doesn't show event IDs. The console provider shows event IDs in brackets after the category:
 
 ```console
 info: TodoApi.Controllers.TodoController[1002]
@@ -792,7 +792,7 @@ If targeting .NET Core, note the following points:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* The provider package is not included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). To use the provider, you have to install the package.
+* The provider package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). To use the provider, install the package.
 
 ::: moniker-end
 
@@ -820,7 +820,7 @@ loggerFactory.AddAzureWebAppDiagnostics();
 
 An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*> overload lets you pass in <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureAppServicesDiagnosticsSettings>. The settings object can override default settings, such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs in addition to what's provided with an `ILogger` method call.)
 
-When you deploy to an App Service app, the application honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
+When you deploy to an App Service app, the application honors the settings in the [Diagnostic Logs](/azure/app-service/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
 ![Azure logging settings](index/_static/azure-logging-settings.png)
 
