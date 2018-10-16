@@ -304,7 +304,6 @@
 ### [Visual Studio Tools for Docker](xref:host-and-deploy/docker/visual-studio-tools-for-docker)
 ### [Publish to a Docker image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/)
 ## [Proxy and load balancer configuration](xref:host-and-deploy/proxy-load-balancer)
-## [Health checks](xref:host-and-deploy/health-checks)
 ## [Host in a web farm](xref:host-and-deploy/web-farm)
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
