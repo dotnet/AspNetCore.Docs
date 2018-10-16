@@ -29,11 +29,7 @@ The default project template calls the <xref:Microsoft.AspNetCore.WebHost.Create
 
 * Console
 * Debug
-::: moniker-end
-::: moniker range=">= aspnetcore-2.2"
-* EventSource
-::: moniker-end
-::: moniker range=">= aspnetcore-2.0"
+* EventSource (starting in ASP.NET Core 2.2)
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
@@ -49,7 +45,7 @@ To use a provider, install its NuGet package and call the provider's extension m
 
 [!code-csharp[](index/samples/1.x/TodoApiSample//Startup.cs?name=snippet_AddConsoleAndDebug&highlight=3,5-7)]
 
-ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection) (DI) provides the `ILoggerFactory` instance. The `AddConsole` and `AddDebug` extension methods are defined in the [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/) and [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/) packages. Each extension method calls the `ILoggerFactory.AddProvider` method, passing in an instance of the provider.
+ASP.NET Core [dependency injection (DI)](xref:fundamentals/dependency-injection) provides the `ILoggerFactory` instance. The `AddConsole` and `AddDebug` extension methods are defined in the [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/) and [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/) packages. Each extension method calls the `ILoggerFactory.AddProvider` method, passing in an instance of the provider.
 
 > [!NOTE]
 > The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/1.x) adds logging providers in the `Startup.Configure` method. To obtain log output from code that executes earlier, add logging providers in the `Startup` class constructor.
@@ -64,7 +60,7 @@ Get an <xref:Microsoft.Extensions.Logging.ILogger`1> object from DI.
 
 ::: moniker range=">= aspnetcore-2.0"
 
-The following controller example creates `Information` and `Warning` logs. The logs' *category* will be `TodoApiSample.Controllers.TodoController` (the fully qualified class name of `TodoController` in the sample app):
+The following controller example creates `Information` and `Warning` logs. The *category* is `TodoApiSample.Controllers.TodoController` (the fully qualified class name of `TodoController` in the sample app):
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
 
@@ -108,7 +104,7 @@ To write logs  in the `Program` class, get an `ILogger` instance from DI:
 
 ### No async logger methods
 
-Logging should be so fast that it isn't worth the cost of asynchronous code. If your logging data store is slow, don't write to it directly. Consider writing the log messages to a fast store initially, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
+Logging should be so fast that it isn't worth the performance cost of asynchronous code. If your logging data store is slow, don't write to it directly. Consider writing the log messages to a fast store initially, then move them to the slow store later. For example, log to a message queue that's read and persisted to slow storage by another process.
 
 ## Configuration
 
@@ -148,7 +144,7 @@ The `LogLevel` property under `Logging` specifies the minimum [level](#log-level
 
 Other properties under `Logging` specify logging providers. The example is for the Console provider. If a provider supports [log scopes](#log-scopes), `IncludeScopes` indicates whether they're enabled. A provider property (such as `Console` in the example) may also specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider.
 
-If levels to log are specified in `Logging.{providername}.LogLevel`, they override anything set in `Logging.LogLevel`.
+If levels are specified in `Logging.{providername}.LogLevel`, they override anything set in `Logging.LogLevel`.
 
 ::: moniker-end
 
@@ -208,7 +204,7 @@ Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executed 
 Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request finished in 316.3195ms 404
 ```
 
-The logs that were created by the `ILogger` calls shown in the preceding section begin with "TodoApi.Controllers.TodoController". The logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and app code are using the same logging API and providers.
+The logs that are created by the `ILogger` calls shown in the preceding section begin with "TodoApi.Controllers.TodoController". The logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and app code are using the same logging API and providers.
 
 The remainder of this article explains some details and options for logging.
 
@@ -218,7 +214,7 @@ The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Loggi
 
 ## Log category
 
-When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that instance of `Ilogger`. The category may be any string, but the convention is to use the class name. For example: "TodoApi.Controllers.TodoController".
+When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that instance of `Ilogger`. The category may be any string, but the convention is to use the class name, such as "TodoApi.Controllers.TodoController".
 
 Use `ILogger<T>` to get an `ILogger` instance that uses the fully qualified type name of `T` as the category:
 
@@ -252,7 +248,7 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 ## Log level
 
-Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a 404 return code.
+Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a *404 Not Found* status code.
 
 The following code creates `Information` and `Warning` logs:
 
@@ -270,7 +266,7 @@ The following code creates `Information` and `Warning` logs:
 
 In the preceding code, the first parameter is the [Log event ID](#log-event-id). The second parameter is a message template with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in the [message template section](#log-message-template) later in this article.
 
-Log methods that include the level in the method name (for example `LogInformation` and `LogWarning`) are [extension methods for ILogger](xref:Microsoft.Extensions.Logging.LoggerExtensions). These methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see <xref:Microsoft.Extensions.Logging.ILogger> and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
+Log methods that include the level in the method name (for example, `LogInformation` and `LogWarning`) are [extension methods for ILogger](xref:Microsoft.Extensions.Logging.LoggerExtensions). These methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see <xref:Microsoft.Extensions.Logging.ILogger> and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
 
 ASP.NET Core defines the following log levels, ordered here from lowest to highest severity.
 
@@ -288,7 +284,7 @@ ASP.NET Core defines the following log levels, ordered here from lowest to highe
 
 * Warning = 3
 
-  For abnormal or unexpected events in the app flow. These may include errors or other conditions that don't cause the app to stop, but might need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException for file quotes.txt.`
+  For abnormal or unexpected events in the app flow. These may include errors or other conditions that don't cause the app to stop but might need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException for file quotes.txt.`
 
 * Error = 4
 
@@ -300,12 +296,12 @@ ASP.NET Core defines the following log levels, ordered here from lowest to highe
 
 Use the log level to control how much log output is written to a particular storage medium or display window. For example:
 
-* In production send `Trace` through `Information` level to a volume data store, and `Warning` through `Critical` to a value data store.
+* In production, send `Trace` through `Information` level to a volume data store. Send `Warning` through `Critical` to a value data store.
 * During development, send `Warning` through `Critical` to the console, and add `Trace` through `Information` when troubleshooting.
 
 The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
-ASP.NET Core writes logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were shown. Here's an example of console logs produced by running the sample app configured to show `Debug` logs:
+ASP.NET Core writes logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were created. Here's an example of console logs produced by running the sample app configured to show `Debug` logs:
 
 ```console
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
@@ -369,7 +365,7 @@ warn: TodoApi.Controllers.TodoController[4000]
 
 ## Log message template
 
-Each log specifies a message template. The message template can contain placeholders for which arguments are provided. The placeholders should be named, not numbered.
+Each log specifies a message template. The message template can contain placeholders for which arguments are provided. Use names for the placeholders, not numbers.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -397,13 +393,13 @@ This code creates a log message with the parameter values in sequence:
 Parameter values: parm1, parm2
 ```
 
-The logging framework does message formatting in this way so that logging providers can implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This information enables logging providers to store the parameter values as fields. For example, suppose logs are going to Azure Table Storage, and logger method calls look like this:
+The logging framework works this way so that logging providers can implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This information enables logging providers to store the parameter values as fields. For example, suppose logger method calls look like this:
 
 ```csharp
 _logger.LogInformation("Getting item {ID} at {RequestTime}", id, DateTime.Now);
 ```
 
-Each Azure Table entity can have `ID` and `RequestTime` properties, which simplifies queries on log data. A query can find all logs within a particular `RequestTime` range without parsing the time out of the text message.
+If you're sending the logs to Azure Table Storage, each Azure Table entity can have `ID` and `RequestTime` properties, which simplifies queries on log data. A query can find all logs within a particular `RequestTime` range without parsing the time out of the text message.
 
 ## Logging exceptions
 
@@ -526,11 +522,11 @@ The `AddConsole` and `AddDebug` extension methods provide overloads that accept 
 
 The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider doesn't provide any of those overloads, since its logging level and other parameters are based on the `SourceSwitch` and `TraceListener` it uses.
 
-To set filtering rules for all providers that are registered with an `ILoggerFactory` instance, use the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while letting the app log at debug level.
+To set filtering rules for all providers that are registered with an `ILoggerFactory` instance, use the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while logging at debug level for logs created by application code.
 
 [!code-csharp[](index/samples/1.x/TodoApiSample/Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
 
-To prevent all logs from being written for a particular category, specify `LogLevel.None` as the minimum log level. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
+To prevent any logs from being written, specify `LogLevel.None` as the minimum log level. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
 
 The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It doesn't affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
 
