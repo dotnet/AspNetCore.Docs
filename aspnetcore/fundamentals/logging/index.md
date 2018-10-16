@@ -204,7 +204,7 @@ Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executed 
 Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request finished in 316.3195ms 404
 ```
 
-The logs that are created by the `ILogger` calls shown in the preceding section begin with "TodoApi.Controllers.TodoController". The logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and app code are using the same logging API and providers.
+The logs that are created by the `ILogger` calls shown in the preceding section begin with "TodoApi.Controllers.TodoController". The logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and application code are using the same logging API and providers.
 
 The remainder of this article explains some details and options for logging.
 
@@ -272,7 +272,7 @@ ASP.NET Core defines the following log levels, ordered here from lowest to highe
 
 * Trace = 0
 
-  For information that's typically valuable only for debugging. These messages may contain sensitive app data and so shouldn't be enabled in a production environment. *Disabled by default.*
+  For information that's typically valuable only for debugging. These messages may contain sensitive application data and so shouldn't be enabled in a production environment. *Disabled by default.*
 
 * Debug = 1
 
@@ -536,23 +536,23 @@ The `WithFilter` extension method is provided by the [Microsoft.Extensions.Loggi
 
 Here are some categories used by ASP.NET Core and Entity Framework Core, with notes about what logs to expect from them:
 
-|Category  | Notes  |
-|----------|--------|
-|Microsoft.AspNetCore               |General ASP.NET Core diagnostics.|
-|Microsoft.AspNetCore.DataProtection|Which keys were considered, found, and used.|
-|Microsoft.AspNetCore.HostFiltering |Hosts allowed.|
-|Microsoft.AspNetCore.Hosting       |How long HTTP requests took to complete and what time they started. Which hosting startup assemblies were loaded. |
-|Microsoft.AspNetCore.Mvc           |MVC and Razor diagnostics. Model binding, filter execution, view compilation, action selection.|
-|Microsoft.AspNetCore.Routing       |Route matching information.|
-|Microsoft.AspNetCore.Server        |Connection start, stop, and keep alive responses. HTTPS certificate information.|
-|Microsoft.AspNetCore.StaticFiles   |Files served.|
-|Microsoft.EntityFrameworkCore      |General Entity Framework Core diagnostics. Database activity and configuration, change detection, migrations.|
+| Category                            | Notes |
+| ----------------------------------- | ----- |
+| Microsoft.AspNetCore                | General ASP.NET Core diagnostics. |
+| Microsoft.AspNetCore.DataProtection | Which keys were considered, found, and used. |
+| Microsoft.AspNetCore.HostFiltering  | Hosts allowed. |
+| Microsoft.AspNetCore.Hosting        | How long HTTP requests took to complete and what time they started. Which hosting startup assemblies were loaded. |
+| Microsoft.AspNetCore.Mvc            | MVC and Razor diagnostics. Model binding, filter execution, view compilation, action selection. |
+| Microsoft.AspNetCore.Routing        | Route matching information. |
+| Microsoft.AspNetCore.Server         | Connection start, stop, and keep alive responses. HTTPS certificate information. |
+| Microsoft.AspNetCore.StaticFiles    | Files served. |
+| Microsoft.EntityFrameworkCore       | General Entity Framework Core diagnostics. Database activity and configuration, change detection, migrations. |
 
 ## Log scopes
 
  A *scope* can group a set of logical operations. This grouping can be used to attach the same data to each log that's created as part of a set. For example, every log created as part of processing a transaction can include the transaction ID.
 
-A scope is an `IDisposable` type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block, as shown here:
+A scope is an `IDisposable` type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block:
 
 [!code-csharp[](index/samples/1.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
 
@@ -651,7 +651,7 @@ The settings shown limit framework logs to warnings while allowing the app to lo
 
 ::: moniker-end
 
-To see console logging output, open a command prompt in the project folder and run this command:
+To see console logging output, open a command prompt in the project folder and run the following command:
 
 ```console
 dotnet run
@@ -767,8 +767,12 @@ For information about logging in Azure, see the following sections:
 
 * [Azure App Service provider](#azure-app-service-provider)
 * [Azure log streaming](#azure-log-streaming)
+
 ::: moniker range=">= aspnetcore-1.1"
+
 * [Azure Application Insights trace logging](#azure-application-insights-trace-logging)
+
+::: moniker-end
 
 ### Azure App Service provider
 
@@ -784,13 +788,13 @@ If targeting .NET Core, note the following points:
 
 ::: moniker range="= aspnetcore-2.0"
 
-* The provider package is included in the ASP.NET Core [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
+* The provider package is included in the ASP.NET Core [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* The provider package is not included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+* The provider package is not included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). To use the provider, you have to install the package.
 
 ::: moniker-end
 
@@ -816,9 +820,9 @@ loggerFactory.AddAzureWebAppDiagnostics();
 
 ::: moniker range=">= aspnetcore-1.1"
 
-An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*> overload lets you pass in <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureAppServicesDiagnosticsSettings> which can override default settings, such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of what's provided with an `ILogger` method call.)
+An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*> overload lets you pass in <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureAppServicesDiagnosticsSettings>. The settings object can override default settings, such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs in addition to what's provided with an `ILogger` method call.)
 
-When you deploy to an App Service app, the app honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
+When you deploy to an App Service app, the application honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
 ![Azure logging settings](index/_static/azure-logging-settings.png)
 
@@ -838,8 +842,8 @@ Azure log streaming lets you view log activity in real time from:
 
 To configure Azure log streaming:
 
-* Navigate to the **Diagnostics Logs** page from your app's portal page
-* Set **Application Logging (Filesystem)** to on.
+* Navigate to the **Diagnostics Logs** page from your app's portal page.
+* Set **Application Logging (Filesystem)** to **On**.
 
 ![Azure portal diagnostic logs page](index/_static/azure-diagnostic-logs.png)
 
