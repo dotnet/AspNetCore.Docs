@@ -84,7 +84,7 @@ There are three cascading style sheet classes used to control the appearance of 
 
 - input-validation-error - Applied to the &lt;input&gt; tag rendered by Html.TextBox() helper.
 - field-validation-error - Applied to the &lt;span&gt; tag rendered by the Html.ValidationMessage() helper.
-- validation-summary-errors - Applied to the &lt;ul&gt; tag rendered by the Html.ValidationSumamry() helper.
+- validation-summary-errors - Applied to the &lt;ul&gt; tag rendered by the Html.ValidationSummary() helper.
 
 You can modify these cascading style sheet classes, and therefore modify the appearance of the validation errors, by modifying the Site.css file located in the Content folder.
 
