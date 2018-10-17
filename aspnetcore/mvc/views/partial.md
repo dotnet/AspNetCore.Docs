@@ -52,7 +52,7 @@ Partial view file names often begin with an underscore (`_`). This naming conven
 
 ::: moniker range="= aspnetcore-2.1"
 
-In ASP.NET Core 2.1, Razor Pages serves as a page any partial view whose file name begins with an underscore.
+In ASP.NET Core 2.1 only, Razor Pages serves as a page any partial view whose file name begins with an underscore.
 
 ::: moniker-end
 
