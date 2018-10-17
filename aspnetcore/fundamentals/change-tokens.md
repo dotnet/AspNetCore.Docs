@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use change tokens to track changes.
 ms.author: riande
 ms.date: 11/10/2017
-uid: fundamentals/primitives/change-tokens
+uid: fundamentals/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core
 
@@ -12,7 +12,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 A *change token* is a general-purpose, low-level building block used to track changes.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/primitives/change-tokens/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/change-tokens/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## IChangeToken interface
 
