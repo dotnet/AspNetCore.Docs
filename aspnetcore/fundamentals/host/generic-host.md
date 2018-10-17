@@ -43,10 +43,10 @@ The Generic Host library is available in the [Microsoft.Extensions.Hosting names
 
 The following services are registered during host initialization:
 
-* [Environment](xref:fundamentals/environments) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment>)
+* [Environment](xref:fundamentals/environments) (<xref:Microsoft.Extensions.Hosting.IHostingEnvironment>)
 * <xref:Microsoft.Extensions.Hosting.HostBuilderContext>
 * [Configuration](xref:fundamentals/configuration/index) (<xref:Microsoft.Extensions.Configuration.IConfiguration>)
-* <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime> (<xref:Microsoft.AspNetCore.Hosting.Internal.ApplicationLifetime>)
+* <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> (<xref:Microsoft.Extensions.Hosting.Internal.ApplicationLifetime>)
 * <xref:Microsoft.Extensions.Hosting.IHostLifetime> (<xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime>)
 * <xref:Microsoft.Extensions.Hosting.IHost>
 * [Options](xref:fundamentals/configuration/options) (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions*>)
