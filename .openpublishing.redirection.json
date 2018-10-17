@@ -12,7 +12,7 @@
     }, 
     {   
         "source_path": "aspnetcore/fundamentals/primitives/change-tokens.md", 
-        "redirect_url": "/aspnet/core/change-tokens", 
+        "redirect_url": "/aspnet/core/fundamentals/change-tokens", 
         "redirect_document_id": false 
     }, 
     {   
