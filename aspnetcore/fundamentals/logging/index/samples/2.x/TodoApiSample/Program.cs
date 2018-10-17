@@ -1,4 +1,4 @@
-﻿#define TemplateCode // or ExpandDefault or FilterInCode or MinLevel or FilterFunction
+﻿#define TemplateCode // or LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction
 
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,10 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using TodoApiSample.Core.Interfaces;
+using TodoApiSample.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace TodoApiSample
 {
@@ -26,6 +30,32 @@ namespace TodoApiSample
                 .UseStartup<Startup>()
                 .Build();
         #endregion
+#elif LogFromMain
+        #region snippet_LogFromMain
+        public static void Main(string[] args)
+        {
+            var host = BuildWebHost(args);
+
+            var todoRepository = host.Services.GetRequiredService<ITodoRepository>();
+            todoRepository.Add(new Core.Model.TodoItem() { Name = "Feed the dog" });
+            todoRepository.Add(new Core.Model.TodoItem() { Name = "Walk the dog" });
+
+            var logger = host.Services.GetRequiredService<ILogger<Program>>();
+            logger.LogInformation("Seeded the database.");
+
+            host.Run();
+        }
+        
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                })
+                .Build();
+        #endregion
 #elif ExpandDefault
         #region snippet_ExpandDefault
         public static void Main(string[] args)
@@ -37,7 +67,8 @@ namespace TodoApiSample
                 {
                     var env = hostingContext.HostingEnvironment;
                     config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                          .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                          .AddJsonFile($"appsettings.{env.EnvironmentName}.json", 
+                              optional: true, reloadOnChange: true);
                     config.AddEnvironmentVariables();
                 })
                 .ConfigureLogging((hostingContext, logging) =>
@@ -45,6 +76,7 @@ namespace TodoApiSample
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                     logging.AddConsole();
                     logging.AddDebug();
+                    logging.AddEventSourceLogger();
                 })
                 .UseStartup<Startup>()
                 .Build();

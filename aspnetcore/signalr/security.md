@@ -53,6 +53,58 @@ public void Configure(IApplicationBuilder app)
 > [!NOTE]
 > SignalR is not compatible with the built-in CORS feature in Azure App Service.
 
+### WebSocket Origin Restriction
+
+The protections provided by CORS do not apply to WebSockets. Browsers do not perform CORS pre-flight requests, nor do they respect the restrictions specified in `Access-Control` headers when making WebSocket requests. However, browsers do send the `Origin` header when issuing WebSocket requests. You should configure your application to validate these headers in order to ensure that only WebSockets coming from the origins you expect are allowed.
+
+In ASP.NET Core 2.1, this can be achieved using a custom middleware you can place **above `UseSignalR`, and any authentication middleware** in your `Configure` method:
+
+```csharp
+// In your Startup class, add a static field listing the allowed Origin values:
+private static readonly HashSet<string> _allowedOrigins = new HashSet<string>()
+{
+    // Add allowed origins here. For example:
+    "http://www.mysite.com",
+    "http://mysite.com",
+};
+
+// In your Configure method:
+public void Configure(IApplicationBuilder app)
+{
+    // ... other middleware ...
+
+    // Validate Origin header on WebSocket requests to prevent unexpected cross-site WebSocket requests
+    app.Use((context, next) =>
+    {
+        // Check for a WebSocket request.
+        if(string.Equals(context.Request.Headers["Upgrade"], "websocket"))
+        {
+            var origin = context.Request.Headers["Origin"];
+
+            // If there is no origin header, or if the origin header doesn't match an allowed value:
+            if(string.IsNullOrEmpty(origin) && !_allowedOrigins.Contains(origin))
+            {
+                // The origin is not allowed, reject the request
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                return Task.CompletedTask;
+            }
+        }
+
+        // The request is not a WebSocket request or is a valid Origin, so let it continue
+        return next();
+    });
+
+    // ... other middleware ...
+
+    app.UseSignalR();
+
+    // ... other middleware ...
+}
+```
+
+> [!NOTE]
+> The `Origin` header is completely controlled by the client and, like the `Referer` header, can be faked. These headers should never be used as an authentication mechanism.
+
 ### Access token logging
 
 When using WebSockets or Server-Sent Events, the browser client sends the access token in the query string. This is generally as secure as using the standard `Authorization` header, however many web servers log the URL for each request, including the query string. This means the access token may be included in logs. Consider reviewing the web server's logging settings to avoid logging this information.

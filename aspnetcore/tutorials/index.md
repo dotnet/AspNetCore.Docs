@@ -67,7 +67,6 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Use Gulp](xref:client-side/using-gulp)
 * [Use Grunt](xref:client-side/using-grunt)
 * [Manage client-side packages with Bower](xref:client-side/bower)
-* [Build responsive sites with Bootstrap](xref:client-side/bootstrap)
 
 ## Test
 
