@@ -122,7 +122,7 @@
 ### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
 ## [Static files](xref:fundamentals/static-files)
 ## [Routing](xref:fundamentals/routing)
-## [URL rewriting middleware](xref:fundamentals/url-rewriting)
+## [URL rewriting](xref:fundamentals/url-rewriting)
 ## [Use multiple environments](xref:fundamentals/environments)
 ## [Configuration and options](xref:fundamentals/configuration/index)
 ### [Configuration](xref:fundamentals/configuration/index)
