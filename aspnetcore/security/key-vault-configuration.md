@@ -57,6 +57,48 @@ When you run the app, a webpage shows the loaded secret values:
 
 ![Browser window showing secret values loaded via the Azure Key Vault Configuration Provider](key-vault-configuration/_static/sample1.png)
 
+## Bind an array to a class
+
+The provider is capable of reading configuration values into an array for binding to a POCO array.
+
+Ordinarily when reading from a configuration source into an array, a numeric key segment is used to distinguish the keys (in colon notation, `:0:`, `:1:`, … `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+
+In the sample app approach described in this topic, hierarchical values (sections) use `--` (double dashes) as a separator. Array keys that include numeric key segments use the `--` (double dash) notation (`--0--`, `--1--`, … `--{n}--`).
+
+Examine the following [Serilog](https://serilog.net/) JSON file configuration. There are two `WriteTo` sinks specified in a JSON array:
+
+```json
+"Serilog": {
+  "WriteTo": [
+    {
+      "Name": "AzureTableStorage",
+      "Args": {
+        "storageTableName": "logs",
+        "connectionString": "DefaultEnd...ountKey=Eby8...GMGw=="
+      }
+    },
+    {
+      "Name": "AzureDocumentDB",
+      "Args": {
+        "endpointUrl": "https://contoso.documents.azure.com:443",
+        "authorizationKey": "Eby8...GMGw=="
+      }
+    }
+  ]
+}
+```
+
+The configuration shown in the preceding JSON file is stored in Azure Key Vault using `--` (double dash) notation and numeric segments:
+
+| Key | Value |
+| --- | ----- |
+| `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
+| `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
+| `Serilog--WriteTo--0--Args--connectionString` | `DefaultEnd...ountKey=Eby8...GMGw==` |
+| `Serilog--WriteTo--1--Name` | `AzureDocumentDB` |
+| `Serilog--WriteTo--1--Args--endpointUrl` | `https://contoso.documents.azure.com:443` |
+| `Serilog--WriteTo--1--Args--authorizationKey` | `Eby8...GMGw==` |
+
 ## Create prefixed key vault secrets and load configuration values (key-name-prefix-sample)
 
 `AddAzureKeyVault` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
