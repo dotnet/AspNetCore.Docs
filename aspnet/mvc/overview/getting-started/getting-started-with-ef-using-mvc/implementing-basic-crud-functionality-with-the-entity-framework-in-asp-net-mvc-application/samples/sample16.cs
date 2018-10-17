@@ -1,5 +1,8 @@
 protected override void Dispose(bool disposing)
 {
-    db.Dispose();
+    if (disposing)
+    {
+        db.Dispose();
+    }
     base.Dispose(disposing);
 }

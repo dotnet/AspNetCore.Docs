@@ -102,7 +102,7 @@ In the following code, a second `IConfigureOptions<TOptions>` service is added t
 
 [!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example2)]
 
-You can add multiple configuration providers. Configuration providers are available in NuGet packages. They're applied in order that they're registered.
+You can add multiple configuration providers. Configuration providers are available in NuGet packages. They're applied in the order that they're registered.
 
 Each call to [Configure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1.configure) adds an `IConfigureOptions<TOptions>` service to the service container. In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the values of `Option1` and `Option2` are overridden by the configured delegate.
 
@@ -244,7 +244,9 @@ named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
 * The `named_options_2` delegate in `ConfigureServices` for `Option1`.
 * The default value for `Option2` provided by the `MyOptions` class.
 
-Configure all named options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method. The following code configures `Option1` for all named configuration instances with a common value. Add the following code manually to the `Configure` method:
+## Configure all options with the ConfigureAll method
+
+Configure all options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method. The following code configures `Option1` for all configuration instances with a common value. Add the following code manually to the `Configure` method:
 
 ```csharp
 services.ConfigureAll<MyOptions>(myOptions => 
@@ -347,7 +349,7 @@ services.PostConfigure<MyOptions>("named_options_1", myOptions =>
 });
 ```
 
-Use [PostConfigureAll&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) to post-configure all named configuration instances:
+Use [PostConfigureAll&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) to post-configure all configuration instances:
 
 ```csharp
 services.PostConfigureAll<MyOptions>(myOptions =>

@@ -42,12 +42,12 @@ Complete the **New Project** dialog:
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
 * In the version selector drop-down box select **ASP.NET Core 2.1**
-* Select **Web Application(Model-View-Controller)**
+* Select **Web Application (Model-View-Controller)**
 * Tap **OK**.
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
 
-Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start,
+Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
 
 Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
 <!-- These images are also used by uid: tutorials/first-mvc-app-xplat/start-mvc -->

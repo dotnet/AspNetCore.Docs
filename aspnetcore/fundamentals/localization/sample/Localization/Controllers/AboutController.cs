@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
-namespace Localization.StarterWeb.Controllers
+namespace Localization.Controllers
 {
     [Route("api/[controller]")]
     public class AboutController : Controller

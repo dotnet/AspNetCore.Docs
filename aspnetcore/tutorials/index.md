@@ -67,7 +67,6 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Use Gulp](xref:client-side/using-gulp)
 * [Use Grunt](xref:client-side/using-grunt)
 * [Manage client-side packages with Bower](xref:client-side/bower)
-* [Build responsive sites with Bootstrap](xref:client-side/bootstrap)
 
 ## Test
 
@@ -76,7 +75,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 ## Host and deploy
 
 * [Deploy an ASP.NET Core web app to Azure using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
-* [Deploy an ASP.NET Core web app to Azure using the command line](xref:tutorials/publish-to-azure-webapp-using-cli)
+* [Deploy an ASP.NET Core web app to Azure using the command line](/azure/app-service/app-service-web-get-started-dotnet)
 * [Publish to an Azure Web App with continuous deployment](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 * [Deploy an ASP.NET container to a remote Docker host](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
 * [ASP.NET Core and Azure Service Fabric](/azure/service-fabric/service-fabric-add-a-web-frontend)

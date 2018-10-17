@@ -16,37 +16,37 @@ by [Patrick Fletcher](https://github.com/pfletcher)
 [Download Completed Project](http://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a)
 
 > This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide high-frequency messaging functionality. High-frequency messaging in this case means updates that are sent at a fixed rate; in the case of this application, up to 10 messages a second.
-> 
+>
 > The application you'll create in this tutorial displays a shape that users can drag. The position of the shape in all other connected browsers will then be updated to match the position of the dragged shape using timed updates.
-> 
+>
 > Concepts introduced in this tutorial have applications in real-time gaming and other simulation applications.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
 > - SignalR version 2
->   
-> 
-> 
+>
+>
+>
 > ## Using Visual Studio 2012 with this tutorial
-> 
-> 
+>
+>
 > To use Visual Studio 2012 with this tutorial, do the following:
-> 
+>
 > - Update your [Package Manager](http://docs.nuget.org/docs/start-here/installing-nuget) to the latest version.
 > - Install the [Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx).
 > - In the Web Platform Installer, search for and install **ASP.NET and Web Tools 2013.1 for Visual Studio 2012**. This will install Visual Studio templates for SignalR classes such as **Hub**.
 > - Some templates (such as **OWIN Startup Class**) will not be available; for these, use a Class file instead.
-> 
-> 
+>
+>
 > ## Tutorial Versions
-> 
+>
 > For information about earlier versions of SignalR, see [SignalR Older Versions](../older-versions/index.md).
-> 
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
@@ -96,12 +96,12 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
 3. In **Solution Explorer**, right-click the project, select **Add | SignalR Hub Class (v2)**. Name the class **MoveShapeHub.cs** and add it to the project. This step creates the **MoveShapeHub** class and adds to the project a set of script files and assembly references that support SignalR.
 
     > [!NOTE]
-    > You can also add SignalR to a project by clicking **Tools | Library Package Manager | Package Manager Console** and running a command:
+    > You can also add SignalR to a project by clicking **Tools > NuGet Package Manager > Package Manager Console** and running a command:
 
-    `install-package Microsoft.AspNet.SignalR`. 
+    `install-package Microsoft.AspNet.SignalR`.
 
     If you use the console to add SignalR, create the SignalR hub class as a separate step after you add SignalR.
-4. Click **Tools | Library Package Manager | Package Manager Console**. In the package manager window, run the following command:
+4. Click **Tools > NuGet Package Manager > Package Manager Console**. In the package manager window, run the following command:
 
     `Install-Package jQuery.UI.Combined`
 
@@ -207,7 +207,7 @@ The application is almost complete, but we could make one more improvement, in t
 
 ## Further Steps
 
-In this tutorial, you've learned how to program a SignalR application that sends high-frequency messages between clients and servers. This communication paradigm is useful for developing online games and other simulations, such as [the ShootR game created with SignalR](http://shootr.signalr.net).
+In this tutorial, you've learned how to program a SignalR application that sends high-frequency messages between clients and servers. This communication paradigm is useful for developing online games and other simulations, such as [the ShootR game created with SignalR](https://shootr.azurewebsites.net/).
 
 The complete application created in this tutorial can be downloaded from [Code Gallery](https://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a).
 

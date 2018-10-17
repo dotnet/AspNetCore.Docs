@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Adding a New Field to the Movie Model and Table
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > > [!NOTE]
 > > An updated version of this tutorial is available [here](../../getting-started/introduction/getting-started.md) that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demonstrates more features.
@@ -35,7 +35,7 @@ Navigate back to Solution Explorer. Right click on the *Movies.mdf* file and sel
 
 Build the application to make sure there are no errors.
 
-From the **Tools** menu, click **Library Package Manager** and then **Package Manager Console**.
+From the **Tools** menu, click **NuGet Package Manager** and then **Package Manager Console**.
 
 ![Add Pack Man](adding-a-new-field-to-the-movie-model-and-table/_static/image3.png)
 

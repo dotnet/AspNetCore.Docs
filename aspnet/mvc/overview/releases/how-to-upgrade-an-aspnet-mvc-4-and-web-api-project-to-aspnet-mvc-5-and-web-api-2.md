@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > ASP.NET MVC 5 and Web API 2 bring a host of new features, including attribute routing, authentication filters, and much more. See [https://www.asp.net/vnext](https://www.asp.net/core) for more details.
 > 
@@ -65,8 +65,8 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
     > Microsoft-Web-Helpers has been replaced with Microsoft.AspNet.WebHelpers. You should remove the old package first, and then install the newer package.   
     >   
     > There is no cross version compatibility among major ASP.NET packages. For example, MVC 5 is compatible with only Razor 3, and not Razor 2.
-4. Open your project in Visual Studio 2013.
-5. Remove any of the following ASP.NET NuGet packages that are installed. You will remove these using the Package Manager Console (PMC). To open the PMC, select the **Tools** menu and then select **Library Package Manager,** then select **Package Manager Console**. Your project might not include all of these.
+4. Open your project in Visual Studio.
+5. Remove any of the following ASP.NET NuGet packages that are installed. You will remove these using the Package Manager Console (PMC). To open the PMC, select the **Tools** menu and then select **NuGet Package Manager,** then select **Package Manager Console**. Your project might not include all of these.
 
     1. `Microsoft.AspNet.WebPages.Administration`  
    This package is typically added when upgrading from MVC 3 to MVC 4. To remove it, run the following command in the PMC:  

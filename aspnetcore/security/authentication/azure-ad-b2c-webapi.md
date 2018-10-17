@@ -11,10 +11,9 @@ uid: security/authentication/azure-ad-b2c-webapi
 
 By [Cam Soper](https://twitter.com/camsoper)
 
-[Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Additionally, Azure AD B2C can provide multi-factor authentication with minimal configuration.
+[Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Azure AD B2C also provides multi-factor authentication with minimal configuration.
 
-> [!TIP]
-> Azure Active Directory (Azure AD) and Azure AD B2C are separate product offerings. An Azure AD tenant represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+Azure Active Directory (Azure AD) and Azure AD B2C are separate product offerings. An Azure AD tenant represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
 Since web APIs have no user interface, they're unable to redirect the user to a secure token service like Azure AD B2C. Instead, the API is passed a bearer token from the calling app, which has already authenticated the user with Azure AD B2C. The API then validates the token without direct user interaction.
 
@@ -58,7 +57,7 @@ Use the following values:
 | **App ID URI**                | *api*               | The URI doesn't need to resolve to a physical address. It only needs to be unique.     |
 | **Include native client**     | No                  |                                                                                        |
 
-After the API is registered, the list of apps and APIs in the tenant is displayed. Select the API that was just registered. Select the **Copy** icon to the right of the **Application ID** field to copy it to the clipboard. Select **Published scopes** and verify the default *user_impersonation* scope is present.
+After the API is registered, the list of apps and APIs in the tenant is displayed. Select the API that was previously registered. Select the **Copy** icon to the right of the **Application ID** field to copy it to the clipboard. Select **Published scopes** and verify the default *user_impersonation* scope is present.
 
 ## Create an ASP.NET Core app in Visual Studio 2017
 
@@ -72,7 +71,7 @@ In Visual Studio:
 
     ![Change Authentication Button](./azure-ad-b2c-webapi/change-auth-button.png)
 
-4. In the **Change Authentication** dialog, select **Individual User Accounts**, and then select **Connect to an existing user store in the cloud** in the dropdown. 
+4. In the **Change Authentication** dialog, select **Individual User Accounts** > **Connect to an existing user store in the cloud**.
 
     ![Change Authentication Dialog](./azure-ad-b2c-webapi/change-auth-dialog.png)
 
@@ -101,7 +100,7 @@ In Visual Studio, run the API. Visual Studio launches a browser pointed at the A
 
 ### Register Postman as a web app
 
-Since Postman simulates a web app that can obtain tokens from the Azure AD B2C tenant, it must be registered in the tenant as a web app. Register Postman using [the steps in the documentation](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-app) under the **Register a web app** section. Stop at the **Create a web app client secret** section. A client secret isn't required for this tutorial. 
+Since Postman simulates a web app that obtains tokens from the Azure AD B2C tenant, it must be registered in the tenant as a web app. Register Postman using [the steps in the documentation](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-app) under the **Register a web app** section. Stop at the **Create a web app client secret** section. A client secret isn't required for this tutorial. 
 
 Use the following values:
 
@@ -117,10 +116,10 @@ Use the following values:
 The newly registered web app needs permission to access the web API on the user's behalf.  
 
 1. Select **Postman** in the list of apps and then select **API access** from the menu on the left.
-2. Select **+ Add**.
-3. In the **Select API** dropdown, select the name of the web API.
-4. In the **Select Scopes** dropdown, ensure all scopes are selected.
-5. Select **Ok**.
+1. Select **+ Add**.
+1. In the **Select API** dropdown, select the name of the web API.
+1. In the **Select Scopes** dropdown, ensure all scopes are selected.
+1. Select **Ok**.
 
 Note the Postman app's Application ID, as it's required to obtain a bearer token.
 
@@ -145,7 +144,7 @@ From the **Create New** dialog:
 
 To verify that the web API requires authentication, first make a request without authentication.
 
-1. In the **Enter request URL** box, enter the URL for `ValuesController`. The URL is the same as displayed in the browser with **api/values** appended. An example would be `https://localhost:44375/api/values`.
+1. In the **Enter request URL** box, enter the URL for `ValuesController`. The URL is the same as displayed in the browser with **api/values** appended. For example, `https://localhost:44375/api/values`.
 2. Select the **Send** button.
 3. Note the status of the response is *401 Unauthorized*.
 
@@ -177,11 +176,11 @@ To make an authenticated request to the web API, a bearer token is required. Pos
    | <strong>Client Authentication</strong> |                                Send client credentials in body                                |                                                                                                                                                                                                                                                                              |
 
     > [!NOTE]
-    > &dagger;The **Auth URL** can be confusing. The policy settings dialog in the Azure Active Directory B2C portal displays two possible URLs: One in the format `https://login.microsoftonline.com/{tenant domain name}/{additional path information}`, and the other in the format `https://{tenant name}.b2clogin.com/{tenant domain name}/{additional path information}`. It's **critical** that the domain found in in `AzureAdB2C.Instance` in the web API's *appsettings.json* file matches the one used in the web app's *appsettings.json* file. This is the same domain used for the Auth URL field in Postman. Additionally, note that Visual Studio uses a slightly different URL format than what's displayed in the portal. As long as the domains match, the URL works.
+    > &dagger; The policy settings dialog in the Azure Active Directory B2C portal displays two possible URLs: One in the format `https://login.microsoftonline.com/`{tenant domain name}/{additional path information}, and the other in the format `https://{tenant name}.b2clogin.com/`{tenant domain name}/{additional path information}. It's **critical** that the domain found in in `AzureAdB2C.Instance` in the web API's *appsettings.json* file matches the one used in the web app's *appsettings.json* file. This is the same domain used for the Auth URL field in Postman. Note that Visual Studio uses a slightly different URL format than what's displayed in the portal. As long as the domains match, the URL works.
 
 3. Select the **Request Token** button.
 
-4. Postman opens a new window containing the Azure AD B2C tenant's sign in dialog. Sign in with an existing account (if one was created testing the policies) or select **Sign up now** to create a new account. The **Forgot your password?** link is used to reset a forgotten password.
+4. Postman opens a new window containing the Azure AD B2C tenant's sign-in dialog. Sign in with an existing account (if one was created testing the policies) or select **Sign up now** to create a new account. The **Forgot your password?** link is used to reset a forgotten password.
 
 5. After successfully signing in, the window closes and the **MANAGE ACCESS TOKENS** dialog appears. Scroll down to the bottom and select the **Use Token** button.
 

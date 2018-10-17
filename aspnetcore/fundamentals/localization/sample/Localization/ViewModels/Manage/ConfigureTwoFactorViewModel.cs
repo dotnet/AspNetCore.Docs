@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Localization.StarterWeb.ViewModels.Manage
+namespace Localization.ViewModels.Manage
 {
     public class ConfigureTwoFactorViewModel
     {

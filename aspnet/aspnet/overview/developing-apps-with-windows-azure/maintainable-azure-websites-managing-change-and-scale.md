@@ -16,17 +16,17 @@ by [Web Camps Team](https://twitter.com/webcamps)
 [Download Web Camps Training Kit](http://aka.ms/webcamps-training-kit)
 
 > Microsoft Azure makes it easy to build and deploy websites to production. But you're not done when your application is live, you're just getting started! You'll need to handle changing requirements, database updates, scale, and more. Fortunately, Azure App Service has you covered, with plenty of features to help you keep your sites running smoothly.
-> 
+>
 > Azure offers secure and flexible development, deployment and scaling options for any size web application. Leverage your existing tools to create and deploy applications without the hassle of managing infrastructure.
-> 
+>
 > Provision a production web application yourself in minutes by easily deploying content created using your favorite development tool. You can deploy an existing site directly from source control with support for **Git**, **GitHub**, **Bitbucket**, **TFS**, and even **DropBox**. Deploy directly from your favorite IDE or from scripts using **PowerShell** in Windows or **CLI** tools running on any OS. Once deployed, keep your sites constantly up-to-date with support for continuous deployment.
-> 
+>
 > Azure provides scalable, durable cloud storage, backup, and recovery solutions for any data, big or small. When deploying applications to a production environment, storage services such as Tables, Blobs and SQL Databases, help you scale your application in the cloud.
-> 
+>
 > With SQL Databases, it is important to keep your productive database up-to-date when deploying new versions of your application. Thanks to **Entity Framework Code First Migrations**, the development and deployment of your data model has been simplified to update your environments in minutes. This hands-on lab will show you the different topics you could encounter when deploying your web app to production environments in Microsoft Azure.
-> 
+>
 > All sample code and snippets are included in the Web Camps Training Kit, available at [http://aka.ms/webcamps-training-kit](http://aka.ms/webcamps-training-kit).
-> 
+>
 > For more in-depth coverage of this topic, see the [Building Real-World Cloud Apps with Azure e-book](building-real-world-cloud-apps-with-windows-azure/introduction.md).
 
 
@@ -54,7 +54,7 @@ The following is required to complete this hands-on lab:
 - [Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/) or greater
 - [Azure SDK for .NET 2.2](https://www.microsoft.com/windowsazure/sdk/)
 - [GIT Version Control System](http://git-scm.com/download)
-- A Microsoft Azure subscription 
+- A Microsoft Azure subscription
 
     - Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
     - If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Azure
@@ -118,7 +118,7 @@ In this task, you will go through the steps of enabling **Entity Framework Code 
 
 1. Open Visual Studio and open the **GeekQuiz.sln** solution file from **Source\Ex1-UsingEntityFrameworkMigrations\Begin**.
 2. Build the solution in order to download and install the **NuGet** package dependencies. To do this, right-click the solution and click **Build Solution** or press **Ctrl + Shift + B**.
-3. From the **Tools** menu in Visual Studio, select **Library Package Manager**, and then click **Package Manager Console**.
+3. From the **Tools** menu in Visual Studio, select **NuGet Package Manager**, and then click **Package Manager Console**.
 4. In the **Package Manager Console**, enter the following command and then press **Enter**. An initial migration based on the existing model will be created.
 
     [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample1.ps1)]
@@ -196,10 +196,10 @@ In this task, you will use **Entity Framework Code First Migrations** to detect 
 
     > [!NOTE]
     > A Migration file is composed of two methods, **Up** and **Down**.
-    > 
+    >
     > - The **Up** method will be used to specify what changes the current version of our application need to apply to the database.
     > - The **Down** is used to reverse the changes we have added to the **Up** method.
-    > 
+    >
     > When the Database Migration updates the database, it will run all migrations in the timestamp order, and only those that have not been used since the last update (The \_MigrationHistory table keeps track of which migrations have been applied). The **Up** method of all migrations will be called and will make the changes we have specified to the database. If we decide to go back to a previous migration, the **Down** method will be called to redo the changes in a reverse order.
 4. In the **Package Manager Console**, enter the following command and then press **Enter**.
 
@@ -292,15 +292,15 @@ In this task, you will create a web app in **Azure App Service** from the manage
 
     > [!NOTE]
     > By default, Azure provides domains at *azurewebsites.net* but also gives you the possibility to set custom domains using the Azure management portal. However, you can only manage custom domains if you are using certain Azure App Service modes.
-    > 
+    >
     > Azure App Service is available in Free, Shared, Basic, Standard, and Premium editions. In Free and Shared mode, all web apps run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. The maximum number of free apps may vary with your plan. In Standard mode, you choose which apps run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the web app mode configuration in the **Scale** menu of your web app.
-    > 
+    >
     > ![Azure App Service Modes](maintainable-azure-websites-managing-change-and-scale/_static/image19.png "Azure App Service Modes")
-    > 
+    >
     > If you are using **Shared** or **Standard** mode, you will be able to manage custom domains for your web app by going to your app's **Configure** menu and clicking **Manage Domains** under *domain names*.
-    > 
+    >
     > ![Manage Domains](maintainable-azure-websites-managing-change-and-scale/_static/image20.png "Manage Domains")
-    > 
+    >
     > ![Manage Custom Domains](maintainable-azure-websites-managing-change-and-scale/_static/image21.png "Manage Custom Domains")
 9. Once the web app is created, click the link under the **URL** column to check that the new web app is running.
 
@@ -748,7 +748,7 @@ In this task you will use the Azure management portal to enable the Autoscale fe
 
     > [!NOTE]
     > This range represents the average CPU usage for your web app. Azure will add or remove instances to keep your web app in this range. The minimum and maximum number of instances used for scaling is specified in the **Instance Count** configuration. Azure will never go above or beyond that limit.
-    > 
+    >
     > The default **Target CPU** values are modified just for the purposes of this lab. By configuring the CPU range with small values, you are increasing the chances to trigger Autoscale when a moderate load is placed on the application.
 
     ![Changing the target CPU to be between 20 and 40 percent](maintainable-azure-websites-managing-change-and-scale/_static/image78.png "Changing the target CPU to be between 20 and 40 percent")
@@ -863,7 +863,7 @@ Now that **Autoscale** has been configured, you will create a **Web Performance 
 20. In **Solution Explorer**, double-click the **Local.settings** file to explore the test settings. By default, Visual Studio uses your local computer to run the tests.
 
     > [!NOTE]
-    > Alternatively, you can configure your test project to run the load tests in the cloud using **Visual Studio Online (VSO)**. VSO provides a cloud-based load testing service that simulates a more realistic load, avoiding local environment constraints like CPU capacity, available memory and network bandwidth. For more information about using VSO to run load tests, see [this article](https://www.visualstudio.com/get-started/load-test-your-app-vs).
+    > Alternatively, you can configure your test project to run the load tests in the cloud using **Azure Test Plans**. Azure Test Plans provides a cloud-based load testing service that simulates a more realistic load, avoiding local environment constraints like CPU capacity, available memory, and network bandwidth. For more information about using Azure Test Plans to run load tests, see [Load testing scenarios](/azure/devops/test/load-test/overview?view=vsts).
 
     ![Test settings](maintainable-azure-websites-managing-change-and-scale/_static/image98.png)
 
@@ -898,10 +898,10 @@ You will now execute the load test you created in the previous task and see how 
 
     > [!NOTE]
     > It may take several minutes for the changes to appear in the graph (press **CTRL + F5** periodically to refresh the page). If you do not see any changes, you can try the following:
-    > 
+    >
     > - Increase the duration of the load test (e.g. to **10 minutes**)
     > - Reduce the maximum and minimum values of the **Target CPU** range in the Autoscale configuration of your web app
-    > - Run the load test in the cloud with **Visual Studio Online**. More information [here](https://www.visualstudio.com/get-started/load-test-your-app-vs.aspx)
+    > - Run the load test in the cloud with **Azure Test Plans**. More information [here](/azure/devops/test/load-test/index?view=vsts)
 
 * * *
 

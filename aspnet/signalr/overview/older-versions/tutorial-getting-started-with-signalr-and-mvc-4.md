@@ -57,7 +57,7 @@ This section shows how to create an ASP.NET MVC 4 application, add the SignalR l
       2. Select the Internet Application template, clear the option to **Create a unit test project**, and click OK.
 
          ![Create mvc internet site](tutorial-getting-started-with-signalr-and-mvc-4/_static/image4.png)
-      3. Open the **Tools | Library Package Manager | Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
+      3. Open the **Tools > NuGet Package Manager > Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
 
          `install-package Microsoft.AspNet.SignalR -Version 1.1.3`
       4. In **Solution Explorer** expand the Scripts folder. Note that script libraries for SignalR have been added to the project.
