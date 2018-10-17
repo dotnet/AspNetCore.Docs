@@ -26,7 +26,7 @@ Moving your application involves these steps:
 1. [Starting a Docker container that runs your image.](#start-a-container)
 1. [Verifying the application using your browser.](#verify-in-the-browser)
 
-The [finished application](https://github.com/dotnet/docs/tree/master/samples/framework/docker/MVCRandomAnswerGenerator) is on GitHub.
+The [finished application](https://github.com/dotnet/samples/tree/master/framework/docker/MVCRandomAnswerGenerator) is on GitHub.
 
 ## Prerequisites
 

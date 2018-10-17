@@ -68,7 +68,7 @@ In this tutorial, you'll create a server that's hosted in a console application,
 1. Open Visual Studio 2013 with administrator privileges. Select **File**, **New Project**. Select **Windows** under the **Visual C#** node in the **Templates** pane, and select the **Console Application** template. Name the new project "SignalRSelfHost" and click **OK**.
 
     ![](tutorial-signalr-self-host/_static/image1.png)
-2. Open the library package manager console by selecting **Tools**, **Library Package Manager**, **Package Manager Console**.
+2. Open the NuGet package manager console by selecting **Tools** > **NuGet Package Manager** > **Package Manager Console**.
 3. In the package manager console, enter the following command:
 
     [!code-powershell[Main](tutorial-signalr-self-host/samples/sample1.ps1)]

@@ -1,6 +1,21 @@
 { 
   "redirections": [ 
     {   
+        "source_path": "aspnetcore/fundamentals/repository-pattern.md", 
+        "redirect_url": "/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design#the-repository-pattern", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/fundamentals/primitives/index.md", 
+        "redirect_url": "/aspnet/core/fundamentals/change-tokens", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/fundamentals/primitives/change-tokens.md", 
+        "redirect_url": "/aspnet/core/fundamentals/change-tokens", 
+        "redirect_document_id": false 
+    }, 
+    {   
         "source_path": "aspnetcore/tutorials/publish-to-azure-webapp-using-cli.md", 
         "redirect_url": "/azure/app-service/app-service-web-get-started-dotnet", 
         "redirect_document_id": false 
@@ -468,6 +483,11 @@
     {
         "source_path": "aspnetcore/security/authentication/identity-primary-key-configuration.md",
         "redirect_url": "/aspnet/core/security/authentication/customize_identity_model#change-the-primary-key-type",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/client-side/bootstrap.md",
+        "redirect_url": "https://getbootstrap.com/",
         "redirect_document_id": false
     }
   ] 

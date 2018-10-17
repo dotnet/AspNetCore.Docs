@@ -23,7 +23,7 @@ This topic shows how to enable attribute routing and describes the various optio
 
 [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Community, Professional, or Enterprise edition
 
-Alternatively, use NuGet Package Manager to install the necessary packages. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. Enter the following command in the Package Manager Console window:
+Alternatively, use NuGet Package Manager to install the necessary packages. From the **Tools** menu in Visual Studio, select **NuGet Package Manager**, then select **Package Manager Console**. Enter the following command in the Package Manager Console window:
 
 `Install-Package Microsoft.AspNet.WebApi.WebHost`
 
@@ -239,11 +239,11 @@ To specify the route name, set the **Name** property on the attribute. The follo
 <a id="order"></a>
 ## Route Order
 
-When the framework tries to match a URI with a route, it evaluates the routes in a particular order. To specify the order, set the **RouteOrder** property on the route attribute. Lower values are evaluated first. The default order value is zero.
+When the framework tries to match a URI with a route, it evaluates the routes in a particular order. To specify the order, set the **Order** property on the route attribute. Lower values are evaluated first. The default order value is zero.
 
 Here is how the total ordering is determined:
 
-1. Compare the **RouteOrder** property of the route attribute.
+1. Compare the **Order** property of the route attribute.
 2. Look at each URI segment in the route template. For each segment, order as follows:
 
     1. Literal segments.
@@ -265,4 +265,4 @@ These routes are ordered as follows.
 4. orders/{\*date}
 5. orders/pending
 
-Notice that "details" is a literal segment and appears before "{id}", but "pending" appears last because the **RouteOrder** property is 1. (This example assumes there are no customers named "details" or "pending". In general, try to avoid ambiguous routes. In this example, a better route template for `GetByCustomer` is "customers/{customerName}" )
+Notice that "details" is a literal segment and appears before "{id}", but "pending" appears last because the **Order** property is 1. (This example assumes there are no customers named "details" or "pending". In general, try to avoid ambiguous routes. In this example, a better route template for `GetByCustomer` is "customers/{customerName}" )

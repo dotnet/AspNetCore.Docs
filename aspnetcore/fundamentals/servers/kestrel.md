@@ -83,7 +83,7 @@ If you expose your app to the Internet, use IIS, Nginx, or Apache as a *reverse 
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-A reverse proxy is required for edge deployments (exposed to traffic from the Internet) for security reasons. The 1.x versions of Kestrel don't have a full complement of defenses against attacks, such as appropriate timeouts, size limits, and concurrent connection limits.
+A reverse proxy is required for public-facing edge server deployments (exposed to traffic from the Internet) for security reasons. The 1.x versions of Kestrel don't have a full complement of defenses against attacks, such as appropriate timeouts, size limits, and concurrent connection limits.
 
 ::: moniker-end
 
@@ -177,11 +177,17 @@ The maximum number of concurrent open TCP connections can be set for the entire 
 
 ::: moniker range=">= aspnetcore-2.2"
 
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=3)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
+
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .UseKestrel(options =>
         {
             options.Limits.MaxConcurrentConnections = 100;
         });
@@ -189,31 +195,25 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
-
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=3)]
-
-::: moniker-end
-
 There's a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request). After a connection is upgraded, it isn't counted against the `MaxConcurrentConnections` limit.
 
 ::: moniker range=">= aspnetcore-2.2"
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=4)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .UseKestrel(options =>
         {
             options.Limits.MaxConcurrentUpgradedConnections = 100;
         });
 ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
-
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=4)]
 
 ::: moniker-end
 
@@ -240,21 +240,21 @@ Here's an example that shows how to configure the constraint for the app on ever
 
 ::: moniker range=">= aspnetcore-2.2"
 
-```csharp
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
-        {
-            options.Limits.MaxRequestBodySize = 10 * 1024;
-        });
-```
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=5)]
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
 
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=5)]
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .UseKestrel(options =>
+        {
+            options.Limits.MaxRequestBodySize = 10 * 1024;
+        });
+```
 
 You can override the setting on a specific request in middleware:
 
@@ -283,11 +283,17 @@ Here's an example that shows how to configure the minimum data rates in *Program
 
 ::: moniker range=">= aspnetcore-2.2"
 
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-9)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
+
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .UseKestrel(options =>
         {
             options.Limits.MinRequestBodyDataRate =
                 new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
@@ -295,12 +301,6 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
         });
 ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
-
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-9)]
 
 You can configure the rates per request in middleware:
 
@@ -436,10 +436,6 @@ Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `Conf
 ### Configure(IConfiguration)
 
 Creates a configuration loader for setting up Kestrel that takes an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) as input. The configuration must be scoped to the configuration section for Kestrel.
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
 
 ### ListenOptions.UseHttps
 
@@ -707,6 +703,12 @@ The [Listen](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelservero
 
 ::: moniker range=">= aspnetcore-2.2"
 
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_TCPSocket&highlight=9-16)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
+
 ```csharp
 public static void Main(string[] args)
 {
@@ -716,21 +718,15 @@ public static void Main(string[] args)
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .UseKestrel(options =>
         {
-            options.Listen(IPAddress.Loopback, 8000);
-            options.Listen(IPAddress.Loopback, 8001, listenOptions =>
+            options.Listen(IPAddress.Loopback, 5000);
+            options.Listen(IPAddress.Loopback, 5001, listenOptions =>
             {
                 listenOptions.UseHttps("testCert.pfx", "testPassword");
             });
         });
 ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
-
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_TCPSocket&highlight=9-16)]
 
 ::: moniker-end
 
@@ -748,11 +744,17 @@ Listen on a Unix socket with [ListenUnixSocket](/dotnet/api/microsoft.aspnetcore
 
 ::: moniker range=">= aspnetcore-2.2"
 
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_UnixSocket)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
+
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .UseKestrel(options =>
         {
             options.ListenUnixSocket("/tmp/kestrel-test.sock");
             options.ListenUnixSocket("/tmp/kestrel-test.sock", listenOptions =>
@@ -761,12 +763,6 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             });
         });
 ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0 || aspnetcore-2.1"
-
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_UnixSocket)]
 
 ::: moniker-end
 
@@ -1294,7 +1290,7 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 ```
 
 > [!NOTE]
-> [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) also has an [ForwardedHeadersOptions.AllowedHosts](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions.allowedhosts) option. Forwarded Headers Middleware and Host Filtering Middleware have similar functionality for different scenarios. Setting `AllowedHosts` with Forwarded Headers Middleware is appropriate when the Host header isn't preserved while forwarding requests with a reverse proxy server or load balancer. Setting `AllowedHosts` with Host Filtering Middleware is appropriate when Kestrel is used as an edge server or when the Host header is directly forwarded.
+> [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) also has an [ForwardedHeadersOptions.AllowedHosts](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions.allowedhosts) option. Forwarded Headers Middleware and Host Filtering Middleware have similar functionality for different scenarios. Setting `AllowedHosts` with Forwarded Headers Middleware is appropriate when the Host header isn't preserved while forwarding requests with a reverse proxy server or load balancer. Setting `AllowedHosts` with Host Filtering Middleware is appropriate when Kestrel is used as a public-facing edge server or when the Host header is directly forwarded.
 >
 > For more information on Forwarded Headers Middleware, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 

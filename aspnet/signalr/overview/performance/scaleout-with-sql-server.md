@@ -90,7 +90,7 @@ Create a SignalR application by following either of these tutorials:
 - [Getting Started with SignalR 2.0](../getting-started/tutorial-getting-started-with-signalr.md)
 - [Getting Started with SignalR 2.0 and MVC 5](../getting-started/tutorial-getting-started-with-signalr-and-mvc.md)
 
-Next, we'll modify the chat application to support scaleout with SQL Server. First, add the SignalR.SqlServer NuGet package to your project. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+Next, we'll modify the chat application to support scaleout with SQL Server. First, add the SignalR.SqlServer NuGet package to your project. In Visual Studio, from the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-powershell[Main](scaleout-with-sql-server/samples/sample4.ps1)]
 

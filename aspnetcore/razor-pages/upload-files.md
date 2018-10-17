@@ -336,4 +336,4 @@ The user can click the **Delete** link from there to reach the delete confirmati
 
 ## Troubleshooting
 
-For troubleshooting information with `IFormFile` uploading, see the [File uploads in ASP.NET Core: Troubleshooting](xref:mvc/models/file-uploads#troubleshooting).
+For troubleshooting information with `IFormFile` uploading, see [File uploads in ASP.NET Core: Troubleshooting](xref:mvc/models/file-uploads#troubleshooting).

@@ -153,8 +153,8 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 The Login form is displayed when:
 
-* The **Log in** link  is selected.
-* When a user accesses a page where they are not authenticated **or** authorized, they are redirected to the Login page.
+* The **Log in** link is selected.
+* A user attempts to access a restricted page that they aren't authorized to access **or** when they haven't been authenticated by the system.
 
 When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object (provided by dependency injection).
 

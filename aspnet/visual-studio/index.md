@@ -15,5 +15,6 @@ For current information about Visual Studio, go to [visualstudio.microsoft.com](
 
 The following pages link to information about how to use older versions of Visual Studio with ASP.NET.
 
+- [Visual Studio 2017](overview/2017/index.md)
 - [Visual Studio 2013](overview/2013/index.md)
 - [Visual Studio 2012](overview/2012/index.md)

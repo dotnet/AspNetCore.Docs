@@ -20,7 +20,7 @@ In this tutorial, the scaffolded CRUD (create, read, update, delete) code is rev
 
 To minimize complexity and keep these tutorials focused on EF Core, EF Core code is used in the page models. Some developers use a service layer or [repository pattern](xref:fundamentals/repository-pattern) in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
 
-In this tutorial, the Create, Edit, Delete, and Details Razor Pages in the *Student* folder are examined.
+In this tutorial, the Create, Edit, Delete, and Details Razor Pages in the *Students* folder are examined.
 
 The scaffolded code uses the following pattern for Create, Edit, and Delete pages:
 
@@ -51,7 +51,7 @@ In much of the scaffolded code, [FindAsync](/dotnet/api/microsoft.entityframewor
 * Finds an entity with the primary key (PK). If an entity with the PK is being tracked by the context, it's returned without a request to the DB.
 * Is simple and concise.
 * Is optimized to look up a single entity.
-* Can have perf benefits in some situations, but they rarely happens for typical web apps.
+* Can have perf benefits in some situations, but that rarely happens for typical web apps.
 * Implicitly uses [FirstAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_) instead of [SingleAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
 
 But if you want to `Include` other entities, then `FindAsync` is no longer appropriate. This means that you may need to abandon `FindAsync` and move to a query as your app progresses.
@@ -231,9 +231,9 @@ Test Delete.
 
 ## Common errors
 
-Student/Index or other links don't work:
+Students/Index or other links don't work:
 
-Verify the Razor Page contains the correct `@page` directive. For example, The Student/Index Razor Page should **not** contain a route template:
+Verify the Razor Page contains the correct `@page` directive. For example, The Students/Index Razor Page should **not** contain a route template:
 
 ```cshtml
 @page "{id:int}"

@@ -56,7 +56,7 @@ In general, use synchronous methods for the following conditions:
 - Simplicity is more important than efficiency.
 - The operations are primarily CPU operations instead of operations that involve extensive disk or network overhead. Using asynchronous methods on CPU-bound operations provides no benefits and results in more overhead.
 
-  In general, use asynchronous methods for the following conditions:
+In general, use asynchronous methods for the following conditions:
 
 - You're calling services that can be consumed through asynchronous methods, and you're using .NET 4.5 or higher.
 - The operations are network-bound or I/O-bound instead of CPU-bound.

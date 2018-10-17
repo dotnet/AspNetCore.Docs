@@ -53,6 +53,8 @@ If targeting .NET Core and referencing the [Microsoft.AspNetCore.All metapackage
 
 The **App Settings** area of the **Application settings** blade permits you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
+When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
+
 When an app uses the [Web Host](xref:fundamentals/host/web-host) and builds the host using [WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder), environment variables that configure the host use the `ASPNETCORE_` prefix. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
 When an app uses the [Generic Host](xref:fundamentals/host/generic-host), environment variables aren't loaded into an app's configuration by default and the configuration provider must be added by the developer. The developer determines the environment variable prefix when the configuration provider is added. For more information, see <xref:fundamentals/host/generic-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
@@ -105,7 +107,7 @@ Use one of the following approaches:
 
 If a problem occurs using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
 
-1. From the Azure portal, navigate to the App Service blade.
+1. From the Azure Portal, navigate to the App Service blade.
 1. Select the web app.
 1. Type "ex" in the search box or scroll down the list of management sections to **DEVELOPMENT TOOLS**.
 1. Select **DEVELOPMENT TOOLS** > **Extensions**.

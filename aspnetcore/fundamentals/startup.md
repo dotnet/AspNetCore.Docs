@@ -1,7 +1,7 @@
 ---
 title: Application startup in ASP.NET Core
 author: ardalis
-description: Discover how the Startup class in ASP.NET Core configures services and the app's request pipeline.
+description: Explains how the Startup class in ASP.NET Core configures services and the app's request pipeline.
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 4/13/2018
@@ -56,7 +56,7 @@ Adding services to the service container makes them available within the app and
 
 The web host may configure some services before `Startup` methods are called. Details are available in the [Host in ASP.NET Core](xref:fundamentals/host/index) topic.
 
-For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical web app registers services for Entity Framework, Identity, and MVC:
+For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC:
 
 [!code-csharp[](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
 
