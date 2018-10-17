@@ -172,7 +172,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 >[!NOTE]
->Note that only first JWT bearer authentication is registered with default authentication scheme `JwtBearerDefaults.AuthenticationScheme`. Second authentication has to be registered with unique authentication scheme.
+>Note that only one JWT bearer authentication is registered with default authentication scheme `JwtBearerDefaults.AuthenticationScheme`. Additional authentication has to be registered with unique authentication scheme.
 
 Next step is to update default authorization policy to accept both authentication schemes. For example:
 
