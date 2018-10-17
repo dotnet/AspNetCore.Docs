@@ -80,7 +80,7 @@ For each request, the server validates the contents of the token to ensure that 
 
 Because the connection id is part of the verification process, you should not reveal one user's connection id to other users or store the value on the client, such as in a cookie.
 
-### Note: Connection Tokens vs Other Types of Tokens
+#### Connection Tokens vs other types of tokens
 Connection tokens are occasionally flagged by security tools because they appear to potentially be session tokens or authentication tokens, which would pose a risk if exposed.
 
 In SignalR, the The Connection Token is not an authentication token. It is used to confirm that the user making this request is the same one that created the connection. This is needed because ASP.NET SignalR allows connections to move between servers. The connection token contains the "connection ID" and the user name of the user that created the connection, and is encrypted with a key known only to the servers. The server that initialized the connection checks the user ID provided by your authentication mechanism and embeds it in this token so that if a request is made to a different server, it can verify that the connection ID the client presents is valid and was created on behalf of this user. However the token itself makes no claim that the request was made by that user, only that the connection ID contained within the token is associated with that user.
