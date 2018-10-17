@@ -65,7 +65,7 @@ When reading from a configuration source that allows keys to contain colon (`:`)
 
 Azure Key Vault keys can't use a colon as a separator. The approach described in this topic uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, … `--{n}--`).
 
-Examine the following [Serilog](https://serilog.net/) logging provider configuration provided by a JSON file. There are two object literals defined in the `WriteTo` array that reflect two Serilog *sinks*, destinations for logging output:
+Examine the following [Serilog](https://serilog.net/) logging provider configuration provided by a JSON file. There are two object literals defined in the `WriteTo` array that reflect two Serilog *sinks*, which describe destinations for logging output:
 
 ```json
 "Serilog": {
