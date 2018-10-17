@@ -2,7 +2,7 @@
   "redirections": [ 
     {   
         "source_path": "aspnetcore/fundamentals/repository-pattern.md", 
-        "redirect_url": "http://aka.ms/MicroservicesEbook", 
+        "redirect_url": "/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design#the-repository-pattern", 
         "redirect_document_id": false 
     }, 
     {   
