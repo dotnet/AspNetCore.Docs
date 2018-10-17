@@ -85,7 +85,7 @@ Connection tokens are occasionally flagged by security tools because they appear
 
 SignalR's connection token is not an authentication token. It is used to confirm that the user making this request is the same one that created the connection. The connection token is necessary because ASP.NET SignalR allows connections to move between servers. The token associates the connection with a particular user but doesn't assert the identity of the user making the request. For a SignalR request to be properly authenticated, it must have some other token that asserts the identity of the user, such as a cookie or bearer token. However the token itself makes no claim that the request was made by that user, only that the connection ID contained within the token is associated with that user.
 
-The connection token is not a "session" token here, as it provides no authentication claim of it's own. Taking a user A's connection token and replaying it in a request authenticated as user B (or an unauthenticated request) will fail, because the user identity of the request and the identity stored in the token will not match.
+Since the connection token provides no authentication claim of its own, it is not considered a "session" or "authentication" token. Taking a given user's connection token and replaying it in a request authenticated as a different user (or an unauthenticated request) will fail, because the user identity of the request and the identity stored in the token will not match.
 
 <a id="rejoingroup"></a>
 
