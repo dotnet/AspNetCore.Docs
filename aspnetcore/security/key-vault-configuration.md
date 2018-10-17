@@ -61,9 +61,9 @@ When you run the app, a webpage shows the loaded secret values:
 
 The provider is capable of reading configuration values into an array for binding to a POCO array.
 
-Ordinarily when reading from a configuration source into an array, a numeric key segment is used to distinguish the keys (in colon notation, `:0:`, `:1:`, … `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, … `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
 
-In the sample app approach described in this topic, hierarchical values (sections) use `--` (double dashes) as a separator. Array keys that include numeric key segments use the `--` (double dash) notation (`--0--`, `--1--`, … `--{n}--`).
+Azure Key Vault keys can't use a colon as a separator. The approach described in this topic uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, … `--{n}--`).
 
 Examine the following [Serilog](https://serilog.net/) JSON file configuration. There are two `WriteTo` sinks specified in a JSON array:
 
@@ -88,7 +88,7 @@ Examine the following [Serilog](https://serilog.net/) JSON file configuration. T
 }
 ```
 
-The configuration shown in the preceding JSON file is stored in Azure Key Vault using `--` (double dash) notation and numeric segments:
+The configuration shown in the preceding JSON file is stored in Azure Key Vault using double dash (`--`) notation and numeric segments:
 
 | Key | Value |
 | --- | ----- |
