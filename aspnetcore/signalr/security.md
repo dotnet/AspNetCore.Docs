@@ -103,7 +103,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> The `Origin` header is completely controlled by the client and should never be used as an authentication mechanism.
+> The `Origin` header is completely controlled by the client and, like the `Referer` header, can be faked. These headers should never be used as an authentication mechanism.
 
 ### Access token logging
 
