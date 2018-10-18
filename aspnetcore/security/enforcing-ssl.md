@@ -132,21 +132,16 @@ public void ConfigureServices(IServiceCollection services)
 When configuring an `IWebHost` in *Program.cs*:
 
 ```csharp
-public static IHostingEnvironment Environment { get; set; }
-
 public static IWebHostBuilder BuildWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
-        .ConfigureAppConfiguration((hostingContext, config) =>
+        .ConfigureServices((hostContext, services) =>
         {
-            Environment = hostingContext.HostingEnvironment;
-        })
-        .ConfigureServices(services =>
-        {
-            if (!Environment.IsDevelopment())
+            if (!hostContext.HostingEnvironment.IsDevelopment())
             {
                 services.AddHttpsRedirection(options =>
                 {
-                    options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+                    options.RedirectStatusCode = 
+                        StatusCodes.Status308PermanentRedirect;
                     options.HttpsPort = 443;
                 });
             }
