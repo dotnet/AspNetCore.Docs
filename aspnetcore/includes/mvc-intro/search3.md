@@ -34,6 +34,7 @@ The movie-genre view model will contain:
    * A list of movies.
    * A `SelectList` containing the list of genres. This will allow the user to select a genre from the list.
    * `MovieGenre`, which contains the selected genre.
+   * `SearchString`, which contains the text users will enter in the search text box
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 
@@ -44,6 +45,8 @@ The following code is a `LINQ` query that retrieves all the genres from the data
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_LINQ)]
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
+
+When the user searches for the item, we'd like the search term to stay populated in the text box. To do this, we populate the `SearchString` property with the search term (what is in our `searchString` from the parameter to the `Index` controller action).
 
 ```csharp
 movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
