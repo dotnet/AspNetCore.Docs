@@ -13,7 +13,7 @@ msc.type: content
 
 By [Stephen Molloy](https://github.com/StephenMolloy) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Configuration builders provide a mechanism for ASP.NET apps to get configuration values. 
+Configuration builders provide a mechanism for ASP.NET apps to get configuration values from external sources.
 
 Configuration builders:
 
@@ -172,6 +172,9 @@ The [EnvironmentConfigBuilder](https://www.nuget.org/packages/Microsoft.Configur
 
 ### UserSecretsConfigBuilder
 
+> [!WARNING]
+> Never store passwords, sensitive connection strings, or other sensitive data in source code. Production secrets should not be used for development or test.
+
 ```xml
 <add name="UserSecrets"
     [mode|prefix|stripPrefix|tokenPattern]
@@ -251,6 +254,9 @@ Attribute details:
 
 ### SimpleJsonConfigBuilder
 
+> [!WARNING]
+> Never store passwords, sensitive connection strings, or other sensitive data in source code. Production secrets should not be used for development or test.
+
 ```xml
 <add name="SimpleJson"
     [mode|prefix|stripPrefix|tokenPattern]
@@ -288,9 +294,6 @@ Attribute details:
         }
     }
 ```
-
-> [!WARNING]
-> Never store passwords, sensitive connection strings, or other sensitive data in source code. Production secrets should not be used for development or test.
 
 ## Implementing a custom key/value configuration builder
 
