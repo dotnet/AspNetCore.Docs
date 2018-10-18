@@ -32,6 +32,8 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 
 For example, the following CORS policy allows a SignalR browser client hosted on `http://example.com` to access your SignalR app:
 
+[!code-csharp[Main](security/sample/Startup.cs?name=snippet1)]
+
 ```csharp
 public void Configure(IApplicationBuilder app)
 {
@@ -66,6 +68,8 @@ The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 However, browsers do send the `Origin` header when issuing WebSocket requests.  Applications should be configured to validate these headers in order to ensure that only WebSockets coming from the origins you expect are allowed.
 
 In ASP.NET Core 2.1, header validation can be achieved using a custom middleware placed **above `UseSignalR`, and any authentication middleware** in `Configure`:
+
+[!code-csharp[Main](security/sample/Startup.cs?name=snippet2)]
 
 ```csharp
 // In Startup, add a static field listing the allowed Origin values:
