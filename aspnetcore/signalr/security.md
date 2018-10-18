@@ -44,7 +44,7 @@ The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 * Perform CORS pre-flight requests.
 * Respect the restrictions specified in `Access-Control` headers when making WebSocket requests.
 
-However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers in order to ensure that only WebSockets coming from the expected origins are allowed.
+However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
 
 In ASP.NET Core 2.1 and later, header validation can be achieved using a custom middleware placed **before `UseSignalR`, and authentication middleware** in `Configure`:
 
@@ -63,12 +63,12 @@ Exception messages are generally considered sensitive data that shouldn't be rev
 
 ## Buffer management
 
-SignalR uses per-connection buffers to manage incoming and outgoing messages. By default, SignalR limits these buffers to 32KB. The largest message a client or server can send is 32KB. The maximum memory consumed by a connection for messages is 32KB. If your messages are always smaller than than 32K, you can reduce the limit, which:
+SignalR uses per-connection buffers to manage incoming and outgoing messages. By default, SignalR limits these buffers to 32 KB. The largest message a client or server can send is 32 KB. The maximum memory consumed by a connection for messages is 32 KB. If your messages are always smaller than 32 K, you can reduce the limit, which:
 
 * Prevents a client from being able to send a larger message.
 * The server will never need to allocate large buffers to accept messages.
 
-If your messages are larger than 32K, you can increase the limit. Increasing this limit means:
+If your messages are larger than 32 K, you can increase the limit. Increasing this limit means:
 
 * The client can cause the server to allocate large memory buffers.
 * Server allocation of large buffers may reduce the number of concurrent connections.
