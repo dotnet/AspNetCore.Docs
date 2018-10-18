@@ -178,7 +178,7 @@ The [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.extensions.hosti
 **Type**: *string*  
 **Default**: The name of the assembly containing the app's entry point.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_APPLICATIONKEY`
+**Environment variable**: `ASPNETCORE_APPLICATIONNAME`
 
 ::: moniker range=">= aspnetcore-2.1"
 
