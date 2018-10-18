@@ -32,11 +32,11 @@
 ### [Add validation](tutorials/first-mvc-app/validation.md)
 ### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-## [Build Web APIs with ASP.NET Core and MongoDB](tutorials/first-mongo-app/first-mongo-app.md)
 ## [Build Web APIs](xref:web-api/index)
 ### [Create a Web API in Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [Create a Web API in Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [Create a Web API in Visual Studio](xref:tutorials/first-web-api)
+### [Create a web API with MongoDB](xref:tutorials/first-mongo-app)
 ### [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
 ### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 #### [Get started with NSwag](xref:tutorials/get-started-with-nswag)

@@ -1,38 +1,39 @@
 ---
 title: Build web APIs with ASP.NET Core and MongoDB
 author: pratik-khandelwal
-description: Get an introduction to MongoDB, an open-source, non-relational database and how to build APIs using MongoDBand ASP.NET Core.
+description: Get an introduction to MongoDB, an open-source, non-relational database and how to build web APIs using MongoDB and ASP.NET Core.
 uid: tutorials/first-mongo-app
 ---
-# Build web APIs with ASP.NET Core and MongoDB
+# Create a web API with ASP.NET Core and MongoDB
 
-By [Pratik Khandelwal](HTTPs://twitter.com/K2Prk)
+By [Pratik Khandelwal](https://twitter.com/K2Prk)
+
+In this tutorial, we will create a web API using ASP.NET Core to perform CRUD operations on a MongoDB collection.
 
 ### What is MongoDB
 
 MongoDB is an open-source, non-relational database developed by MongoDB, Inc. MongoDB stores data as documents in a binary representation called BSON (Binary JSON). In modern web app, the use of NoSQL databases is becoming popular due to its non-relational bahavior.
 
-In this tutorial, we will create a web API using ASP.NET Core to perform CRUD operations on a MongoDB collection.
 
 ### Set up MongoDB
 
-To get started, you first need to install MongoDB on your system. You can download MongoDB from [here]('HTTPs://docs.mongodb.com/manual/administration/install-community/'). If you are using Windows, MongoDB is installed in the following path:
+To get started, install MongoDB on your system. You can download MongoDB from [here](https://docs.mongodb.com/manual/administration/install-community/). If you're using Windows, MongoDB is installed in the following path:
 
 C:\Program Files\MongoDB
 
-Also, don't forget to add *C:\Program Files\MongoDB\Server\3.4\bin* to Environment Path to access MongoDB from anywhere.
+Add *C:\Program Files\MongoDB\Server\3.4\bin* to the `Path` environment variable to access MongoDB from anywhere.
 
 ### MongoDB implementation
 
-To use MongoDB, we have to create a database, make collections and store documents in it. To do that, we need to create a a data folder where your data will be stored. You can choose any location on your system as the data folder. (Keep note that MongoDB CLI doesn't create new directories).
+To use MongoDB, we have to create a database, make collections, and store documents in it. To do that, create a a data folder where your data will be stored. You can choose any location on your system as the data folder. (Keep note that the MongoDB CLI doesn't create new directories).
 
 Open a command shell:
 
 ```console
-mongod --dbpath <Enter the path>
+mongod --dbpath <enter-the-path>
 ```
 
-(Replace dbpath value with your own path) This will connect to MongoDB on port 27017.
+This will connect to MongoDB on port 27017.
 
 Open another command shell instance and run the following:	
 
@@ -46,7 +47,7 @@ This connects to the default test database. Run the following command in command
 useBookstoreDb
 ```
 
-This will create a database named `BookstoreDb` if it doesn't already exist, else it will open the existing database for transactions.
+If it doesn't already exist, a database named *BookstoreDb* is created. If the database does exist, its connection is opened for transactions.
 
 We can create a collection using following command:
 
@@ -54,7 +55,7 @@ We can create a collection using following command:
 db.createCollection('Books')
 ```
 
-The schema for the Books collection can be defined with the following command:
+The schema for the `Books` collection can be defined with the following command:
 
 ```console
 db.Books.insert({'BookId':1,'BookName':'Design Patterns','Price':3000,'Category':'Computers', 'Author':' Ralph Johnson'})
@@ -77,15 +78,15 @@ The schema will add `_id` property. This property will be an `ObjectId` which wi
 
 Now that our database is ready, we can start creating our web API using .NET Core.
 
-### Create the .NET Core web API
+### Create the ASP.NET Core web API
 
-You need Visual Studio with .NET core SDK for creating the .NET app. For the purpose of this article, I will be using Visual Studio 2017.
+You need Visual Studio with .NET Core SDK for creating the .NET app. For the purpose of this article, I will be using Visual Studio 2017.
 
-In your visual studio, go to **File** > **New** > **Project** and select ASP.NET Core Web app from .NET Core tab.
+In visual studio, go to **File** > **New** > **Project** and select ASP.NET Core Web app from .NET Core tab.
 
 ![New Project](_static/newProject.png)
 
-Name the project "BookMongo" (or whatever you like) and click ok. This will open a windows for selecting templates. Choose the "API" template and Click OK.
+Name the project "BookMongo" (or whatever you like) and click OK. This will open a window for selecting templates. Choose the **API** template and click OK.
 
 ![Select Template](_static/apiTemplate.png)
 
@@ -103,7 +104,7 @@ Now, in the project, add a *Models* folder. In this folder, add a new class file
 
 [!code-csharp[](~/tutorials/first-mongo-app/sample/BookstoreAPI/Models/Book.cs?name=snippet_1)]
 
-The class also contains `Id` property of the type `ObjectId`. This property is mandatory so that the CLR object can be mapped with Collection in MongoDB. The class contains properties having the `BsonElement` attribute applied on it. This represent the mapped property with the MongoDB collection.
+The class also contains `Id` property of the type `ObjectId`. This property is mandatory so that the CLR object can be mapped with Collection in MongoDB. The class contains properties having the `BsonElement` attribute applied on it. This represents the mapped property with the MongoDB collection.
 
 ### Write a class for CRUD operations
 
@@ -155,7 +156,7 @@ Build and run the app. Call the API from your browser.
 (localhost:port/api/controllerName)
 
 ```console
-HTTP://localhost:51496/api/Books
+http://localhost:51496/api/Books
 ```
 
 You will receive a similar JSON response depending on your data.
