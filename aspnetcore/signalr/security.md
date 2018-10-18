@@ -24,7 +24,7 @@ This article provides information on securing SignalR.
 
 CORS should be configured in the SignalR app to only allow the origin `www.example.com`.
 
-For more information on configuring CORS, see [Enable Cross-Origin Requests (CORS)](xref:security/cors). SignalR requires the following CORS policies:
+For more information on configuring CORS, see [Enable Cross-Origin Requests (CORS)](xref:security/cors). SignalR **requires** the following CORS policies:
 
 * Allow the specific expected origins. Allowing any origin is possible but is **not** secure or recommended.
 * HTTP methods `GET` and `POST` must be allowed.
@@ -78,5 +78,4 @@ There are limits for incoming and outgoing messages, both can be configured on t
 * `ApplicationMaxBufferSize` represents the maximum number of bytes from the client that the server buffers. If the client attempts to send a message larger than this limit, the connection may be closed.
 * `TransportMaxBufferSize` represents the maximum number of bytes the server can send. If the server attempts to send a message (including return values from hub methods) larger than this limit, an exception will be thrown.
 
-Setting the limit to `0` disables the limit. However, disabling the limit exposes the app malicious large message creation. Removing the limit allows a client to send a message of any size. Malicious clients sending large  
-messages can cause excess memory to be allocated. Excess memory usage can significantly reduce the number of concurrent connections.
+Setting the limit to `0` disables the limit. Removing the limit allows a client to send a message of any size. Malicious clients sending large messages can cause excess memory to be allocated. Excess memory usage can significantly reduce the number of concurrent connections.
