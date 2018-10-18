@@ -397,7 +397,7 @@
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
 
-# [Migration](xref:migration/index)
+# Migration
 ## [ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
