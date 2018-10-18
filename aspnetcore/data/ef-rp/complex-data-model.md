@@ -571,45 +571,17 @@ The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_dbo.Cou
 database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 ```
 
-When migrations are run with existing data, there may be FK constraints that are not satisfied with the existing data. For this tutorial, a new DB is created, so there are no FK constraint violations. 
+When migrations are run with existing data, there may be FK constraints that are not satisfied with the existing data. For this tutorial, a new DB is created, so there are no FK constraint violations. See [Apply the migration to the existing database](#applyexisting) for instructions on how to fix the FK violations on the current DB.
 
-For instructions on how to fix the FK violations on the current DB, perform the following steps.
+## Apply the migration
 
-### Optional: Fix foreign key restraints with legacy data
+Now that you have an existing database, you need to think about how to apply future changes to it. For this, you have two approaches:
+* [Drop and re-create the database](#drop)
+* [Apply the migration to the existing database](#applyexisting). While this method more complex and time-consuming, it's the preferred approach for real-world, production environments. 
 
-When migrations are run with existing data, there may be FK constraints that are not satisfied with the existing data. With production data, steps must be taken to migrate the existing data. This section provides an example of fixing FK constraint violations. Don't make these code changes without a backup. Don't make these code changes if you completed the previous section and updated the database.
+<a name="drop"></a>
 
-The *{timestamp}_ComplexDataModel.cs* file contains the following code:
-
-[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_DepartmentID)]
-
-The preceding code adds a non-nullable `DepartmentID` FK to the `Course` table. The DB from the previous tutorial contains rows in `Course`, so that table cannot be updated by migrations.
-
-To make the `ComplexDataModel` migration work with existing data:
-
-* Change the code to give the new column (`DepartmentID`) a default value.
-* Create a fake department named "Temp" to act as the default department.
-
-#### Fix the foreign key constraints
-
-Update the `ComplexDataModel` classes `Up` method:
-
-* Open the *{timestamp}_ComplexDataModel.cs* file.
-* Comment out the line of code that adds the `DepartmentID` column to the `Course` table.
-
-[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
-
-Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
- [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
-
-With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel` `Up` method runs.
-
-A production app would:
-
-* Include code or scripts to add `Department` rows and related `Course` rows to the new `Department` rows.
-* Not use the "Temp" department or the default value for `Course.DepartmentID`.
-
-### Drop and update the database
+### Drop and re-create the database
 
 The code in the updated `DbInitializer` adds seed data for the new entities. To force EF Core to create a new  DB, drop and update the DB:
 
@@ -652,6 +624,42 @@ Examine the **CourseAssignment** table:
 * Verify the **CourseAssignment** table contains data.
 
 ![CourseAssignment data in SSOX](complex-data-model/_static/ssox-ci-data.png)
+
+<a name="applyexisting"></a>
+
+### Apply the migration to the existing database
+
+When migrations are run with existing data, there may be FK constraints that are not satisfied with the existing data. With production data, steps must be taken to migrate the existing data. This section provides an example of fixing FK constraint violations. Don't make these code changes without a backup. Don't make these code changes if you completed the previous section and updated the database.
+
+The *{timestamp}_ComplexDataModel.cs* file contains the following code:
+
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_DepartmentID)]
+
+The preceding code adds a non-nullable `DepartmentID` FK to the `Course` table. The DB from the previous tutorial contains rows in `Course`, so that table cannot be updated by migrations.
+
+To make the `ComplexDataModel` migration work with existing data:
+
+* Change the code to give the new column (`DepartmentID`) a default value.
+* Create a fake department named "Temp" to act as the default department.
+
+#### Fix the foreign key constraints
+
+Update the `ComplexDataModel` classes `Up` method:
+
+* Open the *{timestamp}_ComplexDataModel.cs* file.
+* Comment out the line of code that adds the `DepartmentID` column to the `Course` table.
+
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
+
+Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
+ [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
+
+With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel` `Up` method runs.
+
+A production app would:
+
+* Include code or scripts to add `Department` rows and related `Course` rows to the new `Department` rows.
+* Not use the "Temp" department or the default value for `Course.DepartmentID`.
 
 The next tutorial covers related data.
 
