@@ -204,17 +204,11 @@ If the SUT requires special testing configuration when tests are executed:
     When configuring an `IWebHost` in *Program.cs*:
     
     ```csharp
-    public static IHostingEnvironment Environment { get; set; }
-    
     public static IWebHostBuilder BuildWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((hostingContext, config) =>
+            .ConfigureServices((hostContext, services) =>
             {
-                Environment = hostingContext.HostingEnvironment;
-            })
-            .ConfigureServices(services =>
-            {
-                if (Environment.IsStaging())
+                if (hostContext.HostingEnvironment.IsStaging())
                 {
                     // Code runs in the Staging environment
                 }
