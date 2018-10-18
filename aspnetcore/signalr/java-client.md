@@ -26,6 +26,7 @@ If using Gradle, add the following line to the `dependencies` section of your *b
 
 ```gradle
 implementation 'com.microsoft.signalr:signalr:1.0.0-preview3-35501'
+implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
 ```
 
 If using Maven, add the following lines inside the `<dependencies>` element of your *pom.xml* file:
@@ -52,10 +53,11 @@ Use `hubConnection.on` to define methods on the client that the hub can call. De
 
 ## Known limitations
 
-This is a preview release of the Java client. There some features that aren't supported yet. The following gaps are being worked on for future releases:
+This is a preview release of the Java client. There are some features that aren't supported yet. The following gaps are being worked on for future releases:
 
 * Only the JSON protocol is supported.
 * Only the WebSockets transport is supported.
+* Streaming is not yet supported.
 
 ## Additional resources
 
