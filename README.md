@@ -1,8 +1,8 @@
 # ASP.NET Docs
 
-This repository contains the conceptual ASP.NET Core and ASP.NET 4.x documentation hosted at [docs.microsoft.com/aspnet](https://docs.microsoft.com/aspnet). Learn more about ASP.NET Core at the [AspNetCore](https://github.com/aspnet/AspNetCore) repository. See the [Contributing Guide](CONTRIBUTING.md) and the [issues list](https://github.com/aspnet/Docs/issues) if you would like to help out.
+This repository contains the conceptual ASP.NET Core and ASP.NET 4.x documentation hosted at [docs.microsoft.com/aspnet](https://docs.microsoft.com/aspnet). See the [Contributing Guide](CONTRIBUTING.md) and the [issues list](https://github.com/aspnet/Docs/issues) if you would like to help out.
 
-API PRs (*api/autoapi/...*) shouldn't be made here. Changes to API documentation should be made in the source repository against the triple slash `///` comments.
+API documentation changes should be made in the [ApiDocs repository](https://github.com/aspnet/ApiDocs) against the triple slash `///` comments.
 
 ## Microsoft Open Source Code of Conduct
 
