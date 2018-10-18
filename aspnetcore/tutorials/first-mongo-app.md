@@ -84,11 +84,11 @@ You need Visual Studio with .NET Core SDK for creating the .NET app. For the pur
 
 In visual studio, go to **File** > **New** > **Project** and select ASP.NET Core Web app from .NET Core tab.
 
-![New Project](_static/newProject.png)
+![New Project](~/tutorials/first-mongo-app/_static/newProject.png)
 
 Name the project "BookMongo" (or whatever you like) and click OK. This will open a window for selecting templates. Choose the **API** template and click OK.
 
-![Select Template](_static/apiTemplate.png)
+![Select Template](~/tutorials/first-mongo-app/_static/apiTemplate.png)
 
 This will create your web API project.
 
@@ -96,7 +96,7 @@ Right-click the project in Solution Explorer and select Manage NuGet Packages.
 
 Search for *mongocsharpdriver* and install the package.
 
-![Package Manager](_static/packageManager.png)
+![Package Manager](~/tutorials/first-mongo-app/_static/packageManager.png)
 
 ### Add a model
 
@@ -142,7 +142,7 @@ Our code in *DataAccess.cs* uses all these methods for performing CRUD operation
 
 Now, click right on the *Controllers* folder and add a controller
 
-![Add Controller](_static/addController.png)
+![Add Controller](~/tutorials/first-mongo-app/_static/addController.png)
 
 Choose the *API Controller - Empty* to scaffold and name it *BooksController*.
 
@@ -161,7 +161,7 @@ http://localhost:51496/api/Books
 
 You will receive a similar JSON response depending on your data.
 
-![Response](_static/jsonResponse.png)
+![Response](~/tutorials/first-mongo-app/_static/jsonResponse.png)
 
 Using Mongo C# Driver, one can easily connect to the MongoDB database and perform CRUD operations. Using ASP.NET Core, MongoDB data can be easily made available to various client apps for storing and reading data. This will provide you the power of .NET Core with flexibility of MongoDB NoSQL database.
 
