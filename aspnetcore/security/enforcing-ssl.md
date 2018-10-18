@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/11/2018
+ms.date: 10/18/2018
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -129,25 +129,6 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-When configuring an `IWebHost` in *Program.cs*:
-
-```csharp
-public static IWebHostBuilder BuildWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .ConfigureServices((hostContext, services) =>
-        {
-            if (!hostContext.HostingEnvironment.IsDevelopment())
-            {
-                services.AddHttpsRedirection(options =>
-                {
-                    options.RedirectStatusCode = 
-                        StatusCodes.Status308PermanentRedirect;
-                    options.HttpsPort = 443;
-                });
-            }
-        ...
-```
-
 ## HTTPS Redirection Middleware alternative approach
 
 An alternative to using HTTPS Redirection Middleware (`UseHttpsRedirection`) is to use URL Rewriting Middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
@@ -194,7 +175,7 @@ ASP.NET Core 2.1 or later implements HSTS with the `UseHsts` extension method. T
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
-For production environments implementing HTTPS for the first time, set the initial HSTS value to a small value. Set the value from hours to no more than a single day in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS max-age value; a commonly used value is one year.
+For production environments implementing HTTPS for the first time, set the initial [HstsOptions.MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) to a small value. Set the value from hours to no more than a single day in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS max-age value; a commonly used value is one year.
 
 The following code:
 
@@ -210,8 +191,6 @@ The following code:
 * `localhost` : The IPv4 loopback address.
 * `127.0.0.1` : The IPv4 loopback address.
 * `[::1]` : The IPv6 loopback address.
-
-The preceding example shows how to add additional hosts.
 
 ::: moniker-end
 
