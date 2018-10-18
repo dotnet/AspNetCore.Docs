@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/01/2018
+ms.date: 10/18/2018
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
@@ -360,15 +360,13 @@ WebHost.CreateDefaultBuilder(args)
 
 ### Hosting Startup Exclude Assemblies
 
-DESCRIPTION
+A semicolon-delimited string of hosting startup assemblies to exclude on startup.
 
 **Key**: hostingStartupExcludeAssemblies  
 **Type**: *string*  
 **Default**: Empty string  
 **Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
-
-A semicolon-delimited string of hosting startup assemblies to exclude on startup.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
