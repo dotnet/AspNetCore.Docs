@@ -551,7 +551,6 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
-* <xref:fundamentals/repository-pattern>
 * <xref:fundamentals/startup>
 * <xref:test/index>
 * <xref:fundamentals/middleware/extensibility>
