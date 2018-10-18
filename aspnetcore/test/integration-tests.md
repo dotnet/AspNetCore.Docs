@@ -194,11 +194,22 @@ If the SUT requires special testing configuration when tests are executed:
     When configuring an `IWebHostBuilder` in *Startup.cs*:
     
     ```csharp
-    // IHostingEnvironment (stored in _env) is injected into the Startup class.
-    if (_env.IsStaging())
+    public void ConfigureServices(IServiceCollection services)
     {
-        // Code runs in the Staging environment
+        // IHostingEnvironment (_env) is injected into the Startup
+        // class.
+        if (_env.IsStaging())
+        {
+            // Code runs in the Staging environment
+        }
     }
+    
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env) 
+    {
+        if (env.IsStaging())
+        {
+            // Code runs in the Staging environment
+        }
     ```
     
     When configuring an `IWebHost` in *Program.cs*:
