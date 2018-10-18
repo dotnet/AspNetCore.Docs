@@ -2,9 +2,9 @@
 uid: config-builder
 title: Configuration builders for ASP.NET
 author: rick-anderson
-description: Learn how to get configuration data from sources other than web.config
+description: Configuration builders provide a modern and agile mechanism for ASP.NET apps to get configuration values from external sources.
 ms.author: riande
-ms.date: 10/9/2018
+ms.date: 10/29/2018
 ms.technology: aspnet
 msc.type: content
 ---
@@ -13,13 +13,16 @@ msc.type: content
 
 By [Stephen Molloy](https://github.com/StephenMolloy) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Configuration builders provide a mechanism for ASP.NET apps to get configuration values from external sources.
+Configuration builders provide a modern and agile mechanism for ASP.NET apps to get configuration values from external sources.
 
 Configuration builders:
 
 * Are available in .Net Framework .Net 4.7.1 and later.
 * Provide a flexible mechanism for reading configuration values.
 * Address some of the basic needs of apps as they move into a container and cloud focused environment.
+* Operate on two sections, `<appSettings />` and `<connectionStrings />`.
+
+The `AzureKeyVault` and `Environment` configuration builders provides a secure mechanism to store sensitive data. The other configuration builders sources should not be used to store sensitive data unless steps are taken to protect the information.
 
 ## Key/value configuration builders
 
@@ -287,10 +290,6 @@ Attribute details:
                 "setting1" : "complex:value1",
                 "setting2" : "complex:value2",
             }
-        },
-
-        "connectionStrings" : {
-            "myJSON_ConnectionString" : "See security warning."
         }
     }
 ```
