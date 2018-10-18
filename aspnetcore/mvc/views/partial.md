@@ -48,17 +48,7 @@ Unlike MVC view or page rendering, a partial view doesn't run *_ViewStart.cshtml
 
 Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views and pages.
 
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.1"
-
-In ASP.NET Core 2.1 only, Razor Pages serves as a page any partial view whose file name begins with an underscore.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0 || >= aspnetcore-2.2"
-
-In ASP.NET Core 2.0 and ASP.NET Core 2.2 or later, Razor Pages doesn't serve the partial view as a page. Don't rely on this behavior as a means to secure the partial views.
+Razor Pages doesn't serve as a page a partial view whose file name begins with an underscore. Don't rely on this behavior as a means to secure a partial view.
 
 ::: moniker-end
 
