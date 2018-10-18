@@ -2,7 +2,7 @@
 uid: config-builder
 title: Configuration builders for ASP.NET
 author: rick-anderson
-description: Configuration builders provide a modern and agile mechanism for ASP.NET apps to get configuration values from external sources.
+description: Learn how to get configuration data from sources other than web.config values from external sources.
 ms.author: riande
 ms.date: 10/29/2018
 ms.technology: aspnet
