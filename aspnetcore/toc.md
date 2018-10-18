@@ -259,7 +259,8 @@
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
 
-# [Security](xref:security/index)
+# Security and Identity
+## [Overview](xref:security/index)
 ## [Authentication](xref:security/authentication/index)
 ### [Introduction to Identity](xref:security/authentication/identity)
 ### [Scaffold Identity](xref:security/authentication/scaffold-identity)
