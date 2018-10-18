@@ -61,7 +61,7 @@ When [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionar
 
 The second test verifies that when the `ModelState` is valid:
 
-* A new `BrainstormSession` is added (via the [repository](xref:fundamentals/repository-pattern)).
+* A new `BrainstormSession` is added (via the repository).
 * The method returns a `RedirectToActionResult` with the expected properties.
 
 Mocked calls that aren't called are normally ignored, but calling `Verifiable` at the end of the setup call allows mock validation in the test. This is performed with the call to `mockRepo.Verify`, which fails the test if the expected method wasn't called.
@@ -179,5 +179,4 @@ For a valid session `id`, the final test confirms that:
 * <xref:test/index>
 * <xref:test/integration-tests>
 * [Create and run unit tests with Visual Studio](/visualstudio/test/unit-test-your-code).
-* <xref:fundamentals/repository-pattern>
 * [Explicit Dependencies Principle](https://deviq.com/explicit-dependencies-principle/)
