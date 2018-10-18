@@ -11,6 +11,8 @@ uid: host-and-deploy/iis/index
 
 By [Luke Latham](https://github.com/guardrex)
 
+[Install the .NET Core Hosting Bundle](#install-the-NET-core-hosting-bundle)
+
 ## Supported operating systems
 
 The following operating systems are supported:
