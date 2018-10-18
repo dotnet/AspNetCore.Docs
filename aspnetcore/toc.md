@@ -208,7 +208,8 @@
 ### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
 
-# [Azure guidance](xref:azure/index)
+# Azure guidance
+## [Overview](xref:azure/index)
 ## DevOps with ASP.NET Core and Azure
 ### [Introduction](xref:azure/devops/index)
 ### [Tools and downloads](xref:azure/devops/tools-and-downloads)
@@ -217,10 +218,12 @@
 ### [Monitor and troubleshoot](xref:azure/devops/monitor)
 ### [Next steps](xref:azure/devops/next-steps)
 
-# [Client-side development](xref:client-side/index)
+# Client-side development
+## [Overview](xref:client-side/index)
 ## [Use Gulp](xref:client-side/using-gulp)
 ## [Use Grunt](xref:client-side/using-grunt)
-## [Use LibMan](xref:client-side/libman/index)
+## Use LibMan
+### [Overview](xref:client-side/libman/index)
 ### [LibMan CLI](xref:client-side/libman/libman-cli)
 ### [LibMan in Visual Studio](xref:client-side/libman/libman-vs)
 ## [Manage client-side packages with Bower](xref:client-side/bower)
@@ -228,20 +231,24 @@
 ## [Bundle and minify](xref:client-side/bundling-and-minification)
 ## [Use Browser Link](xref:client-side/using-browserlink)
 ## [Use JavaScriptServices for SPAs](xref:client-side/spa-services)
-## [Use the SPA project templates](xref:spa/index)
+## Use the SPA project templates
+### [Overview](xref:spa/index)
 ### [Angular project template](xref:spa/angular)
 ### [React project template](xref:spa/react)
 ### [React with Redux project template](xref:spa/react-with-redux)
 
 
-# [Host and deploy](xref:host-and-deploy/index)
-## [Host on Azure App Service](xref:host-and-deploy/azure-apps/index)
+# Host and deploy
+## [Overview](xref:host-and-deploy/index)
+## Host on Azure App Service
+### [Overview](xref:host-and-deploy/azure-apps/index)
 ### [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
 ### [Publish to Azure with CLI tools](/azure/app-service/app-service-web-get-started-dotnet)
 ### [Continuous deployment to Azure with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Continuous deployment to Azure with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 ### [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
-## [Host on Windows with IIS](xref:host-and-deploy/iis/index)
+## Host on Windows with IIS
+### [Overview](xref:host-and-deploy/iis/index)
 ### [Troubleshoot ASP.NET Core on IIS](xref:host-and-deploy/iis/troubleshoot)
 ### [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
 ### [Development-time IIS support in Visual Studio for ASP.NET Core](xref:host-and-deploy/iis/development-time-iis-support)
@@ -249,7 +256,8 @@
 ## [Host in a Windows service](xref:host-and-deploy/windows-service)
 ## [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
 ## [Host on Linux with Apache](xref:host-and-deploy/linux-apache)
-## [Host in Docker](xref:host-and-deploy/docker/index)
+## Host in Docker
+### [Overview](xref:host-and-deploy/docker/index)
 ### [Build Docker images](/dotnet/articles/core/docker/building-net-docker-images)
 ### [Visual Studio Tools for Docker](xref:host-and-deploy/docker/visual-studio-tools-for-docker)
 ### [Publish to a Docker image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/)
