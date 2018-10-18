@@ -3,10 +3,6 @@
 ## [Choose between ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
-# [Get started](xref:getting-started)
-## [Create a web app](xref:razor-pages/index)
-## [Create a Web API](xref:tutorials/first-web-api)
-
 # [Tutorials](tutorials/index.md)
 ## [Create a Razor Pages web app](xref:tutorials/razor-pages/index)
 ### [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
@@ -39,6 +35,7 @@
 ### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 #### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 #### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
+## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
 
 ## [Data access - with EF Core](xref:data/index)
 ### [Data access - with Razor Pages and EF Core](xref:data/ef-rp/index)
@@ -236,8 +233,6 @@
 ### [React project template](xref:spa/react)
 ### [React with Redux project template](xref:spa/react-with-redux)
 
-# [Mobile](xref:mobile/index)
-## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
 
 # [Host and deploy](xref:host-and-deploy/index)
 ## [Host on Azure App Service](xref:host-and-deploy/azure-apps/index)
@@ -350,6 +345,10 @@
 ## [Share cookies among apps](xref:security/cookie-sharing)
 ## [IP safelist](xref:security/ip-safelist)
 
+## Globalization and localization
+### [Overview](xref:fundamentals/localization)
+### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
+
 # Fundamentals
 ## [Fundamentals overview](xref:fundamentals/index)
 ## [Application startup](xref:fundamentals/startup)
@@ -385,9 +384,6 @@
 ## [URL rewriting](xref:fundamentals/url-rewriting)
 ## [Session and app state](xref:fundamentals/app-state)
 ## [File Providers](xref:fundamentals/file-providers)
-## Globalization and localization
-### [Overview](xref:fundamentals/localization)
-### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
 ## [Request Features](xref:fundamentals/request-features)
 ## [Access HttpContext](xref:fundamentals/httpcontext)
 ## [Change tokens](xref:fundamentals/change-tokens)
