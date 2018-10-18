@@ -68,7 +68,7 @@ namespace SignalR_CORS
                 {
                     var origin = context.Request.Headers["Origin"];
 
-                    // If there is no origin header, or if the origin header doesn't match 
+                    // If there is an origin header, and the origin header doesn't match 
                     // an allowed value:
                     if (!string.IsNullOrEmpty(origin) && !_allowedOrigins.Contains(origin))
                     {
