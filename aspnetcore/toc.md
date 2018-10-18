@@ -261,7 +261,8 @@
 
 # Security and Identity
 ## [Overview](xref:security/index)
-## [Authentication](xref:security/authentication/index)
+## Authentication
+### [Overview](xref:security/authentication/index)
 ### [Introduction to Identity](xref:security/authentication/identity)
 ### [Scaffold Identity](xref:security/authentication/scaffold-identity)
 ### [Add custom user data to Identity](xref:security/authentication/add-user-data)
@@ -270,7 +271,8 @@
 ### [Configure Identity](xref:security/authentication/identity-configuration)
 ### [Configure Windows Authentication](xref:security/authentication/windowsauth)
 ### [Custom storage providers for Identity](xref:security/authentication/identity-custom-storage-providers)
-### [External providers](xref:security/authentication/social/index)
+### External providers
+#### [Overview](xref:security/authentication/social/index)
 #### [Facebook authentication](xref:security/authentication/facebook-logins)
 #### [Twitter authentication](xref:security/authentication/twitter-logins)
 #### [Google authentication](xref:security/authentication/google-logins)
@@ -282,7 +284,8 @@
 ### [Enable QR code generation in Identity](xref:security/authentication/identity-enable-qrcodes)
 ### [Two-factor authentication with SMS](xref:security/authentication/2fa)
 ### [Use Cookie Authentication without Identity](xref:security/authentication/cookie)
-### [Azure Active Directory](xref:security/authentication/azure-active-directory/index)
+### Azure Active Directory
+#### [Overview](xref:security/authentication/azure-active-directory/index)
 #### [Integrate Azure AD Into an ASP.NET Core web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
 #### [Integrate Azure AD B2C into a customer-facing ASP.NET Core web app](xref:security/authentication/azure-ad-b2c)
 #### [Integrate Azure AD B2C into an ASP.NET Core web API](xref:security/authentication/azure-ad-b2c-webapi)
@@ -291,8 +294,9 @@
 ### [Secure ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io/)
 ### [Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)](https://docs.microsoft.com/azure/app-service/app-service-authentication-overview)
 ### [Individual user accounts](xref:security/authentication/individual)
-## [Authorization](xref:security/authorization/index)
-### [Introduction](xref:security/authorization/introduction)
+## Authorization
+<!-- delete index, redirect index to introduction-->
+### [Overview](xref:security/authorization/introduction)
 ### [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
 ### [Razor Pages authorization](xref:security/authorization/razor-pages-authorization)
 ### [Simple authorization](xref:security/authorization/simple)
@@ -304,26 +308,31 @@
 ### [Resource-based authorization](xref:security/authorization/resourcebased)
 ### [View-based authorization](xref:security/authorization/views)
 ### [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
-## [Data protection](xref:security/data-protection/index)
-### [Introduction to data protection](xref:security/data-protection/introduction)
+## Data protection
+<!-- delete index, redirect index to introduction-->
+### [Overview](xref:security/data-protection/introduction)
 ### [Get started with the Data Protection APIs](xref:security/data-protection/using-data-protection)
-### [Consumer APIs](xref:security/data-protection/consumer-apis/index)
-#### [Consumer APIs overview](xref:security/data-protection/consumer-apis/overview)
+### Consumer APIs
+<!-- delete index, redirect index to overview-->
+#### [Overview](xref:security/data-protection/consumer-apis/overview)
 #### [Purpose strings](xref:security/data-protection/consumer-apis/purpose-strings)
 #### [Purpose hierarchy and multi-tenancy](xref:security/data-protection/consumer-apis/purpose-strings-multitenancy)
 #### [Hash passwords](xref:security/data-protection/consumer-apis/password-hashing)
 #### [Limit the lifetime of protected payloads](xref:security/data-protection/consumer-apis/limited-lifetime-payloads)
 #### [Unprotect payloads whose keys have been revoked](xref:security/data-protection/consumer-apis/dangerous-unprotect)
-### [Configuration](xref:security/data-protection/configuration/index)
+### Configuration
+#### [Overview](xref:security/data-protection/configuration/index)
 #### [Configure data protection](xref:security/data-protection/configuration/overview)
 #### [Default settings](xref:security/data-protection/configuration/default-settings)
 #### [Machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy)
 #### [Non-DI aware scenarios](xref:security/data-protection/configuration/non-di-scenarios)
-### [Extensibility APIs](xref:security/data-protection/extensibility/index)
+### Extensibility APIs
+#### [Overview](xref:security/data-protection/extensibility/index)
 #### [Core cryptography extensibility](xref:security/data-protection/extensibility/core-crypto)
 #### [Key management extensibility](xref:security/data-protection/extensibility/key-management)
 #### [Miscellaneous APIs](xref:security/data-protection/extensibility/misc-apis)
-### [Implementation](xref:security/data-protection/implementation/index)
+### Implementation
+#### [Overview](xref:security/data-protection/implementation/index)
 #### [Authenticated encryption details](xref:security/data-protection/implementation/authenticated-encryption-details)
 #### [Subkey derivation and authenticated encryption](xref:security/data-protection/implementation/subkeyderivation)
 #### [Context headers](xref:security/data-protection/implementation/context-headers)
@@ -333,7 +342,8 @@
 #### [Key immutability and settings](xref:security/data-protection/implementation/key-immutability)
 #### [Key storage format](xref:security/data-protection/implementation/key-storage-format)
 #### [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
-### [Compatibility](xref:security/data-protection/compatibility/index)
+### Compatibility
+#### [Overview](xref:security/data-protection/compatibility/index)
 #### [Replace <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
 ## [Enforce HTTPS](xref:security/enforcing-ssl)
 ## [EU General Data Protection Regulation (GDPR) support](xref:security/gdpr)
