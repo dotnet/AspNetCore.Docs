@@ -3,10 +3,6 @@
 ## [Choose between ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
-# [What's new](xref:aspnetcore-2.1)
-# [What's new](xref:aspnetcore-2.0)
-# [What's new](xref:aspnetcore-1.1)
-
 # [Get started](xref:getting-started)
 ## [Create a web app](xref:razor-pages/index)
 ## [Create a Web API](xref:tutorials/first-web-api)
@@ -403,6 +399,8 @@
 
 # [Migration](xref:migration/index)
 ## [ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
+## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
+### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 ## [ASP.NET to ASP.NET Core](xref:migration/proper-to-2x/index)
 ### [MVC](xref:migration/mvc)
 ### [Web API](xref:migration/webapi)
@@ -411,8 +409,11 @@
 ### [ClaimsPrincipal.Current](xref:migration/claimsprincipal-current)
 ### [Membership to Identity](xref:migration/proper-to-2x/membership-to-core-identity)
 ### [HTTP modules to middleware](xref:migration/http-modules)
-## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
-### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
+
+# What's new
+## [What's new in 2.1](xref:aspnetcore-2.1)
+## [What's new in 2.0](xref:aspnetcore-2.0)
+## [What's new in 1.1](xref:aspnetcore-1.1)
 
 # [API reference](/dotnet/api/?view=aspnetcore-2.0)
 
