@@ -70,7 +70,7 @@ namespace SignalR_CORS
 
                     // If there is no origin header, or if the origin header doesn't match 
                     // an allowed value:
-                    if (string.IsNullOrEmpty(origin) && !_allowedOrigins.Contains(origin))
+                    if (!string.IsNullOrEmpty(origin) && !_allowedOrigins.Contains(origin))
                     {
                         // The origin is not allowed, reject the request
                         context.Response.StatusCode = StatusCodes.Status400BadRequest;
