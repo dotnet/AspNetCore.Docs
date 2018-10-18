@@ -13,7 +13,7 @@ uid: signalr/security
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
-SignalR provides a number of security protections by default. It's important to understand how to configure these protections.
+This article provides information on securing SignalR.
 
 ## Cross-origin resource sharing
 
@@ -24,36 +24,15 @@ SignalR provides a number of security protections by default. It's important to 
 
 CORS should be configured in the SignalR app to only allow the origin `www.example.com`.
 
-For more information on configuring CORS, see [Enable Cross-Origin Requests (CORS)](xref:security/cors). SignalR requires the following CORS policies in order to operate correctly:
+For more information on configuring CORS, see [Enable Cross-Origin Requests (CORS)](xref:security/cors). SignalR requires the following CORS policies:
 
-* The policy must allow the specific origins you expect, or allow any origin (not recommended).
+* Allow the specific expected origins. Allowing any origin is possible but is **not** secure or recommended.
 * HTTP methods `GET` and `POST` must be allowed.
-* Credentials must be enabled, even when you aren't using authentication.
+* Credentials must be enabled, even when authentication is not used.
 
-For example, the following CORS policy allows a SignalR browser client hosted on `http://example.com` to access your SignalR app:
+For example, the following CORS policy allows a SignalR browser client hosted on `http://example.com` to access the SignalR app hosted on `http://signalr.example.com`:
 
 [!code-csharp[Main](security/sample/Startup.cs?name=snippet1)]
-
-```csharp
-public void Configure(IApplicationBuilder app)
-{
-    // ... other middleware ...
-
-    // Make sure the CORS middleware is ahead of SignalR.
-    app.UseCors(builder => {
-        builder.WithOrigins("http://example.com")
-            .AllowAnyHeader()
-            .WithMethods("GET", "POST")
-            .AllowCredentials();
-    });
-
-    // ... other middleware ...
-
-    app.UseSignalR();
-
-    // ... other middleware ...
-}
-```
 
 > [!NOTE]
 > SignalR is not compatible with the built-in CORS feature in Azure App Service.
@@ -65,57 +44,14 @@ The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 * Perform CORS pre-flight requests.
 * Respect the restrictions specified in `Access-Control` headers when making WebSocket requests.
 
-However, browsers do send the `Origin` header when issuing WebSocket requests.  Applications should be configured to validate these headers in order to ensure that only WebSockets coming from the origins you expect are allowed.
+However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers in order to ensure that only WebSockets coming from the expected origins are allowed.
 
-In ASP.NET Core 2.1, header validation can be achieved using a custom middleware placed **above `UseSignalR`, and any authentication middleware** in `Configure`:
+In ASP.NET Core 2.1 and later, header validation can be achieved using a custom middleware placed **before `UseSignalR`, and authentication middleware** in `Configure`:
 
 [!code-csharp[Main](security/sample/Startup.cs?name=snippet2)]
 
-```csharp
-// In Startup, add a static field listing the allowed Origin values:
-private static readonly HashSet<string> _allowedOrigins = new HashSet<string>()
-{
-    // Add allowed origins here. For example:
-    "http://www.mysite.com",
-    "http://mysite.com",
-};
-
-// Validate Origin header in Configure
-public void Configure(IApplicationBuilder app)
-{
-    // ... other middleware ...
-
-    // Validate Origin header on WebSocket requests to prevent unexpected cross-site WebSocket requests
-    app.Use((context, next) =>
-    {
-        // Check for a WebSocket request.
-        if(string.Equals(context.Request.Headers["Upgrade"], "websocket"))
-        {
-            var origin = context.Request.Headers["Origin"];
-
-            // If there is no origin header, or if the origin header doesn't match an allowed value:
-            if(string.IsNullOrEmpty(origin) && !_allowedOrigins.Contains(origin))
-            {
-                // The origin is not allowed, reject the request
-                context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                return Task.CompletedTask;
-            }
-        }
-
-        // The request is a valid Origin or not a WebSocket request, so continue.
-        return next();
-    });
-
-    // ... other middleware ...
-
-    app.UseSignalR();
-
-    // ... other middleware ...
-}
-```
-
 > [!NOTE]
-> The `Origin` header is completely controlled by the client and, like the `Referer` header, can be faked. These headers should never be used as an authentication mechanism.
+> The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
 
 ## Access token logging
 
@@ -123,7 +59,7 @@ When using WebSockets or Server-Sent Events, the browser client sends the access
 
 ## Exceptions
 
-Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, SignalR doesn't send the details of an exception thrown by a hub method to the client. Instead, the client receives a generic message indicating an error occurred. You can override this behavior by setting the [`EnableDetailedErrors`](xref:signalr/configuration#configure-server-options) setting.
+Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, SignalR doesn't send the details of an exception thrown by a hub method to the client. Instead, the client receives a generic message indicating an error occurred. Exception message delivery to the client can be overridden (for example in development or test) with [`EnableDetailedErrors`](xref:signalr/configuration#configure-server-options). Exception messages should not be exposed to the client in production apps.
 
 ## Buffer management
 
@@ -142,4 +78,5 @@ There are limits for incoming and outgoing messages, both can be configured on t
 * `ApplicationMaxBufferSize` represents the maximum number of bytes from the client that the server buffers. If the client attempts to send a message larger than this limit, the connection may be closed.
 * `TransportMaxBufferSize` represents the maximum number of bytes the server can send. If the server attempts to send a message (including return values from hub methods) larger than this limit, an exception will be thrown.
 
-Setting the limit to `0` disables the limit. However, disabling the limit should be done with extreme caution. Removing the limit allows a client to send a message of any size. Sending large messages could be used by a malicious client to cause excess memory to be allocated.  Excess memory usage can dramatically reduce the number of concurrent connections an app can support.
+Setting the limit to `0` disables the limit. However, disabling the limit exposes the app malicious large message creation. Removing the limit allows a client to send a message of any size. Malicious clients sending large  
+messages can cause excess memory to be allocated. Excess memory usage can significantly reduce the number of concurrent connections.

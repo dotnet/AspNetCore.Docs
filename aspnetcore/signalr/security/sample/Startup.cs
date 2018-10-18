@@ -59,8 +59,8 @@ namespace SignalR_CORS
         {
             // ... other middleware ...
 
-            // Validate Origin header on WebSocket requests to prevent unexpected cross-site WebSocket 
-            // requests
+            // Validate Origin header on WebSocket requests to prevent unexpected cross-site 
+            // WebSocket requests.
             app.Use((context, next) =>
             {
                 // Check for a WebSocket request.
@@ -68,7 +68,8 @@ namespace SignalR_CORS
                 {
                     var origin = context.Request.Headers["Origin"];
 
-                    // If there is no origin header, or if the origin header doesn't match an allowed value:
+                    // If there is no origin header, or if the origin header doesn't match 
+                    // an allowed value:
                     if (string.IsNullOrEmpty(origin) && !_allowedOrigins.Contains(origin))
                     {
                         // The origin is not allowed, reject the request
