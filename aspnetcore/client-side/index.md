@@ -14,7 +14,6 @@ uid: client-side/index
   * [LibMan CLI](xref:client-side/libman/libman-cli)
   * [LibMan in Visual Studio](xref:client-side/libman/libman-vs)
 * [Manage client-side packages with Bower](xref:client-side/bower)
-* [Build responsive sites with Bootstrap](xref:client-side/bootstrap)
 * [Style apps with LESS, Sass, and Font Awesome](xref:client-side/less-sass-fa)
 * [Bundle and minify](xref:client-side/bundling-and-minification)
 * [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
