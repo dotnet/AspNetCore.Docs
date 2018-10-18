@@ -571,13 +571,11 @@ The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_dbo.Cou
 database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 ```
 
-When migrations are run with existing data, there may be FK constraints that are not satisfied with the existing data. For this tutorial, a new DB is created, so there are no FK constraint violations. See [Apply the migration to the existing database](#applyexisting) for instructions on how to fix the FK violations on the current DB.
-
 ## Apply the migration
 
-Now that you have an existing database, you need to think about how to apply future changes to it. For this, you have two approaches:
+Now that you have an existing database, you need to think about how to apply future changes to it. This tutorial shows two approaches:
 * [Drop and re-create the database](#drop)
-* [Apply the migration to the existing database](#applyexisting). While this method more complex and time-consuming, it's the preferred approach for real-world, production environments. 
+* [Apply the migration to the existing database](#applyexisting). While this method is more complex and time-consuming, it's the preferred approach for real-world, production environments. **Note**: This is an optional section of the tutorial. You can do the drop and re-create steps and skip this section. If you do want to follow the steps in this section, don't do the drop and re-create steps. 
 
 <a name="drop"></a>
 
@@ -628,6 +626,8 @@ Examine the **CourseAssignment** table:
 <a name="applyexisting"></a>
 
 ### Apply the migration to the existing database
+
+This section is optional. These steps work only if you skipped the preceding [Drop and re-create the database](#drop) section.
 
 When migrations are run with existing data, there may be FK constraints that are not satisfied with the existing data. With production data, steps must be taken to migrate the existing data. This section provides an example of fixing FK constraint violations. Don't make these code changes without a backup. Don't make these code changes if you completed the previous section and updated the database.
 
