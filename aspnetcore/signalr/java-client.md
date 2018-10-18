@@ -26,7 +26,7 @@ If using Gradle, add the following line to the `dependencies` section of your *b
 
 ```gradle
 implementation 'com.microsoft.signalr:signalr:1.0.0-preview3-35501'
-implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
+implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
 ```
 
 If using Maven, add the following lines inside the `<dependencies>` element of your *pom.xml* file:
