@@ -51,8 +51,9 @@ Use `hubConnection.on` to define methods on the client that the hub can call. De
 
 [!code-java[Define client methods](java-client/sample/src/main/java/Chat.java?range=19-21)]
 
-## Adding logging
-The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. Below we show how to use java.util.logging with the SignalR Java client.
+## Add logging
+
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
