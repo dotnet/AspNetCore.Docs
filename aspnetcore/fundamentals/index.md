@@ -71,7 +71,9 @@ The content root is the base path to any content used by the app, such as [Razor
 
 ## Web root
 
-The web root of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files.
+The web root of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files. By default, *wwwroot* is the web root.
+
+For ASP.NET Core code, the tilde character `~` represents the  web root operator and points to the web root.
 
 ## Dependency injection (services)
 
