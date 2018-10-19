@@ -45,4 +45,4 @@ Select `using System.ComponentModel.DataAnnotations;`
 
 > [!div class="step-by-step"]
 > [Previous: Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
-> [Add search](xref:tutorials/razor-pages/search)
+> [Next: Add search](xref:tutorials/razor-pages/search)
