@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 10/18/2018
 uid: signalr/java-client
 ---
-# ASP.NET Core SignalR Java Client
+# ASP.NET Core SignalR Java client
 
 By [Mikael Mengistu](https://twitter.com/MikaelM_12)
 
@@ -51,13 +51,20 @@ Use `hubConnection.on` to define methods on the client that the hub can call. De
 
 [!code-java[Define client methods](java-client/sample/src/main/java/Chat.java?range=19-21)]
 
+## Adding logging
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. Below we show how to use java.util.logging with the SignalR Java client.
+
+```gradle
+implementation 'org.slf4j:slf4j-jdk14:1.7.25'
+```
+
 ## Known limitations
 
 This is a preview release of the Java client. There are some features that aren't supported yet. The following gaps are being worked on for future releases:
 
 * Only the JSON protocol is supported.
 * Only the WebSockets transport is supported.
-* Streaming is not yet supported.
+* Streaming isn't supported yet.
 
 ## Additional resources
 
