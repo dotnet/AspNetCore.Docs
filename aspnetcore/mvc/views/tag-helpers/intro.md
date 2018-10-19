@@ -1,7 +1,7 @@
 ---
 title: Tag Helpers in ASP.NET Core
 author: rick-anderson
-description: Learn what tag helpers are and how to use them in ASP.NET Core.
+description: Learn what Tag Helpers are and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 2/14/2018
@@ -128,7 +128,7 @@ The same hierarchy rules that apply to `@addTagHelper` also apply to `@tagHelper
 
 ## Self-closing Tag Helpers
 
-In general, Tag Helpers can't be used as self-closing tags. Self-closing a Tag Helper results in a self-closing tag in the rendered output. For more information, see [this note](xref:mvc/views/tag-helpers/authoring#self-closing) in [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring).
+Many Tag Helpers can't be used as self-closing tags. Some Tag Helpers are designed to be self-closing tags. Using a Tag Helper that was not designed to be self-closing suppresses the rendered output. Self-closing a Tag Helper results in a self-closing tag in the rendered output. For more information, see [this note](xref:mvc/views/tag-helpers/authoring#self-closing) in [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring).
 
 ## IntelliSense support for Tag Helpers
 
