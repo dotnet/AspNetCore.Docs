@@ -6,8 +6,9 @@
 # Tutorials
 <!--delete index.md, move how to download somewhere else-->
 ## Create web apps
-### [Razor Pages with Visual Studio](xref:tutorials/razor-pages/index)
-#### [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+### Razor Pages with Visual Studio
+#### [Overview](xref:tutorials/razor-pages/index)
+#### [Get started](xref:tutorials/razor-pages/razor-pages-start)
 #### [Add a model](xref:tutorials/razor-pages/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 #### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
@@ -15,22 +16,24 @@
 #### [Add search](xref:tutorials/razor-pages/search)
 #### [Add a new field](xref:tutorials/razor-pages/new-field)
 #### [Add validation](xref:tutorials/razor-pages/validation)
-### [Razor Pages with Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
+### Razor Pages with Visual Studio Code
+#### [Overview](xref:tutorials/razor-pages-vsc/index)
 #### [Get started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
 #### [Add a model](xref:tutorials/razor-pages-vsc/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
 #### [Work with SQLite](xref:tutorials/razor-pages-vsc/sql)
 #### [Update the pages](xref:tutorials/razor-pages-vsc/da1)
 #### [Add search](xref:tutorials/razor-pages-vsc/search)
-### [Razor Pages with Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
-#### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
+### Razor Pages with Visual Studio for Mac
+#### [Overview](xref:tutorials/razor-pages-mac/index)
 #### [Get started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 #### [Add a model](xref:tutorials/razor-pages-mac/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
 #### [Work with SQLite](xref:tutorials/razor-pages-mac/sql)
 #### [Update the pages](xref:tutorials/razor-pages-mac/da1)
 #### [Add search](xref:tutorials/razor-pages-mac/search)
-### [MVC with Visual Studio](tutorials/first-mvc-app/index.md)
+### MVC with Visual Studio
+#### [Overview](tutorials/first-mvc-app/index.md)
 #### [Get started](tutorials/first-mvc-app/start-mvc.md)
 #### [Add a controller](tutorials/first-mvc-app/adding-controller.md)
 #### [Add a view](tutorials/first-mvc-app/adding-view.md)
@@ -40,7 +43,9 @@
 #### [Add search](tutorials/first-mvc-app/search.md)
 #### [Add a new field](tutorials/first-mvc-app/new-field.md)
 #### [Add validation](tutorials/first-mvc-app/validation.md)
-### [MVC with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
+#### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
+### MVC with Visual Studio Code
+### [Overview](xref:tutorials/first-mvc-app-xplat/index)
 #### [Get started](tutorials/first-mvc-app-xplat/start-mvc.md)
 #### [Add a controller](tutorials/first-mvc-app-xplat/adding-controller.md)
 #### [Add a view](tutorials/first-mvc-app-xplat/adding-view.md)
@@ -51,7 +56,8 @@
 #### [Add a new field](tutorials/first-mvc-app-xplat/new-field.md)
 #### [Add validation](tutorials/first-mvc-app-xplat/validation.md)
 #### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
-### [MVC with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
+### MVC with Visual Studio for Mac
+### [Overview](xref:tutorials/first-mvc-app-mac/index)
 #### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
 #### [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
 #### [Add a view](xref:tutorials/first-mvc-app-mac/adding-view)
@@ -68,7 +74,6 @@
 ### [Using Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [Using Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
-### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 ### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 
@@ -89,7 +94,7 @@
 #### [Handle concurrency conflicts](xref:data/ef-rp/concurrency)
 ### [EF Core with existing db](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 ### [MVC with EF Core, short tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
-### [MVC with EF Core](data/ef-mvc/index.md)
+### [MVC with EF Core, long tutorial](data/ef-mvc/index.md)
 #### [Get started](data/ef-mvc/intro.md)
 #### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
 #### [Sort, filter, page, and group](data/ef-mvc/sort-filter-page.md)
@@ -100,9 +105,7 @@
 #### [Handle concurrency conflicts](data/ef-mvc/concurrency.md)
 #### [Inheritance](data/ef-mvc/inheritance.md)
 #### [Advanced topics](data/ef-mvc/advanced.md)
-
 <!-- delete tutorials/xplat.md-->
-## [Use a file watcher](xref:tutorials/dotnet-watch)
 
 # Web apps
 ## Razor Pages
@@ -155,7 +158,8 @@
 #### [Validation Summary Tag Helper](mvc/views/working-with-forms.md#the-validation-summary-tag-helper)
 ### [Layout](xref:mvc/views/layout)
 ## [Session and app state](xref:fundamentals/app-state)
-## [Advanced](xref:mvc/advanced/index)
+## Advanced
+<!--delete index.md-->
 ### [View components](xref:mvc/views/view-components)
 ### [View compilation](xref:mvc/views/view-compilation)
 ### [Work with the app model](xref:mvc/controllers/application-model)
@@ -166,19 +170,20 @@
 ### [Compatibility version](xref:mvc/compatibility-version)
 
 # Web APIs
-# [Overview](xref:web-api/index)
+## [Overview](xref:web-api/index)
 ## Tutorials
 ### [Using Visual Studio](xref:tutorials/first-web-api)
 ### [Using Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [Using Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
+## Swashbuckle / OpenAPI
+### [Overview](xref:tutorials/get-started-with-swashbuckle)
 ### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
-### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 ## [Action return types](xref:web-api/action-return-types)
 <!--delete advanced/index.md-->
-### [Format response data](xref:web-api/advanced/formatting)
-### [Custom formatters](xref:web-api/advanced/custom-formatters)
+## [Format response data](xref:web-api/advanced/formatting)
+## [Custom formatters](xref:web-api/advanced/custom-formatters)
 
 # Real-time apps
 <!--delete index.md-->
@@ -224,7 +229,7 @@
 ## Tutorials
 ### [Razor Pages with EF Core](xref:data/ef-rp/index)
 ### [MVC with EF Core, short tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
-### [MVC with EF Core](data/ef-mvc/index.md)
+### [MVC with EF Core, long tutorial](data/ef-mvc/index.md)
 ### [EF Core with existing db](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 ## [ASP.NET Core with EF 6](data/entity-framework-6.md)
 ## Azure Storage
@@ -233,6 +238,8 @@
 ### [Get started with Blob storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs/)
 ### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
+
+<!--delete azure/index-->
 
 # Client-side development
 ## [Overview](xref:client-side/index)
@@ -254,16 +261,6 @@
 ### [React with Redux project template](xref:spa/react-with-redux)
 
 
-# Azure hosting and deployment 
-## [Overview](xref:azure/index)
-## DevOps with ASP.NET Core and Azure
-### [Introduction](xref:azure/devops/index)
-### [Tools and downloads](xref:azure/devops/tools-and-downloads)
-### [Deploy to App Service](xref:azure/devops/deploy-to-app-service)
-### [Continuous integration and deployment](xref:azure/devops/cicd)
-### [Monitor and troubleshoot](xref:azure/devops/monitor)
-### [Next steps](xref:azure/devops/next-steps)
-
 # Hosting and deployment
 ## [Overview](xref:host-and-deploy/index)
 ## Host on Azure App Service
@@ -273,6 +270,13 @@
 ### [Continuous deployment to Azure with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Continuous deployment to Azure with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 ### [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
+## Azure DevOps 
+### [Introduction](xref:azure/devops/index)
+### [Tools and downloads](xref:azure/devops/tools-and-downloads)
+### [Deploy to App Service](xref:azure/devops/deploy-to-app-service)
+### [Continuous integration and deployment](xref:azure/devops/cicd)
+### [Monitor and troubleshoot](xref:azure/devops/monitor)
+### [Next steps](xref:azure/devops/next-steps)
 ## Host on Windows with IIS
 ### [Overview](xref:host-and-deploy/iis/index)
 ### [Troubleshoot ASP.NET Core on IIS](xref:host-and-deploy/iis/troubleshoot)
@@ -401,12 +405,9 @@
 ### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
 ## [Routing](xref:fundamentals/routing)
 ## [Use multiple environments](xref:fundamentals/environments)
-## Configuration and options
-### [Configuration](xref:fundamentals/configuration/index)
-### [Options](xref:fundamentals/configuration/options)
-## Logging
-## [Overview](xref:fundamentals/logging/index)
-### [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
+## [Configuration](xref:fundamentals/configuration/index)
+## [Options](xref:fundamentals/configuration/options)
+## [Logging](xref:fundamentals/logging/index)
 ## [Handle errors](fundamentals/error-handling.md)
 ## Host
 ### [Overview](xref:fundamentals/host/index)
@@ -422,9 +423,8 @@
 ## [Initiate HTTP requests](xref:fundamentals/http-requests)
 
 # Other topics
-## Globalization and localization
-### [Overview](xref:fundamentals/localization)
-### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
+## [Globalization and localization](xref:fundamentals/localization)
+## [Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
 ## [URL rewriting](xref:fundamentals/url-rewriting)
 ## [File Providers](xref:fundamentals/file-providers)
 ## [Request Features](xref:fundamentals/request-features)
@@ -433,6 +433,8 @@
 ## [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
+## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
+## [Use a file watcher](xref:tutorials/dotnet-watch)
 ## Cache responses
 ### [Overview](xref:performance/caching/index)
 ### [Cache in-memory](xref:performance/caching/memory)
