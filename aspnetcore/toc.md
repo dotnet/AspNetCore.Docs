@@ -1,7 +1,7 @@
 # Overview
 ## [About ASP.NET Core](index.md)
-## [Choose between ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
-## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
+## [Compare ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
+## [Compare .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
 # Tutorials
 <!--delete index.md, move how to download somewhere else-->

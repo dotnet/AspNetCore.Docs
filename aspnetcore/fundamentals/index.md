@@ -141,36 +141,6 @@ ASP.NET Core offers scenarios for routing of app requests to route handlers.
 
 For more information, see <xref:fundamentals/routing>.
 
-## File Providers
-
-ASP.NET Core abstracts file system access through the use of File Providers, which offers a common interface for working with files across platforms.
-
-For more information, see <xref:fundamentals/file-providers>.
-
-## Static files
-
-Static Files Middleware serves static files, such as HTML, CSS, image, and JavaScript files.
-
-For more information, see <xref:fundamentals/static-files>.
-
-## Session and app state
-
-ASP.NET Core offers several approaches to preserve session and app state while a user browses a web app.
-
-For more information, see <xref:fundamentals/app-state>.
-
-## Globalization and localization
-
-Creating a multilingual website with ASP.NET Core allows your site to reach a wider audience. ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
-
-For more information, see <xref:fundamentals/localization>.
-
-## Request features
-
-Web server implementation details related to HTTP requests and responses are defined in interfaces. These interfaces are used by server implementations and middleware to create and modify the app's hosting pipeline.
-
-For more information, see <xref:fundamentals/request-features>.
-
 ## Background tasks
 
 Background tasks are implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface.
@@ -183,42 +153,12 @@ For more information, see <xref:fundamentals/host/hosted-services>.
 
 For more information, see <xref:fundamentals/httpcontext>.
 
-## WebSockets
+<a name="download"></a>
 
-[WebSocket](https://wikipedia.org/wiki/WebSocket) is a protocol that enables two-way persistent communication channels over TCP connections. It's used for apps such as chat, stock tickers, games, and anywhere you desire real-time functionality in a web app. ASP.NET Core supports web socket scenarios.
+## How to download a sample
 
-For more information, see <xref:fundamentals/websockets>.
+Many of the articles and tutorials include links to sample code.
 
-::: moniker range=">= aspnetcore-2.1"
-
-## Microsoft.AspNetCore.App metapackage
-
-The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage simplifies package management.
-
-For more information, see <xref:fundamentals/metapackage-app>.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-## Microsoft.AspNetCore.All metapackage
-
-The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) metapackage for ASP.NET Core includes:
-
-* All supported packages by the ASP.NET Core team.
-* All supported packages by Entity Framework Core.
-* Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core.
-
-For more information, see <xref:fundamentals/metapackage>.
-
-::: moniker-end
-
-## .NET Core vs. .NET Framework runtime
-
-An ASP.NET Core app can target the .NET Core or .NET Framework runtime.
-
-For more information, see [Choosing between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
-
-## Choose between ASP.NET Core and ASP.NET
-
-For more information on choosing between ASP.NET Core and ASP.NET, see <xref:fundamentals/choose-between-aspnet-and-aspnetcore>.
+1. [Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/Docs/zip/master).
+1. Unzip the *Docs-master.zip* file.
+1. Use the URL in the sample link to help you navigate to the sample directory.
