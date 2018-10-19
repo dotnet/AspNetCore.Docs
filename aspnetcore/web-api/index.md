@@ -41,7 +41,7 @@ ASP.NET Core 2.1 introduces the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-A compatibility version of 2.1 or later, set via <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*>, is required to use this attribute. For example, the highlighted code in *Startup.ConfigureServices* sets the 2.1 compatibility flag:
+A compatibility version of 2.1 or later, set via <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*>, is required to use this attribute. For example, the highlighted code in *Startup.ConfigureServices* sets the 2.2 compatibility flag:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_SetCompatibilityVersion&highlight=2)]
 
@@ -55,15 +55,47 @@ Another approach is to create a custom base controller class annotated with the 
 
 The following sections describe convenience features added by the attribute.
 
+### Problem Details responses for error status codes
+
+ASP.NET Core 2.1 introduces [[ProblemDetails]](xref:Microsoft.AspNetCore.Mvc.ProblemDetails) a type based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). This type provides a standardized format for coveying machine readable details of errors in a HTTP response.
+
+In ASP.NET Core 2.2, MVC transforms all error status code (status code 400 or higher) results to a result with `ProblemDetails`. Consider the following sample:
+
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_ProblemDetails_StatusCode&highlight=4)]
+
+The HTTP response for this result would have a 404 status code with a ProblemDetails body:
+
+```js
+{
+    type: "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+    title: "Not Found",
+    status: 404,
+    traceId: "0HLHLV31KRN83:00000001"
+}
+```
+
+This feature requires a compatibility flag of 2.2 or later. The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`. Add the following code in *Startup.ConfigureServices* after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);`:
+
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=6)]
+
+Use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping> property to configure the contents of the `ProblemDetails` response. For instance, the following snippet updates the `type` property for 404 responses:
+
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=8)]
+
 ### Automatic HTTP 400 responses
 
 Validation errors automatically trigger an HTTP 400 response. The following code becomes unnecessary in your actions:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_ModelStateIsValidCheck)]
 
+Use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to customize the output of the the resulting response.
+
 The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property is set to `true`. Add the following code in *Startup.ConfigureServices* after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);`:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=5)]
+
+
+With a compatibility flag of 2.2 or later, the default response type returned for 400 responses is a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressUseValidationProblemDetailsForInvalidModelStateResponses> property to continue using the error format used in ASP.NET Core 2.1.
 
 ### Binding source parameter inference
 
