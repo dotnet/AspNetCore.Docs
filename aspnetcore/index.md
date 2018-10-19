@@ -37,7 +37,7 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#buil
 
 ## Client-side development
 
-ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](xref:client-side/bootstrap). For more information, see [Client-side development](xref:client-side/index).
+ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](https://getbootstrap.com/). For more information, see [Client-side development](xref:client-side/index).
 
 <a name="target-framework"></a>
 
