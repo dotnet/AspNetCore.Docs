@@ -126,6 +126,10 @@ In the code image below, the Tag Helper prefix is set to `th:`, so only those el
 
 The same hierarchy rules that apply to `@addTagHelper` also apply to `@tagHelperPrefix`.
 
+## Self closing Tag Helpers
+
+In general, Tag Helpers can't be used as self closing tags. Self-closing a Tag Helper results in a self-closing tag in the rendered output. For more information see [this note](xref:mvc/views/tag-helpers/authoring#self-closing) in [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring).
+
 ## IntelliSense support for Tag Helpers
 
 When you create a new ASP.NET Core web app in Visual Studio, it adds the NuGet package "Microsoft.AspNetCore.Razor.Tools". This is the package that adds Tag Helper tooling.
