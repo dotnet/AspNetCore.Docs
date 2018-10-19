@@ -79,7 +79,7 @@ public static IWebHost BuildWebHost(string[] args) =>
         ...
 ```
 
-The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> method, which picks up the dynamic port and configures Kestrel to listen on `http://127.0.0.1:{dynamicPort}/`. This configuration replaces other URL configurations provided by:
+The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
@@ -101,7 +101,7 @@ public static IWebHost BuildWebHost(string[] args) =>
         ...
 ```
 
-The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the [UseIISIntegration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions.useiisintegration) method, which picks up the dynamic port and configures Kestrel to listen on `http://127.0.0.1:{dynamicPort}/`. This configuration replaces other URL configurations provided by:
+The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the [UseIISIntegration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions.useiisintegration) method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
@@ -121,7 +121,7 @@ public static IWebHost BuildWebHost(string[] args) =>
         ...
 ```
 
-The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the [UseIISIntegration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions.useiisintegration) method, which picks up the dynamic port and configures Kestrel to listen on `http://localhost:{dynamicPort}/`. This configuration replaces other URL configurations provided by:
+The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the [UseIISIntegration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions.useiisintegration) method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`localhost`). If the dynamic port is 1234, Kestrel listens at `localhost:1234`. This configuration replaces other URL configurations provided by:
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
@@ -144,7 +144,7 @@ var host = new WebHostBuilder()
 
 Both [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel) and [UseIISIntegration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions.useiisintegration) are required. Code calling `UseIISIntegration` doesn't affect code portability. If the app isn't run behind IIS (for example, the app is run directly on Kestrel), `UseIISIntegration` doesn't operate.
 
-The ASP.NET Core Module generates a dynamic port to assign to the backend process. The `UseIISIntegration` method picks up the dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This configuration replaces other URL configurations provided by:
+The ASP.NET Core Module generates a dynamic port to assign to the backend process. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`localhost`). If the dynamic port is 1234, Kestrel listens at `localhost:1234`. This configuration replaces other URL configurations provided by:
 
 * `UseUrls`
 * [Configuration](xref:fundamentals/configuration/index) (or [command-line --urls option](xref:fundamentals/host/web-host#override-configuration))
