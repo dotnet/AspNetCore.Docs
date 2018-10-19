@@ -102,6 +102,10 @@ The Swagger UI can be found at `http://localhost:<port>/swagger`. Explore the AP
 >
 > [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup3.cs?name=snippet_UseSwaggerUI&highlight=4)]
 
+
+> [!TIP]
+> If using virtual directories (with IIS or a reverse proxy for example), you will need to set the Swagger Endpoint to a relative path using the `./` prefix (`./swagger/v1/swagger.json`).  Using `/swagger/v1/swagger.json` instructs the application to look for the json file at the true root of the URL  (plus the route prefix if used).  For example, `http://localhost:<port>/<routePrevix>/swagger/v1/swagger.json` instead of `http://localhost:<port>/<virtualDirectory>/<routePrevix>/swagger/v1/swagger.json`.
+
 ## Customize and extend
 
 Swagger provides options for documenting the object model and customizing the UI to match your theme.
