@@ -4,7 +4,6 @@
 ## [Compare .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
 # Tutorials
-<!--delete index.md, move how to download somewhere else-->
 ## Create web apps
 ### Razor Pages with Visual Studio
 #### [Overview](xref:tutorials/razor-pages/index)
@@ -68,7 +67,6 @@
 #### [Add a new field](xref:tutorials/first-mvc-app-mac/new-field)
 #### [Add validation](xref:tutorials/first-mvc-app-mac/validation)
 #### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
-
 ## Create Web APIs
 ### [Using Visual Studio](xref:tutorials/first-web-api)
 ### [Using Visual Studio Code](xref:tutorials/web-api-vsc)
@@ -76,13 +74,11 @@
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 ### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
-
 ## Create real-time apps
 ### [SignalR web app](xref:tutorials/signalr)
 ### [SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
 
 ## Data access
-<!-- delete index.md-->
 ### [Razor Pages with EF Core](xref:data/ef-rp/index)
 #### [Get started](xref:data/ef-rp/intro)
 #### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
@@ -105,7 +101,6 @@
 #### [Handle concurrency conflicts](data/ef-mvc/concurrency.md)
 #### [Inheritance](data/ef-mvc/inheritance.md)
 #### [Advanced topics](data/ef-mvc/advanced.md)
-<!-- delete tutorials/xplat.md-->
 
 # Web apps
 ## Razor Pages
@@ -159,7 +154,6 @@
 ### [Layout](xref:mvc/views/layout)
 ## [Session and app state](xref:fundamentals/app-state)
 ## Advanced
-<!--delete index.md-->
 ### [View components](xref:mvc/views/view-components)
 ### [View compilation](xref:mvc/views/view-compilation)
 ### [Work with the app model](xref:mvc/controllers/application-model)
@@ -181,12 +175,10 @@
 ### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 ## [Action return types](xref:web-api/action-return-types)
-<!--delete advanced/index.md-->
 ## [Format response data](xref:web-api/advanced/formatting)
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
 
 # Real-time apps
-<!--delete index.md-->
 ## [Introduction to SignalR](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## Tutorials
@@ -198,7 +190,6 @@
 ### [Users and groups](xref:signalr/groups)
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 ## Clients
-<!--delete index.md-->
 ### [.NET client](xref:signalr/dotnet-client)
 ### [Java client](xref:signalr/java-client)
 ### [Java API reference](/java/api/com.microsoft.aspnet.signalr?view=aspnet-signalr-java)
@@ -214,7 +205,6 @@
 ## [WebSockets without SignalR](xref:fundamentals/websockets)
 
 # Test, debug, and troubleshoot
-<!--delete index.md-->
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration tests](xref:test/integration-tests)
 ## [Razor Pages unit tests](xref:test/razor-pages-tests)
@@ -225,7 +215,6 @@
 ## [Troubleshoot](xref:test/troubleshoot)
 
 # Data access
-<!--delete index.ms-->
 ## Tutorials
 ### [Razor Pages with EF Core](xref:data/ef-rp/index)
 ### [MVC with EF Core, short tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
@@ -233,13 +222,10 @@
 ### [EF Core with existing db](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 ## [ASP.NET Core with EF 6](data/entity-framework-6.md)
 ## Azure Storage
-<!--delete index.ms-->
 ### [Add Azure Storage by using Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-azure-tools-connected-services-storage/)
 ### [Get started with Blob storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs/)
 ### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
-
-<!--delete azure/index-->
 
 # Client-side development
 ## [Overview](xref:client-side/index)
@@ -301,7 +287,6 @@
 # Security and Identity
 ## [Overview](xref:security/index)
 ## Authentication
-### [Overview](xref:security/authentication/index)
 ### [Introduction to Identity](xref:security/authentication/identity)
 ### [Scaffold Identity](xref:security/authentication/scaffold-identity)
 ### [Add custom user data to Identity](xref:security/authentication/add-user-data)
@@ -334,7 +319,6 @@
 ### [Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)](https://docs.microsoft.com/azure/app-service/app-service-authentication-overview)
 ### [Individual user accounts](xref:security/authentication/individual)
 ## Authorization
-<!-- delete index, redirect index to introduction-->
 ### [Overview](xref:security/authorization/introduction)
 ### [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
 ### [Razor Pages authorization](xref:security/authorization/razor-pages-authorization)
@@ -348,11 +332,9 @@
 ### [View-based authorization](xref:security/authorization/views)
 ### [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
 ## Data protection
-<!-- delete index, redirect index to introduction-->
 ### [Overview](xref:security/data-protection/introduction)
 ### [Get started with the Data Protection APIs](xref:security/data-protection/using-data-protection)
 ### Consumer APIs
-<!-- delete index, redirect index to overview-->
 #### [Overview](xref:security/data-protection/consumer-apis/overview)
 #### [Purpose strings](xref:security/data-protection/consumer-apis/purpose-strings)
 #### [Purpose hierarchy and multi-tenancy](xref:security/data-protection/consumer-apis/purpose-strings-multitenancy)
