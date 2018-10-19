@@ -3,43 +3,82 @@
 ## [Choose between ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 ## [Choose between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
-# [Tutorials](tutorials/index.md)
-## [Create a Razor Pages web app](xref:tutorials/razor-pages/index)
-### [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-### [Add a model](xref:tutorials/razor-pages/model)
-### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
-### [Update the pages](xref:tutorials/razor-pages/da1)
-### [Add search](xref:tutorials/razor-pages/search)
-### [Add a new field](xref:tutorials/razor-pages/new-field)
-### [Add validation](xref:tutorials/razor-pages/validation)
-## [Create a real-time SignalR web app](xref:tutorials/signalr)
-## [Create a SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
-## [Create an MVC web app](tutorials/first-mvc-app/index.md)
-### [Get started](tutorials/first-mvc-app/start-mvc.md)
-### [Add a controller](tutorials/first-mvc-app/adding-controller.md)
-### [Add a view](tutorials/first-mvc-app/adding-view.md)
-### [Add a model](tutorials/first-mvc-app/adding-model.md)
-### [Work with SQL Server LocalDB](tutorials/first-mvc-app/working-with-sql.md)
-### [Controller methods and views](tutorials/first-mvc-app/controller-methods-views.md)
-### [Add search](tutorials/first-mvc-app/search.md)
-### [Add a new field](tutorials/first-mvc-app/new-field.md)
-### [Add validation](tutorials/first-mvc-app/validation.md)
-### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
+# Tutorials
+<!--delete index.md, move how to download somewhere else-->
+## Create web apps
+### [Razor Pages](xref:tutorials/razor-pages/index)
+#### [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+#### [Add a model](xref:tutorials/razor-pages/model)
+#### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+#### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+#### [Update the pages](xref:tutorials/razor-pages/da1)
+#### [Add search](xref:tutorials/razor-pages/search)
+#### [Add a new field](xref:tutorials/razor-pages/new-field)
+#### [Add validation](xref:tutorials/razor-pages/validation)
+### [Razor Pages on macOS](xref:tutorials/razor-pages-mac/index)
+#### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
+#### [Get started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
+#### [Add a model](xref:tutorials/razor-pages-mac/model)
+#### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
+#### [Work with SQLite](xref:tutorials/razor-pages-mac/sql)
+#### [Update the pages](xref:tutorials/razor-pages-mac/da1)
+#### [Add search](xref:tutorials/razor-pages-mac/search)
+### [Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/index)
+#### [Get started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
+#### [Add a model](xref:tutorials/razor-pages-vsc/model)
+#### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
+#### [Work with SQLite](xref:tutorials/razor-pages-vsc/sql)
+#### [Update the pages](xref:tutorials/razor-pages-vsc/da1)
+#### [Add search](xref:tutorials/razor-pages-vsc/search)
+### [MVC](tutorials/first-mvc-app/index.md)
+#### [Get started](tutorials/first-mvc-app/start-mvc.md)
+#### [Add a controller](tutorials/first-mvc-app/adding-controller.md)
+#### [Add a view](tutorials/first-mvc-app/adding-view.md)
+#### [Add a model](tutorials/first-mvc-app/adding-model.md)
+#### [Work with SQL Server LocalDB](tutorials/first-mvc-app/working-with-sql.md)
+#### [Controller methods and views](tutorials/first-mvc-app/controller-methods-views.md)
+#### [Add search](tutorials/first-mvc-app/search.md)
+#### [Add a new field](tutorials/first-mvc-app/new-field.md)
+#### [Add validation](tutorials/first-mvc-app/validation.md)
+### [MVC on macOS](xref:tutorials/first-mvc-app-mac/index)
+#### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
+#### [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
+#### [Add a view](xref:tutorials/first-mvc-app-mac/adding-view)
+#### [Add a model](xref:tutorials/first-mvc-app-mac/adding-model)
+#### [Work with SQLite](xref:tutorials/first-mvc-app-mac/working-with-sql)
+#### [Controller methods and views](xref:tutorials/first-mvc-app-mac/controller-methods-views)
+#### [Add search](xref:tutorials/first-mvc-app-mac/search)
+#### [Add a new field](xref:tutorials/first-mvc-app-mac/new-field)
+#### [Add validation](xref:tutorials/first-mvc-app-mac/validation)
+#### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+### [MVC with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
+#### [Get started](tutorials/first-mvc-app-xplat/start-mvc.md)
+#### [Add a controller](tutorials/first-mvc-app-xplat/adding-controller.md)
+#### [Add a view](tutorials/first-mvc-app-xplat/adding-view.md)
+#### [Add a model](tutorials/first-mvc-app-xplat/adding-model.md)
+#### [Work with SQLite](tutorials/first-mvc-app-xplat/working-with-sql.md)
+#### [Controller methods and views](tutorials/first-mvc-app-xplat/controller-methods-views.md)
+#### [Add search](tutorials/first-mvc-app-xplat/search.md)
+#### [Add a new field](tutorials/first-mvc-app-xplat/new-field.md)
+#### [Add validation](tutorials/first-mvc-app-xplat/validation.md)
+#### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-## [Build Web APIs](xref:web-api/index)
-### [Create a Web API in Visual Studio Code](xref:tutorials/web-api-vsc)
-### [Create a Web API in Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-### [Create a Web API in Visual Studio](xref:tutorials/first-web-api)
-### [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
+## Create Web APIs
+### [Using Visual Studio](xref:tutorials/first-web-api)
+### [Using Visual Studio Code](xref:tutorials/web-api-vsc)
+### [Using Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+### [For native mobile apps](xref:mobile/native-mobile-backend)
 ### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
-#### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
-#### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
-## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
+### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
+### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 
-## [Data access - with EF Core](xref:data/index)
-### [Data access - with Razor Pages and EF Core](xref:data/ef-rp/index)
+## Create real-time apps
+### [SignalR web app](xref:tutorials/signalr)
+### [SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
 
+## Data access
+<!-- delete index.md-->
+### [Razor Pages and EF Core](xref:data/ef-rp/index)
 #### [Get started](xref:data/ef-rp/intro)
 #### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
 #### [Sort, filter, page, and group](xref:data/ef-rp/sort-filter-page)
@@ -48,8 +87,7 @@
 #### [Read related data](xref:data/ef-rp/read-related-data)
 #### [Update related data](xref:data/ef-rp/update-related-data)
 #### [Handle concurrency conflicts](xref:data/ef-rp/concurrency)
-
-### [Data access - MVC with EF Core](data/ef-mvc/index.md)
+### [MVC and EF Core](data/ef-mvc/index.md)
 #### [Get started](data/ef-mvc/intro.md)
 #### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
 #### [Sort, filter, page, and group](data/ef-mvc/sort-filter-page.md)
@@ -62,45 +100,8 @@
 #### [Advanced topics](data/ef-mvc/advanced.md)
 
 ## [Cross platform tutorials](xref:tutorials/xplat)
-### [Razor Pages web app on macOS](xref:tutorials/razor-pages-mac/index)
-#### [Get started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
-#### [Add a model](xref:tutorials/razor-pages-mac/model)
-#### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
-#### [Work with SQLite](xref:tutorials/razor-pages-mac/sql)
-#### [Update the pages](xref:tutorials/razor-pages-mac/da1)
-#### [Add search](xref:tutorials/razor-pages-mac/search)
+<!-- delete xplat.md-->
 
-### [Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
-#### [Get started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
-#### [Add a model](xref:tutorials/razor-pages-vsc/model)
-#### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
-#### [Work with SQLite](xref:tutorials/razor-pages-vsc/sql)
-#### [Update the pages](xref:tutorials/razor-pages-vsc/da1)
-#### [Add search](xref:tutorials/razor-pages-vsc/search)
-
-### [MVC web app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
-#### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
-#### [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
-#### [Add a view](xref:tutorials/first-mvc-app-mac/adding-view)
-#### [Add a model](xref:tutorials/first-mvc-app-mac/adding-model)
-#### [Work with SQLite](xref:tutorials/first-mvc-app-mac/working-with-sql)
-#### [Controller methods and views](xref:tutorials/first-mvc-app-mac/controller-methods-views)
-#### [Add search](xref:tutorials/first-mvc-app-mac/search)
-#### [Add a new field](xref:tutorials/first-mvc-app-mac/new-field)
-#### [Add validation](xref:tutorials/first-mvc-app-mac/validation)
-#### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
-
-### [MVC web app with Visual Studio Code on macOS or Linux](xref:tutorials/first-mvc-app-xplat/index)
-#### [Get started](tutorials/first-mvc-app-xplat/start-mvc.md)
-#### [Add a controller](tutorials/first-mvc-app-xplat/adding-controller.md)
-#### [Add a view](tutorials/first-mvc-app-xplat/adding-view.md)
-#### [Add a model](tutorials/first-mvc-app-xplat/adding-model.md)
-#### [Work with SQLite](tutorials/first-mvc-app-xplat/working-with-sql.md)
-#### [Controller methods and views](tutorials/first-mvc-app-xplat/controller-methods-views.md)
-#### [Add search](tutorials/first-mvc-app-xplat/search.md)
-#### [Add a new field](tutorials/first-mvc-app-xplat/new-field.md)
-#### [Add validation](tutorials/first-mvc-app-xplat/validation.md)
-#### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
 ### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
@@ -109,70 +110,76 @@
 
 ## [Create backend services for mobile apps](mobile/native-mobile-backend.md)
 
-# [Razor Pages](xref:razor-pages/index)
-## [Filter methods for Razor Pages](xref:razor-pages/filter)
-## [Create a Razor Class Library](xref:razor-pages/ui-class)
-## [Route and app conventions](xref:razor-pages/razor-pages-conventions)
-## [Upload files to a Razor Page](xref:razor-pages/upload-files)
-## [Razor SDK](xref:razor-pages/sdk)
-
-# [MVC](xref:mvc/overview)
-## [Model binding](xref:mvc/models/model-binding)
-### [Model validation](xref:mvc/models/validation)
-## [Views](xref:mvc/views/overview)
-### [Razor syntax](xref:mvc/views/razor)
-### [View compilation](xref:mvc/views/view-compilation)
-### [Layout](xref:mvc/views/layout)
-### [Tag Helpers](xref:mvc/views/tag-helpers/intro)
-#### [Create Tag Helpers](xref:mvc/views/tag-helpers/authoring)
-#### [Use Tag Helpers in forms](xref:mvc/views/working-with-forms)
-#### [Tag Helper Components](xref:mvc/views/tag-helpers/th-components)
-#### Built-in Tag Helpers
-##### [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)
-##### [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
-##### [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
-##### [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)
-##### [Form Tag Helper](mvc/views/working-with-forms.md#the-form-tag-helper)
-##### [Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)
-##### [Input Tag Helper](mvc/views/working-with-forms.md#the-input-tag-helper)
-##### [Label Tag Helper](mvc/views/working-with-forms.md#the-label-tag-helper)
-##### [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)
-##### [Select Tag Helper](mvc/views/working-with-forms.md#the-select-tag-helper)
-##### [Textarea Tag Helper](mvc/views/working-with-forms.md#the-textarea-tag-helper)
-##### [Validation Message Tag Helper](mvc/views/working-with-forms.md#the-validation-message-tag-helper)
-##### [Validation Summary Tag Helper](mvc/views/working-with-forms.md#the-validation-summary-tag-helper)
+# Web apps
+## Razor Pages
+### [Overview](xref:razor-pages/index)
+### [Filter methods](xref:razor-pages/filter)
+### [Class Library](xref:razor-pages/ui-class)
+### [Conventions](xref:razor-pages/razor-pages-conventions)
+### [Upload files](xref:razor-pages/upload-files)
+### [Razor SDK](xref:razor-pages/sdk)
+## MVC
+### [Overview](xref:mvc/overview)
+### [Views](xref:mvc/views/overview)
 ### [Partial views](xref:mvc/views/partial)
-### [Dependency injection into views](xref:mvc/views/dependency-injection)
-### [View components](xref:mvc/views/view-components)
-## [Controllers](xref:mvc/controllers/actions)
-### [Route to controller actions](xref:mvc/controllers/routing)
+### [Controllers](xref:mvc/controllers/actions)
+### [Routing](xref:mvc/controllers/routing)
 ### [File uploads](xref:mvc/models/file-uploads)
-### [Dependency injection into controllers](xref:mvc/controllers/dependency-injection)
-### [Test controllers](xref:mvc/controllers/testing)
+### [Dependency injection - controllers](xref:mvc/controllers/dependency-injection)
+### [Dependency injection - views](xref:mvc/views/dependency-injection)
+### [Unit testing](xref:mvc/controllers/testing)
+## [Model binding](xref:mvc/models/model-binding)
+## [Model validation](xref:mvc/models/validation)
+## [Razor syntax](xref:mvc/views/razor)
+## Tag Helpers
+### [Overview](xref:mvc/views/tag-helpers/intro)
+### [Create Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+### [Use Tag Helpers in forms](xref:mvc/views/working-with-forms)
+### [Tag Helper Components](xref:mvc/views/tag-helpers/th-components)
+### Built-in Tag Helpers
+#### [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)
+#### [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+#### [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+#### [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)
+#### [Form Tag Helper](mvc/views/working-with-forms.md#the-form-tag-helper)
+#### [Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)
+#### [Input Tag Helper](mvc/views/working-with-forms.md#the-input-tag-helper)
+#### [Label Tag Helper](mvc/views/working-with-forms.md#the-label-tag-helper)
+#### [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)
+#### [Select Tag Helper](mvc/views/working-with-forms.md#the-select-tag-helper)
+#### [Textarea Tag Helper](mvc/views/working-with-forms.md#the-textarea-tag-helper)
+#### [Validation Message Tag Helper](mvc/views/working-with-forms.md#the-validation-message-tag-helper)
+#### [Validation Summary Tag Helper](mvc/views/working-with-forms.md#the-validation-summary-tag-helper)
+### [Layout](xref:mvc/views/layout)
 ## [Advanced](xref:mvc/advanced/index)
+### [View components](xref:mvc/views/view-components)
+### [View compilation](xref:mvc/views/view-compilation)
 ### [Work with the app model](xref:mvc/controllers/application-model)
 ### [Filters](xref:mvc/controllers/filters)
 ### [Areas](xref:mvc/controllers/areas)
 ### [Application parts](xref:mvc/extensibility/app-parts)
 ### [Custom model binding](xref:mvc/advanced/custom-model-binding)
-## [Compatibility version](xref:mvc/compatibility-version)
+### [Compatibility version](xref:mvc/compatibility-version)
 
-# [Web API](xref:web-api/index)
-## [Controller action return types](xref:web-api/action-return-types)
-## [Advanced](xref:web-api/advanced/index)
-### [Custom formatters](xref:web-api/advanced/custom-formatters)
+# Web APIs
+# [Overview](xref:web-api/index)
+## [Action return types](xref:web-api/action-return-types)
+<!--delete advanced/index.md-->
 ### [Format response data](xref:web-api/advanced/formatting)
+### [Custom formatters](xref:web-api/advanced/custom-formatters)
 
-# [SignalR](xref:signalr/index)
+# Real-time apps
+<!--delete index.md-->
 ## [Introduction](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## [Get started](xref:tutorials/signalr)
-## [Server concepts](xref:signalr/hubs)
+## Server concepts
 ### [Hubs](xref:signalr/hubs)
 ### [HubContext](xref:signalr/hubcontext)
 ### [Users and groups](xref:signalr/groups)
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-## [Clients](xref:signalr/clients)
+## Clients
+<!--delete index.md-->
 ### [.NET client](xref:signalr/dotnet-client)
 ### [Java client](xref:signalr/java-client)
 ### [Java API reference](/java/api/com.microsoft.aspnet.signalr?view=aspnet-signalr-java)
@@ -186,7 +193,8 @@
 ## [Streaming](xref:signalr/streaming)
 ## [Differences between SignalR versions](xref:signalr/version-differences)
 
-# [Test, debug, and troubleshoot](xref:test/index)
+# Test, debug, and troubleshoot
+<!--delete index.md-->
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration tests](xref:test/integration-tests)
 ## [Razor Pages unit tests](xref:test/razor-pages-tests)
@@ -196,27 +204,19 @@
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
 ## [Troubleshoot](xref:test/troubleshoot)
 
-# [Data access with EF Core](xref:data/index)
+# Data access
+<!--delete index.ms-->
 ## [Get started with Razor Pages and EF Core using Visual Studio](xref:data/ef-rp/intro)
 ## [Get started with ASP.NET Core and EF Core using Visual Studio](data/ef-mvc/index.md)
 ## [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
 ## [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 ## [Get started with ASP.NET Core and Entity Framework 6](data/entity-framework-6.md)
-## [Azure Storage](data/azure-storage/index.md)
+## Azure Storage
+<!--delete index.ms-->
 ### [Add Azure Storage by using Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-azure-tools-connected-services-storage/)
 ### [Get started with Blob storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs/)
 ### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
 ### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
-
-# Azure guidance
-## [Overview](xref:azure/index)
-## DevOps with ASP.NET Core and Azure
-### [Introduction](xref:azure/devops/index)
-### [Tools and downloads](xref:azure/devops/tools-and-downloads)
-### [Deploy to App Service](xref:azure/devops/deploy-to-app-service)
-### [Continuous integration and deployment](xref:azure/devops/cicd)
-### [Monitor and troubleshoot](xref:azure/devops/monitor)
-### [Next steps](xref:azure/devops/next-steps)
 
 # Client-side development
 ## [Overview](xref:client-side/index)
@@ -238,7 +238,17 @@
 ### [React with Redux project template](xref:spa/react-with-redux)
 
 
-# Host and deploy
+# Azure hosting and deployment 
+## [Overview](xref:azure/index)
+## DevOps with ASP.NET Core and Azure
+### [Introduction](xref:azure/devops/index)
+### [Tools and downloads](xref:azure/devops/tools-and-downloads)
+### [Deploy to App Service](xref:azure/devops/deploy-to-app-service)
+### [Continuous integration and deployment](xref:azure/devops/cicd)
+### [Monitor and troubleshoot](xref:azure/devops/monitor)
+### [Next steps](xref:azure/devops/next-steps)
+
+# Hosting and deployment
 ## [Overview](xref:host-and-deploy/index)
 ## Host on Azure App Service
 ### [Overview](xref:host-and-deploy/azure-apps/index)
@@ -266,6 +276,7 @@
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
+
 
 # Security and Identity
 ## [Overview](xref:security/index)
@@ -364,10 +375,6 @@
 ## [Share cookies among apps](xref:security/cookie-sharing)
 ## [IP safelist](xref:security/ip-safelist)
 
-## Globalization and localization
-### [Overview](xref:fundamentals/localization)
-### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
-
 # Fundamentals
 ## [Fundamentals overview](xref:fundamentals/index)
 ## [Application startup](xref:fundamentals/startup)
@@ -400,6 +407,9 @@
 ## [Initiate HTTP requests](xref:fundamentals/http-requests)
 
 # Other topics
+## Globalization and localization
+### [Overview](xref:fundamentals/localization)
+### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
 ## [URL rewriting](xref:fundamentals/url-rewriting)
 ## [Session and app state](xref:fundamentals/app-state)
 ## [File Providers](xref:fundamentals/file-providers)
