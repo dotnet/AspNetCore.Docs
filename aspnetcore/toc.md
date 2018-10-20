@@ -44,7 +44,7 @@
 #### [Add validation](tutorials/first-mvc-app/validation.md)
 #### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 ### MVC with Visual Studio Code
-### [Overview](xref:tutorials/first-mvc-app-xplat/index)
+#### [Overview](xref:tutorials/first-mvc-app-xplat/index)
 #### [Get started](tutorials/first-mvc-app-xplat/start-mvc.md)
 #### [Add a controller](tutorials/first-mvc-app-xplat/adding-controller.md)
 #### [Add a view](tutorials/first-mvc-app-xplat/adding-view.md)
@@ -56,7 +56,7 @@
 #### [Add validation](tutorials/first-mvc-app-xplat/validation.md)
 #### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
 ### MVC with Visual Studio for Mac
-### [Overview](xref:tutorials/first-mvc-app-mac/index)
+#### [Overview](xref:tutorials/first-mvc-app-mac/index)
 #### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
 #### [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
 #### [Add a view](xref:tutorials/first-mvc-app-mac/adding-view)
@@ -72,14 +72,12 @@
 ### [Using Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [Using Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
-### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
-### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
-## Create real-time apps
+## Create real-time web apps
 ### [SignalR web app](xref:tutorials/signalr)
 ### [SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
-
 ## Data access
-### [Razor Pages with EF Core](xref:data/ef-rp/index)
+### Razor Pages with EF Core
+#### [Overview](xref:data/ef-rp/index)
 #### [Get started](xref:data/ef-rp/intro)
 #### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
 #### [Sort, filter, page, and group](xref:data/ef-rp/sort-filter-page)
@@ -88,9 +86,10 @@
 #### [Read related data](xref:data/ef-rp/read-related-data)
 #### [Update related data](xref:data/ef-rp/update-related-data)
 #### [Handle concurrency conflicts](xref:data/ef-rp/concurrency)
-### [EF Core with existing db](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
-### [MVC with EF Core, short tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
-### [MVC with EF Core, long tutorial](data/ef-mvc/index.md)
+### [EF Core with existing db](/ef/core/get-started/aspnetcore/existing-db)
+### [MVC with EF Core, short tutorial](/ef/core/get-started/aspnetcore/new-db)
+### MVC with EF Core, long tutorial
+### [Overview](data/ef-mvc/index.md)
 #### [Get started](data/ef-mvc/intro.md)
 #### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
 #### [Sort, filter, page, and group](data/ef-mvc/sort-filter-page.md)
@@ -109,9 +108,9 @@
 #### [Using Visual Studio](xref:tutorials/razor-pages/index)
 #### [Using Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
 #### [Using Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
-### [Filter methods](xref:razor-pages/filter)
-### [Class Library](xref:razor-pages/ui-class)
-### [Conventions](xref:razor-pages/razor-pages-conventions)
+### [Filters](xref:razor-pages/filter)
+### [Class Libraries](xref:razor-pages/ui-class)
+### [Route and app Conventions](xref:razor-pages/razor-pages-conventions)
 ### [Upload files](xref:razor-pages/upload-files)
 ### [Razor SDK](xref:razor-pages/sdk)
 ## MVC
@@ -170,7 +169,7 @@
 ### [Using Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [Using Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
-## Swashbuckle / OpenAPI
+## Swagger / OpenAPI
 ### [Overview](xref:tutorials/get-started-with-swashbuckle)
 ### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
@@ -222,10 +221,10 @@
 ### [EF Core with existing db](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 ## [ASP.NET Core with EF 6](data/entity-framework-6.md)
 ## Azure Storage
-### [Add Azure Storage by using Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-azure-tools-connected-services-storage/)
-### [Get started with Blob storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs/)
-### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
-### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
+### [Using Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-azure-tools-connected-services-storage/)
+### [Blob storage and Visual Studio](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs/)
+### [Queue Storage and Visual Studio](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues/)
+### [Table Storage and Visual Studio](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables/)
 
 # Client-side development
 ## [Overview](xref:client-side/index)
@@ -378,7 +377,7 @@
 ## [IP safelist](xref:security/ip-safelist)
 
 # Fundamentals
-## [Fundamentals overview](xref:fundamentals/index)
+## [Overview](xref:fundamentals/index)
 ## [Application startup](xref:fundamentals/startup)
 ## [Dependency injection (services)](xref:fundamentals/dependency-injection)
 ## Middleware
