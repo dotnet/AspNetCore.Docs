@@ -11,26 +11,28 @@ namespace SampleApp
     #region snippet1
     public class SlowDependencyHealthCheck : IHealthCheck
     {
+        private readonly int _delaySeconds = 15;
         private readonly Task _task;
 
         public SlowDependencyHealthCheck()
         {
-            _task = Task.Delay(15 * 1000);
+            _task = Task.Delay(_delaySeconds * 1000);
         }
 
         public string Name => "slow_dependency_check";
 
         public Task<HealthCheckResult> CheckHealthAsync(
+            HealthCheckContext context, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (_task.IsCompleted)
             {
                 return Task.FromResult(
-                    HealthCheckResult.Healthy("The dependency is ready."));
+                    HealthCheckResult.Passed("The dependency is ready."));
             }
 
             return Task.FromResult(
-                HealthCheckResult.Unhealthy("The dependency is still initializing."));
+                HealthCheckResult.Failed("The dependency is still initializing."));
         }
     }
     #endregion

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace SampleApp
 {
@@ -27,7 +28,10 @@ namespace SampleApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddCheck(new SlowDependencyHealthCheck());
+                .AddCheck<SlowDependencyHealthCheck>(
+                    "Slow", 
+                    failureStatus: HealthStatus.Degraded, 
+                    tags: new[] { "ready" });
         }
         #endregion
 
@@ -41,6 +45,7 @@ namespace SampleApp
                 // Exclude all checks and return a 200-Ok.
                 Predicate = (check) => false
             });
+        #endregion
 
             app.Run(async (context) =>
             {
@@ -51,6 +56,5 @@ namespace SampleApp
                     "Navigate to /health/live to see the liveness status.");
             });
         }
-        #endregion
     }
 }

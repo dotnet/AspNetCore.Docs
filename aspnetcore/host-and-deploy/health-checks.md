@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2018
+ms.date: 10/22/2018
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -26,6 +26,8 @@ The sample app includes examples of the scenarios described in this topic. To ru
 
 ## Prerequisites
 
+Health checks are usually used with an external monitoring service or container orchestrator to check the status of an app. Before building a production health check app, decide on which monitoring system to use. The monitoring system dictates what types of health checks to create and how to configure their endpoints.
+
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package.
 
 The sample app provides start-up code to demonstrate health checks for several scenarios. One of the scenarios checks the health of a database connection. To explore the database scenario using the sample app, create a database and provide its connection string in the *appsettings.json* file of the app. For more information, see the [Database probe](#database-probe) section. Another scenario demonstrates how to filter health checks to a management port. The sample app requires you to create a *Properties/launchSettings.json* file that includes the management URL and management port. For more information, see the [Filter by port](#filter-by-port) section.
@@ -34,7 +36,7 @@ The sample app provides start-up code to demonstrate health checks for several s
 
 For many apps, a basic health probe configuration that reports the app's availability to process requests (*liveness*) is sufficient to discover the status of the app.
 
-The basic configuration registers health check services and calls the Health Check Middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it's capable of responding at the health endpoint URL. The default response writer writes the status (`HealthCheckStatus`) as `text/plain` content back to the client. The response is a *200 Ok* status code, and the content is either healthy (`HealthCheckResult.Healthy`) or unhealthy (`HealthCheckResult.Unhealthy`).
+The basic configuration registers health check services and calls the Health Check Middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it's capable of responding at the health endpoint URL. The default response writer writes the status (`HealthCheckStatus`) as a plain text response back to the client, indicating either a `HealthCheckResult.Healthy` or `HealthCheckResult.Unhealthy` status.
 
 Register health check services with `AddHealthChecks` in `Startup.ConfigureServices`. Call Health Check Middleware in the app processing pipeline in `Startup.Configure`.
 
@@ -58,7 +60,9 @@ HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
 
 ## Create health checks
 
-Health checks are created by implementing the `IHealthCheck` interface. The `IHealthCheck.CheckHealthAsync` method returns a `Task<HealthCheckResult>` of either `Healthy`, `Unhealthy`, `Degraded`, or `Failed`. The result is written as a plain text response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section).
+Health checks are created by implementing the `IHealthCheck` interface. The `IHealthCheck.CheckHealthAsync` method returns a `Task<HealthCheckResult>` that indicates the check either `Passed` or `Failed`. The result is written as a plain text response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). `HealthCheckResult` can also return optional key-value pairs.
+
+### Example health check
 
 The following `ExampleHealthCheck` class demonstrates the layout of a health check:
 
@@ -73,40 +77,45 @@ public class ExampleHealthCheck : IHealthCheck
     public string Name => "example_check";
 
     public Task<HealthCheckResult> CheckHealthAsync(
+        HealthCheckContext context, 
         CancellationToken cancellationToken = default(CancellationToken))
     {
         // Execute health check logic here. This example sets a dummy
         // variable to true.
         var healthCheckResultHealthy = true;
 
-        // Return a HealthCheckResult value depending on the outcome of the
-        // check(s). Other HealthCheckResult outcomes not shown in this
-        // example are Degraded and Failed.
         if (healthCheckResultHealthy)
         {
             return Task.FromResult(
-                HealthCheckResult.Healthy("The check indicates a healthy state."));
+                HealthCheckResult.Passed("The check indicates a passed result."));
         }
 
         return Task.FromResult(
-            HealthCheckResult.Unhealthy("The check indicates an unhealthy state."));
+            HealthCheckResult.Failed("The check indicates a failed result."));
     }
 }
 ```
 
-Add the `ExampleHealthCheck` with `AddCheck` and call `UseHealthChecks` in the processing pipeline with the endpoint URL:
+### Register health check services
+
+Add the `ExampleHealthCheck` type with `AddCheck`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecks()
-        .AddCheck<ExampleHealthCheck>();
+        .AddCheck<ExampleHealthCheck>("ExampleCheck");
 }
+```
 
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    app.UseHealthChecks("/health");
-}
+In the following example, an `AddCheck` overload sets the failure status (`HealthStatus`) that should be reported when the health check reports a failure. If the failure status is set to `null`, `HealthStatus.Unhealthy` is reported. Tags can be used to filter health checks (described further in the [Filter health checks](#filter-health-checks) section).
+
+```csharp
+services.AddHealthChecks()
+    .AddCheck<SlowDependencyHealthCheck>(
+        "ExampleCheck", 
+        failureStatus: HealthStatus.Degraded, 
+        tags: new[] { "example" });
 ```
 
 `AddCheck` can also execute a lambda function. In the following example, the health check name is specified as `Foo` and the check always returns a healthy state:
@@ -120,12 +129,31 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+### Call the Health Checks Middleware
+
+Call `UseHealthChecks` in the processing pipeline with the endpoint URL or relative path:
+
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseHealthChecks("/health");
+}
+```
+
+If the health checks should listen on a specific port, use an overload of `UseHealthChecks` to set the port (described further in the [Filter by port](#filter-by-port) section):
+
+```csharp
+app.UseHealthChecks("/health", port: 8000);
+```
+
 ## Health check options
 
 `HealthCheckOptions` provide an opportunity to customize health check behavior:
 
 * [Filter health checks](#filter-health-checks)
 * [Customize the HTTP status code](#customize-the-http-status-code)
+* [Suppress cache headers](#suppress-cache-headers)
+* [Customize output](#customize-output)
 
 ### Filter health checks
 
@@ -182,7 +210,62 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
+### Suppress cache headers
+
+`SuppressCacheHeaders` controls whether the Health Check Middleware adds HTTP headers to a probe response to prevent response caching. If the value is `false` (default), the middleware sets or overrides the `Cache-Control`, `Expires`, and `Pragma` headers to prevent response caching. If the value is `true`, the middleware doesn't modify the cache headers of the response.
+
+```csharp
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseHealthChecks("/health", new HealthCheckOptions()
+    {
+        // The default value is false.
+        SuppressCacheHeaders = false
+    });
+}
+```
+
+### Customize output
+
+The `ResponseWriter` option gets or sets a delegate used to write the response. The default value is a delegate that writes a minimal plain text response with the string value of `HealthReport.Status`.
+
+```csharp
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseHealthChecks("/health", new HealthCheckOptions()
+    {
+        // WriteResponse is a delegate used to write the response.
+        ResponseWriter = WriteResponse
+    });
+}
+
+private static Task WriteResponse(HttpContext httpContext, 
+    HealthReport result)
+{
+    httpContext.Response.ContentType = "application/json";
+
+    var json = new JObject(
+        new JProperty("status", result.Status.ToString()),
+        new JProperty("results", new JObject(result.Entries.Select(pair =>
+            new JProperty(pair.Key, new JObject(
+                new JProperty("status", pair.Value.Status.ToString()),
+                new JProperty("description", pair.Value.Description),
+                new JProperty("data", new JObject(pair.Value.Data.Select(
+                    p => new JProperty(p.Key, p.Value))))))))));
+    return httpContext.Response.WriteAsync(
+        json.ToString(Formatting.Indented));
+}
+```
+
 ## Database probe
+
+**_SWAP OUT FOR A BEATPULSE IMPLEMENTATION_**
 
 A health check can specify a database query to run as a boolean test to indicate if the database is responding normally.
 
@@ -214,6 +297,64 @@ To run the database probe scenario using the sample app, execute the following c
 dotnet run --scenario db
 ```
 
+## Database context
+
+`AddDbContextCheck<TContext>` registers a health check for a database context (`TContext`). By default, the name of the health check is the name of the `TContext` type. An overload is available to configure the failure status, tags, and a custom test query.
+
+In the sample app, `AppDbContext` is provided to `AddDbContextCheck` and registered as a service in `Startup.ConfigureServices`.
+
+*DbContextHealthStartup.cs*:
+
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_ConfigureServices)]
+
+In the sample app, `UseHealthChecks` adds the Health Check Middleware in `Startup.Configure`.
+
+*DbContextHealthStartup.cs*:
+
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_Configure)]
+
+To run the database context scenario using the sample app, confirm that the database specified by the the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
+
+Execute the following command from the project's folder in a command shell:
+
+```console
+dotnet run --scenario dbcontext
+```
+
+After the app is running, check the health status by making a request to the `/health` endpoint in a browser. The database and `AppDbContext` don't exist, so app provides the following response:
+
+```
+Unhealthy
+```
+
+Trigger the sample app to create the database. Make a request to `/createdatabase`. The app responds:
+
+```
+Creating the database...
+Done!
+Navigate to /health to see the health status.
+```
+
+Make a request to the `/health` endpoint. The database and context exist, so app responds:
+
+```
+Healthy
+```
+
+Trigger the sample app to delete the database. Make a request to `/deletedatabase`. The app responds:
+
+```
+Deleting the database...
+Done!
+Navigate to /health to see the health status.
+```
+
+Make a request to the `/health` endpoint. The app provides an unhealthy response:
+
+```
+Unhealthy
+```
+
 ## Separate readiness and liveness probes
 
 In some hosting scenarios, a pair of health checks are used that distinguish two app states:
@@ -223,9 +364,9 @@ In some hosting scenarios, a pair of health checks are used that distinguish two
 
 The readiness check usually performs a more extensive and time-consuming set of checks to determine if all of the app's subsystems and resources are available. A liveness check merely performs a quick check to determine if the app is available to process requests. After the app passes its readiness check, there's no need to burden the app further with the expensive set of readiness checks&mdash;further checks only require checking for liveness.
 
-The sample app includes a `SlowDependencyHealthCheck` that creates a contrived 15 second delay when the check is executed. During the delay, `HealthCheckResult.Unhealthy` is returned by the readiness check. After the delay, `HealthCheckResult.Healthy` is returned (*SlowDependencyHealthCheck.cs*):
+The sample app includes a `SlowDependencyHealthCheck` that creates a contrived 15 second delay when the check is executed. During the delay, `HealthCheckResult.Failed` is returned by the readiness check during the delay. After the delay, `HealthCheckResult.Passed` is returned (*SlowDependencyHealthCheck.cs*):
 
-[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/SlowDependencyHealthCheck.cs?name=snippet1&highlight=7,15-22)]
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/SlowDependencyHealthCheck.cs?name=snippet1&highlight=8,16-23)]
 
 Register health check services with `AddHealthChecks` in `Startup.ConfigureServices`. Register `SlowDependencyHealthCheck` with `AddCheck` (*LivenessProbeStartup.cs*):
 
@@ -233,7 +374,7 @@ Register health check services with `AddHealthChecks` in `Startup.ConfigureServi
 
 Call Health Check Middleware in the app processing pipeline in `Startup.Configure`. In the sample app, the health check endpoints are created at `/health/ready` for the readiness check and `/health/live` for the liveness check. The liveness check filters out the `SlowDependencyHealthCheck` by returning `false` in the `HealthCheckOptions.Predicate` (for more information, see [Filter health checks](#filter-health-checks)):
 
-[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_Configure&highlight=3,5-9)]
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_Configure)]
 
 To run the readiness/liveness configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
 
@@ -264,13 +405,15 @@ spec:
       - containerPort: 80
 ```
 
-## Metric-based probe (memory) with a custom response writer
+## Metric-based probe with a custom response writer
+
+**_SWAP OUT FOR A BEATPULSE IMPLEMENTATION_**
 
 The sample app demonstrates a memory health check with a custom response writer.
 
-`MemoryHealthCheck` reports a degraded status if the app is using more than 1 GB of memory. The `HealthCheckResult` includes Garbage Collector (GC) information for the app (*MemoryHealthCheck.cs*):
+`MemoryHealthCheck` reports a degraded status if the app uses more than a given threshold of memory (1 GB in the sample app). The `HealthCheckResult` includes Garbage Collector (GC) information for the app (*MemoryHealthCheck.cs*):
 
-[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/MemoryHealthCheck.cs?name=snippet1&highlight=9-16,19-27)]
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/MemoryHealthCheck.cs?name=snippet1)]
 
 Register health check services with `AddHealthChecks` in `Startup.ConfigureServices`. Instead of enabling the health check by passing it to `AddCheck`, the `MemoryHealthCheck` is registered as a service. All `IHealthCheck` registered services are available to the health check services and middleware. We recommend registering health check services as Singleton services.
 

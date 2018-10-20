@@ -8,13 +8,13 @@ namespace SampleApp
     {
         private static readonly string DefaultTestQuery = "SELECT 1";
 
-        public SqlConnectionHealthCheck(string name, string connectionString)
-            : this(name, connectionString, testQuery: DefaultTestQuery)
+        public SqlConnectionHealthCheck(string connectionString)
+            : this(connectionString, testQuery: DefaultTestQuery)
         {
         }
 
-        public SqlConnectionHealthCheck(string name, string connectionString, 
-            string testQuery) : base(name, connectionString, 
+        public SqlConnectionHealthCheck(string connectionString, 
+            string testQuery) : base(connectionString, 
             testQuery ?? DefaultTestQuery)
         {
         }

@@ -14,21 +14,18 @@ namespace SampleApp
 
     public abstract class DbConnectionHealthCheck : IHealthCheck
     {
-        protected DbConnectionHealthCheck(string name, string connectionString)
-            : this(name, connectionString, testQuery: null)
+        protected DbConnectionHealthCheck(string connectionString)
+            : this(connectionString, testQuery: null)
         {
         }
 
-        protected DbConnectionHealthCheck(string name, string connectionString, 
+        protected DbConnectionHealthCheck(string connectionString, 
             string testQuery)
         {
-            Name = name ?? throw new System.ArgumentNullException(nameof(name));
             ConnectionString = connectionString ?? 
                 throw new ArgumentNullException(nameof(connectionString));
             TestQuery = testQuery;
         }
-
-        public string Name { get; }
 
         protected string ConnectionString { get; }
 
@@ -38,6 +35,7 @@ namespace SampleApp
 
         #region snippet1
         public async Task<HealthCheckResult> CheckHealthAsync(
+            HealthCheckContext context, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var connection = CreateConnection(ConnectionString))
@@ -56,11 +54,11 @@ namespace SampleApp
                 }
                 catch (DbException ex)
                 {
-                    return HealthCheckResult.Unhealthy(ex);
+                    return HealthCheckResult.Failed(exception: ex);
                 }
             }
 
-            return HealthCheckResult.Healthy();
+            return HealthCheckResult.Passed();
         }
         #endregion
     }

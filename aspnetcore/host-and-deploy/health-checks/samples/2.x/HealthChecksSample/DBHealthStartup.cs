@@ -16,6 +16,7 @@ namespace SampleApp
     //
     // This approach is suitable for systems that check for 'liveness' of an app with a database.
 
+    #region snippet1
     public class DbHealthStartup
     {
         public DbHealthStartup(IConfiguration configuration)
@@ -25,16 +26,13 @@ namespace SampleApp
 
         public IConfiguration Configuration { get; }
 
-        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddCheck(new SqlConnectionHealthCheck("database_check", 
+                .AddCheck("MyDatabase", new SqlConnectionHealthCheck(
                     Configuration["ConnectionStrings:DefaultConnection"]));
         }
-        #endregion
 
-        #region snippet_Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseHealthChecks("/health");
@@ -45,6 +43,6 @@ namespace SampleApp
                     "Navigate to /health to see the health status.");
             });
         }
-        #endregion
     }
+    #endregion
 }

@@ -17,15 +17,15 @@ namespace SampleApp
     //
     // Register Health Check Middleware at the URL: /health
     // 
-    // This example overrides the HealthCheckResponseWriter to write a custom health check result.
+    // This example overrides the HealthCheckOptions.ResponseWriter to write a custom health check result.
 
     public class CustomWriterStartup
     {
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHealthChecks();
-            services.AddSingleton<IHealthCheck, MemoryHealthCheck>();
+            services.AddHealthChecks()
+                .AddMemoryHealthCheck("Memory");
         }
         #endregion
 
@@ -37,6 +37,7 @@ namespace SampleApp
                 // This custom writer formats the detailed status as JSON.
                 ResponseWriter = WriteResponse
             });
+        #endregion
 
             app.Run(async (context) =>
             {
@@ -44,17 +45,16 @@ namespace SampleApp
                     "Navigate to /health to see the health status.");
             });
         }
-        #endregion
 
         #region snippet_WriteResponse
         private static Task WriteResponse(HttpContext httpContext, 
-            CompositeHealthCheckResult result)
+            HealthReport result)
         {
             httpContext.Response.ContentType = "application/json";
 
             var json = new JObject(
                 new JProperty("status", result.Status.ToString()),
-                new JProperty("results", new JObject(result.Results.Select(pair =>
+                new JProperty("results", new JObject(result.Entries.Select(pair =>
                     new JProperty(pair.Key, new JObject(
                         new JProperty("status", pair.Value.Status.ToString()),
                         new JProperty("description", pair.Value.Description),

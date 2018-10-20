@@ -17,6 +17,7 @@ namespace SampleApp
             {
                 { "basic", typeof(BasicStartup) },
                 { "db", typeof(DbHealthStartup) },
+                { "dbcontext", typeof(DbContextHealthStartup) },
                 { "liveness", typeof(LivenessProbeStartup) },
                 { "writer", typeof(CustomWriterStartup) },
                 { "port", typeof(ManagementPortStartup) },
