@@ -109,6 +109,8 @@ That approach works for the attribute "href" as long as it doesn't currently exi
    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
 2. Run the app and verify that it generates the correct links.
+
+<a name="self-closing"></a>
     
    > [!NOTE]
    > If you were to write the email tag self-closing (`<email mail-to="Rick" />`), the final output would also be self-closing. To enable the ability to write the tag with only a start tag (`<email mail-to="Rick">`) you must decorate the class with the following:

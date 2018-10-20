@@ -532,7 +532,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 ## Recommendations
 
-When working with dependency injection, keep the following recommendations in mind:
+* `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors, therefore the recommended pattern is to use asynchronous methods after synchronously resolving the service.
 
 * Avoid storing data and configuration directly in the service container. For example, a user's shopping cart shouldn't typically be added to the service container. Configuration should use the [options pattern](xref:fundamentals/configuration/options). Similarly, avoid "data holder" objects that only exist to allow access to some other object. It's better to request the actual item via DI.
 
@@ -551,7 +551,6 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
-* <xref:fundamentals/repository-pattern>
 * <xref:fundamentals/startup>
 * <xref:test/index>
 * <xref:fundamentals/middleware/extensibility>

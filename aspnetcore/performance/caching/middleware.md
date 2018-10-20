@@ -153,7 +153,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * [Middleware](xref:fundamentals/middleware/index)
 * [Cache in-memory](xref:performance/caching/memory)
 * [Work with a distributed cache](xref:performance/caching/distributed)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
+* [Detect changes with change tokens](xref:fundamentals/change-tokens)
 * [Response caching](xref:performance/caching/response)
 * [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
 * [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)

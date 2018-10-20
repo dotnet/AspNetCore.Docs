@@ -124,10 +124,23 @@ Implementations of `IXmlRepository` don't need to parse the XML passing through 
 
 There are four built-in concrete types which implement `IXmlRepository`:
 
+::: moniker range=">= aspnetcore-2.2"
+
+* [FileSystemXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.filesystemxmlrepository)
+* [RegistryXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository)
+* [AzureStorage.AzureBlobXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.azurestorage.azureblobxmlrepository)
+* [RedisXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.stackexchangeredis.redisxmlrepository)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
 * [FileSystemXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.filesystemxmlrepository)
 * [RegistryXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository)
 * [AzureStorage.AzureBlobXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.azurestorage.azureblobxmlrepository)
 * [RedisXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.redisxmlrepository)
+
+::: moniker-end
 
 See the [key storage providers document](xref:security/data-protection/implementation/key-storage-providers) for more information.
 

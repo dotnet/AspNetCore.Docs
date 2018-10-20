@@ -226,7 +226,7 @@ Cache-Control: public,max-age=60
 * [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
 * [Cache in-memory](xref:performance/caching/memory)
 * [Work with a distributed cache](xref:performance/caching/distributed)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
+* [Detect changes with change tokens](xref:fundamentals/change-tokens)
 * [Response Caching Middleware](xref:performance/caching/middleware)
 * [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
 * [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)

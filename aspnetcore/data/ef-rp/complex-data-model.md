@@ -571,10 +571,15 @@ The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_dbo.Cou
 database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 ```
 
-When migrations are run with existing data, there may be FK constraints that are not satisfied with the exiting data. For this tutorial, a new DB is created, so there are no FK constraint violations. See
-[Fixing foreign key constraints with legacy data](#fk) for instructions on how to fix the FK violations on the current DB.
+## Apply the migration
 
-### Drop and update the database
+Now that you have an existing database, you need to think about how to apply future changes to it. This tutorial shows two approaches:
+* [Drop and re-create the database](#drop)
+* [Apply the migration to the existing database](#applyexisting). While this method is more complex and time-consuming, it's the preferred approach for real-world, production environments. **Note**: This is an optional section of the tutorial. You can do the drop and re-create steps and skip this section. If you do want to follow the steps in this section, don't do the drop and re-create steps. 
+
+<a name="drop"></a>
+
+### Drop and re-create the database
 
 The code in the updated `DbInitializer` adds seed data for the new entities. To force EF Core to create a new  DB, drop and update the DB:
 
@@ -618,13 +623,13 @@ Examine the **CourseAssignment** table:
 
 ![CourseAssignment data in SSOX](complex-data-model/_static/ssox-ci-data.png)
 
-<a name="fk"></a>
+<a name="applyexisting"></a>
 
-## Fixing foreign key constraints with legacy data
+### Apply the migration to the existing database
 
-This section is optional.
+This section is optional. These steps work only if you skipped the preceding [Drop and re-create the database](#drop) section.
 
-When migrations are run with existing data, there may be FK constraints that are not satisfied with the exiting data. With production data, steps must be taken to migrate the existing data. This section provides an example of fixing FK constraint violations. Don't make these code changes without a backup. Don't make these code changes if you completed the previous section and updated the database.
+When migrations are run with existing data, there may be FK constraints that are not satisfied with the existing data. With production data, steps must be taken to migrate the existing data. This section provides an example of fixing FK constraint violations. Don't make these code changes without a backup. Don't make these code changes if you completed the previous section and updated the database.
 
 The *{timestamp}_ComplexDataModel.cs* file contains the following code:
 
@@ -637,7 +642,7 @@ To make the `ComplexDataModel` migration work with existing data:
 * Change the code to give the new column (`DepartmentID`) a default value.
 * Create a fake department named "Temp" to act as the default department.
 
-### Fix the foreign key constraints
+#### Fix the foreign key constraints
 
 Update the `ComplexDataModel` classes `Up` method:
 
