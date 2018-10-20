@@ -188,71 +188,10 @@ Because another test in the `IndexPageTests` class performs an operation that de
 
 If the SUT requires special testing configuration when tests are executed:
 
-* Provide test environment-specific configuration using one or both of the following approaches:
-  * Provide conditional configuration in the SUT's `Startup.ConfigureServices`/`Startup.Configure`:
-  
-    When configuring an `IWebHostBuilder` in *Startup.cs*:
-    
-    ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        // IHostingEnvironment (_env) is injected into the Startup
-        // class.
-        if (_env.IsStaging())
-        {
-            // Code runs in the Staging environment
-        }
-    }
-    
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env) 
-    {
-        if (env.IsStaging())
-        {
-            // Code runs in the Staging environment
-        }
-    ```
-    
-    When configuring an `IWebHost` in *Program.cs*:
-    
-    ```csharp
-    public static IWebHostBuilder BuildWebHostBuilder(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-                if (hostContext.HostingEnvironment.IsStaging())
-                {
-                    // Code runs in the Staging environment
-                }
-                ...
-    ```
-  * Provide test environment-specific configuration in an SUT settings file (for example, *appsettings.staging.json*).
-* Specify the environment for the test system using **either** of the following approaches:
-  * Set the `ASPNETCORE_ENVIRONMENT` environment variable on the test system to the test environment name (for example, set the environment variable value to `Staging` to consume configuration from *appsettings.staging.json* or `if (_env.IsStaging())`/`if (Environment.IsStaging())` code in `Startup`).
-  * Supply the environment for tests in code:
-    * Using a [CustomWebApplicationFactory](#customize-webapplicationfactory), call `UseEnvironment` on the `IWebHostBuilder`:
-    
-      ```csharp
-      protected override void ConfigureWebHost(IWebHostBuilder builder)
-      {
-          // The SUT consumes configuration from appsettings.staging.json or 
-          // `if (_env.IsStaging())`/`if (Environment.IsStaging())` code 
-          // in `Startup`
-          builder.UseEnvironment("Staging")
-          ...
-      ```
-    * When calling [WithWebHostBuilder](#customize-the-client-with-withwebhostbuilder), call `UseSetting` on the `Environment` key:
-    
-      ```csharp
-      var client = _factory.WithWebHostBuilder(builder =>
-      {
-          // The SUT consumes configuration from appsettings.staging.json or 
-          // `if (_env.IsStaging())`/`if (Environment.IsStaging())` code 
-          // in `Startup`
-          builder.UseSetting("Environment", "Staging");
-          ...
-      ```
-      
-For more information, see <xref:fundamentals/environments> and <xref:fundamentals/startup>.
+* Specify the environment on the test system (for example, set the `ASPNETCORE_ENVIRONMENT` environment variable to a value that reflects a staging or testing environment, such as `Staging` or `Test`).
+* Provide code in [Startup](xref:fundamentals/startup) that loads services and configures the request pipeline based on its environment.
+
+For more information, see <xref:fundamentals/environments>.
 
 ## Client options
 
