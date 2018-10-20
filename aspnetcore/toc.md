@@ -127,10 +127,7 @@
 ### [Dependency injection - controllers](xref:mvc/controllers/dependency-injection)
 ### [Dependency injection - views](xref:mvc/views/dependency-injection)
 ### [Unit testing](xref:mvc/controllers/testing)
-## [Static files](xref:fundamentals/static-files)
-## [Model binding](xref:mvc/models/model-binding)
-## [Model validation](xref:mvc/models/validation)
-## [Razor syntax](xref:mvc/views/razor)
+## [Session and app state](xref:fundamentals/app-state)
 ## Tag Helpers
 ### [Overview](xref:mvc/views/tag-helpers/intro)
 ### [Create Tag Helpers](xref:mvc/views/tag-helpers/authoring)
@@ -151,7 +148,10 @@
 #### [Validation Message Tag Helper](mvc/views/working-with-forms.md#the-validation-message-tag-helper)
 #### [Validation Summary Tag Helper](mvc/views/working-with-forms.md#the-validation-summary-tag-helper)
 ### [Layout](xref:mvc/views/layout)
-## [Session and app state](xref:fundamentals/app-state)
+## [Static files](xref:fundamentals/static-files)
+## [Model binding](xref:mvc/models/model-binding)
+## [Model validation](xref:mvc/models/validation)
+## [Razor syntax](xref:mvc/views/razor)
 ## Advanced
 ### [View components](xref:mvc/views/view-components)
 ### [View compilation](xref:mvc/views/view-compilation)
@@ -205,12 +205,12 @@
 
 # Test, debug, and troubleshoot
 ## [Unit testing](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-## [Integration tests](xref:test/integration-tests)
 ## [Razor Pages unit tests](xref:test/razor-pages-tests)
 ## [Test controllers](xref:mvc/controllers/testing)
 ## [Remote debugging](/visualstudio/debugger/remote-debugging-azure)
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
+## [Integration tests](xref:test/integration-tests)
 ## [Troubleshoot](xref:test/troubleshoot)
 
 # Data access
@@ -365,9 +365,9 @@
 ### Compatibility
 #### [Overview](xref:security/data-protection/compatibility/index)
 #### [Replace <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
+## [Safe storage of app secrets in development](xref:security/app-secrets)
 ## [Enforce HTTPS](xref:security/enforcing-ssl)
 ## [EU General Data Protection Regulation (GDPR) support](xref:security/gdpr)
-## [Safe storage of app secrets in development](xref:security/app-secrets)
 ## [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
 ## [Anti-request forgery](xref:security/anti-request-forgery)
 ## [Prevent open redirect attacks](xref:security/preventing-open-redirects)
@@ -380,16 +380,16 @@
 ## [Overview](xref:fundamentals/index)
 ## [Application startup](xref:fundamentals/startup)
 ## [Dependency injection (services)](xref:fundamentals/dependency-injection)
-## Middleware
-### [Middleware](xref:fundamentals/middleware/index)
-### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
-### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
 ## [Routing](xref:fundamentals/routing)
 ## [Use multiple environments](xref:fundamentals/environments)
 ## [Configuration](xref:fundamentals/configuration/index)
 ## [Options](xref:fundamentals/configuration/options)
 ## [Logging](xref:fundamentals/logging/index)
 ## [Handle errors](fundamentals/error-handling.md)
+## Middleware
+### [Middleware](xref:fundamentals/middleware/index)
+### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
+### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
 ## Host
 ### [Overview](xref:fundamentals/host/index)
 ### [Web Host](xref:fundamentals/host/web-host)
