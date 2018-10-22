@@ -152,13 +152,3 @@ For more information, see <xref:fundamentals/host/hosted-services>.
 `HttpContext` is automatically available when processing requests with Razor Pages and MVC. In circumstances where `HttpContext` isn't readily available, you can access the `HttpContext` through the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface and its default implementation, <xref:Microsoft.AspNetCore.Http.HttpContextAccessor>.
 
 For more information, see <xref:fundamentals/httpcontext>.
-
-<a name="download"></a>
-
-## How to download a sample
-
-Many of the articles and tutorials include links to sample code.
-
-1. [Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/Docs/zip/master).
-1. Unzip the *Docs-master.zip* file.
-1. Use the URL in the sample link to help you navigate to the sample directory.

@@ -25,6 +25,33 @@
 ### [Database access with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
 ### [Database access with MVC, long tutorial](data/ef-mvc/index.md)
 
+# Fundamentals
+## [Overview](xref:fundamentals/index)
+## [Application startup](xref:fundamentals/startup)
+## [Dependency injection (services)](xref:fundamentals/dependency-injection)
+## [Routing](xref:fundamentals/routing)
+## [Use multiple environments](xref:fundamentals/environments)
+## [Configuration](xref:fundamentals/configuration/index)
+## [Options](xref:fundamentals/configuration/options)
+## [Logging](xref:fundamentals/logging/index)
+## [Handle errors](fundamentals/error-handling.md)
+## Middleware
+### [Middleware](xref:fundamentals/middleware/index)
+### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
+### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
+## Host
+### [Overview](xref:fundamentals/host/index)
+### [Web Host](xref:fundamentals/host/web-host)
+### [Generic Host](xref:fundamentals/host/generic-host)
+### [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
+### [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
+## Servers
+### [Overview](xref:fundamentals/servers/index)
+### [Kestrel](xref:fundamentals/servers/kestrel)
+### [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
+### [HTTP.sys](xref:fundamentals/servers/httpsys)
+## [Initiate HTTP requests](xref:fundamentals/http-requests)
+
 # Web apps
 ## Razor Pages
 ### [Overview](xref:razor-pages/index)
@@ -375,33 +402,6 @@
 ## [Enable Cross-Origin Requests (CORS)](xref:security/cors)
 ## [Share cookies among apps](xref:security/cookie-sharing)
 ## [IP safelist](xref:security/ip-safelist)
-
-# Fundamentals
-## [Overview](xref:fundamentals/index)
-## [Application startup](xref:fundamentals/startup)
-## [Dependency injection (services)](xref:fundamentals/dependency-injection)
-## [Routing](xref:fundamentals/routing)
-## [Use multiple environments](xref:fundamentals/environments)
-## [Configuration](xref:fundamentals/configuration/index)
-## [Options](xref:fundamentals/configuration/options)
-## [Logging](xref:fundamentals/logging/index)
-## [Handle errors](fundamentals/error-handling.md)
-## Middleware
-### [Middleware](xref:fundamentals/middleware/index)
-### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
-### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
-## Host
-### [Overview](xref:fundamentals/host/index)
-### [Web Host](xref:fundamentals/host/web-host)
-### [Generic Host](xref:fundamentals/host/generic-host)
-### [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
-### [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
-## Servers
-### [Overview](xref:fundamentals/servers/index)
-### [Kestrel](xref:fundamentals/servers/kestrel)
-### [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
-### [HTTP.sys](xref:fundamentals/servers/httpsys)
-## [Initiate HTTP requests](xref:fundamentals/http-requests)
 
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
