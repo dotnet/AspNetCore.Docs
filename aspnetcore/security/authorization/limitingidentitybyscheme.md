@@ -146,11 +146,11 @@ In the preceding example, the "Over18" policy only runs against the identity cre
 public class RegistrationController : Controller
 ```
 
-## Using multiple authentication schemes
+## Use multiple authentication schemes
 
-In some scenarios, you may need to accept multiple types of authentication. For example, your application authenticates users from Azure Active Directory and application user database. Another example is, when the application authenticates users from Active Directory Federation Services and Azure Active Directory B2C. In this case the application should accept JWT bearer token from several issuers.
+Some apps may need to support multiple types of authentication. For example, your app might authenticate users from Azure Active Directory and from a users database. Another example is an app that authenticates users from both Active Directory Federation Services and Azure Active Directory B2C. In this case, the app should accept a JWT bearer token from several issuers.
 
-At first it is required to add all authentication schemes you would like to accept. Following example adds 2 JWT bearer authentication schemes with different issuers:
+Add all authentication schemes you'd like to accept. For example, the following code in `Startup.ConfigureServices` adds two JWT bearer authentication schemes with different issuers:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -171,10 +171,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
->[!NOTE]
->Note that only one JWT bearer authentication is registered with default authentication scheme `JwtBearerDefaults.AuthenticationScheme`. Additional authentication has to be registered with unique authentication scheme.
+> [!NOTE]
+> Only one JWT bearer authentication is registered with the default authentication scheme `JwtBearerDefaults.AuthenticationScheme`. Additional authentication has to be registered with a unique authentication scheme.
 
-Next step is to update default authorization policy to accept both authentication schemes. For example:
+The next step is to update the default authorization policy to accept both authentication schemes. For example:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -186,10 +186,11 @@ public void ConfigureServices(IServiceCollection services)
         var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
             JwtBearerDefaults.AuthenticationScheme,
             "AzureAD");
-        defaultAuthorizationPolicyBuilder = defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+        defaultAuthorizationPolicyBuilder = 
+            defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
         options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
     });
 }
 ```
 
-As default authorization policy is overriden it is possible to use simple `Authorize` attribute in controllers. Then controller accepts requests with JWT issued by first or second issuer.
+As the default authorization policy is overridden, it's possible to use a simple `[Authorize]` attribute in controllers. The controller then accepts requests with JWT issued by the first or second issuer.
