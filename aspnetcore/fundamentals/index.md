@@ -69,11 +69,11 @@ For more information, see <xref:fundamentals/startup>.
 
 The content root is the base path to any content used by the app, such as [Razor Pages](xref:razor-pages/index), MVC views, and static assets. By default, the content root is the same location as the app base path for the executable hosting the app.
 
-## Web root
+## Web root (webroot)
 
-The web root of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files. By default, *wwwroot* is the web root.
+The webroot of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files. By default, *wwwroot* is the webroot.
 
-For ASP.NET Core code, the tilde character `~` represents the  web root operator and points to the web root.
+For Razor (*.cshtml*) files, the tilde-slash  `~/` points to the webroot. `~/` is referred to as the virtual path of the app.
 
 ## Dependency injection (services)
 
