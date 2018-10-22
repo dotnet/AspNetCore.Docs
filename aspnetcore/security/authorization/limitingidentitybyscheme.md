@@ -3,7 +3,7 @@ title: Authorize with a specific scheme in ASP.NET Core
 author: rick-anderson
 description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
 ms.author: riande
-ms.date: 10/12/2017
+ms.date: 10/22/2018
 uid: security/authorization/limitingidentitybyscheme
 ---
 # Authorize with a specific scheme in ASP.NET Core
@@ -146,6 +146,8 @@ In the preceding example, the "Over18" policy only runs against the identity cre
 public class RegistrationController : Controller
 ```
 
+::: moniker range=">= aspnetcore-2.0"
+
 ## Use multiple authentication schemes
 
 Some apps may need to support multiple types of authentication. For example, your app might authenticate users from Azure Active Directory and from a users database. Another example is an app that authenticates users from both Active Directory Federation Services and Azure Active Directory B2C. In this case, the app should accept a JWT bearer token from several issuers.
@@ -194,3 +196,5 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 As the default authorization policy is overridden, it's possible to use a simple `[Authorize]` attribute in controllers. The controller then accepts requests with JWT issued by the first or second issuer.
+
+::: moniker-end
