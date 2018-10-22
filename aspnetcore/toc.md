@@ -19,7 +19,7 @@
 ### [With Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
 ## Real-time web apps
-### [SignalR0 with JavaScript](xref:tutorials/signalr)
+### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## Data access
 ### [EF Core with Razor Pages](xref:data/ef-rp/index)
