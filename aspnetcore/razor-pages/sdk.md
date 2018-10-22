@@ -7,8 +7,6 @@ ms.date: 10/12/2018
 uid: razor-pages/sdk
 ---
 
-::: moniker range=">= aspnetcore-2.1"
-
 # ASP.NET Core Razor SDK
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -24,7 +22,7 @@ The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` M
 
 ## Using the Razor SDK
 
-Most web apps don't need to expressly reference the Razor SDK. 
+Most web apps don't need to expressly reference the Razor SDK.
 
 To use the Razor SDK to build class libraries containing Razor views or Razor Pages:
 
@@ -46,7 +44,6 @@ The preceding packages are included in `Microsoft.AspNetCore.Mvc`. The following
     
  [!code-xml[Main](sdk/sample/RazorSDK.csproj)]
 
-::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
 
 > [!WARNING]
