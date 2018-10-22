@@ -1,14 +1,14 @@
 # Overview
-## [About ASP.NET Core](xref:index.md)
+## [About ASP.NET Core](xref:index)
 ## [Compare ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 ## [Compare .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
 # Tutorials
 ## Web apps
 ### Razor Pages
-#### [###ith Visual Studio](xref:tutorials/razor-pages/index)
-#### [###ith Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
-#### [###ith Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
+#### [With Visual Studio](xref:tutorials/razor-pages/index)
+#### [With Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
+#### [With Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
 ### MVC
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
 #### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
@@ -19,7 +19,7 @@
 ### [With Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
 ## Real-time web apps
-### [SignalR With JavaScript](xref:tutorials/signalr)
+### [SignalR0 with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## Data access
 ### [EF Core with Razor Pages](xref:data/ef-rp/index)
