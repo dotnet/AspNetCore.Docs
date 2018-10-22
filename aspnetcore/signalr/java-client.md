@@ -59,7 +59,7 @@ The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for log
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
 ```
 
-If you don't configure logging in your dependencies SLF4J will load a default no-operation logger with a warning message shown below.
+If you don't configure logging in your dependencies, SLF4J loads a default no-operation logger with the following warning message:
 
 ```
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
