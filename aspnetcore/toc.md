@@ -6,33 +6,33 @@
 # Tutorials
 ## Web apps
 ### Razor Pages
-#### [Razor Pages with Visual Studio](xref:tutorials/razor-pages/index)
-#### [Razor Pages with Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
-#### [Razor Pages with Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
+#### [###ith Visual Studio](xref:tutorials/razor-pages/index)
+#### [###ith Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
+#### [###ith Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
 ### MVC
-#### [MVC with Visual Studio](tutorials/first-mvc-app/index.md)
-#### [MVC with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
-#### [MVC with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
+#### [With Visual Studio](tutorials/first-mvc-app/index.md)
+#### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
+#### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
 ## Web APIs
-### [Web API with Visual Studio](xref:tutorials/first-web-api)
-### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
-### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
-## Real-time
-### [Real-time web app with JavaScript](xref:tutorials/signalr)
-### [Real-time web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
+### [With Visual Studio](xref:tutorials/first-web-api)
+### [With Visual Studio Code](xref:tutorials/web-api-vsc)
+### [With Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+### [For native mobile apps](xref:mobile/native-mobile-backend)
+## Real-time web apps
+### [SignalR With JavaScript](xref:tutorials/signalr)
+### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## Data access
-### [Data access with Razor Pages](xref:data/ef-rp/index)
-### [Data access with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
-### [Data access with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
-### [Data access with MVC, long tutorial](data/ef-mvc/index.md)
+### [EF Core with Razor Pages](xref:data/ef-rp/index)
+### [EF Core With MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
+### [EF Core with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
+### [EF Core with MVC, long tutorial](data/ef-mvc/index.md)
 
 # Fundamentals
 ## [Overview](xref:fundamentals/index)
-## [Application startup](xref:fundamentals/startup)
+## [App startup](xref:fundamentals/startup)
 ## [Dependency injection (services)](xref:fundamentals/dependency-injection)
 ## [Routing](xref:fundamentals/routing)
-## [Use multiple environments](xref:fundamentals/environments)
+## [Multiple environments](xref:fundamentals/environments)
 ## [Configuration](xref:fundamentals/configuration/index)
 ## [Options](xref:fundamentals/configuration/options)
 ## [Logging](xref:fundamentals/logging/index)
@@ -45,8 +45,6 @@
 ### [Overview](xref:fundamentals/host/index)
 ### [Web Host](xref:fundamentals/host/web-host)
 ### [Generic Host](xref:fundamentals/host/generic-host)
-### [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
-### [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
 ## Servers
 ### [Overview](xref:fundamentals/servers/index)
 ### [Kestrel](xref:fundamentals/servers/kestrel)
@@ -143,20 +141,20 @@
 ### [Use Tag Helpers in forms](xref:mvc/views/working-with-forms)
 ### [Tag Helper Components](xref:mvc/views/tag-helpers/th-components)
 ### Built-in Tag Helpers
-#### [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)
-#### [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
-#### [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
-#### [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)
-#### [Form Tag Helper](xref:mvc/views/working-with-forms.md#the-form-tag-helper)
-#### [Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)
-#### [Input Tag Helper](xref:mvc/views/working-with-forms.md#the-input-tag-helper)
-#### [Label Tag Helper](xref:mvc/views/working-with-forms.md#the-label-tag-helper)
-#### [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)
-#### [Select Tag Helper](xref:mvc/views/working-with-forms.md#the-select-tag-helper)
-#### [Textarea Tag Helper](xref:mvc/views/working-with-forms.md#the-textarea-tag-helper)
-#### [Validation Message Tag Helper](xref:mvc/views/working-with-forms.md#the-validation-message-tag-helper)
-#### [Validation Summary Tag Helper](xref:mvc/views/working-with-forms.md#the-validation-summary-tag-helper)
-### [Layout](xref:mvc/views/layout)
+#### [Anchor](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)
+#### [Cache](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+#### [Distributed Cache](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+#### [Environment](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)
+#### [Form](xref:mvc/views/working-with-forms.md#the-form-tag-helper)
+#### [Image](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)
+#### [Input](xref:mvc/views/working-with-forms.md#the-input-tag-helper)
+#### [Label](xref:mvc/views/working-with-forms.md#the-label-tag-helper)
+#### [Partial](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)
+#### [Select](xref:mvc/views/working-with-forms.md#the-select-tag-helper)
+#### [Textarea](xref:mvc/views/working-with-forms.md#the-textarea-tag-helper)
+#### [Validation Message](xref:mvc/views/working-with-forms.md#the-validation-message-tag-helper)
+#### [Validation Summary](xref:mvc/views/working-with-forms.md#the-validation-summary-tag-helper)
+## [Layout](xref:mvc/views/layout)
 ## [Static files](xref:fundamentals/static-files)
 ## [Model binding](xref:mvc/models/model-binding)
 ## [Model validation](xref:mvc/models/validation)
@@ -164,10 +162,10 @@
 ## Advanced
 ### [View components](xref:mvc/views/view-components)
 ### [View compilation](xref:mvc/views/view-compilation)
-### [Work with the app model](xref:mvc/controllers/application-model)
+### [App model](xref:mvc/controllers/application-model)
 ### [Filters](xref:mvc/controllers/filters)
 ### [Areas](xref:mvc/controllers/areas)
-### [Application parts](xref:mvc/extensibility/app-parts)
+### [App parts](xref:mvc/extensibility/app-parts)
 ### [Custom model binding](xref:mvc/advanced/custom-model-binding)
 ### [Compatibility version](xref:mvc/compatibility-version)
 
@@ -180,7 +178,7 @@
 ### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/get-started-with-swashbuckle)
-### [Swagger Help pages](xref:tutorials/web-api-help-pages-using-swagger)
+### [Swagger help pages](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 ## [Action return types](xref:web-api/action-return-types)
 ## [Format response data](xref:web-api/advanced/formatting)
@@ -190,8 +188,8 @@
 ## [Introduction to SignalR](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## Tutorials
-### [SignalR web app with JavaScript](xref:tutorials/signalr)
-### [SignalR web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
+### [SignalR with JavaScript](xref:tutorials/signalr)
+### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## Server concepts
 ### [Hubs](xref:signalr/hubs)
 ### [HubContext](xref:signalr/hubcontext)
@@ -209,7 +207,7 @@
 ## [Security considerations](xref:signalr/security)
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Streaming](xref:signalr/streaming)
-## [Differences between SignalR versions](xref:signalr/version-differences)
+## [Compare SignalR versions](xref:signalr/version-differences)
 ## [WebSockets without SignalR](xref:fundamentals/websockets)
 
 # Test, debug, and troubleshoot
@@ -225,21 +223,21 @@
 # Data access
 ## Tutorials
 ### EF Core with Razor Pages
-### [Overview](xref:data/ef-rp/index)
-### [Get started](xref:data/ef-rp/intro)
-### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
-### [Sort, filter, page, and group](xref:data/ef-rp/sort-filter-page)
-### [Migrations](xref:data/ef-rp/migrations)
-### [Create a complex data model](xref:data/ef-rp/complex-data-model)
-### [Read related data](xref:data/ef-rp/read-related-data)
-### [Update related data](xref:data/ef-rp/update-related-data)
-### [Handle concurrency conflicts](xref:data/ef-rp/concurrency)
+#### [Overview](xref:data/ef-rp/index)
+#### [Get started](xref:data/ef-rp/intro)
+#### [Create, Read, Update, and Delete](xref:data/ef-rp/crud)
+#### [Sort, filter, page, and group](xref:data/ef-rp/sort-filter-page)
+#### [Migrations](xref:data/ef-rp/migrations)
+#### [Create a complex data model](xref:data/ef-rp/complex-data-model)
+#### [Read related data](xref:data/ef-rp/read-related-data)
+#### [Update related data](xref:data/ef-rp/update-related-data)
+#### [Handle concurrency conflicts](xref:data/ef-rp/concurrency)
 ### [EF Core with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
 ### [EF Core with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
 ### EF Core with MVC, long tutorial
 #### [Overview](data/ef-mvc/index.md)
 #### [Get started](data/ef-mvc/intro.md)
-#### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
+#### [Create, Read, Update, and Delete](data/ef-mvc/crud.md)
 #### [Sort, filter, page, and group](data/ef-mvc/sort-filter-page.md)
 #### [Migrations](data/ef-mvc/migrations.md)
 #### [Create a complex data model](data/ef-mvc/complex-data-model.md)
@@ -248,42 +246,41 @@
 #### [Handle concurrency conflicts](data/ef-mvc/concurrency.md)
 #### [Inheritance](data/ef-mvc/inheritance.md)
 #### [Advanced topics](data/ef-mvc/advanced.md)
-## [ASP.NET Core with EF 6](data/entity-framework-6.md)
-## Azure Storage
-### [Visual Studio Connected Services](/azure/vs-azure-tools-connected-services-storage)
-### [Blob storage with Visual Studio](/azure/vs-storage-aspnet5-getting-started-blobs/)
-### [Queue Storage with Visual Studio](/azure/vs-storage-aspnet5-getting-started-queues/)
-### [Table Storage with Visual Studio](/azure/vs-storage-aspnet5-getting-started-tables/)
+## [EF 6 with ASP.NET Core](data/entity-framework-6.md)
+## Azure Storage with Visual Studio
+### [Connected Services](/azure/vs-azure-tools-connected-services-storage)
+### [Blob storage](/azure/vs-storage-aspnet5-getting-started-blobs/)
+### [Queue Storage](/azure/vs-storage-aspnet5-getting-started-queues/)
+### [Table Storage](/azure/vs-storage-aspnet5-getting-started-tables/)
 
 # Client-side development
 ## [Overview](xref:client-side/index)
-## [Use Gulp](xref:client-side/using-gulp)
-## [Use Grunt](xref:client-side/using-grunt)
-## Use LibMan
+## [Gulp](xref:client-side/using-gulp)
+## [Grunt](xref:client-side/using-grunt)
+## LibMan
 ### [Overview](xref:client-side/libman/index)
-### [LibMan CLI](xref:client-side/libman/libman-cli)
-### [LibMan in Visual Studio](xref:client-side/libman/libman-vs)
-## [Manage client-side packages with Bower](xref:client-side/bower)
-## [Style apps with LESS, Sass, and Font Awesome](xref:client-side/less-sass-fa)
+### [CLI](xref:client-side/libman/libman-cli)
+### [Visual Studio](xref:client-side/libman/libman-vs)
+## [Bower](xref:client-side/bower)
+## [LESS, Sass, and Font Awesome](xref:client-side/less-sass-fa)
 ## [Bundle and minify](xref:client-side/bundling-and-minification)
-## [Use Browser Link](xref:client-side/using-browserlink)
-## [Use JavaScriptServices for SPAs](xref:client-side/spa-services)
-## Use the SPA project templates
+## [Browser Link](xref:client-side/using-browserlink)
+## [JavaScriptServices for SPAs](xref:client-side/spa-services)
+## SPA project templates
 ### [Overview](xref:spa/index)
-### [Angular project template](xref:spa/angular)
-### [React project template](xref:spa/react)
-### [React with Redux project template](xref:spa/react-with-redux)
-
+### [Angular](xref:spa/angular)
+### [React](xref:spa/react)
+### [React with Redux](xref:spa/react-with-redux)
 
 # Hosting and deployment
 ## [Overview](xref:host-and-deploy/index)
 ## Host on Azure App Service
 ### [Overview](xref:host-and-deploy/azure-apps/index)
-### [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
-### [Publish to Azure with CLI tools](/azure/app-service/app-service-web-get-started-dotnet)
-### [Continuous deployment to Azure with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
-### [Continuous deployment to Azure with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
-### [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
+### [Publish with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
+### [Publish with CLI tools](/azure/app-service/app-service-web-get-started-dotnet)
+### [Continuous deployment with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
+### [Continuous deployment with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
+### [Troubleshoot on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
 ## Azure DevOps 
 ### [Introduction](xref:azure/devops/index)
 ### [Tools and downloads](xref:azure/devops/tools-and-downloads)
@@ -293,23 +290,23 @@
 ### [Next steps](xref:azure/devops/next-steps)
 ## Host on Windows with IIS
 ### [Overview](xref:host-and-deploy/iis/index)
-### [Troubleshoot ASP.NET Core on IIS](xref:host-and-deploy/iis/troubleshoot)
-### [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
-### [Development-time IIS support in Visual Studio for ASP.NET Core](xref:host-and-deploy/iis/development-time-iis-support)
-### [IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules)
+### [Troubleshoot on IIS](xref:host-and-deploy/iis/troubleshoot)
+### [ASP.NET Core Module reference](xref:host-and-deploy/aspnet-core-module)
+### [Development-time IIS support in Visual Studio](xref:host-and-deploy/iis/development-time-iis-support)
+### [IIS Modules](xref:host-and-deploy/iis/modules)
 ## [Host in a Windows service](xref:host-and-deploy/windows-service)
 ## [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
 ## [Host on Linux with Apache](xref:host-and-deploy/linux-apache)
 ## Host in Docker
 ### [Overview](xref:host-and-deploy/docker/index)
 ### [Build Docker images](/dotnet/articles/core/docker/building-net-docker-images)
-### [Visual Studio Tools for Docker](xref:host-and-deploy/docker/visual-studio-tools-for-docker)
+### [Visual Studio Tools](xref:host-and-deploy/docker/visual-studio-tools-for-docker)
 ### [Publish to a Docker image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/)
 ## [Proxy and load balancer configuration](xref:host-and-deploy/proxy-load-balancer)
 ## [Host in a web farm](xref:host-and-deploy/web-farm)
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
-## [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
+## [Errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
 
 
 # Security and Identity
@@ -348,8 +345,8 @@
 ### [Individual user accounts](xref:security/authentication/individual)
 ## Authorization
 ### [Overview](xref:security/authorization/introduction)
-### [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
-### [Razor Pages authorization](xref:security/authorization/razor-pages-authorization)
+### [Create a web app with authorization](xref:security/authorization/secure-data)
+### [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
 ### [Simple authorization](xref:security/authorization/simple)
 ### [Role-based authorization](xref:security/authorization/roles)
 ### [Claims-based authorization](xref:security/authorization/claims)
@@ -361,7 +358,7 @@
 ### [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
 ## Data protection
 ### [Overview](xref:security/data-protection/introduction)
-### [Get started with the Data Protection APIs](xref:security/data-protection/using-data-protection)
+### [Data Protection APIs](xref:security/data-protection/using-data-protection)
 ### Consumer APIs
 #### [Overview](xref:security/data-protection/consumer-apis/overview)
 #### [Purpose strings](xref:security/data-protection/consumer-apis/purpose-strings)
@@ -414,6 +411,8 @@
 ## [Access HttpContext](xref:fundamentals/httpcontext)
 ## [Change tokens](xref:fundamentals/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
+## [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
+## [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
@@ -427,8 +426,8 @@
 ## [Response compression](xref:performance/response-compression)
 
 # Migration
-## [ASP.NET Core 2.0 to 2.1](xref:migration/20_21)
-## ASP.NET Core 1.x to 2.0
+## [2.0 to 2.1](xref:migration/20_21)
+## 1.x to 2.0
 ### [Overview](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 ## ASP.NET to ASP.NET Core
