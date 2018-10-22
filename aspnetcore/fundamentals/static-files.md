@@ -66,7 +66,7 @@ The parameterless `UseStaticFiles` method overload marks the files in web root a
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
-In the preceding code, the tilde character (`~`) represents the ASP.NET Core web root operator. For more information, see [Web root](xref:fundamentals/index#web-root). 
+In the preceding code, the tilde character `~/` points to the virtual path of the app. For more information, see [Web root](xref:fundamentals/index#web-root).
 
 ### Serve files outside of web root
 
