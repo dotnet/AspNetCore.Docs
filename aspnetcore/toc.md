@@ -224,7 +224,7 @@
 
 # Data access
 ## Tutorials
-### [EF Core with Razor Pages](xref:data/ef-rp/index)
+### EF Core with Razor Pages
 ### [Overview](xref:data/ef-rp/index)
 ### [Get started](xref:data/ef-rp/intro)
 ### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
