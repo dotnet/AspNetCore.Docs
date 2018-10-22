@@ -71,7 +71,7 @@ This can safely be ignored.
 
 ## Known limitations
 
-This is a preview release of the Java client. There are some features that aren't supported yet. The following gaps are being worked on for future releases:
+This is a preview release of the Java client. Some features aren't supported:
 
 * Only the JSON protocol is supported.
 * Only the WebSockets transport is supported.
