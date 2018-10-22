@@ -21,7 +21,7 @@ public class Chat {
         }, String.class);
 
         //This is a blocking call
-        hubConnection.start();
+        hubConnection.start().blockingAwait();
 
         while (!input.equals("leave")){
             input = reader.nextLine();
