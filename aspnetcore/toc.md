@@ -98,7 +98,7 @@
 ##### [Add a controller](tutorials/first-mvc-app/adding-controller.md)
 ##### [Add a view](tutorials/first-mvc-app/adding-view.md)
 ##### [Add a model](tutorials/first-mvc-app/adding-model.md)
-##### [Work with SQL Server LocalDB](tutorials/first-mvc-app/working-with-sql.md)
+##### [Work with SQL Server](tutorials/first-mvc-app/working-with-sql.md)
 ##### [Controller methods and views](tutorials/first-mvc-app/controller-methods-views.md)
 ##### [Add search](tutorials/first-mvc-app/search.md)
 ##### [Add a new field](tutorials/first-mvc-app/new-field.md)
@@ -234,9 +234,9 @@
 ### [Read related data](xref:data/ef-rp/read-related-data)
 ### [Update related data](xref:data/ef-rp/update-related-data)
 ### [Handle concurrency conflicts](xref:data/ef-rp/concurrency)
-### [EF Core with MVC - new db](/ef/core/get-started/aspnetcore/new-db)
-### [EF Core with MVC - existing db](/ef/core/get-started/aspnetcore/existing-db)
-### EF Core with MVC - long tutorial
+### [EF Core with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
+### [EF Core with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
+### EF Core with MVC, long tutorial
 #### [Overview](data/ef-mvc/index.md)
 #### [Get started](data/ef-mvc/intro.md)
 #### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
