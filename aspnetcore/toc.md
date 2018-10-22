@@ -4,22 +4,26 @@
 ## [Compare .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
 # Tutorials
-## [Razor Pages with Visual Studio](xref:tutorials/razor-pages/index)
-## [Razor Pages with Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
-## [Razor Pages with Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
-## [MVC with Visual Studio](tutorials/first-mvc-app/index.md)
-## [MVC with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
-## [MVC with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
-## [Web API with Visual Studio](xref:tutorials/first-web-api)
-## [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
-## [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-## [Web API for native mobile apps](xref:mobile/native-mobile-backend)
-## [Real-time web app with JavaScript](xref:tutorials/signalr)
-## [Real-time web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
-## [Database access with Razor Pages](xref:data/ef-rp/index)
-## [Database access with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
-## [Database access with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
-## [Database access with MVC, long tutorial](data/ef-mvc/index.md)
+## Web apps
+### [Razor Pages with Visual Studio](xref:tutorials/razor-pages/index)
+### [Razor Pages with Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
+### [Razor Pages with Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
+### [MVC with Visual Studio](tutorials/first-mvc-app/index.md)
+### [MVC with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
+### [MVC with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
+## Web APIs
+### [Web API with Visual Studio](xref:tutorials/first-web-api)
+### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
+### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
+## Real-time
+### [Real-time web app with JavaScript](xref:tutorials/signalr)
+### [Real-time web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
+## Data access
+### [Database access with Razor Pages](xref:data/ef-rp/index)
+### [Database access with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
+### [Database access with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
+### [Database access with MVC, long tutorial](data/ef-mvc/index.md)
 
 # Web apps
 ## Razor Pages
