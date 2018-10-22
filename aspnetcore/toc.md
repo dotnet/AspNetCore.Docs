@@ -116,7 +116,7 @@
 ##### [Add a new field](tutorials/first-mvc-app-xplat/new-field.md)
 ##### [Add validation](tutorials/first-mvc-app-xplat/validation.md)
 ##### [Examine the Details and Delete methods](tutorials/first-mvc-app/details.md)
-### MVC with Visual Studio for Mac
+#### MVC with Visual Studio for Mac
 ##### [Overview](xref:tutorials/first-mvc-app-mac/index)
 ##### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
 ##### [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
