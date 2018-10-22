@@ -17,8 +17,8 @@
 ## [Real-time web app with JavaScript](xref:tutorials/signalr)
 ## [Real-time web app with TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## [Database access with Razor Pages](xref:data/ef-rp/index)
-## [Database access with MVC - existing DB](/ef/core/get-started/aspnetcore/existing-db)
-## [Database access with MVC - new DB](/ef/core/get-started/aspnetcore/new-db)
+## [Database access with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
+## [Database access with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
 ## [Database access with MVC, long tutorial](data/ef-mvc/index.md)
 
 # Web apps
@@ -147,7 +147,7 @@
 ### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/get-started-with-swashbuckle)
-### [Help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
+### [Swagger Help pages](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 ## [Action return types](xref:web-api/action-return-types)
 ## [Format response data](xref:web-api/advanced/formatting)
@@ -305,13 +305,13 @@
 ### [Use Cookie Authentication without Identity](xref:security/authentication/cookie)
 ### Azure Active Directory
 #### [Overview](xref:security/authentication/azure-active-directory/index)
-#### [Integrate Azure AD Into an ASP.NET Core web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
-#### [Integrate Azure AD B2C into a customer-facing ASP.NET Core web app](xref:security/authentication/azure-ad-b2c)
-#### [Integrate Azure AD B2C into an ASP.NET Core web API](xref:security/authentication/azure-ad-b2c-webapi)
-#### [Call a ASP.NET Core Web API from a WPF app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
-#### [Call a Web API in an ASP.NET Core web app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
+#### [Integrate Azure AD Into a web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
+#### [Integrate Azure AD B2C into a web app](xref:security/authentication/azure-ad-b2c)
+#### [Integrate Azure AD B2C into a web API](xref:security/authentication/azure-ad-b2c-webapi)
+#### [Call a Web API from WPF](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
+#### [Call a web API in a web app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 ### [Secure ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io/)
-### [Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)](https://docs.microsoft.com/azure/app-service/app-service-authentication-overview)
+### [Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)](/azure/app-service/app-service-authentication-overview)
 ### [Individual user accounts](xref:security/authentication/individual)
 ## Authorization
 ### [Overview](xref:security/authorization/introduction)
