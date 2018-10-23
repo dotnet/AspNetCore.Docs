@@ -309,7 +309,7 @@ The following sample `aspNetCore` element configures stdout logging for an app h
 
 ## Enhanced diagnostic logs
 
-The ASP.NET Core Module provides is configurable to provide enhanced diagnostics logs. Add the `<handlerSettings>` element to the `<aspNetCore>` element in *web.config*. Setting the `debugLevel` to `TRACE` exposes a higher fidelity of diagnostic information. The example below is configured for an Azure Apps deployment:
+The ASP.NET Core Module provides is configurable to provide enhanced diagnostics logs. Add the `<handlerSettings>` element to the `<aspNetCore>` element in *web.config*. Setting the `debugLevel` to `TRACE` exposes a higher fidelity of diagnostic information:
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -318,7 +318,7 @@ The ASP.NET Core Module provides is configurable to provide enhanced diagnostics
     stdoutLogFile="\\?\%home%\LogFiles\stdout"
     hostingModel="inprocess">
   <handlerSettings>
-    <handlerSetting name="debugFile" value="%HOME%\LogFiles\Application\amcm.log" />
+    <handlerSetting name="debugFile" value="aspnetcore-debug.log" />
     <handlerSetting name="debugLevel" value="FILE,TRACE" />
   </handlerSettings>
 </aspNetCore>
