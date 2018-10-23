@@ -56,7 +56,7 @@ namespace CustomModelBindingSample.Binders
             {
                 // Non-integer arguments result in model state errors
                 bindingContext.ModelState.TryAddModelError(
-                                        bindingContext.ModelName,
+                                        modelName,
                                         "Author Id must be an integer.");
                 return Task.CompletedTask;
             }
