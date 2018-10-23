@@ -278,7 +278,7 @@
 ### [Overview](xref:host-and-deploy/azure-apps/index)
 ### [Publish with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
 ### [Publish with CLI tools](/azure/app-service/app-service-web-get-started-dotnet)
-### [Continuous deployment with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
+### [Publish with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Continuous deployment with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 ### [Troubleshoot on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
 ## DevOps 
