@@ -73,7 +73,7 @@ The content root is the base path to any content used by the app, such as [Razor
 
 The webroot of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files. By default, *wwwroot* is the webroot.
 
-For Razor (*.cshtml*) files, the tilde-slash  `~/` points to the webroot. `~/` is referred to as the virtual path of the app.
+For Razor (*.cshtml*) files, the tilde-slash  `~/` points to the webroot. Paths beginning with `~/` are referred to as virtual paths.
 
 ## Dependency injection (services)
 
