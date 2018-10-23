@@ -38,7 +38,7 @@
 ## [Logging](xref:fundamentals/logging/index)
 ## [Handle errors](xref:fundamentals/error-handling)
 ## Middleware
-### [Middleware](xref:fundamentals/middleware/index)
+### [Overview](xref:fundamentals/middleware/index)
 ### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
 ### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
 ## Host
@@ -281,7 +281,7 @@
 ### [Continuous deployment with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Continuous deployment with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 ### [Troubleshoot on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
-## Azure DevOps 
+## DevOps 
 ### [Overview](xref:azure/devops/index)
 ### [Tools and downloads](xref:azure/devops/tools-and-downloads)
 ### [Deploy to App Service](xref:azure/devops/deploy-to-app-service)
@@ -335,10 +335,10 @@
 ### [Use Cookie Authentication without Identity](xref:security/authentication/cookie)
 ### Azure Active Directory
 #### [Overview](xref:security/authentication/azure-active-directory/index)
-#### [Integrate Azure AD Into a web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
+#### [Integrate Azure AD into a web app](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
 #### [Integrate Azure AD B2C into a web app](xref:security/authentication/azure-ad-b2c)
 #### [Integrate Azure AD B2C into a web API](xref:security/authentication/azure-ad-b2c-webapi)
-#### [Call a Web API from WPF](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
+#### [Call a web API from WPF](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
 #### [Call a web API in a web app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 ### [Secure ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io/)
 ### [Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)](/azure/app-service/app-service-authentication-overview)
