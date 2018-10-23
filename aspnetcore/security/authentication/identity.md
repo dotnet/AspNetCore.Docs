@@ -47,7 +47,7 @@ Create an ASP.NET Core Web Application project with Individual User Accounts.
 # [.NET Core CLI](#tab/netcore-cli)
 
 ```cli
-dotnet new webapp --auth Individual -o WebApp1
+dotnet new razor --auth Individual -o WebApp1
 ```
 
 ---
