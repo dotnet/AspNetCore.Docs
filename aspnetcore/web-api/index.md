@@ -57,13 +57,13 @@ The following sections describe convenience features added by the attribute.
 
 ### Problem details responses for error status codes
 
-ASP.NET Core 2.1 and later includes [[ProblemDetails]](xref:Microsoft.AspNetCore.Mvc.ProblemDetails), a type based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). The `ProblemDetails` type provides a standardized format for conveying machine readable details of errors in a HTTP response.
+ASP.NET Core 2.1 and later includes [ProblemDetails](xref:Microsoft.AspNetCore.Mvc.ProblemDetails), a type based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). The `ProblemDetails` type provides a standardized format for conveying machine readable details of errors in a HTTP response.
 
 In ASP.NET Core 2.2 and later, MVC transforms error status code results (status code 400 and higher) to a result with `ProblemDetails`. Consider the following code:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/PetsController.cs?name=snippet_ProblemDetails_StatusCode&highlight=4)]
 
-The HTTP response for this result has a 404 status code with a `ProblemDetails` body:
+The HTTP response for the `NotFound` result has a 404 status code with a `ProblemDetails` body similar to the following:
 
 ```js
 {
@@ -80,7 +80,7 @@ The problem details feature requires a compatibility flag of 2.2 or later. The d
 
 Use the [ClientErrorMapping](/dotnet/api/microsoft.aspnetcore.Mvc.ApiBehaviorOptions) <!--  Until these resolve, link to the parent class <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping> --> property to configure the contents of the `ProblemDetails` response. For example, the following code updates the `type` property for 404 responses:
 
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=8)]
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_SetCompatibilityVersion&highlight=10)]
 
 ### Automatic HTTP 400 responses
 
