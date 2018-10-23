@@ -219,6 +219,7 @@
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 ## [Clients](xref:signalr/clients)
 ### [.NET client](xref:signalr/dotnet-client)
+### [.NET API reference](/dotnet/api/microsoft.aspnetcore.signalr.client)
 ### [Java client](xref:signalr/java-client)
 ### [Java API reference](/java/api/com.microsoft.aspnet.signalr?view=aspnet-signalr-java)
 ### [JavaScript client](xref:signalr/javascript-client)
