@@ -324,20 +324,20 @@ The ASP.NET Core Module provides is configurable to provide enhanced diagnostics
 </aspNetCore>
 ```
 
-Debug level (`debugLevel`) values can include both the level and the location. Multiple locations are permitted.
+Debug level (`debugLevel`) values can include both the level and the location.
 
-Levels:
+Levels (in order from least to most verbose):
 
 * ERROR
 * WARNING
 * INFO
 * TRACE
 
-Locations:
+Locations (multiple locations are permitted):
 
 * CONSOLE
-* FILE
 * EVENTLOG
+* FILE
 
 The handler settings can also be provided via environment variables:
 
