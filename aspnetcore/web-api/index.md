@@ -59,7 +59,7 @@ The following sections describe convenience features added by the attribute.
 
 ASP.NET Core 2.1 and later includes [[ProblemDetails]](xref:Microsoft.AspNetCore.Mvc.ProblemDetails), a type based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). The `ProblemDetails` type provides a standardized format for conveying machine readable details of errors in a HTTP response.
 
-In ASP.NET Core 2.2 and later, MVC transforms error status code results (status code 400 and higher) to a result with `ProblemDetails`. Consider the following sample:
+In ASP.NET Core 2.2 and later, MVC transforms error status code results (status code 400 and higher) to a result with `ProblemDetails`. Consider the following code:
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/PetsController.cs?name=snippet_ProblemDetails_StatusCode&highlight=4)]
 
