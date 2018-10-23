@@ -386,13 +386,17 @@ sudo yum install mod_headers
 
 [Clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), also known as a *UI redress attack*, is a malicious attack where a website visitor is tricked into clicking a link or button on a different page than they're currently visiting. Use `X-FRAME-OPTIONS` to secure the site.
 
-Edit the *httpd.conf* file:
+To mitigate clickjacking attacks:
 
-```bash
-sudo nano /etc/httpd/conf/httpd.conf
-```
+1. Edit the *httpd.conf* file:
 
-Add the line `Header append X-FRAME-OPTIONS "SAMEORIGIN"`. Save the file. Restart Apache.
+   ```bash
+   sudo nano /etc/httpd/conf/httpd.conf
+   ```
+
+   Add the line `Header append X-FRAME-OPTIONS "SAMEORIGIN"`.
+1. Save the file.
+1. Restart Apache.
 
 #### MIME-type sniffing
 

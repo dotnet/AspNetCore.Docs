@@ -351,13 +351,17 @@ Edit the */etc/nginx/nginx.conf* configuration file. The example contains both `
 
 [Clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), also known as a *UI redress attack*, is a malicious attack where a website visitor is tricked into clicking a link or button on a different page than they're currently visiting. Use `X-FRAME-OPTIONS` to secure the site.
 
-Edit the *nginx.conf* file:
+To mitigate clickjacking attacks:
 
-```bash
-sudo nano /etc/nginx/nginx.conf
-```
+1. Edit the *nginx.conf* file:
 
-Add the line `add_header X-Frame-Options "SAMEORIGIN";`. Save the file. Restart Nginx.
+   ```bash
+   sudo nano /etc/nginx/nginx.conf
+   ```
+
+   Add the line `add_header X-Frame-Options "SAMEORIGIN";`.
+1. Save the file.
+1. Restart Nginx.
 
 #### MIME-type sniffing
 
