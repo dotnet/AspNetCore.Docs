@@ -319,26 +319,29 @@ The ASP.NET Core Module provides is configurable to provide enhanced diagnostics
     hostingModel="inprocess">
   <handlerSettings>
     <handlerSetting name="debugFile" value="%HOME%\LogFiles\Application\amcm.log" />
-    <handlerSetting name="debugLevel" value="TRACE" />
+    <handlerSetting name="debugLevel" value="FILE,TRACE" />
   </handlerSettings>
 </aspNetCore>
 ```
 
-Debug level (`debugLevel`) values:
+Debug level (`debugLevel`) values can include both the level and the location. Multiple locations are permitted.
+
+Levels:
 
 * ERROR
 * WARNING
 * INFO
 * TRACE
+
+Locations:
+
 * CONSOLE
 * FILE
 * EVENTLOG
 
 The handler settings can also be provided via environment variables:
 
-* `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; Path to the debug log file.
-  * IIS default: *aspnetcore-debug.log*
-  * Azure Apps default: *%HOME%\\LogFiles\\Application\\amcm.log*
+* `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; Path to the debug log file. (Default: *aspnetcore-debug.log*)
 * `ASPNETCORE_MODULE_DEBUG` &ndash; Debug level setting.
 
 > [!WARNING]
