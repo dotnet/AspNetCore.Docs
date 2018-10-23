@@ -30,9 +30,15 @@ Health checks are usually used with an external monitoring service or container 
 
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package.
 
-The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [database context](#database-context) scenario probes a database context. To explore the database scenarios using the sample app, create a database and provide its connection string in the *appsettings.json* file of the app.
+The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [database context](#database-context) scenario probes a database context. To explore the database scenarios using the sample app:
 
-Another scenario demonstrates how to filter health checks to a management port. The sample app requires you to create a *Properties/launchSettings.json* file that includes the management URL and management port. For more information, see the [Filter by port](#filter-by-port) section.
+* Create a database and provide its connection string in the *appsettings.json* file of the app.
+* Add a package reference to [BeatPulse.SqlServer](https://www.nuget.org/packages/BeatPulse.SqlServer/).
+
+> [!NOTE]
+> [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
+
+Another health check scenario demonstrates how to filter health checks to a management port. The sample app requires you to create a *Properties/launchSettings.json* file that includes the management URL and management port. For more information, see the [Filter by port](#filter-by-port) section.
 
 ## Basic health probe
 
@@ -270,16 +276,18 @@ private static Task WriteResponse(HttpContext httpContext,
 
 A health check can specify a database query to run as a boolean test to indicate if the database is responding normally.
 
-The sample app uses [BeatPulse](https://github.com/Xabaril/BeatPulse) to perform a health check on a SQL Server database. BeatPulse executes a `SELECT 1` query against the database to confirm the connection to the database is healthy.
+The sample app uses [BeatPulse](https://github.com/Xabaril/BeatPulse), a health check library for ASP.NET Core apps, to perform a health check on a SQL Server database. BeatPulse executes a `SELECT 1` query against the database to confirm the connection to the database is healthy.
 
 > [!WARNING]
 > When checking a database connection with a query, choose a query that returns quickly. The query approach runs the risk of overloading the database and degrading its performance. In most cases, running a test query isn't necessary. Merely making a successful connection to the database is sufficient. If you find it necessary to run a query, choose a simple SELECT query, such as `SELECT 1`.
+
+In order to use the BeatPulse library, include a package reference to [BeatPulse.SqlServer](https://www.nuget.org/packages/BeatPulse.SqlServer/).
 
 Supply a valid database connection string in the *appsettings.json* file of the sample app. The app uses a SQL Server database named `HealthCheckSample`:
 
 [!code-json[](health-checks/samples/2.x/HealthChecksSample/appsettings.json?highlight=3)]
 
-Register health check services with `AddHealthChecks` in `Startup.ConfigureServices`. The sample app calls [BeatPulse](https://github.com/Xabaril/BeatPulse)'s `AddSqlServer` method with the database's connection string (*DbHealthStartup.cs*):
+Register health check services with `AddHealthChecks` in `Startup.ConfigureServices`. The sample app calls BeatPulse's `AddSqlServer` method with the database's connection string (*DbHealthStartup.cs*):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbHealthStartup.cs?name=snippet_ConfigureServices)]
 
@@ -292,6 +300,9 @@ To run the database probe scenario using the sample app, execute the following c
 ```console
 dotnet run --scenario db
 ```
+
+> [!NOTE]
+> [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
 
 ## Database context
 

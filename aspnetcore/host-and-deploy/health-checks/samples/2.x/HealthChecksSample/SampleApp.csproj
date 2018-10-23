@@ -10,7 +10,6 @@
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0-preview3-27014-02" />
-    <PackageReference Include="BeatPulse" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
