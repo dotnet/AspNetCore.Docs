@@ -23,7 +23,7 @@
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## Data access
 ### [EF Core with Razor Pages](xref:data/ef-rp/index)
-### [EF Core With MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
+### [EF Core with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
 ### [EF Core with MVC, new DB](/ef/core/get-started/aspnetcore/new-db)
 ### [EF Core with MVC, long tutorial](xref:data/ef-mvc/index)
 
@@ -207,7 +207,7 @@
 ## [Security considerations](xref:signalr/security)
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Streaming](xref:signalr/streaming)
-## [Compare SignalR versions](xref:signalr/version-differences)
+## [Compare SignalR and SignalR Core](xref:signalr/version-differences)
 ## [WebSockets without SignalR](xref:fundamentals/websockets)
 
 # Test, debug, and troubleshoot
@@ -265,12 +265,12 @@
 ## [LESS, Sass, and Font Awesome](xref:client-side/less-sass-fa)
 ## [Bundle and minify](xref:client-side/bundling-and-minification)
 ## [Browser Link](xref:client-side/using-browserlink)
-## [JavaScriptServices for SPAs](xref:client-side/spa-services)
-## SPA project templates
+## Single Page Apps
 ### [Overview](xref:spa/index)
 ### [Angular](xref:spa/angular)
 ### [React](xref:spa/react)
 ### [React with Redux](xref:spa/react-with-redux)
+### [JavaScriptServices](xref:client-side/spa-services)
 
 # Hosting and deployment
 ## [Overview](xref:host-and-deploy/index)
@@ -301,7 +301,7 @@
 ### [Overview](xref:host-and-deploy/docker/index)
 ### [Build Docker images](/dotnet/articles/core/docker/building-net-docker-images)
 ### [Visual Studio Tools](xref:host-and-deploy/docker/visual-studio-tools-for-docker)
-### [Publish to a Docker image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/)
+### [Publish to a Docker image](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
 ## [Proxy and load balancer configuration](xref:host-and-deploy/proxy-load-balancer)
 ## [Host in a web farm](xref:host-and-deploy/web-farm)
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
