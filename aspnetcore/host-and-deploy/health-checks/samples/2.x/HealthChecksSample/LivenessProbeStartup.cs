@@ -51,7 +51,7 @@ namespace SampleApp
             app.UseHealthChecks("/health/live", new HealthCheckOptions()
             {
                 // Exclude all checks and return a 200-Ok.
-                Predicate = (check) => false
+                Predicate = (_) => false
             });
         #endregion
 

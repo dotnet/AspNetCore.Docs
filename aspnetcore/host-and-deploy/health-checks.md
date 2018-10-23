@@ -116,7 +116,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-An `AddCheck` overload provides the opportunity to set the failure status (`HealthStatus`) that should be reported when the health check reports a failure. If the failure status is set to `null`, `HealthStatus.Unhealthy` is reported. Tags can be used to filter health checks (described further in the [Filter health checks](#filter-health-checks) section).
+An `AddCheck` overload provides the opportunity to set the failure status (`HealthStatus`) that should be reported when the health check reports a failure. If the failure status is set to `null` (default), `HealthStatus.Unhealthy` is reported.
+
+*Tags* can be used to filter health checks (described further in the [Filter health checks](#filter-health-checks) section).
 
 ```csharp
 services.AddHealthChecks()
@@ -165,7 +167,7 @@ app.UseHealthChecks("/health", port: 8000);
 
 ### Filter health checks
 
-By default, Health Check Middleware runs all registered health checks. To run a subset of health checks, provide a function that returns a boolean to the `Predicate` option. In the following example, the `Bar` health check is filtered by its tag `bar_tag` out by the function's conditional statement, where `true` is only returned if the health check's `Tag` property matches `foo_tag` or `baz_tag`:
+By default, Health Check Middleware runs all registered health checks. To run a subset of health checks, provide a function that returns a boolean to the `Predicate` option. In the following example, the `Bar` health check is filtered out by its tag (`bar_tag`) in the function's conditional statement, where `true` is only returned if the health check's `Tag` property matches `foo_tag` or `baz_tag`:
 
 ```csharp
 using System.Threading.Tasks;
@@ -305,6 +307,8 @@ dotnet run --scenario db
 > [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
 
 ## Database context
+
+The database context check is supported in apps that use [Entity Framework (EF) Core](/en-us/ef/core/). This check confirms that the app can communicate with the database configured for an EF Core `DbContext`. By default, the `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using overloads of the `AddDbContextCheck` method.
 
 `AddDbContextCheck<TContext>` registers a health check for a database context (`TContext`). By default, the name of the health check is the name of the `TContext` type. An overload is available to configure the failure status, tags, and a custom test query.
 
@@ -510,4 +514,14 @@ To run the management port configuration scenario using the sample app, execute 
 
 ```console
 dotnet run --scenario port
+```
+
+## Health Check Publisher
+
+When an `IHealthCheckPublisher` is added to the service container, the health check system periodically executes your health checks and calls `PublishAsync` with the result. This is useful in a push-based health monitoring system scenario that expects each process to call the monitoring system periodically in order to determine health.
+
+The `IHealthCheckPublisher` interface has a single method:
+
+```csharp
+Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 ```
