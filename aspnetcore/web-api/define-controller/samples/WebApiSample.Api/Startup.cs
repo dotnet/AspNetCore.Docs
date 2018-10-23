@@ -32,7 +32,6 @@ namespace WebApiSample.Api
             #region snippet_SetCompatibilityVersion
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                    #region snippet_ConfigureApiBehaviorOptions
                     .ConfigureApiBehaviorOptions(options =>
                     {
                         options.SuppressConsumesConstraintForFormFileParameters = true;
@@ -42,7 +41,6 @@ namespace WebApiSample.Api
 
                         options.ClientErrorMapping[404] = "https://httpstatuses.com/404";
                     });
-                    #endregion
             #endregion
 
             services.AddSwaggerGen(c =>
