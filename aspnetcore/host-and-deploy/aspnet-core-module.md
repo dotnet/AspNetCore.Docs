@@ -314,7 +314,7 @@ The ASP.NET Core Module provides is configurable to provide enhanced diagnostics
 ```xml
 <aspNetCore processPath="dotnet"
     arguments=".\MyApp.dll"
-    stdoutLogEnabled="true"
+    stdoutLogEnabled="false"
     stdoutLogFile="\\?\%home%\LogFiles\stdout"
     hostingModel="inprocess">
   <handlerSettings>
