@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using BeatPulse.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using SampleApp.Services;
 
 namespace SampleApp
 {
@@ -27,9 +31,12 @@ namespace SampleApp
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHostedService<StartupHostedService>();
+            services.AddSingleton<StartupHostedServiceHealthCheck>();
+
             services.AddHealthChecks()
-                .AddCheck<SlowDependencyHealthCheck>(
-                    "Slow", 
+                .AddCheck<StartupHostedServiceHealthCheck>(
+                    "hosted_service_startup", 
                     failureStatus: HealthStatus.Degraded, 
                     tags: new[] { "ready" });
         }
@@ -38,7 +45,11 @@ namespace SampleApp
         #region snippet_Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseHealthChecks("/health/ready");
+            // The readiness check uses all registered checks with the 'ready' tag.
+            app.UseHealthChecks("/health/ready", new HealthCheckOptions()
+            {
+                Predicate = (check) => check.Tags.Contains("ready"), 
+            });
 
             app.UseHealthChecks("/health/live", new HealthCheckOptions()
             {

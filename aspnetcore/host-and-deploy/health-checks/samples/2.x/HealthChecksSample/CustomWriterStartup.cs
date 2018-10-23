@@ -25,7 +25,7 @@ namespace SampleApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddMemoryHealthCheck("Memory");
+                .AddMemoryHealthCheck("memory");
         }
         #endregion
 
