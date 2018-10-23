@@ -232,8 +232,8 @@ Services that interact with requests from the Internet or a corporate network an
 To configure the service with a secure endpoint:
 
 1. Create an X.509 certificate.
-1. Deploy the certificate with the app.
 1. Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) to use the certificate.
+1. Deploy the certificate with the app.
 
 Use of the ASP.NET Core HTTPS development certificate to secure a service endpoint isn't supported. The developer certificate is stored in the user's Personal certificate store, but the service runs using the [LocalSystem account](/windows/desktop/services/localsystem-account) and has its own certificate store. We recommend creating a certificate and deploying it with the app.
 
