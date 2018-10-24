@@ -396,7 +396,7 @@
 # [Performance](xref:performance/index)
 ## [Cache responses](xref:performance/caching/index)
 ### [Cache in-memory](xref:performance/caching/memory)
-### [Work with a distributed cache](xref:performance/caching/distributed)
+### [Distributed caching](xref:performance/caching/distributed)
 ### [Response caching](xref:performance/caching/response)
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
