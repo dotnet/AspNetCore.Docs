@@ -280,7 +280,7 @@
 ### [Publish with CLI tools](/azure/app-service/app-service-web-get-started-dotnet)
 ### [Publish with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Continuous deployment with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
-### [Troubleshoot on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
+### [Troubleshoot startup errors](xref:host-and-deploy/azure-apps/troubleshoot)
 ## DevOps 
 ### [Overview](xref:azure/devops/index)
 ### [Tools and downloads](xref:azure/devops/tools-and-downloads)
