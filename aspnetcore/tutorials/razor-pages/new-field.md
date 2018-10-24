@@ -4,14 +4,15 @@ author: rick-anderson
 description: Shows how to add a new field to a Razor Page with Entity Framework Core
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 05/30/2018
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: tutorials/razor-pages/new-field
 ---
 # Add a new field to a Razor Page in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this section you use [Entity Framework](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db) Code First Migrations to add a new field to the model and migrate that change to the database.
+In this section you use [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations to add a new field to the model and migrate that change to the database.
 
 When using EF Code First to automatically create a database, Code First:
 
@@ -91,6 +92,7 @@ See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/
 Build the solution.
 
 <a name="pmc"></a>
+
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
 
@@ -107,6 +109,7 @@ The `Add-Migration` command tells the framework to:
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
 <a name="ssox"></a>
+
 If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX). To delete the database from SSOX:
 
 * Select the database in SSOX.
