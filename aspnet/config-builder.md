@@ -20,7 +20,6 @@ Configuration builders:
 * Are available in .Net Framework .Net 4.7.1 and later.
 * Provide a flexible mechanism for reading configuration values.
 * Address some of the basic needs of apps as they move into a container and cloud focused environment.
-* Operate on two sections, `<appSettings />` and `<connectionStrings />`.
 
 The `AzureKeyVault` and `Environment` configuration builders provides a secure mechanism to store sensitive data. The other configuration builders sources should not be used to store sensitive data unless steps are taken to protect the information.
 
