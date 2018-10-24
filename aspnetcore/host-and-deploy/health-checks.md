@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/23/2018
+ms.date: 10/24/2018
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -33,7 +33,7 @@ Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapacka
 The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [database context](#database-context) scenario probes a database context. To explore the database scenarios using the sample app:
 
 * Create a database and provide its connection string in the *appsettings.json* file of the app.
-* Add a package reference to [BeatPulse.SqlServer](https://www.nuget.org/packages/BeatPulse.SqlServer/).
+* Add a package reference to [HealthChecks.SqlServer](https://www.nuget.org/packages/HealthChecks.SqlServer/).
 
 > [!NOTE]
 > [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
@@ -283,7 +283,7 @@ The sample app uses [BeatPulse](https://github.com/Xabaril/BeatPulse), a health 
 > [!WARNING]
 > When checking a database connection with a query, choose a query that returns quickly. The query approach runs the risk of overloading the database and degrading its performance. In most cases, running a test query isn't necessary. Merely making a successful connection to the database is sufficient. If you find it necessary to run a query, choose a simple SELECT query, such as `SELECT 1`.
 
-In order to use the BeatPulse library, include a package reference to [BeatPulse.SqlServer](https://www.nuget.org/packages/BeatPulse.SqlServer/).
+In order to use the BeatPulse library, include a package reference to [HealthChecks.SqlServer](https://www.nuget.org/packages/HealthChecks.SqlServer/).
 
 Supply a valid database connection string in the *appsettings.json* file of the sample app. The app uses a SQL Server database named `HealthCheckSample`:
 
