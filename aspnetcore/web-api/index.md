@@ -55,15 +55,15 @@ Another approach is to create a custom base controller class annotated with the 
 
 The following sections describe convenience features added by the attribute.
 
-### Problem Details responses for error status codes
+### Problem details responses for error status codes
 
-ASP.NET Core 2.1 introduces [[ProblemDetails]](xref:Microsoft.AspNetCore.Mvc.ProblemDetails) a type based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). This type provides a standardized format for coveying machine readable details of errors in a HTTP response.
+ASP.NET Core 2.1 and later includes [ProblemDetails](xref:Microsoft.AspNetCore.Mvc.ProblemDetails), a type based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). The `ProblemDetails` type provides a standardized format for conveying machine readable details of errors in a HTTP response.
 
-In ASP.NET Core 2.2, MVC transforms all error status code (status code 400 or higher) results to a result with `ProblemDetails`. Consider the following sample:
+In ASP.NET Core 2.2 and later, MVC transforms error status code results (status code 400 and higher) to a result with `ProblemDetails`. Consider the following code:
 
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_ProblemDetails_StatusCode&highlight=4)]
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Controllers/PetsController.cs?name=snippet_ProblemDetails_StatusCode&highlight=4)]
 
-The HTTP response for this result would have a 404 status code with a ProblemDetails body:
+The HTTP response for the `NotFound` result has a 404 status code with a `ProblemDetails` body similar to the following:
 
 ```js
 {
@@ -74,13 +74,13 @@ The HTTP response for this result would have a 404 status code with a ProblemDet
 }
 ```
 
-This feature requires a compatibility flag of 2.2 or later. The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`. Add the following code in *Startup.ConfigureServices* after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);`:
+The problem details feature requires a compatibility flag of 2.2 or later. The default behavior is disabled when the [SuppressMapClientErrors](/dotnet/api/microsoft.aspnetcore.Mvc.ApiBehaviorOptions) <!--  Until these resolve, link to the parent class <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> --> property is set to `true`. The following highlighted code from `Startup.ConfigureServices` disables problem details:
 
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=6)]
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_SetCompatibilityVersion&highlight=8)]
 
-Use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping> property to configure the contents of the `ProblemDetails` response. For instance, the following snippet updates the `type` property for 404 responses:
+Use the [ClientErrorMapping](/dotnet/api/microsoft.aspnetcore.Mvc.ApiBehaviorOptions) <!--  Until these resolve, link to the parent class <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping> --> property to configure the contents of the `ProblemDetails` response. For example, the following code updates the `type` property for 404 responses:
 
-[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=8)]
+[!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_SetCompatibilityVersion&highlight=10)]
 
 ### Automatic HTTP 400 responses
 
@@ -94,8 +94,7 @@ The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBeha
 
 [!code-csharp[](../web-api/define-controller/samples/WebApiSample.Api/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=5)]
 
-
-With a compatibility flag of 2.2 or later, the default response type returned for 400 responses is a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressUseValidationProblemDetailsForInvalidModelStateResponses> property to continue using the error format used in ASP.NET Core 2.1.
+With a compatibility flag of 2.2 or later, the default response type returned for 400 responses is a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. Use the Use the [SuppressUseValidationProblemDetailsForInvalidModelStateResponses](/dotnet/api/microsoft.aspnetcore.Mvc.ApiBehaviorOptions) <!--  <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressUseValidationProblemDetailsForInvalidModelStateResponses> --> property to use the ASP.NET Core 2.1 error format.
 
 ### Binding source parameter inference
 
