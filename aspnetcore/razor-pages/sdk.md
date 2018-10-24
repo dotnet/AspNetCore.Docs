@@ -2,11 +2,11 @@
 title: ASP.NET Core Razor SDK
 author: Rick-Anderson
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 04/12/2018
+ms.date: 10/12/2018
 uid: razor-pages/sdk
 ---
+
 # ASP.NET Core Razor SDK
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -22,7 +22,7 @@ The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` M
 
 ## Using the Razor SDK
 
-Most web apps don't need to expressly reference the Razor SDK. 
+Most web apps don't need to expressly reference the Razor SDK.
 
 To use the Razor SDK to build class libraries containing Razor views or Razor Pages:
 
@@ -38,9 +38,18 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
     * `Microsoft.AspNetCore.Razor.Design` 
     * `Microsoft.AspNetCore.Mvc.Razor.Extensions`
     
- The preceding packages are included in `Microsoft.AspNetCore.Mvc`. The following markup shows a basic *.csproj* file that uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
+ The `Microsoft.AspNetCore.Razor.Design` packages provides the Razor compilation tasks and targets for the project.
+
+The preceding packages are included in `Microsoft.AspNetCore.Mvc`. The following markup shows a basic *.csproj* file that uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
     
  [!code-xml[Main](sdk/sample/RazorSDK.csproj)]
+
+::: moniker range="= aspnetcore-2.1"
+
+> [!WARNING]
+> The preceding packages are also included in [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app), however the version-less `Microsoft.AspNetCore.App` doesn't included the latest version of `Microsoft.AspNetCore.Razor.Design`. Projects must reference a consistent version of `Microsoft.AspNetCore.Razor.Design` (or `Microsoft.AspNetCore.Mvc`) so the latest build time fixes for Razor are included. For more information, see [this GitHub issue](https://github.com/aspnet/Razor/issues/2553).
+::: moniker-end
+::: moniker range=">= aspnetcore-2.1"
 
 ### Properties
 
