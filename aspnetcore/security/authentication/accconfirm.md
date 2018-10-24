@@ -4,10 +4,9 @@ author: rick-anderson
 description: Learn how to build an ASP.NET Core app with email confirmation and password reset.
 ms.author: riande
 ms.date: 7/11/2018
+monikerRange: '>= aspnetcore-2.1'
 uid: security/authentication/accconfirm
 ---
-
-::: moniker range=">= aspnetcore-2.1"
 
 # Account confirmation and password recovery in ASP.NET Core
 
@@ -244,5 +243,3 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 * Update the database to mark all existing users as being confirmed.
 * Confirm exiting users. For example, batch-send emails with confirmation links.
-
-::: moniker-end
