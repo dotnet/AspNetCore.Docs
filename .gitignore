@@ -1,3 +1,4 @@
+# The 5 approved on boarding samples that need wwwroot can add a local .gitignore that allows wwwroot.
 wwwroot/
 _build/
 _site/
