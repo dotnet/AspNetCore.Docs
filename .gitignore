@@ -1,5 +1,10 @@
 # The 5 approved on boarding samples that need wwwroot can add a local .gitignore that allows wwwroot.
 wwwroot/
+# When wwwroot is commented out, excluse .min and .map files
+*.min.css
+*.min.js
+*.map
+
 _build/
 _site/
 Properties/
