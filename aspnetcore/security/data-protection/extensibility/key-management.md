@@ -3,7 +3,8 @@ title: Key management extensibility in ASP.NET Core
 author: rick-anderson
 description: Learn about ASP.NET Core Data Protection key management extensibility.
 ms.author: riande
-ms.date: 11/22/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: security/data-protection/extensibility/key-management
 ---
 # Key management extensibility in ASP.NET Core
@@ -54,7 +55,7 @@ The `IKeyManager` interface represents an object responsible for general key sto
 
 ## XmlKeyManager
 
-The `XmlKeyManager` type is the in-box concrete implementation of `IKeyManager`. It provides several useful facilities, including key escrow and encryption of keys at rest. Keys in this system are represented as XML elements (specifically, [XElement](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)).
+The `XmlKeyManager` type is the in-box concrete implementation of `IKeyManager`. It provides several useful facilities, including key escrow and encryption of keys at rest. Keys in this system are represented as XML elements (specifically, [XElement](/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)).
 
 `XmlKeyManager` depends on several other components in the course of fulfilling its tasks:
 
