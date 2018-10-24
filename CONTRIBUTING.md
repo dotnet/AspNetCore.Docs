@@ -57,10 +57,11 @@ For more information, see the [DocFX Cross Reference](https://dotnet.github.io/d
 ## Images and screenshots
 
 Don't include images with articles, except:
+
 * In basic onboarding (beginner) tutorials.
 * When an image is needed for clarity.
 
-The reason for these restrictions is to keep the repository from getting too big.
+These restrictions reduce the size of the repository.
 
 As an optional step, ensure that any images and screenshots used in the documentation are compressed, which helps with file size and page load performance. A few popular tools include TinyPNG (using the [TinyPNG website](https://tinypng.com/) or the [TinyPNG API](https://tinypng.com/developers)) or the [Image Optimizer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ImageOptimizer) Visual Studio extension. 
 
