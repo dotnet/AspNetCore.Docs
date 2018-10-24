@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/18/2018
+ms.date: 10/18/2018
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -65,6 +65,8 @@ Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfilee
 The parameterless `UseStaticFiles` method overload marks the files in web root as servable. The following markup references *wwwroot/images/banner1.svg*:
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
+
+In the preceding code, the tilde character `~/` points to webroot. For more information, see [Web root](xref:fundamentals/index#web-root).
 
 ### Serve files outside of web root
 
