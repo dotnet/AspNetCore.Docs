@@ -46,7 +46,13 @@ Static files are accessible via a path relative to the web root. For example, th
 
 The URI format to access a file in the *images* subfolder is *http://\<server_address>/images/\<image_file_name>*. For example, *http://localhost:9189/images/banner3.svg*.
 
-::: moniker range=">= aspnetcore-2.0"
+::: moniker range=">= aspnetcore-2.1"
+
+If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project. If targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) includes this package.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
 
 If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to your project. If targeting .NET Core, the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) includes this package.
 
