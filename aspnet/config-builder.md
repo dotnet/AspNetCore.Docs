@@ -17,14 +17,14 @@ Configuration builders provide a modern and agile mechanism for ASP.NET apps to 
 
 Configuration builders:
 
-* Are available in .Net Framework .Net 4.7.1 and later.
+* Are available in .NET Framework 4.7.1 and later.
 * Provide a flexible mechanism for reading configuration values.
 * Address some of the basic needs of apps as they move into a container and cloud focused environment.
-* Can be used to improve protection of configuration data by drawing from sources previously unavailable (like Azure Key Vault, or environment variables) in the .Net configuration system.
+* Can be used to improve protection of configuration data by drawing from sources previously unavailable (for example, Azure Key Vault and environment variables) in the .NET configuration system.
 
 ## Key/value configuration builders
 
-A common scenario that can be handled by configuration builders is to provide a basic key/value replacement mechanism for config sections that follow a key/value pattern. Although the .Net Framework concept of ConfigurationBuilders is not limited to any particular config sections or patterns, many of the configuration builders available in `Microsoft.Configuration.ConfigurationBuilders` (at github<link> and nuget<search link?>) work within this basic key/value pattern.
+A common scenario that can be handled by configuration builders is to provide a basic key/value replacement mechanism for configuration sections that follow a key/value pattern. The .NET Framework concept of ConfigurationBuilders is not limited to specific configuration sections or patterns. However, many of the configuration builders in `Microsoft.Configuration.ConfigurationBuilders` ( [github](https://github.com/aspnet/MicrosoftConfigurationBuilders), NuGet[https://www.nuget.org/packages?q=Microsoft.Configuration.ConfigurationBuilders]) work within the key/value pattern.
 
 ## Key/value configuration builders settings
 
@@ -71,7 +71,7 @@ Note: You might need to exit and restart Visual Studio to see changes in environ
 
 Key prefixes can simplify setting keys because:
 
-* The .Net Framework configuration is complex and nested.
+* The .NET Framework configuration is complex and nested.
 * External key/value sources are commonly basic and flat by nature. For example, environment variables are not nested.
 
 Use any of the following approaches to inject both `<appSettings/>` and `<connectionStrings/>` into the configuration via environment variables:
@@ -168,7 +168,7 @@ The [EnvironmentConfigBuilder](https://www.nuget.org/packages/Microsoft.Configur
 * Does not have any additional configuration options.
 * The `name` attribute value is arbitrary.
 
-**Note:** In a Windows container environment, variables set at run time are only injected into the EntryPoint process environment. Apps that run as a service or a non-EntryPoint process do not pick up these variables unless they are otherwise injected through a mechanism in the container. For [IIS](https://github.com/Microsoft/iis-docker/pull/41)/[ASP.Net](https://github.com/Microsoft/aspnet-docker)-based
+**Note:** In a Windows container environment, variables set at run time are only injected into the EntryPoint process environment. Apps that run as a service or a non-EntryPoint process do not pick up these variables unless they are otherwise injected through a mechanism in the container. For [IIS](https://github.com/Microsoft/iis-docker/pull/41)/[ASP.NET](https://github.com/Microsoft/aspnet-docker)-based
  containers, the current version of [ServiceMonitor.exe](https://github.com/Microsoft/iis-docker/pull/41) handles this in the *DefaultAppPool* only. Other Windows-based container variants may need to develop their own injection mechanism for non-EntryPoint processes.
 
 ### UserSecretsConfigBuilder
@@ -191,7 +191,7 @@ The [UserSecretsConfigBuilder](https://www.nuget.org/packages/Microsoft.Configur
 
 Configuration attributes for `UserSecretsConfigBuilder`:
 
-* `userSecretsId` - This is the preferred method for identifying an XML secrets file. It works similar to .Net Core, which uses a `UserSecretsId` project property to store this identifier. The string must be unique, it doesn't need to be a GUID. With this attribute, the `UserSecretsConfigBuilder` look in a well-known local location (`%APPDATA%\Microsoft\UserSecrets\<UserSecrets Id>\secrets.xml`) for a secrets file belonging to this identifier.
+* `userSecretsId` - This is the preferred method for identifying an XML secrets file. It works similar to .NET Core, which uses a `UserSecretsId` project property to store this identifier. The string must be unique, it doesn't need to be a GUID. With this attribute, the `UserSecretsConfigBuilder` look in a well-known local location (`%APPDATA%\Microsoft\UserSecrets\<UserSecrets Id>\secrets.xml`) for a secrets file belonging to this identifier.
 * `userSecretsFile` - An optional attribute specifying the file containing the secrets. The `~` character can be used at the start to reference the application root. Either this attribute or the `userSecretsId` attribute is required. If both are specified, `userSecretsFile` takes precedence.
 * `optional`: boolean, default value `true` - Prevents an exception if the secrets file cannot be found. 
 * The `name` attribute value is arbitrary.
@@ -268,7 +268,7 @@ Attribute details:
     Microsoft.Configuration.ConfigurationBuilders.Json" />
 ```
 
-.Net Core projects frequently use JSON files for configuration. The [SimpleJsonConfigBuilder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.Json/) builder allows .NET Core JSON files to be used in the .NET Framework. This configuration builder is provides a basic mapping from a flat key/value source into specific key/value areas of .NET Framework configuration. This configuration builder does **not** provide for hierarchical configurations. The JSON backing file is similar to a dictionary, not a complex hierarchical object. A multi-level hierarchical file can be used. This provider `flatten`s the depth by appending the property name at each level using `:` as a delimiter.
+.NET Core projects frequently use JSON files for configuration. The [SimpleJsonConfigBuilder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.Json/) builder allows .NET Core JSON files to be used in the .NET Framework. This configuration builder is provides a basic mapping from a flat key/value source into specific key/value areas of .NET Framework configuration. This configuration builder does **not** provide for hierarchical configurations. The JSON backing file is similar to a dictionary, not a complex hierarchical object. A multi-level hierarchical file can be used. This provider `flatten`s the depth by appending the property name at each level using `:` as a delimiter.
 
 Attribute details:
 
