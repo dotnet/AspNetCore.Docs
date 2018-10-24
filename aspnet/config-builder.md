@@ -20,16 +20,15 @@ Configuration builders:
 * Are available in .Net Framework .Net 4.7.1 and later.
 * Provide a flexible mechanism for reading configuration values.
 * Address some of the basic needs of apps as they move into a container and cloud focused environment.
-
-The `AzureKeyVault` and `Environment` configuration builders provides a secure mechanism to store sensitive data. The other configuration builders sources should not be used to store sensitive data unless steps are taken to protect the information.
+* Can be used to improve protection of configuration data by drawing from sources previously unavailable (like Azure Key Vault, or environment variables) in the .Net configuration system.
 
 ## Key/value configuration builders
 
-The most common usage of configuration builders is to provide a basic key/value replacement mechanism. Most of the `Microsoft.Configuration.ConfigurationBuilders` are basic key/value builders. Applications can also use the configuration builder concept to construct complex configurations dynamically.
+A common scenario that can be handled by configuration builders is to provide a basic key/value replacement mechanism for config sections that follow a key/value pattern. Although the .Net Framework concept of ConfigurationBuilders is not limited to any particular config sections or patterns, many of the configuration builders available in `Microsoft.Configuration.ConfigurationBuilders` (at github<link> and nuget<search link?>) work within this basic key/value pattern.
 
 ## Key/value configuration builders settings
 
-The following settings apply to all key/value configuration builders.
+The following settings apply to all key/value configuration builders in `Microsoft.Configuration.ConfigurationBuilders`.
 
 ### Mode
 
@@ -42,7 +41,7 @@ The configuration builders use an external source of key/value information to po
 
   * The configuration builders adds all key/value pairs from the external source into the resulting configuration section.
 
-* `Expand` - Operates on the raw XML before it's parsed into a configuration section object. It can be thought of as an expansion of tokens in a string. Any part of the raw XML string that matches the pattern `${token}` is a candidate for token expansion. If no corresponding value is found in the external source, then the token is not changed.
+* `Expand` - Operates on the raw XML before it's parsed into a configuration section object. It can be thought of as an expansion of tokens in a string. Any part of the raw XML string that matches the pattern `${token}` is a candidate for token expansion. If no corresponding value is found in the external source, then the token is not changed. Builders in this mode are not limited to the `<appSettings/>` and `<connectionStrings/>` sections.
 
 The following markup from *web.config* enables the [EnvironmentConfigBuilder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.Environment/) in `Strict` mode:
 
@@ -73,7 +72,7 @@ Note: You might need to exit and restart Visual Studio to see changes in environ
 Key prefixes can simplify setting keys because:
 
 * The .Net Framework configuration is complex and nested.
-* External key/value sources are by nature basic and flat. For example, environment variables are not nested.
+* External key/value sources are commonly basic and flat by nature. For example, environment variables are not nested.
 
 Use any of the following approaches to inject both `<appSettings/>` and `<connectionStrings/>` into the configuration via environment variables:
 
@@ -110,7 +109,7 @@ For example, using the previous *web.config* file, the keys/values in the previo
 
 `stripPrefix`: boolean, defaults to `false`. 
 
-The preceding XML markup separates app settings from connection strings but requires all the keys to use the specified prefix. For example, the prefix `AppSetting` must be added to the `ServiceID` key ("AppSetting_ServiceID"). With `stripPrefix`, the prefix is not used in the *web.config* file. The prefix is required in the configuration builder source (for example, in the environment.) We anticipate most developers will use `stripPrefix`.
+The preceding XML markup separates app settings from connection strings but requires all the keys in the *web.config* file to use the specified prefix. For example, the prefix `AppSetting` must be added to the `ServiceID` key ("AppSetting_ServiceID"). With `stripPrefix`, the prefix is not used in the *web.config* file. The prefix is required in the configuration builder source (for example, in the environment.) We anticipate most developers will use `stripPrefix`.
 
 Applications typically strip off the prefix. The following *web.config* strips the prefix:
 
@@ -162,7 +161,7 @@ The `Expand` behavior of the builders searches the raw XML for tokens that look 
     Microsoft.Configuration.ConfigurationBuilders.Environment" />
 ```
 
-The [EnvironmentConfigBuilder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.Environment/)`:
+The [EnvironmentConfigBuilder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.Environment/):
 
 * Is the simplest of the configuration builders.
 * Reads values from the environment.
@@ -188,7 +187,7 @@ The [EnvironmentConfigBuilder](https://www.nuget.org/packages/Microsoft.Configur
 
 This configuration builder provides a feature similar to [ASP.NET Core Secret Manager](/aspnet/core/security/app-secrets).
 
-The [UserSecretsConfigBuilder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.UserSecrets/) can be used in .NET Framework projects, but a secrets file must be specified. Alternatively, you can define the `UserSecretsId` property in the project file and create the raw secrets file in the correct location for reading. To keep external dependencies out of your project, the secret file is XML formatted. The XML formatting is an implementation detail, and the format should not be relied upon. If you need to share a *secrets.json* file with .NET Core projects, consider using the [SimpleJsonConfigBuilder](#simplejsonconfig). The `SimpleJsonConfigBuilder` format for .NET Core is an implementation detail subject to change.
+The [UserSecretsConfigBuilder](https://www.nuget.org/packages/Microsoft.Configuration.ConfigurationBuilders.UserSecrets/) can be used in .NET Framework projects, but a secrets file must be specified. Alternatively, you can define the `UserSecretsId` property in the project file and create the raw secrets file in the correct location for reading. To keep external dependencies out of your project, the secret file is XML formatted. The XML formatting is an implementation detail, and the format should not be relied upon. If you need to share a *secrets.json* file with .NET Core projects, consider using the [SimpleJsonConfigBuilder](#simplejsonconfig). The `SimpleJsonConfigBuilder` format for .NET Core should also be considered an implementation detail subject to change.
 
 Configuration attributes for `UserSecretsConfigBuilder`:
 
