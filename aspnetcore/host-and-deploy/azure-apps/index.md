@@ -4,7 +4,7 @@ author: guardrex
 description: This article contains links to Azure host and deploy resources.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/29/2018
+ms.date: 10/24/2018
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -23,10 +23,10 @@ Use the command line to create and deploy an ASP.NET Core web app to Azure App S
 
 The following articles are available in ASP.NET Core documentation:
 
-[Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)  
+<xref:tutorials/publish-to-azure-webapp-using-vs>  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
-[Continuous deployment to Azure with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)  
+<xref:host-and-deploy/azure-apps/azure-continuous-deployment>  
 Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
 
 [Create your first pipeline with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)  
@@ -73,13 +73,13 @@ Learn how to review quotas and metrics for apps and App Service plans.
 [Enable diagnostics logging for web apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)  
 Discover how to enable and access diagnostic logging for HTTP status codes, failed requests, and web server activity.
 
-[Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)  
+<xref:fundamentals/error-handling>  
 Understand common approaches to handling errors in ASP.NET Core apps.
 
-[Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)  
+<xref:host-and-deploy/azure-apps/troubleshoot>  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
 
-[Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)  
+<xref:host-and-deploy/azure-iis-errors-reference>  
 See the common deployment configuration errors for apps hosted by Azure App Service/IIS with troubleshooting advice.
 
 ## Data Protection key ring and deployment slots
@@ -93,7 +93,7 @@ When swapping between deployment slots, any system using data protection won't b
 * SQL store
 * Redis cache
 
-For more information, see [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
+For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
 
 ## Deploy ASP.NET Core preview release to Azure App Service
 
