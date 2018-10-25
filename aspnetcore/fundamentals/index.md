@@ -18,7 +18,7 @@ An ASP.NET Core app is a console app that creates a web server in its `Program.M
 The [.NET Core Host](/dotnet/core/tutorials/netcore-hosting), usually *dotnet.exe*:
 
 * Loads the [Core Common Language Runtime (CoreCLR)](https://github.com/dotnet/coreclr).
-* Searches the project's files for the managed entry point and begins code execution.
+* Takes the first command line argument as the path to the managed binary that contains the managed entry point (`Main`) and begins code execution.
 
 The `Main` method invokes [WebHost.CreateDefaultBuilder](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*), which follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern) to create a web host. The builder has methods that define the web server (for example, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>) and the startup class (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on IIS, if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
