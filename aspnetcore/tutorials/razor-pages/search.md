@@ -27,15 +27,13 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 ::: moniker-end
 
-The `SearchString` property contains the text users enter in the search text box.
-
-The `Genres` property contains the list of genres. This allows the user to select a genre from the list.
-
-The `MovieGenre` property contains the specific genre the user selects (for example, "Western").
+* `SearchString`: contains the text users enter in the search text box.
+* `Genres`: contains the list of genres. This allows the user to select a genre from the list.
+* `MovieGenre`: contains the specific genre the user selects (for example, "Western").
 
 You'll work with the `Genres` and `MovieGenre` properties later in this document.
 
-Next, update the Index page's `OnGetAsync` method with the following code:
+Update the Index page's `OnGetAsync` method with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_1stSearch)]
 
