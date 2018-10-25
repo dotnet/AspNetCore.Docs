@@ -49,7 +49,7 @@ Open the generated *.csproj* file from Visual Studio for Mac.
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Run `dotnet new webapp` from the command line.
+Run `dotnet new web` from the command line.
 
 ::: moniker-end
 
