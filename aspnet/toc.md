@@ -1524,6 +1524,7 @@
 ## [WebMatrix Content Guide](web-pages/content-guide.md)
 
 
+# [Configuration Builders](config-builder.md)
 
 # [SignalR](signalr/index.md)
 ## [Guidance](signalr/overview/index.md)

@@ -11,6 +11,8 @@ uid: host-and-deploy/iis/index
 
 By [Luke Latham](https://github.com/guardrex)
 
+[Install the .NET Core Hosting Bundle](#install-the-NET-core-hosting-bundle)
+
 ## Supported operating systems
 
 The following operating systems are supported:
@@ -256,28 +258,42 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 
 ![IIS Management Console and World Wide Web Services are selected in Windows Features.](index/_static/windows-features-win10.png)
 
----
-
 ## Install the .NET Core Hosting Bundle
 
-1. Install the *.NET Core Hosting Bundle* on the hosting system. The bundle installs the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates the reverse proxy between IIS and the Kestrel server. If the system doesn't have an Internet connection, obtain and install the [Microsoft Visual C++ 2015 Redistributable](https://www.microsoft.com/download/details.aspx?id=53840) before installing the .NET Core Hosting Bundle.
+Install the *.NET Core Hosting Bundle* on the hosting system. The bundle installs the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates the reverse proxy between IIS and the Kestrel server. If the system doesn't have an Internet connection, obtain and install the [Microsoft Visual C++ 2015 Redistributable](https://www.microsoft.com/download/details.aspx?id=53840) before installing the .NET Core Hosting Bundle.
 
-   1. Navigate to the [.NET downloads page](https://www.microsoft.com/net/download/windows).
-   1. Under **.NET Core**, select the **Download .NET Core Runtime** button next to the **Run Apps** label. The installer's executable contains the word "hosting" in the file name (for example, *dotnet-hosting-2.1.2-win.exe*).
-   1. Run the installer on the server.
+> [!IMPORTANT]
+> If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
 
-   **Important!** If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
+### Direct download (current version)
 
-   Run the installer from an administrator command prompt with one or more switches to control the behavior of the installer:
+Download the installer using the following link:
+
+[Current .NET Core Hosting Bundle installer (direct download)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+
+### Earlier versions of the installer
+
+To obtain an earlier version of the installer:
+
+1. Navigate to the [.NET download archives](https://www.microsoft.com/net/download/archives).
+1. Under **.NET Core**, select the .NET Core version.
+1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
+1. Download the installer using the **Runtime & Hosting Bundle** link.
+
+> [!WARNING]
+> Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://www.microsoft.com/net/download/dotnet-core/2.0).
+
+### Install the Hosting Bundle
+
+1. Run the installer on the server. The following switches are available when running the installer from an administrator command prompt:
 
    * `OPT_NO_ANCM=1` &ndash; Skip installing the ASP.NET Core Module.
    * `OPT_NO_RUNTIME=1` &ndash; Skip installing the .NET Core runtime.
    * `OPT_NO_SHAREDFX=1` &ndash; Skip installing the ASP.NET Shared Framework (ASP.NET runtime).
    * `OPT_NO_X86=1` &ndash; Skip installing x86 runtimes. Use this switch when you know that you won't be hosting 32-bit apps. If there's any chance that you will host both 32-bit and 64-bit apps in the future, don't use this switch and install both runtimes.
-
 1. Restart the system or execute **net stop was /y** followed by **net start w3svc** from a command prompt. Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer.
 
-   If the Windows Hosting Bundle installer detects that IIS requires a reset in order to complete installation, the installer resets IIS. If the installer triggers an IIS reset, all of the IIS app pools and websites are restarted.
+If the Windows Hosting Bundle installer detects that IIS requires a reset in order to complete installation, the installer resets IIS. If the installer triggers an IIS reset, all of the IIS app pools and websites are restarted.
 
 > [!NOTE]
 > For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
