@@ -5,10 +5,9 @@ description: The Microsoft.AspNetCore.All metapackage is not recommended for ASP
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 10/25/2018
 uid: fundamentals/metapackage
 ---
-
 # Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 
 > [!NOTE]
@@ -33,6 +32,18 @@ You can use the package trimming process to remove packages that you don't use. 
 The following *.csproj* file references the `Microsoft.AspNetCore.All` metapackage for ASP.NET Core:
 
 [!code-xml[](metapackage/samples/Metapackage.All.Example.csproj?highlight=6)]
+
+The preceding markup represents a typical ASP.NET Core 2.0 template. It doesn't specify a version number for the `Microsoft.AspNetCore.All` package reference. When the version isn't specified, an [implicit](https://github.com/dotnet/core/blob/master/release-notes/1.0/sdk/1.0-rc3-implicit-package-refs.md) version is specified by the SDK (`Microsoft.NET.Sdk.Web`). We recommend relying on the implicit version specified by the SDK and not explicitly setting the version number on the package reference. If you have questions about this approach, leave a GitHub comment at the [Discussion for the Microsoft.AspNetCore.App implicit version](https://github.com/aspnet/Docs/issues/6430).
+
+The implicit version is set to `major.minor.0` for portable apps. The shared framework roll-forward mechanism runs the app on the latest compatible version among the installed shared frameworks. To guarantee the same version is used in development, test, and production, ensure the same version of the shared framework is installed in all environments. For self-contained apps, the implicit version number is set to the `major.minor.patch` of the shared framework bundled in the installed SDK.
+
+Specifying a version number on the `Microsoft.AspNetCore.All` package reference does **not** guarantee that version of the shared framework is chosen. For example, suppose version "2.0.0" is specified, but "2.0.1" is installed. In that case, the app will use "2.0.1". Although not recommended, you can disable roll forward (patch and/or minor). For more information regarding dotnet host roll-forward and how to configure its behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
+
+The project's SDK must be set to `Microsoft.NET.Sdk.Web` in the project file to use the implicit version of `Microsoft.AspNetCore.All`. When the `Microsoft.NET.Sdk` SDK is specified (`<Project Sdk="Microsoft.NET.Sdk">` at the top of the project file), the following warning is generated:
+
+*Warning NU1604: Project dependency Microsoft.AspNetCore.All does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.*
+
+This is a known issue with the .NET Core 2.1 SDK and will be fixed in the .NET Core 2.2 SDK.
 
 <a name="migrate"></a>
 
