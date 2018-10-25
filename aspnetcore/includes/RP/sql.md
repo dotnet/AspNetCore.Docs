@@ -6,7 +6,7 @@ The `MovieContext` object handles the task of connecting to the database and map
 
 [!code-csharp[](code/Startup.cs?name=snippet2&highlight=6-8)]
 
-See [Using DbContext with Dependency Injection](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext#using-dbcontext-with-dependency-injection) for details on using `DbContext` with DI.
+For more information on using `DbContext` with DI, see [Using DbContext with DI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext#using-dbcontext-with-dependency-injection).
 
 ## SQLite
 
