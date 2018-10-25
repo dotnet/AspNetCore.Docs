@@ -13,11 +13,8 @@ namespace AppPartsSample.Controllers
     {
         private readonly ApplicationPartManager _partManager;
 
-        public FeaturesController(ApplicationPartManager partManager)
-        {
-            _partManager = partManager;
-        }
-
+        public FeaturesController(ApplicationPartManager partManager) => _partManager = partManager;
+           
         public IActionResult Index()
         {
             var viewModel = new FeaturesViewModel();
