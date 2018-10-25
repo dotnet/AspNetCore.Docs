@@ -31,7 +31,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SQLite
 ```
 
 <a name="reg"></a>
-###  Register the database context
+### Register the database context
 
 Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
 
