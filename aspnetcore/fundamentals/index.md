@@ -15,9 +15,9 @@ An ASP.NET Core app is a console app that creates a web server in its `Program.M
 
 [!code-csharp[](index/snapshots/2.x/Program.cs)]
 
-The [.NET Core Host](/dotnet/core/tutorials/netcore-hosting), usually *dotnet.exe*:
+The .NET Core Host, which is usually the [dotnet utility](/dotnet/core/tools/dotnet):
 
-* Loads the [Core Common Language Runtime (CoreCLR)](https://github.com/dotnet/coreclr).
+* Loads the [.NET Core Runtime](https://github.com/dotnet/coreclr).
 * Takes the first command line argument as the path to the managed binary that contains the managed entry point (`Main`) and begins code execution.
 
 The `Main` method invokes [WebHost.CreateDefaultBuilder](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*), which follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern) to create a web host. The builder has methods that define the web server (for example, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>) and the startup class (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on IIS, if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
@@ -30,10 +30,10 @@ The `Main` method invokes [WebHost.CreateDefaultBuilder](xref:Microsoft.AspNetCo
 
 [!code-csharp[](index/snapshots/1.x/Program.cs)]
 
-The [.NET Core Host](/dotnet/core/tutorials/netcore-hosting), usually *dotnet.exe*:
+The .NET Core Host, which is usually the [dotnet utility](/dotnet/core/tools/dotnet):
 
-* Loads the [Core Common Language Runtime (CoreCLR)](https://github.com/dotnet/coreclr).
-* Searches the project's files for the managed entry point and begins code execution.
+* Loads the [.NET Core Runtime](https://github.com/dotnet/coreclr).
+* Takes the first command line argument as the path to the managed binary that contains the managed entry point (`Main`) and begins code execution.
 
 The `Main` method uses <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>, which follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern) to create a web app host. The builder has methods that define the web server (for example, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>) and the startup class (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is used. Other web servers, such as [WebListener](xref:fundamentals/servers/weblistener), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
