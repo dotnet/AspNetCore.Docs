@@ -24,7 +24,7 @@ Configuration builders:
 
 ## Key/value configuration builders
 
-A common scenario that can be handled by configuration builders is to provide a basic key/value replacement mechanism for configuration sections that follow a key/value pattern. The .NET Framework concept of ConfigurationBuilders is not limited to specific configuration sections or patterns. However, many of the configuration builders in `Microsoft.Configuration.ConfigurationBuilders` ( [github](https://github.com/aspnet/MicrosoftConfigurationBuilders), NuGet[https://www.nuget.org/packages?q=Microsoft.Configuration.ConfigurationBuilders]) work within the key/value pattern.
+A common scenario that can be handled by configuration builders is to provide a basic key/value replacement mechanism for configuration sections that follow a key/value pattern. The .NET Framework concept of ConfigurationBuilders is not limited to specific configuration sections or patterns. However, many of the configuration builders in `Microsoft.Configuration.ConfigurationBuilders` ( [github](https://github.com/aspnet/MicrosoftConfigurationBuilders), [NuGet](https://www.nuget.org/packages?q=Microsoft.Configuration.ConfigurationBuilders) work within the key/value pattern.
 
 ## Key/value configuration builders settings
 
