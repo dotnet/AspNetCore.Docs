@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to add a model to a Razor Pages app in ASP.NET Core using Visual Studio Code.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 08/27/2017
+ms.date: 10/24/2018
 uid: tutorials/razor-pages-vsc/model
 ---
 
@@ -29,6 +29,11 @@ From the command line, run the following .NET Core CLI command:
 ```console
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 ```
+
+<a name="reg"></a>
+###  Register the database context
+
+Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
 
 [!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-4)]
 
