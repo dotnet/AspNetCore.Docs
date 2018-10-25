@@ -153,7 +153,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * <xref:fundamentals/middleware/index>
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
-* <xref:fundamentals/primitives/change-tokens>
+* <xref:fundamentals/change-tokens>
 * <xref:performance/caching/response>
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>

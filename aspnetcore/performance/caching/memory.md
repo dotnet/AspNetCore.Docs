@@ -167,7 +167,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 ## Additional resources
 
 * <xref:performance/caching/distributed>
-* <xref:fundamentals/primitives/change-tokens>
+* <xref:fundamentals/change-tokens>
 * <xref:performance/caching/response>
 * <xref:performance/caching/middleware>
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
