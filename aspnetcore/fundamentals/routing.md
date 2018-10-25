@@ -11,7 +11,7 @@ uid: fundamentals/routing
 
 By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL or the URL corresponding to a given route handler based on route handler information.
+Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or find the URL corresponding to a given route handler based on route handler information.
 
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>.
@@ -41,7 +41,7 @@ A match during `RouteAsync` also sets the properties of the `RouteContext.RouteD
 
 [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values*) is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL and can be used to accept user input or to make further dispatching decisions inside the app.
 
-[RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) is a property bag of additional data related to the matched route. `DataTokens` are provided to support associating state data with each route so that the app can make decisions later based on which route matched. These values are developer-defined and do **not** affect the behavior of routing in any way. Additionally, values stashed in data tokens can be of any type, in contrast to route values, which must be easily convertible to and from strings.
+[RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) is a property bag of additional data related to the matched route. `DataTokens` are provided to support associating state data with each route so that the app can make decisions later based on which route matched. These values are developer-defined and do **not** affect the behavior of routing in any way. Additionally, values stashed in `RouteData.DataTokens` can be of any type, in contrast to `RouteData.Values`, which must be easily convertible to and from strings.
 
 [RouteData.Routers](xref:Microsoft.AspNetCore.Routing.RouteData.Routers*) is a list of the routes that took part in successfully matching the request. Routes can be nested inside of one another. The `Routers` property reflects the path through the logical tree of routes that resulted in a match. Generally, the first item in `Routers` is the route collection and should be used for URL generation. The last item in `Routers` is the route handler that matched.
 
@@ -57,7 +57,7 @@ The primary inputs to `GetVirtualPath` are:
 * [VirtualPathContext.Values](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.Values*)
 * [VirtualPathContext.AmbientValues](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues*)
 
-Routes primarily use the route values provided by the `Values` and `AmbientValues` to decide where it's possible to generate a URL and what values to include. The `AmbientValues` are the set of route values that were produced from matching the current request with the routing system. In contrast, `Values` are the route values that specify how to generate the desired URL for the current operation. The `HttpContext` is provided in case a route needs to obtain services or additional data associated with the current context.
+Routes primarily use the route values provided by the `Values` and `AmbientValues` to decide whether it's possible to generate a URL and what values to include. The `AmbientValues` are the set of route values that were produced from matching the current request with the routing system. In contrast, `Values` are the route values that specify how to generate the desired URL for the current operation. The `HttpContext` is provided in case a route needs to obtain services or additional data associated with the current context.
 
 > [!TIP]
 > Think of [VirtualPathContext.Values](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.Values*) as being a set of overrides for the [VirtualPathContext.AmbientValues](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues*). URL generation attempts to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.

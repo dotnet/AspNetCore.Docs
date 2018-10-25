@@ -31,7 +31,16 @@ namespace WebApiSample.Api
 
             #region snippet_SetCompatibilityVersion
             services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                    .ConfigureApiBehaviorOptions(options =>
+                    {
+                        options.SuppressConsumesConstraintForFormFileParameters = true;
+                        options.SuppressInferBindingSourcesForParameters = true;
+                        options.SuppressModelStateInvalidFilter = true;
+                        options.SuppressMapClientErrors = true;
+
+                        options.ClientErrorMapping[404] = "https://httpstatuses.com/404";
+                    });
             #endregion
 
             services.AddSwaggerGen(c =>
@@ -42,15 +51,6 @@ namespace WebApiSample.Api
                     Version = "v1"
                 });
             });
-
-            #region snippet_ConfigureApiBehaviorOptions
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.SuppressConsumesConstraintForFormFileParameters = true;
-                options.SuppressInferBindingSourcesForParameters = true;
-                options.SuppressModelStateInvalidFilter = true;
-            });
-            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
