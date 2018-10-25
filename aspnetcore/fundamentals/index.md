@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/23/2018
+ms.date: 10/25/2018
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
