@@ -254,7 +254,7 @@ The `Map[Verb]` methods use constraints to limit the route to the HTTP Verb in t
 
 Tokens within curly braces (`{ ... }`) define *route parameters* that are bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. These route parameters must have a name and may have additional attributes specified.
 
-Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match the literal route parameter delimiter `{` or  `}`, escape it by repeating the character (`{{` or `}}`).
+Literal text other than route parameters (for example, `hello`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match the literal route parameter delimiter `{` or  `}`, escape it by repeating the character (`{{` or `}}`).
 
 URL patterns that attempt to capture a filename with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When both `filename` and `ext` exist, both values are populated. If only `filename` exists in the URL, the route matches because the trailing period `.` is  optional. The following URLs match this route:
 
