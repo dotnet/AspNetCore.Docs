@@ -51,8 +51,7 @@ You generally want to prevent new users from posting any data to your web site b
 <a id="SG"></a>
 ## Hook up SendGrid
 
-The instructions in this section are not current. See [Configure SendGrid email provider](/aspnet/core/security/authentication/accconfirm#configure-email-provider)
-] for updated instructions.
+The instructions in this section are not current. See [Configure SendGrid email provider](/aspnet/core/security/authentication/accconfirm#configure-email-provider) for updated instructions.
 
 Although this tutorial only shows how to add email notification through [SendGrid](http://sendgrid.com/), you can send email using SMTP and other mechanisms (see [additional resources](#addRes)).
 
