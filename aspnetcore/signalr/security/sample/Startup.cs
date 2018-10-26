@@ -73,7 +73,7 @@ namespace SignalR_CORS
                     if (!string.IsNullOrEmpty(origin) && !_allowedOrigins.Contains(origin))
                     {
                         // The origin is not allowed, reject the request
-                        context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                        context.Response.StatusCode = StatusCodes.Status403Forbidden;
                         return Task.CompletedTask;
                     }
                 }
