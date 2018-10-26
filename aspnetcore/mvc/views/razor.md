@@ -416,7 +416,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 }
 ```
 
-Later in this article, the section [View the Razor C# class generated for a view](#view-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
+Later in this article, the section [Inspect the Razor C# class generated for a view](#inspect-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
 
 <a name="using"></a>
 ### @using
@@ -491,7 +491,6 @@ If "rick@contoso.com" is passed in the model, the view generates the following H
 ```
 
 ### @inject
-
 
 The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
@@ -568,7 +567,7 @@ C# Razor keywords must be double-escaped with `@(@C# Razor Keyword)` (for exampl
 
 * class
 
-## View the Razor C# class generated for a view
+## Inspect the Razor C# class generated for a view
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -630,14 +629,14 @@ Set a breakpoint on the `return csharpDocument;` statement of `CustomTemplateEng
 
 The Razor view engine performs case-sensitive lookups for views. However, the actual lookup is determined by the underlying file system:
 
-* File based source: 
+* File based source:
   * On operating systems with case insensitive file systems (for example, Windows), physical file provider lookups are case insensitive. For example, `return View("Test")` results in matches for */Views/Home/Test.cshtml*, */Views/home/test.cshtml*, and any other casing variant.
   * On case-sensitive file systems (for example, Linux, OSX, and with `EmbeddedFileProvider`), lookups are case-sensitive. For example, `return View("Test")` specifically matches */Views/Home/Test.cshtml*.
 * Precompiled views: With ASP.NET Core 2.0 and later, looking up precompiled views is case insensitive on all operating systems. The behavior is identical to physical file provider's behavior on Windows. If two precompiled views differ only in case, the result of lookup is non-deterministic.
 
 Developers are encouraged to match the casing of file and directory names to the casing of:
 
-    * Area, controller, and action names. 
+    * Area, controller, and action names.
     * Razor Pages.
-    
+
 Matching case ensures the deployments find their views regardless of the underlying file system.
