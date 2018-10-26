@@ -79,7 +79,7 @@ This is a preview release of the Java client. Some features aren't supported:
 
 ## Additional resources
 
-* [Java API reference](/java/api/com.microsoft.aspnet.signalr?view=aspnet-signalr-java)
+* [Java API reference](/java/api/com.microsoft.signalr?view=aspnet-signalr-java)
 * <xref:signalr/hubs>
 * <xref:signalr/javascript-client>
 * <xref:signalr/publish-to-azure-web-app>

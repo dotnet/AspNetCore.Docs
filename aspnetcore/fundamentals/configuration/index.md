@@ -287,7 +287,7 @@ public class Program
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 // Call other providers here and call AddCommandLine last.
-                config.AddCommandLine(args)
+                config.AddCommandLine(args);
             })
             .UseStartup<Startup>();
 }
@@ -426,7 +426,7 @@ public class Program
         WebHost.CreateDefaultBuilder()
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
-                config.AddCommandLine(args, _switchMappings)
+                config.AddCommandLine(args, _switchMappings);
             })
             .UseStartup<Startup>();
 }
@@ -565,7 +565,7 @@ public class Program
                 // Call additional providers here as needed.
                 // Call AddEnvironmentVariables last if you need to allow environment
                 // variables to override values from other providers.
-                config.AddEnvironmentVariables(prefix: "PREFIX_")
+                config.AddEnvironmentVariables(prefix: "PREFIX_");
             })
             .UseStartup<Startup>();
 }
@@ -750,7 +750,7 @@ public class Program
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory());
-                config.AddIniFile("config.ini", optional: true, reloadOnChange: true)
+                config.AddIniFile("config.ini", optional: true, reloadOnChange: true);
             })
             .UseStartup<Startup>();
 }
@@ -881,7 +881,7 @@ public class Program
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory());
-                config.AddJsonFile("config.json", optional: true, reloadOnChange: true)
+                config.AddJsonFile("config.json", optional: true, reloadOnChange: true);
             })
             .UseStartup<Startup>();
 }
@@ -996,7 +996,7 @@ public class Program
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory());
-                config.AddXmlFile("config.xml", optional: true, reloadOnChange: true)
+                config.AddXmlFile("config.xml", optional: true, reloadOnChange: true);
             })
             .UseStartup<Startup>();
 }
@@ -1145,7 +1145,7 @@ public class Program
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory());
-                config.AddKeyPerFile(directoryPath: path, optional: true)
+                config.AddKeyPerFile(directoryPath: path, optional: true);
             })
             .UseStartup<Startup>();
 }
@@ -1198,7 +1198,7 @@ public class Program
         WebHost.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
-                config.AddInMemoryCollection(_dict)
+                config.AddInMemoryCollection(_dict);
             })
             .UseStartup<Startup>();
 }
