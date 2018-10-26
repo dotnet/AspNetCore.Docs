@@ -113,7 +113,7 @@ The following example monitors the header value `User-Agent`. The example caches
 | -------------- | -------------------- |
 | String         | `Make`, `Make,Model` |
 
-`vary-by-query` accepts a comma-delimited list of Keys in query string(HttpRequest.Query) that trigger a cache refresh when the values of those query string keys changes.
+`vary-by-query` accepts a comma-delimited list of <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys*> in a query string (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query*>) that trigger a cache refresh when the value of any key in the collection changes.
 
 The following example monitors the values of `Make` and `Model`. The example caches the content for every different `Make` and `Model` presented to the web server:
 
