@@ -221,7 +221,7 @@ dotnet new webapp --no-https
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## Trust the ASP.NET Core HTTPS development certificate on Windows and MacOS
+## Trust the ASP.NET Core HTTPS development certificate on Windows and macOS
 
 .NET Core SDK includes a HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces output similar to the following:
 
@@ -236,13 +236,13 @@ For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?l
 
 Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate perform the one-time step to run the dotnet `dev-certs` tool:
 
-```cli
+```console
 dotnet dev-certs https --trust
 ```
 
 The following command provides help on the `dev-certs` tool:
 
-```cli
+```console
 dotnet dev-certs https --help
 ```
 
