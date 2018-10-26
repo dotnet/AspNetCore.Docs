@@ -113,7 +113,7 @@ The following example monitors the header value `User-Agent`. The example caches
 | -------------- | -------------------- |
 | String         | `Make`, `Make,Model` |
 
-`vary-by-query` accepts a comma-delimited list of header values that trigger a cache refresh when the header value changes.
+`vary-by-query` accepts a comma-delimited list of Keys in query string(HttpRequest.Query) that trigger a cache refresh when the values of those query string keys changes.
 
 The following example monitors the values of `Make` and `Model`. The example caches the content for every different `Make` and `Model` presented to the web server:
 
