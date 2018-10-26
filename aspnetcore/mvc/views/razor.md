@@ -575,13 +575,13 @@ With .NET Core SDK 2.1 or later, the [Razor SDK](xref:razor-pages/sdk) handles c
 
 Consider the following directory structure in an ASP.NET Core 2.1 Razor Pages project targeting .NET Core 2.1:
 
-* *Areas/*
-  * *Admin/*
-    * *Pages/*
+* **Areas/**
+  * **Admin/**
+    * **Pages/**
       * *Index.cshtml*
       * *Index.cshtml.cs*
-* *Pages/*
-  * *Shared/*
+* **Pages/**
+  * **Shared/**
     * *_Layout.cshtml*
   * *_ViewImports.cshtml*
   * *_ViewStart.cshtml*
@@ -590,16 +590,16 @@ Consider the following directory structure in an ASP.NET Core 2.1 Razor Pages pr
 
 Building the project in *Debug* configuration yields the following *obj* directory:
 
-* *obj/*
-  * *Debug/*
-    * *netcoreapp2.1/*
-      * *Razor/*
-        * *Areas/*
-          * *Admin/*
-            * *Pages/*
+* **obj/**
+  * **Debug/**
+    * **netcoreapp2.1/**
+      * **Razor/**
+        * **Areas/**
+          * **Admin/**
+            * **Pages/**
               * *Index.g.cshtml.cs*
-        * *Pages/*
-          * *Shared/*
+        * **Pages/**
+          * **Shared/**
             * *_Layout.g.cshtml.cs*
           * *_ViewImports.g.cshtml.cs*
           * *_ViewStart.g.cshtml.cs*
