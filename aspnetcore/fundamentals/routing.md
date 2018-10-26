@@ -13,6 +13,8 @@ By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/)
 
 Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or find the URL corresponding to a given route handler based on route handler information.
 
+Most apps don't need custom routes.
+
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>.
 
