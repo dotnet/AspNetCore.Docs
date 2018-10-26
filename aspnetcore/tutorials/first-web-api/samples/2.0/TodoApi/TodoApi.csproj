@@ -7,7 +7,7 @@
 
   <!-- <snippet_Metapackage> -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
   </ItemGroup>
   <!-- </snippet_Metapackage> -->
 
