@@ -1,0 +1,23 @@
+input[type='submit'], button, [aria-label] {
+    cursor: pointer;
+}
+
+#spoiler {
+    display: none;
+}
+
+table {
+    font-family: Arial, sans-serif;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #0066CC;
+    color: white;
+}
+
+td {
+    border: 1px solid;
+    padding: 5px;
+}
