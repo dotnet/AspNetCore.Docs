@@ -155,7 +155,7 @@ in the example shown. Type that URL into your browser, and you should see the ru
 > Some VPN or proxy software may prevent you from navigating to your site.
 > You can temporarily disable it to make sure your container is working.
 
-The sample directory on GitHub contains a [PowerShell script](https://github.com/dotnet/docs/tree/master/samples/framework/docker/MVCRandomAnswerGenerator/run.ps1) that executes these commands for you. Open a PowerShell window, change directory to your solution directory, and type:
+The sample directory on GitHub contains a [PowerShell script](https://github.com/dotnet/samples/blob/master/framework/docker/MVCRandomAnswerGenerator/run.ps1) that executes these commands for you. Open a PowerShell window, change directory to your solution directory, and type:
 
 ```console
 ./run.ps1
