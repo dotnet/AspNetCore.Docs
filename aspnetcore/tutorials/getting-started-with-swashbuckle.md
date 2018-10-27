@@ -196,29 +196,6 @@ To suppress warnings project-wide, define a semicolon-delimited list of warning 
 
 To suppress warnings only for specific members, enclose the code in [#pragma warning](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-warning) preprocessor directives. This approach is useful for code that shouldn't be exposed via the API docs. In the following example, warning code CS1591 is ignored for the entire `Program` class. Enforcement of the warning code is restored at the close of the class definition. Specify multiple warning codes with a comma-delimited list.
 
-::: moniker range=">= aspnetcore-2.1"
-
-```csharp
-namespace TodoApi
-{
-#pragma warning disable CS1591
-    public class Program
-    {
-        public static void Main(string[] args) =>
-            CreateWebHostBuilder(args).Build().Run();
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
-#pragma warning restore CS1591
-}
-```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
 ```csharp
 namespace TodoApi
 {
@@ -236,31 +213,6 @@ namespace TodoApi
 #pragma warning restore CS1591
 }
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-```csharp
-namespace TodoApi
-{
-#pragma warning disable CS1591
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .Build();
-
-            host.Run();
-        }
-    }
-#pragma warning restore CS1591
-}
-```
-
-::: moniker-end
 
 Configure Swagger to use the generated XML file. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
 
