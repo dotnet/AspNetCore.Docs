@@ -1,3 +1,12 @@
+# The 5 approved on boarding samples that need wwwroot/lib/ can add a local .gitignore that allows wwwroot/lib/.
+# with 2.1 templates and excluding .min & .map -> 27 files and < 1 KB
+# 3.0 templates should be even less
+# wwwroot/lib/
+# When wwwroot/lib/ is commented out, excluse .min and .map files
+*.min.css
+*.min.js
+*.map
+
 _build/
 _site/
 Properties/

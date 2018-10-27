@@ -17,7 +17,7 @@ By [Luke Latham](https://github.com/guardrex)
 * Logger extension methods require "boxing" (converting) value types, such as `int`, into `object`. The `LoggerMessage` pattern avoids boxing by using static `Action` fields and extension methods with strongly-typed parameters.
 * Logger extension methods must parse the message template (named format string) every time a log message is written. `LoggerMessage` only requires parsing a template once when the message is defined.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample app demonstrates `LoggerMessage` features with a basic quote tracking system. The app adds and deletes quotes using an in-memory database. As these operations occur, log messages are generated using the `LoggerMessage` pattern.
 

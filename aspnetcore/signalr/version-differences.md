@@ -130,7 +130,7 @@ connection = new HubConnectionBuilder()
 
 ## Scaleout differences
 
-ASP.NET SignalR supports both SQL Server and Redis. ASP.NET Core SignalR supports both Azure SignalR Service and Redis.
+ASP.NET SignalR supports SQL Server and Redis. ASP.NET Core SignalR supports Azure SignalR Service and Redis.
 
 ### ASP.NET
 
