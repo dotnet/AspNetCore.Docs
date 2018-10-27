@@ -48,7 +48,7 @@ App configuration in ASP.NET Core is based on key-value pairs established by *co
 
 The *options pattern* is an extension of the configuration concepts described in this topic. Options uses classes to represent groups of related settings. For more information on using the options pattern, see <xref:fundamentals/configuration/options>.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The examples provided in this topic rely upon:
 
