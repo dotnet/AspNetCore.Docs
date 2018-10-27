@@ -11,4 +11,4 @@
 * [Routing to controller actions](xref:mvc/controllers/routing)
 * [Build web APIs with ASP.NET Core](xref:web-api/index)
 * [Controller action return types](xref:web-api/action-return-types)
-* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:tutorials/index#how-to-download-a-sample).
+* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).

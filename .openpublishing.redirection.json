@@ -1,6 +1,71 @@
 { 
   "redirections": [ 
     {   
+        "source_path": "aspnetcore/tutorials/index.md", 
+        "redirect_url": "/aspnet/core/tutorials/razor-pages",  
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/tutorials/xplat.md", 
+        "redirect_url": "/aspnet/core/tutorials/razor-pages-vsc", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/mvc/advanced/index.md", 
+        "redirect_url": "/aspnet/core/mvc", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/signalr/index.md", 
+        "redirect_url": "/aspnet/core/signalr/introduction", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/signalr/clients.md", 
+        "redirect_url": "/aspnet/core/signalr/supported-platforms", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/test/index.md", 
+        "redirect_url": "/aspnet/core/test/razor-pages-tests", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/data/index.md", 
+        "redirect_url": "/aspnet/core/data/ef-rp", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/data/azure-storage.md", 
+        "redirect_url": "/azure/vs-azure-tools-connected-services-storage", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/azure/index.md", 
+        "redirect_url": "/aspnet/core/azure/devops", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/security/authentication/index.md", 
+        "redirect_url": "/aspnet/core/security/authentication/identity", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/security/authorization/index.md", 
+        "redirect_url": "/aspnet/core/security/authorization/introduction", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/security/data-protection/index.md", 
+        "redirect_url": "/aspnet/core/security/data-protection/introduction", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/security/data-protection/consumer-apis/index.md", 
+        "redirect_url": "/aspnet/core/security/data-protection/consumer-apis/introduction", 
+        "redirect_document_id": false 
+    }, 
+    {   
         "source_path": "aspnetcore/fundamentals/repository-pattern.md", 
         "redirect_url": "/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design#the-repository-pattern", 
         "redirect_document_id": false 
