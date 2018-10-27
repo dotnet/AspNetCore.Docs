@@ -3192,6 +3192,8 @@
           href: web-pages/readme/beta3.md
     - name: WebMatrix Content Guide
       href: web-pages/content-guide.md
+- name: Configuration Builders
+  href: config-builder.md
 - name: SignalR
   href: signalr/index.md
   items: 
