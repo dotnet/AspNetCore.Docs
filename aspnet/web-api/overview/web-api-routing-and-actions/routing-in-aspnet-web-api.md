@@ -53,7 +53,7 @@ However, the following URI does not match, because it lacks the &quot;api&quot; 
 Once a matching route is found, Web API selects the controller and the action:
 
 - To find the controller, Web API adds &quot;Controller&quot; to the value of the *{controller}* variable.
-- To find the action, Web API looks at the HTTP method, and then looks for an action whose name begins with that HTTP method name. For example, with a GET request, Web API looks for an action that starts with &quot;Get...&quot;, such as &quot;GetContact&quot; or &quot;GetAllContacts&quot;. This convention applies only to GET, POST, PUT, DELETE, HEAD, OPTIONS and PATCH methods. You can enable other HTTP methods by using attributes on your controller. We'll see an example of that later.
+- To find the action, Web API looks at the HTTP method, and then looks for an action whose name begins with that HTTP method name. For example, with a GET request, Web API looks for an action that starts with &quot;Get...&quot;, such as &quot;GetContact&quot; or &quot;GetAllContacts&quot;. This convention applies only to GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH methods. You can enable other HTTP methods by using attributes on your controller. We'll see an example of that later.
 - Other placeholder variables in the route template, such as *{id},* are mapped to action parameters.
 
 Let's look at an example. Suppose that you define the following controller:
