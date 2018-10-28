@@ -77,6 +77,9 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 To add a tag helper to a view using a FQN, you first add the FQN (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), and then the assembly name (*AuthoringTagHelpers*). Most developers will prefer to use the wildcard syntax. [Introduction to Tag Helpers](intro.md) goes into detail on tag helper adding, removing, hierarchy, and wildcard syntax.
 
+> [!WARNING]
+> The second parameter of `@addTagHelper` is the assembly name, not the namespace.
+
 1. Update the markup in the *Views/Home/Contact.cshtml* file with these changes:
 
    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
