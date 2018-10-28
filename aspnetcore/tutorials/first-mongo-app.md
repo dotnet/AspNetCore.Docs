@@ -94,9 +94,9 @@ This will create your web API project.
 
 Right-click the project in Solution Explorer and select Manage NuGet Packages.
 
-Search for *mongocsharpdriver* and install the package.
+Search for *MongoDB.Driver* and install the package.
 
-![Package Manager](~/tutorials/first-mongo-app/_static/packageManager.png)
+![Package Manager](~/tutorials/first-mongo-app/_static/MongoDriver.png)
 
 ### Add a model
 

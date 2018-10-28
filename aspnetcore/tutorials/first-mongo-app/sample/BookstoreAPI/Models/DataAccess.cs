@@ -1,54 +1,58 @@
 ﻿
 #if DataAccess
 #region snippet_1
-using System;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Builders;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookMongo.Models
 {
     public class DataAccess
     {
         MongoClient _client;
-        MongoServer _server;
-        MongoDatabase _db;
+        //MongoServer _server;
+        IMongoDatabase _db;
+
         public DataAccess()
         {
             _client = new MongoClient("mongodb://localhost:27017");
-            _server = _client.GetServer();
-            _db = _server.GetDatabase("BookstoreDb");
+            //_server = _client.GetServer();
+            _db = _client.GetDatabase("BookstoreDb");
         }
+
         public IEnumerable<Book> GetBooks()
         {
-            return _db.GetCollection<Book>("Books").FindAll();
+            return _db.GetCollection<Book>("Books").Find(m => true).ToList();
         }
+
 
         public Book GetBook(ObjectId id)
         {
-            var res = Query<Book>.EQ(p => p.Id, id);
-            return _db.GetCollection<Book>("Books").FindOne(res);
+            //var res = Query<Book>.EQ(p => p.Id, id);
+            return _db.GetCollection<Book>("Books").Find<Book>(m => m.Id == id).FirstOrDefault();
         }
+
         public Book Create(Book p)
         {
-            _db.GetCollection<Book>("Books").Save(p);
+            _db.GetCollection<Book>("Books").InsertOne(p);
             return p;
         }
+
         public void Update(ObjectId id, Book p)
         {
-            p.Id = id;
-            var res = Query<Book>.EQ(pd => pd.Id, id);
-            var operation = Update<Book>.Replace(p);
-            _db.GetCollection<Book>("Books").Update(res, operation);
+            _db.GetCollection<Book>("Books").ReplaceOne(m => m.Id == id, p);
         }
+
         public void Remove(ObjectId id)
         {
-            var res = Query<Book>.EQ(e => e.Id, id);
-            var operation = _db.GetCollection<Book>("Books").Remove(res);
+            var operation = _db.GetCollection<Book>("Books").DeleteOne(m => m.Id == id);
         }
     }
 }
+
 
 #endregion
 #endif
