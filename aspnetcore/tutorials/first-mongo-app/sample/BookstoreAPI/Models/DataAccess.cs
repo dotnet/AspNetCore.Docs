@@ -13,13 +13,11 @@ namespace BookMongo.Models
     public class DataAccess
     {
         MongoClient _client;
-        //MongoServer _server;
         IMongoDatabase _db;
 
         public DataAccess()
         {
             _client = new MongoClient("mongodb://localhost:27017");
-            //_server = _client.GetServer();
             _db = _client.GetDatabase("BookstoreDb");
         }
 
@@ -31,7 +29,6 @@ namespace BookMongo.Models
 
         public Book GetBook(ObjectId id)
         {
-            //var res = Query<Book>.EQ(p => p.Id, id);
             return _db.GetCollection<Book>("Books").Find<Book>(m => m.Id == id).FirstOrDefault();
         }
 
@@ -52,6 +49,7 @@ namespace BookMongo.Models
         }
     }
 }
+
 
 
 #endregion
