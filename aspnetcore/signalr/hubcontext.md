@@ -49,6 +49,12 @@ app.Use(next => async (context) =>
 > [!NOTE]
 > When hub methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
 
+### Strongly-Typed Hubs
+
+To define an interface for your hub methods that your client can reference (and enable Intellisense on your hub methods), derive your hub from `Hub<T>` rather than `Hub`:
+
+[!code-csharp[IStrongHubContext](hubcontext/sample/Hubs/StrongHub.cs)]
+
 ## Related resources
 
 * [Get started](xref:tutorials/signalr)
