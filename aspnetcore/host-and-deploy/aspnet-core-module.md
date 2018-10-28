@@ -43,6 +43,8 @@ The following characteristics apply when hosting in-process:
 
 * If setting up the app's host manually with `WebHostBuilder` (not using [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host)) and the app is ever run directly on the Kestrel server (self-hosted), call `UseKestrel` before calling `UseIISIntegration`. If the order is reversed, the host fails to start.
 
+* Client disconnects are detected. The [HttpContext.RequestAborted](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
+
 ### Hosting model changes
 
 If the `hostingModel` setting is changed in the *web.config* file (explained in the [Configuration with web.config](#configuration-with-webconfig) section), the module recycles the worker process for IIS.
@@ -149,7 +151,7 @@ See [Sub-application configuration](xref:host-and-deploy/iis/index#sub-applicati
 
 | Attribute | Description | Default |
 | --------- | ----------- | :-----: |
-| `arguments` | <p>Optional string attribute.</p><p>Arguments to the executable specified in **processPath**.</p>| |
+| `arguments` | <p>Optional string attribute.</p><p>Arguments to the executable specified in **processPath**.</p> | |
 | `disableStartUpErrorPage` | <p>Optional Boolean attribute.</p><p>If true, the **502.5 - Process Failure** page is suppressed, and the 502 status code page configured in the *web.config* takes precedence.</p> | `false` |
 | `forwardWindowsAuthToken` | <p>Optional Boolean attribute.</p><p>If true, the token is forwarded to the child process listening on %ASPNETCORE_PORT% as a header 'MS-ASPNETCORE-WINAUTHTOKEN' per request. It's the responsibility of that process to call CloseHandle on this token per request.</p> | `true` |
 | `hostingModel` | <p>Optional string attribute.</p><p>Specifies the hosting model as in-process (`inprocess`) or out-of-process (`outofprocess`).</p> | `outofprocess` |
@@ -300,6 +302,50 @@ The following sample `aspNetCore` element configures stdout logging for an app h
     stdoutLogFile="\\?\%home%\LogFiles\stdout">
 </aspNetCore>
 ```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+## Enhanced diagnostic logs
+
+The ASP.NET Core Module provides is configurable to provide enhanced diagnostics logs. Add the `<handlerSettings>` element to the `<aspNetCore>` element in *web.config*. Setting the `debugLevel` to `TRACE` exposes a higher fidelity of diagnostic information:
+
+```xml
+<aspNetCore processPath="dotnet"
+    arguments=".\MyApp.dll"
+    stdoutLogEnabled="false"
+    stdoutLogFile="\\?\%home%\LogFiles\stdout"
+    hostingModel="inprocess">
+  <handlerSettings>
+    <handlerSetting name="debugFile" value="aspnetcore-debug.log" />
+    <handlerSetting name="debugLevel" value="FILE,TRACE" />
+  </handlerSettings>
+</aspNetCore>
+```
+
+Debug level (`debugLevel`) values can include both the level and the location.
+
+Levels (in order from least to most verbose):
+
+* ERROR
+* WARNING
+* INFO
+* TRACE
+
+Locations (multiple locations are permitted):
+
+* CONSOLE
+* EVENTLOG
+* FILE
+
+The handler settings can also be provided via environment variables:
+
+* `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; Path to the debug log file. (Default: *aspnetcore-debug.log*)
+* `ASPNETCORE_MODULE_DEBUG` &ndash; Debug level setting.
+
+> [!WARNING]
+> Do **not** leave debug logging enabled in the deployment for longer than required to troubleshoot an issue. The size of the log isn't limited. Leaving the debug log enabled can exhaust the available disk space and crash the server or app service.
 
 ::: moniker-end
 

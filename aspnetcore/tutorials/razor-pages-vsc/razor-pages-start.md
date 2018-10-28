@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn the basics of building an ASP.NET Core Razor Pages web app with Visual Studio Code.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 08/27/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: tutorials/razor-pages-vsc/razor-pages-start
 ---
 # Get started with ASP.NET Core Razor Pages in Visual Studio Code
@@ -41,7 +42,7 @@ dotnet run
 
 ::: moniker-end
 
-The preceding commands use the [.NET Core CLI](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
+The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 
 ![Home or Index page](../razor-pages/razor-pages-start/_static/home.png)
 

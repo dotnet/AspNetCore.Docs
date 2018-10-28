@@ -16,17 +16,17 @@ uid: tutorials/signalr
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
 > [!div class="checklist"]
-> * Create a web app project.
+> * Create a web project.
 > * Add the SignalR client library.
 > * Create a SignalR hub.
 > * Configure the project to use SignalR.
-> * Add code that uses the hub to send messages from any client to all connected clients.
+> * Add code that sends messages from any client to all connected clients.
 
 At the end, you'll have a working chat app:
 
 ![SignalR sample app](signalr/_static/signalr-get-started-finished.png)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Prerequisites
 

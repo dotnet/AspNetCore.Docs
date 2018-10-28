@@ -26,7 +26,7 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.4" />
+  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
 </ItemGroup>
 ```
 

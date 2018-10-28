@@ -32,8 +32,9 @@ Add the following `MovieGenreViewModel` class to the *Models* folder:
 The movie-genre view model will contain:
 
    * A list of movies.
-   * A `SelectList` containing the list of genres. This will allow the user to select a genre from the list.
+   * A `SelectList` containing the list of genres. This allows the user to select a genre from the list.
    * `MovieGenre`, which contains the selected genre.
+   * `SearchString`, which contains the text users enter in the search text box.
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 
@@ -44,6 +45,8 @@ The following code is a `LINQ` query that retrieves all the genres from the data
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_LINQ)]
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
+
+When the user searches for the item, the search value is retained in the search box. To retain the search value,  populate the `SearchString` property with the search value. The search value is the `searchString` parameter for the `Index` controller action.
 
 ```csharp
 movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())

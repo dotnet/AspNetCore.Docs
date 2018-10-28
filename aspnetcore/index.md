@@ -3,7 +3,8 @@ title: Introduction to ASP.NET Core
 author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
-ms.date: 9/28/2018
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -15,11 +16,11 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 * Build web apps and services, [IoT](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
-* Run on [.NET Core or .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+* Run on [.NET Core or .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
 
 ## Why use ASP.NET Core?
 
-Millions of developers have used (and continue to use) [ASP.NET 4.x](https://docs.microsoft.com/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
+Millions of developers have used (and continue to use) [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
 [!INCLUDE[](~/includes/benefits.md)]
 
@@ -59,6 +60,14 @@ There are several advantages to targeting .NET Core, and these advantages increa
 * Open source
 
 We're working hard to close the API gap from .NET Framework to .NET Core. The [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
+
+## How to download a sample
+
+Many of the articles and tutorials include links to sample code.
+
+1. [Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/Docs/zip/master).
+1. Unzip the *Docs-master.zip* file.
+1. Use the URL in the sample link to help you navigate to the sample directory.
 
 ## Next steps
 
