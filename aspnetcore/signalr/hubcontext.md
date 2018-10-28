@@ -65,7 +65,7 @@ public class ChatController : Controller
 
     public async Task SendMessage(string message)
     {
-        await _strongChatHubContext.Clients.All.RecieveMessage(message);
+        await _strongChatHubContext.Clients.All.ReceiveMessage(message);
     }
 }
 ```
