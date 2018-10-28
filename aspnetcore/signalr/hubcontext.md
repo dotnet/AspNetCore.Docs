@@ -49,11 +49,26 @@ app.Use(next => async (context) =>
 > [!NOTE]
 > When hub methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
 
-### Strongly-Typed Hubs
+### Inject a strongly-typed HubContext
 
-To define an interface for your hub methods that your client can reference (and enable Intellisense on your hub methods), derive your hub from `Hub<T>` rather than `Hub`:
+To inject a strongly-typed HubContext, ensure your Hub inherits from `Hub<T>` and inject it using the `IHubContext<THub, T>` interface rather than `IHubContext<THub>`.
 
-[!code-csharp[IStrongHubContext](hubcontext/sample/Hubs/StrongHub.cs)]
+```csharp
+public class ChatController : Controller
+{
+    public IHubContext<ChatHub, IChatClient> _strongChatHubContext { get; }
+
+    public SampleDataController(IHubContext<ChatHub, IChatClient> chatHubContext)
+    {
+        _strongChatHubContext = chatHubContext;
+    }
+
+    public async Task SendMessage(string message)
+    {
+        await _strongChatHubContext.Clients.All.RecieveMessage(message);
+    }
+}
+```
 
 ## Related resources
 
