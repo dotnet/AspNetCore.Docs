@@ -75,8 +75,7 @@ to the `docker build` command, which creates the image.
 You will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
-Windows Server Core, IIS and ASP.NET 4.7.2. When you run this image in your container, it will
-automatically start IIS and installed websites.
+Windows Server Core, IIS, and ASP.NET 4.7.2. When you run this image in your container, it will automatically start IIS and installed websites.
 
 The Dockerfile that creates your image looks like this:
 
@@ -134,8 +133,7 @@ The `mvcrandomanswers` is the name of the image to start.
 
 ## Verify in the browser
 
-Once the container starts, connect to the running container using `http://localhost`
-in the example shown. Type that URL into your browser, and you should see the running site.
+Once the container starts, connect to the running container using `http://localhost` in the example shown. Type that URL into your browser, and you should see the running site.
 
 > [!NOTE]
 > Some VPN or proxy software may prevent you from navigating to your site.
@@ -149,8 +147,7 @@ The sample directory on GitHub contains a [PowerShell script](https://github.com
 
 The command above builds the image, displays the list of images on your machine, and starts a container.
 
-To stop your container, issue a `docker
-stop` command:
+To stop your container, issue a `docker stop` command:
 
 ```console
 docker stop randomanswers
