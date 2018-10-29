@@ -3,9 +3,10 @@
 ## [Compare ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 ## [Compare .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
+# [Get started](xref:getting-started)
+
 # Tutorials
 ## Web apps
-### [Hello world](xref:getting-started)
 ### Razor Pages
 #### [With Visual Studio](xref:tutorials/razor-pages/index)
 #### [With Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
