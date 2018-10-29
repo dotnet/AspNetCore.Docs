@@ -5,6 +5,7 @@
 
 # Tutorials
 ## Web apps
+### [Hello world](xref:getting-started)
 ### Razor Pages
 #### [With Visual Studio](xref:tutorials/razor-pages/index)
 #### [With Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
