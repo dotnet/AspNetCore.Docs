@@ -61,6 +61,14 @@ There are several advantages to targeting .NET Core, and these advantages increa
 
 We're working hard to close the API gap from .NET Framework to .NET Core. The [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
 
+## How to download a sample
+
+Many of the articles and tutorials include links to sample code.
+
+1. [Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/Docs/zip/master).
+1. Unzip the *Docs-master.zip* file.
+1. Use the URL in the sample link to help you navigate to the sample directory.
+
 ## Next steps
 
 For more information, see the following resources:

@@ -15,7 +15,7 @@ Razor views, pages, controllers, page models, [View components](xref:mvc/views/v
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Create a class library containing Razor UI
 

@@ -59,7 +59,7 @@ To support this request, add the following method to the `ProductsController` cl
 
 [!code-csharp[Main](working-with-entity-relations/samples/sample6.cs)]
 
-The *key* parameter is the key of the product. The method returns the related entity&#8212in this case, a `Supplier` instance. The method name and parameter name are both important. In general, if the navigation property is named "X", you need to add a method named "GetX". The method must take a parameter named "*key*" that matches the data type of the parent's key.
+The *key* parameter is the key of the product. The method returns the related entity&#8212;in this case, a `Supplier` instance. The method name and parameter name are both important. In general, if the navigation property is named "X", you need to add a method named "GetX". The method must take a parameter named "*key*" that matches the data type of the parent's key.
 
 It is also important to include the **[FromOdataUri]** attribute in the *key* parameter. This attribute tells Web API to use OData syntax rules when it parses the key from the request URI.
 

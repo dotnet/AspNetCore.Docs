@@ -26,7 +26,7 @@ At the end, you'll have a working chat app:
 
 ![SignalR sample app](signalr/_static/signalr-get-started-finished.png)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Prerequisites
 
