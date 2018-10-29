@@ -65,7 +65,7 @@ In ASP.NET Core 2.2 and later, MVC transforms error status code results (status 
 
 The HTTP response for the `NotFound` result has a 404 status code with a `ProblemDetails` body similar to the following:
 
-```js
+```json
 {
     type: "https://tools.ietf.org/html/rfc7231#section-6.5.4",
     title: "Not Found",
