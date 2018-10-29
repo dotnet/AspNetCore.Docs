@@ -159,7 +159,7 @@ Health Checks Middleware is a *terminal middleware* in the app's request process
 
 ## Health check options
 
-`HealthCheckMiddlewareOptions` provide an opportunity to customize health check behavior:
+`HealthCheckOptions` provide an opportunity to customize health check behavior:
 
 * [Filter health checks](#filter-health-checks)
 * [Customize the HTTP status code](#customize-the-http-status-code)
@@ -188,7 +188,7 @@ public void ConfigureServices(IServiceCollection services)
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    app.UseHealthChecks("/health", new HealthCheckMiddlewareOptions()
+    app.UseHealthChecks("/health", new HealthCheckOptions()
     {
         // Filter out the 'Bar' health check. Only Foo and Baz execute.
         Predicate = (check) => check.Tags.Contains("foo_tag") || 
@@ -207,7 +207,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    app.UseHealthChecks("/health", new HealthCheckMiddlewareOptions()
+    app.UseHealthChecks("/health", new HealthCheckOptions()
     {
         // The following StatusCodes are the default assignments for
         // the HealthCheckStatus properties.
@@ -232,7 +232,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    app.UseHealthChecks("/health", new HealthCheckMiddlewareOptions()
+    app.UseHealthChecks("/health", new HealthCheckOptions()
     {
         // The default value is false.
         AllowCachingResponses = false
@@ -250,7 +250,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    app.UseHealthChecks("/health", new HealthCheckMiddlewareOptions()
+    app.UseHealthChecks("/health", new HealthCheckOptions()
     {
         // WriteResponse is a delegate used to write the response.
         ResponseWriter = WriteResponse
@@ -388,7 +388,7 @@ The health check is registered with `AddCheck` in `Startup.ConfigureServices` al
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_ConfigureServices)]
 
-Call Health Check Middleware in the app processing pipeline in `Startup.Configure`. In the sample app, the health check endpoints are created at `/health/ready` for the readiness check and `/health/live` for the liveness check. The readiness check filters health checks to the health check with the `ready` tag. The liveness check filters out the `StartupHostedServiceHealthCheck` by returning `false` in the `HealthCheckMiddlewareOptions.Predicate` (for more information, see [Filter health checks](#filter-health-checks)):
+Call Health Check Middleware in the app processing pipeline in `Startup.Configure`. In the sample app, the health check endpoints are created at `/health/ready` for the readiness check and `/health/live` for the liveness check. The readiness check filters health checks to the health check with the `ready` tag. The liveness check filters out the `StartupHostedServiceHealthCheck` by returning `false` in the `HealthCheckOptions.Predicate` (for more information, see [Filter health checks](#filter-health-checks)):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_Configure)]
 
