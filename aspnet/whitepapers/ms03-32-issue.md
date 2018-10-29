@@ -32,7 +32,7 @@ We are working hard on a permanent solution for this issue. In the meantime, you
 4. Re-registers ASP.NET. This creates a new random password for the account and applies default ASP.NET access control settings for it
 5. Restarts the IIS service
 
-The batch file contains a hardcoded temporary password of "<strong>1pass@word</strong>" which you will be prompted to enter for the runas command when the batch file is run. After the runas command completes, the ASPNET account password is recreated with a strong random value. Note that the batch file may fail if the hardcoded password does not meet the password complexity requirements in your environment. If that's the case, you can change it to another value that is appropriate for your environment.
+The batch file contains a hardcoded temporary password of "<strong>1pass\@word</strong>" which you will be prompted to enter for the runas command when the batch file is run. After the runas command completes, the ASPNET account password is recreated with a strong random value. Note that the batch file may fail if the hardcoded password does not meet the password complexity requirements in your environment. If that's the case, you can change it to another value that is appropriate for your environment.
 
 *> [!IMPORTANT]* If you have added custom access control settings or database account permissions for the ASPNET account, they will need to be recreated after this batch file completes. This is because when the account is recreated, it will get a new security identifier (SID).
 
@@ -45,7 +45,7 @@ The batch file is included in the self-extracting archive below. To use it:
 3. Extract the contents to c:\
 4. Select Run... from the start menu, and enter `cmd.exe`
 5. In the open command windows, type `c:\fixup.cmd`.
-6. When prompted, enter <strong>1pass@word</strong> as the password.
+6. When prompted, enter <strong>1pass\@word</strong> as the password.
 7. If you have previously custom access control settings or database account permissions for the ASPNET account, you'll need to re-apply these settings now.
 
 Many apologies for the inconvenience that this has caused. We'll post additional information as it becomes available.
