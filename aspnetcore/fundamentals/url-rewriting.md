@@ -395,7 +395,7 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 Use `Add(Action<RewriteContext> applyRule)` to implement your own rule logic in a method. The `RewriteContext` exposes the `HttpContext` for use in your method. The `RewriteContext.Result` determines how additional pipeline processing is handled.
 
-| context.Result                       | Action                                                          |
+| `RewriteContext.Result`              | Action                                                          |
 | ------------------------------------ | --------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (default) | Continue applying rules                                         |
 | `RuleResult.EndResponse`             | Stop applying rules and send the response                       |
