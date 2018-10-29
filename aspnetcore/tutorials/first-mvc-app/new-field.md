@@ -65,9 +65,21 @@ There are a few approaches to resolving the error:
 
 For this tutorial, we'll use Code First Migrations.
 
+::: moniker range=">= aspnetcore-2.1"
+
+Update the `MvcMovieContext` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
+
+[!code-csharp[](start-mvc/sample/MvcMovie21/Data/MvcMovieContextRating.cs?name=snippet1&highlight=7)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
+
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
+
+::: moniker-end
 
 Build the solution.
 
@@ -84,7 +96,11 @@ Update-Database
 
 The `Add-Migration` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
+::: moniker range="<= aspnetcore-2.0"
+
 If you delete all the records in the DB, the initialize will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from SSOX.
+
+::: moniker-end
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. You should also add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 
