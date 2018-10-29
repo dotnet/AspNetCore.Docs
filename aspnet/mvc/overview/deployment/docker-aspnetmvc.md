@@ -75,7 +75,7 @@ to the `docker build` command, which creates the image.
 You will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
-Windows Server Core, IIS and ASP.NET 4.6.2. When you run this image in your container, it will
+Windows Server Core, IIS and ASP.NET 4.7.2. When you run this image in your container, it will
 automatically start IIS and installed websites.
 
 The Dockerfile that creates your image looks like this:
