@@ -48,7 +48,7 @@ Here's what you'll learn:
 
 ### Getting Started
 
-If you don't already have the movie-listing application from the starter project, download it using the following link: [Download](https://code.msdn.microsoft.com/Project/Download/FileDownload.aspx?). Then in Windows Explorer, right-click the *MvcMovie.zip* file and select **Properties**. In the **MvcMovie.zip Properties** dialog box, select **Unblock**. (Unblocking prevents a security warning that occurs when you try to use a *.zip* file that you've downloaded from the web.)
+If you don't already have the movie-listing application from the starter project, download it using the following link: [Download](https://code.msdn.microsoft.com/MVC5-Demo-with-Entity-c6bc81df). Then in Windows Explorer, right-click the *MvcMovie.zip* file and select **Properties**. In the **MvcMovie.zip Properties** dialog box, select **Unblock**. (Unblocking prevents a security warning that occurs when you try to use a *.zip* file that you've downloaded from the web.)
 
 ![](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1/_static/image2.png)
 
