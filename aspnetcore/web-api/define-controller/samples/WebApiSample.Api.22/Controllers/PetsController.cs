@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api.Controllers
+namespace WebApiSample.Api._22.Controllers
 {
     #region snippet_PetsController
     [Produces("application/json")]
@@ -30,10 +30,12 @@ namespace WebApiSample.Api.Controllers
         {
             var pet = await _repository.GetPetAsync(id);
 
+            #region snippet_ProblemDetailsStatusCode
             if (pet == null)
             {
                 return NotFound();
             }
+            #endregion
 
             return pet;
         }
