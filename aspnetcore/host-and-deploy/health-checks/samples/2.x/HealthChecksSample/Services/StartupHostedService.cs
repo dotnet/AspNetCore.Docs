@@ -24,9 +24,15 @@ namespace SampleApp.Services
         {
             _logger.LogInformation($"Startup Background Service is starting.");
 
-            Task.Delay(_delaySeconds * 1000)
-                .ContinueWith(_ => 
-                    { _startupHostedServiceHealthCheck.StartupTaskCompleted = true; });
+            // Simulate the effect of a long-running startup task.
+            Task.Run(async () =>
+            {
+                await Task.Delay(_delaySeconds * 1000);
+
+                _startupHostedServiceHealthCheck.StartupTaskCompleted = true;
+
+                _logger.LogInformation($"Startup Background Service has started.");
+            });
 
             return Task.CompletedTask;
         }

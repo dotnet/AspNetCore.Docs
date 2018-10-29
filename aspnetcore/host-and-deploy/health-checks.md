@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 10/29/2018
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -79,10 +79,9 @@ public class ExampleHealthCheck : IHealthCheck
 {
     public ExampleHealthCheck()
     {
-        // Use DI to supply any required services to the health check.
+        // Use dependency injection (DI) to supply any required services to the
+        // health check.
     }
-
-    public string Name => "example_check";
 
     public Task<HealthCheckResult> CheckHealthAsync(
         HealthCheckContext context, 
@@ -112,7 +111,7 @@ The `ExampleHealthCheck` type is added to health check services with `AddCheck`:
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecks()
-        .AddCheck<ExampleHealthCheck>("ExampleCheck");
+        .AddCheck<ExampleHealthCheck>("example_health_check");
 }
 ```
 
@@ -123,7 +122,7 @@ An `AddCheck` overload provides the opportunity to set the failure status (`Heal
 ```csharp
 services.AddHealthChecks()
     .AddCheck<ExampleHealthCheck>(
-        "ExampleCheck", 
+        "example_health_check", 
         failureStatus: HealthStatus.Degraded, 
         tags: new[] { "example" });
 ```
@@ -139,9 +138,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### Call the Health Checks Middleware
+### Use Health Checks Middleware
 
-Call `UseHealthChecks` in the processing pipeline with the endpoint URL or relative path:
+In `Startup.Configure`, call `UseHealthChecks` in the processing pipeline with the endpoint URL or relative path:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -156,9 +155,11 @@ If the health checks should listen on a specific port, use an overload of `UseHe
 app.UseHealthChecks("/health", port: 8000);
 ```
 
+Health Checks Middleware is a *terminal middleware* in the app's request processing pipeline. The first health check endpoint encountered that's an exact match to the request URL executes and short-circuits the rest of the middleware pipeline. When short-circuiting occurs, no middleware following the matched health check executes.
+
 ## Health check options
 
-`HealthCheckOptions` provide an opportunity to customize health check behavior:
+`HealthCheckMiddlewareOptions` provide an opportunity to customize health check behavior:
 
 * [Filter health checks](#filter-health-checks)
 * [Customize the HTTP status code](#customize-the-http-status-code)
@@ -187,7 +188,7 @@ public void ConfigureServices(IServiceCollection services)
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    app.UseHealthChecks("/health", new HealthCheckOptions()
+    app.UseHealthChecks("/health", new HealthCheckMiddlewareOptions()
     {
         // Filter out the 'Bar' health check. Only Foo and Baz execute.
         Predicate = (check) => check.Tags.Contains("foo_tag") || 
@@ -206,7 +207,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    app.UseHealthChecks("/health", new HealthCheckOptions()
+    app.UseHealthChecks("/health", new HealthCheckMiddlewareOptions()
     {
         // The following StatusCodes are the default assignments for
         // the HealthCheckStatus properties.
@@ -223,7 +224,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ### Suppress cache headers
 
-`SuppressCacheHeaders` controls whether the Health Check Middleware adds HTTP headers to a probe response to prevent response caching. If the value is `false` (default), the middleware sets or overrides the `Cache-Control`, `Expires`, and `Pragma` headers to prevent response caching. If the value is `true`, the middleware doesn't modify the cache headers of the response.
+`AllowCachingResponses` controls whether the Health Check Middleware adds HTTP headers to a probe response to prevent response caching. If the value is `false` (default), the middleware sets or overrides the `Cache-Control`, `Expires`, and `Pragma` headers to prevent response caching. If the value is `true`, the middleware doesn't modify the cache headers of the response.
 
 ```csharp
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -231,10 +232,10 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    app.UseHealthChecks("/health", new HealthCheckOptions()
+    app.UseHealthChecks("/health", new HealthCheckMiddlewareOptions()
     {
         // The default value is false.
-        SuppressCacheHeaders = false
+        AllowCachingResponses = false
     });
 }
 ```
@@ -249,7 +250,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    app.UseHealthChecks("/health", new HealthCheckOptions()
+    app.UseHealthChecks("/health", new HealthCheckMiddlewareOptions()
     {
         // WriteResponse is a delegate used to write the response.
         ResponseWriter = WriteResponse
@@ -387,7 +388,7 @@ The health check is registered with `AddCheck` in `Startup.ConfigureServices` al
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_ConfigureServices)]
 
-Call Health Check Middleware in the app processing pipeline in `Startup.Configure`. In the sample app, the health check endpoints are created at `/health/ready` for the readiness check and `/health/live` for the liveness check. The readiness check filters health checks to the health check with the `ready` tag. The liveness check filters out the `StartupHostedServiceHealthCheck` by returning `false` in the `HealthCheckOptions.Predicate` (for more information, see [Filter health checks](#filter-health-checks)):
+Call Health Check Middleware in the app processing pipeline in `Startup.Configure`. In the sample app, the health check endpoints are created at `/health/ready` for the readiness check and `/health/live` for the liveness check. The readiness check filters health checks to the health check with the `ready` tag. The liveness check filters out the `StartupHostedServiceHealthCheck` by returning `false` in the `HealthCheckMiddlewareOptions.Predicate` (for more information, see [Filter health checks](#filter-health-checks)):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_Configure)]
 
@@ -449,6 +450,11 @@ To run the metric-based probe with custom response writer output using the sampl
 ```console
 dotnet run --scenario writer
 ```
+
+> [!NOTE]
+> [BeatPulse](https://github.com/Xabaril/BeatPulse) includes metric-based health check scenarios, including disk storage and maximum value liveness checks.
+>
+> [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
 
 ## Filter by port
 
@@ -516,6 +522,83 @@ To run the management port configuration scenario using the sample app, execute 
 dotnet run --scenario port
 ```
 
+## Distribute a health check library
+
+To distribute a health check as a library:
+
+1. Write a health check that implements the `IHealthCheck` interface as a standalone class. The class can rely on [dependency injection (DI)](xref:fundamentals/dependency-injection), type activation, and [named options](xref:fundamentals/configuration/options) to access configuration data.
+
+   ```csharp
+   using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+   public class ExampleHealthCheck : IHealthCheck
+   {
+       private readonly string _data1;
+       private readonly int? _data2;
+
+       public SqlServerHealthCheck(string data1, int? data2)
+       {
+           _data1 = data1 ?? throw new ArgumentNullException(nameof(data1));
+           _data2 = data2 ?? throw new ArgumentNullException(nameof(data2));
+       }
+       public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
+       {
+           try
+           {
+               // Health check logic
+               //
+               // data1 and data2 are used in the method to
+               // run the probe's health check logic.
+
+               return HealthCheckResult.Passed();
+           }
+           catch (Exception ex)
+           {
+               return HealthCheckResult.Failed(exception:ex);
+           }
+       }
+   }
+   ```
+
+1. Write an extension method with parameters that the consuming app calls in its `Startup.Configure` method. In the following example, assume the following health check method signature:
+
+   ```csharp
+   ExampleHealthCheck(string, string, int )
+   ```
+
+   The preceding signature indicates that the `ExampleHealthCheck` requires additional data to process the health check probe logic. The data is provided to the delegate used to create the health check instance when the health check is registered with an extension method. In the following example, the caller specifies optional:
+
+   * health check name (`name`). If `null`, `example_health_check` is used.
+   * string data point for the health check (`data1`).
+   * integer data point for the health check (`data2`). If `null`, `1` is used.
+   * failure status (`HealthStatus`). The default is `null`. If `null`, `HealthStatus.Unhealthy` is reported for a failure status.
+   * tags (`IEnumerable<string>`).
+
+   ```csharp
+   using System.Collections.Generic;
+   using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+   public static class ExampleHealthCheckBuilderExtensions
+   {
+       const string NAME = "example_health_check";
+
+       public static IHealthChecksBuilder AddExampleHealthCheck(
+           this IHealthChecksBuilder builder, 
+           string name = default, 
+           string data1, 
+           int data2 = 1, 
+           HealthStatus? failureStatus = default, 
+           IEnumerable<string> tags = default)
+       {
+           return builder.Add(new HealthCheckRegistration(
+               name ?? NAME,
+               sp => new ExampleHealthCheck(data1, data2),
+               failureStatus,
+               tags));
+       }
+   }
+   ```
+
 ## Health Check Publisher
 
 When an `IHealthCheckPublisher` is added to the service container, the health check system periodically executes your health checks and calls `PublishAsync` with the result. This is useful in a push-based health monitoring system scenario that expects each process to call the monitoring system periodically in order to determine health.
@@ -525,3 +608,8 @@ The `IHealthCheckPublisher` interface has a single method:
 ```csharp
 Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 ```
+
+> [!NOTE]
+> [BeatPulse](https://github.com/Xabaril/BeatPulse) includes publishers for several systems, including [Application Insights](/azure/application-insights/app-insights-overview).
+>
+> [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
