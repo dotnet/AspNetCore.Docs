@@ -15,14 +15,14 @@ Routing functionality is responsible for mapping an incoming request to a route 
 
 Most apps should choose a basic and descriptive routing scheme so that URLs are readable and meaningful. The default conventional route `{controller=Home}/{action=Index}/{id?}`:
 
-* Supports the basic and descriptive routing scheme:
-* Is a good starting point for any web app intended for use by browsers.
+* Supports a basic and descriptive routing scheme:
+* Is a good starting point for web apps intended for use by browsers.
 
 It's common to add additional terse routes to high traffic areas of the app in specialized situations (for example, blog, ecommerce) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
 
-Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (different action methods, for example, GET, POST) upon the same logical resource will use the same URL. Attribute routing provides a level of control that is needed to carefully design an API's URL-space.
+Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that is needed to carefully design an API's URL-space.
 
-MVC's URL generation support allows the app to be developed without hardcoding the URLs to link the app together. This allows for starting with a relatively simple routing configuration, and modifying the routes after the app's shape is determined.
+MVC's URL generation support allows the app to be developed without hard coding the URLs to link the app together. This allows for starting with a basic routing configuration, and modifying the routes after the app's shape is determined.
 
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>.
