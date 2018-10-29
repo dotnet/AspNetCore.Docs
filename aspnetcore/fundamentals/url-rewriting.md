@@ -431,7 +431,7 @@ Original Request: `/file.xml`
 
 ### IRule-based rule
 
-Use `Add(IRule)` to implement your own rule logic in a class that derives from `IRule`. Using an `IRule` provides greater flexibility over using the method-based rule approach. Your derived class may include a constructor, where you can pass in parameters for the `ApplyRule` method.
+Use `Add(IRule)` to encapsulate your own rule logic in a class that implements the `IRule` interface. Using an `IRule` provides greater flexibility over using the method-based rule approach. Your implementaion class may include a constructor, where you can pass in parameters for the `ApplyRule` method.
 
 ::: moniker range=">= aspnetcore-2.0"
 
