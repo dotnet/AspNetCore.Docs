@@ -10,14 +10,14 @@ using MvcMovie.Models;
 namespace MvcMovie.Migrations
 {
     [DbContext(typeof(MvcMovieContext))]
-    [Migration("20180531034059_Rating")]
-    partial class Rating
+    [Migration("20181027193356_SeedData")]
+    partial class SeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.0-rtm-30799")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -29,10 +29,7 @@ namespace MvcMovie.Migrations
 
                     b.Property<string>("Genre");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("Rating");
+                    b.Property<decimal>("Price");
 
                     b.Property<DateTime>("ReleaseDate");
 
@@ -41,6 +38,13 @@ namespace MvcMovie.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Movie");
+
+                    b.HasData(
+                        new { ID = 1, Genre = "Romantic Comedy", Price = 7.99m, ReleaseDate = new DateTime(1989, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), Title = "When Harry Met Sally" },
+                        new { ID = 2, Genre = "Comedy", Price = 8.99m, ReleaseDate = new DateTime(1984, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), Title = "Ghostbusters " },
+                        new { ID = 3, Genre = "Comedy", Price = 9.99m, ReleaseDate = new DateTime(1986, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), Title = "Ghostbusters 2" },
+                        new { ID = 4, Genre = "Western", Price = 3.99m, ReleaseDate = new DateTime(1959, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), Title = "Rio Bravo" }
+                    );
                 });
 #pragma warning restore 612, 618
         }
