@@ -15,7 +15,7 @@ This tutorial builds a web API for managing a list of "to-do" items. A user inte
 
 There are three versions of this tutorial:
 
-* Windows: Web API with Visual Studio on Windows (This tutorial)
+* Windows: Web API with Visual Studio on Windows (This tutorial, see the [video version](https://www.youtube.com/watch?v=TTkhEyGBfAk))
 * macOS: [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 * macOS, Linux, Windows: [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
 
