@@ -34,7 +34,7 @@ There are more vulnerabilities that you should be aware of. For more information
 
 ## ASP.NET Core Security Documentation
 
-* [Authentication](xref:security/authentication/index)
+* Authentication
   * [Introduction to Identity](xref:security/authentication/identity)
   * [Enable authentication using Facebook, Google, and other external providers](xref:security/authentication/social/index)
   * [Enable authentication with WS-Federation](xref:security/authentication/ws-federation)
@@ -48,7 +48,7 @@ There are more vulnerabilities that you should be aware of. For more information
     * [Call a Web API in an ASP.NET Core web app using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
     * [An ASP.NET Core web app with Azure AD B2C](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapp/)
   * [Secure ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io)
-* [Authorization](xref:security/authorization/index)
+* Authorization
   * [Introduction](xref:security/authorization/introduction)
   * [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
   * [Simple authorization](xref:security/authorization/simple)
@@ -59,10 +59,10 @@ There are more vulnerabilities that you should be aware of. For more information
   * [Resource-based authorization](xref:security/authorization/resourcebased)
   * [View-based authorization](xref:security/authorization/views)
   * [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
-* [Data protection](xref:security/data-protection/index)
+* Data protection
   * [Introduction to data protection](xref:security/data-protection/introduction)
   * [Get started with the Data Protection APIs](xref:security/data-protection/using-data-protection)
-  * [Consumer APIs](xref:security/data-protection/consumer-apis/index)
+  * Consumer APIs
     * [Consumer APIs Overview](xref:security/data-protection/consumer-apis/overview)
     * [Purpose strings](xref:security/data-protection/consumer-apis/purpose-strings)
     * [Purpose hierarchy and multi-tenancy](xref:security/data-protection/consumer-apis/purpose-strings-multitenancy)
