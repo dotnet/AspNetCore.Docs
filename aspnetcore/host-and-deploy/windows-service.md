@@ -13,7 +13,7 @@ By [Luke Latham](https://github.com/guardrex) and [Tom Dykstra](https://github.c
 
 An ASP.NET Core app can be hosted on Windows without using IIS as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications). When hosted as a Windows Service, the app automatically starts after reboots.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Convert a project into a Windows Service
 
@@ -229,7 +229,12 @@ Services that interact with requests from the Internet or a corporate network an
 
 ## Configure HTTPS
 
-Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+To configure the service with a secure endpoint:
+
+1. Create an X.509 certificate for the hosting system using your platform's certificate acquisition and deployment mechanisms.
+1. Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) to use the certificate.
+
+Use of the ASP.NET Core HTTPS development certificate to secure a service endpoint isn't supported.
 
 ## Current directory and content root
 

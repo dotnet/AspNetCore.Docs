@@ -35,7 +35,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 

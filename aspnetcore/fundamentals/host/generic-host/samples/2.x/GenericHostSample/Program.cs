@@ -30,7 +30,6 @@ namespace GenericHostSample
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddLogging();
                     services.AddHostedService<LifetimeEventsHostedService>();
                     services.AddHostedService<TimedHostedService>();
                 })

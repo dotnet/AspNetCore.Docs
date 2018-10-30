@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2018
+ms.date: 10/24/2018
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -17,10 +17,10 @@ In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensi
 
 Additional troubleshooting topics:
 
-[Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)  
+<xref:host-and-deploy/azure-apps/troubleshoot>  
 Although App Service uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and IIS to host apps, see the dedicated topic for instructions specific to App Service.
 
-[Handle errors](xref:fundamentals/error-handling)  
+<xref:fundamentals/error-handling>  
 Discover how to handle errors in ASP.NET Core apps during development on a local system.
 
 [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
@@ -127,7 +127,7 @@ Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommende
 
 ## Common startup errors 
 
-See the [ASP.NET Core common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Most of the common problems that prevent app startup are covered in the reference topic.
+See <xref:host-and-deploy/azure-iis-errors-reference>. Most of the common problems that prevent app startup are covered in the reference topic.
 
 ## Slow or hanging app
 
@@ -161,7 +161,7 @@ Sometimes a functioning app fails immediately after upgrading either the .NET Co
 
 ## Additional resources
 
-* [Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)
-* [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
-* [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
-* [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
+* <xref:fundamentals/error-handling>
+* <xref:host-and-deploy/azure-iis-errors-reference>
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:host-and-deploy/azure-apps/troubleshoot>
