@@ -35,6 +35,14 @@ Create a hub by declaring a class that inherits from `Hub`, and add public metho
 
 [!code-csharp[Create and use hubs](hubs/sample/hubs/chathub.cs?range=8-37)]
 
+::: moniker range="= aspnetcore-2.1"
+
+You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values. You can also add a `CancellationToken` parameter to your Hub method and SignalR will link it to the client. If the client provides a `CancellationToken` when calling `SendAsync` or `InvokeAsync` and then cancels the `CancellationTokenSource` associated with that token, SignalR will send that cancellation through to the server.
 
 ```csharp
@@ -54,6 +62,8 @@ await connection.InvokeAsync("MyLongRunningHubMethod", parameterValue, cancellat
 
 > [!NOTE]
 > It's not possible to pass a `CancellationToken` from the JavaScript client.
+
+::: moniker-end
 
 ## The Context object
 

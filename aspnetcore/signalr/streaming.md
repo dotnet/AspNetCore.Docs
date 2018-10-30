@@ -73,7 +73,17 @@ JavaScript clients call streaming methods on hubs by using `connection.stream`. 
 
 [!code-javascript[Streaming javascript](streaming/sample/wwwroot/js/stream.js?range=19-36)]
 
+::: moniker range="= aspnetcore-2.1"
+
+To end the stream from the client, call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
 To end the stream from the client, call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method. Calling this method will cause the `CancellationToken` parameter of the Hub method (if you provided one) to be cancelled.
+
+::: moniker-end
 
 ## Related resources
 
