@@ -22,8 +22,6 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 
 Millions of developers have used (and continue to use) [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
-[!INCLUDE[](~/includes/benefits.md)]
-
 ## Build web APIs and web UI using ASP.NET Core MVC
 
 ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#build-web-apis) and [web apps](xref:tutorials/index#build-web-apps):
