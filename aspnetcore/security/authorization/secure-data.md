@@ -66,9 +66,9 @@ The sample contains the following authorization handlers:
 This tutorial is advanced. You should be familiar with:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication](xref:security/authentication/index)
+* [Authentication](xref:security/authentication/identity)
 * [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
-* [Authorization](xref:security/authorization/index)
+* [Authorization](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ::: moniker-end
@@ -347,7 +347,7 @@ Test that the app seeded the database. If there are any rows in the contact DB, 
 
 * [Build a .NET Core and SQL Database web app in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop). This lab goes into more detail on the security features introduced in this tutorial.
-* [Authorization in ASP.NET Core: Simple, role, claims-based, and custom](xref:security/authorization/index)
+* <xref:security/authorization/introduction>
 * [Custom policy-based authorization](xref:security/authorization/policies)
 
 ::: moniker-end

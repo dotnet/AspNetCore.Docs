@@ -176,7 +176,6 @@ For a valid session `id`, the final test confirms that:
 
 ## Additional resources
 
-* <xref:test/index>
 * <xref:test/integration-tests>
 * [Create and run unit tests with Visual Studio](/visualstudio/test/unit-test-your-code).
 * [Explicit Dependencies Principle](https://deviq.com/explicit-dependencies-principle/)
