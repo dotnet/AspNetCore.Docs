@@ -52,6 +52,9 @@ cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(10));
 await connection.InvokeAsync("MyLongRunningHubMethod", parameterValue, cancellationTokenSource.Token);
 ```
 
+> [!NOTE]
+> It's not possible to pass a `CancellationToken` from the JavaScript client.
+
 ## The Context object
 
 The `Hub` class has a `Context` property that contains the following properties with information about the connection:
