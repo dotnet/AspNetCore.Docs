@@ -9,7 +9,7 @@ uid: security/authentication/accconfirm
 
 ::: moniker range="<= aspnetcore-2.0"
 
-See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core 1.1 and 2.1 version.
+See [this PDF file](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core 1.1 and 2.1 version.
 
 ::: moniker-end
 
