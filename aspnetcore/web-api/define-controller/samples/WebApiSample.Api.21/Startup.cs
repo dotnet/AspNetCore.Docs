@@ -8,7 +8,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using WebApiSample.DataAccess;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api
+namespace WebApiSample.Api._21
 {
     public class Startup
     {
@@ -31,16 +31,7 @@ namespace WebApiSample.Api
 
             #region snippet_SetCompatibilityVersion
             services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                    .ConfigureApiBehaviorOptions(options =>
-                    {
-                        options.SuppressConsumesConstraintForFormFileParameters = true;
-                        options.SuppressInferBindingSourcesForParameters = true;
-                        options.SuppressModelStateInvalidFilter = true;
-                        options.SuppressMapClientErrors = true;
-
-                        options.ClientErrorMapping[404] = "https://httpstatuses.com/404";
-                    });
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             #endregion
 
             services.AddSwaggerGen(c =>
@@ -51,6 +42,15 @@ namespace WebApiSample.Api
                     Version = "v1"
                 });
             });
+
+            #region snippet_ConfigureApiBehaviorOptions
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressConsumesConstraintForFormFileParameters = true;
+                options.SuppressInferBindingSourcesForParameters = true;
+                options.SuppressModelStateInvalidFilter = true;
+            });
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

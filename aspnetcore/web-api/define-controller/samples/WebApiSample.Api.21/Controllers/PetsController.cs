@@ -4,12 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api.Controllers
+namespace WebApiSample.Api._21.Controllers
 {
     #region snippet_PetsController
     [Produces("application/json")]
     [Route("api/[controller]")]
-    [ApiController]
     public class PetsController : ControllerBase
     {
         private readonly PetsRepository _repository;
@@ -31,12 +30,10 @@ namespace WebApiSample.Api.Controllers
         {
             var pet = await _repository.GetPetAsync(id);
 
-            #region snippet_ProblemDetails_StatusCode
             if (pet == null)
             {
                 return NotFound();
             }
-            #endregion
 
             return pet;
         }

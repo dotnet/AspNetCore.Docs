@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api.Controllers
+namespace WebApiSample.Api._22.Controllers
 {
-    #region snippet_ControllerSignature
     [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
-    #endregion
+    public class ProductsController : Controller
     {
         private readonly ProductsRepository _repository;
 
@@ -19,7 +16,6 @@ namespace WebApiSample.Api.Controllers
             _repository = repository;
         }
 
-        #region snippet_GetById
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -27,16 +23,16 @@ namespace WebApiSample.Api.Controllers
         {
             var product = await _repository.GetProductAsync(id);
 
+            #region snippet_ProblemDetailsStatusCode
             if (product == null)
             {
                 return NotFound();
             }
+            #endregion
 
             return product;
         }
-        #endregion
 
-        #region snippet_BindingSourceAttributes
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetAsync(
             [FromQuery] bool discontinuedOnly = false)
@@ -54,7 +50,6 @@ namespace WebApiSample.Api.Controllers
 
             return products;
         }
-        #endregion
 
         [HttpPost]
         [ProducesResponseType(201)]
@@ -63,7 +58,7 @@ namespace WebApiSample.Api.Controllers
         {
             await _repository.AddProductAsync(product);
 
-            return CreatedAtAction(nameof(GetByIdAsync), 
+            return CreatedAtAction(nameof(GetByIdAsync),
                 new { id = product.Id }, product);
         }
     }
