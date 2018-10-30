@@ -26,9 +26,9 @@ Millions of developers have used (and continue to use) [ASP.NET 4.x](/aspnet/ove
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 
-ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#build-web-apis) and [web apps](xref:tutorials/index#build-web-apps):
+ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-api) and [web apps](xref:tutorials/razor-pages/index):
 
-* The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps [testable](xref:test/index).
+* The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps testable.
 * [Razor Pages](xref:razor-pages/index) (new in ASP.NET Core 2.0) is a page-based programming model that makes building web UI easier and more productive.
 * [Razor markup](xref:mvc/views/razor) provides a productive syntax for [Razor Pages](xref:razor-pages/index) and [MVC views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
@@ -74,7 +74,6 @@ Many of the articles and tutorials include links to sample code.
 For more information, see the following resources:
 
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [ASP.NET Core tutorials](xref:tutorials/index)
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.
