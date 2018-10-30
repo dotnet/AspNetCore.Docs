@@ -7,15 +7,15 @@ ms.date: 7/11/2018
 uid: security/authentication/accconfirm
 ---
 
+# Account confirmation and password recovery in ASP.NET Core
+
 ::: moniker range="<= aspnetcore-2.0"
 
-See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core 1.1 and 2.1 version.
+See [this PDF file](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core 1.1 and 2.1 version.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
-
-# Account confirmation and password recovery in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 

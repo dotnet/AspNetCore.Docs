@@ -229,7 +229,12 @@ Services that interact with requests from the Internet or a corporate network an
 
 ## Configure HTTPS
 
-Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+To configure the service with a secure endpoint:
+
+1. Create an X.509 certificate for the hosting system using your platform's certificate acquisition and deployment mechanisms.
+1. Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) to use the certificate.
+
+Use of the ASP.NET Core HTTPS development certificate to secure a service endpoint isn't supported.
 
 ## Current directory and content root
 
