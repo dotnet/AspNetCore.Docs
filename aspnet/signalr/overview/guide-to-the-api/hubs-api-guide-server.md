@@ -298,8 +298,10 @@ To call client methods from the server, use the `Clients` property in a method i
 
 [!code-csharp[Main](hubs-api-guide-server/samples/sample23.cs?highlight=5)]
 
-> [!NOTE]
-> Invoking a client method is an asynchronous operation and returns a `Task`. Use `await` to ensure you wait for the message to be sent. If an error occurs while sending the message, `await` will also allow you to catch that exception using a try-catch block.
+Invoking a client method is an asynchronous operation and returns a `Task`. Use `await`:
+
+* To ensure the message is sent without error. 
+* To enable catching and handling errors in a try-catch block.
 
 **JavaScript client using generated proxy**
 
