@@ -51,9 +51,9 @@ app.UseSignalR(routes =>
 });
 ```
 
-### Sticky sessions now required
+### Sticky sessions
 
-Because of how scale-out worked in ASP.NET SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Once the client connects to the server, it must interact with the same server for the duration of the connection.
+The scaleout model for ASP.NET SignalR allows clients to reconnect and send messages to any server in the farm. In ASP.NET Core SignalR, the client must interact with the same server for the duration of the connection. For scaleout using Redis, that means sticky sessions are required. For scaleout using [Azure SignalR Service](/azure/azure-signalr/), sticky sessions are not required because the service handles connections to clients. 
 
 ### Single hub per connection
 
