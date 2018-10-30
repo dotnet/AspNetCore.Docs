@@ -301,7 +301,7 @@ To call client methods from the server, use the `Clients` property in a method i
 Invoking a client method is an asynchronous operation and returns a `Task`. Use `await`:
 
 * To ensure the message is sent without error. 
-* To enable catching and handling errors.
+* To enable catching and handling errors in a try-catch block.
 
 **JavaScript client using generated proxy**
 
