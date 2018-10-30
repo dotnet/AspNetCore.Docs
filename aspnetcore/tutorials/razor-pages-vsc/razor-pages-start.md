@@ -59,7 +59,7 @@ From Visual Studio Code (VS Code), select **File > Open Folder**, and then selec
 
 ### Launch the app
 
-Press Ctrl+F5 to start the app without debugging. Alternatively, from the **Debug** menu, select **Start Without Debugging**.
+From the **Debug** menu, select **Start Without Debugging**. Alternatively, you can press the keyboard shortcut displayed next to the menu option. This shortcut varies depending on your operating system.
 
 In the next tutorial, we add a model to the project. 
 
