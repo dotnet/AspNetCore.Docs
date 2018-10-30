@@ -5,7 +5,7 @@ description: Learn about the Generic Host in .NET, which is responsible for app 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/16/2018
+ms.date: 10/30/2018
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
@@ -54,37 +54,15 @@ The following services are registered during host initialization:
 
 ## Host configuration
 
-[HostBuilder](/dotnet/api/microsoft.extensions.hosting.hostbuilder) relies on the following approaches to set the host configuration values:
+Host configuration is created by:
 
-* Configuration builder
-* Extension method configuration
+* Setting a property for the [application key (name)](#application-key-name) in [ConfigureAppConfiguration](#configureappconfiguration).
+* Calling extension methods on [IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder) to set the [content root](#content-root) and [environment](#environment).
+* Reading configuration from configuration providers in [ConfigureHostConfiguration](/dotnet/api/microsoft.extensions.hosting.ihostbuilder.configurehostconfiguration).
 
-### Configuration builder
+### Extension methods
 
-Host builder configuration is created by calling [ConfigureHostConfiguration](/dotnet/api/microsoft.extensions.hosting.ihostbuilder.configurehostconfiguration) on the [IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder) implementation. `ConfigureHostConfiguration` uses an [IConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.iconfigurationbuilder) to create an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) for the host. The configuration builder initializes the [IHostingEnvironment](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment) for use in the app's build process.
-
-Environment variable configuration isn't added by default. Call [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) on the host builder to configure the host from environment variables. `AddEnvironmentVariables` accepts an optional user-defined prefix. The sample app uses a prefix of `PREFIX_`. The prefix is removed when the environment variables are read. When the sample app's host is configured, the environment variable value for `PREFIX_ENVIRONMENT` becomes the host configuration value for the `environment` key.
-
-During development when using [Visual Studio](https://www.visualstudio.com/) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file during development. For more information, see <xref:fundamentals/environments>.
-
-`ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last.
-
-*hostsettings.json*:
-
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/hostsettings.json)]
-
-Example `HostBuilder` configuration using `ConfigureHostConfiguration`:
-
-[!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureHostConfiguration)]
-
-> [!NOTE]
-> The [AddConfiguration](/dotnet/api/microsoft.extensions.configuration.chainedbuilderextensions.addconfiguration) extension method isn't currently capable of parsing a configuration section returned by [GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) (for example, `.AddConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:environment`). The `AddConfiguration` method expects the keys to match the `HostBuilder` keys (for example, `environment`). The presence of the section name on the keys prevents the section's values from configuring the host. This issue will be addressed in an upcoming release. For more information and workarounds, see [Passing configuration section into WebHostBuilder.UseConfiguration uses full keys](https://github.com/aspnet/Hosting/issues/839).
-
-### Extension method configuration
-
-Extension methods are called on the `IHostBuilder` implementation to configure the content root and the environment.
-
-#### Application Key (Name)
+### Application key (name)
 
 The [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment.applicationname) property is set from host configuration during host construction. To set the value explicitly, use the [HostDefaults.ApplicationKey](/dotnet/api/microsoft.extensions.hosting.hostdefaults.applicationkey):
 
@@ -102,7 +80,7 @@ var host = new HostBuilder()
     })
 ```
 
-#### Content Root
+### Content root
 
 This setting determines where the host begins searching for content files.
 
@@ -116,7 +94,7 @@ If the path doesn't exist, the host fails to start.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseContentRoot)]
 
-#### Environment
+### Environment
 
 Sets the app's [environment](xref:fundamentals/environments).
 
@@ -129,6 +107,31 @@ Sets the app's [environment](xref:fundamentals/environments).
 The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseEnvironment)]
+
+Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel#endpoint-configuration>.
+
+### ConfigureHostConfiguration
+
+`ConfigureHostConfiguration` uses an [IConfigurationBuilder](/dotnet/api/microsoft.extensions.configuration.iconfigurationbuilder) to create an [IConfiguration](/dotnet/api/microsoft.extensions.configuration.iconfiguration) for the host. The configuration builder initializes the [IHostingEnvironment](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment) for use in the app's build process.
+
+Environment variable configuration isn't added by default. Call [AddEnvironmentVariables](/dotnet/api/microsoft.extensions.configuration.environmentvariablesextensions.addenvironmentvariables) on the host builder to configure the host from environment variables. `AddEnvironmentVariables` accepts an optional user-defined prefix. The sample app uses a prefix of `PREFIX_`. The prefix is removed when the environment variables are read. When the sample app's host is configured, the environment variable value for `PREFIX_ENVIRONMENT` becomes the host configuration value for the `environment` key.
+
+During development when using [Visual Studio](https://www.visualstudio.com/) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file during development. For more information, see <xref:fundamentals/environments>.
+
+`ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last.
+
+*hostsettings.json*:
+
+[!code-csharp[](generic-host/samples/2.x/GenericHostSample/hostsettings.json)]
+
+Additional configuration can be provided with the [applicationName](#application-key-name) and [contentRoot](#content-root) keys.
+
+Example `HostBuilder` configuration using `ConfigureHostConfiguration`:
+
+[!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureHostConfiguration)]
+
+> [!NOTE]
+> The [AddConfiguration](/dotnet/api/microsoft.extensions.configuration.chainedbuilderextensions.addconfiguration) extension method isn't currently capable of parsing a configuration section returned by [GetSection](/dotnet/api/microsoft.extensions.configuration.iconfiguration.getsection) (for example, `.AddConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:environment`). The `AddConfiguration` method expects the keys to match the `HostBuilder` keys (for example, `environment`). The presence of the section name on the keys prevents the section's values from configuring the host. This issue will be addressed in an upcoming release. For more information and workarounds, see [Passing configuration section into WebHostBuilder.UseConfiguration uses full keys](https://github.com/aspnet/Hosting/issues/839).
 
 ## ConfigureAppConfiguration
 
