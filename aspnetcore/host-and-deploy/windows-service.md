@@ -110,7 +110,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
    * `{SERVICE NAME}` &ndash; The name to assign to the service in [Service Control Manager](/windows/desktop/services/service-control-manager).
    * `{PATH}` &ndash; The path to the service executable.
-   * `{DOMAIN}` and `{USER ACCOUNT}` &ndash; The domain and user account under which the service runs. Do **not** omit the `obj` parameter. The default value for `obj` is the [LocalSystem account](/windows/desktop/services/localsystem-account) account. Running a service under the `LocalSystem` account presents a significant security risk. Always run a service under a user account with restricted privileges on the server.
+   * `{DOMAIN}` (or if the machine isn't domain joined, the local machine name) and `{USER ACCOUNT}` &ndash; The domain (or local machine name) and user account under which the service runs. Do **not** omit the `obj` parameter. The default value for `obj` is the [LocalSystem account](/windows/desktop/services/localsystem-account) account. Running a service under the `LocalSystem` account presents a significant security risk. Always run a service under a user account with restricted privileges on the server.
    * `{PASSWORD}` &ndash; The user account password.
 
    In the following example:
@@ -119,7 +119,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    * The published service resides in the *c:\\svc* folder.
    * The app executable is named *AspNetCoreService.exe*.
    * The service runs under the `ServiceUser` account.
-   * Replace `{DOMAIN}` with the user account's domain. Example: If the domain is `MairaPC`, set `obj` to `MairaPC\ServiceUser`.
+   * Replace `{DOMAIN}` with the user account's domain or local machine name. Example: If the hosting system is a local machine named `MairaPC`, set `obj` to `MairaPC\ServiceUser`.
    * The user account's password is `Passw0rd$`.
 
    ```console
