@@ -60,7 +60,7 @@ Build the project to verify you don't have any errors.
   dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* **For MacOS and Linux**: Run the following command:
+* **For macOS and Linux**: Run the following command:
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
