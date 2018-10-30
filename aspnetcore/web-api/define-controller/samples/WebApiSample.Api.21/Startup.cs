@@ -8,7 +8,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using WebApiSample.DataAccess;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api
+namespace WebApiSample.Api._21
 {
     public class Startup
     {

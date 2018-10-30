@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApiSample.Api.Controllers
+namespace WebApiSample.Api._21.Controllers
 {
     #region snippet_ControllerSignature
     [ApiController]

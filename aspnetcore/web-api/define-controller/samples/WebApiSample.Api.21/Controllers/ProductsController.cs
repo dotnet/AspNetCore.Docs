@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api.Controllers
+namespace WebApiSample.Api._21.Controllers
 {
     #region snippet_ControllerSignature
     [Route("api/[controller]")]

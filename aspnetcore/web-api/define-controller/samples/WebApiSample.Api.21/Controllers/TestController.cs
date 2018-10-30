@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 
-namespace WebApiSample.Api.Controllers
+namespace WebApiSample.Api._21.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
