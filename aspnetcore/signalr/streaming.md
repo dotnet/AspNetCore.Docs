@@ -24,14 +24,30 @@ A hub method automatically becomes a streaming hub method when it returns a `Cha
 > [!NOTE]
 > Write to the `ChannelReader` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations will be blocked until a `ChannelReader` is returned.
 
-[!code-csharp[Streaming hub method](streaming/sample/Hubs/StreamHub.cs?range=10-34)]
+::: moniker range="= aspnetcore-2.1"
+
+[!code-csharp[Streaming hub method](streaming/sample/Hubs/StreamHub.aspnetcore21.cs?range=12-36)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+[!code-csharp[Streaming hub method](streaming/sample/Hubs/StreamHub.cs?range=11-35)]
+
+> [!NOTE]
+> In ASP.NET Core 2.2, Hub methods can accept a `CancellationToken` parameter that will be triggered when the client unsubscribes from the stream. Use this token to stop the server operation and release any resources if the client disconnects before the end of the stream.
+
+::: moniker-end
 
 ## .NET client
 
 The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a streaming method. Pass the hub method name, and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation, and represents the stream on the client. To read data, a common pattern is to loop over `WaitToReadAsync` and call `TryRead` when data is available. The loop will end when the stream has been closed by the server, or the cancellation token passed to `StreamAsChannelAsync` is canceled.
 
 ```csharp
-var channel = await hubConnection.StreamAsChannelAsync<int>("Counter", 10, 500, CancellationToken.None);
+// Call "Cancel" on this CancellationTokenSource to send a cancellation message to the server, which will trigger
+// the corresponding token in the Hub method.
+var cancellationTokenSource = new CancellationTokenSource();
+var channel = await hubConnection.StreamAsChannelAsync<int>("Counter", 10, 500, cancellationTokenSource.Token);
 
 // Wait asynchronously for data to become available
 while (await channel.WaitToReadAsync())
@@ -57,7 +73,7 @@ JavaScript clients call streaming methods on hubs by using `connection.stream`. 
 
 [!code-javascript[Streaming javascript](streaming/sample/wwwroot/js/stream.js?range=19-36)]
 
-To end the stream from the client, call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method.
+To end the stream from the client, call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method. Calling this method will cause the `CancellationToken` parameter of the Hub method (if you provided one) to be cancelled.
 
 ## Related resources
 
