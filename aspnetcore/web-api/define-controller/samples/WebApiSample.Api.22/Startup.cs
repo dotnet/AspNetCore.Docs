@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+#region snippet_ApiControllerAttributeOnAssembly
+[assembly: ApiController]
 namespace WebApiSample.Api._22
 {
     public class Startup
     {
+        #endregion snippet_ApiControllerAttributeOnAssembly
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;

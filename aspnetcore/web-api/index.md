@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn about the features available for building a web API in ASP.NET Core and when it's appropriate to use each feature.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/29/2018
+ms.date: 10/30/2018
 uid: web-api/index
 ---
 # Build web APIs with ASP.NET Core
@@ -35,11 +35,23 @@ The `ControllerBase` class provides access to several properties and methods. In
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## Annotate class with ApiControllerAttribute
+## Annotation with ApiControllerAttribute
 
 ASP.NET Core 2.1 introduces the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute to denote a web API controller class. For example:
 
 [!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=2)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+In ASP.NET Core 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. Beware that there's no way to opt out for individual controllers. As a recommendation, assembly-level attributes should be applied to the `Startup` class:
+
+[!code-csharp[](define-controller/samples/WebApiSample.Api.22/Startup.cs?name=snippet_ApiControllerAttributeOnAssembly&highlight=1)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
 
 A compatibility version of 2.1 or later, set via <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*>, is required to use this attribute. For example, the highlighted code in `Startup.ConfigureServices` sets the 2.1 compatibility flag:
 
@@ -164,7 +176,7 @@ In ASP.NET Core 2.2 or later, MVC transforms an error result (a result with stat
 
 Consider the following code in a controller action:
 
-[!code-csharp[](define-controller/samples/WebApiSample.Api.22/Controllers/PetsController.cs?name=snippet_ProblemDetailsStatusCode)]
+[!code-csharp[](define-controller/samples/WebApiSample.Api.22/Controllers/ProductsController.cs?name=snippet_ProblemDetailsStatusCode)]
 
 The HTTP response for `NotFound` has a 404 status code with a `ProblemDetails` body. For example:
 
