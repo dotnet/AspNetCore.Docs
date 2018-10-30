@@ -84,6 +84,15 @@ Model validation occurs prior to each controller action being invoked, and it's 
 
 Some apps will choose to follow a standard convention for dealing with model validation errors, in which case a filter may be an appropriate place to implement such a policy. You should test how your actions behave with valid and invalid model states.
 
+The internal model validator is implemented by default, so the previous custom validator will not work.
+This line can be added to the ConfigureServices method of the Startup class to disable the default behavior:
+```
+services.Configure<ApiBehaviorOptions>(opt =>
+{
+    opt.SuppressModelStateInvalidFilter = true;
+});
+```
+
 ## Manual validation
 
 After model binding and validation are complete, you may want to repeat parts of it. For example, a user may have entered text in a field expecting an integer, or you may need to compute a value for a model's property.
