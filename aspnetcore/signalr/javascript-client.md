@@ -103,7 +103,7 @@ The JavaScript client for SignalR doesn't automatically reconnect. As a result, 
 
 [!code-javascript[Reconnect the JavaScript client](javascript-client/sample/wwwroot/js/chat.js?range=30-42)]
 
-In a real-world implementation this implementation might be improved upon by changing the code to use an exponential back-off or to retry a specified number of times before giving up. 
+In a real-world implementation, this code might be improved upon by changing the code to use an exponential back-off or to retry a specified number of times before giving up. 
 
 ## Additional resources
 
