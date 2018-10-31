@@ -29,13 +29,13 @@ connection.start().catch(err => console.error(err.toString()));
 
 const start = () => {
     try {
-        await connection.start()
-        console.log('connected')
+        await connection.start();
+        console.log('connected');
     } catch (err) {
-        console.log(err)
-        setTimeout(() => start(), 5000)
+        console.log(err);
+        setTimeout(() => start(), 5000);
     }
-}
+};
 
 connection.onclose(function () {
     start();
