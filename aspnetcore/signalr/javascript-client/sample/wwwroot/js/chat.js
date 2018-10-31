@@ -27,7 +27,7 @@ document.getElementById("sendButton").addEventListener("click", event => {
 
 connection.start().catch(err => console.error(err.toString()));
 
-const start = () => {
+const start = async () => {
     try {
         await connection.start();
         console.log('connected');
