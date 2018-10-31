@@ -35,7 +35,7 @@ A hub method automatically becomes a streaming hub method when it returns a `Cha
 [!code-csharp[Streaming hub method](streaming/sample/Hubs/StreamHub.cs?range=11-35)]
 
 > [!NOTE]
-> In ASP.NET Core 2.2, Hub methods can accept a `CancellationToken` parameter that will be triggered when the client unsubscribes from the stream. Use this token to stop the server operation and release any resources if the client disconnects before the end of the stream.
+> In ASP.NET Core 2.2 or later, streaming Hub methods can accept a `CancellationToken` parameter that will be triggered when the client unsubscribes from the stream. Use this token to stop the server operation and release any resources if the client disconnects before the end of the stream.
 
 ::: moniker-end
 
@@ -81,7 +81,7 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 
 ::: moniker range=">= aspnetcore-2.2"
 
-To end the stream from the client, call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method. Calling this method will cause the `CancellationToken` parameter of the Hub method (if you provided one) to be cancelled.
+To end the stream from the client, call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method. Calling this method will cause the `CancellationToken` parameter of the Hub method (if you provided one) to be canceled.
 
 ::: moniker-end
 
