@@ -35,7 +35,7 @@ const start = async () => {
     }
 };
 
-connection.onclose(function () {
-    start();
+connection.onclose(async () => {
+    await start();
 });
 
