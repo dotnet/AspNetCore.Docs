@@ -98,12 +98,11 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 The JavaScript client for SignalR doesn't automatically reconnect. As a result, you must write code that will reconnect your client manually. The following code demonstrates a typical reconnection approach:
 
 1. A function (in this case `start` function) is created to start the connection.
-1. When the connection fails (the `catch` handler), wait for a period of time and re-runs the `start` method.
 1. Run the `start` method in the connection's `onclose` event handler. 
 
 [!code-javascript[Reconnect the JavaScript client](javascript-client/sample/wwwroot/js/chat.js?range=30-42)]
 
-In a real-world implementation, this code might be improved upon by changing the code to use an exponential back-off or to retry a specified number of times before giving up. 
+A real-world implementation would use an exponential back-off or to retry a specified number of times before giving up. 
 
 ## Additional resources
 
