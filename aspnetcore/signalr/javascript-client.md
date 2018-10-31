@@ -93,7 +93,7 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 
 [!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
 
-## Reconnecting Clients 
+## Reconnect Clients 
 
 The JavaScript client for SignalR doesn't automatically reconnect. As a result, you must write code that will reconnect your client manually. The code below demonstrates a typical reconnection approach:
 
