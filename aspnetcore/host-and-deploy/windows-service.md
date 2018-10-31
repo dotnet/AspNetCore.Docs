@@ -48,7 +48,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
      [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=8-9,16)]
 
-1. Publish the app. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles). When using a Visual Studio, select the **FolderProfile** and configure the **Target Location** before selecting the **Publish** button.
+1. Publish the app using [dotnet publish](/dotnet/articles/core/tools/dotnet-publish), a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles), or Visual Studio Code. When using Visual Studio, select the **FolderProfile** and configure the **Target Location** before selecting the **Publish** button.
 
    To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder. The RID must be specified in the `<RuntimeIdenfifier>` (or `<RuntimeIdentifiers>`) property of the project file. In the following example, the app is published in Release configuration for the `win7-x64` runtime to a folder created at *c:\\svc*:
 
@@ -62,10 +62,10 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    net user {USER ACCOUNT} {PASSWORD} /add
    ```
 
-   For the sample app, create a user account with the name `ServiceUser` and a password (for example, `Passw0rd$`):
+   For the sample app, create a user account with the name `ServiceUser` and a password. In the following command, replace `{PASSWORD}` with a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
 
    ```console
-   net user ServiceUser Passw0rd$ /add
+   net user ServiceUser {PASSWORD} /add
    ```
 
    If you need to add the user to a group, use the `net localgroup` command, where `{GROUP}` is the name of the group:
@@ -116,14 +116,12 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    In the following example:
 
    * The service is named **MyService**.
-   * The published service resides in the *c:\\svc* folder.
-   * The app executable is named *AspNetCoreService.exe*.
-   * The service runs under the `ServiceUser` account.
-   * Replace `{DOMAIN}` with the user account's domain or local machine name. Example: If the hosting system is a local machine named `MairaPC`, set `obj` to `MairaPC\ServiceUser`.
-   * The user account's password is `Passw0rd$`.
+   * The published service resides in the *c:\\svc* folder. The app executable is named *AspNetCoreService.exe*. The `binPath` value is enclosed in straight quotation marks (").
+   * The service runs under the `ServiceUser` account. Replace `{DOMAIN}` with the user account's domain or local machine name. Enclose the `obj` value in straight quotation marks ("). Example: If the hosting system is a local machine named `MairaPC`, set `obj` to `"MairaPC\ServiceUser"`.
+   * Replace `{PASSWORD}` with the user account's password. The `password` value is enclosed in straight quotation marks (").
 
    ```console
-   sc create MyService binPath= "c:\svc\aspnetcoreservice.exe" obj= "{DOMAIN}\ServiceUser" password= "Passw0rd$"
+   sc create MyService binPath= "c:\svc\aspnetcoreservice.exe" obj= "{DOMAIN}\ServiceUser" password= "{PASSWORD}"
    ```
 
    > [!IMPORTANT]
