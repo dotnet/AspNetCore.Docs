@@ -101,7 +101,7 @@ Change the `<title>` element in the *Pages/Shared/_Layout.cshtml* file to use a 
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml?range=1-6&highlight=6)]
 
-Find the following anchor element in the *Pages/_Layout.cshtml* file.
+Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
 
 ```cshtml
 <a asp-page="/Index" class="navbar-brand">RazorPagesMovie</a>
