@@ -68,7 +68,7 @@ At the end, you'll have a working chat app:
 
 * Open a folder that you can use for a new project.
 
-* In the **Integrated Terminal**, run the following command:
+* In the [Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), run the following command:
 
    ```console
    dotnet new webapp -o SignalRChat
