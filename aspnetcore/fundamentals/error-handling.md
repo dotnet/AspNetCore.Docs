@@ -4,7 +4,7 @@ author: ardalis
 description: Discover how to handle errors in ASP.NET Core apps.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/05/2018
+ms.date: 11/01/2018
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -119,7 +119,7 @@ Another method takes a content type and format string:
 app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 ```
 
-There are also redirect and re-execute extension methods. The redirect method sends a *302 Found* status code to the client and redirects the client to the provided location URL template. The template may include a `{0}` placeholder for the status code. URLs starting with `~` have the base path prepended. A URL that doesn't start with `~` is used as is.
+There are also redirect and re-execute extension methods. The redirect method sends a *302 Found* status code to the client and redirects the client to the provided location URL template. The template may include a `{0}` placeholder for the status code. The URL must start with a forward slash (`/`).
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
