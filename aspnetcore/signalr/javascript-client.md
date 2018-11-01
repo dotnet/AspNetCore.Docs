@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/14/2018
+ms.date: 11/01/2018
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -95,7 +95,7 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 
 ## Reconnect Clients 
 
-The JavaScript client for SignalR doesn't automatically reconnect. As a result, you must write code that will reconnect your client manually. The following code demonstrates a typical reconnection approach:
+The JavaScript client for SignalR doesn't automatically reconnect. You must write code that will reconnect your client manually. The following code demonstrates a typical reconnection approach:
 
 1. A function (in this case `start` function) is created to start the connection.
 1. Run the `start` method in the connection's `onclose` event handler. 
