@@ -25,7 +25,7 @@ document.getElementById("sendButton").addEventListener("click", event => {
     event.preventDefault();
 });
 
-const start = async () => {
+async function start() {
     try {
         await connection.start();
         console.log('connected');
