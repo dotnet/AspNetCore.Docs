@@ -386,7 +386,7 @@ Within the same command, don't mix command-line argument key-value pairs that us
 Example commands:
 
 ```console
-dotnet run CommandLineKey1=value --CommandLineKey2=value /CommandLineKey2=value
+dotnet run CommandLineKey1=value --CommandLineKey2=value /CommandLineKey3=value
 dotnet run --CommandLineKey1 value /CommandLineKey2 value
 dotnet run CommandLineKey1= CommandLineKey2=value
 ```
