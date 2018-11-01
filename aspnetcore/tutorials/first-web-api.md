@@ -1,39 +1,62 @@
 ---
 title: Create a Web API with ASP.NET Core and Visual Studio
 author: rick-anderson
-description: Build a web API with ASP.NET Core MVC and Visual Studio on  Windows
+description: Build a web API with ASP.NET Core MVC and Visual Studio
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/17/2018
+ms.date: 11/17/2018
 uid: tutorials/first-web-api
 ---
-# Create a Web API with ASP.NET Core and Visual Studio
+# Tutorial: Create a Web API with ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-This tutorial builds a web API for managing a list of "to-do" items. A user interface (UI) isn't created.
+This tutorial teaches the basics of building a web API app. The app manages a list of "to-do" items. A user interface (UI) isn't created. You learn how to:
 
-There are three versions of this tutorial:
+> [!div class="checklist"]
+> * Create a web API project.
+> * Add a controller.
+> * Add code to get "to-do" items.
+> * Create other CRUD operations.
+> * Call the Web API with jQuery.
 
-* Windows: Web API with Visual Studio on Windows (This tutorial, see the [video version](https://www.youtube.com/watch?v=TTkhEyGBfAk))
-* macOS: [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-* macOS, Linux, Windows: [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
-
-<!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
+At the end, you have a an app that can manage  "to-do" items.
 
 [!INCLUDE[intro to web API](../includes/webApi/intro.md)]
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-windows-all-2.2.md)]
 
-## Create the project
+## Create a web project
 
-Follow these steps in Visual Studio:
+# [Visual Studio](#tab/visual-studio)
 
 * From the **File** menu, select **New** > **Project**.
 * Select the **ASP.NET Core Web Application** template. Name the project *TodoApi* and click **OK**.
 * In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template and click **OK**. Do **not** select **Enable Docker Support**.
+
+![VS new project dialog](first-web-api/_static/vs.png)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Open a folder for the new project.
+
+* In the **Integrated Terminal**, run the following command:
+
+   ```console
+   dotnet new webapp -o SignalRChat
+   ```
+
+```console
+dotnet new webapi -o TodoApi
+code TodoApi
+```
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+---
+
 
 ### Launch the app
 
