@@ -1,0 +1,872 @@
+- name: Overview
+  items: 
+    - name: About ASP.NET Core
+      href: xref:index
+    - name: Compare ASP.NET Core and ASP.NET
+      href: xref:fundamentals/choose-between-aspnet-and-aspnetcore
+    - name: Compare .NET Core and .NET Framework
+      href: /dotnet/articles/standard/choosing-core-framework-server
+- name: Get started
+  href: xref:getting-started
+- name: Tutorials
+  items: 
+    - name: Web apps
+      items: 
+        - name: Razor Pages
+          items: 
+            - name: With Visual Studio
+              href: xref:tutorials/razor-pages/index
+            - name: With Visual Studio Code
+              href: xref:tutorials/razor-pages-vsc/index
+            - name: With Visual Studio for Mac
+              href: xref:tutorials/razor-pages-mac/index
+        - name: MVC
+          items: 
+            - name: With Visual Studio
+              href: xref:tutorials/first-mvc-app/index
+            - name: With Visual Studio Code
+              href: xref:tutorials/first-mvc-app-xplat/index
+            - name: With Visual Studio for Mac
+              href: xref:tutorials/first-mvc-app-mac/index
+    - name: Web APIs
+      items: 
+        - name: With Visual Studio
+          href: xref:tutorials/first-web-api
+        - name: With Visual Studio Code
+          href: xref:tutorials/web-api-vsc
+        - name: With Visual Studio for Mac
+          href: xref:tutorials/first-web-api-mac
+        - name: For native mobile apps
+          href: xref:mobile/native-mobile-backend
+    - name: Real-time web apps
+      items: 
+        - name: SignalR with JavaScript
+          href: xref:tutorials/signalr
+        - name: SignalR with TypeScript
+          href: xref:tutorials/signalr-typescript-webpack
+    - name: Data access
+      items: 
+        - name: EF Core with Razor Pages
+          href: xref:data/ef-rp/index
+        - name: EF Core with MVC, existing DB
+          href: /ef/core/get-started/aspnetcore/existing-db
+        - name: EF Core with MVC, new DB
+          href: /ef/core/get-started/aspnetcore/new-db
+        - name: EF Core with MVC, long tutorial
+          href: xref:data/ef-mvc/index
+- name: Fundamentals
+  items: 
+    - name: Overview
+      href: xref:fundamentals/index
+    - name: App startup
+      href: xref:fundamentals/startup
+    - name: Dependency injection (services)
+      href: xref:fundamentals/dependency-injection
+    - name: Routing
+      href: xref:fundamentals/routing
+    - name: Multiple environments
+      href: xref:fundamentals/environments
+    - name: Configuration
+      href: xref:fundamentals/configuration/index
+    - name: Options
+      href: xref:fundamentals/configuration/options
+    - name: Logging
+      href: xref:fundamentals/logging/index
+    - name: Handle errors
+      href: xref:fundamentals/error-handling
+    - name: Middleware
+      items: 
+        - name: Overview
+          href: xref:fundamentals/middleware/index
+        - name: Factory-based middleware
+          href: xref:fundamentals/middleware/extensibility
+        - name: Factory-based middleware with third-party container
+          href: xref:fundamentals/middleware/extensibility-third-party-container
+    - name: Host
+      items: 
+        - name: Overview
+          href: xref:fundamentals/host/index
+        - name: Web Host
+          href: xref:fundamentals/host/web-host
+        - name: Generic Host
+          href: xref:fundamentals/host/generic-host
+    - name: Servers
+      items: 
+        - name: Overview
+          href: xref:fundamentals/servers/index
+        - name: Kestrel
+          href: xref:fundamentals/servers/kestrel
+        - name: ASP.NET Core Module
+          href: xref:fundamentals/servers/aspnet-core-module
+        - name: HTTP.sys
+          href: xref:fundamentals/servers/httpsys
+    - name: Initiate HTTP requests
+      href: xref:fundamentals/http-requests
+- name: Web apps
+  items: 
+    - name: Razor Pages
+      items: 
+        - name: Overview
+          href: xref:razor-pages/index
+        - name: Tutorials
+          items: 
+            - name: Razor Pages with Visual Studio
+              items: 
+                - name: Overview
+                  href: xref:tutorials/razor-pages/index
+                - name: Get started
+                  href: xref:tutorials/razor-pages/razor-pages-start
+                - name: Add a model
+                  href: xref:tutorials/razor-pages/model
+                - name: Scaffolding
+                  href: xref:tutorials/razor-pages/page
+                - name: SQL Server
+                  href: xref:tutorials/razor-pages/sql
+                - name: Update the pages
+                  href: xref:tutorials/razor-pages/da1
+                - name: Add search
+                  href: xref:tutorials/razor-pages/search
+                - name: Add a new field
+                  href: xref:tutorials/razor-pages/new-field
+                - name: Add validation
+                  href: xref:tutorials/razor-pages/validation
+            - name: Razor Pages with Visual Studio Code
+              items: 
+                - name: Overview
+                  href: xref:tutorials/razor-pages-vsc/index
+                - name: Get started with Razor Pages
+                  href: xref:tutorials/razor-pages-vsc/razor-pages-start
+                - name: Add a model
+                  href: xref:tutorials/razor-pages-vsc/model
+                - name: Scaffolded Razor Pages
+                  href: xref:tutorials/razor-pages-vsc/page
+                - name: Work with SQLite
+                  href: xref:tutorials/razor-pages-vsc/sql
+                - name: Update the pages
+                  href: xref:tutorials/razor-pages-vsc/da1
+                - name: Add search
+                  href: xref:tutorials/razor-pages-vsc/search
+            - name: Razor Pages with Visual Studio for Mac
+              items: 
+                - name: Overview
+                  href: xref:tutorials/razor-pages-mac/index
+                - name: Get started with Razor Pages
+                  href: xref:tutorials/razor-pages-mac/razor-pages-start
+                - name: Add a model
+                  href: xref:tutorials/razor-pages-mac/model
+                - name: Scaffolded Razor Pages
+                  href: xref:tutorials/razor-pages-mac/page
+                - name: Work with SQLite
+                  href: xref:tutorials/razor-pages-mac/sql
+                - name: Update the pages
+                  href: xref:tutorials/razor-pages-mac/da1
+                - name: Add search
+                  href: xref:tutorials/razor-pages-mac/search
+        - name: Filters
+          href: xref:razor-pages/filter
+        - name: Class libraries
+          href: xref:razor-pages/ui-class
+        - name: Route and app conventions
+          href: xref:razor-pages/razor-pages-conventions
+        - name: Upload files
+          href: xref:razor-pages/upload-files
+        - name: Razor SDK
+          href: xref:razor-pages/sdk
+    - name: MVC
+      items: 
+        - name: Overview
+          href: xref:mvc/overview
+        - name: Tutorials
+          items: 
+            - name: MVC with Visual Studio
+              items: 
+                - name: Overview
+                  href: xref:tutorials/first-mvc-app/index
+                - name: Get started
+                  href: xref:tutorials/first-mvc-app/start-mvc
+                - name: Add a controller
+                  href: xref:tutorials/first-mvc-app/adding-controller
+                - name: Add a view
+                  href: xref:tutorials/first-mvc-app/adding-view
+                - name: Add a model
+                  href: xref:tutorials/first-mvc-app/adding-model
+                - name: Work with SQL Server
+                  href: xref:tutorials/first-mvc-app/working-with-sql
+                - name: Controller actions and views
+                  href: xref:tutorials/first-mvc-app/controller-methods-views
+                - name: Add search
+                  href: xref:tutorials/first-mvc-app/search
+                - name: Add a new field
+                  href: xref:tutorials/first-mvc-app/new-field
+                - name: Add validation
+                  href: xref:tutorials/first-mvc-app/validation
+                - name: Examine the Details and Delete methods
+                  href: xref:tutorials/first-mvc-app/details
+            - name: MVC with Visual Studio Code
+              items: 
+                - name: Overview
+                  href: xref:tutorials/first-mvc-app-xplat/index
+                - name: Get started
+                  href: xref:tutorials/first-mvc-app-xplat/start-mvc
+                - name: Add a controller
+                  href: xref:tutorials/first-mvc-app-xplat/adding-controller
+                - name: Add a view
+                  href: xref:tutorials/first-mvc-app-xplat/adding-view
+                - name: Add a model
+                  href: xref:tutorials/first-mvc-app-xplat/adding-model
+                - name: Work with SQLite
+                  href: xref:tutorials/first-mvc-app-xplat/working-with-sql
+                - name: Controller methods and views
+                  href: xref:tutorials/first-mvc-app-xplat/controller-methods-views
+                - name: Add search
+                  href: xref:tutorials/first-mvc-app-xplat/search
+                - name: Add a new field
+                  href: xref:tutorials/first-mvc-app-xplat/new-field
+                - name: Add validation
+                  href: xref:tutorials/first-mvc-app-xplat/validation
+                - name: Examine the Details and Delete methods
+                  href: xref:tutorials/first-mvc-app/details
+            - name: MVC with Visual Studio for Mac
+              items: 
+                - name: Overview
+                  href: xref:tutorials/first-mvc-app-mac/index
+                - name: Get started
+                  href: xref:tutorials/first-mvc-app-mac/start-mvc
+                - name: Add a controller
+                  href: xref:tutorials/first-mvc-app-mac/adding-controller
+                - name: Add a view
+                  href: xref:tutorials/first-mvc-app-mac/adding-view
+                - name: Add a model
+                  href: xref:tutorials/first-mvc-app-mac/adding-model
+                - name: Work with SQLite
+                  href: xref:tutorials/first-mvc-app-mac/working-with-sql
+                - name: Controller methods and views
+                  href: xref:tutorials/first-mvc-app-mac/controller-methods-views
+                - name: Add search
+                  href: xref:tutorials/first-mvc-app-mac/search
+                - name: Add a new field
+                  href: xref:tutorials/first-mvc-app-mac/new-field
+                - name: Add validation
+                  href: xref:tutorials/first-mvc-app-mac/validation
+                - name: Examine the Details and Delete methods
+                  href: xref:tutorials/first-mvc-app/details
+        - name: Views
+          href: xref:mvc/views/overview
+        - name: Partial views
+          href: xref:mvc/views/partial
+        - name: Controllers
+          href: xref:mvc/controllers/actions
+        - name: Routing
+          href: xref:mvc/controllers/routing
+        - name: File uploads
+          href: xref:mvc/models/file-uploads
+        - name: Dependency injection - controllers
+          href: xref:mvc/controllers/dependency-injection
+        - name: Dependency injection - views
+          href: xref:mvc/views/dependency-injection
+        - name: Unit testing
+          href: xref:mvc/controllers/testing
+    - name: Session and app state
+      href: xref:fundamentals/app-state
+    - name: Tag Helpers
+      items: 
+        - name: Overview
+          href: xref:mvc/views/tag-helpers/intro
+        - name: Create Tag Helpers
+          href: xref:mvc/views/tag-helpers/authoring
+        - name: Use Tag Helpers in forms
+          href: xref:mvc/views/working-with-forms
+        - name: Tag Helper Components
+          href: xref:mvc/views/tag-helpers/th-components
+        - name: Built-in Tag Helpers
+          items: 
+            - name: Anchor
+              href: xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper
+            - name: Cache
+              href: xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper
+            - name: Distributed Cache
+              href: xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
+            - name: Environment
+              href: xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper
+            - name: Form
+              href: mvc/views/working-with-forms.md#the-form-tag-helper
+            - name: Image
+              href: xref:mvc/views/tag-helpers/builtin-th/image-tag-helper
+            - name: Input
+              href: mvc/views/working-with-forms.md#the-input-tag-helper
+            - name: Label
+              href: mvc/views/working-with-forms.md#the-label-tag-helper
+            - name: Partial
+              href: xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper
+            - name: Select
+              href: mvc/views/working-with-forms.md#the-select-tag-helper
+            - name: Textarea
+              href: mvc/views/working-with-forms.md#the-textarea-tag-helper
+            - name: Validation Message
+              href: mvc/views/working-with-forms.md#the-validation-message-tag-helper
+            - name: Validation Summary
+              href: mvc/views/working-with-forms.md#the-validation-summary-tag-helper
+    - name: Layout
+      href: xref:mvc/views/layout
+    - name: Static files
+      href: xref:fundamentals/static-files
+    - name: Model binding
+      href: xref:mvc/models/model-binding
+    - name: Model validation
+      href: xref:mvc/models/validation
+    - name: Razor syntax
+      href: xref:mvc/views/razor
+    - name: Advanced
+      items: 
+        - name: View components
+          href: xref:mvc/views/view-components
+        - name: View compilation
+          href: xref:mvc/views/view-compilation
+        - name: App model
+          href: xref:mvc/controllers/application-model
+        - name: Filters
+          href: xref:mvc/controllers/filters
+        - name: Areas
+          href: xref:mvc/controllers/areas
+        - name: App parts
+          href: xref:mvc/extensibility/app-parts
+        - name: Custom model binding
+          href: xref:mvc/advanced/custom-model-binding
+        - name: Compatibility version
+          href: xref:mvc/compatibility-version
+- name: Web APIs
+  items: 
+    - name: Overview
+      href: xref:web-api/index
+    - name: Tutorials
+      items: 
+        - name: Web API with Visual Studio
+          href: xref:tutorials/first-web-api
+        - name: Web API with Visual Studio Code
+          href: xref:tutorials/web-api-vsc
+        - name: Web API with Visual Studio for Mac
+          href: xref:tutorials/first-web-api-mac
+        - name: Web API for native mobile apps
+          href: xref:mobile/native-mobile-backend
+    - name: Swagger / OpenAPI
+      items: 
+        - name: Overview
+          href: xref:tutorials/get-started-with-swashbuckle
+        - name: Swagger help pages
+          href: xref:tutorials/web-api-help-pages-using-swagger
+        - name: Get started with NSwag
+          href: xref:tutorials/get-started-with-nswag
+    - name: Action return types
+      href: xref:web-api/action-return-types
+    - name: Format response data
+      href: xref:web-api/advanced/formatting
+    - name: Custom formatters
+      href: xref:web-api/advanced/custom-formatters
+- name: Real-time apps
+  items: 
+    - name: Overview
+      href: xref:signalr/introduction
+    - name: Supported platforms
+      href: xref:signalr/supported-platforms
+    - name: Tutorials
+      items: 
+        - name: SignalR with JavaScript
+          href: xref:tutorials/signalr
+        - name: SignalR with TypeScript
+          href: xref:tutorials/signalr-typescript-webpack
+    - name: Server concepts
+      items: 
+        - name: Hubs
+          href: xref:signalr/hubs
+        - name: HubContext
+          href: xref:signalr/hubcontext
+        - name: Users and groups
+          href: xref:signalr/groups
+        - name: Publish to Azure
+          href: xref:signalr/publish-to-azure-web-app
+    - name: Clients
+      items: 
+        - name: .NET client
+          href: xref:signalr/dotnet-client
+        - name: .NET API reference
+          href: /dotnet/api/microsoft.aspnetcore.signalr.client
+        - name: Java client
+          href: xref:signalr/java-client
+        - name: Java API reference
+          href: /java/api/com.microsoft.signalr?view=aspnet-signalr-java
+        - name: JavaScript client
+          href: xref:signalr/javascript-client
+        - name: JavaScript API reference
+          href: /javascript/api/?view=signalr-js-latest
+        - name: WebPack and TypeScript
+          href: xref:tutorials/signalr-typescript-webpack
+    - name: Configuration
+      href: xref:signalr/configuration
+    - name: Authentication and authorization
+      href: xref:signalr/authn-and-authz
+    - name: Security considerations
+      href: xref:signalr/security
+    - name: MessagePack Hub Protocol
+      href: xref:signalr/messagepackhubprotocol
+    - name: Streaming
+      href: xref:signalr/streaming
+    - name: Compare SignalR and SignalR Core
+      href: xref:signalr/version-differences
+    - name: WebSockets without SignalR
+      href: xref:fundamentals/websockets
+- name: Test, debug, and troubleshoot
+  items: 
+    - name: Unit testing
+      href: /dotnet/articles/core/testing/unit-testing-with-dotnet-test
+    - name: Razor Pages unit tests
+      href: xref:test/razor-pages-tests
+    - name: Test controllers
+      href: xref:mvc/controllers/testing
+    - name: Remote debugging
+      href: /visualstudio/debugger/remote-debugging-azure
+    - name: Snapshot debugging
+      href: /azure/application-insights/app-insights-snapshot-debugger
+    - name: Snapshot debugging in Visual Studio
+      href: /visualstudio/debugger/debug-live-azure-applications
+    - name: Integration tests
+      href: xref:test/integration-tests
+    - name: Troubleshoot
+      href: xref:test/troubleshoot
+- name: Data access
+  items: 
+    - name: Tutorials
+      items: 
+        - name: EF Core with Razor Pages
+          items: 
+            - name: Overview
+              href: xref:data/ef-rp/index
+            - name: Get started
+              href: xref:data/ef-rp/intro
+            - name: Create, Read, Update, and Delete
+              href: xref:data/ef-rp/crud
+            - name: Sort, filter, page, and group
+              href: xref:data/ef-rp/sort-filter-page
+            - name: Migrations
+              href: xref:data/ef-rp/migrations
+            - name: Create a complex data model
+              href: xref:data/ef-rp/complex-data-model
+            - name: Read related data
+              href: xref:data/ef-rp/read-related-data
+            - name: Update related data
+              href: xref:data/ef-rp/update-related-data
+            - name: Handle concurrency conflicts
+              href: xref:data/ef-rp/concurrency
+        - name: EF Core with MVC, new DB
+          href: /ef/core/get-started/aspnetcore/new-db
+        - name: EF Core with MVC, existing DB
+          href: /ef/core/get-started/aspnetcore/existing-db
+        - name: EF Core with MVC, long tutorial
+          items: 
+            - name: Overview
+              href: xref:data/ef-mvc/index
+            - name: Get started
+              href: xref:data/ef-mvc/intro
+            - name: Create, Read, Update, and Delete
+              href: xref:data/ef-mvc/crud
+            - name: Sort, filter, page, and group
+              href: xref:data/ef-mvc/sort-filter-page
+            - name: Migrations
+              href: xref:data/ef-mvc/migrations
+            - name: Create a complex data model
+              href: xref:data/ef-mvc/complex-data-model
+            - name: Read related data
+              href: xref:data/ef-mvc/read-related-data
+            - name: Update related data
+              href: xref:data/ef-mvc/update-related-data
+            - name: Handle concurrency conflicts
+              href: xref:data/ef-mvc/concurrency
+            - name: Inheritance
+              href: xref:data/ef-mvc/inheritance
+            - name: Advanced topics
+              href: xref:data/ef-mvc/advanced
+    - name: EF 6 with ASP.NET Core
+      href: xref:data/entity-framework-6
+    - name: Azure Storage with Visual Studio
+      items: 
+        - name: Connected Services
+          href: /azure/vs-azure-tools-connected-services-storage
+        - name: Blob storage
+          href: /azure/vs-storage-aspnet5-getting-started-blobs/
+        - name: Queue storage
+          href: /azure/vs-storage-aspnet5-getting-started-queues/
+        - name: Table storage
+          href: /azure/vs-storage-aspnet5-getting-started-tables/
+- name: Client-side development
+  items: 
+    - name: Overview
+      href: xref:client-side/index
+    - name: Gulp
+      href: xref:client-side/using-gulp
+    - name: Grunt
+      href: xref:client-side/using-grunt
+    - name: LibMan
+      items: 
+        - name: Overview
+          href: xref:client-side/libman/index
+        - name: CLI
+          href: xref:client-side/libman/libman-cli
+        - name: Visual Studio
+          href: xref:client-side/libman/libman-vs
+    - name: Bower
+      href: xref:client-side/bower
+    - name: LESS, Sass, and Font Awesome
+      href: xref:client-side/less-sass-fa
+    - name: Bundle and minify
+      href: xref:client-side/bundling-and-minification
+    - name: Browser Link
+      href: xref:client-side/using-browserlink
+    - name: Single Page Apps
+      items: 
+        - name: Overview
+          href: xref:spa/index
+        - name: Angular
+          href: xref:spa/angular
+        - name: React
+          href: xref:spa/react
+        - name: React with Redux
+          href: xref:spa/react-with-redux
+        - name: JavaScriptServices
+          href: xref:client-side/spa-services
+- name: Hosting and deployment
+  items: 
+    - name: Overview
+      href: xref:host-and-deploy/index
+    - name: Host on Azure App Service
+      items: 
+        - name: Overview
+          href: xref:host-and-deploy/azure-apps/index
+        - name: Publish with Visual Studio
+          href: xref:tutorials/publish-to-azure-webapp-using-vs
+        - name: Publish with CLI tools
+          href: /azure/app-service/app-service-web-get-started-dotnet
+        - name: Publish with Visual Studio and Git
+          href: xref:host-and-deploy/azure-apps/azure-continuous-deployment
+        - name: Continuous deployment with Azure Pipelines
+          href: /azure/devops/pipelines/get-started-yaml
+        - name: Troubleshoot startup errors
+          href: xref:host-and-deploy/azure-apps/troubleshoot
+    - name: DevOps
+      items: 
+        - name: Overview
+          href: xref:azure/devops/index
+        - name: Tools and downloads
+          href: xref:azure/devops/tools-and-downloads
+        - name: Deploy to App Service
+          href: xref:azure/devops/deploy-to-app-service
+        - name: Continuous integration and deployment
+          href: xref:azure/devops/cicd
+        - name: Monitor and troubleshoot
+          href: xref:azure/devops/monitor
+        - name: Next steps
+          href: xref:azure/devops/next-steps
+    - name: Host on Windows with IIS
+      items: 
+        - name: Overview
+          href: xref:host-and-deploy/iis/index
+        - name: Troubleshoot on IIS
+          href: xref:host-and-deploy/iis/troubleshoot
+        - name: ASP.NET Core Module reference
+          href: xref:host-and-deploy/aspnet-core-module
+        - name: IIS support in Visual Studio
+          href: xref:host-and-deploy/iis/development-time-iis-support
+        - name: IIS Modules
+          href: xref:host-and-deploy/iis/modules
+    - name: Host in a Windows service
+      href: xref:host-and-deploy/windows-service
+    - name: Host on Linux with Nginx
+      href: xref:host-and-deploy/linux-nginx
+    - name: Host on Linux with Apache
+      href: xref:host-and-deploy/linux-apache
+    - name: Host in Docker
+      items: 
+        - name: Overview
+          href: xref:host-and-deploy/docker/index
+        - name: Build Docker images
+          href: /dotnet/articles/core/docker/building-net-docker-images
+        - name: Visual Studio Tools
+          href: xref:host-and-deploy/docker/visual-studio-tools-for-docker
+        - name: Publish to a Docker image
+          href: /azure/vs-azure-tools-docker-hosting-web-apps-in-docker
+    - name: Proxy and load balancer configuration
+      href: xref:host-and-deploy/proxy-load-balancer
+    - name: Host in a web farm
+      href: xref:host-and-deploy/web-farm
+    - name: Visual Studio publish profiles
+      href: xref:host-and-deploy/visual-studio-publish-profiles
+    - name: Directory structure
+      href: xref:host-and-deploy/directory-structure
+    - name: Errors reference for Azure App Service and IIS
+      href: xref:host-and-deploy/azure-iis-errors-reference
+- name: Security and Identity
+  items: 
+    - name: Overview
+      href: xref:security/index
+    - name: Authentication
+      items: 
+        - name: Introduction to Identity
+          href: xref:security/authentication/identity
+        - name: Scaffold Identity
+          href: xref:security/authentication/scaffold-identity
+        - name: Add custom user data to Identity
+          href: xref:security/authentication/add-user-data
+        - name: Customize Identity
+          href: xref:security/authentication/customize_identity_model
+        - name: Community OSS authentication options
+          href: xref:security/authentication/community
+        - name: Configure Identity
+          href: xref:security/authentication/identity-configuration
+        - name: Configure Windows Authentication
+          href: xref:security/authentication/windowsauth
+        - name: Custom storage providers for Identity
+          href: xref:security/authentication/identity-custom-storage-providers
+        - name: External providers
+          items: 
+            - name: Overview
+              href: xref:security/authentication/social/index
+            - name: Facebook authentication
+              href: xref:security/authentication/facebook-logins
+            - name: Twitter authentication
+              href: xref:security/authentication/twitter-logins
+            - name: Google authentication
+              href: xref:security/authentication/google-logins
+            - name: Microsoft authentication
+              href: xref:security/authentication/microsoft-logins
+            - name: Other authentication providers
+              href: xref:security/authentication/otherlogins
+            - name: Additional claims
+              href: xref:security/authentication/social/additional-claims
+        - name: WS-Federation authentication
+          href: xref:security/authentication/ws-federation
+        - name: Account confirmation and password recovery
+          href: xref:security/authentication/accconfirm
+        - name: Enable QR code generation in Identity
+          href: xref:security/authentication/identity-enable-qrcodes
+        - name: Two-factor authentication with SMS
+          href: xref:security/authentication/2fa
+        - name: Use Cookie Authentication without Identity
+          href: xref:security/authentication/cookie
+        - name: Azure Active Directory
+          items: 
+            - name: Overview
+              href: xref:security/authentication/azure-active-directory/index
+            - name: Integrate Azure AD into a web app
+              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/
+            - name: Integrate Azure AD B2C into a web app
+              href: xref:security/authentication/azure-ad-b2c
+            - name: Integrate Azure AD B2C into a web API
+              href: xref:security/authentication/azure-ad-b2c-webapi
+            - name: Call a web API from WPF
+              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/
+            - name: Call a web API in a web app using Azure AD
+              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/
+        - name: Secure ASP.NET Core apps with IdentityServer4
+          href: https://identityserver4.readthedocs.io/
+        - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
+          href: /azure/app-service/app-service-authentication-overview
+        - name: Individual user accounts
+          href: xref:security/authentication/individual
+    - name: Authorization
+      items: 
+        - name: Overview
+          href: xref:security/authorization/introduction
+        - name: Create a web app with authorization
+          href: xref:security/authorization/secure-data
+        - name: Razor Pages authorization conventions
+          href: xref:security/authorization/razor-pages-authorization
+        - name: Simple authorization
+          href: xref:security/authorization/simple
+        - name: Role-based authorization
+          href: xref:security/authorization/roles
+        - name: Claims-based authorization
+          href: xref:security/authorization/claims
+        - name: Policy-based authorization
+          href: xref:security/authorization/policies
+        - name: Authorization policy providers
+          href: xref:security/authorization/iauthorizationpolicyprovider
+        - name: Dependency injection in requirement handlers
+          href: xref:security/authorization/dependencyinjection
+        - name: Resource-based authorization
+          href: xref:security/authorization/resourcebased
+        - name: View-based authorization
+          href: xref:security/authorization/views
+        - name: Limit identity by scheme
+          href: xref:security/authorization/limitingidentitybyscheme
+    - name: Data protection
+      items: 
+        - name: Overview
+          href: xref:security/data-protection/introduction
+        - name: Data Protection APIs
+          href: xref:security/data-protection/using-data-protection
+        - name: Consumer APIs
+          items: 
+            - name: Overview
+              href: xref:security/data-protection/consumer-apis/overview
+            - name: Purpose strings
+              href: xref:security/data-protection/consumer-apis/purpose-strings
+            - name: Purpose hierarchy and multi-tenancy
+              href: xref:security/data-protection/consumer-apis/purpose-strings-multitenancy
+            - name: Hash passwords
+              href: xref:security/data-protection/consumer-apis/password-hashing
+            - name: Limit the lifetime of protected payloads
+              href: xref:security/data-protection/consumer-apis/limited-lifetime-payloads
+            - name: Unprotect payloads whose keys have been revoked
+              href: xref:security/data-protection/consumer-apis/dangerous-unprotect
+        - name: Configuration
+          items: 
+            - name: Overview
+              href: xref:security/data-protection/configuration/index
+            - name: Configure data protection
+              href: xref:security/data-protection/configuration/overview
+            - name: Default settings
+              href: xref:security/data-protection/configuration/default-settings
+            - name: Machine-wide policy
+              href: xref:security/data-protection/configuration/machine-wide-policy
+            - name: Non-DI aware scenarios
+              href: xref:security/data-protection/configuration/non-di-scenarios
+        - name: Extensibility APIs
+          items: 
+            - name: Overview
+              href: xref:security/data-protection/extensibility/index
+            - name: Core cryptography extensibility
+              href: xref:security/data-protection/extensibility/core-crypto
+            - name: Key management extensibility
+              href: xref:security/data-protection/extensibility/key-management
+            - name: Miscellaneous APIs
+              href: xref:security/data-protection/extensibility/misc-apis
+        - name: Implementation
+          items: 
+            - name: Overview
+              href: xref:security/data-protection/implementation/index
+            - name: Authenticated encryption details
+              href: xref:security/data-protection/implementation/authenticated-encryption-details
+            - name: Subkey derivation and authenticated encryption
+              href: xref:security/data-protection/implementation/subkeyderivation
+            - name: Context headers
+              href: xref:security/data-protection/implementation/context-headers
+            - name: Key management
+              href: xref:security/data-protection/implementation/key-management
+            - name: Key storage providers
+              href: xref:security/data-protection/implementation/key-storage-providers
+            - name: Key encryption at rest
+              href: xref:security/data-protection/implementation/key-encryption-at-rest
+            - name: Key immutability and settings
+              href: xref:security/data-protection/implementation/key-immutability
+            - name: Key storage format
+              href: xref:security/data-protection/implementation/key-storage-format
+            - name: Ephemeral data protection providers
+              href: xref:security/data-protection/implementation/key-storage-ephemeral
+        - name: Compatibility
+          items: 
+            - name: Overview
+              href: xref:security/data-protection/compatibility/index
+            - name: Replace <machineKey> in ASP.NET
+              href: xref:security/data-protection/compatibility/replacing-machinekey
+    - name: Protect secrets in development
+      href: xref:security/app-secrets
+    - name: Enforce HTTPS
+      href: xref:security/enforcing-ssl
+    - name: EU General Data Protection Regulation (GDPR) support
+      href: xref:security/gdpr
+    - name: Azure Key Vault configuration provider
+      href: xref:security/key-vault-configuration
+    - name: Anti-request forgery
+      href: xref:security/anti-request-forgery
+    - name: Prevent open redirect attacks
+      href: xref:security/preventing-open-redirects
+    - name: Prevent Cross-Site Scripting
+      href: xref:security/cross-site-scripting
+    - name: Enable Cross-Origin Requests (CORS)
+      href: xref:security/cors
+    - name: Share cookies among apps
+      href: xref:security/cookie-sharing
+    - name: IP safelist
+      href: xref:security/ip-safelist
+- name: Other topics
+  items: 
+    - name: Globalization and localization
+      href: xref:fundamentals/localization
+    - name: Portable Object localization with Orchard Core
+      href: xref:fundamentals/portable-object-localization
+    - name: URL rewriting
+      href: xref:fundamentals/url-rewriting
+    - name: File providers
+      href: xref:fundamentals/file-providers
+    - name: Request Features
+      href: xref:fundamentals/request-features
+    - name: Access HttpContext
+      href: xref:fundamentals/httpcontext
+    - name: Change tokens
+      href: xref:fundamentals/change-tokens
+    - name: Open Web Interface for .NET (OWIN)
+      href: xref:fundamentals/owin
+    - name: Background tasks with hosted services
+      href: xref:fundamentals/host/hosted-services
+    - name: Enhance an app from an external assembly
+      href: xref:fundamentals/configuration/platform-specific-configuration
+    - name: Microsoft.AspNetCore.App metapackage
+      href: xref:fundamentals/metapackage-app
+    - name: Microsoft.AspNetCore.All metapackage
+      href: xref:fundamentals/metapackage
+    - name: Logging with LoggerMessage
+      href: xref:fundamentals/logging/loggermessage
+    - name: Use a file watcher
+      href: xref:tutorials/dotnet-watch
+    - name: Cache responses
+      items: 
+        - name: Overview
+          href: xref:performance/caching/index
+        - name: Cache in-memory
+          href: xref:performance/caching/memory
+        - name: Distributed caching
+          href: xref:performance/caching/distributed
+        - name: Response caching
+          href: xref:performance/caching/response
+        - name: Response caching middleware
+          href: xref:performance/caching/middleware
+    - name: Response compression
+      href: xref:performance/response-compression
+- name: Migration
+  items: 
+    - name: 2.0 to 2.1
+      href: xref:migration/20_21
+    - name: 1.x to 2.0
+      items: 
+        - name: Overview
+          href: xref:migration/1x-to-2x/index
+        - name: Authentication and Identity
+          href: xref:migration/1x-to-2x/identity-2x
+    - name: ASP.NET to ASP.NET Core
+      items: 
+        - name: Overview
+          href: xref:migration/proper-to-2x/index
+        - name: MVC
+          href: xref:migration/mvc
+        - name: Web API
+          href: xref:migration/webapi
+        - name: Configuration
+          href: xref:migration/configuration
+        - name: Authentication and Identity
+          href: xref:migration/identity
+        - name: ClaimsPrincipal.Current
+          href: xref:migration/claimsprincipal-current
+        - name: Membership to Identity
+          href: xref:migration/proper-to-2x/membership-to-core-identity
+        - name: HTTP modules to middleware
+          href: xref:migration/http-modules
+- name: What's new
+  items: 
+    - name: What's new in 2.1
+      href: xref:aspnetcore-2.1
+    - name: What's new in 2.0
+      href: xref:aspnetcore-2.0
+    - name: What's new in 1.1
+      href: xref:aspnetcore-1.1
+- name: API reference
+  href: /dotnet/api/?view=aspnetcore-2.0
+- name: Contribute
+  href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
