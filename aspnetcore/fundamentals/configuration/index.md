@@ -540,7 +540,7 @@ When working with hierarchical keys in environment variables, a colon separator 
 * [User secrets (Secret Manager)](xref:security/app-secrets) (in the Development environment).
 * Command-line arguments.
 
-The Environment Variable Configuration Provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
+The Environment Variables Configuration Provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
 
 ::: moniker-end
 
