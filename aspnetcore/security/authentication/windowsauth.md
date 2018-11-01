@@ -97,8 +97,6 @@ Although Kestrel doesn't support Windows Authentication, you can use [HTTP.sys](
 > [!NOTE]
 > HTTP.sys isn't supported on Nano Server version 1709 or later. To use Windows Authentication and HTTP.sys with Nano Server, use a [Server Core (microsoft/windowsservercore) container](https://hub.docker.com/r/microsoft/windowsservercore/). For more information on Server Core, see [What is the Server Core installation option in Windows Server?](/windows-server/administration/server-core/what-is-server-core).
 
-## 
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
