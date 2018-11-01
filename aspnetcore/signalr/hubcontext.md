@@ -5,7 +5,7 @@ description: Learn how to use the ASP.NET Core SignalR HubContext service for se
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/13/2018
+ms.date: 11/01/2018
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -51,7 +51,7 @@ app.Use(next => async (context) =>
 
 ### Inject a strongly-typed HubContext
 
-To inject a strongly-typed HubContext, ensure your Hub inherits from `Hub<T>` and inject it using the `IHubContext<THub, T>` interface rather than `IHubContext<THub>`.
+To inject a strongly-typed HubContext, ensure your Hub inherits from `Hub<T>`. Inject it using the `IHubContext<THub, T>` interface rather than `IHubContext<THub>`.
 
 ```csharp
 public class ChatController : Controller
