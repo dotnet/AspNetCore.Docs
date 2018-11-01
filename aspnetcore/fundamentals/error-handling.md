@@ -113,7 +113,7 @@ The middleware supports several extension methods. One method takes a lambda exp
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePages)]
 
-Another method takes a content type and format string:
+`UseStatusCodePages` takes a content type and format string:
 
 ```csharp
 app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
