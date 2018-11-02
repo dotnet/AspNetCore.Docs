@@ -146,7 +146,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
-| [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
+| [Environment variables configuration provider](#environment-variables-configuration-provider) | Environment variables |
 | [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
 | [Key-per-file Configuration Provider](#key-per-file-configuration-provider) | Directory files |
 | [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
@@ -161,7 +161,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
-| [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
+| [Environment variables configuration provider](#environment-variables-configuration-provider) | Environment variables |
 | [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
 | [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
 | [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
@@ -174,7 +174,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | -------- | ----------------------------------- |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
-| [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
+| [Environment variables configuration provider](#environment-variables-configuration-provider) | Environment variables |
 | [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
 | [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
 | [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
@@ -520,7 +520,7 @@ After running the preceding command, configuration contains the values shown in 
 | `CommandLineKey1` | `value1` |
 | `CommandLineKey2` | `value2` |
 
-## Environment Variables Configuration Provider
+## Environment variables configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs at runtime.
 
@@ -528,7 +528,7 @@ To activate environment variables configuration, call the <xref:Microsoft.Extens
 
 When working with hierarchical keys in environment variables, a colon separator (`:`) may not work on all platforms. A double underscore (`__`) is supported by all platforms and is replaced by a colon.
 
-[Azure App Service](https://azure.microsoft.com/services/app-service/) permits you to set environment variables in the Azure Portal that can override app configuration using the Environment Variables Configuration Provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
+[Azure App Service](https://azure.microsoft.com/services/app-service/) permits you to set environment variables in the Azure Portal that can override app configuration using the environment variables configuration provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -540,7 +540,7 @@ When working with hierarchical keys in environment variables, a colon separator 
 * [User secrets (Secret Manager)](xref:security/app-secrets) (in the Development environment).
 * Command-line arguments.
 
-The Environment Variables Configuration Provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
+The environment variables configuration provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
 
 ::: moniker-end
 
