@@ -107,19 +107,21 @@ The app's Index page reads and renders the configuration values for the two keys
 
 *This approach is only available for .NET Core apps, not .NET Framework.*
 
-A dynamic hosting startup enhancement that doesn't require a compile-time reference for activation can be provided in a console app without an entry point that contains a `HostingStartup` attribute. Publishing the console app produces an *implementation library* that can be consumed from the runtime store.
+A dynamic hosting startup enhancement that doesn't require a compile-time reference for activation can be provided in a console app without an entry point that contains a `HostingStartup` attribute. Publishing the console app produces a hosting startup assembly that can be consumed from the runtime store.
 
 A console app without an entry point is used in this process because:
 
-* A dependencies file is required to consume the hosting startup. A dependencies file is a runnable app asset that's produced by publishing an app, not a library.
+* A dependencies file is required to consume the hosting startup in the hosting startup assembly. A dependencies file is a runnable app asset that's produced by publishing an app, not a library.
 * A library can't be added directly to the [runtime package store](/dotnet/core/deploying/runtime-store), which requires a runnable project that targets the shared runtime.
 
 In the creation of a dynamic hosting startup:
 
-* An *implementation library* is created from the class that contains the `IHostingStartup`. The implementation library is treated as a normal package.
-* The implementation library is referenced in the console app's dependencies file. 
+* A hosting startup assembly is created from the console app without an entry point that:
+  * Includes a class that contains the `IHostingStartup` implementation.
+  * Includes a [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute to identify the class as an implementation of `IHostingStartup`.
 * The console app is published to obtain the hosting startup's dependencies. A consequence of publishing the console app is that unused dependencies are trimmed from the dependencies file.
-* The app and its dependencies file is placed into the runtime package store. To discover the hosting startup assembly and its dependencies file, they're referenced in a pair of environment variables.
+* The hosting startup assembly is referenced in the pulished app's dependencies file. 
+* The hosting startup assembly and its dependencies file is placed into the runtime package store. To discover the hosting startup assembly and its dependencies file, they're referenced in a pair of environment variables.
 
 The console app references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
 
