@@ -42,7 +42,7 @@ At the end, you have a an app that can manage  "to-do" items.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In the [Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), run the following command:
+In the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), run the following command:
 
    ```console
    dotnet new webapi -o TodoApi
@@ -78,9 +78,23 @@ Internet Explorer, prompts you to save a *values.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+Press CTRL+F5 to launch the app.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac  launches a browser and navigates to `http://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Change the URL to `http://localhost:<port>/api/values`. The `ValuesController` data is displayed:
+
+```json
+["value1","value2"]
+```
+
 ---
+
+Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`. The following JSON is returned:
+
+```json
+[{"key":1,"name":"Item1","isComplete":false}]
+```
 
 ### Add a model class
 
@@ -188,17 +202,7 @@ In Solution Explorer, in the *Controllers* folder, add the class `TodoController
 
 Replace the `TodoController` class with the following code:
 
-::: moniker range="= aspnetcore-2.1"
-
-[!code-csharp[](first-web-api/samples/2.1/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.2"
-
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
-
-::: moniker-end
 
 The preceding code:
 
@@ -220,7 +224,7 @@ To get to-do items, add the following methods to the `TodoController` class:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetAll)]
 
-These methods implement the two GET methods:
+These methods implement the two GET endpoints:
 
 * `GET /api/todo`
 * `GET /api/todo/{id}`
