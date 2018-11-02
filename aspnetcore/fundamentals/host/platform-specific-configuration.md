@@ -118,10 +118,10 @@ In the creation of a dynamic hosting startup:
 
 * A hosting startup assembly is created from the console app without an entry point that:
   * Includes a class that contains the `IHostingStartup` implementation.
-  * Includes a [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute to identify the class as an implementation of `IHostingStartup`.
+  * Includes a [HostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.hostingstartupattribute) attribute to identify the `IHostingStartup` implementation class.
 * The console app is published to obtain the hosting startup's dependencies. A consequence of publishing the console app is that unused dependencies are trimmed from the dependencies file.
-* The hosting startup assembly is referenced in the pulished app's dependencies file. 
-* The hosting startup assembly and its dependencies file is placed into the runtime package store. To discover the hosting startup assembly and its dependencies file, they're referenced in a pair of environment variables.
+* The dependencies file is modified to set the runtime location of the hosting startup assembly.
+* The hosting startup assembly and its dependencies file is placed into the runtime package store. To discover the hosting startup assembly and its dependencies file, they're listed in a pair of environment variables.
 
 The console app references the [Microsoft.AspNetCore.Hosting.Abstractions](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.Abstractions/) package:
 
