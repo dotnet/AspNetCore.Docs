@@ -66,12 +66,13 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-* Open a folder that you can use for a new project.
+* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) to the folder in which the new project folder will be created.
 
-* In the [Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), run the following command:
+* Run the following commands:
 
    ```console
    dotnet new webapp -o SignalRChat
+   code -r SignalRChat
    ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -110,13 +111,11 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-* In the **Integrated Terminal**, run the following command to install LibMan.
+* In the integrated terminal, run the following command to install LibMan.
 
   ```console
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
-
-* Navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
 
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.
 
@@ -222,8 +221,12 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Press **CTRL+F5** to run the app without debugging.
+* In the integrated terminal, run the following command:
 
+  ```console
+  dotnet run -p SignalRChat
+  ```
+  
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the menu, select **Run > Start Without Debugging**.
