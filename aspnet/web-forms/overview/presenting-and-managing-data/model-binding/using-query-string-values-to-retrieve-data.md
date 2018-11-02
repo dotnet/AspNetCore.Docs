@@ -1,7 +1,7 @@
 ---
 uid: web-forms/overview/presenting-and-managing-data/model-binding/using-query-string-values-to-retrieve-data
 title: "Using query string values to filter data with model binding and web forms | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This tutorial series demonstrates basic aspects of using model binding with an ASP.NET Web Forms project. Model binding makes data interaction more straight-..."
 ms.author: riande
 ms.date: 02/27/2014
