@@ -146,7 +146,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
-| [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
+| [Environment Variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
 | [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
 | [Key-per-file Configuration Provider](#key-per-file-configuration-provider) | Directory files |
 | [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
@@ -161,7 +161,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
-| [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
+| [Environment Variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
 | [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
 | [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
 | [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
@@ -174,7 +174,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | -------- | ----------------------------------- |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
-| [Environment variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
+| [Environment Variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
 | [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
 | [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
 | [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
@@ -386,9 +386,9 @@ Within the same command, don't mix command-line argument key-value pairs that us
 Example commands:
 
 ```console
-dotnet run CommandLineKey1=value --CommandLineKey2=value /CommandLineKey2=value
-dotnet run --CommandLineKey1 value /CommandLineKey2 value
-dotnet run CommandLineKey1= CommandLineKey2=value
+dotnet run CommandLineKey1=value1 --CommandLineKey2=value2 /CommandLineKey3=value3
+dotnet run --CommandLineKey1 value1 /CommandLineKey2 value2
+dotnet run CommandLineKey1= CommandLineKey2=value2
 ```
 
 ### Switch mappings
@@ -540,7 +540,7 @@ When working with hierarchical keys in environment variables, a colon separator 
 * [User secrets (Secret Manager)](xref:security/app-secrets) (in the Development environment).
 * Command-line arguments.
 
-The Environment Variable Configuration Provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
+The Environment Variables Configuration Provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
 
 ::: moniker-end
 
