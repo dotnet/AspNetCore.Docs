@@ -4,14 +4,14 @@ author: guardrex
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2018
+ms.date: 11/05/2018
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
 
 By [Luke Latham](https://github.com/guardrex)
 
-[Install the .NET Core Hosting Bundle](#install-the-NET-core-hosting-bundle)
+[Install the .NET Core Hosting Bundle](#install-the-net-core-hosting-bundle)
 
 ## Supported operating systems
 
