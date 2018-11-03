@@ -351,7 +351,7 @@ Consider a situation in which the user's name is updated &mdash; a decision that
 
 ## Persistent cookies
 
-You may want the cookie to persist across browser sessions. This persistence should only be enabled with explicit user consent with a "Remember Me" checkbox on login or a similar mechanism. 
+You may want the cookie to persist across browser sessions. This persistence should only be enabled with explicit user consent with a "Remember Me" check box on login or a similar mechanism. 
 
 The following code snippet creates an identity and corresponding cookie that survives through browser closures. Any sliding expiration settings previously configured are honored. If the cookie expires while the browser is closed, the browser clears the cookie once it's restarted.
 
