@@ -1145,6 +1145,7 @@ public class Program
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory());
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "path/to/files");
                 config.AddKeyPerFile(directoryPath: path, optional: true);
             })
             .UseStartup<Startup>();
