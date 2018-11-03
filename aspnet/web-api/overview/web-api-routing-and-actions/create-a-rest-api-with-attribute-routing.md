@@ -46,7 +46,7 @@ For most requests, however, the API will return a subset of this data (title, au
 
 Start by running Visual Studio. From the **File** menu, select **New** and then select **Project**.
 
-Expand the **Installed** > **Visual C#** category. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET MVC 4 Web Application**. Name the project &quot;BooksAPI&quot;.
+Expand the **Installed** > **Visual C#** category. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET Web Application (.NET Framework)**. Name the project &quot;BooksAPI&quot;.
 
 ![](create-a-rest-api-with-attribute-routing/_static/image1.png)
 
