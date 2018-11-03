@@ -9,7 +9,7 @@ function getCount(data) {
         }
         el.text(data + ' ' + name);
     } else {
-        el.html('No ' + name);
+        el.text('No ' + name);
     }
 }
 
@@ -23,16 +23,24 @@ function getData() {
         url: uri,
         cache: false,
         success: function (data) {
-            $('#todos').empty();
-            getCount(data.length);
-            $.each(data, function (key, item) {
-                const checked = item.isComplete ? 'checked' : '';
+            var tBody = $('#todos');
 
-                $('<tr><td><input disabled="true" type="checkbox" ' + checked + '></td>' +
-                    '<td>' + item.name + '</td>' +
-                    '<td><button onclick="editItem(' + item.id + ')">Edit</button></td>' +
-                    '<td><button onclick="deleteItem(' + item.id + ')">Delete</button></td>' +
-                    '</tr>').appendTo($('#todos'));
+            $(tBody).empty();
+
+            getCount(data.length);
+
+            $.each(data, function (key, item) {
+                var tr = $('<tr></tr>')
+                    .append($('<td></td>')
+                        .append($('<input/>', { type: 'checkbox', disabled: true, checked: item.isComplete })))
+                    .append($('<td></td>')
+                        .text(item.name))
+                    .append($('<td></td>')
+                        .append('<button>Edit</button>').on("click", function () { editItem(item.id); }))
+                    .append($('<td></td>')
+                        .append('<button>Delete</button>').on("click", function () { deleteItem(item.id); }));
+
+                tr.appendTo(tBody);
             });
 
             todos = data;
@@ -53,7 +61,7 @@ function addItem() {
         contentType: 'application/json',
         data: JSON.stringify(item),
         error: function (jqXHR, textStatus, errorThrown) {
-            alert('here');
+            alert('Something went wrong!');
         },
         success: function (result) {
             getData();
