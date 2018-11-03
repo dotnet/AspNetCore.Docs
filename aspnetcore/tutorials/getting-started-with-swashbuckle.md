@@ -120,7 +120,7 @@ The Swagger UI displays the version's information:
 
 XML comments can be enabled with the following approaches:
 
-# [Visual Studio](#tab/visual-studio)
+#### [Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -138,7 +138,7 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker-end
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+#### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -156,7 +156,23 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker-end
 
-# [Visual Studio Code](#tab/visual-studio-code)
+#### [Visual Studio Code](#tab/visual-studio-code)
+
+Manually add the highlighted lines to the *.csproj* file:
+
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
+
+::: moniker-end
+
+#### [.NET Core CLI](#tab/netcore-cli)
 
 Manually add the highlighted lines to the *.csproj* file:
 
