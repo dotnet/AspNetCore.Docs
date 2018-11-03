@@ -80,7 +80,7 @@ In Solution Explorer, right-click the Controllers folder. Select **Add**, then s
 
 ![](create-a-rest-api-with-attribute-routing/_static/image4.png)
 
-In the **Add Scaffold** dialog, select "Web API 2 Controller with read/write actions, using Entity Framework."
+In the **Add Scaffold** dialog, select **Web API 2 Controller with actions, using Entity Framework**.
 
 [![](create-a-rest-api-with-attribute-routing/_static/image6.png)](create-a-rest-api-with-attribute-routing/_static/image5.png)
 
