@@ -50,7 +50,7 @@ Expand the **Installed** > **Visual C#** category. Under **Visual C#**, select *
 
 ![](create-a-rest-api-with-attribute-routing/_static/image1.png)
 
-In the **New ASP.NET Web Application** dialog, select the **Empty** template. Under "Add folders and core references for", select the **Web API** checkbox. Click **Create Project**.
+In the **New ASP.NET Web Application** dialog, select the **Empty** template. Under "Add folders and core references for", select the **Web API** checkbox. Click **OK**.
 
 ![](create-a-rest-api-with-attribute-routing/_static/image2.png)
 
