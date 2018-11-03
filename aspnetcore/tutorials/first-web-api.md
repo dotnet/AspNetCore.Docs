@@ -9,7 +9,10 @@ uid: tutorials/first-web-api
 ---
 # Tutorial: Create a Web API with ASP.NET Core
 
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute?view=aspnetcore-2.1
+first-web-api/samples/2.2/TodoAp/Controllers/TodoController.cs
+first-web-api/samples/2.2/TodoAp/Controllers/TodoController.cs
+
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute?view=aspnetcore-2.0
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
@@ -164,7 +167,7 @@ Register the DB context with the service container using the built-in support fo
 
 ::: moniker range="= aspnetcore-2.1"
 
-[!code-csharp[](first-web-api/samples/2.1/TodoApi/Startup.cs?highlight=3,5,13-14)]
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=3,5,13-14)]
 
 ::: moniker-end
 
@@ -234,7 +237,7 @@ Test the app by calling the two endpoints from a browser. For example:
 * `https://localhost:5001/api/todo`
 * `https://localhost:5001/api/todo/1`
 
-The following HTTP response is produced with the preceding calls to the `GetAll` and `GetById` methods:
+The following HTTP response is produced with the preceding call to `GetAll`:
 
 ```json
 [
@@ -250,7 +253,7 @@ Later in the tutorial, instructions are provided to view the HTTP response with 
 
 ### Routing and URL paths
 
-The `[HttpGet]` attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The [`[HttpGet]`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute?view=aspnetcore-2.0) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller's `Route` attribute:
 
@@ -277,11 +280,102 @@ In contrast, the `GetById` method returns the [ActionResult\<T> type](xref:web-a
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
-### Launch the app
+## Create CRUD methods
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number. Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`.
+In the following sections, `Create`, `Update`, and `Delete` methods are added to the controller.
 
-[!INCLUDE[last part of web API](../includes/webApi/end.md)]
+### Create
+
+Add the following `Create` method:
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
+
+The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. MVC gets the value of the to-do item from the body of the HTTP request.
+
+The `CreatedAtRoute` method:
+
+* Returns a 201 response. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
+* Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetById`:
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+
+### Use Postman to send a Create request
+
+* Install [Postman](https://www.getpostman.com/apps)
+* Start the app.
+* Start Postman.
+* Disable **SSL certificate verification**
+  
+  * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
+  * > [!WARNING]
+    > Re-enable SSL certificate verification after testing the controller.
+
+![Postman console](first-web-api/_static/pmc.png)
+
+* Update the port number in the localhost URL.
+* Set the HTTP method to *POST*.
+* Click the **Body** tab.
+* Select the **raw** radio button.
+* Set the type to *JSON (application/json)*.
+* Enter a request body with a to-do item resembling the following JSON:
+
+```json
+{
+  "name":"walk dog",
+  "isComplete":true
+}
+```
+
+* Click the **Send** button.
+
+::: moniker range=">= aspnetcore-2.1"
+
+> [!TIP]
+> If no response displays after clicking **Send**, disable the **SSL certification verification** option. This is found under **File** > **Settings**. Click the **Send** button again after disabling the setting.
+
+::: moniker-end
+
+Click the **Headers** tab in the **Response** pane and copy the **Location** header value:
+
+![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
+
+The Location header URI can be used to access the new item.
+
+### Update
+
+Add the following `Update` method:
+
+::: moniker range="<= aspnetcore-2.0"
+
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+
+::: moniker-end
+
+`Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
+
+Use Postman to update the to-do item's name to "walk cat":
+
+![Postman console showing 204 (No Content) response](first-web-api/_static/pmcput.png)
+
+### Delete
+
+Add the following `Delete` method:
+
+[!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
+
+The `Delete` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
+
+Use Postman to delete the to-do item:
+
+![Postman console showing 204 (No Content) response](first-web-api/_static/pmd.png)
+
 
 [!INCLUDE[jQuery](../includes/webApi/add-jquery.md)]
 
