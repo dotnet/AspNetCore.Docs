@@ -70,8 +70,8 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 
 The following settings can be configured:
 
-* `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open.
-* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data.
+* `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
+* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4kb.
 
 ::: moniker-end
 
@@ -79,9 +79,9 @@ The following settings can be configured:
 
 The following settings can be configured:
 
-* `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open.
-* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data.
-* `AllowedOrigins`    - List of the Origin header values allowed for WebSocket requests to prevent Cross-Site WebSocket Hijacking. By default all Origins are allowed.
+* `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
+* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4kb.
+* `AllowedOrigins`    - List of the Origin header values allowed for WebSocket requests to prevent cross-site WebSocket hijacking. By default all Origins are allowed.
 
 ::: moniker-end
 
@@ -139,7 +139,7 @@ When accepting the WebSocket connection before beginning the loop, the middlewar
 
 ::: moniker range=">= aspnetcore-2.2"
 
-### WebSocket Origin Restriction
+### WebSocket origin restriction
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
@@ -157,10 +157,8 @@ app.UseWebSockets(new WebSocketOptions()
 });
 ```
 
-This helps ensure that browser users are using a trusted client and not a malicious one from a different site.
-
 > [!NOTE]
-> The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
+> The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. Do **not** use these headers as an authentication mechanism.
 
 ::: moniker-end
 
