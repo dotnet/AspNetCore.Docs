@@ -21,7 +21,7 @@ For apps running on .NET Core 2.2 or later, the module supports an in-process ho
 
 In-procsess hosting is opt-in for existing apps, but [dotnet new](/dotnet/core/tools/dotnet-new) templates default to the in-process hosting model for all IIS and IIS Express scenarios.
 
-To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` property to the app's project file (for example, MyApp.csproj) with a value of `inprocess` (out-of-process hosting is set with `outofprocess`):
+To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` property to the app's project file (for example, *MyApp.csproj*) with a value of `inprocess` (out-of-process hosting is set with `outofprocess`):
 
 ```xml
 <PropertyGroup>
@@ -280,7 +280,7 @@ To suppress this page and revert to the default IIS 5xx status code page, use th
 
 ::: moniker range="< aspnetcore-2.2"
 
-If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, a *502.5 - Process Failure* status code page appears. To suppress this page and revert to the default IIS 502 status code page, use the `disableStartUpErrorPage` attribute. For more information on configuring custom error messages, see [HTTP Errors &gt;httpErrors&gt;](/iis/configuration/system.webServer/httpErrors/).
+If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, a *502.5 - Process Failure* status code page appears. To suppress this page and revert to the default IIS 502 status code page, use the `disableStartUpErrorPage` attribute. For more information on configuring custom error messages, see [HTTP Errors &lt;httpErrors&gt;](/iis/configuration/system.webServer/httpErrors/).
 
 ![502.5 Process Failure Status Code Page](aspnet-core-module/_static/ANCM-502_5.png)
 
