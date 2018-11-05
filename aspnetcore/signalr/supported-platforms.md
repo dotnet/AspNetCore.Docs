@@ -29,7 +29,7 @@ The [JavaScript client](https://www.npmjs.com/package/@aspnet/signalr) runs on N
  
 ## .NET client
 
-The [.NET client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) runs on any server platform supported by ASP.NET Core.
+The [.NET client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) can be used by developers building apps using .NET Core. [Xamarin developers can use SignalR](https://github.com/aspnet/Announcements/issues/305) for building applications for Android using Xamarin.Android 8.4.0.1 and later, and for iOS using Xamarin.Android 11.14.0.4 and later. 
 
 When the server runs IIS, the WebSockets transport requires IIS 8.0 or higher, on Windows Server 2012 or higher. Other transports are supported on all platforms.
 
