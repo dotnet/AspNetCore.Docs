@@ -358,6 +358,54 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 The default value is 2^14 (16,384).
 
+### Maximum request header size
+
+`Http2.MaxRequestHeaderFieldSize` indicates the maximum allowed size in octets of request header values. This limit applies to both name and value together in their compressed and uncompressed representations. The value must be greater than zero (0).
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .ConfigureKestrel((context, options) =>
+        {
+            options.Limits.Http2.MaxRequestHeaderFieldSize = 12288;
+        });
+```
+
+The default value is 8192.
+
+### Initial connection window size
+
+`Http2.InitialConnectionWindowSize` indicates how many bytes of request body data the server is willing to receive and buffer at a time aggregated across all requests (streams) per connection. Note requests are also limited by Http2.InitialStreamWindowSize. The value must be greater than or equal to 65,535 and less than 2^31.
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .ConfigureKestrel((context, options) =>
+        {
+            options.Limits.Http2.InitialConnectionWindowSize = 131070;
+        });
+```
+
+The default value is 128 kb.
+
+### Initial stream window size
+
+`Http2.InitialStreamWindowSize` indicates how many bytes of request body data the server is willing to receive and buffer at a time per request (stream). Note requests are also limited by Http2.InitialStreamWindowSize. The value must be greater than or equal to 65,535 and less than 2^31.
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .ConfigureKestrel((context, options) =>
+        {
+            options.Limits.Http2.InitialStreamWindowSize = 131070;
+        });
+```
+
+The default value is 96 kb.
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.0"
