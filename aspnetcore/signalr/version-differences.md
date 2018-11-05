@@ -38,6 +38,8 @@ The ASP.NET Core SignalR server-side libraries are included in the [Microsoft.As
 
 ASP.NET Core SignalR is an ASP.NET Core middleware, so it must be configured by calling [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) in `Startup.ConfigureServices`.
 
+
+
 ```csharp
 services.AddSignalR()
 ```
@@ -66,6 +68,10 @@ ASP.NET Core SignalR now supports [streaming data](xref:signalr/streaming) from 
 ### State
 
 The ability to pass arbitrary state between clients and the hub (often called HubState) has been removed, as well as support for progress messages. There is no counterpart of hub proxies at the moment.
+
+### PersistentConnection Deprecation
+
+In ASP.NET Core SignalR, the [`PersistentConnection`](https://docs.microsoft.com/en-us/previous-versions/aspnet/jj918097(v%3dvs.118)) class has been removed. 
 
 ## Differences on the client
 
