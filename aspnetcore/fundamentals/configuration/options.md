@@ -274,12 +274,24 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 `OptionsBuilder<TOptions>` was introduced in 2.1 to consolidate the options API instead of continuing to add extension methods to `IServiceCollection`. This also simplifies dealing with named options as its only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of sprinkled in all of the subsequent calls.  Note: Options validation and the `ConfigureOptions` overloads that accept service dependencies only are availabe via `OptionsBuilder`
 
 ```
-   // Add example   
+    // Options.DefaultName = "" is used.
+    services.AddOptions<MyOptions>().Configure(o => o.Property = "default");
+    
+    services.AddOptions<MyOptions>("optionalName").Configure(o => o.Property = "named");
 ```
 
-## `ConfigureOptions<TOptions, TDep1, ... TDep4>`
+## `Configure<TOptions, TDep1, ... TDep4>` method to using service from DI
 
-TBD
+Using services from DI to configure options has been a source of friction and prior to 2.1 required implementing `IConfigure[Named]Options` in a boilerplate manner. Starting in 2.1 we added overloads for `ConfigureOptions` on `OptionsBuilder<TOptions>` to make it easier to using up to 5 services to configure your options
+
+```
+    services.AddOptions<MyOptions>("optionalName")
+            .Configure<Service1, Service2, Service3, Service4, Service5>(
+               (o, s, s2, s3, s4, s5) => 
+                   o.Property = DoSomethingWith(s, s2, s3, s4, s5);
+```
+
+Underneath the covers, all this is doing is registering a transient generic `IConfigureNamedOptions<MyOptions>` which has a constructor which accepts the generic service types specified.
 
 ## Options validation
 
@@ -335,7 +347,45 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-Eager validation (fail fast at startup) and data annotation-based validation are scheduled for a future release.
+Data Annotation based validation is available from the `Microsoft.Extensions.Options.DataAnnotations` package via calling the `ValidateDataAnnotations()` method on `OptionsBuilder<TOptions>`:
+
+```csharp
+    private class AnnotatedOptions
+    {
+        [Required]
+        public string Required { get; set; }
+
+        [StringLength(5, ErrorMessage = "Too long.")]
+        public string StringLength { get; set; }
+
+        [Range(-5, 5, ErrorMessage = "Out of range.")]
+        public int IntRange { get; set; }
+    }
+    
+        [Fact]
+        public void CanValidateDataAnnotations()
+        {
+            var services = new ServiceCollection();
+            services.AddOptions<AnnotatedOptions>()
+                .Configure(o =>
+                {
+                    o.StringLength = "111111";
+                    o.IntRange = 10;
+                    o.Custom = "nowhere";
+                })
+                .ValidateDataAnnotations();
+
+            var sp = services.BuildServiceProvider();
+
+            var error = Assert.Throws<OptionsValidationException>(() => sp.GetRequiredService<IOptions<AnnotatedOptions>>().Value);
+            ValidateFailure<AnnotatedOptions>(error, Options.DefaultName, 1,
+                "DataAnnotation validation failed for members Required with the error 'The Required field is required.'.",
+                "DataAnnotation validation failed for members StringLength with the error 'Too long.'.",
+                "DataAnnotation validation failed for members IntRange with the error 'Out of range.'.");
+        }    
+```
+
+Eager validation (fail fast at startup) is something we are still thinking about for a future release.
 
 ::: moniker-end
 
