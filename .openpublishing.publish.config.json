@@ -53,6 +53,7 @@
       "moniker_ranges": [">= aspnetcore-1.0"]
     }
   ],
+  "treat_warning_as_error": true,
   "notification_subscribers": [],
   "branches_to_filter": [],
   "skip_source_output_uploading": false,
