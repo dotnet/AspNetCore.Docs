@@ -269,6 +269,18 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 
 ::: moniker range=">= aspnetcore-2.2"
 
+## OptionsBuilder API
+
+`OptionsBuilder<TOptions>` was introduced in 2.1 to consolidate the options API instead of continuing to add extension methods to `IServiceCollection`. This also simplifies dealing with named options as its only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of sprinkled in all of the subsequent calls.  Note: Options validation and the `ConfigureOptions` overloads that accept service dependencies only are availabe via `OptionsBuilder`
+
+```
+   // Add example   
+```
+
+## `ConfigureOptions<TOptions, TDep1, ... TDep4>`
+
+TBD
+
 ## Options validation
 
 Options validation allows you to validate options when options are configured. Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:
