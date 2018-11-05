@@ -66,10 +66,24 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 
 ::: moniker-end
 
+::: moniker range="< aspnetcore-2.2"
+
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open.
 * `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+The following settings can be configured:
+
+* `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open.
+* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data.
+* `AllowedOrigins`    - List of the Origin header values allowed for WebSocket requests to prevent Cross-Site WebSocket Hijacking. By default all Origins are allowed.
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -122,6 +136,29 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 ::: moniker-end
 
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
+
+### WebSocket Origin Restriction
+
+The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
+
+* Perform CORS pre-flight requests.
+* Respect the restrictions specified in `Access-Control` headers when making WebSocket requests.
+
+However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
+
+If you are hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the `AllowedOrigins` list for WebSockets to verify.
+
+```c#
+app.UseWebSockets(new WebSocketOptions()
+{
+    AllowedOrigins.Add("https://client.com");
+});
+```
+
+This helps ensure that browser users are using a trusted client and not a malicious one from a different site.
+
+> [!NOTE]
+> The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
 
 ## IIS/IIS Express support
 
