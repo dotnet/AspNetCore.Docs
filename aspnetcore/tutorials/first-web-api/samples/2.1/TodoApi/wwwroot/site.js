@@ -1,4 +1,5 @@
-﻿const uri = "api/todo";
+﻿// <snippet_SiteJs>
+const uri = "api/todo";
 let todos = null;
 function getCount(data) {
   const el = $("#counter");
@@ -13,6 +14,7 @@ function getCount(data) {
   }
 }
 
+// <snippet_GetData>
 $(document).ready(function() {
   getData();
 });
@@ -63,7 +65,9 @@ function getData() {
     }
   });
 }
+// </snippet_GetData>
 
+// <snippet_AddItem>
 function addItem() {
   const item = {
     name: $("#add-name").val(),
@@ -85,8 +89,10 @@ function addItem() {
     }
   });
 }
+// </snippet_AddItem>
 
 function deleteItem(id) {
+  // <snippet_AjaxDelete>
   $.ajax({
     url: uri + "/" + id,
     type: "DELETE",
@@ -94,6 +100,7 @@ function deleteItem(id) {
       getData();
     }
   });
+  // </snippet_AjaxDelete>
 }
 
 function editItem(id) {
@@ -114,6 +121,7 @@ $(".my-form").on("submit", function() {
     id: $("#edit-id").val()
   };
 
+  // <snippet_AjaxPut>
   $.ajax({
     url: uri + "/" + $("#edit-id").val(),
     type: "PUT",
@@ -124,6 +132,8 @@ $(".my-form").on("submit", function() {
       getData();
     }
   });
+  // </snippet_AjaxPut>
+
   closeInput();
   return false;
 });
@@ -131,3 +141,4 @@ $(".my-form").on("submit", function() {
 function closeInput() {
   $("#spoiler").css({ display: "none" });
 }
+// </snippet_SiteJs>
