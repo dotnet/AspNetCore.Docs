@@ -137,6 +137,8 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
 
+::: moniker range=">= aspnetcore-2.2"
+
 ### WebSocket Origin Restriction
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
@@ -159,6 +161,8 @@ This helps ensure that browser users are using a trusted client and not a malici
 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
+
+::: moniker-end
 
 ## IIS/IIS Express support
 

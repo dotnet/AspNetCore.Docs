@@ -39,13 +39,13 @@ For example, the following CORS policy allows a SignalR browser client hosted on
 
 ## WebSocket Origin Restriction
 
-::: moniker range="< aspnetcore-2.2"
+::: moniker range=">= aspnetcore-2.2"
 
 The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets read [WebSockets Origin Restriction](xref:fundamentals/websockets#webSocket-origin-restriction).
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range="< aspnetcore-2.2"
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
