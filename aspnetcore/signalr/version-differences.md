@@ -75,7 +75,7 @@ The ability to pass arbitrary state between clients and the hub (often called Hu
 
 ASP.NET Core has Dependency Injection built into the framework. The `GlobalHost` object that was commonly used to get a `HubContext` via `GlobalHost.ConnectionManager.GetHubContext<MyHub>();` no longer exists and instead services should use DI to access the [`HubContext`](xref:signalr/hubcontext).
 
-### HubPipline
+### HubPipeline
 
 ASP.NET Core SignalR does not have `HubPipeline` injection.
 
@@ -100,7 +100,7 @@ The dependency on jQuery has been removed, however projects can still use jQuery
 
 ### Internet Explorer support
 
-Microsoft Internet Explorer 11 is the lowest supported version of IE.
+Microsoft Internet Explorer 11 is the lowest supported version of IE in ASP.NET Core SignalR, versus IE 8 in ASP.NET SignalR.
 
 ### JavaScript client method syntax
 
