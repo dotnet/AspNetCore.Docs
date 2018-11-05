@@ -25,14 +25,14 @@ function getData() {
     url: uri,
     cache: false,
     success: function(data) {
-      var tBody = $("#todos");
+      const tBody = $("#todos");
 
       $(tBody).empty();
 
       getCount(data.length);
 
       $.each(data, function(key, item) {
-        var tr = $("<tr></tr>")
+        const tr = $("<tr></tr>")
           .append(
             $("<td></td>").append(
               $("<input/>", {
