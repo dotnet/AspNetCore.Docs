@@ -45,7 +45,7 @@ The following characteristics apply when hosting in-process:
 
 * Client disconnects are detected. The [HttpContext.RequestAborted](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
 
-* `Directory.GetCurrentDirectory()` will return the worker directory of the process started by IIS rather than the application directory (ex: C:\Windows\System32\inetsrv for w3wp.exe)
+* `Directory.GetCurrentDirectory()` returns the worker directory of the process started by IIS rather than the application directory (for example, *C:\Windows\System32\inetsrv* for *w3wp.exe*).
 
 ### Hosting model changes
 
@@ -55,7 +55,7 @@ For IIS Express, the module doesn't recycle the worker process but instead trigg
 
 ### Process name
 
-`Process.GetCurrentProcess().ProcessName` reports either `w3wp` or `iisexpress` (in-process) or `dotnet` (out-of-process).
+`Process.GetCurrentProcess().ProcessName` reports `w3wp`/`iisexpress` (in-process) or `dotnet` (out-of-process).
 
 ::: moniker-end
 
@@ -263,30 +263,24 @@ When using the out-of-process hosting model, the app might not shut down immedia
 ::: moniker-end
 
 ## Start-up error page
+
 ::: moniker range=">= aspnetcore-2.2"
 
-Both inprocess and outofprocess have custom error pages when they fail to start the application.
+Both in-process and out-of-process hosting produce custom error pages when they fail to start the app.
 
-If the ASP.NET Core module fails to find either the inprocess or out of process request handler, a *500.0 In-Process/Out-Of-Process Handler Load Failure* status code page appears.
+If the ASP.NET Core Module fails to find either the in-process or out-of-process request handler, a *500.0 - In-Process/Out-Of-Process Handler Load Failure* status code page appears.
 
-![502.5 Process Failure Status Code Page](aspnet-core-module/_static/ANCMV2-500-inproc.png)
-![502.5 Process Failure Status Code Page](aspnet-core-module/_static/ANCMV2-500-outofproc.png)
+For in-process hosting if the ASP.NET Core Module fails to start the app, a *500.30 - Start Failure* status code page appears.
 
-For inprocess, if the ASP.NET Core module fails to start the application, a *500.30 Start Failure* status code page appears.
+For out-of-process hosting if the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, a *502.5 - Process Failure* status code page appears.
 
-![502.5 Process Failure Status Code Page](aspnet-core-module/_static/ANCMV2-500_30-inproc.png)
-
-For out of process, if the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, a *502.5 Process Failure* status code page appears.
-
-![502.5 Process Failure Status Code Page](aspnet-core-module/_static/ANCMV2-502_5-outofproc.png)
-
-To suppress this page and revert to the default IIS 5xx status code page, use the `disableStartUpErrorPage` attribute. For more information on configuring custom error messages,  [HTTP Errors `<httpErrors>`](/iis/configuration/system.webServer/httpErrors/).
+To suppress this page and revert to the default IIS 5xx status code page, use the `disableStartUpErrorPage` attribute. For more information on configuring custom error messages, see [HTTP Errors &lt;httpErrors&gt;](/iis/configuration/system.webServer/httpErrors/).
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, a *502.5 Process Failure* status code page appears. To suppress this page and revert to the default IIS 502 status code page, use the `disableStartUpErrorPage` attribute. For more information on configuring custom error messages,  see [HTTP Errors `<httpErrors>`](/iis/configuration/system.webServer/httpErrors/).
+If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, a *502.5 - Process Failure* status code page appears. To suppress this page and revert to the default IIS 502 status code page, use the `disableStartUpErrorPage` attribute. For more information on configuring custom error messages, see [HTTP Errors &gt;httpErrors&gt;](/iis/configuration/system.webServer/httpErrors/).
 
 ![502.5 Process Failure Status Code Page](aspnet-core-module/_static/ANCM-502_5.png)
 
@@ -304,7 +298,7 @@ A timestamp and file extension are added automatically when the log file is crea
 
 ::: moniker range=">= aspnetcore-2.2"
 
-If `stdoutLogEnabled` is false, errors that occur on application startup will be captured and emitted to the event log up to 30KB. After startup, all additional logs are discarded.
+If `stdoutLogEnabled` is false, errors that occur on app startup are captured and emitted to the event log up to 30 KB. After startup, all additional logs are discarded.
 
 ::: moniker-end
 
