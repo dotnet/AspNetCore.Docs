@@ -153,8 +153,7 @@ Consider carefully before allowing requests from any origin. Allowing requests f
 ::: moniker range="< aspnetcore-2.2"
 
 > [!NOTE]
-> Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration and can result in cross-site request forgery. Consider specifying an exact list of origins if your client needs to authorize to access server
-resources.
+> Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration and can result in cross-site request forgery. Consider specifying an exact list of origins if your client needs to authorize to access server resources.
 
 ::: moniker-end
 
