@@ -92,4 +92,4 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 [!code-csharp[ThrowHubException](api-design/Samples.cs?name=ThrowHubException&highlight=115)]
 
 > [!NOTE]
-> SignalR only sends the `Message` value. The stack trace, or other properties on the exception are not available to the client.
+> SignalR only sends the `Message` property to the client. The stack trace, or other properties on the exception are not available to the client.
