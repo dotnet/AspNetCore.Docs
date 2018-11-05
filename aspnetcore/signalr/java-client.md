@@ -75,7 +75,7 @@ This can safely be ignored.
 In the SignalR Java client you can configure an access token provider in in the HttpHubConnectionBuilder. The method `.setAccessTokenFactory` takes an RX type if Single<String>. With a call to Single.Defer, you can write your logic to provision access tokens for your client. 
 
 ```java
-        HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE").withAccessTokenProvider(Single.defer(() ->{
+        HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE").withAccessTokenProvider(Single.defer(() -> {
             // Your logic here.
             return Single.just("An Access Token");
         })).build();
