@@ -73,7 +73,7 @@ The ability to pass arbitrary state between clients and the hub (often called Hu
 
 ### GlobalHost
 
-ASP.NET Core has Dependency Injection built into the framework. The `GlobalHost` object that was commonly used to get a `HubContext` via `GlobalHost.ConnectionManager.GetHubContext<MyHub>();` no longer exists and instead services should use DI to access the [`HubContext`](xref:signalr/hubcontext).
+ASP.NET Core has dependency injection (DI) built into the framework. Services can use DI to access the [HubContext](xref:signalr/hubcontext). The `GlobalHost` object that is used in ASP.NET SignalR to get a `HubContext` doesn't exist in ASP.NET Core SignalR.
 
 ### HubPipeline
 
