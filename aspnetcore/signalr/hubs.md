@@ -37,6 +37,9 @@ Create a hub by declaring a class that inherits from `Hub`, and add public metho
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
+> [!NOTE]
+> Hubs are transient, meaning every hub method call will be executed on a new hub instance. This means state should not be stored in a property on the hub class and if a hub method wants to send to clients it must do so before exiting the hub method. For example not awaiting an async method such as `await Clients.All.SendAsync(...);` can fail if the hub method completes before `SendAsync` finishes.
+
 ## The Context object
 
 The `Hub` class has a `Context` property that contains the following properties with information about the connection:
