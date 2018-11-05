@@ -21,7 +21,7 @@ For apps running on .NET Core 2.2 or later, the module supports an in-process ho
 
 In-procsess hosting is opt-in for existing apps, but [dotnet new](/dotnet/core/tools/dotnet-new) templates default to the in-process hosting model for all IIS and IIS Express scenarios.
 
-To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` property to the app's project file with a value of `inprocess` (out-of-process hosting is set with `outofprocess`):
+To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` property to the app's project file (for example, MyApp.csproj) with a value of `inprocess` (out-of-process hosting is set with `outofprocess`):
 
 ```xml
 <PropertyGroup>
