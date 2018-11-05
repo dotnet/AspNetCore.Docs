@@ -23,7 +23,7 @@ For example, consider a server-side API like the following:
 
 [!code-csharp[ParameterBasedOldVersion](api-design/Samples.cs?name=ParameterBasedOldVersion)]
 
-The JavaScript client calls this method using `InvokeAsync`, like this:
+The JavaScript client calls this method using `invoke`, like this:
 
 [!code-typescript[CallWithOneParameter](api-design/Samples.ts?name=CallWithOneParameter)]
 
