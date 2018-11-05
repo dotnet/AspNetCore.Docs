@@ -81,7 +81,7 @@ The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
 * `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4kb.
-* `AllowedOrigins`    - List of the Origin header values allowed for WebSocket requests to prevent cross-site WebSocket hijacking. By default all Origins are allowed.
+* `AllowedOrigins`    - List of the Origin header values allowed for WebSocket requests to prevent cross-site WebSocket hijacking. By default, all origins are allowed.
 
 ::: moniker-end
 
