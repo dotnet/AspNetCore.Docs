@@ -9,7 +9,7 @@ uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module configuration reference
 
-By [Luke Latham](https://github.com/guardrex), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Sourabh Shirhatti](https://twitter.com/sshirhatti)
+By [Luke Latham](https://github.com/guardrex), [Rick Anderson](https://twitter.com/RickAndMSFT), [Sourabh Shirhatti](https://twitter.com/sshirhatti), and [Justin Kotalik](https://github.com/jkotalik)
 
 This document provides instructions on how to configure the ASP.NET Core Module for hosting ASP.NET Core apps. For an introduction to the ASP.NET Core Module and installation instructions, see the [ASP.NET Core Module overview](xref:fundamentals/servers/aspnet-core-module).
 
