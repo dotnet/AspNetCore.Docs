@@ -32,6 +32,10 @@ Automatic reconnects aren't supported in ASP.NET Core SignalR. If the client is 
 
 ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [MessagePack](xref:signalr/messagepackhubprotocol). Additionally, custom protocols can be created.
 
+### Transports
+
+Forever Frame is not supported in ASP.NET Core SignalR.
+
 ## Differences on the server
 
 The ASP.NET Core SignalR server-side libraries are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) package that's part of the **ASP.NET Core Web Application** template for both Razor and MVC projects.
@@ -67,6 +71,14 @@ ASP.NET Core SignalR now supports [streaming data](xref:signalr/streaming) from 
 
 The ability to pass arbitrary state between clients and the hub (often called HubState) has been removed, as well as support for progress messages. There is no counterpart of hub proxies at the moment.
 
+### GlobalHost
+
+ASP.NET Core has Dependency Injection built into the framework. The `GlobalHost` object that was commonly used to get a `HubContext` via `GlobalHost.ConnectionManager.GetHubContext<MyHub>();` no longer exists and instead services should use DI to access the [`HubContext`](xref:signalr/hubcontext).
+
+### HubPipline
+
+ASP.NET Core SignalR does not have `HubPipeline` injection.
+
 ## Differences on the client
 
 ### TypeScript
@@ -85,6 +97,10 @@ npm install @aspnet/signalr
 ### jQuery
 
 The dependency on jQuery has been removed, however projects can still use jQuery.
+
+### Internet Explorer support
+
+Microsoft Internet Explorer 11 is the lowest supported version of IE.
 
 ### JavaScript client method syntax
 
