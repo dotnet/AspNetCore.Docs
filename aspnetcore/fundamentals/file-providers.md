@@ -9,7 +9,7 @@ uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guardrex)
+By [Luke Latham](https://github.com/guardrex) and [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core abstracts file system access through the use of File Providers. File Providers are used throughout the ASP.NET Core framework:
 
