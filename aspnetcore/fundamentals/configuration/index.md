@@ -1504,13 +1504,13 @@ The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supports
 
 Consider the configuration keys and values shown in the following table.
 
-| Key     | Value  |
-| :-----: | :----: |
-| array:0 | value0 |
-| array:1 | value1 |
-| array:2 | value2 |
-| array:4 | value4 |
-| array:5 | value5 |
+| Key             | Value  |
+| :-------------: | :----: |
+| array:entries:0 | value0 |
+| array:entries:1 | value1 |
+| array:entries:2 | value2 |
+| array:entries:4 | value4 |
+| array:entries:5 | value5 |
 
 These keys and values are loaded in the sample app using the Memory Configuration Provider:
 
