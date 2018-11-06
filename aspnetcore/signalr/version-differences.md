@@ -34,7 +34,7 @@ ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [M
 
 ### Transports
 
-Forever Frame is not supported in ASP.NET Core SignalR.
+The Forever Frame transport is not supported in ASP.NET Core SignalR.
 
 ## Differences on the server
 
