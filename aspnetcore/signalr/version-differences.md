@@ -100,7 +100,7 @@ The dependency on jQuery has been removed, however projects can still use jQuery
 
 ### Internet Explorer support
 
-Microsoft Internet Explorer 11 is the lowest supported version of IE in ASP.NET Core SignalR, versus IE 8 in ASP.NET SignalR.
+ASP.NET Core SignalR requires Microsoft Internet Explorer 11 or later (ASP.NET SignalR supported Microsoft Internet Explorer 8 and later).
 
 ### JavaScript client method syntax
 
