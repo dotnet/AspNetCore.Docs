@@ -70,7 +70,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 This can safely be ignored.
 
 
-## Configure access token provider
+## Configure bearer token authentication
 
 In the SignalR Java client, you can configure a bearer token to use for authentication by providing an "access token factory" to the `HttpHubConnectionBuilder`. Use `withAccessTokenFactory` to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single<String>](http://reactivex.io/documentation/single.html). With a call to [Single.defer](http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
 
