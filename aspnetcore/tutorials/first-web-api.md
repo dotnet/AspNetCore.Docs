@@ -21,7 +21,7 @@ This tutorial teaches the basics of building a web API app. The app manages a li
 > * Create other CRUD operations.
 > * Call the Web API with jQuery.
 
-At the end, you have a an app that can manage  "to-do" items.
+At the end, you have an app that can manage  "to-do" items.
 
 [!INCLUDE[intro to web API](../includes/webApi/intro.md)]
 
@@ -279,12 +279,10 @@ This tutorial uses Postman to test the web api app.
   * > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
-![Postman console](first-web-api/_static/pmc.png)
-
 * Create a new request.
 * Set the HTTP method to **GET**.
-* Set the URI to `http://localhost:<port>/api/values`. For example, `http://localhost:5001/api/todo`.
-* Set **Two pan view** in Postman.
+* Set the URI to `http://localhost:<port>/api/todo`. For example, `http://localhost:5001/api/todo`.
+* Set **Two pane view** in Postman.
 * Select **Send**.
 
 ![Postman with above request](first-web-api/_static/2pv.png)
@@ -349,12 +347,12 @@ Add the following `Update` method:
 
 Update the to-do item's name to "feed fish":
 
-   ```json
-    {
-      "name":"feed fish",
-      "isComplete":true
-    }
-    ```
+```json
+  {
+    "name":"feed fish",
+    "isComplete":true
+  }
+```
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmcput.png)
 
@@ -378,7 +376,10 @@ The sample app doesn't allow you to delete all the items. When there are no item
 
 In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response.
 
-Configure the project to serve static files and to enable default file mapping. This is accomplished by invoking the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) extension methods in *Startup.Configure*. For more information, see [Static files](xref:fundamentals/static-files).
+Configure the app to serve static files and to enable default file mapping with the following calls:
+
+* [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) 
+* [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) extension methods in *Startup.Configure*. For more information, see [Static files](xref:fundamentals/static-files).
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=14-15&name=snippet_configure)]
 
