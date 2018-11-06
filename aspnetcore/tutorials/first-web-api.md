@@ -66,7 +66,14 @@ The following diagram shows the basic design of the app.
 * Select the **ASP.NET Core Web Application** template. Name the project *TodoApi* and click **OK**.
 * In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template and click **OK**. Do **not** select **Enable Docker Support**.
 
+::: moniker range="= aspnetcore-2.2"
 ![VS new project dialog](first-web-api/_static/vs.png)
+
+::: moniker-end
+::: moniker range="= aspnetcore-2.1"
+![VS new project dialog](first-web-api/_static/vs21.png)
+
+::: moniker-end
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -75,6 +82,8 @@ In the [integrated terminal](https://code.visualstudio.com/docs/editor/integrate
    ```console
    dotnet new webapi -o TodoApi
    ```
+
+<!-- TODO fix -->
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -96,32 +105,22 @@ Enter *TodoApi* for the **Project Name** > **Create**.
 
 # [Visual Studio](#tab/visual-studio)
 
-Press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number. Chrome, Microsoft Edge, and Firefox display the following output:
-
-```json
-["value1","value2"]
-```
-
-Internet Explorer, prompts you to save a *values.json* file.
+Press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `https://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press CTRL+F5 to launch the app.
+Press CTRL+F5 to launch the app. Navigate to the `Todo` controller at `https://localhost:5001/api/todo`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac  launches a browser and navigates to `http://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Change the URL to `http://localhost:<port>/api/values`. The `ValuesController` data is displayed:
-
-```json
-["value1","value2"]
-```
+Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac  launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URI (change the URI to `https://localhost:<port>/api/values`).
 
 ---
 
-Navigate to the `Todo` controller at `http://localhost:<port>/api/todo`. The following JSON is returned:
+The following JSON is returned:
 
 ```json
-[{"key":1,"name":"Item1","isComplete":false}]
+["value1","value2"]
 ```
 
 ### Add a model class
@@ -132,15 +131,13 @@ A model is an object representing the data in the app. In this case, the only mo
 
 In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-Model classes can go anywhere in the project, but the *Models* folder is used by convention.
-
 In Solution Explorer, right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and click **Add**.
 
 Update the `TodoItem` class with the following code:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Add a folder named *Models* for the model classes.  Model classes can go anywhere in the project, but the *Models* folder is used by convention.
+Add a folder named *Models* for the model classes.
 
 Add a `TodoItem` class with the following code:
 
@@ -150,8 +147,6 @@ In Solution Explorer, right-click the project. Select **Add** > **New Folder**. 
 
 ![new folder](first-web-api-mac/_static/folder.png)
 
-Model classes can go anywhere in the project, but the *Models* folder is used by convention.
-
 Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**. Name the class *TodoItem*, and then click **New**.
 
 Update the `TodoItem` class with the following code:
@@ -159,6 +154,8 @@ Update the `TodoItem` class with the following code:
 ---
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoItem.cs)]
+
+Model classes can go anywhere in the project, but the *Models* folder is used by convention.
 
 The database generates the `Id` when a `TodoItem` is created.
 
@@ -190,7 +187,13 @@ In this step, the database context is registered with the [dependency injection]
 
 Register the DB context with the service container using the built-in support for [dependency injection](xref:fundamentals/dependency-injection). Update *Startup.cs* with the following highlighted code:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=5,8,25,26&name=snippet_all)]
+::: moniker range="= aspnetcore-2.2"
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=6,9,26-27&name=snippet_all)]
+::: moniker-end
+::: moniker range="= aspnetcore-2.1"
+[!code-csharp[](first-web-api/samples/2.1/TodoApi/Startup.cs)]
+
+::: moniker-end
 
 The preceding code:
 
@@ -310,7 +313,7 @@ This tutorial uses Postman to test the web api app.
 
 * Create a new request.
 * Set the HTTP method to **GET**.
-* Set the URI to `http://localhost:<port>/api/todo`. For example, `http://localhost:5001/api/todo`.
+* Set the URI to `https://localhost:<port>/api/todo`. For example, `https://localhost:5001/api/todo`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
@@ -382,6 +385,8 @@ Update the to-do item's name to "feed fish":
     "isComplete":true
   }
 ```
+
+The following image shows the Postman update:
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmcput.png)
 
