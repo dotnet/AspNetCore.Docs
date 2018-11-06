@@ -51,7 +51,7 @@ Now, the client uses an object to call the method:
 
 [!code-typescript[CallWithObject](api-design/Samples.ts?name=CallWithObject)]
 
-Now, instead of adding a parameter, we can add a property to the `GetTotalLengthRequest` object:
+Instead of adding a parameter, add a property to the `GetTotalLengthRequest` object:
 
 [!code-csharp[ObjectBasedNewVersion](api-design/Samples.cs?name=ObjectBasedNewVersion&highlight=31,36-41)]
 
