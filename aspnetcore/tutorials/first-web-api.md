@@ -3,16 +3,12 @@ title: Create a Web API with ASP.NET Core and Visual Studio
 author: rick-anderson
 description: Build a web API with ASP.NET Core MVC and Visual Studio
 ms.author: riande
+monikerRange: '>= aspnetcore-2.1'
 ms.custom: mvc
 ms.date: 11/17/2018
 uid: tutorials/first-web-api
 ---
 # Tutorial: Create a Web API with ASP.NET Core
-
-first-web-api/samples/2.2/TodoAp/Controllers/TodoController.cs
-first-web-api/samples/2.2/TodoAp/Controllers/TodoController.cs
-
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute?view=aspnetcore-2.0
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
@@ -253,7 +249,7 @@ Later in the tutorial, instructions are provided to view the HTTP response with 
 
 ### Routing and URL paths
 
-The [`[HttpGet]`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute?view=aspnetcore-2.0) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller's `Route` attribute:
 
@@ -280,6 +276,29 @@ In contrast, the `GetById` method returns the [ActionResult\<T> type](xref:web-a
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
+## Work with Postman
+
+This tutorial uses Postman to test the web api app.
+
+* Install [Postman](https://www.getpostman.com/apps)
+* Start the web app.
+* Start Postman.
+* Disable **SSL certificate verification**
+  
+  * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
+  * > [!WARNING]
+    > Re-enable SSL certificate verification after testing the controller.
+
+![Postman console](first-web-api/_static/pmc.png)
+
+* Create a new request.
+* Set the HTTP method to **GET**.
+* Set the URI to `http://localhost:<port>/api/values`. For example, `http://localhost:5001/api/todo`.
+* Set **Two pan view** in Postman.
+* Select **Send**.
+
+![Postman with above request](first-web-api/_static/2pv.png)
+
 ## Create CRUD methods
 
 In the following sections, `Create`, `Update`, and `Delete` methods are added to the controller.
@@ -302,65 +321,50 @@ The `CreatedAtRoute` method:
 
 ### Use Postman to send a Create request
 
-* Install [Postman](https://www.getpostman.com/apps)
-* Start the app.
-* Start Postman.
-* Disable **SSL certificate verification**
-  
-  * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
-  * > [!WARNING]
-    > Re-enable SSL certificate verification after testing the controller.
-
-![Postman console](first-web-api/_static/pmc.png)
-
-* Update the port number in the localhost URL.
-* Set the HTTP method to *POST*.
-* Click the **Body** tab.
+* Set the HTTP method to `POST`.
+* Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to *JSON (application/json)*.
-* Enter a request body with a to-do item resembling the following JSON:
+* Enter a request body with a to-do item:
 
-```json
-{
-  "name":"walk dog",
-  "isComplete":true
-}
-```
+    ```json
+    {
+      "name":"walk dog",
+      "isComplete":true
+    }
+    ```
 
-* Click the **Send** button.
+* Select **Send**.
 
-::: moniker range=">= aspnetcore-2.1"
+![Postman with above request](first-web-api/_static/create.png)
 
-> [!TIP]
-> If no response displays after clicking **Send**, disable the **SSL certification verification** option. This is found under **File** > **Settings**. Click the **Send** button again after disabling the setting.
-
-::: moniker-end
-
-Click the **Headers** tab in the **Response** pane and copy the **Location** header value:
+* Select the **Headers** tab in the **Response** pane.
+* Copy the **Location** header value:
 
 ![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
 
-The Location header URI can be used to access the new item.
+Test the location header URI:
+
+* Set the method to GET.
+* Paste the URI (for example, `https://localhost:5001/api/Todo/2`)
+* Select **Send**.
 
 ### Update
 
 Add the following `Update` method:
 
-::: moniker range="<= aspnetcore-2.0"
-
-[!code-csharp[](first-web-api/samples/2.0/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
-
-::: moniker-end
 
 `Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
 
-Use Postman to update the to-do item's name to "walk cat":
+Update the to-do item's name to "feed fish":
+
+   ```json
+    {
+      "name":"feed fish",
+      "isComplete":true
+    }
+    ```
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmcput.png)
 
@@ -374,8 +378,11 @@ The `Delete` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616
 
 Use Postman to delete the to-do item:
 
-![Postman console showing 204 (No Content) response](first-web-api/_static/pmd.png)
+* Set the method to `DELETE`.
+* Set the URI of the object to delete, for example `https://localhost:5001/api/todo/1`
+* Select **Send**
 
+The sample app doesn't allow you to delete all the items. When there are no items, a new one is created.
 
 [!INCLUDE[jQuery](../includes/webApi/add-jquery.md)]
 

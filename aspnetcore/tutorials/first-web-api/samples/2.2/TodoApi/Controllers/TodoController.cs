@@ -66,7 +66,7 @@ namespace TodoApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(long id, [FromBody] TodoItem item)
         {
-            if (item == null || item.Id != id)
+            if (item == null)
             {
                 return BadRequest();
             }
