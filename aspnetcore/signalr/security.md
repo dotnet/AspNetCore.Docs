@@ -39,6 +39,14 @@ For example, the following CORS policy allows a SignalR browser client hosted on
 
 ## WebSocket Origin Restriction
 
+::: moniker range=">= aspnetcore-2.2"
+
+The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](xref:fundamentals/websockets#websocket-origin-restriction).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
 * Perform CORS pre-flight requests.
@@ -52,6 +60,8 @@ In ASP.NET Core 2.1 and later, header validation can be achieved using a custom 
 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
+
+::: moniker-end
 
 ## Access token logging
 
