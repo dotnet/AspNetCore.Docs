@@ -70,7 +70,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 This can safely be ignored.
 
 
-##Configuring Access Token Provider
+## Configure access token provider
 
 In the SignalR Java client you can configure an access token provider in in the HttpHubConnectionBuilder. The method `.setAccessTokenFactory` takes an RX type if Single<String>. With a call to Single.Defer, you can write your logic to provision access tokens for your client. 
 
