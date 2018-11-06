@@ -154,6 +154,7 @@ If you are hosting your server on "https://server.com" and hosting your client o
 app.UseWebSockets(new WebSocketOptions()
 {
     AllowedOrigins.Add("https://client.com");
+    AllowedOrigins.Add("https://www.client.com");
 });
 ```
 
