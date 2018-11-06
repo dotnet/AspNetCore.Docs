@@ -1,7 +1,7 @@
 ---
 title: SignalR API design considerations
 author: anurse
-description: 
+description: Learn how to design SignalR APIs for compatibility across versions of your app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
@@ -55,7 +55,7 @@ Instead of adding a parameter, add a property to the `GetTotalLengthRequest` obj
 
 [!code-csharp[ObjectBasedNewVersion](api-design/Samples.cs?name=ObjectBasedNewVersion&highlight=31,36-41)]
 
-When the old client sends us a single parameter, the extra `Param2` property will be left `null` and we can handle that in our code. A new client can send us both parameters.
+When the old client sends a single parameter, the extra `Param2` property will be left `null`. You can detect a message sent by an older client by checking the `Param2` for `null` and apply a default value. A new client can send both parameters.
 
 [!code-typescript[CallWithObjectNew](api-design/Samples.ts?name=CallWithObjectNew)]
 
