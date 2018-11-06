@@ -13,25 +13,25 @@ public async Task<string> GetTotalLength(string param1, string param2)
 #endregion
 
 #region ObjectBasedOldVersion
-public class GetTotalLengthRequest
+public class TotalLengthRequest
 {
     public string Param1 { get; set; }
 }
 
-public async Task GetTotalLength(GetTotalLengthRequest req)
+public async Task GetTotalLength(TotalLengthRequest req)
 {
     return req.Param1.Length;
 }
 #endregion
 
 #region ObjectBasedNewVersion
-public class GetTotalLengthRequest
+public class TotalLengthRequest
 {
     public string Param1 { get; set; }
     public string Param2 { get; set; }
 }
 
-public async Task GetTotalLength(GetTotalLengthRequest req)
+public async Task GetTotalLength(TotalLengthRequest req)
 {
     var length = req.Param1.Length;
     if (req.Param2 != null)

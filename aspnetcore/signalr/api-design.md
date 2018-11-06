@@ -17,7 +17,7 @@ This article provides guidance for building SignalR-based APIs.
 
 ## Use custom object parameters to ensure backwards-compatibility
 
-Adding parameters to a SignalR hub method (on either the client or the server) is a *breaking change*, which means older clients/servers will get errors when they try to invoke the method without the appropriate number of parameters. However, adding properties to a custom object parameter is **not** a breaking change. This can be used to design compatible APIs that are resiliant to changes on the client or the server.
+Adding parameters to a SignalR hub method (on either the client or the server) is a *breaking change*. This means older clients/servers will get errors when they try to invoke the method without the appropriate number of parameters. However, adding properties to a custom object parameter is **not** a breaking change. This can be used to design compatible APIs that are resiliant to changes on the client or the server.
 
 For example, consider a server-side API like the following:
 
@@ -51,7 +51,7 @@ Now, the client uses an object to call the method:
 
 [!code-typescript[CallWithObject](api-design/Samples.ts?name=CallWithObject)]
 
-Instead of adding a parameter, add a property to the `GetTotalLengthRequest` object:
+Instead of adding a parameter, add a property to the `TotalLengthRequest` object:
 
 [!code-csharp[ObjectBasedNewVersion](api-design/Samples.cs?name=ObjectBasedNewVersion&highlight=31,36-41)]
 
