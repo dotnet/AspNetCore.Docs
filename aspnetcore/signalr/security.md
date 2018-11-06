@@ -55,14 +55,14 @@ In ASP.NET Core 2.1 and later, header validation can be achieved using a custom 
 
 ## Access token logging
 
-When using WebSockets or Server-Sent Events, the browser client sends the access token in the query string. Receiving the access token via query string is generally as secure as using the standard `Authorization` header. However, many web servers log the URL for each request, including the query string. Logging the URLs may log the access token. You should always use HTTPS to ensure a secure end-to-end connection between the client and the server. ASP.NET Core logs the URL for each request by default, which will include the query string. For example:
+When using WebSockets or Server-Sent Events, the browser client sends the access token in the query string. Receiving the access token via query string is generally as secure as using the standard `Authorization` header. You should always use HTTPS to ensure a secure end-to-end connection between the client and the server. Many web servers log the URL for each request, including the query string. Logging the URLs may log the access token. ASP.NET Core logs the URL for each request by default, which will include the query string. For example:
 
 ```
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
       Request starting HTTP/1.1 GET http://localhost:5000/myhub?access_token=1234
 ```
 
-If you have concerns about logging this data with your server logs, you can disable this logging entirely by configuring the `Microsoft.AspNetCore.Hosting` logger to the `Warning` level or above (these messages are written at `Info` level). See the documentation on [Log Filtering](xref:fundamentals/logging) for more information. If you still want to log certain request information, you can write a middleware to log the data you require and filter out the `access_token` query string value (if present).
+If you have concerns about logging this data with your server logs, you can disable this logging entirely by configuring the `Microsoft.AspNetCore.Hosting` logger to the `Warning` level or above (these messages are written at `Info` level). See the documentation on [Log Filtering](xref:fundamentals/logging#log-filtering) for more information. If you still want to log certain request information, you can [write a middleware](xref:fundamentals/middleware/#write-middleware) to log the data you require and filter out the `access_token` query string value (if present).
 
 ## Exceptions
 
