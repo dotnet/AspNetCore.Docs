@@ -9,13 +9,13 @@ uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
 
-By [Luke Latham](https://github.com/guardrex) and [Justin Kotalik](https://github.com/jkotalik)
+By [Luke Latham](https://github.com/guardrex)
 
 This article provides instructions on how to diagnose an ASP.NET Core app startup issue when hosting with [Internet Information Services (IIS)](/iis). The information in this article applies to hosting in IIS on Windows Server and Windows Desktop.
 
 ::: moniker range=">= aspnetcore-2.2"
 
-In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 - Process Failure* or a *500.30 -  Start Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
+In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
 
 ::: moniker-end
 
@@ -58,7 +58,7 @@ The *502.5 Process Failure* error page is returned when a hosting or app misconf
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module attempts to start the .NET Core CLR in-process but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log). 
+The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log). 
 
 A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
 
@@ -66,13 +66,16 @@ A common failure condition is the app is misconfigured due to targeting a versio
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module fails to find the .NET Core CLR and find the in-process request handler (aspnetcorev2_inprocess.dll). Check that the app targets the <xref:Microsoft.AspNetCore.Server.IIS> nuget package or Microsoft.AspNetCore.App and check which versions of the ASP.NET Core shared framework are installed on the target machine.
+The ASP.NET Core Module fails to find the .NET Core CLR and find the in-process request handler (*aspnetcorev2_inprocess.dll*). Check that:
+
+* The app targets either the [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) NuGet package or the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+* The version of the ASP.NET Core shared framework that the app targets is installed on the target machine.
 
 **500.0 Out-Of-Process Handler Load Failure**
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module fails to find the out-of-process hosting request handler. Make sure the aspnetcorev2_outofprocess.dll is present in a subfolder next to aspnetcorev2.dll. 
+The ASP.NET Core Module fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*. 
 
 ::: moniker-end
 
