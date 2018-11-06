@@ -148,7 +148,7 @@ The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
 However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
 
-If you are hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the `AllowedOrigins` list for WebSockets to verify.
+If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the `AllowedOrigins` list for WebSockets to verify.
 
 ```csharp
 app.UseWebSockets(new WebSocketOptions()
