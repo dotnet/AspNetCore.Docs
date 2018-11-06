@@ -27,6 +27,8 @@ There are three versions of this tutorial:
 
 [!INCLUDE[prerequisites](~/includes/net-core-prereqs-vscode.md)]
 
+See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Code.
+
 ## Create the project
 
 From a console, run the following commands:
@@ -51,13 +53,13 @@ Press **Debug** (F5) to build and run the program. In a browser, navigate to htt
 ["value1","value2"]
 ```
 
-See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Code.
+
 
 ## Add support for Entity Framework Core
 
 :::moniker range=">= aspnetcore-2.1"
 
-Creating a new project in ASP.NET Core 2.1 or later adds the [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) package reference to the *TodoApi.csproj* file. Add the `Version` attribute, if not already specified.
+Creating a new project in ASP.NET Core 2.1 or later adds the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) to the project file:
 
 [!code-xml[](first-web-api/samples/2.1/TodoApi/TodoApi.csproj?name=snippet_Metapackage&highlight=2)]
 
@@ -65,7 +67,7 @@ Creating a new project in ASP.NET Core 2.1 or later adds the [Microsoft.AspNetCo
 
 :::moniker range="<= aspnetcore-2.0"
 
-Creating a new project in ASP.NET Core 2.0 adds the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package reference to the *TodoApi.csproj* file:
+Creating a new project in ASP.NET Core 2.0 adds the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) to the project file:
 
 [!code-xml[](first-web-api/samples/2.0/TodoApi/TodoApi.csproj?name=snippet_Metapackage&highlight=2)]
 

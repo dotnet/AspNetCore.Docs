@@ -13,9 +13,9 @@ namespace RazorPagesMovie.Pages.Movies
 #region snippet2
     public class EditModel : PageModel
     {
-        private readonly RazorPagesMovie.Models.RazorPagesMovieContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public EditModel(RazorPagesMovie.Models.RazorPagesMovieContext context)
+        public EditModel(RazorPagesMovieContext context)
         {
             _context = context;
         }

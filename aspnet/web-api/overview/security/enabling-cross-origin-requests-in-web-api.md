@@ -4,34 +4,31 @@ title: "Enabling Cross-Origin Requests in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to support Cross-Origin Resource Sharing (CORS) in ASP.NET Web API."
 ms.author: riande
-ms.date: 07/15/2014
+ms.date: 10/10/2018
 ms.assetid: 9b265a5a-6a70-4a82-adce-2d7c56ae8bdd
 msc.legacyurl: /web-api/overview/security/enabling-cross-origin-requests-in-web-api
 msc.type: authoredcontent
 ---
-Enabling Cross-Origin Requests in ASP.NET Web API 2
+Enable cross-origin requests in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)
 
 > Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites call your web API.
-> 
+>
 > [Cross Origin Resource Sharing](http://www.w3.org/TR/cors/) (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as [JSONP](http://en.wikipedia.org/wiki/JSONP). This tutorial shows how to enable CORS in your Web API application.
-> 
-> ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013 Update 2](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+> ## Software used in the tutorial
+>
+> - [Visual Studio](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 > - Web API 2.2
 
-
-<a id="intro"></a>
 ## Introduction
 
 This tutorial demonstrates CORS support in ASP.NET Web API. We'll start by creating two ASP.NET projects – one called "WebService", which hosts a Web API controller, and the other called "WebClient", which calls WebService. Because the two applications are hosted at different domains, an AJAX request from WebClient to WebService is a cross-origin request.
 
 ![](enabling-cross-origin-requests-in-web-api/_static/image1.png)
 
-### What is "Same Origin"?
+### What is "same origin"?
 
 Two URLs have the same origin if they have identical schemes, hosts, and ports. ([RFC 6454](http://tools.ietf.org/html/rfc6454))
 
@@ -50,59 +47,56 @@ These URLs have different origins than the previous two:
 > [!NOTE]
 > Internet Explorer does not consider the port when comparing origins.
 
-
-<a id="create-webapi-project"></a>
-## Create the WebService Project
+## Create the WebService project
 
 > [!NOTE]
 > This section assumes you already know how to create Web API projects. If not, see [Getting Started with ASP.NET Web API](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md).
 
+1. Start Visual Studio and create a new **ASP.NET Web Application (.NET Framework)** project.
+2. In the **New ASP.NET Web Application** dialog box, select the **Empty** project template. Under **Add folders and core references for**, select the **Web API** checkbox.
 
-Start Visual Studio and create a new **ASP.NET Web Application** project. Select the **Empty** project template. Under "Add folders and core references for", select the **Web API** checkbox. Optionally, select the "Host in Cloud" option to deploy the app to Mircosoft Azure. Microsoft offers free web hosting for up to 10 websites in a [free Azure trial account](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
+   ![New ASP.NET project dialog in Visual Studio](enabling-cross-origin-requests-in-web-api/_static/new-web-app-dialog.png)
 
-[![](enabling-cross-origin-requests-in-web-api/_static/image3.png)](enabling-cross-origin-requests-in-web-api/_static/image2.png)
+3. Add a Web API controller named `TestController` with the following code:
 
-Add a Web API controller named `TestController` with the following code:
+   [!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample1.cs)]
 
-[!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample1.cs)]
+4. You can run the application locally or deploy to Azure. (For the screenshots in this tutorial, the app deploys to Azure App Service Web Apps.) To verify that the web API is working, navigate to `http://hostname/api/test/`, where *hostname* is the domain where you deployed the application. You should see the response text, &quot;GET: Test Message&quot;.
 
-You can run the application locally or deploy to Azure. (For the screenshots in this tutorial, I deployed to Azure App Service Web Apps.) To verify that the web API is working, navigate to `http://hostname/api/test/`, where *hostname* is the domain where you deployed the application. You should see the response text, &quot;GET: Test Message&quot;.
+   ![Web browser showing test message](enabling-cross-origin-requests-in-web-api/_static/image4.png)
 
-![](enabling-cross-origin-requests-in-web-api/_static/image4.png)
+## Create the WebClient project
 
-<a id="create-client"></a>
-## Create the WebClient Project
+1. Create another **ASP.NET Web Application (.NET Framework)** project and select the **MVC** project template. Optionally, select **Change Authentication** > **No Authentication**. You don't need authentication for this tutorial.
 
-Create another ASP.NET Web Application project and select the **MVC** project template. Optionally, select **Change Authentication** > **No Authentication**. You don't need authentication for this tutorial.
+   ![MVC template in New ASP.NET Project dialog in Visual Studio](enabling-cross-origin-requests-in-web-api/_static/new-web-app-dialog-mvc.png)
 
-[![](enabling-cross-origin-requests-in-web-api/_static/image6.png)](enabling-cross-origin-requests-in-web-api/_static/image5.png)
+2. In **Solution Explorer**, open the file *Views/Home/Index.cshtml*. Replace the code in this file with the following:
 
-In Solution Explorer, open the file Views/Home/Index.cshtml. Replace the code in this file with the following:
+   [!code-cshtml[Main](enabling-cross-origin-requests-in-web-api/samples/sample2.cshtml?highlight=13)]
 
-[!code-cshtml[Main](enabling-cross-origin-requests-in-web-api/samples/sample2.cshtml?highlight=13)]
+   For the *serviceUrl* variable, use the URI of the WebService app.
 
-For the *serviceUrl* variable, use the URI of the WebService app. Now run the WebClient app locally or publish it to another website.
+3. Run the WebClient app locally or publish it to another website.
 
-Clicking the "Try It" button submits an AJAX request to the WebService app, using the HTTP method listed in the dropdown box (GET, POST, or PUT). This lets us examine different cross-origin requests. Right now, the WebService app does not support CORS, so if you click the button, you will get an error.
+When you click the "Try It" button, an AJAX request is submitted to the WebService app using the HTTP method listed in the dropdown box (GET, POST, or PUT). This lets you examine different cross-origin requests. Currently, the WebService app does not support CORS, so if you click the button you'll get an error.
 
-![](enabling-cross-origin-requests-in-web-api/_static/image7.png)
+!['Try it' error in browser](enabling-cross-origin-requests-in-web-api/_static/image7.png)
 
 > [!NOTE]
-> If you watch the HTTP traffic in a tool like [Fiddler](http://www.telerik.com/fiddler), you will see that the browser does send the GET request, and the request succeeds, but the AJAX call returns an error. It's important to understand that same-origin policy does not prevent the browser from *sending* the request. Instead, it prevents the application from seeing the *response*.
+> If you watch the HTTP traffic in a tool like [Fiddler](http://www.telerik.com/fiddler), you'll see that the browser does send the GET request, and the request succeeds, but the AJAX call returns an error. It's important to understand that same-origin policy does not prevent the browser from *sending* the request. Instead, it prevents the application from seeing the *response*.
 
+![Fiddler web debugger showing web requests](enabling-cross-origin-requests-in-web-api/_static/image8.png)
 
-![](enabling-cross-origin-requests-in-web-api/_static/image8.png)
-
-<a id="enable-cors"></a>
 ## Enable CORS
 
-Now let's enable CORS in the WebService app. First, add the CORS NuGet package. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
+Now let's enable CORS in the WebService app. First, add the CORS NuGet package. In Visual Studio, from the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
 
 [!code-powershell[Main](enabling-cross-origin-requests-in-web-api/samples/sample3.ps1)]
 
-This command installs the latest package and updates all dependencies, including the core Web API libraries. User the -Version flag to target a specific version. The CORS package requires Web API 2.0 or later.
+This command installs the latest package and updates all dependencies, including the core Web API libraries. Use the `-Version` flag to target a specific version. The CORS package requires Web API 2.0 or later.
 
-Open the file App\_Start/WebApiConfig.cs. Add the following code to the **WebApiConfig.Register** method.
+Open the file *App\_Start/WebApiConfig.cs*. Add the following code to the **WebApiConfig.Register** method:
 
 [!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample4.cs?highlight=9)]
 
@@ -116,12 +110,11 @@ Do not include a forward slash at the end of the *origins* URL.
 
 Redeploy the updated WebService application. You don't need to update WebClient. Now the AJAX request from WebClient should succeed. The GET, PUT, and POST methods are all allowed.
 
-![](enabling-cross-origin-requests-in-web-api/_static/image9.png)
+![Web browser showing successful test message](enabling-cross-origin-requests-in-web-api/_static/image9.png)
 
-<a id="how-it-works"></a>
 ## How CORS Works
 
-This section describes what happens in a CORS request, at the level of the HTTP messages. It's important to understand how CORS works, so that you can configure the **[EnableCors]** attribute correctly, and troubleshoot if things don't work as you expect.
+This section describes what happens in a CORS request, at the level of the HTTP messages. It's important to understand how CORS works, so that you can configure the **[EnableCors]** attribute correctly and troubleshoot if things don't work as you expect.
 
 The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests; you don't need to do anything special in your JavaScript code.
 
@@ -143,7 +136,7 @@ The browser can skip the preflight request if the following conditions are true:
 
 - The request method is GET, HEAD, or POST, *and*
 - The application does not set any request headers other than Accept, Accept-Language, Content-Language, Content-Type, or Last-Event-ID, *and*
-- The Content-Type header (if set) is one of the following: 
+- The Content-Type header (if set) is one of the following:
 
     - application/x-www-form-urlencoded
     - multipart/form-data
@@ -166,7 +159,6 @@ Here is an example response, assuming that the server allows the request:
 
 The response includes an Access-Control-Allow-Methods header that lists the allowed methods, and optionally an Access-Control-Allow-Headers header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request, as described earlier.
 
-<a id="scope"></a>
 ## Scope Rules for [EnableCors]
 
 You can enable CORS per action, per controller, or globally for all Web API controllers in your application.
@@ -195,8 +187,7 @@ If you set the attribute at more than one scope, the order of precedence is:
 2. Controller
 3. Global
 
-<a id="allowed-origins"></a>
-## Set the Allowed Origins
+## Set the allowed origins
 
 The *origins* parameter of the **[EnableCors]** attribute specifies which origins are allowed to access the resource. The value is a comma-separated list of the allowed origins.
 
@@ -208,26 +199,23 @@ Consider carefully before allowing requests from any origin. It means that liter
 
 [!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample14.cs)]
 
-<a id="allowed-methods"></a>
-## Set the Allowed HTTP Methods
+## Set the allowed HTTP methods
 
 The *methods* parameter of the **[EnableCors]** attribute specifies which HTTP methods are allowed to access the resource. To allow all methods, use the wildcard value "\*". The following example allows only GET and POST requests.
 
 [!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample15.cs)]
 
-<a id="allowed-request-headers"></a>
-## Set the Allowed Request Headers
+## Set the allowed request headers
 
-Earlier I described how a preflight request might include an Access-Control-Request-Headers header, listing the HTTP headers set by the application (the so-called "author request headers"). The *headers* parameter of the **[EnableCors]** attribute specifies which author request headers are allowed. To allow any headers, set *headers* to "\*". To whitelist specific headers, set *headers* to a comma-separated list of the allowed headers:
+This article described earlier how a preflight request might include an Access-Control-Request-Headers header, listing the HTTP headers set by the application (the so-called "author request headers"). The *headers* parameter of the **[EnableCors]** attribute specifies which author request headers are allowed. To allow any headers, set *headers* to "\*". To whitelist specific headers, set *headers* to a comma-separated list of the allowed headers:
 
 [!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample16.cs)]
 
-However, browsers are not entirely consistent in how they set Access-Control-Request-Headers. For example, Chrome currently includes "origin"; while FireFox does not include standard headers such as "Accept", even when the application sets them in script.
+However, browsers are not entirely consistent in how they set Access-Control-Request-Headers. For example, Chrome currently includes "origin". FireFox does not include standard headers such as "Accept", even when the application sets them in script.
 
 If you set *headers* to anything other than "\*", you should include at least "accept", "content-type", and "origin", plus any custom headers that you want to support.
 
-<a id="allowed-response-headers"></a>
-## Set the Allowed Response Headers
+## Set the allowed response headers
 
 By default, the browser does not expose all of the response headers to the application. The response headers that are available by default are:
 
@@ -244,8 +232,7 @@ In the following example, the controller's `Get` method sets a custom header nam
 
 [!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample17.cs)]
 
-<a id="credentials"></a>
-## Passing Credentials in Cross-Origin Requests
+## Pass credentials in cross-origin requests
 
 Credentials require special handling in a CORS request. By default, the browser does not send any credentials with a cross-origin request. Credentials include cookies as well as HTTP authentication schemes. To send credentials with a cross-origin request, the client must set **XMLHttpRequest.withCredentials** to true.
 
@@ -265,10 +252,9 @@ If this property is true, the HTTP response will include an Access-Control-Allow
 
 If the browser sends credentials, but the response does not include a valid Access-Control-Allow-Credentials header, the browser will not expose the response to the application, and the AJAX request fails.
 
-Be very careful about setting **SupportsCredentials** to true, because it means a website at another domain can send a logged-in user's credentials to your Web API on the user's behalf, without the user being aware. The CORS spec also states that setting *origins* to &quot;\*&quot; is invalid if **SupportsCredentials** is true.
+Be careful about setting **SupportsCredentials** to true, because it means a website at another domain can send a logged-in user's credentials to your Web API on the user's behalf, without the user being aware. The CORS spec also states that setting *origins* to &quot;\*&quot; is invalid if **SupportsCredentials** is true.
 
-<a id="cors-policy-providers"></a>
-## Custom CORS Policy Providers
+## Custom CORS policy providers
 
 The **[EnableCors]** attribute implements the **ICorsPolicyProvider** interface. You can provide your own implementation by creating a class that derives from **Attribute** and implements **ICorsProlicyProvider**.
 
@@ -288,9 +274,6 @@ To set the **ICorsPolicyProviderFactory**, call the **SetCorsPolicyProviderFacto
 
 [!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample24.cs)]
 
-<a id="browser-support"></a>
-## Browser Support
+## Browser support
 
 The Web API CORS package is a server-side technology. The user's browser also needs to support CORS. Fortunately, the current versions of all major browsers include [support for CORS](http://caniuse.com/cors).
-
-Internet Explorer 8 and Internet Explorer 9 have partial support for CORS, using the legacy XDomainRequest object instead of XMLHttpRequest. For more information, see [XDomainRequest - Restrictions, Limitations and Workarounds](https://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx).

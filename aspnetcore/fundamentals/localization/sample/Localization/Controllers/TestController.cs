@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
-namespace Localization.StarterWeb.Controllers
+namespace Localization.Controllers
 {
     public class TestController : Controller
     {

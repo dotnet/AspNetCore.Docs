@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/testing-and-debugging/introduction-to-debugging
 title: "Introduction to Debugging ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "Debugging is the process of finding and fixing errors in your code pages. This chapter shows you some tools and techniques you can use to debug and to analyz..."
 ms.author: riande
 ms.date: 02/20/2014
@@ -14,26 +14,26 @@ Introduction to Debugging ASP.NET Web Pages (Razor) Sites
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
 > This article explains various ways to debug pages in an ASP.NET Web Pages (Razor) website. Debugging is the process of finding and fixing errors in your code pages.
-> 
-> **What you'll learn:** 
-> 
+>
+> **What you'll learn:**
+>
 > - How to display information that helps analyze and debug pages.
 > - How to use debugging tools in Visual Studio.
->   
-> 
+>
+>
 > These are the ASP.NET features introduced in the article:
-> 
+>
 > - The `ServerInfo` helper.
 > - `ObjectInfo` helper.
->   
-> 
+>
+>
 > ## Software versions
-> 
-> 
+>
+>
 > - ASP.NET Web Pages (Razor) 3
 > - Visual Studio 2013
->   
-> 
+>
+>
 > This tutorial also works with ASP.NET Web Pages 2. You can use WebMatrix 3 but the integrated debugger is not supported.
 
 
@@ -48,8 +48,8 @@ The `ServerInfo` helper is a diagnostic tool that gives you an overview of infor
 
     You can add the `ServerInfo` code anywhere in the page. But adding it at the end will keep its output separate from your other page content, which makes it easier to read.
 
-    > [!NOTE] 
-    > 
+    > [!NOTE]
+    >
     > **Important** You should remove any diagnostic code from your web pages before you move web pages to a production server. This applies to the `ServerInfo` helper as well as the other diagnostic techniques in this article that involve adding code to a page. You don't want your website visitors to see information about your server name, user names, paths on your server, and similar details, because this type of information might be useful to people with malicious intent.
 3. Save the page and run it in a browser.
 
@@ -113,7 +113,7 @@ The `ObjectInfo` helper displays the type and the value of each object you pass 
 
 ## Using Debugging Tools in Visual Studio
 
-For a more comprehensive debugging experience, use Visual Studio 2013 or the free [Visual Studio Express 2013 for Web](https://www.visualstudio.com/downloads/download-visual-studio-vs#d-2013-express). With Visual Studio, you can set a breakpoint in your code at the line that you want to inspect.
+For a more comprehensive debugging experience, use [Visual Studio](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017). With Visual Studio, you can set a breakpoint in your code at the line that you want to inspect.
 
 ![set breakpoint](introduction-to-debugging/_static/image1.png)
 

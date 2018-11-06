@@ -13,9 +13,9 @@ Updating Related Data with the Entity Framework in an ASP.NET MVC Application
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8) or [Download PDF](http://download.microsoft.com/download/0/F/B/0FBFAA46-2BFD-478F-8E56-7BF3C672DF9D/Getting%20Started%20with%20Entity%20Framework%206%20Code%20First%20using%20MVC%205.pdf)
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio 2013. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
+> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 
 
 In the previous tutorial you displayed related data; in this tutorial you'll update related data. For most relationships, this can be done by updating either foreign key fields or navigation properties. For many-to-many relationships, the Entity Framework doesn't expose the join table directly, so you add and remove entities to and from the appropriate navigation properties.
@@ -208,8 +208,8 @@ Click **Edit** on an instructor to see the Edit page.
 
 Change some course assignments and click **Save**. The changes you make are reflected on the Index page.
 
- Note: The approach taken here to edit instructor course data works well when there is a limited number of courses. For collections that are much larger, a different UI and a different updating method would be required.  
- 
+ Note: The approach taken here to edit instructor course data works well when there is a limited number of courses. For collections that are much larger, a different UI and a different updating method would be required.
+
 
 ## Update the DeleteConfirmed Method
 
@@ -263,7 +263,7 @@ As explained in the [Basic CRUD Functionality tutorial](implementing-basic-crud-
 
 You have now completed this introduction to working with related data. So far in these tutorials you've worked with code that does synchronous I/O. You can make the application use web server resources more efficiently by implementing asynchronous code, and that's what you'll do in the next tutorial.
 
-Please leave feedback on how you liked this tutorial and what we could improve. You can also request new topics at [Show Me How With Code](http://aspnet.uservoice.com/forums/228522-show-me-how-with-code).
+Please leave feedback on how you liked this tutorial and what we could improve.
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 

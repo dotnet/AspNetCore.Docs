@@ -4,7 +4,7 @@ author: steve-smith
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/19/2018
+ms.date: 10/11/2018
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -173,6 +173,31 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 
 Customize [antiforgery options](/dotnet/api/Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions) in `Startup.ConfigureServices`:
 
+::: moniker range=">= aspnetcore-2.0"
+
+```csharp
+services.AddAntiforgery(options => 
+{
+    // Set Cookie properties using CookieBuilder properties†.
+    options.FormFieldName = "AntiforgeryFieldname";
+    options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
+    options.SuppressXFrameOptionsHeader = false;
+});
+```
+
+&dagger;Set the antiforgery `Cookie` properties using the properties of the [CookieBuilder](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder) class.
+
+| Option | Description |
+| ------ | ----------- |
+| [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | Determines the settings used to create the antiforgery cookies. |
+| [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+| [HeaderName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
+| [SuppressXFrameOptionsHeader](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.suppressxframeoptionsheader) | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
 ```csharp
 services.AddAntiforgery(options => 
 {
@@ -196,6 +221,8 @@ services.AddAntiforgery(options =>
 | [HeaderName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
 | [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | Specifies whether SSL is required by the antiforgery system. If `true`, non-SSL requests fail. Defaults to `false`. This property is obsolete and will be removed in a future version. The recommended alternative is to set Cookie.SecurePolicy. |
 | [SuppressXFrameOptionsHeader](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.suppressxframeoptionsheader) | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+
+::: moniker-end
 
 For more information, see [CookieAuthenticationOptions](/dotnet/api/Microsoft.AspNetCore.Builder.CookieAuthenticationOptions).
 
@@ -390,7 +417,7 @@ For ASP.NET Core API work with this convention:
 services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 ```
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Extend antiforgery
 

@@ -1,7 +1,7 @@
 ---
 uid: web-api/overview/testing-and-debugging/mocking-entity-framework-when-unit-testing-aspnet-web-api-2
 title: "Mocking Entity Framework when Unit Testing ASP.NET Web API 2 | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This guidance and application demonstrate how to create unit tests for your Web API 2 application that uses the Entity Framework. It shows how to modify the..."
 ms.author: riande
 ms.date: 12/13/2013
@@ -16,17 +16,15 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 [Download Completed Project](https://code.msdn.microsoft.com/Unit-Testing-with-ASPNET-1374bc11)
 
 > This guidance and application demonstrate how to create unit tests for your Web API 2 application that uses the Entity Framework. It shows how to modify the scaffolded controller to enable passing a context object for testing, and how to create test objects that work with Entity Framework.
-> 
+>
 > For an introduction to unit testing with ASP.NET Web API, see [Unit Testing with ASP.NET Web API 2](unit-testing-with-aspnet-web-api.md).
-> 
+>
 > This tutorial assumes you are familiar with the basic concepts of ASP.NET Web API. For an introductory tutorial, see [Getting Started with ASP.NET Web API 2](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md).
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2017](https://www.visualstudio.com/vs/)
+>
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 > - Web API 2
-
 
 ## In this topic
 

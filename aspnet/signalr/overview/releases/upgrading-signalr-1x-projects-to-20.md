@@ -14,29 +14,29 @@ Upgrading SignalR 1.x Projects to version 2
 by [Patrick Fletcher](https://github.com/pfletcher)
 
 > This topic describes how to upgrade an existing SignalR 1.x project to SignalR 2.x, and how to troubleshoot issues that may arise during the upgrade process.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
 > - SignalR versions 1 and 2
->   
-> 
-> 
+>
+>
+>
 > ## Using Visual Studio 2012 with this tutorial
-> 
-> 
+>
+>
 > To use Visual Studio 2012 with this tutorial, do the following:
-> 
+>
 > - Update your [Package Manager](http://docs.nuget.org/docs/start-here/installing-nuget) to the latest version.
 > - Install the [Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx).
 > - In the Web Platform Installer, search for and install **ASP.NET and Web Tools 2013.1 for Visual Studio 2012**. This will install Visual Studio templates for SignalR classes such as **Hub**.
 > - Some templates (such as **OWIN Startup Class**) will not be available; for these, use a Class file instead.
-> 
-> 
+>
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 

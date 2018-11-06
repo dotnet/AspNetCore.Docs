@@ -5,8 +5,9 @@ namespace MvcMovie.Models
 {
     public class MovieGenreViewModel
     {
-        public List<Movie> movies;
-        public SelectList genres;
-        public string movieGenre { get; set; }
+        public List<Movie> Movies;
+        public SelectList Genres;
+        public string MovieGenre { get; set; }
+        public string SearchString { get; set; }
     }
 }

@@ -11,12 +11,11 @@ msc.type: authoredcontent
 ---
 Appendix: The Fix It Sample Application (Building Real-World Cloud Apps with Azure)
 ====================
-by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)
+by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson]((https://twitter.com/RickAndMSFT)), [Tom Dykstra](https://github.com/tdykstra)
 
 [Download The Fix It Project](http://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4)
 
 > The **Building Real World Cloud Apps with Azure** e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can help you be successful developing web apps for the cloud. For information about the e-book, see [the first chapter](introduction.md).
-
 
 This appendix to the Building Real World Cloud Apps with Azure e-book contains the following sections that provide additional information about the Fix It sample application that you can download:
 
@@ -171,11 +170,11 @@ The new-project template puts `Thread.Sleep` in the sample code for a worker rol
 
 If an async method doesn't need to return a value, return a `Task` type rather than `void`.
 
-This example is from the `FixItQueueManager` class: 
+This example is from the `FixItQueueManager` class:
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample15.cs)]
 
-You should use `async void` only for top-level event handlers. If you define a method as `async void`, the caller cannot **await** the method or catch any exceptions the method throws. For more information, see [Best Practices in Asynchronous Programming](https://msdn.microsoft.com/magazine/jj991977.aspx). 
+You should use `async void` only for top-level event handlers. If you define a method as `async void`, the caller cannot **await** the method or catch any exceptions the method throws. For more information, see [Best Practices in Asynchronous Programming](https://msdn.microsoft.com/magazine/jj991977.aspx).
 
 ### Use a cancellation token to break from worker role loop
 
@@ -210,16 +209,16 @@ There are two ways to run the Fix It app:
 <a id="runbase"></a>
 ### Run the base application
 
-1. Install [Visual Studio 2013 or Visual Studio 2013 Express for Web](https://www.visualstudio.com/downloads).
-2. Install the [Azure SDK for .NET for Visual Studio 2013.](https://go.microsoft.com/fwlink/p/?linkid=323510&amp;clcid=0x409)
+1. Install [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017).
+2. Install the [Azure SDK for .NET for Visual Studio](https://azure.microsoft.com/downloads/).
 3. Download the .zip file from the [MSDN Code Gallery](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4).
 4. In File Explorer, right-click the .zip file and click Properties, then in the Properties window click Unblock.
 5. Unzip the file.
 6. Double-click the .sln file to launch Visual Studio.
-7. From the Tools menu, click Library Package Manager, then Package Manager Console.
+7. From the **Tools** menu, click **NuGet Package Manager**, then **Package Manager Console**.
 8. In the Package Manager Console (PMC), click Restore.
 9. Exit Visual Studio.
-10. Start the [Azure storage emulator](https://msdn.microsoft.com/library/windowsazure/hh403989.aspx).
+10. Start the [Azure storage emulator](/azure/storage/common/storage-use-emulator).
 11. Restart Visual Studio, opening the solution file you closed in the previous step.
 12. Make sure the FixIt project is set as the startup project, and then press CTRL+F5 to run the project.
 
@@ -228,24 +227,24 @@ There are two ways to run the Fix It app:
 
 1. Follow the directions for [Run the base application](#runbase), and then close the browser and close Visual Studio.
 2. Start Visual Studio with administrator privileges. (You'll be using the Azure compute emulator, and that requires administrator privileges.)
-3. In the application *Web.config* file in the *MyFixIt* project (the web project), change the value of `appSettings/UseQueues` to "true": 
+3. In the application *Web.config* file in the *MyFixIt* project (the web project), change the value of `appSettings/UseQueues` to "true":
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample19.cmd?highlight=3)]
 4. If the [Azure storage emulator](https://msdn.microsoft.com/library/windowsazure/hh403989.aspx) isn't still running, start it again.
 5. Run the FixIt web project and the MyFixItCloudService project simultaneously.
 
-    Using Visual Studio 2013:
+    Using Visual Studio:
 
-   1. Press F5 to run the FixIt project.
-   2. In **Solution Explorer**, right-click the MyFixItCloudService project, and then click **Debug** -- **Start New Instance**.
+   1. Press **F5** to run the FixIt project.
+   2. In **Solution Explorer**, right-click the MyFixItCloudService project, and then click **Debug** > **Start New Instance**.
 
-      Using Visual Studio 2013 Express for Web:
+    Using Visual Studio 2013 Express for Web:
 
    3. In Solution Explorer, right-click the FixIt solution and select **Properties**.
-   4. Select **Multiple Startup Projects**..
+   4. Select **Multiple Startup Projects**.
    5. In the **Action** dropdown list under MyFixIt and MyFixItCloudService, select **Start**.
    6. Click **OK**.
-   7. Press F5 to run both projects.
+   7. Press **F5** to run both projects.
 
       When you run the MyFixItCloudService project, Visual Studio starts the Azure compute emulator. Depending on your firewall configuration, you might need to allow the emulator through the firewall.
 
@@ -348,7 +347,7 @@ To determine which resources the script created before it stopped, use the follo
 
 - `Get-AzureWebsite`
 - `Get-AzureSqlDatabaseServer`
-- `Get-AzureSqlDatabase`: To run this cmdlet, pipe the database server name to `Get-AzureSqlDatabase`:  
+- `Get-AzureSqlDatabase`: To run this cmdlet, pipe the database server name to `Get-AzureSqlDatabase`:
     `Get-AzureSqlDatabaseServer | Get-AzureSqlDatabase.`
 
 To delete these resources, use the following commands. Note that if you delete the database server, you automatically delete the databases associated with the server.
@@ -360,7 +359,7 @@ To delete these resources, use the following commands. Note that if you delete t
 <a id="deployqueues"></a>
 ## How to deploy the app with queue processing to Azure App Service Web Apps and an Azure Cloud Service
 
-To enable queues, make the following change in the MyFixIt\Web.config file. Under `appSettings`, change the value of `UseQueues` to "true": 
+To enable queues, make the following change in the MyFixIt\Web.config file. Under `appSettings`, change the value of `UseQueues` to "true":
 
 [!code-xml[Main](the-fix-it-sample-application/samples/sample31.xml)]
 

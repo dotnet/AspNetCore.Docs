@@ -10,7 +10,7 @@ uid: mvc/views/view-components
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## View components
 
@@ -69,20 +69,20 @@ A view component defines its logic in an `InvokeAsync` method that returns an `I
 
 The runtime searches for the view in the following paths:
 
-* /Pages/Components/\<view_component_name>/\<view_name>
-* /Views/\<controller_name>/Components/\<view_component_name>/\<view_name>
-* /Views/Shared/Components/\<view_component_name>/\<view_name>
+* /Pages/Components/{View Component Name}/{View Name}
+* /Views/{Controller Name}/Components/{View Component Name}/{View Name}
+* /Views/Shared/Components/{View Component Name}/{View Name}
 
 The default view name for a view component is *Default*, which means your view file will typically be named *Default.cshtml*. You can specify a different view name when creating the view component result or when calling the `View` method.
 
-We recommend you name the view file *Default.cshtml* and use the *Views/Shared/Components/\<view_component_name>/\<view_name>* path. The `PriorityList` view component used in this sample uses *Views/Shared/Components/PriorityList/Default.cshtml* for the view component view.
+We recommend you name the view file *Default.cshtml* and use the *Views/Shared/Components/{View Component Name}/{View Name}* path. The `PriorityList` view component used in this sample uses *Views/Shared/Components/PriorityList/Default.cshtml* for the view component view.
 
 ## Invoking a view component
 
 To use the view component, call the following inside a view:
 
 ```cshtml
-@Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)
+@await Component.InvokeAsync("Name of view component", {Anonymous Type Containing Parameters})
 ```
 
 The parameters will be passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:

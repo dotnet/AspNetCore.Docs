@@ -12,7 +12,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Environments
 
@@ -22,7 +22,7 @@ ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at app star
 
 The preceding code:
 
-* Calls [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) and [UseBrowserLink](/dotnet/api/microsoft.aspnetcore.builder.browserlinkextensions.usebrowserlink) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
+* Calls [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
 * Calls [UseExceptionHandler](/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler) when the value of `ASPNETCORE_ENVIRONMENT` is set one of the following:
 
     * `Staging`
@@ -239,7 +239,6 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable for an app running in a
 > [!IMPORTANT]
 > When hosting an app in IIS and adding or changing the `ASPNETCORE_ENVIRONMENT` environment variable, use any one of the following approaches to have the new value picked up by apps:
 >
-> * Restart an app's app pool.
 > * Execute `net stop was /y` followed by `net start w3svc` from a command prompt.
 > * Restart the server.
 

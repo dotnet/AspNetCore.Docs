@@ -42,7 +42,7 @@ Web API configuration setttings are defined in the [HttpConfiguration](https://m
 
 ## Prerequisites
 
-[Visual Studio 2017](https://www.visualstudio.com/vs/) Community, Professional, or Enterprise Edition.
+[Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Community, Professional, or Enterprise edition.
 
 <a id="webhost"></a>
 ## Configuring Web API with ASP.NET Hosting

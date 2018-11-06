@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 10/18/2017
+ms.date: 10/26/2018
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -398,7 +398,7 @@ Razor directives are represented by implicit expressions with reserved keywords 
 
 Understanding how Razor generates code for a view makes it easier to understand how directives work.
 
-[!code-html[](razor/sample/Views/Home/Contact8.cshtml)]
+[!code-cshtml[](razor/sample/Views/Home/Contact8.cshtml)]
 
 The code generates a class similar to the following:
 
@@ -416,7 +416,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 }
 ```
 
-Later in this article, the section [Viewing the Razor C# class generated for a view](#viewing-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
+Later in this article, the section [Inspect the Razor C# class generated for a view](#inspect-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
 
 <a name="using"></a>
 ### @using
@@ -491,7 +491,6 @@ If "rick@contoso.com" is passed in the model, the view generates the following H
 ```
 
 ### @inject
-
 
 The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
@@ -568,32 +567,76 @@ C# Razor keywords must be double-escaped with `@(@C# Razor Keyword)` (for exampl
 
 * class
 
-## Viewing the Razor C# class generated for a view
+## Inspect the Razor C# class generated for a view
+
+::: moniker range=">= aspnetcore-2.1"
+
+With .NET Core SDK 2.1 or later, the [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. When building a project, the Razor SDK generates an *obj/<build_configuration>/<target_framework_moniker>/Razor* directory in the project root. The directory structure within the *Razor* directory mirrors the project's directory structure.
+
+Consider the following directory structure in an ASP.NET Core 2.1 Razor Pages project targeting .NET Core 2.1:
+
+* **Areas/**
+  * **Admin/**
+    * **Pages/**
+      * *Index.cshtml*
+      * *Index.cshtml.cs*
+* **Pages/**
+  * **Shared/**
+    * *_Layout.cshtml*
+  * *_ViewImports.cshtml*
+  * *_ViewStart.cshtml*
+  * *Index.cshtml*
+  * *Index.cshtml.cs*
+
+Building the project in *Debug* configuration yields the following *obj* directory:
+
+* **obj/**
+  * **Debug/**
+    * **netcoreapp2.1/**
+      * **Razor/**
+        * **Areas/**
+          * **Admin/**
+            * **Pages/**
+              * *Index.g.cshtml.cs*
+        * **Pages/**
+          * **Shared/**
+            * *_Layout.g.cshtml.cs*
+          * *_ViewImports.g.cshtml.cs*
+          * *_ViewStart.g.cshtml.cs*
+          * *Index.g.cshtml.cs*
+
+To view the generated class for *Pages/Index.cshtml*, open *obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs*.
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
 
 Add the following class to the ASP.NET Core MVC project:
 
 [!code-csharp[](razor/sample/Utilities/CustomTemplateEngine.cs)]
 
-Override the `RazorTemplateEngine` added by MVC with the `CustomTemplateEngine` class:
+In `Startup.ConfigureServices`, override the `RazorTemplateEngine` added by MVC with the `CustomTemplateEngine` class:
 
 [!code-csharp[](razor/sample/Startup.cs?highlight=4&range=10-14)]
 
-Set a break point on the `return csharpDocument` statement of `CustomTemplateEngine`. When program execution stops at the break point, view the value of `generatedCode`.
+Set a breakpoint on the `return csharpDocument;` statement of `CustomTemplateEngine`. When program execution stops at the breakpoint, view the value of `generatedCode`.
 
 ![Text Visualizer view of generatedCode](razor/_static/tvr.png)
+
+::: moniker-end
 
 ## View lookups and case sensitivity
 
 The Razor view engine performs case-sensitive lookups for views. However, the actual lookup is determined by the underlying file system:
 
-* File based source: 
+* File based source:
   * On operating systems with case insensitive file systems (for example, Windows), physical file provider lookups are case insensitive. For example, `return View("Test")` results in matches for */Views/Home/Test.cshtml*, */Views/home/test.cshtml*, and any other casing variant.
   * On case-sensitive file systems (for example, Linux, OSX, and with `EmbeddedFileProvider`), lookups are case-sensitive. For example, `return View("Test")` specifically matches */Views/Home/Test.cshtml*.
 * Precompiled views: With ASP.NET Core 2.0 and later, looking up precompiled views is case insensitive on all operating systems. The behavior is identical to physical file provider's behavior on Windows. If two precompiled views differ only in case, the result of lookup is non-deterministic.
 
 Developers are encouraged to match the casing of file and directory names to the casing of:
 
-    * Area, controller, and action names. 
+    * Area, controller, and action names.
     * Razor Pages.
-    
+
 Matching case ensures the deployments find their views regardless of the underlying file system.

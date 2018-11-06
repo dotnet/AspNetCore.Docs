@@ -1,17 +1,19 @@
 ---
-title: Application startup in ASP.NET Core
+title: App startup in ASP.NET Core
 author: ardalis
-description: Discover how the Startup class in ASP.NET Core configures services and the app's request pipeline.
+description: Explains how the Startup class in ASP.NET Core configures services and the app's request pipeline.
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 4/13/2018
 uid: fundamentals/startup
 ---
-# Application startup in ASP.NET Core
+# App startup in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com), [Tom Dykstra](https://github.com/tdykstra), and [Luke Latham](https://github.com/guardrex)
 
 The `Startup` class configures services and the app's request pipeline.
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/startup/sample/) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## The Startup class
 
@@ -38,7 +40,7 @@ A common use of [dependency injection](xref:fundamentals/dependency-injection) i
 
 [!code-csharp[](startup/snapshot_sample/Startup2.cs)]
 
-An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
+An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach. When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
 To learn more about `WebHostBuilder`, see the [Hosting](xref:fundamentals/host/index) topic. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
 
@@ -56,7 +58,7 @@ Adding services to the service container makes them available within the app and
 
 The web host may configure some services before `Startup` methods are called. Details are available in the [Host in ASP.NET Core](xref:fundamentals/host/index) topic.
 
-For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical web app registers services for Entity Framework, Identity, and MVC:
+For features that require substantial setup, there are `Add[Service]` extension methods on [IServiceCollection](/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection). A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC:
 
 [!code-csharp[](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
 
@@ -90,7 +92,7 @@ Use [IStartupFilter](/dotnet/api/microsoft.aspnetcore.hosting.istartupfilter) to
 
 Each `IStartupFilter` implements one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters may add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
 
-The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/startup/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample)) demonstrates how to register a middleware with `IStartupFilter`. The sample app includes a middleware that sets an options value from a query string parameter:
+The sample app demonstrates how to register a middleware with `IStartupFilter`. The sample app includes a middleware that sets an options value from a query string parameter:
 
 [!code-csharp[](startup/sample/RequestSetOptionsMiddleware.cs?name=snippet1)]
 

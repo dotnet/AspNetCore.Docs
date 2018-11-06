@@ -1,7 +1,7 @@
 ---
 uid: web-api/overview/testing-and-debugging/unit-testing-with-aspnet-web-api
 title: "Unit Testing ASP.NET Web API 2 | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This guidance and application demonstrate how to create simple unit tests for your Web API 2 application. This tutorial shows how to include a unit test proj..."
 ms.author: riande
 ms.date: 06/05/2014
@@ -16,17 +16,15 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 [Download Completed Project](https://code.msdn.microsoft.com/Unit-Testing-with-ASPNET-1374bc11)
 
 > This guidance and application demonstrate how to create simple unit tests for your Web API 2 application. This tutorial shows how to include a unit test project in your solution, and write test methods that check the returned values from a controller method.
-> 
+>
 > This tutorial assumes you are familiar with the basic concepts of ASP.NET Web API. For an introductory tutorial, see [Getting Started with ASP.NET Web API 2](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md).
-> 
+>
 > The unit tests in this topic are intentionally limited to simple data scenarios. For unit testing more advanced data scenarios, see [Mocking Entity Framework when Unit Testing ASP.NET Web API 2](mocking-entity-framework-when-unit-testing-aspnet-web-api-2.md).
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2017](https://www.visualstudio.com/vs/)
+>
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 > - Web API 2
-
 
 ## In this topic
 
@@ -35,7 +33,6 @@ This topic contains the following sections:
 - [Prerequisites](#prereqs)
 - [Download code](#download)
 - [Create application with unit test project](#appwithunittest)
-
     - [Add unit test project when creating the application](#whencreate)
     - [Add unit test project to an existing application](#addtoexisting)
 - [Set up the Web API 2 application](#setupproject)
@@ -46,7 +43,7 @@ This topic contains the following sections:
 <a id="prereqs"></a>
 ## Prerequisites
 
-Visual Studio 2017 Community, Professional or Enterprise edition
+[Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Community, Professional or Enterprise edition
 
 <a id="download"></a>
 ## Download code

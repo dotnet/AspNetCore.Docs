@@ -18,7 +18,7 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 * Hosted service that activates a scoped service. The scoped service can use dependency injection.
 * Queued background tasks that run sequentially.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample app is provided in two versions:
 
@@ -73,7 +73,7 @@ A background task queue is based on the .NET 4.x <xref:System.Web.Hosting.Hostin
 
 In `QueueHostedService`, background tasks in the queue are dequeued and executed as a <xref:Microsoft.Extensions.Hosting.BackgroundService>, which is a base class for implementing a long running `IHostedService`:
 
-[!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Services/QueuedHostedService.cs?name=snippet1&highlight=16,20)]
+[!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Services/QueuedHostedService.cs?name=snippet1&highlight=21,25)]
 
 The services are registered in `Startup.ConfigureServices`. The `IHostedService` implementation is registered with the `AddHostedService` extension method:
 

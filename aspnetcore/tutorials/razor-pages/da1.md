@@ -39,10 +39,10 @@ Select `using System.ComponentModel.DataAnnotations;`
 
   ![using System.ComponentModel.DataAnnotations at top of list](da1/da.png)
 
-  Visual studio adds `using System.ComponentModel.DataAnnotations;`.
+  Visual Studio adds `using System.ComponentModel.DataAnnotations;`.
 
 [!INCLUDE [model1](~/includes/RP/da2.md)]
 
 > [!div class="step-by-step"]
 > [Previous: Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
-> [Add search](xref:tutorials/razor-pages/search)
+> [Next: Add search](xref:tutorials/razor-pages/search)

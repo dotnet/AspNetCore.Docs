@@ -37,7 +37,23 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ## Configure the site to use MVC
 
-* When targeting .NET Core, the ASP.NET Core metapackage is added to the project, called `Microsoft.AspNetCore.All` by default. This package contains packages like `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles`. If targeting .NET Framework, package references need to be listed individually in the *.csproj file.
+::: moniker range=">= aspnetcore-2.1"
+
+* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by default. This package contains packages commonly used packages by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+* When targeting .NET Core, the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) is referenced by default. This package contains packages commonly used packages by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+* When targeting .NET Core or .NET Framework, packages commonly used packages by MVC apps are listed individually in the project file.
+
+::: moniker-end
 
 `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET Core runtime is modular, and you must explicitly opt in to serve static files (see [Static files](xref:fundamentals/static-files)).
 

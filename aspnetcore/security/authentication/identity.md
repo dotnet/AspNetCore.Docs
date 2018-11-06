@@ -14,7 +14,7 @@ ASP.NET Core Identity is a membership system that adds login functionality to AS
 
 Identity can be configured using a SQL Server database to store user names, passwords, and profile data. Alternatively, another persistent store can be used, for example, Azure Table Storage.
 
-[View or download the sample code.](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) [(How to download)](xref:tutorials/index#how-to-download-a-sample)
+[View or download the sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([how to download)](xref:index#how-to-download-a-sample)).
 
 In this topic, you learn how to use Identity to register, log in, and log out a user. For more detailed instructions about creating apps that use Identity, see the Next Steps section at the end of this article.
 
@@ -39,7 +39,7 @@ Create an ASP.NET Core Web Application project with Individual User Accounts.
 
 # [Visual Studio](#tab/visual-studio)
 
-* Select **File** > **New** > **Project**. 
+* Select **File** > **New** > **Project**.
 * Select **ASP.NET Core Web Application**. Name the project **WebApp1** to have the same namespace as the project download. Click **OK**.
 * Select an ASP.NET Core **Web Application** for ASP.NET Core 2.1, then select **Change Authentication**.
 * Select **Individual User Accounts** and click **OK**.
@@ -107,21 +107,18 @@ For more information, see the [IdentityOptions Class](/dotnet/api/microsoft.aspn
 
 ## Scaffold Register, Login, and LogOut
 
-Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) instructions.
+Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) instructions to generate the the code shown in this section.
 
 # [Visual Studio](#tab/visual-studio)
 
 Add the Register, Login, and LogOut files.
 
-
 # [.NET Core CLI](#tab/netcore-cli)
 
 If you created the project with name **WebApp1**, run the following commands. Otherwise, use the correct namespace for the `ApplicationDbContext`:
 
-
 ```cli
 dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
-
 ```
 
 PowerShell uses semicolon as a command separator. When using PowerShell, escape the semicolons in the file list or put the file list in double quotes, as the preceding example shows.
@@ -156,14 +153,14 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 The Login form is displayed when:
 
-* The **Log in** link  is selected.
-* When a user accesses a page where they are not authenticated **or** authorized, they are redirected to the Login page. 
+* The **Log in** link is selected.
+* A user attempts to access a restricted page that they aren't authorized to access **or** when they haven't been authenticated by the system.
 
 When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object (provided by dependency injection).
 
    [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
-   The base `Controller` class exposes a `User` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see [Authorization](xref:security/authorization/index).
+   The base `Controller` class exposes a `User` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see <xref:security/authorization/introduction>.
 
 ::: moniker-end
 
@@ -248,7 +245,6 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>
-* [Configure Identity primary keys data type](xref:security/authentication/identity-primary-key-configuration).
 * <xref:migration/identity>
 * <xref:security/authentication/accconfirm>
 * <xref:security/authentication/2fa>

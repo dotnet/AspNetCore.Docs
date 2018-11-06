@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 OWIN Middleware in the IIS integrated pipeline
 ====================
-by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson](https://github.com/Rick-Anderson)
+by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > This article shows how to run OWIN middleware Components (OMCs) in the IIS integrated pipeline, and how to set the pipeline event an OMC runs on. You should review [An Overview of Project Katana](an-overview-of-project-katana.md) and [OWIN Startup Class Detection](owin-startup-class-detection.md) before reading this tutorial. This tutorial was written by Rick Anderson ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) ), Chris Ross, Praburaj Thiagarajan, and Howard Dierking ( [@howard\_dierking](https://twitter.com/howard_dierking) ).
 

@@ -11,14 +11,13 @@ msc.type: authoredcontent
 ---
 Source Control (Building Real-World Cloud Apps with Azure)
 ====================
-by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)
+by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson]((https://twitter.com/RickAndMSFT)), [Tom Dykstra](https://github.com/tdykstra)
 
 [Download Fix It Project](http://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4) or [Download E-book](http://blogs.msdn.com/b/microsoft_press/archive/2014/07/23/free-ebook-building-cloud-apps-with-microsoft-azure.aspx)
 
 > The **Building Real World Cloud Apps with Azure** e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can help you be successful developing web apps for the cloud. For information about the e-book, see [the first chapter](introduction.md).
 
-
-Source control is essential for all cloud development projects, not just team environments. You wouldn't think of editing source code or even a Word document without an undo function and automatic backups, and source control gives you those functions at a project level where they can save even more time when something goes wrong. With cloud source control services, you no longer have to worry about complicated set-up, and you can use Visual Studio Online source control free for up to 5 users.
+Source control is essential for all cloud development projects, not just team environments. You wouldn't think of editing source code or even a Word document without an undo function and automatic backups, and source control gives you those functions at a project level where they can save even more time when something goes wrong. With cloud source control services, you no longer have to worry about complicated set-up, and you can use Azure Repos source control free for up to 5 users.
 
 The first part of this chapter explains three key best practices to keep in mind:
 
@@ -26,11 +25,11 @@ The first part of this chapter explains three key best practices to keep in mind
 - [Never check in secrets](#secrets) (sensitive data such as credentials) into a source code repository.
 - [Set up source branches](#devops) to enable the DevOps workflow.
 
-The remainder of the chapter gives some sample implementations of these patterns in Visual Studio, Azure, and Visual Studio Online:
+The remainder of the chapter gives some sample implementations of these patterns in Visual Studio, Azure, and Azure Repos:
 
 - [Add scripts to source control in Visual Studio](#vsscripts)
 - [Store sensitive data in Azure](#appsettings)
-- [Use Git in Visual Studio and Visual Studio Online](#gittfs)
+- [Use Git in Visual Studio and Azure Repos](#gittfs)
 
 <a id="scripts"></a>
 ## Treat automation scripts as source code
@@ -67,7 +66,7 @@ This structure also enables you to react quickly to customer feedback. If you ne
 
 Without a branching structure like this with its separation of production and development branches, a production problem could put you in the position of having to promote new feature code along with your production fix. The new feature code might not be fully tested and ready for production and you might have to do a lot of work backing out changes that aren't ready. Or you might have to delay your fix in order to test changes and get them ready to deploy.
 
-Next you'll see examples of how to implement these three patterns in Visual Studio, Azure, and Visual Studio Online. These are examples rather than detailed step-by-step how-to-do-it instructions; for detailed instructions that provide all of the context necessary, see the [Resources](#resources) section at the end of the chapter.
+Next you'll see examples of how to implement these three patterns in Visual Studio, Azure, and Azure Repos. These are examples rather than detailed step-by-step how-to-do-it instructions; for detailed instructions that provide all of the context necessary, see the [Resources](#resources) section at the end of the chapter.
 
 <a id="vsscripts"></a>
 ## Add scripts to source control in Visual Studio
@@ -122,17 +121,17 @@ Notice that the scripts are parameterized so that actual values don't get persis
 When you run locally in your development environment, the app reads your local Web.config file and your connection string points to a LocalDB SQL Server database in the *App\_Data* folder of your web project. When you run the app in Azure and the app tries to read these values from the Web.config file, what it gets back and uses are the values stored for the Web Site, not what's actually in Web.config file.
 
 <a id="gittfs"></a>
-## Use Git in Visual Studio and Visual Studio Online
+## Use Git in Visual Studio and Azure DevOps
 
 You can use any source control environment to implement the DevOps branching structure presented earlier. For distributed teams a [distributed version control system](http://en.wikipedia.org/wiki/Distributed_revision_control) (DVCS) might work best; for other teams a [centralized system](http://en.wikipedia.org/wiki/Revision_control) might work better.
 
-[Git](http://git-scm.com/) is a DVCS that is has become very popular. When you use Git for source control, you have a complete copy of the repository with all of its history on your local computer. Many people prefer that because it's easier to continue working when you're not connected to the network -- you can continue to do commits and rollbacks, create and switch branches, and so forth. Even when you're connected to the network, it's easier and quicker to create branches and switch branches when everything is local. You can also do local commits and rollbacks without having an impact on other developers. And you can batch commits before sending them to the server.
+[Git](http://git-scm.com/) is a popular distributed version control system. When you use Git for source control, you have a complete copy of the repository with all of its history on your local computer. Many people prefer that because it's easier to continue working when you're not connected to the network -- you can continue to do commits and rollbacks, create and switch branches, and so forth. Even when you're connected to the network, it's easier and quicker to create branches and switch branches when everything is local. You can also do local commits and rollbacks without having an impact on other developers. And you can batch commits before sending them to the server.
 
-[Microsoft Visual Studio Online](https://www.visualstudio.com/)(VSO), formerly known as Team Foundation Service, offers both Git and [Team Foundation Version Control](https://msdn.microsoft.com/library/ms181237(v=vs.120).aspx) (TFVC; centralized source control). Here at Microsoft in the Azure group some teams use centralized source control, some use distributed, and some use a mix (centralized for some projects and distributed for other projects). The VSO service is free for up to 5 users. You can sign up for a free plan [here](https://go.microsoft.com/fwlink/?LinkId=307137).
+[Azure Repos](/azure/devops/repos/index?view=vsts) offers both [Git](/azure/devops/repos/git/?view=vsts) and [Team Foundation Version Control](/azure/devops/repos/tfvc/index?view=vsts) (TFVC; centralized source control). Get started with Azure DevOps [here](https://app.vsaex.visualstudio.com/signup).
 
-Visual Studio 2013 includes built-in first-class [Git support](https://msdn.microsoft.com/library/hh850437.aspx); here's a quick demo of how that works.
+Visual Studio 2017 includes built-in, first-class [Git support](https://msdn.microsoft.com/library/hh850437.aspx). Here's a quick demo of how that works.
 
-With a project open in Visual Studio 2013, right-click the solution in **Solution Explorer**, and choose **Add Solution to Source Control**.
+With a project open in Visual Studio, right-click the solution in **Solution Explorer**, and then choose **Add Solution to Source Control**.
 
 ![Add Solution to Source Control](source-control/_static/image9.png)
 
@@ -178,7 +177,7 @@ If you switch back to the master branch, the contents of the *\_Layout.cshtml* f
 
 This a simple example of how you can quickly create a branch and flip back and forth between branches. This feature enables a highly agile workflow using the branch structure and automation scripts presented in the [Automate Everything](automate-everything.md) chapter. For example, you can be working in the Development branch, create a hot fix branch off of master, switch to the new branch, make your changes there and commit them, and then switch back to the Development branch and continue what you were doing.
 
-What you've seen here is how you work with a local Git repository in Visual Studio. In a team environment you typically also push changes up to a common repository. The Visual Studio tools also enable you to point to a remote Git repository. You can use GitHub.com for that purpose, or you can use [Git in Visual Studio Online](https://msdn.microsoft.com/library/hh850437.aspx) integrated with all the other Visual Studio Online capabilities such as work item and bug tracking.
+What you've seen here is how you work with a local Git repository in Visual Studio. In a team environment you typically also push changes up to a common repository. The Visual Studio tools also enable you to point to a remote Git repository. You can use GitHub.com for that purpose, or you can use [Git and Azure Repos](/azure/devops/repos/git/overview?view=vsts) integrated with all the other Azure DevOps capabilities such as work item and bug tracking.
 
 This isn't the only way you can implement an agile branching strategy, of course. You can enable the same agile workflow using a centralized source control repository.
 
@@ -188,13 +187,6 @@ Measure the success of your source control system based on how quickly you can m
 
 <a id="resources"></a>
 ## Resources
-
-The [Visual Studio Online](https://www.visualstudio.com/) portal provides documentation and support services, and you can sign up for an account. If you have Visual Studio 2012 and would like to use Git, see [Visual Studio Tools for Git](https://visualstudiogallery.msdn.microsoft.com/abafc7d6-dcaa-40f4-8a5e-d6724bdb980c).
-
-For more information about TFVC (centralized version control) and Git (distributed version control), see the following resources:
-
-- [Which version control system should I use: TFVC or Git?](https://msdn.microsoft.com/library/vstudio/ms181368.aspx#tfvc_or_git_summary) MSDN documentation, includes a table summarizing the differences between TFVC and Git.
-- [Well, I like Team Foundation Server and I like Git, but which is better?](https://blogs.msdn.com/b/visualstudiouk/archive/2013/08/05/well-i-like-team-foundation-server-and-i-like-git-but-which-is-better.aspx) Comparison of Git and TFVC.
 
 For more information about branching strategies, see the following resources:
 

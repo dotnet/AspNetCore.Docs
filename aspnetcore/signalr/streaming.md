@@ -15,7 +15,7 @@ By [Brennan Conroy](https://github.com/BrennanConroy)
 
 ASP.NET Core SignalR supports streaming return values of server methods. This is useful for scenarios where fragments of data will come in over time. When a return value is streamed to the client, each fragment is sent to the client as soon as it becomes available, rather than waiting for all the data to become available.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/streaming/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/streaming/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Set up the hub
 
@@ -57,7 +57,7 @@ JavaScript clients call streaming methods on hubs by using `connection.stream`. 
 
 [!code-javascript[Streaming javascript](streaming/sample/wwwroot/js/stream.js?range=19-36)]
 
-To end the stream from the client call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method.
+To end the stream from the client, call the `dispose` method on the `ISubscription` that is returned from the `subscribe` method.
 
 ## Related resources
 

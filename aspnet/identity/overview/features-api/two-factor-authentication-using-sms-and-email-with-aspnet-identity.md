@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Two-factor authentication using SMS and email with ASP.NET Identity
 ====================
-by [Hao Kung](https://github.com/HaoK), [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://github.com/Rick-Anderson), [Suhas Joshi](https://github.com/suhasj)
+by [Hao Kung](https://github.com/HaoK), [Pranav Rastogi](https://github.com/rustd), [Rick Anderson]((https://twitter.com/RickAndMSFT)), [Suhas Joshi](https://github.com/suhasj)
 
 > This tutorial will show you how to set up Two-factor authentication (2FA) using SMS and email.
 > 

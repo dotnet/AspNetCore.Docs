@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how route and app model provider conventions help you control page routing, discovery, and processing.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 09/17/2018
+ms.date: 10/12/2018
 uid: razor-pages/razor-pages-conventions
 ---
 # Razor Pages route and app conventions in ASP.NET Core
@@ -19,7 +19,7 @@ To specify a page route, add route segments, or add parameters to a route, use t
 
 There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:fundamentals/routing#reserved-routing-names).
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
 ::: moniker range="= aspnetcore-2.0"
 
@@ -87,7 +87,7 @@ Razor Pages routing and MVC controller routing share an implementation. Informat
 
 Add a delegate for [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) to add [model conventions](xref:mvc/controllers/application-model#conventions) that apply to Razor Pages.
 
-**Add a route model convention to all pages**
+### Add a route model convention to all pages
 
 Use [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions) to create and add an [IPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageroutemodelconvention) to the collection of [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) instances that are applied during page route model construction.
 
@@ -111,7 +111,7 @@ Request the sample's About page at `localhost:5000/About/GlobalRouteValue` and i
 
 ![The About page is requested with a route segment of GlobalRouteValue. The rendered page shows that the route data value is captured in the OnGet method of the page.](razor-pages-conventions/_static/about-page-global-template.png)
 
-**Add an app model convention to all pages**
+### Add an app model convention to all pages
 
 Use [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions) to create and add an [IPageApplicationModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageapplicationmodelconvention) to the collection of [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) instances that are applied during page app model construction.
 
@@ -131,12 +131,12 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**Add a handler model convention to all pages**
+### Add a handler model convention to all pages
 
 Use [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions) to create and add an [IPageHandlerModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipagehandlermodelconvention) to the collection of [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) instances that are applied during page handler model construction.
 
 ```csharp
-public class GlobalPageHandlerModelConvention 
+public class GlobalPageHandlerModelConvention
     : IPageHandlerModelConvention
 {
     public void Apply(PageHandlerModel model)
@@ -162,7 +162,7 @@ services.AddMvc()
 
 The default route model provider that derives from [IPageRouteModelProvider](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageroutemodelprovider) invokes conventions which are designed to provide extensibility points for configuring page routes.
 
-**Folder route model convention**
+### Folder route model convention
 
 Use [AddFolderRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageconventioncollection.addfolderroutemodelconvention) to create and add an [IPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageroutemodelconvention) that invokes an action on the [PageRouteModel](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageroutemodel) for all of the pages under the specified folder.
 
@@ -178,7 +178,7 @@ Request the sample's Page1 page at `localhost:5000/OtherPages/Page1/GlobalRouteV
 
 ![Page1 in the OtherPages folder is requested with a route segment of GlobalRouteValue and OtherPagesRouteValue. The rendered page shows that the route data values are captured in the OnGet method of the page.](razor-pages-conventions/_static/otherpages-page1-global-and-otherpages-templates.png)
 
-**Page route model convention**
+### Page route model convention
 
 Use [AddPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageconventioncollection.addpageroutemodelconvention) to create and add an [IPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageroutemodelconvention) that invokes an action on the [PageRouteModel](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageroutemodel) for the page with the specified name.
 
@@ -193,6 +193,44 @@ Wherever possible, don't set the `Order`, which results in `Order = 0`. Rely on 
 Request the sample's About page at `localhost:5000/About/GlobalRouteValue/AboutRouteValue` and inspect the result:
 
 ![About page is requested with route segments for GlobalRouteValue and AboutRouteValue. The rendered page shows that the route data values are captured in the OnGet method of the page.](razor-pages-conventions/_static/about-page-global-and-about-templates.png)
+
+::: moniker range=">= aspnetcore-2.2"
+
+## Use a parameter transformer to customize page routes
+
+Page routes generated by ASP.NET Core can be customized using a parameter transformer. A parameter transformer implements `IOutboundParameterTransformer` and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`.
+
+The `PageRouteTransformerConvention` page route model convention applies a parameter transformer to the folder and file name segments of automatically generated page routes in an app. For example, the Razor Pages file at */Pages/SubscriptionManagement/ViewAll.cshtml* would have its route rewritten from `/SubscriptionManagement/ViewAll` to `/subscription-management/view-all`.
+
+`PageRouteTransformerConvention` only transforms the automatically generated segments of a page route that come from the Razor Pages folder and file name. It doesn't transform route segments added with the `@page` directive. The convention also doesn't transform routes added by <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*>.
+
+The `PageRouteTransformerConvention` is registered as an option in `Startup.ConfigureServices`:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc()
+        .AddRazorPagesOptions(options =>
+            {
+                options.Conventions.Add(
+                    new PageRouteTransformerConvention(
+                        new SlugifyParameterTransformer()));
+            });
+}
+
+public class SlugifyParameterTransformer : IOutboundParameterTransformer
+{
+    public string TransformOutbound(object value)
+    {
+        if (value == null) { return null; }
+
+        // Slugify value
+        return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
+    }
+}
+```
+
+::: moniker-end
 
 ## Configure a page route
 

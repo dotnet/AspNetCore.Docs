@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2018
+ms.date: 10/24/2018
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -13,14 +13,24 @@ By [Luke Latham](https://github.com/guardrex)
 
 This article provides instructions on how to diagnose an ASP.NET Core app startup issue when hosting with [Internet Information Services (IIS)](/iis). The information in this article applies to hosting in IIS on Windows Server and Windows Desktop.
 
+::: moniker range=">= aspnetcore-2.2"
+
+In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
 In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 Process Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
+
+::: moniker-end
 
 Additional troubleshooting topics:
 
-[Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)  
+<xref:host-and-deploy/azure-apps/troubleshoot>  
 Although App Service uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and IIS to host apps, see the dedicated topic for instructions specific to App Service.
 
-[Handle errors](xref:fundamentals/error-handling)  
+<xref:fundamentals/error-handling>  
 Discover how to handle errors in ASP.NET Core apps during development on a local system.
 
 [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
@@ -34,11 +44,40 @@ Learn about the debugging support built into Visual Studio Code.
 **502.5 Process Failure**  
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module attempts to start the worker process but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
+The ASP.NET Core Module attempts to start the backend dotnet process but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log). 
+
+A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
 
 The *502.5 Process Failure* error page is returned when a hosting or app misconfiguration causes the worker process to fail:
 
 ![Browser window showing the 502.5 Process Failure page](troubleshoot/_static/process-failure-page.png)
+
+::: moniker range=">= aspnetcore-2.2"
+
+**500.30 In-Process Startup Failure**
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log). 
+
+A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
+
+**500.0 In-Process Handler Load Failure**
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module fails to find the .NET Core CLR and find the in-process request handler (*aspnetcorev2_inprocess.dll*). Check that:
+
+* The app targets either the [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) NuGet package or the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+* The version of the ASP.NET Core shared framework that the app targets is installed on the target machine.
+
+**500.0 Out-Of-Process Handler Load Failure**
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*. 
+
+::: moniker-end
 
 **500 Internal Server Error**  
 The app starts, but an error prevents the server from fulfilling the request.
@@ -127,7 +166,7 @@ Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommende
 
 ## Common startup errors 
 
-See the [ASP.NET Core common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Most of the common problems that prevent app startup are covered in the reference topic.
+See <xref:host-and-deploy/azure-iis-errors-reference>. Most of the common problems that prevent app startup are covered in the reference topic.
 
 ## Slow or hanging app
 
@@ -161,7 +200,7 @@ Sometimes a functioning app fails immediately after upgrading either the .NET Co
 
 ## Additional resources
 
-* [Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)
-* [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
-* [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
-* [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
+* <xref:fundamentals/error-handling>
+* <xref:host-and-deploy/azure-iis-errors-reference>
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:host-and-deploy/azure-apps/troubleshoot>

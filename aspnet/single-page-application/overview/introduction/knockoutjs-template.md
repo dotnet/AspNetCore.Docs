@@ -157,7 +157,7 @@ The MVC controllers are also located in the Controllers folder of the solution. 
 
 [!code-cshtml[Main](knockoutjs-template/samples/sample4.cshtml)]
 
-When users are logged in, they see the main UI. Otherwise, they see the login panel. Note that this conditional rendering happens on the server side. Never try to hide sensitive content on the client side&#8212anything that you send in an HTTP response is visible to someone who is watching the raw HTTP messages.
+When users are logged in, they see the main UI. Otherwise, they see the login panel. Note that this conditional rendering happens on the server side. Never try to hide sensitive content on the client side&#8212;anything that you send in an HTTP response is visible to someone who is watching the raw HTTP messages.
 
 ## Client-Side JavaScript and Knockout.js
 

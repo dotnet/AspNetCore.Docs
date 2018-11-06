@@ -3,7 +3,8 @@ title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10
 author: rick-anderson
 description:
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: data/ef-mvc/crud
 ---
 # ASP.NET Core MVC with EF Core - CRUD - 2 of 10
@@ -19,7 +20,7 @@ The Contoso University sample web application demonstrates how to create ASP.NET
 In the previous tutorial, you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views.
 
 > [!NOTE]
-> It's a common practice to implement the [repository pattern](xref:fundamentals/repository-pattern) in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use the Entity Framework itself, they don't use repositories. For information about repositories with EF, see [the last tutorial in this series](advanced.md).
+> It's a common practice to implement the repository pattern in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use the Entity Framework itself, they don't use repositories. For information about repositories with EF, see [the last tutorial in this series](advanced.md).
 
 In this tutorial, you'll work with the following web pages:
 
@@ -85,7 +86,7 @@ This generates the following HTML when `item.ID` is 6:
 <a href="/Students/Edit?studentID=6">Edit</a>
 ```
 
-For more information about tag helpers, see [Tag helpers in ASP.NET Core](xref:mvc/views/tag-helpers/intro).
+For more information about tag helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 ### Add enrollments to the Details view
 
@@ -115,7 +116,7 @@ This code adds the Student entity created by the ASP.NET Core MVC model binder t
 
 You removed `ID` from the `Bind` attribute because ID is the primary key value which SQL Server will set automatically when the row is inserted. Input from the user doesn't set the ID value.
 
-Other than the `Bind` attribute, the try-catch block is the only change you've made to the scaffolded code. If an exception that derives from `DbUpdateException` is caught while the changes are being saved, a generic error message is displayed. `DbUpdateException` exceptions are sometimes caused by something external to the application rather than a programming error, so the user is advised to try again. Although not implemented in this sample, a production quality application would log the exception. For more information, see the **Log for insight** section in [Monitoring and Telemetry (Building Real-World Cloud Apps with Azure)](https://docs.microsoft.com/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry).
+Other than the `Bind` attribute, the try-catch block is the only change you've made to the scaffolded code. If an exception that derives from `DbUpdateException` is caught while the changes are being saved, a generic error message is displayed. `DbUpdateException` exceptions are sometimes caused by something external to the application rather than a programming error, so the user is advised to try again. Although not implemented in this sample, a production quality application would log the exception. For more information, see the **Log for insight** section in [Monitoring and Telemetry (Building Real-World Cloud Apps with Azure)](/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry).
 
 The `ValidateAntiForgeryToken` attribute helps prevent cross-site request forgery (CSRF) attacks. The token is automatically injected into the view by the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) and is included when the form is submitted by the user. The token is validated by the `ValidateAntiForgeryToken` attribute. For more information about CSRF, see [Anti-Request Forgery](../../security/anti-request-forgery.md).
 
@@ -271,7 +272,7 @@ In *Startup.cs*, you call the [AddDbContext extension method](https://github.com
 
 ## Handling Transactions
 
-By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/ef/core/saving/transactions).
+By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](/ef/core/saving/transactions).
 
 ## No-tracking queries
 
@@ -285,7 +286,7 @@ You can disable tracking of entity objects in memory by calling the `AsNoTrackin
 
 * You want to attach an entity in order to update it, but earlier you retrieved the same entity for a different purpose. Because the entity is already being tracked by the database context, you can't attach the entity that you want to change. One way to handle this situation is to call `AsNoTracking` on the earlier query.
 
-For more information, see [Tracking vs. No-Tracking](https://docs.microsoft.com/ef/core/querying/tracking).
+For more information, see [Tracking vs. No-Tracking](/ef/core/querying/tracking).
 
 ## Summary
 
