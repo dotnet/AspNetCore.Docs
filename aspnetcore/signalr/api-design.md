@@ -71,7 +71,7 @@ If you later decide to add the sender of the message to the payload, add a prope
 
 [!code-csharp[ClientSideObjectBasedNew](api-design/Samples.cs?name=ClientSideObjectBasedNew&highlight=60)]
 
-The older clients won't be expecting the `Sender` value, but they'll just ignore it. A new client can accept it by updating to read the new property:
+The older clients won't be expecting the `Sender` value, so they'll ignore it. A new client can accept it by updating to read the new property:
 
 [!code-typescript[OnWithObjectNew](api-design/Samples.ts?name=OnWithObjectNew&highlight=21-24)]
 
