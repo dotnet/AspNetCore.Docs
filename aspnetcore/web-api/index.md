@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn about the features available for building a web API in ASP.NET Core and when it's appropriate to use each feature.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/01/2018
+ms.date: 11/06/2018
 uid: web-api/index
 ---
 # Build web APIs with ASP.NET Core

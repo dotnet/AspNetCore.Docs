@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about model validation in ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/01/2018
+ms.date: 11/06/2018
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC
@@ -86,7 +86,7 @@ Model validation occurs before the execution of a controller action. It's the ac
 
 ::: moniker range=">= aspnetcore-2.1"
 
-For ASP.NET Core 2.1 or later web API controllers using the `[ApiController]` attribute, model validation occurs automatically. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+When `ModelState.IsValid` evaluates to `false` in web API controllers using the `[ApiController]` attribute, an automatic HTTP 400 response containing issue details is returned. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
 ::: moniker-end
 
