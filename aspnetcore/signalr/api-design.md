@@ -1,5 +1,5 @@
 ---
-title: SignalR API Design Considerations
+title: SignalR API design considerations
 author: anurse
 description: 
 monikerRange: '>= aspnetcore-2.1'
@@ -9,11 +9,11 @@ ms.date: 11/05/2018
 uid: signalr/api-design
 ---
 
-# SignalR API Design Considerations
+# SignalR API design considerations
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
-This article provides guidance for building SignalR-based APIs
+This article provides guidance for building SignalR-based APIs.
 
 ## Use custom object parameters to ensure backwards-compatibility
 
@@ -27,7 +27,7 @@ The JavaScript client calls this method using `invoke`, like this:
 
 [!code-typescript[CallWithOneParameter](api-design/Samples.ts?name=CallWithOneParameter)]
 
-If you later add a second parameter to the server method, older clients will not provide this parameter value. For example:
+If you later add a second parameter to the server method, older clients won't provide this parameter value. For example:
 
 [!code-csharp[ParameterBasedNewVersion](api-design/Samples.cs?name=ParameterBasedNewVersion)]
 
@@ -37,7 +37,7 @@ When the old client tries to invoke this method, it will get an error like this:
 Microsoft.AspNetCore.SignalR.HubException: Failed to invoke 'GetTotalLength' due to an error on the server.
 ```
 
-On the server, you will see a log message like this:
+On the server, you'll see a log message like this:
 
 ```
 System.IO.InvalidDataException: Invocation provides 1 argument(s) but target expects 2.
@@ -76,20 +76,3 @@ The older clients won't be expecting the `Sender` value, but they'll just ignore
 [!code-typescript[OnWithObjectNew](api-design/Samples.ts?name=OnWithObjectNew&highlight=21-24)]
 
 In this case, the new client is also tolerant of connecting to an old client that doesn't provide the `Sender` value, so it checks to see if it exists before accessing it.
-
-## Provide detailed error information using `HubException`
-
-If your hub method throws an exception, SignalR returns a generic error message to the client:
-
-```
-Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'MethodName' on the server.
-```
-
-Unexpected exceptions often contain sensitive information, such as the name of a database server in an exception triggered when the database connection fails. SignalR doesn't expose these detailed error messages by default as a security measure. The [Security considerations document](xref:signalr/security#exceptions) describes how to configure this.
-
-If you have an exceptional condition you *do* want to propagate to the client, you can use the `HubException` class. If you throw a `HubException` from your hub method, SignalR **will** send the entire message to the client, unmodified.
-
-[!code-csharp[ThrowHubException](api-design/Samples.cs?name=ThrowHubException&highlight=115)]
-
-> [!NOTE]
-> SignalR only sends the `Message` property to the client. The stack trace, or other properties on the exception are not available to the client.
