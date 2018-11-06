@@ -72,7 +72,7 @@ This can safely be ignored.
 
 ## Configure bearer token authentication
 
-In the SignalR Java client, you can configure a bearer token to use for authentication by providing an "access token factory" to the `HttpHubConnectionBuilder`. Use `withAccessTokenFactory` to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single<String>](http://reactivex.io/documentation/single.html). With a call to [Single.defer](http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
+In the SignalR Java client, you can configure a bearer token to use for authentication by providing an "access token factory" to the [HttpHubConnectionBuilder](https://docs.microsoft.com/en-us/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Use `withAccessTokenFactory` to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single<String>](http://reactivex.io/documentation/single.html). With a call to [Single.defer](http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
 
 ```java
 HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE").withAccessTokenProvider(Single.defer(() -> {
