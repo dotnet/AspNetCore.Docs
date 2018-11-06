@@ -16,9 +16,7 @@
 #### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
 #### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
 ## Web APIs
-### [With Visual Studio](xref:tutorials/first-web-api)
-### [With Visual Studio Code](xref:tutorials/web-api-vsc)
-### [With Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+### [Unified](xref:tutorials/first-web-api)
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
@@ -174,9 +172,7 @@
 # Web APIs
 ## [Overview](xref:web-api/index)
 ## Tutorials
-### [Web API with Visual Studio](xref:tutorials/first-web-api)
-### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
-### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+### [Unified](xref:tutorials/first-web-api)
 ### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)

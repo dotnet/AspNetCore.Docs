@@ -108,4 +108,4 @@ The `Delete` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616
 
 Use Postman to delete the to-do item:
 
-![Postman console showing 204 (No Content) response](../../tutorials/first-web-api/_static/pmd.png)
+
