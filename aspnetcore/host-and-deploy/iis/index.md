@@ -28,7 +28,19 @@ For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>
 
 ### Enable the IISIntegration components
 
-::: moniker range=">= aspnetcore-2.0"
+::: moniker range=">= aspnetcore-2.1"
+
+A typical *Program.cs* calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to begin setting up a host:
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        ...
+```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
 
 A typical *Program.cs* calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to begin setting up a host:
 
@@ -136,9 +148,9 @@ services.Configure<IISServerOptions>(options =>
 | `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 
-::: moniker-end
-
 **Out-of-process hosting model**
+
+::: moniker-end
 
 To configure IIS options, include a service configuration for [IISOptions](/dotnet/api/microsoft.aspnetcore.builder.iisoptions) in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices). The following example prevents the app from populating `HttpContext.Connection.ClientCertificate`:
 
@@ -456,10 +468,10 @@ ASP.NET Core apps are configured using other configuration providers. For more i
 
 ::: moniker range=">= aspnetcore-2.2"
 
-When hosting multiple websites on a server with:
+App pool isolation is determined by the hosting model:
 
-* In-process hosting, apps are required to run in separate app pools.
-* Out-of-process hosting, we recommend isolating the apps from each other by running each app in its own app pool.
+* In-process hosting &ndash; Apps are required to run in separate app pools.
+* Out-of-process hosting &ndash; We recommend isolating the apps from each other by running each app in its own app pool.
 
 The IIS **Add Website** dialog defaults to a single app pool per app. When a **Site name** is provided, the text is automatically transferred to the **Application pool** textbox. A new app pool is created using the site name when the site is added.
 
