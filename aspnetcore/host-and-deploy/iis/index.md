@@ -9,7 +9,7 @@ uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
 
-By [Luke Latham](https://github.com/guardrex) and [Justin Kotalik](https://github.com/jkotalik)
+By [Luke Latham](https://github.com/guardrex)
 
 [Install the .NET Core Hosting Bundle](#install-the-net-core-hosting-bundle)
 
@@ -28,7 +28,9 @@ For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>
 
 ### Enable the IISIntegration components
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-2.0"
+
+A typical *Program.cs* calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to begin setting up a host:
 
 ```csharp
 public static IWebHost BuildWebHost(string[] args) =>
@@ -36,13 +38,17 @@ public static IWebHost BuildWebHost(string[] args) =>
         ...
 ```
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
 **In-process hosting model**
 
-A typical *Program.cs* calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to begin setting up a host. `CreateDefaultBuilder` calls the `UseIIS` method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (`w3wp.exe` or `iisexpress.exe`). Performance tests indicate that hosting a .NET Core app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel).
+`CreateDefaultBuilder` calls the `UseIIS` method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (`w3wp.exe` or `iisexpress.exe`). Performance tests indicate that hosting a .NET Core app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel).
 
 **Out-of-process hosting model**
 
-A typical *Program.cs* calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to begin setting up a host. For out-of-process hosting with IIS, `CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and enables IIS integration by configuring the base path and port for the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module):
+For out-of-process hosting with IIS, `CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and enables IIS integration by configuring the base path and port for the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module).
 
 The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
 
@@ -58,13 +64,7 @@ For more information on the in-process and out-of-process hosting models, see th
 
 ::: moniker range="= aspnetcore-2.1"
 
-A typical *Program.cs* calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to begin setting up a host. `CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and enables IIS integration by configuring the base path and port for the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module):
-
-```csharp
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        ...
-```
+`CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and enables IIS integration by configuring the base path and port for the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module).
 
 The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the [UseIISIntegration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions.useiisintegration) method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
 
@@ -78,13 +78,7 @@ Calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the modu
 
 ::: moniker range="= aspnetcore-2.0"
 
-A typical *Program.cs* calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to begin setting up a host. `CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and enables IIS integration by configuring the base path and port for the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module):
-
-```csharp
-public static IWebHost BuildWebHost(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        ...
-```
+`CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and enables IIS integration by configuring the base path and port for the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module).
 
 The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the [UseIISIntegration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions.useiisintegration) method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`localhost`). If the dynamic port is 1234, Kestrel listens at `localhost:1234`. This configuration replaces other URL configurations provided by:
 
@@ -124,25 +118,29 @@ For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/ho
 
 ### IIS options
 
+::: moniker range=">= aspnetcore-2.2"
+
 **In-process hosting model**
 
-To configure IIS Server options, include a service configuration for [IISServerOptions](/dotnet/api/microsoft.aspnetcore.builder.iisserveroptions) in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices). In the following example, forwarding the windows authentication user to the app to populate `HttpContext.Connection.ClientCertificate` is disabled:
+To configure IIS Server options, include a service configuration for [IISServerOptions](/dotnet/api/microsoft.aspnetcore.builder.iisserveroptions) in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices). The following example disables AutomaticAuthentication:
 
 ```csharp
 services.Configure<IISServerOptions>(options => 
 {
-    options.ForwardWindowsAuthentication = false;
+    options.AutomaticAuthentication = false;
 });
 ```
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](xref:security/authentication/windowsauth) topic. |
+| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
+
+::: moniker-end
 
 **Out-of-process hosting model**
 
-To configure IIS options, include a service configuration for [IISOptions](/dotnet/api/microsoft.aspnetcore.builder.iisoptions) in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices). In the following example, forwarding client certificates to the app to populate `HttpContext.Connection.ClientCertificate` is disabled:
+To configure IIS options, include a service configuration for [IISOptions](/dotnet/api/microsoft.aspnetcore.builder.iisoptions) in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices). The following example prevents the app from populating `HttpContext.Connection.ClientCertificate`:
 
 ```csharp
 services.Configure<IISOptions>(options => 
@@ -187,7 +185,7 @@ When disabling the Web SDK from transforming the file, the *processPath* and *ar
 
 ### web.config file location
 
-In order to setup the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) correctly, the *web.config* file must be present at the content root path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The *web.config* file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
+In order to set up the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) correctly, the *web.config* file must be present at the content root path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The *web.config* file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
 
 Sensitive files exist on the app's physical path, such as *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (XML Documentation comments), and *\<assembly>.deps.json*. When the *web.config* file is present and and the site starts normally, IIS doesn't serve these sensitive files if they're requested. If the *web.config* file is missing, incorrectly named, or unable to configure the site for normal startup, IIS may serve sensitive files publicly.
 
@@ -456,11 +454,20 @@ ASP.NET Core apps are configured using other configuration providers. For more i
 
 ## Application Pools
 
-When hosting multiple websites on a server, we recommend isolating the apps from each other by running each app in its own app pool. The IIS **Add Website** dialog defaults to this configuration. When **Site name** is provided, the text is automatically transferred to the **Application pool** textbox. A new app pool is created using the site name when the site is added.
-
 ::: moniker range=">= aspnetcore-2.2"
 
-When using in-process hosting, application are required to run in separate app pools.
+When hosting multiple websites on a server with:
+
+* In-process hosting, apps are required to run in separate app pools.
+* Out-of-process hosting, we recommend isolating the apps from each other by running each app in its own app pool.
+
+The IIS **Add Website** dialog defaults to a single app pool per app. When a **Site name** is provided, the text is automatically transferred to the **Application pool** textbox. A new app pool is created using the site name when the site is added.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+When hosting multiple websites on a server, we recommend isolating the apps from each other by running each app in its own app pool. The IIS **Add Website** dialog defaults to this configuration. When a **Site name** is provided, the text is automatically transferred to the **Application pool** textbox. A new app pool is created using the site name when the site is added.
 
 ::: moniker-end
 
@@ -508,12 +515,10 @@ For more information, see the [icacls](/windows-server/administration/windows-co
 
 * In-process
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Target framework: .NET Core 2.2 or later
   * TLS 1.2 or later connection
 * Out-of-process
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
-  * Target framework: Not applicable to out-of-process deployments, since the HTTP/2 connection is handled entirely by IIS.
   * TLS 1.2 or later connection
 
 For an in-process deployment when an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
