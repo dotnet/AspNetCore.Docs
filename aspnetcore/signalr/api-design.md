@@ -67,7 +67,7 @@ On the client side, you access the `Message` property rather than using a parame
 
 [!code-typescript[OnWithObjectOld](api-design/Samples.ts?name=OnWithObjectOld)]
 
-If we later decide to add the sender of the message to the payload we send, we can do that by adding a property to the object:
+If you later decide to add the sender of the message to the payload, add a property to the object:
 
 [!code-csharp[ClientSideObjectBasedNew](api-design/Samples.cs?name=ClientSideObjectBasedNew&highlight=60)]
 
