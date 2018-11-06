@@ -1,4 +1,5 @@
-﻿// Unused usings removed
+﻿#region snippet_all
+// Unused usings removed
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,7 @@ namespace TodoAp
 
         // This method gets called by the runtime. Use this method to configure the HTTP 
         //request pipeline.
+        #region snippet_configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -42,8 +44,12 @@ namespace TodoAp
                 app.UseHsts();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
+        #endregion
     }
 }
+#endregion
