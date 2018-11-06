@@ -77,7 +77,7 @@ ASP.NET Core has dependency injection (DI) built into the framework. Services ca
 
 ### HubPipeline
 
-ASP.NET Core SignalR does not have `HubPipeline` injection.
+ASP.NET Core SignalR doesn't have support for `HubPipeline` modules.
 
 ## Differences on the client
 
