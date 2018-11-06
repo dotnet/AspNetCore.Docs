@@ -30,7 +30,7 @@ From Visual Studio, select **File > New Solution**.
 
 ![macOS New solution](../first-web-api-mac/_static/sln.png)
 
-Select **.NET Core App >  ASP.NET Core > Web App > Next**.
+Select **.NET Core App >  ASP.NET Core > ASP.NET Core Web App (MVC) > Next**.
 
 ![macOS New project dialog](start-mvc/1.png)
 
