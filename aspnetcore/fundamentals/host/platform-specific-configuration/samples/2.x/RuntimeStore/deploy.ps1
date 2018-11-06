@@ -10,7 +10,9 @@ function AppendToEnvironmentVariable($name, $appendValue)
     }
 }
 
-# Set StartupDiagnostics into the ASPNETCORE_HOSTINGSTARTUPASSEMBLIES environment variable
+# Append StartupDiagnostics to ASPNETCORE_HOSTINGSTARTUPASSEMBLIES environment variable
 AppendToEnvironmentVariable "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES" "StartupDiagnostics"
-# Set the hosting startup dependencies path into DOTNET_ADDITIONAL_DEPS
+# Append the hosting startup dependencies path to DOTNET_ADDITIONAL_DEPS
 AppendToEnvironmentVariable "DOTNET_ADDITIONAL_DEPS" "$PSScriptRoot\additionalDeps\"
+# Append the runtime store path to DOTNET_SHARED_STORE
+AppendToEnvironmentVariable "DOTNET_SHARED_STORE" "$PSScriptRoot\store\"

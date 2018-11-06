@@ -161,187 +161,75 @@ Options for hosting startup activation are:
 
 The hosting startup implementation is placed in the [runtime store](/dotnet/core/deploying/runtime-store). A compile-time reference to the assembly isn't required by the enhanced app.
 
-After the hosting startup is built, the hosting startup's project file serves as the manifest file for the [dotnet store](/dotnet/core/tools/dotnet-store) command.
+After the hosting startup is built, a runtime store is generated using manifest project file using the [dotnet store](/dotnet/core/tools/dotnet-store) command.
 
 ```console
-dotnet store --manifest <PROJECT_FILE> --runtime <RUNTIME_IDENTIFIER>
+dotnet store --manifest <MANIFEST_FILE> --runtime <RUNTIME_IDENTIFIER> -o <OUTPUT_LOCATION>
 ```
 
-This command places the hosting startup assembly and other dependencies that aren't part of the shared framework in the user profile's runtime store at:
-
-# [Windows](#tab/windows)
-
-```
-%USERPROFILE%\.dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
-```
-
-# [macOS](#tab/macos)
-
-```
-/Users/<USER>/.dotnet/store/x64/<TARGET_FRAMEWORK_MONIKER>/<ENHANCEMENT_ASSEMBLY_NAME>/<ENHANCEMENT_VERSION>/lib/<TARGET_FRAMEWORK_MONIKER>/
-```
-
-# [Linux](#tab/linux)
-
-```
-/Users/<USER>/.dotnet/store/x64/<TARGET_FRAMEWORK_MONIKER>/<ENHANCEMENT_ASSEMBLY_NAME>/<ENHANCEMENT_VERSION>/lib/<TARGET_FRAMEWORK_MONIKER>/
-```
-
----
-
-If you desire to place the assembly and dependencies for global use, add the `-o|--output` option to the `dotnet store` command with the following path:
-
-# [Windows](#tab/windows)
-
-```
-%PROGRAMFILES%\dotnet\store\x64\<TARGET_FRAMEWORK_MONIKER>\<ENHANCEMENT_ASSEMBLY_NAME>\<ENHANCEMENT_VERSION>\lib\<TARGET_FRAMEWORK_MONIKER>\
-```
-
-# [macOS](#tab/macos)
-
-```
-/usr/local/share/dotnet/store/x64/<TARGET_FRAMEWORK_MONIKER>/<ENHANCEMENT_ASSEMBLY_NAME>/<ENHANCEMENT_VERSION>/lib/<TARGET_FRAMEWORK_MONIKER>/
-```
-
-# [Linux](#tab/linux)
-
-```
-/usr/local/share/dotnet/store/x64/<TARGET_FRAMEWORK_MONIKER>/<ENHANCEMENT_ASSEMBLY_NAME>/<ENHANCEMENT_VERSION>/lib/<TARGET_FRAMEWORK_MONIKER>/
-```
-
----
+For runtime to be able to discover runtime store its location needs to be added to `DOTNET_SHARED_STORE` environment variable.
 
 **Modify and place the hosting startup's dependencies file**
 
-The runtime location is specified in the *\*.deps.json* file. To activate the enhancement, the `runtime` element must specify the location of the enhancement's runtime assembly. Prefix the `runtime` location with `lib/<TARGET_FRAMEWORK_MONIKER>/`:
+To be able to activate the enhancement without having package reference to it one should use `additionalDeps` feature of the runtime. It allows to extend applications library graph by providing set of additional `.deps.json` files that would get merged with apps own `.deps.json` on startup and would make hosting startup assembly discoverable and loadable.
 
-[!code-json[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement2.deps.json?range=2-13&highlight=8)]
+Easy way of generating additional deps file is running `dotnet publish` on runtime store manifest file refernced in previous section and then removing manifest reference from libraries and runtime section of resulting deps.json file.
 
-In the sample code (*StartupDiagnostics* project), modification of the *\*.deps.json* file is performed by a [PowerShell](/powershell/scripting/powershell-scripting) script. The PowerShell script is automatically triggered by a build target in the project file.
-
-The implementation's *\*.deps.json* file must be in an accessible location.
-
-For per-user use, place the file in the *additonalDeps* folder of the user profile's `.dotnet` settings:
-
-# [Windows](#tab/windows)
-
-```
-%USERPROFILE%\.dotnet\x64\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\
-```
-
-# [macOS](#tab/macos)
-
-```
-/Users/<USER>/.dotnet/x64/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/
-```
-
-# [Linux](#tab/linux)
-
-```
-/Users/<USER>/.dotnet/x64/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/
-```
-
----
-
-For global use, place the file in the *additonalDeps* folder of the .NET Core installation:
-
-# [Windows](#tab/windows)
-
-```
-%PROGRAMFILES%\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\
-```
-
-# [macOS](#tab/macos)
-
-```
-/usr/local/share/dotnet/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/
-```
-
-# [Linux](#tab/linux)
-
-```
-/usr/local/share/dotnet/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/
+``` diff
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "4ea77c7b75ad1895ae1ea65e6ba2399010514f99"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+-      "store.manifest/1.0.0": {
+-        "dependencies": {
+-          "StartupDiagnostics": "1.0.0"
+-        },
+-        "runtime": {
+-          "store.manifest.dll": {}
+-        }
+-      },
+      "StartupDiagnostics/1.0.0": {
+        "runtime": {
+          "lib/netcoreapp2.1/StartupDiagnostics.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+-    "store.manifest/1.0.0": {
+-      "type": "project",
+-      "serviceable": false,
+-      "sha512": ""
+-    },
+    "StartupDiagnostics/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oiQr60vBQW7+nBTmgKLSldj06WNLRTdhOZpAdEbCuapoZ+M2DJH2uQbRLvFT8EGAAv4TAKzNtcztpx5YOgBXQQ==",
+      "path": "startupdiagnostics/1.0.0",
+      "hashPath": "startupdiagnostics.1.0.0.nupkg.sha512"
+    }
+  }
+}
 ```
 
----
-
-The shared framework version reflects the version of the shared runtime that the target app uses. The shared runtime is shown in the *\*.runtimeconfig.json* file. In the sample app (*HostingStartupApp*), the shared runtime is specified in the *HostingStartupApp.runtimeconfig.json* file.
-
-**List the hosting startup's dependencies file**
-
-The location of the implementation's *\*.deps.json* file is listed in the `DOTNET_ADDITIONAL_DEPS` environment variable.
-
-If the file is placed in the user profile's *.dotnet* folder, set the environment variable's value to:
-
-# [Windows](#tab/windows)
+Deps.json file is then placed into the following directory structure:
 
 ```
-%USERPROFILE%\.dotnet\x64\additionalDeps\
+<ADDITIONAL_DEPS_PATH>/shared/<SHARED_FRAMEWORK_NAME>/<SHARED_FRAMEWORK_VERSION>/<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
 ```
 
-# [macOS](#tab/macos)
+Where `ADDITIONAL_DEPS_PATH` is location that is being added to `DOTNET_ADDITIONAL_DEPS`, `SHARED_FRAMEWORK_NAME` is shared framework required for this additionalDeps file, `SHARED_FRAMEWORK_VERSION` minimum shared framework version.
 
-```
-/Users/<USER>/.dotnet/x64/additionalDeps/
-```
+For runtime to be able to discover runtime store location  needs to be added to `DOTNET_ADDITIONAL_DEPS` environment variable.
 
-# [Linux](#tab/linux)
-
-```
-/Users/<USER>/.dotnet/x64/additionalDeps/
-```
-
----
-
-If the file is placed in the .NET Core installation for global use, provide the full path to the file:
-
-# [Windows](#tab/windows)
-
-```
-%PROGRAMFILES%\dotnet\additionalDeps\<ENHANCEMENT_ASSEMBLY_NAME>\shared\Microsoft.NETCore.App\<SHARED_FRAMEWORK_VERSION>\<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
-```
-
-# [macOS](#tab/macos)
-
-```
-/usr/local/share/dotnet/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
-```
-
-# [Linux](#tab/linux)
-
-```
-/usr/local/share/dotnet/additionalDeps/<ENHANCEMENT_ASSEMBLY_NAME>/shared/Microsoft.NETCore.App/<SHARED_FRAMEWORK_VERSION>/<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
-```
-
----
-
-For the sample app (*HostingStartupApp*) to find the dependencies file (*HostingStartupApp.runtimeconfig.json*), the dependencies file is placed in the user's profile.
-
-# [Windows](#tab/windows)
-
-Set the `DOTNET_ADDITIONAL_DEPS` environment variable to the following value:
-
-```
-%UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\
-```
-
-# [macOS](#tab/macos)
-
-Set the `DOTNET_ADDITIONAL_DEPS` environment variable to the following value:
-
-```
-/Users/<USER>/.dotnet/x64/additionalDeps/StartupDiagnostics/
-```
-
-# [Linux](#tab/linux)
-
-Set the `DOTNET_ADDITIONAL_DEPS` environment variable to the following value:
-
-```
-/Users/<USER>/.dotnet/x64/additionalDeps/StartupDiagnostics/
-```
-
----
+In the sample code (*RuntimeStore* project), building of runtime store and generating of additionalDeps is acomplished using [PowerShell](/powershell/scripting/powershell-scripting) script.
 
 For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
 
@@ -349,9 +237,9 @@ For examples of how to set environment variables for various operating systems, 
 
 To facilitate the deployment of a hosting startup in a multimachine environment, the sample app creates a *deployment* folder in published output that contains:
 
-* The hosting startup assembly.
+* The hosting startup runtime store.
 * The hosting startup dependencies file.
-* A PowerShell script that creates or modifies the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` and `DOTNET_ADDITIONAL_DEPS` to support the activation of the hosting startup. Run the script from an administrative PowerShell command prompt on the deployment system.
+* A PowerShell script that creates or modifies the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`, `DOTNET_SHARED_STORE` and `DOTNET_ADDITIONAL_DEPS` to support the activation of the hosting startup. Run the script from an administrative PowerShell command prompt on the deployment system.
 
 ### NuGet package
 
