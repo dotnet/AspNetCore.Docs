@@ -43,6 +43,8 @@ A hub method automatically becomes a streaming hub method when it returns a `Cha
 
 The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a streaming method. Pass the hub method name, and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation, and represents the stream on the client. To read data, a common pattern is to loop over `WaitToReadAsync` and call `TryRead` when data is available. The loop will end when the stream has been closed by the server, or the cancellation token passed to `StreamAsChannelAsync` is canceled.
 
+::: moniker range=">= aspnetcore-2.2"
+
 ```csharp
 // Call "Cancel" on this CancellationTokenSource to send a cancellation message to the server, which will trigger
 // the corresponding token in the Hub method.
@@ -61,6 +63,28 @@ while (await channel.WaitToReadAsync())
 
 Console.WriteLine("Streaming completed");
 ```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.1"
+
+```csharp
+var channel = await hubConnection.StreamAsChannelAsync<int>("Counter", 10, 500, CancellationToken.None);
+
+// Wait asynchronously for data to become available
+while (await channel.WaitToReadAsync())
+{
+    // Read all currently available data synchronously, before waiting for more data
+    while (channel.TryRead(out var count))
+    {
+        Console.WriteLine($"{count}");
+    }
+}
+
+Console.WriteLine("Streaming completed");
+```
+
+::: moniker-end
 
 ## JavaScript client
 
