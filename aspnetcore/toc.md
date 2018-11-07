@@ -181,12 +181,6 @@
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
 ## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
 
-zz
-## Real-time web apps
-### [SignalR with JavaScript](xref:tutorials/signalr)
-### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
-zz
-
 # Real-time apps
 ## [Overview](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)

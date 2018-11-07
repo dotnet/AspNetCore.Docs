@@ -1,7 +1,7 @@
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2017 version 15.7.3 or later](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload
-[.NET Core 2.1 SDK or later](https://www.microsoft.com/net/download/windows)
+* [.NET Core 2.1 SDK or later](https://www.microsoft.com/net/download/windows)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
