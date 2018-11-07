@@ -33,7 +33,15 @@ When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes b
 
 Create a hub by declaring a class that inherits from `Hub`, and add public methods to it. Clients can call methods that are defined as `public`.
 
-[!code-csharp[Create and use hubs](hubs/sample/hubs/chathub.cs?range=8-37)]
+```csharp
+public class ChatHub : Hub
+{
+    public Task SendMessage(string user, string message)
+    {
+        return Clients.All.SendAsync("ReceiveMessage", user, message);
+    }
+}
+```
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.
 
