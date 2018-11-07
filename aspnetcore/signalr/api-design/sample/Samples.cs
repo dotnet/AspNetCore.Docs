@@ -100,18 +100,3 @@ public class ChatHub : Hub<IChatHubClient>
     }
 }
 #endregion
-
-#region HubMethodName
-[HubMethodName("SendMessage")]
-public async Task BroadcastMessage(string message)
-{
-    // ...
-}
-#endregion
-
-#region ThrowHubException
-public async Task ThrowAnException()
-{
-    throw new HubException("My custom error message");
-}
-#endregion
