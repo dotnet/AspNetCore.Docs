@@ -42,10 +42,8 @@ The following diagram shows the basic design of the app.
 * The client is whatever consumes the web API (mobile app, browser, etc.). This tutorial doesn't create a client. [Postman](https://www.getpostman.com/) or [curl](https://curl.haxx.se/docs/manpage.html) is used as the client to test the app.
 
 * A *model* is an object that represents the data in the app. In this case, the only model is a to-do item. Models are represented as C# classes, also known as **P**lain **O**ld **C**LR **O**bject (POCOs).
-
-* A *controller* is an object that handles HTTP requests and creates the HTTP response. This app has a single controller.
-
-* To keep the tutorial simple, the app doesn't use a persistent database. The sample app stores to-do items in an in-memory database.
+* A *controller* is an object that handles HTTP requests and creates the HTTP response.
+* The app doesn't use a persistent database, it stores to-do items in an in-memory database.
 
 ## Prerequisites
 
@@ -191,7 +189,7 @@ Register the DB context with the service container using the built-in support fo
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=6,9,26-27&name=snippet_all)]
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
-[!code-csharp[](first-web-api/samples/2.1/TodoApi/Startup.cs)]
+[!code-csharp[](first-web-api/samples/2.1/TodoApi/Startup.cs?highlight=13,14)]
 
 ::: moniker-end
 
@@ -463,6 +461,15 @@ Deleting a to-do item is accomplished by setting the `type` on the AJAX call to 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxDelete)]
 
 ## Next steps
+
+In this tutorial, you learned how to:
+
+> [!div class="checklist"]
+> * Create a web API project.
+> * Add a controller.
+> * Add code to get "to-do" items.
+> * Create other CRUD operations.
+> * Call the Web API with jQuery.
 
 * For information on using a persistent database, see:
 

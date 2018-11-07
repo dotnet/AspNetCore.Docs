@@ -15,12 +15,12 @@
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
 #### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
 #### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
-## Web APIs
-### [Unified](xref:tutorials/first-web-api)
-### [For native mobile apps](xref:mobile/native-mobile-backend)
+## [Create a Web API ](xref:tutorials/first-web-api)
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
+## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
+
 ## Data access
 ### [EF Core with Razor Pages](xref:data/ef-rp/index)
 ### [EF Core with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
@@ -171,9 +171,7 @@
 
 # Web APIs
 ## [Overview](xref:web-api/index)
-## Tutorials
-### [Unified](xref:tutorials/first-web-api)
-### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
+## [Create a Web API ](xref:tutorials/first-web-api)
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
@@ -181,6 +179,13 @@
 ## [Action return types](xref:web-api/action-return-types)
 ## [Format response data](xref:web-api/advanced/formatting)
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
+## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
+
+zz
+## Real-time web apps
+### [SignalR with JavaScript](xref:tutorials/signalr)
+### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
+zz
 
 # Real-time apps
 ## [Overview](xref:signalr/introduction)
