@@ -157,7 +157,7 @@ To move settings files to the output directory, specify the settings files as [M
 
 ```xml
 <ItemGroup>
-  <Content Include="**\*.json" CopyToOutputDirectory="PreserveNewest" />
+  <Content Include="**\*.json" Exclude="Bin\**\*;Obj\**\*"  CopyToOutputDirectory="PreserveNewest" />
 </ItemGroup>
 ```
 
