@@ -29,7 +29,7 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 * HTTP methods `GET` and `POST` must be allowed.
 * Credentials must be enabled, even when authentication is not used.
 
-For example, the following CORS policy allows a SignalR browser client hosted on `http://example.com` to access the SignalR app hosted on `http://signalr.example.com`:
+For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
 [!code-csharp[Main](security/sample/Startup.cs?name=snippet1)]
 
