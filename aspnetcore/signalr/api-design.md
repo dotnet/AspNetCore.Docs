@@ -5,10 +5,9 @@ description: Learn how to design SignalR APIs for compatibility across versions 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 11/05/2018
+ms.date: 11/06/2018
 uid: signalr/api-design
 ---
-
 # SignalR API design considerations
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
@@ -17,7 +16,7 @@ This article provides guidance for building SignalR-based APIs.
 
 ## Use custom object parameters to ensure backwards-compatibility
 
-Adding parameters to a SignalR hub method (on either the client or the server) is a *breaking change*. This means older clients/servers will get errors when they try to invoke the method without the appropriate number of parameters. However, adding properties to a custom object parameter is **not** a breaking change. This can be used to design compatible APIs that are resiliant to changes on the client or the server.
+Adding parameters to a SignalR hub method (on either the client or the server) is a *breaking change*. This means older clients/servers will get errors when they try to invoke the method without the appropriate number of parameters. However, adding properties to a custom object parameter is **not** a breaking change. This can be used to design compatible APIs that are resilient to changes on the client or the server.
 
 For example, consider a server-side API like the following:
 
