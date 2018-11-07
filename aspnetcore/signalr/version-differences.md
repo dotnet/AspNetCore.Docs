@@ -69,7 +69,7 @@ ASP.NET Core SignalR now supports [streaming data](xref:signalr/streaming) from 
 
 The ability to pass arbitrary state between clients and the hub (often called HubState) has been removed, as well as support for progress messages. There is no counterpart of hub proxies at the moment.
 
-### PersistentConnection Deprecation
+### PersistentConnection Removal
 
 In ASP.NET Core SignalR, the [PersistentConnection](https://docs.microsoft.com/previous-versions/aspnet/jj919047(v%3dvs.118)) class has been removed. 
 
