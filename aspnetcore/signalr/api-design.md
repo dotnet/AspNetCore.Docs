@@ -74,4 +74,4 @@ The older clients won't be expecting the `Sender` value, so they'll ignore it. A
 
 [!code-typescript[OnWithObjectNew](api-design/sample/Samples.ts?name=OnWithObjectNew&highlight=1-4)]
 
-In this case, the new client is also tolerant an old server that doesn't provide the `Sender` value, so it checks to see if it exists before accessing it.
+In this case, the new client is also tolerant of an old server that doesn't provide the `Sender` value, so it checks to see if it exists before accessing it.
