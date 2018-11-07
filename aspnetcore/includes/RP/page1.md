@@ -30,6 +30,7 @@ When `OnGet` returns `void` or `OnGetAsync` returns`Task`, no return method is u
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
+<a name="index"></a>
 Examine the *Pages/Movies/Index.cshtml* Razor Page:
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml)]
