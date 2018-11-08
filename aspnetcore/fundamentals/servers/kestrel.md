@@ -48,13 +48,14 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 [HTTP/2](https://httpwg.org/specs/rfc7540.html) is available for ASP.NET Core apps if the following base requirements are met:
 
 * Operating system&dagger;
-  * Windows Server 2012 R2/Windows 8.1 or later
+  * Windows Server 2016/Windows 10 or later&Dagger;
   * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
 * Target framework: .NET Core 2.2 or later
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
+&Dagger;Kestrel has limited support for HTTP/2 on Windows Server 2012 R2 and Windows 8.1. Support is limited because the list of supported TLS cipher suites available on these operating systems is limited. A certificate generated using an Elliptic Curve Digital Signature Algorithm (ECDSA) may be required to secure TLS connections.
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
 
