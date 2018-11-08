@@ -246,7 +246,7 @@ named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
 
 ## Configure all options with the ConfigureAll method
 
-Configure all options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method. The following code configures `Option1` for all configuration instances with a common value. Add the following code manually to the `Configure` method:
+Configure all options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method. The following code configures `Option1` for all configuration instances with a common value. Add the following code manually to the `ConfigureServices` method:
 
 ```csharp
 services.ConfigureAll<MyOptions>(myOptions => 
