@@ -107,7 +107,7 @@ For more information, see the [IdentityOptions Class](/dotnet/api/microsoft.aspn
 
 ## Scaffold Register, Login, and LogOut
 
-Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) instructions.
+Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) instructions to generate the the code shown in this section.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -160,7 +160,7 @@ When the form on the Login page is submitted, the `OnPostAsync` action is called
 
    [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
-   The base `Controller` class exposes a `User` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see [Authorization](xref:security/authorization/index).
+   The base `Controller` class exposes a `User` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see <xref:security/authorization/introduction>.
 
 ::: moniker-end
 

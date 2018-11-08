@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2018
+ms.date: 11/05/2018
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -131,17 +131,37 @@ For some options, it may be helpful to read the [How CORS works](#how-cors-works
 
 ### Set the allowed origins
 
-To allow one or more specific origins, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithOrigins*>:
+The CORS middleware in ASP.NET Core MVC has a few ways to specify allowed origins:
+
+* <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithOrigins*>: Allows specifying one or more URLs. The URL may include the scheme, host name, and port without any path information. For example, `https://example.com`. The URL must be specified without a trailing slash (`/`).
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=20-24&highlight=4)]
 
-To allow all origins, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*>:
+* <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*>: Allows CORS requests from all origins with any scheme (`http` or `https`).
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=28-32&highlight=4)]
 
 Consider carefully before allowing requests from any origin. Allowing requests from any origin means that *any website* can make cross-origin requests to your app.
 
+::: moniker range=">= aspnetcore-2.2"
+
+> [!NOTE]
+> Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration and can result in cross-site request forgery. The CORS service returns an invalid CORS response when an app is configured with the two.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+> [!NOTE]
+> Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration and can result in cross-site request forgery. Consider specifying an exact list of origins if your client needs to authorize to access server resources.
+
+::: moniker-end
+
 This setting affects [preflight requests and the Access-Control-Allow-Origin header](#preflight-requests) (described later in this topic).
+
+* <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetIsOriginAllowedToAllowWildcardSubdomains*> - Allows CORS requests from any sub-domain of a given domain. The scheme cannot be a wildcard.
+
+[!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=98-104&highlight=4)]
 
 ### Set the allowed HTTP methods
 

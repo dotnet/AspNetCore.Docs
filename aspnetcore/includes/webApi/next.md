@@ -2,8 +2,8 @@
 
 * For information on using a persistent database, see:
 
-  * [Create a Razor Pages web app with ASP.NET Core](xref:tutorials/index)
-  * [Work with data in ASP.NET Core](xref:data/index)
+  * <xref:tutorials/razor-pages/index>
+  * <xref:data/ef-rp/index>
 
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>

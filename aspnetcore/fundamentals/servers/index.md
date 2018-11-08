@@ -1,6 +1,6 @@
 ---
 title: Web server implementations in ASP.NET Core
-author: rick-anderson
+author: guardrex
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 ms.author: tdykstra
 ms.custom: mvc
@@ -13,7 +13,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com
 
 An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as sets of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
-ASP.NET Core ships three server implementations:
+ASP.NET Core ships with the following server implementations:
 
 ::: moniker range=">= aspnetcore-2.2"
 

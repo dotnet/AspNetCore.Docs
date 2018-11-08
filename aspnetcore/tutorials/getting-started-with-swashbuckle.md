@@ -4,7 +4,7 @@ author: zuckerthoben
 description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/20/2018
+ms.date: 11/05/2018
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
@@ -120,7 +120,7 @@ The Swagger UI displays the version's information:
 
 XML comments can be enabled with the following approaches:
 
-# [Visual Studio](#tab/visual-studio-xml/)
+#### [Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -138,7 +138,7 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker-end
 
-# [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
+#### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -156,7 +156,23 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker-end
 
-# [Visual Studio Code](#tab/visual-studio-code-xml/)
+#### [Visual Studio Code](#tab/visual-studio-code)
+
+Manually add the highlighted lines to the *.csproj* file:
+
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
+
+::: moniker-end
+
+#### [.NET Core CLI](#tab/netcore-cli)
 
 Manually add the highlighted lines to the *.csproj* file:
 

@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/ui-layouts-and-themes/9-working-with-images
 title: "Working with Images in an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This chapter shows you how to add, display, and manipulate images (resize, flip, and add watermarks) in your website."
 ms.author: riande
 ms.date: 02/20/2014

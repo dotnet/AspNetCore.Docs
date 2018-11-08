@@ -26,9 +26,9 @@ Millions of developers have used (and continue to use) [ASP.NET 4.x](/aspnet/ove
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 
-ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/index#build-web-apis) and [web apps](xref:tutorials/index#build-web-apps):
+ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-api) and [web apps](xref:tutorials/razor-pages/index):
 
-* The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps [testable](xref:test/index).
+* The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps testable.
 * [Razor Pages](xref:razor-pages/index) (new in ASP.NET Core 2.0) is a page-based programming model that makes building web UI easier and more productive.
 * [Razor markup](xref:mvc/views/razor) provides a productive syntax for [Razor Pages](xref:razor-pages/index) and [MVC views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
@@ -44,12 +44,14 @@ ASP.NET Core integrates seamlessly with popular client-side frameworks and libra
 
 ## ASP.NET Core targeting .NET Framework
 
-ASP.NET Core can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. There are no plans to remove support for targeting .NET Framework in ASP.NET Core. Generally, ASP.NET Core is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is supported.
+ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is supported.
 
 ASP.NET Core 2.x is supported on .NET Framework versions compatible with .NET Standard 2.0:
 
 * .NET Framework 4.7.1 and later is strongly recommended.
 * .NET Framework 4.6.1 and later.
+
+ASP.NET Core 3.0 and later will only run on .NET Core. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
 
 There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 
@@ -74,7 +76,6 @@ Many of the articles and tutorials include links to sample code.
 For more information, see the following resources:
 
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [ASP.NET Core tutorials](xref:tutorials/index)
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.
