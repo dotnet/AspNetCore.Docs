@@ -58,7 +58,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
 
-HTTP/2 is disabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [Endpoint configuration](#endpoint-configuration) sections.
+HTTP/2 is disabled by default. For more information on configuration, see the [ListenOptions.Protocols](#listenoptions.protocols) and [Kestrel options](#kestrel-options) sections.
 
 ::: moniker-end
 
@@ -259,6 +259,16 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
         });
 ```
+
+::: moniker-end
+
+You can override the minimum rate limits per request in middleware:
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-19)]
+
+::: moniker range=">= aspnetcore-2.2"
+
+The minimum rate features are only available for HTTP/1.x requests. Modifying rate limits per request isn't supported for HTTP/2 requests due to multiplexing. Server-wide rate limits apply to both HTTP/1.x and HTTP/2 requests.
 
 ::: moniker-end
 
