@@ -58,7 +58,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
 
-HTTP/2 is disabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [Endpoint configuration](#endpoint-configuration) sections.
+HTTP/2 is disabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.
 
 ::: moniker-end
 
@@ -126,13 +126,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ## Kestrel options
 
-The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. A few important limits that can be customized:
+The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
 
-* Maximum client connections
-* Maximum request body size
-* Minimum request body data rate
-
-Set these and other constraints on the [Limits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.limits) property of the [KestrelServerOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions) class. The `Limits` property holds an instance of the [KestrelServerLimits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits) class.
+Set constraints on the [Limits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.limits) property of the [KestrelServerOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions) class. The `Limits` property holds an instance of the [KestrelServerLimits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits) class.
 
 ### Maximum client connections
 
@@ -259,6 +255,16 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
         });
 ```
+
+::: moniker-end
+
+You can override the minimum rate limits per request in middleware:
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
+
+::: moniker range=">= aspnetcore-2.2"
+
+Neither rate feature referenced in the prior sample are present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis isn't supported for HTTP/2 due to the protocol's support for request multiplexing. Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.
 
 ::: moniker-end
 
