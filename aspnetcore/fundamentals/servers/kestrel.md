@@ -264,7 +264,7 @@ You can override the minimum rate limits per request in middleware:
 
 ::: moniker range=">= aspnetcore-2.2"
 
-The minimum rate scenarios are only available for HTTP/1.x requests. Modifying rate limits per request isn't supported for HTTP/2 requests due to multiplexing. Server-wide rate limits apply to both HTTP/1.x and HTTP/2 requests.
+Neither rate feature referenced in the above sample will be present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis is not supported for HTTP/2 due to the protocol's support for request multiplexing. Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.
 
 ::: moniker-end
 
