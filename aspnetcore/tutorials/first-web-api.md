@@ -75,17 +75,21 @@ The following diagram shows the basic design of the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), run the following command:
+* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change directories to the folder in which the new project folder will be created.
+* Run the following command:
 
    ```console
    dotnet new webapi -o TodoApi
+   code -r TodoApi
    ```
 
-<!-- TODO fix -->
+* A dialog box appears with **Required assets to build and debug are missing from 'TodoApi'. Add them?**
+* Select **Yes**
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From Visual Studio, select **File** > **New Solution**.
+Select **File** > **New Solution**.
 
 ![macOS New solution](first-web-api-mac/_static/sln.png)
 
@@ -107,7 +111,7 @@ Press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press CTRL+F5 to launch the app. Navigate to the `Todo` controller at `https://localhost:5001/api/todo`.
+Press CTRL+F5 to launch the app. Navigate to the `Values` controller at https://localhost:5001/api/values.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -127,9 +131,9 @@ A model is an object representing the data in the app. In this case, the only mo
 
 # [Visual Studio](#tab/visual-studio)
 
-In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-In Solution Explorer, right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and click **Add**.
+Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and click **Add**.
 
 Update the `TodoItem` class with the following code:
 
@@ -137,11 +141,11 @@ Update the `TodoItem` class with the following code:
 
 Add a folder named *Models* for the model classes.
 
-Add a `TodoItem` class with the following code:
+Add a `TodoItem` class to the *Models* folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
 ![new folder](first-web-api-mac/_static/folder.png)
 
@@ -189,7 +193,7 @@ Register the DB context with the service container using the built-in support fo
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=6,9,26-27&name=snippet_all)]
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
-[!code-csharp[](first-web-api/samples/2.1/TodoApi/Startup.cs?highlight=13,14)]
+[!code-csharp[](first-web-api/samples/2.1/TodoApi/Startup.cs?highlight=7-8,25-26)]
 
 ::: moniker-end
 
@@ -289,9 +293,9 @@ In the following `GetById` method, `"{id}"` is a placeholder variable for the un
 
 ### Return values
 
-The `GetAll` method returns a collection of `TodoItem` objects. MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The `GetAll` method returns a [`ActionResult<T>` type](xref:web-api/action-return-types#actionresultt-type). MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
-In contrast, the `GetById` method returns the [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type), which represents a wide range of return types. `GetById` has two different return types:
+The `GetById` method returns the [ActionResult type](xref:web-api/action-return-types#actionresultt-type). The `ActionResult<T>` and `ActionResult` return types represents a wide range of return types. `GetById` has two different return types:
 
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.

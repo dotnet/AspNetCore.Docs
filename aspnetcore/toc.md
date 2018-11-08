@@ -6,6 +6,7 @@
 # [Get started](xref:getting-started)
 
 # Tutorials
+## [Create a Web API ](xref:tutorials/first-web-api)
 ## Web apps
 ### Razor Pages
 #### [With Visual Studio](xref:tutorials/razor-pages/index)
@@ -15,7 +16,6 @@
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
 #### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
 #### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
-## [Create a Web API ](xref:tutorials/first-web-api)
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
