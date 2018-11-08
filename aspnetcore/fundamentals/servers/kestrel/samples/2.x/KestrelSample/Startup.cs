@@ -57,8 +57,10 @@ namespace KestrelSample
                 context.Features.Get<IHttpMaxRequestBodySizeFeature>()
                     .MaxRequestBodySize = 10 * 1024;
 
-                var minRequestRateFeature = context.Features.Get<IHttpMinRequestBodyDataRateFeature>();
-                var minResponseRateFeature = context.Features.Get<IHttpMinResponseDataRateFeature>();
+                var minRequestRateFeature = 
+                    context.Features.Get<IHttpMinRequestBodyDataRateFeature>();
+                var minResponseRateFeature = 
+                    context.Features.Get<IHttpMinResponseDataRateFeature>();
 
                 if (minRequestRateFeature != null)
                 {
