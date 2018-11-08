@@ -229,7 +229,7 @@ Where `ADDITIONAL_DEPS_PATH` is location that is being added to `DOTNET_ADDITION
 
 For runtime to be able to discover runtime store location  needs to be added to `DOTNET_ADDITIONAL_DEPS` environment variable.
 
-In the sample code (*RuntimeStore* project), building of runtime store and generating of additionalDeps is acomplished using [PowerShell](/powershell/scripting/powershell-scripting) script.
+In the sample app (*RuntimeStore* project), building the runtime store and generating the additional dependencies file is accomplished using a [PowerShell](/powershell/scripting/powershell-scripting) script.
 
 For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
 
