@@ -264,7 +264,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 You can override the minimum rate limits per request in middleware:
 
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-19)]
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
 ::: moniker range=">= aspnetcore-2.2"
 
