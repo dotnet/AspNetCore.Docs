@@ -125,7 +125,7 @@ Using a strongly typed `Hub<T>` disables the ability to use `SendAsync`.
 
 ## Change the name of a hub method
 
-By default, a server hub method name is the name of the .NET method. However, you can use the `HubMethodName` to change this default and manually specify a name for the method. The client should use this name, instead of the .NET method name, when invoking the method.
+By default, a server hub method name is the name of the .NET method. However, you can use the [HubMethodName](xref:Microsoft.AspNetCore.SignalR.HubMethodNameAttribute) attribute to change this default and manually specify a name for the method. The client should use this name, instead of the .NET method name, when invoking the method.
 
 [!code-csharp[HubMethodName attribute](hubs/sample/hubs/chathub.cs?name=HubMethodName&highlight=1)]
 
@@ -158,7 +158,7 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 [!code-csharp[ThrowHubException](hubs/sample/hubs/chathub.cs?name=ThrowHubException&highlight=3)]
 
 > [!NOTE]
-> SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception are not available to the client.
+> SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
 
 ## Related resources
 
