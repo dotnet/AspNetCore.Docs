@@ -126,13 +126,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ## Kestrel options
 
-The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. A few important limits that can be customized:
+The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
 
-* Maximum client connections
-* Maximum request body size
-* Minimum request body data rate
-
-Set these and other constraints on the [Limits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.limits) property of the [KestrelServerOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions) class. The `Limits` property holds an instance of the [KestrelServerLimits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits) class.
+Set constraints on the [Limits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.limits) property of the [KestrelServerOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions) class. The `Limits` property holds an instance of the [KestrelServerLimits](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits) class.
 
 ### Maximum client connections
 
@@ -268,7 +264,7 @@ You can override the minimum rate limits per request in middleware:
 
 ::: moniker range=">= aspnetcore-2.2"
 
-The minimum rate features are only available for HTTP/1.x requests. Modifying rate limits per request isn't supported for HTTP/2 requests due to multiplexing. Server-wide rate limits apply to both HTTP/1.x and HTTP/2 requests.
+The minimum rate scenarios are only available for HTTP/1.x requests. Modifying rate limits per request isn't supported for HTTP/2 requests due to multiplexing. Server-wide rate limits apply to both HTTP/1.x and HTTP/2 requests.
 
 ::: moniker-end
 
