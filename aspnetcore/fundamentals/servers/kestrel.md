@@ -58,7 +58,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
 
-HTTP/2 is disabled by default. For more information on configuration, see the [ListenOptions.Protocols](#listenoptionsprotocols) and [Kestrel options](#kestrel-options) sections.
+HTTP/2 is disabled by default. For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.
 
 ::: moniker-end
 
