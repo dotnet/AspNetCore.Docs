@@ -225,7 +225,9 @@ Deps.json file is then placed into the following directory structure:
 <ADDITIONAL_DEPS_PATH>/shared/<SHARED_FRAMEWORK_NAME>/<SHARED_FRAMEWORK_VERSION>/<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
 ```
 
-Where `ADDITIONAL_DEPS_PATH` is location that is being added to `DOTNET_ADDITIONAL_DEPS`, `SHARED_FRAMEWORK_NAME` is shared framework required for this additionalDeps file, `SHARED_FRAMEWORK_VERSION` minimum shared framework version.
+* `ADDITIONAL_DEPS_PATH` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
+* `SHARED_FRAMEWORK_NAME` &ndash; Shared framework required for this additional dependencies file.
+* `SHARED_FRAMEWORK_VERSION` &ndash; Minimum shared framework version.
 
 For runtime to be able to discover runtime store location  needs to be added to `DOTNET_ADDITIONAL_DEPS` environment variable.
 
