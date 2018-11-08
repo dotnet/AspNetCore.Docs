@@ -161,7 +161,7 @@ Options for hosting startup activation are:
 
 The hosting startup implementation is placed in the [runtime store](/dotnet/core/deploying/runtime-store). A compile-time reference to the assembly isn't required by the enhanced app.
 
-After the hosting startup is built, a runtime store is generated using manifest project file using the [dotnet store](/dotnet/core/tools/dotnet-store) command.
+After the hosting startup is built, a runtime store is generated using the manifest project file and the [dotnet store](/dotnet/core/tools/dotnet-store) command.
 
 ```console
 dotnet store --manifest <MANIFEST_FILE> --runtime <RUNTIME_IDENTIFIER> -o <OUTPUT_LOCATION>
