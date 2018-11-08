@@ -76,16 +76,17 @@ The following diagram shows the basic design of the app.
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories to the folder in which the new project folder will be created.
+* Change directories (`cd`) to a folder which will contain the project.
 * Run the following command:
 
    ```console
    dotnet new webapi -o TodoApi
    code -r TodoApi
    ```
-
 * A dialog box appears with **Required assets to build and debug are missing from 'TodoApi'. Add them?**
 * Select **Yes**
+* `dotnet new webapi -o TodoApi`: creates a new Web API project in the *TodoApi* folder.
+* `code -r TodoApi`: Loads the *TodoApi.csproj*.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -111,7 +112,7 @@ Press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press CTRL+F5 to launch the app. Navigate to the `Values` controller at https://localhost:5001/api/values.
+Press CTRL+F5 to launch the app. Navigate to the `Values` controller at [https://localhost:5001/api/values](https://localhost:5001/api/values).
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -293,7 +294,7 @@ In the following `GetById` method, `"{id}"` is a placeholder variable for the un
 
 ### Return values
 
-The `GetAll` method returns a [`ActionResult<T>` type](xref:web-api/action-return-types#actionresultt-type). MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The `GetAll` method returns a [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
 The `GetById` method returns the [ActionResult type](xref:web-api/action-return-types#actionresultt-type). The `ActionResult<T>` and `ActionResult` return types represents a wide range of return types. `GetById` has two different return types:
 
