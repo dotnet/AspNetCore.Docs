@@ -52,7 +52,7 @@ Now, the client uses an object to call the method:
 
 Instead of adding a parameter, add a property to the `TotalLengthRequest` object:
 
-[!code-csharp[ObjectBasedNewVersion](api-design/sample/Samples.cs?name=ObjectBasedNewVersion&highlight=3,8-12)]
+[!code-csharp[ObjectBasedNewVersion](api-design/sample/Samples.cs?name=ObjectBasedNewVersion&highlight=4,9-13)]
 
 When the old client sends a single parameter, the extra `Param2` property will be left `null`. You can detect a message sent by an older client by checking the `Param2` for `null` and apply a default value. A new client can send both parameters.
 
@@ -72,6 +72,6 @@ If you later decide to add the sender of the message to the payload, add a prope
 
 The older clients won't be expecting the `Sender` value, so they'll ignore it. A new client can accept it by updating to read the new property:
 
-[!code-typescript[OnWithObjectNew](api-design/sample/Samples.ts?name=OnWithObjectNew&highlight=1-4)]
+[!code-typescript[OnWithObjectNew](api-design/sample/Samples.ts?name=OnWithObjectNew&highlight=2-5)]
 
 In this case, the new client is also tolerant of an old server that doesn't provide the `Sender` value. Since the old server won't provide the `Sender` value, the client checks to see if it exists before accessing it.
