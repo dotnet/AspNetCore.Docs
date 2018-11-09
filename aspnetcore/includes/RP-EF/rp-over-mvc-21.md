@@ -8,7 +8,7 @@ The ASP.NET Core 2.1 [Razor Pages](xref:data/ef-rp/intro) version of this tutori
 
 The 2.0 tutorial teaches ASP.NET Core MVC and Entity Framework Core with controllers and views. Razor Pages is a page-based programming model that makes building web UI easier and more productive. The Razor Pages tutorial has been updated with the following improvements:
 
-* Is easier to follow.
+* Is easier to follow. For example, the scaffolding code has been significantly simplified.
 * Provides more EF Core best practices.
 * Uses more efficient queries.
 * Uses the latest EF Core API.
