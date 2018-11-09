@@ -83,10 +83,11 @@ The following diagram shows the basic design of the app.
    dotnet new webapi -o TodoApi
    code -r TodoApi
    ```
-* A dialog box appears with **Required assets to build and debug are missing from 'TodoApi'. Add them?**
-* Select **Yes**
-* `dotnet new webapi -o TodoApi`: creates a new Web API project in the *TodoApi* folder.
-* `code -r TodoApi`: Loads the *TodoApi.csproj*.
+
+  * A dialog box appears with **Required assets to build and debug are missing from 'TodoApi'. Add them?**
+  * Select **Yes**
+  * `dotnet new webapi -o TodoApi`: creates a new Web API project in the *TodoApi* folder.
+  * `code -r TodoApi`: Loads the *TodoApi.csproj*.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -191,7 +192,7 @@ In this step, the database context is registered with the [dependency injection]
 Register the DB context with the service container using the built-in support for [dependency injection](xref:fundamentals/dependency-injection). Update *Startup.cs* with the following highlighted code:
 
 ::: moniker range="= aspnetcore-2.2"
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=6,9,26-27&name=snippet_all)]
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=5,8,25-26&name=snippet_all)]
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
 [!code-csharp[](first-web-api/samples/2.1/TodoApi/Startup.cs?highlight=7-8,25-26)]
@@ -294,9 +295,9 @@ In the following `GetById` method, `"{id}"` is a placeholder variable for the un
 
 ### Return values
 
-The `GetAll` method returns a [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The `GetAll` method returns an [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
-The `GetById` method returns the [ActionResult type](xref:web-api/action-return-types#actionresultt-type). The `ActionResult<T>` and `ActionResult` return types represents a wide range of return types. `GetById` has two different return types:
+The `GetById` method returns [ActionResult](xref:web-api/action-return-types#actionresultt-type). The `ActionResult<T>` and `ActionResult` return types represents a wide range of return types. `GetById` has two different return types:
 
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
