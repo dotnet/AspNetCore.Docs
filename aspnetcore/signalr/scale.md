@@ -55,7 +55,7 @@ For more information see the [Azure SignalR Service documentation](https://docs.
 
 ## Redis backplane
 
-A backplane is in effect a central repository for client connection information. When a client makes a connection, the connection information is passed to the backplane. Then when a server wants to send a message to all clients, it sends to the backplane. The backplane knows all connected clients and which servers they're on and sends the messages to all clients via their respective servers. This process can be seen in the following diagram:
+Redis is an in-memory key-value store. It also supports a messaging system with a publish/subscribe model. The SignalR Redis backplane uses the pub/sub feature to forward messages to other servers. In effect, when a client makes a connection, the connection information is passed to the backplane. Then when a server wants to send a message to all clients, it sends to the backplane. The backplane knows all connected clients and which servers they're on.  It sends the message to all clients via their respective servers. This process is illustrated in the following diagram:
 
 ![Redis backplane, message sent from one server to all clients](scale/_static/redis-backplane.png)
 
@@ -68,4 +68,4 @@ Scale-out with the Redis backplane requires sticky sessions. Once a connection i
 For more information, see the following resources:
 
 * [Azure SignalR Service documentation](/azure/azure-signalr/signalr-overview)
-* [Set up a Redis backplane](xref:signalr/redis)
+* [Set up a Redis backplane](xref:signalr/redis-backplane)
