@@ -271,7 +271,7 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 
 ## OptionsBuilder API
 
-<xref:Microsoft.Extensions.Options.OptionsBuilder`1> is used to configure `TOptions` instances. `OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of appearing in all of the subsequent calls. Options validation and the `ConfigureOptions` overloads that accept service dependencies are only availabe via `OptionsBuilder`.
+<xref:Microsoft.Extensions.Options.OptionsBuilder`1> is used to configure `TOptions` instances. `OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of appearing in all of the subsequent calls. Options validation and the `ConfigureOptions` overloads that accept service dependencies are only available via `OptionsBuilder`.
 
 ```csharp
 // Options.DefaultName = "" is used.
@@ -352,7 +352,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package via calling the `ValidateDataAnnotations` method on `OptionsBuilder<TOptions>`:
+Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the `ValidateDataAnnotations` method on `OptionsBuilder<TOptions>`:
 
 ```csharp
 private class AnnotatedOptions
