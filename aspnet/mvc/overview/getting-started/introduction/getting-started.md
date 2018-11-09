@@ -49,7 +49,7 @@ Press **F5** to start debugging. When you press **F5**, Visual Studio starts [II
 
 ![](getting-started/_static/image5.png)
 
-Right out of the box this default template gives you `Home`, `Contact`, and `About` pages. The image above doesn't show the **Home**, **About**, and **Contact** links. Depending on the size of your browser window, you might need to click the navigation icon to see these links.
+Right out of the box this default template gives you `Home`, `Contact`, and `About` pages. The image below doesn't show the **Home**, **About**, and **Contact** links. Depending on the size of your browser window, you might need to click the navigation icon to see these links.
 
 ![](getting-started/_static/image6.png)
 
