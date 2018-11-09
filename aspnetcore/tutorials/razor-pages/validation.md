@@ -55,8 +55,7 @@ Select the **Create New** link. Complete the form with some invalid values. When
 
 ![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
 
-> [!NOTE]
-> You may not be able to enter decimal points or commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) in non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See [Additional resources](#additional-resources) for more information. For now, just enter whole numbers like 10.
+[!INCLUDE[](~/includes/currency.md)]
 
 Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (when a user has JavaScript disabled).
 
