@@ -80,8 +80,60 @@ Press **Ctrl-F5** to run without the debugger.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change directories (`cd`) to a folder which will contain the project.
+* Run the following command:
+
+   ```console
+   dotnet new webapp -o RazorPagesMovie
+   code -r RazorPagesMovie
+   ```
+
+  * A dialog box appears with **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?**
+  * Select **Yes**
+  * `dotnet new webapp -o RazorPagesMovie`: creates a new Web API project in the *RazorPagesMovie* folder.
+  * `code -r RazorPagesMovie`: Loads the *RazorPagesMovie.csproj* project file.
+
+### Launch the app
+
+Press **Ctrl-F5** to run without the debugger.
+
+* Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer.
+* Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+From a terminal, run the following commands:
+
+::: moniker range="= aspnetcore-2.2"
+
+```console
+dotnet new webapp -o RazorPagesMovie
+cd RazorPagesMovie
+dotnet run
+```
+
+::: moniker range="= aspnetcore-2.1"
+
+```console
+dotnet new webapp -o RazorPagesMovie
+cd RazorPagesMovie
+dotnet run
+```
+
+The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
+
+## Open the project
+
+Press Ctrl+C to shut down the application.
+
+From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie.csproj* file.
+
+### Launch the app
+
+Select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
+
+<!-- End of VS tabs -->
 ---
 
 Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
