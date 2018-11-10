@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/21/2018
+ms.date: 11/10/2018
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module configuration reference
@@ -126,6 +126,8 @@ The following *web.config* is published for a [self-contained deployment](/dotne
   </location>
 </configuration>
 ```
+
+The <xref:System.Configuration.SectionInformation.InheritInChildApplications*> property is set to `false` to indicate that the settings specified within the [&lt;location&gt;](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) element aren't inherited by apps that reside in a subdirectory of the app.
 
 ::: moniker-end
 
