@@ -226,8 +226,6 @@ The `About`, `Contact` and `Index` pages are basic pages you can use to start an
 
 ::: moniker-end
 
-
-
 # [Visual Studio](#tab/visual-studio)
 
 <a name="f7"></a>
@@ -235,12 +233,10 @@ The `About`, `Contact` and `Index` pages are basic pages you can use to start an
 
 F7 toggles between a Razor Page (*\*.cshtml* file) and the C# file (*\*.cshtml.cs*).
 
-<!-- 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
--->
 ---
 
 > [!div class="step-by-step"]
