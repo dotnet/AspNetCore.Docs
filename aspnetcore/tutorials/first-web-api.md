@@ -87,7 +87,7 @@ The following diagram shows the basic design of the app.
   * A dialog box appears with **Required assets to build and debug are missing from 'TodoApi'. Add them?**
   * Select **Yes**
   * `dotnet new webapi -o TodoApi`: creates a new Web API project in the *TodoApi* folder.
-  * `code -r TodoApi`: Loads the *TodoApi.csproj*.
+  * `code -r TodoApi`: Loads the *TodoApi.csproj* project file.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -281,7 +281,7 @@ The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribu
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
 
-* Replace `[controller]` with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
+* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, it assigns the value of `"{id}"` in the URL to the method's `id` parameter.
