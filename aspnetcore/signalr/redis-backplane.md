@@ -31,16 +31,68 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
 4. Configure options.
  
-   Most options can be set in the connection string or in the `ConfigurationOptions` object. Options specified in `ConfigurationOptions` override the ones set in the connection string. For information about Redis options, see the [Redis documentation](https://redis.io/documentation).
+   Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string. 
 
-5. If using one Redis server for multiple SignalR apps, use a different channel prefix for each SignalR app.
+  The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
 
-## High availability (HA) considerations
+   ```csharp
+   services.AddSignalR()
+     .AddRedis(connectionString, options => {
+         // NOTE: "options.Configuration" has been preloaded with 
+         // whatever was specified in the connection string.
+      
+         options.Configuration.ChannelPrefix = "MyApp";
+     });
+   ```
 
-When a Redis server goes down, SignalR logs a warning that messages won't be delivered. SignalR doesn't buffer messages to send them when the server comes back up. Any messages sent while the Redis server is down are lost. SignalR automatically reconnects when the Redis server is available again.
+   For information about Redis options, see the [Redis documentation](https://redis.io/documentation).
 
-You can write code to handle a Redis failure: 
+5. If you're using one Redis server for multiple SignalR apps, use a different channel prefix for each SignalR app.
 
+   Setting a channel prefix isolates one SignalR app from others that use different channel prefixes. If you don't assign different prefixes, a message sent from one app to all clients will go to all clients of all apps that the Redis server suupports.
+
+6. Configure your server farm load balancing software for sticky sessions. Here are some examples of documentation on how to do that:
+
+   * [HAProxy](https://www.haproxy.com/blog/load-balancing-affinity-persistence-sticky-sessions-what-you-need-to-know/)
+   * [Nginx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky)
+   * [pfSense](https://www.netgate.com/docs/pfsense/loadbalancing/inbound-load-balancing.html#sticky-connections)
+
+## Redis server errors
+
+When a Redis server goes down, SignalR logs a warning that messages won't be delivered. The log message is "Failed writing message." SignalR doesn't buffer messages to send them when the server comes back up. Any messages sent while the Redis server is down are lost. SignalR automatically reconnects when the Redis server is available again.
+
+Here is an example that shows how to handle a Redis connection failure: 
+
+```csharp
+services.AddSignalR()
+        .AddMessagePackProtocol()
+        .AddRedis(o =>
+        {
+            o.ConnectionFactory = async writer =>
+            {
+                var config = new ConfigurationOptions
+                {
+                    AbortOnConnectFail = false
+                };
+                config.EndPoints.Add(IPAddress.Loopback, 0);
+                config.SetDefaultPorts();
+                var connection = await ConnectionMultiplexer.ConnectAsync(config, writer);
+                connection.ConnectionFailed += (_, e) =>
+                {
+                    Console.WriteLine("Connection to Redis failed.");
+                };
+
+                if (!connection.IsConnected)
+                {
+                    Console.WriteLine("Did not connect to Redis.");
+                }
+
+                return connection;
+            };
+        });
+```
+
+## Clustering
 
 Clustering is a method for using multiple Redis servers to support one app. We don't officially support clustering. It might work, but we haven't tested it.
 
