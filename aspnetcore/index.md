@@ -4,7 +4,7 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 11/10/2018
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -70,6 +70,22 @@ Many of the articles and tutorials include links to sample code.
 1. [Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/Docs/zip/master).
 1. Unzip the *Docs-master.zip* file.
 1. Use the URL in the sample link to help you navigate to the sample directory.
+
+To demonstrate multiple scenarios, sample apps make use of the [&num;define] and [&num;if-&num;else/&num;elif-&num;end-if](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) C&num; statements to selectively compile and run different sections of sample code. For those samples that make use of this approach, set the `#define` statement at the top of the C&num; files to the symbol associated with the scenario that you want to run. A sample may require you to set the symbol at the top of multiple files in order to run a scenario.
+
+For example, the following `#define` symbol list indicates that four scenarios are available (one scenario per symbol). The current sample configuration runs the `TemplateCode` scenario:
+
+```csharp
+#define TemplateCode // or LogFromMain or ExpandDefault or FilterInCode
+```
+
+To change the sample to run the `ExpandDefault` scenario, define the `ExpandDefault` symbol and leave the remaining symbols commented-out:
+
+```csharp
+#define ExpandDefault // TemplateCode or LogFromMain or FilterInCode
+```
+
+For more information on using [C&num; preprocessor directives](/dotnet/csharp/language-reference/preprocessor-directives/) to selectively compile sections of code, see [&num;define (C&num; Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define) and [&num;if (C&num; Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if).
 
 ## Next steps
 
