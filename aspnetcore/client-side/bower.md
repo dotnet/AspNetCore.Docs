@@ -34,7 +34,7 @@ In this tutorial, we'll add support for [Font Awesome](http://fontawesome.io). B
 
   ![manage bower packages](bower/_static/manage-bower-packages.png)
 
-* Confirm that the "Save changes to *bower.json*" checkbox is checked. Select a version from the drop-down list and click the **Install** button. The **Output** window shows the installation details.
+* Confirm that the "Save changes to *bower.json*" check box is checked. Select a version from the drop-down list and click the **Install** button. The **Output** window shows the installation details.
 
 ### Manual installation in bower.json
 
