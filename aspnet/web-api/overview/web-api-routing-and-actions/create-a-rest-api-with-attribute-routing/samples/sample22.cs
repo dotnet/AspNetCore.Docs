@@ -79,7 +79,7 @@ namespace BooksAPI.Controllers
                 .Select(AsBookDto);
         }
 
-        [Route("~api/authors/{authorId}/books")]
+        [Route("~/api/authors/{authorId}/books")]
         public IQueryable<BookDto> GetBooksByAuthor(int authorId)
         {
             return db.Books.Include(b => b.Author)

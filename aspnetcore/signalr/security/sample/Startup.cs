@@ -26,7 +26,7 @@ namespace SignalR_CORS
             // Make sure the CORS middleware is ahead of SignalR.
             app.UseCors(builder =>
             {
-                builder.WithOrigins("http://example.com")
+                builder.WithOrigins("https://example.com")
                     .AllowAnyHeader()
                     .WithMethods("GET", "POST")
                     .AllowCredentials();
@@ -51,8 +51,8 @@ namespace SignalR_CORS
         private static readonly HashSet<string> _allowedOrigins = new HashSet<string>()
         {
             // Add allowed origins here. For example:
-            "http://www.mysite.com",
-            "http://mysite.com",
+            "https://www.mysite.com",
+            "https://mysite.com",
         };
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
