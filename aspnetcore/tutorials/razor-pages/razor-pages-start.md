@@ -113,6 +113,8 @@ cd RazorPagesMovie
 dotnet run
 ```
 
+::: moniker-end
+
 ::: moniker range="= aspnetcore-2.1"
 
 ```console
@@ -120,6 +122,8 @@ dotnet new webapp -o RazorPagesMovie
 cd RazorPagesMovie
 dotnet run
 ```
+
+::: moniker-end
 
 The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 
@@ -134,6 +138,7 @@ From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie
 Select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
 
 <!-- End of VS tabs -->
+
 ---
 
 Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
