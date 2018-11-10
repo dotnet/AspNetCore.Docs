@@ -80,12 +80,12 @@ The `Hub` class has a `Clients` property that contains the following properties 
 | `AllExcept` | Calls a method on all connected clients except for the specified connections |
 | `Client` | Calls a method on a specific connected client |
 | `Clients` | Calls a method on specific connected clients |
-| `Group` | Calls a method to all connections in the specified group  |
-| `GroupExcept` | Calls a method to all connections in the specified group, except the specified connections |
-| `Groups` | Calls a method to multiple groups of connections  |
-| `OthersInGroup` | Calls a method to a group of connections, excluding the client that invoked the hub method  |
-| `User` | Calls a method to all connections associated with a specific user |
-| `Users` | Calls a method to all connections associated with the specified users |
+| `Group` | Calls a method on all connections in the specified group  |
+| `GroupExcept` | Calls a method on all connections in the specified group, except the specified connections |
+| `Groups` | Calls a method on multiple groups of connections  |
+| `OthersInGroup` | Calls a method on a group of connections, excluding the client that invoked the hub method  |
+| `User` | Calls a method on all connections associated with a specific user |
+| `Users` | Calls a method on all connections associated with the specified users |
 
 Each property or method in the preceding tables returns an object with a `SendAsync` method. The `SendAsync` method allows you to supply the name and parameters of the client method to call.
 
