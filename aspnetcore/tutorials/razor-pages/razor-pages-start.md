@@ -1,6 +1,7 @@
 ---
 title: "Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
+monikerRange: '>= aspnetcore-2.1'
 description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages, use Entity Framework Core and SQL Server for data access, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
 ms.date: 05/30/2018
@@ -58,7 +59,7 @@ At the end, you have an app that can manage and display movie titles items.
 
 The following starter project is created:
 
-![Solution Explorer](razor-pages-start/_static/se2.1.png)
+![Solution Explorer](razor-pages-start/_static/se2.2.png)
 
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
@@ -158,6 +159,41 @@ The following image shows the app after accepting tracking:
 ![Home or Index page](razor-pages-start/_static/home2.1.png)
 ::: moniker-end
 
+::: moniker range="= aspnetcore-2.2"
+
+The default template creates **RazorPagesMovie**, **Home**, and **Privacy** links and pages. Depending on the size of your browser window, you might need to click the navigation icon to show the links.
+
+![Home or Index page](razor-pages-start/_static/xhome2.2.png)
+
+Test the links. The **RazorPagesMovie** and **Home** links go to the Index page. The **Privacy** link go to the `Privacy` pages. For more information on the privacy page, see [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+
+## Project files and folders
+
+The following table lists the files and folders in the project. For this tutorial, the *Startup.cs* file is the most important to understand. You don't need to review each link provided below. The links are provided as a reference when you need more information on a file or folder in the project.
+
+| File or folder              | Purpose |
+| ----------------- | ------------ |
+| wwwroot | Contains static files. See [Static files](xref:fundamentals/static-files). |
+| Pages | Folder for [Razor Pages](xref:razor-pages/index). |
+| *appsettings.json* | [Configuration](xref:fundamentals/configuration/index) |
+| *Program.cs* | [Hosts](xref:fundamentals/host/index) the ASP.NET Core app.|
+| *Startup.cs* | Configures services and the request pipeline. See [Startup](xref:fundamentals/startup).|
+
+### The Pages folder
+
+The *_Layout.cshtml* file contains common HTML elements (scripts and stylesheets) and sets the layout for the application. For example, when you click on **RazorPagesMovie**, **Home**, or **Privacy**, you see the same elements. The common elements include the navigation menu on the top and the header on the bottom of the window. See [Layout](xref:mvc/views/layout) for more information.
+
+The *_ViewImports.cshtml* file contains Razor directives that are imported into each Razor Page. See [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives) for more information.
+
+The *_ViewStart.cshtml* sets the Razor Pages `Layout` property to use the *_Layout.cshtml* file. See [Layout](xref:mvc/views/layout) for more information.
+
+The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](https://jquery.com/) validation scripts. When the `Create` and `Edit` pages are added later in the tutorial, the *_ValidationScriptsPartial.cshtml* file will be used.
+
+The `Index` pages zz are basic pages you can use to start an app. The `Error` page is used to display error information. The `Privacy` page allows you to specify details about your site's privacy policy.
+
+::: moniker-end
+::: moniker range="= aspnetcore-2.1"
+
 The default template creates **RazorPagesMovie**, **Home**, **About** and **Contact** links and pages. Depending on the size of your browser window, you might need to click the navigation icon to show the links.
 
 ![Home or Index page](../../tutorials/razor-pages/razor-pages-start/_static/home2.png)
@@ -188,6 +224,10 @@ The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](htt
 
 The `About`, `Contact` and `Index` pages are basic pages you can use to start an app. The `Error` page is used to display error information. The `Privacy` page allows you to specify details about your site's privacy policy.
 
+::: moniker-end
+
+
+
 # [Visual Studio](#tab/visual-studio)
 
 <a name="f7"></a>
@@ -195,10 +235,12 @@ The `About`, `Contact` and `Index` pages are basic pages you can use to start an
 
 F7 toggles between a Razor Page (*\*.cshtml* file) and the C# file (*\*.cshtml.cs*).
 
+<!-- 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+-->
 ---
 
 > [!div class="step-by-step"]
