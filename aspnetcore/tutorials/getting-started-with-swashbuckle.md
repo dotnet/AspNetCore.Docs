@@ -120,7 +120,7 @@ The Swagger UI displays the version's information:
 
 XML comments can be enabled with the following approaches:
 
-# [Visual Studio](#tab/visual-studio-xml/)
+# [Visual Studio](#tab/visual-studio/)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -138,7 +138,7 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker-end
 
-# [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
+# [Visual Studio for Mac](#tab/visual-studio-mac/)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -156,7 +156,7 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker-end
 
-# [Visual Studio Code](#tab/visual-studio-code-xml/)
+# [Visual Studio Code](#tab/visual-studio-code/)
 
 Manually add the highlighted lines to the *.csproj* file:
 
