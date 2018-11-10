@@ -22,7 +22,7 @@ To use ASP.NET Core Identity, see the [Introduction to Identity](xref:security/a
 
 ## Configuration
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 If the app doesn't use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), create a package reference in the project file for the [Microsoft.AspNetCore.Authentication.Cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) package (version 2.1.0 or later).
 
@@ -75,7 +75,9 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 ASP.NET Core 1.x uses cookie [middleware](xref:fundamentals/middleware/index) that serializes a user principal into an encrypted cookie. On subsequent requests, the cookie is validated, and the principal is recreated and assigned to the `HttpContext.User` property.
 
@@ -121,7 +123,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 });
 ```
 
----
+::: moniker-end
 
 ## Cookie Policy Middleware
 
@@ -164,13 +166,15 @@ The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect your
 
 To create a cookie holding user information, you must construct a [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal). The user information is serialized and stored in the cookie. 
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 Create a [ClaimsIdentity](/dotnet/api/system.security.claims.claimsidentity) with any required [Claim](/dotnet/api/system.security.claims.claim)s and call [SignInAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signinasync?view=aspnetcore-2.0) to sign in the user:
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 Call [SignInAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1.signinasync?view=aspnetcore-1.1) to sign in the user:
 
@@ -180,7 +184,7 @@ await HttpContext.Authentication.SignInAsync(
     new ClaimsPrincipal(claimsIdentity));
 ```
 
----
+::: moniker-end
 
 `SignInAsync` creates an encrypted cookie and adds it to the current response. If you don't specify an `AuthenticationScheme`, the default scheme is used.
 
@@ -188,13 +192,15 @@ Under the covers, the encryption used is ASP.NET Core's [Data Protection](xref:s
 
 ## Sign out
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 To sign out the current user and delete their cookie, call [SignOutAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.signoutasync?view=aspnetcore-2.0):
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 To sign out the current user and delete their cookie, call [SignOutAsync](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1.signoutasync?view=aspnetcore-1.1):
 
@@ -203,7 +209,7 @@ await HttpContext.Authentication.SignOutAsync(
     CookieAuthenticationDefaults.AuthenticationScheme);
 ```
 
----
+::: moniker-end
 
 If you aren't using `CookieAuthenticationDefaults.AuthenticationScheme` (or "Cookies") as the scheme (for example, "ContosoCookie"), supply the scheme you used when configuring the authentication provider. Otherwise, the default scheme is used.
 
