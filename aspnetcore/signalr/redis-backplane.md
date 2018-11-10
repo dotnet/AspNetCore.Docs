@@ -19,17 +19,20 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
 1. Deploy a Redis server.
 
-   A Redis backplane is the recommended approach for scaling out a SignalR app that uses on-premises infrastructure. To minimize latency, the Redis server should be in the same data center as the SignalR app. That's why these instructions assume you'll set up a Redis server for production rather than use Azure Redis Cache. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. For more information, see <xref:signalr/scale>.
+   A Redis backplane is recommended only for on-premises infrastructure. That's why these instructions assume you'll set up a Redis server rather than use Azure Redis Cache. To minimize latency, the Redis server should be in the same data center as the SignalR app. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. For more information, see <xref:signalr/scale>.
 
-2. In the SignalR app, install NuGet package `Microsoft.AspNetCore.SignalR.Redis` (for ASP.NET Core 2.1) or `Microsoft.AspNetCore.SignalR.StackExchangeRedis` (for ASP.NET Core 2.2).
+2. In the SignalR app, install the appropriate NuGet package for the version of ASP.NET Core that your project targets:
+
+   * 2.1: `Microsoft.AspNetCore.SignalR.Redis`
+   * 2.2: `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
  
-3. In the `ConfigureServices` method, call `AddRedis` after `AddSignalR`:
+3. In the `ConfigureServices` method, call `AddRedis` or `AddStackExchangeRedis` after `AddSignalR`:
 
    ```csharp
-   services.AddSignalR().AddRedis(yourRedisConnectionString);
+   services.AddSignalR().AddStackExchangeRedis(yourRedisConnectionString);
    ```
 
-4. Configure options.
+4. Configure options as needed:
  
    Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string. 
 
