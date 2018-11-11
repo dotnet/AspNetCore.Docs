@@ -3,7 +3,8 @@ title: Google external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-ms.date: 08/02/2017
+ms.custom: mvc
+ms.date: 11/11/2018
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -39,9 +40,9 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 ![API Manager Google+API page](index/_static/GoogleConsoleGoCredentials.png)
 
 * Choose:
-   * **Google+ API**
-   * **Web server (e.g. node.js, Tomcat)**, and
-   * **User data**:
+  * **Google+ API**
+  * **Web server (e.g. node.js, Tomcat)**, and
+  * **User data**:
 
 ![API Manager Credentials page: Find out what kind of credentials you need panel](index/_static/GoogleConsoleChooseCred.png)
 
@@ -80,7 +81,7 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 
 ## Configure Google Authentication
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
 
@@ -98,9 +99,11 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-[!INCLUDE[](~/includes/chain-auth-providers.md)]
+[!INCLUDE[](includes/chain-auth-providers.md)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
@@ -119,7 +122,7 @@ app.UseGoogleAuthentication(new GoogleOptions()
 });
 ```
 
----
+::: moniker-end
 
 See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
@@ -138,6 +141,8 @@ After entering your Google credentials, then you are redirected back to the web 
 You are now logged in using your Google credentials:
 
 ![Web application running in Microsoft Edge: User authenticated](index/_static/Done.png)
+
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## Troubleshooting
 
