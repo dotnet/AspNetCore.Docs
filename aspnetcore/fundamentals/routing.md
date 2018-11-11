@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for mapping reques
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2018
+ms.date: 11/11/2018
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -17,6 +17,28 @@ For the 1.1 version of this topic, download [Routing in ASP.NET Core (version 1.
 ::: moniker range=">= aspnetcore-2.2"
 
 Routing is responsible for mapping request URIs to endpoint selectors and dispatching incoming requests to endpoints. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, routing is also able to generate URLs that map to endpoint selectors.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
+
+To use the latest routing scenarios in ASP.NET Core 2.2, specify the [compatibility version](xref:mvc/compatibility-version) to the MVC services registration in `Startup.ConfigureServices`:
+
+```csharp
+services.AddMvc()
+    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+```
+
+The `EnableEndpointRouting` option determines if routing should internally use endpoint-based logic or the legacy <xref:Microsoft.AspNetCore.Routing.IRouter>-based logic of ASP.NET Core 2.1 or earlier. When the compatibility version is set to 2.2 or later, the default value is `true`. Set the value to `false` to use the legacy routing logic:
+
+```csharp
+services.AddMvc()
+    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+    // Use the legacy routing of ASP.NET Core 2.1 or earlier:
+    .EnableEndpointRouting = false;
+```
+
+For more information on the legacy <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](xref:fundamentals/routing?view=aspnetcore-2.1).
 
 ::: moniker-end
 
@@ -37,16 +59,7 @@ services.AddMvc()
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.2"
 
-To use the latest routing scenarios in ASP.NET Core 2.2, specify the [compatibility version](xref:mvc/compatibility-version) to the MVC services registration in `Startup.ConfigureServices`:
-
-```csharp
-services.AddMvc()
-    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-```
-
-::: moniker-end
 
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
