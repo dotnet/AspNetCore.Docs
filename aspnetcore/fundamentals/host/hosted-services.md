@@ -37,7 +37,7 @@ Hosted services implement the <xref:Microsoft.Extensions.Hosting.IHostedService>
 
 * [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) &ndash; Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task and dispose of any unmanaged resources. 
 
-  The cancellation token has a default five second timeout to indicate that the shutdown process should no longer be graceful. When cancellation is requested on the token, any remaining background operations that the app is performing should be aborted and any methods called in `StopAsync` should return promptly. However, tasks aren't abandoned after cancellation is requested and `StopAsync` is called&mdash;the caller awaits all tasks to complete.
+  The cancellation token has a default five second timeout to indicate that the shutdown process should no longer be graceful. When cancellation is requested on the token, any remaining background operations that the app is performing should be aborted and any methods called in `StopAsync` should return promptly. However, tasks aren't abandoned after cancellation is requested&mdash;the caller awaits all tasks to complete.
 
   If the app shuts down unexpectedly (for example, the app's process fails), `StopAsync` might not be called. Therefore, any methods called or operations conducted in `StopAsync` might not occur.
 
