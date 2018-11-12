@@ -71,7 +71,7 @@ Many of the articles and tutorials include links to sample code.
 1. Unzip the *Docs-master.zip* file.
 1. Use the URL in the sample link to help you navigate to the sample directory.
 
-To demonstrate multiple scenarios, sample apps make use of the `#define` and `#if-#else/#elif-#endif` C\# statements to selectively compile and run different sections of sample code. For those samples that make use of this approach, set the `#define` statement at the top of the C\# files to the symbol associated with the scenario that you want to run. A sample may require you to set the symbol at the top of multiple files in order to run a scenario.
+To demonstrate multiple scenarios, sample apps make use of the `#define` and `#if-#else/#elif-#endif` C# statements to selectively compile and run different sections of sample code. For those samples that make use of this approach, set the `#define` statement at the top of the C# files to the symbol associated with the scenario that you want to run. A sample may require you to set the symbol at the top of multiple files in order to run a scenario.
 
 For example, the following `#define` symbol list indicates that four scenarios are available (one scenario per symbol). The current sample configuration runs the `TemplateCode` scenario:
 
@@ -85,7 +85,7 @@ To change the sample to run the `ExpandDefault` scenario, define the `ExpandDefa
 #define ExpandDefault // TemplateCode or LogFromMain or FilterInCode
 ```
 
-For more information on using [C\# preprocessor directives](/dotnet/csharp/language-reference/preprocessor-directives/) to selectively compile sections of code, see [\#define (C\# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define) and [\#if (C\# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if).
+For more information on using [C# preprocessor directives](/dotnet/csharp/language-reference/preprocessor-directives/) to selectively compile sections of code, see [#define (C# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define) and [#if (C# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if).
 
 ## Next steps
 
