@@ -174,6 +174,12 @@ After the hosting startup is built, a runtime store is generated using the manif
 dotnet store --manifest <MANIFEST_FILE> --runtime <RUNTIME_IDENTIFIER> -o <OUTPUT_LOCATION>
 ```
 
+In the sample app (*RuntimeStore* project) the following command would be used:
+
+``` console
+dotnet store -r win7-x64 -o ./deployment/store --manifest store.manifest.csproj --skip-optimization
+```
+
 For runtime to discover the runtime store, the runtime store's location is added to the `DOTNET_SHARED_STORE` environment variable.
 
 **Modify and place the hosting startup's dependencies file**
@@ -243,6 +249,12 @@ Place the *\*.deps.json* file into the following location:
 * `ADDITIONAL_DEPS_PATH` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
 * `SHARED_FRAMEWORK_NAME` &ndash; Shared framework required for this additional dependencies file.
 * `SHARED_FRAMEWORK_VERSION` &ndash; Minimum shared framework version.
+
+In the sample app (*RuntimeStore* project) additional deps file is placed into the following location:
+
+```
+additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnostics.deps.json
+``
 
 For runtime to be able to discover runtime store location  needs to be added to `DOTNET_ADDITIONAL_DEPS` environment variable.
 
