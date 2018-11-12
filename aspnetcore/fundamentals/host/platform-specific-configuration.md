@@ -178,7 +178,10 @@ For runtime to be able to discover runtime store its location needs to be added 
 
 **Modify and place the hosting startup's dependencies file**
 
-To be able to activate the enhancement without having package reference to it one should use `additionalDeps` feature of the runtime. It allows to extend applications library graph by providing set of additional `.deps.json` files that would get merged with apps own `.deps.json` on startup and would make hosting startup assembly discoverable and loadable.
+To activate the enhancement without having a package reference to the enhancement, use the `additionalDeps` feature of the runtime. `additionalDeps` allows you to:
+
+* Extend the app's library graph by providing a set of additional *\*.deps.json* files to merge with the app's own *\*.deps.json* file on startup.
+* Make the hosting startup assembly discoverable and loadable.
 
 The recommended approach for generating the additional deps file is to:
 
