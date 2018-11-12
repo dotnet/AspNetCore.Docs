@@ -58,7 +58,7 @@ public class ChatController : Controller
 {
     public IHubContext<ChatHub, IChatClient> _strongChatHubContext { get; }
 
-    public SampleDataController(IHubContext<ChatHub, IChatClient> chatHubContext)
+    public ChatController(IHubContext<ChatHub, IChatClient> chatHubContext)
     {
         _strongChatHubContext = chatHubContext;
     }
