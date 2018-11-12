@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for mapping reques
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2018
+ms.date: 11/12/2018
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -44,7 +44,7 @@ For more information on the legacy <xref:Microsoft.AspNetCore.Routing.IRouter>-b
 
 ::: moniker range="< aspnetcore-2.2"
 
-Routing is responsible for mapping request URIs to route handlers and dispatching an incoming requests. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, routing is also able to generate URLs that map to route handlers.
+Routing is responsible for mapping request URIs to route handlers and dispatching an incoming requests. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using configured routes from the app, routing is able to generate URLs that map to route handlers.
 
 ::: moniker-end
 
@@ -58,8 +58,6 @@ services.AddMvc()
 ```
 
 ::: moniker-end
-
-
 
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
@@ -75,7 +73,9 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 
 Developers commonly add additional terse routes to high traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
 
-Web APIs should use attribute routing to model the app's URL-space as a set of resources with operations represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource use the same URL.
+Attribute routing models the app's URL-space as a set of resources with operations represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource use the same URL.
+
+Razor Pages apps use default conventional routing to serve named resources in the *Pages* folder of an app. Additional conventions are available that allow you to customize Razor Pages routing behavior. For more information, see <xref:razor-pages/index> and <xref:razor-pages/razor-pages-conventions>.
 
 Support for URL generation in MVC/Razor Pages allows you to develop an app without hard-coding URLs to conventionally-positioned resources, such as static files, MVC controller endpoints, and Razor Pages webpages. Built-in routing support allows you to initially develop an app with a basic routing configuration and then modify routes, if required, after the app's resource layout is determined.
 
@@ -94,7 +94,11 @@ The routing system has the following characteristics:
 * The routing implementation makes routing decisions wherever desired in the middleware pipeline.
 * Middleware that appears after a Routing Middleware can inspect the result of the Routing Middleware's endpoint decision for a given request URI.
 * It's possible to enumerate all of the endpoints in the app anywhere in the middleware pipeline.
-* URL generation is based on addresses, which support arbitrary extensiblity. `IUrlHelper` offers methods to build URLs for an ASP.NET MVC/Razor Pages app. A response can use routing to generate URLs (for example, for redirection or links) based on endpoint information and thus avoid hard-coded URLs, which helps maintainability.
+* A response can use routing to generate URLs (for example, for redirection or links) based on endpoint information and thus avoid hard-coded URLs, which helps maintainability.
+* URL generation is based on addresses, which support arbitrary extensiblity:
+
+  * The Link Generator API (`LinkGenerator`) can be resolved anywhere using [dependency injection (DI)](xref:fundamentals/dependency-injection) to generate URLs.
+  * Where the Link Generator API isn't available via DI, `IUrlHelper` offers methods to build URLs.
 
 > [!NOTE]
 > With the release of endpoint routing in ASP.NET Core 2.2, endpoint linking is limited to MVC/Razor Pages actions and pages. The expansions of endpoint-linking capabilities is planned for future releases.
@@ -116,7 +120,8 @@ The routing system has the following characteristics:
 * Conventional-style and attribute-style endpoint configuration is permitted.
 * `IRouteConstraint` is used to determine whether a URL parameter contains a valid value for a given endpoint constraint.
 * Frameworks, such as MVC/Razor Pages, register all of their routes, which have a predictable implementation of routing scenarios.
-* URL generation is based on routes, which support arbitrary extensiblity. `IUrlHelper` offers methods to build URLs for an ASP.NET MVC/Razor Pages app. A response can use routing to generate URLs (for example, for redirection or links) based on endpoint information and thus avoid hard-coded URLs, which helps maintainability.
+* A response can use routing to generate URLs (for example, for redirection or links) based on route information and thus avoid hard-coded URLs, which helps maintainability.
+* URL generation is based on routes, which support arbitrary extensiblity. `IUrlHelper` offers methods to build URLs.
 
 ::: moniker-end
 
@@ -127,8 +132,6 @@ Routing is connected to the [middleware](xref:fundamentals/middleware/index) pip
 ::: moniker range=">= aspnetcore-2.2"
 
 URL matching is the process by which routing dispatches an incoming request to an *endpoint*. This process is based on data in the URL path but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an app.
-
-When a Routing Middleware executes, it sets an endpoint (`Endpoint`) and route values to a feature on the <xref:Microsoft.AspNetCore.Http.HttpContext>. Middleware running after the Routing Middleware can see the endpoint and can take actions based on the middleware. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
 
 The routing system in endpoint routing is responsible for all dispatching decisions. Since the middleware applies policies based on the selected endpoint, it's important that any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
@@ -160,7 +163,7 @@ A match that calls `RouteAsync` also sets the properties of the `RouteContext.Ro
 
 URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your endpoints and the URLs that access them.
 
-Endpoint routing includes the `LinkGenerator` API. `LinkGenerator` is a singleton service that can be retrieved from [dependency injection (DI)](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's `IUrlHelper` and features that rely on `IUrlHelper`, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
+Endpoint routing includes the Link Generator API (`LinkGenerator`). `LinkGenerator` is a singleton service that can be retrieved from [dependency injection (DI)](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's `IUrlHelper` and features that rely on `IUrlHelper`, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
 
 The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values features many users are familiar with from MVC/Razor Pages are implemented as an address scheme.
 
@@ -217,7 +220,9 @@ A few differences exist between endpoint routing in ASP.NET Core 2.2 or later an
   var link = Url.Action("ReadPost", "blog", new { id = 17, });
   ```
 
-  With `IRouter`-based routing, this code generates a URI of `/blog/ReadPost/17`, which respects the casing of the provided route value. Endpoint routing in ASP.NET Core 2.2 or later produces `/Blog/ReadPost/17` ("Blog" is capitalized). Endpoint routing provides a parameter transformer interface called `IOutputParameterTransformer` that can be used to customize this behavior globally or to apply different conventions for mapping URLs.
+  With `IRouter`-based routing, this code generates a URI of `/blog/ReadPost/17`, which respects the casing of the provided route value. Endpoint routing in ASP.NET Core 2.2 or later produces `/Blog/ReadPost/17` ("Blog" is capitalized). Endpoint routing provides a parameter transformer interface called `IOutboundParameterTransformer` that can be used to customize this behavior globally or to apply different conventions for mapping URLs.
+
+  For more information, see the [Parameter transformer reference](xref:#parameter-transformer-reference) section.
 
 * Link Generation used by MVC/Razor Pages with conventional routes behaves differently when attempting to link to an controller/action or page that doesn't exist.
 
@@ -263,7 +268,9 @@ A few differences exist between endpoint routing in ASP.NET Core 2.2 or later an
 
 * Round-tripping route parameter syntax: Forward slashes aren't encoded when using a double-asterisk (`**`) catch-all parameter syntax.
 
-  During link generation, the routing system encodes the value captured in a double-asterisk (`**`) catch-all parameter (for example, `{**myparametername}`) except the forward slashes. The parameter syntax in prior versions of ASP.NET Core (`{*myparametername}`) remain supported, and forward slashes are encoded.
+  During link generation, the routing system encodes the value captured in a double-asterisk (`**`) catch-all parameter (for example, `{**myparametername}`) except the forward slashes. The double-asterisk catch-all is supported with legacy `IRouter`-based routing in ASP.NET Core 2.2 or later.
+
+  The single asterisk catch-all parameter syntax in prior versions of ASP.NET Core (`{*myparametername}`) remains supported, and forward slashes are encoded.
 
   | Route              | Link generated with<br>`Url.Action(new { category = "admin/products" })`&hellip; |
   | ------------------ | --------------------------------------------------------------------- |
@@ -291,7 +298,7 @@ public class ProductsLinkMiddleware
 
         httpContext.Response.ContentType = "text/plain";
 
-        return httpContext.Response.WriteAsync($"Go to {url} to see our products.");
+        await httpContext.Response.WriteAsync($"Go to {url} to see our products.");
     }
 }
 ```
@@ -552,7 +559,7 @@ The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.R
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Route parameters may also have parameter transformers, which transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a colon (`:`) and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer.
+Route parameters may also have parameter transformers, which transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a colon (`:`) and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformer reference](#parameter-transformer-reference) section.
 
 ::: moniker-end
 
@@ -584,7 +591,7 @@ The following keywords are reserved names and can't be used as route names or pa
 
 ## Route constraint reference
 
-Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb.
+Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
 
 > [!WARNING]
 > Don't use constraints for **input validation**. If constraints are used for **input validation**, invalid input results in a *404 - Not Found* response instead of a *400 - Bad Request* with an appropriate error message. Route constraints are used to **disambiguate** similar routes, not to validate the inputs for a particular route.
