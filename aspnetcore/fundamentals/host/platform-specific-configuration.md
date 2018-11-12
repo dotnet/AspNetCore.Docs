@@ -226,7 +226,7 @@ Easy way of generating additional deps file is running `dotnet publish` on runti
 }
 ```
 
-Deps.json file is then placed into the following directory structure:
+Place the *\*.deps.json* file into the following location:
 
 ```
 <ADDITIONAL_DEPS_PATH>/shared/<SHARED_FRAMEWORK_NAME>/<SHARED_FRAMEWORK_VERSION>/<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
