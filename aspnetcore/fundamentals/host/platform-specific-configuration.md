@@ -174,7 +174,7 @@ After the hosting startup is built, a runtime store is generated using the manif
 dotnet store --manifest <MANIFEST_FILE> --runtime <RUNTIME_IDENTIFIER> -o <OUTPUT_LOCATION>
 ```
 
-For runtime to be able to discover runtime store its location needs to be added to `DOTNET_SHARED_STORE` environment variable.
+For runtime to discover the runtime store, the runtime store's location is added to the `DOTNET_SHARED_STORE` environment variable.
 
 **Modify and place the hosting startup's dependencies file**
 
