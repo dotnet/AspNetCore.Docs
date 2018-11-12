@@ -180,7 +180,10 @@ For runtime to be able to discover runtime store its location needs to be added 
 
 To be able to activate the enhancement without having package reference to it one should use `additionalDeps` feature of the runtime. It allows to extend applications library graph by providing set of additional `.deps.json` files that would get merged with apps own `.deps.json` on startup and would make hosting startup assembly discoverable and loadable.
 
-Easy way of generating additional deps file is running `dotnet publish` on runtime store manifest file refernced in previous section and then removing manifest reference from libraries and runtime section of resulting deps.json file.
+The recommended approach for generating the additional deps file is to:
+
+ 1. Execute `dotnet publish` on the runtime store manifest file referenced in the previous section.
+ 1. Remove the manifest reference from libraries and the `runtime` section of the resulting *\*deps.json* file.
 
 ``` diff
 {
