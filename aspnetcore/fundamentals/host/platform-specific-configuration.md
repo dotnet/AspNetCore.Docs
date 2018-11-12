@@ -188,7 +188,9 @@ The recommended approach for generating the additional deps file is to:
  1. Execute `dotnet publish` on the runtime store manifest file referenced in the previous section.
  1. Remove the manifest reference from libraries and the `runtime` section of the resulting *\*deps.json* file.
 
-``` diff
+In the example project `store.manifest/1.0.0` property would be removed from `targets` and `libraries` section:
+
+``` json
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
@@ -197,14 +199,14 @@ The recommended approach for generating the additional deps file is to:
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
--      "store.manifest/1.0.0": {
--        "dependencies": {
--          "StartupDiagnostics": "1.0.0"
--        },
--        "runtime": {
--          "store.manifest.dll": {}
--        }
--      },
+      "store.manifest/1.0.0": {
+        "dependencies": {
+          "StartupDiagnostics": "1.0.0"
+        },
+        "runtime": {
+          "store.manifest.dll": {}
+        }
+      },
       "StartupDiagnostics/1.0.0": {
         "runtime": {
           "lib/netcoreapp2.1/StartupDiagnostics.dll": {
@@ -216,11 +218,11 @@ The recommended approach for generating the additional deps file is to:
     }
   },
   "libraries": {
--    "store.manifest/1.0.0": {
--      "type": "project",
--      "serviceable": false,
--      "sha512": ""
--    },
+    "store.manifest/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "StartupDiagnostics/1.0.0": {
       "type": "package",
       "serviceable": true,
