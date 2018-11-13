@@ -5,7 +5,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/31/2018
+ms.date: 11/13/2018
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -235,15 +235,11 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
-* Choose either browser, enter a name and message, and select the **Send** button.
+* Choose either browser, enter a name and message, and select the **Send Message** button.
 
   The name and message are displayed on both pages instantly.
 
   ![SignalR sample app](signalr/_static/signalr-get-started-finished.png)
-
-> [!TIP]
-> If the app doesn't work, open your browser developer tools (F12) and go to the console. You might see errors related to your HTML and JavaScript code. For example, suppose you put *signalr.js* in a different folder than directed. In that case the reference to that file won't work and you'll see a 404 error in the console.
-> ![signalr.js not found error](signalr/_static/f12-console.png)
 
 ## Next steps
 
