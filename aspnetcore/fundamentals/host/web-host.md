@@ -2,7 +2,6 @@
 title: ASP.NET Core Web Host
 author: guardrex
 description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2018
@@ -13,7 +12,7 @@ uid: fundamentals/host/web-host
 By [Luke Latham](https://github.com/guardrex)
 
 
-::: moniker range="< aspnetcore-2.1"
+::: moniker range="<= aspnetcore-1.1"
 
 For the 1.1 version of this topic, download [ASP.NET Core Web Host (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Web-Host_1.1.pdf).
 
