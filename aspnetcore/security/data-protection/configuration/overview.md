@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/17/2017
+ms.date: 11/13/2018
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -129,7 +129,14 @@ public void ConfigureServices(IServiceCollection services)
 
 ## SetApplicationName
 
-By default, the Data Protection system isolates apps from one another, even if they're sharing the same physical key repository. This prevents the apps from understanding each other's protected payloads. To share protected payloads between two apps, use [SetApplicationName](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.setapplicationname) with the same value for each app:
+By default, the Data Protection system isolates apps from one another, even if they're sharing the same physical key repository. This prevents the apps from understanding each other's protected payloads.
+
+To share protected payloads among apps:
+
+* Configure <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> in each app with the same value.
+* Use the same version of the Data Protection API stack across the apps. Perform **either** of the following in the apps' project files:
+  * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+  * Reference the same [Data Protection package](xref:security/data-protection/introduction#package-layout) version.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -171,7 +178,7 @@ If the Data Protection system isn't provided by an ASP.NET Core host (for exampl
 
 The Data Protection stack allows you to change the default algorithm used by newly-generated keys. The simplest way to do this is to call [UseCryptographicAlgorithms](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.usecryptographicalgorithms) from the configuration callback:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.0"
 
 ```csharp
 services.AddDataProtection()
@@ -183,7 +190,9 @@ services.AddDataProtection()
     });
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 ```csharp
 services.AddDataProtection()
@@ -195,7 +204,7 @@ services.AddDataProtection()
     });
 ```
 
----
+::: moniker-end
 
 The default EncryptionAlgorithm is AES-256-CBC, and the default ValidationAlgorithm is HMACSHA256. The default policy can be set by a system administrator via a [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy), but an explicit call to `UseCryptographicAlgorithms` overrides the default policy.
 
@@ -208,7 +217,7 @@ You can manually specify an implementation via a call to [UseCustomCryptographic
 
 ### Specifying custom managed algorithms
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.0"
 
 To specify custom managed algorithms, create a [ManagedAuthenticatedEncryptorConfiguration](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.managedauthenticatedencryptorconfiguration) instance that points to the implementation types:
 
@@ -228,7 +237,9 @@ serviceCollection.AddDataProtection()
     });
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 To specify custom managed algorithms, create a [ManagedAuthenticatedEncryptionSettings](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.managedauthenticatedencryptionsettings) instance that points to the implementation types:
 
@@ -248,7 +259,7 @@ serviceCollection.AddDataProtection()
     });
 ```
 
----
+::: moniker-end
 
 Generally the \*Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of [SymmetricAlgorithm](/dotnet/api/system.security.cryptography.symmetricalgorithm) and [KeyedHashAlgorithm](/dotnet/api/system.security.cryptography.keyedhashalgorithm), though the system special-cases some values like `typeof(Aes)` for convenience.
 
@@ -257,7 +268,7 @@ Generally the \*Type properties must point to concrete, instantiable (via a publ
 
 ### Specifying custom Windows CNG algorithms
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.0"
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption with HMAC validation, create a [CngCbcAuthenticatedEncryptorConfiguration](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.cngcbcauthenticatedencryptorconfiguration) instance that contains the algorithmic information:
 
@@ -279,7 +290,9 @@ services.AddDataProtection()
     });
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption with HMAC validation, create a [CngCbcAuthenticatedEncryptionSettings](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.cngcbcauthenticatedencryptionsettings) instance that contains the algorithmic information:
 
@@ -301,12 +314,12 @@ services.AddDataProtection()
     });
 ```
 
----
+::: moniker-end
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of >= 128 bits, a block size of >= 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT\_ALG\_HANDLE\_HMAC\_FLAG flag. The \*Provider properties can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.0"
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption with validation, create a [CngGcmAuthenticatedEncryptorConfiguration](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.cnggcmauthenticatedencryptorconfiguration) instance that contains the algorithmic information:
 
@@ -324,7 +337,9 @@ services.AddDataProtection()
     });
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption with validation, create a [CngGcmAuthenticatedEncryptionSettings](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.cnggcmauthenticatedencryptionsettings) instance that contains the algorithmic information:
 
@@ -342,7 +357,7 @@ services.AddDataProtection()
     });
 ```
 
----
+::: moniker-end
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of >= 128 bits, a block size of exactly 128 bits, and it must support GCM encryption. You can set the [EncryptionAlgorithmProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.cngcbcauthenticatedencryptorconfiguration.encryptionalgorithmprovider) property to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.
@@ -358,7 +373,7 @@ When hosting in a [Docker](/dotnet/standard/microservices-architecture/container
 * A folder that's a Docker volume that persists beyond the container's lifetime, such as a shared volume or a host-mounted volume.
 * An external provider, such as [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) or [Redis](https://redis.io/).
 
-## See also
+## Additional resources
 
 * <xref:security/data-protection/configuration/non-di-scenarios>
 * <xref:security/data-protection/configuration/machine-wide-policy>
