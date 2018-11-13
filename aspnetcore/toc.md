@@ -6,7 +6,7 @@
 # [Get started](xref:getting-started)
 
 # Tutorials
-## [Create a Web API ](xref:tutorials/first-web-api)
+## [Create a web API](xref:tutorials/first-web-api)
 ## Web apps
 ### Razor Pages
 #### [With Visual Studio](xref:tutorials/razor-pages/index)
