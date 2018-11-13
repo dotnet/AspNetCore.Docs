@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.2'
 ms.author: pranavkm
 ms.custom: mvc
 ms.date: 11/13/2018
-uid: web-api/api-analyzer
+uid: web-api/advanced/analyzers
 ---
 # Use web API analyzers
 
@@ -64,8 +64,8 @@ Open API documents contain status codes and response types that an action may re
 
 One of the analyzers in the package inspects controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> and identifies actions that don't entirely document their responses. Consider the following sample:
 
-[!code-csharp[](api-conventions/sample/Controllers/ContactsController.cs?name=missing404docs&highlight=8-9)]
+[!code-csharp[](conventions/sample/Controllers/ContactsController.cs?name=missing404docs&highlight=8-9)]
 
 The action documents the HTTP 200 success return type but doesn't document the HTTP 404 failure status code. The analyzer reports the missing documentation for the HTTP 404 status code as a warning. An option to fix the problem is provided:
 
-![analyzer reporting a warning](api-conventions/_static/Analyzer.gif)
+![analyzer reporting a warning](conventions/_static/Analyzer.gif)
