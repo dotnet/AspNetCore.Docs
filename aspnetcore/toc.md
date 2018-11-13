@@ -171,7 +171,7 @@
 
 # Web APIs
 ## [Overview](xref:web-api/index)
-## [Create a Web API ](xref:tutorials/first-web-api)
+## [Create a web API](xref:tutorials/first-web-api)
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
