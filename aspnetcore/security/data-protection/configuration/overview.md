@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/10/2018
+ms.date: 11/13/2018
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -133,7 +133,7 @@ By default, the Data Protection system isolates apps from one another, even if t
 
 To share protected payloads among apps:
 
-* Configure [SetApplicationName](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.setapplicationname) in each app with the same value.
+* Configure <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> in each app with the same value.
 * Use the same version of the Data Protection API stack across the apps. Perform **either** of the following in the apps' project files:
   * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
   * Reference the same [Data Protection package](xref:security/data-protection/introduction#package-layout) versions.
