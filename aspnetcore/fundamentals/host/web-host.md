@@ -5,7 +5,7 @@ description: Learn about the web host in ASP.NET Core, which is responsible for 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2018
+ms.date: 11/12/2018
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
