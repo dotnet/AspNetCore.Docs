@@ -1,26 +1,26 @@
 ---
-title: Using web API analyzers
+title: Use web API analyzers
 author: pranavkm
-description: Learn about web API analyzers in Microsoft.AspNetCore.Mvc.Api.Analyzers
+description: Learn about the web API analyzers in Microsoft.AspNetCore.Mvc.Api.Analyzers.
+monikerRange: '>= aspnetcore-2.2'
 ms.author: pranavkm
 ms.custom: mvc
-ms.date: 11/05/2018
+ms.date: 11/13/2018
 uid: web-api/api-analyzer
-monikerRange: '>= aspnetcore-2.2'
 ---
-# Learn about analyzers in Microsoft.AspNetCore.Mvc.Api.Analyzers
+# Use web API analyzers
 
 ASP.NET Core 2.2 introduces the [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Api.Analyzers) NuGet package containing analyzers for web APIs. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [API conventions](<xref:web-api/action-return-types>).
 
 ## Package installation
 
-`Microsoft.AspNetCore.Mvc.Api.Analyzers` can be added with the following approaches:
+`Microsoft.AspNetCore.Mvc.Api.Analyzers` can be added with one of the following approaches:
 
 ### [Visual Studio](#tab/visual-studio)
 
 * From the **Package Manager Console** window:
-  * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the *ApiConventions.csproj* file exists
+  * Go to **View** > **Other Windows** > **Package Manager Console**.
+  * Navigate to the directory in which the *ApiConventions.csproj* file exists.
   * Execute the following command:
 
     ```powershell
@@ -28,17 +28,17 @@ ASP.NET Core 2.2 introduces the [Microsoft.AspNetCore.Mvc.Api.Analyzers](https:/
     ```
 
 * From the **Manage NuGet Packages** dialog:
-  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
-  * Set the **Package source** to "nuget.org"
-  * Enter "Microsoft.AspNetCore.Mvc.Api.Analyzers" in the search box
-  * Select the "Microsoft.AspNetCore.Mvc.Api.Analyzers" package from the **Browse** tab and click **Install**
+  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**.
+  * Set the **Package source** to "nuget.org".
+  * Enter "Microsoft.AspNetCore.Mvc.Api.Analyzers" in the search box.
+  * Select the "Microsoft.AspNetCore.Mvc.Api.Analyzers" package from the **Browse** tab and click **Install**.
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
-* Set the **Add Packages** window's **Source** drop-down to "nuget.org"
-* Enter "Microsoft.AspNetCore.Mvc.Api.Analyzers" in the search box
-* Select the "Microsoft.AspNetCore.Mvc.Api.Analyzers" package from the results pane and click **Add Package**
+* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**.
+* Set the **Add Packages** window's **Source** drop-down to "nuget.org".
+* Enter "Microsoft.AspNetCore.Mvc.Api.Analyzers" in the search box.
+* Select the "Microsoft.AspNetCore.Mvc.Api.Analyzers" package from the results pane and click **Add Package**.
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 
@@ -60,12 +60,12 @@ dotnet add ApiConventions.csproj package Microsoft.AspNetCore.Mvc.Api.Analyzers
 
 ## Analyzers for API conventions
 
-Open API documents contain each status code and response type an operation may return. In ASP.NET Core MVC, you use attributes such as <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> and <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> to document your operation. <xref:tutorials/web-api-help-pages-using-swagger> goes in to further details on documenting your API.
+Open API documents contain status codes and response types that an action may return. In ASP.NET Core MVC, attributes such as <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> and <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> are used to document an action. <xref:tutorials/web-api-help-pages-using-swagger> goes into further detail on documenting your API.
 
 One of the analyzers in the package inspects controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> and identifies actions that don't entirely document their responses. Consider the following sample:
 
 [!code-csharp[](api-conventions/sample/Controllers/ContactsController.cs?name=missing404docs&highlight=8-9)]
 
-The action documents the success return type (`200`) but doesn't document the 404 failure status code. The analyzer reports this as a warning with an option to fix it:
+The action documents the HTTP 200 success return type but doesn't document the HTTP 404 failure status code. The analyzer reports the missing documentation for the HTTP 404 status code as a warning. An option to fix the problem is provided:
 
-[api-conventions/_static/Analyzer.gif]
+![analyzer reporting a warning](api-conventions/_static/Analyzer.gif)
