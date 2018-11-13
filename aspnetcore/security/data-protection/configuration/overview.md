@@ -136,7 +136,7 @@ To share protected payloads among apps:
 * Configure <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> in each app with the same value.
 * Use the same version of the Data Protection API stack across the apps. Perform **either** of the following in the apps' project files:
   * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
-  * Reference the same [Data Protection package](xref:security/data-protection/introduction#package-layout) versions.
+  * Reference the same [Data Protection package](xref:security/data-protection/introduction#package-layout) version.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
