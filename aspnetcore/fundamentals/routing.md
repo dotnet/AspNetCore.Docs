@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for mapping reques
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2018
+ms.date: 11/13/2018
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -32,10 +32,9 @@ services.AddMvc()
 The `EnableEndpointRouting` option determines if routing should internally use endpoint-based logic or the legacy <xref:Microsoft.AspNetCore.Routing.IRouter>-based logic of ASP.NET Core 2.1 or earlier. When the compatibility version is set to 2.2 or later, the default value is `true`. Set the value to `false` to use the legacy routing logic:
 
 ```csharp
-services.AddMvc()
-    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-    // Use the legacy routing of ASP.NET Core 2.1 or earlier:
-    .EnableEndpointRouting = false;
+// Use the legacy routing of ASP.NET Core 2.1 or earlier:
+services.AddMvc(options => options.EnableEndpointRouting = false)
+    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
 For more information on the legacy <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](xref:fundamentals/routing?view=aspnetcore-2.1).
@@ -94,7 +93,7 @@ The routing system has the following characteristics:
 * The routing implementation makes routing decisions wherever desired in the middleware pipeline.
 * Middleware that appears after a Routing Middleware can inspect the result of the Routing Middleware's endpoint decision for a given request URI.
 * It's possible to enumerate all of the endpoints in the app anywhere in the middleware pipeline.
-* A response can use routing to generate URLs (for example, for redirection or links) based on endpoint information and thus avoid hard-coded URLs, which helps maintainability.
+* An app can use routing to generate URLs (for example, for redirection or links) based on endpoint information and thus avoid hard-coded URLs, which helps maintainability.
 * URL generation is based on addresses, which support arbitrary extensiblity:
 
   * The Link Generator API (`LinkGenerator`) can be resolved anywhere using [dependency injection (DI)](xref:fundamentals/dependency-injection) to generate URLs.
@@ -163,9 +162,9 @@ A match that calls `RouteAsync` also sets the properties of the `RouteContext.Ro
 
 URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your endpoints and the URLs that access them.
 
-Endpoint routing includes the Link Generator API (`LinkGenerator`). `LinkGenerator` is a singleton service that can be retrieved from [dependency injection (DI)](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's `IUrlHelper` and features that rely on `IUrlHelper`, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
+Endpoint routing includes the Link Generator API (`LinkGenerator`). `LinkGenerator` is a singleton service that can be retrieved from [dependency injection (DI)](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's `IUrlHelper` and scenarios that rely on `IUrlHelper`, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
 
-The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values features many users are familiar with from MVC/Razor Pages are implemented as an address scheme.
+The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from MVC/Razor Pages are implemented as an address scheme.
 
 The link generator can link to MVC/Razor Pages actions and pages via the following extension methods:
 
@@ -191,11 +190,13 @@ The methods provided by `LinkGenerator` support standard link generation capabil
 | `GetUriByAddress`  | Generates an absolute URI based on the provided values.             |
 
 > [!WARNING]
-> Pay attention to the following security implications of calling `LinkGenerator` methods:
+> Pay attention to the following implications of calling `LinkGenerator` methods:
 >
 > Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view/page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
 >
 > Use `LinkGenerator` with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the `LinkGenerator` APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
+
+## Differences from earlier versions of routing
 
 A few differences exist between endpoint routing in ASP.NET Core 2.2 or later and earlier versions of routing in ASP.NET Core:
 
@@ -220,7 +221,7 @@ A few differences exist between endpoint routing in ASP.NET Core 2.2 or later an
   var link = Url.Action("ReadPost", "blog", new { id = 17, });
   ```
 
-  With `IRouter`-based routing, this code generates a URI of `/blog/ReadPost/17`, which respects the casing of the provided route value. Endpoint routing in ASP.NET Core 2.2 or later produces `/Blog/ReadPost/17` ("Blog" is capitalized). Endpoint routing provides a parameter transformer interface called `IOutboundParameterTransformer` that can be used to customize this behavior globally or to apply different conventions for mapping URLs.
+  With `IRouter`-based routing, this code generates a URI of `/blog/ReadPost/17`, which respects the casing of the provided route value. Endpoint routing in ASP.NET Core 2.2 or later produces `/Blog/ReadPost/17` ("Blog" is capitalized). Endpoint routing provides the `IOutboundParameterTransformer` interface that can be used to customize this behavior globally or to apply different conventions for mapping URLs.
 
   For more information, see the [Parameter transformer reference](xref:#parameter-transformer-reference) section.
 
@@ -368,7 +369,7 @@ Route values are determined by splitting the URL path into segments and matching
 
 The preceding template could also match the URL path `/` and produce the values `{ controller = Home, action = Index }`. This occurs because the `{controller}` and `{action}` route parameters have default values and the `id` route parameter is optional. An equals sign (`=`) followed by a value after the route parameter name defines a default value for the parameter. A question mark `?` after the route parameter name defines an optional parameter.
 
-Route parameters with a default value *always* produce a route value when the route matches. Optional parameters don't produce a route value if there was no corresponding URL path segment. See the [Route template reference](#route-template-reference) section for a thorough description of route template features and syntax.
+Route parameters with a default value *always* produce a route value when the route matches. Optional parameters don't produce a route value if there was no corresponding URL path segment. See the [Route template reference](#route-template-reference) section for a thorough description of route template scenarios and syntax.
 
 In the following example, the route parameter definition `{id:int}` defines a [route constraint](#route-constraint-reference) for the `id` route parameter:
 
@@ -396,7 +397,7 @@ routes.MapRoute(
 ```
 
 > [!TIP]
-> The inline syntax for defining constraints and defaults can be convenient for simple routes. However, there are features, such as data tokens, that aren't supported by inline syntax.
+> The inline syntax for defining constraints and defaults can be convenient for simple routes. However, there are scenarios, such as data tokens, that aren't supported by inline syntax.
 
 The following example demonstrates a few additional scenarios:
 
