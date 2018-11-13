@@ -3,7 +3,7 @@ title: Custom Model Binding in ASP.NET Core
 author: ardalis
 description: Learn how model binding allows controller actions to work directly with model types in ASP.NET Core.
 ms.author: riande
-ms.date: 11/12/2018
+ms.date: 11/13/2018
 uid: mvc/advanced/custom-model-binding
 ---
 # Custom Model Binding in ASP.NET Core
@@ -83,9 +83,12 @@ The following sample uses the `ModelBinder` attribute on the `Author` model:
 
 In the preceding code, the `ModelBinder` attribute specifies the type of `IModelBinder` that should be used to bind `Author` action parameters.
 
-The `AuthorEntityBinder` is used to bind an `Author` parameter by fetching the entity from a data source using Entity Framework Core and an `authorId`:
+The following `AuthorEntityBinder` class binds an `Author` parameter by fetching the entity from a data source using Entity Framework Core and an `authorId`:
 
 [!code-csharp[](custom-model-binding/sample/CustomModelBindingSample/Binders/AuthorEntityBinder.cs?name=demo)]
+
+> [!NOTE]
+> The preceding `AuthorEntityBinder` class is intended to illustrate a custom model binder. The class isn't intended to address a lookup scenario. For lookup, bind the `authorId` and query the database in an action method. This approach separates model binding failures from `NotFound` cases.
 
 The following code shows how to use the `AuthorEntityBinder` in an action method:
 
