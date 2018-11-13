@@ -185,6 +185,8 @@
 ## [Action return types](xref:web-api/action-return-types)
 ## [Format response data](xref:web-api/advanced/formatting)
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
+## [Analyzers](xref:web-api/advanced/analyzers)
+## [Conventions](xref:web-api/advanced/conventions)
 
 # Real-time apps
 ## [Overview](xref:signalr/introduction)

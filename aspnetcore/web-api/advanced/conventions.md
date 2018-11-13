@@ -1,14 +1,14 @@
 ---
-title: Using web API conventions
+title: Use web API conventions
 author: pranavkm
-description: Learn about web API conventions
+description: Learn about web API conventions in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: pranavkm
 ms.custom: mvc
-ms.date: 11/05/2018
-uid: web-api/api-conventions
+ms.date: 11/13/2018
+uid: web-api/advanced/conventions
 ---
-# Learn about web API conventions
+# Use web API conventions
 
 ASP.NET Core 2.2 introduces a way to extract common [API documentation](xref:tutorials/web-api-help-pages-using-swagger) and apply it to multiple actions, controllers, or all controllers within an assembly. Web API conventions are a substitute for decorating individual actions with <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute>. It allows you to define the most common "conventional" return types and status codes that you return from your action with a way to select the convention method that applies to an action.
 
@@ -18,19 +18,19 @@ At runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> understands conventions.
 
 ## Apply web API conventions
 
-There are three ways to apply a convention. Conventions do not compose, each action may be associated with exactly one convention. More specific convention (detailed below) take precedence over less specific ones, and the selection is non deterministic when two or more conventions of the same priority apply to an action. Listed below are the ways to apply a convention to an action, from the most specific to the least specific:
+There are three ways to apply a convention. Conventions don't compose, each action may be associated with exactly one convention. More specific convention (detailed below) take precedence over less specific ones, and the selection is non deterministic when two or more conventions of the same priority apply to an action. Listed below are the ways to apply a convention to an action, from the most specific to the least specific:
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute` - Applies to individual actions and specifies the convention type and the convention method that applies. In the sample below, the convention method `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` is applied to the `Update` action:
+1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute` &mdash; Applies to individual actions and specifies the convention type and the convention method that applies. In the following sample, the convention method `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` is applied to the `Update` action:
 
-[!code-csharp[](api-conventions/sample/Controllers/ContactsConventionController.cs?name=apiconventionmethod&highlight=2-3)]
+[!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=apiconventionmethod&highlight=2-3)]
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to a controller - Applies the convention type to all actions on the controller. Convention methods are decorated with hints that determine which actions it would apply to (details as part of authoring conventions).
+1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to a controller &mdash; Applies the convention type to all actions on the controller. Convention methods are decorated with hints that determine which actions it would apply to (details as part of authoring conventions). For example:
 
-[!code-csharp[](api-conventions/sample/Controllers/ContactsConventionController.cs?name=apiconventiontypeattribute)]
+[!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=apiconventiontypeattribute)]
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to an assembly - Applies the convention type to all controllers in the current assembly. For example:
+1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to an assembly &mdash; Applies the convention type to all controllers in the current assembly. For example:
 
-[!code-csharp[](api-conventions/sample/Startup.cs?name=apiconventiontypeattribute)]
+[!code-csharp[](conventions/sample/Startup.cs?name=apiconventiontypeattribute)]
 
 ## Create web API conventions
 
