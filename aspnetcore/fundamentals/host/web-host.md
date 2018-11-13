@@ -11,7 +11,6 @@ uid: fundamentals/host/web-host
 
 By [Luke Latham](https://github.com/guardrex)
 
-
 ::: moniker range="<= aspnetcore-1.1"
 
 For the 1.1 version of this topic, download [ASP.NET Core Web Host (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Web-Host_1.1.pdf).
