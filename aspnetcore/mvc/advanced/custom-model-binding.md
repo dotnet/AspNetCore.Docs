@@ -88,7 +88,7 @@ The following `AuthorEntityBinder` class binds an `Author` parameter by fetching
 [!code-csharp[](custom-model-binding/sample/CustomModelBindingSample/Binders/AuthorEntityBinder.cs?name=demo)]
 
 > [!NOTE]
-> The preceding `AuthorEntityBinder` class is intended to illustrate a custom model binder. The class isn't intended to address a lookup scenario. For lookup, bind the `authorId` and query the database in an action method. This approach separates model binding failures from `NotFound` cases.
+> The preceding `AuthorEntityBinder` class is intended to illustrate a custom model binder. The class isn't intended to illustrate best practices for a lookup scenario. For lookup, bind the `authorId` and query the database in an action method. This approach separates model binding failures from `NotFound` cases.
 
 The following code shows how to use the `AuthorEntityBinder` in an action method:
 
