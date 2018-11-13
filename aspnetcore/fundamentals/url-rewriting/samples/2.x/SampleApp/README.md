@@ -1,8 +1,8 @@
 # ASP.NET Core URL Rewriting Sample (ASP.NET Core 2.x)
 
-This sample illustrates usage of ASP.NET Core 2.x URL Rewriting Middleware. The application demonstrates URL redirect and URL rewriting options. For the ASP.NET Core 1.x sample, see [ASP.NET Core URL Rewriting Sample (ASP.NET Core 1.x)](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/1.x).
+This sample illustrates usage of ASP.NET Core 2.x URL Rewriting Middleware. The app demonstrates URL redirect and URL rewriting options.
 
-When running the sample, a response will be served that shows the rewritten or redirected URL when one of the rules is applied to a request URL.
+When running the sample, a response is served that shows the rewritten or redirected URL when one of the rules is applied to a request URL, except with the redirecting an XML file request and rewriting a text file request examples. For the file examples, Static File Middleware serves the file after the request URL is rewritten by the middleware.
 
 ## Examples in this sample
 
@@ -21,25 +21,30 @@ When running the sample, a response will be served that shows the rewritten or r
 * `Add(RedirectXMLRequests)`
   - Success status code: 301 (Moved Permanently)
   - Example (redirect): **/file.xml** to **/xmlfiles/file.xml**
+* `Add(RewriteTXTRequests)`
+  - Success status code: 200 (OK)
+  - Example (rewrite): **/some_file.txt** to **/file.txt**
 * `Add(new RedirectPNGRequests(".png", "/png-images")))`<br>`Add(new RedirectPNGRequests(".jpg", "/jpg-images")))`
   - Success status code: 301 (Moved Permanently)
   - Example (redirect): **/image.png** to **/png-images/image.png**
   - Example (redirect): **/image.jpg** to **/jpg-images/image.jpg**
 
-## Using a `PhysicalFileProvider`
+## Use a PhysicalFileProvider
+
 You can also obtain an `IFileProvider` by creating a `PhysicalFileProvider` to pass into the `AddApacheModRewrite()` and `AddIISUrlRewrite()` methods:
+
 ```csharp
 using Microsoft.Extensions.FileProviders;
 PhysicalFileProvider fileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
 ```
+
 ## Secure redirection extensions
-This sample includes `WebHostBuilder` configuration for the app to use URLs (**https://localhost:5001**, **https://localhost**) and a test certificate (**testCert.pfx**) to assist you in exploring these redirect methods. Add any of them to the `RewriteOptions()` in **Startup.cs** to study their behavior.
 
+This sample includes `WebHostBuilder` configuration for the app to use URLs (`https://localhost:5001`, `https://localhost`) and a test certificate (*testCert.pfx*) to assist in exploring the secure redirect methods. If the server already has port 443 assigned or in use, the `https://localhost` example doesn't work&mdash;remove the `ListenOptions` for port 443 in the `CreateWebHostBuilder` method of the *Program.cs* file or unbind port 443 on the server so that Kestrel can use the port.
 
-|              Method              | Status Code |    Port    |
-|----------------------------------|:-----------:|:----------:|
+| Method                           | Status Code |    Port    |
+| -------------------------------- | :---------: | :--------: |
 | `.AddRedirectToHttpsPermanent()` |     301     | null (465) |
-|     `.AddRedirectToHttps()`      |     302     | null (465) |
-|    `.AddRedirectToHttps(301)`    |     301     | null (465) |
+| `.AddRedirectToHttps()`          |     302     | null (465) |
+| `.AddRedirectToHttps(301)`       |     301     | null (465) |
 | `.AddRedirectToHttps(301, 5001)` |     301     |    5001    |
-

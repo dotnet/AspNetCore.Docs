@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
 using RewriteRules;
 
-namespace UrlRewritingSample
+namespace SampleApp
 {
     public class Startup
     {
@@ -26,11 +26,14 @@ namespace UrlRewritingSample
                     .AddApacheModRewrite(apacheModRewriteStreamReader)
                     .AddIISUrlRewrite(iisUrlRewriteStreamReader)
                     .Add(MethodRules.RedirectXMLRequests)
+                    .Add(MethodRules.RewriteTXTRequests)
                     .Add(new RedirectImageRequests(".png", "/png-images"))
                     .Add(new RedirectImageRequests(".jpg", "/jpg-images"));
 
                 app.UseRewriter(options);
             }
+
+            app.UseStaticFiles();
 
             app.Run(context => context.Response.WriteAsync(
                 $"Rewritten or Redirected Url: " +
