@@ -5,7 +5,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/31/2018
+ms.date: 11/13/2018
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -235,7 +235,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
-* Choose either browser, enter a name and message, and select the **Send** button.
+* Choose either browser, enter a name and message, and select the **Send Message** button.
 
   The name and message are displayed on both pages instantly.
 
