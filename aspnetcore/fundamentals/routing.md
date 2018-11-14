@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for mapping reques
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/13/2018
+ms.date: 11/15/2018
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -29,15 +29,15 @@ services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-The `EnableEndpointRouting` option determines if routing should internally use endpoint-based logic or the legacy <xref:Microsoft.AspNetCore.Routing.IRouter>-based logic of ASP.NET Core 2.1 or earlier. When the compatibility version is set to 2.2 or later, the default value is `true`. Set the value to `false` to use the legacy routing logic:
+The `EnableEndpointRouting` option determines if routing should internally use endpoint-based logic or the <xref:Microsoft.AspNetCore.Routing.IRouter>-based logic of ASP.NET Core 2.1 or earlier. When the compatibility version is set to 2.2 or later, the default value is `true`. Set the value to `false` to use the prior routing logic:
 
 ```csharp
-// Use the legacy routing of ASP.NET Core 2.1 or earlier:
+// Use the routing logic of ASP.NET Core 2.1 or earlier:
 services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-For more information on the legacy <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](xref:fundamentals/routing?view=aspnetcore-2.1).
+For more information on <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](xref:fundamentals/routing?view=aspnetcore-2.1).
 
 ::: moniker-end
 
@@ -68,11 +68,11 @@ services.AddMvc()
 Most apps should choose a basic and descriptive routing scheme so that URLs are readable and meaningful. The default conventional route `{controller=Home}/{action=Index}/{id?}`:
 
 * Supports a basic and descriptive routing scheme.
-* Is a useful starting point for apps that interact with browsers.
+* Is a useful starting point for UI-based apps.
 
-Developers commonly add additional terse routes to high traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
+Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
 
-Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that is needed to carefully design an API's URL-space.
+Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
 Razor Pages apps use default conventional routing to serve named resources in the *Pages* folder of an app. Additional conventions are available that allow you to customize Razor Pages routing behavior. For more information, see <xref:razor-pages/index> and <xref:razor-pages/razor-pages-conventions>.
 
@@ -269,7 +269,7 @@ A few differences exist between endpoint routing in ASP.NET Core 2.2 or later an
 
 * Round-tripping route parameter syntax: Forward slashes aren't encoded when using a double-asterisk (`**`) catch-all parameter syntax.
 
-  During link generation, the routing system encodes the value captured in a double-asterisk (`**`) catch-all parameter (for example, `{**myparametername}`) except the forward slashes. The double-asterisk catch-all is supported with legacy `IRouter`-based routing in ASP.NET Core 2.2 or later.
+  During link generation, the routing system encodes the value captured in a double-asterisk (`**`) catch-all parameter (for example, `{**myparametername}`) except the forward slashes. The double-asterisk catch-all is supported with `IRouter`-based routing in ASP.NET Core 2.2 or later.
 
   The single asterisk catch-all parameter syntax in prior versions of ASP.NET Core (`{*myparametername}`) remains supported, and forward slashes are encoded.
 
