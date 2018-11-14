@@ -25,7 +25,7 @@ Note: Packages presented here abstract a great deal of complexity of the OAuth a
 
 * In Visual Studio 2017, create a new project from the Start Page, or via **File** > **New** > **Project**.
 
-* Select the **ASP.NET Core Web Application** template available in **Visual C#** > **.NET Core** category:
+* Select the **ASP.NET Core Web Application** template available in the **Visual C#** > **.NET Core** category:
 
 ![New Project dialog](index/_static/new-project.png)
 
