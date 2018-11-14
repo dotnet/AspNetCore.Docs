@@ -21,7 +21,7 @@ This tutorial teaches the basics of building a web API to manage a list of "to-d
 > * Create other CRUD operations.
 > * Call the web api with jQuery.
 
-At the end, you have an app that can manage "to-do" items.
+At the end, you have a web API that can manage "to-do" items.
 
 ## Overview
 
