@@ -241,7 +241,7 @@ In the next sections, methods are added to implement the API. The class is annot
 
 For information, see [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute).
 
-The controller's constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller. The constructor adds an item to the in-memory database if one doesn't exist.
+The controller's constructor uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller. The constructor adds an item to the in-memory database if one doesn't exist.
 
 ## Get to-do items
 
