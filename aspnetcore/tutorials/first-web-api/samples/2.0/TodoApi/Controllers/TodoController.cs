@@ -32,7 +32,7 @@ namespace TodoApi.Controllers
 
         #region snippet_GetByID
         [HttpGet("{id}", Name = "GetTodo")]
-        public IActionResult GetById(long id)
+        public ActionResult GetById(long id)
         {
             var item = _context.TodoItems.Find(id);
             if (item == null)
@@ -46,7 +46,7 @@ namespace TodoApi.Controllers
 
         #region snippet_Create
         [HttpPost]
-        public IActionResult Create([FromBody] TodoItem item)
+        public ActionResult Create([FromBody] TodoItem item)
         {
             if (item == null)
             {
@@ -62,7 +62,7 @@ namespace TodoApi.Controllers
 
         #region snippet_Update
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] TodoItem item)
+        public ActionResult Update(long id, [FromBody] TodoItem item)
         {
             if (item == null || item.Id != id)
             {
@@ -86,7 +86,7 @@ namespace TodoApi.Controllers
 
         #region snippet_Delete
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public ActionResult Delete(long id)
         {
             var todo = _context.TodoItems.Find(id);
             if (todo == null)
