@@ -221,7 +221,7 @@ In the *Controllers* folder, create a class named `TodoController`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-In Solution Explorer, in the *Controllers* folder, add the class `TodoController`.
+In **Solution Explorer**, in the *Controllers* folder, add the class `TodoController`.
 
 ---
 
@@ -234,7 +234,7 @@ The preceding code:
 * Defines an API controller class without methods.
 * Creates a new Todo item when `TodoItems` is empty. You won't be able to delete all the Todo items because the constructor creates a new one if `TodoItems` is empty.
 
-In the next sections, methods are added to implement the API. The class is annotated with an [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute to:
+In the next sections, methods are added to implement the API. The class is annotated with an [\[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute to:
 
 * Mark the class is used to serve HTTP API responses.
 * Enable the class to target conventions, filters, and other behaviors.
@@ -275,7 +275,7 @@ Later in the tutorial, instructions are provided to view the HTTP response with 
 
 ### Routing and URL paths
 
-The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The [\[HttpGet]](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller's `Route` attribute:
 
