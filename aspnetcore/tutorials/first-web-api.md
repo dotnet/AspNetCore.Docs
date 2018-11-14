@@ -21,7 +21,7 @@ This tutorial teaches the basics of building a web API app. The app manages a li
 > * Create other CRUD operations.
 > * Call the Web API with jQuery.
 
-At the end, you have an app that can manage  "to-do" items.
+At the end, you have an app that can manage "to-do" items.
 
 ## Overview
 
