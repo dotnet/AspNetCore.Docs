@@ -162,7 +162,7 @@ A match that calls `RouteAsync` also sets the properties of the `RouteContext.Ro
 
 URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your endpoints and the URLs that access them.
 
-Endpoint routing includes the Link Generator API (`LinkGenerator`). `LinkGenerator` is a singleton service that can be retrieved from [dependency injection (DI)](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's `IUrlHelper` and scenarios that rely on `IUrlHelper`, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
+Endpoint routing includes the Link Generator API (`LinkGenerator`). `LinkGenerator` is a singleton service that can be retrieved from DI. The API can be used outside of the context of an executing request. MVC's `IUrlHelper` and scenarios that rely on `IUrlHelper`, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
 
 The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from MVC/Razor Pages are implemented as an address scheme.
 
