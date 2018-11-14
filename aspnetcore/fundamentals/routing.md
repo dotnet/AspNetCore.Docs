@@ -173,7 +173,7 @@ The link generator can link to MVC/Razor Pages actions and pages via the followi
 * `GetPathByPage`
 * `GetUriByPage`
 
-An overload of these methods accept arguments that include the `HttpContext`. These methods are functionally equivalent to `Url.Action` and `Url.Page` but offer additional flexibility and options.
+An overload of these methods accepts arguments that include the `HttpContext`. These methods are functionally equivalent to `Url.Action` and `Url.Page` but offer additional flexibility and options.
 
 The `GetPath*` methods are most similar to `Url.Action` and `Url.Page` in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The ambient route values, URL base path, scheme, and host from the executing request are used unless overridden.
 
