@@ -65,18 +65,18 @@ services.AddMvc()
 
 ## Routing basics
 
-Most apps should choose a basic and descriptive routing scheme so that URLs are readable and meaningful. The default conventional route for ASP.NET Core MVC apps (`{controller=Home}/{action=Index}/{id?}`):
+Most apps should choose a basic and descriptive routing scheme so that URLs are readable and meaningful. The default conventional route `{controller=Home}/{action=Index}/{id?}`:
 
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for apps that interact with browsers.
 
 Developers commonly add additional terse routes to high traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
 
-Attribute routing models the app's URL-space as a set of resources with operations represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource use the same URL.
+Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that is needed to carefully design an API's URL-space.
 
 Razor Pages apps use default conventional routing to serve named resources in the *Pages* folder of an app. Additional conventions are available that allow you to customize Razor Pages routing behavior. For more information, see <xref:razor-pages/index> and <xref:razor-pages/razor-pages-conventions>.
 
-Support for URL generation in MVC/Razor Pages allows you to develop an app without hard-coding URLs to conventionally-positioned resources, such as static files, MVC controller endpoints, and Razor Pages webpages. Built-in routing support allows you to initially develop an app with a basic routing configuration and then modify routes, if required, after the app's resource layout is determined.
+URL generation support allows the app to be developed without hard-coding URLs to link the app together. This support allows for starting with a basic routing configuration and modifying the routes after the app's resource layout is determined.
 
 ::: moniker range=">= aspnetcore-2.2"
 
