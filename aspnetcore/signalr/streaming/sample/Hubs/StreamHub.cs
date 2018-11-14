@@ -10,7 +10,10 @@ namespace SignalRChat.Hubs
 {
     public class StreamHub : Hub
     {
-        public ChannelReader<int> Counter(int count, int delay, CancellationToken cancellationToken)
+        public ChannelReader<int> Counter(
+            int count,
+            int delay,
+            CancellationToken cancellationToken)
         {
             var channel = Channel.CreateUnbounded<int>();
 
@@ -22,7 +25,11 @@ namespace SignalRChat.Hubs
             return channel.Reader;
         }
 
-        private async Task WriteItems(ChannelWriter<int> writer, int count, int delay, CancellationToken cancellationToken)
+        private async Task WriteItems(
+            ChannelWriter<int> writer,
+            int count,
+            int delay,
+            CancellationToken cancellationToken)
         {
             for (var i = 0; i < count; i++)
             {

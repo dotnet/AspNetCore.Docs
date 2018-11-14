@@ -49,7 +49,8 @@ The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a streami
 // Call "Cancel" on this CancellationTokenSource to send a cancellation message to the server, which will trigger
 // the corresponding token in the Hub method.
 var cancellationTokenSource = new CancellationTokenSource();
-var channel = await hubConnection.StreamAsChannelAsync<int>("Counter", 10, 500, cancellationTokenSource.Token);
+var channel = await hubConnection.StreamAsChannelAsync<int>(
+    "Counter", 10, 500, cancellationTokenSource.Token);
 
 // Wait asynchronously for data to become available
 while (await channel.WaitToReadAsync())
