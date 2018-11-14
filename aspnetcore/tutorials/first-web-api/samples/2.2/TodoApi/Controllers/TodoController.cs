@@ -41,7 +41,7 @@ namespace TodoApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(item);
+            return item;
         }
         #endregion
         #endregion
