@@ -94,7 +94,7 @@ The routing system has the following characteristics:
 * Middleware that appears after a Routing Middleware can inspect the result of the Routing Middleware's endpoint decision for a given request URI.
 * It's possible to enumerate all of the endpoints in the app anywhere in the middleware pipeline.
 * An app can use routing to generate URLs (for example, for redirection or links) based on endpoint information and thus avoid hard-coded URLs, which helps maintainability.
-* URL generation is based on addresses, which support arbitrary extensiblity:
+* URL generation is based on addresses, which support arbitrary extensibility:
 
   * The Link Generator API (`LinkGenerator`) can be resolved anywhere using [dependency injection (DI)](xref:fundamentals/dependency-injection) to generate URLs.
   * Where the Link Generator API isn't available via DI, `IUrlHelper` offers methods to build URLs.
