@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/12/2018
+ms.date: 11/14/2018
 uid: signalr/streaming
 ---
 
@@ -46,8 +46,8 @@ The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a streami
 ::: moniker range=">= aspnetcore-2.2"
 
 ```csharp
-// Call "Cancel" on this CancellationTokenSource to send a cancellation message to the server, which will trigger
-// the corresponding token in the Hub method.
+// Call "Cancel" on this CancellationTokenSource to send a cancellation message to 
+// the server, which will trigger the corresponding token in the Hub method.
 var cancellationTokenSource = new CancellationTokenSource();
 var channel = await hubConnection.StreamAsChannelAsync<int>(
     "Counter", 10, 500, cancellationTokenSource.Token);
@@ -70,7 +70,8 @@ Console.WriteLine("Streaming completed");
 ::: moniker range="= aspnetcore-2.1"
 
 ```csharp
-var channel = await hubConnection.StreamAsChannelAsync<int>("Counter", 10, 500, CancellationToken.None);
+var channel = await hubConnection
+    .StreamAsChannelAsync<int>("Counter", 10, 500, CancellationToken.None);
 
 // Wait asynchronously for data to become available
 while (await channel.WaitToReadAsync())
