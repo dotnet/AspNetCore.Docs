@@ -118,9 +118,9 @@ The routing system has the following characteristics:
 * Route template syntax is used to define routes with tokenized route parameters.
 * Conventional-style and attribute-style endpoint configuration is permitted.
 * `IRouteConstraint` is used to determine whether a URL parameter contains a valid value for a given endpoint constraint.
-* Frameworks, such as MVC/Razor Pages, register all of their routes, which have a predictable implementation of routing scenarios.
+* App models, such as MVC/Razor Pages, register all of their routes, which have a predictable implementation of routing scenarios.
 * A response can use routing to generate URLs (for example, for redirection or links) based on route information and thus avoid hard-coded URLs, which helps maintainability.
-* URL generation is based on routes, which support arbitrary extensiblity. `IUrlHelper` offers methods to build URLs.
+* URL generation is based on routes, which support arbitrary extensibility. `IUrlHelper` offers methods to build URLs.
 
 ::: moniker-end
 
