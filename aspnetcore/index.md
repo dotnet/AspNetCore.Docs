@@ -4,7 +4,7 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 11/10/2018
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -44,12 +44,14 @@ ASP.NET Core integrates seamlessly with popular client-side frameworks and libra
 
 ## ASP.NET Core targeting .NET Framework
 
-ASP.NET Core can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. There are no plans to remove support for targeting .NET Framework in ASP.NET Core. Generally, ASP.NET Core is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is supported.
+ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is supported.
 
 ASP.NET Core 2.x is supported on .NET Framework versions compatible with .NET Standard 2.0:
 
 * .NET Framework 4.7.1 and later is strongly recommended.
 * .NET Framework 4.6.1 and later.
+
+ASP.NET Core 3.0 and later will only run on .NET Core. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
 
 There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 
@@ -68,6 +70,22 @@ Many of the articles and tutorials include links to sample code.
 1. [Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/Docs/zip/master).
 1. Unzip the *Docs-master.zip* file.
 1. Use the URL in the sample link to help you navigate to the sample directory.
+
+To demonstrate multiple scenarios, sample apps make use of the `#define` and `#if-#else/#elif-#endif` C# statements to selectively compile and run different sections of sample code. For those samples that make use of this approach, set the `#define` statement at the top of the C# files to the symbol associated with the scenario that you want to run. A sample may require you to set the symbol at the top of multiple files in order to run a scenario.
+
+For example, the following `#define` symbol list indicates that four scenarios are available (one scenario per symbol). The current sample configuration runs the `TemplateCode` scenario:
+
+```csharp
+#define TemplateCode // or LogFromMain or ExpandDefault or FilterInCode
+```
+
+To change the sample to run the `ExpandDefault` scenario, define the `ExpandDefault` symbol and leave the remaining symbols commented-out:
+
+```csharp
+#define ExpandDefault // TemplateCode or LogFromMain or FilterInCode
+```
+
+For more information on using [C# preprocessor directives](/dotnet/csharp/language-reference/preprocessor-directives/) to selectively compile sections of code, see [#define (C# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define) and [#if (C# Reference)](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if).
 
 ## Next steps
 

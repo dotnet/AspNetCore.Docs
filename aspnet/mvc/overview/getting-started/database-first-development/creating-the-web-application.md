@@ -1,7 +1,7 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/creating-the-web-application
 title: "EF Database First with ASP.NET MVC: Creating the Web Application and Data Models | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: riande
 ms.date: 10/01/2014

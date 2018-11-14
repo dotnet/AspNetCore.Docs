@@ -55,8 +55,7 @@ Select the **Create New** link. Complete the form with some invalid values. When
 
 ![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
 
-> [!NOTE]
-> You may not be able to enter decimal points or commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) in non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See [Additional resources](#additional-resources) for more information. For now, just enter whole numbers like 10.
+[!INCLUDE[](~/includes/currency.md)]
 
 Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (when a user has JavaScript disabled).
 
@@ -155,7 +154,7 @@ The following code shows combining attributes on one line:
 
 ### Publish to Azure
 
-For information on deploying to Azure, See [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). The instruction are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
+For information on deploying to Azure, See [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). These instructions are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
 
 Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 

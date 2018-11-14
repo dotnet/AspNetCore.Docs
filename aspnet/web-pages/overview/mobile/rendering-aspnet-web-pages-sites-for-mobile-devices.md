@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/mobile/rendering-aspnet-web-pages-sites-for-mobile-devices
 title: "Rendering ASP.NET Web Pages (Razor) Sites for Mobile Devices | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This article describes how to create pages in an ASP.NET Web Pages (Razor) site that will render appropriately on mobile devices. What you'll learn: How to u..."
 ms.author: riande
 ms.date: 02/17/2014

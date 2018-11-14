@@ -15,7 +15,7 @@ The preceding code:
 * Defines an API controller class without methods.
 * Creates a new Todo item when `TodoItems` is empty. You won't be able to delete all the Todo items because the constructor creates a new one if `TodoItems` is empty.
 
-In the next sections, methods are added to implement the API. The class is annotated with an `[ApiController]` attribute to enable some convenient features. For information on features enabled by the attribute, see [Annotation with ApiControllerAttribute](xref:web-api/index#annotation-with-apicontrollerattribute).
+In the next sections, methods are added to implement the API. The class is annotated with an `[ApiController]` attribute to enable some convenient features. For information on features enabled by the attribute, see [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute).
 
 ::: moniker-end
 
@@ -74,7 +74,7 @@ The `[HttpGet]` attribute denotes a method that responds to an HTTP GET request.
 
 ::: moniker-end
 
-* Replace `[controller]` with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
+* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, it assigns the value of `"{id}"` in the URL to the method's `id` parameter.

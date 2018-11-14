@@ -179,12 +179,14 @@
 ### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
 ## Swagger / OpenAPI
-### [Overview](xref:tutorials/get-started-with-swashbuckle)
-### [Swagger help pages](xref:tutorials/web-api-help-pages-using-swagger)
+### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
+### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 ## [Action return types](xref:web-api/action-return-types)
 ## [Format response data](xref:web-api/advanced/formatting)
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
+## [Analyzers](xref:web-api/advanced/analyzers)
+## [Conventions](xref:web-api/advanced/conventions)
 
 # Real-time apps
 ## [Overview](xref:signalr/introduction)
@@ -197,6 +199,7 @@
 ### [HubContext](xref:signalr/hubcontext)
 ### [Users and groups](xref:signalr/groups)
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+### [API design considerations](xref:signalr/api-design)
 ## Clients
 ### [.NET client](xref:signalr/dotnet-client)
 ### [.NET API reference](/dotnet/api/microsoft.aspnetcore.signalr.client)

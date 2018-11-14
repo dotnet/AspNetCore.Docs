@@ -2,9 +2,10 @@
 title: Host ASP.NET Core in a Windows Service
 author: guardrex
 description: Learn how to host an ASP.NET Core app in a Windows Service.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/25/2018
+ms.date: 10/30/2018
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -23,38 +24,12 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
    * Confirm the presence of a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) or add it to the `<PropertyGroup>` that contains the target framework:
 
-      ::: moniker range=">= aspnetcore-2.1"
-
       ```xml
       <PropertyGroup>
-        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
         <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
       </PropertyGroup>
       ```
-
-      ::: moniker-end
-
-      ::: moniker range="= aspnetcore-2.0"
-
-      ```xml
-      <PropertyGroup>
-        <TargetFramework>netcoreapp2.0</TargetFramework>
-        <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
-      </PropertyGroup>
-      ```
-
-      ::: moniker-end
-
-      ::: moniker range="< aspnetcore-2.0"
-
-      ```xml
-      <PropertyGroup>
-        <TargetFramework>netcoreapp1.1</TargetFramework>
-        <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
-      </PropertyGroup>
-      ```
-
-      ::: moniker-end
 
       To publish for multiple RIDs:
 
@@ -71,56 +46,88 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
    * Call [UseContentRoot](xref:fundamentals/host/web-host#content-root) and use a path to the app's published location instead of `Directory.GetCurrentDirectory()`.
 
-     ::: moniker range=">= aspnetcore-2.0"
-
      [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=8-9,16)]
 
-     ::: moniker-end
+1. Publish the app using [dotnet publish](/dotnet/articles/core/tools/dotnet-publish), a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles), or Visual Studio Code. When using Visual Studio, select the **FolderProfile** and configure the **Target Location** before selecting the **Publish** button.
 
-     ::: moniker range="< aspnetcore-2.0"
-
-     [!code-csharp[](windows-service/samples_snapshot/1.x/AspNetCoreService/Program.cs?name=ServiceOnly&highlight=3-4,8,13)]
-
-     ::: moniker-end
-
-1. Publish the app. Use [dotnet publish](/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles). When using a Visual Studio, select the **FolderProfile**.
-
-   To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder. The RID must be specified in the `<RuntimeIdenfifier>` (or `<RuntimeIdentifiers>`) property of the project file. In the following example, the app is published in Release configuration for the `win7-x64` runtime:
+   To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder. The RID must be specified in the `<RuntimeIdenfifier>` (or `<RuntimeIdentifiers>`) property of the project file. In the following example, the app is published in Release configuration for the `win7-x64` runtime to a folder created at *c:\\svc*:
 
    ```console
-   dotnet publish --configuration Release --runtime win7-x64
+   dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
    ```
 
-1. Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character at the start of the path is required.**
+1. Create a user account for the service using the `net user` command:
 
    ```console
-   sc create <SERVICE_NAME> binPath= "<PATH_TO_SERVICE_EXECUTABLE>"
+   net user {USER ACCOUNT} {PASSWORD} /add
    ```
 
-   For a service published in the project folder, use the path to the *publish* folder to create the service. In the following example:
+   For the sample app, create a user account with the name `ServiceUser` and a password. In the following command, replace `{PASSWORD}` with a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
 
-   * The project resides in the *c:\\my_services\\AspNetCoreService* folder.
-   * The project is published in `Release` configuration.
-   * The Target Framework Moniker (TFM) is `netcoreapp2.1`.
-   * The Runtime Identifer (RID) is `win7-x64`.
-   * The app executable is named *AspNetCoreService.exe*.
+   ```console
+   net user ServiceUser {PASSWORD} /add
+   ```
+
+   If you need to add the user to a group, use the `net localgroup` command, where `{GROUP}` is the name of the group:
+
+   ```console
+   net localgroup {GROUP} {USER ACCOUNT} /add
+   ```
+
+   For more information, see [Service User Accounts](/windows/desktop/services/service-user-accounts).
+
+1. Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command:
+
+   ```console
+   icacls "{PATH}" /grant {USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS} /t
+   ```
+
+   * `{PATH}` &ndash; Path to the app's folder.
+   * `{USER ACCOUNT}` &ndash; The user account (SID).
+   * `(OI)` &ndash; The Object Inherit flag propagates permissions to subordinate files.
+   * `(CI)` &ndash; The Container Inherit flag propagates permissions to subordinate folders.
+   * `{PERMISSION FLAGS}` &ndash; Sets the app's access permissions.
+     * Write (`W`)
+     * Read (`R`)
+     * Execute (`X`)
+     * Full (`F`)
+     * Modify (`M`)
+   * `/t` &ndash; Apply recursively to existing subordinate folders and files.
+
+   For the sample app published to the *c:\\svc* folder and the `ServiceUser` account with write/read/execute permissions, use the following command:
+
+   ```console
+   icacls "c:\svc" /grant ServiceUser:(OI)(CI)WRX /t
+   ```
+
+   For more information, see [icacls](/windows-server/administration/windows-commands/icacls).
+
+1. Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character of each parameter and value is required.**
+
+   ```console
+   sc create {SERVICE NAME} binPath= "{PATH}" obj= "{DOMAIN}\{USER ACCOUNT}" password= "{PASSWORD}"
+   ```
+
+   * `{SERVICE NAME}` &ndash; The name to assign to the service in [Service Control Manager](/windows/desktop/services/service-control-manager).
+   * `{PATH}` &ndash; The path to the service executable.
+   * `{DOMAIN}` (or if the machine isn't domain joined, the local machine name) and `{USER ACCOUNT}` &ndash; The domain (or local machine name) and user account under which the service runs. Do **not** omit the `obj` parameter. The default value for `obj` is the [LocalSystem account](/windows/desktop/services/localsystem-account) account. Running a service under the `LocalSystem` account presents a significant security risk. Always run a service under a user account with restricted privileges on the server.
+   * `{PASSWORD}` &ndash; The user account password.
+
+   In the following example:
+
    * The service is named **MyService**.
-
-   Example:
+   * The published service resides in the *c:\\svc* folder. The app executable is named *AspNetCoreService.exe*. The `binPath` value is enclosed in straight quotation marks (").
+   * The service runs under the `ServiceUser` account. Replace `{DOMAIN}` with the user account's domain or local machine name. Enclose the `obj` value in straight quotation marks ("). Example: If the hosting system is a local machine named `MairaPC`, set `obj` to `"MairaPC\ServiceUser"`.
+   * Replace `{PASSWORD}` with the user account's password. The `password` value is enclosed in straight quotation marks (").
 
    ```console
-   sc create MyService binPath= "c:\my_services\AspNetCoreService\bin\Release\netcoreapp2.1\win7-x64\publish\AspNetCoreService.exe"
+   sc create MyService binPath= "c:\svc\aspnetcoreservice.exe" obj= "{DOMAIN}\ServiceUser" password= "{PASSWORD}"
    ```
 
    > [!IMPORTANT]
-   > Make sure the space is present between the `binPath=` argument and its value.
+   > Make sure that the spaces between the parameters' equal signs and the parameters' values are present.
 
-   To publish and start the service from a different folder:
-
-      * Use the [--output &lt;OUTPUT_DIRECTORY&gt;](/dotnet/core/tools/dotnet-publish#options) option on the `dotnet publish` command. If using Visual Studio, configure the **Target Location** in the **FolderProfile** publish property page before selecting the **Publish** button.
-      * Create the service with the `sc.exe` command using the output folder path. Include the name of the service's executable in the path provided to `binPath`.
-
-1. Start the service with the `sc start <SERVICE_NAME>` command.
+1. Start the service with the `sc start {SERVICE NAME}` command.
 
    To start the sample app service, use the following command:
 
@@ -130,7 +137,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
    The command takes a few seconds to start the service.
 
-1. To check the status of the service, use the `sc query <SERVICE_NAME>` command. The status is reported as one of the following values:
+1. To check the status of the service, use the `sc query {SERVICE NAME}` command. The status is reported as one of the following values:
 
    * `START_PENDING`
    * `RUNNING`
@@ -147,7 +154,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
    For the sample app service, browse the app at `http://localhost:5000`.
 
-1. Stop the service with the `sc stop <SERVICE_NAME>` command.
+1. Stop the service with the `sc stop {SERVICE NAME}` command.
 
    The following command stops the sample app service:
 
@@ -155,7 +162,7 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
    sc stop MyService
    ```
 
-1. After a short delay to stop a service, uninstall the service with the `sc delete <SERVICE_NAME>` command.
+1. After a short delay to stop a service, uninstall the service with the `sc delete {SERVICE NAME}` command.
 
    Check the status of the sample app service:
 
@@ -173,22 +180,12 @@ The following minimum changes are required to set up an existing ASP.NET Core pr
 
 It's easier to test and debug when running outside of a service, so it's customary to add code that calls `RunAsService` only under certain conditions. For example, the app can run as a console app with a `--console` command-line argument or if the debugger is attached:
 
-::: moniker range=">= aspnetcore-2.0"
-
 [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=ServiceOrConsole)]
 
 Because ASP.NET Core configuration requires name-value pairs for command-line arguments, the `--console` switch is removed before the arguments are passed to [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder).
 
 > [!NOTE]
 > `isService` isn't passed from `Main` into `CreateWebHostBuilder` because the signature of `CreateWebHostBuilder` must be `CreateWebHostBuilder(string[])` in order for [integration testing](xref:test/integration-tests) to work properly.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-[!code-csharp[](windows-service/samples_snapshot/1.x/AspNetCoreService/Program.cs?name=ServiceOrConsole)]
-
-::: moniker-end
 
 ## Handle stopping and starting events
 
@@ -204,20 +201,10 @@ To handle [OnStarting](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.
 
 3. In `Program.Main`, call the new extension method, `RunAsCustomService`, instead of [RunAsService](/dotnet/api/microsoft.aspnetcore.hosting.windowsservices.webhostwindowsserviceextensions.runasservice):
 
-   ::: moniker range=">= aspnetcore-2.0"
-
    [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=HandleStopStart&highlight=17)]
 
    > [!NOTE]
    > `isService` isn't passed from `Main` into `CreateWebHostBuilder` because the signature of `CreateWebHostBuilder` must be `CreateWebHostBuilder(string[])` in order for [integration testing](xref:test/integration-tests) to work properly.
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-2.0"
-
-   [!code-csharp[](windows-service/samples_snapshot/1.x/AspNetCoreService/Program.cs?name=HandleStopStart&highlight=27)]
-
-   ::: moniker-end
 
 If the custom `WebHostService` code requires a service from dependency injection (such as a logger), obtain it from the [IWebHost.Services](/dotnet/api/microsoft.aspnetcore.hosting.iwebhost.services) property:
 
