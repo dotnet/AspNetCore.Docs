@@ -248,7 +248,7 @@ A few differences exist between endpoint routing in ASP.NET Core 2.2 or later an
 
   *Ambient value invalidation* is the algorithm that decides which route values from the currently executing request (the ambient values) can be used in link generation operations. Conventional routing always invalidated extra route values when linking to a different action. Attribute routing didn't have this behavior prior to the release of ASP.NET Core 2.2. In earlier versions of ASP.NET Core, links to another action that use the same route parameter names resulted in link generation errors. In ASP.NET Core 2.2 or later, both forms of routing invalidate values when linking to another action.
 
-  Consider the following example under versions of ASP.NET Core 2.1 or earlier. When linking to another action (or another page), route values can be reused in ways that are undesirable.
+  Consider the following example in ASP.NET Core 2.1 or earlier. When linking to another action (or another page), route values can be reused in undesirable ways.
 
   In */Pages/Store/Product.cshtml*:
 
@@ -333,7 +333,7 @@ The [VirtualPathData.DataTokens](xref:Microsoft.AspNetCore.Routing.VirtualPathDa
 
 ::: moniker-end
 
-### Creating routes
+### Create routes
 
 ::: moniker range="< aspnetcore-2.2"
 
@@ -345,13 +345,13 @@ Most apps create routes by calling <xref:Microsoft.AspNetCore.Builder.MapRouteRo
 
 ::: moniker range=">= aspnetcore-2.2"
 
-`MapRoute` doesn't take a route handler parameter. `MapRoute` only adds routes that are handled by the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>. To learn more about routing in MVC, see <xref:mvc/controllers/routing>.
+`MapRoute` doesn't accept a route handler parameter. `MapRoute` only adds routes that are handled by the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>. To learn more about routing in MVC, see <xref:mvc/controllers/routing>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-`MapRoute` doesn't take a route handler parameter. `MapRoute` only adds routes that are handled by the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>. The default handler is an `IRouter`, and the handler might not handle the request. For example, ASP.NET Core MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing in MVC, see <xref:mvc/controllers/routing>.
+`MapRoute` doesn't accept a route handler parameter. `MapRoute` only adds routes that are handled by the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>. The default handler is an `IRouter`, and the handler might not handle the request. For example, ASP.NET Core MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing in MVC, see <xref:mvc/controllers/routing>.
 
 ::: moniker-end
 
@@ -367,7 +367,7 @@ This template matches a URL path and extracts the route values. For example, the
 
 Route values are determined by splitting the URL path into segments and matching each segment with the *route parameter* name in the route template. Route parameters are named. The parameters defined by enclosing the parameter name in braces `{ ... }`.
 
-The preceding template could also match the URL path `/` and produce the values `{ controller = Home, action = Index }`. This occurs because the `{controller}` and `{action}` route parameters have default values and the `id` route parameter is optional. An equals sign (`=`) followed by a value after the route parameter name defines a default value for the parameter. A question mark `?` after the route parameter name defines an optional parameter.
+The preceding template could also match the URL path `/` and produce the values `{ controller = Home, action = Index }`. This occurs because the `{controller}` and `{action}` route parameters have default values and the `id` route parameter is optional. An equals sign (`=`) followed by a value after the route parameter name defines a default value for the parameter. A question mark (`?`) after the route parameter name defines an optional parameter.
 
 Route parameters with a default value *always* produce a route value when the route matches. Optional parameters don't produce a route value if there was no corresponding URL path segment. See the [Route template reference](#route-template-reference) section for a thorough description of route template scenarios and syntax.
 
