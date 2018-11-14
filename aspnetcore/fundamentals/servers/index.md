@@ -1,6 +1,6 @@
 ---
 title: Web server implementations in ASP.NET Core
-author: rick-anderson
+author: guardrex
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 ms.author: tdykstra
 ms.custom: mvc
@@ -13,7 +13,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com
 
 An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as sets of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
-ASP.NET Core ships three server implementations:
+ASP.NET Core ships with the following server implementations:
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -138,7 +138,7 @@ When launching an app from a command prompt in the project's folder, [dotnet run
 
 * [Kestrel](xref:fundamentals/servers/kestrel#http2-support)
   * Operating system
-    * Windows Server 2012 R2/Windows 8.1 or later
+    * Windows Server 2016/Windows 10 or later&dagger;
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * HTTP/2 will be supported on macOS in a future release.
   * Target framework: .NET Core 2.2 or later
@@ -152,6 +152,8 @@ When launching an app from a command prompt in the project's folder, [dotnet run
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
+
+&dagger;Kestrel has limited support for HTTP/2 on Windows Server 2012 R2 and Windows 8.1. Support is limited because the list of supported TLS cipher suites available on these operating systems is limited. A certificate generated using an Elliptic Curve Digital Signature Algorithm (ECDSA) may be required to secure TLS connections.
 
 ::: moniker-end
 

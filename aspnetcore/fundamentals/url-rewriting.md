@@ -10,7 +10,7 @@ uid: fundamentals/url-rewriting
 
 By [Luke Latham](https://github.com/guardrex) and [Mikael Mengistu](https://github.com/mikaelm12)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
 URL rewriting is the act of modifying request URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses are not tightly linked. There are several scenarios where URL rewriting is valuable:
 
@@ -393,9 +393,9 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 ### Method-based rule
 
-Use `Add(Action<RewriteContext> applyRule)` to implement your own rule logic in a method. The `RewriteContext` exposes the `HttpContext` for use in your method. The `context.Result` determines how additional pipeline processing is handled.
+Use `Add(Action<RewriteContext> applyRule)` to implement your own rule logic in a method. The `RewriteContext` exposes the `HttpContext` for use in your method. The `RewriteContext.Result` determines how additional pipeline processing is handled.
 
-| context.Result                       | Action                                                          |
+| `RewriteContext.Result`              | Action                                                          |
 | ------------------------------------ | --------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (default) | Continue applying rules                                         |
 | `RuleResult.EndResponse`             | Stop applying rules and send the response                       |
@@ -431,7 +431,7 @@ Original Request: `/file.xml`
 
 ### IRule-based rule
 
-Use `Add(IRule)` to implement your own rule logic in a class that derives from `IRule`. Using an `IRule` provides greater flexibility over using the method-based rule approach. Your derived class may include a constructor, where you can pass in parameters for the `ApplyRule` method.
+Use `Add(IRule)` to encapsulate your own rule logic in a class that implements the `IRule` interface. Using an `IRule` provides greater flexibility over using the method-based rule approach. Your implementaion class may include a constructor, where you can pass in parameters for the `ApplyRule` method.
 
 ::: moniker range=">= aspnetcore-2.0"
 

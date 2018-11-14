@@ -94,6 +94,14 @@ namespace CorsExample4
                                .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
                     });
                 // END09
+
+                // BEGIN10
+                options.AddPolicy("AllowSubdomain",
+                    builder =>
+                    {
+                        builder.SetIsOriginAllowedToAllowWildcardSubdomains("https://*.example.com");
+                    });
+                // END11
             });
         }
 

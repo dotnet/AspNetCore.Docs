@@ -12,7 +12,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 A *change token* is a general-purpose, low-level building block used to track changes.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/change-tokens/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/change-tokens/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## IChangeToken interface
 
@@ -189,9 +189,9 @@ var compositeChangeToken =
 
 ## Additional resources
 
-* [Cache in-memory](xref:performance/caching/memory)
-* [Work with a distributed cache](xref:performance/caching/distributed)
-* [Response caching](xref:performance/caching/response)
-* [Response Caching Middleware](xref:performance/caching/middleware)
-* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
-* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+* <xref:performance/caching/memory>
+* <xref:performance/caching/distributed>
+* <xref:performance/caching/response>
+* <xref:performance/caching/middleware>
+* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
+* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>

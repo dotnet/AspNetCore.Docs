@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/ui-layouts-and-themes/installing-helpers
 title: "Installing a Helper in an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This article describes how to install a helper in an ASP.NET Web Pages (Razor) website. A helper is a reusable component that includes code and markup to per..."
 ms.author: riande
 ms.date: 02/18/2014

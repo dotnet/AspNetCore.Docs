@@ -3,7 +3,8 @@ title: Model validation in ASP.NET Core MVC
 author: tdykstra
 description: Learn about model validation in ASP.NET Core MVC.
 ms.author: riande
-ms.date: 07/31/2018
+ms.custom: mvc
+ms.date: 11/06/2018
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC
@@ -16,11 +17,20 @@ Before an app stores data in a database, the app must validate the data. Data mu
 
 Fortunately, .NET has abstracted validation into validation attributes. These attributes contain validation code, thereby reducing the amount of code you must write.
 
+In ASP.NET Core 2.2 and later, the ASP.NET Core runtime short-circuits (skips) validation if it can determine that a given model graph doesn't require validation. Skipping validation can provide significant performance improvements when validating models that cannot or do not have any associated validators. The skipped validation includes objects such as collections of primitives (`byte[]`, `string[]`, `Dictionary<string, string>`, etc.), or complex object graphs without any validators.
+
 [View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/validation/sample).
 
 ## Validation Attributes
 
 Validation attributes are a way to configure model validation so it's similar conceptually to validation on fields in database tables. This includes constraints such as assigning data types or required fields. Other types of validation include applying patterns to data to enforce business rules, such as a credit card, phone number, or email address. Validation attributes make enforcing these requirements much simpler and easier to use.
+
+Validation attributes are specified at the property level: 
+
+```csharp
+[Required]
+public string MyProperty { get; set; } 
+```
 
 Below is an annotated `Movie` model from an app that stores information about movies and TV shows. Most of the properties are required and several string properties have length requirements. Additionally, there's a numeric range restriction in place for the `Price` property from 0 to $999.99, along with a custom validation attribute.
 
@@ -56,7 +66,7 @@ Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-type
 
 MVC model binding, which isn't concerned with validation and validation attributes, rejects a form field submission containing a missing value or whitespace for a non-nullable type. In the absence of a `BindRequired` attribute on the target property, model binding ignores missing data for non-nullable types, where the form field is absent from the incoming form data.
 
-The [BindRequired attribute](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.bindrequiredattribute) (also see [Customize model binding behavior with attributes](xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes)) is useful to ensure form data is complete. When applied to a property, the model binding system requires a value for that property. When applied to a type, the model binding system requires values for all of the properties of that type.
+The [BindRequired attribute](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.bindrequiredattribute) (also see <xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes>) is useful to ensure form data is complete. When applied to a property, the model binding system requires a value for that property. When applied to a type, the model binding system requires values for all of the properties of that type.
 
 When you use a [Nullable\<T> type](/dotnet/csharp/programming-guide/nullable-types/) (for example, `decimal?` or `System.Nullable<decimal>`) and mark it `Required`, a server-side validation check is performed as if the property were a standard nullable type (for example, a `string`).
 
@@ -66,13 +76,19 @@ Client-side validation requires a value for a form field that corresponds to a m
 
 Model state represents validation errors in submitted HTML form values.
 
-MVC will continue validating fields until reaches the maximum number of errors (200 by default). You can configure this number by inserting the following code into the `ConfigureServices` method in the *Startup.cs* file:
+MVC will continue validating fields until it reaches the maximum number of errors (200 by default). You can configure this number with the following code in `Startup.ConfigureServices`:
 
 [!code-csharp[](validation/sample/Startup.cs?range=27)]
 
-## Handling Model State Errors
+## Handle Model State errors
 
-Model validation occurs prior to each controller action being invoked, and it's the action method's responsibility to inspect `ModelState.IsValid` and react appropriately. In many cases, the appropriate reaction is to return an error response, ideally detailing the reason why model validation failed.
+Model validation occurs before the execution of a controller action. It's the action's responsibility to inspect `ModelState.IsValid` and react appropriately. In many cases, the appropriate reaction is to return an error response, ideally detailing the reason why model validation failed.
+
+::: moniker range=">= aspnetcore-2.1"
+
+When `ModelState.IsValid` evaluates to `false` in web API controllers using the `[ApiController]` attribute, an automatic HTTP 400 response containing issue details is returned. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+
+::: moniker-end
 
 Some apps will choose to follow a standard convention for dealing with model validation errors, in which case a filter may be an appropriate place to implement such a policy. You should test how your actions behave with valid and invalid model states.
 
@@ -250,4 +266,4 @@ If you need to validate two or more additional fields with the `[Remote]` attrib
 public string MiddleName { get; set; }
 ```
 
-`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, you must not use an [interpolated string](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/interpolated-strings) or call [`string.Join()`](https://msdn.microsoft.com/library/system.string.join(v=vs.110).aspx) to initialize `AdditionalFields`. For every additional field that you add to the `[Remote]` attribute, you must add another argument to the corresponding controller action method.
+`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, you must not use an [interpolated string](/dotnet/csharp/language-reference/keywords/interpolated-strings) or call [`string.Join()`](https://msdn.microsoft.com/library/system.string.join(v=vs.110).aspx) to initialize `AdditionalFields`. For every additional field that you add to the `[Remote]` attribute, you must add another argument to the corresponding controller action method.

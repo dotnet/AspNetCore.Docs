@@ -32,6 +32,10 @@ Automatic reconnects aren't supported in ASP.NET Core SignalR. If the client is 
 
 ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [MessagePack](xref:signalr/messagepackhubprotocol). Additionally, custom protocols can be created.
 
+### Transports
+
+The Forever Frame transport is not supported in ASP.NET Core SignalR.
+
 ## Differences on the server
 
 The ASP.NET Core SignalR server-side libraries are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) package that's part of the **ASP.NET Core Web Application** template for both Razor and MVC projects.
@@ -51,9 +55,9 @@ app.UseSignalR(routes =>
 });
 ```
 
-### Sticky sessions now required
+### Sticky sessions
 
-Because of how scale-out worked in ASP.NET SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Once the client connects to the server, it must interact with the same server for the duration of the connection.
+The scaleout model for ASP.NET SignalR allows clients to reconnect and send messages to any server in the farm. In ASP.NET Core SignalR, the client must interact with the same server for the duration of the connection. For scaleout using Redis, that means sticky sessions are required. For scaleout using [Azure SignalR Service](/azure/azure-signalr/), sticky sessions are not required because the service handles connections to clients. 
 
 ### Single hub per connection
 
@@ -66,6 +70,14 @@ ASP.NET Core SignalR now supports [streaming data](xref:signalr/streaming) from 
 ### State
 
 The ability to pass arbitrary state between clients and the hub (often called HubState) has been removed, as well as support for progress messages. There is no counterpart of hub proxies at the moment.
+
+### GlobalHost
+
+ASP.NET Core has dependency injection (DI) built into the framework. Services can use DI to access the [HubContext](xref:signalr/hubcontext). The `GlobalHost` object that is used in ASP.NET SignalR to get a `HubContext` doesn't exist in ASP.NET Core SignalR.
+
+### HubPipeline
+
+ASP.NET Core SignalR doesn't have support for `HubPipeline` modules.
 
 ## Differences on the client
 
@@ -85,6 +97,10 @@ npm install @aspnet/signalr
 ### jQuery
 
 The dependency on jQuery has been removed, however projects can still use jQuery.
+
+### Internet Explorer support
+
+ASP.NET Core SignalR requires Microsoft Internet Explorer 11 or later (ASP.NET SignalR supported Microsoft Internet Explorer 8 and later).
 
 ### JavaScript client method syntax
 
@@ -130,7 +146,7 @@ connection = new HubConnectionBuilder()
 
 ## Scaleout differences
 
-ASP.NET SignalR supports both SQL Server and Redis. ASP.NET Core SignalR supports both Azure SignalR Service and Redis.
+ASP.NET SignalR supports SQL Server and Redis. ASP.NET Core SignalR supports Azure SignalR Service and Redis.
 
 ### ASP.NET
 
