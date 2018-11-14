@@ -192,9 +192,9 @@ The methods provided by `LinkGenerator` support standard link generation capabil
 > [!WARNING]
 > Pay attention to the following implications of calling `LinkGenerator` methods:
 >
-> Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view/page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
+> * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view/page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
 >
-> Use `LinkGenerator` with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the `LinkGenerator` APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
+> * Use `LinkGenerator` with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the `LinkGenerator` APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
 
 ## Differences from earlier versions of routing
 
@@ -519,7 +519,7 @@ The framework provides a set of extension methods for creating routes (<xref:Mic
 
 ::: moniker range="< aspnetcore-2.2"
 
-Some of listed methods, such as `MapGet`, require a `RequestDelegate`. The `RequestDelegate` is used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline for use as the route handler. If the *Map* method doesn't accept a handler, such as `MapRoute`, it uses the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>.
+Some of listed methods, such as `MapGet`, require a `RequestDelegate`. The `RequestDelegate` is used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline for use as the route handler. If the `Map*` method doesn't accept a handler, such as `MapRoute`, it uses the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>.
 
 ::: moniker-end
 
