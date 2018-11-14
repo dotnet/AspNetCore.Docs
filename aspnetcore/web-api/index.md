@@ -35,8 +35,6 @@ The `ControllerBase` class provides access to several properties and methods. In
 
 ::: moniker range=">= aspnetcore-2.1"
 
-<a name="annotation-with-apicontrollerattribute"></a>
-
 ## Annotation with ApiController attribute
 
 ASP.NET Core 2.1 introduces the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute to denote a web API controller class. For example:
