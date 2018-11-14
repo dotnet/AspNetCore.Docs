@@ -7,6 +7,7 @@ using TodoApi.Models;
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
@@ -48,7 +49,7 @@ namespace TodoApi.Controllers
 
         #region snippet_Create
         [HttpPost]
-        public ActionResult Create([FromBody] TodoItem item)
+        public ActionResult Create(TodoItem item)
         {
             if (item == null)
             {
@@ -64,7 +65,7 @@ namespace TodoApi.Controllers
 
         #region snippet_Update
         [HttpPut("{id}")]
-        public ActionResult Update(long id, [FromBody] TodoItem item)
+        public ActionResult Update(long id, TodoItem item)
         {
             if (item == null)
             {
