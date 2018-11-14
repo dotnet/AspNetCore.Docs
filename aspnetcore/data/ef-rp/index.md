@@ -1,12 +1,12 @@
 ---
-title: ASP.NET Core Razor Pages with EF Core - tutorial series
+title: ASP.NET Core Razor Pages with Entity Framework Core tutorial 
 author: rick-anderson
 description: 
 ms.author: riande
 ms.date: 03/15/2017
 uid: data/ef-rp/index
 ---
-# ASP.NET Core Razor Pages with EF Core - tutorial series
+# ASP.NET Core Razor Pages with Entity Framework Core tutorial
 
 This series of tutorials teaches how to create ASP.NET Core Razor Pages web apps that use Entity Framework (EF) Core for data access.
 
