@@ -89,7 +89,7 @@ The routing system has the following characteristics:
 * Route template syntax is used to define routes with tokenized route parameters.
 * Conventional-style and attribute-style endpoint configuration is permitted.
 * `IRouteConstraint` is used to determine whether a URL parameter contains a valid value for a given endpoint constraint.
-* Frameworks, such as MVC/Razor Pages, register all of their endpoints, which have a predictable implementation of routing scenarios.
+* App models, such as MVC/Razor Pages, register all of their endpoints, which have a predictable implementation of routing scenarios.
 * The routing implementation makes routing decisions wherever desired in the middleware pipeline.
 * Middleware that appears after a Routing Middleware can inspect the result of the Routing Middleware's endpoint decision for a given request URI.
 * It's possible to enumerate all of the endpoints in the app anywhere in the middleware pipeline.
