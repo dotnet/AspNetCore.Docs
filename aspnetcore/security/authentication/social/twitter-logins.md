@@ -3,7 +3,8 @@ title: Twitter external login setup with ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-ms.date: 11/01/2016
+ms.custom: mvc
+ms.date: 11/11/2018
 uid: security/authentication/twitter-logins
 ---
 # Twitter external login setup with ASP.NET Core
@@ -16,20 +17,20 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 * Navigate to [https://apps.twitter.com/](https://apps.twitter.com/) and sign in. If you don't already have a Twitter account, use the **[Sign up now](https://twitter.com/signup)** link to create one. After signing in, the **Application Management** page is shown:
 
-![Twitter Application Management open in Microsoft Edge](index/_static/TwitterAppManage.png)
+  ![Twitter Application Management open in Microsoft Edge](index/_static/TwitterAppManage.png)
 
 * Tap **Create New App** and fill out the application **Name**, **Description** and public **Website** URI (this can be temporary until you register the domain name):
 
-![Create an application page](index/_static/TwitterCreate.png)
+  ![Create an application page](index/_static/TwitterCreate.png)
 
 * Enter your development URI with `/signin-twitter` appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-twitter`). The Twitter authentication scheme configured later in this tutorial will automatically handle requests at `/signin-twitter` route to implement the OAuth flow.
 
-> [!NOTE]
-> The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) class.
+  > [!NOTE]
+  > The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) class.
 
 * Fill out the rest of the form and tap **Create your Twitter application**. New application details are displayed:
 
-![Details tab on Application page](index/_static/TwitterAppDetails.png)
+  ![Details tab on Application page](index/_static/TwitterAppDetails.png)
 
 * When deploying the site you'll need to revisit the **Application Management** page and register a new public URI.
 
@@ -48,9 +49,9 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
 * To install with .NET Core CLI, execute the following in your project directory:
 
-   `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
+  `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 Add the Twitter service in the `ConfigureServices` method in *Startup.cs* file:
 
@@ -68,9 +69,11 @@ services.AddAuthentication().AddTwitter(twitterOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-[!INCLUDE[](~/includes/chain-auth-providers.md)]
+[!INCLUDE[](includes/chain-auth-providers.md)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 Add the Twitter middleware in the `Configure` method in *Startup.cs* file:
 
@@ -82,7 +85,7 @@ app.UseTwitterAuthentication(new TwitterOptions()
 });
 ```
 
----
+::: moniker-end
 
 See the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) API reference for more information on configuration options supported by Twitter authentication. This can be used to request different information about the user.
 
@@ -101,6 +104,8 @@ After entering your Twitter credentials, you are redirected back to the web site
 You are now logged in using your Twitter credentials:
 
 ![Web application: User authenticated](index/_static/Done.png)
+
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## Troubleshooting
 
