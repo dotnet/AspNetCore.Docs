@@ -134,7 +134,7 @@ URL matching is the process by which routing dispatches an incoming request to a
 
 The routing system in endpoint routing is responsible for all dispatching decisions. Since the middleware applies policies based on the selected endpoint, it's important that any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
-When the endpoint delegate is executed, the properties of the `RouteContext.RouteData` are set to appropriate values based on the request processing performed thus far.
+When the endpoint delegate is executed, the properties of `RouteContext.RouteData` are set to appropriate values based on the request processing performed thus far.
 
 ::: moniker-end
 
