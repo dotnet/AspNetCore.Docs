@@ -24,15 +24,15 @@ There are three ways to apply a convention. Conventions don't compose, each acti
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute` &mdash; Applies to individual actions and specifies the convention type and the convention method that applies. In the following sample, the convention method `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` is applied to the `Update` action:
 
-[!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=apiconventionmethod&highlight=2-3)]
+    [!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=apiconventionmethod&highlight=2-3)]
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to a controller &mdash; Applies the convention type to all actions on the controller. Convention methods are decorated with hints that determine which actions it would apply to (details as part of authoring conventions). For example:
 
-[!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=apiconventiontypeattribute)]
+    [!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=apiconventiontypeattribute)]
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to an assembly &mdash; Applies the convention type to all controllers in the current assembly. For example:
 
-[!code-csharp[](conventions/sample/Startup.cs?name=apiconventiontypeattribute)]
+    [!code-csharp[](conventions/sample/Startup.cs?name=apiconventiontypeattribute)]
 
 ## Create web API conventions
 
