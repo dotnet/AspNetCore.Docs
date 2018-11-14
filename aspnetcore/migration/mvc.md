@@ -153,7 +153,7 @@ Open *_Layout.cshtml* file and make the following changes (the completed code is
 
 * Remove `@Scripts.Render("~/bundles/modernizr")`.
 
-* Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`). We'll return to it in a future tutorial.
+* Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`). For more information see [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity)
 
 * Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).
 

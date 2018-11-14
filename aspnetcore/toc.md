@@ -179,7 +179,9 @@
 ## [Action return types](xref:web-api/action-return-types)
 ## [Format response data](xref:web-api/advanced/formatting)
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
-## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
+
+## [Analyzers](xref:web-api/advanced/analyzers)
+## [Conventions](xref:web-api/advanced/conventions)
 
 # Real-time apps
 ## [Overview](xref:signalr/introduction)
@@ -192,6 +194,7 @@
 ### [HubContext](xref:signalr/hubcontext)
 ### [Users and groups](xref:signalr/groups)
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+### [API design considerations](xref:signalr/api-design)
 ## Clients
 ### [.NET client](xref:signalr/dotnet-client)
 ### [.NET API reference](/dotnet/api/microsoft.aspnetcore.signalr.client)
@@ -324,7 +327,7 @@
 #### [Twitter authentication](xref:security/authentication/twitter-logins)
 #### [Google authentication](xref:security/authentication/google-logins)
 #### [Microsoft authentication](xref:security/authentication/microsoft-logins)
-#### [Other authentication providers](xref:security/authentication/otherlogins)
+#### [External authentication providers](xref:security/authentication/otherlogins)
 #### [Additional claims](xref:security/authentication/social/additional-claims)
 ### [WS-Federation authentication](xref:security/authentication/ws-federation)
 ### [Account confirmation and password recovery](xref:security/authentication/accconfirm)

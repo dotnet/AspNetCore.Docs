@@ -38,7 +38,7 @@ Now, with access to an instance of `IHubContext`, you can call hub methods as if
 Access the `IHubContext` within the middleware pipeline like so:
 
 ```csharp
-app.Use(next => async (context) =>
+app.Use(async (context, next) =>
 {
     var hubContext = context.RequestServices
                             .GetRequiredService<IHubContext<MyHub>>();
@@ -58,7 +58,7 @@ public class ChatController : Controller
 {
     public IHubContext<ChatHub, IChatClient> _strongChatHubContext { get; }
 
-    public SampleDataController(IHubContext<ChatHub, IChatClient> chatHubContext)
+    public ChatController(IHubContext<ChatHub, IChatClient> chatHubContext)
     {
         _strongChatHubContext = chatHubContext;
     }

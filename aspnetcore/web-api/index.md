@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn about the features available for building a web API in ASP.NET Core and when it's appropriate to use each feature.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/30/2018
+ms.date: 11/06/2018
 uid: web-api/index
 ---
 # Build web APIs with ASP.NET Core
@@ -35,7 +35,7 @@ The `ControllerBase` class provides access to several properties and methods. In
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## Annotation with ApiControllerAttribute
+## Annotation with ApiController attribute
 
 ASP.NET Core 2.1 introduces the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute to denote a web API controller class. For example:
 
@@ -71,13 +71,13 @@ The following sections describe convenience features added by the attribute.
 
 ### Automatic HTTP 400 responses
 
-Validation errors automatically trigger an HTTP 400 response. The following code becomes unnecessary in your actions:
+Model validation errors automatically trigger an HTTP 400 response. Consequently, the following code becomes unnecessary in your actions:
 
 [!code-csharp[](define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_ModelStateIsValidCheck)]
 
 Use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to customize the output of the resulting response.
 
-The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property is set to `true`. Add the following code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_<version_number>);`:
+Disabling the default behavior is useful when your action can recover from a model validation error. The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property is set to `true`. Add the following code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_<version_number>);`:
 
 ::: moniker-end
 

@@ -137,7 +137,7 @@ namespace CookieSample.Pages.Account
 
             await Task.Delay(500);
 
-            if (Input.Email == "maria.rodriguez@contoso.com")
+            if (email == "maria.rodriguez@contoso.com")
             {
                 return new ApplicationUser()
                 {
