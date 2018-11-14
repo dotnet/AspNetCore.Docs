@@ -189,7 +189,7 @@ Replace the class with the following code:
 
 In this step, the database context is registered with the [dependency injection](xref:fundamentals/dependency-injection) container. Services (such as the DB context) that are registered with the dependency injection (DI) container are available to the controllers.
 
-Register the DB context with the service container using the built-in support for [dependency injection](xref:fundamentals/dependency-injection). Update *Startup.cs* with the following highlighted code:
+Register the DB context with the service container using the built-in support for DI. Update *Startup.cs* with the following highlighted code:
 
 ::: moniker range="= aspnetcore-2.2"
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=5,8,25-26&name=snippet_all)]
