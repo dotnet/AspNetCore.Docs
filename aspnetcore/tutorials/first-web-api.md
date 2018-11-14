@@ -5,7 +5,7 @@ description: Build a web api with ASP.NET Core MVC and Visual Studio
 ms.author: riande
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: mvc
-ms.date: 11/17/2018
+ms.date: 11/19/2018
 uid: tutorials/first-web-api
 ---
 # Tutorial: Create a web api with ASP.NET Core
