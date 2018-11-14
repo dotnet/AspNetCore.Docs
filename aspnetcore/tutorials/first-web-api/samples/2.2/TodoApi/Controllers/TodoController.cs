@@ -34,14 +34,14 @@ namespace TodoApi.Controllers
 
         #region snippet_GetByID
         [HttpGet("{id}", Name = "GetTodo")]
-        public ActionResult GetById(long id)
+        public ActionResult<TodoItem> GetById(long id)
         {
             var item = _context.TodoItems.Find(id);
             if (item == null)
             {
                 return NotFound();
             }
-            return Ok(item);
+            return item;
         }
         #endregion
         #endregion
