@@ -15,15 +15,18 @@ namespace SignalRChat.Hubs
         {
             var channel = Channel.CreateUnbounded<int>();
 
-            // We don't want to await WriteItems, otherwise we'd end up waiting 
+            // We don't want to await WriteItemsAsync, otherwise we'd end up waiting 
             // for all the items to be written before returning the channel back to
             // the client.
-            _ = WriteItems(channel.Writer, count, delay);
+            _ = WriteItemsAsync(channel.Writer, count, delay);
 
             return channel.Reader;
         }
 
-        private async Task WriteItems(ChannelWriter<int> writer, int count, int delay)
+        private async Task WriteItemsAsync(
+            ChannelWriter<int> writer,
+            int count,
+            int delay)
         {
             for (var i = 0; i < count; i++)
             {

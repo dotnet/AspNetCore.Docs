@@ -17,15 +17,15 @@ namespace SignalRChat.Hubs
         {
             var channel = Channel.CreateUnbounded<int>();
 
-            // We don't want to await WriteItems, otherwise we'd end up waiting 
+            // We don't want to await WriteItemsAsync, otherwise we'd end up waiting 
             // for all the items to be written before returning the channel back to
             // the client.
-            _ = WriteItems(channel.Writer, count, delay, cancellationToken);
+            _ = WriteItemsAsync(channel.Writer, count, delay, cancellationToken);
 
             return channel.Reader;
         }
 
-        private async Task WriteItems(
+        private async Task WriteItemsAsync(
             ChannelWriter<int> writer,
             int count,
             int delay,
@@ -37,6 +37,9 @@ namespace SignalRChat.Hubs
                 // producing items if the client disconnects.
                 cancellationToken.ThrowIfCancellationRequested();
                 await writer.WriteAsync(i);
+
+                // Use the cancellationToken in other APIs that accept cancellation
+                // tokens so the cancellation can flow down to them.
                 await Task.Delay(delay, cancellationToken);
             }
 
