@@ -234,7 +234,7 @@ The preceding code:
 * Defines an API controller class without methods.
 * Creates a new Todo item when `TodoItems` is empty. You won't be able to delete all the Todo items because the constructor creates a new one if `TodoItems` is empty.
 
-In the next sections, methods are added to implement the API. The class is annotated with an [\[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute to:
+In the next sections, methods are added to implement the API. The class is annotated with an [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute to:
 
 * Mark the class is used to serve HTTP API responses.
 * Enable the class to target conventions, filters, and other behaviors.
@@ -275,7 +275,7 @@ Later in the tutorial, instructions are provided to view the HTTP response with 
 
 ### Routing and URL paths
 
-The [\[HttpGet]](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller's `Route` attribute:
 
@@ -297,7 +297,7 @@ In the following `GetById` method, `"{id}"` is a placeholder variable for the un
 
 The `GetAll` method returns an [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
-The `GetById` method returns [ActionResult](xref:web-api/action-return-types#actionresultt-type). The `ActionResult<T>` and `ActionResult` return types represents a wide range of return types. `GetById` has two different return types:
+The `GetById` method returns `ActionResult<TodoItem>` The `ActionResult<T>` and `ActionResult` return types represents a wide range of return types. `GetById` has two different return types:
 
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
