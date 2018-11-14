@@ -1,25 +1,25 @@
 ---
-title: Create a Web API with ASP.NET Core and Visual Studio
+title: Create a web api with ASP.NET Core and Visual Studio
 author: rick-anderson
-description: Build a web API with ASP.NET Core MVC and Visual Studio
+description: Build a web api with ASP.NET Core MVC and Visual Studio
 ms.author: riande
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: mvc
 ms.date: 11/17/2018
 uid: tutorials/first-web-api
 ---
-# Tutorial: Create a Web API with ASP.NET Core
+# Tutorial: Create a web api with ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-This tutorial teaches the basics of building a web API app. The app manages a list of "to-do" items. A user interface (UI) isn't created. You learn how to:
+This tutorial teaches the basics of building a web api app. The app manages a list of "to-do" items. A user interface (UI) isn't created. You learn how to:
 
 > [!div class="checklist"]
-> * Create a web API project.
+> * Create a web api project.
 > * Add a controller.
 > * Add code to get "to-do" items.
 > * Create other CRUD operations.
-> * Call the Web API with jQuery.
+> * Call the web api with jQuery.
 
 At the end, you have an app that can manage  "to-do" items.
 
@@ -39,7 +39,7 @@ The following diagram shows the basic design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
-* The client is whatever consumes the web API (mobile app, browser, etc.). This tutorial doesn't create a client. [Postman](https://www.getpostman.com/) or [curl](https://curl.haxx.se/docs/manpage.html) is used as the client to test the app.
+* The client is whatever consumes the web api (mobile app, browser, etc.). This tutorial doesn't create a client. [Postman](https://www.getpostman.com/) or [curl](https://curl.haxx.se/docs/manpage.html) is used as the client to test the app.
 
 * A *model* is an object that represents the data in the app. In this case, the only model is a to-do item. Models are represented as C# classes, also known as **P**lain **O**ld **C**LR **O**bject (POCOs).
 * A *controller* is an object that handles HTTP requests and creates the HTTP response.
@@ -86,7 +86,7 @@ The following diagram shows the basic design of the app.
 
   * A dialog box appears with **Required assets to build and debug are missing from 'TodoApi'. Add them?**
   * Select **Yes**
-  * `dotnet new webapi -o TodoApi`: creates a new Web API project in the *TodoApi* folder.
+  * `dotnet new webapi -o TodoApi`: creates a new web api project in the *TodoApi* folder.
   * `code -r TodoApi`: Loads the *TodoApi.csproj* project file.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -95,7 +95,7 @@ Select **File** > **New Solution**.
 
 ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-Select **.NET Core App** > **ASP.NET Core Web API** > **Next**.
+Select **.NET Core App** > **ASP.NET Core web api** > **Next**.
 
 ![macOS New project dialog](first-web-api-mac/_static/1.png)
 
@@ -213,7 +213,7 @@ The preceding code:
 * In the **Add New Item** dialog, select the **API Controller Class** template.
 * Name the class *TodoController*, and click **Add**.
 
-![Add new Item dialog with controller in search box and web API controller selected](first-web-api/_static/new_controller.png)
+![Add new Item dialog with controller in search box and web api controller selected](first-web-api/_static/new_controller.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -410,9 +410,9 @@ Use Postman to delete the to-do item:
 
 The sample app doesn't allow you to delete all the items. When there are no items, a new one is created.
 
-## Call the Web API with jQuery
+## Call the web api with jQuery
 
-In this section, an HTML page is added that uses jQuery to call the Web API. jQuery initiates the request and updates the page with the details from the API's response.
+In this section, an HTML page is added that uses jQuery to call the web api. jQuery initiates the request and updates the page with the details from the API's response.
 
 Configure the app to serve static files and to enable default file mapping with the following calls:
 
@@ -471,11 +471,11 @@ Deleting a to-do item is accomplished by setting the `type` on the AJAX call to 
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
-> * Create a web API project.
+> * Create a web api project.
 > * Add a controller.
 > * Add code to get "to-do" items.
 > * Create other CRUD operations.
-> * Call the Web API with jQuery.
+> * Call the web api with jQuery.
 
 * For information on using a persistent database, see:
 
@@ -484,8 +484,8 @@ In this tutorial, you learned how to:
 
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
-* [ASP.NET Core Web API help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
+* [ASP.NET Core web api help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
 * [Routing to controller actions](xref:mvc/controllers/routing)
-* [Build web APIs with ASP.NET Core](xref:web-api/index)
+* [Build web apis with ASP.NET Core](xref:web-api/index)
 * [Controller action return types](xref:web-api/action-return-types)
 * [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
