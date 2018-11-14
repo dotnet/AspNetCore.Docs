@@ -46,7 +46,7 @@ Hosted services implement the <xref:Microsoft.Extensions.Hosting.IHostedService>
 
   If the app shuts down unexpectedly (for example, the app's process fails), `StopAsync` might not be called. Therefore, any methods called or operations conducted in `StopAsync` might not occur.
 
-The hosted service is activated once at app startup and gracefully shutdown at app shutdown. When <xref:System.IDisposable> is implemented, resources can be disposed when the service container is disposed. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
+The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
 ## Timed background tasks
 
