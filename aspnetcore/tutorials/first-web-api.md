@@ -12,7 +12,7 @@ uid: tutorials/first-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-This tutorial teaches the basics of building a web api app. The app manages a list of "to-do" items. A user interface (UI) isn't created. You learn how to:
+This tutorial teaches the basics of building a web API to manage a list of "to-do" items. A user interface (UI) isn't created. You learn how to:
 
 > [!div class="checklist"]
 > * Create a web api project.
