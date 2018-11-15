@@ -15,7 +15,7 @@ In this section, classes are added for managing movies in a database. These clas
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
-[View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/) sample.
+[View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages-start/sample/) sample.
 
 ## Add a data model
 
@@ -29,7 +29,7 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs=snippet1)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `ID` field is required by the database for the primary key.
 
@@ -56,7 +56,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SQLite
 
 Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
 
-[!code-csharp[](razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 Add the following `using` statements at the top of *Startup.cs*:
 
@@ -102,7 +102,7 @@ The `using System.ComponentModel.DataAnnotations.Schema;` in the previous code i
 
 Add a connection string to the *appsettings.json* file.
 
-[!code-json[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+[!code-json[](../../tutorials/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
 
 <!-- Mac -------------------------->
@@ -262,5 +262,5 @@ If you get a SQL exception, verify you have run migrations and updated the datab
 The next tutorial explains the files created by scaffolding.
 
 > [!div class="step-by-step"]
-> [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
+> [Previous: Get Started](xref:tutorials/razor-pages-start)
 > [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
