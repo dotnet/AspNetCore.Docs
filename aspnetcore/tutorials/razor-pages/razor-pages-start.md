@@ -106,6 +106,8 @@ Press **Ctrl-F5** to run without the debugger.
 
 From a terminal, run the following commands:
 
+<!-- TODO: update these instruction once mac support 2.2 projects -->
+
 ::: moniker range="= aspnetcore-2.2"
 
 ```console
@@ -169,12 +171,12 @@ Test the links. The **RazorPagesMovie** and **Home** links go to the Index page.
 
 ## Project files and folders
 
-The following table lists the files and folders in the project. For this tutorial, the *Startup.cs* file is the most important to understand. You don't need to review each link provided below. The links are provided as a reference when you need more information on a file or folder in the project.
+The following table lists the files and folders in the project. At this point in the tutorial, the *Startup.cs* file is the most important to understand. You don't need to review each link provided below. The links are provided as a reference when you need more information on a file or folder in the project.
 
 | File or folder              | Purpose |
 | ----------------- | ------------ |
-| wwwroot | Contains static files. See [Static files](xref:fundamentals/static-files). |
-| Pages | Folder for [Razor Pages](xref:razor-pages/index). |
+| *wwwroot* | Contains static files. See [Static files](xref:fundamentals/static-files). |
+| *Pages* | Folder for [Razor Pages](xref:razor-pages/index). |
 | *appsettings.json* | [Configuration](xref:fundamentals/configuration/index) |
 | *Program.cs* | [Hosts](xref:fundamentals/host/index) the ASP.NET Core app.|
 | *Startup.cs* | Configures services and the request pipeline. See [Startup](xref:fundamentals/startup).|
@@ -189,7 +191,13 @@ The *_ViewStart.cshtml* sets the Razor Pages `Layout` property to use the *_Layo
 
 The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](https://jquery.com/) validation scripts. When the `Create` and `Edit` pages are added later in the tutorial, the *_ValidationScriptsPartial.cshtml* file will be used.
 
-The `Index` pages zz are basic pages you can use to start an app. The `Error` page is used to display error information. The `Privacy` page allows you to specify details about your site's privacy policy.
+`Index`, `Error`, and `Privacy` pages are provided to:
+
+* `Index`: Start an app.
+* `Error`: Display error information.
+* `Privacy`: Specify details about the site's privacy policy.
+
+For this tutorial, the preceding pages are not used.
 
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
@@ -235,7 +243,13 @@ F7 toggles between a Razor Page (*\*.cshtml* file) and the C# file (*\*.cshtml.c
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+<!-- TODO review  Need something in these tabs -->
+
+By convention, the Razor Page (*\*.cshtml* file) and the associated `PageModel` have the same root file name.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
+
+By convention, the Razor Page (*\*.cshtml* file) and the associated `PageModel` have the same root file name.
 
 ---
 

@@ -3,22 +3,145 @@ title: Add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 ms.author: riande
+monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/30/2018
 uid: tutorials/razor-pages/model
 ---
 # Add a model to a Razor Pages app in ASP.NET Core
 
-::: moniker range=">= aspnetcore-2.1"
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE [model1](~/includes/RP/model1.md)]
+In this section, classes are added for managing movies in a database. These classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies data access code.
+
+The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
+
+[View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/) sample.
 
 ## Add a data model
 
-In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+<!-- VS -------------------------->
 
-Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie** and replace the contents of the `Movie` class with the following code:
+# [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie21/Models/Movie1.cs?name=snippet)]
+Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+
+Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
+
+Add the following properties to the `Movie` class:
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs=snippet1)]
+
+The `ID` field is required by the database for the primary key.
+
+<!-- Code -------------------------->
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Add a folder named *Models*.
+* Add a class to the *Models* folder named *Movie.cs*.
+
+[!INCLUDE [model 2](../../includes/RP/model2.md)]
+
+### Entity Framework Core NuGet package for SQLite
+
+From the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), run the following .NET Core CLI command:
+
+```console
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+```
+
+<a name="reg"></a>
+
+### Register the database context
+
+Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
+
+[!code-csharp[](razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+
+Add the following `using` statements at the top of *Startup.cs*:
+
+```csharp
+using RazorPagesMovie.Models;
+using Microsoft.EntityFrameworkCore;
+```
+
+Build the project as a check for errors.
+
+[!INCLUDE [model 3](../../includes/RP/model3.md)]
+
+<a name="scaffold"></a>
+
+<!-- Mac -------------------------->
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* In Solution Explorer, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the *Models* folder, and then select **Add** > **New File**.
+* In the **New File** dialog:
+
+  * Select **General** in the left pane.
+  * Select **Empty Class** in the center pain.
+  * Name the class **Movie** and select **New**.
+
+<!-- End of VS tabs -->
+
+---
+
+<!-- VS Add EntityFrameworkCore.Sqlite, DB Context -->
+
+# [Visual Studio](#tab/visual-studio)
+
+<!-- The following comment is there because you need a VS tab and need something under it. -->
+The `using System.ComponentModel.DataAnnotations.Schema;` in the previous code is required for the `[DataType(DataType.Date)]` attribute.
+
+
+<!-- Code -------------------------->
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+### Add a database connection string
+
+Add a connection string to the *appsettings.json* file.
+
+[!code-json[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+
+
+<!-- Mac -------------------------->
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+<!-- End of VS tabs -->
+
+---
+
+Replace the contents of the `Movie` class with the following code:
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie22/Models/Movie1.cs?name=snippet)]
+
+The `Movie` class:
+
+* The `ID` field is required by the database for the primary key.
+* `[DataType(DataType.Date)]`:  The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date). With this attribute:
+
+  * The user is not required to enter time information in the date field.
+  * Only the date is displayed, not time information. 
+
+[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+
+<!-- VS -------------------------->
+
+# [Visual Studio](#tab/visual-studio)
+
+<!-- Code -------------------------->
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+<!-- Mac -------------------------->
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+<!-- End of VS tabs -->
+
+---
 
 ## Scaffold the movie model
 
@@ -65,13 +188,13 @@ The scaffolding tool automatically created a DB context and registered it with t
 
 Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
 
 The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model. In this project, the class is named `RazorPagesMovieContext`.
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
-The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet/<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
@@ -120,86 +243,6 @@ Login failed for user 'User-name'.
 ```
 
 You missed the [migrations step](#pmc).
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-[!INCLUDE [model1](~/includes/RP/model1.md)]
-
-## Add a data model
-
-In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
-
-Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie** and add the following properties:
-
-[!INCLUDE [model 2](~/includes/RP/model2.md)]
-
-<a name="cs"></a>
-### Add a database connection string
-
-Add a connection string to the *appsettings.json* file.
-
-[!code-json[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=8-10)]
-
-<a name="reg"></a>
-###  Register the database context
-
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the [ConfigureServices method of the Startup class](xref:fundamentals/startup#the-startup-class) (*Startup.cs*):
-
-[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=3-5,7-9)]
-
-Build the project to verify you don't have any errors.
-
-<a name="pmc"></a>
-## Add scaffold tooling and perform initial migration
-
-In this section, you use the Package Manager Console (PMC) to:
-
-* Add the Visual Studio web code generation package. This package is required to run the scaffolding engine.
-* Add an initial migration.
-* Update the database with the initial migration.
-
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
-
-  ![PMC menu](../first-mvc-app/adding-model/_static/pmc.png)
-
-In the PMC, enter the following commands:
-
-```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.3
-Add-Migration Initial
-Update-Database
-```
-
-Alternatively, the following .NET Core CLI commands can be used:
-
-```console
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet ef migrations add Initial
-dotnet ef database update
-```
-
-Ignore the following message:
-
-```console
-Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'
-```
-
-You fix that in the next tutorial.
-
-The `Install-Package` command installs the tooling required to run the scaffolding engine.
-
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
-
-The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
-
-[!INCLUDE [model 4windows](~/includes/RP/model4Win.md)]
-
-[!INCLUDE [model 4](~/includes/RP/model4tbl.md)]
-
-::: moniker-end
 
 <a name="test"></a>
 
