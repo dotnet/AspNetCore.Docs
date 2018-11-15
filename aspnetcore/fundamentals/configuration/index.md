@@ -532,7 +532,7 @@ When working with hierarchical keys in environment variables, a colon separator 
 
 ::: moniker range=">= aspnetcore-2.0"
 
-`AddEnvironmentVariables` is automatically called for environment variables prefixed with `ASPNETCORE_` when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
+`AddEnvironmentVariables` is automatically called for environment variables prefixed with `ASPNETCORE_` when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
 
 `CreateDefaultBuilder` also loads:
 
