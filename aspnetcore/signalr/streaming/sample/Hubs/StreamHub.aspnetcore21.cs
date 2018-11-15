@@ -1,7 +1,8 @@
-﻿using System;
+﻿// This file contains the ASP.NET Core 2.1 version of this file and is no longer used in the sample, hence we use '#if false' to avoid compiling it.
+#if false
+using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
-using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
@@ -10,17 +11,14 @@ namespace SignalRChat.Hubs
 {
     public class StreamHub : Hub
     {
-        public ChannelReader<int> Counter(
-            int count,
-            int delay,
-            CancellationToken cancellationToken)
+        public ChannelReader<int> Counter(int count, int delay)
         {
             var channel = Channel.CreateUnbounded<int>();
 
             // We don't want to await WriteItemsAsync, otherwise we'd end up waiting 
             // for all the items to be written before returning the channel back to
             // the client.
-            _ = WriteItemsAsync(channel.Writer, count, delay, cancellationToken);
+            _ = WriteItemsAsync(channel.Writer, count, delay);
 
             return channel.Reader;
         }
@@ -28,22 +26,16 @@ namespace SignalRChat.Hubs
         private async Task WriteItemsAsync(
             ChannelWriter<int> writer,
             int count,
-            int delay,
-            CancellationToken cancellationToken)
+            int delay)
         {
             for (var i = 0; i < count; i++)
             {
-                // Check the cancellation token regularly so that the server will stop
-                // producing items if the client disconnects.
-                cancellationToken.ThrowIfCancellationRequested();
                 await writer.WriteAsync(i);
-
-                // Use the cancellationToken in other APIs that accept cancellation
-                // tokens so the cancellation can flow down to them.
-                await Task.Delay(delay, cancellationToken);
+                await Task.Delay(delay);
             }
 
             writer.TryComplete();
         }
     }
 }
+#endif

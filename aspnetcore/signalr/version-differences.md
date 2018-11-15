@@ -4,7 +4,7 @@ author: tdykstra
 description: Differences between SignalR and ASP.NET Core SignalR 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 09/10/2018
+ms.date: 11/14/2018
 uid: signalr/version-differences
 ---
 
@@ -70,6 +70,10 @@ ASP.NET Core SignalR now supports [streaming data](xref:signalr/streaming) from 
 ### State
 
 The ability to pass arbitrary state between clients and the hub (often called HubState) has been removed, as well as support for progress messages. There is no counterpart of hub proxies at the moment.
+
+### PersistentConnection removal
+
+In ASP.NET Core SignalR, the [PersistentConnection](https://docs.microsoft.com/previous-versions/aspnet/jj919047(v%3dvs.118)) class has been removed. 
 
 ### GlobalHost
 

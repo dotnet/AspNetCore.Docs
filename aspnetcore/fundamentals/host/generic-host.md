@@ -69,7 +69,7 @@ The [IHostingEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHos
 **Type**: *string*  
 **Default**: The name of the assembly containing the app's entry point.  
 **Set using**: `HostBuilderContext.HostingEnvironment.ApplicationName`  
-**Environment variable**: `<PREFIX_>APPLICATIONNAME` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
+**Environment variable**: `<PREFIX_>APPLICATIONNAME` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
 
 ### Content root
 
@@ -79,7 +79,7 @@ This setting determines where the host begins searching for content files.
 **Type**: *string*  
 **Default**: Defaults to the folder where the app assembly resides.  
 **Set using**: `UseContentRoot`  
-**Environment variable**: `<PREFIX_>CONTENTROOT` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
+**Environment variable**: `<PREFIX_>CONTENTROOT` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
 
 If the path doesn't exist, the host fails to start.
 
@@ -93,7 +93,7 @@ Sets the app's [environment](xref:fundamentals/environments).
 **Type**: *string*  
 **Default**: Production  
 **Set using**: `UseEnvironment`  
-**Environment variable**: `<PREFIX_>ENVIRONMENT` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
+**Environment variable**: `<PREFIX_>ENVIRONMENT` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
 
 The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive.
 
