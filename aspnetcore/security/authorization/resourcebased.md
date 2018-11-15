@@ -9,9 +9,9 @@ uid: security/authorization/resourcebased
 ---
 # Resource-based authorization in ASP.NET Core
 
-Authorization strategy depends upon the resource being accessed. Consider a document which has an author property. Only the author is allowed to update the document. Consequently, the document must be retrieved from the data store before authorization evaluation can occur.
+Authorization strategy depends upon the resource being accessed. Consider a document that has an author property. Only the author is allowed to update the document. Consequently, the document must be retrieved from the data store before authorization evaluation can occur.
 
-Attribute evaluation occurs before data binding and before execution of the page handler or action which loads the document. For these reasons, declarative authorization with an `[Authorize]` attribute won't suffice. Instead, you can invoke a custom authorization method&mdash;a style known as imperative authorization.
+Attribute evaluation occurs before data binding and before execution of the page handler or action that loads the document. For these reasons, declarative authorization with an `[Authorize]` attribute won't suffice. Instead, you can invoke a custom authorization method&mdash;a style known as imperative authorization.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
@@ -88,7 +88,9 @@ The handler class specifies both the requirement and resource type. For example,
 
 ::: moniker-end
 
-Register the requirement and handler in the `Startup.ConfigureServices` method:
+In the preceding example, imagine that `SameAuthorRequirement` is a special case of a more generic `SpecificAuthorRequirement` class. The `SpecificAuthorRequirement` class (not shown) contains a `Name` property representing the name of the author. The `Name` property could be set to the current user.
+
+Register the requirement and handler in `Startup.ConfigureServices`:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
 
