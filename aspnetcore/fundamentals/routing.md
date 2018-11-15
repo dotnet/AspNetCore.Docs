@@ -13,6 +13,17 @@ By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/)
 
 Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or find the URL corresponding to a given route handler based on route handler information.
 
+Most apps should choose a basic and descriptive routing scheme so that URLs are readable and meaningful. The default conventional route `{controller=Home}/{action=Index}/{id?}`:
+
+* Supports a basic and descriptive routing scheme:
+* Is a good starting point for web apps intended for use by browsers.
+
+It's common to add additional terse routes to high traffic areas of the app in specialized situations (for example, blog, ecommerce) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
+
+Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that is needed to carefully design an API's URL-space.
+
+MVC's URL generation support allows the app to be developed without hard coding the URLs to link the app together. This allows for starting with a basic routing configuration, and modifying the routes after the app's shape is determined.
+
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>.
 

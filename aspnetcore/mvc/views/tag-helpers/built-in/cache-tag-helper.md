@@ -129,7 +129,7 @@ The following example monitors the values of `Make` and `Model`. The example cac
 | -------------- | -------------------- |
 | String         | `Make`, `Make,Model` |
 
-`vary-by-route` accepts a comma-delimited list of header values that trigger a cache refresh when the route data parameter value changes.
+`vary-by-route` accepts a comma-delimited list of route parameter names that trigger a cache refresh when the route data parameter value changes.
 
 Example:
 
@@ -155,7 +155,7 @@ routes.MapRoute(
 | -------------- | -------------------------------------------------------------------------------- |
 | String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
-`vary-by-cookie` accepts a comma-delimited list of header values that trigger a cache refresh when the header values change.
+`vary-by-cookie` accepts a comma-delimited list of cookie names that trigger a cache refresh when the cookie values change.
 
 The following example monitors the cookie associated with ASP.NET Core Identity. When a user is authenticated, a change in the Identity cookie triggers a cache refresh:
 

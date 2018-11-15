@@ -30,7 +30,13 @@ From the command line, run the following .NET Core CLI command:
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 ```
 
-[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-4)]
+<a name="reg"></a>
+
+### Register the database context
+
+Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
+
+[!code-csharp[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=10-11)]
 
 Add the following `using` statements at the top of *Startup.cs*:
 
@@ -41,45 +47,24 @@ using Microsoft.EntityFrameworkCore;
 
 Build the project to verify you don't have any errors.
 
-### Entity Framework Core NuGet packages for migrations
-
-The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI.
-
-Edit the *RazorPagesMovie.csproj* file:
-
-* Select **File** > **Open File**, and then select the *RazorPagesMovie.csproj* file.
-* Add tool reference for `Microsoft.EntityFrameworkCore.Tools.DotNet` to the second **\<ItemGroup>**:
-
-[!code-xml[](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj)]
-
 [!INCLUDE [model 3](../../includes/RP/model3.md)]
 
 <a name="scaffold"></a>
+
 ### Scaffold the Movie model
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
-
-**Note: Run the following command on Windows. For MacOS and Linux, see the next command**
+* **For Windows**: Run the following command:
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* On MacOS and Linux, run the following command:
+* **For macOS and Linux**: Run the following command:
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
-
-If you get the error:
-  ```
-  The process cannot access the file 
- 'RazorPagesMovie/bin/Debug/netcoreapp2.0/RazorPagesMovie.dll' 
-  because it is being used by another process.
-  ```
-
-Exit Visual Studio and run the command again.
 
 [!INCLUDE [model 4](../../includes/RP/model4.md)]
 

@@ -256,7 +256,7 @@ You should only write a custom authorization filter if you are writing your own 
 
 You shouldn't throw exceptions within authorization filters, since nothing will handle the exception (exception filters won't handle them). Consider issuing a challenge when an exception occurs.
 
-Learn more about [Authorization](../../security/authorization/index.md).
+Learn more about [Authorization](xref:security/authorization/introduction).
 
 ## Resource filters
 

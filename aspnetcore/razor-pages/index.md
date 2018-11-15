@@ -232,7 +232,7 @@ The `OnPostDeleteAsync` method:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## Mark page properties required
+## Mark page properties as required
 
 Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
 

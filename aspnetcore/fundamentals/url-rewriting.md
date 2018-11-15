@@ -393,9 +393,9 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 ### Method-based rule
 
-Use `Add(Action<RewriteContext> applyRule)` to implement your own rule logic in a method. The `RewriteContext` exposes the `HttpContext` for use in your method. The `context.Result` determines how additional pipeline processing is handled.
+Use `Add(Action<RewriteContext> applyRule)` to implement your own rule logic in a method. The `RewriteContext` exposes the `HttpContext` for use in your method. The `RewriteContext.Result` determines how additional pipeline processing is handled.
 
-| context.Result                       | Action                                                          |
+| `RewriteContext.Result`              | Action                                                          |
 | ------------------------------------ | --------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (default) | Continue applying rules                                         |
 | `RuleResult.EndResponse`             | Stop applying rules and send the response                       |
@@ -431,7 +431,7 @@ Original Request: `/file.xml`
 
 ### IRule-based rule
 
-Use `Add(IRule)` to implement your own rule logic in a class that derives from `IRule`. Using an `IRule` provides greater flexibility over using the method-based rule approach. Your derived class may include a constructor, where you can pass in parameters for the `ApplyRule` method.
+Use `Add(IRule)` to encapsulate your own rule logic in a class that implements the `IRule` interface. Using an `IRule` provides greater flexibility over using the method-based rule approach. Your implementaion class may include a constructor, where you can pass in parameters for the `ApplyRule` method.
 
 ::: moniker range=">= aspnetcore-2.0"
 

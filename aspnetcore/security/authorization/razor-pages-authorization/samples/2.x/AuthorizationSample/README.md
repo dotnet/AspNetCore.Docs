@@ -2,7 +2,7 @@
 
 This sample illustrates use of Razor Pages authorization by conventions. This sample demonstrates the features described in the [Razor Pages authorization conventions](https://docs.microsoft.com/aspnet/core/security/authorization/razor-pages-authorization) topic.
 
-User authorization in this sample uses the cookie authentication features described in the [Use cookie authentication without ASP.NET Core Identity](https://docs.microsoft.com/aspnet/core/security/authentication/cookie) topic. For information on using ASP.NET Core Identity, see the topics in the [Authentication](https://docs.microsoft.com/aspnet/core/security/authentication/index) section of the documentation.
+User authorization in this sample uses the cookie authentication features described in the [Use cookie authentication without ASP.NET Core Identity](https://docs.microsoft.com/aspnet/core/security/authentication/cookie) topic. For information on using ASP.NET Core Identity, see <xref:security/authentication/identity>.
 
 When running the sample, use the email address **maria.rodriguez@contoso.com** to authenticate the user.
 

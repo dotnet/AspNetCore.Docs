@@ -554,6 +554,11 @@
         "source_path": "aspnetcore/client-side/bootstrap.md",
         "redirect_url": "https://getbootstrap.com/",
         "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/web-api/advanced/index.md",
+        "redirect_url": "/aspnet/core/web-api/",
+        "redirect_document_id": false
     }
   ] 
 }

@@ -202,6 +202,10 @@ When deploying a self-contained app:
 
 The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
 
+## Protocol settings (HTTPS)
+
+Secure protocol bindings allow you specify a certificate to use when responding to requests over HTTPS. Binding requires a valid private certificate (*.pfx*) issued for the specific hostname. For more information, see [Tutorial: Bind an existing custom SSL certificate to Azure Web Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
+
 ## Additional resources
 
 * [Web Apps overview (5-minute overview video)](/azure/app-service/app-service-web-overview)

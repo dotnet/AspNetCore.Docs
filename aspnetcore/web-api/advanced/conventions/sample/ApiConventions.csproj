@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RuntimeFrameworkVersion>2.2.0-preview3-27014-02</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" PrivateAssets="All" Version="2.2.0-preview3-35497" />
+  </ItemGroup>
+
+</Project>
