@@ -2,7 +2,6 @@
 title: Routing in ASP.NET Core
 author: rick-anderson
 description: Discover how ASP.NET Core routing is responsible for mapping request URIs to endpoint selectors and dispatching incoming requests to endpoints.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/15/2018
@@ -12,7 +11,11 @@ uid: fundamentals/routing
 
 By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+::: moniker range="<= aspnetcore-1.1"
+
 For the 1.1 version of this topic, download [Routing in ASP.NET Core (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Routing_1.x.pdf).
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.2"
 
