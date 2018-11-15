@@ -29,11 +29,10 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie21/Models/Movie1.cs?name=snippet)]
-
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
-The `ID` field is required by the database for the primary key.
+<!-- TODO: Move the following to an include -->
+
 
 <!-- Code -------------------------->
 
@@ -88,46 +87,6 @@ Build the project as a check for errors.
 
 ---
 
-<!-- VS Add EntityFrameworkCore.Sqlite, DB Context -->
-
-# [Visual Studio](#tab/visual-studio)
-
-<!-- The following comment is there because you need a VS tab and need something under it. -->
-The `using System.ComponentModel.DataAnnotations.Schema;` in the previous code is required for the `[DataType(DataType.Date)]` attribute.
-
-
-<!-- Code -------------------------->
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-### Add a database connection string
-
-Add a connection string to the *appsettings.json* file.
-
-[!code-json[](razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
-
-
-<!-- Mac -------------------------->
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-<!-- End of VS tabs -->
-
----
-
-Replace the contents of the `Movie` class with the following code:
-
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie22/Models/Movie1.cs?name=snippet)]
-
-The `Movie` class:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date). With this attribute:
-
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information. 
-
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
 
 <!-- VS -------------------------->
 
