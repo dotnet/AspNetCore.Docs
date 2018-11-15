@@ -29,7 +29,9 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie21/Models/Movie1.cs?name=snippet)]
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `ID` field is required by the database for the primary key.
 
@@ -56,7 +58,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SQLite
 
 Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
 
-[!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 Add the following `using` statements at the top of *Startup.cs*:
 
@@ -102,7 +104,7 @@ The `using System.ComponentModel.DataAnnotations.Schema;` in the previous code i
 
 Add a connection string to the *appsettings.json* file.
 
-[!code-json[](~/tutorials/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+[!code-json[](razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
 
 <!-- Mac -------------------------->
@@ -115,7 +117,7 @@ Add a connection string to the *appsettings.json* file.
 
 Replace the contents of the `Movie` class with the following code:
 
-[!code-csharp[Main](~/tutorials/razor-pages-start/sample/RazorPagesMovie22/Models/Movie1.cs?name=snippet)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie22/Models/Movie1.cs?name=snippet)]
 
 The `Movie` class:
 
@@ -188,11 +190,11 @@ The scaffolding tool automatically created a DB context and registered it with t
 
 Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
 
 The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model. In this project, the class is named `RazorPagesMovieContext`.
 
-[!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet/<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -251,7 +253,7 @@ You missed the [migrations step](#pmc).
 * Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 * Test the **Create** link.
 
-  ![Create page](~/tutorials/razor-pages/model/_static/conan.png)
+  ![Create page](razor-pages/model/_static/conan.png)
 
 <a name="scaffold"></a>
 
