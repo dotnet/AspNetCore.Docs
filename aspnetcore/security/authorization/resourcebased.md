@@ -74,7 +74,7 @@ In the following example, the resource to be secured is loaded into a custom `Do
 
 Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Create a custom requirement class, and implement a requirement handler class. For more information on creating a requirement class, see [Requirements](xref:security/authorization/policies#requirements).
 
-The handler class specifies both the requirement and resource type. For example, a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource looks as follows:
+The handler class specifies both the requirement and resource type. For example, a handler utilizing a `SameAuthorRequirement` and a `Document` resource follows:
 
 ::: moniker range=">= aspnetcore-2.0"
 
