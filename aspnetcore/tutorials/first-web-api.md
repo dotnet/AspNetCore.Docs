@@ -1,27 +1,35 @@
 ---
-title: Create a web api with ASP.NET Core and Visual Studio
+title: "Tutorial: Create a web API with ASP.NET Core MVC"
 author: rick-anderson
-description: Build a web api with ASP.NET Core MVC and Visual Studio
+description: Build a web API with ASP.NET Core MVC
 ms.author: riande
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '> aspnetcore-2.1'
 ms.custom: mvc
 ms.date: 11/19/2018
 uid: tutorials/first-web-api
 ---
-# Tutorial: Create a web api with ASP.NET Core
+
+# Tutorial: Create a web API with ASP.NET Core MVC
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
-This tutorial teaches the basics of building a web API to manage a list of "to-do" items. A user interface (UI) isn't created. You learn how to:
+This tutorial teaches the basics of building a web API with ASP.NET Core.
+
+In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Create a web api project.
+> * Add a model class.
+> * Create the database context.
+> * Register the database context.
 > * Add a controller.
-> * Add code to get "to-do" items.
-> * Create other CRUD operations.
+> * Add CRUD methods.
+> * Configure routing and URL paths.
+> * Specify return values.
+> * Call the web API with Postman.
 > * Call the web api with jQuery.
 
-At the end, you have a web API that can manage "to-do" items.
+At the end, you have a web API that can manage "to-do" items stored in a relational database.
 
 ## Overview
 
@@ -35,15 +43,14 @@ This tutorial creates the following API:
 |PUT /api/todo/{id} | Update an existing item &nbsp; | To-do item | None |
 |DELETE /api/todo/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
-The following diagram shows the basic design of the app.
+The following diagram shows the design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
-* The client is whatever consumes the web api (mobile app, browser, etc.). This tutorial doesn't create a client. [Postman](https://www.getpostman.com/) or [curl](https://curl.haxx.se/docs/manpage.html) is used as the client to test the app.
-
-* A *model* is an object that represents the data in the app. In this case, the only model is a to-do item. Models are represented as C# classes, also known as **P**lain **O**ld **C**LR **O**bject (POCOs).
-* A *controller* is an object that handles HTTP requests and creates the HTTP response.
-* The app doesn't use a persistent database, it stores to-do items in an in-memory database.
+* The client is whatever calls the web API, such as a mobile app or a browser. For this tutorial you use [Postman](https://www.getpostman.com/), [curl](https://curl.haxx.se/docs/manpage.html), and jQuery (a browser) as the client.
+* A *model* is a set of C# classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
+ * A *controller* is a C# class that handles HTTP requests and creates the HTTP response.
+* A *data access layer* is code that retrieves and manipulates data in a database. The app that you create for the tutorial uses an in-memory database.
 
 ## Prerequisites
 
@@ -127,7 +134,7 @@ The following JSON is returned:
 ["value1","value2"]
 ```
 
-### Add a model class
+## Add a model class
 
 A model is an object representing the data in the app. In this case, the only model is a to-do item.
 
@@ -163,7 +170,7 @@ Model classes can go anywhere in the project, but the *Models* folder is used by
 
 The database generates the `Id` when a `TodoItem` is created.
 
-### Create the database context
+## Create the database context
 
 The *database context* is the main class that coordinates Entity Framework functionality for a given data model. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
 
@@ -204,7 +211,7 @@ The preceding code:
 * Removes unused `using` declarations.
 * Specifies an in-memory database is injected into the service container.
 
-### Add a controller
+## Add a controller
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -243,7 +250,7 @@ For information, see [Annotation with ApiController attribute](xref:web-api/inde
 
 The controller's constructor uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller. The constructor adds an item to the in-memory database if one doesn't exist.
 
-## Get to-do items
+## Add Get methods
 
 To get to-do items, add the following methods to the `TodoController` class:
 
@@ -273,7 +280,7 @@ The following HTTP response is produced with the preceding call to `GetAll`:
 
 Later in the tutorial, instructions are provided to view the HTTP response with [Postman](https://www.getpostman.com/) or [curl](https://curl.haxx.se/docs/manpage.html).
 
-### Routing and URL paths
+## Routing and URL paths
 
 The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
@@ -293,7 +300,7 @@ In the following `GetById` method, `"{id}"` is a placeholder variable for the un
 * Enable the app to create an HTTP link using the route name.
 * Are explained later in the tutorial.
 
-### Return values
+## Return values
 
 The `GetAll` method returns an [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
@@ -302,7 +309,7 @@ The `GetById` method returns `ActionResult<TodoItem>` The `ActionResult<T>` and 
 * If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
-## Work with Postman
+## Call the web API with Postman
 
 This tutorial uses Postman to test the web api app.
 
@@ -323,11 +330,7 @@ This tutorial uses Postman to test the web api app.
 
 ![Postman with above request](first-web-api/_static/2pv.png)
 
-## Create CRUD methods
-
-In the following sections, `Create`, `Update`, and `Delete` methods are added to the controller.
-
-### Create
+## Add a Create meethod
 
 Add the following `Create` method:
 
@@ -343,7 +346,7 @@ The `CreatedAtRoute` method:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
-### Use Postman to send a Create request
+## Use Postman to send a Create request
 
 * Set the HTTP method to `POST`.
 * Select the **Body** tab.
@@ -373,7 +376,7 @@ Test the location header URI:
 * Paste the URI (for example, `https://localhost:5001/api/Todo/2`)
 * Select **Send**.
 
-### Update
+## Add an Update method
 
 Add the following `Update` method:
 
@@ -394,7 +397,7 @@ The following image shows the Postman update:
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmcput.png)
 
-### Delete
+## Add a Delete method
 
 Add the following `Delete` method:
 
@@ -410,7 +413,7 @@ Use Postman to delete the to-do item:
 
 The sample app doesn't allow you to delete all the items. When there are no items, a new one is created.
 
-## Call the web api with jQuery
+## Call the API with jQuery
 
 In this section, an HTML page is added that uses jQuery to call the web api. jQuery initiates the request and updates the page with the details from the API's response.
 
@@ -472,20 +475,24 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create a web api project.
+> * Add a model class.
+> * Create the database context.
+> * Register the database context.
 > * Add a controller.
-> * Add code to get "to-do" items.
-> * Create other CRUD operations.
+> * Add CRUD methods.
+> * Configure routing and URL paths.
+> * Specify return values.
+> * Call the web API with Postman.
 > * Call the web api with jQuery.
 
-* For information on using a persistent database, see:
+[View or download sample code for this tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
 
-  * <xref:tutorials/razor-pages/index>
-  * <xref:data/ef-rp/index>
+For more information, see the following resources:
 
+* <xref:web-api/index>
+* <xref:tutorials/web-api-help-pages-using-swagger>
+* <xref:data/ef-rp/index>
+* <xref:mvc/controllers/routing>
+* <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
-* [ASP.NET Core web api help pages using Swagger](xref:tutorials/web-api-help-pages-using-swagger)
-* [Routing to controller actions](xref:mvc/controllers/routing)
-* [Build web apis with ASP.NET Core](xref:web-api/index)
-* [Controller action return types](xref:web-api/action-return-types)
-* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
