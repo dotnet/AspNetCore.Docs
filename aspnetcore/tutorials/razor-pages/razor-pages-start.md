@@ -14,6 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ::: moniker range="= aspnetcore-2.2"
 
 ::: moniker-end
+
 ::: moniker range="= aspnetcore-2.1"
 
 ::: moniker-end
@@ -30,7 +31,7 @@ The app manages a database of movie titles. You learn how to:
 
 At the end, you have an app that can manage and display movie titles items.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Prerequisites
 
@@ -55,29 +56,30 @@ At the end, you have an app that can manage and display movie titles items.
 
 * Select **ASP.NET Core 2.2** in the dropdown, and then select **Web Application**.
 
- ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.2.png)
+  ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.2.png)
 
-The following starter project is created:
+  The following starter project is created:
 
-![Solution Explorer](razor-pages-start/_static/se2.2.png)
+  ![Solution Explorer](razor-pages-start/_static/se2.2.png)
 
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
 
 * Select **ASP.NET Core 2.1** in the dropdown, and then select **Web Application**.
 
- ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.1.png)
+  ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.1.png)
 
-The Visual Studio template creates a starter project:
+  The Visual Studio template creates a starter project:
 
-![Solution Explorer](razor-pages-start/_static/se2.1.png)
+  ![Solution Explorer](razor-pages-start/_static/se2.1.png)
 
 ::: moniker-end
 
-Press **Ctrl-F5** to run without the debugger.
+* Press **Ctrl-F5** to run without the debugger.
 
-* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5001. When you run the app, you'll see a different port number.
-* Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
+  Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5001. When you run the app, you'll see a different port number.
+
+  Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -97,10 +99,11 @@ Press **Ctrl-F5** to run without the debugger.
 
 ### Launch the app
 
-Press **Ctrl-F5** to run without the debugger.
+* Press **Ctrl-F5** to run without the debugger.
 
-* Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer.
-* Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
+  Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer.
+
+  Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -144,21 +147,21 @@ Select **Run > Start Without Debugging** to launch the app. Visual Studio starts
 
 ---
 
-Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+* Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
 ::: moniker range="= aspnetcore-2.2"
-![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
+  ![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
 
-The following image shows the app after accepting tracking:
+  The following image shows the app after accepting tracking:
 
-![Home or Index page](razor-pages-start/_static/home2.2.png)
+  ![Home or Index page](razor-pages-start/_static/home2.2.png)
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
-![Home or Index page](razor-pages-start/_static/homeGDPR.png)
+  ![Home or Index page](razor-pages-start/_static/homeGDPR.png)
 
-The following image shows the app after accepting tracking:
+  The following image shows the app after accepting tracking:
 
-![Home or Index page](razor-pages-start/_static/home2.1.png)
+  ![Home or Index page](razor-pages-start/_static/home2.1.png)
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
