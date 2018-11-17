@@ -34,7 +34,7 @@
 ## [App startup](xref:fundamentals/startup)
 ## [Dependency injection (services)](xref:fundamentals/dependency-injection)
 ## [Routing](xref:fundamentals/routing)
-## [Multiple environments](xref:fundamentals/environments)
+## [Environments (dev, stage, prod)](xref:fundamentals/environments)
 ## [Configuration](xref:fundamentals/configuration/index)
 ## [Options](xref:fundamentals/configuration/options)
 ## [Logging](xref:fundamentals/logging/index)
