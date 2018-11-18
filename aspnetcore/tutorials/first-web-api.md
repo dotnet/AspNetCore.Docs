@@ -285,34 +285,31 @@ The following HTTP response is produced by the preceding call to `GetAll`:
 
 The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
-* Take the template string in the controller's `Route` attribute:
+* Start with the template string in the controller's `Route` attribute:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
 
-* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
+* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller, so the controller name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, it assigns the value of `"{id}"` in the URL to the method's `id` parameter.
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
-`Name = "GetTodo"` creates a named route. Named routes:
-
-* Enable the app to create an HTTP link using the route name.
-* Are explained later in the tutorial.
+`Name = "GetTodo"` creates a named route. You'll see later how the app can use the name to create an HTTP link using the route name.
 
 ## Return values
 
-The `GetAll` method returns an [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). MVC automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The return type of the `GetAll` and `GetById` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
-The `GetById` method returns `ActionResult<TodoItem>` The `ActionResult<T>` and `ActionResult` return types represents a wide range of return types. `GetById` has two different return types:
+`ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetById` can return two different status values:
 
-* If no item matches the requested ID, the method returns a 404 error. Returning [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) returns an HTTP 404 response.
+* If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
 ## Call the web API with Postman
 
-This tutorial uses Postman to test the web api app.
+This tutorial uses Postman to test the web API.
 
 * Install [Postman](https://www.getpostman.com/apps)
 * Start the web app.
@@ -320,7 +317,7 @@ This tutorial uses Postman to test the web api app.
 * Disable **SSL certificate verification**
   
   * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
-  * > [!WARNING]
+    > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
 * Create a new request.
@@ -331,7 +328,7 @@ This tutorial uses Postman to test the web api app.
 
 ![Postman with above request](first-web-api/_static/2pv.png)
 
-## Add a Create meethod
+## Add a Create method
 
 Add the following `Create` method:
 
@@ -345,7 +342,7 @@ The `CreatedAtRoute` method:
 * Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 * Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetById`:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
 ## Use Postman to send a Create request
 
@@ -364,7 +361,7 @@ The `CreatedAtRoute` method:
 
 * Select **Send**.
 
-![Postman with above request](first-web-api/_static/create.png)
+![Postman with create request](first-web-api/_static/create.png)
 
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
@@ -383,7 +380,7 @@ Add the following `Update` method:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
-`Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
+`Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use HTTP PATCH.
 
 Update the to-do item's name to "feed fish":
 
@@ -412,28 +409,25 @@ Use Postman to delete the to-do item:
 * Set the URI of the object to delete, for example `https://localhost:5001/api/todo/1`
 * Select **Send**
 
-The sample app doesn't allow you to delete all the items. When there are no items, a new one is created.
+The sample app allows you to delete all the items, but when no item is left, a new one is created.
 
 ## Call the API with jQuery
 
 In this section, an HTML page is added that uses jQuery to call the web api. jQuery initiates the request and updates the page with the details from the API's response.
 
-Configure the app to serve static files and to enable default file mapping with the following calls:
-
-* [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) 
-* [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) extension methods in *Startup.Configure*. For more information, see [Static files](xref:fundamentals/static-files).
+Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_):
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=14-15&name=snippet_configure)]
 
 ::: moniker range=">= aspnetcore-2.2"
-Create *wwwroot* directory to contain the assets in this section.
+Create a *wwwroot* folder in the project directory.
 ::: moniker-end
 
-Add an HTML file, named *index.html*, to the project's *wwwroot* directory. Replace its contents with the following markup:
+Add an HTML file named *index.html* to the project's *wwwroot* directory. Replace its contents with the following markup:
 
 [!code-html[](first-web-api/samples/2.2/TodoApi/wwwroot/index.html)]
 
-Add a JavaScript file, named *site.js*, to the project's *wwwroot* directory. Replace its contents with the following code:
+Add a JavaScript file named *site.js* to the project's *wwwroot* directory. Replace its contents with the following code:
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
 
@@ -442,7 +436,7 @@ A change to the ASP.NET Core project's launch settings may be required to test t
 * Open *Properties\launchSettings.json*.
 * Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
 
-There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN. This sample is a complete CRUD example of calling the API with jQuery. There are additional features in this sample to make the experience richer. Below are explanations around the calls to the API.
+There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN. This sample calls all of the CRUD methods of the API. Following are explanations of the calls to the API.
 
 ### Get a list of to-do items
 
