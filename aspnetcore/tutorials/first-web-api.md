@@ -47,10 +47,10 @@ The following diagram shows the design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
-* The client is whatever calls the web API, such as a mobile app or a browser. For this tutorial you use [Postman](https://www.getpostman.com/), [curl](https://curl.haxx.se/docs/manpage.html), and jQuery (a browser) as the client.
+* The client is whatever calls the web API, such as a mobile app or a browser. For this tutorial you use [Postman](https://www.getpostman.com/), [curl](https://curl.haxx.se/docs/manpage.html), and jQuery (a browser) as clients.
 * A *model* is a set of C# classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
  * A *controller* is a C# class that handles HTTP requests and creates the HTTP response.
-* A *data access layer* is code that retrieves and manipulates data in a database. The app that you create for the tutorial uses an in-memory database.
+* A *data access layer* is code that stores and retrieves data. This app uses an in-memory database.
 
 ## Prerequisites
 
@@ -72,11 +72,11 @@ The following diagram shows the design of the app.
 * In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template and click **OK**. Do **not** select **Enable Docker Support**.
 
 ::: moniker range="= aspnetcore-2.2"
-![VS new project dialog](first-web-api/_static/vs.png)
+  ![VS new project dialog](first-web-api/_static/vs.png)
 
 ::: moniker-end
 ::: moniker range="= aspnetcore-2.1"
-![VS new project dialog](first-web-api/_static/vs21.png)
+  ![VS new project dialog](first-web-api/_static/vs21.png)
 
 ::: moniker-end
 
@@ -112,19 +112,21 @@ Enter *TodoApi* for the **Project Name** > **Create**.
 
 ---
 
-### Launch the app
+### Test the API
+
+The project template creates a values API. Call the Get method from a browser to verify that you can run the app locally.
 
 # [Visual Studio](#tab/visual-studio)
 
-Press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `https://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number.
+Press Ctrl+F5 to run the app. Visual Studio launches a browser and navigates to `https://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press CTRL+F5 to launch the app. Navigate to the `Values` controller at [https://localhost:5001/api/values](https://localhost:5001/api/values).
+Press Ctrl+F5 to run the app. Go to following URL: [https://localhost:5001/api/values](https://localhost:5001/api/values).
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac  launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URI (change the URI to `https://localhost:<port>/api/values`).
+Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac  launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URL (change the URL to `https://localhost:<port>/api/values`).
 
 ---
 
@@ -136,13 +138,13 @@ The following JSON is returned:
 
 ## Add a model class
 
-A model is an object representing the data in the app. In this case, the only model is a to-do item.
+A *model* is a set of C# classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and click **Add**.
+Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
 Update the `TodoItem` class with the following code:
 
@@ -160,7 +162,7 @@ Right-click the project. Select **Add** > **New Folder**. Name the folder *Model
 
 Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**. Name the class *TodoItem*, and then click **New**.
 
-Update the `TodoItem` class with the following code:
+Replace the template code with the following code:
 
 ---
 
@@ -168,11 +170,9 @@ Update the `TodoItem` class with the following code:
 
 Model classes can go anywhere in the project, but the *Models* folder is used by convention.
 
-The database generates the `Id` when a `TodoItem` is created.
+## Add a database context
 
-## Create the database context
-
-The *database context* is the main class that coordinates Entity Framework functionality for a given data model. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
+The *database context* is the main class that coordinates Entity Framework functionality for a data model. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -188,15 +188,15 @@ Add a `TodoContext` class in the *Models* folder:
 
 ---
 
-Replace the class with the following code:
+Replace the template code with the following code:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoContext.cs)]
 
 ## Register the database context
 
-In this step, the database context is registered with the [dependency injection](xref:fundamentals/dependency-injection) container. Services (such as the DB context) that are registered with the dependency injection (DI) container are available to the controllers.
+In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
-Register the database context with the service container using the built-in support for DI. Update *Startup.cs* with the following highlighted code:
+Update *Startup.cs* with the following highlighted code:
 
 ::: moniker range="= aspnetcore-2.2"
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=5,8,25-26&name=snippet_all)]
@@ -209,7 +209,8 @@ Register the database context with the service container using the built-in supp
 The preceding code:
 
 * Removes unused `using` declarations.
-* Specifies an in-memory database is injected into the service container.
+* Adds the database context to the DI container.
+* Specifies that the database context will use an in-memory database.
 
 ## Add a controller
 
@@ -232,31 +233,33 @@ In **Solution Explorer**, in the *Controllers* folder, add the class `TodoContro
 
 ---
 
-Replace the `TodoController` class with the following code:
+Replace the template code with the following code:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
 
 The preceding code:
 
 * Defines an API controller class without methods.
-* Creates a new Todo item when `TodoItems` is empty. You won't be able to delete all the Todo items because the constructor creates a new one if `TodoItems` is empty.
 
-In the next sections, methods are added to implement the API. The class is annotated with an [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute to:
+* Decorates the class with the [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute.
 
-* Mark the class is used to serve HTTP API responses.
-* Enable the class to target conventions, filters, and other behaviors.
+  This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute).
 
-For information, see [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute).
+* Uses DI to inject the database context (`TodoContext`) into the controller. 
 
-The controller's constructor uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller. The constructor adds an item to the in-memory database if one doesn't exist.
+  The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+
+* Adds an item named `Item1` to the database if the database is empty.
+
+  This code is in the constructor, so it runs every time there's a new HTTP request. If you delete this item by calling the API, it will be back for the next API call. So it may look like the deletion didn't work when it actually did work. In the following sections, methods are added to implement the API.
 
 ## Add Get methods
 
-To get to-do items, add the following methods to the `TodoController` class:
+To provide an API that retrieves to-do items, add the following methods to the `TodoController` class:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetAll)]
 
-These methods implement the two GET endpoints:
+These methods implement two GET endpoints:
 
 * `GET /api/todo`
 * `GET /api/todo/{id}`
@@ -266,7 +269,7 @@ Test the app by calling the two endpoints from a browser. For example:
 * `https://localhost:5001/api/todo`
 * `https://localhost:5001/api/todo/1`
 
-The following HTTP response is produced with the preceding call to `GetAll`:
+The following HTTP response is produced by the preceding call to `GetAll`:
 
 ```json
 [
@@ -277,8 +280,6 @@ The following HTTP response is produced with the preceding call to `GetAll`:
   }
 ]
 ```
-
-Later in the tutorial, instructions are provided to view the HTTP response with [Postman](https://www.getpostman.com/) or [curl](https://curl.haxx.se/docs/manpage.html).
 
 ## Routing and URL paths
 
