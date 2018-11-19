@@ -67,12 +67,9 @@ Click **Publish**, and Visual Studio will copy all the needed assets to the dest
 
 ## Build the image
 
-Define your Docker image in a Dockerfile. The Dockerfile contains instructions
-for the base image, additional components, the app you
-want to run, and other configuration images.  The Dockerfile is the input
-to the `docker build` command, which creates the image.
+You will need to define your Docker image in a Dockerfile, which literally means that to create a text file and to name it dockerfile. The Dockerfile contains instructions to build the final image and includes information of the base image, additional components, the app you want to run, and other configuration images.  The Dockerfile is the input to the `docker build` command, which creates the image.
 
-You will build an image based on the `microsoft/aspnet`
+For this exercise, you will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
 Windows Server Core, IIS, and ASP.NET 4.7.2. When you run this image in your container, it will automatically start IIS and installed websites.
