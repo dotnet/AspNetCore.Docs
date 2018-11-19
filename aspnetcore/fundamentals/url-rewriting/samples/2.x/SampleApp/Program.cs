@@ -17,9 +17,9 @@ namespace SampleApp
                 .UseKestrel(options =>
                 {
                     // The following option to use port 443 only works if port 
-                    // 443 hasn't already been assigned by the server or otherwise
-                    // in use. For example, IIS might be using the port on a 
-                    // Windows server or local system.
+                    // 443 hasn't already been assigned by the server or is 
+                    // otherwise in use. For example, IIS might be using the 
+                    // port on a Windows server or local system.
                     options.Listen(IPAddress.Loopback, 443, listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");

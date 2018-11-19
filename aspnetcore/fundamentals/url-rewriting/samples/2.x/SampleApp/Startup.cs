@@ -25,8 +25,8 @@ namespace SampleApp
                         skipRemainingRules: true)
                     .AddApacheModRewrite(apacheModRewriteStreamReader)
                     .AddIISUrlRewrite(iisUrlRewriteStreamReader)
-                    .Add(MethodRules.RedirectXMLRequests)
-                    .Add(MethodRules.RewriteTXTRequests)
+                    .Add(MethodRules.RedirectXmlFileRequests)
+                    .Add(MethodRules.RewriteTextFileRequests)
                     .Add(new RedirectImageRequests(".png", "/png-images"))
                     .Add(new RedirectImageRequests(".jpg", "/jpg-images"));
 

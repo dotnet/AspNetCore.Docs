@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about URL rewriting and redirecting with URL Rewriting Middleware in ASP.NET Core applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/13/2018
+ms.date: 11/19/2018
 uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
@@ -44,7 +44,7 @@ If `/resource` is *redirected* to `/different-resource`, the server responds tha
 
 ![A WebAPI service endpoint has been temporarily changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The server sends back a 302 (Found) response with the new, temporary path for the service at version 2 /v2/api. The client makes a second request to the service at the redirect URL. The server responds with a 200 (OK) status code.](url-rewriting/_static/url_redirect.png)
 
-When redirecting requests to a different URL, you indicate whether the redirect is permanent or temporary:
+When redirecting requests to a different URL, indicate whether the redirect is permanent or temporary by specifying the status code with the response:
 
 * The *301 - Moved Permanently* status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
 
@@ -328,7 +328,7 @@ The sample app demonstrates a method that redirects requests for paths that end 
 
 *RewriteRules.cs*:
 
-[!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RedirectXMLRequests&highlight=14-18)]
+[!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RedirectXmlFileRequests&highlight=14-18)]
 
 This approach can also rewrite requests. The sample app demonstrates rewriting the path for any text file request to serve the *file.txt* text file from the *wwwroot* folder. Static File Middleware serves the file based on the updated request path:
 
@@ -336,7 +336,7 @@ This approach can also rewrite requests. The sample app demonstrates rewriting t
 
 *RewriteRules.cs*:
 
-[!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTXTRequests&highlight=7-8)]
+[!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTextFileRequests&highlight=7-8)]
 
 ### IRule-based rule
 

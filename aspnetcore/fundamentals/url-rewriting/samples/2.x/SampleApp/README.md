@@ -2,7 +2,7 @@
 
 This sample illustrates usage of ASP.NET Core 2.x URL Rewriting Middleware. The app demonstrates URL redirect and URL rewriting options.
 
-When running the sample, a response is served that shows the rewritten or redirected URL when one of the rules is applied to a request URL, except with the redirecting an XML file request and rewriting a text file request examples. For the file examples, Static File Middleware serves the file after the request URL is rewritten by the middleware.
+When running the sample, non-file responses return the rewritten or redirected URL when one of the rules is applied to a request URL. For the XML and text file examples, Static File Middleware serves the file after the request URL is rewritten by the middleware.
 
 ## Examples in this sample
 
@@ -18,13 +18,13 @@ When running the sample, a response is served that shows the rewritten or redire
 * `AddIISUrlRewrite(env.ContentRootFileProvider, "IISUrlRewrite.xml")`
   - Success status code: 200 (OK)
   - Example (rewrite): **/iis-rules-rewrite/{capture_group}** to **/rewritten?id={capture_group}**
-* `Add(RedirectXMLRequests)`
+* `Add(RedirectXmlFileRequests)`
   - Success status code: 301 (Moved Permanently)
   - Example (redirect): **/file.xml** to **/xmlfiles/file.xml**
-* `Add(RewriteTXTRequests)`
+* `Add(RewriteTextFileRequests)`
   - Success status code: 200 (OK)
   - Example (rewrite): **/some_file.txt** to **/file.txt**
-* `Add(new RedirectPNGRequests(".png", "/png-images")))`<br>`Add(new RedirectPNGRequests(".jpg", "/jpg-images")))`
+* `Add(new RedirectImageRequests(".png", "/png-images")))`<br>`Add(new RedirectImageRequests(".jpg", "/jpg-images")))`
   - Success status code: 301 (Moved Permanently)
   - Example (redirect): **/image.png** to **/png-images/image.png**
   - Example (redirect): **/image.jpg** to **/jpg-images/image.jpg**

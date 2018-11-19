@@ -8,8 +8,8 @@ namespace RewriteRules
 {
     public class MethodRules
     {
-        #region snippet_RedirectXMLRequests
-        public static void RedirectXMLRequests(RewriteContext context)
+        #region snippet_RedirectXmlFileRequests
+        public static void RedirectXmlFileRequests(RewriteContext context)
         {
             var request = context.HttpContext.Request;
 
@@ -31,8 +31,8 @@ namespace RewriteRules
         }
         #endregion
 
-        #region snippet_RewriteTXTRequests
-        public static void RewriteTXTRequests(RewriteContext context)
+        #region snippet_RewriteTextFileRequests
+        public static void RewriteTextFileRequests(RewriteContext context)
         {
             var request = context.HttpContext.Request;
 
