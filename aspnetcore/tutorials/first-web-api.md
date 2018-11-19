@@ -114,11 +114,13 @@ Enter *TodoApi* for the **Project Name** > **Create**.
 
 ### Test the API
 
-The project template creates a values API. Call the Get method from a browser to verify that you can run the app locally.
+The project template creates a `values` API. Call the Get method from a browser to verify that the app runs locally.
 
 # [Visual Studio](#tab/visual-studio)
 
 Press Ctrl+F5 to run the app. Visual Studio launches a browser and navigates to `https://localhost:<port>/api/values`, where `<port>` is a randomly chosen port number.
+
+If you get a dialog box that asks if you should trust the IIS Express certificate, select **Yes**. In the **Security Warning** dialog that appears next, select **Yes**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -142,11 +144,11 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio](#tab/visual-studio)
 
-In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
-Update the `TodoItem` class with the following code:
+* Replace the template code with the following code:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -176,7 +178,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -188,9 +190,9 @@ Add a `TodoContext` class in the *Models* folder:
 
 ---
 
-Replace the template code with the following code:
+* Replace the template code with the following code:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoContext.cs)]
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoContext.cs)]
 
 ## Register the database context
 
@@ -240,18 +242,9 @@ Replace the template code with the following code:
 The preceding code:
 
 * Defines an API controller class without methods.
-
-* Decorates the class with the [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute.
-
-  This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute).
-
-* Uses DI to inject the database context (`TodoContext`) into the controller. 
-
-  The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
-
-* Adds an item named `Item1` to the database if the database is empty.
-
-  This code is in the constructor, so it runs every time there's a new HTTP request. If you delete this item by calling the API, it will be back for the next API call. So it may look like the deletion didn't work when it actually did work. In the following sections, methods are added to implement the API.
+* Decorates the class with the [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute).
+* Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+* Adds an item named `Item1` to the database if the database is empty. This code is in the constructor, so it runs every time there's a new HTTP request. If you delete all items by calling the API, this one will be back for the next API call. So it may look like the deletion didn't work when it actually did work.
 
 ## Add Get methods
 
@@ -266,10 +259,10 @@ These methods implement two GET endpoints:
 
 Test the app by calling the two endpoints from a browser. For example:
 
-* `https://localhost:5001/api/todo`
-* `https://localhost:5001/api/todo/1`
+* `https://localhost:<port>/api/todo`
+* `https://localhost:<port>/api/todo/1`
 
-The following HTTP response is produced by the preceding call to `GetAll`:
+The following HTTP response is produced by the call to `GetAll`:
 
 ```json
 [
@@ -290,13 +283,13 @@ The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribu
   [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
 
 * Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller, so the controller name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
-* If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
-In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, it assigns the value of `"{id}"` in the URL to the method's `id` parameter.
+In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
-`Name = "GetTodo"` creates a named route. You'll see later how the app can use the name to create an HTTP link using the route name.
+The `Name = "GetTodo"` parameter creates a named route. You'll see later how the app can use the name to create an HTTP link using the route name.
 
 ## Return values
 
@@ -321,12 +314,12 @@ This tutorial uses Postman to test the web API.
     > Re-enable SSL certificate verification after testing the controller.
 
 * Create a new request.
-* Set the HTTP method to **GET**.
-* Set the URI to `https://localhost:<port>/api/todo`. For example, `https://localhost:5001/api/todo`.
+  * Set the HTTP method to **GET**.
+  * Set the request URL to `https://localhost:<port>/api/todo`. For example, `https://localhost:5001/api/todo`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
-![Postman with above request](first-web-api/_static/2pv.png)
+![Postman with Get request](first-web-api/_static/2pv.png)
 
 ## Add a Create method
 
@@ -334,7 +327,7 @@ Add the following `Create` method:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
-The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. MVC gets the value of the to-do item from the body of the HTTP request.
+The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
 The `CreatedAtRoute` method:
 
@@ -346,11 +339,12 @@ The `CreatedAtRoute` method:
 
 ### Test the Create method
 
-* Set the HTTP method to `POST`.
+* Build the project.
+* In Postman, set the HTTP method to `POST`.
 * Select the **Body** tab.
 * Select the **raw** radio button.
-* Set the type to *JSON (application/json)*.
-* Enter a request body with a to-do item:
+* Set the type to **JSON (application/json)**.
+* In the request body enter JSON for a to-do item:
 
     ```json
     {
@@ -361,14 +355,16 @@ The `CreatedAtRoute` method:
 
 * Select **Send**.
 
-![Postman with create request](first-web-api/_static/create.png)
+  ![Postman with create request](first-web-api/_static/create.png)
+
+  If you get a 405 Method Not Allowed error, it's probably the result of not compiling the project after adding the after adding the `Create` method.
+
+### Test the location header URI
 
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
-![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
-
-Test the location header URI:
+  ![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
 
 * Set the method to GET.
 * Paste the URI (for example, `https://localhost:5001/api/Todo/2`)
@@ -384,7 +380,7 @@ Add the following `Update` method:
 
 ### Test the Update method
 
-Update the to-do item's name to "feed fish":
+Update the to-do item that has id = 1 &mdash; set its name to "feed fish":
 
 ```json
   {
