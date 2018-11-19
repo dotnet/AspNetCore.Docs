@@ -47,9 +47,9 @@ The following diagram shows the design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
-* The client is whatever calls the web API, such as a mobile app or a browser. For this tutorial you use [Postman](https://www.getpostman.com/), [curl](https://curl.haxx.se/docs/manpage.html), and jQuery (a browser) as clients.
-* A *model* is a set of C# classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
- * A *controller* is a C# class that handles HTTP requests and creates the HTTP response.
+* A *client* is whatever calls the web API, such as a mobile app or a browser. For this tutorial you use [Postman](https://www.getpostman.com/) and a browser as clients.
+* A *model* is a set of classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
+* A *controller* is a class that handles HTTP requests and creates the HTTP response.
 * A *data access layer* is code that stores and retrieves data. This app uses an in-memory database.
 
 ## Prerequisites
@@ -138,7 +138,7 @@ The following JSON is returned:
 
 ## Add a model class
 
-A *model* is a set of C# classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
+A *model* is a set of classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -497,4 +497,4 @@ In this tutorial, you learned how to:
 Advance to the next tutorial to learn how to generate API help pages:
 
 > [!div class="nextstepaction"]
-> <xref:tutorials/getting-started-with-swashbuckle>
+> <xref:tutorials/get-started-with-swashbuckle>
