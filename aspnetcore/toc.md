@@ -34,7 +34,7 @@
 ## [App startup](xref:fundamentals/startup)
 ## [Dependency injection (services)](xref:fundamentals/dependency-injection)
 ## [Routing](xref:fundamentals/routing)
-## [Multiple environments](xref:fundamentals/environments)
+## [Environments (dev, stage, prod)](xref:fundamentals/environments)
 ## [Configuration](xref:fundamentals/configuration/index)
 ## [Options](xref:fundamentals/configuration/options)
 ## [Logging](xref:fundamentals/logging/index)
@@ -432,6 +432,7 @@
 ## [Response compression](xref:performance/response-compression)
 
 # Migration
+## [2.1 to 2.2](xref:migration/21-to-22)
 ## [2.0 to 2.1](xref:migration/20_21)
 ## 1.x to 2.0
 ### [Overview](xref:migration/1x-to-2x/index)
