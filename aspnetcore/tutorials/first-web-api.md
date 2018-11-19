@@ -442,27 +442,41 @@ There are several ways to get jQuery. In the preceding snippet, the library is l
 
 To get a list of to-do items, send an HTTP GET request to */api/todo*.
 
-The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of HTTP interaction, sending an HTTP request to the specified `url`. `GET` is used as the `type`. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the to-do information.
+The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of HTTP interaction, sending an HTTP request to the specified `url`. The `type` is the HTTP method, in this case `GET`. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the to-do information.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_GetData)]
 
 ### Add a to-do item
 
-To add a to-do item, send an HTTP POST request to `/api/todo/`. The request body should contain a to-do object. The [ajax](https://api.jquery.com/jquery.ajax/) function is using `POST` to call the API. For `POST` and `PUT` requests, the request body represents the data sent to the API. The API is expecting a JSON request body. The `accepts` and `contentType` options are set to `application/json` to classify the media type being received and sent, respectively. The data is converted to a JSON object using [`JSON.stringify`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). When the API returns a successful status code, the `getData` function is invoked to update the HTML table.
+The [ajax](https://api.jquery.com/jquery.ajax/) function sends a `POST` request with the to-do item in the request body. The `accepts` and `contentType` options are set to `application/json` to specify the media type being received and sent. The to-do item is converted to JSON by using [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). When the API returns a successful status code, the `getData` function is invoked to update the HTML table.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AddItem)]
 
 ### Update a to-do item
 
-Updating a to-do item is very similar to adding one, since both rely on a request body. The only real difference between the two in this case is that the `url` changes to add the unique identifier of the item, and the `type` is `PUT`.
+Updating a to-do item is very similar to adding one. The only real difference between the two in this case is that the `url` changes to add the unique identifier of the item, and the `type` is `PUT`.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxPut)]
 
 ### Delete a to-do item
 
-Deleting a to-do item is accomplished by setting the `type` on the AJAX call to `DELETE` and specifing the item's unique identifier in the URL.
+Deleting a to-do item is accomplished by setting the `type` on the AJAX call to `DELETE` and specifying the item's unique identifier in the URL.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxDelete)]
+
+## Additional resources
+
+[View or download sample code for this tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
+
+For more information, see the following resources:
+
+* <xref:web-api/index>
+* <xref:tutorials/web-api-help-pages-using-swagger>
+* <xref:data/ef-rp/index>
+* <xref:mvc/controllers/routing>
+* <xref:web-api/action-return-types>
+* <xref:host-and-deploy/azure-apps/index>
+* <xref:host-and-deploy/index>
 
 ## Next steps
 
@@ -479,15 +493,3 @@ In this tutorial, you learned how to:
 > * Specify return values.
 > * Call the web API with Postman.
 > * Call the web api with jQuery.
-
-[View or download sample code for this tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
-
-For more information, see the following resources:
-
-* <xref:web-api/index>
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:data/ef-rp/index>
-* <xref:mvc/controllers/routing>
-* <xref:web-api/action-return-types>
-* <xref:host-and-deploy/azure-apps/index>
-* <xref:host-and-deploy/index>
