@@ -493,3 +493,8 @@ In this tutorial, you learned how to:
 > * Specify return values.
 > * Call the web API with Postman.
 > * Call the web api with jQuery.
+
+Advance to the next tutorial to learn how to generate API help pages:
+
+> [!div class="nextstepaction"]
+> <xref:tutorials/getting-started-with-swashbuckle>
