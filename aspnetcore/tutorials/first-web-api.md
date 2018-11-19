@@ -436,13 +436,13 @@ A change to the ASP.NET Core project's launch settings may be required to test t
 * Open *Properties\launchSettings.json*.
 * Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
 
-There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN. This sample calls all of the CRUD methods of the API. Following are explanations of the calls to the API.
+There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN.
+
+This sample calls all of the CRUD methods of the API. Following are explanations of the calls to the API.
 
 ### Get a list of to-do items
 
-To get a list of to-do items, send an HTTP GET request to */api/todo*.
-
-The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends an AJAX request to the API, which returns JSON representing an object or array. This function can handle all forms of HTTP interaction, sending an HTTP request to the specified `url`. The `type` is the HTTP method, in this case `GET`. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the to-do information.
+The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends a `GET` request to the API, which returns JSON representing an array of to-do items. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the to-do information.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_GetData)]
 
@@ -454,7 +454,7 @@ The [ajax](https://api.jquery.com/jquery.ajax/) function sends a `POST` request 
 
 ### Update a to-do item
 
-Updating a to-do item is very similar to adding one. The only real difference between the two in this case is that the `url` changes to add the unique identifier of the item, and the `type` is `PUT`.
+Updating a to-do item is similar to adding one. The only real difference between the two is that the `url` changes to add the unique identifier of the item, and the `type` is `PUT`.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxPut)]
 
