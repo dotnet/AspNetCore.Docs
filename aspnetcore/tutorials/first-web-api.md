@@ -307,7 +307,7 @@ The return type of the `GetAll` and `GetById` methods is [ActionResult\<T> type]
 * If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
-## Call the web API with Postman
+## Test the GetAll method
 
 This tutorial uses Postman to test the web API.
 
@@ -344,7 +344,7 @@ The `CreatedAtRoute` method:
 
   [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
-## Use Postman to send a Create request
+### Test the Create method
 
 * Set the HTTP method to `POST`.
 * Select the **Body** tab.
@@ -382,6 +382,8 @@ Add the following `Update` method:
 
 `Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use HTTP PATCH.
 
+### Test the Update method
+
 Update the to-do item's name to "feed fish":
 
 ```json
@@ -403,7 +405,9 @@ Add the following `Delete` method:
 
 The `Delete` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
 
-Use Postman to delete the to-do item:
+### Test the Delete method
+
+Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
 * Set the URI of the object to delete, for example `https://localhost:5001/api/todo/1`
