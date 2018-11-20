@@ -83,32 +83,31 @@ The following diagram shows the design of the app.
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to a folder which will contain the project.
-* Run the following command:
+* Change directories (`cd`) to the folder which will contain the project folder.
+* Run the following commands:
 
    ```console
    dotnet new webapi -o TodoApi
    code -r TodoApi
    ```
 
-  * A dialog box appears with **Required assets to build and debug are missing from 'TodoApi'. Add them?**
-  * Select **Yes**
-  * `dotnet new webapi -o TodoApi`: creates a new web api project in the *TodoApi* folder.
-  * `code -r TodoApi`: Loads the *TodoApi.csproj* project file.
+  These commands create a new web API project and open a new instance of Visual Studio Code in he new project folder.
+
+* When a dialog box asks if you want to add required assets to the project, select **Yes**
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **File** > **New Solution**.
+* Select **File** > **New Solution**.
 
-![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-Select **.NET Core App** > **ASP.NET Core web api** > **Next**.
+* Select **.NET Core App** > **ASP.NET Core Web API** > **Next**.
 
-![macOS New project dialog](first-web-api-mac/_static/1.png)
+  ![macOS New project dialog](first-web-api-mac/_static/1.png)
 
-Enter *TodoApi* for the **Project Name** > **Create**.
+* Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/2.png)
 
 ---
 
@@ -124,11 +123,11 @@ If you get a dialog box that asks if you should trust the IIS Express certificat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run the app. Go to following URL: [https://localhost:5001/api/values](https://localhost:5001/api/values).
+Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/api/values](https://localhost:5001/api/values).
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac  launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URL (change the URL to `https://localhost:<port>/api/values`).
+Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URL (change the URL to `https://localhost:<port>/api/values`).
 
 ---
 
@@ -152,23 +151,25 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Add a folder named *Models* for the model classes.
+* Add a folder named *Models*.
 
-Add a `TodoItem` class to the *Models* folder with the following code:
+* Add a `TodoItem` class to the *Models* folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/folder.png)
 
-Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**. Name the class *TodoItem*, and then click **New**.
+* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
-Replace the template code with the following code:
+* Name the class *TodoItem*, and then click **New**.
+
+* Replace the template code with the following code:
 
 ---
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoItem.cs)]
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoItem.cs)]
 
 Model classes can go anywhere in the project, but the *Models* folder is used by convention.
 
@@ -182,11 +183,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Add a `TodoContext` class to the *Models* folder.
+* Add a `TodoContext` class to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Add a `TodoContext` class in the *Models* folder:
+* Add a `TodoContext` class in the *Models* folder:
 
 ---
 
@@ -221,23 +222,23 @@ The preceding code:
 * Right-click the *Controllers* folder.
 * Select **Add** > **New Item**.
 * In the **Add New Item** dialog, select the **API Controller Class** template.
-* Name the class *TodoController*, and click **Add**.
+* Name the class *TodoController*, and select **Add**.
 
-![Add new Item dialog with controller in search box and web api controller selected](first-web-api/_static/new_controller.png)
+  ![Add new Item dialog with controller in search box and web api controller selected](first-web-api/_static/new_controller.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In the *Controllers* folder, create a class named `TodoController`.
+* In the *Controllers* folder, create a class named `TodoController`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-In **Solution Explorer**, in the *Controllers* folder, add the class `TodoController`.
+* In **Solution Explorer**, in the *Controllers* folder, add the class `TodoController`.
 
 ---
 
-Replace the template code with the following code:
+* Replace the template code with the following code:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
 
 The preceding code:
 
