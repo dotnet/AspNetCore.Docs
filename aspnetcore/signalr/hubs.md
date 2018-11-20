@@ -5,7 +5,7 @@ description: Learn how to use hubs in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/07/2018
+ms.date: 11/20/2018
 uid: signalr/hubs
 ---
 
@@ -145,7 +145,7 @@ Exceptions thrown in your hub methods are sent to the client that invoked the me
 
 [!code-javascript[Error](hubs/sample/wwwroot/js/chat.js?range=23)]
 
-By default, if your Hub throws an exception, SignalR returns a generic error message to the client. For example:
+If your Hub throws an exception, connections aren't closed. By default, SignalR returns a generic error message to the client. For example:
 
 ```
 Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'MethodName' on the server.

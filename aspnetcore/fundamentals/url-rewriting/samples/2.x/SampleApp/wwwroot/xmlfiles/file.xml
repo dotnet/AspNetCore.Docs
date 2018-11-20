@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file>
+  <name>file.xml</name>
+  <description>This XML file is served for all file.xml static file requests via the RedirectXmlFileRequests method rule.</description>
+</file>
