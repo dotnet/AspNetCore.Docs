@@ -7,6 +7,7 @@ ms.custom: H1Hack27Feb2017
 ms.date: 08/02/2017
 uid: client-side/spa-services
 ---
+
 # Use JavaScriptServices to Create Single Page Applications in ASP.NET Core
 
 By [Scott Addie](https://github.com/scottaddie) and [Fiyaz Hasan](http://fiyazhasan.me/)
