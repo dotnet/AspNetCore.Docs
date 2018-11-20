@@ -226,7 +226,7 @@ A few differences exist between endpoint routing in ASP.NET Core 2.2 or later an
 
   With `IRouter`-based routing, this code generates a URI of `/blog/ReadPost/17`, which respects the casing of the provided route value. Endpoint routing in ASP.NET Core 2.2 or later produces `/Blog/ReadPost/17` ("Blog" is capitalized). Endpoint routing provides the `IOutboundParameterTransformer` interface that can be used to customize this behavior globally or to apply different conventions for mapping URLs.
 
-  For more information, see the [Parameter transformer reference](xref:#parameter-transformer-reference) section.
+  For more information, see the [Parameter transformer reference](#parameter-transformer-reference) section.
 
 * Link Generation used by MVC/Razor Pages with conventional routes behaves differently when attempting to link to an controller/action or page that doesn't exist.
 
