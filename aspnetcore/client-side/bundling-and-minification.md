@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/04/2018
+ms.date: 11/20/2018
 uid: client-side/bundling-and-minification
 ---
 # Bundle and minify static assets in ASP.NET Core
@@ -21,7 +21,7 @@ Bundling and minification primarily improve the first page request load time. On
 
 ### Bundling
 
-Bundling combines multiple files into a single file. Bundling reduces the number of server requests which are necessary to render a web asset, such as a web page. You can create any number of individual bundles specifically for CSS, JavaScript, etc. Fewer files means fewer HTTP requests from the browser to the server or from the service providing your application. This results in improved first page load performance.
+Bundling combines multiple files into a single file. Bundling reduces the number of server requests that are necessary to render a web asset, such as a web page. You can create any number of individual bundles specifically for CSS, JavaScript, etc. Fewer files means fewer HTTP requests from the browser to the server or from the service providing your application. This results in improved first page load performance.
 
 ### Minification
 
@@ -61,9 +61,21 @@ The MVC and Razor Pages project templates provide an out-of-the-box solution for
 
 ## Configure bundling and minification
 
-The MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file which defines the options for each bundle. By default, a single bundle configuration is defined for the custom JavaScript (*wwwroot/js/site.js*) and stylesheet (*wwwroot/css/site.css*) files:
+::: moniker range="<= aspnetcore-2.0"
+
+In ASP.NET Core 2.0 or earlier, the MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file which defines the options for each bundle:
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1"
+
+Add a new JSON file, named *bundleconfig.json*, to the MVC or Razor Pages project root. Include the following JSON in that file as a starting point:
+
+::: moniker-end
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig.json)]
+
+The *bundleconfig.json* file defines the options for each bundle. In the preceding example, a single bundle configuration is defined for the custom JavaScript (*wwwroot/js/site.js*) and stylesheet (*wwwroot/css/site.css*) files.
 
 Configuration options include:
 
