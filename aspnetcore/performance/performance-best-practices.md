@@ -9,23 +9,40 @@ uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices
 
+https://docs.microsoft.com/en-us/windows/desktop/procthread/thread-pools
+https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.wait?view=netframework-4.7.2
+
+
 By [Mike Rousos](https://github.com/mjrousos)
 
-ASP.NET Core is a high-performance web framework, but problems in application code can still lead to slow or inconsistent response times. This document lists some common issues that may limit the performance of your ASP.NET Core app and how to avoid them.
+This topic provides guidelines for best practices on ASP.NET Core performance.
+
+## Cache aggressively
+
+For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
 
 ## Avoid Blocking Calls
-ASP.NET Core applications need to be able to process many requests simultaneously. Asynchronous APIs allow a small pool of threads to handle hundreds or thousands of concurrent requests by not waiting on blocking calls. Instead, the thread can work on another request while the long-running task completes.
 
-A common problem in ASP.NET Core applications that aren't performing well is blocking calls that could be asynchronous. This pattern leads to ThreadPool starvation and degrading response times. 
+ASP.NET Core app should be architected to process many requests simultaneously. Asynchronous APIs allow a small pool of threads to handle hundreds or thousands of concurrent requests by not waiting on blocking calls. Rather than waiting on a long-running synchronous task to complete, the thread can work on another request.
 
-* **Do not** block asynchronous execution by calling `Task.Wait()` or `Task.Result`.
-* **Do** make hot code paths asynchronous and call asynchronous APIs for any long-running operations (especially data access).
-* **Do** make controller actions asynchronous since the entire callstack needs to be asynchronous in order to benefit from async/await patterns.
-* **Do not** acquire locks in common code paths since ASP.NET Core applications need to run highly parallelized.
+A common performance problem in ASP.NET Core apps is blocking calls that could be asynchronous. Many synchronous blocking calls leads to [Thread Pool](https://docs.microsoft.com/en-us/windows/desktop/procthread/thread-pools) starvation and degrading response times.
 
-An indication that blocking calls may be slowing down your app is if profiling (using a tool like [PerfView](https://github.com/Microsoft/perfview), for example) shows threads regularly being added to the ThreadPool (as indicated by the `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event). There is further guidance available in the [async guidance docs](TBD-Link_To_Davifowl_Doc). 
+**Do not**:
+
+*  Block asynchronous execution by calling [Task.Wait](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.wait?view=netframework-4.7.2) or [Task.Result](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1.result?view=netframework-4.7.2).
+* Acquire locks in common code paths. ASP.NET Core apps are most performant when architected to run highly parallelized.
+
+<!-- TODO review hot code paths is jargon that won't MT (machine translate) and is not well defined for native speakers. -->
+**Do**:
+
+* Make frequently called or expensive code paths asynchronous.
+* Call asynchronous APIs for any long-running operations (especially data access).
+* Make controller/Razor Page actions asynchronous. The entire call stack needs to be asynchronous in order to benefit from [async/await](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) patterns.
+
+A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to look for threads frequently/regularly being added to the Thread Pool. The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread being added to the thread pool.  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc <!-- TODO review TBD link -->).
 
 ## Be Mindful of Large Object Allocations
+
 The [.NET garbage collector](https://docs.microsoft.com/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in .NET applications. This means that, generally, .NET developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes resources (CPU time), so developers need to be careful about allocating too many objects in very hot code paths. This is especially true of large objects (>85,000 bytes) since they will be stored on the large object heap and will eventually require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires application execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance in ASP.NET Core applications.
 
 * **Do** consider caching large objects that will be frequently used so that they don't need to be re-allocated each time they're needed.
