@@ -15,11 +15,17 @@ https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.wait?vie
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-This topic provides guidelines for best practices on ASP.NET Core performance.
+<!-- TODO review hot code paths is jargon that won't MT (machine translate) and is not well defined for native speakers. -->
+
+This topic provides guidelines for best practices on ASP.NET Core performance. 
+
+<a name="hot"></a>
+
+In this document, a hot code path is defined as:
 
 ## Cache aggressively
 
-For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
+Caching is discussed in several parts of this document. For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
 
 ## Avoid Blocking Calls
 
@@ -32,10 +38,10 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 *  Block asynchronous execution by calling [Task.Wait](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.wait?view=netframework-4.7.2) or [Task.Result](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1.result?view=netframework-4.7.2).
 * Acquire locks in common code paths. ASP.NET Core apps are most performant when architected to run highly parallelized.
 
-<!-- TODO review hot code paths is jargon that won't MT (machine translate) and is not well defined for native speakers. -->
+
 **Do**:
 
-* Make frequently called or expensive code paths asynchronous.
+* Make frequently [hot code paths](#hot) asynchronous.
 * Call asynchronous APIs for any long-running operations (especially data access).
 * Make controller/Razor Page actions asynchronous. The entire call stack needs to be asynchronous in order to benefit from [async/await](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
@@ -43,19 +49,27 @@ A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to
 
 ## Be Mindful of Large Object Allocations
 
-The [.NET garbage collector](https://docs.microsoft.com/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in .NET applications. This means that, generally, .NET developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes resources (CPU time), so developers need to be careful about allocating too many objects in very hot code paths. This is especially true of large objects (>85,000 bytes) since they will be stored on the large object heap and will eventually require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires application execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance in ASP.NET Core applications.
+<!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
+The [.NET Core garbage collector](https://docs.microsoft.com/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection means that, generally, .NET Core developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes resources (CPU time), so developers need to be careful about allocating too many objects in very [hot code paths](hot). This is especially true of large objects (> 85K bytes). Large objects are stored on the large object heap and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance in ASP.NET Core apps.
 
-* **Do** consider caching large objects that will be frequently used so that they don't need to be re-allocated each time they're needed.
+* **Do** consider caching large objects that are frequently used so that they don't need to be re-allocated each time they're needed.
 * **Do** pool buffers by using an `ArrayPool<T>` to store large arrays.
-* **Do not** allocate many, short-lived large objects on hot code paths.
+* **Do not** allocate many, short-lived large objects on [hot code paths](hot).
 
-Memory issues like this can be diagnosed by looked at GC stats in PerfView and seeing how long GC pauses were, what percentage of the processor time was spent in garbage collection, and how many garbage collections were gen 0, gen 1, or gen 2. 
+Memory issues like this can be diagnosed by reviewing garbage collection (GC) stats in PerfView and examining:
+
+* How long GC pauses are.
+* What percentage of the processor time is spent in garbage collection.
+* How many garbage collections are gen 0, gen 1, and gen 2.
 
 ## Optimize Data Access
-Interactions with a data store or other remote services are often the slowest parts of an ASP.NET Core app. Because of that, it's important to make sure that data is read and written efficiently. In addition to making sure to perform data access asynchronously, some best practices include:
 
-* **Do** consider caching frequently-used data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](https://docs.microsoft.com/aspnet/core/performance/caching/memory) or a [DistributedCache](https://docs.microsoft.com/aspnet/core/performance/caching/distributed).
-* **Do not** use 'chatty' database interactions. Instead, retrieve all the data that will be needed in a single call rather than over several.
+<!-- TODO review by EF folks -->
+
+Interactions with a data store or other remote services are often the slowest parts of an ASP.NET Core app. Because of that, it's important to make sure that data is read and written efficiently. In addition to ensuring data access is asynchronous, some best practices include:
+
+* **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](https://docs.microsoft.com/aspnet/core/performance/caching/memory) or a [DistributedCache](https://docs.microsoft.com/aspnet/core/performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
+* Prefer *chunky* over *chatty* database interactions. A *chatty* interaction requires many calls to the data store. A *chunky* interaction requires fewer network calls. The goal is to retrieve all the data that will be needed in a single call rather than  several calls.
 * **Do** use [no-tracking queries](https://docs.microsoft.com/ef/core/querying/tracking) in Entity Framework when accessing data in a read-only scenario.
 * **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) before resolving the query so that the filtering is done by the database and the response returned to your application is smaller.
 * **Do not** retrieve more data than is necessary. Limit queries to return just the columns/fields and rows that are necessary for the current HTTP request.
@@ -72,7 +86,7 @@ Although `HttpClient` implements the `IDisposable` interface, it is meant to be 
 You want all of your code to be fast, of course, but some code paths are more critical than others to optimize. For example, middleware components in your app's request processing pipeline (especially those early in the pipeline) are sure to be run for every request, so they have a large impact on app performance. Other examples include code that is executed for every request (or multiple times per request) such as custom logging, authorization handlers, or initialization of transient services.
 
 * **Do not** use custom middleware components with long-running tasks.
-* **Do** use performance profiling tools (like [Visual Studio Diagnostic Tools](https://docs.microsoft.com/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)) to identify hot code paths specific to your app.
+* **Do** use performance profiling tools (like [Visual Studio Diagnostic Tools](https://docs.microsoft.com/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)) to identify [hot code paths](hot) specific to your app.
 
 ## Complete Long-Running Tasks Outside of HTTP Requests
 Most requests to an ASP.NET Core app can be handled by MVC controllers calling necessary services and returning an HTTP response. For some requests which involve long-running tasks, though, it is better to make the entire request-response process asynchronous.
