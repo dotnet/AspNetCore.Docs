@@ -80,7 +80,6 @@ The `Hub` class has a `Clients` property that contains the following properties 
 | `Caller` | Calls a method on the client that invoked the hub method |
 | `Others` | Calls a method on all connected clients except the client that invoked the method |
 
-
 `Hub.Clients` also contains the following methods:
 
 | Method | Description |
@@ -121,7 +120,17 @@ This interface can be used to refactor the preceding `ChatHub` example.
 
 Using `Hub<IChatClient>` enables compile-time checking of the client methods. This prevents issues caused by using magic strings, since `Hub<T>` can only provide access to the methods defined in the interface.
 
-Using a strongly typed `Hub<T>` disables the ability to use `SendAsync`.
+Using a strongly typed `Hub<T>` disables the ability to use `SendAsync`. Any methods defined on the interface can still be defined as asynchronous. In fact, each of these methods should return a `Task`. Since it's an interface, don't use the `async` keyword. For example:
+
+```csharp
+public interface IClient
+{
+    Task ClientMethod();
+}
+```
+
+> [!NOTE]
+> The `Async` suffix isn't stripped from the method name. Unless your client method is defined with `.on('MyMethodAsync')`, you shouldn't use `MyMethodAsync` as a name.
 
 ## Change the name of a hub method
 
