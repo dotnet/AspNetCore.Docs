@@ -63,13 +63,13 @@ The MVC and Razor Pages project templates provide an out-of-the-box solution for
 
 ::: moniker range="<= aspnetcore-2.0"
 
-In ASP.NET Core 2.0 or earlier, the MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file which defines the options for each bundle:
+In ASP.NET Core 2.0 or earlier, the MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file that defines the options for each bundle:
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Add a new JSON file, named *bundleconfig.json*, to the MVC or Razor Pages project root. Include the following JSON in that file as a starting point:
+In ASP.NET Core 2.1 or later, add a new JSON file, named *bundleconfig.json*, to the MVC or Razor Pages project root. Include the following JSON in that file as a starting point:
 
 ::: moniker-end
 
