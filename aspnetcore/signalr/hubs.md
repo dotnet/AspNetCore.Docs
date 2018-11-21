@@ -121,7 +121,7 @@ This interface can be used to refactor the preceding `ChatHub` example.
 
 Using `Hub<IChatClient>` enables compile-time checking of the client methods. This prevents issues caused by using magic strings, since `Hub<T>` can only provide access to the methods defined in the interface.
 
-Using a strongly typed `Hub<T>` disables the ability to use `SendAsync`. Any methods defined in the interface can still be defined as asynchronous.
+Using a strongly typed `Hub<T>` disables the ability to use `SendAsync`. Any methods defined on the interface can still be defined as asynchronous.
 
 ## Change the name of a hub method
 
