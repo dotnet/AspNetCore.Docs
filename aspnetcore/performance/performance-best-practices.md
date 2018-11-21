@@ -9,19 +9,15 @@ uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices
 
-https://docs.microsoft.com/en-us/windows/desktop/procthread/thread-pools
-https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.wait?view=netframework-4.7.2
-
-
 By [Mike Rousos](https://github.com/mjrousos)
 
 <!-- TODO review hot code paths is jargon that won't MT (machine translate) and is not well defined for native speakers. -->
 
-This topic provides guidelines for best practices on ASP.NET Core performance. 
+This topic provides guidelines for best practices on ASP.NET Core performance.
 
 <a name="hot"></a>
 
-In this document, a hot code path is defined as:
+In this document, a hot code path is defined as a code path that is frequently called and where much of the execution time occurs. Hot code paths typically limit app scale-out and performance.
 
 ## Cache aggressively
 
@@ -31,11 +27,11 @@ Caching is discussed in several parts of this document. For more information, se
 
 ASP.NET Core app should be architected to process many requests simultaneously. Asynchronous APIs allow a small pool of threads to handle hundreds or thousands of concurrent requests by not waiting on blocking calls. Rather than waiting on a long-running synchronous task to complete, the thread can work on another request.
 
-A common performance problem in ASP.NET Core apps is blocking calls that could be asynchronous. Many synchronous blocking calls leads to [Thread Pool](https://docs.microsoft.com/en-us/windows/desktop/procthread/thread-pools) starvation and degrading response times.
+A common performance problem in ASP.NET Core apps is blocking calls that could be asynchronous. Many synchronous blocking calls leads to [Thread Pool](/windows/desktop/procthread/thread-pools) starvation and degrading response times.
 
 **Do not**:
 
-*  Block asynchronous execution by calling [Task.Wait](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.wait?view=netframework-4.7.2) or [Task.Result](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1.result?view=netframework-4.7.2).
+*  Block asynchronous execution by calling [Task.Wait](/dotnet/api/system.threading.tasks.task.wait) or [Task.Result](/dotnet/api/system.threading.tasks.task-1.result).
 * Acquire locks in common code paths. ASP.NET Core apps are most performant when architected to run highly parallelized.
 
 
@@ -43,7 +39,7 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 * Make frequently [hot code paths](#hot) asynchronous.
 * Call asynchronous APIs for any long-running operations (especially data access).
-* Make controller/Razor Page actions asynchronous. The entire call stack needs to be asynchronous in order to benefit from [async/await](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) patterns.
+* Make controller/Razor Page actions asynchronous. The entire call stack needs to be asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
 A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to look for threads frequently/regularly being added to the Thread Pool. The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread being added to the thread pool.  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc <!-- TODO review TBD link -->).
 
@@ -52,7 +48,7 @@ A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to
 <!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
 The [.NET Core garbage collector](https://docs.microsoft.com/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection means that, generally, .NET Core developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes resources (CPU time), so developers need to be careful about allocating too many objects in very [hot code paths](hot). This is especially true of large objects (> 85K bytes). Large objects are stored on the large object heap and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance in ASP.NET Core apps.
 
-* **Do** consider caching large objects that are frequently used so that they don't need to be re-allocated each time they're needed.
+* **Do** consider caching large objects that are frequently used so that they don't need to be reallocated each time they're needed.
 * **Do** pool buffers by using an `ArrayPool<T>` to store large arrays.
 * **Do not** allocate many, short-lived large objects on [hot code paths](hot).
 
@@ -74,11 +70,11 @@ Interactions with a data store or other remote services are often the slowest pa
 * **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is done by the database.
 * **Do not** retrieve more data than is necessary. Write queries to return just the data that is necessary for the current HTTP request.
 
-Query issues can be detected by reviewing time spent accessing data using app monitoring (with [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview), for example) or with profiling tools. Most databases also make statistics available concerning frequently-executed queries.
+Query issues can be detected by reviewing time spent accessing data using app monitoring (with [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview), for example) or with profiling tools. Most databases also make statistics available concerning frequently executed queries.
 
 ## Pool HTTP connections with HttpClientFactory
 
-Although `HttpClient` implements the `IDisposable` interface, it's meant to be re-used. Closed `HttpClient` instances leave sockets open in the `TIME_WAIT` state for a short period of time. Consequently, if a code path that creates and disposes of `HttpClient` objects is frequently used, the app may exhaust available sockets. [HttpClientFactory](https://docs.microsoft.com/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) was introduced in ASP.NET Core 2.1 as a solution to this problem. It handles pooling HTTP connections to optimize performance and reliability.
+Although `HttpClient` implements the `IDisposable` interface, it's meant to be reused. Closed `HttpClient` instances leave sockets open in the `TIME_WAIT` state for a short period of time. Consequently, if a code path that creates and disposes of `HttpClient` objects is frequently used, the app may exhaust available sockets. [HttpClientFactory](https://docs.microsoft.com/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) was introduced in ASP.NET Core 2.1 as a solution to this problem. It handles pooling HTTP connections to optimize performance and reliability.
 
 * **Do not** create and dispose of `HttpClient` instances directly.
 * **Do** use [HttpClientFactory](https://docs.microsoft.com/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) to retrieve `HttpClient` instances.
@@ -88,7 +84,7 @@ Although `HttpClient` implements the `IDisposable` interface, it's meant to be r
 You want all of your code to be fast, but some frequently called code paths are the most critical to optimize:
 
 * Middleware components in the app's request processing pipeline, especially middleware run early in the pipeline. These components have a large impact on performance.
-* Code that is executed for every request or multiple times per request. For example,custom logging, authorization handlers, or initialization of transient services.
+* Code that is executed for every request or multiple times per request. For example, custom logging, authorization handlers, or initialization of transient services.
 
 * **Do not** use custom middleware components with long-running tasks.
 * **Do** use performance profiling tools (like [Visual Studio Diagnostic Tools](https://docs.microsoft.com/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)) to identify [hot code paths](hot) specific to your app.
@@ -113,5 +109,5 @@ ASP.NET Core apps with complex front-ends frequently serve many JavaScript, CSS,
 
 ## Use the latest ASP.NET Core release
 
-With every ASP.NET Core release, performance work is done. Optimtizations in .NET Core and additional ASP.NET Core performance features mean that newer versions of ASP.NET Core will outperform older versions. For example, .NET Core 2.1 addded support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/en-us/magazine/mt814808.aspx). ASP.NET Core 2.2 brings support for HTTP/2. If performance is a priority, it may worthwhile upgrading to a recent ASP.NET Core version and taking advantage of new [performance features](TBD).
+With every ASP.NET Core release, performance work is done. Optimizations in .NET Core and additional ASP.NET Core performance features mean that newer versions of ASP.NET Core will outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/en-us/magazine/mt814808.aspx). ASP.NET Core 2.2 brings support for HTTP/2. If performance is a priority, it may worthwhile upgrading to a recent ASP.NET Core version and taking advantage of new [performance features](TBD).
 <!-- TODO review link -->
