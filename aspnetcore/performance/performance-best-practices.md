@@ -44,7 +44,7 @@ A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to
 ## Minimize large object allocations
 
 <!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
-The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#hot). Garbage collection is especially expensive on large objects (> 85K bytes). Large objects are stored on the [large object heap](dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
+The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#hot). Garbage collection is especially expensive on large objects (> 85K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
 
 * **Do** consider caching large objects that are frequently used so that they don't need to be reallocated each time they're needed.
 * **Do** pool buffers by using an [`ArrayPool<T>`](/dotnet/api/system.buffers.arraypool-1) to store large arrays.
@@ -56,7 +56,7 @@ Memory issues like the preceding can be diagnosed by reviewing garbage collectio
 * What percentage of the processor time is spent in garbage collection.
 * How many garbage collections are generation 0, 1, and 2.
 
-For more information, see [Garbage Collection and Performance](dotnet/standard/garbage-collection/performance).
+For more information, see [Garbage Collection and Performance](/dotnet/standard/garbage-collection/performance).
 
 ## Optimize Data Access
 
@@ -64,7 +64,7 @@ For more information, see [Garbage Collection and Performance](dotnet/standard/g
 
 Interactions with a data store or other remote services are often the slowest parts of an ASP.NET Core app. It's important to make sure that data is read and written efficiently. In addition to ensuring data access is asynchronous, some best practices include:
 
-* **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](/aspnet/core/performance/caching/memory) or a [DistributedCache](/aspnet/core/performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
+* **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
 * Prefer *chunky* over *chatty* database interactions. A *chatty* interaction requires many calls to the data store. A *chunky* interaction requires fewer network calls. The goal is to retrieve all the data that will be needed in a single call rather than  several calls.
 * **Do** use [no-tracking queries](/ef/core/querying/tracking) in Entity Framework Core when accessing read-only data.
 * **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is done by the database.
