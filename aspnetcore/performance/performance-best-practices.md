@@ -46,11 +46,11 @@ A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to
 ## Be Mindful of Large Object Allocations
 
 <!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
-The [.NET Core garbage collector](https://docs.microsoft.com/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection means that, generally, .NET Core developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes resources (CPU time), so developers need to be careful about allocating too many objects in very [hot code paths](hot). This is especially true of large objects (> 85K bytes). Large objects are stored on the large object heap and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance in ASP.NET Core apps.
+The [.NET Core garbage collector](https://docs.microsoft.com/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection means that, generally, .NET Core developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes resources (CPU time), so developers need to be careful about allocating too many objects in very [hot code paths](#hot). This is especially true of large objects (> 85K bytes). Large objects are stored on the large object heap and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance in ASP.NET Core apps.
 
 * **Do** consider caching large objects that are frequently used so that they don't need to be reallocated each time they're needed.
 * **Do** pool buffers by using an `ArrayPool<T>` to store large arrays.
-* **Do not** allocate many, short-lived large objects on [hot code paths](hot).
+* **Do not** allocate many, short-lived large objects on [hot code paths](#hot).
 
 Memory issues like this can be diagnosed by reviewing garbage collection (GC) stats in PerfView and examining:
 
@@ -87,7 +87,7 @@ You want all of your code to be fast, but some frequently called code paths are 
 * Code that is executed for every request or multiple times per request. For example, custom logging, authorization handlers, or initialization of transient services.
 
 * **Do not** use custom middleware components with long-running tasks.
-* **Do** use performance profiling tools (like [Visual Studio Diagnostic Tools](https://docs.microsoft.com/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)) to identify [hot code paths](hot) specific to your app.
+* **Do** use performance profiling tools (like [Visual Studio Diagnostic Tools](https://docs.microsoft.com/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)) to identify [hot code paths](#hot) specific to your app.
 
 ## Complete long-running Tasks outside of HTTP requests
 
@@ -109,5 +109,6 @@ ASP.NET Core apps with complex front-ends frequently serve many JavaScript, CSS,
 
 ## Use the latest ASP.NET Core release
 
-With every ASP.NET Core release, performance work is done. Optimizations in .NET Core and additional ASP.NET Core performance features mean that newer versions of ASP.NET Core will outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/en-us/magazine/mt814808.aspx). ASP.NET Core 2.2 brings support for HTTP/2. If performance is a priority, it may worthwhile upgrading to a recent ASP.NET Core version and taking advantage of new [performance features](TBD).
-<!-- TODO review link -->
+With every ASP.NET Core release, performance is improved. Optimizations in .NET Core and ASP.NET Core mean that newer versions will outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/en-us/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. If performance is a priority, it may worthwhile upgrading to the most current ASP.NET Core version.
+<!-- TODO review link and taking advantage of new [performance features](#TBD)
+Maybe skip this TBD link as each version will have perf improvements -->
