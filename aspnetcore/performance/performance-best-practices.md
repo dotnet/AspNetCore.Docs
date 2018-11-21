@@ -124,9 +124,6 @@ Each new release of ASP.NET includes performance improvements. Optimizations in 
 <!-- TODO review link and taking advantage of new [performance features](#TBD)
 Maybe skip this TBD link as each version will have perf improvements -->
 
-<!-- TODO review Do we want to say:
 ## Minimize exceptions
 
 Exceptions should be rare. Avoid using exceptions as a way to control normal program flow. If possible, include logic in the app code to detect and handle conditions that would cause an exception. For example, log problems rather than throwing an exception.
-
- -->
