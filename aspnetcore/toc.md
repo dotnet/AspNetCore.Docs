@@ -85,7 +85,7 @@
 ##### [Update the pages](xref:tutorials/razor-pages-mac/da1)
 ##### [Add search](xref:tutorials/razor-pages-mac/search)
 ### [Filters](xref:razor-pages/filter)
-### [Class libraries](xref:razor-pages/ui-class)
+### [Razor Class Libraries](xref:razor-pages/ui-class)
 ### [Route and app conventions](xref:razor-pages/razor-pages-conventions)
 ### [Upload files](xref:razor-pages/upload-files)
 ### [Razor SDK](xref:razor-pages/sdk)
