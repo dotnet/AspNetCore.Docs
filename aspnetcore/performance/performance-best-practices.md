@@ -44,7 +44,9 @@ A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to
 ## Minimize large object allocations
 
 <!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
-The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about when or how memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#hot). Garbage collection is especially expensive on large objects (> 85K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
+The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#hot). Garbage collection is especially expensive on large objects (> 85K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
+
+Recommendations:
 
 * **Do** consider caching large objects that are frequently used so that they don't need to be reallocated each time they're needed.
 * **Do** pool buffers by using an [`ArrayPool<T>`](/dotnet/api/system.buffers.arraypool-1) to store large arrays.
@@ -74,28 +76,33 @@ Query issues can be detected by reviewing time spent accessing data with [Applic
 
 ## Pool HTTP connections with HttpClientFactory
 
-<!-- TODO review  it's meant to be reused or NOT meant to be reused? -->
-Although `HttpClient` implements the `IDisposable` interface, it's meant to be reused. Closed `HttpClient` instances leave sockets open in the `TIME_WAIT` state for a short period of time. Consequently, if a code path that creates and disposes of `HttpClient` objects is frequently used, the app may exhaust available sockets. [HttpClientFactory](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) was introduced in ASP.NET Core 2.1 as a solution to this problem. It handles pooling HTTP connections to optimize performance and reliability.
+Although [HttpClient](/dotnet/api/system.net.http.httpclient?view=netstandard-2.0) implements the `IDisposable` interface, it's meant to be reused. Closed `HttpClient` instances leave sockets open in the `TIME_WAIT` state for a short period of time. Consequently, if a code path that creates and disposes of `HttpClient` objects is frequently used, the app may exhaust available sockets. [HttpClientFactory](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) was introduced in ASP.NET Core 2.1 as a solution to this problem. It handles pooling HTTP connections to optimize performance and reliability.
+
+Recommendations:
 
 * **Do not** create and dispose of `HttpClient` instances directly.
-* **Do** use [HttpClientFactory](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) to retrieve `HttpClient` instances.
+* **Do** use [HttpClientFactory](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) to retrieve `HttpClient` instances. For more information, see [Use HttpClientFactory to implement resilient HTTP requests](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests).
 
 ## Keep common code paths fast
 
-You want all of your code to be fast, but some frequently called code paths are the most critical to optimize:
+You want all of your code to be fast, but frequently called code paths are the most critical to optimize:
 
 * Middleware components in the app's request processing pipeline, especially middleware run early in the pipeline. These components have a large impact on performance.
 * Code that is executed for every request or multiple times per request. For example, custom logging, authorization handlers, or initialization of transient services.
 
+Recommendations:
+
 * **Do not** use custom middleware components with long-running tasks.
-* **Do** use performance profiling tools (like [Visual Studio Diagnostic Tools](/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)) to identify [hot code paths](#hot) specific to your app.
+* **Do** use performance profiling tools (like [Visual Studio Diagnostic Tools](/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)) to identify [hot code paths](#hot).
 
 ## Complete long-running Tasks outside of HTTP requests
 
 Most requests to an ASP.NET Core app can be handled by a controller or page model calling necessary services and returning an HTTP response. For some requests which involve long-running tasks, it's better to make the entire request-response process asynchronous.
 
+Recommendations:
+
 * **Do not** wait for long-running tasks to complete as part of ordinary HTTP request processing.
-* **Do** consider handling long-running requests with [background services](/aspnet/core/fundamentals/host/hosted-services) or out of process with an [Azure Function](/azure/azure-functions/). Completing work out-of-process is especially valuable for CPU-intensive tasks.
+* **Do** consider handling long-running requests with [background services](/aspnet/core/fundamentals/host/hosted-services) or out of process with an [Azure Function](/azure/azure-functions/). Completing work out-of-process is especially beneficial for CPU-intensive tasks.
 * **Do** use real-time communication options like [SignalR](xref:signalr/introduction) to communicate with clients asynchronously.
 
 ## Minify client assets
@@ -105,12 +112,15 @@ ASP.NET Core apps with complex front-ends frequently serve many JavaScript, CSS,
 * Bundling, which combines multiple files into one.
 * Minifying, which reduces the size of files by.
 
+Recommendations:
+
 * **Do** use ASP.NET Core's [built-in support](xref:client-side/bundling-and-minification) for bundling and minifying client assets.
 * **Do** consider other third-party tools like [Gulp](uid:client-side/bundling-and-minification#consume-bundleconfigjson-from-gulp) or [Webpack](https://webpack.js.org/) for more complex client asset management.
 
 ## Use the latest ASP.NET Core release
 
-With every ASP.NET Core release, performance is improved. Optimizations in .NET Core and ASP.NET Core mean that newer versions will outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. If performance is a priority, it may worthwhile upgrading to the most current ASP.NET Core version.
+Each new release of ASP.NET includes performance improvements. Optimizations in .NET Core and ASP.NET Core mean that newer versions will outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. If performance is a priority, consider upgrading to the most current version of ASP.NET Core.
+
 <!-- TODO review link and taking advantage of new [performance features](#TBD)
 Maybe skip this TBD link as each version will have perf improvements -->
 
