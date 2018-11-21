@@ -70,36 +70,48 @@ Interactions with a data store or other remote services are often the slowest pa
 
 * **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](https://docs.microsoft.com/aspnet/core/performance/caching/memory) or a [DistributedCache](https://docs.microsoft.com/aspnet/core/performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
 * Prefer *chunky* over *chatty* database interactions. A *chatty* interaction requires many calls to the data store. A *chunky* interaction requires fewer network calls. The goal is to retrieve all the data that will be needed in a single call rather than  several calls.
-* **Do** use [no-tracking queries](https://docs.microsoft.com/ef/core/querying/tracking) in Entity Framework when accessing data in a read-only scenario.
-* **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) before resolving the query so that the filtering is done by the database and the response returned to your application is smaller.
-* **Do not** retrieve more data than is necessary. Limit queries to return just the columns/fields and rows that are necessary for the current HTTP request.
+* **Do** use [no-tracking queries](https://docs.microsoft.com/ef/core/querying/tracking) in Entity Framework when accessing read-only data.
+* **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is done by the database.
+* **Do not** retrieve more data than is necessary. Write queries to return just the data that is necessary for the current HTTP request.
 
-These issues can be detected by looking at how much time is spent accessing data using app monitoring (with [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview), for example) or with profiling tools. Most databases also make statistics available concerning frequently-executed queries.
+Query issues can be detected by reviewing time spent accessing data using app monitoring (with [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview), for example) or with profiling tools. Most databases also make statistics available concerning frequently-executed queries.
 
-## Pool HTTP Connections with HttpClientFactory
-Although `HttpClient` implements the `IDisposable` interface, it is meant to be re-used. Closed `HttpClient` instances leave sockets open in the `TIME_WAIT` state for a short period of time. Consequently, if a code path that creates and disposes of `HttpClient` objects is used very frequently, the app may exhaust available sockets. `HttpClientFactory` was introduced in ASP.NET Core 2.1 as a solution to this problem. It handles pooling HTTP connections to optimize performance and reliability.
+## Pool HTTP connections with HttpClientFactory
+
+Although `HttpClient` implements the `IDisposable` interface, it's meant to be re-used. Closed `HttpClient` instances leave sockets open in the `TIME_WAIT` state for a short period of time. Consequently, if a code path that creates and disposes of `HttpClient` objects is frequently used, the app may exhaust available sockets. [HttpClientFactory](https://docs.microsoft.com/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) was introduced in ASP.NET Core 2.1 as a solution to this problem. It handles pooling HTTP connections to optimize performance and reliability.
 
 * **Do not** create and dispose of `HttpClient` instances directly.
-* **Do** use [`HttpClientFactory`](https://docs.microsoft.com/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) to retrieve `HttpClient` instances.
+* **Do** use [HttpClientFactory](https://docs.microsoft.com/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) to retrieve `HttpClient` instances.
 
-## Keep Common Code Paths Fast
-You want all of your code to be fast, of course, but some code paths are more critical than others to optimize. For example, middleware components in your app's request processing pipeline (especially those early in the pipeline) are sure to be run for every request, so they have a large impact on app performance. Other examples include code that is executed for every request (or multiple times per request) such as custom logging, authorization handlers, or initialization of transient services.
+## Keep common code paths fast
+
+You want all of your code to be fast, but some frequently called code paths are the most critical to optimize:
+
+* Middleware components in the app's request processing pipeline, especially middleware run early in the pipeline. These components have a large impact on performance.
+* Code that is executed for every request or multiple times per request. For example,custom logging, authorization handlers, or initialization of transient services.
 
 * **Do not** use custom middleware components with long-running tasks.
 * **Do** use performance profiling tools (like [Visual Studio Diagnostic Tools](https://docs.microsoft.com/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)) to identify [hot code paths](hot) specific to your app.
 
-## Complete Long-Running Tasks Outside of HTTP Requests
-Most requests to an ASP.NET Core app can be handled by MVC controllers calling necessary services and returning an HTTP response. For some requests which involve long-running tasks, though, it is better to make the entire request-response process asynchronous.
+## Complete long-running Tasks outside of HTTP requests
+
+Most requests to an ASP.NET Core app can be handled by a controller or page model calling necessary services and returning an HTTP response. For some requests which involve long-running tasks, it's better to make the entire request-response process asynchronous.
 
 * **Do not** wait for long-running tasks to complete as part of ordinary HTTP request processing.
-* **Do** consider handling long-running requests with [background services](https://docs.microsoft.com/aspnet/core/fundamentals/host/hosted-services) or out of process with an [Azure Function](https://docs.microsoft.com/azure/azure-functions/) (completing work out-of-process is especially valuable for CPU-intensive tasks).
-* **Do** use real-time communication options like [SignalR](https://docs.microsoft.com/aspnet/core/signalr) to communicate with clients asynchronously.
+* **Do** consider handling long-running requests with [background services](https://docs.microsoft.com/aspnet/core/fundamentals/host/hosted-services) or out of process with an [Azure Function](https://docs.microsoft.com/azure/azure-functions/). Completing work out-of-process is especially valuable for CPU-intensive tasks.
+* **Do** use real-time communication options like [SignalR](xref:signalr/introduction) to communicate with clients asynchronously.
 
-## Minify Client Assets
-For ASP.NET Core apps with complex front-ends, it may be necessary to serve large JavaScript, CSS, or image files. Performance of initial load requests can be improved in these scenarios by combining multiple files into one (bundling) and by reducing the size of those files by removing unnecessary characters (minifying). 
+## Minify client assets
 
-* **Do** use ASP.NET Core's [built-in support](https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification) for bundling and minifying client assets.
-* **Do** consider other third-party tools like [Gulp](https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification#consume-bundleconfigjson-from-gulp) or [Webpack](https://webpack.js.org/) for more complex client asset management.
+ASP.NET Core apps with complex front-ends frequently serve many JavaScript, CSS, or image files. Performance of initial load requests can be improved by:
 
-## Use the Latest ASP.NET Core Releases
-With every ASP.NET Core release, performance work is done. Optimtizations in .NET Core and additional ASP.NET Core performance features mean that newer versions of ASP.NET Core will outperform older versions. For example, .NET Core 2.1 addded support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/en-us/magazine/mt814808.aspx). ASP.NET Core 2.2 will bring support for HTTP/2. If performance is a priority, it may worthwhile upgrading to a recent ASP.NET Core version and taking advantage of new [performance features](TBD).
+* Bundling, which combines multiple files into one.
+* Minifying, which reduces the size of files by.
+
+* **Do** use ASP.NET Core's [built-in support](xref:client-side/bundling-and-minification) for bundling and minifying client assets.
+* **Do** consider other third-party tools like [Gulp](uid:client-side/bundling-and-minification#consume-bundleconfigjson-from-gulp) or [Webpack](https://webpack.js.org/) for more complex client asset management.
+
+## Use the latest ASP.NET Core release
+
+With every ASP.NET Core release, performance work is done. Optimtizations in .NET Core and additional ASP.NET Core performance features mean that newer versions of ASP.NET Core will outperform older versions. For example, .NET Core 2.1 addded support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/en-us/magazine/mt814808.aspx). ASP.NET Core 2.2 brings support for HTTP/2. If performance is a priority, it may worthwhile upgrading to a recent ASP.NET Core version and taking advantage of new [performance features](TBD).
+<!-- TODO review link -->
