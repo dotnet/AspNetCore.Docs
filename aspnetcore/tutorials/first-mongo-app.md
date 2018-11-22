@@ -78,9 +78,10 @@ The schema will add `_id` property. This property will be an `ObjectId` which wi
 
 Follow these steps in Visual Studio:
 
-* From the *File* menu, select *New* > *Project*.
-* Select the *ASP.NET Core Web Application* template. Name the project **BookMongo** and click *OK*.
-* In the *New ASP.NET Core Web Application - BookMongo* dialog, choose the ASP.NET Core version. Select the *API* template and click *OK*. Do not select *Enable Docker Support*.
+* From the **File** menu, select **New** > **Project**.
+* Select the **ASP.NET Core Web Application** template. Name the project *BookMongo* and click **OK**.
+* In the **New ASP.NET Core Web Application - BookMongo** dialog, choose the ASP.NET Core version. Select the **API** template and click **OK**. Do not select **Enable Docker Support**.
+
 
 Right-click the project in Solution Explorer and select Manage NuGet Packages.
 
