@@ -5,12 +5,12 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2018
+ms.date: 11/22/2018
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Enhance an app from an external assembly in ASP.NET Core with IHostingStartup
 
-By [Luke Latham](https://github.com/guardrex)
+By [Luke Latham](https://github.com/guardrex) and [Pavel Krymets](https://github.com/pakrym)
 
 An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) (hosting startup) implementation adds enhancements to an app at startup from an external assembly. For example, an external library can use a hosting startup implementation to provide additional configuration providers or services to an app. `IHostingStartup` *is available in ASP.NET Core 2.0 or later.*
 
@@ -171,32 +171,32 @@ The hosting startup implementation is placed in the [runtime store](/dotnet/core
 After the hosting startup is built, a runtime store is generated using the manifest project file and the [dotnet store](/dotnet/core/tools/dotnet-store) command.
 
 ```console
-dotnet store --manifest <MANIFEST_FILE> --runtime <RUNTIME_IDENTIFIER> -o <OUTPUT_LOCATION>
+dotnet store --manifest {MANIFEST FILE} --runtime {RUNTIME IDENTIFIER} --output {OUTPUT LOCATION} --skip-optimization
 ```
 
-In the sample app (*RuntimeStore* project) the following command would be used:
+In the sample app (*RuntimeStore* project) the following command is used:
 
 ``` console
-dotnet store -r win7-x64 -o ./deployment/store --manifest store.manifest.csproj --skip-optimization
+dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./deployment/store --skip-optimization
 ```
 
-For runtime to discover the runtime store, the runtime store's location is added to the `DOTNET_SHARED_STORE` environment variable.
+For the runtime to discover the runtime store, the runtime store's location is added to the `DOTNET_SHARED_STORE` environment variable.
 
 **Modify and place the hosting startup's dependencies file**
 
-To activate the enhancement without having a package reference to the enhancement, use the `additionalDeps` feature of the runtime. `additionalDeps` allows you to:
+To activate the enhancement without a package reference to the enhancement, specify additional dependencies to the runtime with `additionalDeps`. `additionalDeps` allows you to:
 
 * Extend the app's library graph by providing a set of additional *\*.deps.json* files to merge with the app's own *\*.deps.json* file on startup.
 * Make the hosting startup assembly discoverable and loadable.
 
-The recommended approach for generating the additional deps file is to:
+The recommended approach for generating the additional dependencies file is to:
 
  1. Execute `dotnet publish` on the runtime store manifest file referenced in the previous section.
  1. Remove the manifest reference from libraries and the `runtime` section of the resulting *\*deps.json* file.
 
-In the example project `store.manifest/1.0.0` property would be removed from `targets` and `libraries` section:
+In the example project, the `store.manifest/1.0.0` property is removed from the `targets` and `libraries` section:
 
-``` json
+```json
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
@@ -243,20 +243,20 @@ In the example project `store.manifest/1.0.0` property would be removed from `ta
 Place the *\*.deps.json* file into the following location:
 
 ```
-<ADDITIONAL_DEPS_PATH>/shared/<SHARED_FRAMEWORK_NAME>/<SHARED_FRAMEWORK_VERSION>/<ENHANCEMENT_ASSEMBLY_NAME>.deps.json
+{ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `ADDITIONAL_DEPS_PATH` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
-* `SHARED_FRAMEWORK_NAME` &ndash; Shared framework required for this additional dependencies file.
-* `SHARED_FRAMEWORK_VERSION` &ndash; Minimum shared framework version.
+* `{ADDITIONAL DEPENDENCIES PATH}` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
+* `{SHARED FRAMEWORK NAME}` &ndash; Shared framework required for this additional dependencies file.
+* `{SHARED FRAMEWORK VERSION}` &ndash; Minimum shared framework version.
 
-In the sample app (*RuntimeStore* project) additional deps file is placed into the following location:
+In the sample app (*RuntimeStore* project), the additional dependencies file is placed into the following location:
 
 ```
 additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnostics.deps.json
 ``
 
-For runtime to be able to discover runtime store location  needs to be added to `DOTNET_ADDITIONAL_DEPS` environment variable.
+For runtime to discover the runtime store location, the additional dependencies file location is added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
 
 In the sample app (*RuntimeStore* project), building the runtime store and generating the additional dependencies file is accomplished using a [PowerShell](/powershell/scripting/powershell-scripting) script.
 
