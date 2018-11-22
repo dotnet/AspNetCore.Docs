@@ -1,42 +1,20 @@
-﻿#define HandleStopStart // or ServiceOnly ServiceOrConsole
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.WindowsServices;
 
-namespace AspNetCoreService
+namespace SampleApp
 {
+    #region snippet_Program
     public class Program
     {
-#if ServiceOnly
-        #region ServiceOnly
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().RunAsService();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
-            var pathToContentRoot = Path.GetDirectoryName(pathToExe);
-
-            return WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((context, config) =>
-                {
-                    // Configure the app here.
-                })
-                .UseContentRoot(pathToContentRoot)
-                .UseStartup<Startup>();
-        }
-        #endregion
-#endif
-#if ServiceOrConsole
-        #region ServiceOrConsole
         public static void Main(string[] args)
         {
             var isService = !(Debugger.IsAttached || args.Contains("--console"));
-            var builder = CreateWebHostBuilder(args.Where(arg => arg != "--console").ToArray());
+            var builder = CreateWebHostBuilder(
+                args.Where(arg => arg != "--console").ToArray());
 
             if (isService)
             {
@@ -49,6 +27,8 @@ namespace AspNetCoreService
 
             if (isService)
             {
+                // To run the app as a custom WebHostService, change the next line
+                // to host.RunAsCustomService();
                 host.RunAsService();
             }
             else
@@ -64,42 +44,6 @@ namespace AspNetCoreService
                     // Configure the app here.
                 })
                 .UseStartup<Startup>();
-        #endregion
-#endif
-#if HandleStopStart
-        #region HandleStopStart
-        public static void Main(string[] args)
-        {
-            var isService = !(Debugger.IsAttached || args.Contains("--console"));
-            var builder = CreateWebHostBuilder(args.Where(arg => arg != "--console").ToArray());
-
-            if (isService)
-            {
-                var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
-                var pathToContentRoot = Path.GetDirectoryName(pathToExe);
-                builder.UseContentRoot(pathToContentRoot);
-            }
-
-            var host = builder.Build();
-
-            if (isService)
-            {
-                host.RunAsCustomService();
-            }
-            else
-            {
-                host.Run();
-            }
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((context, config) =>
-                {
-                    // Configure the app here.
-                })
-                .UseStartup<Startup>();
-        #endregion
-#endif
     }
+    #endregion
 }
