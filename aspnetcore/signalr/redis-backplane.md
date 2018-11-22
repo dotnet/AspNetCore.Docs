@@ -5,7 +5,7 @@ description: Learn how to set up a Redis backplane to enable scale-out for an AS
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/12/2018
+ms.date: 11/28/2018
 uid: signalr/redis-backplane
 ---
 
@@ -19,12 +19,16 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
 1. Deploy a Redis server.
 
-   A Redis backplane is recommended only for on-premises infrastructure. That's why these instructions assume you'll set up a Redis server rather than use Azure Redis Cache. To minimize latency, the Redis server should be in the same data center as the SignalR app. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. For more information, see <xref:signalr/scale>.
+   For production use, a Redis backplane is recommended only for on-premises infrastructure. To minimize latency, the Redis server should be in the same data center as the SignalR app. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. You can use the Azure Redis Cache Service for development and test environments. For more information, see the following resources:
+
+   * <xref:signalr/scale>
+   * [Redis documentation](https://redis.io/)
+   * [Azure Redis Cache documentation](https://docs.microsoft.com/en-us/azure/redis-cache/)
 
 2. In the SignalR app, install the appropriate NuGet package for the version of ASP.NET Core that your project targets:
 
    * 2.1: `Microsoft.AspNetCore.SignalR.Redis`
-   * 2.2: `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
+   * 2.2+: `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
  
 3. In the `ConfigureServices` method, call `AddRedis` or `AddStackExchangeRedis` after `AddSignalR`:
 
@@ -34,25 +38,24 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
 4. Configure options as needed:
  
-   Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string. 
+   Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
 
-  The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
+   The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
 
    ```csharp
    services.AddSignalR()
      .AddRedis(connectionString, options => {
-         // NOTE: "options.Configuration" has been preloaded with 
-         // whatever was specified in the connection string.
-      
          options.Configuration.ChannelPrefix = "MyApp";
      });
    ```
 
-   For information about Redis options, see the [Redis documentation](https://redis.io/documentation).
+   In the preceding code, `options.Configuration` is initialized with whatever was specified in the connection string.
+
+   For information about Redis options, see the [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/Configuration.html).
 
 5. If you're using one Redis server for multiple SignalR apps, use a different channel prefix for each SignalR app.
 
-   Setting a channel prefix isolates one SignalR app from others that use different channel prefixes. If you don't assign different prefixes, a message sent from one app to all clients will go to all clients of all apps that the Redis server suupports.
+   Setting a channel prefix isolates one SignalR app from others that use different channel prefixes. If you don't assign different prefixes, a message sent from one app to all of its own clients will go to all clients of all apps that use the Redis server as a backplane.
 
 6. Configure your server farm load balancing software for sticky sessions. Here are some examples of documentation on how to do that:
 
@@ -62,9 +65,17 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
 ## Redis server errors
 
-When a Redis server goes down, SignalR logs a warning that messages won't be delivered. The log message is "Failed writing message." SignalR doesn't buffer messages to send them when the server comes back up. Any messages sent while the Redis server is down are lost. SignalR automatically reconnects when the Redis server is available again.
+When a Redis server goes down, SignalR throws exceptions that indicate  messages won't be delivered. Some typical exception messages:
 
-Here is an example that shows how to handle a Redis connection failure: 
+* *Failed writing message*
+* *Failed to invoke hub method 'MethodName'*
+* *Connection to Redis failed*
+
+SignalR doesn't buffer messages to send them when the server comes back up. Any messages sent while the Redis server is down are lost.
+
+SignalR automatically reconnects when the Redis server is available again.
+
+Here's an example that shows one way to write custom code that runs on Redis connection failure:
 
 ```csharp
 services.AddSignalR()
@@ -97,7 +108,7 @@ services.AddSignalR()
 
 ## Clustering
 
-Clustering is a method for using multiple Redis servers to support one app. We don't officially support clustering. It might work, but we haven't tested it.
+Clustering is a method for achieving high availability by using multiple Redis servers. Clustering is not officially supported, but it might work.
 
 ## Next steps
 
@@ -105,3 +116,5 @@ For more information, see the following resources:
 
 * <xref:signalr/scale>
 * [Redis documentation](https://redis.io/documentation)
+* [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/)
+* [Azure Redis Cache documentation](https://docs.microsoft.com/en-us/azure/redis-cache/)
