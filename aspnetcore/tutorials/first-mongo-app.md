@@ -8,20 +8,18 @@ uid: tutorials/first-mongo-app
 
 By [Pratik Khandelwal](https://twitter.com/K2Prk)
 
-In this tutorial, we will create a web API using ASP.NET Core to perform CRUD operations on a MongoDB collection.
+This tutorial creates a web API app that performs CRUD operations on a [MongoDB](https://www.mongodb.com/what-is-mongodb).
 
-### What is MongoDB
+### Prerequisites
 
-MongoDB is an open-source, non-relational database developed by MongoDB, Inc. MongoDB stores data as documents in a binary representation called BSON (Binary JSON). In modern web app, the use of NoSQL databases is becoming popular due to its non-relational bahavior.
+[Visual Studio 2017 version 15.7.3 or later](https://visualstudio.microsoft.com/downloads/) with the following workloads:
 
+* ASP.NET and web development
+* .NET Core cross-platform development
+* [MongoDB](https://www.mongodb.com/what-is-mongodb)
+* A the MongoDB installation directory to the Path environment variable. Windows default to C:/Program Files/MongoDB/Server/3.4/bin
 
-### Set up MongoDB
-
-To get started, install MongoDB on your system. You can download MongoDB from [here](https://docs.mongodb.com/manual/administration/install-community/). If you're using Windows, MongoDB is installed in the following path:
-
-C:\Program Files\MongoDB
-
-Add *C:\Program Files\MongoDB\Server\3.4\bin* to the `Path` environment variable to access MongoDB from anywhere.
+[.NET Core 2.1 SDK or later](https://www.microsoft.com/net/download)
 
 ### MongoDB implementation
 
@@ -41,15 +39,15 @@ Open another command shell instance and run the following:
 mongo
 ```
 
-This connects to the default test database. Run the following command in command shell:
+The preceding command connects to the default test database.
 
 ```console
 useBookstoreDb
 ```
 
-If it doesn't already exist, a database named *BookstoreDb* is created. If the database does exist, its connection is opened for transactions.
+If it doesn't exist, a database named *BookstoreDb* is created. If the database does exist, its connection is opened for transactions.
 
-We can create a collection using following command:
+Create a collection using following command:
 
 ```console
 db.createCollection('Books')
@@ -61,13 +59,13 @@ The schema for the `Books` collection can be defined with the following command:
 db.Books.insert({'BookId':1,'BookName':'Design Patterns','Price':3000,'Category':'Computers', 'Author':' Ralph Johnson'})
 ```
 
-To see the entries in your database, you can use following command:
+To see the entries in the database, use the following command:
 
 ```console
 db.Books.find({})
 ```
 
-The following result will be displayed:
+The preceding command displays the following:
 
 ```console
 db.Books.find({})
@@ -75,8 +73,6 @@ db.Books.find({})
 ```
 
 The schema will add `_id` property. This property will be an `ObjectId` which will be generated automatically.
-
-Now that our database is ready, we can start creating our web API using .NET Core.
 
 ### Create the ASP.NET Core web API
 
@@ -100,15 +96,19 @@ Search for *MongoDB.Driver* and install the package.
 
 ### Add a model
 
-Now, in the project, add a *Models* folder. In this folder, add a new class file of name *Book.cs*. Add the following code in this file:
+* Add a Models folder.
+* Add Models/Book.cs with the following code:
 
 [!code-csharp[](~/tutorials/first-mongo-app/sample/BookstoreAPI/Models/Book.cs?name=snippet_1)]
 
-The class also contains `Id` property of the type `ObjectId`. This property is mandatory so that the CLR object can be mapped with Collection in MongoDB. The class contains properties having the `BsonElement` attribute applied on it. This represents the mapped property with the MongoDB collection.
+The preceding class contains:
+
+* The Id property, which is required to map a Book to a MongoDB Collection.
+* Properties with the BsonElement attribute. The BsonElement attribute is required to map properties in a MongoDB collection.
 
 ### Write a class for CRUD operations
 
-Now, add a *DataAccess.cs* class file in the *Models* folder with the following code in it:
+Add a *DataAccess.cs* class file in the *Models* folder with the following code:
 
 [!code-csharp[](~/tutorials/first-mongo-app/sample/BookstoreAPI/Models/DataAccess.cs?name=snippet_1)]
 
@@ -140,7 +140,7 @@ Our code in *DataAccess.cs* uses all these methods for performing CRUD operation
 
 ### Add a controller
 
-Now, click right on the *Controllers* folder and add a controller
+Click right on the *Controllers* folder and add a controller
 
 ![Add Controller](~/tutorials/first-mongo-app/_static/addController.png)
 
