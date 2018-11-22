@@ -249,6 +249,7 @@ Place the *\*.deps.json* file into the following location:
 * `{ADDITIONAL DEPENDENCIES PATH}` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
 * `{SHARED FRAMEWORK NAME}` &ndash; Shared framework required for this additional dependencies file.
 * `{SHARED FRAMEWORK VERSION}` &ndash; Minimum shared framework version.
+* `{ENHANCEMENT ASSEMBLY NAME}` &ndash; The enhancement's assembly name.
 
 In the sample app (*RuntimeStore* project), the additional dependencies file is placed into the following location:
 
