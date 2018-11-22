@@ -5,7 +5,7 @@ description: Learn how to establish additional claims and tokens from external p
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2018
+ms.date: 11/26/2018
 uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
@@ -63,6 +63,12 @@ In <xref:Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginMo
 In the sample app, `OnPostConfirmationAsync` (*Account/ExternalLogin.cshtml.cs*) establishes a <xref:System.Security.Claims.ClaimTypes.Gender> claim for the signed in `ApplicationUser`:
 
 [!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=30-31)]
+
+`AddClaimAsync` throws the following exception if the database used to create the `{Context}ModelSnapshot` is switched from SQLite (the default database of an ASP.NET Core template project created with [dotnet new](/dotnet/core/tools/dotnet-new)) to SQL Server:
+
+> AddClaimAsync failed with SqlException: Cannot insert the value NULL into column 'Id', table 'dbo.AspNetUserClaims'; column does not allow nulls
+
+If the exception occurs, delete the `{Context}ModelSnapshot` file associated with the SQLite database and generate a new model snapshot with the [Update-Database](/ef/core/miscellaneous/cli/powershell#update-database) command.
 
 ## Save the access token
 
