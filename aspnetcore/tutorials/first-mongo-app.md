@@ -74,19 +74,13 @@ db.Books.find({})
 
 The schema will add `_id` property. This property will be an `ObjectId` which will be generated automatically.
 
-### Create the ASP.NET Core web API
+### Create the ASP.NET Core web API Project
 
-You need Visual Studio with .NET Core SDK for creating the .NET app. For the purpose of this article, I will be using Visual Studio 2017.
+Follow these steps in Visual Studio:
 
-In visual studio, go to **File** > **New** > **Project** and select ASP.NET Core Web app from .NET Core tab.
-
-![New Project](~/tutorials/first-mongo-app/_static/newProject.png)
-
-Name the project "BookMongo" (or whatever you like) and click OK. This will open a window for selecting templates. Choose the **API** template and click OK.
-
-![Select Template](~/tutorials/first-mongo-app/_static/apiTemplate.png)
-
-This will create your web API project.
+* From the *File* menu, select *New* > *Project*.
+* Select the *ASP.NET Core Web Application* template. Name the project **BookMongo** and click *OK*.
+* In the *New ASP.NET Core Web Application - BookMongo* dialog, choose the ASP.NET Core version. Select the *API* template and click *OK*. Do not select *Enable Docker Support*.
 
 Right-click the project in Solution Explorer and select Manage NuGet Packages.
 
