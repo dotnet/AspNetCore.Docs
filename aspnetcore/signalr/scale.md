@@ -17,9 +17,11 @@ This article explains hosting and scaling considerations for high-traffic apps t
 
 ## TCP connection resources
 
-The number of concurrent TCP connections that a web server can support is limited. Web apps without SignalR use these limited resources efficiently, opening and closing a connection for every request and response. To support real-time functionality, SignalR keeps connections open. In a high-traffic app that serves many clients, these persistent connections cause servers to hit their maximum number of connections more quickly than they otherwise would. Persistent connections can cause high memory usage as well, since SignalR uses memory to track each connection.
+The number of concurrent TCP connections that a web server can support is limited. Web apps without SignalR use these limited resources efficiently, opening and closing a connection for every request and response. SignalR keeps connections open. In a high-traffic app that serves many clients, these persistent connections can cause servers to hit their maximum number of connections.
 
-The heavy use of connection-related resources by SignalR can affect other web apps that are hosted on the same server. When SignalR opens and holds the last available TCP connections, other web apps on the same server also have no more connections available to them. To keep SignalR resource usage from causing errors in web apps, we recommend that you not run SignalR on the same servers as your other web apps.
+Persistent connections can cause high memory usage as well, since SignalR uses memory to track each connection.
+
+The heavy use of connection-related resources by SignalR can affect other web apps that are hosted on the same server. When SignalR opens and holds the last available TCP connections, other web apps on the same server also have no more connections available to them.
 
 If a server runs out of connections, you'll see random socket errors and connection reset errors, for example:
 
@@ -27,7 +29,9 @@ If a server runs out of connections, you'll see random socket errors and connect
 An attempt was made to access a socket in a way forbidden by its access permissions...
 ```
 
-The best way to solve the problem is to limit the number of connections a server has to handle by scaling out.
+To keep SignalR resource usage from causing errors in other web apps, run SignalR on different servers than your other web apps.
+
+To keep SignalR resource usage from causing errors in a SignalR app, scale out to limit the number of connections a server has to handle.
 
 ## Scale out
 
@@ -68,7 +72,7 @@ Redis is an in-memory key-value store that supports a messaging system with a pu
 
 ![Redis backplane, message sent from one server to all clients](scale/_static/redis-backplane.png)
 
-We recommend the Redis backplane as the scale-out approach for apps that run on your own infrastructure. Azure SignalR Service is not practical for production use with on-premises apps due to latency of a connection between your data center and an Azure data center.
+We recommend the Redis backplane as the scale-out approach for apps that run on your own infrastructure. Azure SignalR Service is not a practical option for production use with on-premises apps due to latency of a connection between your data center and an Azure data center.
 
 The Azure SignalR Service advantages noted earlier are disadvantages for the Redis backplane:
 
