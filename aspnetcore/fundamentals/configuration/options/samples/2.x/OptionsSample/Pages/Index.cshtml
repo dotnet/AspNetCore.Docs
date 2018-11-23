@@ -1,0 +1,123 @@
+@page
+@model IndexModel
+@using Microsoft.Extensions.Options
+@inject IOptionsMonitor<MyOptions> OptionsAccessor
+@{
+    ViewData["Title"] = "Options Sample";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Example #1: Simple options</h3>
+            </div>
+            <div class="panel-body">
+                <p>Simple options implement <code>IOptionsMonitor</code> with a <code>MyOptions</code> type: <code>IOptionsMonitor&lt;MyOptions&gt;</code>. The options are registered as a service with the following code:</p>
+                <pre><code>
+services.Configure&lt;MyOptions&gt;(Configuration);
+                </code></pre>
+                <p>@Model.SimpleOptions</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Example #2: Options configured by a delegate</h3>
+            </div>
+            <div class="panel-body">
+                <p>Options can be configured by a delegate:</p>
+                <pre><code>
+services.Configure&lt;MyOptionsWithDelegateConfig&gt;(myOptions =>
+{
+    myOptions.Option1 = "value1_configured_by_delegate";
+    myOptions.Option2 = 500;
+});
+                </code></pre>
+                <p>@Model.SimpleOptionsWithDelegateConfig</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Example #3: Suboptions</h3>
+            </div>
+            <div class="panel-body">
+                <p>Suboptions specify the section of the configuration file to bind:</p>
+                <pre><code>
+services.Configure&lt;MySubOptions&gt;(Configuration.GetSection("subsection"));
+                </code></pre>
+                <p>@Model.SubOptions</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Example #4: Model and injected options</h3>
+            </div>
+            <div class="panel-body">
+                <h2>Options provided by the model</h2>
+                <p>Options provided by the model: <code>@@Model.MyOptions.Option1</code> and <code>@@Model.MyOptions.Option2</code></p>
+                <p><b>Option1:</b> @Model.MyOptions.Option1</p>
+                <p><b>Option2:</b> @Model.MyOptions.Option2</p>
+
+                <h2>Options injected into the page</h2>
+                <p>Options injected into the page: <code>@@inject IOptionsMonitor&lt;MyOptions&gt; OptionsAccessor</code> with <code>@@OptionsAccessor.CurrentValue.Option1</code> and <code>@@OptionsAccessor.CurrentValue.Option2</code></p>
+                <p><b>Option1:</b> @OptionsAccessor.CurrentValue.Option1</p>
+                <p><b>Option2:</b> @OptionsAccessor.CurrentValue.Option2</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Example #5: Snapshot options</h3>
+            </div>
+            <div class="panel-body">
+                <p>Snapshot options are updated when the configuration is updated (the configuration file is saved). Modify the <code>option1</code> and <code>option2</code> values in the <em>appsettings.json</em> file. Save the file and refresh the page. The following snapshot options reflect the updated configuration:</p>
+                <p>@Model.SnapshotOptions</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Example #6: Named options</h3>
+            </div>
+            <div class="panel-body">
+                <p>Register <code>ConfigurationBuilder</code> instances which <code>MyOptions</code> binds against:
+                <pre><code>
+services.Configure&lt;MyOptions&gt;("named_options_1", Configuration);
+                </code></pre>
+                <p>A delegate can be used to configure named options:</p>
+                <pre><code>
+services.Configure&lt;MyOptions&gt;("named_options_2", myOptions =>
+{
+    myOptions.Option1 = "named_options_2_value1_from_action";
+});
+                </code></pre>
+                <p>@Model.NamedOptions</p>
+            </div>
+        </div>
+    </div>
+</div>
