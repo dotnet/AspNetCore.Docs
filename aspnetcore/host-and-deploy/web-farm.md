@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host multiple instances of an ASP.NET Core app with shared resources in a web farm environment.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
@@ -61,11 +61,13 @@ The following scenarios don't require additional configuration, but they depend 
 
 ## Troubleshoot
 
-When Data Protection or Caching isn't configured for a web farm environment, intermittent errors occur when requests are processed. This occurs because nodes don't share the same resources and user requests aren't always routed back to the same node.
+### Data Protection and caching
+
+When Data Protection or caching isn't configured for a web farm environment, intermittent errors occur when requests are processed. This occurs because nodes don't share the same resources and user requests aren't always routed back to the same node.
 
 Consider a user who signs into the app using cookie authentication. The user signs into the app on one web farm node. If their next request arrives at the same node where they signed in, the app is able to decrypt the authentication cookie and allows access to the app's resource. If their next request arrives at a different node, the app can't decrypt the authentication cookie from the node where the user signed in, and authorization for the requested resource fails.
 
-When any of the following symptoms occur **intermittently**, the problem is usually traced to improper Data Protection or Caching configuration for a web farm environment:
+When any of the following symptoms occur **intermittently**, the problem is usually traced to improper Data Protection or caching configuration for a web farm environment:
 
 * Authentication breaks &ndash; The authentication cookie is misconfigured or can't be decrypted. OAuth (Facebook, Microsoft, Twitter) or OpenIdConnect logins fail with the error "Correlation failed."
 * Authorization breaks &ndash; Identity is lost.
@@ -74,4 +76,8 @@ When any of the following symptoms occur **intermittently**, the problem is usua
 * TempData fails.
 * POSTs fail &ndash; The anti-forgery check fails.
 
-For more information on Data Protection configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>. For more information on Caching configuration for web farm deployments, see <xref:performance/caching/distributed>.
+For more information on Data Protection configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>. For more information on caching configuration for web farm deployments, see <xref:performance/caching/distributed>.
+
+## Obtain data from apps
+
+If the web farm apps are capable of responding to requests, obtain request, connection, and additional data from the apps using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.

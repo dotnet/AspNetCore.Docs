@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/12/2018
+ms.date: 11/26/2018
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -1021,7 +1021,8 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 
 ## Additional resources
 
-* [Enforce HTTPS](xref:security/enforcing-ssl)
+* <xref:test/troubleshoot>
+* <xref:security/enforcing-ssl>
+* <xref:host-and-deploy/proxy-load-balancer>
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 * [RFC 7230: Message Syntax and Routing (Section 5.4: Host)](https://tools.ietf.org/html/rfc7230#section-5.4)
-* [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)
