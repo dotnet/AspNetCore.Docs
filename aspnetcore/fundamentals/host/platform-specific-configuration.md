@@ -255,7 +255,7 @@ In the sample app (*RuntimeStore* project), the additional dependencies file is 
 
 ```
 additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnostics.deps.json
-``
+```
 
 For runtime to discover the runtime store location, the additional dependencies file location is added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
 
