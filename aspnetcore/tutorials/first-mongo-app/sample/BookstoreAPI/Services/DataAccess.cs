@@ -1,18 +1,19 @@
 ﻿#region snippet_DataAccessClass
 using System.Collections.Generic;
 using System.Linq;
+using BookMongo.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace BookMongo.Models
+namespace BookMongo.Services
 {
-    public class DataAccess
+    public class BookService
     {
         private readonly MongoClient _client;
         private readonly IMongoDatabase _db;
 
         #region snippet_DataAccessConstructor
-        public DataAccess()
+        public BookService()
         {
             _client = new MongoClient("mongodb://localhost:27017");
             _db = _client.GetDatabase("BookstoreDb");

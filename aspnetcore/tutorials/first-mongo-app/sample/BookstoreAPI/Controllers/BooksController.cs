@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BookMongo.Models;
+using BookMongo.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 
@@ -9,23 +10,23 @@ namespace BookMongo.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly DataAccess objds;
+        private readonly BookService _bookService;
 
-        public BooksController()
+        public BooksController(BookService bookService)
         {
-            objds = new DataAccess();
+            _bookService = bookService;
         }
 
         [HttpGet]
         public IEnumerable<Book> Get()
         {
-            return objds.GetBooks();
+            return _bookService.GetBooks();
         }
 
         [HttpGet("{id:length(24)}")]
         public ActionResult<Book> Get(string id)
         {
-            var book = objds.GetBook(new ObjectId(id));
+            var book = _bookService.GetBook(new ObjectId(id));
 
             if (book == null)
             {
@@ -38,7 +39,7 @@ namespace BookMongo.Controllers
         [HttpPost]
         public ActionResult<Book> Post(Book p)
         {
-            objds.Create(p);
+            _bookService.Create(p);
 
             return p;
         }
@@ -47,14 +48,14 @@ namespace BookMongo.Controllers
         public IActionResult Put(string id, [FromBody]Book p)
         {
             var recId = new ObjectId(id);
-            var book = objds.GetBook(recId);
+            var book = _bookService.GetBook(recId);
 
             if (book == null)
             {
                 return NotFound();
             }
 
-            objds.Update(recId, p);
+            _bookService.Update(recId, p);
 
             return Ok();
         }
@@ -62,14 +63,14 @@ namespace BookMongo.Controllers
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var book = objds.GetBook(new ObjectId(id));
+            var book = _bookService.GetBook(new ObjectId(id));
 
             if (book == null)
             {
                 return NotFound();
             }
 
-            objds.Remove(book.Id);
+            _bookService.Remove(book.Id);
 
             return Ok();
         }
