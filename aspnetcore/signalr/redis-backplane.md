@@ -75,7 +75,9 @@ SignalR doesn't buffer messages to send them when the server comes back up. Any 
 
 SignalR automatically reconnects when the Redis server is available again.
 
-Here's an example that shows one way to write custom code that runs on Redis connection failure:
+### Custom behavior for connection failures
+
+Here's an example that shows how to handle Redis connection failure events.
 
 ```csharp
 services.AddSignalR()
