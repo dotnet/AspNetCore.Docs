@@ -70,7 +70,7 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
   ```csharp
   services.AddSignalR()
-    .AddRedis(connectionString, options => {
+    .AddStackExchangeRedis(connectionString, options => {
         options.Configuration.ChannelPrefix = "MyApp";
     });
   ```
