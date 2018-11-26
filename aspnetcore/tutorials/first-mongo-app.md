@@ -13,153 +13,142 @@ By [Pratik Khandelwal](https://twitter.com/K2Prk)
 
 This tutorial creates a web API app that performs CRUD operations on a [MongoDB](https://www.mongodb.com/what-is-mongodb).
 
-### Prerequisites
+In this tutorial, you learn how to:
 
-[Visual Studio 2017 version 15.7.3 or later](https://visualstudio.microsoft.com/downloads/) with the following workloads:
+> [!div class="checklist"]
+> * Configure MongoDB
+> * Create a MongoDB database
+> * Define a MongoDB collection and schema
+> * Perform MongoDB CRUD operations from a web API
 
-* ASP.NET and web development
-* .NET Core cross-platform development
-* [MongoDB](https://www.mongodb.com/what-is-mongodb)
-* A the MongoDB installation directory to the Path environment variable. Windows default to C:/Program Files/MongoDB/Server/3.4/bin
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-mongo-app/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-[.NET Core 2.1 SDK or later](https://www.microsoft.com/net/download)
+## Prerequisites
 
-### MongoDB implementation
+* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
+* [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7.3 or later with the following workloads:
+  * **.NET Core cross-platform development**
+  * **ASP.NET and web development**
 
-To use MongoDB, we have to create a database, make collections, and store documents in it. To do that, create a a data folder where your data will be stored. You can choose any location on your system as the data folder. (Keep note that the MongoDB CLI doesn't create new directories).
+## Configure MongoDB
 
-Open a command shell:
+If using Windows, MongoDB is installed at *C:\Program Files\MongoDB* by default. Add *C:\Program Files\MongoDB\Server\<version_number>\bin* to the `Path` environment variable. This change enables MongoDB access from anywhere on your development machine.
+
+To use MongoDB, create a database, make collections, and store documents in it:
+
+1. Choose a folder on your development machine for storing the data. Note that the MongoDB CLI doesn't create new directories.
+1. Open a command shell, and run the following to connect to MongoDB on port 27017:
 
 ```console
-mongod --dbpath <enter-the-path>
+mongod --dbpath <data_folder_path>
 ```
 
-This will connect to MongoDB on port 27017.
-
-Open another command shell instance and run the following:	
+1. Open another command shell instance. Connect to the default test database by running the following command:
 
 ```console
 mongo
 ```
 
-The preceding command connects to the default test database.
+1. Run the following in a command shell:
 
 ```console
-useBookstoreDb
+use BookstoreDb
 ```
 
-If it doesn't exist, a database named *BookstoreDb* is created. If the database does exist, its connection is opened for transactions.
+If it doesn't already exist, a database named *BookstoreDb* is created. If the database does exist, its connection is opened for transactions.
 
-Create a collection using following command:
+1. Create a `Books` collection using following command:
 
 ```console
 db.createCollection('Books')
 ```
 
-The schema for the `Books` collection can be defined with the following command:
+1. Define a schema for the `Books` collection using the following command:
 
 ```console
 db.Books.insert({'BookId':1,'BookName':'Design Patterns','Price':3000,'Category':'Computers', 'Author':' Ralph Johnson'})
 ```
 
-To see the entries in the database, use the following command:
+1. View the entries in the database using the following command:
 
 ```console
 db.Books.find({})
 ```
 
-The preceding command displays the following:
+The following result is displayed:
 
 ```console
 db.Books.find({})
 { "_id" : ObjectId("5ad08f91a4f1c236ef1b4fff"), "BookId" : 1, "BookName" : "Design Patterns", "Price" : 3000, "Category" : "Computers", "Author" : " Ralph Johnson" }
 ```
 
-The schema will add `_id` property. This property will be an `ObjectId` which will be generated automatically.
+The schema adds an `_id` property. This property is an `ObjectId` and is generated automatically.
 
-### Create the ASP.NET Core web API Project
+The database is ready. You can start creating the ASP.NET Core web API.
 
-Follow these steps in Visual Studio:
+## Create the ASP.NET Core web API Project
 
-* From the **File** menu, select **New** > **Project**.
-* Select the **ASP.NET Core Web Application** template. Name the project *BookMongo* and click **OK**.
-* In the **New ASP.NET Core Web Application - BookMongo** dialog, choose the ASP.NET Core version. Select the **API** template and click **OK**. Do not select **Enable Docker Support**.
+1. In Visual Studio, go to **File** > **New** > **Project**.
+1. Select **ASP.NET Core Web Application**, name the project *BookMongo*, and click **OK**.
+1. Select **.NET Core** as the target framework, and select **ASP.NET Core 2.1**. Select the **API** project template, and click **OK**:
+1. Right-click the project in **Solution Explorer**, and click **Manage NuGet Packages**.
+1. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
+```powershell
+Install-Package MongoDB.Driver -Version 2.7.0
+```
 
-Right-click the project in Solution Explorer and select Manage NuGet Packages.
+## Add a model
 
-Search for *MongoDB.Driver* and install the package.
+1. Add a *Models* folder to the project root.
+1. Add a `Book` class to the *Models* folder with the following code:
 
-![Package Manager](~/tutorials/first-mongo-app/_static/MongoDriver.png)
+[!code-csharp[](first-mongo-app/sample/BookstoreAPI/Models/Book.cs?name=snippet_1)]
 
-### Add a model
+The class also contains `Id` property of the type `ObjectId`. This property is mandatory so that the CLR object can be mapped with Collection in MongoDB. The class contains properties having the `BsonElement` attribute applied on it. This represents the mapped property with the MongoDB collection.
 
-* Add a Models folder.
-* Add Models/Book.cs with the following code:
+## Write a class for CRUD operations
 
-[!code-csharp[](~/tutorials/first-mongo-app/sample/BookstoreAPI/Models/Book.cs?name=snippet_1)]
+1. Add a `DataAccess` class to the *Models* folder with the following code:
 
-The preceding class contains:
+[!code-csharp[](first-mongo-app/sample/BookstoreAPI/Models/DataAccess.cs?name=snippet_1)]
 
-* The Id property, which is required to map a Book to a MongoDB Collection.
-* Properties with the BsonElement attribute. The BsonElement attribute is required to map properties in a MongoDB collection.
+The following classes and methods are used to perform CRUD operations on the data stored in the MongoDB server:
 
-### Write a class for CRUD operations
-
-Add a *DataAccess.cs* class file in the *Models* folder with the following code:
-
-[!code-csharp[](~/tutorials/first-mongo-app/sample/BookstoreAPI/Models/DataAccess.cs?name=snippet_1)]
-
-The preceding code uses the following classes:
-
-**MongoServer** - This represents an instance of the MongoDB Server.
-
-**MongoClient** - This class is used to read the server instance for performing operations on the database. The constructor of this class is passed with the MongoDB Connection string as shown in the following box:
+* `MongoServer` - This represents an instance of the MongoDB Server.
+* `MongoClient` - This class is used to read the server instance for performing operations on the database. The constructor of this class is passed with the MongoDB Connection string as shown in the following box:
 
 ```console
 "mongodb://localhost:27017"
 ```
 
-**MongoDatabase** - This represents Mongo Database for performing operations. This class provides following methods:
+* `MongoDatabase` - This represents Mongo Database for performing operations. This class provides following methods:
+* `GetCollection<T>(collection)` - `T` represents the type of CLR objects in the provided `collection`. The method returns a `MongoCollection`.
+* `FindAll` - Returns all documents in the collection.
+* `FindOne` - Returns a single document based on the Mongo Query object generated based on `_id`.
+* `Save` - Save a new document in collection.
+* `Update` - Update a document.
+* `Remove` - Remove a document.
 
-GetCollection<T>(*collection*) => T is the CLR object to be *collection*. The method returns a *MongoCollection*.
+## Add a controller
 
-**FindAll()** - Returns all documents in collection()
+1. Right-click the *Controllers* folder in **Solution Explorer**, and add a controller:
+1. Choose the **API Controller - Empty** project template, and name it *BooksController*.
+1. Add the following code to *BooksController.cs*:
 
-**FindOne()** - Returns a single document based on Mongo Query object generated based on `_id`.
+[!code-csharp[](first-mongo-app/sample/BookstoreAPI/Controllers/BooksController.cs?name=snippet_1)]
 
-**Save()** - Save a new document in collection.
+The preceding web API controller:
 
-**Update()** - Update a document.
+* Uses the `DataAccess` class to perform CRUD operations.
+* Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
 
-**Remove()** - Remove a document.
+1. Build and run the app.
+1. Navigate to `http://localhost:<random_port>/api/Books` in your browser.
 
-Our code in *DataAccess.cs* uses all these methods for performing CRUD operations on the data stored in the MongoDB server.
+A JSON response resembling the following is returned:
 
-### Add a controller
+![Response](first-mongo-app/_static/jsonResponse.png)
 
-Click right on the *Controllers* folder and add a controller
-
-![Add Controller](~/tutorials/first-mongo-app/_static/addController.png)
-
-Choose the *API Controller - Empty* to scaffold and name it *BooksController*.
-
-In the controller class, add the following code:
-
-[!code-csharp[](~/tutorials/first-mongo-app/sample/BookstoreAPI/Controllers/BooksController.cs?name=snippet_1)]
-
-The preceding web API controller class uses DataAccess class for performing CRUD operations. The web API class contains GET, POST, PUT, DELETE methods for HTTP operations.
-
-Build and run the app. Call the API from your browser. 
-(localhost:port/api/controllerName)
-
-```console
-http://localhost:51496/api/Books
-```
-
-You will receive a similar JSON response depending on your data.
-
-![Response](~/tutorials/first-mongo-app/_static/jsonResponse.png)
-
-Using Mongo C# Driver, one can easily connect to the MongoDB database and perform CRUD operations. Using ASP.NET Core, MongoDB data can be easily made available to various client apps for storing and reading data. This will provide you the power of .NET Core with flexibility of MongoDB NoSQL database.
-
+Using the Mongo C# Driver, one can easily connect to the MongoDB database and perform CRUD operations. Using ASP.NET Core, MongoDB data can be easily made available to various client apps for storing and reading data. This will provide you the power of ASP.NET Core with the flexibility of a MongoDB NoSQL database.
