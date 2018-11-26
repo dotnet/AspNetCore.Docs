@@ -1,68 +1,78 @@
-﻿#if BooksController
-#region snippet_1
-using System;
-using System.Collections.Generic;
-using Microsoft.AspNet.Mvc;
-
+﻿using System.Collections.Generic;
+using BookMongo.Models;
+using BookMongo.Services;
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 
 namespace BookMongo.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Books")]
-    public class BooksController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BooksController : ControllerBase
     {
-        DataAccess objds;
-        public BooksController()
+        private readonly BookService _bookService;
+
+        public BooksController(BookService bookService)
         {
-            objds = new DataAccess();
+            _bookService = bookService;
         }
+
         [HttpGet]
         public IEnumerable<Book> Get()
         {
-            return objds.GetBooks();
+            return _bookService.GetBooks();
         }
+
         [HttpGet("{id:length(24)}")]
-        public IActionResult Get(string id)
+        public ActionResult<Book> Get(string id)
         {
-            var Book = objds.GetBook(new ObjectId(id));
-            if (Book == null)
+            var book = _bookService.GetBook(new ObjectId(id));
+
+            if (book == null)
             {
                 return NotFound();
             }
-            return new ObjectResult(Book);
+
+            return book;
         }
+
         [HttpPost]
-        public IActionResult Post([FromBody]Book p)
+        public ActionResult<Book> Post(Book p)
         {
-            objds.Create(p);
-            return new OkObjectResult(p);
+            _bookService.Create(p);
+
+            return p;
         }
+
         [HttpPut("{id:length(24)}")]
         public IActionResult Put(string id, [FromBody]Book p)
         {
             var recId = new ObjectId(id);
-            var Book = objds.GetBook(recId);
-            if (Book == null)
+            var book = _bookService.GetBook(recId);
+
+            if (book == null)
             {
                 return NotFound();
             }
-            objds.Update(recId, p);
-            return new OkResult();
+
+            _bookService.Update(recId, p);
+
+            return Ok();
         }
+
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var Book = objds.GetBook(new ObjectId(id));
-            if (Book == null)
+            var book = _bookService.GetBook(new ObjectId(id));
+
+            if (book == null)
             {
                 return NotFound();
             }
-            objds.Remove(Book.Id);
-            return new OkResult();
+
+            _bookService.Remove(book.Id);
+
+            return Ok();
         }
     }
 }
-
-#endregion
-#endif
