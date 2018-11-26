@@ -51,7 +51,7 @@ The Azure SignalR Service is a proxy rather than a backplane. Each time a client
 
 ![Establishing a connection to the Azure SignalR Service](scale/_static/azure-signalr-service-one-connection.png)
 
-The result is that the service manages all of the client connections, while each server needs only a small fixed number of connections to the service, as shown in the following diagram:
+The result is that the service manages all of the client connections, while each server needs only a small constant number of connections to the service, as shown in the following diagram:
 
 ![Clients connected to the service, servers connected to the service](scale/_static/azure-signalr-service-multiple-connections.png)
 
