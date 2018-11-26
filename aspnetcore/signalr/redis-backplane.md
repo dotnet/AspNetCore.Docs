@@ -17,51 +17,80 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
 ## Set up a Redis backplane
 
-1. Deploy a Redis server.
+* Deploy a Redis server.
 
-   For production use, a Redis backplane is recommended only for on-premises infrastructure. To minimize latency, the Redis server should be in the same data center as the SignalR app. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. You can use the Azure Redis Cache Service for development and test environments. For more information, see the following resources:
+  For production use, a Redis backplane is recommended only for on-premises infrastructure. To minimize latency, the Redis server should be in the same data center as the SignalR app. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. You can use the Azure Redis Cache Service for development and test environments. For more information, see the following resources:
 
-   * <xref:signalr/scale>
-   * [Redis documentation](https://redis.io/)
-   * [Azure Redis Cache documentation](https://docs.microsoft.com/en-us/azure/redis-cache/)
+  * <xref:signalr/scale>
+  * [Redis documentation](https://redis.io/)
+  * [Azure Redis Cache documentation](https://docs.microsoft.com/en-us/azure/redis-cache/)
 
-2. In the SignalR app, install the appropriate NuGet package for the version of ASP.NET Core that your project targets:
+::: moniker range="= aspnetcore-2.1"
 
-   * ASP.NET Core 2.1: `Microsoft.AspNetCore.SignalR.Redis`
-   * ASP.NET Core 2.2+: `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
+* In the SignalR app, install the `Microsoft.AspNetCore.SignalR.Redis` NuGet package.
+
+* In the `ConfigureServices` method, call `AddRedis` after `AddSignalR`:
+
+  ```csharp
+  services.AddSignalR().AddRedis(yourRedisConnectionString);
+  ```
+
+* Configure options as needed:
  
-3. In the `ConfigureServices` method, call `AddRedis` or `AddStackExchangeRedis` after `AddSignalR`:
+  Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
 
-   ```csharp
-   services.AddSignalR().AddStackExchangeRedis(yourRedisConnectionString);
-   ```
+  The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
 
-4. Configure options as needed:
+  ```csharp
+  services.AddSignalR()
+    .AddRedis(connectionString, options => {
+        options.Configuration.ChannelPrefix = "MyApp";
+    });
+  ```
+
+  In the preceding code, `options.Configuration` is initialized with whatever was specified in the connection string.
+
+::: moniker-end
+
+::: moniker range="> aspnetcore-2.1"
+
+* In the SignalR app, install the `Microsoft.AspNetCore.SignalR.StackExchangeRedis` NuGet package.
+
+* In the `ConfigureServices` method, call `AddStackExchangeRedis` after `AddSignalR`:
+
+  ```csharp
+  services.AddSignalR().AddStackExchangeRedis(yourRedisConnectionString);
+  ```
+
+* Configure options as needed:
  
-   Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
+  Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
 
-   The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
+  The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
 
-   ```csharp
-   services.AddSignalR()
-     .AddRedis(connectionString, options => {
-         options.Configuration.ChannelPrefix = "MyApp";
-     });
-   ```
+  ```csharp
+  services.AddSignalR()
+    .AddRedis(connectionString, options => {
+        options.Configuration.ChannelPrefix = "MyApp";
+    });
+  ```
 
-   In the preceding code, `options.Configuration` is initialized with whatever was specified in the connection string.
+  In the preceding code, `options.Configuration` is initialized with whatever was specified in the connection string.
 
-   For information about Redis options, see the [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/Configuration.html).
+  For information about Redis options, see the [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/Configuration.html).
 
-5. If you're using one Redis server for multiple SignalR apps, use a different channel prefix for each SignalR app.
+::: moniker-end
 
-   Setting a channel prefix isolates one SignalR app from others that use different channel prefixes. If you don't assign different prefixes, a message sent from one app to all of its own clients will go to all clients of all apps that use the Redis server as a backplane.
+* If you're using one Redis server for multiple SignalR apps, use a different channel prefix for each SignalR app.
 
-6. Configure your server farm load balancing software for sticky sessions. Here are some examples of documentation on how to do that:
+  Setting a channel prefix isolates one SignalR app from others that use different channel prefixes. If you don't assign different prefixes, a message sent from one app to all of its own clients will go to all clients of all apps that use the Redis server as a backplane.
 
-   * [HAProxy](https://www.haproxy.com/blog/load-balancing-affinity-persistence-sticky-sessions-what-you-need-to-know/)
-   * [Nginx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky)
-   * [pfSense](https://www.netgate.com/docs/pfsense/loadbalancing/inbound-load-balancing.html#sticky-connections)
+* Configure your server farm load balancing software for sticky sessions. Here are some examples of documentation on how to do that:
+
+  * [IIS](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing)
+  * [HAProxy](https://www.haproxy.com/blog/load-balancing-affinity-persistence-sticky-sessions-what-you-need-to-know/)
+  * [Nginx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky)
+  * [pfSense](https://www.netgate.com/docs/pfsense/loadbalancing/inbound-load-balancing.html#sticky-connections)
 
 ## Redis server errors
 
@@ -78,6 +107,8 @@ SignalR automatically reconnects when the Redis server is available again.
 ### Custom behavior for connection failures
 
 Here's an example that shows how to handle Redis connection failure events.
+
+::: moniker range="= aspnetcore-2.1"
 
 ```csharp
 services.AddSignalR()
@@ -107,6 +138,41 @@ services.AddSignalR()
             };
         });
 ```
+
+::: moniker-end
+
+::: moniker range="> aspnetcore-2.1"
+
+```csharp
+services.AddSignalR()
+        .AddMessagePackProtocol()
+        .AddStackExchangeRedis(o =>
+        {
+            o.ConnectionFactory = async writer =>
+            {
+                var config = new ConfigurationOptions
+                {
+                    AbortOnConnectFail = false
+                };
+                config.EndPoints.Add(IPAddress.Loopback, 0);
+                config.SetDefaultPorts();
+                var connection = await ConnectionMultiplexer.ConnectAsync(config, writer);
+                connection.ConnectionFailed += (_, e) =>
+                {
+                    Console.WriteLine("Connection to Redis failed.");
+                };
+
+                if (!connection.IsConnected)
+                {
+                    Console.WriteLine("Did not connect to Redis.");
+                }
+
+                return connection;
+            };
+        });
+```
+
+::: moniker-end
 
 ## Clustering
 
