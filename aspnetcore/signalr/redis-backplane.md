@@ -112,7 +112,6 @@ Here's an example that shows how to handle Redis connection failure events.
 
 ```csharp
 services.AddSignalR()
-        .AddMessagePackProtocol()
         .AddRedis(o =>
         {
             o.ConnectionFactory = async writer =>
