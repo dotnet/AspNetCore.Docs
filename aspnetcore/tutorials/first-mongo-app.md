@@ -40,50 +40,61 @@ To use MongoDB, create a database, make collections, and store documents in it:
 1. Choose a folder on your development machine for storing the data. Note that the MongoDB CLI doesn't create new directories.
 1. Open a command shell, and run the following to connect to MongoDB on port 27017:
 
-```console
-mongod --dbpath <data_folder_path>
-```
+  ```console
+  mongod --dbpath <data_folder_path>
+  ```
 
 1. Open another command shell instance. Connect to the default test database by running the following command:
 
-```console
-mongo
-```
+  ```console
+  mongo
+  ```
 
 1. Run the following in a command shell:
 
-```console
-use BookstoreDb
-```
+  ```console
+  use BookstoreDb
+  ```
 
-If it doesn't already exist, a database named *BookstoreDb* is created. If the database does exist, its connection is opened for transactions.
+  If it doesn't already exist, a database named *BookstoreDb* is created. If the database does exist, its connection is opened for transactions.
 
 1. Create a `Books` collection using following command:
 
-```console
-db.createCollection('Books')
-```
+  ```console
+  db.createCollection('Books')
+  ```
+
+  The following result is displayed:
+
+  ```console
+  { "ok" : 1 }
+  ```
 
 1. Define a schema for the `Books` collection using the following command:
 
-```console
-db.Books.insert({'BookId':1,'BookName':'Design Patterns','Price':3000,'Category':'Computers', 'Author':' Ralph Johnson'})
-```
+  ```console
+  db.Books.insert({'BookId':1,'BookName':'Design Patterns','Price':3000,'Category':'Computers','Author':'Ralph Johnson'})
+  ```
+
+  The following result is displayed:
+
+  ```console
+  WriteResult({ "nInserted" : 1 })
+  ```
 
 1. View the entries in the database using the following command:
 
-```console
-db.Books.find({})
-```
+  ```console
+  db.Books.find({})
+  ```
 
-The following result is displayed:
+  The following result is displayed:
 
-```console
-db.Books.find({})
-{ "_id" : ObjectId("5ad08f91a4f1c236ef1b4fff"), "BookId" : 1, "BookName" : "Design Patterns", "Price" : 3000, "Category" : "Computers", "Author" : " Ralph Johnson" }
-```
+  ```console
+  { "_id" : ObjectId("5bfc4514d2c229b67213fd3b"), "BookId" : 1, "BookName" : "Design Patterns", "Price" : 3000, "Category" : "Computers", "Author" : "Ralph Johnson" }
+  ```
 
-The schema adds an `_id` property. This property is an `ObjectId` and is generated automatically.
+  The schema adds an `_id` property. This property is an `ObjectId` and is generated automatically.
 
 The database is ready. You can start creating the ASP.NET Core web API.
 
@@ -106,7 +117,7 @@ Install-Package MongoDB.Driver -Version 2.7.0
 
 [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Models/Book.cs?name=snippet_1)]
 
-The class also contains `Id` property of the type `ObjectId`. This property is mandatory so that the CLR object can be mapped with Collection in MongoDB. The class contains properties having the `BsonElement` attribute applied on it. This represents the mapped property with the MongoDB collection.
+The class also contains `Id` property of the type `ObjectId`. This property is mandatory so that the CLR object can be mapped with Collection in MongoDB. The class contains properties having the `[BsonElement]` attribute applied on it. This represents the mapped property with the MongoDB collection.
 
 ## Write a class for CRUD operations
 
