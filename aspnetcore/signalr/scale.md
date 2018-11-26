@@ -17,7 +17,7 @@ This article explains hosting and scaling considerations for high-traffic apps t
 
 ## TCP connection resources
 
-The number of concurrent TCP connections that a web server can support is limited. Web apps without SignalR use these limited resources efficiently, opening and closing a connection for every request and response. SignalR keeps connections open. In a high-traffic app that serves many clients, these persistent connections can cause servers to hit their maximum number of connections.
+The number of concurrent TCP connections that a web server can support is limited. Standard HTTP requests use these limited resources efficiently, opening and closing a connection for every request and response. A SignalR connection holds the TCP connection open for a much longer time. In a high-traffic app that serves many clients, these persistent connections can cause servers to hit their maximum number of connections.
 
 Persistent connections can cause high memory usage as well, since SignalR uses memory to track each connection.
 
