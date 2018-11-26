@@ -1,6 +1,5 @@
 ﻿#if Movie
 #region snippet_1
-
 using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
