@@ -44,7 +44,6 @@ There are two recommended solutions to this problem:
 * Azure SignalR Service
 * Redis backplane
 
-There are no plans to implement a SQL Server backplane in ASP.NET Core SignalR. A SQL Server backplane is supported in ASP.NET 4.x SignalR, but SQL Server isn’t designed to handle the kind of real-time notifications SignalR needs, so it consumes a lot of resources on the database server.
 
 ## Azure SignalR Service
 
