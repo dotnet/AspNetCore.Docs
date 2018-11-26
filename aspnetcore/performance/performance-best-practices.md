@@ -62,15 +62,22 @@ For more information, see [Garbage Collection and Performance](/dotnet/standard/
 
 ## Optimize Data Access
 
-<!-- TODO review by EF folks -->
-
 Interactions with a data store or other remote services are often the slowest parts of an ASP.NET Core app. It's important to make sure that data is read and written efficiently. In addition to ensuring data access is asynchronous, some best practices include:
 
-* **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
-* Prefer *chunky* over *chatty* database interactions. A *chatty* interaction requires many calls to the data store. A *chunky* interaction requires fewer network calls. The goal is to retrieve all the data that will be needed in a single call rather than  several calls.
-* **Do** use [no-tracking queries](/ef/core/querying/tracking) in Entity Framework Core when accessing read-only data.
-* **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is done by the database.
 * **Do not** retrieve more data than is necessary. Write queries to return just the data that is necessary for the current HTTP request.
+* **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
+* Minimize network round trips. The goal is to retrieve all the data that will be needed in a single call rather than several calls.
+* **Do** use [no-tracking queries](/ef/core/querying/tracking#no-tracking-queries) in Entity Framework Core when accessing data for read-only purposes. EF Core can return the results of no-tracking queries queries more efficiently.
+* **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is done by the database.
+* **Do** consider that EF Core resolves some query operators on the client which may lead to inefficient query execution. For more information, see [Client evaluation performance issues](/ef/core/querying/client-eval#client-evaluation-performance-issues)
+* **Do not** use projection queries on collections which can result in executing "N + 1" SQL queries. For more information, see [Optimization of correlated subqueries](/ef/core/what-is-new/ef-core-2.1#optimization-of-correlated-subqueries).
+
+See [EF High Performance](https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#explicitly-compiled-queries) for approaches that may improve performance in high-scale apps:
+
+* [DbContext pooling](https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling)
+* [Explicitly compiled queries](https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-2.0#explicitly-compiled-queries)
+
+We recommend you measure the impact of the preceding high performance approaches. The additional complexity of compiled queries my not justify the performance improvement.
 
 Query issues can be detected by reviewing time spent accessing data with [Application Insights](/azure/application-insights/app-insights-overview) or with profiling tools. Most databases also make statistics available concerning frequently executed queries.
 
