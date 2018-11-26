@@ -87,7 +87,7 @@ The schema adds an `_id` property. This property is an `ObjectId` and is generat
 
 The database is ready. You can start creating the ASP.NET Core web API.
 
-## Create the ASP.NET Core web API Project
+## Create the ASP.NET Core web API project
 
 1. In Visual Studio, go to **File** > **New** > **Project**.
 1. Select **ASP.NET Core Web Application**, name the project *BookMongo*, and click **OK**.
