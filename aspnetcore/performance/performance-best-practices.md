@@ -35,8 +35,7 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 **Do**:
 
 * Make [hot code paths](#hot) asynchronous.
-* Call asynchronous APIs for any long-running operations.  
-* Call  data access APIs asynchronously.
+* Call data access and long-running operations APIs asynchronously.
 * Make controller/Razor Page actions asynchronous. The entire call stack needs to be asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
 A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to look for threads frequently being added to the [Thread Pool](/windows/desktop/procthread/thread-pool). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread being added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc  -->
@@ -62,8 +61,11 @@ For more information, see [Garbage Collection and Performance](/dotnet/standard/
 
 ## Optimize Data Access
 
-Interactions with a data store or other remote services are often the slowest parts of an ASP.NET Core app. It's important to make sure that data is read and written efficiently. In addition to ensuring data access is asynchronous, some best practices include:
+Interactions with a data store or other remote services are often the slowest part of an ASP.NET Core app. Reading and writing data efficiently is critical for good performance.
 
+Recommendations:
+
+* **Do** call all data access APIs asynchronously.
 * **Do not** retrieve more data than is necessary. Write queries to return just the data that is necessary for the current HTTP request.
 * **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
 * Minimize network round trips. The goal is to retrieve all the data that will be needed in a single call rather than several calls.
@@ -77,7 +79,7 @@ See [EF High Performance](/ef/core/what-is-new/ef-core-2.0#explicitly-compiled-q
 * [DbContext pooling](/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling)
 * [Explicitly compiled queries](/ef/core/what-is-new/ef-core-2.0#explicitly-compiled-queries)
 
-We recommend you measure the impact of the preceding high performance approaches before committing to your code base. The additional complexity of compiled queries my not justify the performance improvement.
+We recommend you measure the impact of the preceding high performance approaches before committing to your code base. The additional complexity of compiled queries may not justify the performance improvement.
 
 Query issues can be detected by reviewing time spent accessing data with [Application Insights](/azure/application-insights/app-insights-overview) or with profiling tools. Most databases also make statistics available concerning frequently executed queries.
 
@@ -133,4 +135,12 @@ Maybe skip this TBD link as each version will have perf improvements -->
 
 ## Minimize exceptions
 
-Exceptions should be rare. Avoid using exceptions as a way to control normal program flow. If possible, include logic in the app code to detect and handle conditions that would cause an exception. For example, log problems rather than throwing an exception.
+Exceptions should be rare. Throwing and catching exceptions is slow relative to other code flow patterns. Because of this, exceptions should not be used to control normal program flow.
+
+Recommendations:
+
+* **Do not** use throwing or catching exceptions as a means of normal program flow, especially in hot code paths.
+* **Do** include logic in the app to detect and handle conditions that would cause an exception.
+* **Do** throw or catch exceptions which may be related to unusual or unexpected conditions.
+
+App diagnostic tools (like Application Insights) can help to identify common exceptions in an application which may affect performance.
