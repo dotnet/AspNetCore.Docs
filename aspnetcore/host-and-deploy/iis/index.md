@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/10/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -608,6 +608,7 @@ Distinguish common errors when hosting ASP.NET Core apps on IIS.
 
 ## Additional resources
 
+* <xref:test/troubleshoot>
 * [Introduction to ASP.NET Core](xref:index)
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server/windows-server)

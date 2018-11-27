@@ -4,7 +4,7 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 10/23/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -174,9 +174,9 @@ sudo systemctl restart httpd
 sudo systemctl enable httpd
 ```
 
-## Monitoring the app
+## Monitor the app
 
-Apache is now setup to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`.  However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
+Apache is now setup to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes.
 
 ### Create the service file
 
@@ -253,7 +253,7 @@ Connection: Keep-Alive
 Transfer-Encoding: chunked
 ```
 
-### Viewing logs
+### View logs
 
 Since the web app using Kestrel is managed using *systemd*, events and processes are logged to a centralized journal. However, this journal includes entries for all of the services and processes managed by *systemd*. To view the `kestrel-helloapp.service`-specific items, use the following command:
 
@@ -282,7 +282,7 @@ To configure data protection to persist and encrypt the key ring, see:
 * <xref:security/data-protection/implementation/key-storage-providers>
 * <xref:security/data-protection/implementation/key-encryption-at-rest>
 
-## Securing the app
+## Secure the app
 
 ### Configure firewall
 
@@ -479,4 +479,5 @@ The example file limits bandwidth as 600 KB/sec under the root location:
 ## Additional resources
 
 * [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
-* [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)
+* <xref:test/troubleshoot>
+* <xref:host-and-deploy/proxy-load-balancer>
