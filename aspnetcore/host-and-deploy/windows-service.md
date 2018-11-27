@@ -18,12 +18,15 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 ## Deployment type
 
-You can create either of the following Windows Service deployments:
+You can create either a framework-dependent or self-contained Windows Service deployment. For information and advice on deployment scenarios, see [.NET Core application deployment](/dotnet/core/deploying/).
 
-* Framework-dependent deployment (FDD) &ndash; FDD relies on the presence of a shared system-wide version of .NET Core on the target system. When the FDD scenario is used with an ASP.NET Core Windows Service app, the SDK produces an executable (*\*.exe*), called a *framework-dependent executable*.
-* Self-contained deployment (SCD) &ndash; SCD doesn't rely on the presence of shared components on the target system. The runtime and the app's dependencies are deployed with the app to the hosting system.
+### Framework-dependent deployment
 
-For more information on the deployment scenarios and advice on which one to choose, see [.NET Core application deployment](/dotnet/core/deploying/).
+Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET Core on the target system. When the FDD scenario is used with an ASP.NET Core Windows Service app, the SDK produces an executable (*\*.exe*), called a *framework-dependent executable*.
+
+### Self-contained deployment
+
+Self-contained deployment (SCD) doesn't rely on the presence of shared components on the target system. The runtime and the app's dependencies are deployed with the app to the hosting system.
 
 ## Convert a project into a Windows Service
 
@@ -262,10 +265,27 @@ Use of the ASP.NET Core HTTPS development certificate to secure a service endpoi
 
 ## Current directory and content root
 
-The current working directory returned by calling <xref:System.IO.Directory.GetCurrentDirectory*> for a Windows Service is the *C:\\WINDOWS\\system32* folder. The *system32* folder isn't a suitable location to store a service's files (for example, settings files). Use one of the following approaches to maintain and access a service's assets and settings files:
+The current working directory returned by calling <xref:System.IO.Directory.GetCurrentDirectory*> for a Windows Service is the *C:\\WINDOWS\\system32* folder. The *system32* folder isn't a suitable location to store a service's files (for example, settings files). Use one of the following approaches to maintain and access a service's assets and settings files.
 
-* Use the content root path. The <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> is the same path provided to the `binPath` argument when the service is created. Instead of calling `GetCurrentDirectory` to create paths to settings files, call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseContentRoot*> with the path to the app's content root.
-* Store the files in a suitable location on disk. Specify an absolute path with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> when using an <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> to the folder containing the files.
+### Set the content root path to the app's folder
+
+The <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> is the same path provided to the `binPath` argument when the service is created. Instead of calling `GetCurrentDirectory` to create paths to settings files, call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseContentRoot*> with the path to the app's content root.
+
+In `Program.Main`, determine the path to the folder of the service's executable and use the path to establish the app's content root:
+
+```csharp
+var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
+var pathToContentRoot = Path.GetDirectoryName(pathToExe);
+
+CreateWebHostBuilder(args)
+    .UseContentRoot(pathToContentRoot)
+    .Build()
+    .RunAsService();
+```
+
+### Store the service's files in a suitable location on disk
+
+Specify an absolute path with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> when using an <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> to the folder containing the files.
 
 ## Additional resources
 
