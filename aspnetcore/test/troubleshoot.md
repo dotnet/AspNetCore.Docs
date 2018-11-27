@@ -134,7 +134,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             }
 
             sb.Append($"Configuration{rule}");
-            foreach (var pair in config.GetChildren())
+            foreach (var pair in config.AsEnumerable())
             {
                 sb.Append($"{pair.Path}: {pair.Value}{nl}");
             }
