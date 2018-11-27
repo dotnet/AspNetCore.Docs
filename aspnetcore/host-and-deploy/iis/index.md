@@ -457,7 +457,7 @@ When hosting a non-ASP.NET Core sub-app underneath an ASP.NET Core app, explicit
 
 Static asset links within the sub-app should use tilde-slash (`~/`) notation. Tilde-slash notation triggers a [Tag Helper](xref:mvc/views/tag-helpers/intro) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's Static File Middleware doesn't process the static file request. The request is processed by the sub-app's Static File Middleware.
 
-If a static asset's `src` attribute is set to a relative URL (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's Static File Middleware attempts to serve the asset from the root app's [webroot](xref:fundamentals/index#web-root-webroot), which results in a *404 - Not Found* response unless the static asset is available from the root app.
+If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's Static File Middleware attempts to serve the asset from the root app's [webroot](xref:fundamentals/index#web-root-webroot), which results in a *404 - Not Found* response unless the static asset is available from the root app.
 
 To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
@@ -469,9 +469,9 @@ To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
 1. In the **Add Application** dialog, use the **Select** button for the **Application Pool** to assign the app pool that you created for the sub-app. Select **OK**.
 
-In some scenarios, URL path segments must be manipulated to make routing work properly. For more information, see <xref:host-and-deploy/proxy-load-balancer#deal-with-path-base-and-proxies-that-change-the-request-path>.
+The assignment of a separate app pool to the sub-app is a requirement when using the in-process hosting model.
 
-For more information on configuring the ASP.NET Core Module, see the [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic and the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module).
+For more information on the in-process hosting model and configuring the ASP.NET Core Module, see <xref:fundamentals/servers/aspnet-core-module> and <xref:host-and-deploy/aspnet-core-module>.
 
 ## Configuration of IIS with web.config
 
