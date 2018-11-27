@@ -59,7 +59,7 @@ This approach to scale-out has several advantages over the Redis backplane alter
 
 For these reasons, we recommend the Azure SignalR Service for all ASP.NET Core SignalR apps hosted on Azure, including App Service, VMs, and containers.
 
-For more information see the [Azure SignalR Service documentation](https://docs.microsoft.com/en-us/azure/azure-signalr/signalr-overview).
+For more information see the [Azure SignalR Service documentation](/azure/azure-signalr/signalr-overview).
 
 ## Redis backplane
 
