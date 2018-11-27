@@ -23,7 +23,7 @@ namespace BookMongo.Controllers
             return _bookService.Get();
         }
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("{id:length(24)}", Name = "GetBook")]
         public ActionResult<Book> Get(string id)
         {
             var book = _bookService.Get(new ObjectId(id));
@@ -41,7 +41,7 @@ namespace BookMongo.Controllers
         {
             _bookService.Create(book);
 
-            return CreatedAtRoute("Get", new { id = book.Id.ToString() }, book);
+            return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
         }
 
         [HttpPut("{id:length(24)}")]
