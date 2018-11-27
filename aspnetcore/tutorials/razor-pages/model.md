@@ -3,7 +3,7 @@ title: Add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 ms.author: riande
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-2.2'
 ms.date: 05/30/2018
 uid: tutorials/razor-pages/model
 ---
@@ -31,8 +31,15 @@ Add the following properties to the `Movie` class:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
-<!-- TODO: Move the following to an include -->
+The `Movie` class contains:
 
+* The `ID` field is required by the database for the primary key.
+* `[DataType(DataType.Date)]`:  The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date). With this attribute:
+
+  * The user is not required to enter time information in the date field.
+  * Only the date is displayed, not time information.
+
+[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
 
 <!-- Code -------------------------->
 
@@ -83,22 +90,7 @@ Build the project as a check for errors.
   * Select **Empty Class** in the center pain.
   * Name the class **Movie** and select **New**.
 
-<!-- End of VS tabs -->
-
----
-
-
-<!-- VS -------------------------->
-
-# [Visual Studio](#tab/visual-studio)
-
-<!-- Code -------------------------->
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-<!-- Mac -------------------------->
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+[!INCLUDE [model 2](~/includes/RP/model2.md)]
 
 <!-- End of VS tabs -->
 
@@ -108,12 +100,16 @@ Build the project as a check for errors.
 
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
 
+<!-- VS -------------------------->
+
+# [Visual Studio](#tab/visual-studio)
+
 Create a *Pages/Movies* folder:
 
-* In **Solution Explorer**, right click on the *Pages* folder > **Add** > **New Folder**.
+* Right click on the *Pages* folder > **Add** > **New Folder**.
 * Name the folder *Movies*
 
-In **Solution Explorer**, right click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
+Right click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
 ![Image from the previous instructions.](model/_static/sca.png)
 
@@ -129,17 +125,31 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 ![Image from the previous instructions.](model/_static/arp.png)
 
+<!-- Code -------------------------->
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+<!-- Mac -------------------------->
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+<!-- End of VS tabs -->
+
+---
+
 The scaffold process creates and updates the following files:
 
 ### Files created
 
-* *Pages/Movies*: Create, Delete, Details, Edit, Index. These pages are detailed in the next tutorial.
+* *Pages/Movies*: Create, Delete, Details, Edit, and Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### File updated
 
-* *Startup.cs*: Changes to this file are detailed in the next section.
+* *Startup.cs*
 * *appsettings.json*: The connection string used to connect to a local database is added.
+
+The created and updated files are explained in the next section.
 
 ## Examine the context registered with dependency injection
 
