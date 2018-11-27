@@ -4,51 +4,35 @@ author: guardrex
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 11/28/2018
 uid: fundamentals/configuration/options
 ---
 # Options pattern in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
+::: moniker range="<= aspnetcore-1.1"
+
+For the 1.1 version of this topic, download [Options pattern in ASP.NET Core (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Options_1.1.pdf).
+
+::: moniker-end
+
 The options pattern uses classes to represent groups of related settings. When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:
 
 * The [Interface Segregation Principle (ISP) or Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation) &ndash; Scenarios (classes) that depend on configuration settings depend only on the configuration settings that they use.
 * [Separation of Concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; Settings for different parts of the app aren't dependent or coupled to one another.
 
-::: moniker range=">= aspnetcore-2.2"
-
 Options also provide a mechanism to validate configuration data. For more information, see the [Options validation](#options-validation) section.
-
-::: moniker-end
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample)) This article is easier to follow with the sample app.
 
 ## Prerequisites
 
-::: moniker range=">= aspnetcore-2.1"
-
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-Reference the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) or add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-Add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package.
-
-::: moniker-end
 
 ## Options interfaces
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> is used to retrieve options and manage options notifications for `TOptions` instances. <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> supports the following scenarios:
-
-::: moniker range=">= aspnetcore-2.0"
 
 * Change notifications
 * [Named options](#named-options-support-with-iconfigurenamedoptions)
@@ -60,26 +44,7 @@ Add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtens
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> is used by <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> to cache `TOptions` instances. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> invalidates options instances in the monitor so that the value is recomputed (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryRemove*>). Values can be manually introduced with <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryAdd*>. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.Clear*> method is used when all named instances should be recreated on demand.
 
-::: moniker-end
-
-::: moniker range="= aspnetcore-1.1"
-
-* Change notifications
-* [Reloadable configuration](#reload-configuration-data-with-ioptionssnapshot)
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-1.1"
-
-* Change notifications
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-1.1"
-
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is useful in scenarios where options should be recomputed on every request. For more information, see the [Reload configuration data with IOptionsSnapshot](#reload-configuration-data-with-ioptionssnapshot) section.
-
-::: moniker-end
 
 <xref:Microsoft.Extensions.Options.IOptions`1> can be used to support options. However, <xref:Microsoft.Extensions.Options.IOptions`1> doesn't support the preceding scenarios of <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>. You may continue to use <xref:Microsoft.Extensions.Options.IOptions`1> in existing frameworks and libraries that already use the <xref:Microsoft.Extensions.Options.IOptions`1> interface and don't require the scenarios provided by <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>.
 
@@ -213,29 +178,13 @@ When the app is run, the options values are shown in the rendered page:
 
 ![Options values Option1: value1_from_json and Option2: -1 are loaded from the model and by injection into the view.](options/_static/view.png)
 
-::: moniker range=">= aspnetcore-1.1"
-
 ## Reload configuration data with IOptionsSnapshot
 
 Reloading configuration data with <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is demonstrated in Example &num;5 in the sample app.
 
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> supports reloading options with minimal processing overhead.
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.0"
-
 Options are computed once per request when accessed and cached for the lifetime of the request.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-<xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is a snapshot of <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> and updates automatically whenever the monitor triggers changes based on the data source changing.
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-1.1"
 
 The following example demonstrates how a new <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is created after *appsettings.json* changes (*Pages/Index.cshtml.cs*). Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.
 
@@ -256,10 +205,6 @@ Change the values in the *appsettings.json* file to `value1_from_json UPDATED` a
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 ```
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.0"
 
 ## Named options support with IConfigureNamedOptions
 
@@ -310,10 +255,6 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 > [!NOTE]
 > All options are named instances. Existing <xref:Microsoft.Extensions.Options.IConfigureOptions`1> instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> also implements <xref:Microsoft.Extensions.Options.IConfigureOptions`1>. The default implementation of the <xref:Microsoft.Extensions.Options.IOptionsFactory`1> has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> and <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> use this convention).
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 ## OptionsBuilder API
 
 <xref:Microsoft.Extensions.Options.OptionsBuilder`1> is used to configure `TOptions` instances. `OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of appearing in all of the subsequent calls. Options validation and the `ConfigureOptions` overloads that accept service dependencies are only available via `OptionsBuilder`.
@@ -339,8 +280,6 @@ services.AddOptions<MyOptions>("optionalName")
 
 The overload registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, which has a constructor that accepts the generic service types specified. 
 
-::: moniker-end
-
 ::: moniker range=">= aspnetcore-2.2"
 
 ## Options validation
@@ -361,7 +300,7 @@ var monitor = services.BuildServiceProvider()
 try
 {
     var options = monitor.Get("optionalOptionsName");
-} 
+}
 catch (OptionsValidationException e) 
 {
    // e.OptionsName returns "optionalOptionsName"
@@ -443,8 +382,6 @@ Eager validation (fail fast at startup) is under consideration for a future rele
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.0"
-
 ## Options post-configuration
 
 Set post-configuration with <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1>. Post-configuration runs after all <xref:Microsoft.Extensions.Options.IConfigureOptions`1> configuration occurs:
@@ -473,8 +410,6 @@ services.PostConfigureAll<MyOptions>(myOptions =>
     myOptions.Option1 = "post_configured_option1_value";
 });
 ```
-
-::: moniker-end
 
 ## Accessing options during startup
 
