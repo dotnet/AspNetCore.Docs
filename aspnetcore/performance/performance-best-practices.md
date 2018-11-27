@@ -43,11 +43,11 @@ A profiler like [PerfView](https://github.com/Microsoft/perfview) can be used to
 ## Minimize large object allocations
 
 <!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
-The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#hot). Garbage collection is especially expensive on large objects (> 85K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
+The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#hot). Garbage collection is especially expensive on large objects (> 85 K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires app execution to be temporarily suspended. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
 
 Recommendations:
 
-* **Do** consider caching large objects that are frequently used so that they don't need to be reallocated each time they're needed.
+* **Do** consider caching large objects that are frequently used. Caching large objects prevents expensive allocations.
 * **Do** pool buffers by using an [`ArrayPool<T>`](/dotnet/api/system.buffers.arraypool-1) to store large arrays.
 * **Do not** allocate many, short-lived large objects on [hot code paths](#hot).
 
@@ -69,17 +69,17 @@ Recommendations:
 * **Do not** retrieve more data than is necessary. Write queries to return just the data that is necessary for the current HTTP request.
 * **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
 * Minimize network round trips. The goal is to retrieve all the data that will be needed in a single call rather than several calls.
-* **Do** use [no-tracking queries](/ef/core/querying/tracking#no-tracking-queries) in Entity Framework Core when accessing data for read-only purposes. EF Core can return the results of no-tracking queries queries more efficiently.
+* **Do** use [no-tracking queries](/ef/core/querying/tracking#no-tracking-queries) in Entity Framework Core when accessing data for read-only purposes. EF Core can return the results of no-tracking queries more efficiently.
 * **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is done by the database.
-* **Do** consider that EF Core resolves some query operators on the client which may lead to inefficient query execution. For more information, see [Client evaluation performance issues](/ef/core/querying/client-eval#client-evaluation-performance-issues)
-* **Do not** use projection queries on collections which can result in executing "N + 1" SQL queries. For more information, see [Optimization of correlated subqueries](/ef/core/what-is-new/ef-core-2.1#optimization-of-correlated-subqueries).
+* **Do** consider that EF Core resolves some query operators on the client, which may lead to inefficient query execution. For more information, see [Client evaluation performance issues](/ef/core/querying/client-eval#client-evaluation-performance-issues)
+* **Do not** use projection queries on collections, which can result in executing "N + 1" SQL queries. For more information, see [Optimization of correlated subqueries](/ef/core/what-is-new/ef-core-2.1#optimization-of-correlated-subqueries).
 
 See [EF High Performance](/ef/core/what-is-new/ef-core-2.0#explicitly-compiled-queries) for approaches that may improve performance in high-scale apps:
 
 * [DbContext pooling](/ef/core/what-is-new/ef-core-2.0#dbcontext-pooling)
 * [Explicitly compiled queries](/ef/core/what-is-new/ef-core-2.0#explicitly-compiled-queries)
 
-We recommend you measure the impact of the preceding high performance approaches before committing to your code base. The additional complexity of compiled queries may not justify the performance improvement.
+We recommend you measure the impact of the preceding high-performance approaches before committing to your code base. The additional complexity of compiled queries may not justify the performance improvement.
 
 Query issues can be detected by reviewing time spent accessing data with [Application Insights](/azure/application-insights/app-insights-overview) or with profiling tools. Most databases also make statistics available concerning frequently executed queries.
 
@@ -106,7 +106,7 @@ Recommendations:
 
 ## Complete long-running Tasks outside of HTTP requests
 
-Most requests to an ASP.NET Core app can be handled by a controller or page model calling necessary services and returning an HTTP response. For some requests which involve long-running tasks, it's better to make the entire request-response process asynchronous.
+Most requests to an ASP.NET Core app can be handled by a controller or page model calling necessary services and returning an HTTP response. For some requests that involve long-running tasks, it's better to make the entire request-response process asynchronous.
 
 Recommendations:
 
@@ -141,6 +141,6 @@ Recommendations:
 
 * **Do not** use throwing or catching exceptions as a means of normal program flow, especially in hot code paths.
 * **Do** include logic in the app to detect and handle conditions that would cause an exception.
-* **Do** throw or catch exceptions which may be related to unusual or unexpected conditions.
+* **Do** throw or catch exceptions for unusual or unexpected conditions.
 
 App diagnostic tools (like Application Insights) can help to identify common exceptions in an application which may affect performance.
