@@ -11,14 +11,6 @@ uid: tutorials/razor-pages/razor-pages-start
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range="= aspnetcore-2.2"
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.1"
-
-::: moniker-end
-
 This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app.
 
 The app manages a database of movie titles. You learn how to:
@@ -35,14 +27,7 @@ At the end, you have an app that can manage and display movie titles items.
 
 ## Prerequisites
 
-::: moniker range="= aspnetcore-2.2"
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
-
-::: moniker-end
-::: moniker range="= aspnetcore-2.1"
-[!INCLUDE[](~/includes/net-core-prereqs-all-2.1.md)]
-
-::: moniker-end
 
 ## Create a Razor web app
 
@@ -52,8 +37,6 @@ At the end, you have an app that can manage and display movie titles items.
 * Create a new ASP.NET Core Web Application. Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy/paste code.
  ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2.1.png)
 
-::: moniker range="= aspnetcore-2.2"
-
 * Select **ASP.NET Core 2.2** in the dropdown, and then select **Web Application**.
 
   ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.2.png)
@@ -61,19 +44,6 @@ At the end, you have an app that can manage and display movie titles items.
   The following starter project is created:
 
   ![Solution Explorer](razor-pages-start/_static/se2.2.png)
-
-::: moniker-end
-::: moniker range="= aspnetcore-2.1"
-
-* Select **ASP.NET Core 2.1** in the dropdown, and then select **Web Application**.
-
-  ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.1.png)
-
-  The Visual Studio template creates a starter project:
-
-  ![Solution Explorer](razor-pages-start/_static/se2.1.png)
-
-::: moniker-end
 
 * Press **Ctrl-F5** to run without the debugger.
 
@@ -111,25 +81,11 @@ From a terminal, run the following commands:
 
 <!-- TODO: update these instruction once mac support 2.2 projects -->
 
-::: moniker range="= aspnetcore-2.2"
-
 ```console
 dotnet new webapp -o RazorPagesMovie
 cd RazorPagesMovie
 dotnet run
 ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.1"
-
-```console
-dotnet new webapp -o RazorPagesMovie
-cd RazorPagesMovie
-dotnet run
-```
-
-::: moniker-end
 
 The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 
@@ -149,22 +105,11 @@ Select **Run > Start Without Debugging** to launch the app. Visual Studio starts
 
 * Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
-::: moniker range="= aspnetcore-2.2"
   ![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
 
   The following image shows the app after accepting tracking:
 
   ![Home or Index page](razor-pages-start/_static/home2.2.png)
-::: moniker-end
-::: moniker range="= aspnetcore-2.1"
-  ![Home or Index page](razor-pages-start/_static/homeGDPR.png)
-
-  The following image shows the app after accepting tracking:
-
-  ![Home or Index page](razor-pages-start/_static/home2.1.png)
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.2"
 
 The default template creates **RazorPagesMovie**, **Home**, and **Privacy** links and pages. Depending on the size of your browser window, you might need to click the navigation icon to show the links.
 
