@@ -38,7 +38,8 @@ Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapacka
 * [Named options](#named-options-support-with-iconfigurenamedoptions)
 * [Reloadable configuration](#reload-configuration-data-with-ioptionssnapshot)
 * Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1>)
-* [Post-configuration](#options-post-configuration)
+
+[Post-configuration](#options-post-configuration) scenarios allow you to set or change options after all <xref:Microsoft.Extensions.Options.IConfigureOptions`1> configuration occurs.
 
 <xref:Microsoft.Extensions.Options.IOptionsFactory`1> is responsible for creating new options instances. It has a single <xref:Microsoft.Extensions.Options.IOptionsFactory`1.Create*> method. The default implementation takes all registered <xref:Microsoft.Extensions.Options.IConfigureOptions`1> and <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1> and runs all the configurations first, followed by the post-configuration. It distinguishes between <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> and <xref:Microsoft.Extensions.Options.IConfigureOptions`1> and only calls the appropriate interface.
 
