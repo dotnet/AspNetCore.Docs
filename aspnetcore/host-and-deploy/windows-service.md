@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/30/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -234,3 +234,4 @@ The current working directory returned by calling `Directory.GetCurrentDirectory
 
 * [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) (includes HTTPS configuration and SNI support)
 * <xref:fundamentals/host/web-host>
+* <xref:test/troubleshoot>

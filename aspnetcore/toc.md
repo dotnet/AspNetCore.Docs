@@ -20,6 +20,7 @@
 ### [With Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [With Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [For native mobile apps](xref:mobile/native-mobile-backend)
+### [With MongoDB](xref:tutorials/first-mongo-app)
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
@@ -178,6 +179,7 @@
 ### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
 ### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
 ### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
@@ -189,7 +191,7 @@
 ## [Conventions](xref:web-api/advanced/conventions)
 
 # Real-time apps
-## [Overview](xref:signalr/introduction)
+## [SignalR overview](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## Tutorials
 ### [SignalR with JavaScript](xref:tutorials/signalr)
@@ -208,6 +210,10 @@
 ### [JavaScript client](xref:signalr/javascript-client)
 ### [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
 ### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
+## Hosting and scaling
+### [Overview](xref:signalr/scale)
+### [Azure SignalR Service](/azure/azure-signalr/signalr-overview)
+### [Redis backplane](xref:signalr/redis-backplane)
 ## [Configuration](xref:signalr/configuration)
 ## [Authentication and authorization](xref:signalr/authn-and-authz)
 ## [Security considerations](xref:signalr/security)
