@@ -29,7 +29,7 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
 * In the SignalR app, install the `Microsoft.AspNetCore.SignalR.Redis` NuGet package.
 
-* In the `ConfigureServices` method, call `AddRedis` after `AddSignalR`:
+* In the `Startup.ConfigureServices` method, call `AddRedis` after `AddSignalR`:
 
   ```csharp
   services.AddSignalR().AddRedis(yourRedisConnectionString);
