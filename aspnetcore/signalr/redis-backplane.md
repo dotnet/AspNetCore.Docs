@@ -94,7 +94,7 @@ This article explains SignalR-specific aspects of setting up a Redis server to u
 
 ## Redis server errors
 
-When a Redis server goes down, SignalR throws exceptions that indicate  messages won't be delivered. Some typical exception messages:
+When a Redis server goes down, SignalR throws exceptions that indicate messages won't be delivered. Some typical exception messages:
 
 * *Failed writing message*
 * *Failed to invoke hub method 'MethodName'*

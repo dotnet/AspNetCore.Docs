@@ -187,7 +187,7 @@
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
 
 # Real-time apps
-## [Overview](xref:signalr/introduction)
+## [SignalR overview](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## Tutorials
 ### [SignalR with JavaScript](xref:tutorials/signalr)
@@ -208,6 +208,9 @@
 ## [Configuration](xref:signalr/configuration)
 ## [Authentication and authorization](xref:signalr/authn-and-authz)
 ## [Security considerations](xref:signalr/security)
+## Hosting and scaling
+### Overview]<xef:signalr/scale>
+### Redis backplane<xref:redis-backplane>
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Streaming](xref:signalr/streaming)
 ## [Compare SignalR and SignalR Core](xref:signalr/version-differences)
