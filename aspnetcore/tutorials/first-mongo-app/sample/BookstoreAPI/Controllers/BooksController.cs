@@ -2,7 +2,6 @@
 using BookMongo.Models;
 using BookMongo.Services;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 
 namespace BookMongo.Controllers
 {
@@ -26,7 +25,7 @@ namespace BookMongo.Controllers
         [HttpGet("{id:length(24)}", Name = "GetBook")]
         public ActionResult<Book> Get(string id)
         {
-            var book = _bookService.Get(new ObjectId(id));
+            var book = _bookService.Get(id);
 
             if (book == null)
             {
@@ -45,17 +44,16 @@ namespace BookMongo.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, [FromBody]Book bookIn)
+        public IActionResult Update(string id, Book bookIn)
         {
-            var recId = new ObjectId(id);
-            var book = _bookService.Get(recId);
+            var book = _bookService.Get(id);
 
             if (book == null)
             {
                 return NotFound();
             }
 
-            _bookService.Update(recId, bookIn);
+            _bookService.Update(id, bookIn);
 
             return NoContent();
         }
@@ -63,7 +61,7 @@ namespace BookMongo.Controllers
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var book = _bookService.Get(new ObjectId(id));
+            var book = _bookService.Get(id);
 
             if (book == null)
             {

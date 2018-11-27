@@ -26,9 +26,11 @@ namespace BookMongo.Services
             return _books.Find(book => true).ToList();
         }
 
-        public Book Get(ObjectId id)
+        public Book Get(string id)
         {
-            return _books.Find<Book>(book => book.Id == id).FirstOrDefault();
+            var docId = new ObjectId(id);
+
+            return _books.Find<Book>(book => book.Id == docId).FirstOrDefault();
         }
 
         public Book Create(Book book)
@@ -37,9 +39,16 @@ namespace BookMongo.Services
             return book;
         }
 
-        public void Update(ObjectId id, Book bookIn)
+        public void Update(string id, Book bookIn)
         {
-            _books.ReplaceOne(book => book.Id == id, bookIn);
+            var docId = new ObjectId(id);
+
+            _books.ReplaceOne(book => book.Id == docId, bookIn);
+        }
+
+        public void Remove(Book bookIn)
+        {
+            _books.DeleteOne(book => book.Id == bookIn.Id);
         }
 
         public void Remove(ObjectId id)
