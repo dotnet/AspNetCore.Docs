@@ -175,7 +175,7 @@ services.AddSignalR()
 
 ## Clustering
 
-Clustering is a method for achieving high availability by using multiple Redis servers. Clustering is not officially supported, but it might work.
+Clustering is a method for achieving high availability by using multiple Redis servers. Clustering isn't officially supported, but it might work.
 
 ## Next steps
 
