@@ -73,7 +73,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 1. Define a schema for the `Books` collection and insert two documents using the following command:
 
     ```console
-    db.Books.insertMany([{'BookName':'Design Patterns','Price':54.93,'Category':'Computers','Author':'Ralph Johnson'}, {'BookName':'Clean Code','Price':43.15,'Category':'Computers','Author':'Robert C. Martin'}])
+    db.Books.insertMany([{'Name':'Design Patterns','Price':54.93,'Category':'Computers','Author':'Ralph Johnson'}, {'Name':'Clean Code','Price':43.15,'Category':'Computers','Author':'Robert C. Martin'}])
     ```
 
     The following result is displayed:
@@ -99,14 +99,14 @@ Use the mongo Shell in the following steps to create a database, make collection
     ```console
     {
       "_id" : ObjectId("5bfd996f7b8e48dc15ff215d"),
-      "BookName" : "Design Patterns",
+      "Name" : "Design Patterns",
       "Price" : 54.93,
       "Category" : "Computers",
       "Author" : "Ralph Johnson"
     }
     {
       "_id" : ObjectId("5bfd996f7b8e48dc15ff215e"),
-      "BookName" : "Clean Code",
+      "Name" : "Clean Code",
       "Price" : 43.15,
       "Category" : "Computers",
       "Author" : "Robert C. Martin"
@@ -135,7 +135,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Models/Book.cs)]
 
-In the preceding class, the `Id` property is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection. Other properties in the class are decorated with the `[BsonElement]` attribute. The attribute's value represents the mapped property name in the MongoDB collection.
+In the preceding class, the `Id` property is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection. Other properties in the class are decorated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
 
 ## Add a CRUD operations class
 

@@ -7,7 +7,7 @@ namespace BookMongo.Models
     {
         public ObjectId Id { get; set; }
 
-        [BsonElement("BookName")]
+        [BsonElement("Name")]
         public string BookName { get; set; }
 
         [BsonElement("Price")]
