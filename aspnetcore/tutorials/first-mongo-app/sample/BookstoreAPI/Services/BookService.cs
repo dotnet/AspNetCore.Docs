@@ -21,14 +21,14 @@ namespace BookMongo.Services
         }
         #endregion
 
-        public List<Book> GetBooks()
+        public List<Book> Get()
         {
-            return _books.Find(m => true).ToList();
+            return _books.Find(book => true).ToList();
         }
 
-        public Book GetBook(ObjectId id)
+        public Book Get(ObjectId id)
         {
-            return _books.Find<Book>(m => m.Id == id).FirstOrDefault();
+            return _books.Find<Book>(book => book.Id == id).FirstOrDefault();
         }
 
         public Book Create(Book book)
@@ -37,14 +37,14 @@ namespace BookMongo.Services
             return book;
         }
 
-        public void Update(ObjectId id, Book book)
+        public void Update(ObjectId id, Book bookIn)
         {
-            _books.ReplaceOne(m => m.Id == id, book);
+            _books.ReplaceOne(book => book.Id == id, bookIn);
         }
 
         public void Remove(ObjectId id)
         {
-            _books.DeleteOne(m => m.Id == id);
+            _books.DeleteOne(book => book.Id == id);
         }
     }
 }

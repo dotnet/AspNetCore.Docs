@@ -20,13 +20,13 @@ namespace BookMongo.Controllers
         [HttpGet]
         public ActionResult<List<Book>> Get()
         {
-            return _bookService.GetBooks();
+            return _bookService.Get();
         }
 
         [HttpGet("{id:length(24)}")]
         public ActionResult<Book> Get(string id)
         {
-            var book = _bookService.GetBook(new ObjectId(id));
+            var book = _bookService.Get(new ObjectId(id));
 
             if (book == null)
             {
@@ -37,33 +37,33 @@ namespace BookMongo.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Book> Post(Book book)
+        public ActionResult<Book> Create(Book book)
         {
             _bookService.Create(book);
 
-            return book;
+            return CreatedAtRoute("Get", new { id = book.Id.ToString() }, book);
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Put(string id, [FromBody]Book p)
+        public IActionResult Update(string id, [FromBody]Book bookIn)
         {
             var recId = new ObjectId(id);
-            var book = _bookService.GetBook(recId);
+            var book = _bookService.Get(recId);
 
             if (book == null)
             {
                 return NotFound();
             }
 
-            _bookService.Update(recId, p);
+            _bookService.Update(recId, bookIn);
 
-            return Ok();
+            return NoContent();
         }
 
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var book = _bookService.GetBook(new ObjectId(id));
+            var book = _bookService.Get(new ObjectId(id));
 
             if (book == null)
             {
@@ -72,7 +72,7 @@ namespace BookMongo.Controllers
 
             _bookService.Remove(book.Id);
 
-            return Ok();
+            return NoContent();
         }
     }
 }
