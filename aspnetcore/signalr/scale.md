@@ -35,15 +35,11 @@ To keep SignalR resource usage from causing errors in a SignalR app, scale out t
 
 ## Scale out
 
-Unlike a stateless web app, you can't scale out a SignalR app simply by increasing the number of servers to handle increased traffic. New servers get new connections, and SignalR on server 2 knows nothing about the connections on servers 1 and 3. When SignalR on server 2 wants to send a message to all clients, the message only goes to the clients connected to that server. The following diagram illustrates this scenario.
+An app that uses SignalR needs to keep track of all its connections, which creates problems for a server farm. Add a server, and it gets new connections that the other servers don't know about. For example, SignalR on each server in the following diagram is unaware of the connections on the other servers. When SignalR on one of the servers wants to send a message to all clients, the message only goes to the clients connected to that server.
 
 ![Scaling SignalR without a backplane](scale/_static/scale-no-backplane.png)
 
-There are two recommended solutions to this problem:
-
-* Azure SignalR Service
-* Redis backplane
-
+The options for solving this problem are the [Azure SignalR Service](#azure-signalr-service) and [Redis backplane](#redis-backplane).
 
 ## Azure SignalR Service
 
@@ -57,9 +53,9 @@ The result is that the service manages all of the client connections, while each
 
 This approach to scale-out has several advantages over the Redis backplane alternative:
 
-* The SignalR app can scale out without requiring sticky sessions, because clients are immediately redirected to the Azure service when they connect.
-* The SignalR app can scale out based on the number of messages sent, while the Azure service automatically scales to handle any number of connections. For example, there could be thousands of clients, but if only a few messages per second are sent, the SignalR app won't need to scale out to multiple servers just to handle the connections themselves.
-* The SignalR app won't use significantly more connection resources than a web app without SignalR.
+* Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is not required, because clients are immediately redirected to the Azure SignalR Service when they connect.
+* A SignalR app can scale out based on the number of messages sent, while the Azure SignalR Service automatically scales to handle any number of connections. For example, there could be thousands of clients, but if only a few messages per second are sent, the SignalR app won't need to scale out to multiple servers just to handle the connections themselves.
+* A SignalR app won't use significantly more connection resources than a web app without SignalR.
 
 For these reasons, we recommend the Azure SignalR Service for all ASP.NET Core SignalR apps that run on Azure, including App Service, VMs, and containers.
 
@@ -67,7 +63,7 @@ For more information see the [Azure SignalR Service documentation](https://docs.
 
 ## Redis backplane
 
-Redis is an in-memory key-value store that supports a messaging system with a publish/subscribe model. The SignalR Redis backplane uses the pub/sub feature to forward messages to other servers. When a client makes a connection, the connection information is passed to the backplane. Then when a server wants to send a message to all clients, it sends to the backplane. The backplane knows all connected clients and which servers they're on. It sends the message to all clients via their respective servers. This process is illustrated in the following diagram:
+[Redis](https://redis.io/) is an in-memory key-value store that supports a messaging system with a publish/subscribe model. The SignalR Redis backplane uses the pub/sub feature to forward messages to other servers. When a client makes a connection, the connection information is passed to the backplane. When a server wants to send a message to all clients, it sends to the backplane. The backplane knows all connected clients and which servers they're on. It sends the message to all clients via their respective servers. This process is illustrated in the following diagram:
 
 ![Redis backplane, message sent from one server to all clients](scale/_static/redis-backplane.png)
 
@@ -75,9 +71,9 @@ We recommend the Redis backplane as the scale-out approach for apps that run on 
 
 The Azure SignalR Service advantages noted earlier are disadvantages for the Redis backplane:
 
-* Sticky sessions are required. Once a connection is initiated on a server, the connection has to stay on that server.
-* The SignalR app must scale-out based on number of clients even if few messages are being sent.
-* The SignalR app uses significantly more connection resources than a web app without SignalR.
+* Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required. Once a connection is initiated on a server, the connection has to stay on that server.
+* A SignalR app must scale out based on number of clients even if few messages are being sent.
+* A SignalR app uses significantly more connection resources than a web app without SignalR.
 
 ## Next steps
 

@@ -207,6 +207,7 @@
 ### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## Hosting and scaling
 ### [Overview](xref:signalr/scale)
+### [Azure SignalR Service](/azure/azure-signalr/signalr-overview)
 ### [Redis backplane](xref:signalr/redis-backplane)
 ## [Configuration](xref:signalr/configuration)
 ## [Authentication and authorization](xref:signalr/authn-and-authz)
