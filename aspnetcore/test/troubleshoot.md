@@ -64,14 +64,15 @@ This warning appears when the environment variable `PATH` doesn't point to any .
 
 ## Obtain data from an app
 
-If an app is capable of responding to requests, you can obtain the following data from the app using terminal inline middleware:
+If an app is capable of responding to requests, you can obtain the following data from the app using middleware:
 
 * Request &ndash; Method, scheme, host, pathbase, path, query string, headers
 * Connection &ndash; Remote IP address, remote port, local IP address, local port, client certificate
 * Identity &ndash; Name, display name
+* Configuration settings
 * Environment variables
 
-Place the following [terminal middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) code snippet at the start of the `Startup.Configure` method's request processing pipeline. The environment is checked before the middleware is run to ensure that the code is only executed in the Development environment.
+Place the following [middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) code at the beginning of the `Startup.Configure` method's request processing pipeline. The environment is checked before the middleware is run to ensure that the code is only executed in the Development environment.
 
 To obtain the environment use either of the following approaches:
 
@@ -80,7 +81,8 @@ To obtain the environment use either of the following approaches:
 * Assign the environment to a property in the `Startup` class. Check the environment using the property (for example, `if (Environment.IsDevelopment())`).
 
 ```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+    IConfiguration config)
 {
     if (env.IsDevelopment())
     {
@@ -130,6 +132,13 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             {
                 sb.Append($"Status: Disabled{nl}{nl}");
             }
+
+            sb.Append($"Configuration{rule}");
+            foreach (var pair in config.GetChildren())
+            {
+                sb.Append($"{pair.Path}: {pair.Value}{nl}");
+            }
+            sb.Append(nl);
 
             sb.Append($"Environment Variables{rule}");
             var vars = System.Environment.GetEnvironmentVariables();
