@@ -4,7 +4,7 @@ author: shirhatti
 description: Discover support for debugging ASP.NET Core apps when running behind IIS on Windows Server.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/10/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
@@ -135,11 +135,7 @@ Visual Studio may prompt a restart if not running as an administrator. If prompt
 If an untrusted development certificate is used, the browser may require you to create an exception for the untrusted certificate.
 
 > [!NOTE]
-> Running the app in the Release build configuration using development-time IIS support in Visual Studio isn't supported.
->
-> If you need to run the app in Release configuration during development, use a [VS publish profile](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) or the [dotnet publish](/dotnet/core/tools/dotnet-publish) command to publish the app to a folder. [Create a separate IIS site](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis) with a physical path pointed to the app's published assets (for example, *bin/Release/{TARGET FRAMEWORK MONIKER}/publish*).
->
-> When an ASP.NET Core project references the `Microsoft.NET.Sdk.Web` SDK in the project file, an *app_offline.htm* file is placed at the root of the app's directory when publishing the app. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the *app_offline.htm* file during the deployment. For more information, see <xref:host-and-deploy/visual-studio-publish-profiles#compute-project-items> and <xref:host-and-deploy/aspnet-core-module#app_offlinehtm>.
+> Debugging a Release build configuration with [Just My Code](/visualstudio/debugger/just-my-code) and compiler optimizations results in a degraded experience (for example, break points aren't hit).
 
 ## Additional resources
 
