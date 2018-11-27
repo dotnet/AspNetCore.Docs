@@ -13,6 +13,9 @@ By [Luke Latham](https://github.com/guardrex)
 
 [Install the .NET Core Hosting Bundle](#install-the-net-core-hosting-bundle)
 
+> [!NOTE]
+> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
+
 ## Supported operating systems
 
 The following operating systems are supported:
