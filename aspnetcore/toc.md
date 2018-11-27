@@ -191,7 +191,7 @@
 ## [Conventions](xref:web-api/advanced/conventions)
 
 # Real-time apps
-## [Overview](xref:signalr/introduction)
+## [SignalR overview](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## Tutorials
 ### [SignalR with JavaScript](xref:tutorials/signalr)
@@ -210,6 +210,10 @@
 ### [JavaScript client](xref:signalr/javascript-client)
 ### [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
 ### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
+## Hosting and scaling
+### [Overview](xref:signalr/scale)
+### [Azure SignalR Service](/azure/azure-signalr/signalr-overview)
+### [Redis backplane](xref:signalr/redis-backplane)
 ## [Configuration](xref:signalr/configuration)
 ## [Authentication and authorization](xref:signalr/authn-and-authz)
 ## [Security considerations](xref:signalr/security)
