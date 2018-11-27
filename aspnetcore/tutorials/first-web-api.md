@@ -113,7 +113,7 @@ The following diagram shows the design of the app.
 
 ### Test the API
 
-The project template creates a `values` API. Call the Get method from a browser to verify that the app runs locally.
+The project template creates a `values` API. Call the `Get` method from a browser to test the app.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -170,6 +170,8 @@ A *model* is a set of classes that represent the data that the app manages. The 
 ---
 
   [!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoItem.cs)]
+
+The `Id` property functions as the unique key in a relational database.
 
 Model classes can go anywhere in the project, but the *Models* folder is used by convention.
 
@@ -232,7 +234,7 @@ The preceding code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In **Solution Explorer**, in the *Controllers* folder, add the class `TodoController`.
+* In the *Controllers* folder, add the class `TodoController`.
 
 ---
 
@@ -245,7 +247,7 @@ The preceding code:
 * Defines an API controller class without methods.
 * Decorates the class with the [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute).
 * Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
-* Adds an item named `Item1` to the database if the database is empty. This code is in the constructor, so it runs every time there's a new HTTP request. If you delete all items by calling the API, this one will be back for the next API call. So it may look like the deletion didn't work when it actually did work.
+* Adds an item named `Item1` to the database if the database is empty. This code is in the constructor, so it runs every time there's a new HTTP request. If you delete all items, the constructor creates `Item1` again the next time an API method is called. So it may look like the deletion didn't work when it actually did work.
 
 ## Add Get methods
 
@@ -410,7 +412,7 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete, for example `https://localhost:5001/api/todo/1`
 * Select **Send**
 
-The sample app allows you to delete all the items, but when no item is left, a new one is created.
+The sample app allows you to delete all the items, but when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
 
 ## Call the API with jQuery
 
@@ -424,11 +426,11 @@ Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.build
 Create a *wwwroot* folder in the project directory.
 ::: moniker-end
 
-Add an HTML file named *index.html* to the project's *wwwroot* directory. Replace its contents with the following markup:
+Add an HTML file named *index.html* to the *wwwroot* directory. Replace its contents with the following markup:
 
 [!code-html[](first-web-api/samples/2.2/TodoApi/wwwroot/index.html)]
 
-Add a JavaScript file named *site.js* to the project's *wwwroot* directory. Replace its contents with the following code:
+Add a JavaScript file named *site.js* to the *wwwroot* directory. Replace its contents with the following code:
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
 
@@ -455,7 +457,7 @@ The [ajax](https://api.jquery.com/jquery.ajax/) function sends a `POST` request 
 
 ### Update a to-do item
 
-Updating a to-do item is similar to adding one. The only real difference between the two is that the `url` changes to add the unique identifier of the item, and the `type` is `PUT`.
+Updating a to-do item is similar to adding one. The `url` changes to add the unique identifier of the item, and the `type` is `PUT`.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxPut)]
 
