@@ -118,7 +118,7 @@ To disable CORS for a controller or action, use the [&lbrack;DisableCors&rbrack;
 
 ## CORS policy options
 
-This section describes the various options that you can set in a CORS policy. The `options.AddPolicy` method is called in `Startup.ConfigureServices`.
+This section describes the various options that you can set in a CORS policy. The [options.AddPolicy](/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corsoptions.addpolicy?view=aspnetcore-2.1#Microsoft_AspNetCore_Cors_Infrastructure_CorsOptions_AddPolicy_System_String_Microsoft_AspNetCore_Cors_Infrastructure_CorsPolicy_) method is called in `Startup.ConfigureServices`.
 
 * [Set the allowed origins](#set-the-allowed-origins)
 * [Set the allowed HTTP methods](#set-the-allowed-http-methods)
