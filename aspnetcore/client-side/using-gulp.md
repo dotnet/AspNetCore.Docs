@@ -22,7 +22,7 @@ A *task runner* is a tool which automates these routine development tasks and mo
 
 ## Gulp
 
-Gulp is a JavaScript-based streaming build toolkit for client-side code. It's commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleansing of a development environment before a new build.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It's commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleaning of a development environment before a new build.
 
 A set of Gulp tasks is defined in *gulpfile.js*. The following JavaScript includes Gulp modules and specifies file paths to be referenced within the forthcoming tasks:
 
