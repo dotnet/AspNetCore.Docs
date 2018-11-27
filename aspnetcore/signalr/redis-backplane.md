@@ -32,7 +32,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 * In the `Startup.ConfigureServices` method, call `AddRedis` after `AddSignalR`:
 
   ```csharp
-  services.AddSignalR().AddRedis(yourRedisConnectionString);
+  services.AddSignalR().AddRedis("<your_Redis_connection_string>");
   ```
 
 * Configure options as needed:
