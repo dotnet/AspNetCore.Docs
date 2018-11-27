@@ -106,7 +106,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 1. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```powershell
-    Install-Package MongoDB.Driver -Version 2.7.0
+    Install-Package MongoDB.Driver -Version 2.7.2
     ```
 
 ## Add a model
@@ -123,7 +123,13 @@ In the preceding class, the `Id` property is required for mapping the Common Lan
 1. Add a *Services* folder to the project root.
 1. Add a `BookService` class to the *Services* folder with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Services/DataAccess.cs?name=snippet_DataAccessClass)]
+    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Services/BookService.cs?name=snippet_BookServiceClass)]
+
+1. Add the MongoDB connection string to *appsettings.json*:
+
+    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/appsettings.json?highlight=2-4)]
+
+    The preceding `BookstoreDb` property is accessed in the `BookService` class constructor.
 
 1. In `Startup.ConfigureServices`, register the `BookService` class with the Dependency Injection system:
 
@@ -135,7 +141,7 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
 * `MongoClient` &ndash; Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
 
-    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Services/DataAccess.cs?name=snippet_DataAccessConstructor&highlight=3)]
+    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
 * `IMongoDatabase` &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic `GetCollection<T>(collection)` method on the interface to gain access to data in a specific collection. CRUD operations can be performed against the collection after this method is called. In the `GetCollection<T>(collection)` method call:
   * `collection` represents the collection name.
@@ -143,10 +149,10 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
 `GetCollection<T>(collection)` returns a `MongoCollection` object representing the collection. In this tutorial, the following methods are invoked on the collection:
 
-  * `Find<T>` &ndash; Returns all documents in the collection matching the provided search criteria.
-  * `InsertOne` &ndash; Inserts the provided object as a new document in the collection.
-  * `ReplaceOne` &ndash; Replaces the single document matching the provided search criteria with the provided object.
-  * `DeleteOne` &ndash; Deletes a single document matching the provided search criteria.
+* `Find<T>` &ndash; Returns all documents in the collection matching the provided search criteria.
+* `InsertOne` &ndash; Inserts the provided object as a new document in the collection.
+* `ReplaceOne` &ndash; Replaces the single document matching the provided search criteria with the provided object.
+* `DeleteOne` &ndash; Deletes a single document matching the provided search criteria.
 
 ## Add a controller
 

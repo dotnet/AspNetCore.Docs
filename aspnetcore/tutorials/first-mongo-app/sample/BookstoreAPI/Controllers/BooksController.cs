@@ -18,7 +18,7 @@ namespace BookMongo.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Book> Get()
+        public ActionResult<List<Book>> Get()
         {
             return _bookService.GetBooks();
         }
@@ -37,11 +37,11 @@ namespace BookMongo.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Book> Post(Book p)
+        public ActionResult<Book> Post(Book book)
         {
-            _bookService.Create(p);
+            _bookService.Create(book);
 
-            return p;
+            return book;
         }
 
         [HttpPut("{id:length(24)}")]
