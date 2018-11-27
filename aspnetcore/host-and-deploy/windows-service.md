@@ -62,15 +62,7 @@ Make the following changes to an existing ASP.NET Core project to run the app as
 
    * Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices).
 
-   * If the app uses a custom <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostService>, set a `Component` subtype on the file that contains the `WebHostService` implementation. The sample app includes a custom `WebHostService` in its *CustomWebHostService.cs* file that handles app starting and stopping events:
-
-     ```xml
-     <ItemGroup>
-       <Compile Update="CustomWebHostService.cs">
-         <SubType>Component</SubType>
-       </Compile>
-     </ItemGroup>
-     ```
+   * To enable Windows Event Log logging, add a package reference for [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog).
 
      For more information, see the [Handle starting and stopping events](#handle-starting-and-stopping-events) section.
 
@@ -86,6 +78,8 @@ Make the following changes to an existing ASP.NET Core project to run the app as
      * Call <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> to run the app as a service.
 
      Because the [Command-line Configuration Provider](xref:fundamentals/configuration/index#command-line-configuration-provider) requires name-value pairs for command-line arguments, the `--console` switch is removed from the arguments before <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> receives them.
+
+   * To write to the Windows Event Log, add the EventLog provider to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Set the logging level with the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file. For demonstration and testing purposes, the sample app's Production settings file sets the logging level to `Information`. In production, the value is typically set to `Error`. For more information, see <xref:fundamentals/logging/index#windows-eventlog-provider>.
 
    [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=snippet_Program)]
 

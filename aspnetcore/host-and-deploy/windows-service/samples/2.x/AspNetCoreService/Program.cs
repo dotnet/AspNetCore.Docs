@@ -3,7 +3,9 @@ using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.WindowsServices;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.EventLog;
 
 namespace SampleApp
 {
@@ -27,9 +29,9 @@ namespace SampleApp
 
             if (isService)
             {
-                // To run the app as a custom WebHostService, change the next line
-                // to host.RunAsCustomService();
-                host.RunAsService();
+                // To run the app without the CustomWebHostService change the
+                // next line to host.RunAsService();
+                host.RunAsCustomService();
             }
             else
             {
@@ -39,6 +41,10 @@ namespace SampleApp
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddEventLog();
+                })
                 .ConfigureAppConfiguration((context, config) =>
                 {
                     // Configure the app here.

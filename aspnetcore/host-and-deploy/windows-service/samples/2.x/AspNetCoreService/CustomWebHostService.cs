@@ -18,19 +18,19 @@ namespace SampleApp
 
         protected override void OnStarting(string[] args)
         {
-            _logger.LogDebug("OnStarting method called.");
+            _logger.LogInformation("OnStarting method called.");
             base.OnStarting(args);
         }
 
         protected override void OnStarted()
         {
-            _logger.LogDebug("OnStarted method called.");
+            _logger.LogInformation("OnStarted method called.");
             base.OnStarted();
         }
 
         protected override void OnStopping()
         {
-            _logger.LogDebug("OnStopping method called.");
+            _logger.LogInformation("OnStopping method called.");
             base.OnStopping();
         }
     }

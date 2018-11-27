@@ -2,20 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <SelfContained>false</SelfContained>
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
     <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="2.2.0-preview3-35497" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="CustomWebHostService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="2.2.0-preview3-35497" />
   </ItemGroup>
 
 </Project>
