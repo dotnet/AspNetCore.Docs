@@ -23,7 +23,7 @@ Persistent connections also consume some additional memory, to track each connec
 
 The heavy use of connection-related resources by SignalR can affect other web apps that are hosted on the same server. When SignalR opens and holds the last available TCP connections, other web apps on the same server also have no more connections available to them.
 
-If a server runs out of connections, you'll see random socket errors and connection reset errors, for example:
+If a server runs out of connections, you'll see random socket errors and connection reset errors. For example:
 
 ```
 An attempt was made to access a socket in a way forbidden by its access permissions...
