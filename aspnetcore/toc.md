@@ -205,12 +205,12 @@
 ### [JavaScript client](xref:signalr/javascript-client)
 ### [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
 ### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
+## Hosting and scaling
+### [Overview](xref:signalr/scale)
+### [Redis backplane](xref:signalr/redis-backplane)
 ## [Configuration](xref:signalr/configuration)
 ## [Authentication and authorization](xref:signalr/authn-and-authz)
 ## [Security considerations](xref:signalr/security)
-## Hosting and scaling
-### [Overview](<xef:signalr/scale>)
-### [Redis backplane](<xref:redis-backplane>)
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Streaming](xref:signalr/streaming)
 ## [Compare SignalR and SignalR Core](xref:signalr/version-differences)
