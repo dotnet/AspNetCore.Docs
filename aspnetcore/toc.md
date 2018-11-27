@@ -209,8 +209,8 @@
 ## [Authentication and authorization](xref:signalr/authn-and-authz)
 ## [Security considerations](xref:signalr/security)
 ## Hosting and scaling
-### Overview]<xef:signalr/scale>
-### Redis backplane<xref:redis-backplane>
+### [Overview](<xef:signalr/scale>)
+### [Redis backplane](<xref:redis-backplane>)
 ## [MessagePack Hub Protocol](xref:signalr/messagepackhubprotocol)
 ## [Streaming](xref:signalr/streaming)
 ## [Compare SignalR and SignalR Core](xref:signalr/version-differences)
