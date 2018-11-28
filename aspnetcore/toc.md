@@ -413,6 +413,15 @@
 ## [Share cookies among apps](xref:security/cookie-sharing)
 ## [IP safelist](xref:security/ip-safelist)
 
+# Performance
+## [Overview](xref:performance/performance-best-practices)
+##  Response caching
+### [Overview](xref:performance/caching/response)
+### [In-memory cache](xref:performance/caching/memory)
+### [Distributed caching](xref:performance/caching/distributed)
+### [Response caching middleware](xref:performance/caching/middleware)
+## [Response compression](xref:performance/response-compression)
+
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
 ## [Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
@@ -428,13 +437,6 @@
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
 ## [Use a file watcher](xref:tutorials/dotnet-watch)
-## Cache responses
-### [Overview](xref:performance/caching/index)
-### [Cache in-memory](xref:performance/caching/memory)
-### [Distributed caching](xref:performance/caching/distributed)
-### [Response caching](xref:performance/caching/response)
-### [Response caching middleware](xref:performance/caching/middleware)
-## [Response compression](xref:performance/response-compression)
 
 # Migration
 ## [2.1 to 2.2](xref:migration/21-to-22)
