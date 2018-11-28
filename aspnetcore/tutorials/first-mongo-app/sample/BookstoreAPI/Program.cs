@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace BookMongo
+namespace BooksApi
 {
     public class Program
     {
