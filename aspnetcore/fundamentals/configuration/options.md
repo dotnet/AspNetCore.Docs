@@ -24,7 +24,7 @@ The options pattern uses classes to represent groups of related settings. When [
 
 Options also provide a mechanism to validate configuration data. For more information, see the [Options validation](#options-validation) section.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample)) This article is easier to follow with the sample app.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -237,7 +237,7 @@ named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
 
 ## Configure all options with the ConfigureAll method
 
-Configure all options instances with the <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> method. The following code configures `Option1` for all configuration instances with a common value. Add the following code manually to the `ConfigureServices` method:
+Configure all options instances with the <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> method. The following code configures `Option1` for all configuration instances with a common value. Add the following code manually to the `Startup.ConfigureServices` method:
 
 ```csharp
 services.ConfigureAll<MyOptions>(myOptions => 
