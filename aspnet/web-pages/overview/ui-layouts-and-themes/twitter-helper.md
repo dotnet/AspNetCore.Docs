@@ -4,7 +4,7 @@ title: "Twitter Helper with ASP.NET Web Pages | Microsoft Docs"
 author: Rick-Anderson
 description: "This topic and application show how to add a Twitter Helper to your WebMatrix 3 project. It contains the Twitter Helper code and shows how to call the helper..."
 ms.author: riande
-ms.date: 02/07/2014
+ms.date: 11/26/2018
 ms.assetid: c1a1244e-b9c8-42e6-a00b-8456a4ec027c
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/twitter-helper
 msc.type: authoredcontent
@@ -12,6 +12,9 @@ msc.type: authoredcontent
 Twitter Helper with ASP.NET Web Pages
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
+
+> [!IMPORTANT]
+> Twitter Helpers are obsolete. For Twitter's latest engagement tools for websites, see [Twitter for Websites Overview](https://developer.twitter.com/en/docs/twitter-for-websites/overview).
 
 > This topic and application show how to add a Twitter Helper to your WebMatrix 3 project. It contains the Twitter Helper code and shows how to call the helper methods.
 > 

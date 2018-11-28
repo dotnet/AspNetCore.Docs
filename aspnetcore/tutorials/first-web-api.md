@@ -47,10 +47,10 @@ The following diagram shows the design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
-* A *client* is whatever calls the web API, such as a mobile app or a browser. For this tutorial you use [Postman](https://www.getpostman.com/) and a browser as clients.
-* A *model* is a set of classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
-* A *controller* is a class that handles HTTP requests and creates the HTTP response.
-* A *data access layer* is code that stores and retrieves data. This app uses an in-memory database.
+> [!NOTE]
+> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
+
+[!INCLUDE[intro to web API](../includes/webApi/intro.md)]
 
 ## Prerequisites
 

@@ -16,6 +16,7 @@
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
 #### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
 #### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
+
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
@@ -32,7 +33,7 @@
 ## [App startup](xref:fundamentals/startup)
 ## [Dependency injection (services)](xref:fundamentals/dependency-injection)
 ## [Routing](xref:fundamentals/routing)
-## [Multiple environments](xref:fundamentals/environments)
+## [Environments (dev, stage, prod)](xref:fundamentals/environments)
 ## [Configuration](xref:fundamentals/configuration/index)
 ## [Options](xref:fundamentals/configuration/options)
 ## [Logging](xref:fundamentals/logging/index)
@@ -83,7 +84,7 @@
 ##### [Update the pages](xref:tutorials/razor-pages-mac/da1)
 ##### [Add search](xref:tutorials/razor-pages-mac/search)
 ### [Filters](xref:razor-pages/filter)
-### [Class libraries](xref:razor-pages/ui-class)
+### [Razor Class Libraries](xref:razor-pages/ui-class)
 ### [Route and app conventions](xref:razor-pages/razor-pages-conventions)
 ### [Upload files](xref:razor-pages/upload-files)
 ### [Razor SDK](xref:razor-pages/sdk)
@@ -171,7 +172,9 @@
 
 # Web APIs
 ## [Overview](xref:web-api/index)
+
 ## [Create a web API](xref:tutorials/first-web-api)
+
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
@@ -184,7 +187,7 @@
 ## [Conventions](xref:web-api/advanced/conventions)
 
 # Real-time apps
-## [Overview](xref:signalr/introduction)
+## [SignalR overview](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## Tutorials
 ### [SignalR with JavaScript](xref:tutorials/signalr)
@@ -203,6 +206,10 @@
 ### [JavaScript client](xref:signalr/javascript-client)
 ### [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
 ### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
+## Hosting and scaling
+### [Overview](xref:signalr/scale)
+### [Azure SignalR Service](/azure/azure-signalr/signalr-overview)
+### [Redis backplane](xref:signalr/redis-backplane)
 ## [Configuration](xref:signalr/configuration)
 ## [Authentication and authorization](xref:signalr/authn-and-authz)
 ## [Security considerations](xref:signalr/security)
@@ -278,7 +285,7 @@
 ## Host on Azure App Service
 ### [Overview](xref:host-and-deploy/azure-apps/index)
 ### [Publish with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
-### [Publish with CLI tools](/azure/app-service/app-service-web-get-started-dotnet)
+### [Publish with CLI tools](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 ### [Publish with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Continuous deployment with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 ### [Troubleshoot startup errors](xref:host-and-deploy/azure-apps/troubleshoot)
@@ -308,7 +315,6 @@
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
-
 
 # Security and Identity
 ## [Overview](xref:security/index)
@@ -427,6 +433,7 @@
 ## [Response compression](xref:performance/response-compression)
 
 # Migration
+## [2.1 to 2.2](xref:migration/21-to-22)
 ## [2.0 to 2.1](xref:migration/20_21)
 ## 1.x to 2.0
 ### [Overview](xref:migration/1x-to-2x/index)

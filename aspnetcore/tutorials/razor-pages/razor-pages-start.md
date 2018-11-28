@@ -28,6 +28,9 @@ There are three versions of this tutorial:
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample) ([how to download](xref:index#how-to-download-a-sample))
 
+> [!NOTE]
+> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
+
 ::: moniker range=">= aspnetcore-2.1"
 
 ## Prerequisites

@@ -3257,6 +3257,8 @@
               href: signalr/overview/performance/signalr-performance.md
             - name: Introduction to Scaleout in SignalR
               href: signalr/overview/performance/scaleout-in-signalr.md
+            - name: Azure SignalR Service
+              href: /azure/azure-signalr/signalr-overview
             - name: SignalR Scaleout with Azure Service Bus
               href: signalr/overview/performance/scaleout-with-windows-azure-service-bus.md
             - name: SignalR Scaleout with Redis
