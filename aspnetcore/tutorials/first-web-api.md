@@ -47,21 +47,9 @@ The following diagram shows the design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
-> [!NOTE]
-> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
-
-[!INCLUDE[intro to web API](../includes/webApi/intro.md)]
-
 ## Prerequisites
 
-::: moniker range="= aspnetcore-2.2"
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
-
-::: moniker-end
-::: moniker range="= aspnetcore-2.1"
-[!INCLUDE[](~/includes/net-core-prereqs-all-2.1.md)]
-
-::: moniker-end
 
 ## Create a web project
 
@@ -71,14 +59,7 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web Application** template. Name the project *TodoApi* and click **OK**.
 * In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template and click **OK**. Do **not** select **Enable Docker Support**.
 
-::: moniker range="= aspnetcore-2.2"
-  ![VS new project dialog](first-web-api/_static/vs.png)
-
-::: moniker-end
-::: moniker range="= aspnetcore-2.1"
-  ![VS new project dialog](first-web-api/_static/vs21.png)
-
-::: moniker-end
+![VS new project dialog](first-web-api/_static/vs.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -203,13 +184,7 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update *Startup.cs* with the following highlighted code:
 
-::: moniker range="= aspnetcore-2.2"
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=5,8,25-26&name=snippet_all)]
-::: moniker-end
-::: moniker range="= aspnetcore-2.1"
-[!code-csharp[](first-web-api/samples/2.1/TodoApi/Startup.cs?highlight=7-8,25-26)]
-
-::: moniker-end
 
 The preceding code:
 
