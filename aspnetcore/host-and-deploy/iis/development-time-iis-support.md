@@ -135,7 +135,7 @@ Visual Studio may prompt a restart if not running as an administrator. If prompt
 If an untrusted development certificate is used, the browser may require you to create an exception for the untrusted certificate.
 
 > [!NOTE]
-> Debugging a Release build configuration with [Just My Code](/visualstudio/debugger/just-my-code) and compiler optimizations results in a degraded experience (for example, break points aren't hit).
+> Debugging a Release build configuration with [Just My Code](/visualstudio/debugger/just-my-code) and compiler optimizations results in a degraded experience. For example, break points aren't hit.
 
 ## Additional resources
 
