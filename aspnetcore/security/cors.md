@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 11/27/2018
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -118,7 +118,7 @@ To disable CORS for a controller or action, use the [&lbrack;DisableCors&rbrack;
 
 ## CORS policy options
 
-This section describes the various options that you can set in a CORS policy.
+This section describes the various options that you can set in a CORS policy. The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> method is called in `Startup.ConfigureServices`.
 
 * [Set the allowed origins](#set-the-allowed-origins)
 * [Set the allowed HTTP methods](#set-the-allowed-http-methods)

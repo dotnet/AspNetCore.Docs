@@ -2,7 +2,6 @@
 using BookMongo.Models;
 using BookMongo.Services;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 
 namespace BookMongo.Controllers
 {
@@ -18,15 +17,15 @@ namespace BookMongo.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Book> Get()
+        public ActionResult<List<Book>> Get()
         {
-            return _bookService.GetBooks();
+            return _bookService.Get();
         }
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("{id:length(24)}", Name = "GetBook")]
         public ActionResult<Book> Get(string id)
         {
-            var book = _bookService.GetBook(new ObjectId(id));
+            var book = _bookService.Get(id);
 
             if (book == null)
             {
@@ -37,33 +36,32 @@ namespace BookMongo.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Book> Post(Book p)
+        public ActionResult<Book> Create(Book book)
         {
-            _bookService.Create(p);
+            _bookService.Create(book);
 
-            return p;
+            return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Put(string id, [FromBody]Book p)
+        public IActionResult Update(string id, Book bookIn)
         {
-            var recId = new ObjectId(id);
-            var book = _bookService.GetBook(recId);
+            var book = _bookService.Get(id);
 
             if (book == null)
             {
                 return NotFound();
             }
 
-            _bookService.Update(recId, p);
+            _bookService.Update(id, bookIn);
 
-            return Ok();
+            return NoContent();
         }
 
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var book = _bookService.GetBook(new ObjectId(id));
+            var book = _bookService.Get(id);
 
             if (book == null)
             {
@@ -72,7 +70,7 @@ namespace BookMongo.Controllers
 
             _bookService.Remove(book.Id);
 
-            return Ok();
+            return NoContent();
         }
     }
 }
