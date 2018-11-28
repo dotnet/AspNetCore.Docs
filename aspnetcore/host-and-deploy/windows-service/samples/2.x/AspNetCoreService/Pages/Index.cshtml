@@ -1,5 +1,7 @@
 ﻿@page
 @model IndexModel
+@using Microsoft.AspNetCore.Hosting
+@inject IHostingEnvironment Environment
 @{
     ViewData["Title"] = "ASP.NET Core Service";
 }
@@ -12,5 +14,6 @@
     </div>
     <div class="panel-body">
         <p>This app runs as a Windows Service.</p>
+        <p>Current Environment: @Environment.EnvironmentName</p>
     </div>
 </div>
