@@ -208,6 +208,9 @@ The `Update-Database` command runs the `Up` method in the *Migrations/{time-stam
 * Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 * Test the **Create** link.
 
+  > [!NOTE]
+  > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, you must globalize your app. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420).
+
   ![Create page](../../tutorials/razor-pages/model/_static/conan.png)
 
 <a name="scaffold"></a>
