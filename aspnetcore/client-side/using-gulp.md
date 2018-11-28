@@ -100,7 +100,7 @@ The following table provides an explanation of the tasks specified in the code a
 
 ## Running default tasks
 
-If you haven't already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
+If you haven't already created a new Web app, create a new ASP.NET Web Core Application project in Visual Studio.
 
 1.  Open the *package.json* file (add if not there) and add the following.
 
@@ -243,7 +243,7 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
 	gulp.task('default', gulp.series('series'));
     ```
  
-    You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run. As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
+    You now have three tasks: `series:first`, `series:second`, and `series`. The `series` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run. As specified in the code above, only the `series:first` task must be completed before the `series` task will run.
 
 2.  Save *gulpfile.js*.
 
@@ -266,25 +266,15 @@ For more information about IntelliSense, see [JavaScript IntelliSense](/visualst
 When Gulp is used to optimize client-side files for staging and production, the processed files are saved to a local staging and production location. The *_Layout.cshtml* file uses the **environment** tag helper to provide two different versions of CSS files. One version of CSS files is for development and the other version is optimized for both staging and production. In Visual Studio 2017, when you change the **ASPNETCORE_ENVIRONMENT** environment variable to `Production`, Visual Studio will build the Web app and link to the minimized CSS files. The following markup shows the **environment** tag helpers containing link tags to the `Development` CSS files and the minified `Staging, Production` CSS files.
 
 ```html
-<environment names="Development">
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+<environment include="Development">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </environment>
-<environment names="Staging,Production">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-            asp-fallback-test="window.jQuery"
-            crossorigin="anonymous"
-            integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-    </script>
-    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-            crossorigin="anonymous"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-    </script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
+<environment exclude="Development">
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 </environment>
 ```
 
@@ -300,7 +290,7 @@ To switch between compiling for different environments, modify the **ASPNETCORE_
 
 3.  Click the **Debug** tab.
 
-4.  Set the value of the **Hosting:Environment** environment variable to `Production`.
+4.  Set the value of the **ASPNETCORE_ENVIRONMENT** environment variable to `Production`.
 
 5.  Press **F5** to run the application in a browser.
 
@@ -310,7 +300,7 @@ To switch between compiling for different environments, modify the **ASPNETCORE_
 
 7.  Close the browser to stop the Web app.
 
-8.  In Visual Studio, return to the property sheet for the Web app and change the **Hosting:Environment** environment variable back to `Development`.
+8.  In Visual Studio, return to the property sheet for the Web app and change the **ASPNETCORE_ENVIRONMENT** environment variable back to `Development`.
 
 9.  Press **F5** to run the application in a browser again.
 
