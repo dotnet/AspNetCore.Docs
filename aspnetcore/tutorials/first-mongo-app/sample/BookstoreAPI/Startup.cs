@@ -20,7 +20,7 @@ namespace BookMongo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<BookService>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         #endregion
 
