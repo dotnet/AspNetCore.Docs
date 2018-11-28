@@ -123,7 +123,7 @@ Alternatively, manually add a launch profile to the [launchSettings.json](http:/
 
 ## Run the project
 
-In the VS UI:
+In Visual Studio:
 
 * Confirm that the build configuration drop-down list is set to **Debug**.
 * Set the Run button to the **IIS** profile and select the button to start the app.
