@@ -1,12 +1,12 @@
 ﻿#region snippet_BookServiceClass
 using System.Collections.Generic;
 using System.Linq;
-using BookMongo.Models;
+using BooksApi.Models;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace BookMongo.Services
+namespace BooksApi.Services
 {
     public class BookService
     {

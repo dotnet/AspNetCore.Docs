@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using BookMongo.Models;
-using BookMongo.Services;
+using BooksApi.Models;
+using BooksApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookMongo.Controllers
+namespace BooksApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
