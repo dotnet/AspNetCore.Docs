@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using System.ServiceProcess;
 
-namespace AspNetCoreService
+namespace SampleApp
 {
     #region ExtensionsClass
     public static class WebHostServiceExtensions

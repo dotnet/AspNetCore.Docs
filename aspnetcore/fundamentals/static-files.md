@@ -90,7 +90,7 @@ Consider a directory hierarchy in which the static files to be served reside out
   * **images**
       * *banner1.svg*
 
-A request can access the *banner1.svg* file by configuring the static file middleware as follows:
+A request can access the *banner1.svg* file by configuring the Static File Middleware as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
@@ -114,12 +114,12 @@ The files have been made publicly cacheable for 10 minutes (600 seconds) in the 
 
 ## Static file authorization
 
-The static file middleware doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly accessible. To serve files based on authorization:
+The Static File Middleware doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly accessible. To serve files based on authorization:
 
-* Store them outside of *wwwroot* and any directory accessible to the static file middleware **and**
+* Store them outside of *wwwroot* and any directory accessible to the Static File Middleware.
 * Serve them via an action method to which authorization is applied. Return a [FileResult](/dotnet/api/microsoft.aspnetcore.mvc.fileresult) object:
 
-[!code-csharp[](static-files/samples/1x/Controllers/HomeController.cs?name=snippet_BannerImageAction)]
+  [!code-csharp[](static-files/samples/1x/Controllers/HomeController.cs?name=snippet_BannerImageAction)]
 
 ## Enable directory browsing
 
@@ -148,7 +148,7 @@ Setting a default home page provides visitors a logical starting point when visi
 [!code-csharp[](static-files/samples/1x/StartupEmpty.cs?name=snippet_ConfigureMethod&highlight=3)]
 
 > [!IMPORTANT]
-> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. Enable the static file middleware via `UseStaticFiles` to serve the file.
+> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. Enable Static File Middleware via `UseStaticFiles` to serve the file.
 
 With `UseDefaultFiles`, requests to a folder search for:
 

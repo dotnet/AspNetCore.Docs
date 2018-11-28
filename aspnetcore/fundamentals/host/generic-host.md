@@ -5,7 +5,7 @@ description: Learn about the Generic Host in .NET, which is responsible for app 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/30/2018
+ms.date: 11/28/2018
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
@@ -39,6 +39,28 @@ The Generic Host library is available in the <xref:Microsoft.Extensions.Hosting>
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_HostBuilder)]
 
+## Options
+
+<xref:Microsoft.Extensions.Hosting.HostOptions> configure options for the <xref:Microsoft.Extensions.Hosting.IHost>.
+
+### Shutdown timeout
+
+<xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. The default value is five seconds.
+
+The following option configuration in `Program.Main` increases the default five second shutdown timeout to 20 seconds:
+
+```csharp
+var host = new HostBuilder()
+    .ConfigureServices((hostContext, services) =>
+    {
+        services.Configure<HostOptions>(option =>
+        {
+            option.ShutdownTimeout = System.TimeSpan.FromSeconds(20);
+        });
+    })
+    .Build();
+```
+
 ## Default services
 
 The following services are registered during host initialization:
@@ -69,7 +91,7 @@ The [IHostingEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHos
 **Type**: *string*  
 **Default**: The name of the assembly containing the app's entry point.  
 **Set using**: `HostBuilderContext.HostingEnvironment.ApplicationName`  
-**Environment variable**: `<PREFIX_>APPLICATIONNAME` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
+**Environment variable**: `<PREFIX_>APPLICATIONNAME` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
 
 ### Content root
 
@@ -79,7 +101,7 @@ This setting determines where the host begins searching for content files.
 **Type**: *string*  
 **Default**: Defaults to the folder where the app assembly resides.  
 **Set using**: `UseContentRoot`  
-**Environment variable**: `<PREFIX_>CONTENTROOT` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
+**Environment variable**: `<PREFIX_>CONTENTROOT` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
 
 If the path doesn't exist, the host fails to start.
 
@@ -93,7 +115,7 @@ Sets the app's [environment](xref:fundamentals/environments).
 **Type**: *string*  
 **Default**: Production  
 **Set using**: `UseEnvironment`  
-**Environment variable**: `<PREFIX_>ENVIRONMENT` (`<PREFIX_>` is [optional and user-defined](#configuration-builder))
+**Environment variable**: `<PREFIX_>ENVIRONMENT` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
 
 The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive.
 

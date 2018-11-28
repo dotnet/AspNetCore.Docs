@@ -15,7 +15,7 @@ The preceding code:
 * Defines an API controller class without methods.
 * Creates a new Todo item when `TodoItems` is empty. You won't be able to delete all the Todo items because the constructor creates a new one if `TodoItems` is empty.
 
-In the next sections, methods are added to implement the API. The class is annotated with an `[ApiController]` attribute to enable some convenient features. For information on features enabled by the attribute, see [Annotation with ApiControllerAttribute](xref:web-api/index#annotation-with-apicontrollerattribute).
+In the next sections, methods are added to implement the API. The class is annotated with an `[ApiController]` attribute to enable some convenient features. For information on features enabled by the attribute, see [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute).
 
 ::: moniker-end
 

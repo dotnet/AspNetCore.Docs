@@ -172,7 +172,7 @@ dotnet ef migrations add Initial
 dotnet ef database update
 ```
 
-Ignore the following warning message, you fix that in a a later tutorial:
+Ignore the following warning message, which you fix in a later tutorial:
 
 ```console
 Microsoft.EntityFrameworkCore.Model.Validation[30000]
@@ -200,6 +200,10 @@ You missed the [migrations step](#pmc).
 * Test the **Create** link.
 
   ![Create page](model/_static/conan.png)
+  
+  > [!NOTE]
+  > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, you must globalize your app. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420).
+
 
 <a name="scaffold"></a>
 

@@ -368,7 +368,7 @@ Caching is an efficient way to store and retrieve data. The app can control the 
 
 Cached data isn't associated with a specific request, user, or session. **Be careful not to cache user-specific data that may be retrieved by other users' requests.**
 
-For more information, see the [Cache responses](xref:performance/caching/index) topic.
+For more information, see <xref:performance/caching/response>.
 
 ## Dependency Injection
 

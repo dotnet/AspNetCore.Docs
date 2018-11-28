@@ -24,6 +24,8 @@ The app manages a database of movie titles. You learn how to:
 At the end, you have an app that can manage and display movie titles items.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+=======
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
