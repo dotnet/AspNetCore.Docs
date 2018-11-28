@@ -2,12 +2,12 @@
   "redirections": [ 
     {   
         "source_path": "aspnetcore/performance/caching/index.md",
-        "redirect_url": "aspnet/core/performance/caching/response",
+        "redirect_url": "/aspnet/core/performance/caching/response",
         "redirect_document_id": false 
     }, 
     {   
         "source_path": "aspnetcore/performance/index.md",
-        "redirect_url": "aspnet/core/performance/performance-best-practices",
+        "redirect_url": "/aspnet/core/performance/performance-best-practices",
         "redirect_document_id": false 
     }, 
     {   
