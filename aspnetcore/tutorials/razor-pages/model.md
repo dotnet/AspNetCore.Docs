@@ -50,31 +50,6 @@ The `Movie` class contains:
 
 [!INCLUDE [model 2](~/includes/RP/model2.md)]
 
-### Entity Framework Core NuGet package for SQLite
-
-From the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), run the following .NET Core CLI command:
-
-```console
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-```
-
-<a name="reg"></a>
-
-### Register the database context
-
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
-
-Add the following `using` statements at the top of *Startup.cs*:
-
-```csharp
-using RazorPagesMovie.Models;
-using Microsoft.EntityFrameworkCore;
-```
-
-Build the project as a check for errors.
-
 [!INCLUDE [model 3](~/includes/RP/model3.md)]
 
 <a name="scaffold"></a>
@@ -91,6 +66,8 @@ Build the project as a check for errors.
   * Name the class **Movie** and select **New**.
 
 [!INCLUDE [model 2](~/includes/RP/model2.md)]
+
+[!INCLUDE [model 3](~/includes/RP/model3.md)]
 
 <!-- End of VS tabs -->
 
@@ -163,17 +140,16 @@ Examine the `Startup.ConfigureServices` method. The highlighted line was added b
 
 The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model. In this project, the class is named `RazorPagesMovieContext`.
 
-<!--Fix Me TODO replace 21 with 22 -->
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
-The preceding code creates a [DbSet/`<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet/\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
-<a name="pmc"></a>
+<a name="pim"></a>
 ## Perform initial migration
 
-In this section, you use the Package Manager Console (PMC) to:
+In this section, the Package Manager Console (PMC) is used to:
 
 * Add an initial migration.
 * Update the database with the initial migration.
