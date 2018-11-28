@@ -413,7 +413,7 @@
 ## [Share cookies among apps](xref:security/cookie-sharing)
 ## [IP safelist](xref:security/ip-safelist)
 
-# [Performance](xref:performance/index)
+# Performance
 ## [Overview](xref:performance/performance-best-practices)
 ##  Response caching
 ### [Overview](xref:performance/caching/response)
