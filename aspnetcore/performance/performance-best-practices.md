@@ -19,7 +19,7 @@ In this document, a hot code path is defined as a code path that is frequently c
 
 ## Cache aggressively
 
-Caching is discussed in several parts of this document. For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
+Caching is discussed in several parts of this document. For more information, see <xref:performance/caching/response>.
 
 ## Avoid blocking calls
 
@@ -67,7 +67,7 @@ Recommendations:
 
 * **Do** call all data access APIs asynchronously.
 * **Do not** retrieve more data than is necessary. Write queries to return just the data that is necessary for the current HTTP request.
-* **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see [Cache responses in ASP.NET Core](xref:performance/caching/index).
+* **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see <xref:performance/caching/response>.
 * Minimize network round trips. The goal is to retrieve all the data that will be needed in a single call rather than several calls.
 * **Do** use [no-tracking queries](/ef/core/querying/tracking#no-tracking-queries) in Entity Framework Core when accessing data for read-only purposes. EF Core can return the results of no-tracking queries more efficiently.
 * **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is done by the database.
