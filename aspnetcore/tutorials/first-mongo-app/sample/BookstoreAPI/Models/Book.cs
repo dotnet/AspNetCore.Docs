@@ -7,14 +7,11 @@ namespace BookMongo.Models
     {
         public ObjectId Id { get; set; }
 
-        [BsonElement("BookId")]
-        public int BookId { get; set; }
-
-        [BsonElement("BookName")]
+        [BsonElement("Name")]
         public string BookName { get; set; }
 
         [BsonElement("Price")]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
         [BsonElement("Category")]
         public string Category { get; set; }
