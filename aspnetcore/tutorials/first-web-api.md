@@ -240,7 +240,7 @@ Test the app by calling the two endpoints from a browser. For example:
 * `https://localhost:<port>/api/todo`
 * `https://localhost:<port>/api/todo/1`
 
-The following HTTP response is produced by the call to `GetAll`:
+The following HTTP response is produced by the call to `GetTodoItems`:
 
 ```json
 [
@@ -263,22 +263,22 @@ The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribu
 * Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller, so the controller name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
-In the following `GetById` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetById` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
+In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetTodoItem&highlight=1-2)]
 
 The `Name = "GetTodo"` parameter creates a named route. You'll see later how the app can use the name to create an HTTP link using the route name.
 
 ## Return values
 
-The return type of the `GetAll` and `GetById` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
-`ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetById` can return two different status values:
+`ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
 
 * If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
-## Test the GetAll method
+## Test the GetTodoItems method
 
 This tutorial uses Postman to test the web API.
 
@@ -311,11 +311,11 @@ The `CreatedAtRoute` method:
 
 * Returns a 201 response. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-* Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetById`:
+* Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetTodoItem`:
 
   [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
-### Test the Create method
+### Test the PostTodoItem method
 
 * Build the project.
 * In Postman, set the HTTP method to `POST`.
@@ -335,7 +335,7 @@ The `CreatedAtRoute` method:
 
   ![Postman with create request](first-web-api/_static/create.png)
 
-  If you get a 405 Method Not Allowed error, it's probably the result of not compiling the project after adding the after adding the `Create` method.
+  If you get a 405 Method Not Allowed error, it's probably the result of not compiling the project after adding the after adding the `PostTodoItem` method.
 
 ### Test the location header URI
 
@@ -348,17 +348,17 @@ The `CreatedAtRoute` method:
 * Paste the URI (for example, `https://localhost:5001/api/Todo/2`)
 * Select **Send**.
 
-## Add an Update method
+## Add a PutTodoItem method
 
-Add the following `Update` method:
+Add the following `PutTodoItem` method:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
-`Update` is similar to `Create`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute).
+`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute).
 
-### Test the Update method
+### Test the PutTodoItem method
 
-Update the to-do item that has id = 1 &mdash; set its name to "feed fish":
+Update the to-do item that has id = 1 and set its name to "feed fish":
 
 ```json
   {
@@ -371,15 +371,15 @@ The following image shows the Postman update:
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmcput.png)
 
-## Add a Delete method
+## Add a DeleteTodoItem method
 
-Add the following `Delete` method:
+Add the following `DeleteTodoItem` method:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
 
-The `Delete` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
+The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
 
-### Test the Delete method
+### Test the DeleteTodoItem method
 
 Use Postman to delete a to-do item:
 

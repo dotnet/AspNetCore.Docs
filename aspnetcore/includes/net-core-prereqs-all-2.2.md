@@ -11,7 +11,7 @@
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac version 7.6.10 or later](https://www.visualstudio.com/downloads/)
+* [Visual Studio for Mac version 7.7 or later](https://www.visualstudio.com/downloads/)
 * [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
 
 ---
