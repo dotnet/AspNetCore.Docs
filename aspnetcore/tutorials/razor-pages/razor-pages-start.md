@@ -147,9 +147,6 @@ The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](htt
 
 For this tutorial, the preceding pages are not used.
 
-::: moniker-end
-::: moniker range="= aspnetcore-2.1"
-
 The default template creates **RazorPagesMovie**, **Home**, **About** and **Contact** links and pages. Depending on the size of your browser window, you might need to click the navigation icon to show the links.
 
 ![Home or Index page](../../tutorials/razor-pages/razor-pages-start/_static/home2.png)
@@ -179,8 +176,6 @@ The *_ViewStart.cshtml* sets the Razor Pages `Layout` property to use the *_Layo
 The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](https://jquery.com/) validation scripts. When we add `Create` and `Edit` pages later in the tutorial, the *_ValidationScriptsPartial.cshtml* file will be used.
 
 The `About`, `Contact` and `Index` pages are basic pages you can use to start an app. The `Error` page is used to display error information. The `Privacy` page allows you to specify details about your site's privacy policy.
-
-::: moniker-end
 
 # [Visual Studio](#tab/visual-studio)
 
