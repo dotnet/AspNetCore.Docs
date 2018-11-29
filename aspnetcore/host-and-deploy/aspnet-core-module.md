@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2018
+ms.date: 11/30/2018
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module configuration reference
@@ -31,7 +31,7 @@ To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` p
 
 The following characteristics apply when hosting in-process:
 
-* The [Kestrel server](xref:fundamentals/servers/kestrel) isn't used. A custom <xref:Microsoft.AspNetCore.Hosting.Server.IServer> implementation, `IISHttpServer` acts as the app's server.
+* The [Kestrel server](xref:fundamentals/servers/kestrel) isn't used. IIS HTTP Server (`IISHttpServer`), a custom <xref:Microsoft.AspNetCore.Hosting.Server.IServer> implementation layer, is used by the app.
 
 * The [requestTimeout attribute](#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 

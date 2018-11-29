@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 11/30/2018
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -478,7 +478,7 @@ For more information on the in-process hosting model and configuring the ASP.NET
 
 ## Configuration of IIS with web.config
 
-IIS configuration is influenced by the **\<system.webServer>** section of *web.config* for those IIS features that apply to a reverse proxy configuration. If IIS is configured at the server level to use dynamic compression, the **\<urlCompression>** element in the app's *web.config* file can disable it.
+IIS configuration is influenced by the `<system.webServer>` section of *web.config* for IIS scenarios that are functional for ASP.NET Core apps with the ASP.NET Core Module. For example, IIS configuration is functional for dynamic compression. If IIS is configured at the server level to use dynamic compression, the `<urlCompression>` element in the app's *web.config* file can disable it for an ASP.NET Core app.
 
 For more information, see the [configuration reference for \<system.webServer>](/iis/configuration/system.webServer/), [ASP.NET Core Module Configuration Reference](xref:host-and-deploy/aspnet-core-module), and [IIS Modules with ASP.NET Core](xref:host-and-deploy/iis/modules). To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
 
@@ -486,10 +486,10 @@ For more information, see the [configuration reference for \<system.webServer>](
 
 Configuration sections of ASP.NET 4.x apps in *web.config* aren't used by ASP.NET Core apps for configuration:
 
-* **\<system.web>**
-* **\<appSettings>**
-* **\<connectionStrings>**
-* **\<location>**
+* `<system.web>`
+* `<appSettings>`
+* `<connectionStrings>`
+* `<location>`
 
 ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index).
 

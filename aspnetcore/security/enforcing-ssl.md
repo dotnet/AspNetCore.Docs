@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/18/2018
+ms.date: 11/30/2018
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -70,12 +70,12 @@ Specify the HTTPS port using any of the following approaches:
   When configuring an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> in `Program`:
 
   [!code-csharp[](enforcing-ssl/sample-snapshot/Program.cs?name=snippet_Program&highlight=10)]
-* Indicate a port with the secure scheme using the `ASPNETCORE_URLS` environment variable. The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. (Does **not** work in reverse proxy deployments.)
+* Indicate a port with the secure scheme using the `ASPNETCORE_URLS` environment variable. The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * In development, set an HTTPS URL in *launchsettings.json*. Enable HTTPS when IIS Express is used.
 * Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](xref:fundamentals/servers/kestrel) or [HTTP.sys](xref:fundamentals/servers/httpsys). Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 > [!NOTE]
-> When an app is run behind a reverse proxy (for example, IIS, IIS Express), `IServerAddressesFeature` isn't available. The port must be manually configured. When the port isn't set, requests aren't redirected.
+> When an app is run in a reverse proxy configuration, `IServerAddressesFeature` isn't available. The port must be manually configured. When the port isn't set, requests aren't redirected.
 
 When Kestrel or HTTP.sys is used as a public-facing edge server, Kestrel or HTTP.sys must be configured to listen on both:
 

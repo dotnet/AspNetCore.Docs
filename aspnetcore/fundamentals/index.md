@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/25/2018
+ms.date: 11/30/2018
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -20,7 +20,7 @@ The .NET Core Host:
 * Loads the [.NET Core runtime](https://github.com/dotnet/coreclr).
 * Uses the first command-line argument as the path to the managed binary that contains the entry point (`Main`) and begins code execution.
 
-The `Main` method invokes [WebHost.CreateDefaultBuilder](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*), which follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern) to create a web host. The builder has methods that define the web server (for example, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>) and the startup class (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on IIS, if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
+The `Main` method invokes [WebHost.CreateDefaultBuilder](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*), which follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern) to create a web host. The builder has methods that define a web server (for example, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>) and the startup class (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on [Internet Information Services (IIS)](https://www.iis.net/), if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
 <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>, the return type of the `WebHost.CreateDefaultBuilder` invocation, provides many optional methods. Some of these methods include `UseHttpSys` for hosting the app in HTTP.sys and <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseContentRoot*> for specifying the root content directory. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder.Build*> and <xref:Microsoft.AspNetCore.Hosting.WebHostExtensions.Run*> methods build the <xref:Microsoft.AspNetCore.Hosting.IWebHost> object that hosts the app and begins listening for HTTP requests.
 
@@ -125,7 +125,12 @@ For more information, see <xref:fundamentals/host/index>.
 
 ## Servers
 
-The ASP.NET Core hosting model doesn't directly listen for requests. The hosting model relies on an HTTP server implementation to forward the request to the app. The forwarded request is wrapped as a set of feature objects that can be accessed through interfaces. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is commonly run behind a production web server, such as [IIS](https://www.iis.net/) or [Nginx](http://nginx.org) in a reverse proxy configuration. Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+The ASP.NET Core hosting model doesn't directly listen for requests. The hosting model relies on an HTTP server implementation or processing layer to forward the request to the app.
+
+ASP.NET Core provides the following implementations:
+
+* [Kestrel](xref:fundamentals/servers/kestrel) is a managed, cross-platform web server. Kestrel is often run behind a production web server in a reverse proxy configuration, such as [IIS](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+* IIS HTTP Server (`IISHttpServer`) is a request processing layer (not a true server) that converts native requests into managed requests when hosting an app [in-process with Windows IIS]((xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model).
 
 For more information, see <xref:fundamentals/servers/index>.
 

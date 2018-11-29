@@ -4,7 +4,7 @@ author: shirhatti
 description: Discover support for debugging ASP.NET Core apps when running behind IIS on Windows Server.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 11/30/2018
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
@@ -48,7 +48,7 @@ If the IIS installation already has a **Default Web Site** with a host name that
 ## Enable development-time IIS support in Visual Studio
 
 1. Launch the Visual Studio installer.
-1. Select the **Development time IIS support** component. The component is listed as optional in the **Summary** panel for the **ASP.NET and web development** workload. The component installs the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps behind IIS in a reverse proxy configuration.
+1. Select the **Development time IIS support** component. The component is listed as optional in the **Summary** panel for the **ASP.NET and web development** workload. The component installs the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps with IIS.
 
 ![Modifying Visual Studio features: The Workloads tab is selected. In the Web and Cloud section, the ASP.NET and web development panel is selected. On the right in the Optional area of the Summary panel, there's a check box for Development time IIS support.](development-time-iis-support/_static/development_time_support.png)
 

@@ -5,7 +5,7 @@ description: Learn about response compression and how to use Response Compressio
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/21/2018
+ms.date: 11/30/2018
 uid: performance/response-compression
 ---
 # Response compression in ASP.NET Core
@@ -426,7 +426,7 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 
 ## Middleware issue when behind an Nginx reverse proxy
 
-When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
+When a request is proxied by Nginx, the `Accept-Encoding` header is removed. Removal of the `Accept-Encoding` header prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (aspnet/BasicMiddleware \#123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## Working with IIS dynamic compression
 

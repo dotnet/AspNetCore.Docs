@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2018
+ms.date: 11/30/2018
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
@@ -51,7 +51,7 @@ public class Program
   * Environment variables.
   * Command-line arguments.
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#log-filtering) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
-* When running behind IIS, enables [IIS integration](xref:host-and-deploy/iis/index). Configures the base path and port the server listens on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates a reverse proxy between IIS and Kestrel. Also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
+* When running behind IIS with the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), `CreateDefaultBuilder` enables [IIS integration](xref:host-and-deploy/iis/index), which configures the app's base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 * Sets [ServiceProviderOptions.ValidateScopes](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
 
 The configuration defined by `CreateDefaultBuilder` can be overridden and augmented by [ConfigureAppConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configureappconfiguration), [ConfigureLogging](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configurelogging), and other methods and extension methods of [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). A few examples follow:
