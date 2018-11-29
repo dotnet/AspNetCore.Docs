@@ -110,7 +110,12 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-<!-- End of VS tabs -->
+* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Run the following command:
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
 
