@@ -27,19 +27,7 @@ Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the
 
 Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
 
-Add the following properties to the `Movie` class:
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date). With this attribute:
-
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information.
-
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[!INCLUDE [model 1b](~/includes/RP/model1b.md)]
 
 <!-- Code -------------------------->
 
@@ -48,11 +36,9 @@ The `Movie` class contains:
 * Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 
+[!INCLUDE [model 1b](~/includes/RP/model1b.md)]
+
 [!INCLUDE [model 2](~/includes/RP/model2.md)]
-
-[!INCLUDE [model 3](~/includes/RP/model3.md)]
-
-<a name="scaffold"></a>
 
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -65,9 +51,13 @@ The `Movie` class contains:
   * Select **Empty Class** in the center pain.
   * Name the class **Movie** and select **New**.
 
+[!INCLUDE [model 1b](~/includes/RP/model1b.md)]
+
 [!INCLUDE [model 2](~/includes/RP/model2.md)]
 
-[!INCLUDE [model 3](~/includes/RP/model3.md)]
+Right click on a red squiggly line, for example `MovieContext` in the line `services.AddDbContext<MovieContext>(options =>`. Select **Quick Fix > using RazorPagesMovie.Models;**. Visual studio adds the using statement.
+
+Build the project to verify you don't have any errors.
 
 <!-- End of VS tabs -->
 
@@ -106,11 +96,29 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* **For Windows**: Run the following command:
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  ```
+
+* **For macOS and Linux**: Run the following command:
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  ```
+
+[!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
+
 <!-- Mac -------------------------->
+
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 <!-- End of VS tabs -->
+
+[!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
 
 ---
 
@@ -127,6 +135,54 @@ The scaffold process creates and updates the following files:
 * *appsettings.json*: The connection string used to connect to a local database is added.
 
 The created and updated files are explained in the next section.
+
+<a name="cli"></a>
+
+## Initial migration
+
+<!-- VS -------------------------->
+
+# [Visual Studio](#tab/visual-studio)
+
+<!-- VS -------------------------->
+
+In this section, the Package Manager Console (PMC) is used to:
+
+* Add an initial migration.
+* Update the database with the initial migration.
+
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+
+  ![PMC menu](../first-mvc-app/adding-model/_static/pmc.png)
+
+In the PMC, enter the following commands:
+
+```PMC
+Add-Migration Initial
+Update-Database
+```
+
+<!-- Code -------------------------->
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+<!-- Mac -------------------------->
+
+[!INCLUDE [initial migration](~/includes/RP/model3.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE [initial migration](~/includes/RP/model3.md)]
+
+---  <!-- End of VS tabs -->
+
+The `ef migrations add InitialCreate` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+
+The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
+
+<!-- VS -------------------------->
+
+# [Visual Studio](#tab/visual-studio)
 
 ## Examine the context registered with dependency injection
 
@@ -145,32 +201,17 @@ The main class that coordinates EF Core functionality for a given data model is 
 The preceding code creates a [DbSet/\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+<!-- Code -------------------------->
 
-<a name="pim"></a>
-## Perform initial migration
+# [Visual Studio Code](#tab/visual-studio-code)
 
-In this section, the Package Manager Console (PMC) is used to:
+<!-- Mac -------------------------->
 
-* Add an initial migration.
-* Update the database with the initial migration.
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+<!-- End of VS tabs -->
 
-  ![PMC menu](../first-mvc-app/adding-model/_static/pmc.png)
-
-In the PMC, enter the following commands:
-
-```PMC
-Add-Migration Initial
-Update-Database
-```
-
-Alternatively, the following .NET Core CLI commands can be used from the project folder:
-
-```console
-dotnet ef migrations add Initial
-dotnet ef database update
-```
+---
 
 Ignore the following warning message, which you fix in a later tutorial:
 

@@ -62,10 +62,10 @@ At the end, you have an app that can manage and display movie titles items.
    code -r RazorPagesMovie
    ```
 
-  * A dialog box appears with **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?**
-  * Select **Yes**
-  * `dotnet new webapp -o RazorPagesMovie`: creates a new Web API project in the *RazorPagesMovie* folder.
-  * `code -r RazorPagesMovie`: Loads the *RazorPagesMovie.csproj* project file.
+  * A dialog box appears with **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?**  Select **Yes**
+
+  * `dotnet new webapp -o RazorPagesMovie`: creates a new Razor Pages project in the *RazorPagesMovie* folder.
+  * `code -r RazorPagesMovie`: Loads the *RazorPagesMovie.csproj* project file in Visual Studio Code.
 
 ### Launch the app
 

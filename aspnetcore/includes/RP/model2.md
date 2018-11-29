@@ -1,19 +1,3 @@
-<!-- delete all the model includes except this -->
-
-Add the following properties to the `Movie` class:
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date). With this attribute:
-
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information.
-
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
-
 <a name="dc"></a>
 ### Add a database context class
 
@@ -33,19 +17,18 @@ Add a connection string to the *appsettings.json* file:
 
 ### Entity Framework Core NuGet package for SQLite
 
-Run the following .NET Core CLI command to add SQLite to the project:
+Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design  to the project:
 
 ```console
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 ```
+
+The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
 
 <a name="reg"></a>
 
 ### Register the database context
-
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 Add the following `using` statements at the top of *Startup.cs*:
 
@@ -53,5 +36,9 @@ Add the following `using` statements at the top of *Startup.cs*:
 using RazorPagesMovie.Models;
 using Microsoft.EntityFrameworkCore;
 ```
+
+Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`.
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 Build the project as a check for errors.

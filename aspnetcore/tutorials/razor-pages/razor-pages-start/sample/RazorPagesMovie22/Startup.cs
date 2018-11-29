@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie
@@ -23,7 +18,9 @@ namespace RazorPagesMovie
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet_ConfigureServices
+        // This method gets called by the runtime. 
+        // Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -34,12 +31,12 @@ namespace RazorPagesMovie
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<RazorPagesMovieContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
+               options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
         }
+        #endregion
 
 #if UseSqlite
         #region snippet_UseSqlite
@@ -61,7 +58,8 @@ namespace RazorPagesMovie
         #endregion
 #endif
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to configure the 
+        // HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -71,7 +69,8 @@ namespace RazorPagesMovie
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for 
+                // production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

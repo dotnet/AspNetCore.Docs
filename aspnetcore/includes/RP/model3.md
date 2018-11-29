@@ -1,6 +1,3 @@
-<a name="cli"></a>
-
-## Initial migration
 
 Run the following .NET Core CLI commands:
 
@@ -8,7 +5,3 @@ Run the following .NET Core CLI commands:
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
-
-The `ef migrations add InitialCreate` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
