@@ -4,7 +4,7 @@ author: pratik-khandelwal
 description: This tutorial demonstrates how to build an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 11/29/2018
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -25,11 +25,26 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
+# [Visual Studio](#tab/visual-studio)
+
+* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [Visual Studio 2017 version 15.9 or later](https://www.visualstudio.com/downloads/) with the **ASP.NET and web development** workload
+* [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 * [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7.3 or later with the following workloads:
-  * **.NET Core cross-platform development**
-  * **ASP.NET and web development**
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [Visual Studio for Mac version 7.7 or later](https://www.visualstudio.com/downloads/)
+* [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+
+---
 
 ## Configure MongoDB
 
@@ -119,8 +134,10 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 ## Create the ASP.NET Core web API project
 
-1. In Visual Studio, go to **File** > **New** > **Project**.
-1. Select **ASP.NET Core Web Application**, name the project *BookMongo*, and click **OK**.
+# [Visual Studio](#tab/visual-studio)
+
+1. Go to **File** > **New** > **Project**.
+1. Select **ASP.NET Core Web Application**, name the project *BooksApi*, and click **OK**.
 1. Select the **.NET Core** target framework and **ASP.NET Core 2.1**. Select the **API** project template, and click **OK**:
 1. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
@@ -128,31 +145,61 @@ The database is ready. You can start creating the ASP.NET Core web API.
     Install-Package MongoDB.Driver -Version 2.7.2
     ```
 
+# [Visual Studio Code](#tab/visual-studio-code)
+
+1. Run the following commands in a command shell:
+
+    ```console
+    dotnet new webapi -o BooksApi
+    code BooksApi
+    ```
+
+    A new ASP.NET Core web API project targeting .NET Core is generated and opened in Visual Studio Code.
+
+1. Click **Yes** when the *Required assets to build and debug are missing from 'BooksApi'. Add them?* notification appears.
+1. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
+
+    ```console
+    dotnet add BooksApi.csproj package MongoDB.Driver -v 2.7.2
+    ```
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+1. Go to **File** > **New Solution** > **.NET Core** > **App**.
+1. Select the **ASP.NET Core Web API** C# project template, and click **Next**.
+1. Select **.NET Core 2.2** from the **Target Framework** drop-down list, and click **Next**.
+1. Enter *BooksApi* for the **Project Name**, and click **Create**.
+1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Add Packages**.
+1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and click **Add Package**.
+1. Click the **Accept** button in the **License Acceptance** dialog.
+
+---
+
 ## Add a model
 
-1. Add a *Models* folder to the project root.
-1. Add a `Book` class to the *Models* folder with the following code:
+1. Add a *Models* directory to the project root.
+1. Add a `Book` class to the *Models* directory with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Models/Book.cs)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs)]
 
 In the preceding class, the `Id` property is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection. Other properties in the class are decorated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
 
 ## Add a CRUD operations class
 
-1. Add a *Services* folder to the project root.
-1. Add a `BookService` class to the *Services* folder with the following code:
+1. Add a *Services* directory to the project root.
+1. Add a `BookService` class to the *Services* directory with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Services/BookService.cs?name=snippet_BookServiceClass)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceClass)]
 
 1. Add the MongoDB connection string to *appsettings.json*:
 
-    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/appsettings.json?highlight=2-4)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-4)]
 
     The preceding `BookstoreDb` property is accessed in the `BookService` class constructor.
 
 1. In `Startup.ConfigureServices`, register the `BookService` class with the Dependency Injection system:
 
-    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Startup.cs?name=snippet_ConfigureServices&highlight=3)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=3)]
 
     The preceding service registration is necessary to support constructor injection in consuming classes.
 
@@ -160,7 +207,7 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
 * `MongoClient` &ndash; Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
 
-    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
 * `IMongoDatabase` &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic `GetCollection<T>(collection)` method on the interface to gain access to data in a specific collection. CRUD operations can be performed against the collection after this method is called. In the `GetCollection<T>(collection)` method call:
   * `collection` represents the collection name.
@@ -175,12 +222,9 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
 ## Add a controller
 
-1. Right-click the *Controllers* folder in **Solution Explorer**. Select **Add** > **Controller**.
-1. Choose the **API Controller - Empty** item template, and click **Add**.
-1. Enter *BooksController* in the **Controller name** text box, and click **Add**.
-1. Add the following code to *BooksController.cs*:
+1. Add a `BooksController` class to the *Controllers* directory with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BookstoreAPI/Controllers/BooksController.cs)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Controllers/BooksController.cs)]
 
     The preceding web API controller:
 
