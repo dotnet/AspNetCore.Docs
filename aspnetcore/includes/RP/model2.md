@@ -15,7 +15,7 @@ Add a connection string to the *appsettings.json* file:
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
-### Entity Framework Core NuGet package for SQLite
+### Add required NuGet packages
 
 Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design  to the project:
 

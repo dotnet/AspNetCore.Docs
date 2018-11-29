@@ -55,13 +55,11 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 [!INCLUDE [model 2](~/includes/RP/model2.md)]
 
-Right click on a red squiggly line, for example `MovieContext` in the line `services.AddDbContext<MovieContext>(options =>`. Select **Quick Fix > using RazorPagesMovie.Models;**. Visual studio adds the using statement.
-
-Build the project to verify you don't have any errors.
-
 <!-- End of VS tabs -->
 
 ---
+
+Build the project to verify there are no compilation errors.
 
 ## Scaffold the movie model
 
@@ -92,18 +90,14 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 ![Image from the previous instructions.](model/_static/arp.png)
 
+The *appsettings.json* file is updated with the connection string used to connect to a local database.
+
 <!-- Code -------------------------->
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* **For Windows**: Run the following command:
-
-  ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
-  ```
-
-* **For macOS and Linux**: Run the following command:
+* Run the following command:
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
@@ -132,7 +126,6 @@ The scaffold process creates and updates the following files:
 ### File updated
 
 * *Startup.cs*
-* *appsettings.json*: The connection string used to connect to a local database is added.
 
 The created and updated files are explained in the next section.
 
