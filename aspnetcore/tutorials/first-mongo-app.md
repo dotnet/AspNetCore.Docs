@@ -4,7 +4,7 @@ author: pratik-khandelwal
 description: This tutorial demonstrates how to build an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 11/29/2018
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -28,9 +28,7 @@ In this tutorial, you learn how to:
 # [Visual Studio](#tab/visual-studio)
 
 * [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.9 or later with the following workloads:
-  * **.NET Core cross-platform development**
-  * **ASP.NET and web development**
+* [Visual Studio 2017 version 15.9 or later](https://www.visualstudio.com/downloads/) with the **ASP.NET and web development** workload
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 # [Visual Studio Code](#tab/visual-studio-code)
