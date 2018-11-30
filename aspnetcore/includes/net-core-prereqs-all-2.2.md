@@ -1,8 +1,15 @@
-[!INCLUDE[](~/includes/net-core-prereqs-vs-vsc-2.2.md)]
+## Prerequisites
+
+# [Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vs-2.2.md)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-2.2.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac version 7.7 or later](https://www.visualstudio.com/downloads/)
-* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+[!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
 
 ---
