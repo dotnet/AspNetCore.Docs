@@ -166,8 +166,6 @@ The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (
 
 The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client-side.
 
-The next tutorial explains SQL Server LocalDB and seeding the database.
-
 > [!div class="step-by-step"]
 > [Previous: Adding a model](xref:tutorials/razor-pages/model)
-> [Next: SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+> [Next: Data Base](xref:tutorials/razor-pages/sql)
