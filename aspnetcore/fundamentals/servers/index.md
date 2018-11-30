@@ -18,7 +18,7 @@ ASP.NET Core ships with the following:
 ::: moniker range=">= aspnetcore-2.2"
 
 * [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server for ASP.NET Core.
-* IIS HTTP Server (`IISHttpServer`) is a processing layer used with the [in-process hosting model](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model) and the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) on Windows.
+* IIS HTTP Server (`IISHttpServer`) is an [IIS in-process server](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model) implementation used with the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) on Windows.
 * [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). (HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.)
 
 ::: moniker-end
@@ -71,7 +71,7 @@ For more information, see [When to use Kestrel with a reverse proxy](xref:fundam
 
 When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), the ASP.NET Core app either runs in the same process as the IIS worker process (the *in-process* hosting model) or in a process separate from the IIS worker process (the *out-of-process* hosting model).
 
-The [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) is a native IIS module that handles native IIS requests between either the in-process IIS HTTP Server layer or the out-of-process Kestrel server. For more information, see <xref:fundamentals/servers/aspnet-core-module>.
+The [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) is a native IIS module that handles native IIS requests between either the in-process IIS HTTP Server or the out-of-process Kestrel server. For more information, see <xref:fundamentals/servers/aspnet-core-module>.
 
 ::: moniker-end
 

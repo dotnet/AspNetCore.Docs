@@ -31,7 +31,7 @@ To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` p
 
 The following characteristics apply when hosting in-process:
 
-* The [Kestrel server](xref:fundamentals/servers/kestrel) isn't used. IIS HTTP Server (`IISHttpServer`), a custom <xref:Microsoft.AspNetCore.Hosting.Server.IServer> implementation layer, is used by the app.
+* The [Kestrel server](xref:fundamentals/servers/kestrel) isn't used. IIS HTTP Server (`IISHttpServer`) is a custom <xref:Microsoft.AspNetCore.Hosting.Server.IServer> implementation used to convert IIS native requests into ASP.NET Core managed requests for processing by the app.
 
 * The [requestTimeout attribute](#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 

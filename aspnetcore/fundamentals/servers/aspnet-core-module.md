@@ -30,7 +30,7 @@ Supported Windows versions:
 
 ::: moniker range=">= aspnetcore-2.2"
 
-When hosting in-process, the module has its own server implementation layer, IIS HTTP Server (`IISHttpServer`).
+When hosting in-process, the module uses an IIS in-process server implementation, IIS HTTP Server (`IISHttpServer`).
 
 When hosting out-of-process, the module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)).
 
@@ -67,9 +67,9 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 ![ASP.NET Core Module](aspnet-core-module/_static/ancm-inprocess.png)
 
-A request arrives from the web to the kernel-mode HTTP.sys driver. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module receives the native request and passes control to IIS HTTP Server (`IISHttpServer`), which is a processing layer that converts the request from native to managed.
+A request arrives from the web to the kernel-mode HTTP.sys driver. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module receives the native request and passes it to IIS HTTP Server (`IISHttpServer`). IIS HTTP Server is an IIS in-process server implementation that converts the request from native to managed.
 
-After the IIS HTTP Server layer processes the request, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. The app's response is passed back to IIS, which pushes it back out to the client that initiated the request.
+After the IIS HTTP Server processes the request, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. The app's response is passed back to IIS, which pushes it back out to the client that initiated the request.
 
 ### Out-of-process hosting model
 
