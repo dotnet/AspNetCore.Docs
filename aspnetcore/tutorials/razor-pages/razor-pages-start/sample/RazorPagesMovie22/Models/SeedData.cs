@@ -1,4 +1,4 @@
-﻿//#define Rating
+﻿#define Rating
 #if Rating
 // Seed without Rating
 #region snippet_1 

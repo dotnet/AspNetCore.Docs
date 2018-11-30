@@ -9,7 +9,7 @@ uid: tutorials/razor-pages/sql
 ---
 # Work with a database and ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette) 
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
 The `MovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in *Startup.cs*:
 
@@ -21,12 +21,12 @@ The `MovieContext` object handles the task of connecting to the database and map
 <!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=15-18)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=15-18)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 ---  
 <!-- End of VS tabs -->
@@ -42,8 +42,6 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 # [Visual Studio](#tab/visual-studio)
 
 The name value for the database (`Database={Database name}`) will be different for your generated code. The name value is arbitrary.
-
-razor-pages-start/sample/RazorPagesMovie22/appsettings.json
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie22/appsettings.json)]
 
@@ -67,7 +65,7 @@ When the app is deployed to a test or production server, an environment variable
 
 ## SQL Server Express LocalDB
 
-LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates "/*.mdf" files in the *C:/Users//<user/>* directory.
+LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates `*.mdf` files in the `C:/Users/<user/>` directory.
 
 <a name="ssox"></a>
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
@@ -102,17 +100,7 @@ Note the key icon next to `ID`. By default, EF creates a property named `ID` for
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-::: moniker range="= aspnetcore-2.0"
-
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
-
-::: moniker-end
 
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
