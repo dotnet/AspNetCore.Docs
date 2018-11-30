@@ -75,11 +75,13 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 
 Change the `<title>` element in the *Pages/Shared/_Layout.cshtml* file to use Movie rather than RazorPagesMovie.
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml
+[!code-cshtml[](razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml
 ?range=1-6&highlight=6)]
 
 <!-- I don't think we need a snapshot copy of layout
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml?range=1-6&highlight=6)]
+
+[!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/NU/_Layout.cshtml
+?range=1-6&highlight=6)]
 -->
 
 Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
