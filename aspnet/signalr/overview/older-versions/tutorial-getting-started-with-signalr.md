@@ -60,7 +60,7 @@ The following steps use Visual Studio 2012 to create an ASP.NET Empty Web Applic
 1. In Visual Studio create an ASP.NET Empty Web Application.
 
     ![Create empty web](tutorial-getting-started-with-signalr/_static/image2.png)
-2. Open the **Package Manager Console** by selecting **Tools | Library Package Manager | Package Manager Console**. Enter the following command into the console window:
+2. Open the **Package Manager Console** by selecting **Tools | NuGet Package Manager | Package Manager Console**. Enter the following command into the console window:
 
     `Install-Package Microsoft.AspNet.SignalR -Version 1.1.3`
 

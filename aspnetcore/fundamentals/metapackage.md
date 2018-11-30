@@ -4,14 +4,14 @@ author: Rick-Anderson
 description: The Microsoft.AspNetCore.All metapackage is not recommended for ASP.NET Core 2.1 and later.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 09/20/2018
+ms.custom: mvc
+ms.date: 10/25/2018
 uid: fundamentals/metapackage
 ---
-
 # Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 
 > [!NOTE]
-> We recommend applications targeting ASP.NET Core 2.1 and later use the [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
+> We recommend applications targeting ASP.NET Core 2.1 and later use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
 
 This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 
@@ -25,18 +25,37 @@ All the features of ASP.NET Core 2.x and Entity Framework Core 2.x are included 
 
 The version number of the `Microsoft.AspNetCore.All` metapackage represents the ASP.NET Core version and Entity Framework Core version.
 
-Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the [.NET Core Runtime Store](https://docs.microsoft.com/dotnet/core/deploying/runtime-store). The Runtime Store contains all the runtime assets needed to run ASP.NET Core 2.x applications. When you use the `Microsoft.AspNetCore.All` metapackage, **no** assets from the referenced ASP.NET Core NuGet packages are deployed with the application &mdash; the .NET Core Runtime Store contains these assets. The assets in the Runtime Store are precompiled to improve application startup time.
+Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the [.NET Core Runtime Store](/dotnet/core/deploying/runtime-store). The Runtime Store contains all the runtime assets needed to run ASP.NET Core 2.x applications. When you use the `Microsoft.AspNetCore.All` metapackage, **no** assets from the referenced ASP.NET Core NuGet packages are deployed with the application &mdash; the .NET Core Runtime Store contains these assets. The assets in the Runtime Store are precompiled to improve application startup time.
 
 You can use the package trimming process to remove packages that you don't use. Trimmed packages are excluded in published application output.
 
 The following *.csproj* file references the `Microsoft.AspNetCore.All` metapackage for ASP.NET Core:
 
-[!code-xml[](metapackage/samples/Metapackage.All.Example.csproj?highlight=6)]
+[!code-xml[](metapackage/samples/Metapackage.All.Example.csproj?highlight=8)]
+
+::: moniker range=">= aspnetcore-2.1"
+
+## Implicit versioning
+
+In ASP.NET Core 2.1 or later, you can specify the `Microsoft.AspNetCore.All` package reference without a version. When the version isn't specified, an implicit version is specified by the SDK (`Microsoft.NET.Sdk.Web`). We recommend relying on the implicit version specified by the SDK and not explicitly setting the version number on the package reference. If you have questions about this approach, leave a GitHub comment at the [Discussion for the Microsoft.AspNetCore.App implicit version](https://github.com/aspnet/Docs/issues/6430).
+
+The implicit version is set to `major.minor.0` for portable apps. The shared framework roll-forward mechanism runs the app on the latest compatible version among the installed shared frameworks. To guarantee the same version is used in development, test, and production, ensure the same version of the shared framework is installed in all environments. For self-contained apps, the implicit version number is set to the `major.minor.patch` of the shared framework bundled in the installed SDK.
+
+Specifying a version number on the `Microsoft.AspNetCore.All` package reference does **not** guarantee that version of the shared framework is chosen. For example, suppose version "2.1.1" is specified, but "2.1.3" is installed. In that case, the app will use "2.1.3". Although not recommended, you can disable roll forward (patch and/or minor). For more information regarding dotnet host roll-forward and how to configure its behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
+
+The project's SDK must be set to `Microsoft.NET.Sdk.Web` in the project file to use the implicit version of `Microsoft.AspNetCore.All`. When the `Microsoft.NET.Sdk` SDK is specified (`<Project Sdk="Microsoft.NET.Sdk">` at the top of the project file), the following warning is generated:
+
+*Warning NU1604: Project dependency Microsoft.AspNetCore.All does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.*
+
+This is a known issue with the .NET Core 2.1 SDK and will be fixed in the .NET Core 2.2 SDK.
+
+::: moniker-end
 
 <a name="migrate"></a>
+
 ## Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App
 
-The following packages are included in `Microsoft.AspNetCore.All` but not the `Microsoft.AspNetCore.App` package. 
+The following packages are included in `Microsoft.AspNetCore.All` but not the `Microsoft.AspNetCore.App` package.
 
 * `Microsoft.AspNetCore.ApplicationInsights.HostingStartup`
 * `Microsoft.AspNetCore.AzureAppServices.HostingStartup`
@@ -63,7 +82,7 @@ Any dependencies of the preceding packages that otherwise aren't dependencies of
 
 ## Update ASP.NET Core 2.1
 
-We recommend migrating migrating to the `Microsoft.AspNetCore.App` metapackage for 2.1 and later. To keep using the `Microsoft.AspNetCore.All` metapackage and ensure the latest patch version is deployed:
+We recommend migrating to the `Microsoft.AspNetCore.App` metapackage for 2.1 and later. To keep using the `Microsoft.AspNetCore.All` metapackage and ensure the latest patch version is deployed:
 
 * On development machines and build servers: Install the latest [.NET Core SDK](https://www.microsoft.com/net/download).
 * On deployment servers: Install the latest [.NET Core runtime](https://www.microsoft.com/net/download).

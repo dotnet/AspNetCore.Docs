@@ -13,7 +13,7 @@ By [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com
 > [!NOTE]
 > Response caching in Razor Pages is available in ASP.NET Core 2.1 or later.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
 
@@ -62,7 +62,7 @@ For more information, see [Cache in-memory](xref:performance/caching/memory).
 
 Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group if cached data for the client is available. ASP.NET Core offers SQL Server and Redis distributed caches.
 
-For more information, see [Work with a distributed cache](xref:performance/caching/distributed).
+For more information, see <xref:performance/caching/distributed>.
 
 ### Cache Tag Helper
 
@@ -224,9 +224,9 @@ Cache-Control: public,max-age=60
 
 * [Storing Responses in Caches](https://tools.ietf.org/html/rfc7234#section-3)
 * [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
-* [Cache in-memory](xref:performance/caching/memory)
-* [Work with a distributed cache](xref:performance/caching/distributed)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
-* [Response Caching Middleware](xref:performance/caching/middleware)
-* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
-* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+* <xref:performance/caching/memory>
+* <xref:performance/caching/distributed>
+* <xref:fundamentals/change-tokens>
+* <xref:performance/caching/middleware>
+* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
+* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>

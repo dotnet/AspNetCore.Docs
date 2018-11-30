@@ -34,10 +34,7 @@ namespace WebPWrecover.Services
 
             // Disable click tracking.
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
-            msg.TrackingSettings = new TrackingSettings
-            {
-                ClickTracking = new ClickTracking { Enable = false }
-            };
+            msg.SetClickTracking(false, false);
 
             return client.SendEmailAsync(msg);
         }

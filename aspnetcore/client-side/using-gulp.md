@@ -4,12 +4,12 @@ author: rick-anderson
 description: Learn how to use Gulp in ASP.NET Core.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 02/28/2017
+ms.date: 10/04/2018
 uid: client-side/using-gulp
 ---
 # Use Gulp in ASP.NET Core
 
-By [Erik Reitan](https://github.com/Erikre), [Scott Addie](https://scottaddie.com), [Daniel Roth](https://github.com/danroth27), and [Shayne Boyer](https://twitter.com/spboyer)
+By [Scott Addie](https://scottaddie.com), [Shayne Boyer](https://twitter.com/spboyer), and [David Pine](https://twitter.com/davidpine7)
 
 In a typical modern web app, the build process might:
 
@@ -22,7 +22,7 @@ A *task runner* is a tool which automates these routine development tasks and mo
 
 ## Gulp
 
-Gulp is a JavaScript-based streaming build toolkit for client-side code. It's commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleansing of a development environment before a new build.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It's commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleaning of a development environment before a new build.
 
 A set of Gulp tasks is defined in *gulpfile.js*. The following JavaScript includes Gulp modules and specifies file paths to be referenced within the forthcoming tasks:
 
@@ -31,10 +31,10 @@ A set of Gulp tasks is defined in *gulpfile.js*. The following JavaScript includ
 "use strict";
 
 var gulp = require("gulp"),
-  rimraf = require("rimraf"),
-  concat = require("gulp-concat"),
-  cssmin = require("gulp-cssmin"),
-  uglify = require("gulp-uglify");
+    rimraf = require("rimraf"),
+    concat = require("gulp-concat"),
+    cssmin = require("gulp-cssmin"),
+    uglify = require("gulp-uglify");
 
 var paths = {
   webroot: "./wwwroot/"
@@ -61,32 +61,31 @@ The above code specifies which Node modules are required. The `require` function
 Once the requisite modules are imported, the tasks can be specified. Here there are six tasks registered, represented by the following code:
 
 ```javascript
-gulp.task("clean:js", function (cb) {
-  rimraf(paths.concatJsDest, cb);
-});
+gulp.task("clean:js", done => rimraf(paths.concatJsDest, done));
+gulp.task("clean:css", done => rimraf(paths.concatCssDest, done));
+gulp.task("clean", gulp.series(["clean:js", "clean:css"]));
 
-gulp.task("clean:css", function (cb) {
-  rimraf(paths.concatCssDest, cb);
-});
-
-gulp.task("clean", ["clean:js", "clean:css"]);
-
-gulp.task("min:js", function () {
+gulp.task("min:js", () => {
   return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
     .pipe(concat(paths.concatJsDest))
     .pipe(uglify())
     .pipe(gulp.dest("."));
 });
 
-gulp.task("min:css", function () {
+gulp.task("min:css", () => {
   return gulp.src([paths.css, "!" + paths.minCss])
     .pipe(concat(paths.concatCssDest))
     .pipe(cssmin())
     .pipe(gulp.dest("."));
 });
 
-gulp.task("min", ["min:js", "min:css"]);
+gulp.task("min", gulp.series(["min:js", "min:css"]));
+	
+// A 'default' task is required by Gulp v4
+gulp.task("default", gulp.series(["min"]));
 ```
+
+---
 
 The following table provides an explanation of the tasks specified in the code above:
 
@@ -103,19 +102,33 @@ The following table provides an explanation of the tasks specified in the code a
 
 If you haven't already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
 
-1.  Add a new JavaScript file to your project and name it *gulpfile.js*, then copy the following code.
+1.  Open the *package.json* file (add if not there) and add the following.
+
+    ```json
+    {
+      "devDependencies": {
+        "gulp": "^4.0.0",
+        "gulp-concat": "2.6.1",
+        "gulp-cssmin": "0.2.0",
+        "gulp-uglify": "3.0.0",
+        "rimraf": "2.6.1"
+      }
+    }
+    ```
+
+2.  Add a new JavaScript file to your project and name it *gulpfile.js*, then copy the following code.
 
     ```javascript
     /// <binding Clean='clean' />
     "use strict";
     
-    var gulp = require("gulp"),
-      rimraf = require("rimraf"),
-      concat = require("gulp-concat"),
-      cssmin = require("gulp-cssmin"),
-      uglify = require("gulp-uglify");
+    const gulp = require("gulp"),
+          rimraf = require("rimraf"),
+          concat = require("gulp-concat"),
+          cssmin = require("gulp-cssmin"),
+          uglify = require("gulp-uglify");
     
-    var paths = {
+    const paths = {
       webroot: "./wwwroot/"
     };
     
@@ -126,45 +139,28 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
     paths.concatJsDest = paths.webroot + "js/site.min.js";
     paths.concatCssDest = paths.webroot + "css/site.min.css";
     
-    gulp.task("clean:js", function (cb) {
-      rimraf(paths.concatJsDest, cb);
-    });
-    
-    gulp.task("clean:css", function (cb) {
-      rimraf(paths.concatCssDest, cb);
-    });
-    
-    gulp.task("clean", ["clean:js", "clean:css"]);
-    
-    gulp.task("min:js", function () {
-      return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
-        .pipe(concat(paths.concatJsDest))
-        .pipe(uglify())
-        .pipe(gulp.dest("."));
-    });
-    
-    gulp.task("min:css", function () {
-      return gulp.src([paths.css, "!" + paths.minCss])
-        .pipe(concat(paths.concatCssDest))
-        .pipe(cssmin())
-        .pipe(gulp.dest("."));
-    });
-    
-    gulp.task("min", ["min:js", "min:css"]);
-    ```
+    gulp.task("clean:js", done => rimraf(paths.concatJsDest, done));
+    gulp.task("clean:css", done => rimraf(paths.concatCssDest, done));
+    gulp.task("clean", gulp.series(["clean:js", "clean:css"]));
 
-2.  Open the *package.json* file (add if not there) and add the following.
+	gulp.task("min:js", () => {
+	  return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
+		.pipe(concat(paths.concatJsDest))
+		.pipe(uglify())
+		.pipe(gulp.dest("."));
+	});
 
-    ```json
-    {
-      "devDependencies": {
-        "gulp": "3.9.1",
-        "gulp-concat": "2.6.1",
-        "gulp-cssmin": "0.1.7",
-        "gulp-uglify": "2.0.1",
-        "rimraf": "2.6.1"
-      }
-    }
+	gulp.task("min:css", () => {
+	  return gulp.src([paths.css, "!" + paths.minCss])
+		.pipe(concat(paths.concatCssDest))
+		.pipe(cssmin())
+		.pipe(gulp.dest("."));
+	});
+
+	gulp.task("min", gulp.series(["min:js", "min:css"]));
+	
+	// A 'default' task is required by Gulp v4
+	gulp.task("default", gulp.series(["min"]));
     ```
 
 3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
@@ -206,9 +202,10 @@ To define a new Gulp task, modify *gulpfile.js*.
 
 1.  Add the following JavaScript to the end of *gulpfile.js*:
 
-    ```javascript
-    gulp.task("first", function () {
+	```javascript
+    gulp.task('first', done => {
       console.log('first task! <-----');
+      done(); // signal completion
     });
     ```
 
@@ -230,16 +227,20 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
 
 1.  To define a series of tasks to run in order, replace the `first` task that you added above in *gulpfile.js* with the following:
 
-    ```javascript
-    gulp.task("series:first", function () {
-      console.log('first task! <-----');
-    });
- 
-    gulp.task("series:second", ["series:first"], function () {
-      console.log('second task! <-----');
-    });
- 
-    gulp.task("series", ["series:first", "series:second"], function () {});
+	```javascript
+	gulp.task('series:first', done => {
+	  console.log('first task! <-----');
+	  done(); // signal completion
+	});
+	gulp.task('series:second', done => {
+	  console.log('second task! <-----');
+      done(); // signal completion
+	});
+
+	gulp.task('series', gulp.series(['series:first', 'series:second']), () => { });
+
+	// A 'default' task is required by Gulp v4
+	gulp.task('default', gulp.series('series'));
     ```
  
     You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run. As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.

@@ -35,7 +35,7 @@ This approach makes it easy to change the layout and UI of your app, because you
 
 ## Add the Knockout Library
 
-In Visual Studio, from the **Tools** menu, select **Library Package Manager**. Then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+In Visual Studio, from the **Tools** menu, select **NuGet Package Manager**. Then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-console[Main](part-6/samples/sample1.cmd)]
 

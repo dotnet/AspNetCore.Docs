@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 title: "Programming ASP.NET Web Pages (Razor) Using Visual Studio | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This appendix explains how you can use Visual Studio 2010 or Visual Web Developer 2010 Express to program ASP.NET Web Pages with the Razor syntax."
 ms.author: riande
 ms.date: 02/13/2014
@@ -15,26 +15,26 @@ Programming ASP.NET Web Pages (Razor) Using Visual Studio
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
 > This article explains how you can use Visual Studio or Visual Web Developer Express to program ASP.NET Web Pages (Razor) websites.
-> 
+>
 > What you'll learn
-> 
+>
 > - What you need to install (if anything) to work with ASP.NET Web Pages in your version of Visual Studio.
 > - How to add support for ASP.NET Web Pages to Visual Web Developer 2010 Express.
 > - How to use features in Visual Studio to work with ASP.NET Razor pages, including IntelliSense and the debugger.
->   
-> 
+>
+>
 > ## Software versions used in the tutorial
-> 
-> 
+>
+>
 > - ASP.NET Web Pages (Razor) 3
 > - Visual Studio 2013
 > - WebMatrix 3
->   
-> 
+>
+>
 > This tutorial also works with ASP.NET Web Pages 2, Visual Studio 2012, Visual Studio 2010, and WebMatrix 2.
 
 
-You can program ASP.NET Web pages with Razor syntax using WebMatrix or many other code editors. You can also use Microsoft Visual Studio which is a full-featured integrated development environment (IDE) that provides a powerful set of tools for creating many types of applications (not just websites). To work with ASP.NET Razor pages, you can either use one of the full editions of Visual Studio or the free [Visual Studio Express for Web](https://www.visualstudio.com/downloads/download-visual-studio-vs#d-2013-express) edition.
+You can program ASP.NET Web pages with Razor syntax using WebMatrix or many other code editors. You can also use Microsoft Visual Studio which is a full-featured integrated development environment (IDE) that provides a powerful set of tools for creating many types of applications (not just websites). To work with ASP.NET Razor pages, you can use [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017).
 
 Two particularly useful features that Visual Studio provides for programming with ASP.NET Razor web pages are:
 
@@ -42,6 +42,8 @@ Two particularly useful features that Visual Studio provides for programming wit
 - *Debugger*. The debugger lets you troubleshoot your code by stopping a program while it's running, examining variables, and stepping through the code line by line.
 
 ## Using Visual Studio with Different Versions of ASP.NET Web Pages
+
+To develop ASP.NET web apps in Visual Studio 2017, install the **ASP.NET and web development** workload.
 
 Visual Studio 2012 and Visual Studio 2013 include support for ASP.NET Web Pages. (The packages that are required in order to support ASP.NET Web Pages are installed when you install Visual Studio.)
 
@@ -68,7 +70,7 @@ When you click the button, the project is opened in Visual Studio. You can switc
 
 To create an ASP.NET Razor website in Visual Studio:
 
-1. Start Visual Studio or Visual Web Developer.
+1. Open Visual Studio.
 2. In the **File** menu, click **New Web Site**.
 
     ![create new web site](program-asp-net-web-pages-in-visual-studio/_static/image2.png)
@@ -85,28 +87,28 @@ Your new project exists and is populated with some default web pages to help you
 Now that you've created a site, you can see how IntelliSense works in Visual Studio.
 
 1. In the website you just created, open the *Default.cshtml* page.
-2. After the `<h3>` tags in the page, type `@ServerInfo.` (including the dot). Notice how IntelliSense displays the available methods for the `ServerInfo` helper in a drop-down list. 
+2. After the `<h3>` tags in the page, type `@ServerInfo.` (including the dot). Notice how IntelliSense displays the available methods for the `ServerInfo` helper in a drop-down list.
 
     ![intellisense](program-asp-net-web-pages-in-visual-studio/_static/image4.png)
-3. Select the `GetHtml` method from the list and then press Enter. IntelliSense automatically fills in the method. (As with any method in C#, you must add `()` characters after the method.)  
-   The completed code for the `GetHtml` method looks like the following example:  
+3. Select the `GetHtml` method from the list and then press Enter. IntelliSense automatically fills in the method. (As with any method in C#, you must add `()` characters after the method.)
+   The completed code for the `GetHtml` method looks like the following example:
 
     [!code-cshtml[Main](program-asp-net-web-pages-in-visual-studio/samples/sample1.cshtml)]
-4. Press Ctrl+F5 to run the page. This is what the page looks like when displayed in a browser: 
+4. Press Ctrl+F5 to run the page. This is what the page looks like when displayed in a browser:
 
     ![default page in browser](program-asp-net-web-pages-in-visual-studio/_static/image5.png)
 5. Close the browser.
 
 ### Using the Debugger
 
-1. At the top of the *Default.cshtml* page, after the line that begins with `Page.Title`, add the following line of code: 
+1. At the top of the *Default.cshtml* page, after the line that begins with `Page.Title`, add the following line of code:
 
     [!code-csharp[Main](program-asp-net-web-pages-in-visual-studio/samples/sample2.cs)]
 2. In the gray margin of the editor to the left of the code, click next to this new line in order to add a *breakpoint*. A breakpoint is a marker that tells the debugger to stop running the program at that point so you can see what's happening.
 
     ![set breakpoint](program-asp-net-web-pages-in-visual-studio/_static/image6.png)
 3. Remove the call to the `ServerInfo.GetHtml` method, and add a call to the `@myTime` variable in its place. This call displays the current time value that's returned by the new line of code.
-4. Press F5 to run the page in the debugger. The page stops on the breakpoint that you set. The following image shows what the page looks like in the editor with the breakpoint (in yellow). 
+4. Press F5 to run the page in the debugger. The page stops on the breakpoint that you set. The following image shows what the page looks like in the editor with the breakpoint (in yellow).
 
     ![debug breakpoint](program-asp-net-web-pages-in-visual-studio/_static/image7.png)
 5. In the Debug toolbar, click the **Step Into** button (or press F11) to run the next line of code. Each time you click this button, you advance the execution to the next line of code.

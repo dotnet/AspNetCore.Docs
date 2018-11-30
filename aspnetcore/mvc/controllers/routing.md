@@ -377,7 +377,7 @@ Razor Pages routing and MVC controller routing share an implementation. Informat
 
 ## Token replacement in route templates ([controller], [action], [area])
 
-For convenience, attribute routes support *token replacement* by enclosing a token in square-braces (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` will be replaced with the values of the action name, area name, and controller name from the action where the route is defined. In this example the actions can match URL paths as described in the comments:
+For convenience, attribute routes support *token replacement* by enclosing a token in square-braces (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
 
 [!code-csharp[](routing/sample/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
 
@@ -401,9 +401,56 @@ public class ProductsController : MyBaseController
 }
 ```
 
-Token replacement also applies to route names defined by attribute routes. `[Route("[controller]/[action]", Name="[controller]_[action]")]` will generate a unique route name for each action.
+Token replacement also applies to route names defined by attribute routes. `[Route("[controller]/[action]", Name="[controller]_[action]")]` generates a unique route name for each action.
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
+
+::: moniker range=">= aspnetcore-2.2"
+
+<a name="routing-token-replacement-transformers-ref-label"></a>
+
+### Use a parameter transformer to customize token replacement
+
+Token replacement can be customized using a parameter transformer. A parameter transformer implements `IOutboundParameterTransformer` and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`.
+
+The `RouteTokenTransformerConvention` is an application model convention that:
+
+* Applies a parameter transformer to all attribute routes in an application.
+* Customizes the attribute route token values as they are replaced.
+
+```csharp
+public class SubscriptionManagementController : Controller
+{
+    [HttpGet("[controller]/[action]")] // Matches '/subscription-management/list-all'
+    public IActionResult ListAll() { ... }
+}
+```
+
+The `RouteTokenTransformerConvention` is registered as an option in `ConfigureServices`.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc(options =>
+    {
+        options.Conventions.Add(new RouteTokenTransformerConvention(
+                                     new SlugifyParameterTransformer()));
+    });
+}
+
+public class SlugifyParameterTransformer : IOutboundParameterTransformer
+{
+    public string TransformOutbound(object value)
+    {
+        if (value == null) { return null; }
+
+        // Slugify value
+        return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
+    }
+}
+```
+
+::: moniker-end
 
 <a name="routing-multiple-routes-ref-label"></a>
 
@@ -504,6 +551,10 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 
 > [!NOTE]
 > What distinguishes the two types of routing systems is the process applied after a URL matches a route template. In conventional routing, the route values from the match are used to choose the action and controller from a lookup table of all conventional routed actions. In attribute routing, each template is already associated with an action, and no further lookup is needed.
+
+## Complex segments
+
+Complex segments (for example, `[Route("/dog{token}cat")]`), are processed by matching up literals from right to left in a non-greedy way. See [the source code](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L296) for a description. For more information, see [this issue](https://github.com/aspnet/Docs/issues/8197).
 
 <a name="routing-url-gen-ref-label"></a>
 

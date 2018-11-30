@@ -1,22 +1,34 @@
 ---
 title: Web server implementations in ASP.NET Core
-author: rick-anderson
+author: guardrex
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/13/2018
+ms.date: 09/21/2018
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com/), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher)
 
-An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as sets of [request features](xref:fundamentals/request-features) composed into an [HttpContext](/dotnet/api/system.web.httpcontext).
+An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as sets of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
-ASP.NET Core ships two server implementations:
+ASP.NET Core ships with the following server implementations:
+
+::: moniker range=">= aspnetcore-2.2"
+
+* [Kestrel](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server for ASP.NET Core.
+* `IISHttpServer` is used with the [in-process hosting model](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model) and the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) on Windows.
+* [HTTP.sys](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). (HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
 
 * [Kestrel](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server for ASP.NET Core.
 * [HTTP.sys](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). (HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.)
+
+::: moniker-end
 
 ## Kestrel
 
@@ -44,7 +56,7 @@ If the app is exposed to the Internet, Kestrel must use IIS, Nginx, or Apache as
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. The 1.x versions of Kestrel don't have important security features to defend against attacks from the Internet. This includes, but isn't limited to, appropriate timeouts, request size limits, and concurrent connection limits.
+The most important reason for using a reverse proxy for public-facing edge server deployments that are exposed directly the Internet is security. The 1.x versions of Kestrel don't have important security features to defend against attacks from the Internet. This includes, but isn't limited to, appropriate timeouts, request size limits, and concurrent connection limits.
 
 For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 
@@ -54,7 +66,19 @@ IIS, Nginx, and Apache can't be used without Kestrel or a [custom server impleme
 
 ### IIS with Kestrel
 
-When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) as a reverse proxy for ASP.NET Core, the ASP.NET Core app runs in a process separate from the IIS worker process. In the IIS process, the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) coordinates the reverse proxy relationship. The primary functions of the ASP.NET Core Module are to start the ASP.NET Core app, restart the app when it crashes, and forward HTTP traffic to the app. For more information, see [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). 
+::: moniker range=">= aspnetcore-2.2"
+
+When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), the ASP.NET Core app either runs in the same process as the IIS worker process (the *in-process* hosting model) or in a process separate from the IIS worker process (the *out-of-process* hosting model).
+
+The [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) is a native IIS module that handles native IIS requests between either the in-process IIS Http Server or the out-of-process Kestrel server. For more information, see <xref:fundamentals/servers/aspnet-core-module>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) as a reverse proxy for ASP.NET Core, the ASP.NET Core app runs in a process separate from the IIS worker process. In the IIS process, the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) coordinates the reverse proxy relationship. The primary functions of the ASP.NET Core Module are to start the ASP.NET Core app, restart the app when it crashes, and forward HTTP traffic to the app. For more information, see <xref:fundamentals/servers/aspnet-core-module>.
+
+::: moniker-end
 
 ### Nginx with Kestrel
 
@@ -114,7 +138,7 @@ When launching an app from a command prompt in the project's folder, [dotnet run
 
 * [Kestrel](xref:fundamentals/servers/kestrel#http2-support)
   * Operating system
-    * Windows Server 2012 R2/Windows 8.1 or later
+    * Windows Server 2016/Windows 10 or later&dagger;
     * Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)
     * HTTP/2 will be supported on macOS in a future release.
   * Target framework: .NET Core 2.2 or later
@@ -126,8 +150,10 @@ When launching an app from a command prompt in the project's folder, [dotnet run
   * Target framework: .NET Core 2.2 or later
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Edge connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
+  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
+
+&dagger;Kestrel has limited support for HTTP/2 on Windows Server 2012 R2 and Windows 8.1. Support is limited because the list of supported TLS cipher suites available on these operating systems is limited. A certificate generated using an Elliptic Curve Digital Signature Algorithm (ECDSA) may be required to secure TLS connections.
 
 ::: moniker-end
 
@@ -138,7 +164,7 @@ When launching an app from a command prompt in the project's folder, [dotnet run
   * Target framework: Not applicable to HTTP.sys deployments.
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Edge connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
+  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
 
 ::: moniker-end

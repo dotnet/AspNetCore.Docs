@@ -3,7 +3,8 @@ title: ASP.NET Core MVC with EF Core - Concurrency - 8 of 10
 author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: data/ef-mvc/concurrency
 ---
 
@@ -214,7 +215,6 @@ Replace the code in the HttpPost `Delete` method (named `DeleteConfirmed`) with 
 
 In the scaffolded code that you just replaced, this method accepted only a record ID:
 
-
 ```csharp
 public async Task<IActionResult> DeleteConfirmed(int id)
 ```
@@ -273,7 +273,7 @@ Replace the code in *Views/Departments/Create.cshtml* to add a Select option to 
 
 ## Summary
 
-This completes the introduction to handling concurrency conflicts. For more information about how to handle concurrency in EF Core, see [Concurrency conflicts](https://docs.microsoft.com/ef/core/saving/concurrency). The next tutorial shows how to implement table-per-hierarchy inheritance for the Instructor and Student entities.
+This completes the introduction to handling concurrency conflicts. For more information about how to handle concurrency in EF Core, see [Concurrency conflicts](/ef/core/saving/concurrency). The next tutorial shows how to implement table-per-hierarchy inheritance for the Instructor and Student entities.
 
 ::: moniker-end
 

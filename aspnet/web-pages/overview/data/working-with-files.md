@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/data/working-with-files
 title: "Working with Files in an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This chapter explains how to read, write, append, delete, and upload files."
 ms.author: riande
 ms.date: 02/20/2014

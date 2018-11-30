@@ -6,7 +6,7 @@ using ContosoUniversity.Models;
 using System;
 using System.Linq;
 
-namespace ContosoUniversity.Data
+namespace ContosoUniversity.Models
 {
     public static class DbInitializer
     {

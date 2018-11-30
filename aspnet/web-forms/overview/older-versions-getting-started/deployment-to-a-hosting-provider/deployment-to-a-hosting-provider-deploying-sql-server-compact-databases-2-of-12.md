@@ -99,12 +99,11 @@ Open the application Web.config file and remove the element that specifies the C
 > [!NOTE]
 > Another way to specify an initializer class is do it by calling `Database.SetInitializer` in the `Application_Start` method in the *Global.asax* file. If you are enabling Migrations in a project that uses that method to specify the initializer, remove that line of code.
 
-
 Next, enable Code First Migrations.
 
 The first step is to make sure that the ContosoUniversity project is set as the startup project. In **Solution Explorer**, right-click the ContosoUniversity project and select **Set as Startup Project**. Code First Migrations will look in the startup project to find the database connection string.
 
-From the **Tools** menu, click **Library Package Manager** and then **Package Manager Console**.
+From the **Tools** menu, click **NuGet Package Manager** and then **Package Manager Console**.
 
 ![Selecting_Package_Manager_Console](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12/_static/image6.png)
 

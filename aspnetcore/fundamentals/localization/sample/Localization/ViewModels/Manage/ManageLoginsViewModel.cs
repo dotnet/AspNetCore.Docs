@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace Localization.StarterWeb.ViewModels.Manage
+namespace Localization.ViewModels.Manage
 {
     public class ManageLoginsViewModel
     {

@@ -217,7 +217,7 @@ Here is an example of a rendered delete button with a customer contact ID of `1`
 <button type="submit" formaction="/?id=1&amp;handler=delete">delete</button>
 ```
 
-When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
+When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based on the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
 
 Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a page handler method with the name `OnPostRemoveAsync` is selected.
 
@@ -232,7 +232,7 @@ The `OnPostDeleteAsync` method:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## Mark page properties required
+## Mark page properties as required
 
 Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
 
@@ -242,7 +242,9 @@ See [Model validation](xref:mvc/models/validation) for more information.
 
 ## Manage HEAD requests with the OnGet handler
 
-Ordinarily, a HEAD handler is created and called for HEAD requests:
+HEAD requests allow you to retrieve the headers for a specific resource. Unlike GET requests, HEAD requests don't return a response body. 
+
+Ordinarily, a HEAD handler is created and called for HEAD requests: 
 
 ```csharp
 public void OnHead()
@@ -251,12 +253,14 @@ public void OnHead()
 }
 ```
 
-If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. Opt in to this behavior with the [SetCompatibilityVersion method](xref:mvc/compatibility-version) in `Startup.Configure` for ASP.NET Core 2.1 to 2.x:
+If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. In ASP.NET Core 2.1 and 2.2, this behavior occurs with the [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.Configure`:
 
 ```csharp
 services.AddMvc()
     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 ```
+
+The default templates generate the `SetCompatibilityVersion` call in ASP.NET Core 2.1 and 2.2.
 
 `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
 

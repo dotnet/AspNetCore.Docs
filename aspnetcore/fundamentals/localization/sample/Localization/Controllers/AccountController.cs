@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Localization.StarterWeb.Models;
-using Localization.StarterWeb.Services;
-using Localization.StarterWeb.ViewModels.Account;
+using Localization.Models;
+using Localization.Services;
+using Localization.ViewModels.Account;
 
-namespace Localization.StarterWeb.Controllers
+namespace Localization.Controllers
 {
     [Authorize]
     public class AccountController : Controller

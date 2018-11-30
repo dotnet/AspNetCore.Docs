@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to upload files to a Razor Page.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 07/11/2018
+ms.date: 11/10/2018
 uid: razor-pages/upload-files
 ---
 # Upload files to a Razor Page in ASP.NET Core
@@ -16,6 +16,8 @@ This topic builds upon the [sample app](https://github.com/aspnet/Docs/tree/mast
 This topic shows how to use simple model binding to upload files, which works well for uploading small files. For information on streaming large files, see [Uploading large files with streaming](xref:mvc/models/file-uploads#uploading-large-files-with-streaming).
 
 In the following steps, a movie schedule file upload feature is added to the sample app. A movie schedule is represented by a `Schedule` class. The class includes two versions of the schedule. One version is provided to customers, `PublicSchedule`. The other version is used for company employees, `PrivateSchedule`. Each version is uploaded as a separate file. The tutorial demonstrates how to perform two file uploads from a page with a single POST to the server.
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/upload-files/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -336,4 +338,4 @@ The user can click the **Delete** link from there to reach the delete confirmati
 
 ## Troubleshooting
 
-For troubleshooting information with `IFormFile` uploading, see the [File uploads in ASP.NET Core: Troubleshooting](xref:mvc/models/file-uploads#troubleshooting).
+For troubleshooting information with `IFormFile` uploading, see [File uploads in ASP.NET Core: Troubleshooting](xref:mvc/models/file-uploads#troubleshooting).

@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/releases/running-v1-and-v2-sites-side-by-side
 title: "Running Different Versions of ASP.NET Web Pages (Razor) Side by Side | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This article explains how to run ASP.NET Web Pages (Razor) websites on the same computer or server when the websites are configured to use different versions..."
 ms.author: riande
 ms.date: 02/10/2014

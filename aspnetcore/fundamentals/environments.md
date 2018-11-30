@@ -12,7 +12,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Environments
 

@@ -3,7 +3,8 @@ title: ASP.NET Core MVC with EF Core - Advanced - 10 of 10
 author: rick-anderson
 description: This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core.
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: data/ef-mvc/advanced
 ---
 
@@ -95,7 +96,7 @@ Click **Back to List** to see the list of courses with the revised number of cre
 
 Note that production code would ensure that updates always result in valid data. The simplified code shown here could multiply the number of credits enough to result in numbers greater than 5. (The `Credits` property has a `[Range(0, 5)]` attribute.) The update query would work but the invalid data could cause unexpected results in other parts of the system that assume the number of credits is 5 or less.
 
-For more information about raw SQL queries, see [Raw SQL Queries](https://docs.microsoft.com/ef/core/querying/raw-sql).
+For more information about raw SQL queries, see [Raw SQL Queries](/ef/core/querying/raw-sql).
 
 ## Examine SQL sent to the database
 
@@ -171,7 +172,7 @@ Although the source code is open, Entity Framework Core is fully supported as a 
 
 ## Reverse engineer from existing database
 
-To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext) command. See the [getting-started tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
+To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext) command. See the [getting-started tutorial](/ef/core/get-started/aspnetcore/existing-db).
 
 <a id="dynamic-linq"></a>
 ## Use dynamic LINQ to simplify sort selection code
@@ -184,11 +185,11 @@ The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ
 
 This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application.
 
-For more information about EF Core, see the [Entity Framework Core documentation](https://docs.microsoft.com/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
+For more information about EF Core, see the [Entity Framework Core documentation](/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 
-For information on how to deploy a web app, see [Host and deploy](xref:host-and-deploy/index).
+For information on how to deploy a web app, see <xref:host-and-deploy/index>.
 
-For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](xref:index).
+For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see <xref:index>.
 
 ## Acknowledgments
 

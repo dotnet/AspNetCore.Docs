@@ -28,7 +28,7 @@ The ASP.NET Core request pipeline consists of a sequence of request delegates, c
 
 ![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the app. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the app as a response to the client.](index/_static/request-delegate-pipeline.png)
 
-Each delegate can perform operations before and after the next delegate. A delegate can also decide to not pass a request to the next delegate, which is called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, Static Files Middleware can return a request for a static file and short-circuit the rest of the pipeline. Exception-handling delegates are called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline.
+Each delegate can perform operations before and after the next delegate. A delegate can also decide to not pass a request to the next delegate, which is called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, Static File Middleware can return a request for a static file and short-circuit the rest of the pipeline. Exception-handling delegates are called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline.
 
 The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. This case doesn't include an actual request pipeline. Instead, a single anonymous function is called in response to every HTTP request.
 
@@ -147,26 +147,26 @@ In the preceding example code, each middleware extension method is exposed on <x
 
 <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> is the first middleware component added to the pipeline. Therefore, the Exception Handler Middleware catches any exceptions that occur in later calls.
 
-Static Files Middleware is called early in the pipeline so that it can handle requests and short-circuit without going through the remaining components. The Static Files Middleware provides **no** authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. For an approach to secure static files, see <xref:fundamentals/static-files>.
+Static File Middleware is called early in the pipeline so that it can handle requests and short-circuit without going through the remaining components. The Static File Middleware provides **no** authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. For an approach to secure static files, see <xref:fundamentals/static-files>.
 
 ::: moniker range=">= aspnetcore-2.0"
 
-If the request isn't handled by the Static Files Middleware, it's passed on to the Authentication Middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>), which performs authentication. Authentication doesn't short-circuit unauthenticated requests. Although Authentication Middleware authenticates requests, authorization (and rejection) occurs only after MVC selects a specific Razor Page or MVC controller and action.
+If the request isn't handled by the Static File Middleware, it's passed on to the Authentication Middleware (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>), which performs authentication. Authentication doesn't short-circuit unauthenticated requests. Although Authentication Middleware authenticates requests, authorization (and rejection) occurs only after MVC selects a specific Razor Page or MVC controller and action.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-If the request isn't handled by Static Files Middleware, it's passed on to the Identity Middleware (<xref:Microsoft.AspNetCore.Builder.BuilderExtensions.UseIdentity*>), which performs authentication. Identity doesn't short-circuit unauthenticated requests. Although Identity authenticates requests, authorization (and rejection) occurs only after MVC selects a specific controller and action.
+If the request isn't handled by Static File Middleware, it's passed on to the Identity Middleware (<xref:Microsoft.AspNetCore.Builder.BuilderExtensions.UseIdentity*>), which performs authentication. Identity doesn't short-circuit unauthenticated requests. Although Identity authenticates requests, authorization (and rejection) occurs only after MVC selects a specific controller and action.
 
 ::: moniker-end
 
-The following example demonstrates a middleware order where requests for static files are handled by Static Files Middleware before Response Compression Middleware. Static files aren't compressed with this middleware order. The MVC responses from <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> can be compressed.
+The following example demonstrates a middleware order where requests for static files are handled by Static File Middleware before Response Compression Middleware. Static files aren't compressed with this middleware order. The MVC responses from <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> can be compressed.
 
 ```csharp
 public void Configure(IApplicationBuilder app)
 {
-    // Static files not compressed by Static Files Middleware.
+    // Static files not compressed by Static File Middleware.
     app.UseStaticFiles();
     app.UseResponseCompression();
     app.UseMvcWithDefaultRoute();

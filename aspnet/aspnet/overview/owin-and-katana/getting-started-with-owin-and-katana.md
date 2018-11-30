@@ -33,7 +33,7 @@ In the **New ASP.NET Project** dialog, select the **Empty** template.
 
 ### Add NuGet Packages
 
-Next, add the required NuGet packages. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
+Next, add the required NuGet packages. From the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
 
 `install-package Microsoft.Owin.Host.SystemWeb –Pre`
 

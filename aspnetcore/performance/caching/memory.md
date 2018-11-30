@@ -11,7 +11,7 @@ uid: performance/caching/memory
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo), and [Steve Smith](https://ardalis.com/)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/memory/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/memory/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Caching basics
 
@@ -21,7 +21,11 @@ ASP.NET Core supports several different caches. The simplest cache is based on t
 
 Non-sticky sessions in a web farm require a [distributed cache](distributed.md) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
 
+::: moniker range="< aspnetcore-2.0"
+
 The `IMemoryCache` cache will evict cache entries under memory pressure unless the [cache priority](/dotnet/api/microsoft.extensions.caching.memory.cacheitempriority) is set to `CacheItemPriority.NeverRemove`. You can set the `CacheItemPriority` to adjust the priority with which the cache evicts items under memory pressure.
+
+::: moniker-end
 
 The in-memory cache can store any object; the distributed cache interface is limited to `byte[]`.
 
@@ -162,9 +166,9 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 ## Additional resources
 
-* [Work with a distributed cache](xref:performance/caching/distributed)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
-* [Response caching](xref:performance/caching/response)
-* [Response Caching Middleware](xref:performance/caching/middleware)
-* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
-* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+* <xref:performance/caching/distributed>
+* <xref:fundamentals/change-tokens>
+* <xref:performance/caching/response>
+* <xref:performance/caching/middleware>
+* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
+* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>

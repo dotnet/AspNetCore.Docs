@@ -1,6 +1,6 @@
-public void NewContosoChatMessage(string data)
+public async Task NewContosoChatMessage(string data)
 {
     string userName = Clients.Caller.userName;
     string computerName = Clients.Caller.computerName;
-    Clients.Others.addContosoChatMessageToPage(message, userName, computerName);
+    await Clients.Others.addContosoChatMessageToPage(message, userName, computerName);
 }

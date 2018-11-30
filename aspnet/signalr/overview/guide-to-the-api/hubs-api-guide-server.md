@@ -298,6 +298,11 @@ To call client methods from the server, use the `Clients` property in a method i
 
 [!code-csharp[Main](hubs-api-guide-server/samples/sample23.cs?highlight=5)]
 
+Invoking a client method is an asynchronous operation and returns a `Task`. Use `await`:
+
+* To ensure the message is sent without error. 
+* To enable catching and handling errors in a try-catch block.
+
 **JavaScript client using generated proxy**
 
 [!code-html[Main](hubs-api-guide-server/samples/sample24.html?highlight=1)]
@@ -566,7 +571,7 @@ In VB.NET or in a strongly-typed hub, the caller state object can't be accessed 
 
 ## How to handle errors in the Hub class
 
-To handle errors that occur in your Hub class methods, use one or more of the following methods:
+To handle errors that occur in your Hub class methods, first ensure you "observe" any exceptions from async operations (such as invoking client methods) by using `await`. Then use one or more of the following methods:
 
 - Wrap your method code in try-catch blocks and log the exception object. For debugging purposes you can send the exception to the client, but for security reasons sending detailed information to clients in production is not recommended.
 - Create a Hubs pipeline module that handles the [OnIncomingError](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.hubpipelinemodule.onincomingerror(v=vs.111).aspx) method. The following example shows a pipeline module that logs errors, followed by code in Startup.cs that injects the module into the Hubs pipeline.

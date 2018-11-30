@@ -13,10 +13,9 @@ Advanced Entity Framework 6 Scenarios for an MVC 5 Web Application (12 of 12)
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8) or [Download PDF](http://download.microsoft.com/download/0/F/B/0FBFAA46-2BFD-478F-8E56-7BF3C672DF9D/Getting%20Started%20with%20Entity%20Framework%206%20Code%20First%20using%20MVC%205.pdf)
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio 2013. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
+> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 
 In the previous tutorial you implemented table-per-hierarchy inheritance. This tutorial includes introduces several topics that are useful to be aware of when you go beyond the basics of developing ASP.NET web applications that use Entity Framework Code First. Step-by-step instructions walk you through the code and using Visual Studio for the following topics:
 
@@ -144,7 +143,7 @@ In *Controllers/CourseController*, replace the `Index` method with the following
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample6.cs)]
 
-Now set a breakpoint on the `return` statement (F9 with the cursor on that line). Press F5 to run the project in debug mode, and select the Course Index page. When the code reaches the breakpoint, examine the `sql` variable. You see the query that's sent to SQL Server. It's a simple `Select` statement.
+Now set a breakpoint on the `return` statement (F9 with the cursor on that line). Press **F5** to run the project in debug mode, and select the Course Index page. When the code reaches the breakpoint, examine the `sql` variable. You see the query that's sent to SQL Server. It's a simple `Select` statement.
 
 [!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.json)]
 
@@ -285,7 +284,6 @@ Error Message:
 
 > Cannot create/shadow copy '&lt;filename&gt;' when that file already exists.
 
-
 Solution
 
 Wait a few seconds and refresh the page.
@@ -295,7 +293,6 @@ Wait a few seconds and refresh the page.
 Error Message (from the `Update-Database` command in the PMC):
 
 > The term 'Update-Database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
-
 
 Solution
 
@@ -307,7 +304,6 @@ Error Message (from the `Update-Database` command in the PMC):
 
 > Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
 
-
 Solution
 
 One cause of this problem is validation errors when the `Seed` method runs. See [Seeding and Debugging Entity Framework (EF) DBs](https://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx) for tips on debugging the `Seed` method.
@@ -316,9 +312,8 @@ One cause of this problem is validation errors when the `Seed` method runs. See 
 
 Error Message:
 
-> HTTP Error 500.19 - Internal Server Error  
+> HTTP Error 500.19 - Internal Server Error
 > The requested page cannot be accessed because the related configuration data for the page is invalid.
-
 
 Solution
 
@@ -329,7 +324,6 @@ One way you can get this error is from having multiple copies of the solution, e
 Error Message:
 
 > A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
-
 
 Solution
 

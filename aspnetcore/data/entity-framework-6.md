@@ -3,7 +3,8 @@ title: Get Started with ASP.NET Core and Entity Framework 6
 author: rick-anderson
 description: This article shows how to use Entity Framework 6 in an ASP.NET Core application.
 ms.author: tdykstra
-ms.date: 02/24/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: data/entity-framework-6
 ---
 # Get Started with ASP.NET Core and Entity Framework 6
@@ -14,7 +15,7 @@ This article shows how to use Entity Framework 6 in an ASP.NET Core application.
 
 ## Overview
 
-To use Entity Framework 6, your project has to compile against .NET Framework, as Entity Framework 6 doesn't support .NET Core. If you need cross-platform features you will need to upgrade to [Entity Framework Core](https://docs.microsoft.com/ef/).
+To use Entity Framework 6, your project has to compile against .NET Framework, as Entity Framework 6 doesn't support .NET Core. If you need cross-platform features you will need to upgrade to [Entity Framework Core](/ef/).
 
 The recommended way to use Entity Framework 6 in an ASP.NET Core application is to put the EF6 context and model classes in a class library project that targets the full framework. Add a reference to the class library from the ASP.NET Core project. See the sample [Visual Studio solution with EF6 and ASP.NET Core projects](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/entity-framework-6/sample/).
 

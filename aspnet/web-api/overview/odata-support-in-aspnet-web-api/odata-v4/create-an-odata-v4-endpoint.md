@@ -14,25 +14,22 @@ Create an OData v4 Endpoint Using ASP.NET Web API 2.2
 by [Mike Wasson](https://github.com/MikeWasson)
 
 > The Open Data Protocol (OData) is a data access protocol for the web. OData provides a uniform way to query and manipulate data sets through CRUD operations (create, read, update, and delete).
-> 
+>
 > ASP.NET Web API supports both v3 and v4 of the protocol. You can even have a v4 endpoint that runs side-by-side with a v3 endpoint.
-> 
+>
 > This tutorial shows how to create an OData v4 endpoint that supports CRUD operations.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
+>
 > - Web API 2.2
 > - OData v4
-> - [Visual Studio 2013 Update 2](https://www.visualstudio.com/downloads/download-visual-studio-vs)
+> - Visual Studio 2013 (download Visual Studio 2017 [here](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017))
 > - Entity Framework 6
 > - .NET 4.5
-> 
-> 
+>
 > ## Tutorial versions
-> 
+>
 > For the OData Version 3, see [Creating an OData v3 Endpoint](../odata-v3/creating-an-odata-endpoint.md).
-
 
 ## Create the Visual Studio Project
 

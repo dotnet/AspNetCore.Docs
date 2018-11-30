@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Localization.StarterWeb.ViewModels.Account
+namespace Localization.ViewModels.Account
 {
     public class SendCodeViewModel
     {

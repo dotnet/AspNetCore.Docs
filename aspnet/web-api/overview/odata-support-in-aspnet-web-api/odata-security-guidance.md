@@ -53,7 +53,7 @@ If you know that all clients are trusted (for example, in an enterprise environm
 - Consider disabling the any() and all() functions, as these can be slow. 
 
     [!code-csharp[Main](odata-security-guidance/samples/sample7.cs)]
-- If any string properties contain large strings&#8212for example, a product description or a blog entry&#8212consider disabling the string functions. 
+- If any string properties contain large strings&#8212;for example, a product description or a blog entry&#8212;consider disabling the string functions. 
 
     [!code-csharp[Main](odata-security-guidance/samples/sample8.cs)]
 - Consider disallowing filtering on navigation properties. Filtering on navigation properties can result in a join, which might be slow, depending on your database schema. The following code shows a query validator that prevents filtering on navigation properties. For more information about query validators, see [Query Validation](supporting-odata-query-options.md#query-validation). 
