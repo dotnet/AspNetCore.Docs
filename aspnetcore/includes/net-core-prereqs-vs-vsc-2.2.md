@@ -8,8 +8,4 @@
 
 [!INCLUDE[](~/includes/net-core-prereqs-vsc-2.2.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
-
 ---
