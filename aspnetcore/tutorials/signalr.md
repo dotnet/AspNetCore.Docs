@@ -32,7 +32,7 @@ At the end, you'll have a working chat app:
 > We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
 
 
-[!INCLUDE [|Prerequisites](../includes/net-core-prereqs-all-2.2.md)]
+[!INCLUDE [|Prerequisites](~/includes/net-core-prereqs-all-2.2.md)]
 
 ## Create a web project
 
