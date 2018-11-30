@@ -20,7 +20,7 @@ At runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> understands conventions.
 
 ## Apply web API conventions
 
-There are three ways to apply a convention. Conventions don't compose, each action may be associated with exactly one convention. More specific conventions (detailed below) take precedence over less specific ones. The selection is non-deterministic when two or more conventions of the same priority apply to an action. The following options exist to apply a convention to an action, from the most specific to the least specific:
+There are three ways to apply a convention. Conventions don't compose. Each action may be associated with exactly one convention. More specific conventions (detailed below) take precedence over less specific ones. The selection is non-deterministic when two or more conventions of the same priority apply to an action. The following options exist to apply a convention to an action, from the most specific to the least specific:
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute` &mdash; Applies to individual actions and specifies the convention type and the convention method that applies. In the following sample, the convention method `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` is applied to the `Update` action:
 
