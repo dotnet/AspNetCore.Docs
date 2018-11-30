@@ -130,7 +130,7 @@ The ASP.NET Core hosting model doesn't directly listen for requests. The hosting
 ASP.NET Core provides the following server implementations:
 
 * [Kestrel](xref:fundamentals/servers/kestrel) is a managed, cross-platform web server. Kestrel is often run behind a production web server in a reverse proxy configuration, such as [IIS](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
-* IIS HTTP Server (`IISHttpServer`) is an [IIS in-process server](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model).
+* IIS HTTP Server (`IISHttpServer`) is an [IIS in-process server](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model) that only runs on Windows.
 * [HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core that only runs on Windows.
 
 For more information, see <xref:fundamentals/servers/index>.
