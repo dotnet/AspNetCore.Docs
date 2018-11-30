@@ -25,7 +25,7 @@ In this tutorial, you learn how to:
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-[!INCLUDE [Prerequisites](../../includes/net-core-prereqs-all-2.2.md)]
+[!INCLUDE [Prerequisites](../../includes/net-core-prereqs-vs-vsc-2.2.md)]
 
 ## Create the ASP.NET Core web app
 
