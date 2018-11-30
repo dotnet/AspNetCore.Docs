@@ -80,19 +80,9 @@ Replace the contents of *Program.cs* with the following code:
 
 ::: moniker range="<= aspnetcore-2.0"
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
-
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Program.cs?highlight=6,14-32)]
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
-
-Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file.
-
-[!code-csharp[](start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
-
----
 
 ::: moniker-end
 
