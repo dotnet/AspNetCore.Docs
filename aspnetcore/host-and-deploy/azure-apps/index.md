@@ -4,7 +4,7 @@ author: guardrex
 description: This article contains links to Azure host and deploy resources.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/29/2018
+ms.date: 10/24/2018
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -23,10 +23,10 @@ Use the command line to create and deploy an ASP.NET Core web app to Azure App S
 
 The following articles are available in ASP.NET Core documentation:
 
-[Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)  
+<xref:tutorials/publish-to-azure-webapp-using-vs>  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
-[Continuous deployment to Azure with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)  
+<xref:host-and-deploy/azure-apps/azure-continuous-deployment>  
 Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
 
 [Create your first pipeline with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)  
@@ -39,19 +39,21 @@ Discover Azure App Service runtime execution limitations enforced by the Azure A
 
 ## Application configuration
 
-In ASP.NET Core 2.0 or later, the following NuGet packages provide automatic logging features for apps deployed to Azure App Service:
+The following NuGet packages provide automatic logging features for apps deployed to Azure App Service:
 
 * [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration) to provide ASP.NET Core light-up integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
 * [Microsoft.AspNetCore.AzureAppServicesIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServicesIntegration/) executes [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics) to add Azure App Service diagnostics logging providers in the `Microsoft.Extensions.Logging.AzureAppServices` package.
 * [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices/) provides logger implementations to support Azure App Service diagnostics logs and log streaming features.
 
-If targeting .NET Core and referencing the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), the packages are already included. The packages are absent from the newer [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, reference the individual logging packages.
+If targeting .NET Core and referencing the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), the preceding packages are included. The packages are absent from the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, reference the individual logging packages.
 
 ::: moniker-end
 
 ## Override app configuration using the Azure Portal
 
 The **App Settings** area of the **Application settings** blade permits you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+
+When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
 
 When an app uses the [Web Host](xref:fundamentals/host/web-host) and builds the host using [WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder), environment variables that configure the host use the `ASPNETCORE_` prefix. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
@@ -71,13 +73,13 @@ Learn how to review quotas and metrics for apps and App Service plans.
 [Enable diagnostics logging for web apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)  
 Discover how to enable and access diagnostic logging for HTTP status codes, failed requests, and web server activity.
 
-[Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)  
+<xref:fundamentals/error-handling>  
 Understand common approaches to handling errors in ASP.NET Core apps.
 
-[Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)  
+<xref:host-and-deploy/azure-apps/troubleshoot>  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
 
-[Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)  
+<xref:host-and-deploy/azure-iis-errors-reference>  
 See the common deployment configuration errors for apps hosted by Azure App Service/IIS with troubleshooting advice.
 
 ## Data Protection key ring and deployment slots
@@ -91,21 +93,21 @@ When swapping between deployment slots, any system using data protection won't b
 * SQL store
 * Redis cache
 
-For more information, see [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
+For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
 
 ## Deploy ASP.NET Core preview release to Azure App Service
 
-ASP.NET Core preview apps can be deployed to Azure App Service with the following approaches:
+Use one of the following approaches:
 
-* [Install the preview site extension](#install-the-preview-site-extension)
-<!-- * [Deploy the app self-contained](#deploy-the-app-self-contained) -->
-* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers)
+* [Install the preview site extension](#install-the-preview-site-extension).
+* [Deploy the app self-contained](#deploy-the-app-self-contained).
+* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
 
 ### Install the preview site extension
 
 If a problem occurs using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
 
-1. From the Azure portal, navigate to the App Service blade.
+1. From the Azure Portal, navigate to the App Service blade.
 1. Select the web app.
 1. Type "ex" in the search box or scroll down the list of management sections to **DEVELOPMENT TOOLS**.
 1. Select **DEVELOPMENT TOOLS** > **Extensions**.
@@ -155,22 +157,54 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 
 If an ARM template is used to create and deploy apps, the `siteextensions` resource type can be used to add the site extension to a web app. For example:
 
-[!code-json[Main](index/sample/arm.json?highlight=2)]
+[!code-json[](index/sample/arm.json?highlight=2)]
 
-<!--
 ### Deploy the app self-contained
 
-A [self-contained app](/dotnet/core/deploying/#self-contained-deployments-scd) can be deployed that carries the preview runtime in the deployment. When deploying a self-contained app:
+A [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) that targets a preview runtime carries the preview runtime in the deployment.
 
-* The site doesn't need to be prepared.
-* The app must be published differently than when publishing for a framework-dependent deployment with the shared runtime and host on the server.
+When deploying a self-contained app:
 
-Self-contained apps are an option for all ASP.NET Core apps.
--->
+* The site in Azure App Service doesn't require the [preview site extension](#install-the-preview-site-extension).
+* The app must be published following a different approach than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
+
+#### Publish from Visual Studio
+
+1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
+1. In the **Pick a publish target** dialog, confirm that **App Service** is selected.
+1. Select **Advanced**. The **Publish** dialog opens.
+1. In the **Publish** dialog:
+   * Confirm that the **Release** configuration is selected.
+   * Open the **Deployment Mode** drop-down list and select **Self-Contained**.
+   * Select the target runtime from the **Target Runtime** drop-down list. The default is `win-x86`.
+   * If you need to remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
+   * Select **Save**.
+1. Create a new site or update an existing site by following the remaining prompts of the publish wizard.
+
+#### Publish using command-line interface (CLI) tools
+
+1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) for a single RID, or use `<RuntimeIdentifiers>` (plural) to provide a semicolon-delimited list of RIDs. In the following example, the `win-x86` RID is specified:
+
+   ```xml
+   <PropertyGroup>
+     <TargetFramework>netcoreapp2.1</TargetFramework>
+     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+   </PropertyGroup>
+   ```
+1. From a command shell, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
+
+   ```console
+   dotnet publish --configuration Release --runtime win-x86
+   ```
+1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* directory to the site in App Service.
 
 ### Use Docker with Web Apps for containers
 
 The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
+
+## Protocol settings (HTTPS)
+
+Secure protocol bindings allow you specify a certificate to use when responding to requests over HTTPS. Binding requires a valid private certificate (*.pfx*) issued for the specific hostname. For more information, see [Tutorial: Bind an existing custom SSL certificate to Azure Web Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
 ## Additional resources
 

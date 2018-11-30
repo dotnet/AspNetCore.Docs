@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/testing-and-debugging/aspnet-web-pages-razor-troubleshooting-guide
 title: "ASP.NET Web Pages (Razor) Troubleshooting Guide | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This article describes issues that you might have when working with ASP.NET Web Pages (Razor) and some suggested solutions. Software versions ASP.NET Web Pag..."
 ms.author: riande
 ms.date: 02/10/2014

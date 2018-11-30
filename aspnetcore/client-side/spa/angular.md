@@ -25,7 +25,7 @@ The template is equivalent to creating an ASP.NET Core project to act as an API 
 
 ::: moniker range="= aspnetcore-2.0"
 
-If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index#installation).
+If using ASP.NET Core 2.0, ensure you've [installed the updated Angular project template](xref:spa/index#installation).
 
 ::: moniker-end
 

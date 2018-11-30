@@ -568,7 +568,7 @@ For a list of new features and other changes in Entity Framework 6, see [Entity 
 
 ASP.NET Razor 3 includes the following new features:
 
-- Support for Tab editing. Preivously, the **Format Document** command, auto indenting, and auto formatting in Visual Studio did not work correctly when using the **Keep Tabs** option. This change corrects Visual Studio formatting for Razor code for tab formatting.
+- Support for Tab editing. Previously, the **Format Document** command, auto indenting, and auto formatting in Visual Studio did not work correctly when using the **Keep Tabs** option. This change corrects Visual Studio formatting for Razor code for tab formatting.
 - Support for URL Rewrite rules when generating links.
 - Removal of security transparent attribute.
   > [!NOTE]

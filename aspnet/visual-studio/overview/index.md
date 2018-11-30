@@ -1,3 +1,3 @@
 ---
-redirect_url: https://www.visualstudio.com/
+redirect_url: https://visualstudio.microsoft.com/
 ---

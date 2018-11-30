@@ -65,8 +65,8 @@ by [Rick Anderson]((https://twitter.com/RickAndMSFT))
     > Microsoft-Web-Helpers has been replaced with Microsoft.AspNet.WebHelpers. You should remove the old package first, and then install the newer package.   
     >   
     > There is no cross version compatibility among major ASP.NET packages. For example, MVC 5 is compatible with only Razor 3, and not Razor 2.
-4. Open your project in Visual Studio 2013.
-5. Remove any of the following ASP.NET NuGet packages that are installed. You will remove these using the Package Manager Console (PMC). To open the PMC, select the **Tools** menu and then select **Library Package Manager,** then select **Package Manager Console**. Your project might not include all of these.
+4. Open your project in Visual Studio.
+5. Remove any of the following ASP.NET NuGet packages that are installed. You will remove these using the Package Manager Console (PMC). To open the PMC, select the **Tools** menu and then select **NuGet Package Manager,** then select **Package Manager Console**. Your project might not include all of these.
 
     1. `Microsoft.AspNet.WebPages.Administration`  
    This package is typically added when upgrading from MVC 3 to MVC 4. To remove it, run the following command in the PMC:  

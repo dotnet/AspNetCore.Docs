@@ -3,7 +3,8 @@ title: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
 author: rick-anderson
 description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: data/ef-mvc/update-related-data
 ---
 
@@ -285,7 +286,7 @@ Test by running the app and creating an instructor.
 
 ## Handling Transactions
 
-As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/ef/core/saving/transactions).
+As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](/ef/core/saving/transactions).
 
 ## Summary
 

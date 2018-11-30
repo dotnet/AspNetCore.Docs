@@ -269,7 +269,7 @@ ELMAH (Error Logging Modules and Handlers) is an error logging facility that you
 
 Before you can work with the ELMAH, you must install it. This is easy using the *NuGet* package installer. As mentioned earlier in this tutorial series, NuGet is a Visual Studio extension that makes it easy to install and update open source libraries and tools in Visual Studio.
 
-1. Within Visual Studio, from the **Tools** menu, select **Library Package Manager** -&gt; **Manage NuGet Packages for Solution**. 
+1. Within Visual Studio, from the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**. 
 
     ![ASP.NET Error Handling - Manage NuGet Packages for Solution](aspnet-error-handling/_static/image6.png)
 2. The **Manage NuGet Packages** dialog box is displayed within Visual Studio.
@@ -280,7 +280,7 @@ Before you can work with the ELMAH, you must install it. This is easy using the 
 5. In the **Select Projects** dialog box, make sure the **WingtipToys** selection is selected, and then click **OK**. 
 
     ![ASP.NET Error Handling - Select Projects Dialog](aspnet-error-handling/_static/image8.png)
-6. Click **Close** in **the Manage NuGet Packages** dialog box if needed.
+6. Click **Close** in the **Manage NuGet Packages** dialog box if needed.
 7. If Visual Studio requests that you reload any open files, select "**Yes to All**".
 8. The ELMAH package adds entries for itself in the *Web.config* file at the root of your project. If Visual Studio asks you if you want to reload the modified *Web.config* file, click **Yes**.
 

@@ -61,7 +61,15 @@ namespace GenericHostSample
             var host = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddLogging();
+                    if (hostContext.HostingEnvironment.IsDevelopment())
+                    {
+                        // Development service configuration
+                    }
+                    else
+                    {
+                        // Non-development service configuration
+                    }
+
                     services.AddHostedService<LifetimeEventsHostedService>();
                     services.AddHostedService<TimedHostedService>();
                 })

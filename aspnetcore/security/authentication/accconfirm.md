@@ -7,22 +7,22 @@ ms.date: 7/11/2018
 uid: security/authentication/accconfirm
 ---
 
+# Account confirmation and password recovery in ASP.NET Core
+
 ::: moniker range="<= aspnetcore-2.0"
 
-See [this PDF file](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core 1.1 and 2.1 version.
+See [this PDF file](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core 1.1 and 2.1 version.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
-
-# Account confirmation and password recovery in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
 This tutorial shows how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning topic. You should be familiar with:
 
 * [ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
-* [Authentication](xref:security/authentication/index)
+* [Authentication](xref:security/authentication/identity)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 <!-- see C:/Dropbox/wrk/Code/SendGridConsole/Program.cs -->

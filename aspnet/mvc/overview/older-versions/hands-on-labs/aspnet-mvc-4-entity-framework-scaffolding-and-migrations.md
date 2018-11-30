@@ -166,7 +166,7 @@ At this point, the database is not yet created. In this task, you will run the a
 
 In this task you will update the database using Entity Framework Migrations. You will discover how easy it is to change the model and reflect the changes in your databases by using the Entity Framework Migrations feature.
 
-1. Open the Package Manager Console. Select **Tools | Library Package Manager | Package Manager Console**.
+1. Open the Package Manager Console. Select **Tools** > **NuGet Package Manager** > **Package Manager Console**.
 2. In the Package Manager Console, enter the following command:
 
     PMC

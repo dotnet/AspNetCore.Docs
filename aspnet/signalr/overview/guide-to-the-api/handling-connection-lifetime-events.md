@@ -14,28 +14,28 @@ Understanding and Handling Connection Lifetime Events in SignalR
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
 > This article provides an overview of the SignalR connection, reconnection, and disconnection events that you can handle, and timeout and keepalive settings that you can configure.
-> 
+>
 > The article assumes you already have some knowledge of SignalR and connection lifetime events. For an introduction to SignalR, see [Introduction to SignalR](../getting-started/introduction-to-signalr.md). For lists of connection lifetime events, see the following resources:
-> 
+>
 > - [How to handle connection lifetime events in the Hub class](hubs-api-guide-server.md#connectionlifetime)
 > - [How to handle connection lifetime events in JavaScript clients](hubs-api-guide-javascript-client.md#connectionlifetime)
 > - [How to handle connection lifetime events in .NET clients](hubs-api-guide-net-client.md#connectionlifetime)
-> 
+>
 > ## Software versions used in this topic
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
 > - SignalR version 2
->   
-> 
-> 
+>
+>
+>
 > ## Previous versions of this topic
-> 
+>
 > For information about earlier versions of SignalR, see [SignalR Older Versions](../older-versions/index.md).
-> 
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
@@ -138,8 +138,8 @@ Transport connection interruptions that are not detected by the transport API an
 
 Some network environments deliberately close idle connections, and another function of the keepalive packets is to help prevent this by letting these networks know that a SignalR connection is in use. In extreme cases the default frequency of keepalive pings might not be enough to prevent closed connections. In that case you can configure keepalive pings to be sent more often. For more information, see [Timeout and keepalive settings](#timeoutkeepalive) later in this topic.
 
-> [!NOTE] 
-> 
+> [!NOTE]
+>
 > **Important**: The sequence of events described here is not guaranteed. SignalR makes every attempt to raise connection lifetime events in a predictable manner according to this scheme, but there are many variations of network events and many ways in which underlying communications frameworks such as transport APIs handle them. For example, the `Reconnected` event might not be raised when the client reconnects, or the `OnConnected` handler on the server might run when the attempt to establish a connection is unsuccessful. This topic describes only the effects that would normally be produced by certain typical circumstances.
 
 

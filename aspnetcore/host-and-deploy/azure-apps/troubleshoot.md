@@ -1,10 +1,10 @@
 ---
-title: Troubleshoot ASP.NET Core on Azure App Service
+title: Troubleshoot ASP.NET Core startup errors on Azure App Service
 author: guardrex
 description: Learn how to diagnose problems with ASP.NET Core Azure App Service deployments.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/31/2018
+ms.date: 10/24/2018
 uid: host-and-deploy/azure-apps/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on Azure App Service
@@ -102,7 +102,7 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 
 ## Common startup errors 
 
-See the [ASP.NET Core common errors reference](xref:host-and-deploy/azure-iis-errors-reference). Most of the common problems that prevent app startup are covered in the reference topic.
+See <xref:host-and-deploy/azure-iis-errors-reference>. Most of the common problems that prevent app startup are covered in the reference topic.
 
 ## Slow or hanging app
 
@@ -169,8 +169,8 @@ For more information, see [Enable diagnostics logging for web apps in Azure App 
 
 ## Additional resources
 
-* [Introduction to Error Handling in ASP.NET Core](xref:fundamentals/error-handling)
-* [Common errors reference for Azure App Service and IIS with ASP.NET Core](xref:host-and-deploy/azure-iis-errors-reference)
+* <xref:fundamentals/error-handling>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 * [Troubleshoot a web app in Azure App Service using Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio)
 * [Troubleshoot HTTP errors of "502 bad gateway" and "503 service unavailable" in your Azure web apps](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
 * [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation)

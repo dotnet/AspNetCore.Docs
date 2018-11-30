@@ -41,19 +41,18 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
 * In the **Data context class** row, select the **+** (plus) sign and accept the generated name **RazorPagesMovie.Models.RazorPagesMovieContext**.
-* In the **Data context class** drop down, select **RazorPagesMovie.Models.RazorPagesMovieContext**
 * Select **Add**.
 
 ![Image from the previous instructions.](model/_static/arp.png)
 
-The scaffold process created and changed the following files:
+The scaffold process creates and updates the following files:
 
 ### Files created
 
 * *Pages/Movies*: Create, Delete, Details, Edit, Index. These pages are detailed in the next tutorial.
 * *Data/RazorPagesMovieContext.cs*
 
-### File updates
+### File updated
 
 * *Startup.cs*: Changes to this file are detailed in the next section.
 * *appsettings.json*: The connection string used to connect to a local database is added.
@@ -102,11 +101,12 @@ dotnet ef migrations add Initial
 dotnet ef database update
 ```
 
-Ignore the following warning message, you fix that in a a later tutorial:
+Ignore the following warning message, which you fix in a later tutorial:
 
-`Microsoft.EntityFrameworkCore.Model.Validation[30000]`
-
-      *No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.*
+```console
+Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+```
 
 The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `RazorPagesMovieContext` (In the *Data/RazorPagesMovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
@@ -114,8 +114,10 @@ The `Update-Database` command runs the `Up` method in the *Migrations/{time-stam
 
 If you get the error:
 
-`SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
-Login failed for user 'User-name'.`
+```console
+SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
+Login failed for user 'User-name'.
+```
 
 You missed the [migrations step](#pmc).
 
@@ -180,9 +182,10 @@ dotnet ef database update
 
 Ignore the following message:
 
-    `Microsoft.EntityFrameworkCore.Model.Validation[30000]`
-
-      *No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'*
+```console
+Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'
+```
 
 You fix that in the next tutorial.
 
@@ -204,6 +207,9 @@ The `Update-Database` command runs the `Up` method in the *Migrations/{time-stam
 
 * Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 * Test the **Create** link.
+
+  > [!NOTE]
+  > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, you must globalize your app. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420).
 
   ![Create page](../../tutorials/razor-pages/model/_static/conan.png)
 

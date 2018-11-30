@@ -37,9 +37,6 @@ In order to complete this walkthrough, you will need:
     >   
     > If you are using Visual Studio, this walkthrough assumes that you selected the **Web Development** collection of settings the first time that you started Visual Studio. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
 
-  For an introduction to Visual Studio and ASP.NET, see [Creating a basic ASP.NET 4.5 Web Forms page in Visual Studio 2013](creating-a-basic-web-forms-page.md).   
- 
-
 ## Creating a Web application project and a Page
 
 <a id="sectionToggle0"></a>

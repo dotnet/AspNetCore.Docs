@@ -111,7 +111,7 @@ To add paging to the Students Index page, you'll start by installing the **Paged
 
 The NuGet **PagedList.Mvc** package automatically installs the **PagedList** package as a dependency. The **PagedList** package installs a `PagedList` collection type and extension methods for `IQueryable` and `IEnumerable` collections. The extension methods create a single page of data in a `PagedList` collection out of your `IQueryable` or `IEnumerable`, and the `PagedList` collection provides several properties and methods that facilitate paging. The **PagedList.Mvc** package installs a paging helper that displays the paging buttons.
 
-From the **Tools** menu, select **Library Package Manager** and then **Manage NuGet Packages for Solution**.
+From the **Tools** menu, select **NuGet Package Manager** and then **Manage NuGet Packages for Solution**.
 
 In the **Manage NuGet Packages** dialog box, click the **Online** tab on the left and then enter "paged" in the search box. When you see the **PagedList.Mvc** package, click **Install**.
 

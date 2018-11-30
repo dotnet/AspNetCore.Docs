@@ -5,7 +5,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/31/2018
+ms.date: 11/13/2018
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -16,17 +16,20 @@ uid: tutorials/signalr
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
 > [!div class="checklist"]
-> * Create a web app project.
+> * Create a web project.
 > * Add the SignalR client library.
 > * Create a SignalR hub.
 > * Configure the project to use SignalR.
-> * Add code that uses the hub to send messages from any client to all connected clients.
+> * Add code that sends messages from any client to all connected clients.
 
 At the end, you'll have a working chat app:
 
 ![SignalR sample app](signalr/_static/signalr-get-started-finished.png)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:index#how-to-download-a-sample)).
+
+> [!NOTE]
+> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
 
 ## Prerequisites
 
@@ -66,12 +69,13 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-* Open a folder that you can use for a new project.
+* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) to the folder in which the new project folder will be created.
 
-* In the **Integrated Terminal**, run the following command:
+* Run the following commands:
 
    ```console
    dotnet new webapp -o SignalRChat
+   code -r SignalRChat
    ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -110,13 +114,11 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-* In the **Integrated Terminal**, run the following command to install LibMan.
+* In the integrated terminal, run the following command to install LibMan.
 
   ```console
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
-
-* Navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
 
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.
 
@@ -222,8 +224,12 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Press **CTRL+F5** to run the app without debugging.
+* In the integrated terminal, run the following command:
 
+  ```console
+  dotnet run -p SignalRChat.csproj
+  ```
+  
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the menu, select **Run > Start Without Debugging**.
@@ -232,7 +238,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
-* Choose either browser, enter a name and message, and select the **Send** button.
+* Choose either browser, enter a name and message, and select the **Send Message** button.
 
   The name and message are displayed on both pages instantly.
 

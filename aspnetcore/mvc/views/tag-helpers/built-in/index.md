@@ -3,7 +3,8 @@ title: ASP.NET Core built-in Tag Helpers
 author: pkellner
 description: Find out how ASP.NET Core built-in Tag Helpers boost your productivity.
 ms.author: riande
-ms.date: 09/18/2018
+ms.custom: mvc
+ms.date: 10/10/2018
 uid: mvc/views/tag-helpers/builtin-th/Index
 ---
 
@@ -11,10 +12,10 @@ uid: mvc/views/tag-helpers/builtin-th/Index
 
 By [Peter Kellner](http://peterkellner.net)
 
-ASP.NET Core includes many built-in Tag Helpers to boost your productivity. This section provides an overview of the built-in Tag Helpers.
+For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 > [!NOTE]
-> There are built-in Tag Helpers which aren't discussed, since they're used internally by the [Razor](xref:mvc/views/razor) view engine. This includes a Tag Helper for the ~ character, which expands to the root path of the website.
+> There are built-in Tag Helpers which aren't described in the documentation. These Tag Helpers are used internally by the [Razor](xref:mvc/views/razor) view engine. This includes a Tag Helper for the `~` (tilde) character, which expands to the root path of the website.
 
 ## Built-in ASP.NET Core Tag Helpers
 

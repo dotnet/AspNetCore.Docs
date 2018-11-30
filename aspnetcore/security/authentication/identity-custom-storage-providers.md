@@ -3,7 +3,8 @@ title: Custom storage providers for ASP.NET Core Identity
 author: ardalis
 description: Learn how to configure custom storage providers for ASP.NET Core Identity.
 ms.author: riande
-ms.date: 09/17/2018
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: security/authentication/identity-custom-storage-providers
 ---
 # Custom storage providers for ASP.NET Core Identity
@@ -18,7 +19,7 @@ ASP.NET Core Identity is an extensible system which enables you to create a cust
 
 By default, the ASP.NET Core Identity system stores user information in a SQL Server database using Entity Framework Core. For many apps, this approach works well. However, you may prefer to use a different persistence mechanism or data schema. For example:
 
-* You use [Azure Table Storage](https://docs.microsoft.com/azure/storage/) or another data store.
+* You use [Azure Table Storage](/azure/storage/) or another data store.
 * Your database tables have a different structure. 
 * You may wish to use a different data access approach, such as [Dapper](https://github.com/StackExchange/Dapper). 
 
@@ -35,7 +36,7 @@ dotnet new webapi -au Individual
 
 ## The ASP.NET Core Identity architecture
 
-ASP.NET Core Identity consists of classes called managers and stores. *Managers* are high-level classes which an app developer uses to perform operations, such as creating an Identity user. *Stores* are lower-level classes that specify how entities, such as users and roles, are persisted. Stores follow the [repository pattern](xref:fundamentals/repository-pattern) and are closely coupled with the persistence mechanism. Managers are decoupled from stores, which means you can replace the persistence mechanism without changing your application code (except for configuration).
+ASP.NET Core Identity consists of classes called managers and stores. *Managers* are high-level classes which an app developer uses to perform operations, such as creating an Identity user. *Stores* are lower-level classes that specify how entities, such as users and roles, are persisted. Stores follow the repository pattern and are closely coupled with the persistence mechanism. Managers are decoupled from stores, which means you can replace the persistence mechanism without changing your application code (except for configuration).
 
 The following diagram shows how a web app interacts with the managers, while stores interact with the data access layer.
 
@@ -140,27 +141,27 @@ Within the `UserStore` class, you use the data access classes that you created t
 
 ### Interfaces to implement when customizing user store
 
-- **IUserStore**  
+* **IUserStore**  
  The [IUserStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuserstore-1) interface is the only interface you must implement in the user store. It defines methods for creating, updating, deleting, and retrieving users.
-- **IUserClaimStore**  
+* **IUserClaimStore**  
  The [IUserClaimStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuserclaimstore-1) interface defines the methods you implement to enable user claims. It contains methods for adding, removing and retrieving user claims.
-- **IUserLoginStore**  
+* **IUserLoginStore**  
  The [IUserLoginStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuserloginstore-1) defines the methods you implement to enable external authentication providers. It contains methods for adding, removing and retrieving user logins, and a method for retrieving a user based on the login information.
-- **IUserRoleStore**  
+* **IUserRoleStore**  
  The [IUserRoleStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuserrolestore-1) interface defines the methods you implement to map a user to a role. It contains methods to add, remove, and retrieve a user's roles, and a method to check if a user is assigned to a role.
-- **IUserPasswordStore**  
+* **IUserPasswordStore**  
  The [IUserPasswordStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuserpasswordstore-1) interface defines the methods you implement to persist hashed passwords. It contains methods for getting and setting the hashed password, and a method that indicates whether the user has set a password.
-- **IUserSecurityStampStore**  
+* **IUserSecurityStampStore**  
  The [IUserSecurityStampStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iusersecuritystampstore-1) interface defines the methods you implement to use a security stamp for indicating whether the user's account information has changed. This stamp is updated when a user changes the password, or adds or removes logins. It contains methods for getting and setting the security stamp.
-- **IUserTwoFactorStore**  
+* **IUserTwoFactorStore**  
  The [IUserTwoFactorStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactorstore-1) interface defines the methods you implement to support two factor authentication. It contains methods for getting and setting whether two factor authentication is enabled for a user.
-- **IUserPhoneNumberStore**  
+* **IUserPhoneNumberStore**  
  The [IUserPhoneNumberStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuserphonenumberstore-1) interface defines the methods you implement to store user phone numbers. It contains methods for getting and setting the phone number and whether the phone number is confirmed.
-- **IUserEmailStore**  
+* **IUserEmailStore**  
  The [IUserEmailStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuseremailstore-1) interface defines the methods you implement to store user email addresses. It contains methods for getting and setting the email address and whether the email is confirmed.
-- **IUserLockoutStore**  
+* **IUserLockoutStore**  
  The [IUserLockoutStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iuserlockoutstore-1) interface defines the methods you implement to store information about locking an account. It contains methods for tracking failed access attempts and lockouts.
-- **IQueryableUserStore**  
+* **IQueryableUserStore**  
  The [IQueryableUserStore&lt;TUser&gt;](/dotnet/api/microsoft.aspnetcore.identity.iqueryableuserstore-1) interface defines the members you implement to provide a queryable user store.
 
 You implement only the interfaces that are needed in your app. For example:
@@ -193,9 +194,9 @@ The following is an example role class:
 
 You can create a `RoleStore` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore&lt;TRole&gt;](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the `IRoleStore<TRole>` and optionally the `IQueryableRoleStore<TRole>` interface.
 
-- **IRoleStore&lt;TRole&gt;**  
+* **IRoleStore&lt;TRole&gt;**  
  The [IRoleStore&lt;TRole&gt;](/dotnet/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting, and retrieving roles.
-- **RoleStore&lt;TRole&gt;**  
+* **RoleStore&lt;TRole&gt;**  
  To customize `RoleStore`, create a class that implements the `IRoleStore<TRole>` interface. 
 
 ## Reconfigure app to use a new storage provider
@@ -231,5 +232,5 @@ public void ConfigureServices(IServiceCollection services)
 
 ## References
 
-- [Custom Storage Providers for ASP.NET 4.x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
-- [ASP.NET Core Identity](https://github.com/aspnet/identity) - This repository includes links to community maintained store providers.
+* [Custom Storage Providers for ASP.NET 4.x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
+* [ASP.NET Core Identity](https://github.com/aspnet/identity) &ndash; This repository includes links to community maintained store providers.

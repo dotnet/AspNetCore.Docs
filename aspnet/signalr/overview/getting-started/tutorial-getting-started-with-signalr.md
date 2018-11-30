@@ -96,7 +96,7 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
 3. In **Solution Explorer**, right-click the project, select **Add | SignalR Hub Class (v2)**. Name the class **ChatHub.cs** and add it to the project. This step creates the **ChatHub** class and adds to the project a set of script files and assembly references that support SignalR.
 
     > [!NOTE]
-    > You can also add SignalR to a project by opening the **Tools | Library Package Manager | Package Manager Console** and running a command:
+    > You can also add SignalR to a project by opening the **Tools > NuGet Package Manager > Package Manager Console** and running a command:
 
     `install-package Microsoft.AspNet.SignalR`
 

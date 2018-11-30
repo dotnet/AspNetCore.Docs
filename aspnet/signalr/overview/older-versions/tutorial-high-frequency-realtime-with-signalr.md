@@ -73,7 +73,7 @@ In this section, we'll create the project in Visual Studio.
 
 You can add SignalR functionality to a project by installing a NuGet package. This tutorial will also use the JQuery.UI package for allowing the shape to be dragged and animated.
 
-1. Click **Tools | Library Package Manager | Package Manager Console**.
+1. Click **Tools | NuGet Package Manager | Package Manager Console**.
 2. Enter the following command in the package manager.
 
     [!code-powershell[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample1.ps1)]

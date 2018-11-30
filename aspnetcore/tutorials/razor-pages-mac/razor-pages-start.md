@@ -4,7 +4,8 @@ author: rick-anderson
 description: Discover how to get started with Razor Pages in ASP.NET Core using Visual Studio for Mac.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 07/27/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: tutorials/razor-pages-mac/razor-pages-start
 ---
 # Get started with Razor Pages in ASP.NET Core on macOS with Visual Studio for Mac
@@ -41,7 +42,7 @@ dotnet run
 
 ::: moniker-end
 
-The preceding commands use the [.NET Core CLI](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
+The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 
 ![Home or Index page](../razor-pages/razor-pages-start/_static/home.png)
 

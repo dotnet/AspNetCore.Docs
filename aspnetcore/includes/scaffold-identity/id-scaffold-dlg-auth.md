@@ -5,7 +5,7 @@ Run the Identity scaffolder:
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, select the options you want.
-  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing _Layout.cshtml file is selected, it is **not** overwritten.
+  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing *\_Layout.cshtml* file is selected, it is **not** overwritten.
 
  For example
   `~/Pages/Shared/_Layout.cshtml` for Razor Pages
@@ -53,4 +53,5 @@ dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files
 ```
 
 If you run the Identity scaffolder without specifying the `--files` flag or the `--useDefaultUI` flag, all the available Identity UI pages will be created in your project.
+
 -------------
