@@ -47,8 +47,6 @@ The following diagram shows the design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
-## Prerequisites
-
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
 ## Create a web project
