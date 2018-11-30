@@ -190,9 +190,9 @@ The scaffolding tool automatically created a DB context and registered it with t
 
 Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model. In this project, the class is named `RazorPagesMovieContext`.
+The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
@@ -211,18 +211,15 @@ The name of the connection string is passed in to the context by calling a metho
 
 ---
 
-<!-- 
-Ignore the following warning message, which you fix in a later tutorial:
-
-```console
-Microsoft.EntityFrameworkCore.Model.Validation[30000]
-      No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
-```
--->
-
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `RazorPagesMovieContext` (In the *Data/RazorPagesMovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `RazorPagesMovieContext` (In the *Data/RazorPagesMovieContext.cs* file). The `Initial` argument is used to name the migrations. Any name can be used, but by convention a name that describes the migration is used. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
 The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+
+<a name="test"></a>
+
+### Test the app
+
+* Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
 If you get the error:
 
@@ -233,24 +230,14 @@ Login failed for user 'User-name'.
 
 You missed the [migrations step](#pmc).
 
-<a name="test"></a>
-
-### Test the app
-
-* Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 * Test the **Create** link.
 
   ![Create page](model/_static/conan.png)
   
   > [!NOTE]
-  > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, you must globalize your app. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420).
-
-
-<a name="scaffold"></a>
+  > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420).
 
 * Test the **Edit**, **Details**, and **Delete** links.
-
-If you get a SQL exception, verify you have run migrations and updated the database.
 
 The next tutorial explains the files created by scaffolding.
 

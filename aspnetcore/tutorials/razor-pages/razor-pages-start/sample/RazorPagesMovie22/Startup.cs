@@ -34,7 +34,8 @@ namespace RazorPagesMovie
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<RazorPagesMovieContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
+              options.UseSqlServer(
+                  Configuration.GetConnectionString("RazorPagesMovieContext")));
         }
         #endregion
 
