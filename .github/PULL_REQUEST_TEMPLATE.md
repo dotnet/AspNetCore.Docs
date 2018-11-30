@@ -1,9 +1,9 @@
 
 
 <!--
-When creating a new PR, please do the following:
+# Instructions
 
-* Reference the issue number if there is one, e.g.:
+When creating a new PR, please reference the issue number if there is one:
 
 Fixes #Issue_Number
 
