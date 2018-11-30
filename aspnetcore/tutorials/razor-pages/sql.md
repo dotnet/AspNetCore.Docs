@@ -130,6 +130,9 @@ Login failed for user 'user name'.
 
 ### Test the app
 
+<!-- VS -------------------------->
+# [Visual Studio](#tab/visual-studio)
+
 * Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
@@ -141,6 +144,25 @@ Login failed for user 'user name'.
 
     * If you were running VS in non-debug mode, press F5 to run in debug mode.
     * If you were running VS in debug mode, stop the debugger and press F5.
+
+<!-- Code -------------------------->
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+
+The app shows the seeded data.
+
+<!-- Mac -------------------------->
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+
+The app shows the seeded data.
+
+---  
+<!-- End of VS tabs -->
+
+
    
 The app shows the seeded data:
 

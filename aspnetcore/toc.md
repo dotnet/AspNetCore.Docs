@@ -8,9 +8,18 @@
 # Tutorials
 ## Web apps
 ### Razor Pages
-#### [With Visual Studio](xref:tutorials/razor-pages/index)
-#### [With Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
-#### [With Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
+#### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
+##### [Get started](xref:tutorials/razor-pages/razor-pages-start)
+##### [Add a model](xref:tutorials/razor-pages/model)
+##### [Scaffolding](xref:tutorials/razor-pages/page)
+##### [SQL Server](xref:tutorials/razor-pages/sql)
+##### [Update the pages](xref:tutorials/razor-pages/da1)
+##### [Add search](xref:tutorials/razor-pages/search)
+##### [Add a new field](xref:tutorials/razor-pages/new-field)
+##### [Add validation](xref:tutorials/razor-pages/validation)
+#### [Introduction to Razor Pages](xref:razor-pages/index)
+
+
 ### MVC
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
 #### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
@@ -58,33 +67,16 @@
 # Web apps
 ## Razor Pages
 ### [Overview](xref:razor-pages/index)
-### Tutorials
-#### Razor Pages with Visual Studio
-##### [Overview](xref:tutorials/razor-pages/index)
-##### [Get started](xref:tutorials/razor-pages/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages/model)
-##### [Scaffolding](xref:tutorials/razor-pages/page)
-##### [SQL Server](xref:tutorials/razor-pages/sql)
-##### [Update the pages](xref:tutorials/razor-pages/da1)
-##### [Add search](xref:tutorials/razor-pages/search)
-##### [Add a new field](xref:tutorials/razor-pages/new-field)
-##### [Add validation](xref:tutorials/razor-pages/validation)
-#### Razor Pages with Visual Studio Code
-##### [Overview](xref:tutorials/razor-pages-vsc/index)
-##### [Get started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages-vsc/model)
-##### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
-##### [Work with SQLite](xref:tutorials/razor-pages-vsc/sql)
-##### [Update the pages](xref:tutorials/razor-pages-vsc/da1)
-##### [Add search](xref:tutorials/razor-pages-vsc/search)
-#### Razor Pages with Visual Studio for Mac
-##### [Overview](xref:tutorials/razor-pages-mac/index)
-##### [Get started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages-mac/model)
-##### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
-##### [Work with SQLite](xref:tutorials/razor-pages-mac/sql)
-##### [Update the pages](xref:tutorials/razor-pages-mac/da1)
-##### [Add search](xref:tutorials/razor-pages-mac/search)
+### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
+#### [Get started](xref:tutorials/razor-pages/razor-pages-start)
+#### [Add a model](xref:tutorials/razor-pages/model)
+#### [Scaffolding](xref:tutorials/razor-pages/page)
+#### [SQL Server](xref:tutorials/razor-pages/sql)
+#### [Update the pages](xref:tutorials/razor-pages/da1)
+#### [Add search](xref:tutorials/razor-pages/search)
+#### [Add a new field](xref:tutorials/razor-pages/new-field)
+#### [Add validation](xref:tutorials/razor-pages/validation)
+
 ### [Filters](xref:razor-pages/filter)
 ### [Razor Class Libraries](xref:razor-pages/ui-class)
 ### [Route and app conventions](xref:razor-pages/razor-pages-conventions)
