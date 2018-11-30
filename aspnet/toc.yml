@@ -3257,6 +3257,8 @@
               href: signalr/overview/performance/signalr-performance.md
             - name: Introduction to Scaleout in SignalR
               href: signalr/overview/performance/scaleout-in-signalr.md
+            - name: Azure SignalR Service
+              href: /azure/azure-signalr/signalr-overview
             - name: SignalR Scaleout with Azure Service Bus
               href: signalr/overview/performance/scaleout-with-windows-azure-service-bus.md
             - name: SignalR Scaleout with Redis
@@ -3397,7 +3399,7 @@
   href: visual-studio/overview/2017/index.md
   items: 
     - name: Optimize build performance for solution
-      href: xref:visual-studio/overview/2017/optimize-build-perf
+      href: uid:visual-studio/overview/2017/optimize-build-perf
 - name: Visual Studio 2013
   href: visual-studio/overview/2013/index.md
   items: 

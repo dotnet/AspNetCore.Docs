@@ -334,6 +334,8 @@ Terms:
 * Parent culture: The neutral culture that contains a specific culture. (for example, "en" is the parent culture of "en-US" and "en-GB")
 * Locale: A locale is the same as a culture.
 
+[!INCLUDE[](~/includes/currency.md)]
+
 ## Additional resources
 
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.

@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about model validation in ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 11/06/2018
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC
@@ -27,10 +27,10 @@ Validation attributes are a way to configure model validation so it's similar co
 
 Validation attributes are specified at the property level: 
 
-```csharp 
-[Required] 
+```csharp
+[Required]
 public string MyProperty { get; set; } 
-``` 
+```
 
 Below is an annotated `Movie` model from an app that stores information about movies and TV shows. Most of the properties are required and several string properties have length requirements. Additionally, there's a numeric range restriction in place for the `Price` property from 0 to $999.99, along with a custom validation attribute.
 
@@ -76,13 +76,19 @@ Client-side validation requires a value for a form field that corresponds to a m
 
 Model state represents validation errors in submitted HTML form values.
 
-MVC will continue validating fields until reaches the maximum number of errors (200 by default). You can configure this number by inserting the following code into the `ConfigureServices` method in the *Startup.cs* file:
+MVC will continue validating fields until it reaches the maximum number of errors (200 by default). You can configure this number with the following code in `Startup.ConfigureServices`:
 
 [!code-csharp[](validation/sample/Startup.cs?range=27)]
 
-## Handling Model State Errors
+## Handle Model State errors
 
-Model validation occurs prior to each controller action being invoked, and it's the action method's responsibility to inspect `ModelState.IsValid` and react appropriately. In many cases, the appropriate reaction is to return an error response, ideally detailing the reason why model validation failed.
+Model validation occurs before the execution of a controller action. It's the action's responsibility to inspect `ModelState.IsValid` and react appropriately. In many cases, the appropriate reaction is to return an error response, ideally detailing the reason why model validation failed.
+
+::: moniker range=">= aspnetcore-2.1"
+
+When `ModelState.IsValid` evaluates to `false` in web API controllers using the `[ApiController]` attribute, an automatic HTTP 400 response containing issue details is returned. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+
+::: moniker-end
 
 Some apps will choose to follow a standard convention for dealing with model validation errors, in which case a filter may be an appropriate place to implement such a policy. You should test how your actions behave with valid and invalid model states.
 

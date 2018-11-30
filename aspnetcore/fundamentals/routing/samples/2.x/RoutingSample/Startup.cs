@@ -38,7 +38,7 @@ namespace RoutingSample
                 // To match HTTP GET "hello/<anything>/<anything>, 
                 // use routeBuilder.MapGet("hello/{*name}"
                 return context.Response.WriteAsync($"Hi, {name}!");
-            });            
+            });
 
             var routes = routeBuilder.Build();
             app.UseRouter(routes);

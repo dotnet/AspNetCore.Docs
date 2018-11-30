@@ -1,10 +1,7 @@
-﻿using CustomModelBindingSample.Data;
-using Microsoft.AspNetCore.Mvc.Internal;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
+using CustomModelBindingSample.Data;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CustomModelBindingSample.Binders
 {
@@ -24,13 +21,8 @@ namespace CustomModelBindingSample.Binders
                 throw new ArgumentNullException(nameof(bindingContext));
             }
 
-            // Specify a default argument name if none is set by ModelBinderAttribute
-            var modelName = bindingContext.BinderModelName;
-            if (string.IsNullOrEmpty(modelName))
-            {
-                modelName = "authorId";
-            }
-
+            var modelName = bindingContext.ModelName;
+            
             // Try to fetch the value of the argument by name
             var valueProviderResult =
                 bindingContext.ValueProvider.GetValue(modelName);
@@ -56,7 +48,7 @@ namespace CustomModelBindingSample.Binders
             {
                 // Non-integer arguments result in model state errors
                 bindingContext.ModelState.TryAddModelError(
-                                        bindingContext.ModelName,
+                                        modelName,
                                         "Author Id must be an integer.");
                 return Task.CompletedTask;
             }

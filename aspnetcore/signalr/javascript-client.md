@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/14/2018
+ms.date: 11/14/2018
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -92,6 +92,17 @@ Setup client-side log tracing by passing a logger and type of event to log when 
 Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console.
 
 [!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
+
+## Reconnect clients
+
+The JavaScript client for SignalR doesn't automatically reconnect. You must write code that will reconnect your client manually. The following code demonstrates a typical reconnection approach:
+
+1. A function (in this case, the `start` function) is created to start the connection.
+1. Call the `start` function in the connection's `onclose` event handler.
+
+[!code-javascript[Reconnect the JavaScript client](javascript-client/sample/wwwroot/js/chat.js?range=30-42)]
+
+A real-world implementation would use an exponential back-off or retry a specified number of times before giving up. 
 
 ## Additional resources
 

@@ -265,7 +265,7 @@ Clicking the slot swap task reveals the following task configuration:
 
 ![release pipeline slot swap task](media/cicd/release-definition-task2.png)
 
-The subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** checkbox is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
+The subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** check box is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
 
 ## Additional reading
 
