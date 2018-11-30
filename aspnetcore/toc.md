@@ -6,6 +6,7 @@
 # [Get started](xref:getting-started)
 
 # Tutorials
+## [Create a web API](xref:tutorials/first-web-api)
 ## Web apps
 ### Razor Pages
 #### [With Visual Studio](xref:tutorials/razor-pages/index)
@@ -15,15 +16,12 @@
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
 #### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
 #### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
-## Web APIs
-### [With Visual Studio](xref:tutorials/first-web-api)
-### [With Visual Studio Code](xref:tutorials/web-api-vsc)
-### [With Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-### [For native mobile apps](xref:mobile/native-mobile-backend)
-### [With MongoDB](xref:tutorials/first-mongo-app)
+
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
+## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
+
 ## Data access
 ### [EF Core with Razor Pages](xref:data/ef-rp/index)
 ### [EF Core with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
@@ -174,12 +172,9 @@
 
 # Web APIs
 ## [Overview](xref:web-api/index)
-## Tutorials
-### [Web API with Visual Studio](xref:tutorials/first-web-api)
-### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
-### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
-### [Web API with MongoDB](xref:tutorials/first-mongo-app)
+
+## [Create a web API](xref:tutorials/first-web-api)
+
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
 ### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
@@ -187,6 +182,7 @@
 ## [Action return types](xref:web-api/action-return-types)
 ## [Format response data](xref:web-api/advanced/formatting)
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
+
 ## [Analyzers](xref:web-api/advanced/analyzers)
 ## [Conventions](xref:web-api/advanced/conventions)
 
