@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/29/2018
+ms.date: 12/03/2018
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -68,7 +68,7 @@ HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
 
 ## Create health checks
 
-Health checks are created by implementing the `IHealthCheck` interface. The `IHealthCheck.CheckHealthAsync` method returns a `Task<HealthCheckResult>` that indicates the check either `Passed` or `Failed`. The result is written as a plaintext response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). `HealthCheckResult` can also return optional key-value pairs.
+Health checks are created by implementing the `IHealthCheck` interface. The `IHealthCheck.CheckHealthAsync` method returns a `Task<HealthCheckResult>` that indicates the health as `Healthy`, `Degraded`, or `Unhealthy`. The result is written as a plaintext response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). `HealthCheckResult` can also return optional key-value pairs.
 
 ### Example health check
 
@@ -94,11 +94,11 @@ public class ExampleHealthCheck : IHealthCheck
         if (healthCheckResultHealthy)
         {
             return Task.FromResult(
-                HealthCheckResult.Passed("The check indicates a passed result."));
+                HealthCheckResult.Healthy("The check indicates a healthy result."));
         }
 
         return Task.FromResult(
-            HealthCheckResult.Failed("The check indicates a failed result."));
+            HealthCheckResult.Unhealthy("The check indicates an unhealthy result."));
     }
 }
 ```
@@ -134,7 +134,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecks()
         .AddCheck("Example", () => 
-            HealthCheckResult.Passed("Example is OK!"), tags: new[] { "example" })
+            HealthCheckResult.Healthy("Example is OK!"), tags: new[] { "example" })
 }
 ```
 
@@ -179,11 +179,11 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecks()
         .AddCheck("Foo", () => 
-            HealthCheckResult.Passed("Foo is OK!"), tags: new[] { "foo_tag" })
+            HealthCheckResult.Healthy("Foo is OK!"), tags: new[] { "foo_tag" })
         .AddCheck("Bar", () => 
-            HealthCheckResult.Failed("Bar failed!"), tags: new[] { "bar_tag" })
+            HealthCheckResult.Unhealthy("Bar is unhealthy!"), tags: new[] { "bar_tag" })
         .AddCheck("Baz", () => 
-            HealthCheckResult.Passed("Baz is OK!"), tags: new[] { "baz_tag" });
+            HealthCheckResult.Healthy("Baz is OK!"), tags: new[] { "baz_tag" });
 }
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -215,8 +215,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             [HealthCheckStatus.Healthy] = StatusCodes.Status200OK,
             [HealthCheckStatus.Degraded] = StatusCodes.Status200OK,
-            [HealthCheckStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
-            [HealthCheckStatus.Failed] = StatusCodes.Status500InternalServerError
+            [HealthCheckStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
         }
     });
 }
@@ -550,11 +549,11 @@ To distribute a health check as a library:
                // data1 and data2 are used in the method to
                // run the probe's health check logic.
 
-               return HealthCheckResult.Passed();
+               return HealthCheckResult.Healthy();
            }
            catch (Exception ex)
            {
-               return HealthCheckResult.Failed(exception:ex);
+               return HealthCheckResult.Unhealthy(exception: ex);
            }
        }
    }

@@ -22,11 +22,11 @@ namespace SampleApp
             if (StartupTaskCompleted)
             {
                 return Task.FromResult(
-                    HealthCheckResult.Passed("The startup task is finished."));
+                    HealthCheckResult.Healthy("The startup task is finished."));
             }
 
             return Task.FromResult(
-                HealthCheckResult.Failed("The startup task is still running."));
+                HealthCheckResult.Unhealthy("The startup task is still running."));
         }
     }
     #endregion
