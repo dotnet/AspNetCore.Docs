@@ -46,7 +46,7 @@ Use **View Source** from your favorite browser to examine the generated markup. 
 </td>
 ```
 
-The dynamically-generated links pass the movie ID with a query string (for example, `http://localhost:5000/Movies/Details?id=2`).
+The dynamically-generated links pass the movie ID with a query string (for example, `https://localhost:5001/Movies/Details?id=2`).
 
 Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
 
