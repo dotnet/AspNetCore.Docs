@@ -1,6 +1,3 @@
-::: moniker range=">= aspnetcore-2.1"
-
-Right click on a red squiggly line > **Quick Actions and Refactorings** on the `[Column]` atribute and select `using System.ComponentModel.DataAnnotations.Schema;`
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
@@ -67,8 +64,6 @@ To test the `catch` block:
 * In the previous browser window, post changes to the movie.
 
 Production code would generally detect concurrency conflicts when two or more clients concurrently updated a record. See [Handle concurrency conflicts](xref:data/ef-rp/concurrency) for more information.
-
-::: moniker-end
 
 ### Posting and binding review
 

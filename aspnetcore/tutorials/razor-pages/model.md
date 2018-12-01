@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 ms.author: riande
 monikerRange: '>= aspnetcore-2.2'
-ms.date: 05/30/2018
+ms.date: 12/3/2018
 uid: tutorials/razor-pages/model
 ---
 # Add a model to a Razor Pages app in ASP.NET Core
