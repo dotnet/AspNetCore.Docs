@@ -133,9 +133,9 @@ The ASP.NET Core hosting model doesn't directly listen for requests. The hosting
 
 ASP.NET Core provides the following server implementations:
 
-* [Kestrel](xref:fundamentals/servers/kestrel) is a managed, cross-platform web server. Kestrel is often run in a reverse proxy configuration using [IIS](https://www.iis.net/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+* [Kestrel](xref:fundamentals/servers/kestrel) server is a managed, cross-platform web server. Kestrel is often run in a reverse proxy configuration using [IIS](https://www.iis.net/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
 * IIS HTTP Server (`IISHttpServer`) is an [IIS in-process server](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model).
-* [HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core on Windows.
+* [HTTP.sys](xref:fundamentals/servers/httpsys) server is a web server for ASP.NET Core on Windows.
 
 # [macOS](#tab/macos)
 
@@ -155,8 +155,8 @@ ASP.NET Core uses the [Kestrel](xref:fundamentals/servers/kestrel) server implem
 
 ASP.NET Core provides the following server implementations:
 
-* [Kestrel](xref:fundamentals/servers/kestrel) is a managed, cross-platform web server. Kestrel is often run in a reverse proxy configuration using [IIS](https://www.iis.net/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
-* [HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core on Windows.
+* [Kestrel](xref:fundamentals/servers/kestrel) server is a managed, cross-platform web server. Kestrel is often run in a reverse proxy configuration using [IIS](https://www.iis.net/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+* [HTTP.sys](xref:fundamentals/servers/httpsys) server is a web server for ASP.NET Core on Windows.
 
 # [macOS](#tab/macos)
 
