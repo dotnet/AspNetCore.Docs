@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 12/01/2018
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -75,7 +75,7 @@ Specify the HTTPS port using any of the following approaches:
 * Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](xref:fundamentals/servers/kestrel) or [HTTP.sys](xref:fundamentals/servers/httpsys). Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 > [!NOTE]
-> When an app is run in a reverse proxy configuration, `IServerAddressesFeature` isn't available. The port must be manually configured. When the port isn't set, requests aren't redirected.
+> When an app is run in a reverse proxy configuration, <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> isn't available. Set the port using one of the other approaches described in this section.
 
 When Kestrel or HTTP.sys is used as a public-facing edge server, Kestrel or HTTP.sys must be configured to listen on both:
 

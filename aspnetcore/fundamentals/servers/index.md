@@ -4,7 +4,7 @@ author: guardrex
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 12/01/2018
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
@@ -13,20 +13,46 @@ By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com
 
 An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as sets of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
-ASP.NET Core ships with the following:
-
 ::: moniker range=">= aspnetcore-2.2"
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server for ASP.NET Core.
-* IIS HTTP Server (`IISHttpServer`) is an [IIS in-process server](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model) implementation used with the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) on Windows.
-* [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). (HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.)
+# [Windows](#tab/windows)
+
+ASP.NET Core ships with the following:
+
+* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server.
+* IIS HTTP Server (`IISHttpServer`) is an [IIS in-process server](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model) implementation used with the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module).
+* [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.
+
+# [macOS](#tab/macos)
+
+ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+
+# [Linux](#tab/linux)
+
+ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+
+---
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server for ASP.NET Core.
-* [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). (HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.)
+# [Windows](#tab/windows)
+
+ASP.NET Core ships with the following:
+
+* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server.
+* [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). HTTP.sys is called [WebListener](xref:fundamentals/servers/weblistener) in ASP.NET Core 1.x.
+
+# [macOS](#tab/macos)
+
+ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+
+# [Linux](#tab/linux)
+
+ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), which is the default, cross-platform HTTP server.
+
+---
 
 ::: moniker-end
 

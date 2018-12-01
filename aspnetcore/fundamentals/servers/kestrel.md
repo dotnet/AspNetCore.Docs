@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 12/01/2018
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -74,9 +74,9 @@ You can use Kestrel by itself or with a *reverse proxy server*, such as [Interne
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-Either configuration&mdash;with or without a reverse proxy server&mdash;is a valid supported hosting configuration for ASP.NET Core 2.0 or later apps that receive requests from the Internet.
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration for ASP.NET Core 2.1 or later apps that receive requests from the Internet.
 
-A reverse proxy scenario exists when there are multiple apps that share the same IP and port running on a single server. Kestrel doesn't support this scenario because Kestrel doesn't support sharing the same IP and port among multiple processes. When Kestrel is configured to listen on a port, Kestrel handles all of the traffic for that port regardless of requests' `Host` header. A reverse proxy that can share ports has the ability to forward requests to Kestrel on a unique IP and port.
+Kestrel used as an edge server without a reverse proxy server doesn't support sharing the same IP and port among multiple processes. When Kestrel is configured to listen on a port, Kestrel handles all of the traffic for that port regardless of requests' `Host` headers. A reverse proxy that can share ports has the ability to forward requests to Kestrel on a unique IP and port.
 
 Even if a reverse proxy server isn't required, using a reverse proxy server might be a good choice.
 
