@@ -58,10 +58,12 @@ namespace RazorPagesMovie.Pages.Movies
         #region snippet_SearchGenre
         public async Task OnGetAsync()
         {
+            #region snippet_LINQ
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
+            #endregion
 
             var movies = from m in _context.Movie
                          select m;
@@ -75,7 +77,9 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 movies = movies.Where(x => x.Genre == MovieGenre);
             }
+            #region snippet_SelectList
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            #endregion
             Movie = await movies.ToListAsync();
         }
         #endregion
