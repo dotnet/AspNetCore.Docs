@@ -64,6 +64,24 @@ A request to the page with the "{id:int}" route template that does **not** inclu
 @page "{id:int?}"
 ```
 
+To test the behavior or `@page "{id:int?}"`:
+
+* Set the page directive in *Pages/Movies/Details.cshtml* to `@page "{id:int?}"`
+* Set a break point in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
+* Navigate to  `https://localhost:5001/Movies/Details/`
+
+With the `@page "{id:int}"` directive, the break point is never hit. The routing engine return HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404).
+
+Although not recommended, you could write the the delete method as:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Delete.cshtml.cs?name=snippet)]
+
+Test the preceding code:
+
+* Select a delete link.
+* Remove the ID from the URL. For example, change `https://localhost:5001/Movies/Delete/8` to `https://localhost:5001/Movies/Delete`
+* Step through the code in the debugger.
+
 ### Review concurrency exception handling
 
 Review the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* file:

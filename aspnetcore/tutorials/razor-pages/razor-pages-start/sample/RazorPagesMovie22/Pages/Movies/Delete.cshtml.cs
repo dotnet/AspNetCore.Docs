@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//#define DeleteHack
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
+using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Movies
 {
@@ -21,6 +19,27 @@ namespace RazorPagesMovie.Pages.Movies
         [BindProperty]
         public Movie Movie { get; set; }
 
+#if DeleteHack
+        #region snippet
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                Movie = await _context.Movie.FirstOrDefaultAsync();
+            }
+            else
+            {
+                Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            }
+
+            if (Movie == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
+        #endregion
+#else
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -36,6 +55,8 @@ namespace RazorPagesMovie.Pages.Movies
             }
             return Page();
         }
+#endif
+
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
