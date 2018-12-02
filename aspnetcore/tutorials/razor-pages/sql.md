@@ -98,7 +98,7 @@ Note the key icon next to `ID`. By default, EF creates a property named `ID` for
 
 ## Seed the database
 
-Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
+Create a new class named `SeedData` in the *Models* folder with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 

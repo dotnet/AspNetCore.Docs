@@ -19,9 +19,9 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
-[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateFixed.cs?name=snippet_1)]
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateFixed.cs?name=snippet_1&highlight=12,17)]
 
-The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
+The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
 [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) is covered in the next tutorial. The [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
 
@@ -46,7 +46,7 @@ Use **View Source** from your favorite browser to examine the generated markup. 
 </td>
 ```
 
-The dynamically-generated links pass the movie ID with a query string (for example, `https://localhost:5001/Movies/Details?id=2`).
+The dynamically-generated links pass the movie ID with a query string (for example, the `?id=1` in  `https://localhost:5001/Movies/Details?id=1`).
 
 Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
 
@@ -64,13 +64,13 @@ A request to the page with the "{id:int}" route template that does **not** inclu
 @page "{id:int?}"
 ```
 
-### Update concurrency exception handling
+### Review concurrency exception handling
 
-Update the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* file. The following highlighted code shows the changes:
+Review the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit.cshtml.cs?name=snippet1&highlight=16-23)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit.cshtml.cs?name=snippet1&highlight=16)]
 
-The previous code only detects concurrency exceptions when the first concurrent client deletes the movie, and the second concurrent client posts changes to the movie.
+The previous code only detects concurrency exceptions when the one concurrent client deletes the movie and the other concurrent client posts changes to the movie.
 
 To test the `catch` block:
 
@@ -79,7 +79,7 @@ To test the `catch` block:
 * In another browser window, select the **Delete** link for the same movie, and then delete the movie.
 * In the previous browser window, post changes to the movie.
 
-Production code would generally detect concurrency conflicts when two or more clients concurrently updated a record. See [Handle concurrency conflicts](xref:data/ef-rp/concurrency) for more information.
+Production code may want to detect concurrency conflicts. See [Handle concurrency conflicts](xref:data/ef-rp/concurrency) for more information.
 
 ### Posting and binding review
 
