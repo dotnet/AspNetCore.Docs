@@ -36,7 +36,7 @@ Build the app (Ctrl+Shift+B).
 
 Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?highlight=40-42,61-63)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.?highlight=40-42,61-63)]
 
 Update the following pages:
 
