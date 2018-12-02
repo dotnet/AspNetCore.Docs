@@ -17,7 +17,7 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contains the text users enter in the search text box.
+* `SearchString`: contains the text users enter in the search text box. `SearchString` is decorated with the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` bind form values with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contains the specific genre the user selects (for example, "Western").
 
@@ -90,7 +90,7 @@ The `SelectList` of genres is created by projecting the distinct genres.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### Adding search by genre
+### Add search by genre to the Razor Page
 
 Update *Index.cshtml* as follows:
 
