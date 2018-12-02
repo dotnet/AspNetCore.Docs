@@ -11,13 +11,15 @@ uid: tutorials/razor-pages/search
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+[!INCLUDE[](~/includes/rp/download.md)]
+
 In the following sections, searching movies by *genre* or *name* is added.
 
 Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contains the text users enter in the search text box. `SearchString` is decorated with the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` bind form values with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
+* `SearchString`: contains the text users enter in the search text box. `SearchString` is decorated with the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contains the specific genre the user selects (for example, "Western").
 

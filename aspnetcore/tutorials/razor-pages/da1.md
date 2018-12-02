@@ -86,14 +86,14 @@ Test the preceding code:
 
 Review the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit.cshtml.cs?name=snippet1&highlight=16)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Edit.cshtml.cs?name=snippet)]
 
-The previous code only detects concurrency exceptions when the one concurrent client deletes the movie and the other concurrent client posts changes to the movie.
+The previous code detects concurrency exceptions when the one client deletes the movie and the other client posts changes to the movie.
 
 To test the `catch` block:
 
 * Set a breakpoint on `catch (DbUpdateConcurrencyException)`
-* Edit a movie.
+* Select **Edit** for a movie, make changes, but don't enter **Save**.
 * In another browser window, select the **Delete** link for the same movie, and then delete the movie.
 * In the previous browser window, post changes to the movie.
 
