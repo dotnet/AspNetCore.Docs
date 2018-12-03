@@ -8,6 +8,8 @@
 # Tutorials
 ## Web apps
 ### Razor Pages
+#### [Introduction to Razor Pages](xref:razor-pages/index)
+
 #### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
 ##### [Get started](xref:tutorials/razor-pages/razor-pages-start)
 ##### [Add a model](xref:tutorials/razor-pages/model)
@@ -17,8 +19,6 @@
 ##### [Add search](xref:tutorials/razor-pages/search)
 ##### [Add a new field](xref:tutorials/razor-pages/new-field)
 ##### [Add validation](xref:tutorials/razor-pages/validation)
-#### [Introduction to Razor Pages](xref:razor-pages/index)
-
 
 ### MVC
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
