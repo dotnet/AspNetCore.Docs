@@ -197,7 +197,6 @@
 ### [Java API reference](/java/api/com.microsoft.signalr?view=aspnet-signalr-java)
 ### [JavaScript client](xref:signalr/javascript-client)
 ### [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
-### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
 ## Hosting and scaling
 ### [Overview](xref:signalr/scale)
 ### [Azure SignalR Service](/azure/azure-signalr/signalr-overview)

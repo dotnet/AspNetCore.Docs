@@ -5,7 +5,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/13/2018
+ms.date: 11/30/2018
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -31,25 +31,8 @@ At the end, you'll have a working chat app:
 > [!NOTE]
 > We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
 
-## Prerequisites
 
-# [Visual Studio](#tab/visual-studio)
-
-* [Visual Studio 2017 version 15.8 or later](https://www.visualstudio.com/downloads/) with the **ASP.NET and web development** workload
-* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-* [Visual Studio Code](https://code.visualstudio.com/download)
-* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all)
-* [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* [Visual Studio for Mac version 7.5.4 or later](https://www.visualstudio.com/downloads/)
-* [.NET Core SDK 2.1 or later](https://www.microsoft.com/net/download/all) (included in the Visual Studio install)
-
----
+[!INCLUDE [|Prerequisites](~/includes/net-core-prereqs-all-2.2.md)]
 
 ## Create a web project
 
@@ -63,7 +46,7 @@ At the end, you'll have a working chat app:
 
 * Select **Web Application** to create a project that uses Razor Pages.
 
-* Select a target framework of **.NET Core**, select **ASP.NET Core 2.1**, and click **OK**.
+* Select a target framework of **.NET Core**, select **ASP.NET Core 2.2**, and click **OK**.
 
   ![New Project dialog in Visual Studio](signalr/_static/signalr-new-project-choose-type.png)
 
