@@ -306,7 +306,7 @@ dotnet run --scenario db
 > [!NOTE]
 > [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
 
-## Database context
+## Entity Framework Core DbContext probe
 
 The database context check is supported in apps that use [Entity Framework (EF) Core](/en-us/ef/core/). This check confirms that the app can communicate with the database configured for an EF Core `DbContext`. By default, the `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using overloads of the `AddDbContextCheck` method.
 
@@ -528,32 +528,47 @@ To distribute a health check as a library:
 1. Write a health check that implements the `IHealthCheck` interface as a standalone class. The class can rely on [dependency injection (DI)](xref:fundamentals/dependency-injection), type activation, and [named options](xref:fundamentals/configuration/options) to access configuration data.
 
    ```csharp
+   using System;
+   using System.Threading;
+   using System.Threading.Tasks;
    using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-   public class ExampleHealthCheck : IHealthCheck
+   namespace SampleApp
    {
-       private readonly string _data1;
-       private readonly int? _data2;
+       public class ExampleHealthCheck : IHealthCheck
+       {
+           private readonly string _data1;
+           private readonly int? _data2;
 
-       public SqlServerHealthCheck(string data1, int? data2)
-       {
-           _data1 = data1 ?? throw new ArgumentNullException(nameof(data1));
-           _data2 = data2 ?? throw new ArgumentNullException(nameof(data2));
-       }
-       public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
-       {
-           try
+           public ExampleHealthCheck(string data1, int? data2)
            {
-               // Health check logic
-               //
-               // data1 and data2 are used in the method to
-               // run the probe's health check logic.
-
-               return HealthCheckResult.Healthy();
+               _data1 = data1 ?? throw new ArgumentNullException(nameof(data1));
+               _data2 = data2 ?? throw new ArgumentNullException(nameof(data2));
            }
-           catch (Exception ex)
+
+           public async Task<HealthCheckResult> CheckHealthAsync(
+               HealthCheckContext context, CancellationToken cancellationToken)
            {
-               return HealthCheckResult.Unhealthy(exception: ex);
+               try
+               {
+                   // Health check logic
+                   //
+                   // data1 and data2 are used in the method to
+                   // run the probe's health check logic.
+
+                   // Assume that it's possible for this health check
+                   // to throw an AccessViolationException.
+
+                   return HealthCheckResult.Healthy();
+               }
+               catch (AccessViolationException ex)
+               {
+                   return new HealthCheckResult(
+                       context.Registration.FailureStatus,
+                       description: "An access violation occurred during the check.",
+                       exception: ex,
+                       data: null);
+               }
            }
        }
    }
