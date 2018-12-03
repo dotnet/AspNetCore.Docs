@@ -20,11 +20,9 @@ uid: tutorials/razor-pages-vsc/model
 
 [!INCLUDE [model 2](../../includes/RP/model2.md)]
 
-[!INCLUDE [model 2a](../../includes/RP/model2a.md)]
-
 ### Entity Framework Core NuGet package for SQLite
 
-From the command line, run the following .NET Core CLI command:
+From the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), run the following .NET Core CLI command:
 
 ```console
 dotnet add package Microsoft.EntityFrameworkCore.SQLite

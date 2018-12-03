@@ -8,12 +8,4 @@ ms.date: 1/27/2018
 uid: tutorials/razor-pages-vsc/page
 ---
 
-[!INCLUDE [model1](../../includes/RP/page1.md)]
-
-[!INCLUDE [model1](../../includes/RP/page2.md)]
-
-The next tutorial explains SQLite and seeding the database.
-
-> [!div class="step-by-step"]
-> [Previous: Adding a model](xref:tutorials/razor-pages-vsc/model)
-> [Next: SQLite](xref:tutorials/razor-pages-vsc/sql)
+remove me
