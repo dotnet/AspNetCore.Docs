@@ -4,23 +4,23 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 12/01/2018
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
 
 By [Shayne Boyer](https://github.com/spboyer)
 
-Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a reverse proxy server on [CentOS 7](https://www.centos.org/) to redirect HTTP traffic to an ASP.NET Core web app running on [Kestrel](xref:fundamentals/servers/kestrel). The [mod_proxy extension](http://httpd.apache.org/docs/2.4/mod/mod_proxy.html) and related modules create the server's reverse proxy.
+Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a reverse proxy server on [CentOS 7](https://www.centos.org/) to redirect HTTP traffic to an ASP.NET Core web app running on [Kestrel](xref:fundamentals/servers/kestrel) server. The [mod_proxy extension](http://httpd.apache.org/docs/2.4/mod/mod_proxy.html) and related modules create the server's reverse proxy.
 
 ## Prerequisites
 
-1. Server running CentOS 7 with a standard user account with sudo privilege.
-1. Install the .NET Core runtime on the server.
+* Server running CentOS 7 with a standard user account with sudo privilege.
+* Install the .NET Core runtime on the server.
    1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
    1. Select the latest non-preview runtime from the list under **Runtime**.
    1. Select and follow the instructions for CentOS/Oracle.
-1. An existing ASP.NET Core app.
+* An existing ASP.NET Core app.
 
 ## Publish and copy over the app
 
