@@ -26,14 +26,14 @@ The sample app includes examples of the scenarios described in this topic. To ru
 
 ## Prerequisites
 
-Health checks are usually used with an external monitoring service or container orchestrator to check the status of an app. Before building a production health check app, decide on which monitoring system to use. The monitoring system dictates what types of health checks to create and how to configure their endpoints.
+Health checks are usually used with an external monitoring service or container orchestrator to check the status of an app. Before adding health checks to an app, decide on which monitoring system to use. The monitoring system dictates what types of health checks to create and how to configure their endpoints.
 
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package.
 
 The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [database context](#database-context) scenario probes a database context. To explore the database scenarios using the sample app:
 
 * Create a database and provide its connection string in the *appsettings.json* file of the app.
-* Add a package reference to [HealthChecks.SqlServer](https://www.nuget.org/packages/HealthChecks.SqlServer/).
+* Add a package reference to [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/).
 
 > [!NOTE]
 > [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
@@ -46,7 +46,7 @@ For many apps, a basic health probe configuration that reports the app's availab
 
 The basic configuration registers health check services and calls the Health Check Middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it's capable of responding at the health endpoint URL. The default response writer writes the status (`HealthCheckStatus`) as a plaintext response back to the client, indicating either a `HealthCheckResult.Healthy` or `HealthCheckResult.Unhealthy` status.
 
-Register health check services with `AddHealthChecks` in `Startup.ConfigureServices`. Call Health Check Middleware in the app processing pipeline in `Startup.Configure`.
+Register health check services with `AddHealthChecks` in `Startup.ConfigureServices`. Add Health Check Middleware with `UseHealthChecks` in the request processing pipeline of `Startup.Configure`.
 
 In the sample app, the health check endpoint is created at `/health` (*BasicStartup.cs*):
 
@@ -115,7 +115,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-An `AddCheck` overload provides the opportunity to set the failure status (`HealthStatus`) that should be reported when the health check reports a failure. If the failure status is set to `null` (default), `HealthStatus.Unhealthy` is reported.
+The `AddCheck` overload shown in the following example sets the failure status (`HealthStatus`) to report when the health check reports a failure. If the failure status is set to `null` (default), `HealthStatus.Unhealthy` is reported. This overload is a useful scenario for library authors, where the failure status indicated by the library is enforced by the app when a health check failure occurs.
 
 *Tags* can be used to filter health checks (described further in the [Filter health checks](#filter-health-checks) section).
 
@@ -283,7 +283,7 @@ The sample app uses [BeatPulse](https://github.com/Xabaril/BeatPulse), a health 
 > [!WARNING]
 > When checking a database connection with a query, choose a query that returns quickly. The query approach runs the risk of overloading the database and degrading its performance. In most cases, running a test query isn't necessary. Merely making a successful connection to the database is sufficient. If you find it necessary to run a query, choose a simple SELECT query, such as `SELECT 1`.
 
-In order to use the BeatPulse library, include a package reference to [HealthChecks.SqlServer](https://www.nuget.org/packages/HealthChecks.SqlServer/).
+In order to use the BeatPulse library, include a package reference to [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/).
 
 Supply a valid database connection string in the *appsettings.json* file of the sample app. The app uses a SQL Server database named `HealthCheckSample`:
 
