@@ -32,7 +32,7 @@ Open the *Models/Movie.cs* file and add a `Rating` property:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
-Build the app (Ctrl+Shift+B).
+Build the app.
 
 Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 
@@ -138,7 +138,7 @@ dotnet ef database update
 ---  
 <!-- End of VS tabs -->
 
-Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, restart the app.
+Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
 
 > [!div class="step-by-step"]
 > [Previous: Adding Search](xref:tutorials/razor-pages/search)

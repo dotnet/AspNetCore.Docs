@@ -14,7 +14,8 @@ namespace RazorPagesMovie.Models
         public static void Initialize(IServiceProvider serviceProvider)
         {
             using (var context = new RazorPagesMovieContext(
-                serviceProvider.GetRequiredService<DbContextOptions<RazorPagesMovieContext>>()))
+                serviceProvider.GetRequiredService<
+                    DbContextOptions<RazorPagesMovieContext>>()))
             {
                 // Look for any movies.
                 if (context.Movie.Any())

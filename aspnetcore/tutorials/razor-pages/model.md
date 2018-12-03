@@ -11,6 +11,8 @@ uid: tutorials/razor-pages/model
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+[!INCLUDE[](~/includes/rp/download.md)]
+
 In this section, classes are added for managing movies in a database. These classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies data access code.
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
