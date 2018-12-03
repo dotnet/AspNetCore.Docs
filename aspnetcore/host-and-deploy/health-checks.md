@@ -115,7 +115,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The `AddCheck` overload shown in the following example sets the failure status (`HealthStatus`) to report when the health check reports a failure. If the failure status is set to `null` (default), `HealthStatus.Unhealthy` is reported. This overload is a useful scenario for library authors, where the failure status indicated by the library is enforced by the app when a health check failure occurs.
+The `AddCheck` overload shown in the following example sets the failure status (`HealthStatus`) to report when the health check reports a failure. If the failure status is set to `null` (default), `HealthStatus.Unhealthy` is reported. This overload is a useful scenario for library authors, where the failure status indicated by the library is enforced by the app when a health check failure occurs if the health check implementation honors the setting.
 
 *Tags* can be used to filter health checks (described further in the [Filter health checks](#filter-health-checks) section).
 
