@@ -134,7 +134,7 @@ The following code shows combining attributes on one line:
 
 ### Publish to Azure
 
-For information on deploying to Azure, See [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). These instructions are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). These instructions are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
 
 Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 
