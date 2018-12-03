@@ -128,7 +128,7 @@ It's generally not a good practice to compile hard dates in your models, so usin
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie2/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
