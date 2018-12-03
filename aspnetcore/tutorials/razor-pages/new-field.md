@@ -5,7 +5,7 @@ description: Shows how to add a new field to a Razor Page with Entity Framework 
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 12/5/2018
 uid: tutorials/razor-pages/new-field
 ---
 # Add a new field to a Razor Page in ASP.NET Core
@@ -36,7 +36,7 @@ Build the app (Ctrl+Shift+B).
 
 Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.?highlight=40-42,61-63)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexRating.cshtml.?highlight=40-42,61-63)]
 
 Update the following pages:
 
@@ -107,15 +107,38 @@ If you delete all the records in the DB, the initializer will seed the DB and in
 <!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
+<!-- copy/paste this tab to the next. Not worth an include  -->
+SQLite doesn't support migrations.
+
+* Delete the database or change the database name in the *appsettings.json* file.
+* Delete the *Migrations* folder (and all the files in the folder).
+
+Run the following .NET Core CLI commands:
+
+```console
+dotnet ef migrations add Rating
+dotnet ef database update
+```
 
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+SQLite doesn't support migrations.
+
+* Delete the database or change the database name in the *appsettings.json* file.
+* Delete the *Migrations* folder (and all the files in the folder).
+
+Run the following .NET Core CLI commands:
+
+```console
+dotnet ef migrations add Rating
+dotnet ef database update
+```
+
 ---  
 <!-- End of VS tabs -->
 
-
-Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, stop IIS Express, and then run the app.
+Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, restart the app.
 
 > [!div class="step-by-step"]
 > [Previous: Adding Search](xref:tutorials/razor-pages/search)

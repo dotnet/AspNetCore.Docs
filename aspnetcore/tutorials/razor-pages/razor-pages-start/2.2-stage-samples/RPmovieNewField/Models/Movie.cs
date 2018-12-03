@@ -1,12 +1,9 @@
-﻿//#define MovieDateRating
-#if MovieDateRating
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorPagesMovie.Models
 {
-#region snippet
     public class Movie
     {
         public int ID { get; set; }
@@ -21,6 +18,4 @@ namespace RazorPagesMovie.Models
         public decimal Price { get; set; }
         public string Rating { get; set; }
     }
-#endregion
 }
-#endif
