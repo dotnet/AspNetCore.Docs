@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 2.2.
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 12/03/2018
-uid: aspnetcore-2.1
+uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2
 
