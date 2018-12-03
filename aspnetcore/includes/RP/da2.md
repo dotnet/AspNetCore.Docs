@@ -1,16 +1,11 @@
-::: moniker range=">= aspnetcore-2.1"
-
-Right click on a red squiggly line > **Quick Actions and Refactorings** on the `[Column]` atribute and select `using System.ComponentModel.DataAnnotations.Schema;`
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
 The completed model:
 
-[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateFixed.cs?name=snippet_1)]
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateFixed.cs?name=snippet_1)]
 
-::: moniker-end
-
-We'll cover [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) in the next tutorial. The [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
+[DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) is covered in the next tutorial. The [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
 
 Browse to Pages/Movies and  hover over an **Edit** link to see the target URL.
 
@@ -70,23 +65,11 @@ To test the `catch` block:
 
 Production code would generally detect concurrency conflicts when two or more clients concurrently updated a record. See [Handle concurrency conflicts](xref:data/ef-rp/concurrency) for more information.
 
-::: moniker-end
-
 ### Posting and binding review
 
 Examine the *Pages/Movies/Edit.cshtml.cs* file:
 
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit.cshtml.cs?name=snippet2)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
-
-::: moniker-end
 
 When an HTTP GET request is made to the Movies/Edit page (for example, `http://localhost:5000/Movies/Edit/2`):
 
