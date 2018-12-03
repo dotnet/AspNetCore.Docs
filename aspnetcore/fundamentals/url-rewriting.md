@@ -204,7 +204,7 @@ Following the `^rewrite-rule/` portion of the expression, there are two capture 
 There's no round trip to the server to obtain the resource. If the resource exists, it's fetched and returned to the client with a *200 - OK* status code. Because the client isn't redirected, the URL in the browser's address bar doesn't change. Clients can't detect that a URL rewrite operation occurred on the server.
 
 > [!NOTE]
-> Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and reduces app response time. For the fastest app response:
+> Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and increases app response time. For the fastest app response:
 >
 > * Order rewrite rules from the most frequently matched rule to the least frequently matched rule.
 > * Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
