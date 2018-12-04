@@ -1,72 +1,72 @@
 { 
     "redirections": [ 
       {   
-          "source_path": "tutorials/razor-pages-mac/index.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-mac/index.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-mac/razor-pages-start.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-mac/razor-pages-start.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/razor-pages-start",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-mac/model.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-mac/model.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/model",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-mac/page.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-mac/page.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/page",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-mac/search.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-mac/search.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/search",  
           "redirect_document_id": false 
       },
       {   
-          "source_path": "tutorials/razor-pages-mac/sql.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-mac/sql.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/sql",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-mac/da1.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-mac/da1.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/da1",  
           "redirect_document_id": false 
       },
       {   
-          "source_path": "tutorials/razor-pages-vsc/index.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-vsc/index.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-vsc/razor-pages-start.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-vsc/razor-pages-start.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/razor-pages-start",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-vsc/model.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-vsc/model.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/model",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-vsc/page.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-vsc/page.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/page",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-vsc/search.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-vsc/search.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/search",  
           "redirect_document_id": false 
       },
       {   
-          "source_path": "tutorials/razor-pages-vsc/sql.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-vsc/sql.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/sql",  
           "redirect_document_id": false 
       }, 
       {   
-          "source_path": "tutorials/razor-pages-vsc/da1.md", 
+          "source_path": "aspnetcore/tutorials/razor-pages-vsc/da1.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages/da1",  
           "redirect_document_id": false 
       },
