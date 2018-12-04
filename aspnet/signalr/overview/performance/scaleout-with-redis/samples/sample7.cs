@@ -1,2 +1,2 @@
-GlobalHost.DependencyResolver.UseRedis("redis-server.cloudapp.net", 6379,
+GlobalHost.DependencyResolver.UseStackExchangeRedis("redis-server.cloudapp.net", 6379,
     "MyStrongPassword1234", "ChatApp");
