@@ -30,7 +30,7 @@ Health checks are usually used with an external monitoring service or container 
 
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package.
 
-The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [`DbContext` probe](#entity-framework-core-dbcontext-probe) scenario probes a database using an EF Core `DbContext`. To explore the database scenarios using the sample app:
+The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [DbContext probe](#entity-framework-core-dbcontext-probe) scenario probes a database using an EF Core `DbContext`. To explore the database scenarios using the sample app:
 
 * Create a database and provide its connection string in the *appsettings.json* file of the app.
 * Add a package reference to [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/).
