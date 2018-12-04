@@ -33,7 +33,7 @@ In this tutorial, you learn how to:
 
 Configure Visual Studio to look for npm in the *PATH* environment variable. By default, Visual Studio uses the version of npm found in its installation directory. Follow these instructions in Visual Studio:
 
-1. Navigate to **Tools** > **Options** > **Projects and solutions** > **Web Package Management** > **External Web Tools**.
+1. Navigate to **Tools** > **Options** > **Projects and Solutions** > **Web Package Management** > **External Web Tools**.
 1. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list.
 
     ![Visual Studio Configuration](signalr-typescript-webpack/_static/signalr-configure-path-visual-studio.png)
@@ -207,7 +207,7 @@ Confirm that the app works with the following steps.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Run Webpack in *release* mode. Using the **Package Manager Console** window, execute the following command in the project root:
+1. Run Webpack in *release* mode. Using the **Package Manager Console** window, execute the following command in the project root. If you are not in the project root, enter `cd SignalRWebPack` before entering the command.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
