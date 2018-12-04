@@ -442,6 +442,7 @@
 ### [HTTP modules to middleware](xref:migration/http-modules)
 
 # What's new
+## [What's new in 2.2](xref:aspnetcore-2.2)
 ## [What's new in 2.1](xref:aspnetcore-2.1)
 ## [What's new in 2.0](xref:aspnetcore-2.0)
 ## [What's new in 1.1](xref:aspnetcore-1.1)
