@@ -24,7 +24,7 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 * `MovieGenre`: contains the specific genre the user selects (for example, "Western").
 * `Genres` and `MovieGenre` are used later in this tutorial.
 
-[!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
+[!INCLUDE[](~/includes/bind-get.md)]
 
 Update the Index page's `OnGetAsync` method with the following code:
 
