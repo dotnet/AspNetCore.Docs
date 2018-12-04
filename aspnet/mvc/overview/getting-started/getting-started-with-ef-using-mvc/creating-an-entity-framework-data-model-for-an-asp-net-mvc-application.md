@@ -15,7 +15,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 > [!NOTE]
-> For new development, we recommend [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. For a tutorial series similar to this one using Razor Pages, see the [Razor Pages tutorial](/aspnet/core/tutorials/razor-pages/razor-pages-start):
+> For new development, we recommend [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. For a tutorial series similar to this one using Razor Pages, see the [Tutorial: Get started with Razor Pages in ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start):
 >
 > * Is easier to follow.
 > * Provides more EF Core best practices.
