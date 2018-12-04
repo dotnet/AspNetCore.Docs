@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <ProjectUISubcaption>&gt;= ASP.NET Core 2.2</ProjectUISubcaption>
-    <AspNetCoreHostingModel>inprocess</AspNetCoreHostingModel>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>WebApiSample.Api._22</RootNamespace>
   </PropertyGroup>
 
