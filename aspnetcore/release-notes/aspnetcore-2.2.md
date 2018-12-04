@@ -79,11 +79,7 @@ For more information, see [Response Compression Middleware supports Brotli compr
 
 ## Project templates
 
-ASP.NET Core web project templates were updated to [Bootstrap 4](https://getbootstrap.com/docs/4.1/migration/) and [Angular 6](https://blog.angular.io/version-6-of-angular-now-available-cc56b0efa7a4). The new look:
-
-* Is visually simpler.
-* Has a more modern look and feel.
-* Makes it easier to see the important structures of the app.
+ASP.NET Core web project templates were updated to [Bootstrap 4](https://getbootstrap.com/docs/4.1/migration/) and [Angular 6](https://blog.angular.io/version-6-of-angular-now-available-cc56b0efa7a4). The new look is visually simpler and makes it easier to see the important structures of the app.
 
 ![Home or Index page](~/tutorials/razor-pages/razor-pages-start/_static/home2.2.png)
 
