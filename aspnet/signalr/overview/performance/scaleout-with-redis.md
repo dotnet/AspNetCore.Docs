@@ -11,14 +11,14 @@ msc.type: authoredcontent
 ---
 SignalR Scaleout with Redis
 ====================
-by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
+by [Mike Wasson](https://github.com/MikeWasson)
 
 > ## Software versions used in this topic
 >
 >
 > - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
-> - SignalR version 2
+> - SignalR version 2.4
 >
 >
 >
@@ -59,7 +59,8 @@ Before we get to the detailed tutorial, here is a quick overview of what you wil
 2. Add these NuGet packages to your application:
 
     - [Microsoft.AspNet.SignalR](http://nuget.org/packages/Microsoft.AspNet.SignalR)
-    - [Microsoft.AspNet.SignalR.Redis](http://nuget.org/packages/Microsoft.AspNet.SignalR.Redis)
+    - [Microsoft.AspNet.SignalR.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.StackExchangeRedis)
+    
 3. Create a SignalR application.
 4. Add the following code to Startup.cs to configure the backplane:
 
@@ -106,7 +107,7 @@ Create a SignalR application by following either of these tutorials:
 - [Getting Started with SignalR 2.0](../getting-started/tutorial-getting-started-with-signalr.md)
 - [Getting Started with SignalR 2.0 and MVC 5](../getting-started/tutorial-getting-started-with-signalr-and-mvc.md)
 
-Next, we'll modify the chat application to support scaleout with Redis. First, add the SignalR.Redis NuGet package to your project. In Visual Studio, from the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+Next, we'll modify the chat application to support scaleout with Redis. First, add the `Microsoft.AspNet.SignalR.StackExchangeRedis` NuGet package to your project. In Visual Studio, from the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-powershell[Main](scaleout-with-redis/samples/sample5.ps1)]
 

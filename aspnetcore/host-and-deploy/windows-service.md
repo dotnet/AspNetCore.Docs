@@ -2,10 +2,10 @@
 title: Host ASP.NET Core in a Windows Service
 author: guardrex
 description: Learn how to host an ASP.NET Core app in a Windows Service.
-monikerRange: '>= aspnetcore-2.2'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 12/01/2018
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -32,202 +32,250 @@ Self-contained deployment (SCD) doesn't rely on the presence of shared component
 
 Make the following changes to an existing ASP.NET Core project to run the app as a service:
 
-1. Based on your choice of [deployment type](#deployment-type), update the project file:
+### Project file updates
 
-   * **Framework-dependent Deployment (FDD)** &ndash; Add a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) to the `<PropertyGroup>` that contains the target framework. Add the `<SelfContained>` property set to `false`. Disable the creation of a *web.config* file by adding the `<IsTransformWebConfigDisabled>` property set to `true`.
+Based on your choice of [deployment type](#deployment-type), update the project file:
 
-     ```xml
-     <PropertyGroup>
-       <TargetFramework>netcoreapp2.2</TargetFramework>
-       <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
-       <SelfContained>false</SelfContained>
-       <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
-     </PropertyGroup>
-     ```
+#### Framework-dependent Deployment (FDD)
 
-     **Self-contained Deployment (SCD)** &ndash; Confirm the presence of a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) or add a RID to the `<PropertyGroup>` that contains the target framework. Disable the creation of a *web.config* file by adding the `<IsTransformWebConfigDisabled>` property set to `true`.
+Add a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) to the `<PropertyGroup>` that contains the target framework. Add the `<SelfContained>` property set to `false`. Disable the creation of a *web.config* file by adding the `<IsTransformWebConfigDisabled>` property set to `true`.
 
-     ```xml
-     <PropertyGroup>
-       <TargetFramework>netcoreapp2.2</TargetFramework>
-       <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
-       <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
-     </PropertyGroup>
-     ```
+::: moniker range=">= aspnetcore-2.2"
 
-     To publish for multiple RIDs:
+```xml
+<PropertyGroup>
+  <TargetFramework>netcoreapp2.2</TargetFramework>
+  <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+  <SelfContained>false</SelfContained>
+  <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+</PropertyGroup>
+```
 
-     * Provide the RIDs in a semicolon-delimited list.
-     * Use the property name `<RuntimeIdentifiers>` (plural).
+::: moniker-end
 
-     For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
+::: moniker range="= aspnetcore-2.1"
 
-   * Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices).
+```xml
+<PropertyGroup>
+  <TargetFramework>netcoreapp2.1</TargetFramework>
+  <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+  <UseAppHost>true</UseAppHost>
+  <SelfContained>false</SelfContained>
+  <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+</PropertyGroup>
+```
 
-   * To enable Windows Event Log logging, add a package reference for [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog).
+::: moniker-end
 
-     For more information, see the [Handle starting and stopping events](#handle-starting-and-stopping-events) section.
+#### Self-contained Deployment (SCD)
 
-1. Make the following changes in `Program.Main`:
+Confirm the presence of a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) or add a RID to the `<PropertyGroup>` that contains the target framework. Disable the creation of a *web.config* file by adding the `<IsTransformWebConfigDisabled>` property set to `true`.
 
-   * To test and debug when running outside of a service, add code to determine if the app is running as a service or a console app. Inspect if the debugger is attached or a `--console` command-line argument is present.
+```xml
+<PropertyGroup>
+  <TargetFramework>netcoreapp2.2</TargetFramework>
+  <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+  <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+</PropertyGroup>
+```
 
-     If either condition is true (the app isn't run as a service), call <xref:Microsoft.AspNetCore.Hosting.WebHostExtensions.Run*> on the Web Host.
+To publish for multiple RIDs:
 
-     If the conditions are false (the app is run as a service):
+* Provide the RIDs in a semicolon-delimited list.
+* Use the property name `<RuntimeIdentifiers>` (plural).
 
-     * Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseContentRoot*> and use a path to the app's published location. Don't call <xref:System.IO.Directory.GetCurrentDirectory*> to obtain the path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder when `GetCurrentDirectory` is called. For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
-     * Call <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> to run the app as a service.
+  For more information, see [.NET Core RID Catalog](/dotnet/core/rid-catalog).
 
-     Because the [Command-line Configuration Provider](xref:fundamentals/configuration/index#command-line-configuration-provider) requires name-value pairs for command-line arguments, the `--console` switch is removed from the arguments before <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> receives them.
+Add a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices).
 
-   * To write to the Windows Event Log, add the EventLog provider to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Set the logging level with the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file. For demonstration and testing purposes, the sample app's Production settings file sets the logging level to `Information`. In production, the value is typically set to `Error`. For more information, see <xref:fundamentals/logging/index#windows-eventlog-provider>.
+To enable Windows Event Log logging, add a package reference for [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog).
 
-   [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=snippet_Program)]
+For more information, see the [Handle starting and stopping events](#handle-starting-and-stopping-events) section.
 
-1. Publish the app using [dotnet publish](/dotnet/articles/core/tools/dotnet-publish), a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles), or Visual Studio Code. When using Visual Studio, select the **FolderProfile** and configure the **Target Location** before selecting the **Publish** button.
+### Program.Main updates
 
-   To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder with a Release configuration passed to the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option. Use the [-o|--output](/dotnet/core/tools/dotnet-publish#options) option with a path to publish to a folder outside of the app.
+Make the following changes in `Program.Main`:
 
-   * **Framework-dependent Deployment (FDD)**
+* To test and debug when running outside of a service, add code to determine if the app is running as a service or a console app. Inspect if the debugger is attached or a `--console` command-line argument is present.
 
-     In the following example, the app is published to the *c:\\svc* folder:
+  If either condition is true (the app isn't run as a service), call <xref:Microsoft.AspNetCore.Hosting.WebHostExtensions.Run*> on the Web Host.
 
-     ```console
-     dotnet publish --configuration Release --output c:\svc
-     ```
+  If the conditions are false (the app is run as a service):
 
-   * **Self-contained Deployment (SCD)** &ndash; The RID must be specified in the `<RuntimeIdenfifier>` (or `<RuntimeIdentifiers>`) property of the project file. Supply the runtime to the [-r|--runtime](/dotnet/core/tools/dotnet-publish#options) option of the `dotnet publish` command.
+  * Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseContentRoot*> and use a path to the app's published location. Don't call <xref:System.IO.Directory.GetCurrentDirectory*> to obtain the path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder when `GetCurrentDirectory` is called. For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
+  * Call <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> to run the app as a service.
 
-     In the following example, the app is published for the `win7-x64` runtime to the *c:\\svc* folder:
+  Because the [Command-line Configuration Provider](xref:fundamentals/configuration/index#command-line-configuration-provider) requires name-value pairs for command-line arguments, the `--console` switch is removed from the arguments before <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> receives them.
 
-     ```console
-     dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
-     ```
+* To write to the Windows Event Log, add the EventLog provider to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Set the logging level with the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file. For demonstration and testing purposes, the sample app's Production settings file sets the logging level to `Information`. In production, the value is typically set to `Error`. For more information, see <xref:fundamentals/logging/index#windows-eventlog-provider>.
 
-1. Create a user account for the service using the `net user` command:
+[!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=snippet_Program)]
 
-   ```console
-   net user {USER ACCOUNT} {PASSWORD} /add
-   ```
+### Publish the app
 
-   For the sample app, create a user account with the name `ServiceUser` and a password. In the following command, replace `{PASSWORD}` with a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
+Publish the app using [dotnet publish](/dotnet/articles/core/tools/dotnet-publish), a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles), or Visual Studio Code. When using Visual Studio, select the **FolderProfile** and configure the **Target Location** before selecting the **Publish** button.
 
-   ```console
-   net user ServiceUser {PASSWORD} /add
-   ```
+To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder with a Release configuration passed to the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option. Use the [-o|--output](/dotnet/core/tools/dotnet-publish#options) option with a path to publish to a folder outside of the app.
 
-   If you need to add the user to a group, use the `net localgroup` command, where `{GROUP}` is the name of the group:
+#### Publish a Framework-dependent Deployment (FDD)
 
-   ```console
-   net localgroup {GROUP} {USER ACCOUNT} /add
-   ```
+In the following example, the app is published to the *c:\\svc* folder:
 
-   For more information, see [Service User Accounts](/windows/desktop/services/service-user-accounts).
+```console
+dotnet publish --configuration Release --output c:\svc
+```
 
-1. Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command:
+#### Publish a Self-contained Deployment (SCD)
 
-   ```console
-   icacls "{PATH}" /grant {USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS} /t
-   ```
+The RID must be specified in the `<RuntimeIdenfifier>` (or `<RuntimeIdentifiers>`) property of the project file. Supply the runtime to the [-r|--runtime](/dotnet/core/tools/dotnet-publish#options) option of the `dotnet publish` command.
 
-   * `{PATH}` &ndash; Path to the app's folder.
-   * `{USER ACCOUNT}` &ndash; The user account (SID).
-   * `(OI)` &ndash; The Object Inherit flag propagates permissions to subordinate files.
-   * `(CI)` &ndash; The Container Inherit flag propagates permissions to subordinate folders.
-   * `{PERMISSION FLAGS}` &ndash; Sets the app's access permissions.
-     * Write (`W`)
-     * Read (`R`)
-     * Execute (`X`)
-     * Full (`F`)
-     * Modify (`M`)
-   * `/t` &ndash; Apply recursively to existing subordinate folders and files.
+In the following example, the app is published for the `win7-x64` runtime to the *c:\\svc* folder:
 
-   For the sample app published to the *c:\\svc* folder and the `ServiceUser` account with write/read/execute permissions, use the following command:
+```console
+dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
+```
 
-   ```console
-   icacls "c:\svc" /grant ServiceUser:(OI)(CI)WRX /t
-   ```
+### Create a user account
 
-   For more information, see [icacls](/windows-server/administration/windows-commands/icacls).
+Create a user account for the service using the `net user` command:
 
-1. Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character of each parameter and value is required.**
+```console
+net user {USER ACCOUNT} {PASSWORD} /add
+```
 
-   ```console
-   sc create {SERVICE NAME} binPath= "{PATH}" obj= "{DOMAIN}\{USER ACCOUNT}" password= "{PASSWORD}"
-   ```
+For the sample app, create a user account with the name `ServiceUser` and a password. In the following command, replace `{PASSWORD}` with a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
 
-   * `{SERVICE NAME}` &ndash; The name to assign to the service in [Service Control Manager](/windows/desktop/services/service-control-manager).
-   * `{PATH}` &ndash; The path to the service executable.
-   * `{DOMAIN}` &ndash; The domain of a domain-joined machine. If the machine isn't domain-joined, the local machine name.
-   * `{USER ACCOUNT}` &ndash; The user account under which the service runs.
-   * `{PASSWORD}` &ndash; The user account password.
+```console
+net user ServiceUser {PASSWORD} /add
+```
 
-   > [!WARNING]
-   > Do **not** omit the `obj` parameter. The default value for `obj` is the [LocalSystem account](/windows/desktop/services/localsystem-account) account. Running a service under the `LocalSystem` account presents a significant security risk. Always run a service with a user account that has restricted privileges.
+If you need to add the user to a group, use the `net localgroup` command, where `{GROUP}` is the name of the group:
 
-   In the following example for the sample app:
+```console
+net localgroup {GROUP} {USER ACCOUNT} /add
+```
 
-   * The service is named **MyService**.
-   * The published service resides in the *c:\\svc* folder. The app executable is named *SampleApp.exe*. Enclose the `binPath` value in double quotation marks (").
-   * The service runs under the `ServiceUser` account. Replace `{DOMAIN}` with the user account's domain or local machine name. Enclose the `obj` value in double quotation marks ("). Example: If the hosting system is a local machine named `MairaPC`, set `obj` to `"MairaPC\ServiceUser"`.
-   * Replace `{PASSWORD}` with the user account's password. Enclose the `password` value in double quotation marks (").
+For more information, see [Service User Accounts](/windows/desktop/services/service-user-accounts).
 
-   ```console
-   sc create MyService binPath= "c:\svc\sampleapp.exe" obj= "{DOMAIN}\ServiceUser" password= "{PASSWORD}"
-   ```
+### Set permissions
 
-   > [!IMPORTANT]
-   > Make sure that the spaces between the parameters' equal signs and the parameters' values are present.
+Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command:
 
-1. Start the service with the `sc start {SERVICE NAME}` command.
+```console
+icacls "{PATH}" /grant {USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS} /t
+```
 
-   To start the sample app service, use the following command:
+* `{PATH}` &ndash; Path to the app's folder.
+* `{USER ACCOUNT}` &ndash; The user account (SID).
+* `(OI)` &ndash; The Object Inherit flag propagates permissions to subordinate files.
+* `(CI)` &ndash; The Container Inherit flag propagates permissions to subordinate folders.
+* `{PERMISSION FLAGS}` &ndash; Sets the app's access permissions.
+  * Write (`W`)
+  * Read (`R`)
+  * Execute (`X`)
+  * Full (`F`)
+  * Modify (`M`)
+* `/t` &ndash; Apply recursively to existing subordinate folders and files.
 
-   ```console
-   sc start MyService
-   ```
+For the sample app published to the *c:\\svc* folder and the `ServiceUser` account with write/read/execute permissions, use the following command:
 
-   The command takes a few seconds to start the service.
+```console
+icacls "c:\svc" /grant ServiceUser:(OI)(CI)WRX /t
+```
 
-1. To check the status of the service, use the `sc query {SERVICE NAME}` command. The status is reported as one of the following values:
+For more information, see [icacls](/windows-server/administration/windows-commands/icacls).
 
-   * `START_PENDING`
-   * `RUNNING`
-   * `STOP_PENDING`
-   * `STOPPED`
+## Manage the service
 
-   Use the following command to check the status of the sample app service:
+### Create the service
 
-   ```console
-   sc query MyService
-   ```
+Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character of each parameter and value is required.**
 
-1. When the service is in the `RUNNING` state and if the service is a web app, browse the app at its path (by default, `http://localhost:5000`, which redirects to `https://localhost:5001` when using [HTTPS Redirection Middleware](xref:security/enforcing-ssl)).
+```console
+sc create {SERVICE NAME} binPath= "{PATH}" obj= "{DOMAIN}\{USER ACCOUNT}" password= "{PASSWORD}"
+```
 
-   For the sample app service, browse the app at `http://localhost:5000`.
+* `{SERVICE NAME}` &ndash; The name to assign to the service in [Service Control Manager](/windows/desktop/services/service-control-manager).
+* `{PATH}` &ndash; The path to the service executable.
+* `{DOMAIN}` &ndash; The domain of a domain-joined machine. If the machine isn't domain-joined, the local machine name.
+* `{USER ACCOUNT}` &ndash; The user account under which the service runs.
+* `{PASSWORD}` &ndash; The user account password.
 
-1. Stop the service with the `sc stop {SERVICE NAME}` command.
+> [!WARNING]
+> Do **not** omit the `obj` parameter. The default value for `obj` is the [LocalSystem account](/windows/desktop/services/localsystem-account) account. Running a service under the `LocalSystem` account presents a significant security risk. Always run a service with a user account that has restricted privileges.
 
-   The following command stops the sample app service:
+In the following example for the sample app:
 
-   ```console
-   sc stop MyService
-   ```
+* The service is named **MyService**.
+* The published service resides in the *c:\\svc* folder. The app executable is named *SampleApp.exe*. Enclose the `binPath` value in double quotation marks (").
+* The service runs under the `ServiceUser` account. Replace `{DOMAIN}` with the user account's domain or local machine name. Enclose the `obj` value in double quotation marks ("). Example: If the hosting system is a local machine named `MairaPC`, set `obj` to `"MairaPC\ServiceUser"`.
+* Replace `{PASSWORD}` with the user account's password. Enclose the `password` value in double quotation marks (").
 
-1. After a short delay to stop a service, uninstall the service with the `sc delete {SERVICE NAME}` command.
+```console
+sc create MyService binPath= "c:\svc\sampleapp.exe" obj= "{DOMAIN}\ServiceUser" password= "{PASSWORD}"
+```
 
-   Check the status of the sample app service:
+> [!IMPORTANT]
+> Make sure that the spaces between the parameters' equal signs and the parameters' values are present.
 
-   ```console
-   sc query MyService
-   ```
+### Start the service
 
-   When the sample app service is in the `STOPPED` state, use the following command to uninstall the sample app service:
+Start the service with the `sc start {SERVICE NAME}` command.
 
-   ```console
-   sc delete MyService
-   ```
+To start the sample app service, use the following command:
+
+```console
+sc start MyService
+```
+
+The command takes a few seconds to start the service.
+
+### Determine the service status
+
+To check the status of the service, use the `sc query {SERVICE NAME}` command. The status is reported as one of the following values:
+
+* `START_PENDING`
+* `RUNNING`
+* `STOP_PENDING`
+* `STOPPED`
+
+Use the following command to check the status of the sample app service:
+
+```console
+sc query MyService
+```
+
+### Browse a web app service
+
+When the service is in the `RUNNING` state and if the service is a web app, browse the app at its path (by default, `http://localhost:5000`, which redirects to `https://localhost:5001` when using [HTTPS Redirection Middleware](xref:security/enforcing-ssl)).
+
+For the sample app service, browse the app at `http://localhost:5000`.
+
+### Stop the service
+
+Stop the service with the `sc stop {SERVICE NAME}` command.
+
+The following command stops the sample app service:
+
+```console
+sc stop MyService
+```
+
+### Delete the service
+
+After a short delay to stop a service, uninstall the service with the `sc delete {SERVICE NAME}` command.
+
+Check the status of the sample app service:
+
+```console
+sc query MyService
+```
+
+When the sample app service is in the `STOPPED` state, use the following command to uninstall the sample app service:
+
+```console
+sc delete MyService
+```
 
 ## Handle starting and stopping events
 

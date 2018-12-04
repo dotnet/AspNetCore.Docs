@@ -107,7 +107,9 @@ A real-world implementation would use an exponential back-off or retry a specifi
 ## Additional resources
 
 * [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
+* [JavaScript tutorial](xref:tutorials/signalr)
+* [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Enable Cross-Origin Requests (CORS) in ASP.NET Core](xref:security/cors)
+* [Cross-Origin Requests (CORS)](xref:security/cors)

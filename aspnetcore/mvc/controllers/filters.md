@@ -247,7 +247,8 @@ This filter can be applied to classes or methods using the `[SampleActionFilter]
 
 ## Authorization filters
 
-*Authorization filters:
+*Authorization filters*:
+
 * Control access to action methods.
 * Are the first filters to be executed within the filter pipeline. 
 * Have a before method, but no after method. 
