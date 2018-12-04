@@ -25,7 +25,7 @@ The *signalr-1.0.0* JAR file allows clients to connect to SignalR hubs. To find 
 If using Gradle, add the following line to the `dependencies` section of your *build.gradle* file:
 
 ```gradle
-implementation 'com.microsoft.signalr:signalr:1.0.0
+implementation 'com.microsoft.signalr:signalr:1.0.0'
 ```
 
 If using Maven, add the following lines inside the `<dependencies>` element of your *pom.xml* file:
