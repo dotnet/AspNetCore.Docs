@@ -306,6 +306,7 @@
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
+## [Health checks](xref:host-and-deploy/health-checks)
 
 # Security and Identity
 ## [Overview](xref:security/index)

@@ -30,7 +30,7 @@ Health checks are usually used with an external monitoring service or container 
 
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package.
 
-The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [database context](#database-context) scenario probes a database context. To explore the database scenarios using the sample app:
+The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [DbContext probe](#entity-framework-core-dbcontext-probe) scenario probes a database using an EF Core `DbContext`. To explore the database scenarios using the sample app:
 
 * Create a database and provide its connection string in the *appsettings.json* file of the app.
 * Add a package reference to [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/).
@@ -308,9 +308,9 @@ dotnet run --scenario db
 
 ## Entity Framework Core DbContext probe
 
-The database context check is supported in apps that use [Entity Framework (EF) Core](/en-us/ef/core/). This check confirms that the app can communicate with the database configured for an EF Core `DbContext`. By default, the `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using overloads of the `AddDbContextCheck` method.
+The `DbContext` check is supported in apps that use [Entity Framework (EF) Core](/ef/core/). This check confirms that the app can communicate with the database configured for an EF Core `DbContext`. By default, the `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using overloads of the `AddDbContextCheck` method.
 
-`AddDbContextCheck<TContext>` registers a health check for a database context (`TContext`). By default, the name of the health check is the name of the `TContext` type. An overload is available to configure the failure status, tags, and a custom test query.
+`AddDbContextCheck<TContext>` registers a health check for a `DbContext` (`TContext`). By default, the name of the health check is the name of the `TContext` type. An overload is available to configure the failure status, tags, and a custom test query.
 
 In the sample app, `AppDbContext` is provided to `AddDbContextCheck` and registered as a service in `Startup.ConfigureServices`.
 
@@ -324,7 +324,7 @@ In the sample app, `UseHealthChecks` adds the Health Check Middleware in `Startu
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_Configure)]
 
-To run the database context scenario using the sample app, confirm that the database specified by the the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
+To run the `DbContext` probe scenario using the sample app, confirm that the database specified by the the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
 
 Execute the following command from the project's folder in a command shell:
 
