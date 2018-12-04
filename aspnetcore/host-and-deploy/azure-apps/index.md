@@ -115,7 +115,7 @@ If a problem occurs using the preview site extension, open an issue on [GitHub](
 1. Type "ex" in the search box or scroll down the list of management sections to **DEVELOPMENT TOOLS**.
 1. Select **DEVELOPMENT TOOLS** > **Extensions**.
 1. Select **Add**.
-1. Select the **ASP.NET Core {X.Y} ({x64|x86}) Runtime** extension from the list, where `{X.Y}` is the ASP.NET Core preview version (for example, **ASP.NET Core 2.2 (x86) Runtime**).
+1. Select the **ASP.NET Core {X.Y} ({x64|x86}) Runtime** extension from the list, where `{X.Y}` is the ASP.NET Core preview version and `{x64|x86}` specifies the platform (for example, **ASP.NET Core 2.2 (x86) Runtime**).
 1. Select **OK** to accept the legal terms.
 1. Select **OK** to install the extension.
 
