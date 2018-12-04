@@ -20,13 +20,12 @@ The sample Java console app referenced in this article uses the SignalR Java cli
 
 ## Install the SignalR Java client package
 
-The *signalr-1.0.0-preview3-35501* JAR file allows clients to connect to SignalR hubs. To find the latest JAR file version number, see the [Maven search results](https://search.maven.org/search?q=g:com.microsoft.signalr%20AND%20a:signalr).
+The *signalr-1.0.0* JAR file allows clients to connect to SignalR hubs. To find the latest JAR file version number, see the [Maven search results](https://search.maven.org/search?q=g:com.microsoft.signalr%20AND%20a:signalr).
 
 If using Gradle, add the following line to the `dependencies` section of your *build.gradle* file:
 
 ```gradle
-implementation 'com.microsoft.signalr:signalr:1.0.0-preview3-35501'
-implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+implementation 'com.microsoft.signalr:signalr:1.0.0'
 ```
 
 If using Maven, add the following lines inside the `<dependencies>` element of your *pom.xml* file:
@@ -89,8 +88,6 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
 ```
 
 ## Known limitations
-
-This is a preview release of the Java client. Some features aren't supported:
 
 * Only the JSON protocol is supported.
 * Only the WebSockets transport is supported.
