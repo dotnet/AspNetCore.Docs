@@ -120,14 +120,12 @@ Use one of the following approaches:
 
 If a problem occurs using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
 
-::: moniker range=">= aspnetcore-2.2"
-
 1. From the Azure Portal, navigate to the App Service blade.
 1. Select the web app.
 1. Type "ex" in the search box or scroll down the list of management sections to **DEVELOPMENT TOOLS**.
 1. Select **DEVELOPMENT TOOLS** > **Extensions**.
 1. Select **Add**.
-1. Select the **ASP.NET Core {X.Y} ({x64|x86}) Runtime** extension from the list, where `{X.Y}` is the ASP.NET Core preview version and `{x64|x86}` specifies the platform (for example, **ASP.NET Core 2.2 (x86) Runtime**).
+1. Select the **ASP.NET Core {X.Y} ({x64|x86}) Runtime** extension from the list, where `{X.Y}` is the ASP.NET Core preview version and `{x64|x86}` specifies the platform.
 1. Select **OK** to accept the legal terms.
 1. Select **OK** to install the extension.
 
@@ -141,56 +139,17 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
    ```powershell
    Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.{PLATFORM}\
    ```
-   If the installed preview runtime is for ASP.NET Core 2.2 (x86), the command is:
-   ```powershell
-   Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.2.2.x86\
-   ```
    The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]
-> The platform architecture (x86/x64) of an App Services app is set in the **Application Settings** blade under **General Settings** for apps that are hosted on an A-series compute or better hosting tier. If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension (for example, **ASP.NET Core 2.2 (x64) Runtime**).
+> The platform architecture (x86/x64) of an App Services app is set in the **Application Settings** blade under **General Settings** for apps that are hosted on an A-series compute or better hosting tier. If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension.
 >
 > After installing the x64 preview runtime, run the following command in the Kudu PowerShell command window to verify the installation. Substitute the ASP.NET Core runtime version for `{X.Y}` in the command:
 >
 > ```powershell
 > Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
 > ```
-> If the installed preview runtime is for ASP.NET Core 2.2, the command is:
-> ```powershell
-> Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.2.2.x64\
-> ```
 > The command returns `True` when the x64 preview runtime is installed.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.2"
-
-1. From the Azure Portal, navigate to the App Service blade.
-1. Select the web app.
-1. Type "ex" in the search box or scroll down the list of management sections to **DEVELOPMENT TOOLS**.
-1. Select **DEVELOPMENT TOOLS** > **Extensions**.
-1. Select **Add**.
-1. Select the **ASP.NET Core {X.Y} x86 Runtime** extension from the list, where `{X.Y}` is the ASP.NET Core preview version and `{x64|x86}` specifies the platform (for example, **ASP.NET Core 2.2 (x86) Runtime**).
-1. Select **OK** to accept the legal terms.
-1. Select **OK** to install the extension.
-
-When the operation completes, the latest .NET Core preview is installed. Verify the installation:
-
-1. Select **Advanced Tools** under **DEVELOPMENT TOOLS**.
-1. Select **Go** on the **Advanced Tools** blade.
-1. Select the **Debug console** > **PowerShell** menu item.
-1. At the PowerShell prompt, execute the following command. Substitute the ASP.NET Core runtime version for `{X.Y}` in the command:
-
-   ```powershell
-   Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x86\
-   ```
-   If the installed preview runtime is for ASP.NET Core 2.2 (x86), the command is:
-   ```powershell
-   Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.2.2.x86\
-   ```
-   The command returns `True` when the x64 preview runtime is installed.
-
-::: moniker-end
 
 > [!NOTE]
 > **ASP.NET Core Extensions** enables additional functionality for ASP.NET Core on Azure App Services, such as enabling Azure logging. The extension is installed automatically when deploying from Visual Studio. If the extension isn't installed, install it for the app.
