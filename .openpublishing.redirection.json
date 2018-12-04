@@ -624,6 +624,11 @@
           "source_path": "aspnetcore/web-api/advanced/index.md",
           "redirect_url": "/aspnet/core/web-api/",
           "redirect_document_id": false
+      },
+      {
+        "source_path": "aspnetcore/tutorials/index.md",
+        "redirect_url": "/aspnet/core/tutorials/razor-pages/",
+        "redirect_document_id": false
       }
     ] 
   }
