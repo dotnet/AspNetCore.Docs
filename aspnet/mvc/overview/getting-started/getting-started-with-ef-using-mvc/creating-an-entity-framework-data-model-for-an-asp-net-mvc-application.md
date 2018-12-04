@@ -3,7 +3,7 @@ uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-
 title: "Getting Started with Entity Framework 6 Code First using MVC 5 | Microsoft Docs"
 author: tdykstra
 ms.author: riande
-ms.date: 10/04/2018
+ms.date: 12/04/2018
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
@@ -15,7 +15,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 > [!NOTE]
-> A [newer version of this tutorial series](/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-2.1) is available that uses [Razor Pages](/aspnet/core/razor-pages). Razor Pages is a page-based programming model that makes building web UI easier and more productive. We recommend the Razor Pages tutorial over the MVC version. The Razor Pages tutorial:
+> A [new tutorial series](/aspnet/core/tutorials/razor-pages/razor-pages-start) is available that uses [Razor Pages](/aspnet/core/razor-pages). Razor Pages is a page-based programming model that makes building web UI easier and more productive. We recommend the Razor Pages tutorial over the MVC version. The Razor Pages tutorial:
 >
 > * Is easier to follow.
 > * Provides more EF Core best practices.
