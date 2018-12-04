@@ -42,7 +42,7 @@ Discover Azure App Service runtime execution limitations enforced by the Azure A
 
 ::: moniker range=">= aspnetcore-2.2"
 
-For apps with native dependencies, runtimes for 64-bit (x64) and 32-bit (x86) apps are present on the Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit, but you can deploy 64-bit apps using the [Kudu](https://github.com/projectkudu/kudu/wiki) console or via [MSDeploy with a Visual Studio Azure App Service publish profile or CLI command](xref:host-and-deploy/visual-studio-publish-profiles).
+Runtimes for 64-bit (x64) and 32-bit (x86) apps are present on the Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit, but you can deploy 64-bit apps using the [Kudu](https://github.com/projectkudu/kudu/wiki) console or via [MSDeploy with a Visual Studio Azure App Service publish profile or CLI command](xref:host-and-deploy/visual-studio-publish-profiles).
 
 ::: moniker-end
 
