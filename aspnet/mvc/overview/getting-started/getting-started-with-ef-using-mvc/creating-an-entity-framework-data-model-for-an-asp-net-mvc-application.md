@@ -15,7 +15,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 > [!NOTE]
-> A [new tutorial series](/aspnet/core/tutorials/razor-pages/razor-pages-start) is available that uses [Razor Pages](/aspnet/core/razor-pages). Razor Pages is a page-based programming model that makes building web UI easier and more productive. We recommend the Razor Pages tutorial over the MVC version. The Razor Pages tutorial:
+> For new development, we recommend [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. A tutorial series similar to this one is available for Razor Pages, The [Razor Pages tutorial](/aspnet/core/tutorials/razor-pages/razor-pages-start):
 >
 > * Is easier to follow.
 > * Provides more EF Core best practices.
