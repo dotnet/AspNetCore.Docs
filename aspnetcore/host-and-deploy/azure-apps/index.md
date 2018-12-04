@@ -48,7 +48,7 @@ For apps with native dependencies, runtimes for 64-bit (x64) and 32-bit (x86) ap
 
 ::: moniker range="< aspnetcore-2.2"
 
-For apps with native dependencies, runtimes for and 32-bit (x86) apps are present on the Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit.
+For apps with native dependencies, runtimes for 32-bit (x86) apps are present on the Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit.
 
 ::: moniker-end
 
