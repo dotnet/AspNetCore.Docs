@@ -37,7 +37,6 @@ Select **.NET Core App** > **ASP.NET Core** > **ASP.NET Core Web App (MVC)** > *
 
 Name the project **MvcMovie**, and then select **Create**.
 
-![macOS New project dialog](start-mvc/2.png)
 
 ### Launch the app
 
@@ -50,7 +49,6 @@ In Visual Studio, select **Run** > **Start Without Debugging** to launch the app
 
 The default template gives you **Home**, **About**, and **Contact** links. The preceding browser image doesn't show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.
 
-![Browser with New project](start-mvc/b2.png)
 
 In the next part of this tutorial, you learn about MVC and start writing some code.
 
