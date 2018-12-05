@@ -64,7 +64,7 @@ The preceding packages aren't available from the [Microsoft.AspNetCore.App metap
 
 ## Override app configuration using the Azure Portal
 
-The **App Settings** area of the **Application settings** permits you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+App settings in the Azure Portal permit you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
 When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
 
@@ -122,8 +122,8 @@ If a problem occurs using the preview site extension, open an issue on [GitHub](
 
 1. From the Azure Portal, navigate to the App Service.
 1. Select the web app.
-1. Type "ex" in the search box or scroll down the list of management sections to **DEVELOPMENT TOOLS**.
-1. Select **DEVELOPMENT TOOLS** > **Extensions**.
+1. Type "ex" in the search box to filter for "Extensions" or scroll down the list of management tools.
+1. Select **Extensions**.
 1. Select **Add**.
 1. Select the **ASP.NET Core {X.Y} ({x64|x86}) Runtime** extension from the list, where `{X.Y}` is the ASP.NET Core preview version and `{x64|x86}` specifies the platform.
 1. Select **OK** to accept the legal terms.
@@ -131,7 +131,7 @@ If a problem occurs using the preview site extension, open an issue on [GitHub](
 
 When the operation completes, the latest .NET Core preview is installed. Verify the installation:
 
-1. Select **Advanced Tools** under **DEVELOPMENT TOOLS**.
+1. Select **Advanced Tools**.
 1. Select **Go** in **Advanced Tools**.
 1. Select the **Debug console** > **PowerShell** menu item.
 1. At the PowerShell prompt, execute the following command. Substitute the ASP.NET Core runtime version for `{X.Y}` and the platform for `{PLATFORM}` in the command:
@@ -142,7 +142,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
    The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]
-> The platform architecture (x86/x64) of an App Services app is set in the **Application Settings** under **General Settings** for apps that are hosted on an A-series compute or better hosting tier. If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension.
+> The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure Portal for apps that are hosted on an A-series compute or better hosting tier. If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension.
 >
 > After installing the x64 preview runtime, run the following command in the Kudu PowerShell command window to verify the installation. Substitute the ASP.NET Core runtime version for `{X.Y}` in the command:
 >
