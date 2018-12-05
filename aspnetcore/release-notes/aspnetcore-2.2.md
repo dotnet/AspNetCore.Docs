@@ -17,14 +17,23 @@ Open API (also known as Swagger) is a language-agnostic specification for descri
 
 For more information, see the following resources:
 
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* [ASP.NET Core 2.2.0-preview1: Open API Analyzers & Conventions](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/).
+* <xref:web-api/advanced/analyzers>
+* <xref:web-api/advanced/conventions>
+* [ASP.NET Core 2.2.0-preview1: Open API Analyzers & Conventions](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
+
+## Problem details support
+
+ASP.NET Core 2.1 introduced `ProblemDetails`, based on the RFC 7807 specification for carrying details of an error with an HTTP Response. In 2.2, `ProblemDetails` is the standard response for client error codes in controllers attributed with `ApiControllerAttribute`. An `IActionResult` returning a client error status code (4xx) now returns a `ProblemDetails` body. The result also includes a correlation ID that can be used to correlate the error using request logs. For client errors, `ProducesResponseType` defaults to using `ProblemDetails` as the response type. This is documented in Open API / Swagger output generated using NSwag or Swashbuckle.AspNetCore.
 
 ## Endpoint Routing
 
-ASP.NET Core 2.2 uses a new *endpoint routing* system for improved dispatching of requests. The changes include new link generation API members.
+ASP.NET Core 2.2 uses a new *endpoint routing* system for improved dispatching of requests. The changes include new link generation API members and route parameter transformers.
 
-For more information, see [Differences between IRouter- and endpoint-based routing](xref:fundamentals/routing?view=aspnetcore-2.2#differences-from-earlier-versions-of-routing).
+For more information, see the following resources:
+
+* [Endpoint routing in 2.2](https://blogs.msdn.microsoft.com/webdev/2018/08/27/asp-net-core-2-2-0-preview1-endpoint-routing/)
+* [Route parameter transformers](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (see **Routing** section)
+* [Differences between IRouter- and endpoint-based routing](xref:fundamentals/routing?view=aspnetcore-2.2#differences-from-earlier-versions-of-routing)
 
 ## Health checks
 
@@ -32,7 +41,7 @@ A new health checks service makes it easier to use ASP.NET Core in environments 
 
 Health checks are used by a container orchestrator or load balancer to quickly determine if a system is responding to requests normally. A container orchestrator might respond to a failing health check by halting a rolling deployment or restarting a container. A load balancer might respond to a health check by routing traffic away from the failing instance of the service.
 
-Health checks are exposed by an application as an HTTP endpoint used by monitoring systems. Health checks can be configured for a variety of real-time monitoring scenarios and monitoring systems.
+Health checks are exposed by an application as an HTTP endpoint used by monitoring systems. Health checks can be configured for a variety of real-time monitoring scenarios and monitoring systems. The health checks service integrates with the [BeatPulse project](https://github.com/Xabaril/BeatPulse). which makes it easier to add checks for dozens of popular systems and dependencies.
 
 For more information, see [Health checks in ASP.NET Core](xref:host-and-deploy/health-checks).
 
@@ -55,7 +64,7 @@ In earlier versions of ASP.NET Core, Kestrel options are configured by calling `
 
 ## IIS in-process hosting
 
-In earlier versions of ASP.NET Core, IIS serves as a reverse proxy. In 2.2, the ASP.NET Core Module can boot the CoreCLR and host an app inside the IIS worker process (*w3wp.exe*). In-process hosting provides significant performance and diagnostic gains when running with IIS.
+In earlier versions of ASP.NET Core, IIS serves as a reverse proxy. In 2.2, the ASP.NET Core Module can boot the CoreCLR and host an app inside the IIS worker process (*w3wp.exe*). In-process hosting provides performance and diagnostic gains when running with IIS.
 
 For more information, see [IIS in-process hosting](xref:fundamentals/servers/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 

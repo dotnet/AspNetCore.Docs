@@ -83,6 +83,8 @@ The following diagram shows the design of the app.
 * Select **.NET Core App** > **ASP.NET Core Web API** > **Next**.
 
   ![macOS New project dialog](first-web-api-mac/_static/1.png)
+  
+* In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2*.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
@@ -263,7 +265,7 @@ The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribu
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetTodoItem&highlight=1-2)]
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
 The `Name = "GetTodo"` parameter creates a named route. You'll see later how the app can use the name to create an HTTP link using the route name.
 
