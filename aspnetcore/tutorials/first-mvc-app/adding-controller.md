@@ -54,6 +54,7 @@ Select **ASP.NET Core** and **MVC Controller Class**.
 Name the controller **HelloWorldController**.
 
 ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
+
 ---  
 <!-- End of VS tabs -->
 
