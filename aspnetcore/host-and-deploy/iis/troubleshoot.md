@@ -94,7 +94,7 @@ Source: IIS AspNetCore Module V2
 Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 ```
 
-The app failed to start due to not being able to load the dll. 
+The app failed to start because the app's assembly (*.dll*) couldn't be loaded. 
 
 This error occurs when there's a bitness mismatch between the published app and the w3wp/iisexpress process.
 
