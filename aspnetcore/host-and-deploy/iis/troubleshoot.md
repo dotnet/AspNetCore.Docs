@@ -103,8 +103,8 @@ Confirm that the app pool's 32-bit setting is correct:
 1. Select the app pool in IIS Manager's **Application Pools**.
 1. Select **Advanced Settings** under **Edit Application Pool** in the **Actions** panel.
 1. Set **Enable 32-Bit Applications**:
-   * If publishing for 32-bit (x86), set the value to `True`.
-   * If publishing for 64-bit (x64), set the value to `False`.
+   * If deploying a 32-bit (x86) app, set the value to `True`.
+   * If deploying a 64-bit (x64) app, set the value to `False`.
 
 ### Connection reset
 
