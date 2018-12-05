@@ -32,12 +32,9 @@ At the end, you have an app that can manage and display movie data.
 > [!NOTE]
 > We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/aa11wn82).
 
-## Prerequisites
-
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
 ## Create a web app
-
 
 <!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
@@ -107,27 +104,26 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From a terminal, run the following commands:
+* Select **File** > **New Solution**.
 
-<!-- TODO: update these instruction once mac support 2.2 projects -->
+  ![macOS New solution](~/tutorials/first-web-api-mac/_static/sln.png)
 
-```console
-dotnet new webapp -o MvcMovie
-cd MvcMovie
-dotnet run
-```
+* Select **.NET Core App** > **ASP.NET Core** > **ASP.NET Core Web App (MVC)** > **Next**.
 
-The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the app.
+  ![macOS New project dialog](~/tutorials/first-mvc-app-mac/start-mvc/1.png)
 
-## Open the project
+* In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2*.
 
-Press Ctrl+C to shut down the application.
-
-From Visual Studio, select **File > Open**, and then select the *MvcMovie.csproj* file.
+* Name the project **MvcMovie**, and then select **Create**.
 
 ### Launch the app
 
-Select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
+Select **Run** > **Start Without Debugging** to launch the app. Visual Studio for Mac starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+
+![Browser with new project](start-mvc/b1.png)
+
+* The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
+* You can launch the app in debug or non-debug mode from the **Run** menu.
 
 ---  
 <!-- End of VS tabs -->
