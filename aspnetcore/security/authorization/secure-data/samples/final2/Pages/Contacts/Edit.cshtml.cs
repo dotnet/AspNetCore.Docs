@@ -72,8 +72,6 @@ namespace ContactManager.Pages.Contacts
 
             Contact.OwnerID = contact.OwnerID;
 
-            Context.Attach(Contact).State = EntityState.Modified;
-
             if (contact.Status == ContactStatus.Approved)
             {
                 // If the contact is updated after approval, 
