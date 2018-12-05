@@ -324,7 +324,7 @@ When deploying apps to servers with [Web Deploy](/iis/publish/using-web-deploy/i
 
     ASP.NET Core runs in a separate process and manages the runtime. ASP.NET Core doesn't rely on loading the desktop CLR. Setting the **.NET CLR version** to **No Managed Code** is optional.
 
-1. For 64-bit application make sure that Enable 32-Bit Applications is set to false either under the **Set Application Pool Defaults** or under **Advanced Settings** for your specific application pool.
+1. For a standalone .net core 2.2 64-bit application that uses InProcess AspNetCoreHostingModel in web.config make sure that Enable 32-Bit Applications is set to **false** either under the **Set Application Pool Defaults** or under **Advanced Settings** for your specific application pool. This setting does not affect OutOfProcess AspNetCoreHostingModel.
 
 1. Confirm the process model identity has the proper permissions.
 
