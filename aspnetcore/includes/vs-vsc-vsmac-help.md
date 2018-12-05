@@ -24,6 +24,8 @@
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+## Visual Studio for Mac help
+
 * [Visual Studio for Mac Tour](https://docs.microsoft.com/en-us/visualstudio/mac/ide-tour)
 * [Introducing Visual Studio for Mac](https://docs.microsoft.com/en-us/visualstudio/mac/)
 

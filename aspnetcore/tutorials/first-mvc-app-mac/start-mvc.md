@@ -27,7 +27,7 @@ There are 3 versions of this tutorial:
 
 ## Create a web app
 
-From Visual Studio, select **File** > **New Solution**.
+Select **File** > **New Solution**.
 
 ![macOS New solution](../first-web-api-mac/_static/sln.png)
 
@@ -36,7 +36,6 @@ Select **.NET Core App** > **ASP.NET Core** > **ASP.NET Core Web App (MVC)** > *
 ![macOS New project dialog](start-mvc/1.png)
 
 Name the project **MvcMovie**, and then select **Create**.
-
 
 ### Launch the app
 
