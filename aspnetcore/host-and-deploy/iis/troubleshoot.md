@@ -96,7 +96,15 @@ Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 
 The app failed to start due to not being able to load the dll. 
 
-This error occurs means there is a bitness mismatch between the published application and the w3wp/iisexpress process. If publishing for x86, confirm that the Application Pool->Advanced Settings...->`Enable 32-Bit Applications` is set to true. If publishing for x64, confirm that `Enable 32-Bit Applications` is set to false.
+This error occurs when there's a bitness mismatch between the published app and the w3wp/iisexpress process.
+
+Confirm that the app pool's 32-bit setting is correct:
+
+1. Select the app pool in IIS Manager's **Application Pools**.
+1. Select **Advanced Settings** under **Edit Application Pool** in the **Actions** panel.
+1. Set **Enable 32-Bit Applications**:
+   * If publishing for 32-bit (x86), set the value to `False`.
+   * If publishing for 64-bit (x64), set the value to `True`.
 
 ### Connection reset
 
