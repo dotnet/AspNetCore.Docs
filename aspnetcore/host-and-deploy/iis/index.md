@@ -324,6 +324,8 @@ When deploying apps to servers with [Web Deploy](/iis/publish/using-web-deploy/i
 
     ASP.NET Core runs in a separate process and manages the runtime. ASP.NET Core doesn't rely on loading the desktop CLR. Setting the **.NET CLR version** to **No Managed Code** is optional.
 
+1. For 64-bit application make sure that Enable 32-Bit Applications is set to false either under the **Set Application Pool Defaults** or under **Advanced Settings** for your specific application pool.
+
 1. Confirm the process model identity has the proper permissions.
 
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
