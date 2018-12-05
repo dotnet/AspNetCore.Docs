@@ -83,6 +83,8 @@ The following diagram shows the design of the app.
 * Select **.NET Core App** > **ASP.NET Core Web API** > **Next**.
 
   ![macOS New project dialog](first-web-api-mac/_static/1.png)
+  
+* In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framwork** of **.NET Core 2.2*.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
