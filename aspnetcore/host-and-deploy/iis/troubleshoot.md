@@ -86,6 +86,18 @@ The app starts, but an error prevents the server from fulfilling the request.
 
 This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. [Run the app at a command prompt](#run-the-app-at-a-command-prompt) on the server or [enable the ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) to troubleshoot the problem.
 
+### ErrorCode '0x800700c1'
+
+```
+EventID: 1010
+Source: IIS AspNetCore Module V2
+Failed to start application '/LM/W3SVC/6/ROOT/Foo', ErrorCode '0x800700c1'.
+```
+
+The app failed to start due to not being able to load the dll. 
+
+This error occurs means there is a bitness mismatch between the published application and the w3wp/iisexpress process. If publishing for x86, confirm that the Application Pool->Advanced Settings...->`Enable 32-Bit Applications` is set to true. If publishing for x64, confirm that `Enable 32-Bit Applications` is set to false.
+
 ### Connection reset
 
 If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
