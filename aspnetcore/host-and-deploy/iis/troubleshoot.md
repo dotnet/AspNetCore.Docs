@@ -91,7 +91,7 @@ This error occurs within the app's code during startup or while creating a respo
 ```
 EventID: 1010
 Source: IIS AspNetCore Module V2
-Failed to start application '/LM/W3SVC/6/ROOT/Foo', ErrorCode '0x800700c1'.
+Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 ```
 
 The app failed to start due to not being able to load the dll. 
@@ -101,6 +101,19 @@ This error occurs means there is a bitness mismatch between the published applic
 ### Connection reset
 
 If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
+
+### Other behavior
+
+If for any other reason the application didn't start, add the following to your web.config. to enable debug logs.
+
+```xml
+<aspNetCore ....>
+  <handlerSettings>
+    <handlerSetting name="debugLevel" value="file"/>
+    <handlerSetting name="debugFile" value="c:\temp\ancm.log"/>
+  </handlerSettings>
+</aspNetCore>
+```
 
 ## Default startup limits
 
