@@ -10,7 +10,6 @@ uid: tutorials/first-mvc-app-mac/adding-controller
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE [adding-controller](../../includes/mvc-intro/adding-controller1.md)]
 
 ## Add a controller 
 
@@ -24,7 +23,6 @@ Name the controller **HelloWorldController**.
 
 ![Add MVC controller and name it](adding-controller/_static/ac.png)
 
-[!INCLUDE [adding-controller2](../../includes/mvc-intro/adding-controller2.md)]
 
 > [!div class="step-by-step"]
 > [Previous](../first-mvc-app/start-mvc.md)
