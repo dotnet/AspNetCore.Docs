@@ -120,8 +120,6 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
 Select **Run** > **Start Without Debugging** to launch the app. Visual Studio for Mac starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
-![Browser with new project](start-mvc/b1.png)
-
 * The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
 * You can launch the app in debug or non-debug mode from the **Run** menu.
 
