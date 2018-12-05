@@ -19,15 +19,15 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
 <a name="rpvs17"></a>
 
-## Creating a Razor Pages project
+## Create a Razor Pages project
 
 # [Visual Studio](#tab/visual-studio)
 
-See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
+See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -46,20 +46,6 @@ Run `dotnet new razor` from the command line.
 Open the generated *.csproj* file from Visual Studio for Mac.
 
 # [Visual Studio Code](#tab/visual-studio-code)
-
-::: moniker range=">= aspnetcore-2.1"
-
-Run `dotnet new webapp` from the command line.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-Run `dotnet new razor` from the command line.
-
-::: moniker-end
-
-# [.NET Core CLI](#tab/netcore-cli)
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -112,7 +98,7 @@ Notes:
 * The runtime looks for Razor Pages files in the *Pages* folder by default.
 * `Index` is the default page when a URL doesn't include a page.
 
-## Writing a basic form
+## Write a basic form
 
 Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
@@ -168,11 +154,7 @@ The `Customer` property uses `[BindProperty]` attribute to opt in to model bindi
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
-> [!NOTE]
-> For security reasons, you must opt in to binding GET request data to page model properties. Verify user input before mapping it to properties. Opting in to this behavior is useful when addressing scenarios which rely on query string or route values.
->
-> To bind a property on GET requests, set the `[BindProperty]` attribute's `SupportsGet` property to `true`:
-> `[BindProperty(SupportsGet = true)]`
+[!INCLUDE[](~/includes/bind-get.md)]
 
 The home page (*Index.cshtml*):
 
@@ -238,11 +220,11 @@ Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/sys
 
 [!code-cs[](index/sample/Create.cshtml.cs?highlight=3,15-16)]
 
-See [Model validation](xref:mvc/models/validation) for more information.
+For more information, see [Model validation](xref:mvc/models/validation).
 
 ## Manage HEAD requests with the OnGet handler
 
-HEAD requests allow you to retrieve the headers for a specific resource. Unlike GET requests, HEAD requests don't return a response body. 
+HEAD requests allow you to retrieve the headers for a specific resource. Unlike GET requests, HEAD requests don't return a response body.
 
 Ordinarily, a HEAD handler is created and called for HEAD requests: 
 
@@ -473,7 +455,7 @@ The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attrib
 public string Message { get; set; }
 ```
 
-See [TempData](xref:fundamentals/app-state#tempdata) for more information.
+For more information, see [TempData](xref:fundamentals/app-state#tempdata) .
 
 <a name="mhpp"></a>
 ## Multiple handlers per page
