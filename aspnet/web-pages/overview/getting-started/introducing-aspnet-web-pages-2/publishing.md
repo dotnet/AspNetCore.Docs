@@ -44,7 +44,7 @@ This tutorial contains four sections:
 <a id="defaultpage"></a>
 ## Setting up the default page
 
-When a user navigates to the base address for your website, the default page for your site is displayed to the user. For example, when Default.htm is set as the default page for the site at www\.contoso.com, then navigating to <strong>www\.contoso.com</strong> is the same as navigating to <strong>www\.contoso.com/Default.htm</strong>.
+When a user navigates to the base address for your web site, the default page for your site is displayed to the user. For example, when Default.htm is set as the default page for the site at www\.contoso.com, then navigating to <strong>www\.contoso.com</strong> is the same as navigating to <strong>www\.contoso.com/Default.htm</strong>.
 
 Currently, your site uses **Default.cshtml** as the default page. This page is fine for your default page, but in this tutorial you have not added any content to that page so it would display a blank page. Open Default.cshtml and replace the content with the following code.
 
