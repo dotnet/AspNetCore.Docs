@@ -21,9 +21,6 @@
   * [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
   * [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 
-> [!div class="step-by-step"]
-> [Next - Add a controller](adding-controller.md)
-
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
