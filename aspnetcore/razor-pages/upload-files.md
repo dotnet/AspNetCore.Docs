@@ -1,7 +1,7 @@
 ---
 title: Upload files to a Razor Page in ASP.NET Core
 author: guardrex
-description: Learn how to upload files to a Razor Page.
+description: Learn how to upload files to a Razor Page in ASP.NET Core using the FileUpload class.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 11/10/2018
