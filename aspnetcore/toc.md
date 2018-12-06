@@ -10,18 +10,7 @@
 ### [Create a web API](xref:tutorials/first-web-api)
 ### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
-### Razor Pages
-#### [Introduction to Razor Pages](xref:razor-pages/index)
-
-#### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
-##### [Get started](xref:tutorials/razor-pages/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages/model)
-##### [Scaffolding](xref:tutorials/razor-pages/page)
-##### [Work with a DB](xref:tutorials/razor-pages/sql)
-##### [Update the pages](xref:tutorials/razor-pages/da1)
-##### [Add search](xref:tutorials/razor-pages/search)
-##### [Add a new field](xref:tutorials/razor-pages/new-field)
-##### [Add validation](xref:tutorials/razor-pages/validation)
+### [Razor Pages](xref:tutorials/razor-pages/index)
 
 ### MVC
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
