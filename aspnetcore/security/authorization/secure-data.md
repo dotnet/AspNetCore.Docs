@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn how to create a Razor Pages app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
 ms.author: riande
 ms.date: 7/24/2018
+ms.custom: seodec18
 uid: security/authorization/secure-data
 ---
 
@@ -33,21 +34,21 @@ This tutorial shows how to create an ASP.NET Core web app with user data protect
 
 In the following image, user Rick (`rick@example.com`) is signed in. Rick can only view approved contacts and **Edit**/**Delete**/**Create New** links for his contacts. Only the last record, created by Rick, displays **Edit** and **Delete** links. Other users won't see the last record until a manager or administrator changes the status to "Approved".
 
-![image described preceding](secure-data/_static/rick.png)
+![Screenshot showing Rick signed in](secure-data/_static/rick.png)
 
 In the following image, `manager@contoso.com` is signed in and in the managers role:
 
-![image described preceding](secure-data/_static/manager1.png)
+![Screenshot showing manager@contoso.com signed in](secure-data/_static/manager1.png)
 
 The following image shows the managers details view of a contact:
 
-![image described preceding](secure-data/_static/manager.png)
+![Manager's view of a contact](secure-data/_static/manager.png)
 
 The **Approve** and **Reject** buttons are only displayed for managers and administrators.
 
 In the following image, `admin@contoso.com` is signed in and in the administrators role:
 
-![image described preceding](secure-data/_static/admin.png)
+![Screenshot showing admin@contoso.com signed in](secure-data/_static/admin.png)
 
 The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
 
