@@ -6,7 +6,9 @@
 # [Get started](xref:getting-started)
 
 # Tutorials
-## [Create a web API](xref:tutorials/first-web-api)
+## Web APIs
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
 ### Razor Pages
 #### [Introduction to Razor Pages](xref:razor-pages/index)
@@ -165,7 +167,9 @@
 # Web APIs
 ## [Overview](xref:web-api/index)
 
-## [Create a web API](xref:tutorials/first-web-api)
+## Tutorials
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
