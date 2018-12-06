@@ -39,7 +39,7 @@ Reference the SignalR JavaScript client in the `<script>` element.
 
 The following code creates and starts a connection. The hub's name is case insensitive.
 
-[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-12,28)]
+[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
 
 ### Cross-origin connections
 
