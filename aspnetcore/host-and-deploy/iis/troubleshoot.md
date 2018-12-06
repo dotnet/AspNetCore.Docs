@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 12/05/2018
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -86,6 +86,26 @@ The app starts, but an error prevents the server from fulfilling the request.
 
 This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. [Run the app at a command prompt](#run-the-app-at-a-command-prompt) on the server or [enable the ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) to troubleshoot the problem.
 
+### Failed to start application (ErrorCode '0x800700c1')
+
+```
+EventID: 1010
+Source: IIS AspNetCore Module V2
+Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
+```
+
+The app failed to start because the app's assembly (*.dll*) couldn't be loaded.
+
+This error occurs when there's a bitness mismatch between the published app and the w3wp/iisexpress process.
+
+Confirm that the app pool's 32-bit setting is correct:
+
+1. Select the app pool in IIS Manager's **Application Pools**.
+1. Select **Advanced Settings** under **Edit Application Pool** in the **Actions** panel.
+1. Set **Enable 32-Bit Applications**:
+   * If deploying a 32-bit (x86) app, set the value to `True`.
+   * If deploying a 64-bit (x64) app, set the value to `False`.
+
 ### Connection reset
 
 If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
@@ -95,6 +115,21 @@ If an error occurs after the headers are sent, it's too late for the server to s
 The ASP.NET Core Module is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
 ## Troubleshoot app startup errors
+
+### Enable the ASP.NET Core Module debug log
+
+Add the following handler settings to the app's *web.config* file to enable ASP.NET Core Module debug logs:
+
+```xml
+<aspNetCore ...>
+  <handlerSettings>
+    <handlerSetting name="debugLevel" value="file" />
+    <handlerSetting name="debugFile" value="c:\temp\ancm.log" />
+  </handlerSettings>
+</aspNetCore>
+```
+
+Confirm that the path specified for the log exists and that the app pool's identity has write permissions to the location.
 
 ### Application Event Log
 
