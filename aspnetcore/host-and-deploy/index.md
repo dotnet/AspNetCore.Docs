@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to set up hosting environments and deploy ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/06/2018
 uid: host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core
@@ -66,7 +66,11 @@ By using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-
 
 ## Publish to Azure
 
-See <xref:tutorials/publish-to-azure-webapp-using-vs> for instructions on how to publish an app to Azure using Visual Studio. The app can also be published to Azure from the [command line](/azure/app-service/app-service-web-get-started-dotnet).
+See <xref:tutorials/publish-to-azure-webapp-using-vs> for instructions on how to publish an app to Azure using Visual Studio. An additional example is provided by [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet).
+
+## Publish with MSDeploy on Windows
+
+See <xref:host-and-deploy/visual-studio-publish-profiles> for instructions on how to publish an app with a Visual Studio publish profile, including from a Windows command prompt using the [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command.
 
 ## Host in a web farm
 

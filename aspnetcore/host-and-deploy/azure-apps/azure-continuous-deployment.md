@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/14/2016
+ms.date: 12/06/2018
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
 ---
 # Continuous deployment to Azure with Visual Studio and Git with ASP.NET Core
@@ -224,3 +224,4 @@ View the updated web app by selecting **Browse** from the web app blade in the A
 
 * [Create your first pipeline with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 * [Project Kudu](https://github.com/projectkudu/kudu/wiki)
+* <xref:host-and-deploy/visual-studio-publish-profiles>
