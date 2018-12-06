@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2018
+ms.date: 10/24/2018
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -15,7 +15,7 @@ ASP.NET Core supports the dependency injection (DI) software design pattern, whi
 
 For more information specific to dependency injection within MVC controllers, see <xref:mvc/controllers/dependency-injection>.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Overview of dependency injection
 
@@ -189,8 +189,8 @@ The `Startup.ConfigureServices` method is responsible for defining the services 
 | [Microsoft.Extensions.ObjectPool.ObjectPoolProvider](/dotnet/api/microsoft.extensions.objectpool.objectpoolprovider) | Singleton |
 | [Microsoft.Extensions.Options.IConfigureOptions&lt;T&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) | Transient |
 | [Microsoft.Extensions.Options.IOptions&lt;T&gt;](/dotnet/api/microsoft.extensions.options.ioptions-1) | Singleton |
-| [System.Diagnostics.DiagnosticSource](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.diagnosticsource) | Singleton |
-| [System.Diagnostics.DiagnosticListener](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.diagnosticlistener) | Singleton |
+| [System.Diagnostics.DiagnosticSource](/dotnet/core/api/system.diagnostics.diagnosticsource) | Singleton |
+| [System.Diagnostics.DiagnosticListener](/dotnet/core/api/system.diagnostics.diagnosticlistener) | Singleton |
 
 When a service collection extension method is available to register a service (and its dependent services, if required), the convention is to use a single `Add{SERVICE_NAME}` extension method to register all of the services required by that service. The following code is an example of how to add additional services to the container using the extension methods [AddDbContext](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext), [AddIdentity](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.addidentity), and [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc):
 
@@ -421,7 +421,7 @@ The services available within an ASP.NET Core request from `HttpContext` are exp
 
 Request Services represent the services configured and requested as part of the app. When the objects specify dependencies, these are satisfied by the types found in `RequestServices`, not `ApplicationServices`.
 
-Generally, the app shouldn't use these properties directly. Instead, request the types that classes require via class constructors and allow the framework inject the dependencies. This yields classes that are easier to test (see the [Test and debug](xref:test/index) topics).
+Generally, the app shouldn't use these properties directly. Instead, request the types that classes require via class constructors and allow the framework inject the dependencies. This yields classes that are easier to test.
 
 > [!NOTE]
 > Prefer requesting dependencies as constructor parameters to accessing the `RequestServices` collection.
@@ -488,8 +488,8 @@ The following sample replaces the built-in container with [Autofac](https://auto
 
 * Install the appropriate container package(s):
 
-    * [Autofac](https://www.nuget.org/packages/Autofac/)
-    * [Autofac.Extensions.DependencyInjection](https://www.nuget.org/packages/Autofac.Extensions.DependencyInjection/)
+  * [Autofac](https://www.nuget.org/packages/Autofac/)
+  * [Autofac.Extensions.DependencyInjection](https://www.nuget.org/packages/Autofac.Extensions.DependencyInjection/)
 
 * Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
 
@@ -532,7 +532,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 ## Recommendations
 
-When working with dependency injection, keep the following recommendations in mind:
+* `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors, therefore the recommended pattern is to use asynchronous methods after synchronously resolving the service.
 
 * Avoid storing data and configuration directly in the service container. For example, a user's shopping cart shouldn't typically be added to the service container. Configuration should use the [options pattern](xref:fundamentals/configuration/options). Similarly, avoid "data holder" objects that only exist to allow access to some other object. It's better to request the actual item via DI.
 
@@ -551,9 +551,7 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
-* <xref:fundamentals/repository-pattern>
 * <xref:fundamentals/startup>
-* <xref:test/index>
 * <xref:fundamentals/middleware/extensibility>
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
 * [Container-Managed Application Design, Prelude: Where does the Container Belong?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)

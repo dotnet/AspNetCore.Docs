@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how model binding in ASP.NET Core MVC maps data from HTTP requests to action method parameters.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: tdykstra
-ms.date: 08/14/2018
+ms.date: 11/13/2018
 uid: mvc/models/model-binding
 ---
 # Model Binding in ASP.NET Core
@@ -50,7 +50,7 @@ Since model binding asked for a key named `id` and there's nothing named `id` in
 So far the example uses simple types. In MVC simple types are any .NET primitive type or type with a string type converter. If the action method's parameter were a class such as the `Movie` type, which contains both simple and complex types as properties, MVC's model binding will still handle it nicely. It uses reflection and recursion to traverse the properties of complex types looking for matches. Model binding looks for the pattern *parameter_name.property_name* to bind values to properties. If it doesn't find matching values of this form, it will attempt to bind using just the property name. For those types such as `Collection` types, model binding looks for matches to *parameter_name[index]* or just *[index]*. Model binding treats  `Dictionary` types similarly, asking for *parameter_name[key]* or just *[key]*, as long as the keys are simple types. Keys that are supported match the field names HTML and tag helpers generated for the same model type. This enables round-tripping values
 so that the form fields remain filled with the user's input for their convenience, for example, when bound data from a create or edit didn't pass validation.
 
-In order for binding to happen the class must have a public default constructor and member to be bound must be public writable properties. When model binding happens the class will only be instantiated using the public default constructor, then the properties can be set.
+To make model binding possible, the class must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor, then the properties can be set.
 
 When a parameter is bound, model binding stops looking for values with that name and it moves on to bind the next parameter. Otherwise, the default model binding behavior sets parameters to their default values depending on their type:
 

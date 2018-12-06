@@ -3,7 +3,8 @@ title: ASP.NET Core MVC with EF Core - Inheritance - 9 of 10
 author: rick-anderson
 description: This tutorial will show you how to implement inheritance in the data model, using Entity Framework Core in an ASP.NET Core application.
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: data/ef-mvc/inheritance
 ---
 
@@ -137,7 +138,7 @@ Right-click the Person table, and then click **Show Table Data** to see the disc
 
 ## Summary
 
-You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, and `Instructor` classes. For more information about inheritance in Entity Framework Core, see [Inheritance](https://docs.microsoft.com/ef/core/modeling/inheritance). In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
+You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, and `Instructor` classes. For more information about inheritance in Entity Framework Core, see [Inheritance](/ef/core/modeling/inheritance). In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
 
 ::: moniker-end
 

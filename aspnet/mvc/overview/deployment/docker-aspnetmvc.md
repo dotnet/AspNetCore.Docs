@@ -75,8 +75,7 @@ to the `docker build` command, which creates the image.
 You will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
-Windows Server Core, IIS and ASP.NET 4.6.2. When you run this image in your container, it will
-automatically start IIS and installed websites.
+Windows Server Core, IIS, and ASP.NET 4.7.2. When you run this image in your container, it will automatically start IIS and installed websites.
 
 The Dockerfile that creates your image looks like this:
 
@@ -134,37 +133,21 @@ The `mvcrandomanswers` is the name of the image to start.
 
 ## Verify in the browser
 
-> [!NOTE]
-> With the current Windows Container release, you can't browse to `http://localhost`.
-> This is a known behavior in WinNAT, and it will
-> be resolved in the future. Until that is addressed, you need to use
-> the IP address of the container.
-
-Once the container starts, find its IP address so that you
-can connect to your running container from a browser:
-
-```console
-docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" randomanswers
-172.31.194.61
-```
-
-Connect to the running container using the IPv4 address, `http://172.31.194.61`
-in the example shown. Type that URL into your browser, and you should see the running site.
+Once the container starts, connect to the running container using `http://localhost` in the example shown. Type that URL into your browser, and you should see the running site.
 
 > [!NOTE]
 > Some VPN or proxy software may prevent you from navigating to your site.
 > You can temporarily disable it to make sure your container is working.
 
-The sample directory on GitHub contains a [PowerShell script](https://github.com/dotnet/docs/tree/master/samples/framework/docker/MVCRandomAnswerGenerator/run.ps1) that executes these commands for you. Open a PowerShell window, change directory to your solution directory, and type:
+The sample directory on GitHub contains a [PowerShell script](https://github.com/dotnet/samples/blob/master/framework/docker/MVCRandomAnswerGenerator/run.ps1) that executes these commands for you. Open a PowerShell window, change directory to your solution directory, and type:
 
 ```console
 ./run.ps1
 ```
 
-The command above builds the image, displays the list of images on your machine, starts a container, and displays the IP address for that container.
+The command above builds the image, displays the list of images on your machine, and starts a container.
 
-To stop your container, issue a `docker
-stop` command:
+To stop your container, issue a `docker stop` command:
 
 ```console
 docker stop randomanswers

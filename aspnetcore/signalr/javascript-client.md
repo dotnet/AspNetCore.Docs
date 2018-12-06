@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/14/2018
+ms.date: 11/14/2018
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -14,7 +14,7 @@ By [Rachel Appel](http://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Install the SignalR client package
 
@@ -93,10 +93,23 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 
 [!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
 
+## Reconnect clients
+
+The JavaScript client for SignalR doesn't automatically reconnect. You must write code that will reconnect your client manually. The following code demonstrates a typical reconnection approach:
+
+1. A function (in this case, the `start` function) is created to start the connection.
+1. Call the `start` function in the connection's `onclose` event handler.
+
+[!code-javascript[Reconnect the JavaScript client](javascript-client/sample/wwwroot/js/chat.js?range=30-42)]
+
+A real-world implementation would use an exponential back-off or retry a specified number of times before giving up. 
+
 ## Additional resources
 
 * [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
+* [JavaScript tutorial](xref:tutorials/signalr)
+* [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Enable Cross-Origin Requests (CORS) in ASP.NET Core](xref:security/cors)
+* [Cross-Origin Requests (CORS)](xref:security/cors)

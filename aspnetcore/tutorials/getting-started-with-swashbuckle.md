@@ -4,14 +4,14 @@ author: zuckerthoben
 description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/20/2018
+ms.date: 11/30/2018
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
 
 By [Shayne Boyer](https://twitter.com/spboyer) and [Scott Addie](https://twitter.com/Scott_Addie)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 There are three main components to Swashbuckle:
 
@@ -91,7 +91,7 @@ In the `Startup.Configure` method, enable the middleware for serving the generat
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_Configure&highlight=4,8-11)]
 
-The preceding `UseSwaggerUI` method call enables the [Static Files Middleware](xref:fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
+The preceding `UseSwaggerUI` method call enables the [Static File Middleware](xref:fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
 
 Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [Swagger specification (swagger.json)](xref:tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
 
@@ -101,6 +101,8 @@ The Swagger UI can be found at `http://localhost:<port>/swagger`. Explore the AP
 > To serve the Swagger UI at the app's root (`http://localhost:<port>/`), set the `RoutePrefix` property to an empty string:
 >
 > [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup3.cs?name=snippet_UseSwaggerUI&highlight=4)]
+
+If using directories with IIS or a reverse proxy, set the Swagger endpoint to a relative path using the `./` prefix. For example, `./swagger/v1/swagger.json`. Using `/swagger/v1/swagger.json` instructs the app to look for the JSON file at the true root of the URL (plus the route prefix, if used). For example, use `http://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` instead of `http://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
 ## Customize and extend
 
@@ -120,7 +122,7 @@ The Swagger UI displays the version's information:
 
 XML comments can be enabled with the following approaches:
 
-# [Visual Studio](#tab/visual-studio-xml/)
+#### [Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -138,7 +140,7 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker-end
 
-# [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
+#### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -156,7 +158,23 @@ XML comments can be enabled with the following approaches:
 
 ::: moniker-end
 
-# [Visual Studio Code](#tab/visual-studio-code-xml/)
+#### [Visual Studio Code](#tab/visual-studio-code)
+
+Manually add the highlighted lines to the *.csproj* file:
+
+::: moniker range=">= aspnetcore-2.0"
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-1.1"
+
+[!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
+
+::: moniker-end
+
+#### [.NET Core CLI](#tab/netcore-cli)
 
 Manually add the highlighted lines to the *.csproj* file:
 
@@ -379,7 +397,7 @@ If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.Stat
 
 The preceding NuGet package is already installed if targeting .NET Core 2.x and using the [metapackage](xref:fundamentals/metapackage).
 
-Enable the static files middleware:
+Enable Static File Middleware:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup.cs?name=snippet_Configure&highlight=3)]
 

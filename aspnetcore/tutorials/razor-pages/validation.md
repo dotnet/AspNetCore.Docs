@@ -2,9 +2,10 @@
 title: Add validation to an ASP.NET Core Razor Page
 author: rick-anderson
 description: Discover how to add validation to a Razor Page in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
-ms.date: 08/07/2017
+ms.custom: mvc
+ms.date: 12/5/2018
 uid: tutorials/razor-pages/validation
 ---
 # Add validation to an ASP.NET Core Razor Page
@@ -15,31 +16,24 @@ In this section, validation logic is added to the `Movie` model. The validation 
 
 ## Validation
 
-A key tenet of software development is called [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself"). Razor Pages encourages development where functionality is specified once, and it's reflected throughout the app. DRY can help reduce the amount of code in an app. DRY makes the code less error prone, and easier to test and maintain.
+A key tenet of software development is called [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself"). Razor Pages encourages development where functionality is specified once, and it's reflected throughout the app. DRY can help:
+
+* Reduce the amount of code in an app.
+* Make the code less error prone, and easier to test and maintain.
 
 The validation support provided by Razor Pages and Entity Framework is a good example of the DRY principle. Validation rules are declaratively specified in one place (in the model class), and the rules are enforced everywhere in the app.
 
 ### Adding validation rules to the movie model
 
-Open the *Models/Movie.cs* file. [DataAnnotations](https://docs.microsoft.com/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) provides a built-in set of validation attributes that are applied declaratively to a class or property. DataAnnotations also contains formatting attributes like `DataType` that help with formatting and don't provide validation.
+Open the *Models/Movie.cs* file. [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) provides a built-in set of validation attributes that are applied declaratively to a class or property. DataAnnotations also contain formatting attributes like `DataType` that help with formatting and don't provide validation.
 
 Update the `Movie` class to take advantage of the `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?name=snippet1)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRatingDA.cs?name=snippet1)]
-
-::: moniker-end
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 Validation attributes specify behavior that's enforced on model properties:
 
-* The `Required` and `MinimumLength` attributes indicate that a property must have a value. However, nothing prevents a user from entering whitespace to satisfy the validation constraint for a nullable type. Non-nullable [value types](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute.
+* The `Required` and `MinimumLength` attributes indicate that a property must have a value. However, nothing prevents a user from entering whitespace to satisfy the validation constraint for a nullable type. Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute.
 * The `RegularExpression` attribute limits the characters that the user can enter. In the preceding code, `Genre` must start with one or more capital letters and follow with zero or more letters, single or double quotes, whitespace characters, or dashes. `Rating` must start with one or more capital letters and follow with zero or more letters, numbers, single or double quotes, whitespace characters, or dashes.
 * The `Range` attribute constrains a value to a specified range.
 * The `StringLength` attribute sets the maximum length of a string, and optionally the minimum length. 
@@ -54,8 +48,7 @@ Select the **Create New** link. Complete the form with some invalid values. When
 
 ![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
 
-> [!NOTE]
-> You may not be able to enter decimal points or commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) in non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See [Additional resources](#additional-resources) for more information. For now, just enter whole numbers like 10.
+[!INCLUDE[](~/includes/currency.md)]
 
 Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (when a user has JavaScript disabled).
 
@@ -89,7 +82,7 @@ The following code shows a portion of the *Create.cshtml* page that you scaffold
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](https://docs.microsoft.com/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client-side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
+The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client-side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
 
 The Create and Edit pages have no validation rules in them. The validation rules and the error strings are specified only in the `Movie` class. These validation rules are automatically applied to Razor Pages that edit the `Movie` model.
 
@@ -107,11 +100,8 @@ The `DataType` Enumeration provides for many data types, such as Date, Time, Pho
 
 `DataType.Date` doesn't specify the format of the date that's displayed. By default, the data field is displayed according to the default formats based on the server's `CultureInfo`.
 
-::: moniker range=">= aspnetcore-2.1"
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
-
-::: moniker-end
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
 
@@ -138,32 +128,22 @@ It's generally not a good practice to compile hard dates in your models, so usin
 
 The following code shows combining attributes on one line:
 
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/MovieDateRatingDAmult.cs?name=snippet1)]
-
-::: moniker-end
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
 ### Publish to Azure
 
-For information on deploying to Azure, See [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). The instruction are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). These instructions are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
 
 Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 
 ## Additional resources
 
-* [Working with Forms](xref:mvc/views/working-with-forms)
-* [Globalization and localization](xref:fundamentals/localization)
-* [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+* <xref:mvc/views/working-with-forms>
+* <xref:fundamentals/localization>
+* <xref:mvc/views/tag-helpers/intro>
+* <xref:mvc/views/tag-helpers/authoring>
 
 > [!div class="step-by-step"]
 > [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)

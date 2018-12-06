@@ -7,23 +7,23 @@ ms.date: 7/24/2018
 uid: security/authorization/secure-data
 ---
 
+# Create an ASP.NET Core app with user data protected by authorization
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
+
 ::: moniker range="<= aspnetcore-1.1"
 
-See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
+See [this PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-See [this pdf](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_July16_18.pdf)
+See [this pdf](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_July16_18.pdf)
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
-
-# Create an ASP.NET Core app with user data protected by authorization
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
 This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
 
@@ -66,16 +66,16 @@ The sample contains the following authorization handlers:
 This tutorial is advanced. You should be familiar with:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication](xref:security/authentication/index)
+* [Authentication](xref:security/authentication/identity)
 * [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
-* [Authorization](xref:security/authorization/index)
+* [Authorization](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
 
-In ASP.NET Core 2.1, `User.IsInRole` fails when using `AddDefaultIdentity`. This tutorial uses `AddDefaultIdentity` and therefore requires ASP.NET Core 2.2 preview 1 or later. See [this GitHub issue](https://github.com/aspnet/Identity/issues/1813#issuecomment-394543909) for a work-around.
+In ASP.NET Core 2.1, `User.IsInRole` fails when using `AddDefaultIdentity`. This tutorial uses `AddDefaultIdentity` and therefore requires ASP.NET Core 2.2 or later. See [this GitHub issue](https://github.com/aspnet/Identity/issues/1813#issuecomment-394543909) for a work-around.
 
 ::: moniker-end
 
@@ -83,11 +83,11 @@ In ASP.NET Core 2.1, `User.IsInRole` fails when using `AddDefaultIdentity`. This
 
 ## The starter and completed app
 
-[Download](xref:tutorials/index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
+[Download](xref:index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
 
 ### The starter app
 
-[Download](xref:tutorials/index#how-to-download-a-sample) the [starter](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2) app.
+[Download](xref:index#how-to-download-a-sample) the [starter](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2) app.
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact.
 
@@ -347,7 +347,7 @@ Test that the app seeded the database. If there are any rows in the contact DB, 
 
 * [Build a .NET Core and SQL Database web app in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop). This lab goes into more detail on the security features introduced in this tutorial.
-* [Authorization in ASP.NET Core: Simple, role, claims-based, and custom](xref:security/authorization/index)
+* <xref:security/authorization/introduction>
 * [Custom policy-based authorization](xref:security/authorization/policies)
 
 ::: moniker-end

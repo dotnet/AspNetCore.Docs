@@ -5,7 +5,7 @@ description: Learn how to get started with WebSockets in ASP.NET Core.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/28/2018
+ms.date: 11/06/2018
 uid: fundamentals/websockets
 ---
 # WebSockets support in ASP.NET Core
@@ -14,7 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Andrew Stanton-Nurse](https:/
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample)). See the [Next steps](#next-steps) section for more information.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:index#how-to-download-a-sample)). See the [Next steps](#next-steps) section for more information.
 
 ## Prerequisites
 
@@ -66,10 +66,24 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 
 ::: moniker-end
 
+::: moniker range="< aspnetcore-2.2"
+
 The following settings can be configured:
 
-* `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open.
-* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data.
+* `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
+* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4 KB.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+The following settings can be configured:
+
+* `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
+* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4 KB.
+* `AllowedOrigins` - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. See "WebSocket origin restriction" below for details.
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -122,6 +136,32 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 ::: moniker-end
 
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
+
+::: moniker range=">= aspnetcore-2.2"
+
+### WebSocket origin restriction
+
+The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
+
+* Perform CORS pre-flight requests.
+* Respect the restrictions specified in `Access-Control` headers when making WebSocket requests.
+
+However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
+
+If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the `AllowedOrigins` list for WebSockets to verify.
+
+```csharp
+app.UseWebSockets(new WebSocketOptions()
+{
+    AllowedOrigins.Add("https://client.com");
+    AllowedOrigins.Add("https://www.client.com");
+});
+```
+
+> [!NOTE]
+> The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. Do **not** use these headers as an authentication mechanism.
+
+::: moniker-end
 
 ## IIS/IIS Express support
 

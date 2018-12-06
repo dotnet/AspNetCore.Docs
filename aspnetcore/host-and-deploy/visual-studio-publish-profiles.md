@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to create publish profiles in Visual Studio and use them for managing ASP.NET Core app deployments to various targets.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/10/2018
+ms.date: 10/24/2018
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles for ASP.NET Core app deployment
@@ -15,7 +15,25 @@ This document focuses on using Visual Studio 2017 to create and use publish prof
 
 The following project file was created with the command `dotnet new mvc`:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.1"
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>
+```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -25,17 +43,15 @@ The following project file was created with the command `dotnet new mvc`:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
   </ItemGroup>
 
 </Project>
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -45,15 +61,15 @@ The following project file was created with the command `dotnet new mvc`:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.3" />
   </ItemGroup>
 
 </Project>
 ```
 
----
+::: moniker-end
 
 The `<Project>` element's `Sdk` attribute accomplishes the following tasks:
 
@@ -108,14 +124,16 @@ dotnet publish C:\Webs\Web1
 
 Run the following commands to create and publish a web app:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.0"
 
 ```console
 dotnet new mvc
 dotnet publish
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 ```console
 dotnet new mvc
@@ -123,7 +141,7 @@ dotnet restore
 dotnet publish
 ```
 
----
+::: moniker-end
 
 The [dotnet publish](/dotnet/core/tools/dotnet-publish) command produces output similar to the following:
 

@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardal
 
 HTTP is a stateless protocol. Without taking additional steps, HTTP requests are independent messages that don't retain user values or app state. This article describes several approaches to preserve user data and app state between requests.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## State management
 
@@ -64,8 +64,8 @@ Session state exhibits the following behaviors:
 
 The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
 
-* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis or SQL Server distributed cache, which doesn't require sticky sessions. For more information, see [Work with a distributed cache](xref:performance/caching/distributed).
-* The session cookie is encrypted via [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector). Data Protection must be properly configured to read session cookies on each machine. For more information, see [Data Protection in ASP.NET Core](xref:security/data-protection/index) and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
+* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis or SQL Server distributed cache, which doesn't require sticky sessions. For more information, see <xref:performance/caching/distributed>.
+* The session cookie is encrypted via [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector). Data Protection must be properly configured to read session cookies on each machine. For more information, see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
 
 ### Configure session state
 
@@ -81,7 +81,7 @@ The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspN
 
 ::: moniker-end
 
-* Any of the [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see [Work with a distributed cache](xref:performance/caching/distributed).
+* Any of the [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
 * A call to [AddSession](/dotnet/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions.addsession) in `ConfigureServices`.
 * A call to [UseSession](/dotnet/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions#methods_) in `Configure`.
 
@@ -122,8 +122,8 @@ To override session defaults, use [SessionOptions](/dotnet/api/microsoft.aspnetc
 | Option | Description |
 | ------ | ----------- |
 | [Cookie](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookie) | Determines the settings used to create the cookie. [Name](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.name) defaults to [SessionDefaults.CookieName](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiename) (`.AspNetCore.Session`). [Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path) defaults to [SessionDefaults.CookiePath](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiepath) (`/`). [SameSite](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.samesite) defaults to [SameSiteMode.Lax](/dotnet/api/microsoft.aspnetcore.http.samesitemode) (`1`). [HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) defaults to `true`. [IsEssential](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.isessential) defaults to `false`. |
-| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | The `IdleTimeout` indicates how long the session can be idle before its contents are abandoned. Each session access resets the timeout. Note this only applies to the content of the session, not the cookie. The default is 20 minutes. |
-| [IOTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.iotimeout) | The maximim amount of time allowed to load a session from the store or to commit it back to the store. Note this may only apply to asynchronous operations. This timeout can be disabled using [InfiniteTimeSpan](/dotnet/api/system.threading.timeout.infinitetimespan). The default is 1 minute. |
+| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | The `IdleTimeout` indicates how long the session can be idle before its contents are abandoned. Each session access resets the timeout. This setting only applies to the content of the session, not the cookie. The default is 20 minutes. |
+| [IOTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.iotimeout) | The maximim amount of time allowed to load a session from the store or to commit it back to the store. This setting may only apply to asynchronous operations. This timeout can be disabled using [InfiniteTimeSpan](/dotnet/api/system.threading.timeout.infinitetimespan). The default is 1 minute. |
 
 Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named `.AspNetCore.Session`, and it uses a path of `/`. Because the cookie default doesn't specify a domain, it isn't made available to the client-side script on the page (because [HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) defaults to `true`).
 
@@ -268,7 +268,7 @@ Choosing a TempData provider involves several considerations, such as:
 
 1. Does the app already use session state? If so, using the session state TempData provider has no additional cost to the app (aside from the size of the data).
 2. Does the app use TempData only sparingly for relatively small amounts of data (up to 500 bytes)? If so, the cookie TempData provider adds a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
-3. Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see [Data Protection](xref:security/data-protection/index) and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)).
+3. Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)).
 
 > [!NOTE]
 > Most web clients (such as web browsers) enforce limits on the maximum size of each cookie, the total number of cookies, or both. When using the cookie TempData provider, verify the app won't exceed these limits. Consider the total size of the data. Account for increases in cookie size due to encryption and chunking.
@@ -368,7 +368,7 @@ Caching is an efficient way to store and retrieve data. The app can control the 
 
 Cached data isn't associated with a specific request, user, or session. **Be careful not to cache user-specific data that may be retrieved by other users' requests.**
 
-For more information, see the [Cache responses](xref:performance/caching/index) topic.
+For more information, see <xref:performance/caching/response>.
 
 ## Dependency Injection
 
@@ -428,7 +428,7 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-  This is usually caused by failing to configure at least one `IDistributedCache` implementation. For more information, see [Work with a distributed cache](xref:performance/caching/distributed) and [Cache in-memory](xref:performance/caching/memory).
+  This is usually caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
 
 * In the event that the session middleware fails to persist a session (for example, if the backing store isn't available), the middleware logs the exception and the request continues normally. This leads to unpredictable behavior.
 

@@ -3,14 +3,15 @@ title: Get started with ASP.NET Core MVC and Visual Studio for Mac
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC and Visual Studio
 ms.author: riande
-ms.date: 8/23/2017
+ms.custom: mvc
+ms.date: 12/01/2018
 uid: tutorials/first-mvc-app-mac/start-mvc
 ---
 # Get started with ASP.NET Core MVC and Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial teaches you the basics of building an ASP.NET Core MVC web app using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/). 
+This tutorial teaches you the basics of building an ASP.NET Core MVC web app using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/).
 
 [!INCLUDE [consider RP](../../includes/razor.md)]
 
@@ -26,11 +27,11 @@ There are 3 versions of this tutorial:
 
 ## Create a web app
 
-From Visual Studio, select **File > New Solution**.
+From Visual Studio, select **File** > **New Solution**.
 
 ![macOS New solution](../first-web-api-mac/_static/sln.png)
 
-Select **.NET Core App >  ASP.NET Core > Web App > Next**.
+Select **.NET Core App** > **ASP.NET Core** > **ASP.NET Core Web App (MVC)** > **Next**.
 
 ![macOS New project dialog](start-mvc/1.png)
 
@@ -40,14 +41,14 @@ Name the project **MvcMovie**, and then select **Create**.
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/index#kestrel), launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+In Visual Studio, select **Run** > **Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
 ![Browser with new project](start-mvc/b1.png)
 
 * The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
 * You can launch the app in debug or non-debug mode from the **Run** menu.
 
-The default template gives you **Home, About** and **Contact** links. The browser image above doesn't show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.
+The default template gives you **Home**, **About**, and **Contact** links. The preceding browser image doesn't show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.
 
 ![Browser with New project](start-mvc/b2.png)
 

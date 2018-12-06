@@ -35,10 +35,7 @@
         "RestApi": "Content"
       },
       "build_entry_point": "docs",
-      "template_folder": "_themes",
-      "xref_query_tags": [
-        "/dotnet"
-      ]
+      "template_folder": "_themes"
     },
     {
       "docset_name": "aspnet-core-conceptual",

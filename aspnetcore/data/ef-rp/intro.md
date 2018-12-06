@@ -3,7 +3,7 @@ title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 author: rick-anderson
 description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
-ms.date: 6/31/2017
+ms.date: 11/22/2018
 uid: data/ef-rp/intro
 ---
 
@@ -19,7 +19,7 @@ The Contoso University sample web app demonstrates how to create an ASP.NET Core
 
 The sample app is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This page is the first in a series of tutorials that explain how to build the Contoso University sample app.
 
-[Download or view the completed app.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:tutorials/index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -108,7 +108,7 @@ Create a *Models* folder. In the *Models* folder, create a class file named *Stu
 
 The `ID` property becomes the primary key column of the database (DB) table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key. In `classnameID`, `classname` is the name of the class. The alternative automatically recognized primary key is `StudentID` in the preceding example.
 
-The `Enrollments` property is a [navigation property](/ef/core/modeling/relationship). Navigation properties link to other entities that are related to this entity. In this case, the `Enrollments` property of a `Student entity` holds all of the `Enrollment` entities that are related to that `Student`. For example, if a Student row in the DB has two related Enrollment rows, the `Enrollments` navigation property contains those two `Enrollment` entities. A related `Enrollment` row is a row that contains that student's primary key value in the `StudentID` column. For example, suppose the student with ID=1 has two rows in the `Enrollment` table. The `Enrollment` table has two rows with `StudentID` = 1. `StudentID` is a foreign key in the `Enrollment` table that specifies the student in the `Student` table.
+The `Enrollments` property is a [navigation property](/ef/core/modeling/relationships). Navigation properties link to other entities that are related to this entity. In this case, the `Enrollments` property of a `Student entity` holds all of the `Enrollment` entities that are related to that `Student`. For example, if a Student row in the DB has two related Enrollment rows, the `Enrollments` navigation property contains those two `Enrollment` entities. A related `Enrollment` row is a row that contains that student's primary key value in the `StudentID` column. For example, suppose the student with ID=1 has two rows in the `Enrollment` table. The `Enrollment` table has two rows with `StudentID` = 1. `StudentID` is a foreign key in the `Enrollment` table that specifies the student in the `Student` table.
 
 If a navigation property can hold multiple entities, the navigation property must be a list type, such as `ICollection<T>`. `ICollection<T>` can be specified, or a type such as `List<T>` or `HashSet<T>`. When `ICollection<T>` is used, EF Core creates a `HashSet<T>` collection by default. Navigation properties that hold multiple entities come from many-to-many and one-to-many relationships.
 
@@ -182,9 +182,9 @@ The scaffold process created and changed the following files:
 * *Pages/Students* Create, Delete, Details, Edit, Index.
 * *Data/SchoolContext.cs*
 
-### Files updates
+### File updates
 
-* *Startup.cs* : Changes to this file in are detailed the next section.
+* *Startup.cs* : Changes to this file are detailed in the next section.
 * *appsettings.json* : The connection string used to connect to a local database is added.
 
 ## Examine the context registered with dependency injection

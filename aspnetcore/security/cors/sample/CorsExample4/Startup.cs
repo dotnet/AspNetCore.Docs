@@ -18,10 +18,11 @@ namespace CorsExample4
             {
                 // BEGIN01
                 options.AddPolicy("AllowSpecificOrigins",
-                builder =>
-                {
-                    builder.WithOrigins("http://example.com", "http://www.contoso.com");
-                });
+                    builder =>
+                    {
+                        builder.WithOrigins("http://example.com", 
+                            "http://www.contoso.com");
+                    });
                 // END01
 
                 // BEGIN02
@@ -94,6 +95,14 @@ namespace CorsExample4
                                .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
                     });
                 // END09
+
+                // BEGIN10
+                options.AddPolicy("AllowSubdomain",
+                    builder =>
+                    {
+                        builder.SetIsOriginAllowedToAllowWildcardSubdomains();
+                    });
+                // END11
             });
         }
 

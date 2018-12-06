@@ -4,7 +4,7 @@ author: shirhatti
 description: Discover support for debugging ASP.NET Core apps when running behind IIS on Windows Server.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2018
+ms.date: 11/30/2018
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
@@ -48,7 +48,7 @@ If the IIS installation already has a **Default Web Site** with a host name that
 ## Enable development-time IIS support in Visual Studio
 
 1. Launch the Visual Studio installer.
-1. Select the **Development time IIS support** component. The component is listed as optional in the **Summary** panel for the **ASP.NET and web development** workload. The component installs the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps behind IIS in a reverse proxy configuration.
+1. Select the **Development time IIS support** component. The component is listed as optional in the **Summary** panel for the **ASP.NET and web development** workload. The component installs the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps with IIS.
 
 ![Modifying Visual Studio features: The Workloads tab is selected. In the Web and Cloud section, the ASP.NET and web development panel is selected. On the right in the Optional area of the Summary panel, there's a check box for Development time IIS support.](development-time-iis-support/_static/development_time_support.png)
 
@@ -123,13 +123,19 @@ Alternatively, manually add a launch profile to the [launchSettings.json](http:/
 
 ## Run the project
 
-In the VS UI, set the Run button to the **IIS** profile and select the button to start the app:
+In Visual Studio:
 
-![Run button in the VS toolbar set to the "IIS" profile.](development-time-iis-support/_static/toolbar.png)
+* Confirm that the build configuration drop-down list is set to **Debug**.
+* Set the Run button to the **IIS** profile and select the button to start the app.
+
+![The Run button in the VS toolbar is set to the IIS profile with the build configuration drop-down list set to Release.](development-time-iis-support/_static/toolbar.png)
 
 Visual Studio may prompt a restart if not running as an administrator. If prompted, restart Visual Studio.
 
 If an untrusted development certificate is used, the browser may require you to create an exception for the untrusted certificate.
+
+> [!NOTE]
+> Debugging a Release build configuration with [Just My Code](/visualstudio/debugger/just-my-code) and compiler optimizations results in a degraded experience. For example, break points aren't hit.
 
 ## Additional resources
 

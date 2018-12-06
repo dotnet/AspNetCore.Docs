@@ -3,7 +3,8 @@ title: File uploads in ASP.NET Core
 author: ardalis
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 ms.author: riande
-ms.date: 07/05/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: mvc/models/file-uploads
 ---
 # File uploads in ASP.NET Core
@@ -64,7 +65,7 @@ When uploading files using model binding and the `IFormFile` interface, the acti
 
 [!code-csharp[](file-uploads/sample/FileUploadSample/Controllers/UploadFilesController.cs?name=snippet1)]
 
-Files uploaded using the `IFormFile` technique are buffered in memory or on disk on the web server before being processed. Inside the action method, the `IFormFile` contents are accessible as a stream. In addition to the local file system, files can be streamed to [Azure Blob storage](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs/) or [Entity Framework](https://docs.microsoft.com/ef/core/index).
+Files uploaded using the `IFormFile` technique are buffered in memory or on disk on the web server before being processed. Inside the action method, the `IFormFile` contents are accessible as a stream. In addition to the local file system, files can be streamed to [Azure Blob storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs) or [Entity Framework](/ef/core/index).
 
 To store binary file data in a database using Entity Framework, define a property of type `byte[]` on the entity:
 
@@ -111,7 +112,7 @@ public async Task<IActionResult> Register(RegisterViewModel model)
             user.AvatarImage = memoryStream.ToArray();
         }
     // additional logic omitted
-    
+
     // Don't rely on or trust the model.AvatarImage.FileName property 
     // without validation.
 }

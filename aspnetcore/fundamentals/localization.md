@@ -24,7 +24,7 @@ App localization involves the following:
 
 3. Implement a strategy to select the language/culture for each request
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Make the app's content localizable
 
@@ -333,6 +333,8 @@ Terms:
 * Specific culture: A culture that has a specified language and region. (for example "en-US", "en-GB", "es-CL")
 * Parent culture: The neutral culture that contains a specific culture. (for example, "en" is the parent culture of "en-US" and "en-GB")
 * Locale: A locale is the same as a culture.
+
+[!INCLUDE[](~/includes/currency.md)]
 
 ## Additional resources
 

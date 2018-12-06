@@ -1,18 +1,18 @@
-// This code is imported by uid: tutorials/razor-pages/page
-#region snippetALL
+﻿#region snippetALL
 // Unused usings removed.
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesMovie.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Movies
 {
     public class CreateModel : PageModel
     {
-        private readonly MovieContext _context;
+        private readonly RazorPagesMovie.Models.RazorPagesMovieContext _context;
 
-        public CreateModel(MovieContext context)
+        public CreateModel(RazorPagesMovie.Models.RazorPagesMovieContext context)
         {
             _context = context;
         }

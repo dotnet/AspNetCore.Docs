@@ -417,7 +417,7 @@ For ASP.NET Core API work with this convention:
 services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 ```
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Extend antiforgery
 

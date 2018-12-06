@@ -1,9 +1,8 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-import com.microsoft.aspnet.signalr.HubConnection;
-import com.microsoft.aspnet.signalr.HubConnectionBuilder;
-import com.microsoft.aspnet.signalr.LogLevel;
+import com.microsoft.signalr.HubConnection;
+import com.microsoft.signalr.HubConnectionBuilder;
 
 import java.util.Scanner;
 
@@ -14,9 +13,7 @@ public class Chat {
         String input;
         input = reader.nextLine();
 
-        HubConnection hubConnection = new HubConnectionBuilder()
-                .withUrl(input)
-                .configureLogging(LogLevel.Information)
+        HubConnection hubConnection = HubConnectionBuilder.create(input)
                 .build();
 
         hubConnection.on("Send", (message) -> {
@@ -24,7 +21,7 @@ public class Chat {
         }, String.class);
 
         //This is a blocking call
-        hubConnection.start();
+        hubConnection.start().blockingAwait();
 
         while (!input.equals("leave")){
             input = reader.nextLine();

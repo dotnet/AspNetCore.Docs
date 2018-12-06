@@ -163,7 +163,7 @@ ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Usi
 
 To use the Web API Compatibility Shim, you need to add the package to your project and then add the conventions to MVC by calling `AddWebApiConventions` in `Startup`:
 
-```c#
+```csharp
 services.AddMvc().AddWebApiConventions();
 ```
 

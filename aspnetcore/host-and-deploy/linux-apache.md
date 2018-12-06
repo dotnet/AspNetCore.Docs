@@ -4,23 +4,23 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 10/09/2018
+ms.date: 12/01/2018
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
 
 By [Shayne Boyer](https://github.com/spboyer)
 
-Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a reverse proxy server on [CentOS 7](https://www.centos.org/) to redirect HTTP traffic to an ASP.NET Core web app running on [Kestrel](xref:fundamentals/servers/kestrel). The [mod_proxy extension](http://httpd.apache.org/docs/2.4/mod/mod_proxy.html) and related modules create the server's reverse proxy.
+Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a reverse proxy server on [CentOS 7](https://www.centos.org/) to redirect HTTP traffic to an ASP.NET Core web app running on [Kestrel](xref:fundamentals/servers/kestrel) server. The [mod_proxy extension](http://httpd.apache.org/docs/2.4/mod/mod_proxy.html) and related modules create the server's reverse proxy.
 
 ## Prerequisites
 
-1. Server running CentOS 7 with a standard user account with sudo privilege.
-1. Install the .NET Core runtime on the server.
+* Server running CentOS 7 with a standard user account with sudo privilege.
+* Install the .NET Core runtime on the server.
    1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
    1. Select the latest non-preview runtime from the list under **Runtime**.
    1. Select and follow the instructions for CentOS/Oracle.
-1. An existing ASP.NET Core app.
+* An existing ASP.NET Core app.
 
 ## Publish and copy over the app
 
@@ -51,13 +51,6 @@ Any component that depends on the scheme, such as authentication, link generatio
 
 ::: moniker range=">= aspnetcore-2.0"
 
-> [!NOTE]
-> Either configuration&mdash;with or without a reverse proxy server&mdash;is a valid and supported hosting configuration for ASP.NET Core 2.0 or later apps. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
-
-::: moniker-end
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
 Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or similar authentication scheme middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
 ```csharp
@@ -69,7 +62,9 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 app.UseAuthentication();
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 Invoke the [UseForwardedHeaders](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions.useforwardedheaders) method in `Startup.Configure` before calling [UseIdentity](/dotnet/api/microsoft.aspnetcore.builder.builderextensions.useidentity) and [UseFacebookAuthentication](/dotnet/api/microsoft.aspnetcore.builder.facebookappbuilderextensions.usefacebookauthentication) or similar authentication scheme middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
@@ -87,7 +82,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 });
 ```
 
----
+::: moniker-end
 
 If no [ForwardedHeadersOptions](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions) are specified to the middleware, the default headers to forward are `None`.
 
@@ -179,9 +174,9 @@ sudo systemctl restart httpd
 sudo systemctl enable httpd
 ```
 
-## Monitoring the app
+## Monitor the app
 
-Apache is now setup to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`.  However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
+Apache is now setup to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes.
 
 ### Create the service file
 
@@ -258,7 +253,7 @@ Connection: Keep-Alive
 Transfer-Encoding: chunked
 ```
 
-### Viewing logs
+### View logs
 
 Since the web app using Kestrel is managed using *systemd*, events and processes are logged to a centralized journal. However, this journal includes entries for all of the services and processes managed by *systemd*. To view the `kestrel-helloapp.service`-specific items, use the following command:
 
@@ -274,7 +269,7 @@ sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/index) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
@@ -287,7 +282,7 @@ To configure data protection to persist and encrypt the key ring, see:
 * <xref:security/data-protection/implementation/key-storage-providers>
 * <xref:security/data-protection/implementation/key-encryption-at-rest>
 
-## Securing the app
+## Secure the app
 
 ### Configure firewall
 
@@ -393,13 +388,17 @@ sudo yum install mod_headers
 
 [Clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), also known as a *UI redress attack*, is a malicious attack where a website visitor is tricked into clicking a link or button on a different page than they're currently visiting. Use `X-FRAME-OPTIONS` to secure the site.
 
-Edit the *httpd.conf* file:
+To mitigate clickjacking attacks:
 
-```bash
-sudo nano /etc/httpd/conf/httpd.conf
-```
+1. Edit the *httpd.conf* file:
 
-Add the line `Header append X-FRAME-OPTIONS "SAMEORIGIN"`. Save the file. Restart Apache.
+   ```bash
+   sudo nano /etc/httpd/conf/httpd.conf
+   ```
+
+   Add the line `Header append X-FRAME-OPTIONS "SAMEORIGIN"`.
+1. Save the file.
+1. Restart Apache.
 
 #### MIME-type sniffing
 
@@ -479,4 +478,6 @@ The example file limits bandwidth as 600 KB/sec under the root location:
 
 ## Additional resources
 
-* [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)
+* [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
+* <xref:test/troubleshoot>
+* <xref:host-and-deploy/proxy-load-balancer>

@@ -21,6 +21,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         public IList<Movie> Movie { get; set; }
+        public string SearchString { get; set; }
         public SelectList Genres { get; set; }
         public string MovieGenre { get; set; }
         #endregion

@@ -3,12 +3,13 @@ title: DevOps with ASP.NET Core and Azure | Deploy an app to App Service
 author: CamSoper
 description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
 ms.author: casoper
-ms.date: 08/07/2018
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: azure/devops/deploy-to-app-service
 ---
 # Deploy an app to App Service
 
-[Azure App Service](https://docs.microsoft.com/azure/app-service/) is Azure's web hosting platform. Deploying a web app to Azure App Service can be done manually or by an automated process. This section of the guide discusses deployment methods that can be triggered manually or by script using the command line, or triggered manually using Visual Studio.
+[Azure App Service](/azure/app-service/) is Azure's web hosting platform. Deploying a web app to Azure App Service can be done manually or by an automated process. This section of the guide discusses deployment methods that can be triggered manually or by script using the command line, or triggered manually using Visual Studio.
 
 In this section, you'll accomplish the following tasks:
 
@@ -64,7 +65,7 @@ From a command shell, download the code, build the project, and run it as follow
 
 ## Create the Azure App Service Web App
 
-To deploy the app, you'll need to create an App Service [Web App](https://docs.microsoft.com/azure/app-service/app-service-web-overview). After creation of the Web App, you'll deploy to it from your local machine using Git.
+To deploy the app, you'll need to create an App Service [Web App](/azure/app-service/app-service-web-overview). After creation of the Web App, you'll deploy to it from your local machine using Git.
 
 1. Sign in to the [Azure Cloud Shell](https://shell.azure.com/bash). Note: When you sign in for the first time, Cloud Shell prompts to create a storage account for configuration files. Accept the defaults or provide a unique name.
 
@@ -82,7 +83,7 @@ To deploy the app, you'll need to create an App Service [Web App](https://docs.m
     az group create --location centralus --name AzureTutorial
     ```
 
-    The `az` command invokes the [Azure CLI](https://docs.microsoft.com/cli/azure/). The CLI can be run locally, but using it in the Cloud Shell saves time and configuration.
+    The `az` command invokes the [Azure CLI](/cli/azure/). The CLI can be run locally, but using it in the Cloud Shell saves time and configuration.
 
     c. Create an App Service plan in the S1 tier. An App Service plan is a grouping of web apps that share the same pricing tier. The S1 tier isn't free, but it's required for the staging slots feature.
 
@@ -232,7 +233,7 @@ In the next section, you'll learn how to build a DevOps pipeline with Azure Pipe
 
 ## Additional reading
 
-* [Web Apps overview](https://docs.microsoft.com/azure/app-service/app-service-web-overview)
-* [Build a .NET Core and SQL Database web app in Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
-* [Configure deployment credentials for Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-deployment-credentials)
-* [Set up staging environments in Azure App Service](https://docs.microsoft.com/azure/app-service/web-sites-staged-publishing)
+* [Web Apps overview](/azure/app-service/app-service-web-overview)
+* [Build a .NET Core and SQL Database web app in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
+* [Configure deployment credentials for Azure App Service](/azure/app-service/app-service-deployment-credentials)
+* [Set up staging environments in Azure App Service](/azure/app-service/web-sites-staged-publishing)

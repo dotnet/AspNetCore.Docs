@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2018
+ms.date: 11/28/2018
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -18,7 +18,7 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 * Hosted service that activates a scoped service. The scoped service can use dependency injection.
 * Queued background tasks that run sequentially.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample app is provided in two versions:
 
@@ -33,11 +33,25 @@ Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapacka
 
 Hosted services implement the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. The interface defines two methods for objects that are managed by the host:
 
-* [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) - `StartAsync` contains the logic to start the background task. When using the [Web Host](xref:fundamentals/host/web-host), `StartAsync` is called after the server has started and [IApplicationLifetime.ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) is triggered. When using the [Generic Host](xref:fundamentals/host/generic-host), `StartAsync` is called before `ApplicationStarted` is triggered.
+* [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) &ndash; `StartAsync` contains the logic to start the background task. When using the [Web Host](xref:fundamentals/host/web-host), `StartAsync` is called after the server has started and [IApplicationLifetime.ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) is triggered. When using the [Generic Host](xref:fundamentals/host/generic-host), `StartAsync` is called before `ApplicationStarted` is triggered.
 
-* [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) - Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task and dispose of any unmanaged resources. If the app shuts down unexpectedly (for example, the app's process fails), `StopAsync` might not be called.
+* [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) &ndash; Triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task. Implement <xref:System.IDisposable> and [finalizers (destructors)](/dotnet/csharp/programming-guide/classes-and-structs/destructors) to dispose of any unmanaged resources.
 
-The hosted service is activated once at app startup and gracefully shutdown at app shutdown. When <xref:System.IDisposable> is implemented, resources can be disposed when the service container is disposed. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
+  The cancellation token has a default five second timeout to indicate that the shutdown process should no longer be graceful. When cancellation is requested on the token:
+
+  * Any remaining background operations that the app is performing should be aborted.
+  * Any methods called in `StopAsync` should return promptly.
+
+  However, tasks aren't abandoned after cancellation is requested&mdash;the caller awaits all tasks to complete.
+
+  If the app shuts down unexpectedly (for example, the app's process fails), `StopAsync` might not be called. Therefore, any methods called or operations conducted in `StopAsync` might not occur.
+
+  To extend the default five second shutdown timeout, set:
+
+  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> when using the Generic Host. For more information, see <xref:fundamentals/host/generic-host#shutdown-timeout>.
+  * Shutdown timeout host configuration setting when using the Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.
+
+The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
 ## Timed background tasks
 

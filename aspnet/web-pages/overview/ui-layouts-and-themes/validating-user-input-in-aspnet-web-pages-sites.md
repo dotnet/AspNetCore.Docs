@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites
 title: "Validating User Input in ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This article discusses how to validate information you get from users &mdash; that is, to make sure that users enter valid information in HTML forms in an AS..."
 ms.author: riande
 ms.date: 02/20/2014

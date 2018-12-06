@@ -24,7 +24,7 @@ This topic assumes that you have a basic understanding of Razor Pages apps and u
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Unit testing C# in .NET Core using dotnet test and xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
@@ -51,7 +51,7 @@ The message app is a simple Razor Pages message system with the following charac
 
 &#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.github.io/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
-Although the app doesn't use the [repository pattern](xref:fundamentals/repository-pattern) and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design), <xref:fundamentals/repository-pattern>, and [Test controller logic](/aspnet/core/mvc/controllers/testing) (the sample implements the repository pattern).
+Although the app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic](/aspnet/core/mvc/controllers/testing) (the sample implements the repository pattern).
 
 ## Test app organization
 

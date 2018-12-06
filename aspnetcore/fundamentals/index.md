@@ -4,18 +4,23 @@ author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/20/2018
+ms.date: 12/01/2018
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
 
-An ASP.NET Core app is a console app that creates a web server in its `Main` method:
+An ASP.NET Core app is a console app that creates a web server in its `Program.Main` method. The `Main` method is the app's *managed entry point*:
 
 ::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](index/snapshots/2.x/Program.cs)]
 
-The `Main` method invokes [WebHost.CreateDefaultBuilder](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*), which follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern) to create a web host. The builder has methods that define the web server (for example, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>) and the startup class (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on IIS, if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
+The .NET Core Host:
+
+* Loads the [.NET Core runtime](https://github.com/dotnet/coreclr).
+* Uses the first command-line argument as the path to the managed binary that contains the entry point (`Main`) and begins code execution.
+
+The `Main` method invokes [WebHost.CreateDefaultBuilder](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*), which follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern) to create a web host. The builder has methods that define a web server (for example, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>) and the startup class (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host attempts to run on [Internet Information Services (IIS)](https://www.iis.net/), if available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the [Startup](#startup) section.
 
 <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>, the return type of the `WebHost.CreateDefaultBuilder` invocation, provides many optional methods. Some of these methods include `UseHttpSys` for hosting the app in HTTP.sys and <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseContentRoot*> for specifying the root content directory. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder.Build*> and <xref:Microsoft.AspNetCore.Hosting.WebHostExtensions.Run*> methods build the <xref:Microsoft.AspNetCore.Hosting.IWebHost> object that hosts the app and begins listening for HTTP requests.
 
@@ -24,6 +29,11 @@ The `Main` method invokes [WebHost.CreateDefaultBuilder](xref:Microsoft.AspNetCo
 ::: moniker range="< aspnetcore-2.0"
 
 [!code-csharp[](index/snapshots/1.x/Program.cs)]
+
+The .NET Core Host:
+
+* Loads the [.NET Core runtime](https://github.com/dotnet/coreclr).
+* Uses the first command-line argument as the path to the managed binary that contains the entry point (`Main`) and begins code execution.
 
 The `Main` method uses <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>, which follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern) to create a web app host. The builder has methods that define the web server (for example, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>) and the startup class (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is used. Other web servers, such as [WebListener](xref:fundamentals/servers/weblistener), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
@@ -69,9 +79,11 @@ For more information, see <xref:fundamentals/startup>.
 
 The content root is the base path to any content used by the app, such as [Razor Pages](xref:razor-pages/index), MVC views, and static assets. By default, the content root is the same location as the app base path for the executable hosting the app.
 
-## Web root
+## Web root (webroot)
 
-The web root of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files.
+The webroot of an app is the directory in the project containing public, static resources, such as CSS, JavaScript, and image files. By default, *wwwroot* is the webroot.
+
+For Razor (*.cshtml*) files, the tilde-slash  `~/` points to the webroot. Paths beginning with `~/` are referred to as virtual paths.
 
 ## Dependency injection (services)
 
@@ -113,7 +125,50 @@ For more information, see <xref:fundamentals/host/index>.
 
 ## Servers
 
-The ASP.NET Core hosting model doesn't directly listen for requests. The hosting model relies on an HTTP server implementation to forward the request to the app. The forwarded request is wrapped as a set of feature objects that can be accessed through interfaces. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is commonly run behind a production web server, such as [IIS](https://www.iis.net/) or [Nginx](http://nginx.org) in a reverse proxy configuration. Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+The ASP.NET Core hosting model doesn't directly listen for requests. The hosting model relies on an HTTP server implementation to forward the request to the app.
+
+::: moniker range=">= aspnetcore-2.2"
+
+# [Windows](#tab/windows)
+
+ASP.NET Core provides the following server implementations:
+
+* [Kestrel](xref:fundamentals/servers/kestrel) server is a managed, cross-platform web server. Kestrel is often run in a reverse proxy configuration using [IIS](https://www.iis.net/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+* IIS HTTP Server (`IISHttpServer`) is an [IIS in-process server](xref:fundamentals/servers/aspnet-core-module#in-process-hosting-model).
+* [HTTP.sys](xref:fundamentals/servers/httpsys) server is a web server for ASP.NET Core on Windows.
+
+# [macOS](#tab/macos)
+
+ASP.NET Core uses the [Kestrel](xref:fundamentals/servers/kestrel) server implementation. Kestrel is a managed, cross-platform web server. Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+
+# [Linux](#tab/linux)
+
+ASP.NET Core uses the [Kestrel](xref:fundamentals/servers/kestrel) server implementation. Kestrel is a managed, cross-platform web server. Kestrel is often run in a reverse proxy configuration with [Nginx](http://nginx.org) or [Apache](https://httpd.apache.org/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+
+---
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+# [Windows](#tab/windows)
+
+ASP.NET Core provides the following server implementations:
+
+* [Kestrel](xref:fundamentals/servers/kestrel) server is a managed, cross-platform web server. Kestrel is often run in a reverse proxy configuration using [IIS](https://www.iis.net/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+* [HTTP.sys](xref:fundamentals/servers/httpsys) server is a web server for ASP.NET Core on Windows.
+
+# [macOS](#tab/macos)
+
+ASP.NET Core uses the [Kestrel](xref:fundamentals/servers/kestrel) server implementation. Kestrel is a managed, cross-platform web server. Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+
+# [Linux](#tab/linux)
+
+ASP.NET Core uses the [Kestrel](xref:fundamentals/servers/kestrel) server implementation. Kestrel is a managed, cross-platform web server. Kestrel is often run in a reverse proxy configuration with [Nginx](http://nginx.org) or [Apache](https://httpd.apache.org/). Kestrel can also be run as a public-facing edge server exposed directly to the Internet in ASP.NET Core 2.0 or later.
+
+---
+
+::: moniker-end
 
 For more information, see <xref:fundamentals/servers/index>.
 
@@ -141,36 +196,6 @@ ASP.NET Core offers scenarios for routing of app requests to route handlers.
 
 For more information, see <xref:fundamentals/routing>.
 
-## File Providers
-
-ASP.NET Core abstracts file system access through the use of File Providers, which offers a common interface for working with files across platforms.
-
-For more information, see <xref:fundamentals/file-providers>.
-
-## Static files
-
-Static Files Middleware serves static files, such as HTML, CSS, image, and JavaScript files.
-
-For more information, see <xref:fundamentals/static-files>.
-
-## Session and app state
-
-ASP.NET Core offers several approaches to preserve session and app state while a user browses a web app.
-
-For more information, see <xref:fundamentals/app-state>.
-
-## Globalization and localization
-
-Creating a multilingual website with ASP.NET Core allows your site to reach a wider audience. ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
-
-For more information, see <xref:fundamentals/localization>.
-
-## Request features
-
-Web server implementation details related to HTTP requests and responses are defined in interfaces. These interfaces are used by server implementations and middleware to create and modify the app's hosting pipeline.
-
-For more information, see <xref:fundamentals/request-features>.
-
 ## Background tasks
 
 Background tasks are implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface.
@@ -182,43 +207,3 @@ For more information, see <xref:fundamentals/host/hosted-services>.
 `HttpContext` is automatically available when processing requests with Razor Pages and MVC. In circumstances where `HttpContext` isn't readily available, you can access the `HttpContext` through the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface and its default implementation, <xref:Microsoft.AspNetCore.Http.HttpContextAccessor>.
 
 For more information, see <xref:fundamentals/httpcontext>.
-
-## WebSockets
-
-[WebSocket](https://wikipedia.org/wiki/WebSocket) is a protocol that enables two-way persistent communication channels over TCP connections. It's used for apps such as chat, stock tickers, games, and anywhere you desire real-time functionality in a web app. ASP.NET Core supports web socket scenarios.
-
-For more information, see <xref:fundamentals/websockets>.
-
-::: moniker range=">= aspnetcore-2.1"
-
-## Microsoft.AspNetCore.App metapackage
-
-The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) metapackage simplifies package management.
-
-For more information, see <xref:fundamentals/metapackage-app>.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-## Microsoft.AspNetCore.All metapackage
-
-The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) metapackage for ASP.NET Core includes:
-
-* All supported packages by the ASP.NET Core team.
-* All supported packages by Entity Framework Core.
-* Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core.
-
-For more information, see <xref:fundamentals/metapackage>.
-
-::: moniker-end
-
-## .NET Core vs. .NET Framework runtime
-
-An ASP.NET Core app can target the .NET Core or .NET Framework runtime.
-
-For more information, see [Choosing between .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
-
-## Choose between ASP.NET Core and ASP.NET
-
-For more information on choosing between ASP.NET Core and ASP.NET, see <xref:fundamentals/choose-between-aspnet-and-aspnetcore>.

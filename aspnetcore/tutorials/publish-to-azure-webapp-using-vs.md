@@ -3,7 +3,8 @@ title: Publish an ASP.NET Core app to Azure with Visual Studio
 author: rick-anderson
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 ms.author: riande
-ms.date: 12/16/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: tutorials/publish-to-azure-webapp-using-vs
 ---
 # Publish an ASP.NET Core app to Azure with Visual Studio
@@ -14,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https
 
 See [Publish to Azure from Visual Studio for Mac](https://blog.xamarin.com/publish-azure-visual-studio-mac/) if you are working on macOS.
 
-To troubleshoot an App Service deployment issue, see [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot).
+To troubleshoot an App Service deployment issue, see <xref:host-and-deploy/azure-apps/troubleshoot>.
 
 ## Set up
 
@@ -120,7 +121,7 @@ Visual Studio returns to the **Create App Service** dialog.
 
 ![Configure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/conf_final.png)
 
-Visual Studio creates the Web app and SQL Server on Azure. This step can take a few minutes. For information on the resources created, see [Additonal resources](#additonal-resources).
+Visual Studio creates the Web app and SQL Server on Azure. This step can take a few minutes. For information on the resources created, see [Additional resources](#additonal-resources).
 
 When deployment completes, select **Settings**:
 
@@ -135,7 +136,7 @@ On the **Settings** page of the **Publish** dialog:
 
 ![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pubs.png)
 
-Click **Publish**. Visual Studio publishs your app to Azure. When the deployment completes, the app is opened in a browser.
+Click **Publish**. Visual Studio publishes your app to Azure. When the deployment completes, the app is opened in a browser.
 
 ### Test your app in Azure
 
@@ -174,11 +175,11 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 ### Next steps
 
-* [Continuous Deployment to Azure with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
+* <xref:host-and-deploy/azure-apps/azure-continuous-deployment>
 
 ## Additonal resources
 
-* [Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-web-overview)
-* [Azure resource groups](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)
-* [Azure SQL Database](https://docs.microsoft.com/azure/sql-database/)
-* [Troubleshoot ASP.NET Core on Azure App Service](xref:host-and-deploy/azure-apps/troubleshoot)
+* [Azure App Service](/azure/app-service/app-service-web-overview)
+* [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
+* [Azure SQL Database](/azure/sql-database/)
+* <xref:host-and-deploy/azure-apps/troubleshoot>

@@ -247,7 +247,8 @@ This filter can be applied to classes or methods using the `[SampleActionFilter]
 
 ## Authorization filters
 
-*Authorization filters:
+*Authorization filters*:
+
 * Control access to action methods.
 * Are the first filters to be executed within the filter pipeline. 
 * Have a before method, but no after method. 
@@ -256,7 +257,7 @@ You should only write a custom authorization filter if you are writing your own 
 
 You shouldn't throw exceptions within authorization filters, since nothing will handle the exception (exception filters won't handle them). Consider issuing a challenge when an exception occurs.
 
-Learn more about [Authorization](../../security/authorization/index.md).
+Learn more about [Authorization](xref:security/authorization/introduction).
 
 ## Resource filters
 

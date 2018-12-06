@@ -552,6 +552,10 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 > [!NOTE]
 > What distinguishes the two types of routing systems is the process applied after a URL matches a route template. In conventional routing, the route values from the match are used to choose the action and controller from a lookup table of all conventional routed actions. In attribute routing, each template is already associated with an action, and no further lookup is needed.
 
+## Complex segments
+
+Complex segments (for example, `[Route("/dog{token}cat")]`), are processed by matching up literals from right to left in a non-greedy way. See [the source code](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L296) for a description. For more information, see [this issue](https://github.com/aspnet/Docs/issues/8197).
+
 <a name="routing-url-gen-ref-label"></a>
 
 ## URL Generation

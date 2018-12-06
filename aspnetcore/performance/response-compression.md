@@ -5,20 +5,20 @@ description: Learn about response compression and how to use Response Compressio
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/21/2018
+ms.date: 12/01/2018
 uid: performance/response-compression
 ---
 # Response compression in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
 
 ## When to use Response Compression Middleware
 
-Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys server](xref:fundamentals/servers/httpsys) and [Kestrel](xref:fundamentals/servers/kestrel) don't currently offer built-in compression support.
+Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys server](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
 
 Use Response Compression Middleware when you're:
 
@@ -27,8 +27,8 @@ Use Response Compression Middleware when you're:
   * [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Nginx Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting directly on:
-  * [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener))
-  * [Kestrel](xref:fundamentals/servers/kestrel)
+  * [HTTP.sys](xref:fundamentals/servers/httpsys) server (formerly called [WebListener](xref:fundamentals/servers/weblistener))
+  * [Kestrel](xref:fundamentals/servers/kestrel) server
 
 ## Response compression
 
@@ -426,7 +426,7 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 
 ## Middleware issue when behind an Nginx reverse proxy
 
-When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
+When a request is proxied by Nginx, the `Accept-Encoding` header is removed. Removal of the `Accept-Encoding` header prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (aspnet/BasicMiddleware \#123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## Working with IIS dynamic compression
 
