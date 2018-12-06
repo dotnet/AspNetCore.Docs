@@ -7,7 +7,6 @@ ms.date: 03/04/2017
 uid: tutorials/first-mvc-app-mac/adding-view
 ---
 
-[!INCLUDE [adding-view](../../includes/mvc-intro/adding_view1.md)]
 
 ## Add a view 
 
@@ -22,7 +21,6 @@ uid: tutorials/first-mvc-app-mac/adding-view
 
 ![Add New Item dialog](adding-view/_static/add_view.png)
 
-[!INCLUDE [adding-view22](../../includes/mvc-intro/adding_view2.md)]
 
 > [!div class="step-by-step"]
 > [Previous](adding-controller.md)
