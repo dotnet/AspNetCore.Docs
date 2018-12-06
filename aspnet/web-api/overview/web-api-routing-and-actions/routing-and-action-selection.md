@@ -56,7 +56,7 @@ If you provide defaults, the route will match a URI that is missing those segmen
 
 [!code-csharp[Main](routing-and-action-selection/samples/sample4.cs)]
 
-The URI "`http://localhost/api/products`" matches this route. The "{category}" segment is assigned the default value "all".
+The URI "`http://localhost/api/products/all`" matches this route. The "{category}" segment is assigned the default value "all".
 
 ### Route Dictionary
 
