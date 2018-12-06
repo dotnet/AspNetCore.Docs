@@ -86,8 +86,14 @@ Select the menu links (**MvcMovie**, **Home**, and **Privacy**). Each page shows
 * In the title element, change `MvcMovie` to `Movie App`.
 * Change the anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml
-?highlight=6,24)]
+
+xyz
+
+[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24)]
+
+www
+
+[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24)]
 
 In the preceding markup, the `asp-area` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/built-in/anchor-tag-helper) was omitted because this app is not using [Areas](xref:mvc/controllers/areas).
 
@@ -100,10 +106,9 @@ Save your changes and select the **Privacy** link. Notice how the title on the b
 
 ![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 
-Select the **Contact** link and notice that the title and anchor text also display **Movie App**. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
+Select the **Home** link and notice that the title and anchor text also display **Movie App**. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
 
 Examine the *Views/_ViewStart.cshtml* file:
-
 
 ```HTML
 @{
