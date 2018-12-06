@@ -84,7 +84,7 @@ Select the menu links (**MvcMovie**, **Home**, and **Privacy**). Each page shows
 ## Change the title and menu link in the layout file
 
 * In the title element, change `MvcMovie` to `Movie App`.
-* Change the anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to <a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
+* Change the anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml
 ?highlight=6,24)]

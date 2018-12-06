@@ -8,7 +8,7 @@ uid: tutorials/first-mvc-app-mac/adding-view
 ---
 
 
-## Add a view 
+# Add a view 
 
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 * Right click on the *Views/HelloWorld* folder, and then **Add > New File**.

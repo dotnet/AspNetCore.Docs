@@ -7,6 +7,7 @@ ms.date: 03/30/2017
 uid: tutorials/first-mvc-app-xplat/adding-view
 ---
 
+# help
 
 Add an `Index` view for the `HelloWorldController`.
 
