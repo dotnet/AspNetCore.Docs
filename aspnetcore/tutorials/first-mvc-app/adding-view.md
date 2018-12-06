@@ -11,7 +11,7 @@ uid: tutorials/first-mvc-app/adding-view
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this section you modify the `HelloWorldController` class to use [Razor](xref:core/mvc/views/razor) view files to cleanly encapsulate the process of generating HTML responses to a client.
+In this section you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files to cleanly encapsulate the process of generating HTML responses to a client.
 
 You create a view template file using Razor. Razor-based view templates have a *.cshtml* file extension. They provide an elegant way to create HTML output with C#.
 
@@ -95,7 +95,7 @@ www
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24)]
 
-In the preceding markup, the `asp-area` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/built-in/anchor-tag-helper) was omitted because this app is not using [Areas](xref:mvc/controllers/areas).
+In the preceding markup, the `asp-area` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) was omitted because this app is not using [Areas](xref:mvc/controllers/areas).
 
 <!-- Routing has changed in 2.2, it's going to the last route.
 >[!WARNING]
