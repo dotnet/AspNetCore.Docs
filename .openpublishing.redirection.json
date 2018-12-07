@@ -147,7 +147,7 @@
       }, 
       {   
           "source_path": "aspnetcore/tutorials/publish-to-azure-webapp-using-cli.md", 
-          "redirect_url": "/azure/app-service/app-service-web-get-started-dotnet", 
+          "redirect_url": "/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb", 
           "redirect_document_id": false 
       }, 
       {   

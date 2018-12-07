@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 09/20/2018
 uid: tutorials/web-api-help-pages-using-swagger
 ---
-# ASP.NET Core Web API help pages with Swagger / OpenAPI
+# ASP.NET Core web API help pages with Swagger / OpenAPI
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](http://rsuter.com)
 
