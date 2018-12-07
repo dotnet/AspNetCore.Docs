@@ -55,7 +55,6 @@ namespace ContactManager.Pages.Contacts
 
             // Fetch Contact from DB to get OwnerID.
             var contact = await Context
-                .Contact.AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ContactId == id);
 
             if (contact == null)
@@ -72,8 +71,6 @@ namespace ContactManager.Pages.Contacts
             }
 
             Contact.OwnerID = contact.OwnerID;
-
-            Context.Attach(Contact).State = EntityState.Modified;
 
             if (contact.Status == ContactStatus.Approved)
             {
