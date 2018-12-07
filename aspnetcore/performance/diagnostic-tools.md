@@ -15,7 +15,7 @@ This topic lists tools for diagnosing performance issues in ASP.NET Core.
 
 ## Visual Studio Diagnostic Tools
 
-The [profiling and diagnostic tools](https://docs.microsoft.com/en-us/visualstudio/profiling) built into Visual Studio 2017 are a great place to start investigating performance issues since they're powerful and easy to use from the Visual Studio development environment. The tooling allows analysis of CPU usage, memory usage, and performance events in ASP.NET Core applications.
+The [profiling and diagnostic tools](https://docs.microsoft.com/visualstudio/profiling) built into Visual Studio 2017 are a great place to start investigating performance issues since they're powerful and easy to use from the Visual Studio development environment. The tooling allows analysis of CPU usage, memory usage, and performance events in ASP.NET Core applications.
 
 More information is available in [Visual Studio documentation](https://docs.microsoft.com/visualstudio/profiling/profiling-overview).
 
@@ -25,7 +25,7 @@ More information is available in [Visual Studio documentation](https://docs.micr
 
 When there's a performance issue in production (or even in development or staging environments), Application Insights data is the first place to look to understand what went wrong. Although Application Insights works great in Azure, it can also be used to gather telemetry while running locally from [Visual Studio](https://docs.microsoft.com/azure/application-insights/app-insights-visual-studio) or in other hosting environments. 
 
-More information on using Application Insights with ASP.NET Core apps is available in [Application Insights documentation](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net-core).
+More information on using Application Insights with ASP.NET Core apps is available in [Application Insights documentation](https://docs.microsoft.com/azure/application-insights/app-insights-asp-net-core).
 
 ## PerfView
 
