@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 12/07/2018
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -167,9 +167,26 @@ The `SendAsync` helper extension methods (*Helpers/HttpClientExtensions.cs*) and
 
 * `GetDocumentAsync` &ndash; Receives the [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) and returns an `IHtmlDocument`. `GetDocumentAsync` uses a factory that prepares a *virtual response* based on the original `HttpResponseMessage`. For more information, see the [AngleSharp documentation](https://github.com/AngleSharp/AngleSharp#documentation).
 * `SendAsync` extension methods for the `HttpClient` compose an [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) and call [SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) to submit requests to the SUT. Overloads for `SendAsync` accept the HTML form (`IHtmlFormElement`) and the following:
-  - Submit button of the form (`IHtmlElement`)
-  - Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
-  - Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)
+  * Submit button of the form (`IHtmlElement`)
+  * Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
+  * Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)
+
+You can use AngleSharp to parse SUT responses and make assertions about content returned to the client.
+
+The `Post_AddMessageHandler_ReturnsRedirectToRootAndAddsMessage` test in the sample app:
+
+* Loads the Index page of the SUT.
+* Adds a test message with `SendAsync`.
+* Makes second request for the Index page in order to assert that the test message is present in the returned content. If the test message appears in the returned content, the test message must be present in the database. A separate request is made because the client for these tests is configured not to follow redirects, which is the response of `SendAsync`. See the highlighted lines in the following code from the sample app.
+* Asserts the following:
+  * The first request for the Index page loads successfully (`HttpStatusCode.OK`).
+  * The response status code for adding the test message is a redirect (`HttpStatusCode.Redirect`).
+  * The response location for the redirect is the Index page (`"/"`);
+  * The response from the second Index page request has a list of messages (list items in an unordered list) that includes the test message added by the test. See the highlighted lines in the following code from the sample app.
+
+*IntegrationTests/IndexPageTests.cs*:
+
+[!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet6&highlight=19-24,30-31)]
 
 > [!NOTE]
 > [AngleSharp](https://anglesharp.github.io/) is a third-party parsing library used for demonstration purposes in this topic and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](http://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly.

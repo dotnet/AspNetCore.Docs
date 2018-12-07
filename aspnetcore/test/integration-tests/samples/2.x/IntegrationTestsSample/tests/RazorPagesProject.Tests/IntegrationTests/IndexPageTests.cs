@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,10 +17,12 @@ using RazorPagesProject.Tests.Helpers;
 namespace RazorPagesProject.Tests
 {
     #region snippet1
-    public class IndexPageTests : IClassFixture<CustomWebApplicationFactory<RazorPagesProject.Startup>>
+    public class IndexPageTests : 
+        IClassFixture<CustomWebApplicationFactory<RazorPagesProject.Startup>>
     {
         private readonly HttpClient _client;
-        private readonly CustomWebApplicationFactory<RazorPagesProject.Startup> _factory;
+        private readonly CustomWebApplicationFactory<RazorPagesProject.Startup> 
+            _factory;
 
         public IndexPageTests(
             CustomWebApplicationFactory<RazorPagesProject.Startup> factory)
@@ -103,8 +106,9 @@ namespace RazorPagesProject.Tests
         }
         #endregion
 
+        #region snippet6
         [Fact]
-        public async Task Post_AddMessageHandler_ReturnsRedirectToRoot()
+        public async Task Post_AddMessageHandler_ReturnsRedirectToRootAndAddsMessage()
         {
             // Arrange
             var defaultPage = await _client.GetAsync("/");
@@ -119,11 +123,23 @@ namespace RazorPagesProject.Tests
                     ["Message.Text"] = messageText
                 });
 
+            // Make another request to the Index page because the client
+            // for these tests is configured not to follow redirects.
+            defaultPage = await _client.GetAsync("/");
+            content = await HtmlHelpers.GetDocumentAsync(defaultPage);
+            var messageListItems = 
+                content.QuerySelector("form[id='messages']")
+                       .QuerySelector("ul")
+                       .QuerySelectorAll("li");
+
             // Assert
             Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
             Assert.Equal("/", response.Headers.Location.OriginalString);
+            Assert.Contains(messageListItems, 
+                m => m.InnerHtml.Contains("Test message to add."));
         }
+        #endregion
 
         [Fact]
         public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMissingMessageText()
