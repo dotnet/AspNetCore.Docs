@@ -21,11 +21,11 @@ More information is available in [Visual Studio documentation](https://docs.micr
 
 ## Application Insights
 
-[Azure Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) can provide in-depth performance data for your application. Application Insights automatically collects data on response rates, failure rates, dependency response times, and more. You can also log custom events and metrics specific to your app. 
+[Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) can provide in-depth performance data for your application. Application Insights automatically collects data on response rates, failure rates, dependency response times, and more. You can also log custom events and metrics specific to your app. 
 
 When there's a performance issue in production (or even in development or staging environments), Application Insights data is the first place to look to understand what went wrong. Although Application Insights works great in Azure, it can also be used to gather telemetry while running locally from [Visual Studio](https://docs.microsoft.com/azure/application-insights/app-insights-visual-studio) or in other hosting environments. 
 
-More information on using Application Insights with ASP.NET Core apps is available in [Azure Application Insights documentation](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net-core).
+More information on using Application Insights with ASP.NET Core apps is available in [Application Insights documentation](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net-core).
 
 ## PerfView
 
@@ -37,6 +37,6 @@ You can learn more about PerfView and how to get started with [PerfView video tu
 
 While PerfView is a useful performance analysis tool for .NET scenarios, it only runs on Windows so you can't use it to collect traces from ASP.NET Core apps running in Linux environments.
 
-[PerfCollect](https://github.com/dotnet/coreclr/blob/master/Documentation/project-docs/linux-performance-tracing.md) is a bash script that uses native Linux profiling tools ([Perf](https://perf.wiki.kernel.org/index.php/Main_Page) and [LTTng](https://lttng.org/)) to collect perf traces on Linux that can be analyzed by PerfView. PerfCollect is useful when performance problems show up in Linux environments where PerfView can't be used directly. Instead, PerfCollect can collect traces that are then analyzed on a Windows machine using PerfView.
+[PerfCollect](https://github.com/dotnet/coreclr/blob/master/Documentation/project-docs/linux-performance-tracing.md) is a bash script that uses native Linux profiling tools ([Perf](https://perf.wiki.kernel.org/index.php/Main_Page) and [LTTng](https://lttng.org/)) to collect traces on Linux that can be analyzed by PerfView. PerfCollect is useful when performance problems show up in Linux environments where PerfView can't be used directly. Instead, PerfCollect can collect traces from .NET Core apps that are then analyzed on a Windows computer using PerfView.
 
 More information about how to install and get started with PerfCollect is available [on GitHub](https://github.com/dotnet/coreclr/blob/master/Documentation/project-docs/linux-performance-tracing.md).
