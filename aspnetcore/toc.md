@@ -56,7 +56,7 @@
 # Web apps
 ## Razor Pages
 ### [Overview](xref:razor-pages/index)
-### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
+### [Razor Pages tutorial](xref:tutorials/razor-pages/index)
 #### [Get started](xref:tutorials/razor-pages/razor-pages-start)
 #### [Add a model](xref:tutorials/razor-pages/model)
 #### [Scaffolding](xref:tutorials/razor-pages/page)
@@ -413,7 +413,7 @@
 ## [Change tokens](xref:fundamentals/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
 ## [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
-## [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
+## [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
