@@ -402,7 +402,7 @@
 ### [Distributed caching](xref:performance/caching/distributed)
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
-## [Diagnostic Tools](xref:performance/diagnostic-tools.md)
+## [Diagnostic Tools](xref:performance/diagnostic-tools)
 
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
