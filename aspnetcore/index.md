@@ -4,7 +4,7 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/16/2018
+ms.date: 11/17/2018
 uid: index
 ---
 # Introduction to ASP.NET Core
