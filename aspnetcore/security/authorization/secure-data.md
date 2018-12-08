@@ -3,7 +3,7 @@ title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
 description: Learn how to create a Razor Pages app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
 ms.author: riande
-ms.date: 7/24/2018
+ms.date: 12/07/2018
 ms.custom: seodec18
 uid: security/authorization/secure-data
 ---
@@ -277,25 +277,32 @@ See [this issue](https://github.com/aspnet/Docs/issues/8502) for information on:
 
 ## Test the completed app
 
+If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
+
+* Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol. For example, `Passw0rd!` meets the strong password requirements.
+* Execute the following command from the project's folder, where `<PW>` is the password:
+
+  ```console
+  dotnet user-secrets set SeedUserPW <PW>
+  ```
+
 If the app has contacts:
 
-* Delete all the records in the `Contact` table.
+* Delete all of the records in the `Contact` table.
 * Restart the app to seed the database.
 
-Register a user for browsing the contacts.
+An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate sessions). In one browser, register a new user (for example, `test@example.com`). Sign in to each browser with a different user. Verify the following operations:
 
-An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user (for example, `test@example.com`). Sign in to each browser with a different user. Verify the following operations:
-
-* Registered users can view all the approved contact data.
+* Registered users can view all of the approved contact data.
 * Registered users can edit/delete their own data.
-* Managers can approve or reject contact data. The `Details` view shows **Approve** and **Reject** buttons.
-* Administrators can approve/reject and edit/delete any data.
+* Managers can approve/reject contact data. The `Details` view shows **Approve** and **Reject** buttons.
+* Administrators can approve/reject and edit/delete all data.
 
-| User| Options |
-| ------------ | ---------|
-| test@example.com | Can edit/delete own data |
-| manager@contoso.com | Can approve/reject and edit/delete own data |
-| admin@contoso.com | Can edit/delete and approve/reject all data|
+| User                | Seeded by the app | Options                                  |
+| ------------------- | :---------------: | ---------------------------------------- |
+| test@example.com    | No                | Edit/delete the own data.                |
+| manager@contoso.com | Yes               | Approve/reject and edit/delete own data. |
+| admin@contoso.com   | Yes               | Approve/reject and edit/delete all data. |
 
 Create a contact in the administrator's browser. Copy the URL for delete and edit from the administrator contact. Paste these links into the test user's browser to verify the test user can't perform these operations.
 
