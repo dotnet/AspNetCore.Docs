@@ -735,7 +735,7 @@ The Razor view engine performs case-sensitive lookups for views. However, the ac
 
 Developers are encouraged to match the casing of file and directory names to the casing of:
 
-    * Area, controller, and action names.
-    * Razor Pages.
+* Area, controller, and action names.
+* Razor Pages.
 
 Matching case ensures the deployments find their views regardless of the underlying file system.

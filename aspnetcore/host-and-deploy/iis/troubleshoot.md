@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2018
+ms.date: 12/06/2018
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -196,7 +196,7 @@ The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](x
       arguments=".\MyApp.dll"
       stdoutLogEnabled="false"
       stdoutLogFile=".\logs\stdout"
-      hostingModel="inprocess">
+      hostingModel="InProcess">
   <environmentVariables>
     <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Development" />
   </environmentVariables>

@@ -102,6 +102,12 @@ The *appsettings.json* file is updated with the connection string used to connec
 -->
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Install the scaffolding tool:
+
+  ```console
+   dotnet tool install --global dotnet-aspnet-codegenerator
+   ```
+
 * **For Windows**: Run the following command:
 
   ```console

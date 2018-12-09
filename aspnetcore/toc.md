@@ -6,20 +6,11 @@
 # [Get started](xref:getting-started)
 
 # Tutorials
-## [Create a web API](xref:tutorials/first-web-api)
+## Web APIs
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
-### Razor Pages
-#### [Introduction to Razor Pages](xref:razor-pages/index)
-
-#### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
-##### [Get started](xref:tutorials/razor-pages/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages/model)
-##### [Scaffolding](xref:tutorials/razor-pages/page)
-##### [Work with a DB](xref:tutorials/razor-pages/sql)
-##### [Update the pages](xref:tutorials/razor-pages/da1)
-##### [Add search](xref:tutorials/razor-pages/search)
-##### [Add a new field](xref:tutorials/razor-pages/new-field)
-##### [Add validation](xref:tutorials/razor-pages/validation)
+### [Razor Pages](xref:tutorials/razor-pages/index)
 
 ### MVC
 #### [With Visual Studio](xref:tutorials/first-mvc-app/index)
@@ -65,7 +56,7 @@
 # Web apps
 ## Razor Pages
 ### [Overview](xref:razor-pages/index)
-### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
+### [Razor Pages tutorial](xref:tutorials/razor-pages/index)
 #### [Get started](xref:tutorials/razor-pages/razor-pages-start)
 #### [Add a model](xref:tutorials/razor-pages/model)
 #### [Scaffolding](xref:tutorials/razor-pages/page)
@@ -165,7 +156,9 @@
 # Web APIs
 ## [Overview](xref:web-api/index)
 
-## [Create a web API](xref:tutorials/first-web-api)
+## Tutorials
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
@@ -420,7 +413,7 @@
 ## [Change tokens](xref:fundamentals/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
 ## [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
-## [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
+## [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)

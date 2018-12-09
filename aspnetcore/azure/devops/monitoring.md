@@ -1,9 +1,9 @@
 ---
-title: DevOps with ASP.NET Core and Azure | Monitor and debug
+title: Monitor and debug - DevOps with ASP.NET Core and Azure
 author: CamSoper
-description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
+description: Monitoring and debugging your code as part of a DevOps solution with ASP.NET Core and Azure
 ms.author: casoper
-ms.custom: mvc
+ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/monitor
 ---
@@ -29,7 +29,7 @@ App Service web apps are easily monitored in real time. The Azure portal renders
 
 1. The **Overview** tab displays useful "at-a-glance" information, including graphs displaying recent metrics.
 
-    ![Overview panel](./media/monitoring/overview.png)
+    ![Screenshot showing overview panel](./media/monitoring/overview.png)
 
     * **Http 5xx**: Count of server-side errors, usually exceptions in ASP.NET Core code.
     * **Data In**: Data ingress coming into your web app.
@@ -39,7 +39,7 @@ App Service web apps are easily monitored in real time. The Azure portal renders
 
     Several self-service tools for troubleshooting and optimization are also found on this page.
 
-    ![Self-service tools](./media/monitoring/wizards.png)
+    ![Screenshot showing self-service tools](./media/monitoring/wizards.png)
 
     * **Diagnose and solve problems** is a self-service troubleshooter.
     * **Application Insights** is for profiling performance and app behavior, and is discussed later in this section.
@@ -97,7 +97,7 @@ App and web server logs can be streamed in real time through the portal.
 1. Open the [Azure portal](https://portal.azure.com), and navigate to the *mywebapp\<unique_number\>* App Service.
 1. In the menu to the left, scroll down to the **Monitoring** section and select **Log stream**.
 
-    ![Log stream link](./media/monitoring/log-stream.png)
+    ![Screenshot showing log stream link](./media/monitoring/log-stream.png)
 
 Logs can also be [streamed via Azure CLI or Azure PowerShell](/azure/app-service/web-sites-enable-diagnostic-log#streamlogs), including through the Cloud Shell.
 

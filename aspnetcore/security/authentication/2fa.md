@@ -5,6 +5,7 @@ description: Learn how to set up two-factor authentication (2FA) with an ASP.NET
 monikerRange: '< aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/22/2018
+ms.custom: seodec18
 uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS in ASP.NET Core
@@ -97,7 +98,7 @@ Open the *Views/Manage/Index.cshtml* Razor view file and remove the comment char
 
 * Tap on your user name, which activates the `Index` action method in Manage controller. Then tap the phone number **Add** link.
 
-![Manage view](2fa/_static/login2fa2.png)
+![Manage view - tap the "add" link](2fa/_static/login2fa2.png)
 
 * Add a phone number that will receive the verification code, and tap **Send verification code**.
 
@@ -111,11 +112,11 @@ If you don't get a text message, see twilio log page.
 
 * The Manage view shows your phone number was added successfully.
 
-![Manage view](2fa/_static/login2fa5.png)
+![Manage view - phone number added successfully](2fa/_static/login2fa5.png)
 
 * Tap **Enable** to enable two-factor authentication.
 
-![Manage view](2fa/_static/login2fa6.png)
+![Manage view - enable two-factor authentication](2fa/_static/login2fa6.png)
 
 ### Test two-factor authentication
 
