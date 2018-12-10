@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/01/2018
+ms.date: 12/10/2018
 uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
@@ -17,8 +17,7 @@ An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients,
 
 ## Prerequisites
 
-* [.NET Core 2.1 SDK or later](https://www.microsoft.com/net/download/all)
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) version 15.7.3 or later with the **ASP.NET and web development** workload
+[!INCLUDE [net-core-prereqs-vs-2.2](../includes/net-core-prereqs-vs-2.2.md)]
 
 ## Review ASP.NET 4.x Web API project
 
@@ -28,13 +27,13 @@ In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
 
 [!code-csharp[](webapi/sample/ProductsApp/Global.asax.cs?highlight=14)]
 
-`WebApiConfig` is defined in the *App_Start* folder. It has just one static `Register` method:
+The `WebApiConfig` class is found in the *App_Start* folder. It has just one static `Register` method:
 
-[!code-csharp[](webapi/sample/ProductsApp/App_Start/WebApiConfig.cs?highlight=15-20)]
+[!code-csharp[](webapi/sample/ProductsApp/App_Start/WebApiConfig.cs)]
 
 This class configures [attribute routing](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table, which is used by ASP.NET Web API. In this case, ASP.NET 4.x Web API expects URLs to match the format `/api/{controller}/{id}`, with `{id}` being optional.
 
-The *ProductsApp* project includes one controller. The controller inherits from `ApiController` and exposes two methods:
+The *ProductsApp* project includes one controller. The controller inherits from `ApiController` and contains two actions:
 
 [!code-csharp[](webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=19,24)]
 
@@ -82,6 +81,12 @@ Fix the errors as follows:
 1. Delete `using System.Web.Http;`.
 1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`.
 
+Simplify the `GetProduct` action's `return` statement to the following:
+
+```csharp
+return product;
+```
+
 ## Configure routing
 
 Configure routing as follows:
@@ -96,11 +101,19 @@ Configure routing as follows:
     The preceding [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
     Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens reduce the number of magic strings in the project. The tokens also ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
+1. Set the project's compatibility mode to ASP.NET Core 2.2:
+
+    [code-csharp[](webapi/sample/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
+
+    The preceding change:
+
+    * Is required to use the `[ApiController]` attribute at the controller level.
+    * Opts in to potentially breaking behaviors introduced in ASP.NET Core 2.2.
 1. Enable HTTP Get requests to the `ProductController` actions:
     * Apply the [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
     * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
 
-After these changes and the removal of unused `using` statements, *ProductsController.cs* file looks like this:
+After the preceding changes and the removal of unused `using` statements, *ProductsController.cs* file looks like this:
 
 [!code-csharp[](webapi/sample/ProductsCore/Controllers/ProductsController.cs)]
 
@@ -141,3 +154,4 @@ To use the compatibility shim:
 
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
+* <xref:mvc/compatibility-version>
