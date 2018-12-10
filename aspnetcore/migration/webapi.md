@@ -27,7 +27,7 @@ In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
 
 [!code-csharp[](webapi/sample/ProductsApp/Global.asax.cs?highlight=14)]
 
-The `WebApiConfig` class is found in the *App_Start* folder. It has just one static `Register` method:
+The `WebApiConfig` class is found in the *App_Start* folder and has a static `Register` method:
 
 [!code-csharp[](webapi/sample/ProductsApp/App_Start/WebApiConfig.cs)]
 
