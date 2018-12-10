@@ -5,7 +5,7 @@ description: Discover how the Startup class in ASP.NET Core configures services 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/20/2018
+ms.date: 12/10/2018
 uid: mvc/compatibility-version
 ---
 # Compatibility version for ASP.NET Core MVC
