@@ -14,11 +14,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later. These potentially breaking behavior changes are generally in how the MVC subsystem behaves and how **your code** is called by the runtime. By opting in, you get the latest behavior, and the long-term behavior of ASP.NET Core.
 
-The following code sets the compatibility mode to ASP.NET Core 2.1:
+The following code sets the compatibility mode to ASP.NET Core 2.2:
 
 [!code-csharp[Main](compatibility-version/samples/2.x/CompatibilityVersionSample/Startup.cs?name=snippet1)]
 
-We recommend you test your app using the latest version (`CompatibilityVersion.Version_2_1`). We anticipate that most apps won't have breaking behavior changes using the latest version.
+We recommend you test your app using the latest version (`CompatibilityVersion.Version_2_2`). We anticipate that most apps won't have breaking behavior changes using the latest version.
 
 Apps that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking behavior changes introduced in the ASP.NET Core 2.1 MVC and later 2.x versions. This protection:
 
@@ -27,7 +27,7 @@ Apps that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are p
 
 The default compatibility for ASP.NET Core 2.1 and later 2.x apps that do **not** call `SetCompatibilityVersion` is 2.0 compatibility. That is, not calling `SetCompatibilityVersion` is the same as calling `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)`.
 
-The following code sets the compatibility mode to ASP.NET Core 2.1, except for the following behaviors:
+The following code sets the compatibility mode to ASP.NET Core 2.2, except for the following behaviors:
 
 * [AllowCombiningAuthorizeFilters](https://github.com/aspnet/Mvc/blob/master/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)
 * [InputFormatterExceptionPolicy](https://github.com/aspnet/Mvc/blob/master/src/Microsoft.AspNetCore.Mvc.Core/MvcOptions.cs)
