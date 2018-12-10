@@ -114,7 +114,7 @@ Select **Run > Start Without Debugging** to launch the app. Visual Studio starts
 
 ---
 
-* Select **Accept** to consent to tracking. This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+* Select **Accept** to consent to tracking. This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the European Union's [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
   ![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
 
@@ -124,19 +124,27 @@ Select **Run > Start Without Debugging** to launch the app. Visual Studio starts
 
 ## Examine the project files
 
-For a quick overview of project structure, the following table lists the main files and folders. For more information, see the [Additional resources](#additional-resources) section.
+Here's an overview of the main project folders and files that you'll work with in later tutorials.
 
-| File or folder              | Purpose |
-| ----------------- | ------------ |
-| *wwwroot* | Folder for static files, for example: HTML files, JavaScript files, CSS files.|
-| *Pages* | Folder for Razor pages. |
-| *Pages/Shared/_Layout.cshtml* | Configures UI elements common to all Razor pages, such as the navigation menu on the top and the header on the bottom of the window.|
-| *Pages/Index* | Razor page for the app's home page.|
-| *Pages/Error* | Razor page for displaying error information.|
-| *Pages/Privacy* |  Razor page for displaying the app's privacy policy.|
-| *appsettings.json* | Configuration data. |
-| *Program.cs* | Contains the entry point for the program.  |
-| *Startup.cs* | Configures the HTTP request pipeline and services for dependency injection.|
+### wwwroot folder
+
+Contains static files, such as HTML files, JavaScript files, and CSS files.
+
+### Pages folder
+
+The project is created with stubs for the home ("index") page, an error page, and a privacy policy page.
+
+Each page has a *.cshtml* and a *.cshtml.cs* file. The *.cshtml* file contains HTML markup with sections of C# code. The *.cshtml.cs* file contains C# code that handles page-related events.
+
+The *_Layout.cshtml* file in the *Pages/Shared* folder configures UI elements common to all pages. For example, this file sets up the navigation menu  the top of the page and the copyright notice at the bottom of the page.
+
+### Program.cs
+
+Contains the entry point for the program.
+
+### Startup.cs
+
+Configures the HTTP request pipeline and services for dependency injection.
 
 ## Additional resources
 
