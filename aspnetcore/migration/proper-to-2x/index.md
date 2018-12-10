@@ -60,7 +60,7 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 
 `Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), several extension methods are used to configure the pipeline with support for:
 
-* [BrowserLink](xref:client-side/using-browserlink)
+* [Browser Link](xref:client-side/using-browserlink)
 * Error pages
 * Static files
 * ASP.NET Core MVC
