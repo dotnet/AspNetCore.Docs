@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use the Configuration API to configure an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/15/2018
+ms.date: 12/07/2018
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -1130,6 +1130,8 @@ Overloads permit specifying:
 
 * An `Action<KeyPerFileConfigurationSource>` delegate that configures the source.
 * Whether the directory is optional and the path to the directory.
+
+The double-underscore (`__`) is used as a configuration key delimiter in file names. For example, the file name `Logging__LogLevel__System` produces the configuration key `Logging:LogLevel:System`.
 
 Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration:
 
