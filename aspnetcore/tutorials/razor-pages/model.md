@@ -127,6 +127,11 @@ The *appsettings.json* file is updated with the connection string used to connec
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Install the scaffolding tool:
+
+  ```console
+   dotnet tool install --global dotnet-aspnet-codegenerator
+   ```
 * Run the following command:
 
   ```console
