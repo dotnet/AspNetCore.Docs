@@ -70,9 +70,9 @@ The following diagram shows the design of the app.
    code -r TodoApi
    ```
 
-  These commands create a new web API project and open a new instance of Visual Studio Code in he new project folder.
+  These commands create a new web API project and open a new instance of Visual Studio Code in the new project folder.
 
-* When a dialog box asks if you want to add required assets to the project, select **Yes**
+* When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
