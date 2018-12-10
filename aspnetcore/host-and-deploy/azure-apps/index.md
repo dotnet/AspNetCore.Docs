@@ -78,7 +78,7 @@ The IIS Integration Middleware, which configures Forwarded Headers Middleware, a
 
 ## Monitoring and logging
 
-ASP.NET Core apps deployed to App Service automatically receive the **ASP.NET Core Logging Extensions**. The extension enables additional app functionality, such as enabling Azure logging.
+ASP.NET Core apps deployed to App Service automatically receive an App Service extension, **ASP.NET Core Logging Extensions**. The extension enables additional app functionality, such as enabling Azure logging.
 
 For monitoring, logging, and troubleshooting information, see the following articles:
 
