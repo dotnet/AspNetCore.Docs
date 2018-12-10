@@ -35,7 +35,7 @@ This class configures [attribute routing](/aspnet/web-api/overview/web-api-routi
 
 The *ProductsApp* project includes one controller. The controller inherits from `ApiController` and contains two actions:
 
-[!code-csharp[](webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=19,24)]
+[!code-csharp[](webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=28,33)]
 
 The `Product` model used by `ProductsController` is a simple class:
 
