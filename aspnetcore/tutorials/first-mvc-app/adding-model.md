@@ -26,7 +26,7 @@ In this tutorial you write the model classes first, and EF Core creates the data
 
 Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 
-[!INCLUDE [model 1b](~/includes/RP/model1b.md)]
+[!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 
 <!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -34,7 +34,7 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 * Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 
-[!INCLUDE [model 1b](~/includes/RP/model1b.md)]
+[!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 1b](~/includes/mvc-intro/model2.md)]
 
 
@@ -48,7 +48,7 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
   * Select **Empty Class** in the center pain.
   * Name the class **Movie** and select **New**.
 
-[!INCLUDE [model 1b](~/includes/RP/model1b.md)]
+[!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 1b](~/includes/mvc-intro/model2.md)]
 
 ---  
