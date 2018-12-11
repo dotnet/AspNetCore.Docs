@@ -13,7 +13,7 @@ Introduction to SignalR Security
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/aspnet/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
 
 > This article describes the security issues you must consider when developing a SignalR application.
 >

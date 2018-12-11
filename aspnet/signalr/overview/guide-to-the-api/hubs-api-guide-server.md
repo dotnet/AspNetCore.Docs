@@ -13,7 +13,7 @@ ASP.NET SignalR Hubs API Guide - Server (C#)
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/aspnet/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
 
 > This document provides an introduction to programming the server side of the ASP.NET SignalR Hubs API for SignalR version 2, with code samples demonstrating common options.
 > 

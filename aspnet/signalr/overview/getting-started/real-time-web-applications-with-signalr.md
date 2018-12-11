@@ -14,7 +14,7 @@ Hands On Lab: Real-Time Web Applications with SignalR
 
 by [Web Camps Team](https://twitter.com/webcamps)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/aspnet/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
 
 [Download Web Camps Training Kit](http://aka.ms/webcamps-training-kit)
 

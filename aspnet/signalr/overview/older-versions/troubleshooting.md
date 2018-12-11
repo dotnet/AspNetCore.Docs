@@ -13,7 +13,7 @@ SignalR Troubleshooting (SignalR 1.x)
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/aspnet/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
 
 > This document describes common troubleshooting issues with SignalR.
 
