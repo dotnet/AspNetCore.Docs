@@ -29,6 +29,9 @@ To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` p
 </PropertyGroup>
 ```
 
+> [!NOTE]
+> The in-process hosting model is only supported in applications that use the .NET Framework as the target framework.
+
 The following characteristics apply when hosting in-process:
 
 * IIS HTTP Server (`IISHttpServer`) is used instead of the [Kestrel](xref:fundamentals/servers/kestrel) server. IIS HTTP Server (`IISHttpServer`) is another <xref:Microsoft.AspNetCore.Hosting.Server.IServer> implementation that converts IIS native requests into ASP.NET Core managed requests for processing by the app.
