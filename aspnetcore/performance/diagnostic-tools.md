@@ -21,9 +21,9 @@ More information is available in [Visual Studio documentation](/visualstudio/pro
 
 ## Application Insights
 
-[Application Insights](/azure/application-insights/app-insights-overview) provides in-depth performance data for your app. Application Insight automatically collects data on response rates, failure rates, dependency response times, and more. Application Insights supports logging custom events and metrics specific to your app.
+[Application Insights](/azure/application-insights/app-insights-overview) provides in-depth performance data for your app. Application Insights automatically collects data on response rates, failure rates, dependency response times, and more. Application Insights supports logging custom events and metrics specific to your app.
 
-Application Insights is one of the best tools to find performance issues:
+Application Insights can be used in a variety environments:
 
 * Optimized to work in Azure.
 * Works in production, development, and staging.
