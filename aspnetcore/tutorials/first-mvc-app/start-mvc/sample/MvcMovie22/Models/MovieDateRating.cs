@@ -9,7 +9,7 @@ namespace MvcMovie.Models
 #region snippet
     public class Movie
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
 
         [Display(Name = "Release Date")]
