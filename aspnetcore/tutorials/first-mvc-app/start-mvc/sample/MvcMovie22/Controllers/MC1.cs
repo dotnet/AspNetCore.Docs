@@ -11,6 +11,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
+#region snippet_1
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -19,7 +20,7 @@ namespace MvcMovie.Controllers
         {
             _context = context;
         }
-
+#endregion
 #region snippet_index
         // GET: Movies
         public async Task<IActionResult> Index()
@@ -27,7 +28,7 @@ namespace MvcMovie.Controllers
             return View(await _context.Movie.ToListAsync());
         }
 #endregion
-
+#region snippet_details
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,6 +46,7 @@ namespace MvcMovie.Controllers
 
             return View(movie);
         }
+#endregion
 
         // GET: Movies/Create
         public IActionResult Create()

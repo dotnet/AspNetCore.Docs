@@ -40,7 +40,7 @@ namespace MvcMovie
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<MvcMovieContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+                 options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
         }
 #endregion
 
