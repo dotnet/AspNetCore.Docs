@@ -44,7 +44,7 @@ Another health check scenario demonstrates how to filter health checks to a mana
 
 For many apps, a basic health probe configuration that reports the app's availability to process requests (*liveness*) is sufficient to discover the status of the app.
 
-The basic configuration registers health check services and calls the Health Check Middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it's capable of responding at the health endpoint URL. The default response writer writes the status (`HealthCheckStatus`) as a plaintext response back to the client, indicating either a `HealthCheckResult.Healthy` or `HealthCheckResult.Unhealthy` status.
+The basic configuration registers health check services and calls the Health Check Middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it's capable of responding at the health endpoint URL. The default response writer writes the status (`HealthStatus`) as a plaintext response back to the client, indicating either a `HealthCheckResult.Healthy` or `HealthCheckResult.Unhealthy` status.
 
 Register health check services with `AddHealthChecks` in `Startup.ConfigureServices`. Add Health Check Middleware with `UseHealthChecks` in the request processing pipeline of `Startup.Configure`.
 
@@ -210,12 +210,12 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     app.UseHealthChecks("/health", new HealthCheckOptions()
     {
         // The following StatusCodes are the default assignments for
-        // the HealthCheckStatus properties.
+        // the HealthStatus properties.
         ResultStatusCodes =
         {
-            [HealthCheckStatus.Healthy] = StatusCodes.Status200OK,
-            [HealthCheckStatus.Degraded] = StatusCodes.Status200OK,
-            [HealthCheckStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+            [HealthStatus.Healthy] = StatusCodes.Status200OK,
+            [HealthStatus.Degraded] = StatusCodes.Status200OK,
+            [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
         }
     });
 }
