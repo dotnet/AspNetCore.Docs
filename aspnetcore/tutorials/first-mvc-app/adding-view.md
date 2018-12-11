@@ -86,6 +86,8 @@ Select the menu links (**MvcMovie**, **Home**, and **Privacy**). Each page shows
 * In the title element, change `MvcMovie` to `Movie App`.
 * Change the anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
+The following markup shows the highlighted changes:
+
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24)]
 
 In the preceding markup, the `asp-area` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) was omitted because this app is not using [Areas](xref:mvc/controllers/areas).
@@ -115,7 +117,7 @@ The *Views/_ViewStart.cshtml* file brings in the *Views/Shared/_Layout.cshtml* f
 
 Change the title and `<h2>` element of the *Views/HelloWorld/Index.cshtml* view file:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index.cshtml?highlight=2,5)]
+[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
 The title and `<h2>` element are slightly different so you can see which bit of code changes the display.
 
