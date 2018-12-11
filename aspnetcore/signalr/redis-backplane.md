@@ -27,7 +27,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
 ::: moniker range="= aspnetcore-2.1"
 
-* In the SignalR app, install the `Microsoft.AspNetCore.SignalR.Redis` NuGet package. (This package is for ASP.NET Core 2.1. It can also be used with 2.2, but it will not be supported in 3.0. The `Microsoft.AspNetCore.SignalR.StackExchangeRedis` package is for ASP.NET Core 2.2 and later.)
+* In the SignalR app, install the `Microsoft.AspNetCore.SignalR.Redis` NuGet package. (There is also a `Microsoft.AspNetCore.SignalR.StackExchangeRedis` package, but that one is for ASP.NET Core 2.2 and later.)
 
 * In the `Startup.ConfigureServices` method, call `AddRedis` after `AddSignalR`:
 
@@ -54,7 +54,10 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
 ::: moniker range="> aspnetcore-2.1"
 
-* In the SignalR app, install the `Microsoft.AspNetCore.SignalR.StackExchangeRedis` NuGet package. (This package is for ASP.NET Core 2.2 and later; there is also a `Microsoft.AspNetCore.SignalR.Redis` package, which is available for ASP.NET Core 2.1 and 2.2 but will not be supported in 3.0.)
+* In the SignalR app, install one of the following NuGet packages:
+
+  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis` - depends on StackExchange.Redis 2.X.X.
+  * `Microsoft.AspNetCore.SignalR.Redis` - depends on StackExchange.Redis 1.X.X. This package will not be shipping in ASP.NET Core 3.0.
 
 * In the `Startup.ConfigureServices` method, call `AddStackExchangeRedis` after `AddSignalR`:
 
