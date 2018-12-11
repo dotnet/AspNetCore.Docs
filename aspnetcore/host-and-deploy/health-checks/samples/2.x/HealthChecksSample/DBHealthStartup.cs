@@ -12,7 +12,7 @@ namespace SampleApp
     // 
     // By default, health checks return a 200-Ok with 'Healthy' when the database is responsive.
     // - A BeatPulse SQL Server health check is used in the example for a SQL database. For more information on BeatPulse, see https://github.com/Xabaril/BeatPulse.
-    // - The default response writer writes the HealthCheckStatus as text/plain content.
+    // - The default response writer writes the HealthStatus as text/plain content.
     //
     // This approach is suitable for systems that check for 'liveness' of an app with a database.
 
