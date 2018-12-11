@@ -84,13 +84,13 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 * Run the following command:
 
    ```console
-   dotnet new webapp -o MvcMovie
+   dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```
 
   * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**  Select **Yes**
 
-  * `dotnet new webapp -o MvcMovie`: creates a new Razor Pages project in the *MvcMovie* folder.
+  * `dotnet new mvc -o MvcMovie`: creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
 
 ### Launch the app
