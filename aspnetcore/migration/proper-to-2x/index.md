@@ -61,7 +61,7 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 `Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), extension methods configure the pipeline with support for:
 
 * Error pages
-* Strict Transport Security
+* HTTP Strict Transport Security
 * HTTP redirection to HTTPS
 * ASP.NET Core MVC
 
