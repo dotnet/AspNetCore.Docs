@@ -111,13 +111,13 @@ The *appsettings.json* file is updated with the connection string used to connec
 * **For Windows**: Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
@@ -135,7 +135,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
