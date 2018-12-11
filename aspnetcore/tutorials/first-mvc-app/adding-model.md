@@ -31,11 +31,10 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 <!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
-[!INCLUDE [model 1b](~/includes/mvc-intro/model2.md)]
+[!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -48,7 +47,7 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
   * Name the class **Movie** and select **New**.
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
-[!INCLUDE [model 1b](~/includes/mvc-intro/model2.md)]
+[!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
 ---  
 <!-- End of VS tabs -->
@@ -105,7 +104,8 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
 * **For Windows**: Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MvcMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
+
   ```
 
 * **For macOS and Linux**: Run the following command:
@@ -130,7 +130,7 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
 * Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MvcMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
@@ -210,7 +210,7 @@ Examine the `Startup.ConfigureServices` method. The highlighted line was added b
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-The `MvcMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`MvcMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model.
+The `MvcMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`MvcMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Data/MvcMovieContext.cs)]
 
