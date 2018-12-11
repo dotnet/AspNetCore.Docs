@@ -13,6 +13,8 @@ SignalR Scaleout with Redis (SignalR 1.x)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 In this tutorial, you will use [Redis](http://redis.io/) to distribute messages across a SignalR application that is deployed on two separate IIS instances.
 
 Redis is an in-memory key-value store. It also supports a messaging system with a publish/subscribe model. The SignalR Redis backplane uses the pub/sub feature to forward messages to other servers.

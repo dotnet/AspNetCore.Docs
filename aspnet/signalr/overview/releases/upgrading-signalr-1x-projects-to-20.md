@@ -13,6 +13,8 @@ Upgrading SignalR 1.x Projects to version 2
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 > This topic describes how to upgrade an existing SignalR 1.x project to SignalR 2.x, and how to troubleshoot issues that may arise during the upgrade process.
 >
 > ## Software versions used in the tutorial

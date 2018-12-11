@@ -13,6 +13,8 @@ Understanding and Handling Connection Lifetime Events in SignalR
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 > This article provides an overview of the SignalR connection, reconnection, and disconnection events that you can handle, and timeout and keepalive settings that you can configure.
 >
 > The article assumes you already have some knowledge of SignalR and connection lifetime events. For an introduction to SignalR, see [Introduction to SignalR](../getting-started/introduction-to-signalr.md). For lists of connection lifetime events, see the following resources:
@@ -37,8 +39,6 @@ by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://githu
 > ## Questions and comments
 >
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
-
-[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
 
 ## Overview
 

@@ -13,6 +13,8 @@ ASP.NET SignalR Hubs API Guide - .NET Client (C#)
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 > This document provides an introduction to using the Hubs API for SignalR version 2 in .NET clients, such as Windows Store (WinRT), WPF, Silverlight, and console applications.
 >
 > The SignalR Hubs API enables you to make remote procedure calls (RPCs) from a server to connected clients and from clients to the server. In server code, you define methods that can be called by clients, and you call methods that run on the client. In client code, you define methods that can be called from the server, and you call methods that run on the server. SignalR takes care of all of the client-to-server plumbing for you.
@@ -35,8 +37,6 @@ by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://githu
 > ## Questions and comments
 >
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
-
-[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
 
 ## Overview
 

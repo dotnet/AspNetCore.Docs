@@ -13,6 +13,8 @@ Mapping SignalR Users to Connections in SignalR 1.x
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 > This topic shows how to retain information about users and their connections.
 
 

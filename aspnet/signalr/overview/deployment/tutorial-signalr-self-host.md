@@ -13,6 +13,8 @@ Tutorial: SignalR Self-Host
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 [Download Completed Project](http://code.msdn.microsoft.com/SignalR-Self-Host-Sample-6da0f383)
 
 > This tutorial shows how to create a self-hosted SignalR 2 server, and how to connect to it with a JavaScript client.

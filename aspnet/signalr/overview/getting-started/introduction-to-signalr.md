@@ -12,18 +12,16 @@ msc.type: authoredcontent
 Introduction to SignalR
 ====================
 
-> [!NOTE]
-> See [Introduction to ASP.NET Core SignalR](/aspnet/core/signalr/introduction) for an updated version of this tutorial that uses the latest version of Visual Studio. The new tutorial uses [ASP.NET Core](/aspnet/core/), which provides many improvements over this tutorial.
-
 by [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 
 > This article describes what SignalR is, and some of the solutions it was designed to create. 
 > 
 > ## Questions and comments
 > 
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](https://stackoverflow.com/questions/tagged/signalr).
-
-[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
 
 ## What is SignalR?
 

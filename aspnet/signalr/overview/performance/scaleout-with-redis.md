@@ -13,6 +13,8 @@ SignalR Scaleout with Redis
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 > ## Software versions used in this topic
 >
 >

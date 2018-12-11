@@ -13,6 +13,8 @@ Introduction to Scaleout in SignalR 1.x
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](../../../includes/signalr-version-disambiguation.md)]
+
 In general, there are two ways to scale a web application: *scale up* and *scale out*.
 
 - Scale up means using a larger server (or a larger VM) with more RAM, CPUs, etc.
