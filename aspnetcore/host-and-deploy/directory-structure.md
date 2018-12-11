@@ -18,7 +18,7 @@ The *publish* directory contains the app's deployable assets produced by the [do
 * Configuration files
 * Static assets
 * Packages
-* A runtime (for [self-contained deployments](/dotnet/core/deploying/#self-contained-deployments-scd)).
+* A runtime ([self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) only)
 
 | App Type | Directory Structure |
 | -------- | ------------------- |
