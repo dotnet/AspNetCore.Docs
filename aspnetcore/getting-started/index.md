@@ -4,7 +4,7 @@ author: rick-anderson
 description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core. 
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/11/2018
 uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
@@ -25,7 +25,7 @@ At the end, you'll have a working web app running on your local machine.
 
 ## Prerequisites
 
-Install the [!INCLUDE [](~/includes/2.1-SDK.md)].
+* [.NET Core 2.2 SDK](https://www.microsoft.com/net/download/all)
 
 ## Create a web app project
 
@@ -85,11 +85,11 @@ Browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to 
 
 ## Edit a Razor page
 
-Open *Pages/About.cshtml* and modify the page with the following highlighted markup:
+Open *Pages/Index.cshtml* and modify the page with the following highlighted markup:
 
-[!code-cshtml[](sample/getting-started/about.cshtml?highlight=9)]
+[!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-Browse to [https://localhost:5001/About](https://localhost:5001/About) and verify the changes are displayed.
+Browse to [https://localhost:5001](https://localhost:5001), and verify the changes are displayed.
 
 ## Next steps
 
