@@ -13,7 +13,7 @@ Creating a Data Access Layer (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
-[Download Sample App](http://download.microsoft.com/download/4/6/3/463cf87c-4724-4cbc-b7b5-3f866f43ba50/ASPNET_Data_Tutorial_1_CS.exe) or [Download PDF](creating-a-data-access-layer-cs/_static/datatutorial01cs1.pdf)
+[Download PDF](creating-a-data-access-layer-cs/_static/datatutorial01cs1.pdf)
 
 > In this tutorial we'll start from the very beginning and create the Data Access Layer (DAL), using typed DataSets, to access the information in a database.
 

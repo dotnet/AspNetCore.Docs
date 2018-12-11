@@ -366,7 +366,7 @@ In this task you will use the Internet Explorer **F12 developer tools** to inspe
 
 When you create a Web API, it is useful to create a help page so that other developers will know how to call your API. You could create and update the documentation pages manually, but it is better to auto-generate them to avoid having to do maintenance work. In this task you will use a Nuget package to automatically generate Web API help pages to the solution.
 
-1. From the **Tools** menu in Visual Studio, select **Library Package Manager**, and then click **Package Manager Console**.
+1. From the **Tools** menu in Visual Studio, select **NuGet Package Manager**, and then click **Package Manager Console**.
 2. In the **Package Manager Console** window, execute the following command:
 
     [!code-powershell[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample7.ps1)]

@@ -18,6 +18,9 @@ There are 3 versions of this tutorial:
 * Windows: [Create an ASP.NET Core MVC app with Visual Studio](xref:tutorials/first-mvc-app/start-mvc)
 * macOS, Linux, and Windows: [Create an ASP.NET Core MVC app with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/start-mvc)
 
+> [!NOTE]
+> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/aa11wn82).
+
 ## Install Visual Studio and .NET Core
 
 ::: moniker range=">= aspnetcore-2.1"
@@ -42,12 +45,12 @@ Complete the **New Project** dialog:
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
 * In the version selector drop-down box select **ASP.NET Core 2.1**
-* Select **Web Application(Model-View-Controller)**
+* Select **Web Application (Model-View-Controller)**
 * Tap **OK**.
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
 
-Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start,
+Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
 
 Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
 <!-- These images are also used by uid: tutorials/first-mvc-app-xplat/start-mvc -->
@@ -75,26 +78,7 @@ In the next part of this tutorial, we'll learn about MVC and start writing some 
 
 ::: moniker range="<= aspnetcore-2.0"
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
-
 [!INCLUDE [](~/includes/net-core-prereqs.md)]
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
-
-Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
-
-* [Visual Studio 2017 Home page installer](https://www.visualstudio.com/)
-
-Run the installer and select the following workloads:
-
-* **ASP.NET and web development** (under **Web & Cloud**)
-* **.NET Core cross-platform development** (under **Other Toolsets**)
-
-![**ASP.NET and web development** (under **Web & Cloud**)](start-mvc/_static/web_workload.png)
-
-![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
-
----
 
 ## Create a web app
 
@@ -111,8 +95,6 @@ Complete the **New Project** dialog:
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
 * In the version selector drop-down box select **ASP.NET Core 2.-**
@@ -120,19 +102,6 @@ Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 * Tap **OK**.
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22.png)
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
-
-* In the version selector drop-down box tap **ASP.NET Core 1.1**
-* Tap **Web Application**
-* Keep the default **No Authentication**
-* Tap **OK**.
-
-![New ASP.NET Core web app](start-mvc/_static/p3.png)
-
----
 
 Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start,
 
@@ -159,5 +128,6 @@ If you were running in debug mode, tap **Shift-F5** to stop debugging.
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 
 ::: moniker-end
+
 > [!div class="step-by-step"]
 > [Next](adding-controller.md)  

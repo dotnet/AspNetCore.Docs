@@ -1,35 +1,40 @@
 ---
-title: Choose between ASP.NET and ASP.NET Core
+title: Choose between ASP.NET 4.x and ASP.NET Core
 author: rick-anderson
-description: Learn how to choose between ASP.NET and ASP.NET Core.
+description: Explains ASP.NET Core vs. ASP.NET 4.x and how to choose between them.
 ms.author: riande
-ms.date: 05/11/2018
+ms.custom: seodec18
+ms.date: 09/11/2018
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
-# Choose between ASP.NET and ASP.NET Core
+# Choose between ASP.NET 4.x and ASP.NET Core
 
-No matter the web app you're creating, ASP.NET has a solution for you: from enterprise web apps targeting Windows Server, to small microservices targeting Linux containers, and everything in between.
+ASP.NET Core is a redesign of ASP.NET 4.x. This article lists the differences between them.
 
 ## ASP.NET Core
 
 ASP.NET Core is an open-source, cross-platform framework for building modern, cloud-based web apps on Windows, macOS, or Linux.
 
-## ASP.NET
+[!INCLUDE[](~/includes/benefits.md)]
 
-ASP.NET is a mature framework that provides all the services needed to build enterprise-grade, server-based web apps on Windows.
+## ASP.NET 4.x
+
+ASP.NET 4.x is a mature framework that provides the services needed to build enterprise-grade, server-based web apps on Windows.
 
 ## Framework selection
 
-Review the table below to determine which framework is most appropriate for your needs.
+The following table compares ASP.NET Core to ASP.NET 4.x.
 
-| ASP.NET Core | ASP.NET |
+| ASP.NET Core | ASP.NET 4.x |
 |---|---|
 |Build for Windows, macOS, or Linux|Build for Windows|
 |[Razor Pages](xref:razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x. See also [MVC](xref:mvc/overview), [Web API](xref:tutorials/first-web-api), and [SignalR](xref:signalr/introduction).|Use [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [Web API](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/), or [Web Pages](/aspnet/web-pages)|
 |Multiple versions per machine|One version per machine|
 |Develop with Visual Studio, [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/), or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#|Develop with Visual Studio using C#, VB, or F#|
-|Higher performance than ASP.NET|Good performance|
-|[Choose .NET Framework or .NET Core runtime](/dotnet/articles/standard/choosing-core-framework-server)|Use .NET Framework runtime|
+|Higher performance than ASP.NET 4.x|Good performance|
+|[Choose .NET Framework or .NET Core runtime](/dotnet/standard/choosing-core-framework-server)|Use .NET Framework runtime|
+
+See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for information on ASP.NET Core 2.x support on .NET Framework.
 
 ## ASP.NET Core scenarios
 
@@ -37,14 +42,20 @@ Review the table below to determine which framework is most appropriate for your
 * [Websites](xref:tutorials/first-mvc-app/index)
 * [APIs](xref:tutorials/first-web-api)
 * [Real-time](xref:signalr/index)
+* [Deploy an ASP.NET Core app to Azure](/azure/app-service/app-service-web-get-started-dotnet)
 
-## ASP.NET scenarios
+## ASP.NET 4.x scenarios
 
 * [Websites](/aspnet/mvc)
 * [APIs](/aspnet/web-api)
 * [Real-time](/aspnet/signalr)
+* [Create an ASP.NET 4.x web app in Azure](/azure/app-service/app-service-web-get-started-dotnet-framework)
 
-## Resources
+## Additional resources
 
 * [Introduction to ASP.NET](/aspnet/overview)
 * [Introduction to ASP.NET Core](xref:index)
+* <xref:host-and-deploy/azure-apps/index>
+
+> [!NOTE]
+> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/aa11wn82).

@@ -28,7 +28,7 @@ https://<host>/api/webhooks/incoming/<receiver>/{id}
 
 For security reasons, many WebHook receivers require that the URI is an *https* URI and in some cases it must also contain an additional query parameter which is used to enforce that only the intended party can send WebHooks to the URI above.
 
-The <em><receiver></em> component is the name of the receiver, for example <em>github</em> or <em>slack</em>.
+The `<receiver>` component is the name of the receiver, for example `github` or `slack`.
 
 The *{id}* is an optional identifier which can be used to identify a particular WebHook receiver configuration. This can be used to register N WebHooks with a particular receiver. For example, the following three URIs can be used to register for three independent WebHooks:
 

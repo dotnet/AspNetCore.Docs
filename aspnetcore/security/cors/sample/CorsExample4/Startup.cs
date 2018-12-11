@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -17,10 +18,11 @@ namespace CorsExample4
             {
                 // BEGIN01
                 options.AddPolicy("AllowSpecificOrigins",
-                builder =>
-                {
-                    builder.WithOrigins("http://example.com", "http://www.contoso.com");
-                });
+                    builder =>
+                    {
+                        builder.WithOrigins("http://example.com", 
+                            "http://www.contoso.com");
+                    });
                 // END01
 
                 // BEGIN02
@@ -54,7 +56,7 @@ namespace CorsExample4
                     builder =>
                     {
                         builder.WithOrigins("http://example.com")
-                               .WithHeaders("accept", "content-type", "origin", "x-custom-header");
+                               .WithHeaders(HeaderNames.ContentType, "x-custom-header");
                     });
                 // END05
 
@@ -93,6 +95,14 @@ namespace CorsExample4
                                .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
                     });
                 // END09
+
+                // BEGIN10
+                options.AddPolicy("AllowSubdomain",
+                    builder =>
+                    {
+                        builder.SetIsOriginAllowedToAllowWildcardSubdomains();
+                    });
+                // END11
             });
         }
 

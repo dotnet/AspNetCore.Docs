@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 ASP.NET MVC 4 Mobile Features
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > There is now an MVC 5 version of this tutorial with code samples at [Deploy an ASP.NET MVC 5 Mobile Web Application on Azure Web Sites](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/).
 
@@ -178,7 +178,7 @@ Rename *Views\Home\AllTags.Mobile.cshtml* and *Views\Home\AllTags.iPhone.cshtml*
 
 Install the *jQuery.Mobile.MVC* NuGet package by doing this:
 
-1. From the **Tools** menu, select **Library Package Manager**, and then select **Package Manager Console**.
+1. From the **Tools** menu, select **NuGet Package Manager**, and then select **Package Manager Console**.
 
     [![p3_packageMgr](aspnet-mvc-4-mobile-features/_static/image20.png)](aspnet-mvc-4-mobile-features/_static/image19.png)
 2. In the **Package Manager Console**, enter `Install-Package jQuery.Mobile.MVC -version 1.0.0`
@@ -239,11 +239,11 @@ Refresh the *AllTags* view in the mobile browser. You can now navigate between d
 
 > [!NOTE]
 > Debug note: You can add the following code to the end of the Views\Shared\\_ViewSwitcher.cshtml to help debug views when using a browser the user agent string set to a mobile device.
-> 
+>
 > [!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample15.cs)]
-> 
->  and adding the following heading to the *Views\Shared\\_Layout.cshtml* file.  
-> 
+>
+>  and adding the following heading to the *Views\Shared\\_Layout.cshtml* file.
+>
 > [!code-html[Main](aspnet-mvc-4-mobile-features/samples/sample16.html)]
 
 

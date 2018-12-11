@@ -16,11 +16,11 @@ by [Mike Wasson](https://github.com/MikeWasson)
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-Web-API-OData-cecdb524)
 
 > This tutorial shows how to call an OData service from a C# client application.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads) (works with Visual Studio 2012)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013) (works with Visual Studio 2012)
 > - [WCF Data Services Client Library](https://msdn.microsoft.com/library/cc668772.aspx)
 > - Web API 2. (The example OData service is built using Web API 2, but the client application does not depend on Web API.)
 

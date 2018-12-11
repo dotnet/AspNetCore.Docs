@@ -4,56 +4,58 @@ author: rick-anderson
 description: Learn how to create publish profiles in Visual Studio and use them for managing ASP.NET Core app deployments to various targets.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/10/2018
+ms.date: 12/06/2018
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles for ASP.NET Core app deployment
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This document focuses on using Visual Studio 2017 to create and use publish profiles. The publish profiles created with Visual Studio can be run from MSBuild and Visual Studio 2017. See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on publishing to Azure.
+::: moniker range="<= aspnetcore-1.1"
+
+For the 1.1 version of this topic, download [Visual Studio publish profiles for ASP.NET Core app deployment (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/VS_Publish_Profiles_1.1.pdf).
+
+::: moniker-end
+
+This document focuses on using Visual Studio 2017 or later to create and use publish profiles. The publish profiles created with Visual Studio can be run from MSBuild and Visual Studio. See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on publishing to Azure.
 
 The following project file was created with the command `dotnet new mvc`:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+::: moniker range=">= aspnetcore-2.2"
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.6" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>
 ```
 
----
+::: moniker-end
 
 The `<Project>` element's `Sdk` attribute accomplishes the following tasks:
 
@@ -108,22 +110,10 @@ dotnet publish C:\Webs\Web1
 
 Run the following commands to create and publish a web app:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
 ```console
 dotnet new mvc
 dotnet publish
 ```
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```console
-dotnet new mvc
-dotnet restore
-dotnet publish
-```
-
----
 
 The [dotnet publish](/dotnet/core/tools/dotnet-publish) command produces output similar to the following:
 
@@ -150,7 +140,7 @@ The [dotnet publish](/dotnet/core/tools/dotnet-publish) command calls MSBuild, w
 
 MSBuild properties can be passed using either of the following formats:
 
-* ` p:<NAME>=<VALUE>`
+* `p:<NAME>=<VALUE>`
 * `/p:<NAME>=<VALUE>`
 
 The following command publishes a `Release` build to a network share:
@@ -163,12 +153,12 @@ Confirm that the published app for deployment isn't running. Files in the *publi
 
 ## Publish profiles
 
-This section uses Visual Studio 2017 to create a publishing profile. Once created, publishing from Visual Studio or the command line is available.
+This section uses Visual Studio 2017 or later to create a publishing profile. Once the profile is created, publishing from Visual Studio or the command line is available.
 
 Publish profiles can simplify the publishing process, and any number of profiles can exist. Create a publish profile in Visual Studio by choosing one of the following paths:
 
 * Right-click the project in Solution Explorer and select **Publish**.
-* Select **Publish &lt;project_name&gt;** from the **Build** menu.
+* Select **Publish {PROJECT NAME}** from the **Build** menu.
 
 The **Publish** tab of the app capacities page is displayed. If the project lacks a publish profile, the following page is displayed:
 
@@ -190,11 +180,11 @@ The Publish wizard supports the following publish targets:
 
 For more information, see [What publishing options are right for me](/visualstudio/ide/not-in-toc/web-publish-options).
 
-When creating a publish profile with Visual Studio, a *Properties/PublishProfiles/&lt;profile_name&gt;.pubxml* MSBuild file is created. The *.pubxml* file is a MSBuild file and contains publish configuration settings. This file can be changed to customize the build and publish process. This file is read by the publishing process. `<LastUsedBuildConfiguration>` is special because it's a global property and shouldn't be in any file that's imported in the build. See [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx) for more information.
+When creating a publish profile with Visual Studio, a *Properties/PublishProfiles/{PROFILE NAME}.pubxml* MSBuild file is created. The *.pubxml* file is a MSBuild file and contains publish configuration settings. This file can be changed to customize the build and publish process. This file is read by the publishing process. `<LastUsedBuildConfiguration>` is special because it's a global property and shouldn't be in any file that's imported in the build. See [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx) for more information.
 
 When publishing to an Azure target, the *.pubxml* file contains your Azure subscription identifier. With that target type, adding this file to source control is discouraged. When publishing to a non-Azure target, it's safe to check in the *.pubxml* file.
 
-Sensitive information (like the publish password) is encrypted on a per user/machine level. It's stored in the *Properties/PublishProfiles/&lt;profile_name&gt;.pubxml.user* file. Because this file can store sensitive information, it shouldn't be checked into source control.
+Sensitive information (like the publish password) is encrypted on a per user/machine level. It's stored in the *Properties/PublishProfiles/{PROFILE NAME}.pubxml.user* file. Because this file can store sensitive information, it shouldn't be checked into source control.
 
 For an overview of how to publish a web app on ASP.NET Core, see [Host and deploy](xref:host-and-deploy/index). The MSBuild tasks and targets necessary to publish an ASP.NET Core app are open-source at https://github.com/aspnet/websdk.
 
@@ -246,7 +236,7 @@ dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
 Set the following MSBuild properties when using a publish profile:
 
 * `DeployOnBuild=true`
-* `PublishProfile=<Publish profile name>`
+* `PublishProfile={PUBLISH PROFILE}`
 
 When publishing with a profile named *FolderProfile*, either of the commands below can be executed:
 
@@ -297,34 +287,49 @@ msbuild /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderP
 
 ## Publish to an MSDeploy endpoint from the command line
 
-Publishing can be accomplished using the .NET Core CLI or MSBuild. `dotnet publish` runs in the context of .NET Core. The `msbuild` command requires .NET Framework, which limits it to Windows environments.
+The following example uses an ASP.NET Core web app created by Visual Studio named *AzureWebApp*. An Azure Apps publish profile is added with Visual Studio. For more information on how to create a profile, see the [Publish profiles](#publish-profiles) section.
 
-The easiest way to publish with MSDeploy is to first create a publish profile in Visual Studio 2017 and use the profile from the command line.
+To deploy the app using a publish profile, execute the `msbuild` command from a Visual Studio **Developer Command Prompt**. The command prompt is available in the *Visual Studio* folder of the **Start** menu on the Windows taskbar. For easier access, you can add the command prompt to the **Tools** menu in Visual Studio. For more information, see [Developer Command Prompt for Visual Studio](/dotnet/framework/tools/developer-command-prompt-for-vs#run-the-command-prompt-from-inside-visual-studio).
 
-In the following sample, an ASP.NET Core web app is created (using `dotnet new mvc`), and an Azure publish profile is added with Visual Studio.
-
-Run `msbuild` from a **Developer Command Prompt for VS 2017**. The Developer Command Prompt has the correct *msbuild.exe* in its path with some MSBuild variables set.
-
-MSBuild uses the following syntax:
+MSBuild uses the following command syntax:
 
 ```console
-msbuild <path-to-project-file> /p:DeployOnBuild=true /p:PublishProfile=<Publish Profile> /p:Username=<USERNAME> /p:Password=<PASSWORD>
+msbuild {PATH} 
+    /p:DeployOnBuild=true 
+    /p:PublishProfile={PROFILE} 
+    /p:Username={USERNAME} 
+    /p:Password={PASSWORD}
 ```
 
-Get the `Password` from the *\<Publish name>.PublishSettings* file. Download the *.PublishSettings* file from either:
+* {PATH} &ndash; Path to the app's project file.
+* {PROFILE} &ndash; Name of the publish profile.
+* {USERNAME} &ndash; MSDeploy username. The {USERNAME} can be found in the publish profile.
+* {PASSWORD} &ndash; MSDeploy password. Obtain the {PASSWORD} from the *{PROFILE}.PublishSettings* file. Download the *.PublishSettings* file from either:
+  * Solution Explorer: Select **View** > **Cloud Explorer**. Connect with your Azure subscription. Open **App Services**. Right-click the app. Select **Download Publish Profile**.
+  * Azure portal: Select **Get publish profile** in the web app's **Overview** panel.
 
-* Solution Explorer: Right-click on the Web App and select **Download Publish Profile**.
-* Azure portal: Click **Get publish profile** on the Web App's **Overview** panel.
-
-`Username` can be found in the publish profile.
-
-The following sample uses the *Web11112 - Web Deploy* publish profile:
+The following example uses a publish profile named *AzureWebApp - Web Deploy*:
 
 ```console
-msbuild "C:\Webs\Web1\Web1.csproj" /p:DeployOnBuild=true
- /p:PublishProfile="Web11112 - Web Deploy"  /p:Username="$Web11112"
- /p:Password="<password removed>"
+msbuild "AzureWebApp.csproj" 
+    /p:DeployOnBuild=true 
+    /p:PublishProfile="AzureWebApp - Web Deploy" 
+    /p:Username="$AzureWebApp" 
+    /p:Password=".........."
 ```
+
+A publish profile can also be used with the .NET Core CLI [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command from a Windows command prompt:
+
+```console
+dotnet msbuild "AzureWebApp.csproj"
+    /p:DeployOnBuild=true 
+    /p:PublishProfile="AzureWebApp - Web Deploy" 
+    /p:Username="$AzureWebApp" 
+    /p:Password=".........."
+```
+
+> [!NOTE]
+> The [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command is available cross-platform and can compile ASP.NET Core apps on macOS and Linux. However, MSBuild on macOS and Linux isn't capable of deploying an app to Azure or other MSDeploy endpoint. MSDeploy is only available on Windows.
 
 ## Exclude files
 

@@ -1,126 +1,138 @@
 ---
 title: Migrate from ASP.NET Web API to ASP.NET Core
 author: ardalis
-description: Learn how to migrate a Web API implementation from ASP.NET Web API to ASP.NET Core MVC.
-ms.author: riande
-ms.date: 05/10/2018
+description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
+ms.author: scaddie
+ms.custom: mvc
+ms.date: 12/10/2018
 uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
+By [Scott Addie](https://twitter.com/scott_addie) and [Steve Smith](https://ardalis.com/)
 
-Web APIs are HTTP services that reach a broad range of clients, including browsers and mobile devices. ASP.NET Core MVC includes support for building Web APIs providing a single, consistent way of building web applications. In this article, we demonstrate the steps required to migrate a Web API implementation from ASP.NET Web API to ASP.NET Core MVC.
+An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core unifies ASP.NET 4.x's MVC and Web API app models into a simpler programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/migration/webapi/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-## Review ASP.NET Web API project
+## Prerequisites
 
-This article uses the sample project, *ProductsApp*, created in the article [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) as its starting point. In that project, a simple ASP.NET Web API  project is configured as follows.
+[!INCLUDE [net-core-prereqs-vs-2.2](../includes/net-core-prereqs-vs-2.2.md)]
+
+## Review ASP.NET 4.x Web API project
+
+As a starting point, this article uses the *ProductsApp* project created in [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api). In that project, a simple ASP.NET 4.x Web API project is configured as follows.
 
 In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
 
-[!code-csharp[](../migration/webapi/sample/ProductsApp/Global.asax.cs?highlight=14)]
+[!code-csharp[](webapi/sample/ProductsApp/Global.asax.cs?highlight=14)]
 
-`WebApiConfig` is defined in *App_Start*, and has just one static `Register` method:
+The `WebApiConfig` class is found in the *App_Start* folder and has a static `Register` method:
 
-[!code-csharp[](../migration/webapi/sample/ProductsApp/App_Start/WebApiConfig.cs?highlight=15,16,17,18,19,20)]
+[!code-csharp[](webapi/sample/ProductsApp/App_Start/WebApiConfig.cs)]
 
-This class configures [attribute routing](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table, which is used by ASP.NET Web API. In this case, ASP.NET Web API will expect URLs to match the format */api/{controller}/{id}*, with *{id}* being optional.
+This class configures [attribute routing](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table, which is used by ASP.NET Web API. In this case, ASP.NET 4.x Web API expects URLs to match the format `/api/{controller}/{id}`, with `{id}` being optional.
 
-The *ProductsApp* project includes just one simple controller, which inherits from `ApiController` and exposes two methods:
+The *ProductsApp* project includes one controller. The controller inherits from `ApiController` and contains two actions:
 
-[!code-csharp[](../migration/webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=19,24)]
+[!code-csharp[](webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=28,33)]
 
-Finally, the model, *Product*, used by the *ProductsApp*, is a simple class:
+The `Product` model used by `ProductsController` is a simple class:
 
 [!code-csharp[](webapi/sample/ProductsApp/Models/Product.cs)]
 
-Now that we have a simple project from which to start, we can demonstrate how to migrate this Web API project to ASP.NET Core MVC.
+The following sections demonstrate migration of the Web API project to ASP.NET Core MVC.
 
-## Create the Destination Project
+## Create destination project
 
-Using Visual Studio, create a new, empty solution, and name it *WebAPIMigration*. Add the existing *ProductsApp* project to it, then, add a new ASP.NET Core Web Application Project to the solution. Name the new project *ProductsCore*.
+Complete the following steps in Visual Studio:
 
-![New Project dialog open to Web templates](webapi/_static/add-web-project.png)
+* Go to **File** > **New** > **Project** > **Other Project Types** > **Visual Studio Solutions**. Select **Blank Solution**, and name the solution *WebAPIMigration*. Click the **OK** button.
+* Add the existing *ProductsApp* project to the solution.
+* Add a new **ASP.NET Core Web Application** project to the solution. Select the **.NET Core** target framework from the drop-down, and select the **API** project template. Name the project *ProductsCore*, and click the **OK** button.
 
-Next, choose the Web API project template. We will migrate the *ProductsApp* contents to this new project.
+The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
 
-![New Web Application dialog with Web API project template selected in the ASP.NET Core templates list](webapi/_static/aspnet-5-webapi.png)
+## Migrate configuration
 
-Delete the `Project_Readme.html` file from the new project. Your solution should now look like this:
+ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file, and the *web.config* file is added at publish time. *Startup.cs* is the replacement for *Global.asax* and is located in the project root. The `Startup` class handles all app startup tasks. For more information, see <xref:fundamentals/startup>.
 
-![Application solution open in Solution Explorer showing files and folders of the ProductsApp and ProductsCore projects](webapi/_static/webapimigration-solution.png)
+In ASP.NET Core MVC, attribute routing is included by default when <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> is called in `Startup.Configure`. The following `UseMvc` call replaces the *ProductsApp* project's *App_Start/WebApiConfig.cs* file:
 
-## Migrate Configuration
+[!code-csharp[](webapi/sample/ProductsCore/Startup.cs?name=snippet_Configure&highlight=13])]
 
-ASP.NET Core no longer uses *Global.asax*, *web.config*, or *App_Start* folders. Instead, all startup tasks are done in *Startup.cs* in the root of the project (see [Application Startup](../fundamentals/startup.md)). In ASP.NET Core MVC, attribute-based routing is now included by default when `UseMvc()` is called; and, this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).
+## Migrate models and controllers
 
-[!code-csharp[](../migration/webapi/sample/ProductsCore/Startup.cs?highlight=31)]
+Copy over the *ProductApp* project's controller and the model it uses. Follow these steps:
 
-Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample `ValuesController` class that's included in the Web API starter project:
+1. Copy *Controllers/ProductsController.cs* from the original project to the new one.
+1. Copy the entire *Models* folder from the original project to the new one.
+1. Change the copied files' namespaces to match the new project name (*ProductsCore*). Adjust the `using ProductsApp.Models;` statement in *ProductsController.cs* too.
 
-[!code-csharp[](../migration/webapi/sample/ProductsCore/Controllers/ValuesController.cs?highlight=9,13,20,27,33,39)]
+At this point, building the app results in a number of compilation errors. The errors occur because the following components don't exist in ASP.NET Core:
 
-Note the presence of *[controller]* on line 8. Attribute-based routing now supports certain tokens, such as *[controller]* and *[action]*. These tokens are replaced at runtime with the name of the controller or action, respectively, to which the attribute has been applied. This serves to reduce the number of magic strings in the project, and it ensures the routes will be kept synchronized with their corresponding controllers and actions when automatic rename refactorings are applied.
+* `ApiController` class
+* `System.Web.Http` namespace
+* `IHttpActionResult` interface
 
-To migrate the Products API controller, we must first copy *ProductsController* to the new project. Then simply include the route attribute on the controller:
+Fix the errors as follows:
+
+1. Change `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
+1. Delete `using System.Web.Http;`.
+1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`.
+
+Simplify the `GetProduct` action's `return` statement to the following:
 
 ```csharp
-[Route("api/[controller]")]
+return product;
 ```
 
-You also need to add the `[HttpGet]` attribute to the two methods, since they both should be called via HTTP Get. Include the expectation of an "id" parameter in the attribute for `GetProduct()`:
+## Configure routing
 
-```csharp
-// /api/products
-[HttpGet]
-...
+Configure routing as follows:
 
-// /api/products/1
-[HttpGet("{id}")]
-```
+1. Decorate the `ProductsController` class with the following attributes:
 
-At this point, routing is configured correctly; however, we can't yet test it. Additional changes must be made before *ProductsController* will compile.
+    ```csharp
+    [Route("api/[controller]")]
+    [ApiController]
+    ```
 
-## Migrate Models and Controllers
+    The preceding [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
-The last step in the migration process for this simple Web API project is to copy over the Controllers and any Models they use. In this case, simply copy *Controllers/ProductsController.cs* from the original project to the new one. Then, copy the entire Models folder from the original project to the new one. Adjust the namespaces to match the new project name (*ProductsCore*).  At this point, you can build the application, and you will find a number of compilation errors. These should generally fall into the following categories:
+    Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens reduce the number of magic strings in the project. The tokens also ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
+1. Set the project's compatibility mode to ASP.NET Core 2.2:
 
-* *ApiController* does not exist
+    [!code-csharp[](webapi/sample/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
 
-* *System.Web.Http* namespace does not exist
+    The preceding change:
 
-* *IHttpActionResult* does not exist
+    * Is required to use the `[ApiController]` attribute at the controller level.
+    * Opts in to potentially breaking behaviors introduced in ASP.NET Core 2.2.
+1. Enable HTTP Get requests to the `ProductController` actions:
+    * Apply the [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
+    * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
 
-Fortunately, these are all very easy to correct:
+After the preceding changes and the removal of unused `using` statements, *ProductsController.cs* file looks like this:
 
-* Change *ApiController* to *Controller* (you may need to add *using Microsoft.AspNetCore.Mvc*)
+[!code-csharp[](webapi/sample/ProductsCore/Controllers/ProductsController.cs)]
 
-* Delete any using statement referring to *System.Web.Http*
+Run the migrated project, and browse to `/api/products`. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
-* Change any method returning *IHttpActionResult* to return a *IActionResult*
+## Compatibility shim
 
-Once these changes have been made and unused using statements removed, the migrated *ProductsController* class looks like this:
+The [Microsoft.AspNetCore.Mvc.WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) library provides a compatibility shim to move ASP.NET 4.x Web API projects to ASP.NET Core. The compatibility shim extends ASP.NET Core to support a number of conventions from ASP.NET 4.x Web API 2. The sample ported previously in this document is basic enough that the compatibility shim was unnecessary. For larger projects, using the compatibility shim can be useful for temporarily bridging the API gap between ASP.NET Core and ASP.NET 4.x Web API 2.
 
-[!code-csharp[](../migration/webapi/sample/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,6,8,9,27)]
-
-You should now be able to run the migrated project and browse to */api/products*; and, you should see the full list of 3 products. Browse to */api/products/1* and you should see the first product.
-
-## ASP.NET 4.x Web API 2 compatibility shim
-
-A useful tool when migrating ASP.NET Web API projects to ASP.NET Core is the [Microsoft.AspNetCore.Mvc.WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) library. The compatibility shim extends ASP.NET Core to allow a number of different Web API 2 conventions to be used. The sample ported previously in this document is basic enough that the compatibility shim was not necessary. For larger projects, using the compatibility shim can be useful for temporarily bridging the API gap between ASP.NET Core and ASP.NET Web API 2.
-
-The Web API compatibility shim is meant to be used as a temporary measure to facilitate migrating large Web API projects to ASP.NET Core. Over time, projects should be updated to use ASP.NET Core patterns instead of relying on the compatibility shim.
+The Web API compatibility shim is meant to be used as a temporary measure to support migrating large ASP.NET 4.x Web API projects to ASP.NET Core. Over time, projects should be updated to use ASP.NET Core patterns instead of relying on the compatibility shim.
 
 Compatibility features included in `Microsoft.AspNetCore.Mvc.WebApiCompatShim` include:
 
 * Adds an `ApiController` type so that controllers' base types don't need to be updated.
-* Enables Web API-style model binding. ASP.NET Core MVC model binding functions similarly to MVC 5, by default. The compatibility shim changes model binding to be more similar to Web API 2 model binding conventions. For example, complex types are automatically bound from the request body.
+* Enables Web API-style model binding. ASP.NET Core MVC model binding functions similarly to that of ASP.NET 4.x MVC 5, by default. The compatibility shim changes model binding to be more similar to ASP.NET 4.x Web API 2 model binding conventions. For example, complex types are automatically bound from the request body.
 * Extends model binding so that controller actions can take parameters of type `HttpRequestMessage`.
 * Adds message formatters allowing actions to return results of type `HttpResponseMessage`.
 * Adds additional response methods that Web API 2 actions may have used to serve responses:
-  * HttpResponseMessage generators:
+  * `HttpResponseMessage` generators:
     * `CreateResponse<T>`
     * `CreateErrorResponse`
   * Action result methods:
@@ -130,14 +142,16 @@ Compatibility features included in `Microsoft.AspNetCore.Mvc.WebApiCompatShim` i
     * `InvalidModelStateResult`
     * `NegotiatedContentResult`
     * `ResponseMessageResult`
-* Adds an instance of `IContentNegotiator` to the app's DI container and makes content negotiation-related types from [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) available. This includes types like `DefaultContentNegotiator`, `MediaTypeFormatter`, etc.
+* Adds an instance of `IContentNegotiator` to the app's dependency injection (DI) container and makes available the content negotiation-related types from [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/). Examples of such types include `DefaultContentNegotiator` and `MediaTypeFormatter`.
 
-To use the compatibility shim, you need to:
+To use the compatibility shim:
 
-* Install the [Microsoft.AspNetCore.Mvc.WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) NuGet package.
-* Register the compatibility shim's services with the app's DI container by calling `services.AddMvc().AddWebApiConventions()` in the app's `Startup.ConfigureServices` method.
-* Define Web API-specific routes using `MapWebApiRoute` on the `IRouteBuilder` in the app's `IApplicationBuilder.UseMvc` call.
+1. Install the [Microsoft.AspNetCore.Mvc.WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) NuGet package.
+1. Register the compatibility shim's services with the app's DI container by calling `services.AddMvc().AddWebApiConventions()` in `Startup.ConfigureServices`.
+1. Define web API-specific routes using `MapWebApiRoute` on the `IRouteBuilder` in the app's `IApplicationBuilder.UseMvc` call.
 
-## Summary
+## Additional resources
 
-Migrating a simple ASP.NET Web API project to ASP.NET Core MVC is fairly straightforward, thanks to the built-in support for Web APIs in ASP.NET Core MVC. The main pieces every ASP.NET Web API project will need to migrate are routes, controllers, and models, along with updates to the types used by  controllers and actions.
+* <xref:web-api/index>
+* <xref:web-api/action-return-types>
+* <xref:mvc/compatibility-version>

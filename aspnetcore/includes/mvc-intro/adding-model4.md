@@ -20,10 +20,15 @@ MVC also provides the ability to pass strongly typed model objects to a view. Th
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Controllers/MoviesController.cs?name=snippet_details)]
+
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_details)]
+
 ::: moniker-end
 
 
@@ -49,6 +54,7 @@ A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expre
 var movie = await _context.Movie
     .FirstOrDefaultAsync(m => m.ID == id);
 ```
+
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.0"
@@ -59,6 +65,7 @@ A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expre
 var movie = await _context.Movie
     .SingleOrDefaultAsync(m => m.ID == id);
 ```
+
 ::: moniker-end
 
 

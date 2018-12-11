@@ -4,7 +4,7 @@ author: zuckerthoben
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/29/2018
+ms.date: 09/20/2018
 uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
@@ -13,19 +13,24 @@ By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.0"
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag) ([how to download](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 
-Using [NSwag](https://github.com/RSuter/NSwag) with ASP.NET Core middleware requires the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. The package consists of a Swagger generator, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc).
+Register the NSwag middlewares to:
 
-It's highly recommended to make use of NSwag's code generation capabilities. Choose one of the following options for code generation:
+* Generate the Swagger specification for the implemented web API.
+* Serve the Swagger UI to browse and test the web API.
+
+To use the [NSwag](https://github.com/RSuter/NSwag) ASP.NET Core middlewares, install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. This package contains the middlewares to generate and serve the Swagger specification, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc).
+
+Additionally, it's highly recommended to make use of NSwag's code generation capabilities. Choose one of the following options to use the code generation capabilities:
 
 * Use [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), a Windows desktop app for generating client code in C# and TypeScript for your API.
 * Use the [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages to do code generation inside your project.
@@ -34,7 +39,7 @@ It's highly recommended to make use of NSwag's code generation capabilities. Cho
 
 ## Features
 
-The main reason to use NSwag is the ability to not only introduce the Swagger UI and Swagger generator, but to make use of the flexible code generation capabilities. You don't need an existing API&mdash;you can use third-party APIs that incorporate Swagger and let NSwag generate a client implementation. Either way, the development cycle is expedited and you can more easily adapt to API changes.
+The main reason to use NSwag is the ability to not only introduce the Swagger UI and Swagger generator, but to also make use of the flexible code generation capabilities. You don't need an existing API&mdash;you can use third-party APIs that incorporate Swagger and let NSwag generate a client implementation. Either way, the development cycle is expedited and you can more easily adapt to API changes.
 
 ## Package installation
 
@@ -88,7 +93,11 @@ Import the following namespaces in the `Startup` class:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_StartupConfigureImports)]
 
-In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
+In the `Startup.ConfigureServices` method, register the required Swagger services: 
+
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
+
+In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI v3:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-10)]
 
@@ -248,6 +257,7 @@ Manually add the highlighted lines to the *.csproj* file:
 ### Data annotations
 
 ::: moniker range="<= aspnetcore-2.0"
+
 NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult). Consequently, NSwag can't infer what your action is doing and what it returns. Consider the following example:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
@@ -255,8 +265,11 @@ NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), a
 The preceding action returns `IActionResult`, but inside the action it's returning either [CreatedAtRoute](/dotnet/api/system.web.http.apicontroller.createdatroute) or [BadRequest](/dotnet/api/system.web.http.apicontroller.badrequest). Data annotations are used to tell clients which HTTP status codes this action is known to return. Decorate the action with the following attributes:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
+
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
+
 NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [ActionResult\<T>](/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1). Consequently, NSwag can only infer the return type defined by `T`. Other possible return types in the action cannot be inferred. Consider the following example:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
@@ -264,6 +277,7 @@ NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), a
 The preceding action returns `ActionResult<T>`, but inside the action it's returning either [CreatedAtRoute](/dotnet/api/system.web.http.apicontroller.createdatroute). Since the controller is decorated with the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute, a [BadRequest](/dotnet/api/system.web.http.apicontroller.badrequest) response is possible too. See [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses) for more info. Data annotations are used to tell clients which HTTP status codes this action is known to return. Decorate the action with the following attributes:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
+
 ::: moniker-end
 
 The Swagger generator can now accurately describe this action, and generated clients know what they receive when calling the endpoint. Decorating all actions with these attributes is highly recommended. For guidelines on what HTTP responses your API actions should return, see the [RFC 7231 specification](https://tools.ietf.org/html/rfc7231#section-4.3).

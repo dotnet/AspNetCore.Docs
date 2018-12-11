@@ -1,7 +1,7 @@
 ---
 uid: signalr/overview/testing-and-debugging/enabling-signalr-tracing
 title: "Enabling SignalR Tracing | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This document describes how to enable and configure tracing for SignalR servers and clients. Tracing enables you to view diagnostic information about events..."
 ms.author: riande
 ms.date: 08/08/2014
@@ -14,20 +14,20 @@ Enabling SignalR Tracing
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
 > This document describes how to enable and configure tracing for SignalR servers and clients. Tracing enables you to view diagnostic information about events in your SignalR application.
-> 
+>
 > This topic was originally written by Patrick Fletcher.
-> 
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET Framework 4.5
 > - SignalR version 2
->   
-> 
-> 
+>
+>
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
@@ -128,7 +128,7 @@ The following output shows entries from the `ClientLog.txt` file for an applicat
 <a id="phone"></a>
 ## Enabling tracing in Windows Phone 8 clients
 
-SignalR applications for Windows Phone apps use the same .NET client as desktop apps, but [Console.Out](https://msdn.microsoft.com/library/system.console.out(v=vs.110).aspx) and writing to a file with [StreamWriter](https://msdn.microsoft.com/library/system.io.streamwriter(v=vs.110).aspx) are not available. Instead, you need to create a custom implementation of [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter(v=vs.110).aspx) for tracing. 
+SignalR applications for Windows Phone apps use the same .NET client as desktop apps, but [Console.Out](https://msdn.microsoft.com/library/system.console.out(v=vs.110).aspx) and writing to a file with [StreamWriter](https://msdn.microsoft.com/library/system.io.streamwriter(v=vs.110).aspx) are not available. Instead, you need to create a custom implementation of [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter(v=vs.110).aspx) for tracing.
 
 <a id="phone_ui"></a>
 ### Logging Windows Phone client events to the UI

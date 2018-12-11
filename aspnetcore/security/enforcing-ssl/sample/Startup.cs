@@ -34,7 +34,7 @@ namespace WebHTTPS
             {
                 options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
                 options.HttpsPort = 5001;
-            });            
+            });
         }
         #endregion
 

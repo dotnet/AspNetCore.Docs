@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Accessing Your Model's Data from a Controller
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [Tutorial Note](sample/code-location.md)]
 

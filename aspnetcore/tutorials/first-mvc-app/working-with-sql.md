@@ -13,10 +13,15 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Startup.cs?name=ConfigureServices&highlight=13-99)]
+
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+
 ::: moniker-end
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
@@ -68,23 +73,17 @@ if (context.Movie.Any())
 Replace the contents of *Program.cs* with the following code:
 
 ::: moniker range=">= aspnetcore-2.1"
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Program.cs)]
-::: moniker-end
-::: moniker range="<= aspnetcore-2.0"
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Program.cs)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.0"
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Program.cs?highlight=6,14-32)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
-
-Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file.
-
-[!code-csharp[](start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
-
----
 ::: moniker-end
 
 Test the app

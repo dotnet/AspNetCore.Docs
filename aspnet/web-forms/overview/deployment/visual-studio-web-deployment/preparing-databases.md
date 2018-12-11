@@ -78,15 +78,13 @@ Open the application *Web.config* file and remove or comment out the `add` eleme
 > [!NOTE]
 > Another way to specify an initializer class is do it by calling `Database.SetInitializer` in the `Application_Start` method in the *Global.asax* file. If you are enabling Migrations in a project that uses that method to specify the initializer, remove that line of code.
 
-
 > [!NOTE]
 > If you are using Visual Studio 2013, add the following steps between steps 2 and 3: (a) In PMC enter "update-package entityframework -version 6.1.1" to get the current version of EF. Then (b) build the project to get a list of build errors, and fix them. Delete using statements for namespaces that no longer exist, right-click and click Resolve to add using statements where they're needed, and change occurrences of System.Data.EntityState to System.Data.Entity.EntityState.
-
 
 ### Enable Code First Migrations
 
 1. Make sure that the ContosoUniversity project (not ContosoUniversity.DAL) is set as the startup project. In **Solution Explorer**, right-click the ContosoUniversity project and select **Set as Startup Project**. Code First Migrations will look in the startup project to find the database connection string.
-2. From the **Tools** menu, click **Library Package Manager** (or **NuGet Package Manager**) and then **Package Manager Console**.
+2. From the **Tools** menu, choose **NuGet Package Manager** > **Package Manager Console**.
 
     ![Selecting_Package_Manager_Console](preparing-databases/_static/image3.png)
 3. At the top of the **Package Manager Console** window select ContosoUniversity.DAL as the default project and then at the `PM>` prompt enter "enable-migrations".

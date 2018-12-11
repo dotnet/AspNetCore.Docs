@@ -92,7 +92,7 @@ The site name in the QR Code is taken from the project name you choose when init
 
 The default code from the template looks as follows:
 
-```c#
+```csharp
 private string GenerateQrCodeUri(string email, string unformattedKey)
 {
     return string.Format(

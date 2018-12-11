@@ -13,21 +13,23 @@ uid: signalr/authn-and-authz
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Authenticate users connecting to a SignalR hub
 
-SignalR can be used with [ASP.NET Core Authentication](xref:security/authentication/index) to associate a user with each connection. In a hub, authentication data can be accessed from the [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) property. Authentication allows the hub to call methods on all connections associated with a user (See [Manage users and groups in SignalR](xref:signalr/groups) for more information). Multiple connections may be associated with a single user.
+SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) property. Authentication allows the hub to call methods on all connections associated with a user (See [Manage users and groups in SignalR](xref:signalr/groups) for more information). Multiple connections may be associated with a single user.
 
 ### Cookie authentication
 
 In a browser-based app, cookie authentication allows your existing user credentials to automatically flow to SignalR connections. When using the browser client, no additional configuration is needed. If the user is logged in to your app, the SignalR connection automatically inherits this authentication.
 
-Cookie authentication isn't recommended unless the app only needs to authenticate users from the browser client. When using the [.NET Client](xref:signalr/dotnet-client), the `Cookies` property can be configured in the `.WithUrl` call in order to provide a cookie. However, using cookie authentication from the .NET Client requires the app to provide an API to exchange authentication data for a cookie.
+Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](xref:signalr/dotnet-client), the `Cookies` property can be configured in the `.WithUrl` call in order to provide a cookie. However, using cookie authentication from the .NET Client requires the app to provide an API to exchange authentication data for a cookie.
 
 ### Bearer token authentication
 
-Bearer token authentication is the recommended approach when using clients other than the browser client. In this approach, the client provides an access token that the server validates and uses to identify the user. The details of bearer token authentication are beyond the scope of this document. On the server, bearer token authentication is configured using the [JWT Bearer middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
+The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. This validation is done only when the connection is established. During the life of the connection, the server doesn't automatically revalidate to check for token revocation.
+
+On the server, bearer token authentication is configured using the [JWT Bearer middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
 
 In the JavaScript client, the token can be provided using the [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) option.
 
@@ -39,7 +41,7 @@ In the .NET client, there is a similar [AccessTokenProvider](xref:signalr/config
 var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/myhub", options =>
     { 
-        options.AccessTokenProvider = () => _myAccessToken;
+        options.AccessTokenProvider = () => Task.FromResult(_myAccessToken);
     })
     .Build();
 ```
@@ -50,6 +52,10 @@ var connection = new HubConnectionBuilder()
 In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR is unable to set these headers in browsers when using some transports. When using WebSockets and Server-Sent Events, the token is transmitted as a query string parameter. In order to support this on the server, additional configuration is required:
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
+
+### Cookies vs. bearer tokens 
+
+Because cookies are specific to browsers, sending them from other kinds of clients adds complexity compared to sending bearer tokens. For this reason, cookie authentication isn't recommended unless the app only needs to authenticate users from the browser client. Bearer token authentication is the recommended approach when using clients other than the browser client.
 
 ### Windows authentication
 

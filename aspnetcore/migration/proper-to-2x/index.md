@@ -3,7 +3,7 @@ title: Migrate from ASP.NET to ASP.NET Core
 author: isaac2004
 description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: scaddie
-ms.date: 08/27/2017
+ms.date: 12/10/2018
 uid: migration/proper-to-2x/index
 ---
 # Migrate from ASP.NET to ASP.NET Core
@@ -26,7 +26,7 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
 </ItemGroup>
 ```
 
@@ -60,7 +60,7 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 
 `Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), several extension methods are used to configure the pipeline with support for:
 
-* [BrowserLink](http://vswebessentials.com/features/browserlink)
+* [Browser Link](xref:client-side/using-browserlink)
 * Error pages
 * Static files
 * ASP.NET Core MVC

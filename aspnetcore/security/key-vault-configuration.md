@@ -2,31 +2,19 @@
 title: Azure Key Vault configuration provider in ASP.NET Core
 author: guardrex
 description: Learn how to use the Azure Key Vault Configuration Provider to configure an app using name-value pairs loaded at runtime.
+monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
-ms.date: 08/01/2018
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: security/key-vault-configuration
 ---
 # Azure Key Vault configuration provider in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex) and [Andrew Stanton-Nurse](https://github.com/anurse)
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-View or download sample code for 2.x:
-
-* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/2.x) ([how to download](xref:tutorials/index#how-to-download-a-sample)) - Reads secret values into an app.
-* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/2.x) ([how to download](xref:tutorials/index#how-to-download-a-sample)) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version.
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-View or download sample code for 1.x:
-
-* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/1.x) ([how to download](xref:tutorials/index#how-to-download-a-sample)) - Reads secret values into an app.
-* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/1.x) ([how to download](xref:tutorials/index#how-to-download-a-sample)) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version.
-
----
-
 This document explains how to use the [Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps you safeguard cryptographic keys and secrets used by apps and services. Common scenarios include controlling access to sensitive configuration data and meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's) when storing configuration data. This feature is available for apps that target ASP.NET Core 1.1 or higher.
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Package
 
@@ -46,7 +34,7 @@ The provider is added to the app's configuration with the `AddAzureKeyVault` ext
 
 [!code-csharp[Program](key-vault-configuration/samples/basic-sample/2.x/Program.cs?name=snippet1)]
 
-## Creating key vault secrets and loading configuration values (basic-sample)
+## Create key vault secrets and load configuration values (basic-sample)
 
 1. Create a key vault and set up Azure Active Directory (Azure AD) for the app following the guidance in [Get started with Azure Key Vault](https://azure.microsoft.com/documentation/articles/key-vault-get-started/).
    * Add secrets to the key vault using the [AzureRM Key Vault PowerShell Module](/powershell/module/azurerm.keyvault) available from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureRM.KeyVault), the [Azure Key Vault REST API](/rest/api/keyvault/), or the [Azure Portal](https://portal.azure.com/). Secrets are created as either *Manual* or *Certificate* secrets. *Certificate* secrets are certificates for use by apps and services but are not supported by the configuration provider. You should use the *Manual* option to create name-value pair secrets for use with the configuration provider.
@@ -69,7 +57,49 @@ When you run the app, a webpage shows the loaded secret values:
 
 ![Browser window showing secret values loaded via the Azure Key Vault Configuration Provider](key-vault-configuration/_static/sample1.png)
 
-## Creating prefixed key vault secrets and loading configuration values (key-name-prefix-sample)
+## Bind an array to a class
+
+The provider is capable of reading configuration values into an array for binding to a POCO array.
+
+When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, … `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+
+Azure Key Vault keys can't use a colon as a separator. The approach described in this topic uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, … `--{n}--`).
+
+Examine the following [Serilog](https://serilog.net/) logging provider configuration provided by a JSON file. There are two object literals defined in the `WriteTo` array that reflect two Serilog *sinks*, which describe destinations for logging output:
+
+```json
+"Serilog": {
+  "WriteTo": [
+    {
+      "Name": "AzureTableStorage",
+      "Args": {
+        "storageTableName": "logs",
+        "connectionString": "DefaultEnd...ountKey=Eby8...GMGw=="
+      }
+    },
+    {
+      "Name": "AzureDocumentDB",
+      "Args": {
+        "endpointUrl": "https://contoso.documents.azure.com:443",
+        "authorizationKey": "Eby8...GMGw=="
+      }
+    }
+  ]
+}
+```
+
+The configuration shown in the preceding JSON file is stored in Azure Key Vault using double dash (`--`) notation and numeric segments:
+
+| Key | Value |
+| --- | ----- |
+| `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
+| `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
+| `Serilog--WriteTo--0--Args--connectionString` | `DefaultEnd...ountKey=Eby8...GMGw==` |
+| `Serilog--WriteTo--1--Name` | `AzureDocumentDB` |
+| `Serilog--WriteTo--1--Args--endpointUrl` | `https://contoso.documents.azure.com:443` |
+| `Serilog--WriteTo--1--Args--authorizationKey` | `Eby8...GMGw==` |
+
+## Create prefixed key vault secrets and load configuration values (key-name-prefix-sample)
 
 `AddAzureKeyVault` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
 
@@ -111,11 +141,11 @@ When you implement this approach:
 
    ![Browser window showing a secret value loaded via the Azure Key Vault Configuration Provider when the app's version is 5.1.0.0](key-vault-configuration/_static/sample2-2.png)
 
-## Controlling access to the ClientSecret
+## Control access to the ClientSecret
 
 Use the [Secret Manager tool](xref:security/app-secrets) to maintain the `ClientSecret` outside of your project source tree. With Secret Manager, you associate app secrets with a specific project and share them across multiple projects.
 
-When developing a .NET Framework app in an environment that supports certificates, you can authenticate to Azure Key Vault with an X.509 certificate. The X.509 certificate's private key is managed by the OS. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret). Use the `AddAzureKeyVault` overload that accepts an `X509Certificate2` (`_env` in the following example :
+When developing a .NET Framework app in an environment that supports certificates, you can authenticate to Azure Key Vault with an X.509 certificate. The X.509 certificate's private key is managed by the OS. For more information, see [Authenticate with a Certificate instead of a Client Secret](/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret). Use the `AddAzureKeyVault` overload that accepts an `X509Certificate2` (`_env` in the following example :
 
 ```csharp
 var builtConfig = config.Build();
@@ -135,7 +165,7 @@ config.AddAzureKeyVault(
 store.Close();
 ```
 
-## Reloading secrets
+## Reload secrets
 
 Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault are not respected by the app until `Reload` is executed.
 
@@ -147,7 +177,7 @@ Configuration.Reload();
 
 Disabled and expired secrets throw a `KeyVaultClientException`. To prevent your app from throwing, replace your app or update the disabled/expired secret.
 
-## Troubleshooting
+## Troubleshoot
 
 When the app fails to load configuration using the provider, an error message is written to the [ASP.NET Core Logging infrastructure](xref:fundamentals/logging/index). The following conditions will prevent configuration from loading:
 

@@ -7,7 +7,7 @@ ms.assetid: 3a309468-f1ca-4e51-b9c3-536af79d7a8b
 ms.author: riande
 ms.date: 03/12/2010
 ms.technology: aspnet
-msc.legacyurl: 
+msc.legacyurl:
 msc.type: content
 ---
 
@@ -19,7 +19,7 @@ ASP.NET is a free web framework for building great websites and web applications
 
 ## Get started
 
-[Visual Studio Community 2017](https://www.visualstudio.com/downloads/), a free IDE for ASP.NET on Windows.
+Install [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) Community edition, a free IDE for ASP.NET on Windows.
 
 ## Websites and web applications
 
@@ -29,7 +29,7 @@ Each framework targets a different development style. The one you choose depends
 
 Below is an overview of each of the frameworks and some ideas for how to choose between them. If you prefer a video introduction, see [Making Websites with ASP.NET](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/Making-Websites-with-ASPNET) and [What is Web Tools?](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/what-is-web-tools)
 
-|   | If you have experience in | Development style | Expertise | 
+|   | If you have experience in | Development style | Expertise |
 |-----------|----------------------|-----------------------------------------------------|----------------|
 | Web Forms | Win Forms, WPF, .NET | Rapid development using a rich library of controls that encapsulate HTML markup | Mid-Level, Advanced RAD |
 | MVC       | Ruby on Rails, .NET  | Full control over HTML markup, code and markup separated, and easy to write tests. The best choice for mobile and single-page applications (SPA). | Mid-Level, Advanced |
@@ -37,13 +37,13 @@ Below is an overview of each of the frameworks and some ideas for how to choose 
 
 ### Web Forms
 
-With ASP.NET Web Forms, you can build dynamic websites using a familiar drag-and-drop, event-driven model. A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access. 
+With ASP.NET Web Forms, you can build dynamic websites using a familiar drag-and-drop, event-driven model. A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
 
 [Learn more about Web Forms](web-forms/index.md)
 
 ### MVC
 
-ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and that gives you full control over markup for enjoyable, agile development. ASP.NET MVC includes many features that enable fast, TDD-friendly development for creating sophisticated applications that use the latest web standards. 
+ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and that gives you full control over markup for enjoyable, agile development. ASP.NET MVC includes many features that enable fast, TDD-friendly development for creating sophisticated applications that use the latest web standards.
 
 [Learn more about MVC](mvc/index.md)
 
@@ -75,7 +75,7 @@ ASP.NET SignalR is a new library for ASP.NET developers that makes developing re
 
 <!-- Put first under SignalR TOC:  Watch video (6 minutes) https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/signalr-and-the-real-time-web -->
 
-## Mobile apps and sites 
+## Mobile apps and sites
 
 ASP.NET can power native mobile apps with a Web API back end, as well as mobile web sites using responsive design frameworks like Twitter Bootstrap. If you are building a native mobile app, it's easy to create a JSON-based Web API to handle data access, authentication, and push notifications for your app. If you are building a responsive mobile site, you can use any CSS framework or open grid system you prefer, or select a powerful mobile system like jQuery Mobile or Sencha and great mobile applications with PhoneGap.
 
@@ -83,7 +83,7 @@ ASP.NET can power native mobile apps with a Web API back end, as well as mobile 
 
 <!-- Put first under mobile TOC:  Watch video (11 minutes) https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-and-mobile -->
 
-## Single-page applications 
+## Single-page applications
 
 ASP.NET Single Page Application (SPA) helps you build applications that include significant client-side interactions using HTML 5, CSS 3 and JavaScript. Visual Studio includes a template for building single page applications using knockout.js and ASP.NET Web API. In addition to the built-in SPA template, community-created SPA templates are also available for download.
 

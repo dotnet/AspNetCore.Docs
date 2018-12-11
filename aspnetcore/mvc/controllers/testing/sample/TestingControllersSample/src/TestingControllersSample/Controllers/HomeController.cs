@@ -9,6 +9,7 @@ using TestingControllersSample.ViewModels;
 
 namespace TestingControllersSample.Controllers
 {
+    #region snippet_HomeController
     public class HomeController : Controller
     {
         private readonly IBrainstormSessionRepository _sessionRepository;
@@ -58,4 +59,5 @@ namespace TestingControllersSample.Controllers
             return RedirectToAction(actionName: nameof(Index));
         }
     }
+    #endregion
 }

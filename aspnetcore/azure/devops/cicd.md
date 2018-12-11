@@ -1,25 +1,26 @@
 ---
-title: DevOps with ASP.NET Core and Azure | Continuous integration and deployment
+title: Continuous integration and deployment - DevOps with ASP.NET Core and Azure
 author: CamSoper
-description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
+description: Continuous integration and deployment in DevOps with ASP.NET Core and Azure
 ms.author: scaddie
-ms.date: 08/17/2018
+ms.date: 10/24/2018
+ms.custom: seodec18
 uid: azure/devops/cicd
 ---
 # Continuous integration and deployment
 
-In the previous chapter, you created a local Git repository for the Simple Feed Reader app. In this chapter, you'll publish that code to a GitHub repository and construct a Visual Studio Team Services (VSTS) DevOps pipeline. The pipeline enables continuous builds and deployments of the app. Any commit to the GitHub repository triggers a build and a deployment to the Azure Web App's staging slot.
+In the previous chapter, you created a local Git repository for the Simple Feed Reader app. In this chapter, you'll publish that code to a GitHub repository and construct an Azure DevOps Services pipeline using Azure Pipelines. The pipeline enables continuous builds and deployments of the app. Any commit to the GitHub repository triggers a build and a deployment to the Azure Web App's staging slot.
 
 In this section, you'll complete the following tasks:
 
 * Publish the app's code to GitHub
 * Disconnect local Git deployment
-* Create a VSTS account
-* Create a team project in VSTS
+* Create an Azure DevOps organization
+* Create a team project in Azure DevOps Services
 * Create a build definition
 * Create a release pipeline
 * Commit changes to GitHub and automatically deploy to Azure
-* Examine the VSTS DevOps pipeline
+* Examine the Azure Pipelines pipeline
 
 ## Publish the app's code to GitHub
 
@@ -47,7 +48,7 @@ In this section, you'll complete the following tasks:
 
 ## Disconnect local Git deployment
 
-Remove the local Git deployment with the following steps. VSTS both replaces and augments that functionality.
+Remove the local Git deployment with the following steps. Azure Pipelines (an Azure DevOps service) both replaces and augments that functionality.
 
 1. Open the [Azure portal](https://portal.azure.com/), and navigate to the *staging (mywebapp\<unique_number\>/staging)* Web App. The Web App can be quickly located by entering *staging* in the portal's search box:
 
@@ -57,26 +58,26 @@ Remove the local Git deployment with the following steps. VSTS both replaces and
 1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
 1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 
-## Create a VSTS account
+## Create an Azure DevOps organization
 
-1. Open a browser, and navigate to the [VSTS account creation page](https://go.microsoft.com/fwlink/?LinkId=307137).
-1. Type a unique name into the **Pick a memorable name** textbox to form the URL for accessing your VSTS account.
+1. Open a browser, and navigate to the [Azure DevOps organization creation page](https://go.microsoft.com/fwlink/?LinkId=307137).
+1. Type a unique name into the **Pick a memorable name** textbox to form the URL for accessing your Azure DevOps organization.
 1. Select the **Git** radio button, since the code is hosted in a GitHub repository.
 1. Click the **Continue** button. After a short wait, an account and a team project, named *MyFirstProject*, are created.
 
-    ![VSTS account creation page](media/cicd/vsts-account-creation.png)
+    ![Azure DevOps organization creation page](media/cicd/vsts-account-creation.png)
 
-1. Open the confirmation email indicating that the VSTS account and project are ready for use. Click the **Start your project** button:
+1. Open the confirmation email indicating that the Azure DevOps organization and project are ready for use. Click the **Start your project** button:
 
     ![Start your project button](media/cicd/vsts-start-project.png)
 
 1. A browser opens to *\<account_name\>.visualstudio.com*. Click the *MyFirstProject* link to begin configuring the project's DevOps pipeline.
 
-## Configure the DevOps pipeline
+## Configure the Azure Pipelines pipeline
 
 There are three distinct steps to complete. Completing the steps in the following three sections results in an operational DevOps pipeline.
 
-### Grant VSTS access to the GitHub repository
+### Grant Azure DevOps access to the GitHub repository
 
 1. Expand the **or build code from an external repository** accordion. Click the **Setup Build** button:
 
@@ -86,12 +87,12 @@ There are three distinct steps to complete. Completing the steps in the followin
 
     ![Select a source - GitHub](media/cicd/vsts-select-source.png)
 
-1. Authorization is required before VSTS can access your GitHub repository. Enter *<GitHub_username> GitHub connection* in the **Connection name** textbox. For example:
+1. Authorization is required before Azure DevOps can access your GitHub repository. Enter *<GitHub_username> GitHub connection* in the **Connection name** textbox. For example:
 
     ![GitHub connection name](media/cicd/vsts-repo-authz.png)
 
 1. If two-factor authentication is enabled on your GitHub account, a personal access token is required. In that case, click the **Authorize with a GitHub personal access token** link. See the [official GitHub personal access token creation instructions](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) for help. Only the *repo* scope of permissions is needed. Otherwise, click the **Authorize using OAuth** button.
-1. When prompted, sign in to your GitHub account. Then select Authorize to grant access to your VSTS account. If successful, a new service endpoint is created.
+1. When prompted, sign in to your GitHub account. Then select Authorize to grant access to your Azure DevOps organization. If successful, a new service endpoint is created.
 1. Click the ellipsis button next to the **Repository** button. Select the *<GitHub_username>/simple-feed-reader* repository from the list. Click the **Select** button.
 1. Select the *master* branch from the **Default branch for manual and scheduled builds** drop-down. Click the **Continue** button. The template selection page appears.
 
@@ -199,7 +200,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 
     ![enable continuous integration](media/cicd/enable-ci.png)
 
-1. Navigate to the **Queued** tab of the **Build and Release** > **Builds** page in VSTS. The queued build shows the branch and commit that triggered the build:
+1. Navigate to the **Queued** tab of the **Azure Pipelines** > **Builds** page in Azure DevOps Services. The queued build shows the branch and commit that triggered the build:
 
     ![queued build](media/cicd/build-queued.png)
 
@@ -207,7 +208,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 
     ![updated app](media/cicd/updated-app-v4.png)
 
-## Examine the VSTS DevOps pipeline
+## Examine the Azure Pipelines pipeline
 
 ### Build definition
 
@@ -224,20 +225,20 @@ The build definition's **Tasks** tab lists the individual steps being used. Ther
     > [!NOTE]
     > To verify the unit tests work, modify *SimpleFeedReader.Tests\Services\NewsServiceTests.cs* to purposefully break one of the tests. For example, change `Assert.True(result.Count > 0);` to `Assert.False(result.Count > 0);` in the `Returns_News_Stories_Given_Valid_Uri` method. Commit and push the change to GitHub. The build is triggered and fails. The build pipeline status changes to **failed**. Revert the change, commit, and push again. The build succeeds.
 
-1. **Publish** &mdash; Executes the `dotnet publish --configuration release --output <local_path_on_build_agent>` command to produce a *.zip* file with the artifacts to be deployed. The `--output` option specifies the publish location of the *.zip* file. That location is specified by passing a [predefined variable](https://docs.microsoft.com/vsts/pipelines/build/variables) named `$(build.artifactstagingdirectory)`. That variable expands to a local path, such as *c:\agent\_work\1\a*, on the build agent.
+1. **Publish** &mdash; Executes the `dotnet publish --configuration release --output <local_path_on_build_agent>` command to produce a *.zip* file with the artifacts to be deployed. The `--output` option specifies the publish location of the *.zip* file. That location is specified by passing a [predefined variable](/azure/devops/pipelines/build/variables) named `$(build.artifactstagingdirectory)`. That variable expands to a local path, such as *c:\agent\_work\1\a*, on the build agent.
 1. **Publish Artifact** &mdash; Publishes the *.zip* file produced by the **Publish** task. The task accepts the *.zip* file location as a parameter, which is the predefined variable `$(build.artifactstagingdirectory)`. The *.zip* file is published as a folder named *drop*.
 
 Click the build definition's **Summary** link to view a history of builds with the definition:
 
-![build definition history](media/cicd/build-definition-summary.png)
+![Screenshot showing build definition history](media/cicd/build-definition-summary.png)
 
 On the resulting page, click the link corresponding to the unique build number:
 
-![build definition summary page](media/cicd/build-definition-completed.png)
+![Screenshot showing build definition summary page](media/cicd/build-definition-completed.png)
 
 A summary of this specific build is displayed. Click the **Artifacts** tab, and notice the *drop* folder produced by the build is listed:
 
-![build definition artifacts - drop folder](media/cicd/build-definition-artifacts.png)
+![Screenshot showing build definition artifacts - drop folder](media/cicd/build-definition-artifacts.png)
 
 Use the **Download** and **Explore** links to inspect the published artifacts.
 
@@ -245,30 +246,30 @@ Use the **Download** and **Explore** links to inspect the published artifacts.
 
 A release pipeline was created with the name *MyFirstProject-ASP.NET Core-CD*:
 
-![release pipeline overview](media/cicd/release-definition-overview.png)
+![Screenshot showing release pipeline overview](media/cicd/release-definition-overview.png)
 
 The two major components of the release pipeline are the **Artifacts** and the **Environments**. Clicking the box in the **Artifacts** section reveals the following panel:
 
-![release pipeline artifacts](media/cicd/release-definition-artifacts.png)
+![Screenshot showing release pipeline artifacts](media/cicd/release-definition-artifacts.png)
 
 The **Source (Build definition)** value represents the build definition to which this release pipeline is linked. The *.zip* file produced by a successful run of the build definition is provided to the *Production* environment for deployment to Azure. Click the *1 phase, 2 tasks* link in the *Production* environment box to view the release pipeline tasks:
 
-![release pipeline tasks](media/cicd/release-definition-tasks.png)
+![Screenshot showing release pipeline tasks](media/cicd/release-definition-tasks.png)
 
 The release pipeline consists of two tasks: *Deploy Azure App Service to Slot* and *Manage Azure App Service - Slot Swap*. Clicking the first task reveals the following task configuration:
 
-![release pipeline deploy task](media/cicd/release-definition-task1.png)
+![Screenshot showing release pipeline deploy task](media/cicd/release-definition-task1.png)
 
 The Azure subscription, service type, web app name, resource group, and deployment slot are defined in the deployment task. The **Package or folder** textbox holds the *.zip* file path to be extracted and deployed to the *staging* slot of the *mywebapp\<unique_number\>* web app.
 
 Clicking the slot swap task reveals the following task configuration:
 
-![release pipeline slot swap task](media/cicd/release-definition-task2.png)
+![Screenshot showing release pipeline slot swap task](media/cicd/release-definition-task2.png)
 
-The subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** checkbox is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
+The subscription, resource group, service type, web app name, and deployment slot details are provided. The **Swap with Production** check box is checked. Consequently, the bits deployed to the *staging* slot are swapped into the production environment.
 
 ## Additional reading
 
-* [Build your ASP.NET Core app](https://docs.microsoft.com/vsts/build-release/apps/aspnet/build-aspnet-core)
-* [Build and deploy to an Azure Web App](https://docs.microsoft.com/vsts/build-release/apps/cd/azure/aspnet-core-to-azure-webapp)
-* [Define a CI build process for your GitHub repository](https://docs.microsoft.com/vsts/pipelines/build/ci-build-github)
+* [Create your first pipeline with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
+* [Build and .NET Core project](/azure/devops/pipelines/languages/dotnet-core)
+* [Deploy a web app with Azure Pipelines](/azure/devops/pipelines/targets/webapp)

@@ -13,8 +13,8 @@
   <!-- </snippet_DocumentationFileElement> -->
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
-    <PackageReference Include="NSwag.AspNetCore" Version="11.16.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="NSwag.AspNetCore" Version="11.19.2" />
   </ItemGroup>
 
 </Project>

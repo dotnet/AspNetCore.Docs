@@ -18,7 +18,7 @@ Visual Studio has built-in support for [LibMan](xref:client-side/libman/index) i
 * Search dialog for finding libraries and adding the files to a project.
 * Editing support for *libman.json*&mdash;the LibMan manifest file.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/libman/samples/) [(how to download)](xref:tutorials/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/libman/samples/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Prerequisites
 
@@ -94,7 +94,7 @@ With the following manifest file, LibMan retrieves files per the configuration d
 
 * A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder.
 * The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
-* A subset of [Lodash](https://lodash.com/) was approved by a governing body within the organization. The *lodash.js* and *lodash.min.js* files are retrieved from the local file system at *C:\\tmp\\*. The files are copied to the project's *wwwroot/lib/lodash* folder.
+* A subset of [Lodash](https://lodash.com/) was approved by a governing body within the organization. The *lodash.js* and *lodash.min.js* files are retrieved from the local file system at *C:\\temp\\lodash\\*. The files are copied to the project's *wwwroot/lib/lodash* folder.
 
 [!code-json[](samples/LibManSample/libman.json)]
 
@@ -187,7 +187,7 @@ Clean libraries operation completed
 2 libraries were successfully deleted in 1.91 secs
 ```
 
-The clean operation only deletes files from the project. Library files stay in the cache for faster retrieval on future restore operations. To manage library files stored in the local machine's cache, use the LibMan CLI.
+The clean operation only deletes files from the project. Library files stay in the cache for faster retrieval on future restore operations. To manage library files stored in the local machine's cache, use the [LibMan CLI](xref:client-side/libman/libman-cli).
 
 ## Uninstall library files
 
@@ -225,4 +225,5 @@ To downgrade to an older library version, manually edit the *libman.json* file. 
 
 ## Additional resources
 
+* <xref:client-side/libman/libman-cli>
 * [LibMan GitHub repository](https://github.com/aspnet/LibraryManager)

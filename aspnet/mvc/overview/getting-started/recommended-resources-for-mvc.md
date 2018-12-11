@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 MVC Recommended Resources
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > This topic provides links to documentation resources about ASP.NET MVC 5. If you know a great blog post, [stackoverflow](http://stackoverflow.com/) thread or any other link that would be useful, send [me](mailto:aspnetue@microsoft.com?subject=Great ASP.NET MVC link) an email with the link. The links provided here are updated periodically. You can find older (but in many cases still relevant) ASP.NET MVC links on the [MSDN content map](https://msdn.microsoft.com/library/gg416514(v=vs.108).aspx).
 > 

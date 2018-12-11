@@ -678,6 +678,7 @@ The following releases of the jQuery DataTables plugin are hosted on this CDN. C
 
 The following releases of [Modernizr](http://www.modernizr.com "Modernizr") are hosted on the CDN:
 
+- https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-3.5.0.js
 - https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js
 - https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.2.js
 - https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.1.js
@@ -793,6 +794,7 @@ The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstr
 
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/bootstrap.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/bootstrap.bundle.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/css/bootstrap.css
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/css/bootstrap.css.map
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/css/bootstrap.min.css
@@ -807,6 +809,7 @@ The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstr
 
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/bootstrap.bundle.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.css.map
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap.min.css

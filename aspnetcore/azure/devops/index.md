@@ -4,6 +4,7 @@ author: CamSoper
 description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
 ms.author: casoper
 ms.date: 08/07/2018
+ms.custom: seodec18
 uid: azure/devops/index
 ---
 # DevOps with ASP.NET Core and Azure
@@ -40,7 +41,7 @@ Learn the various methods for deploying an ASP.NET Core app to Azure App Service
 
 ### [Continuous integration and deployment](xref:azure/devops/cicd)
 
-Build an end-to-end continuous integration and deployment solution for your ASP.NET Core app with GitHub, VSTS, and Azure.
+Build an end-to-end continuous integration and deployment solution for your ASP.NET Core app with GitHub, Azure DevOps Services, and Azure.
 
 ### [Monitor and debug](xref:azure/devops/monitor)
 

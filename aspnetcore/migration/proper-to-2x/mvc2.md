@@ -3,10 +3,10 @@ title: Migrate from ASP.NET to ASP.NET Core 2.0
 author: isaac2004
 description: Receive guidance for migrating existing ASP.NET MVC or Web API applications to ASP.NET Core 2.0.
 ms.author: scaddie
-ms.date: 08/27/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: migration/mvc2
 ---
-
 # Migrate from ASP.NET to ASP.NET Core 2.0
 
 By [Isaac Levin](https://isaaclevin.com)
@@ -23,7 +23,8 @@ Install **one** of the following from [.NET Downloads: Windows](https://www.micr
   * **.NET Core cross-platform development** workload
 
 ## Target frameworks
-ASP.NET Core 2.0 projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
+
+ASP.NET Core 2.0 projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
 
 When targeting .NET Framework, projects need to reference individual NuGet packages.
 
@@ -31,21 +32,24 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
 </ItemGroup>
 ```
 
-When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they're precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref:fundamentals/metapackage) for more detail.
+When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they're precompiled to improve performance. See <xref:fundamentals/metapackage> for more detail.
 
 ## Project structure differences
-The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
-- Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
-- There are no GUID-based references to other projects, which improves file readability.
-- The file can be edited without unloading it in Visual Studio:
 
-    ![Edit CSPROJ context menu option in Visual Studio 2017](_static/EditProjectVs2017.png)
+The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
+
+* Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
+* There are no GUID-based references to other projects, which improves file readability.
+* The file can be edited without unloading it in Visual Studio:
+
+  ![Edit CSPROJ context menu option in Visual Studio 2017](_static/EditProjectVs2017.png)
 
 ## Global.asax file replacement
+
 ASP.NET Core introduced a new mechanism for bootstrapping an app. The entry point for ASP.NET applications is the *Global.asax* file. Tasks such as route configuration and filter and area registrations are handled in the *Global.asax* file.
 
 [!code-csharp[](samples/globalasax-sample.cs)]
@@ -72,9 +76,10 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 
 The host and application have been decoupled, which provides the flexibility of moving to a different platform in the future.
 
-**Note:** For a more in-depth reference to ASP.NET Core Startup and Middleware, see [Startup in ASP.NET Core](xref:fundamentals/startup)
+For a more in-depth reference to ASP.NET Core Startup and Middleware, see <xref:fundamentals/startup>.
 
 ## Storing configurations
+
 ASP.NET supports storing settings. These setting are used, for example, to support the environment to which the applications were deployed. A common practice was to store all custom key-value pairs in the `<appSettings>` section of the *Web.config* file:
 
 [!code-xml[](samples/webconfig-sample.xml)]
@@ -102,7 +107,7 @@ There are extensions to this approach to make the process more robust, such as u
 services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
 ````
 
-**Note:** For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
+**Note:** For a more in-depth reference to ASP.NET Core configuration, see <xref:fundamentals/configuration/index>.
 
 ## Native dependency injection
 
@@ -128,7 +133,7 @@ Because dependency injection is part of ASP.NET Core, you can add your service i
 
 The repository can be injected anywhere, as was true with Unity.
 
-For more information on dependency injection in ASP.NET Core, see [Dependency injection](xref:fundamentals/dependency-injection).
+For more information on dependency injection in ASP.NET Core, see <xref:fundamentals/dependency-injection>.
 
 ## Serving static files
 
@@ -144,7 +149,7 @@ In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt
 
 For example, an image asset in the *wwwroot/images* folder is accessible to the browser at a location such as `http://<app>/images/<imageFileName>`.
 
-**Note:** For a more in-depth reference to serving static files in ASP.NET Core, see [Static files](xref:fundamentals/static-files).
+**Note:** For a more in-depth reference to serving static files in ASP.NET Core, see <xref:fundamentals/static-files>.
 
 ## Additional resources
 

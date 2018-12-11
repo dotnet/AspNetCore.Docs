@@ -2,24 +2,22 @@
 @model PartialViewsSample.ViewModels.Article
 
 <h2>@Model.Title</h2>
-@*Pass the author's name to Views\Shared\_AuthorPartial.cshtml*@
+@* Pass the author's name to Views\Shared\_AuthorPartial.cshtml *@
 @await Html.PartialAsync("_AuthorPartial", Model.AuthorName)
 @Model.PublicationDate
 
-@*Loop over the Sections and pass in a section and additional ViewData
-    to the strongly typed Views\Articles\_ArticleSection.cshtml partial view.*@
+@* Loop over the Sections and pass in a section and additional ViewData to 
+   the strongly typed Views\Articles\_ArticleSection.cshtml partial view. *@
 @{
     var index = 0;
 
     @foreach (var section in Model.Sections)
     {
-        <!-- <snippet_PartialAsync> -->
         @await Html.PartialAsync("_ArticleSection", section,
-                                 new ViewDataDictionary(this.ViewData)
+                                 new ViewDataDictionary(ViewData)
                                  {
                                      { "index", index }
                                  })
-        <!-- </snippet_PartialAsync> -->
 
         index++;
     }

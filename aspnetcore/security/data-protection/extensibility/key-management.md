@@ -3,7 +3,8 @@ title: Key management extensibility in ASP.NET Core
 author: rick-anderson
 description: Learn about ASP.NET Core Data Protection key management extensibility.
 ms.author: riande
-ms.date: 11/22/2017
+ms.custom: "mvc, seodec18"
+ms.date: 10/24/2018
 uid: security/data-protection/extensibility/key-management
 ---
 # Key management extensibility in ASP.NET Core
@@ -54,7 +55,7 @@ The `IKeyManager` interface represents an object responsible for general key sto
 
 ## XmlKeyManager
 
-The `XmlKeyManager` type is the in-box concrete implementation of `IKeyManager`. It provides several useful facilities, including key escrow and encryption of keys at rest. Keys in this system are represented as XML elements (specifically, [XElement](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)).
+The `XmlKeyManager` type is the in-box concrete implementation of `IKeyManager`. It provides several useful facilities, including key escrow and encryption of keys at rest. Keys in this system are represented as XML elements (specifically, [XElement](/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)).
 
 `XmlKeyManager` depends on several other components in the course of fulfilling its tasks:
 
@@ -124,10 +125,23 @@ Implementations of `IXmlRepository` don't need to parse the XML passing through 
 
 There are four built-in concrete types which implement `IXmlRepository`:
 
+::: moniker range=">= aspnetcore-2.2"
+
+* [FileSystemXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.filesystemxmlrepository)
+* [RegistryXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository)
+* [AzureStorage.AzureBlobXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.azurestorage.azureblobxmlrepository)
+* [RedisXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.stackexchangeredis.redisxmlrepository)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
 * [FileSystemXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.filesystemxmlrepository)
 * [RegistryXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository)
 * [AzureStorage.AzureBlobXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.azurestorage.azureblobxmlrepository)
 * [RedisXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.redisxmlrepository)
+
+::: moniker-end
 
 See the [key storage providers document](xref:security/data-protection/implementation/key-storage-providers) for more information.
 

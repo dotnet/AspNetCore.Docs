@@ -24,13 +24,13 @@ Consider using Areas in an MVC project when:
 
 Area features:
 
-* An ASP.NET Core MVC app can have any number of areas
+* An ASP.NET Core MVC app can have any number of areas.
 
-* Each area has its own controllers, models, and views
+* Each area has its own controllers, models, and views.
 
-* Allows you to organize large MVC projects into multiple high-level components that can be worked on independently
+* Areas allow you to organize large MVC projects into multiple high-level components that can be worked on independently.
 
-* Supports multiple controllers with the same name - as long as they have different *areas*
+* Areas support multiple controllers with the same name, as long as they have different *areas*.
 
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
 

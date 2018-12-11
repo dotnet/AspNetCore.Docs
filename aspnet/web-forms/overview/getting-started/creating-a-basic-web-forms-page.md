@@ -1,6 +1,6 @@
 ---
 uid: web-forms/overview/getting-started/creating-a-basic-web-forms-page
-title: "Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013 | Microsoft Docs"
+title: Using Visual Studio 2013 to create a Basic ASP.NET 4.5 Web Forms Page
 author: Erikre
 description: ""
 ms.author: riande
@@ -9,9 +9,13 @@ ms.assetid: a2f1c635-0817-4a9a-8c13-d5b5d29727c0
 msc.legacyurl: /web-forms/overview/getting-started/creating-a-basic-web-forms-page
 msc.type: authoredcontent
 ---
-Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013
+
+# Using Visual Studio 2013 to create a Basic ASP.NET 4.5 Web Forms Page
+
 ====================
 by [Erik Reitan](https://github.com/Erikre)
+
+[!INCLUDE[](~/includes/rp.md)]
 
 This walkthrough provides you with an introduction to the Web development environment in [Microsoft Visual Studio 2013](https://www.microsoft.com/visualstudio/11/downloads#vs) and in [Microsoft Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/11/downloads#express-web). This walkthrough guides you through creating a simple ASP.NET Web Forms page and illustrates the basic techniques of creating a new page, adding controls, and writing code.
 
@@ -25,7 +29,6 @@ Tasks illustrated in this walkthrough include:
 - Running and testing a page from Visual Studio.
 
 ## Prerequisites
-
 
 In order to complete this walkthrough, you will need:
 

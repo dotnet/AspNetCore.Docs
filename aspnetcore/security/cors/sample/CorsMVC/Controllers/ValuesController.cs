@@ -10,7 +10,7 @@ namespace CorsMVC.Controllers
     #region EnableOnController
     [Route("api/[controller]")]
     [EnableCors("AllowSpecificOrigin")]
-    public class ValuesController : Controller
+    public class ValuesController : ControllerBase
 #endregion
     {
         // GET api/values

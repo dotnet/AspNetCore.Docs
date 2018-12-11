@@ -4,7 +4,7 @@ author: tdykstra
 description: Differences between SignalR and ASP.NET Core SignalR 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 08/20/2018
+ms.date: 11/14/2018
 uid: signalr/version-differences
 ---
 
@@ -26,11 +26,15 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 
 ### Automatic reconnects
 
-Automatic reconnects are no longer supported. Previously, SignalR tried to reconnect to the server if the connection was dropped. Now, if the client is disconnected the user must explicitly start a new connection if they want to reconnect.
+Automatic reconnects aren't supported in ASP.NET Core SignalR. If the client is disconnected, the user must explicitly start a new connection if they want to reconnect. In ASP.NET SignalR, SignalR attempts to reconnect to the server if the connection is dropped. 
 
 ### Protocol support
 
 ASP.NET Core SignalR supports JSON, as well as a new binary protocol based on [MessagePack](xref:signalr/messagepackhubprotocol). Additionally, custom protocols can be created.
+
+### Transports
+
+The Forever Frame transport is not supported in ASP.NET Core SignalR.
 
 ## Differences on the server
 
@@ -51,9 +55,9 @@ app.UseSignalR(routes =>
 });
 ```
 
-### Sticky sessions now required
+### Sticky sessions
 
-Because of how scale-out worked in ASP.NET SignalR, clients could reconnect and send messages to any server in the farm. Due to changes to the scale-out model, as well as not supporting reconnects, this is no longer supported. Once the client connects to the server, it must interact with the same server for the duration of the connection.
+The scaleout model for ASP.NET SignalR allows clients to reconnect and send messages to any server in the farm. In ASP.NET Core SignalR, the client must interact with the same server for the duration of the connection. For scaleout using Redis, that means sticky sessions are required. For scaleout using [Azure SignalR Service](/azure/azure-signalr/), sticky sessions are not required because the service handles connections to clients. 
 
 ### Single hub per connection
 
@@ -66,6 +70,18 @@ ASP.NET Core SignalR now supports [streaming data](xref:signalr/streaming) from 
 ### State
 
 The ability to pass arbitrary state between clients and the hub (often called HubState) has been removed, as well as support for progress messages. There is no counterpart of hub proxies at the moment.
+
+### PersistentConnection removal
+
+In ASP.NET Core SignalR, the [PersistentConnection](https://docs.microsoft.com/previous-versions/aspnet/jj919047(v%3dvs.118)) class has been removed. 
+
+### GlobalHost
+
+ASP.NET Core has dependency injection (DI) built into the framework. Services can use DI to access the [HubContext](xref:signalr/hubcontext). The `GlobalHost` object that is used in ASP.NET SignalR to get a `HubContext` doesn't exist in ASP.NET Core SignalR.
+
+### HubPipeline
+
+ASP.NET Core SignalR doesn't have support for `HubPipeline` modules.
 
 ## Differences on the client
 
@@ -85,6 +101,10 @@ npm install @aspnet/signalr
 ### jQuery
 
 The dependency on jQuery has been removed, however projects can still use jQuery.
+
+### Internet Explorer support
+
+ASP.NET Core SignalR requires Microsoft Internet Explorer 11 or later (ASP.NET SignalR supported Microsoft Internet Explorer 8 and later).
 
 ### JavaScript client method syntax
 
@@ -127,6 +147,20 @@ connection = new HubConnectionBuilder()
     .WithUrl("url")
     .Build();
 ```
+
+## Scaleout differences
+
+ASP.NET SignalR supports SQL Server and Redis. ASP.NET Core SignalR supports Azure SignalR Service and Redis.
+
+### ASP.NET
+
+* [SignalR scaleout with Azure Service Bus](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
+* [SignalR scaleout with Redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
+* [SignalR scaleout with SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
+
+### ASP.NET Core
+
+* [Azure SignalR Service](/azure/azure-signalr/)
 
 ## Additional resources
 

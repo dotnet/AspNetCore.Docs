@@ -1,9 +1,10 @@
 ---
 title: Azure Active Directory with ASP.NET Core
 author: rick-anderson
-description: Discover Azure Active Directory topics related to ASP.NET Core.
+description: Discover topics related to authentication with Azure Active Directory in ASP.NET Core.
 ms.author: riande
 ms.date: 10/4/2017
+ms.custom: seodec18
 uid: security/authentication/azure-active-directory/index
 ---
 # Azure Active Directory with ASP.NET Core

@@ -18,10 +18,15 @@ We have a good start to the movie app, but the presentation isn't ideal. We don'
 Open the *Models/Movie.cs* file and add the highlighted lines shown below:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](start-mvc/sample/MvcMovie21/Models/MovieDateFixed.cs?name=snippet_1&highlight=2,3,12-13,17)]
+
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](start-mvc/sample/MvcMovie/Models/MovieDateWithExtraUsings.cs?name=snippet_1&highlight=13-14)]
+
 ::: moniker-end
 
 [!INCLUDE [adding-model](~/includes/mvc-intro/controller-methods-views.md)]

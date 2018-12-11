@@ -3,7 +3,8 @@ title: Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging - 3 of 8
 author: rick-anderson
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
 ms.author: riande
-ms.date: 6/31/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: data/ef-rp/sort-filter-page
 ---
 
@@ -46,7 +47,7 @@ When the Index page is requested from the **Students** link, there's no query st
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
 
-The following code contains the C# conditional [?: operator](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/conditional-operator):
+The following code contains the C# conditional [?: operator](/dotnet/csharp/language-reference/operators/conditional-operator):
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_Ternary)]
 
@@ -92,9 +93,9 @@ To verify that sorting works:
 
 To get a better understanding of the code:
 
-* In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
+* In *Students/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
 * Add a watch for `NameSort` and `DateSort`.
-* In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
+* In *Students/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
 
 Step through the debugger.
 
@@ -230,9 +231,9 @@ Run the app and navigate to the students page.
 
 To get a better understanding of the code:
 
-* In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
+* In *Students/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
 * Add a watch for `NameSort`, `DateSort`, `CurrentSort`, and `Model.Student.PageIndex`.
-* In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
+* In *Students/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
 
 Step through the debugger.
 
@@ -276,6 +277,7 @@ If you run into problems you can't solve, download the [completed app for this s
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 
 In the next tutorial, the app uses migrations to update the data model.
+
 ::: moniker-end
 
 > [!div class="step-by-step"]

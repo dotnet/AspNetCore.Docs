@@ -21,6 +21,7 @@ function getData() {
     $.ajax({
         type: 'GET',
         url: uri,
+        cache: false,
         success: function (data) {
             $('#todos').empty();
             getCount(data.length);

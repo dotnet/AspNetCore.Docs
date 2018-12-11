@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Continuous Integration and Continuous Delivery (Building Real-World Cloud Apps with Azure)
 ====================
-by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)
+by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson]((https://twitter.com/RickAndMSFT)), [Tom Dykstra](https://github.com/tdykstra)
 
 [Download Fix It Project](http://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4) or [Download E-book](http://blogs.msdn.com/b/microsoft_press/archive/2014/07/23/free-ebook-building-cloud-apps-with-microsoft-azure.aspx)
 
@@ -34,9 +34,9 @@ The following diagram from [a Microsoft Patterns and Practices e-book about cont
 
 Automating these processes in Azure is easy. Because you're running everything in the cloud, you don't have to buy or manage servers for your builds or your test environments. And you don't have to wait for a server to be available to do your testing on. With every build that you do, you could spin up a test environment in Azure using your automation script, run acceptance tests or more in-depth tests against it, and then when you're done just tear it down. And if you only run that server for 2 hours or 8 hours or a day, the amount of money that you have to pay for it is minimal, because you're only paying for the time that a machine is actually running. For example, the environment required for the Fix it application basically costs about 1 cent per hour if you go one tier up from the free level. Over the course of a month, if you only ran the environment an hour at a time, your testing environment would probably cost less than a latte that you buy at Starbucks.
 
-## Visual Studio Team Services (VSTS)
+## Azure DevOps Services 
 
-VSTS provides a number of features to assist you with application development from planning to deployment.
+Azure DevOps Services provides a number of features to assist you with application development from planning to deployment.
 
 - It supports both Git (distributed) and TFVC (centralized) source control.
 - It offers an elastic build service, which means it dynamically creates build servers when they're needed and takes them down when they're done. You can automatically kick off a build when someone checks in source code changes, and you don't have to have allocate and pay for your own build servers that lie idle most of the time. The build service is free as long as you don't exceed a certain number of builds. If you expect to do a high volume of builds, you can pay a little extra for reserved build servers.
@@ -46,9 +46,9 @@ VSTS provides a number of features to assist you with application development fr
 - It supports agile project management.
 
 
-For more information on the continuous integration and delivery features of VSTS, see [Visual Studio Team Services](https://www.visualstudio.com/team-services/).
+For more information on the continuous integration and delivery features of Azure DevOps Services, see [the Azure DevOps documentation](/azure/devops/index).
 
-If you're looking for a turn-key project management, team collaboration, and source control solution, check out VSTS. The service is free for up to 5 users, and you can sign up for it at [Visual Studio Team Services](https://www.visualstudio.com/team-services/).
+If you're looking for a turn-key project management, team collaboration, and source control solution, check out Azure DevOps Services. Sign up at [Azure DevOps Services](https://dev.azure.com/).
 
 ## Summary
 

@@ -1,42 +1,73 @@
 ---
-title: Work with SQL Server LocalDB and ASP.NET Core
+title: Work with a database and ASP.NET Core
 author: rick-anderson
-description: Explains working with SQL Server LocalDB and ASP.NET Core.
-monikerRange: '>= aspnetcore-2.0'
+description: Explains working with a database and ASP.NET Core.
+monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
-ms.date: 08/07/2017
+ms.date: 12/07/2017
 uid: tutorials/razor-pages/sql
 ---
-# Work with SQL Server LocalDB and ASP.NET Core
+# Work with a database and ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette) 
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-The `MovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
+[!INCLUDE[](~/includes/rp/download.md)]
 
-::: moniker range="= aspnetcore-2.0"
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=7-8)]
+The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in *Startup.cs*:
 
-::: moniker-end
+<!-- VS -------------------------->
+# [Visual Studio](#tab/visual-studio)
 
-::: moniker range=">= aspnetcore-2.1"
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
+
+<!-- Code -------------------------->
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+
+<!-- Mac -------------------------->
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+
+---  
+<!-- End of VS tabs -->
 
 For more information on the methods used in `ConfigureServices`, see:
 
 * [EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr) for `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-::: moniker-end
+The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file.
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file. The name value for the database (`Database={Database name}`) will be different for your generated code. The name value is arbitrary.
+<!-- VS -------------------------->
+# [Visual Studio](#tab/visual-studio)
 
-[!code-json[](razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=2&range=8-10)]
+The name value for the database (`Database={Database name}`) will be different for your generated code. The name value is arbitrary.
 
-When you deploy the app to a test or production server, you can use an environment variable or another approach to set the connection string to a real SQL Server. See [Configuration](xref:fundamentals/configuration/index) for more information.
+[!code-json[](razor-pages-start/sample/RazorPagesMovie22/appsettings.json)]
+
+<!-- Code -------------------------->
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+
+<!-- Mac -------------------------->
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+
+---  
+<!-- End of VS tabs -->
+
+When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a real database server. See [Configuration](xref:fundamentals/configuration/index) for more information.
+
+<!-- VS -------------------------->
+# [Visual Studio](#tab/visual-studio)
 
 ## SQL Server Express LocalDB
 
-LocalDB is a lightweight version of the SQL Server Express Database Engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates "\*.mdf" files in the *C:/Users/\<user\>* directory.
+LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates `*.mdf` files in the `C:/Users/<user/>` directory.
 
 <a name="ssox"></a>
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
@@ -54,22 +85,24 @@ Note the key icon next to `ID`. By default, EF creates a property named `ID` for
 * Right click on the `Movie` table and select **View Data**:
 
   ![Movie table open showing table data](sql/_static/vd22.png)
+<!-- Code -------------------------->
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/rp/sqlite.md)]
+
+<!-- Mac -------------------------->
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/rp/sqlite.md)]
+
+---  
+<!-- End of VS tabs -->
 
 ## Seed the database
 
-Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
+Create a new class named `SeedData` in the *Models* folder with the following code:
 
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/SeedData.cs?name=snippet_1)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/SeedData.cs?name=snippet_1)]
-
-::: moniker-end
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
@@ -90,17 +123,7 @@ In *Program.cs*, modify the `Main` method to do the following:
 
 The following code shows the updated *Program.cs* file.
 
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Program.cs)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Program.cs)]
-
-::: moniker-end
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Program.cs)]
 
 A production app would not call `Database.Migrate`. It's added to the preceding code to prevent the following exception when `Update-Database` has not been run:
 
@@ -108,6 +131,9 @@ SqlException: Cannot open database "RazorPagesMovieContext-21" requested by the 
 Login failed for user 'user name'.
 
 ### Test the app
+
+<!-- VS -------------------------->
+# [Visual Studio](#tab/visual-studio)
 
 * Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
@@ -120,6 +146,25 @@ Login failed for user 'user name'.
 
     * If you were running VS in non-debug mode, press F5 to run in debug mode.
     * If you were running VS in debug mode, stop the debugger and press F5.
+
+<!-- Code -------------------------->
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+
+The app shows the seeded data.
+
+<!-- Mac -------------------------->
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+
+The app shows the seeded data.
+
+---  
+<!-- End of VS tabs -->
+
+
    
 The app shows the seeded data:
 

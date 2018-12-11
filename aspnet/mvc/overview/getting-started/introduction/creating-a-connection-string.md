@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Creating a Connection String and Working with SQL Server LocalDB
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [Tutorial Note](sample/code-location.md)]
 

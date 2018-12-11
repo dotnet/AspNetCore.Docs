@@ -1,9 +1,10 @@
 ---
 title: Configure Windows Authentication in ASP.NET Core
-author: ardalis
-description: This article describes how to configure Windows Authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
+author: scottaddie
+description: Learn how to configure Windows Authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
 ms.author: riande
-ms.date: 08/18/2018
+ms.custom: "mvc, seodec18"
+ms.date: 11/01/2018
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
@@ -40,7 +41,7 @@ For development work using IIS Express, the template provides all the configurat
 
 The Visual Studio project **Properties** page's **Debug** tab provides check boxes for Windows Authentication and anonymous authentication.
 
-![Windows Authentication Browser Screenshot](windowsauth/_static/vs-auth-property-menu.png)
+![Windows Authentication Browser Screenshot with authentication options highlighted](windowsauth/_static/vs-auth-property-menu.png)
 
 Alternatively, these two properties can be configured in the *launchSettings.json* file:
 
@@ -93,6 +94,9 @@ Although Kestrel doesn't support Windows Authentication, you can use [HTTP.sys](
 > [!NOTE]
 > HTTP.sys delegates to kernel mode authentication with the Kerberos authentication protocol. User mode authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
 
+> [!NOTE]
+> HTTP.sys isn't supported on Nano Server version 1709 or later. To use Windows Authentication and HTTP.sys with Nano Server, use a [Server Core (microsoft/windowsservercore) container](https://hub.docker.com/r/microsoft/windowsservercore/). For more information on Server Core, see [What is the Server Core installation option in Windows Server?](/windows-server/administration/server-core/what-is-server-core).
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
@@ -123,7 +127,7 @@ When both Windows Authentication and anonymous access are enabled, use the `[Aut
 In ASP.NET Core 2.x, the `[Authorize]` attribute requires additional configuration in *Startup.cs* to challenge anonymous requests for Windows Authentication. The recommended configuration varies slightly based on the web server being used.
 
 > [!NOTE]
-> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages middleware](xref:fundamentals/error-handling#configuring-status-code-pages) can be configured to provide users with a better "Access Denied" experience.
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages middleware](xref:fundamentals/error-handling#configure-status-code-pages) can be configured to provide users with a better "Access Denied" experience.
 
 #### IIS
 

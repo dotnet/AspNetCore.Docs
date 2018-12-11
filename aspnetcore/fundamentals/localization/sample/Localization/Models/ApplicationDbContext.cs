@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Localization.StarterWeb.Models
+namespace Localization.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

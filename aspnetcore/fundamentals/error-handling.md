@@ -1,10 +1,10 @@
 ---
 title: Handle errors in ASP.NET Core
-author: ardalis
+author: tdykstra
 description: Discover how to handle errors in ASP.NET Core apps.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/05/2018
+ms.date: 11/01/2018
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -13,25 +13,25 @@ By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdyk
 
 This article covers common approaches to handling errors in ASP.NET Core apps.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/samples/2.x/ErrorHandlingSample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/samples/2.x/ErrorHandlingSample) ([how to download](xref:index#how-to-download-a-sample))
 
-## The developer exception page
+## The Developer Exception Page
 
 ::: moniker range=">= aspnetcore-2.1"
 
-To configure an app to display a page that shows detailed information about exceptions, use the *developer exception page*. The page made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method:
+To configure an app to display a page that shows detailed information about exceptions, use the *Developer Exception Page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method:
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-To configure an app to display a page that shows detailed information about exceptions, use the *developer exception page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). Add a line to the `Startup.Configure` method:
+To configure an app to display a page that shows detailed information about exceptions, use the *Developer Exception Page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). Add a line to the `Startup.Configure` method:
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.0"
 
-To configure an app to display a page that shows detailed information about exceptions, use the *developer exception page*. The page is made available by adding a package reference for the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package in the project file. Add a line to the `Startup.Configure` method:
+To configure an app to display a page that shows detailed information about exceptions, use the *Developer Exception Page*. The page is made available by adding a package reference for the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package in the project file. Add a line to the `Startup.Configure` method:
 
 ::: moniker-end
 
@@ -39,10 +39,10 @@ To configure an app to display a page that shows detailed information about exce
 
 Place the call to [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) in front of any middleware where you want to catch exceptions, such as `app.UseMvc`.
 
->[!WARNING]
-> Enable the developer exception page **only when the app is running in the Development environment**. You don't want to share detailed exception information publicly when the app runs in production. [Learn more about configuring environments](xref:fundamentals/environments).
+> [!WARNING]
+> Enable the Developer Exception Page **only when the app is running in the Development environment**. You don't want to share detailed exception information publicly when the app runs in production. [Learn more about configuring environments](xref:fundamentals/environments).
 
-To see the developer exception page, run the sample app with the environment set to `Development`, and add `?throw=true` to the base URL of the app. The page includes several tabs with information about the exception and the request. The first tab includes a stack trace:
+To see the Developer Exception Page, run the sample app with the environment set to `Development` and add `?throw=true` to the base URL of the app. The page includes several tabs with information about the exception and the request. The first tab includes a stack trace:
 
 ![Stack trace](error-handling/_static/developer-exception-page.png)
 
@@ -54,13 +54,13 @@ If the request has cookies, they appear on the **Cookies** tab. Headers are seen
 
 ![Headers](error-handling/_static/developer-exception-page-headers.png)
 
-## Configuring a custom exception handling page
+## Configure a custom exception handling page
 
 Configure an exception handler page to use when the app isn't running in the `Development` environment:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=11)]
 
-In a Razor Pages app, the [dotnet new](/dotnet/core/tools/dotnet-new) Razor Pages template provides an Error page and `ErrorModel` page model class in the *Pages* folder.
+In a Razor Pages app, the [dotnet new](/dotnet/core/tools/dotnet-new) Razor Pages template provides an Error page and an error `PageModel` class in the *Pages* folder.
 
 In an MVC app, don't decorate the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the method. Allow anonymous access to the method so that unauthenticated users are able to receive the error view.
 
@@ -75,13 +75,35 @@ public IActionResult Error()
 }
 ```
 
-## Configuring status code pages
+## Configure status code pages
 
-By default, an app doesn't provide a rich status code page for HTTP status codes, such as *404 Not Found*. To provide status code pages, configure the Status Code Pages Middleware by adding a line to the `Startup.Configure` method:
+By default, an app doesn't provide a rich status code page for HTTP status codes, such as *404 Not Found*. To provide status code pages, use Status Code Pages Middleware.
+
+::: moniker range=">= aspnetcore-2.1"
+
+The middleware is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.0"
+
+The middleware is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
+
+The middleware is made available by adding a package reference for the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package in the project file.
+
+::: moniker-end
+
+Add a line to the `Startup.Configure` method:
 
 ```csharp
 app.UseStatusCodePages();
 ```
+
+<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> should be called before request handling middlewares in the pipeline (for example, Static File Middleware and MVC Middleware).
 
 By default, Status Code Pages Middleware adds text-only handlers for common status codes, such as 404:
 
@@ -91,17 +113,28 @@ The middleware supports several extension methods. One method takes a lambda exp
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePages)]
 
-Another method takes a content type and format string:
+An overload of `UseStatusCodePages` takes a content type and format string:
 
 ```csharp
 app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 ```
+### Redirect re-execute extension methods
 
-There are also redirect and re-execute extension methods. The redirect method sends a *302 Found* status code to the client and redirects the client to the provided location URL template. The template may include a `{0}` placeholder for the status code. URLs starting with `~` have the base path prepended. A URL that doesn't start with `~` is used as is.
+<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*>:
+
+* Sends a *302 - Found* status code to the client.
+* Redirects the client to the location provided in the URL template. 
+
+The template may include a `{0}` placeholder for the status code. The template must start with a forward slash (`/`).
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
-The re-execute method returns the original status code to the client and specifies that the response body should be generated by re-executing the request pipeline using an alternate path. This path may contain a `{0}` placeholder for the status code:
+<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>:
+
+* Returns the original status code to the client.
+* Specifies that the response body should be generated by re-executing the request pipeline using an alternate path. 
+
+The template may include a `{0}` placeholder for the status code. The template must start with a forward slash (`/`).
 
 ```csharp
 app.UseStatusCodePagesWithReExecute("/error/{0}");
@@ -118,7 +151,7 @@ if (statusCodePagesFeature != null)
 }
 ```
 
-If using a `UseStatusCodePages*` overload that points to an endpoint within the app, create an MVC view or Razor Page for the endpoint. For example, the [dotnet new](/dotnet/core/tools/dotnet-new) template for a Razor Pages app produces the following page and page model class:
+To use a `UseStatusCodePages*` overload that points to an endpoint within the app, create an MVC view or Razor Page for the endpoint. For example, the [dotnet new](/dotnet/core/tools/dotnet-new) template for a Razor Pages app produces the following page and page model class:
 
 *Error.cshtml*:
 

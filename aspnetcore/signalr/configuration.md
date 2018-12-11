@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 07/31/2018
+ms.date: 09/06/2018
 uid: signalr/configuration
 ---
 # ASP.NET Core SignalR configuration
@@ -20,13 +20,13 @@ As an example, to configure the serializer to use "PascalCase" property names, i
 
 ```csharp
 services.AddSignalR()
-    .AddJsonHubProtocol(options => {
+    .AddJsonProtocol(options => {
         options.PayloadSerializerSettings.ContractResolver = 
         new DefaultContractResolver();
     });
 ```
 
-In the .NET client, the same `AddJsonHubProtocol` extension method exists on [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to resolve the extension method:
+In the .NET client, the same `AddJsonProtocol` extension method exists on [HubConnectionBuilder](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). The `Microsoft.Extensions.DependencyInjection` namespace must be imported to resolve the extension method:
 
 ```csharp
 // At the top of the file:
@@ -34,10 +34,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 // When constructing your connection:
 var connection = new HubConnectionBuilder()
-.AddJsonHubProtocol(options => {
-    options.PayloadSerializerSettings.ContractResolver = 
-        new DefaultContractResolver();
-});
+    .AddJsonProtocol(options => {
+        options.PayloadSerializerSettings.ContractResolver = 
+            new DefaultContractResolver();
+    })
+    .Build();
 ```
 
 > [!NOTE]
@@ -57,7 +58,7 @@ The following table describes options for configuring SignalR hubs:
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `HandshakeTimeout` | 15 seconds | If the client doesn't send an initial handshake message within this time interval, the connection is closed. This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
-| `KeepAliveInterval` | 15 seconds | If the server hasn't sent a message within this interval, a ping message is sent automatically to keep the connection open. |
+| `KeepAliveInterval` | 15 seconds | If the server hasn't sent a message within this interval, a ping message is sent automatically to keep the connection open. When changing `KeepAliveInterval`, change the `ServerTimeout`/`serverTimeoutInMilliseconds` setting on the client. The recommended `ServerTimeout`/`serverTimeoutInMilliseconds` value is double the `KeepAliveInterval` value.  |
 | `SupportedProtocols` | All installed protocols | Protocols supported by this hub. By default, all protocols registered on the server are allowed, but protocols can be removed from this list to disable specific protocols for individual hubs. |
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false`, as these exception messages can contain sensitive information. |
 
@@ -70,7 +71,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         hubOptions.EnableDetailedErrors = true;
         hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
-    })
+    });
 }
 ```
 
@@ -80,7 +81,7 @@ Options for a single hub override the global options provided in `AddSignalR` an
 services.AddSignalR().AddHubOptions<MyHub>(options =>
 {
     options.EnableDetailedErrors = true;
-}
+});
 ```
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to [MapHub\<T>](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub).
@@ -113,7 +114,7 @@ Client options can be configured on the `HubConnectionBuilder` type (available i
 
 ### Configure logging
 
-Logging is configured in the .NET Client using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. See the [Logging in ASP.NET Core](xref:fundamentals/logging/index#how-to-add-providers) documentation for more information.
+Logging is configured in the .NET Client using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. See the [Logging in ASP.NET Core](xref:fundamentals/logging/index) documentation for more information.
 
 > [!NOTE]
 > In order to register Logging providers, you must install the necessary packages. See the [Built-in logging providers](xref:fundamentals/logging/index#built-in-logging-providers) section of the docs for a full list.
@@ -185,7 +186,7 @@ var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/myhub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
-        }
+        };
     })
     .Build();
 ```
@@ -210,7 +211,7 @@ Additional options for configuring timeout and keep-alive behavior are available
 
 | .NET Option | JavaScript Option | Default Value | Description |
 | ----------- | ----------------- | ------------- | ----------- |
-| `ServerTimeout` | `serverTimeoutInMilliseconds` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `Closed` event (`onclose` in JavaScript). |
+| `ServerTimeout` | `serverTimeoutInMilliseconds` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `Closed` event (`onclose` in JavaScript). This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's `KeepAliveInterval` value, to allow time for pings to arrive. |
 | `HandshakeTimeout` | Not configurable | 15 seconds | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and triggers the `Closed` event (`onclose` in JavaScript). This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 
 In the .NET Client, timeout values are specified as `TimeSpan` values. In the JavaScript client, timeout values are specified as a number indicating the duration in milliseconds.
@@ -254,7 +255,7 @@ let connection = new signalR.HubConnectionBuilder()
     .withUrl("/myhub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
-    });
+    })
     .build();
 ```
 
