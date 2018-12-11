@@ -3,7 +3,7 @@ title: Migrate from ASP.NET to ASP.NET Core
 author: isaac2004
 description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: scaddie
-ms.date: 12/10/2018
+ms.date: 12/11/2018
 uid: migration/proper-to-2x/index
 ---
 # Migrate from ASP.NET to ASP.NET Core
@@ -14,7 +14,7 @@ This article serves as a reference guide for migrating ASP.NET apps to ASP.NET C
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
+[.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download)
 
 ## Target frameworks
 
@@ -22,15 +22,15 @@ ASP.NET Core projects offer developers the flexibility of targeting .NET Core, .
 
 When targeting .NET Framework, projects need to reference individual NuGet packages.
 
-Targeting .NET Core allows you to eliminate numerous explicit package references, thanks to the ASP.NET Core [metapackage](xref:fundamentals/metapackage). Install the `Microsoft.AspNetCore.All` metapackage in your project:
+Targeting .NET Core allows you to eliminate numerous explicit package references, thanks to the ASP.NET Core [metapackage](xref:fundamentals/metapackage-app). Install the `Microsoft.AspNetCore.App` metapackage in your project:
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+   <PackageReference Include="Microsoft.AspNetCore.App" />
 </ItemGroup>
 ```
 
-When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they're precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref:fundamentals/metapackage) for more detail.
+When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they're precompiled to improve performance. See [Microsoft.AspNetCore.App metapackage for ASP.NET Core](xref:fundamentals/metapackage-app) for more detail.
 
 ## Project structure differences
 
@@ -58,15 +58,14 @@ ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the ent
 
 [!code-csharp[](samples/program.cs)]
 
-`Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), several extension methods are used to configure the pipeline with support for:
+`Startup` must include a `Configure` method. In `Configure`, add the necessary middleware to the pipeline. In the following example (from the default web site template), extension methods configure the pipeline with support for:
 
-* [Browser Link](xref:client-side/using-browserlink)
 * Error pages
-* Static files
+* HTTP Strict Transport Security
+* HTTP redirection to HTTPS
 * ASP.NET Core MVC
-* Identity
 
-[!code-csharp[](../../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
+[!code-csharp[](samples/startup.cs)]
 
 The host and application have been decoupled, which provides the flexibility of moving to a different platform in the future.
 
