@@ -3,7 +3,7 @@ title: Tools and downloads - DevOps with ASP.NET Core and Azure
 author: CamSoper
 description: Tools and downloads required for DevOps with ASP.NET Core and Azure.
 ms.author: casoper
-ms.custom: mvc, seodec18
+ms.custom: "mvc, seodec18"
 ms.date: 10/24/2018
 uid: azure/devops/tools-and-downloads
 ---
