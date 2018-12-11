@@ -37,7 +37,7 @@ A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expre
 
 ```csharp
 var movie = await _context.Movie
-    .FirstOrDefaultAsync(m => m.ID == id);
+    .FirstOrDefaultAsync(m => m.Id == id);
 ```
 
 If a movie is found, an instance of the `Movie` model is passed to the `Details` view:

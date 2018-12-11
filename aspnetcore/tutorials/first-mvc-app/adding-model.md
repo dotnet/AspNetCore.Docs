@@ -17,7 +17,7 @@ You use these classes with [Entity Framework Core](/ef/core) (EF Core) to work w
 
 The model classes you create are known as POCO classes (from **P**lain **O**ld **C**LR **O**bjects) because they don't have any dependency on EF Core. They just define the properties of the data that will be stored in the database.
 
-In this tutorial you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to generate model classes from an existing database. For information about that approach, see [ASP.NET Core - Existing Database](/ef/core/get-started/aspnetcore/existing-db).
+In this tutorial, you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to generate model classes from an existing database. For information about that approach, see [ASP.NET Core - Existing Database](/ef/core/get-started/aspnetcore/existing-db).
 
 ## Add a data model class
 
@@ -36,7 +36,6 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 1b](~/includes/mvc-intro/model2.md)]
-
 
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -115,7 +114,7 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
   dotnet aspnet-codegenerator razorpage -m Movie -dc MvcMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
-[!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
+[!INCLUDE [explains scaffold generated params](~/includes/RP/model4.md)]
 
 <!-- Mac -------------------------->
 
@@ -275,7 +274,7 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
+MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile time checking of your code. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
 
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
 
@@ -332,7 +331,7 @@ The `@model` directive allows you to access the list of movies that the controll
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
-Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code:
+Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile time checking of the code:
 
 ## Additional resources
 
