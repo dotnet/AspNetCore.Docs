@@ -134,9 +134,13 @@ Contains static files, such as HTML files, JavaScript files, and CSS files.
 
 The project is created with stubs for the home ("index") page, an error page, and a privacy policy page.
 
-Each page has a *.cshtml* and a *.cshtml.cs* file. The *.cshtml* file contains HTML markup with sections of C# code. The *.cshtml.cs* file contains C# code that handles page-related events.
+Each page has a *.cshtml* and a *.cshtml.cs* file. The *.cshtml* file contains HTML markup with sections of C# code. The *.cshtml.cs* file contains C# code that handles page events.
 
-The *_Layout.cshtml* file in the *Pages/Shared* folder configures UI elements common to all pages. For example, this file sets up the navigation menu  the top of the page and the copyright notice at the bottom of the page.
+The *_Layout.cshtml* file in the *Pages/Shared* folder configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page.
+
+### appSettings.json
+
+Contains configuration data, such as connection strings.
 
 ### Program.cs
 
