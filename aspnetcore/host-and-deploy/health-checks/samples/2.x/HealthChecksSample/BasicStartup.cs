@@ -11,7 +11,7 @@ namespace SampleApp
     // 
     // By default, health checks return a 200-Ok with 'Healthy'.
     // - No health checks are registered by default. The app is healthy if it's reachable.
-    // - The default response writer writes the HealthCheckStatus as text/plain content.
+    // - The default response writer writes the HealthStatus as text/plain content.
     //
     // This is the simplest way to perform health checks. It's suitable for systems that want to check for 'liveness' of an app.
 

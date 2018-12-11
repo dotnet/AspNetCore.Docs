@@ -3,7 +3,7 @@ title: Monitor and debug - DevOps with ASP.NET Core and Azure
 author: CamSoper
 description: Monitoring and debugging your code as part of a DevOps solution with ASP.NET Core and Azure
 ms.author: casoper
-ms.custom: mvc, seodec18
+ms.custom: "mvc, seodec18"
 ms.date: 10/24/2018
 uid: azure/devops/monitor
 ---

@@ -4,7 +4,7 @@ author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core Web API. Test the authenticated web API with Postman.
 ms.author: casoper
 ms.date: 09/21/2018
-ms.custom: mvc, seodec18
+ms.custom: "mvc, seodec18"
 uid: security/authentication/azure-ad-b2c-webapi
 ---
 # Authentication in web APIs with Azure Active Directory B2C in ASP.NET Core
