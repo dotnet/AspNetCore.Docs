@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.custom: mvc,seodec18
+ms.custom: "mvc, seodec18"
 ms.date: 11/22/2018
 uid: fundamentals/configuration/platform-specific-configuration
 ---
