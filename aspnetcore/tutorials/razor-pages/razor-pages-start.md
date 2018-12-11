@@ -63,7 +63,7 @@ At the end of the tutorial, you'll have an app that displays a default home page
   ```
 
   * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
-  * The `code` command loads the *RazorPagesMovie.csproj* project file in Visual Studio Code.
+  * The `code` command opens the *RazorPagesMovie* folder in a new instance of Visual Studio Code.
 
   A dialog box appears with **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?**
 
@@ -102,10 +102,8 @@ From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie
 
 * Press **Ctrl-F5** to run without the debugger.
 
-  Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
-
-  Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
-
+  Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+  
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
@@ -114,7 +112,9 @@ Select **Run > Start Without Debugging** to launch the app. Visual Studio starts
 
 ---
 
-* Select **Accept** to consent to tracking. This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the European Union's [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+* On the app's home page, select **Accept** to consent to tracking.
+
+  This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the European Union's [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
   ![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
 
@@ -126,17 +126,18 @@ Select **Run > Start Without Debugging** to launch the app. Visual Studio starts
 
 Here's an overview of the main project folders and files that you'll work with in later tutorials.
 
+### Pages folder
+
+Contains Razor pages and supporting files. Each Razor page is a pair of files:
+
+* A *.cshtml* file that contains HTML markup with C# code using Razor syntax.
+* A *.cshtml.cs* file that contains C# code that handles page events.
+
+Supporting files have names that begin with an underscore. For example, the *_Layout.cshtml* file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page.
+
 ### wwwroot folder
 
 Contains static files, such as HTML files, JavaScript files, and CSS files.
-
-### Pages folder
-
-The project is created with stubs for the home ("index") page, an error page, and a privacy policy page.
-
-Each page has a *.cshtml* and a *.cshtml.cs* file. The *.cshtml* file contains HTML markup with sections of C# code. The *.cshtml.cs* file contains C# code that handles page events.
-
-The *_Layout.cshtml* file in the *Pages/Shared* folder configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page.
 
 ### appSettings.json
 
@@ -148,16 +149,15 @@ Contains the entry point for the program.
 
 ### Startup.cs
 
-Configures the HTTP request pipeline and services for dependency injection.
+Contains code that configures app behavior, such as whether it requires consent for cookies.
 
 ## Additional resources
 
-* <xref:fundamentals/static-files>
-* <xref:fundamentals/configuration/index>
-* <xref:fundamentals/host/index>
-* <xref:fundamentals/startup>
 * <xref:mvc/views/layout>
-* <xref:fundamentals/dependency-injection>
+* <xref:fundamentals/configuration/index>
+* <xref:fundamentals/static-files>
+* <xref:fundamentals/host/web-host>
+* <xref:fundamentals/startup>
 
 ## Next steps
 
