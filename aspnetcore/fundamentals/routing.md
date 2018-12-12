@@ -676,9 +676,11 @@ For example, a custom `slugify` parameter transformer in route pattern `blog\{ar
 To use a parameter transformer in a route pattern it must first be configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Startup.ConfigureServices`.
 
 ```csharp
-services.AddRouting(option =>
+services.AddRouting(options =>
 {
-    option.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
+    // SlugifyParameterTransformer in this example is a type that implements IOutboundParameterTransformer
+    // Replace the type, and the name used to refer to it with your own transformer
+    options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
 });
 ```
 
