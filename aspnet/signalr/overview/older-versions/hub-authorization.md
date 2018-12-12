@@ -13,7 +13,7 @@ Authentication and Authorization for SignalR Hubs (SignalR 1.x)
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > This topic describes how to restrict which users or roles can access hub methods.
 

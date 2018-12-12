@@ -13,7 +13,7 @@ Tutorial: High-Frequency Realtime with SignalR 2
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 [Download Completed Project](http://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a)
 

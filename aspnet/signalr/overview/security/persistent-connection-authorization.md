@@ -13,7 +13,7 @@ Authentication and Authorization for SignalR Persistent Connections
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > This topic describes how to enforce authorization on a persistent connection. For general information about integrating security into a SignalR application, see [Introduction to Security](introduction-to-security.md).
 >
