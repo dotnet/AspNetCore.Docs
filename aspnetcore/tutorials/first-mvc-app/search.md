@@ -115,7 +115,7 @@ The following markup shows the change to the `form` tag:
 <form asp-controller="Movies" asp-action="Index" method="get">
    ```
 
-## Adding Search by genre
+## Add Search by genre
 
 Add the following `MovieGenreViewModel` class to the *Models* folder:
 
@@ -144,7 +144,7 @@ When the user searches for the item, the search value is retained in the search 
 movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
 ```
 
-## Adding search by genre to the Index view
+## Add search by genre to the Index view
 
 Update `Index.cshtml` as follows:
 
