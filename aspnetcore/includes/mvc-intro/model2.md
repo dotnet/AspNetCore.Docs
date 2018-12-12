@@ -1,5 +1,4 @@
 <a name="dc"></a>
-### 
 
 Add the following `MvcMovieContext` class to the *Models* folder:  
 
