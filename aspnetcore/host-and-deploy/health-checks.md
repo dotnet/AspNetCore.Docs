@@ -315,7 +315,7 @@ The `DbContext` check confirms that the app can communicate with the database co
 * Use [Entity Framework (EF) Core](/ef/core/).
 * Include a package reference to [Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/).
 
-`AddDbContextCheck<TContext>` registers a health check for a `DbContext` (`TContext`). An overload is available to configure the failure status, tags, and a custom test query.
+`AddDbContextCheck<TContext>` registers a health check for a `DbContext`. The `DbContext` is supplied as the `TContext` to the method. An overload is available to configure the failure status, tags, and a custom test query.
 
 By default:
 
