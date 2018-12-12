@@ -21,56 +21,6 @@ In this tutorial, you write the model classes first, and EF Core creates the dat
 
 ## Add a data model class
 
-<!-- VS -------------------------->
-# [Visual Studio](#tab/visual-studio)
-
-Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
-
-[!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
-
-<!-- Code -------------------------->
-# [Visual Studio Code](#tab/visual-studio-code)
-
-* Add a class to the *Models* folder named *Movie.cs*.
-
-[!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
-[!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
-
-<!-- Mac -------------------------->
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Right-click the *Models* folder, and then select **Add** > **New File**.
-* In the **New File** dialog:
-
-  * Select **General** in the left pane.
-  * Select **Empty Class** in the center pain.
-  * Name the class **Movie** and select **New**.
-
-[!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
-[!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
-
-zzz
----  
----  
-<!-- End of VS tabs -->
-
-<!-- VS -------------------------->
-# [Visual Bogus](#tab/visual-Bogus)
-
-Bogus content 
-
-<!-- Code -------------------------->
-# [Visual Bogus Code](#tab/visual-Bogus-code)
-
-Bogus content 2
-
-<!-- Mac -------------------------->
-# [Visual Bogus for Mac](#tab/visual-Bogus-mac)
-
-Bogus content 3
-
----  
-<!-- End of VS tabs -->
 
 ## Scaffold the movie model
 

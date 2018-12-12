@@ -49,26 +49,7 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
-zzz
 ---  
----  
-<!-- End of VS tabs -->
-
-<!-- VS -------------------------->
-# [Visual Bogus](#tab/visual-Bogus)
-
-Bogus content 
-
-<!-- Code -------------------------->
-# [Visual Bogus Code](#tab/visual-Bogus-code)
-
-Bogus content 2
-
-<!-- Mac -------------------------->
-# [Visual Bogus for Mac](#tab/visual-Bogus-mac)
-
-Bogus content 3
-
 ---  
 <!-- End of VS tabs -->
 
@@ -76,87 +57,7 @@ Bogus content 3
 
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
 
-<!-- VS -------------------------->
-# [Visual Studio](#tab/visual-studio)
 
-In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.
-
-![view of above step](adding-model/_static/add_controller21.png)
-
-In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.
-
-![Add Scaffold dialog](adding-model/_static/add_scaffold21.png)
-
-Complete the **Add Controller** dialog:
-
-* **Model class:** *Movie (MvcMovie.Models)*
-* **Data context class:** Select the **+** icon and add the default **MvcMovie.Models.MvcMovieContext**
-
-![Add Data context](adding-model/_static/dc.png)
-
-* **Views:** Keep the default of each option checked
-* **Controller name:** Keep the default *MoviesController*
-* Select **Add**
-
-![Add Controller dialog](adding-model/_static/add_controller2.png)
-
-Visual Studio creates:
-
-* An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
-* A movies controller (*Controllers/MoviesController.cs*)
-* Razor view files for Create, Delete, Details, Edit, and Index pages (<em>Views/Movies/&ast;.cshtml</em>)
-
-The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*.
-
-<!-- Code -------------------------->
-# [Visual Studio Code](#tab/visual-studio-code)
-
-<!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
--->
-
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Install the scaffolding tool:
-
-  ```console
-   dotnet tool install --global dotnet-aspnet-codegenerator
-   ```
-
-* **For Windows**: Run the following command:
-
-  ```console
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
-
-  ```
-
-* **For macOS and Linux**: Run the following command:
-
-  ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MvcMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
-  ```
-
-[!INCLUDE [explains scaffold generated params](~/includes/RP/model4.md)]
-
-<!-- Mac -------------------------->
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Install the scaffolding tool:
-
-  ```console
-   dotnet tool install --global dotnet-aspnet-codegenerator
-   ```
-
-* Run the following command:
-
-  ```console
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
-  ```
-
-[!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
-
----
-<!-- End of VS tabs                  -->
 
 If you run the app and click on the **Mvc Movie** link, you get an error similar to the following:
 
