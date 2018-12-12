@@ -3,7 +3,6 @@ title: "Tutorial: Create a web API with ASP.NET Core MVC"
 author: rick-anderson
 description: Build a web API with ASP.NET Core MVC
 ms.author: riande
-monikerRange: '> aspnetcore-2.1'
 ms.custom: mvc
 ms.date: 12/10/2018
 uid: tutorials/first-web-api
