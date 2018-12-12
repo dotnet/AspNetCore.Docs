@@ -49,29 +49,6 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
-zzz
----  
----  
-<!-- End of VS tabs -->
-
-<!-- VS -------------------------->
-# [Visual Bogus](#tab/visual-Bogus)
-
-Bogus content 
-
-<!-- Code -------------------------->
-# [Visual Bogus Code](#tab/visual-Bogus-code)
-
-Bogus content 2
-
-<!-- Mac -------------------------->
-# [Visual Bogus for Mac](#tab/visual-Bogus-mac)
-
-Bogus content 3
-
----  
-<!-- End of VS tabs -->
-
 ## Scaffold the movie model
 
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
@@ -121,17 +98,10 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* **For Windows**: Run the following command:
+* Run the following command:
 
   ```console
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
-
-  ```
-
-* **For macOS and Linux**: Run the following command:
-
-  ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MvcMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+     dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/RP/model4.md)]
@@ -150,12 +120,13 @@ dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 * Run the following command:
 
   ```console
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+     dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
 
 ---
+
 <!-- End of VS tabs                  -->
 
 If you run the app and click on the **Mvc Movie** link, you get an error similar to the following:
