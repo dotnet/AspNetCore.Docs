@@ -49,6 +49,9 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
+---  
+<!-- End of VS tabs -->
+
 ## Scaffold the movie model
 
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
