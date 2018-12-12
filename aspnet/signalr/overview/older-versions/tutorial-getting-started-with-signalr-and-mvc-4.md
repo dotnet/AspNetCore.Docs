@@ -13,7 +13,7 @@ Tutorial: Getting Started with SignalR 1.x and MVC 4
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tim Teebken](https://github.com/timlt)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > This tutorial shows how to use ASP.NET SignalR to create a real-time chat application. You will add SignalR to an MVC 4 application and create a chat view to send and display messages.
 

@@ -13,7 +13,7 @@ Tutorial: Getting Started with SignalR 2
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/aspnet/includes/signalr/signalr-version-disambiguation.md)]
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 [Download Completed Project](http://code.msdn.microsoft.com/SignalR-Getting-Started-b9d18aa9)
 
