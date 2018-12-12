@@ -29,7 +29,7 @@ For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>
 
 ## Supported platforms
 
-Apps published for 32-bit (x86) and 64-bit (x64) deployment are supported. We recommend deploying 32-bit apps unless the app:
+Apps published for 32-bit (x86) and 64-bit (x64) deployment are supported. Deploy a 32-bit app unless the app:
 
 * Requires the larger virtual memory address space available to a 64-bit app.
 * Requires the larger IIS stack size.
