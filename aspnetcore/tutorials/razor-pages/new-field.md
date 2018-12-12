@@ -108,10 +108,6 @@ If you delete all the records in the DB, the initializer will seed the DB and in
 # [Visual Studio Code](#tab/visual-studio-code)
 
 <!-- copy/paste this tab to the next. Not worth an include  -->
-SQLite doesn't support migrations.
-
-* Delete the database or change the database name in the *appsettings.json* file.
-* Delete the *Migrations* folder (and all the files in the folder).
 
 Run the following .NET Core CLI commands:
 
@@ -119,21 +115,28 @@ Run the following .NET Core CLI commands:
 dotnet ef migrations add Rating
 dotnet ef database update
 ```
+
+> [!NOTE]
+> Many schema change operations are not supported by the EF Core SQLite provider. For example, adding a column is supported, but removing a column is not supported. If you add a migration to remove a column, the `ef migrations add` command succeeds but the `ef database update` command fails. You can work around some of the limitations by manually writing migrations code to perform a table rebuild. A table rebuild involves renaming the existing table, creating a new table, copying data to the new table, and dropping the old table. For more information, see the following resources:
+> * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
+> * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
+> * [Data seeding](/ef/core/modeling/data-seeding)
 
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-SQLite doesn't support migrations.
-
-* Delete the database or change the database name in the *appsettings.json* file.
-* Delete the *Migrations* folder (and all the files in the folder).
-
 Run the following .NET Core CLI commands:
 
 ```console
 dotnet ef migrations add Rating
 dotnet ef database update
 ```
+
+> [!NOTE]
+> Many schema change operations are not supported by the EF Core SQLite provider. For example, adding a column is supported, but removing a column is not supported. If you add a migration to remove a column, the `ef migrations add` command succeeds but the `ef database update` command fails. You can work around some of the limitations by manually writing migrations code to perform a table rebuild. A table rebuild involves renaming the existing table, creating a new table, copying data to the new table, and dropping the old table. For more information, see the following resources:
+> * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
+> * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
+> * [Data seeding](/ef/core/modeling/data-seeding)
 
 ---  
 <!-- End of VS tabs -->
