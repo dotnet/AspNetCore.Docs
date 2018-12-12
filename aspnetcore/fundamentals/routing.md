@@ -678,7 +678,8 @@ To use a parameter transformer in a route pattern, configure it first using <xre
 ```csharp
 services.AddRouting(options =>
 {
-    // Replace the type, and the name used to refer to it with your own IOutboundParameterTransformer implementation
+    // Replace the type and the name used to refer to it with your own
+    // IOutboundParameterTransformer implementation
     options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
 });
 ```
