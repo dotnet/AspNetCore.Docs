@@ -107,7 +107,7 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
      dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
-[!INCLUDE [explains scaffold generated params](~/includes/RP/model4.md)]
+[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
 <!-- Mac -------------------------->
 
@@ -171,6 +171,7 @@ Add-Migration Initial
 Update-Database
 ```
 
+The `Add-Migration` command generates code to create the initial database schema.
 <!-- Code -------------------------->
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -178,15 +179,15 @@ Update-Database
 <!-- Mac -------------------------->
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
-
+The `ef migrations add InitialCreate` command generates code to create the initial database schema. 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
-
+The `ef migrations add InitialCreate` command generates code to create the initial database schema. 
 ---  
 <!-- End of VS tabs -->
 
-The `ef migrations add InitialCreate` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MvcMovieContext.cs* zz file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+The schema is based on the model specified in the `DbContext` (In the *Models/MvcMovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
 The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
 
@@ -223,7 +224,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 ---
 
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `MvcMovieContext` (In the *Data/MvcMovieContext.cs* file). The `Initial` argument is used to name the migrations. Any name can be used, but by convention a name that describes the migration is used. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+The schema is based on the model specified in the `MvcMovieContext` (In the *Data/MvcMovieContext.cs* file). The `Initial` argument is used to name the migrations. Any name can be used, but by convention a name that describes the migration is used. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
 The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
@@ -249,9 +250,14 @@ You missed the [migrations step](#pmc).
 
 * Test the **Edit**, **Details**, and **Delete** links.
 
+Examine the `Startup` class:
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=13-99)]
 
-The highlighted code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container (In the *Startup.cs* file). `services.AddDbContext<MvcMovieContext>(options =>` specifies the database to use and the connection string. `=>` is a [lambda operator](/dotnet/articles/csharp/language-reference/operators/lambda-operator).
+The preceding highlighted code shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container:
+
+* `services.AddDbContext<MvcMovieContext>(options =>` specifies the database to use and the connection string.
+* `=>` is a [lambda operator](/dotnet/articles/csharp/language-reference/operators/lambda-operator)
 
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 

@@ -1,4 +1,4 @@
-﻿//#define Rating
+﻿#define Rating
 #if Rating
 // Seed without Rating
 #region snippet_1 
@@ -13,9 +13,9 @@ namespace MvcMovie.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new RazorPagesMovieContext(
+            using (var context = new MvcMovieContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<RazorPagesMovieContext>>()))
+                    DbContextOptions<MvcMovieContext>>()))
             {
                 // Look for any movies.
                 if (context.Movie.Any())
