@@ -1,7 +1,6 @@
 ---
 title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
-monikerRange: '>= aspnetcore-2.2'
 description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages, use Entity Framework Core and SQL Server for data access, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
 ms.date: 12/5/2018
@@ -12,7 +11,9 @@ uid: tutorials/razor-pages/razor-pages-start
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This is the first tutorial of a series. [The series](xref:tutorials/razor-pages/index) teaches the basics of building an ASP.NET Core Razor Pages web app.
+This is the first tutorial of a series. [The series](xref:tutorials/razor-pages/index) teaches the basics of building an ASP.NET Core Razor Pages web app. At the end of the series you'll have an app that manages a database of movies.  
+
+[!INCLUDE[View or download sample code](~/includes/rp/download.md)]
 
 In this tutorial, you:
 
@@ -21,13 +22,9 @@ In this tutorial, you:
 > * Run the app.
 > * Examine the project files.
 
-At the end of the tutorial, you'll have an app that displays a default home page.
+At the end of this tutorial you'll have a working Razor Pages web app that you'll build on in later tutorials.
 
 ![Home or Index page](razor-pages-start/_static/home2.2.png)
-
- Later tutorials in the series add functionality to display and manage a database of movies.  
-
-[!INCLUDE[View or download sample code](~/includes/rp/download.md)]
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
@@ -118,7 +115,7 @@ Select **Run > Start Without Debugging** to launch the app. Visual Studio starts
 
   ![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
 
-  The following image shows the app after you give consent:
+  The following image shows the app after you give consent to tracking:
 
   ![Home or Index page](razor-pages-start/_static/home2.2.png)
 
@@ -133,31 +130,24 @@ Contains Razor pages and supporting files. Each Razor page is a pair of files:
 * A *.cshtml* file that contains HTML markup with C# code using Razor syntax.
 * A *.cshtml.cs* file that contains C# code that handles page events.
 
-Supporting files have names that begin with an underscore. For example, the *_Layout.cshtml* file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page.
+Supporting files have names that begin with an underscore. For example, the *_Layout.cshtml* file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+
 
 ### wwwroot folder
 
-Contains static files, such as HTML files, JavaScript files, and CSS files.
+Contains static files, such as HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
 ### appSettings.json
 
-Contains configuration data, such as connection strings.
+Contains configuration data, such as connection strings. For more information, see <xref:fundamentals/configuration/index>.
 
 ### Program.cs
 
-Contains the entry point for the program.
+Contains the entry point for the program. For more information, see <xref:fundamentals/host/web-host>.
 
 ### Startup.cs
 
-Contains code that configures app behavior, such as whether it requires consent for cookies.
-
-## Additional resources
-
-* <xref:mvc/views/layout>
-* <xref:fundamentals/configuration/index>
-* <xref:fundamentals/static-files>
-* <xref:fundamentals/host/web-host>
-* <xref:fundamentals/startup>
+Contains code that configures app behavior, such as whether it requires consent for cookies. For more information, see <xref:fundamentals/startup>.
 
 ## Next steps
 
