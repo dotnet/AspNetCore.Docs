@@ -90,9 +90,13 @@ The `Add-Migration` command tells the framework to:
 
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
+The `Update-Database` command tells the framework to apply the schema changes to the database.
+
 <a name="ssox"></a>
 
-If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX). To delete the database from SSOX:
+If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
+
+Another option is to delete the database and use migrations to re-create the database. To delete the database in SSOX:
 
 * Select the database in SSOX.
 * Right click on the database, and select *Delete*.
@@ -116,6 +120,23 @@ dotnet ef migrations add Rating
 dotnet ef database update
 ```
 
+The `ef migrations add` command tells the framework to:
+
+* Compare the `Movie` model with the `Movie` DB schema.
+* Create code to migrate the DB schema to the new model.
+
+The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
+
+The `ef database update` command tells the framework to apply the schema changes to the database.
+
+If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or by using a SQLite tool.
+
+Another option is to delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command: 
+
+```console
+dotnet ef database update
+```
+
 > [!NOTE]
 > Many schema change operations are not supported by the EF Core SQLite provider. For example, adding a column is supported, but removing a column is not supported. If you add a migration to remove a column, the `ef migrations add` command succeeds but the `ef database update` command fails. You can work around some of the limitations by manually writing migrations code to perform a table rebuild. A table rebuild involves renaming the existing table, creating a new table, copying data to the new table, and dropping the old table. For more information, see the following resources:
 > * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
@@ -129,6 +150,23 @@ Run the following .NET Core CLI commands:
 
 ```console
 dotnet ef migrations add Rating
+dotnet ef database update
+```
+
+The `ef migrations add` command tells the framework to:
+
+* Compare the `Movie` model with the `Movie` DB schema.
+* Create code to migrate the DB schema to the new model.
+
+The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
+
+The `ef database update` command tells the framework to apply the schema changes to the database.
+
+If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or by using a SQLite tool.
+
+Another option is to delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command: 
+
+```console
 dotnet ef database update
 ```
 
