@@ -153,8 +153,6 @@ You need to create the database, and you use the EF Core [Migrations](xref:data/
 
 # [Visual Studio](#tab/visual-studio)
 
-<!-- VS -------------------------->
-
 In this section, the Package Manager Console (PMC) is used to:
 
 * Add an initial migration.
@@ -176,14 +174,15 @@ The `Add-Migration` command generates code to create the initial database schema
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-<!-- Mac -------------------------->
-
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
-The `ef migrations add InitialCreate` command generates code to create the initial database schema. 
+The `ef migrations add InitialCreate` command generates code to create the initial database schema.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
-The `ef migrations add InitialCreate` command generates code to create the initial database schema. 
+
+The `ef migrations add InitialCreate` command generates code to create the initial database schema.
+
 ---  
 <!-- End of VS tabs -->
 
@@ -216,9 +215,17 @@ The name of the connection string is passed in to the context by calling a metho
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
+
+You created a DB context and registered it with the dependency injection container.
+
 <!-- Mac -------------------------->
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
+
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
+
+You created a DB context and registered it with the dependency injection container.
 
 <!-- End of VS tabs -->
 

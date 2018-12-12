@@ -28,7 +28,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 
-[!code-json[](start-mvc/sample/MvcMovie/appsettingsSQLite.json?highlight=2&range=8-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/appsettingsSQLite.json?highlight=2&range=8-10)]
 
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -37,7 +37,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 
-[!code-json[](start-mvc/sample/MvcMovie/appsettingsSQLite.json?highlight=2&range=8-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/appsettingsSQLite.json?highlight=2&range=8-10)]
 
 ---  
 <!-- End of VS tabs -->
