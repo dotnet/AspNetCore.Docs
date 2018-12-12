@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/03/2018
+ms.date: 12/12/2018
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -30,10 +30,12 @@ Health checks are usually used with an external monitoring service or container 
 
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package.
 
-The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [DbContext probe](#entity-framework-core-dbcontext-probe) scenario probes a database using an EF Core `DbContext`. To explore the database scenarios using the sample app:
+The sample app provides start-up code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario probes the health of a database connection using [BeatPulse](https://github.com/Xabaril/BeatPulse). The [DbContext probe](#entity-framework-core-dbcontext-probe) scenario probes a database using an EF Core `DbContext`. To explore the database scenarios, the sample app:
 
-* Create a database and provide its connection string in the *appsettings.json* file of the app.
-* Add a package reference to [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/).
+* Creates a database and provides its connection string in the *appsettings.json* file.
+* Has the following package references in its project file:
+  * [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/)
+  * [Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/)
 
 > [!NOTE]
 > [BeatPulse](https://github.com/Xabaril/BeatPulse) isn't maintained or supported by Microsoft.
@@ -308,9 +310,17 @@ dotnet run --scenario db
 
 ## Entity Framework Core DbContext probe
 
-The `DbContext` check is supported in apps that use [Entity Framework (EF) Core](/ef/core/). This check confirms that the app can communicate with the database configured for an EF Core `DbContext`. By default, the `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using overloads of the `AddDbContextCheck` method.
+The `DbContext` check confirms that the app can communicate with the database configured for an EF Core `DbContext`. The `DbContext` check is supported in apps that:
 
-`AddDbContextCheck<TContext>` registers a health check for a `DbContext` (`TContext`). By default, the name of the health check is the name of the `TContext` type. An overload is available to configure the failure status, tags, and a custom test query.
+* Use [Entity Framework (EF) Core](/ef/core/).
+* Include a package reference to [Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/).
+
+`AddDbContextCheck<TContext>` registers a health check for a `DbContext` (`TContext`). An overload is available to configure the failure status, tags, and a custom test query.
+
+By default:
+
+* The `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using overloads of the `AddDbContextCheck` method.
+* The name of the health check is the name of the `TContext` type.
 
 In the sample app, `AppDbContext` is provided to `AddDbContextCheck` and registered as a service in `Startup.ConfigureServices`.
 
