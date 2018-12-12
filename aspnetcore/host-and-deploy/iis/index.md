@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/11/2018
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -26,6 +26,14 @@ The following operating systems are supported:
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
 For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>.
+
+## Supported platforms
+
+Apps published for 32-bit (x86) and 64-bit (x64) deployment are supported. Deploy a 32-bit app unless the app:
+
+* Requires the larger virtual memory address space available to a 64-bit app.
+* Requires the larger IIS stack size.
+* Has 64-bit native dependencies.
 
 ## Application configuration
 

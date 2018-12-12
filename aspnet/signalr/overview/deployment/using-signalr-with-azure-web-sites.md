@@ -13,6 +13,8 @@ Using SignalR with Web Apps in Azure App Service
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > This document describes how to configure a SignalR application that runs on Microsoft Azure.
 >
 > ## Software versions used in the tutorial

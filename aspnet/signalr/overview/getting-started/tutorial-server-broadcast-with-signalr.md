@@ -13,6 +13,8 @@ Tutorial: Server Broadcast with SignalR 2
 ====================
 by [Tom Dykstra](https://github.com/tdykstra), [Tom FitzMacken](https://github.com/tfitzmac)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality. Server broadcast means that communications sent to clients are initiated by the server. This scenario requires a different programming approach than peer-to-peer scenarios such as chat applications, in which communications sent to clients are initiated by one or more of the clients.
 >
 > The application that you'll create in this tutorial simulates a stock ticker, a typical scenario for server broadcast functionality.
@@ -46,7 +48,6 @@ by [Tom Dykstra](https://github.com/tdykstra), [Tom FitzMacken](https://github.c
 > ## Questions and comments
 >
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
-
 
 ## Overview
 
