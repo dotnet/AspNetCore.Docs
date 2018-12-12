@@ -319,7 +319,7 @@ The `DbContext` check confirms that the app can communicate with the database co
 
 By default:
 
-* The `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using overloads of the `AddDbContextCheck` method.
+* The `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using `AddDbContextCheck` method overloads.
 * The name of the health check is the name of the `TContext` type.
 
 In the sample app, `AppDbContext` is provided to `AddDbContextCheck` and registered as a service in `Startup.ConfigureServices`.
