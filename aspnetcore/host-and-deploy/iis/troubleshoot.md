@@ -28,7 +28,7 @@ In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensi
 Additional troubleshooting topics:
 
 <xref:host-and-deploy/azure-apps/troubleshoot>  
-Although App Service uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) and IIS to host apps, see the dedicated topic for instructions specific to App Service.
+Although App Service uses the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) and IIS to host apps, see the dedicated topic for instructions specific to App Service.
 
 <xref:fundamentals/error-handling>  
 Discover how to handle errors in ASP.NET Core apps during development on a local system.

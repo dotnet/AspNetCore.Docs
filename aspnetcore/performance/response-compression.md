@@ -27,7 +27,7 @@ Use Response Compression Middleware when you're:
   * [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Nginx Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting directly on:
-  * [HTTP.sys](xref:fundamentals/servers/httpsys) server (formerly called [WebListener](xref:fundamentals/servers/weblistener))
+  * [HTTP.sys](xref:fundamentals/servers/httpsys) server
   * [Kestrel](xref:fundamentals/servers/kestrel) server
 
 ## Response compression

@@ -17,7 +17,7 @@ For the 1.1 version of this topic, download [Kestrel web server implementation i
 
 ::: moniker-end
 
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included by default in ASP.NET Core project templates.
+Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers). Kestrel is the web server that's included by default in ASP.NET Core project templates.
 
 Kestrel supports the following features:
 
@@ -42,7 +42,7 @@ Kestrel supports the following features:
 
 Kestrel is supported on all platforms and versions that .NET Core supports.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -784,7 +784,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ### IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic.
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) topic.
 
 ::: moniker range=">= aspnetcore-2.2"
 

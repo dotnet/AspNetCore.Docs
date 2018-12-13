@@ -1,7 +1,7 @@
 ---
 title: Configure Windows Authentication in ASP.NET Core
 author: scottaddie
-description: Learn how to configure Windows Authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
+description: Learn how to configure Windows Authentication in ASP.NET Core, using IIS Express, IIS, and HTTP.sys.
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 11/01/2018
@@ -11,7 +11,7 @@ uid: security/authentication/windowsauth
 
 By [Steve Smith](https://ardalis.com) and [Scott Addie](https://twitter.com/Scott_Addie)
 
-Windows Authentication can be configured for ASP.NET Core apps hosted with IIS, [HTTP.sys](xref:fundamentals/servers/httpsys), or [WebListener](xref:fundamentals/servers/weblistener).
+Windows Authentication can be configured for ASP.NET Core apps hosted with IIS or [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ## Windows Authentication
 
@@ -49,7 +49,7 @@ Alternatively, these two properties can be configured in the *launchSettings.jso
 
 ## Enable Windows Authentication with IIS
 
-IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to host ASP.NET Core apps. Windows Authentication is configured in IIS, not the app. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows Authentication.
+IIS uses the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to host ASP.NET Core apps. Windows Authentication is configured in IIS, not the app. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows Authentication.
 
 ### IIS configuration
 
@@ -83,8 +83,6 @@ Learn more about [publishing to IIS](xref:host-and-deploy/iis/index).
 
 Launch the app to verify Windows Authentication is working.
 
-::: moniker range=">= aspnetcore-2.0"
-
 ## Enable Windows Authentication with HTTP.sys
 
 Although Kestrel doesn't support Windows Authentication, you can use [HTTP.sys](xref:fundamentals/servers/httpsys) to support self-hosted scenarios on Windows. The following example configures the app's web host to use HTTP.sys with Windows Authentication:
@@ -97,28 +95,13 @@ Although Kestrel doesn't support Windows Authentication, you can use [HTTP.sys](
 > [!NOTE]
 > HTTP.sys isn't supported on Nano Server version 1709 or later. To use Windows Authentication and HTTP.sys with Nano Server, use a [Server Core (microsoft/windowsservercore) container](https://hub.docker.com/r/microsoft/windowsservercore/). For more information on Server Core, see [What is the Server Core installation option in Windows Server?](/windows-server/administration/server-core/what-is-server-core).
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-## Enable Windows Authentication with WebListener
-
-Although Kestrel doesn't support Windows Authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows Authentication:
-
-[!code-csharp[](windowsauth/sample/Program1x.cs?highlight=6-11)]
-
-> [!NOTE]
-> WebListener delegates to kernel mode authentication with the Kerberos authentication protocol. User mode authentication isn't supported with Kerberos and WebListener. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
-
-::: moniker-end
-
 ## Work with Windows Authentication
 
 The configuration state of anonymous access determines the way in which the `[Authorize]` and `[AllowAnonymous]` attributes are used in the app. The following two sections explain how to handle the disallowed and allowed configuration states of anonymous access.
 
 ### Disallow anonymous access
 
-When Windows Authentication is enabled and anonymous access is disabled, the `[Authorize]` and `[AllowAnonymous]` attributes have no effect. If the IIS site (or HTTP.sys or WebListener server) is configured to disallow anonymous access, the request never reaches your app. For this reason, the `[AllowAnonymous]` attribute isn't applicable.
+When Windows Authentication is enabled and anonymous access is disabled, the `[Authorize]` and `[AllowAnonymous]` attributes have no effect. If the IIS site (or HTTP.sys) is configured to disallow anonymous access, the request never reaches your app. For this reason, the `[AllowAnonymous]` attribute isn't applicable.
 
 ### Allow anonymous access
 

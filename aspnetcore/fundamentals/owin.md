@@ -156,7 +156,7 @@ namespace NowinSample
 }
 ```
 
-Learn more about ASP.NET [Servers](servers/index.md).
+Learn more about [ASP.NET Core Servers](xref:fundamentals/servers).
 
 ## Run ASP.NET Core on an OWIN-based server and use its WebSockets support
 
@@ -312,4 +312,4 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 ## Additional resources
 
 * [Middleware](xref:fundamentals/middleware/index)
-* [Servers](xref:fundamentals/servers/index)
+* [Servers](xref:fundamentals/servers)

@@ -72,7 +72,7 @@ Use URL Rewriting Middleware when you're unable to use the following approaches:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Also, use the middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)).
+Also, use the middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 

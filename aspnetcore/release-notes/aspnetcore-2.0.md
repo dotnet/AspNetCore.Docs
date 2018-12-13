@@ -83,12 +83,6 @@ The Kestrel web server has new features that make it more suitable as an Interne
 
 For more information, see [Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel).
 
-## WebListener renamed to HTTP.sys
-
-The packages `Microsoft.AspNetCore.Server.WebListener` and `Microsoft.Net.Http.Server` have been merged into a new package `Microsoft.AspNetCore.Server.HttpSys`. The namespaces have been updated to match.
-
-For more information, see [HTTP.sys web server implementation in ASP.NET Core](xref:fundamentals/servers/httpsys).
-
 ## Enhanced HTTP header support
 
 When using MVC to transmit a `FileStreamResult` or a `FileContentResult`, you now have the option to set an `ETag` or a `LastModified` date on the content you transmit. You can set these values on the returned content with code similar to the following:

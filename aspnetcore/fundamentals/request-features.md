@@ -77,6 +77,6 @@ Feature interfaces define specific HTTP features that a given request may suppor
 
 ## Additional resources
 
-* [Servers](xref:fundamentals/servers/index)
+* [Servers](xref:fundamentals/servers)
 * [Middleware](xref:fundamentals/middleware/index)
 * [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
