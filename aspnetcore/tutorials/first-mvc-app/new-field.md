@@ -44,7 +44,6 @@ Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 Update the */Views/Movies/Create.cshtml* with a `Rating` field. 
 
 <!-- VS -------------------------->
-# [Visual Studio](#tab/visual-studio)
 # [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
 
 You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
