@@ -44,21 +44,6 @@ If you change the signature of the `Index` method to have a parameter named `id`
 
 Change the parameter to `id` and all occurrences of `searchString` change to `id`.
 
-<!--
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/_Layout.cshtml?highlight=7,31)]
-
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchNull)]
-
-![Index view](~/tutorials/first-mvc-app/search/_static/ghost.png)
-
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?highlight=5&name=snippet_1)]
-
---> 
-
 The previous `Index` method:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_1stSearch)]
@@ -73,7 +58,7 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI elements to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound `ID` parameter, change it back so that it takes a parameter named `searchString`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_1stSearch)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_1stSearch)]
 
 Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
 
@@ -130,19 +115,15 @@ The movie-genre view model will contain:
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/2.2-stages/SQL/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
 
 The following code is a `LINQ` query that retrieves all the genres from the database.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_LINQ)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/2.2-stages/SQL/Controllers/MoviesController.cs?name=snippet_LINQ)]
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
-When the user searches for the item, the search value is retained in the search box. To retain the search value,  populate the `SearchString` property with the search value. The search value is the `searchString` parameter for the `Index` controller action.
-
-```csharp
-movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
-```
+When the user searches for the item, the search value is retained in the search box.
 
 ## Add search by genre to the Index view
 

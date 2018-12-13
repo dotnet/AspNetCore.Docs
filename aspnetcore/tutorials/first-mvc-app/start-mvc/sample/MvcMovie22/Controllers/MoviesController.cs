@@ -18,14 +18,16 @@ namespace MvcMovie.Controllers
             _context = context;
         }
 
-        #region snippet
+        #region snippet_SearchGenre
         // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
+            #region snippet_LINQ
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
+            #endregion
 
             var movies = from m in _context.Movie
                          select m;
