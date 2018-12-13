@@ -11,17 +11,7 @@
 ### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
 ### [Razor Pages](xref:tutorials/razor-pages/index)
-### MVC
-#### [Get started](xref:tutorials/first-mvc-app/start-mvc)
-#### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
-#### [Add a view](xref:tutorials/first-mvc-app/adding-view)
-#### [Add a model](xref:tutorials/first-mvc-app/adding-model)
-#### [Work with a DB](xref:tutorials/first-mvc-app/working-with-sql)
-#### [Controller actions and views](xref:tutorials/first-mvc-app/controller-methods-views)
-#### [Add search](xref:tutorials/first-mvc-app/search)
-#### [Add a new field](xref:tutorials/first-mvc-app/new-field)
-#### [Add validation](xref:tutorials/first-mvc-app/validation)
-#### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+### [MVC](xref:tutorials/first-mvc-app/index)
 
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
