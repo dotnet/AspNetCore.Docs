@@ -22,16 +22,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
 <!-- Code -------------------------->
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
-
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
-
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/appsettingsSQLite.json?highlight=2&range=8-10)]
-
-<!-- Mac -------------------------->
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
@@ -69,13 +60,7 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
 
   ![Movie table open showing table data](working-with-sql/_static/vd22.png)
 
-<!-- Code -------------------------->
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!INCLUDE[](~/includes/rp/sqlite.md)]
-
-<!-- Mac -------------------------->
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 
@@ -122,12 +107,7 @@ Test the app
     * If you were running VS in debug mode, stop the debugger and press F5
 
 <!-- Code -------------------------->
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
-
-<!-- Mac -------------------------->
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
 

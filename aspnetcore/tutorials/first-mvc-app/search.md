@@ -115,8 +115,6 @@ The movie-genre view model will contain:
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 
-~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MoviesController.cs
-
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
 
 The following code is a `LINQ` query that retrieves all the genres from the database.
@@ -131,7 +129,7 @@ When the user searches for the item, the search value is retained in the search 
 
 Update `Index.cshtml` as follows:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,28,31,34,37,43)]
+[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,28,31,34,37,43)]
 
 Examine the lambda expression used in the following HTML Helper:
 

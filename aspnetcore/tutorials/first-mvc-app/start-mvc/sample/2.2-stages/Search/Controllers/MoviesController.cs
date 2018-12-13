@@ -18,7 +18,6 @@ namespace MvcMovie.Controllers
             _context = context;
         }
 
-        #region snippet_SearchGenre
         // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
@@ -30,24 +29,24 @@ namespace MvcMovie.Controllers
             var movies = from m in _context.Movie
                          select m;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Title.Contains(searchString));
             }
 
-            if (!String.IsNullOrEmpty(movieGenre))
+            if (!string.IsNullOrEmpty(movieGenre))
             {
                 movies = movies.Where(x => x.Genre == movieGenre);
             }
 
-            var movieGenreVM = new MovieGenreViewModel();
-            movieGenreVM.Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-            movieGenreVM.Movies = await movies.ToListAsync();
-            movieGenreVM.SearchString = searchString;
+            var movieGenreVM = new MovieGenreViewModel
+            {
+                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Movies = await movies.ToListAsync()
+            };
 
             return View(movieGenreVM);
         }
-        #endregion
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)

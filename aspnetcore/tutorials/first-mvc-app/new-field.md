@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use Entity Framework Code First Migrations to add a new field to a model and migrate that change to a database.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 12/25/2018
 uid: tutorials/first-mvc-app/new-field
 ---
 # Add a new field to an ASP.NET Core MVC app
@@ -23,13 +23,13 @@ When EF Code First is used to automatically create a database, Code First:
 
 ## Add a Rating Property to the Movie Model
 
-Open the *Models/Movie.cs* file and add a `Rating` property:
+Add a `Rating` property to *Models/Movie.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
 Build the app (Ctrl+Shift+B).
 
-Because you've added a new field to the `Movie` class, you also need to update the binding white list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
+Because you've added a new field to the `Movie` class, you need to update the binding white list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
@@ -41,19 +41,31 @@ Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
 [!code-HTML[](start-mvc/sample/MvcMovie/Views/Movies/IndexGenreRating.cshtml?highlight=17,39&range=24-64)]
 
-Update the */Views/Movies/Create.cshtml* with a `Rating` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro). Note: In the RTM verison of Visual Studio 2017 you need to install the [Razor Language Services](https://marketplace.visualstudio.com/items?itemName=ms-madsk.RazorLanguageServices) for Razor intelliSense. This will be fixed in the next release.
+Update the */Views/Movies/Create.cshtml* with a `Rating` field. 
+
+<!-- VS -------------------------->
+# [Visual Studio](#tab/visual-studio)
+# [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
+
+You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
 ![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](new-field/_static/cr.png)
 
-The app won't work until we update the DB to include the new field. If you run it now, you'll get the following `SqlException`:
+<!-- Code -------------------------->
+# [Visual Studio Code](#tab/visual-studio-code)
+
+---  
+<!-- End of VS tabs -->
+
+The app won't work until the DB is updated to include the new field. If it's run now, the following `SqlException` is thrown:
 
 `SqlException: Invalid column name 'Rating'.`
 
-You're seeing this error because the updated Movie model class is different than the schema of the Movie table of the existing database. (There's no Rating column in the database table.)
+This error occurs because the updated Movie model class is different than the schema of the Movie table of the existing database. (There's no Rating column in the database table.)
 
 There are a few approaches to resolving the error:
 
-1. Have the Entity Framework automatically drop and re-create the database based on the new model class schema. This approach is very convenient early in the development cycle when you are doing active development on a test database; it allows you to quickly evolve the model and database schema together. The downside, though, is that you lose existing data in the database — so you don't want to use this approach on a production database! Using an initializer to automatically seed a database with test data is often a productive way to develop an application.
+1. Have the Entity Framework automatically drop and re-create the database based on the new model class schema. This approach is very convenient early in the development cycle when you are doing active development on a test database; it allows you to quickly evolve the model and database schema together. The downside, though, is that you lose existing data in the database — so you don't want to use this approach on a production database! Using an initializer to automatically seed a database with test data is often a productive way to develop an application. This is a good approach for early development using SQLite.
 
 2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that you keep your data. You can make this change either manually or by creating a database change script.
 

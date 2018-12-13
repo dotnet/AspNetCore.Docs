@@ -29,22 +29,9 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 
 <!-- Code -------------------------->
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Add a class to the *Models* folder named *Movie.cs*.
-
-[!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
-[!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
-
-<!-- Mac -------------------------->
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Right-click the *Models* folder, and then select **Add** > **New File**.
-* In the **New File** dialog:
-
-  * Select **General** in the left pane.
-  * Select **Empty Class** in the center pain.
-  * Name the class **Movie** and select **New**.
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
@@ -172,15 +159,9 @@ Update-Database
 The `Add-Migration` command generates code to create the initial database schema.
 <!-- Code -------------------------->
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
-The `ef migrations add InitialCreate` command generates code to create the initial database schema.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE [initial migration](~/includes/RP/model3.md)]
-
 The `ef migrations add InitialCreate` command generates code to create the initial database schema.
 
 ---  
@@ -213,21 +194,11 @@ The preceding code creates a [`DbSet<Movie>`](/dotnet/api/microsoft.entityframew
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 <!-- Code -------------------------->
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
 
 You created a DB context and registered it with the dependency injection container.
-
-<!-- Mac -------------------------->
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
-
-You created a DB context and registered it with the dependency injection container.
-
-<!-- End of VS tabs -->
 
 ---
 
