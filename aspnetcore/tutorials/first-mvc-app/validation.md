@@ -120,7 +120,7 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 
 > [!NOTE]
 > jQuery validation doesn't work with the `Range` attribute and `DateTime`. For example, the following code will always display a client side validation error, even when the date is in the specified range:
-
+>
 > `[Range(typeof(DateTime), "1/1/1966", "1/1/2020")]`
 
 You will need to disable jQuery date validation to use the `Range` attribute with `DateTime`. It's generally not a good practice to compile hard dates in your models, so using the `Range` attribute and `DateTime` is discouraged.
