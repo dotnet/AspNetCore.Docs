@@ -11,11 +11,7 @@
 ### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
 ### [Razor Pages](xref:tutorials/razor-pages/index)
-
-### MVC
-#### [With Visual Studio](xref:tutorials/first-mvc-app/index)
-#### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
-#### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
+### [MVC](xref:tutorials/first-mvc-app/index)
 
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
@@ -66,50 +62,26 @@
 #### [Add a new field](xref:tutorials/razor-pages/new-field)
 #### [Add validation](xref:tutorials/razor-pages/validation)
 
+## MVC
+### [MVC Overview](xref:mvc/overview)
+### [MVC tutorial](xref:tutorials/first-mvc-app/index)
+#### [Get started](xref:tutorials/first-mvc-app/start-mvc)
+#### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
+#### [Add a view](xref:tutorials/first-mvc-app/adding-view)
+#### [Add a model](xref:tutorials/first-mvc-app/adding-model)
+#### [Work with a DB](xref:tutorials/first-mvc-app/working-with-sql)
+#### [Controller actions and views](xref:tutorials/first-mvc-app/controller-methods-views)
+#### [Add search](xref:tutorials/first-mvc-app/search)
+#### [Add a new field](xref:tutorials/first-mvc-app/new-field)
+#### [Add validation](xref:tutorials/first-mvc-app/validation)
+#### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+
 ### [Filters](xref:razor-pages/filter)
 ### [Razor Class Libraries](xref:razor-pages/ui-class)
 ### [Route and app conventions](xref:razor-pages/razor-pages-conventions)
 ### [Upload files](xref:razor-pages/upload-files)
 ### [Razor SDK](xref:razor-pages/sdk)
-## MVC
-### [Overview](xref:mvc/overview)
-### Tutorials
-#### MVC with Visual Studio
-##### [Overview](xref:tutorials/first-mvc-app/index)
-##### [Get started](xref:tutorials/first-mvc-app/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app/adding-model)
-##### [Work with a DB](xref:tutorials/first-mvc-app/working-with-sql)
-##### [Controller actions and views](xref:tutorials/first-mvc-app/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app/search)
-##### [Add a new field](xref:tutorials/first-mvc-app/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
-#### MVC with Visual Studio Code
-##### [Overview](xref:tutorials/first-mvc-app-xplat/index)
-##### [Get started](xref:tutorials/first-mvc-app-xplat/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app-xplat/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app-xplat/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app-xplat/adding-model)
-##### [Work with SQLite](xref:tutorials/first-mvc-app-xplat/working-with-sql)
-##### [Controller methods and views](xref:tutorials/first-mvc-app-xplat/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app-xplat/search)
-##### [Add a new field](xref:tutorials/first-mvc-app-xplat/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app-xplat/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
-#### MVC with Visual Studio for Mac
-##### [Overview](xref:tutorials/first-mvc-app-mac/index)
-##### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app-mac/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app-mac/adding-model)
-##### [Work with SQLite](xref:tutorials/first-mvc-app-mac/working-with-sql)
-##### [Controller methods and views](xref:tutorials/first-mvc-app-mac/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app-mac/search)
-##### [Add a new field](xref:tutorials/first-mvc-app-mac/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app-mac/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+
 ### [Views](xref:mvc/views/overview)
 ### [Partial views](xref:mvc/views/partial)
 ### [Controllers](xref:mvc/controllers/actions)

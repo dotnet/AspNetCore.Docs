@@ -25,8 +25,6 @@ At the end, you have an app that can manage and display movie titles items.
 
 [!INCLUDE[](~/includes/rp/download.md)]
 
-## Prerequisites
-
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
 ## Create a Razor web app
@@ -87,7 +85,7 @@ cd RazorPagesMovie
 dotnet run
 ```
 
-The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
+The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the app.
 
 ## Open the project
 
