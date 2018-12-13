@@ -85,7 +85,7 @@ cd RazorPagesMovie
 dotnet run
 ```
 
-The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
+The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the app.
 
 ## Open the project
 

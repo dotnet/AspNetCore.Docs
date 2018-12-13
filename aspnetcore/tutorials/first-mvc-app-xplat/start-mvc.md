@@ -50,7 +50,6 @@ VS Code starts [Kestrel](xref:fundamentals/servers/kestrel) server and runs your
 
 The default template gives you working **Home**, **About**, and **Contact** links. The preceding browser image doesn't show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.
 
-![navigation icon in upper right](../first-mvc-app/start-mvc/_static/2.png)
 
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 
