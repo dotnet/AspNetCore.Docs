@@ -6,12 +6,11 @@
 # [Get started](xref:getting-started)
 
 # Tutorials
-## [Create a web API](xref:tutorials/first-web-api)
+## Web APIs
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
-### Razor Pages
-#### [Introduction to Razor Pages](xref:razor-pages/index)
-
-#### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
+### [Razor Pages](xref:tutorials/razor-pages/index)
 ### MVC
 #### [Get started](xref:tutorials/first-mvc-app/start-mvc)
 #### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
@@ -63,7 +62,7 @@
 # Web apps
 ## Razor Pages
 ### [Overview](xref:razor-pages/index)
-### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
+### [Razor Pages tutorial](xref:tutorials/razor-pages/index)
 #### [Get started](xref:tutorials/razor-pages/razor-pages-start)
 #### [Add a model](xref:tutorials/razor-pages/model)
 #### [Scaffolding](xref:tutorials/razor-pages/page)
@@ -139,7 +138,9 @@
 # Web APIs
 ## [Overview](xref:web-api/index)
 
-## [Create a web API](xref:tutorials/first-web-api)
+## Tutorials
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
@@ -158,6 +159,7 @@
 ## Tutorials
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
+## [Samples](https://github.com/aspnet/SignalR-samples)
 ## Server concepts
 ### [Hubs](xref:signalr/hubs)
 ### [HubContext](xref:signalr/hubcontext)
@@ -383,6 +385,7 @@
 ### [Distributed caching](xref:performance/caching/distributed)
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
+## [Diagnostic Tools](xref:performance/diagnostic-tools)
 
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
@@ -394,7 +397,7 @@
 ## [Change tokens](xref:fundamentals/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
 ## [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
-## [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
+## [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
@@ -422,6 +425,6 @@
 ## [What's new in 2.0](xref:aspnetcore-2.0)
 ## [What's new in 1.1](xref:aspnetcore-1.1)
 
-# [API reference](/dotnet/api/?view=aspnetcore-2.0)
+# [API reference](/dotnet/api/?view=aspnetcore-2.2)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)

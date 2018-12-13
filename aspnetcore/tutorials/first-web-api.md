@@ -3,9 +3,8 @@ title: "Tutorial: Create a web API with ASP.NET Core MVC"
 author: rick-anderson
 description: Build a web API with ASP.NET Core MVC
 ms.author: riande
-monikerRange: '> aspnetcore-2.1'
 ms.custom: mvc
-ms.date: 11/19/2018
+ms.date: 12/10/2018
 uid: tutorials/first-web-api
 ---
 
@@ -18,7 +17,7 @@ This tutorial teaches the basics of building a web API with ASP.NET Core.
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
-> * Create a web api project.
+> * Create a web API project.
 > * Add a model class.
 > * Create the database context.
 > * Register the database context.
@@ -27,7 +26,7 @@ In this tutorial, you learn how to:
 > * Configure routing and URL paths.
 > * Specify return values.
 > * Call the web API with Postman.
-> * Call the web api with jQuery.
+> * Call the web API with jQuery.
 
 At the end, you have a web API that can manage "to-do" items stored in a relational database.
 
@@ -70,9 +69,9 @@ The following diagram shows the design of the app.
    code -r TodoApi
    ```
 
-  These commands create a new web API project and open a new instance of Visual Studio Code in he new project folder.
+  These commands create a new web API project and open a new instance of Visual Studio Code in the new project folder.
 
-* When a dialog box asks if you want to add required assets to the project, select **Yes**
+* When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -83,6 +82,8 @@ The following diagram shows the design of the app.
 * Select **.NET Core App** > **ASP.NET Core Web API** > **Next**.
 
   ![macOS New project dialog](first-web-api-mac/_static/1.png)
+  
+* In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2*.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
@@ -263,7 +264,7 @@ The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribu
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetTodoItem&highlight=1-2)]
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
 The `Name = "GetTodo"` parameter creates a named route. You'll see later how the app can use the name to create an HTTP link using the route name.
 
@@ -352,7 +353,7 @@ Add the following `PutTodoItem` method:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
-`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute).
+`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 ### Test the PutTodoItem method
 
@@ -360,6 +361,7 @@ Update the to-do item that has id = 1 and set its name to "feed fish":
 
 ```json
   {
+    "ID":1,
     "name":"feed fish",
     "isComplete":true
   }

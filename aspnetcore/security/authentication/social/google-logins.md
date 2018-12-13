@@ -3,7 +3,7 @@ title: Google external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-ms.custom: mvc
+ms.custom: "mvc, seodec18"
 ms.date: 11/11/2018
 uid: security/authentication/google-logins
 ---
@@ -21,7 +21,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * You are redirected to **API Manager Library** page:
 
-![API Manager Library page](index/_static/GoogleConsoleSwitchboard.png)
+![Landing on the API Manager Library page](index/_static/GoogleConsoleSwitchboard.png)
 
 * Tap **Create** and enter your **Project name**:
 
@@ -29,15 +29,15 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. Find **Google+ API** in the list and click on its link to add the API feature:
 
-![API Manager Library page](index/_static/GoogleConsoleChooseApi.png)
+![Search for "Google+ API" in the API Manager Library page](index/_static/GoogleConsoleChooseApi.png)
 
 * The page for the newly added API is displayed. Tap **Enable** to add Google+ sign in feature to your app:
 
-![API Manager Google+API page](index/_static/GoogleConsoleEnableApi.png)
+![Landing on the API Manager Google+API page](index/_static/GoogleConsoleEnableApi.png)
 
 * After enabling the API, tap **Create credentials** to configure the secrets:
 
-![API Manager Google+API page](index/_static/GoogleConsoleGoCredentials.png)
+![Create credentials button on API Manager Google+API page](index/_static/GoogleConsoleGoCredentials.png)
 
 * Choose:
   * **Google+ API**

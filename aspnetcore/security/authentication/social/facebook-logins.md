@@ -3,7 +3,7 @@ title: Facebook external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-ms.custom: mvc
+ms.custom: "mvc, seodec18"
 ms.date: 11/11/2018
 uid: security/authentication/facebook-logins
 ---
@@ -123,7 +123,7 @@ When you click on **Facebook**, you are redirected to Facebook for authenticatio
 
 Facebook authentication requests public profile and email address by default:
 
-![Facebook authentication page](index/_static/FBLoginDone.png)
+![Facebook authentication page consent screen](index/_static/FBLoginDone.png)
 
 Once you enter your Facebook credentials you are redirected back to your site where you can set your email.
 

@@ -3,7 +3,7 @@ title: Configure Windows Authentication in ASP.NET Core
 author: scottaddie
 description: Learn how to configure Windows Authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
 ms.author: riande
-ms.custom: mvc
+ms.custom: "mvc, seodec18"
 ms.date: 11/01/2018
 uid: security/authentication/windowsauth
 ---
@@ -41,7 +41,7 @@ For development work using IIS Express, the template provides all the configurat
 
 The Visual Studio project **Properties** page's **Debug** tab provides check boxes for Windows Authentication and anonymous authentication.
 
-![Windows Authentication Browser Screenshot](windowsauth/_static/vs-auth-property-menu.png)
+![Windows Authentication Browser Screenshot with authentication options highlighted](windowsauth/_static/vs-auth-property-menu.png)
 
 Alternatively, these two properties can be configured in the *launchSettings.json* file:
 

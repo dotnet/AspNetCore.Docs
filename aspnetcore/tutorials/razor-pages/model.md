@@ -102,16 +102,22 @@ The *appsettings.json* file is updated with the connection string used to connec
 -->
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Install the scaffolding tool:
+
+  ```console
+   dotnet tool install --global dotnet-aspnet-codegenerator
+   ```
+
 * **For Windows**: Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
@@ -121,6 +127,11 @@ The *appsettings.json* file is updated with the connection string used to connec
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Install the scaffolding tool:
+
+  ```console
+   dotnet tool install --global dotnet-aspnet-codegenerator
+   ```
 * Run the following command:
 
   ```console

@@ -3,7 +3,7 @@ title: Key storage providers in ASP.NET Core
 author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: riande
-ms.date: 07/16/2018
+ms.date: 12/06/2018
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers in ASP.NET Core
@@ -85,7 +85,7 @@ For more information, see the following topics:
 
 * [StackExchange.Redis ConnectionMultiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Basics.md)
 * [Azure Redis Cache](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
-* [aspnet/DataProtection samples](https://github.com/aspnet/DataProtection/tree/master/samples)
+* [aspnet/DataProtection samples](https://github.com/aspnet/AspNetCore/tree/2.2.0/src/DataProtection/samples)
 
 ## Registry
 

@@ -15,15 +15,16 @@ namespace SampleApp
         public static void Main(string[] args)
         {
             var isService = !(Debugger.IsAttached || args.Contains("--console"));
-            var builder = CreateWebHostBuilder(
-                args.Where(arg => arg != "--console").ToArray());
-
+            
             if (isService)
             {
                 var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
                 var pathToContentRoot = Path.GetDirectoryName(pathToExe);
-                builder.UseContentRoot(pathToContentRoot);
+                Directory.SetCurrentDirectory(pathToContentRoot);
             }
+
+            var builder = CreateWebHostBuilder(
+                args.Where(arg => arg != "--console").ToArray());
 
             var host = builder.Build();
 

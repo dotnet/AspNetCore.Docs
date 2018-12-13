@@ -13,6 +13,8 @@ Introduction to Scaleout in SignalR
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > ## Software versions used in this topic
 >
 >
