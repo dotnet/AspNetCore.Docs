@@ -17,7 +17,7 @@ This tutorial teaches the basics of building a web API with ASP.NET Core.
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
-> * Create a web api project.
+> * Create a web API project.
 > * Add a model class.
 > * Create the database context.
 > * Register the database context.
