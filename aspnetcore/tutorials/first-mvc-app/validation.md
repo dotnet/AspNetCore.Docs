@@ -78,9 +78,11 @@ After you disable JavaScript, post invalid data and step through the debugger.
 
 ![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/ms.png)
 
-Below is portion of the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
+The portion of the *Create.cshtml* view template is shown in the following markup:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Views/Movies/CreateRatingBrevity.cshtml)]
+[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/CreateRatingBrevity.cshtml)]
+
+The preceding markup is used by the action methods to display the initial form and to redisplay it in the event of an error.
 
 The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
 
@@ -119,27 +121,15 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 > [!NOTE]
 > jQuery validation doesn't work with the `Range` attribute and `DateTime`. For example, the following code will always display a client side validation error, even when the date is in the specified range:
 
-```csharp
-[Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
-   ```
+> `[Range(typeof(DateTime), "1/1/1966", "1/1/2020")]`
 
 You will need to disable jQuery date validation to use the `Range` attribute with `DateTime`. It's generally not a good practice to compile hard dates in your models, so using the `Range` attribute and `DateTime` is discouraged.
 
 The following code shows combining attributes on one line:
 
-::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie22/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie21/Models/MovieDateRatingDAmult.cs?name=snippet1)]
-
-::: moniker-end
-
-::: moniker range="<= aspnetcore-2.0"
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
-
-::: moniker-end
-
-In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
+In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 
 ## Additional resources
 
