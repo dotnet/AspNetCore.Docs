@@ -68,16 +68,16 @@ This error occurs because the updated Movie model class is different than the sc
 
 There are a few approaches to resolving the error:
 
-1. Have the Entity Framework automatically drop and re-create the database based on the new model class schema. This approach is very convenient early in the development cycle when you are doing active development on a test database; it allows you to quickly evolve the model and database schema together. The downside, though, is that you lose existing data in the database — so you don't want to use this approach on a production database! Using an initializer to automatically seed a database with test data is often a productive way to develop an application. This is a good approach for early development using SQLite.
+1. Have the Entity Framework automatically drop and re-create the database based on the new model class schema. This approach is very convenient early in the development cycle when you are doing active development on a test database; it allows you to quickly evolve the model and database schema together. The downside, though, is that you lose existing data in the database — so you don't want to use this approach on a production database! Using an initializer to automatically seed a database with test data is often a productive way to develop an application. This is a good approach for early development and when using SQLite.
 
 2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that you keep your data. You can make this change either manually or by creating a database change script.
 
 3. Use Code First Migrations to update the database schema.
 
+For this tutorial, Code First Migrations is used.
+
 <!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
-
-For this tutorial, Code First Migrations is used.
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
@@ -90,12 +90,15 @@ Add-Migration Rating
 Update-Database
 ```
 
+The `Add-Migration` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model.
+
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-For this tutorial, drop and re-create the database when the schema changes. Run the following command:
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
+
+Run the following command:
 
 ```cli
-dotnet ef database drop
 dotnet ef migrations add Rating
 dotnet ef database update
 ```
@@ -103,14 +106,11 @@ dotnet ef database update
 ---  
 <!-- End of VS tabs -->
 
-Build the solution.
+The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
+If all the records in the DB are deleted, the initialize method will seed the DB and include the `Rating` field.
 
-The `Add-Migration` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
-
-If you delete all the records in the DB, the initialize will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from SSOX.
-
-Run the app and verify you can create/edit/display movies with a `Rating` field. You should also add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
+Run the app and verify you can create/edit/display movies with a `Rating` field. You should add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 
 > [!div class="step-by-step"]
 > [Previous](search.md)

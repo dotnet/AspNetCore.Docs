@@ -212,7 +212,7 @@ The `Update-Database` command runs the `Up` method in the *Migrations/{time-stam
 
 * Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
-If you get the error:
+If you get a database exception similar to the following:
 
 ```console
 SqlException: Cannot open database "MvcMovieContext-GUID" requested by the login. The login failed.
