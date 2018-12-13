@@ -35,11 +35,11 @@ Because you've added a new field to the `Movie` class, you need to update the bi
 [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
    ```
 
-You also need to update the view templates in order to display, create and edit the new `Rating` property in the browser view.
+Update the view templates in order to display, create and edit the new `Rating` property in the browser view.
 
 Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
-[!code-HTML[](start-mvc/sample/MvcMovie/Views/Movies/IndexGenreRating.cshtml?highlight=17,39&range=24-64)]
+[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=17,39&range=24-64)]
 
 Update the */Views/Movies/Create.cshtml* with a `Rating` field. 
 
@@ -52,15 +52,19 @@ You can copy/paste the previous "form group" and let intelliSense help you updat
 
 <!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
-
+<!-- This tab intentionally left blank. -->
 ---  
 <!-- End of VS tabs -->
+
+Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
+
+[!code-csharp[](start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
 
 The app won't work until the DB is updated to include the new field. If it's run now, the following `SqlException` is thrown:
 
 `SqlException: Invalid column name 'Rating'.`
 
-This error occurs because the updated Movie model class is different than the schema of the Movie table of the existing database. (There's no Rating column in the database table.)
+This error occurs because the updated Movie model class is different than the schema of the Movie table of the existing database. (There's no `Rating` column in the database table.)
 
 There are a few approaches to resolving the error:
 
@@ -70,13 +74,10 @@ There are a few approaches to resolving the error:
 
 3. Use Code First Migrations to update the database schema.
 
-For this tutorial, we'll use Code First Migrations.
+<!-- VS -------------------------->
+# [Visual Studio](#tab/visual-studio)
 
-Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
-
-[!code-csharp[](start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
-
-Build the solution.
+For this tutorial, Code First Migrations is used.
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
@@ -88,6 +89,22 @@ In the PMC, enter the following commands:
 Add-Migration Rating
 Update-Database
 ```
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+For this tutorial, drop and re-create the database when the schema changes. Run the following command:
+
+```cli
+dotnet ef database drop
+dotnet ef migrations add Rating
+dotnet ef database update
+```
+
+---  
+<!-- End of VS tabs -->
+
+Build the solution.
+
 
 The `Add-Migration` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
