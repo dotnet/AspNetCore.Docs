@@ -26,7 +26,7 @@ In this tutorial, you learn how to:
 > * Configure routing and URL paths.
 > * Specify return values.
 > * Call the web API with Postman.
-> * Call the web api with jQuery.
+> * Call the web API with jQuery.
 
 At the end, you have a web API that can manage "to-do" items stored in a relational database.
 
