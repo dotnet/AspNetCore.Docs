@@ -25,8 +25,6 @@ At the end, you have an app that can manage and display movie titles items.
 
 [!INCLUDE[](~/includes/rp/download.md)]
 
-## Prerequisites
-
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
 ## Create a Razor web app
