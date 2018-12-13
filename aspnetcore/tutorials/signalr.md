@@ -2,7 +2,6 @@
 title: Get started with ASP.NET Core SignalR
 author: tdykstra
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 11/30/2018
@@ -27,10 +26,6 @@ At the end, you'll have a working chat app:
 ![SignalR sample app](signalr/_static/signalr-get-started-finished.png)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:index#how-to-download-a-sample)).
-
-> [!NOTE]
-> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/aa11wn82).
-
 
 [!INCLUDE [|Prerequisites](~/includes/net-core-prereqs-all-2.2.md)]
 
