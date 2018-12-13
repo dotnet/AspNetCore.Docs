@@ -12,15 +12,6 @@
 #### [Introduction to Razor Pages](xref:razor-pages/index)
 
 #### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
-##### [Get started](xref:tutorials/razor-pages/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages/model)
-##### [Scaffolding](xref:tutorials/razor-pages/page)
-##### [Work with a DB](xref:tutorials/razor-pages/sql)
-##### [Update the pages](xref:tutorials/razor-pages/da1)
-##### [Add search](xref:tutorials/razor-pages/search)
-##### [Add a new field](xref:tutorials/razor-pages/new-field)
-##### [Add validation](xref:tutorials/razor-pages/validation)
-
 ### MVC
 #### [Get started](xref:tutorials/first-mvc-app/start-mvc)
 #### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
@@ -82,12 +73,6 @@
 #### [Add a new field](xref:tutorials/razor-pages/new-field)
 #### [Add validation](xref:tutorials/razor-pages/validation)
 
-### [Filters](xref:razor-pages/filter)
-### [Razor Class Libraries](xref:razor-pages/ui-class)
-### [Route and app conventions](xref:razor-pages/razor-pages-conventions)
-### [Upload files](xref:razor-pages/upload-files)
-### [Razor SDK](xref:razor-pages/sdk)
-
 ## MVC
 ### [MVC Overview](xref:mvc/overview)
 ### [MVC tutorial](xref:tutorials/first-mvc-app/index)
@@ -101,6 +86,12 @@
 #### [Add a new field](xref:tutorials/first-mvc-app/new-field)
 #### [Add validation](xref:tutorials/first-mvc-app/validation)
 #### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+
+### [Filters](xref:razor-pages/filter)
+### [Razor Class Libraries](xref:razor-pages/ui-class)
+### [Route and app conventions](xref:razor-pages/razor-pages-conventions)
+### [Upload files](xref:razor-pages/upload-files)
+### [Razor SDK](xref:razor-pages/sdk)
 
 ### [Views](xref:mvc/views/overview)
 ### [Partial views](xref:mvc/views/partial)
