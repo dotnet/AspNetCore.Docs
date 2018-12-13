@@ -5,6 +5,14 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Movies\CreateRatingBrevity.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Movies\CreateRatingBrevity.html" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

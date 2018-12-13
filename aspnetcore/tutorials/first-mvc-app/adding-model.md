@@ -258,7 +258,7 @@ Examine the generated `Details` method in the *Controllers/MoviesController.cs* 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
-The `id` parameter is generally passed as route data. For example `http://localhost:5000/movies/details/1` sets:
+The `id` parameter is generally passed as route data. For example `https://localhost:5001/movies/details/1` sets:
 
 * The controller to the `movies` controller (the first URL segment).
 * The action to `details` (the second URL segment).
@@ -266,7 +266,7 @@ The `id` parameter is generally passed as route data. For example `http://localh
 
 You can also pass in the `id` with a query string as follows:
 
-`http://localhost:1234/movies/details?id=1`
+`https://localhost:5001/movies/details?id=1`
 
 The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value isn't provided.
 

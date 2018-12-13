@@ -80,7 +80,7 @@ After you disable JavaScript, post invalid data and step through the debugger.
 
 The portion of the *Create.cshtml* view template is shown in the following markup:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/CreateRatingBrevity.cshtml)]
+[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/CreateRatingBrevity.html)]
 
 The preceding markup is used by the action methods to display the initial form and to redisplay it in the event of an error.
 
