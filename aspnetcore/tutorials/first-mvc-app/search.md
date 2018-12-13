@@ -115,11 +115,13 @@ The movie-genre view model will contain:
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/2.2-stages/SQL/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
+~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MoviesController.cs
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
 
 The following code is a `LINQ` query that retrieves all the genres from the database.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/2.2-stages/SQL/Controllers/MoviesController.cs?name=snippet_LINQ)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MoviesController.cs?name=snippet_LINQ)]
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 

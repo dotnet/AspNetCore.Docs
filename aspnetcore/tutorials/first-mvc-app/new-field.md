@@ -11,25 +11,21 @@ uid: tutorials/first-mvc-app/new-field
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this section you'll use [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations to add a new field to the model and migrate that change to the database.
+In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
-When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
+* Add a new field to the model.
+* Migrate the new field to the database.
 
-## Adding a Rating Property to the Movie Model
+When EF Code First is used to automatically create a database, Code First:
+
+* Adds a table to the database to  track the schema of the database.
+* Verify the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
+
+## Add a Rating Property to the Movie Model
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
 
-::: moniker range=">= aspnetcore-2.1"
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Models/MovieDateRating.cs?highlight=13&name=snippet)]
-
-::: moniker-end
-
-::: moniker range="<= aspnetcore-2.0"
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
-
-::: moniker-end
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
 Build the app (Ctrl+Shift+B).
 
