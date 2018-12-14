@@ -190,6 +190,8 @@ The generated HTML:
 <a href="/Blogs/Home/AboutBlog">About Blog</a>
 ```
 
+For an example of a project using areas, follow the instructions in [Scaffold Identity](xref:security/authentication/scaffold-identity) and review the generated code.
+
 > [!TIP]
 > For areas to work in an MVC app, the route template must include a reference to the area, if it exists. That template is represented by the second parameter of the `routes.MapRoute` method call in *Startup.Configure*:
 >
