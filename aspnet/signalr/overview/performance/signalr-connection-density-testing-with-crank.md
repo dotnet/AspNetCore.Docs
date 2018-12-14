@@ -13,6 +13,8 @@ SignalR Connection Density Testing with Crank
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > This article describes how to use the Crank tool to test an application with multiple simulated clients.
 
 

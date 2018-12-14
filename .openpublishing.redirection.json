@@ -1,5 +1,107 @@
-{ 
-    "redirections": [ 
+{
+    "redirections": [
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/index.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/start-mvc.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app",
+            "redirect_document_id": false
+        },
+        {
+
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/adding-controller.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-controller",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/adding-view.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-view",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/adding-model.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-model",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/working-with-sql.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/working-with-sql",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/controller-methods-views.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/controller-methods-views",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/search.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/search",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/new-field.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/new-field",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/validation.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/validation",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/index.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/index",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/start-mvc.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/start-mvc",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/adding-controller.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-controller",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/adding-view.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-view",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/adding-model.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-model",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/working-with-sql.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/working-with-sql",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/controller-methods-views.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/controller-methods-views",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/search.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/search",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/new-field.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/new-field",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/validation.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/validation",
+            "redirect_document_id": false
+        },
+
       {   
           "source_path": "aspnetcore/tutorials/razor-pages-mac/index.md", 
           "redirect_url": "/aspnet/core/tutorials/razor-pages",  
@@ -147,7 +249,7 @@
       }, 
       {   
           "source_path": "aspnetcore/tutorials/publish-to-azure-webapp-using-cli.md", 
-          "redirect_url": "/azure/app-service/app-service-web-get-started-dotnet", 
+          "redirect_url": "/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb", 
           "redirect_document_id": false 
       }, 
       {   

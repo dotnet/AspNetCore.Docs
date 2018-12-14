@@ -39,3 +39,8 @@ connection.onclose(async () => {
     await start();
 });
 
+/* this is here to show an alternative to start, including the catch
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+*/

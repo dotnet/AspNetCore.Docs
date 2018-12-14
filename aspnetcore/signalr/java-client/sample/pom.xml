@@ -27,6 +27,7 @@
             <artifactId>signalr</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <!-- </snippet_dependencyElement> -->
     </dependencies>
 
 </project>

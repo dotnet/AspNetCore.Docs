@@ -1,14 +1,14 @@
 ---
-title: Enhance an app from an external assembly in ASP.NET Core with IHostingStartup
+title: Use hosting startup assemblies in ASP.NET Core
 author: guardrex
 description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.custom: mvc
+ms.custom: "mvc, seodec18"
 ms.date: 11/22/2018
 uid: fundamentals/configuration/platform-specific-configuration
 ---
-# Enhance an app from an external assembly in ASP.NET Core with IHostingStartup
+# Use hosting startup assemblies in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex) and [Pavel Krymets](https://github.com/pakrym)
 

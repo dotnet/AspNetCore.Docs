@@ -6,25 +6,12 @@
 # [Get started](xref:getting-started)
 
 # Tutorials
-## [Create a web API](xref:tutorials/first-web-api)
+## Web APIs
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
-### Razor Pages
-#### [Introduction to Razor Pages](xref:razor-pages/index)
-
-#### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
-##### [Get started](xref:tutorials/razor-pages/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages/model)
-##### [Scaffolding](xref:tutorials/razor-pages/page)
-##### [Work with a DB](xref:tutorials/razor-pages/sql)
-##### [Update the pages](xref:tutorials/razor-pages/da1)
-##### [Add search](xref:tutorials/razor-pages/search)
-##### [Add a new field](xref:tutorials/razor-pages/new-field)
-##### [Add validation](xref:tutorials/razor-pages/validation)
-
-### MVC
-#### [With Visual Studio](xref:tutorials/first-mvc-app/index)
-#### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
-#### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
+### [Razor Pages](xref:tutorials/razor-pages/index)
+### [MVC](xref:tutorials/first-mvc-app/index)
 
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
@@ -65,7 +52,7 @@
 # Web apps
 ## Razor Pages
 ### [Overview](xref:razor-pages/index)
-### [Razor Pages Tutorial](xref:tutorials/razor-pages/index)
+### [Razor Pages tutorial](xref:tutorials/razor-pages/index)
 #### [Get started](xref:tutorials/razor-pages/razor-pages-start)
 #### [Add a model](xref:tutorials/razor-pages/model)
 #### [Scaffolding](xref:tutorials/razor-pages/page)
@@ -75,50 +62,26 @@
 #### [Add a new field](xref:tutorials/razor-pages/new-field)
 #### [Add validation](xref:tutorials/razor-pages/validation)
 
+## MVC
+### [MVC Overview](xref:mvc/overview)
+### [MVC tutorial](xref:tutorials/first-mvc-app/index)
+#### [Get started](xref:tutorials/first-mvc-app/start-mvc)
+#### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
+#### [Add a view](xref:tutorials/first-mvc-app/adding-view)
+#### [Add a model](xref:tutorials/first-mvc-app/adding-model)
+#### [Work with a DB](xref:tutorials/first-mvc-app/working-with-sql)
+#### [Controller actions and views](xref:tutorials/first-mvc-app/controller-methods-views)
+#### [Add search](xref:tutorials/first-mvc-app/search)
+#### [Add a new field](xref:tutorials/first-mvc-app/new-field)
+#### [Add validation](xref:tutorials/first-mvc-app/validation)
+#### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+
 ### [Filters](xref:razor-pages/filter)
 ### [Razor Class Libraries](xref:razor-pages/ui-class)
 ### [Route and app conventions](xref:razor-pages/razor-pages-conventions)
 ### [Upload files](xref:razor-pages/upload-files)
 ### [Razor SDK](xref:razor-pages/sdk)
-## MVC
-### [Overview](xref:mvc/overview)
-### Tutorials
-#### MVC with Visual Studio
-##### [Overview](xref:tutorials/first-mvc-app/index)
-##### [Get started](xref:tutorials/first-mvc-app/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app/adding-model)
-##### [Work with a DB](xref:tutorials/first-mvc-app/working-with-sql)
-##### [Controller actions and views](xref:tutorials/first-mvc-app/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app/search)
-##### [Add a new field](xref:tutorials/first-mvc-app/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
-#### MVC with Visual Studio Code
-##### [Overview](xref:tutorials/first-mvc-app-xplat/index)
-##### [Get started](xref:tutorials/first-mvc-app-xplat/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app-xplat/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app-xplat/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app-xplat/adding-model)
-##### [Work with SQLite](xref:tutorials/first-mvc-app-xplat/working-with-sql)
-##### [Controller methods and views](xref:tutorials/first-mvc-app-xplat/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app-xplat/search)
-##### [Add a new field](xref:tutorials/first-mvc-app-xplat/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app-xplat/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
-#### MVC with Visual Studio for Mac
-##### [Overview](xref:tutorials/first-mvc-app-mac/index)
-##### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app-mac/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app-mac/adding-model)
-##### [Work with SQLite](xref:tutorials/first-mvc-app-mac/working-with-sql)
-##### [Controller methods and views](xref:tutorials/first-mvc-app-mac/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app-mac/search)
-##### [Add a new field](xref:tutorials/first-mvc-app-mac/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app-mac/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+
 ### [Views](xref:mvc/views/overview)
 ### [Partial views](xref:mvc/views/partial)
 ### [Controllers](xref:mvc/controllers/actions)
@@ -165,7 +128,9 @@
 # Web APIs
 ## [Overview](xref:web-api/index)
 
-## [Create a web API](xref:tutorials/first-web-api)
+## Tutorials
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 
 ## Swagger / OpenAPI
 ### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
@@ -184,6 +149,7 @@
 ## Tutorials
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
+## [Samples](https://github.com/aspnet/SignalR-samples)
 ## Server concepts
 ### [Hubs](xref:signalr/hubs)
 ### [HubContext](xref:signalr/hubcontext)
@@ -409,6 +375,7 @@
 ### [Distributed caching](xref:performance/caching/distributed)
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
+## [Diagnostic Tools](xref:performance/diagnostic-tools)
 
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
@@ -420,7 +387,7 @@
 ## [Change tokens](xref:fundamentals/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
 ## [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
-## [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
+## [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
@@ -448,6 +415,6 @@
 ## [What's new in 2.0](xref:aspnetcore-2.0)
 ## [What's new in 1.1](xref:aspnetcore-1.1)
 
-# [API reference](/dotnet/api/?view=aspnetcore-2.0)
+# [API reference](/dotnet/api/?view=aspnetcore-2.2)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
