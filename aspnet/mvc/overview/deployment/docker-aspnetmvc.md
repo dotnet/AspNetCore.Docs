@@ -5,7 +5,7 @@ description: Learn how to take an existing ASP.NET MVC application and run it in
 keywords: Windows Containers,Docker,ASP.NET MVC
 author: BillWagner
 ms.author: wiwagn
-ms.date: 02/01/2017
+ms.date: 12/14/2018
 ms.assetid: c9f1d52c-b4bd-4b5d-b7f9-8f9ceaf778c4
 uid: mvc/overview/deployment/docker
 ---
@@ -67,12 +67,9 @@ Click **Publish**, and Visual Studio will copy all the needed assets to the dest
 
 ## Build the image
 
-Define your Docker image in a Dockerfile. The Dockerfile contains instructions
-for the base image, additional components, the app you
-want to run, and other configuration images.  The Dockerfile is the input
-to the `docker build` command, which creates the image.
+Create a new file named *Dockerfile* to define your Docker image. *Dockerfile* contains instructions to build the final image and includes any base image names, required components, the app you want to run, and other configuration images. *Dockerfile* is the input to the `docker build` command that creates the image.
 
-You will build an image based on the `microsoft/aspnet`
+For this exercise, you will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
 Windows Server Core, IIS, and ASP.NET 4.7.2. When you run this image in your container, it will automatically start IIS and installed websites.
