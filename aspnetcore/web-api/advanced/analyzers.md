@@ -5,12 +5,12 @@ description: Learn about the web API analyzers in Microsoft.AspNetCore.Mvc.Api.A
 monikerRange: '>= aspnetcore-2.2'
 ms.author: pranavkm
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 12/14/2018
 uid: web-api/advanced/analyzers
 ---
 # Use web API analyzers
 
-ASP.NET Core 2.2 introduces the [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Api.Analyzers) NuGet package containing analyzers for web APIs. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [API conventions](xref:web-api/advanced/conventions).
+ASP.NET Core 2.2 and later includes the [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Api.Analyzers) NuGet package containing analyzers for web APIs. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [API conventions](xref:web-api/advanced/conventions).
 
 ## Package installation
 
