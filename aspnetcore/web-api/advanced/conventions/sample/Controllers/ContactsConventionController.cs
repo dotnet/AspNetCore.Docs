@@ -1,82 +1,86 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using ApiConventions.Models;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiConventions.Controllers
 {
+    #region snippet_ApiConventionTypeAttribute
     [ApiController]
-#region apiconventiontypeattribute
-    [ApiConventionType(typeof(DefaultApiConvention))]
-#endregion
+    [ApiConventionType(typeof(DefaultApiConventions))]
     [Route("api/[controller]")]
-    public class ContactsConventionController : Controller
+    public class ContactsConventionController : ControllerBase
     {
+        #endregion
+        private readonly IContactRepository _contacts;
+
         public ContactsConventionController(IContactRepository contacts)
         {
-            Contacts = contacts;
+            _contacts = contacts;
         }
-        public IContactRepository Contacts { get; set; }
 
-
-        // GET api/contacts
+        // GET api/contactsconvention
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
-            return Contacts.GetAll();
+            return _contacts.GetAll();
         }
 
-        // GET api/contacts/{guid}
-        [HttpGet("{id}")]
+        // GET api/contactsconvention/{guid}
+        [HttpGet("{id}", Name = "GetById")]
         public ActionResult<Contact> Get(string id)
         {
-            var contact = Contacts.Get(id);
+            var contact = _contacts.Get(id);
+
             if (contact == null)
             {
                 return NotFound();
             }
+
             return Ok(contact);
         }
 
-        // POST api/contacts
+        // POST api/contactsconvention
         [HttpPost]
         public IActionResult Post(Contact contact)
         {
-            Contacts.Add(contact);
-            return CreatedAtRoute("Get", new { id = contact.ID }, contact);
+            _contacts.Add(contact);
+
+            return CreatedAtRoute("GetById", new { id = contact.ID }, contact);
         }
 
-        #region apiconventionmethod
-        // PUT api/contacts/{guid}
+        #region snippet_ApiConventionMethod
+        // PUT api/contactsconvention/{guid}
         [HttpPut("{id}")]
-        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
+        [ApiConventionMethod(typeof(DefaultApiConventions), 
+                             nameof(DefaultApiConventions.Put))]
         public IActionResult Update(string id, Contact contact)
         {
-            var contactToUpdate = Contacts.Get(id);
+            var contactToUpdate = _contacts.Get(id);
+
             if (contactToUpdate == null)
             {
                 return NotFound();
             }
 
-            Contacts.Update(contact);
-            return new NoContentResult();
+            _contacts.Update(contact);
+
+            return NoContent();
         }
         #endregion
 
-        // DELETE api/contacts/{guid}
+        // DELETE api/contactsconvention/{guid}
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var contact = Contacts.Get(id);
+            var contact = _contacts.Get(id);
+
             if (contact == null)
             {
                 return NotFound();
             }
 
-            Contacts.Remove(id);
+            _contacts.Remove(id);
+
             return NoContent();
         }
     }

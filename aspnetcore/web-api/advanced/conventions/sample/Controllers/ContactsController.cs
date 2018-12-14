@@ -1,42 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
 using ApiConventions.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiConventions.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ContactsController : Controller
+    public class ContactsController : ControllerBase
     {
+        private readonly IContactRepository _contacts;
+
         public ContactsController(IContactRepository contacts)
         {
-            Contacts = contacts;
+            _contacts = contacts;
         }
-        public IContactRepository Contacts { get; set; }
-
 
         // GET api/contacts
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
-            return Contacts.GetAll();
+            return _contacts.GetAll();
         }
 
         #region missing404docs
         // GET api/contacts/{guid}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetById")]
         [ProducesResponseType(typeof(Contact), StatusCodes.Status200OK)]
         public IActionResult Get(string id)
         {
-            var contact = Contacts.Get(id);
+            var contact = _contacts.Get(id);
+
             if (contact == null)
             {
                 return NotFound();
             }
+
             return Ok(contact);
         }
         #endregion
@@ -45,12 +44,9 @@ namespace ApiConventions.Controllers
         [HttpPost]
         public IActionResult Post(Contact contact)
         {
-            if (ModelState.IsValid)
-            {
-                Contacts.Add(contact);
-                return CreatedAtRoute("Get", new { id = contact.ID }, contact);
-            }
-            return BadRequest();
+            _contacts.Add(contact);
+
+            return CreatedAtRoute("GetById", new { id = contact.ID }, contact);
         }
 
         // PUT api/contacts/{guid}
@@ -59,14 +55,17 @@ namespace ApiConventions.Controllers
         {
             if (ModelState.IsValid && id == contact.ID)
             {
-                var contactToUpdate = Contacts.Get(id);
+                var contactToUpdate = _contacts.Get(id);
+
                 if (contactToUpdate != null)
                 {
-                    Contacts.Update(contact);
-                    return new NoContentResult();
+                    _contacts.Update(contact);
+                    return NoContent();
                 }
+
                 return NotFound();
             }
+
             return BadRequest();
         }
 
@@ -74,13 +73,15 @@ namespace ApiConventions.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var contact = Contacts.Get(id);
+            var contact = _contacts.Get(id);
+
             if (contact == null)
             {
                 return NotFound();
             }
 
-            Contacts.Remove(id);
+            _contacts.Remove(id);
+
             return NoContent();
         }
     }

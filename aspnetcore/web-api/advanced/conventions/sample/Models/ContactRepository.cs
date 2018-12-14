@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiConventions.Models
 {
@@ -13,7 +11,7 @@ namespace ApiConventions.Models
 
         public ContactRepository()
         {
-            Add(new Contact() { FirstName = "Nancy", LastName = "Davolio" });
+            Add(new Contact { FirstName = "Nancy", LastName = "Davolio" });
         }
 
         public void Add(Contact contact)
@@ -24,8 +22,7 @@ namespace ApiConventions.Models
 
         public Contact Get(string id)
         {
-            Contact contact;
-            _contacts.TryGetValue(id, out contact);
+            _contacts.TryGetValue(id, out Contact contact);
             return contact;
         }
 
@@ -36,8 +33,7 @@ namespace ApiConventions.Models
 
         public Contact Remove(string id)
         {
-            Contact contact;
-            _contacts.TryRemove(id, out contact);
+            _contacts.TryRemove(id, out Contact contact);
             return contact;
         }
 
