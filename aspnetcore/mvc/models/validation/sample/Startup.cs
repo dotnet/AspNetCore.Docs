@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using MVCMovie.Controllers;
 
 namespace MVCMovie
@@ -27,12 +26,8 @@ namespace MVCMovie
             services.AddMvc(options => options.MaxModelValidationErrors = 50);
         }
 
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
-            loggerFactory
-                .AddConsole(Configuration.GetSection("Logging"))
-                .AddDebug();
-
             app.UseStaticFiles();
             app.UseMvc(routes => routes.MapRoute(
                 name: "default",
