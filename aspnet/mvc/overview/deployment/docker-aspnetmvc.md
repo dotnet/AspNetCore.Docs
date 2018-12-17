@@ -26,7 +26,7 @@ Moving your application involves these steps:
 1. [Starting a Docker container that runs your image.](#start-a-container)
 1. [Verifying the application using your browser.](#verify-in-the-browser)
 
-The [finished application](https://github.com/dotnet/samples/tree/master/framework/docker/MVCRandomAnswerGenerator) is on GitHub.
+The [finished application](https://github.com/dotnet/docs/tree/master/samples/framework/docker/MVCRandomAnswerGenerator) is on GitHub.
 
 ## Prerequisites
 
@@ -50,9 +50,9 @@ Collect all the assets that you need to load into a Docker image in one place. Y
 
 **Publish Steps**
 
-1. Right click on the web project (the sample project is called `MVCRandomAnswerGenerator`) in Visual Studio, and select **Publish**.
+1. Right click on the web project (our example uses one called mvcrandomanswers) in Visual Studio, and select **Publish**.
 1. Click the **Custom profile button**, and then select **File System** as the method.
-1. Choose the directory. By convention, the downloaded sample uses `bin\Release\Publish`.
+1. Choose the directory. By convention, the downloaded sample uses `bin\Release\PublishOutput`.
 
 ![Publish Connection][publish-connection]
 
@@ -67,14 +67,17 @@ Click **Publish**, and Visual Studio will copy all the needed assets to the dest
 
 ## Build the image
 
-Create a new file named *Dockerfile* to define your Docker image. *Dockerfile* contains instructions to build the final image and includes any base image names, required components, the app you want to run, and other configuration images. *Dockerfile* is the input to the `docker build` command that creates the image.
+Define your Docker image in a Dockerfile. The Dockerfile contains instructions
+for the base image, additional components, the app you
+want to run, and other configuration images.  The Dockerfile is the input
+to the `docker build` command, which creates the image.
 
 For this exercise, you will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
 Windows Server Core, IIS, and ASP.NET 4.7.2. When you run this image in your container, it will automatically start IIS and installed websites.
 
-The *Dockerfile* that creates your image looks like this:
+The Dockerfile that creates your image looks like this:
 
 ```console
 # The `FROM` instruction specifies the base image. You are
@@ -86,12 +89,12 @@ FROM microsoft/aspnet
 COPY ./bin/Release/PublishOutput/ /inetpub/wwwroot
 ```
 
-There is no `ENTRYPOINT` command in this *Dockerfile*. You don't need one. When running Windows Server with IIS, the IIS process is the entrypoint, which is configured to start in the aspnet base image.
+There is no `ENTRYPOINT` command in this Dockerfile. You don't need one. When running Windows Server with IIS, the IIS process is the entrypoint, which is configured to start in the aspnet base image.
 
 In Visual Studio 2017, with Docker support added to your project, you can right-click on the project node in Solution Explorer and choose **Build Docker Image**.
 
 This menu command runs the Docker command that builds the new image using the instructions in your
-*Dockerfile*, naming the image based on the project name. This may include pulling the base image from [Docker Hub](http://hub.docker.com),
+Dockerfile, naming the image based on the project name. This may include pulling the base image from [Docker Hub](http://hub.docker.com),
 and then adding your app to that image.
 
 Once that command completes, you can run the `docker images` command
@@ -99,7 +102,7 @@ to see information on the new image:
 
 ```console
 REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-mvcrandomanswergenerator      latest              86838648aab6        2 minutes ago       10.1 GB
+mvcrandomanswers              latest              86838648aab6        2 minutes ago       10.1 GB
 ```
 
 The IMAGE ID will be different on your machine. Now, let's run the app.
@@ -109,7 +112,7 @@ The IMAGE ID will be different on your machine. Now, let's run the app.
 Start a container by executing the following `docker run` command:
 
 ```console
-docker run -d --name randomanswers mvcrandomanswergenerator
+docker run -d --name randomanswers mvcrandomanswers
 ```
 
 The `-d` argument tells Docker to start the image in detached mode. That
@@ -120,7 +123,7 @@ In many docker examples, you may see -p to map the container and host ports. The
 The `--name randomanswers` gives a name to the running container. You can use
 this name instead of the container ID in most commands.
 
-The `mvcrandomanswergenerator` is the name of the image to start.
+The `mvcrandomanswers` is the name of the image to start.
 
 ## Verify in the browser
 
