@@ -13,6 +13,8 @@ Tutorial: Server Broadcast with ASP.NET SignalR 1.x
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > This tutorial shows how to create a web application that uses ASP.NET SignalR to provide server broadcast functionality. Server broadcast means that communications sent to clients are initiated by the server. This scenario requires a different programming approach than peer-to-peer scenarios such as chat applications, in which communications sent to clients are initiated by one or more of the clients.
 > 
 > The application that you'll create in this tutorial simulates a stock ticker, a typical scenario for server broadcast functionality.
@@ -74,7 +76,7 @@ If you have Visual Studio 2010, make sure that [NuGet](https://visualstudiogalle
 
 You can add SignalR functionality to a project by installing a NuGet package.
 
-1. Click **Tools | Library Package Manager | Package Manager Console**.
+1. Click **Tools | NuGet Package Manager | Package Manager Console**.
 2. Enter the following command in the package manager.
 
     [!code-powershell[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample1.ps1)]

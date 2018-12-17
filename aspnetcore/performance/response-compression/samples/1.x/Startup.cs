@@ -26,11 +26,6 @@ namespace ResponseCompressionSample
                     ResponseCompressionDefaults.MimeTypes.Concat(
                         new[] { "image/svg+xml" });
             });
-
-            services.Configure<GzipCompressionProviderOptions>(options => 
-            {
-                options.Level = CompressionLevel.Fastest;
-            });
         }
         #endregion
 

@@ -13,6 +13,8 @@ High-Frequency Realtime with SignalR 1.x
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > This tutorial shows how to create a web application that uses ASP.NET SignalR to provide high-frequency messaging functionality. High-frequency messaging in this case means updates that are sent at a fixed rate; in the case of this application, up to 10 messages a second.
 > 
 > The application you'll create in this tutorial displays a shape that users can drag. The position of the shape in all other connected browsers will then be updated to match the position of the dragged shape using timed updates.
@@ -73,7 +75,7 @@ In this section, we'll create the project in Visual Studio.
 
 You can add SignalR functionality to a project by installing a NuGet package. This tutorial will also use the JQuery.UI package for allowing the shape to be dragged and animated.
 
-1. Click **Tools | Library Package Manager | Package Manager Console**.
+1. Click **Tools | NuGet Package Manager | Package Manager Console**.
 2. Enter the following command in the package manager.
 
     [!code-powershell[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample1.ps1)]

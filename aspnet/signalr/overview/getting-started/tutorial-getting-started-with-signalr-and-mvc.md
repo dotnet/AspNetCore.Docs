@@ -13,37 +13,39 @@ Tutorial: Getting Started with SignalR 2 and MVC 5
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tim Teebken](https://github.com/timlt)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 [Download Completed Project](http://code.msdn.microsoft.com/Getting-Started-with-c366b2f3)
 
-> This tutorial shows how to use ASP.NET SignalR 2 to create a real-time chat application. You will add SignalR to an MVC 5 application and create a chat view to send and display messages. 
-> 
+> This tutorial shows how to use ASP.NET SignalR 2 to create a real-time chat application. You will add SignalR to an MVC 5 application and create a chat view to send and display messages.
+>
 > ## Software versions used in the tutorial
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
 > - MVC 5
 > - SignalR version 2
->   
-> 
-> 
+>
+>
+>
 > ## Using Visual Studio 2012 with this tutorial
-> 
-> 
+>
+>
 > To use Visual Studio 2012 with this tutorial, do the following:
-> 
+>
 > - Update your [Package Manager](http://docs.nuget.org/docs/start-here/installing-nuget) to the latest version.
 > - Install the [Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx).
 > - In the Web Platform Installer, search for and install **ASP.NET and Web Tools 2013.1 for Visual Studio 2012**. This will install Visual Studio templates for SignalR classes such as **Hub**.
 > - Some templates (such as **OWIN Startup Class**) will not be available; for these, use a Class file instead.
-> 
-> 
+>
+>
 > ## Tutorial Versions
-> 
+>
 > For information about earlier versions of SignalR, see [SignalR Older Versions](../older-versions/index.md).
-> 
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
@@ -91,7 +93,7 @@ This section shows how to create an ASP.NET MVC 5 application, add the SignalR l
     > [!NOTE]
     > If you select a different authentication provider for your application, a `Startup.cs` class will be created for you; you will not need to create your own `Startup.cs` class in step 10 below.
 4. Click **OK** in the **New ASP.NET Project** dialog.
-5. Open the **Tools | Library Package Manager | Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
+5. Open the **Tools > NuGet Package Manager > Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
 
     `install-package Microsoft.AspNet.SignalR`
 6. In **Solution Explorer**, expand the Scripts folder. Note that script libraries for SignalR have been added to the project.

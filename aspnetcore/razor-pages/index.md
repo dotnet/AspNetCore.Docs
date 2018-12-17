@@ -19,23 +19,21 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/net-core-prereqs.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
 <a name="rpvs17"></a>
 
-## Creating a Razor Pages project
+## Create a Razor Pages project
 
 # [Visual Studio](#tab/visual-studio)
 
-See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
+See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ::: moniker range=">= aspnetcore-2.1"
 
 Run `dotnet new webapp` from the command line.
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 
@@ -52,24 +50,6 @@ Open the generated *.csproj* file from Visual Studio for Mac.
 ::: moniker range=">= aspnetcore-2.1"
 
 Run `dotnet new webapp` from the command line.
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-Run `dotnet new razor` from the command line.
-
-::: moniker-end
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-::: moniker range=">= aspnetcore-2.1"
-
-Run `dotnet new webapp` from the command line.
-
-[!INCLUDE[](~/includes/webapp-alias-notice.md)]
 
 ::: moniker-end
 
@@ -118,7 +98,7 @@ Notes:
 * The runtime looks for Razor Pages files in the *Pages* folder by default.
 * `Index` is the default page when a URL doesn't include a page.
 
-## Writing a basic form
+## Write a basic form
 
 Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
@@ -174,11 +154,7 @@ The `Customer` property uses `[BindProperty]` attribute to opt in to model bindi
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
-> [!NOTE]
-> For security reasons, you must opt in to binding GET request data to page model properties. Verify user input before mapping it to properties. Opting in to this behavior is useful when addressing scenarios which rely on query string or route values.
->
-> To bind a property on GET requests, set the `[BindProperty]` attribute's `SupportsGet` property to `true`:
-> `[BindProperty(SupportsGet = true)]`
+[!INCLUDE[](~/includes/bind-get.md)]
 
 The home page (*Index.cshtml*):
 
@@ -223,7 +199,7 @@ Here is an example of a rendered delete button with a customer contact ID of `1`
 <button type="submit" formaction="/?id=1&amp;handler=delete">delete</button>
 ```
 
-When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
+When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based on the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
 
 Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a page handler method with the name `OnPostRemoveAsync` is selected.
 
@@ -238,17 +214,19 @@ The `OnPostDeleteAsync` method:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## Mark page properties required
+## Mark page properties as required
 
 Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
 
 [!code-cs[](index/sample/Create.cshtml.cs?highlight=3,15-16)]
 
-See [Model validation](xref:mvc/models/validation) for more information.
+For more information, see [Model validation](xref:mvc/models/validation).
 
 ## Manage HEAD requests with the OnGet handler
 
-Ordinarily, a HEAD handler is created and called for HEAD requests:
+HEAD requests allow you to retrieve the headers for a specific resource. Unlike GET requests, HEAD requests don't return a response body.
+
+Ordinarily, a HEAD handler is created and called for HEAD requests: 
 
 ```csharp
 public void OnHead()
@@ -257,12 +235,14 @@ public void OnHead()
 }
 ```
 
-If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. Opt in to this behavior with the [SetCompatibilityVersion method](xref:mvc/compatibility-version) in `Startup.Configure` for ASP.NET Core 2.1 to 2.x:
+If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. In ASP.NET Core 2.1 and 2.2, this behavior occurs with the [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.Configure`:
 
 ```csharp
 services.AddMvc()
     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 ```
+
+The default templates generate the `SetCompatibilityVersion` call in ASP.NET Core 2.1 and 2.2.
 
 `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
 
@@ -372,6 +352,8 @@ The updated *Pages/Create.cshtml* view file:
 
 The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml*, which hooks up client-side validation.
 
+For more information on partial views, see <xref:mvc/views/partial>.
+
 <a name="url_gen"></a>
 
 ## URL generation for Pages
@@ -413,6 +395,7 @@ URL generation for pages supports relative names. The following table shows whic
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
 ::: moniker range=">= aspnetcore-2.1"
+
 ## ViewData attribute
 
 Data can be passed to a page with [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
@@ -446,6 +429,7 @@ In the layout, the title is read from the ViewData dictionary:
     <title>@ViewData["Title"] - WebApplication</title>
     ...
 ```
+
 ::: moniker-end
 
 ## TempData
@@ -471,7 +455,7 @@ The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attrib
 public string Message { get; set; }
 ```
 
-See [TempData](xref:fundamentals/app-state#tempdata) for more information.
+For more information, see [TempData](xref:fundamentals/app-state#tempdata) .
 
 <a name="mhpp"></a>
 ## Multiple handlers per page
@@ -554,11 +538,12 @@ services.AddMvc()
     .WithRazorPagesRoot("/path/to/razor/pages");
 ```
 
-## See also
+## Additional resources
 
-* [Introduction to ASP.NET Core](xref:index)
-* [Razor syntax](xref:mvc/views/razor)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
-* [Razor Pages custom route and page model providers](xref:razor-pages/razor-pages-conventions)
-* [Razor Pages unit tests](xref:test/razor-pages-tests)
+* <xref:index>
+* <xref:mvc/views/razor>
+* <xref:tutorials/razor-pages/razor-pages-start>
+* <xref:security/authorization/razor-pages-authorization>
+* <xref:razor-pages/razor-pages-conventions>
+* <xref:test/razor-pages-tests>
+* <xref:mvc/views/partial>

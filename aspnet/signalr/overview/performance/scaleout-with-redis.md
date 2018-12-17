@@ -11,23 +11,25 @@ msc.type: authoredcontent
 ---
 SignalR Scaleout with Redis
 ====================
-by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
+by [Mike Wasson](https://github.com/MikeWasson)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > ## Software versions used in this topic
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
-> - SignalR version 2
->   
-> 
-> 
+> - SignalR version 2.4
+>
+>
+>
 > ## Previous versions of this topic
-> 
+>
 > For information about earlier versions of SignalR, see [SignalR Older Versions](../older-versions/index.md).
-> 
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
@@ -46,8 +48,8 @@ If you don't have three physical servers to use, you can create VMs on Hyper-V. 
 
 Although this tutorial uses the official Redis implementation, there is also a [Windows port of Redis](https://github.com/MSOpenTech/redis) from MSOpenTech. Setup and configuration are different, but otherwise the steps are the same.
 
-> [!NOTE] 
-> 
+> [!NOTE]
+>
 > SignalR scaleout with Redis does not support Redis clusters.
 
 
@@ -56,12 +58,13 @@ Although this tutorial uses the official Redis implementation, there is also a [
 Before we get to the detailed tutorial, here is a quick overview of what you will do.
 
 1. Install Redis and start the Redis server.
-2. Add these NuGet packages to your application: 
+2. Add these NuGet packages to your application:
 
     - [Microsoft.AspNet.SignalR](http://nuget.org/packages/Microsoft.AspNet.SignalR)
-    - [Microsoft.AspNet.SignalR.Redis](http://nuget.org/packages/Microsoft.AspNet.SignalR.Redis)
+    - [Microsoft.AspNet.SignalR.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.StackExchangeRedis)
+    
 3. Create a SignalR application.
-4. Add the following code to Startup.cs to configure the backplane: 
+4. Add the following code to Startup.cs to configure the backplane:
 
     [!code-csharp[Main](scaleout-with-redis/samples/sample1.cs)]
 
@@ -106,7 +109,7 @@ Create a SignalR application by following either of these tutorials:
 - [Getting Started with SignalR 2.0](../getting-started/tutorial-getting-started-with-signalr.md)
 - [Getting Started with SignalR 2.0 and MVC 5](../getting-started/tutorial-getting-started-with-signalr-and-mvc.md)
 
-Next, we'll modify the chat application to support scaleout with Redis. First, add the SignalR.Redis NuGet package to your project. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+Next, we'll modify the chat application to support scaleout with Redis. First, add the `Microsoft.AspNet.SignalR.StackExchangeRedis` NuGet package to your project. In Visual Studio, from the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-powershell[Main](scaleout-with-redis/samples/sample5.ps1)]
 

@@ -4,16 +4,18 @@ author: pkellner
 description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role each attribute plays in extending behavior of the HTML anchor tag.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 01/31/2018
+ms.date: 10/10/2018
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper in ASP.NET Core
 
 By [Peter Kellner](http://peterkellner.net) and [Scott Addie](https://github.com/scottaddie)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
-
 The [Anchor Tag Helper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper) enhances the standard HTML anchor (`<a ... ></a>`) tag by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered anchor element's `href` attribute value is determined by the values of the `asp-` attributes.
+
+For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 *SpeakerController* is used in samples throughout this document:
 
@@ -165,7 +167,7 @@ Hash tags are useful when building client-side apps. They can be used for easy m
 
 The [asp-area](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.area) attribute sets the area name used to set the appropriate route. The following example depicts how the area attribute causes a remapping of routes. Setting `asp-area` to "Blogs" prefixes the directory *Areas/Blogs* to the routes of the associated controllers and views for this anchor tag.
 
-* **<Project name\>**
+* **{Project name}**
   * **wwwroot**
   * **Areas**
     * **Blogs**
@@ -175,7 +177,7 @@ The [asp-area](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.anchortaghelper.a
         * **Home**
           * *AboutBlog.cshtml*
           * *Index.cshtml*
-        * *_ViewStart.cshtml*
+        * *\_ViewStart.cshtml*
   * **Controllers**
 
 Given the preceding directory hierarchy, the markup to reference the *AboutBlog.cshtml* file is:
@@ -190,6 +192,7 @@ The generated HTML:
 
 > [!TIP]
 > For areas to work in an MVC app, the route template must include a reference to the area, if it exists. That template is represented by the second parameter of the `routes.MapRoute` method call in *Startup.Configure*:
+>
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 
 ## asp-protocol
@@ -262,5 +265,5 @@ The generated HTML:
 
 ## Additional resources
 
-* [Areas](xref:mvc/controllers/areas)
-* [Intro to Razor Pages](xref:razor-pages/index)
+* <xref:mvc/controllers/areas>
+* <xref:razor-pages/index>

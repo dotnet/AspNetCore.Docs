@@ -3,7 +3,8 @@ title: Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
 author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 ms.author: riande
-ms.date: 11/15/2017
+ms.custom: mvc
+ms.date: 12/07/2018
 uid: data/ef-rp/concurrency
 ---
 # Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
@@ -12,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://githu
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
-This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part8).
+This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Concurrency conflicts
 
@@ -66,7 +67,7 @@ Optimistic concurrency includes the following options:
 
 ## Handling concurrency 
 
-When a property is configured as a [concurrency token](https://docs.microsoft.com/ef/core/modeling/concurrency):
+When a property is configured as a [concurrency token](/ef/core/modeling/concurrency):
 
 * EF Core verifies that property has not been modified after it was fetched. The check occurs when [SaveChanges](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChanges) or [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called.
 * If the property has been changed after it was fetched, a [DbUpdateConcurrencyException](/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0) is thrown. 
@@ -264,7 +265,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,36,51)]
+[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
 
 The preceding markup makes the following changes:

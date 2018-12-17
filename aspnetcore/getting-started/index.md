@@ -1,152 +1,107 @@
 ---
 title: Get started with ASP.NET Core
 author: rick-anderson
-description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core.
+description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core. 
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/31/2018
+ms.date: 12/11/2018
 uid: getting-started
 ---
-# Get started with ASP.NET Core
+# Tutorial: Get started with ASP.NET Core
 
-::: moniker range=">= aspnetcore-2.1"
+This tutorial shows how to use the .NET Core command-line interface to create an ASP.NET Core web app.
 
-1. Install the [!INCLUDE [](~/includes/2.1-SDK.md)].
+You'll learn how to:
 
-2. Create an ASP.NET Core project. Open a command shell and enter the following command:
+> [!div class="checklist"]
+> * Create a web app project.
+> * Enable local HTTPS.
+> * Run the app.
+> * Edit a Razor page.
 
-    ```console
-    dotnet new webapp -o aspnetcoreapp
-    ```
+At the end, you'll have a working web app running on your local machine.
 
-    [!INCLUDE [](~/includes/webapp-alias-notice.md)]
+![Web app home page](_static/home-page.png)
 
-3. Trust the HTTPS development certificate:
+## Prerequisites
+
+* [.NET Core 2.2 SDK](https://www.microsoft.com/net/download/all)
+
+## Create a web app project
+
+Open a command shell, and enter the following command:
+
+```console
+dotnet new webapp -o aspnetcoreapp
+```
+
+## Enable local HTTPS
+
+Trust the HTTPS development certificate:
 
 # [Windows](#tab/windows)
 
-    ```console
-    dotnet dev-certs https --trust
-    ```
+```console
+dotnet dev-certs https --trust
+```
 
-   The preceding command displays the following dialog:
+The preceding command displays the following dialog:
 
-   ![Security warning dialog](_static/cert.png)
+![Security warning dialog](_static/cert.png)
 
-   Select **Yes** if you agree to trust the development certificate.
+Select **Yes** if you agree to trust the development certificate.
 
 # [macOS](#tab/macos)
 
-    ```console
-    dotnet dev-certs https --trust
-    ```
+```console
+dotnet dev-certs https --trust
+```
 
-   The preceding command displays the following message:
+The preceding command displays the following message:
 
-   *Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:*
-   `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
-   *This command might prompt you for your password to install the certificate on the system keychain.
-   Password:*
+*Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`.  
+*This command might prompt you for your password to install the certificate on the system keychain.
 
-   Enter your password if you agree to trust the development certificate.
+Password:*
+
+Enter your password if you agree to trust the development certificate.
 
 # [Linux](#tab/linux)
 
-   See the documentation for your Linux distribution on how to trust the HTTPS development certificate
+See the documentation for your Linux distribution on how to trust the HTTPS development certificate.
+
 ---
 
-4. Run the app:
+## Run the app
 
-    ```console
-    cd aspnetcoreapp
-    dotnet run
-    ```
+Run the following commands:
 
-5. Browse to [http://localhost:5001](http://localhost:5001).  Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
+```console
+cd aspnetcoreapp
+dotnet run
+```
 
-6. Open *Pages/About.cshtml* and modify the page with the following highlighted markup:
+Browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
 
-    [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9)]
+## Edit a Razor page
 
-7. Browse to [http://localhost:5001/About](http://localhost:5001/About) and verify the changes are displayed.
+Open *Pages/Index.cshtml* and modify the page with the following highlighted markup:
 
-[!INCLUDE [next steps](~/includes/getting-started/next-steps.md)]
+[!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-::: moniker-end
+Browse to [https://localhost:5001](https://localhost:5001), and verify the changes are displayed.
 
-::: moniker range="= aspnetcore-2.0"
+## Next steps
 
-1. Install the [!INCLUDE [](~/includes/net-core-sdk-download-link.md)].
+In this tutorial, you learned how to:
 
-2. Create a new ASP.NET Core project.
+> [!div class="checklist"]
+> * Create a web app project.
+> * Enable local HTTPS.
+> * Run the project.
+> * Make a change.
 
-   Open a command shell. Enter the following command:
+To learn more about ASP.NET Core, see the introduction:
 
-    ```console
-    dotnet new razor -o aspnetcoreapp
-    ```
-
-3. Run the app with the following commands:
-
-    ```console
-    cd aspnetcoreapp
-    dotnet run
-    ```
-
-4. Browse to [http://localhost:5000](http://localhost:5000).
-
-5. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
-
-    [!code-cshtml[](sample/getting-started/about.cshtml?highlight=9&range=1-9)]
-
-6. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
-
-[!INCLUDE [next steps](~/includes/getting-started/next-steps.md)]
-
-::: moniker-end
-
-::: moniker range="<= aspnetcore-1.1"
-
-1. Install the .NET Core **SDK Installer** for SDK 1.0.4 from the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
-
-2. Create a folder for a new ASP.NET Core project.
-
-   Open a command shell. Enter the following commands:
-
-   ```console
-   mkdir aspnetcoreapp
-   cd aspnetcoreapp
-   ```
-
-3. If you have installed a later SDK version on your machine, create a *global.json* file to select the 1.0.4 SDK.
-
-   ```json
-   {
-     "sdk": { "version": "1.0.4" }
-   }
-   ```
-
-4. Create a new ASP.NET Core project.
-
-   ```console
-   dotnet new web
-   ```
-
-5. Restore the packages.
-
-    ```console
-    dotnet restore
-    ```
-
-6. Run the app.
-
-   ```console
-   dotnet run
-   ```
-
-   The [dotnet run](/dotnet/core/tools/dotnet-run) command builds the app first, if needed.
-
-7. Browse to `http://localhost:5000`.
-
-[!INCLUDE [next steps](~/includes/getting-started/next-steps.md)]
-::: moniker-end
+> [!div class="nextstepaction"]
+> <xref:index>

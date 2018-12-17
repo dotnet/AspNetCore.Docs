@@ -3,7 +3,8 @@ title: Filters in ASP.NET Core
 author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core MVC.
 ms.author: riande
-ms.date: 08/15/2018
+ms.custom: mvc
+ms.date: 10/15/2018
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -199,13 +200,15 @@ If your filters have dependencies that you need to access from DI, there are sev
 
 ### ServiceFilterAttribute
 
-A `ServiceFilter` retrieves an instance of the filter from DI. You add the filter to the container in `ConfigureServices`, and reference it in a `ServiceFilter` attribute
+Service filter implementation types are registered in DI. A `ServiceFilterAttribute` retrieves an instance of the filter from DI. Add the `ServiceFilterAttribute` to the container in `Startup.ConfigureServices`, and reference it in a `[ServiceFilter]` attribute:
 
 [!code-csharp[](./filters/sample/src/FiltersSample/Startup.cs?name=snippet_ConfigureServices&highlight=11)]
 
 [!code-csharp[](../../mvc/controllers/filters/sample/src/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
 
-Using `ServiceFilter` without registering the filter type results in an exception:
+When using `ServiceFilterAttribute`, setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created or the filter will not be re-requested from the DI container at some later point. Avoid using `IsReusable` when using a filter that depends on services with a lifetime other than singleton.
+
+Using `ServiceFilterAttribute` without registering the filter type results in an exception:
 
 ```
 System.InvalidOperationException: No service for type
@@ -221,11 +224,15 @@ System.InvalidOperationException: No service for type
 Because of this difference:
 
 * Types that are referenced using the `TypeFilterAttribute` don't need to be registered with the container first.  They do have their dependencies fulfilled by the container. 
-* `TypeFilterAttribute` can optionally accept constructor arguments for the type. 
+* `TypeFilterAttribute` can optionally accept constructor arguments for the type.
+
+When using `TypeFilterAttribute`, setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created. Avoid using `IsReusable` when using a filter that depends on services with a lifetime other than singleton.
 
 The following example demonstrates how to pass arguments to a type using `TypeFilterAttribute`:
 
 [!code-csharp[](../../mvc/controllers/filters/sample/src/FiltersSample/Controllers/HomeController.cs?name=snippet_TypeFilter&highlight=1,2)]
+
+### IFilterFactory implemented on your attribute
 
 If you have a filter that:
 
@@ -240,7 +247,8 @@ This filter can be applied to classes or methods using the `[SampleActionFilter]
 
 ## Authorization filters
 
-*Authorization filters:
+*Authorization filters*:
+
 * Control access to action methods.
 * Are the first filters to be executed within the filter pipeline. 
 * Have a before method, but no after method. 
@@ -249,7 +257,7 @@ You should only write a custom authorization filter if you are writing your own 
 
 You shouldn't throw exceptions within authorization filters, since nothing will handle the exception (exception filters won't handle them). Consider issuing a challenge when an exception occurs.
 
-Learn more about [Authorization](../../security/authorization/index.md).
+Learn more about [Authorization](xref:security/authorization/introduction).
 
 ## Resource filters
 

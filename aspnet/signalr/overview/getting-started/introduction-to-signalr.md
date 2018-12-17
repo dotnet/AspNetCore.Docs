@@ -12,16 +12,16 @@ msc.type: authoredcontent
 Introduction to SignalR
 ====================
 
-An updated version of this tutorial is available [here](/aspnet/core/tutorials/signalr) using the latest version of Visual Studio. The new tutorial uses [ASP.NET Core](/aspnet/core/), which provides many improvements over this tutorial.
-
 by [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 
 > This article describes what SignalR is, and some of the solutions it was designed to create. 
 > 
 > ## Questions and comments
 > 
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](https://stackoverflow.com/questions/tagged/signalr).
-
 
 ## What is SignalR?
 
@@ -45,9 +45,7 @@ SignalR is open-source, accessible through [GitHub](https://github.com/signalr).
 
 ## SignalR and WebSocket
 
-SignalR uses the new WebSocket transport where available, and falls back to older transports where necessary. While you could certainly write your application using WebSocket directly, using SignalR means that a lot of the extra functionality you would need to implement will already have been done for you. Most importantly, this means that you can code your application to take advantage of WebSocket without having to worry about creating a separate code path for older clients. SignalR also shields you from having to worry about updates to WebSocket, since SignalR will continue to be updated to support changes in the underlying transport, providing your application a consistent interface across versions of WebSocket.
-
-While you could certainly create a solution using WebSocket alone, SignalR provides all of the functionality you would need to write yourself, such as fallback to other transports and revising your application for updates to WebSocket implementations.
+SignalR uses the new WebSocket transport where available and falls back to older transports where necessary. While you could certainly write your app using WebSocket directly, using SignalR means that a lot of the extra functionality you would need to implement is already done for you. Most importantly, this means that you can code your app to take advantage of WebSocket without having to worry about creating a separate code path for older clients. SignalR also shields you from having to worry about updates to WebSocket, since SignalR is updated to support changes in the underlying transport, providing your application a consistent interface across versions of WebSocket.
 
 <a id="transports"></a>
 

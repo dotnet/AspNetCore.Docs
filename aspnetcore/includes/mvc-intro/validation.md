@@ -17,10 +17,15 @@ Open the *Movie.cs* file. DataAnnotations provides a built-in set of validation 
 Update the `Movie` class to take advantage of the built-in `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie21/Models/MovieDateRatingDA.cs?name=snippet1)]
+
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Models/MovieDateRatingDA.cs?name=snippet1)]
+
 ::: moniker-end
 
 The validation attributes specify behavior that you want to enforce on the model properties they're applied to. The `Required` and `MinimumLength` attributes indicates that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation. The `RegularExpression` attribute is used to limit what characters can be input. In the code above, `Genre` and `Rating` must use only letters (First letter uppercase, white space, numbers and special characters are not allowed). The `Range` attribute constrains a value to within a specified range. The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length. Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
@@ -35,8 +40,7 @@ Tap the **Create New** link to add a new movie. Fill out the form with some inva
 
 ![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/val.png)
 
-> [!NOTE]
-> You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. This [GitHub issue 4076](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420) for instructions on adding decimal comma. 
+[!INCLUDE[](~/includes/currency.md)]
 
 Notice how the form has automatically rendered an appropriate validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (in case a user has JavaScript disabled).
 
@@ -56,7 +60,7 @@ You can set a break point in the `[HttpPost] Create` method and verify the metho
 
 The following image shows how to disable JavaScript in the FireFox browser.
 
-![Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.](~/tutorials/first-mvc-app/validation/_static/ff.png)
+![Firefox: On the Content tab of Options, uncheck the Enable Javascript check box.](~/tutorials/first-mvc-app/validation/_static/ff.png)
 
 The following image shows how to disable JavaScript in the Chrome browser.
 
@@ -116,10 +120,13 @@ You will need to disable jQuery date validation to use the `Range` attribute wit
 The following code shows combining attributes on one line:
 
 ::: moniker range=">= aspnetcore-2.1"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie21/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.0"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 ::: moniker-end

@@ -146,7 +146,7 @@ To use custom policies from an `IAuthorizationPolicyProvider`, you must:
 * Register the custom `IAuthorizationPolicyProvider` type in the app's dependency injection service collection (in `Startup.ConfigureServices`) to replace the default policy provider.
 
 ```csharp
-services.AddTransient<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
+services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
 ```
 
 A complete custom `IAuthorizationPolicyProvider` sample is available in the [aspnet/AuthSamples GitHub repository](https://github.com/aspnet/AuthSamples/tree/master/samples/CustomPolicyProvider).

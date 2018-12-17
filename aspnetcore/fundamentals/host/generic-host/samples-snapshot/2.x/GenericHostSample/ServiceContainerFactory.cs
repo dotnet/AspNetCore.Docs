@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GenericHostSample
 {
-    internal class ServiceContainerFactory : IServiceProviderFactory<MyContainer>
+    internal class ServiceContainerFactory : IServiceProviderFactory<ServiceContainer>
     {
         public ServiceContainer CreateBuilder(IServiceCollection services)
         {

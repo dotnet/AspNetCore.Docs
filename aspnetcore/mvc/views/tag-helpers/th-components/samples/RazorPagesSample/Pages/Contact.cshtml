@@ -1,0 +1,38 @@
+﻿@page
+@model ContactModel
+<!-- <snippet_ITagHelperComponentManager> -->
+@using RazorPagesSample.TagHelpers;
+@using Microsoft.AspNetCore.Mvc.Razor.TagHelpers;
+@inject ITagHelperComponentManager manager;
+
+@{
+    string markup;
+
+    if (Model.IsWeekend)
+    {
+        markup = "<em class='text-warning'>Office closed today!</em>";
+    }
+    else
+    {
+        markup = "<em class='text-info'>Office open today!</em>";
+    }
+
+    manager.Components.Add(new AddressTagHelperComponent(markup, 1));
+}
+<!-- </snippet_ITagHelperComponentManager> -->
+
+<h2>Tag Helper Component registration via Razor</h2>
+
+<!-- <snippet_AddressPrintable> -->
+<address printable>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+<!-- </snippet_AddressPrintable> -->
+
+<address>
+    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>

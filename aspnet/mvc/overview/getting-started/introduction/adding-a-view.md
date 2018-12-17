@@ -8,7 +8,7 @@ uid: mvc/overview/getting-started/introduction/adding-a-view
 ---
 Adding a View
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [Tutorial Note](sample/code-location.md)]
 

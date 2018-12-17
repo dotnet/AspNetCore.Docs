@@ -49,7 +49,7 @@ Each API has a link to a page with more detailed information, including example 
 
 You can add help pages to an existing Web API project by using NuGet Package Manager. This option is useful you start from a different project template than the "Web API" template.
 
-From the **Tools** menu, select **Library Package Manager**, and then select **Package Manager Console**. In the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) window, type one of the following commands:
+From the **Tools** menu, select **NuGet Package Manager**, and then select **Package Manager Console**. In the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) window, type one of the following commands:
 
 For a **C#** application: `Install-Package Microsoft.AspNet.WebApi.HelpPage`
 

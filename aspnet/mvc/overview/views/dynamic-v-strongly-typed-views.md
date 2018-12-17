@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Dynamic v. Strongly Typed Views
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 There are three ways to pass information from a controller to a view in ASP.NET MVC 3:
 

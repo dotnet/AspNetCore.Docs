@@ -1,7 +1,7 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/generating-views
 title: "EF Database First with ASP.NET MVC: Generating Views | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: riande
 ms.date: 12/29/2014

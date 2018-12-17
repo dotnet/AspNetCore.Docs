@@ -37,7 +37,8 @@ var connection = new HubConnectionBuilder()
     .AddJsonProtocol(options => {
         options.PayloadSerializerSettings.ContractResolver = 
             new DefaultContractResolver();
-    });
+    })
+    .Build();
 ```
 
 > [!NOTE]
@@ -70,7 +71,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         hubOptions.EnableDetailedErrors = true;
         hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
-    })
+    });
 }
 ```
 
@@ -80,7 +81,7 @@ Options for a single hub override the global options provided in `AddSignalR` an
 services.AddSignalR().AddHubOptions<MyHub>(options =>
 {
     options.EnableDetailedErrors = true;
-}
+});
 ```
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to [MapHub\<T>](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub).
@@ -113,7 +114,7 @@ Client options can be configured on the `HubConnectionBuilder` type (available i
 
 ### Configure logging
 
-Logging is configured in the .NET Client using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. See the [Logging in ASP.NET Core](xref:fundamentals/logging/index#how-to-add-providers) documentation for more information.
+Logging is configured in the .NET Client using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. See the [Logging in ASP.NET Core](xref:fundamentals/logging/index) documentation for more information.
 
 > [!NOTE]
 > In order to register Logging providers, you must install the necessary packages. See the [Built-in logging providers](xref:fundamentals/logging/index#built-in-logging-providers) section of the docs for a full list.
@@ -185,7 +186,7 @@ var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/myhub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
-        }
+        };
     })
     .Build();
 ```
@@ -254,7 +255,7 @@ let connection = new signalR.HubConnectionBuilder()
     .withUrl("/myhub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
-    });
+    })
     .build();
 ```
 

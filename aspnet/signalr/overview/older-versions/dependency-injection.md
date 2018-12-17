@@ -13,6 +13,8 @@ Dependency Injection in SignalR 1.x
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 Dependency injection is a way to remove hard-coded dependencies between objects, making it easier to replace an object's dependencies, either for testing (using mock objects) or to change run-time behavior. This tutorial shows how to perform dependency injection on SignalR hubs. It also shows how to use IoC containers with SignalR. An IoC container is a general framework for dependency injection.
 
 ## What is Dependency Injection?
@@ -116,7 +118,7 @@ Creating an `IStockTicker` interface isn't strictly necessary, but I wanted to s
 
 There are many open-source IoC containers for .NET. For this tutorial, I'll use [Ninject](http://www.ninject.org/). (Other popular libraries include [Castle Windsor](http://www.castleproject.org/), [Spring.Net](http://www.springframework.net/), [Autofac](https://code.google.com/p/autofac/), [Unity](https://github.com/unitycontainer/unity), and [StructureMap](http://docs.structuremap.net).)
 
-Use NuGet Package Manager to install the [Ninject library](https://nuget.org/packages/Ninject/3.0.1.10). In Visual Studio, from the **Tools** menu select **Library Package Manager** | **Package Manager Console**. In the Package Manager Console window, enter the following command:
+Use NuGet Package Manager to install the [Ninject library](https://nuget.org/packages/Ninject/3.0.1.10). In Visual Studio, from the **Tools** menu select **NuGet Package Manager** > **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-powershell[Main](dependency-injection/samples/sample13.ps1)]
 

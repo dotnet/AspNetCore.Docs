@@ -4,14 +4,14 @@ author: rick-anderson
 description: Learn how to cache data in memory in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 7/22/2018
+ms.date: 09/15/2018
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo), and [Steve Smith](https://ardalis.com/)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/memory/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/memory/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Caching basics
 
@@ -21,11 +21,27 @@ ASP.NET Core supports several different caches. The simplest cache is based on t
 
 Non-sticky sessions in a web farm require a [distributed cache](distributed.md) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
 
+::: moniker range="< aspnetcore-2.0"
+
 The `IMemoryCache` cache will evict cache entries under memory pressure unless the [cache priority](/dotnet/api/microsoft.extensions.caching.memory.cacheitempriority) is set to `CacheItemPriority.NeverRemove`. You can set the `CacheItemPriority` to adjust the priority with which the cache evicts items under memory pressure.
+
+::: moniker-end
 
 The in-memory cache can store any object; the distributed cache interface is limited to `byte[]`.
 
-### Cache guidelines
+## System.Runtime.Caching/MemoryCache
+
+<xref:System.Runtime.Caching>/<xref:System.Runtime.Caching.MemoryCache> ([NuGet package](https://www.nuget.org/packages/System.Runtime.Caching/)) can be used with:
+
+* .NET Standard 2.0 or later.
+* Any [.NET implementation](/dotnet/standard/net-standard#net-implementation-support) that targets .NET Standard 2.0 or later. For example, ASP.NET Core 2.0 or later.
+* .NET Framework 4.5 or later.
+
+[Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/)/`IMemoryCache` (described in this topic) is recommended over `System.Runtime.Caching`/`MemoryCache` because it's better integrated into ASP.NET Core. For example, `IMemoryCache` works natively with ASP.NET Core [dependency injection](xref:fundamentals/dependency-injection).
+
+Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when porting code from ASP.NET 4.x to ASP.NET Core.
+
+## Cache guidelines
 
 * Code should always have a fallback option to fetch data and **not** depend on a cached value being available.
 * The cache uses a scarce resource, memory. Limit cache growth:
@@ -150,9 +166,9 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 ## Additional resources
 
-* [Work with a distributed cache](xref:performance/caching/distributed)
-* [Detect changes with change tokens](xref:fundamentals/primitives/change-tokens)
-* [Response caching](xref:performance/caching/response)
-* [Response Caching Middleware](xref:performance/caching/middleware)
-* [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
-* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+* <xref:performance/caching/distributed>
+* <xref:fundamentals/change-tokens>
+* <xref:performance/caching/response>
+* <xref:performance/caching/middleware>
+* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
+* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>

@@ -13,23 +13,25 @@ SignalR Performance
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > This topic describes how to design for, measure, and improve performance in a SignalR application.
-> 
+>
 > ## Software versions used in this topic
-> 
-> 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+>
+>
+> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
 > - .NET 4.5
 > - SignalR version 2
->   
-> 
-> 
+>
+>
+>
 > ## Previous versions of this topic
-> 
+>
 > For information about earlier versions of SignalR, see [SignalR Older Versions](../older-versions/index.md).
-> 
+>
 > ## Questions and comments
-> 
+>
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
@@ -133,7 +135,7 @@ This section describes how to enable and use SignalR performance counters, found
 
 Performance counters can be added to the server using a utility called SignalR.exe. To install this utility, follow these steps:
 
-1. In your Visual Studio application, select **Tools**, **Library Package Manager**, **Manage NuGet Packages for Solution...**
+1. In Visual Studio, select **Tools** > **NuGet Package Manager** > **Manage NuGet Packages for Solution**
 2. Search for **signalr.utils**, and select Install.
 
     ![](signalr-performance/_static/image1.png)

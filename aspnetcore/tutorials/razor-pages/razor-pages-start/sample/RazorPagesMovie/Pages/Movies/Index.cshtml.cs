@@ -24,6 +24,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         public IList<Movie> Movie { get; set; }
+        public string SearchString { get; set; }
         public SelectList Genres { get; set; }
         public string MovieGenre { get; set; }
         #endregion
@@ -43,6 +44,7 @@ namespace RazorPagesMovie.Pages.Movies
             #endregion
 
             Movie = await movies.ToListAsync();
+            SearchString = searchString;
         }
         #endregion
 #endif
@@ -75,6 +77,7 @@ namespace RazorPagesMovie.Pages.Movies
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
             #endregion
             Movie = await movies.ToListAsync();
+            SearchString = searchString;
         }
         #endregion
 #endif

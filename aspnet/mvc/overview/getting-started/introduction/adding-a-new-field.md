@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Adding a New Field
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [Tutorial Note](sample/code-location.md)]
 

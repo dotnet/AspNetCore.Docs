@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 Building the Chapter Downloads for the EF 5 MVC 4 Tutorials
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [Download Completed Project](http://code.msdn.microsoft.com/Getting-Started-with-dd0e2ed8)
 
@@ -26,7 +26,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
     ![](building-the-ef5-mvc4-chapter-downloads/_static/image1.png)
 3. Unzip the file.
 4. Double-click the *CUx.sln* file to launch Visual Studio.
-5. From the **Tools** menu, click **Library Package Manager**, then **Package Manager Console**.  
+5. From the **Tools** menu, click **NuGet Package Manager**, then **Package Manager Console**.  
   
     ![](building-the-ef5-mvc4-chapter-downloads/_static/image2.png)
 6. In the Package Manager Console (PMC), click **Restore**.  

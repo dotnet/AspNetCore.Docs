@@ -13,6 +13,8 @@ SignalR Scaleout with Azure Service Bus
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 In this tutorial, you will deploy a SignalR application to a Windows Azure Web Role, using the Service Bus backplane to distribute messages to each role instance. (You can also use the Service Bus backplane with [web apps in Azure App Service](https://docs.microsoft.com/azure/app-service-web/).)
 
 ![](scaleout-with-windows-azure-service-bus/_static/image1.png)
@@ -88,7 +90,7 @@ The project wizard creates two projects:
 
 To create the chat application, follow the steps in the tutorial [Getting Started with SignalR and MVC 5](../getting-started/tutorial-getting-started-with-signalr-and-mvc.md).
 
-Use NuGet to install the required libraries. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the **Package Manager Console** window, enter the following commands:
+Use NuGet to install the required libraries. From the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the **Package Manager Console** window, enter the following commands:
 
 [!code-powershell[Main](scaleout-with-windows-azure-service-bus/samples/sample2.ps1)]
 

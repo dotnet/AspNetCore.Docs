@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ---
 MVC recommended tutorials and articles
 ====================
-by [Rick Anderson](https://github.com/Rick-Anderson)
+by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 <a id="pwd"></a>
 ## Getting Started

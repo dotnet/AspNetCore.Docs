@@ -24,7 +24,7 @@ App localization involves the following:
 
 3. Implement a strategy to select the language/culture for each request
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Make the app's content localizable
 
@@ -201,9 +201,9 @@ Each language and culture combination (other than the default language) requires
 
 ### Configure localization
 
-Localization is configured in the `ConfigureServices` method:
+Localization is configured in the `Startup.ConfigureServices` method:
 
-[!code-csharp[](localization/sample/Localization/Program.cs?name=snippet1)]
+[!code-csharp[](localization/sample/Localization/Startup.cs?name=snippet1)]
 
 * `AddLocalization` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
@@ -213,9 +213,9 @@ Localization is configured in the `ConfigureServices` method:
 
 ### Localization middleware
 
-The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in the `Configure` method. The localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
+The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
-[!code-csharp[](localization/sample/Localization/Program.cs?name=snippet2)]
+[!code-csharp[](localization/sample/Localization/Startup.cs?name=snippet2)]
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
@@ -334,9 +334,11 @@ Terms:
 * Parent culture: The neutral culture that contains a specific culture. (for example, "en" is the parent culture of "en-US" and "en-GB")
 * Locale: A locale is the same as a culture.
 
+[!INCLUDE[](~/includes/currency.md)]
+
 ## Additional resources
 
-* [Localization.StarterWeb project](https://github.com/aspnet/entropy) used in the article.
-* [Resource Files in Visual Studio](/cpp/windows/resource-files-visual-studio)
+* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
+* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)

@@ -1,1 +1,1 @@
-Install-Package Microsoft.AspNet.SignalR.Redis
+Install-Package Microsoft.AspNet.SignalR.StackExchangeRedis

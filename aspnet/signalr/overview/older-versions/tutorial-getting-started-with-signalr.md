@@ -13,6 +13,8 @@ Tutorial: Getting Started with SignalR 1.x
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tim Teebken](https://github.com/timlt)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > This tutorial shows how to use SignalR to create a real-time chat application. You will add SignalR to an empty ASP.NET web application and create an HTML page to send and display messages.
 
 
@@ -60,7 +62,7 @@ The following steps use Visual Studio 2012 to create an ASP.NET Empty Web Applic
 1. In Visual Studio create an ASP.NET Empty Web Application.
 
     ![Create empty web](tutorial-getting-started-with-signalr/_static/image2.png)
-2. Open the **Package Manager Console** by selecting **Tools | Library Package Manager | Package Manager Console**. Enter the following command into the console window:
+2. Open the **Package Manager Console** by selecting **Tools | NuGet Package Manager | Package Manager Console**. Enter the following command into the console window:
 
     `Install-Package Microsoft.AspNet.SignalR -Version 1.1.3`
 

@@ -1,7 +1,7 @@
 ---
 uid: web-pages/overview/getting-started/introducing-razor-syntax-c
 title: "Introduction to ASP.NET Web Programming Using the Razor Syntax (C#) | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "This chapter gives you an overview of programming with ASP.NET Web Pages using the Razor syntax. ASP.NET is Microsoft's technology for running dynamic web pa..."
 ms.author: riande
 ms.date: 02/07/2014
@@ -336,13 +336,13 @@ The following table lists some common conversion and test methods for variables.
 
 :::row:::
     :::column:::
-        <strong>Method</strong>
+    <strong>Method</strong>
     :::column-end:::
     :::column:::
-        <strong>Description</strong>
+    <strong>Description</strong>
     :::column-end:::
     :::column:::
-        <strong>Example</strong>
+    <strong>Example</strong>
     :::column-end:::
 :::row-end:::
 * * *
@@ -351,7 +351,7 @@ The following table lists some common conversion and test methods for variables.
         `AsInt(), IsInt()`
     :::column-end:::
     :::column:::
-        Converts a string that represents a whole number (like "593") to an integer.
+    Converts a string that represents a whole number (like "593") to an integer.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample28.cs)]
@@ -363,7 +363,7 @@ The following table lists some common conversion and test methods for variables.
         `AsBool(), IsBool()`
     :::column-end:::
     :::column:::
-        Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type.
+    Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample29.cs)]
@@ -375,7 +375,7 @@ The following table lists some common conversion and test methods for variables.
         `AsFloat(), IsFloat()`
     :::column-end:::
     :::column:::
-        Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number.
+    Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample30.cs)]
@@ -387,7 +387,7 @@ The following table lists some common conversion and test methods for variables.
         `AsDecimal(), IsDecimal()`
     :::column-end:::
     :::column:::
-        Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.)
+    Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.)
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample31.cs)]
@@ -399,7 +399,7 @@ The following table lists some common conversion and test methods for variables.
         `AsDateTime(), IsDateTime()`
     :::column-end:::
     :::column:::
-        Converts a string that represents a date and time value to the ASP.NET `DateTime` type.
+    Converts a string that represents a date and time value to the ASP.NET `DateTime` type.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample32.cs)]
@@ -411,7 +411,7 @@ The following table lists some common conversion and test methods for variables.
         `ToString()`
     :::column-end:::
     :::column:::
-        Converts any other data type to a string.
+    Converts any other data type to a string.
     :::column-end:::
     :::column:::
         [!code-javascript[Main](introducing-razor-syntax-c/samples/sample33.js)]
@@ -425,13 +425,13 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
 
 :::row:::
     :::column:::
-        <strong>Operator</strong>
+    <strong>Operator</strong>
     :::column-end:::
     :::column:::
-        <strong>Description</strong>
+    <strong>Description</strong>
     :::column-end:::
     :::column:::
-        <strong>Examples</strong>
+    <strong>Examples</strong>
     :::column-end:::
 :::row-end:::
 * * *
@@ -440,7 +440,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `+` `-` `*` `/`
     :::column-end:::
     :::column:::
-        Math operators used in numerical expressions.
+    Math operators used in numerical expressions.
     :::column-end:::
     :::column:::
         [!code-css[Main](introducing-razor-syntax-c/samples/sample34.css)]
@@ -452,7 +452,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `=`
     :::column-end:::
     :::column:::
-        Assignment. Assigns the value on the right side of a statement to the object on the left side.
+    Assignment. Assigns the value on the right side of a statement to the object on the left side.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample35.cs)]
@@ -464,7 +464,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `==`
     :::column-end:::
     :::column:::
-        Equality. Returns `true` if the values are equal. (Notice the distinction between the `=` operator and the `==` operator.)
+    Equality. Returns `true` if the values are equal. (Notice the distinction between the `=` operator and the `==` operator.)
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample36.cs)]
@@ -476,7 +476,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `!=`
     :::column-end:::
     :::column:::
-        Inequality. Returns `true` if the values are not equal.
+    Inequality. Returns `true` if the values are not equal.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample37.cs)]
@@ -488,7 +488,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `< > <= >=`
     :::column-end:::
     :::column:::
-        Less-than, greater-than, less-than-or-equal, and greater-than-or-equal.
+    Less-than, greater-than, less-than-or-equal, and greater-than-or-equal.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample38.cs)]
@@ -500,7 +500,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `+`
     :::column-end:::
     :::column:::
-        Concatenation, which is used to join strings. ASP.NET knows the difference between this operator and the addition operator based on the data type of the expression.
+    Concatenation, which is used to join strings. ASP.NET knows the difference between this operator and the addition operator based on the data type of the expression.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample39.cs)]
@@ -512,7 +512,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `+=` `-=`
     :::column-end:::
     :::column:::
-        The increment and decrement operators, which add and subtract 1 (respectively) from a variable.
+    The increment and decrement operators, which add and subtract 1 (respectively) from a variable.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample40.cs)]
@@ -524,7 +524,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `.`
     :::column-end:::
     :::column:::
-        Dot. Used to distinguish objects and their properties and methods.
+    Dot. Used to distinguish objects and their properties and methods.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample41.cs)]
@@ -536,7 +536,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `()`
     :::column-end:::
     :::column:::
-        Parentheses. Used to group expressions and to pass parameters to methods.
+    Parentheses. Used to group expressions and to pass parameters to methods.
     :::column-end:::
     :::column:::
         [!code-javascript[Main](introducing-razor-syntax-c/samples/sample42.js)]
@@ -548,7 +548,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `[]`
     :::column-end:::
     :::column:::
-        Brackets. Used for accessing values in arrays or collections.
+    Brackets. Used for accessing values in arrays or collections.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample43.cs)]
@@ -560,7 +560,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `!`
     :::column-end:::
     :::column:::
-        Not. Reverses a `true` value to `false` and vice versa. Typically used as a shorthand way to test for `false` (that is, for not `true`).
+    Not. Reverses a `true` value to `false` and vice versa. Typically used as a shorthand way to test for `false` (that is, for not `true`).
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample44.cs)]
@@ -572,7 +572,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
         `&&` <code>&#124;&#124;</code>
     :::column-end:::
     :::column:::
-        Logical AND and OR, which are used to link conditions together.
+    Logical AND and OR, which are used to link conditions together.
     :::column-end:::
     :::column:::
         [!code-csharp[Main](introducing-razor-syntax-c/samples/sample45.cs)]

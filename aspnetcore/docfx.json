@@ -80,7 +80,7 @@
         "client-side/**/**.md": "conceptual",
         "data/**/**.md": "conceptual",
         "fundamentals/**/**.md": "conceptual",
-        "getting-started/**/**.md": "conceptual",
+        "getting-started/**/**.md": "tutorial",
         "host-and-deploy/**/**.md": "conceptual",
         "index.md": "conceptual",
         "migration/**/**.md": "conceptual",

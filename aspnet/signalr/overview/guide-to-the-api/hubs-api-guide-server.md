@@ -13,6 +13,8 @@ ASP.NET SignalR Hubs API Guide - Server (C#)
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > This document provides an introduction to programming the server side of the ASP.NET SignalR Hubs API for SignalR version 2, with code samples demonstrating common options.
 > 
 > The SignalR Hubs API enables you to make remote procedure calls (RPCs) from a server to connected clients and from clients to the server. In server code, you define methods that can be called by clients, and you call methods that run on the client. In client code, you define methods that can be called from the server, and you call methods that run on the server. SignalR takes care of all of the client-to-server plumbing for you.
@@ -35,7 +37,6 @@ by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://githu
 > ## Questions and comments
 > 
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
-
 
 ## Overview
 
@@ -297,6 +298,11 @@ To call client methods from the server, use the `Clients` property in a method i
 **Server**
 
 [!code-csharp[Main](hubs-api-guide-server/samples/sample23.cs?highlight=5)]
+
+Invoking a client method is an asynchronous operation and returns a `Task`. Use `await`:
+
+* To ensure the message is sent without error. 
+* To enable catching and handling errors in a try-catch block.
 
 **JavaScript client using generated proxy**
 
@@ -566,7 +572,7 @@ In VB.NET or in a strongly-typed hub, the caller state object can't be accessed 
 
 ## How to handle errors in the Hub class
 
-To handle errors that occur in your Hub class methods, use one or more of the following methods:
+To handle errors that occur in your Hub class methods, first ensure you "observe" any exceptions from async operations (such as invoking client methods) by using `await`. Then use one or more of the following methods:
 
 - Wrap your method code in try-catch blocks and log the exception object. For debugging purposes you can send the exception to the client, but for security reasons sending detailed information to clients in production is not recommended.
 - Create a Hubs pipeline module that handles the [OnIncomingError](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.hubpipelinemodule.onincomingerror(v=vs.111).aspx) method. The following example shows a pipeline module that logs errors, followed by code in Startup.cs that injects the module into the Hubs pipeline.

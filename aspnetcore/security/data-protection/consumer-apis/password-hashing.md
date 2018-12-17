@@ -21,4 +21,4 @@ The package currently offers a method `KeyDerivation.Pbkdf2` which allows hashin
 
 [!code-csharp[](password-hashing/samples/passwordhasher.cs)]
 
-See the [source code]（https://github.com/aspnet/Identity/blob/master/src/Core/PasswordHasher.cs) for ASP.NET Core Identity's `PasswordHasher` type for a real-world use case.
+See the [source code](https://github.com/aspnet/Identity/blob/master/src/Core/PasswordHasher.cs) for ASP.NET Core Identity's `PasswordHasher` type for a real-world use case.

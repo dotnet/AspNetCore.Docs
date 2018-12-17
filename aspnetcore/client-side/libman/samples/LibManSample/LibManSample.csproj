@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
     <!-- <snippet_RestoreOnBuildPackage> -->
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.113" />
     <!-- </snippet_RestoreOnBuildPackage> -->

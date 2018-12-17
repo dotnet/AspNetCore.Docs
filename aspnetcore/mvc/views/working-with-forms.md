@@ -3,8 +3,8 @@ title: Tag Helpers in forms in ASP.NET Core
 author: rick-anderson
 description: Describes the built-in Tag Helpers used with Forms.
 ms.author: riande
-ms.custom: H1Hack27Feb2017
-ms.date: 02/14/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: mvc/views/working-with-forms
 ---
 # Tag Helpers in forms in ASP.NET Core
@@ -23,7 +23,7 @@ The [Form](https://www.w3.org/TR/html401/interact/forms.html) Tag Helper:
 
 * Generates the HTML [\<FORM>](https://www.w3.org/TR/html401/interact/forms.html) `action` attribute value for a MVC controller action or named route
 
-* Generates a hidden [Request Verification Token](https://docs.microsoft.com/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method)
+* Generates a hidden [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method)
 
 * Provides the `asp-route-<Parameter Name>` attribute, where `<Parameter Name>` is added to the route values. The  `routeValues` parameters to `Html.BeginForm` and `Html.BeginRouteForm` provide similar functionality.
 
@@ -42,7 +42,7 @@ The Form Tag Helper above generates the following HTML:
 </form>
 ```
 
-The MVC runtime generates the `action` attribute value from the Form Tag Helper attributes `asp-controller` and `asp-action`. The Form Tag Helper also generates a hidden [Request Verification Token](https://docs.microsoft.com/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method). Protecting a pure HTML Form from cross-site request forgery is difficult, the Form Tag Helper provides this service for you.
+The MVC runtime generates the `action` attribute value from the Form Tag Helper attributes `asp-controller` and `asp-action`. The Form Tag Helper also generates a hidden [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method). Protecting a pure HTML Form from cross-site request forgery is difficult, the Form Tag Helper provides this service for you.
 
 ### Using a named route
 
@@ -100,12 +100,12 @@ The `Input` Tag Helper sets the HTML `type` attribute based on the .NET type. Th
 
 |.NET type|Input Type|
 |---|---|
-|Bool|type=”checkbox”|
-|String|type=”text”|
-|DateTime|type=”datetime”|
-|Byte|type=”number”|
-|Int|type=”number”|
-|Single, Double|type=”number”|
+|Bool|type="checkbox"|
+|String|type="text"|
+|DateTime|type="datetime"|
+|Byte|type="number"|
+|Int|type="number"|
+|Single, Double|type="number"|
 
 
 The following table shows some common [data annotations](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) attributes that the input tag helper will map to specific input types (not every validation attribute is listed):
@@ -113,13 +113,13 @@ The following table shows some common [data annotations](/dotnet/api/microsoft.a
 
 |Attribute|Input Type|
 |---|---|
-|[EmailAddress]|type=”email”|
-|[Url]|type=”url”|
-|[HiddenInput]|type=”hidden”|
-|[Phone]|type=”tel”|
-|[DataType(DataType.Password)]|	type=”password”|
-|[DataType(DataType.Date)]|	type=”date”|
-|[DataType(DataType.Time)]|	type=”time”|
+|[EmailAddress]|type="email"|
+|[Url]|type="url"|
+|[HiddenInput]|type="hidden"|
+|[Phone]|type="tel"|
+|[DataType(DataType.Password)]|	type="password"|
+|[DataType(DataType.Date)]|	type="date"|
+|[DataType(DataType.Time)]|	type="time"|
 
 
 Sample:
@@ -239,9 +239,7 @@ The *Views/Shared/EditorTemplates/ToDoItem.cshtml* template:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
-
->[!NOTE]
->Always use `for` (and *not* `foreach`) to iterate over a list. Evaluating an indexer in a LINQ expression can be expensive and should be minimized.
+`foreach` should be used if possible when the value is going to be used in an `asp-for` or `Html.DisplayFor` equivalent context. In general, `for` is better than `foreach` (if the scenario allows it) because it doesn't need to allocate an enumerator; however, evaluating an indexer in a LINQ expression can be expensive and should be minimized.
 
 &nbsp;
 
@@ -407,7 +405,7 @@ Sample:
 
 The `Index` method initializes the `CountryViewModel`, sets the selected country and passes it to the `Index` view.
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=8-13)]
 
 The HTTP POST `Index` method displays the selection:
 
@@ -568,10 +566,10 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 
 ## Additional resources
 
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
+* <xref:mvc/views/tag-helpers/intro>
 * [HTML Form element](https://www.w3.org/TR/html401/interact/forms.html)
 * [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages)
-* [Model Binding](xref:mvc/models/model-binding)
-* [Model Validation](xref:mvc/models/validation)
+* <xref:mvc/models/model-binding>
+* <xref:mvc/models/validation>
 * [IAttributeAdapter Interface](/dotnet/api/Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
 * [Code snippets for this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/working-with-forms/sample/final)

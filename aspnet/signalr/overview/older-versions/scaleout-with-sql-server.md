@@ -13,6 +13,8 @@ SignalR Scaleout with SQL Server (SignalR 1.x)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 In this tutorial, you will use SQL Server to distribute messages across a SignalR application that is deployed in two separate IIS instances. You can also run this tutorial on a single test machine, but to get the full effect, you need to deploy the SignalR application to two or more servers. You must also install SQL Server on one of the servers, or on a separate dedicated server. Another option is to run the tutorial using VMs on Azure.
 
 ![](scaleout-with-sql-server/_static/image1.png)
@@ -60,7 +62,6 @@ To enable Service Broker, use the following SQL query:
 > [!NOTE]
 > If this query appears to deadlock, make sure there are no applications connected to the DB.
 
-
 If you have enabled tracing, the traces will also show whether Service Broker is enabled.
 
 ## Create a SignalR Application
@@ -70,7 +71,7 @@ Create a SignalR application by following either of these tutorials:
 - [Getting Started with SignalR](../getting-started/tutorial-getting-started-with-signalr.md)
 - [Getting Started with SignalR and MVC 4](tutorial-getting-started-with-signalr-and-mvc-4.md)
 
-Next, we'll modify the chat application to support scaleout with SQL Server. First, add the SignalR.SqlServer NuGet package to your project. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
+Next, we'll modify the chat application to support scaleout with SQL Server. First, add the SignalR.SqlServer NuGet package to your project. In Visual Studio, from the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 [!code-powershell[Main](scaleout-with-sql-server/samples/sample4.ps1)]
 

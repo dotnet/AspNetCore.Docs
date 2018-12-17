@@ -4,18 +4,20 @@ author: rick-anderson
 description: Learn how to set up two-factor authentication (2FA) with an ASP.NET Core app.
 monikerRange: '< aspnetcore-2.0'
 ms.author: riande
-ms.date: 08/15/2017
+ms.date: 09/22/2018
+ms.custom: seodec18
 uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
- Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. For more information, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
+>[!WARNING]
+> Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. For more information, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
 
 This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm) before starting this tutorial.
 
-View the [completed sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/2fa/sample/Web2FA). [How to download](xref:tutorials/index#how-to-download-a-sample).
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/2fa/sample/Web2FA). [How to download](xref:index#how-to-download-a-sample).
 
 ## Create a new ASP.NET Core project
 
@@ -96,7 +98,7 @@ Open the *Views/Manage/Index.cshtml* Razor view file and remove the comment char
 
 * Tap on your user name, which activates the `Index` action method in Manage controller. Then tap the phone number **Add** link.
 
-![Manage view](2fa/_static/login2fa2.png)
+![Manage view - tap the "add" link](2fa/_static/login2fa2.png)
 
 * Add a phone number that will receive the verification code, and tap **Send verification code**.
 
@@ -110,11 +112,11 @@ If you don't get a text message, see twilio log page.
 
 * The Manage view shows your phone number was added successfully.
 
-![Manage view](2fa/_static/login2fa5.png)
+![Manage view - phone number added successfully](2fa/_static/login2fa5.png)
 
 * Tap **Enable** to enable two-factor authentication.
 
-![Manage view](2fa/_static/login2fa6.png)
+![Manage view - enable two-factor authentication](2fa/_static/login2fa6.png)
 
 ### Test two-factor authentication
 
