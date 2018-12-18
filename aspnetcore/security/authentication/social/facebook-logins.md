@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 11/11/2018
+ms.date: 12/18/2018
 uid: security/authentication/facebook-logins
 ---
 # Facebook external login setup in ASP.NET Core
@@ -140,7 +140,7 @@ You are now logged in using your Facebook credentials:
 
 ## Next steps
 
-* If desired, add the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package to your project for advanced Facebook authentication scenarios. This package is not required to integrate Facebook external login functionality with your application. 
+* Add the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package to your project for advanced Facebook authentication scenarios. This package isn't required to integrate Facebook external login functionality with your app. 
 
 * This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 
