@@ -9,7 +9,7 @@
           "**/obj/**",
           "**/sample/**",
           "**/samples/**",
-          "**/2.2-stage-samples/**",
+          "**/2.2-stage-samples/**/*.md",
           "aspnet/**",
           "**/includes/**",
           "**/aspnet-core-conceptual/**",
