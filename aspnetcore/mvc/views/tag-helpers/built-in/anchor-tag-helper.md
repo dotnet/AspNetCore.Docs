@@ -185,7 +185,7 @@ Consider the following directory hierarchy:
 
 The markup to reference the *Sessions* area *Index* Razor Page is:
 
-[!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?snippet_AspAreaRazorPages)]
+[!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
 The generated HTML:
 
