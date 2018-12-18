@@ -149,6 +149,7 @@ Click **Publish**. Visual Studio publishes your app to Azure. When the deploymen
 ### Update the app
 
 * Edit the *Pages/About.cshtml* Razor page and change its contents. For example, you can modify the paragraph to say "Hello ASP.NET Core!":
+
     [!code-html[About](publish-to-azure-webapp-using-vs/sample/about.cshtml?highlight=9&range=1-9)]
 
 * Right-click on the project and select **Publish...** again.
