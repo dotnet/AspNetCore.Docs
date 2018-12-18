@@ -13,7 +13,7 @@
           "**/includes/**",
           "**/aspnet-core-conceptual/**",
           "_site/**",
-          "***/readme.md"
+          "**/readme.md"
         ],
         "group": "group1",
         "src": "."
