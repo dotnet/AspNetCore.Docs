@@ -63,15 +63,16 @@ The following characteristics apply when hosting in-process:
 
 ### Out-of-process hosting model
 
-To configure an app for out-of-process hosting, don't include the `<AspNetCoreHostingModel>` property in the app's project file or set the value of the property to `OutOfProcess` (in-process hosting is set with `InProcess`):
+To configure an app for out-of-process hosting use either of the following approaches in the project file:
+
+* Don't specify the `<AspNetCoreHostingModel>` property. If the `<AspNetCoreHostingModel>` property isn't present in the file, the default value is `OutOfProcess`.
+* Set the value of the `<AspNetCoreHostingModel>`property to `OutOfProcess` (in-process hosting is set with `InProcess`):
 
 ```xml
 <PropertyGroup>
   <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
 </PropertyGroup>
 ```
-
-If the `<AspNetCoreHostingModel>` property isn't present in the file, the default value is `OutOfProcess`.
 
 [Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
