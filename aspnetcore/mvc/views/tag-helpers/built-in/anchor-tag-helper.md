@@ -169,7 +169,9 @@ The [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) a
 
 ### Usage in Razor Pages
 
-Razor Pages areas are supported in ASP.NET Core 2.1 or later. Consider the following directory hierarchy:
+Razor Pages areas are supported in ASP.NET Core 2.1 or later.
+
+Consider the following directory hierarchy:
 
 * **{Project name}**
   * **wwwroot**
@@ -241,7 +243,7 @@ The generated HTML:
 <a href="https://localhost/Home/About">About</a>
 ```
 
-The host name in the example is localhost, but the Anchor Tag Helper uses the website's public domain when generating the URL.
+The host name in the example is localhost. The Anchor Tag Helper uses the website's public domain when generating the URL.
 
 ## asp-host
 
@@ -287,7 +289,7 @@ Consider the following page handler:
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Pages/Attendee.cshtml.cs?name=snippet_OnGetProfileHandler)]
 
-The page model's associated markup links to the `OnGetProfile` page handler. Note that the `On<Verb>` prefix of the page handler method name is omitted in the `asp-page-handler` attribute value. If this were an asynchronous method, the `Async` suffix would be omitted too.
+The page model's associated markup links to the `OnGetProfile` page handler. Note the `On<Verb>` prefix of the page handler method name is omitted in the `asp-page-handler` attribute value. If this were an asynchronous method, the `Async` suffix would be omitted too.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspPageHandler)]
 
