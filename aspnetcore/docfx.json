@@ -14,7 +14,7 @@
           "**/aspnet-core-conceptual/**",
           "_site/**",
           "***/readme.md",
-          "***/license.md",
+          "***/license.md"
         ],
         "group": "group1",
         "src": "."
