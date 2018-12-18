@@ -9,12 +9,12 @@
           "**/obj/**",
           "**/sample/**",
           "**/samples/**",
+          "**/2.2-stage-samples/**",
           "aspnet/**",
           "**/includes/**",
           "**/aspnet-core-conceptual/**",
           "_site/**",
-          "***/readme.md",
-          "***/license.md"
+          "***/readme.md"
         ],
         "group": "group1",
         "src": "."
