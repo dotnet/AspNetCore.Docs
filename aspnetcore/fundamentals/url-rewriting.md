@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about URL rewriting and redirecting with URL Rewriting Middleware in ASP.NET Core applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/17/2018
+ms.date: 12/18/2018
 uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
