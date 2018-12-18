@@ -4,7 +4,7 @@ author: zuckerthoben
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 09/20/2018
+ms.date: 12/18/2018
 uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
@@ -274,9 +274,11 @@ NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), a
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 
-The preceding action returns `ActionResult<T>`, but inside the action it's returning either [CreatedAtRoute](/dotnet/api/system.web.http.apicontroller.createdatroute). Since the controller is decorated with the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute, a [BadRequest](/dotnet/api/system.web.http.apicontroller.badrequest) response is possible too. See [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses) for more info. Data annotations are used to tell clients which HTTP status codes this action is known to return. Decorate the action with the following attributes:
+The preceding action returns `ActionResult<T>`, but inside the action it's returning [CreatedAtRoute](/dotnet/api/system.web.http.apicontroller.createdatroute). Since the controller is decorated with the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute, a [BadRequest](/dotnet/api/system.web.http.apicontroller.badrequest) response is possible too. See [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses) for more info. Data annotations are used to tell clients which HTTP status codes this action is known to return. Decorate the action with the following attributes:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
+
+In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
 
 ::: moniker-end
 
