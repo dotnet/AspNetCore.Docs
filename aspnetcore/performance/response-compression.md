@@ -5,7 +5,7 @@ description: Learn about response compression and how to use Response Compressio
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/18/2018
 uid: performance/response-compression
 ---
 # Response compression in ASP.NET Core
@@ -27,8 +27,8 @@ Use Response Compression Middleware when you're:
   * [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Nginx Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting directly on:
-  * [HTTP.sys](xref:fundamentals/servers/httpsys) server
-  * [Kestrel](xref:fundamentals/servers/kestrel) server
+  * [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener)
+  * [Kestrel server](xref:fundamentals/servers/kestrel)
 
 ## Response compression
 

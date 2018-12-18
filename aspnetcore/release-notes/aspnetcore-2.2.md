@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the new features in ASP.NET Core 2.2.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/03/2018
+ms.date: 12/18/2018
 uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2
@@ -53,7 +53,7 @@ HTTP/2 is a major revision of the HTTP protocol. Some of the notable features of
 
 As a consequence of this change in framing, servers and clients need to negotiate the protocol version used. Application-Layer Protocol Negotiation (ALPN) is a TLS extension that allows the server and client negotiate the protocol version used as part of their TLS handshake. While it is possible to have prior knowledge between the server and the client on the protocol, all major browsers support ALPN as the only way to establish an HTTP/2 connection.
 
-For more information, see [HTTP/2 support](xref:fundamentals/servers?view=aspnetcore-2.2#http2-support).
+For more information, see [HTTP/2 support](xref:fundamentals/servers/index?view=aspnetcore-2.2#http2-support).
 
 ## Kestrel configuration
 

@@ -726,21 +726,6 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/fundamentals/servers/index.md",
-            "redirect_url": "/aspnet/core/fundamentals/servers",
-            "redirect_document_id": false
-        },
-        {
-            "source_path": "aspnetcore/fundamentals/servers/httpsys.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/httpsys",
-            "redirect_document_id": false
-        },
-        {
-            "source_path": "aspnetcore/fundamentals/servers/kestrel.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/kestrel",
-            "redirect_document_id": false
-        },
-        {
             "source_path": "aspnetcore/fundamentals/servers/aspnet-core-module.md",
             "redirect_url": "/aspnet/core/host-and-deploy/aspnet-core-module",
             "redirect_document_id": false

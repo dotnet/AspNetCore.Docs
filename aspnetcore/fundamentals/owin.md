@@ -4,7 +4,7 @@ author: ardalis
 description: Discover how ASP.NET Core supports the Open Web Interface for .NET (OWIN), which allows web apps to be decoupled from web servers.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 10/14/2016
+ms.date: 12/18/2018
 uid: fundamentals/owin
 ---
 # Open Web Interface for .NET (OWIN) with ASP.NET Core
@@ -156,7 +156,7 @@ namespace NowinSample
 }
 ```
 
-Learn more about [ASP.NET Core Servers](xref:fundamentals/servers).
+Learn more about [ASP.NET Core Servers](xref:fundamentals/servers/index).
 
 ## Run ASP.NET Core on an OWIN-based server and use its WebSockets support
 
@@ -312,4 +312,4 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 ## Additional resources
 
 * [Middleware](xref:fundamentals/middleware/index)
-* [Servers](xref:fundamentals/servers)
+* [Servers](xref:fundamentals/servers/index)

@@ -42,7 +42,7 @@
 ### [Overview](xref:fundamentals/host/index)
 ### [Web Host](xref:fundamentals/host/web-host)
 ### [Generic Host](xref:fundamentals/host/generic-host)
-## [Servers](xref:fundamentals/servers)
+## [Servers](xref:fundamentals/servers/index)
 ## [Initiate HTTP requests](xref:fundamentals/http-requests)
 
 # Web apps
