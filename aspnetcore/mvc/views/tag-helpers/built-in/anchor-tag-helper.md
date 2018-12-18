@@ -197,7 +197,9 @@ The generated HTML:
 > To support areas in a Razor Pages app, do one of the following in `Startup.ConfigureServices`:
 >
 > * Set the [compatibility version](xref:mvc/compatibility-version) to 2.1 or later.
-> * Set the [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) property to `true`.
+> * Set the [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) property to `true`:
+>
+>   [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_AllowAreas)]
 
 ### Usage in MVC
 

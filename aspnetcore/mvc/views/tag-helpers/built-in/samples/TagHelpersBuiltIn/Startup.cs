@@ -26,7 +26,11 @@ namespace TagHelpersBuiltIn
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            #region snippet_AllowAreas
+            services.AddMvc()
+                    .AddRazorPagesOptions(options => options.AllowAreas = true);
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
