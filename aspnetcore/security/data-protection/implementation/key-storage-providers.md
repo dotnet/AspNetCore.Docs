@@ -3,7 +3,7 @@ title: Key storage providers in ASP.NET Core
 author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: riande
-ms.date: 12/09/2018
+ms.date: 12/19/2018
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers in ASP.NET Core
@@ -134,7 +134,7 @@ Update-Database -Context MyKeysContext
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-Execute the following commands at a Windows command prompt:
+Execute the following commands in a command shell:
 
 ```console
 dotnet ef migrations add AddDataProtectionKeys --context MyKeysContext
@@ -143,7 +143,7 @@ dotnet ef database update --context MyKeysContext
 
 ---
 
-`MyKeysContext` is the `DBContext` defined in the preceding code sample. If you're using a `DBContext` with a different name, substitute your `DBContext` name for `MyKeysContext`.
+`MyKeysContext` is the `DbContext` defined in the preceding code sample. If you're using a `DbContext` with a different name, substitute your `DbContext` name for `MyKeysContext`.
 
 The `DataProtectionKeys` class/entity adopts the structure shown in the following table.
 
