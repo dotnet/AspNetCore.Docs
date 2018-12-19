@@ -42,11 +42,7 @@
 ### [Overview](xref:fundamentals/host/index)
 ### [Web Host](xref:fundamentals/host/web-host)
 ### [Generic Host](xref:fundamentals/host/generic-host)
-## Servers
-### [Overview](xref:fundamentals/servers/index)
-### [Kestrel](xref:fundamentals/servers/kestrel)
-### [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
-### [HTTP.sys](xref:fundamentals/servers/httpsys)
+## [Servers](xref:fundamentals/servers/index)
 ## [Initiate HTTP requests](xref:fundamentals/http-requests)
 
 # Web apps
@@ -256,9 +252,11 @@
 ## Host on Windows with IIS
 ### [Overview](xref:host-and-deploy/iis/index)
 ### [Troubleshoot on IIS](xref:host-and-deploy/iis/troubleshoot)
-### [ASP.NET Core Module reference](xref:host-and-deploy/aspnet-core-module)
+### [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module)
 ### [IIS support in Visual Studio](xref:host-and-deploy/iis/development-time-iis-support)
 ### [IIS Modules](xref:host-and-deploy/iis/modules)
+## [Kestrel](xref:fundamentals/servers/kestrel)
+## [HTTP.sys](xref:fundamentals/servers/httpsys)
 ## [Host in a Windows service](xref:host-and-deploy/windows-service)
 ## [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
 ## [Host on Linux with Apache](xref:host-and-deploy/linux-apache)

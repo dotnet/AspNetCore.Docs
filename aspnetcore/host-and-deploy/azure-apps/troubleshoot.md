@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with ASP.NET Core Azure App Service deployments.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 12/18/2018
 uid: host-and-deploy/azure-apps/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on Azure App Service
@@ -20,7 +20,7 @@ This article provides instructions on how to diagnose an ASP.NET Core app startu
 **502.5 Process Failure**  
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) attempts to start the worker process but it fails to start. Examining the Application Event Log often helps troubleshoot this type of problem. Accessing the log is explained in the [Application Event Log](#application-event-log) section.
+The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the worker process but it fails to start. Examining the Application Event Log often helps troubleshoot this type of problem. Accessing the log is explained in the [Application Event Log](#application-event-log) section.
 
 The *502.5 Process Failure* error page is returned when a misconfigured app causes the worker process to fail:
 
