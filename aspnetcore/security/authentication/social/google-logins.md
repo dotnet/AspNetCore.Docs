@@ -1,23 +1,17 @@
 ---
 title: Google external login setup in ASP.NET Core
 author: rick-anderson
-description: Google external login setup in ASP.NET Core
-keywords: ASP.NET Core,
+description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-manager: wpickett
-ms.date: 8/2/2017
-ms.topic: article
-ms.technology: aspnet
-ms.prod: asp.net-core
+ms.custom: "mvc, seodec18"
+ms.date: 11/11/2018
 uid: security/authentication/google-logins
 ---
-# Configuring Google authentication in ASP.NET Core
-
-<a name=security-authentication-google-logins></a>
+# Google external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
+This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core 2.0 project created on the [previous page](xref:security/authentication/social/index). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
 
 ## Create the app in Google API Console
 
@@ -27,7 +21,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * You are redirected to **API Manager Library** page:
 
-![API Manager Library page](index/_static/GoogleConsoleSwitchboard.png)
+![Landing on the API Manager Library page](index/_static/GoogleConsoleSwitchboard.png)
 
 * Tap **Create** and enter your **Project name**:
 
@@ -35,20 +29,20 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. Find **Google+ API** in the list and click on its link to add the API feature:
 
-![API Manager Library page](index/_static/GoogleConsoleChooseApi.png)
+![Search for "Google+ API" in the API Manager Library page](index/_static/GoogleConsoleChooseApi.png)
 
 * The page for the newly added API is displayed. Tap **Enable** to add Google+ sign in feature to your app:
 
-![API Manager Google+API page](index/_static/GoogleConsoleEnableApi.png)
+![Landing on the API Manager Google+API page](index/_static/GoogleConsoleEnableApi.png)
 
 * After enabling the API, tap **Create credentials** to configure the secrets:
 
-![API Manager Google+API page](index/_static/GoogleConsoleGoCredentials.png)
+![Create credentials button on API Manager Google+API page](index/_static/GoogleConsoleGoCredentials.png)
 
 * Choose:
-   * **Google+ API**
-   * **Web server (e.g. node.js, Tomcat)**, and
-   * **User data**:
+  * **Google+ API**
+  * **Web server (e.g. node.js, Tomcat)**, and
+  * **User data**:
 
 ![API Manager Credentials page: Find out what kind of credentials you need panel](index/_static/GoogleConsoleChooseCred.png)
 
@@ -58,7 +52,10 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * Because we are creating a Google+ project with just one feature (sign in), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
 
-* Enter your development URI with */signin-google* appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). Google middleware configured later in this tutorial will automatically handle requests at */signin-google* route to implement the OAuth flow.
+* Enter your development URI with `/signin-google` appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). The Google authentication configured later in this tutorial will automatically handle requests at `/signin-google` route to implement the OAuth flow.
+
+> [!NOTE]
+> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) class.
 
 * Press TAB to add the **Authorized redirect URIs** entry.
 
@@ -78,20 +75,42 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 ## Store Google ClientID and ClientSecret
 
-Link sensitive settings like Google `Client ID` and `Client Secret` to your application configuration using the [Secret Manager](../../app-secrets.md). For the purposes of this tutorial, name the tokens `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret`.
+Link sensitive settings like Google `Client ID` and `Client Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret`.
 
 The values for these tokens can be found in the JSON file downloaded in the previous step under `web.client_id` and `web.client_secret`.
 
-## Configure Google middleware
+## Configure Google Authentication
+
+::: moniker range=">= aspnetcore-2.0"
+
+Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
+
+```csharp
+services.AddDefaultIdentity<IdentityUser>()
+        .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
+
+services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+});
+```
+
+[!INCLUDE [default settings configuration](includes/default-settings.md)]
+
+[!INCLUDE[](includes/chain-auth-providers.md)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
- * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
- * To install with .NET Core CLI, execute the following in your project directory:
+* To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
+* To install with .NET Core CLI, execute the following in your project directory:
 
-   `dotnet add package Microsoft.AspNetCore.Authentication.Google`
-
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+`dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
 Add the Google middleware in the `Configure` method in *Startup.cs* file:
 
@@ -103,23 +122,9 @@ app.UseGoogleAuthentication(new GoogleOptions()
 });
 ```
 
-# [ASP.NET Core 2.0](#tab/aspnet20)
+::: moniker-end
 
-Add the Google middleware in the `ConfigureServices` method in *Startup.cs* file:
-
-```csharp
-services.AddAuthentication().AddGoogle(googleOptions =>
-{
-    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-});
-```
-
-When adding other authentication providers, `AddAuthentication` has to be called only once.
-
----
-
-See the [GoogleOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Google/GoogleOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Google middleware. This can be used to request different information about the user.
+See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
 ## Sign in with Google
 
@@ -137,15 +142,17 @@ You are now logged in using your Google credentials:
 
 ![Web application running in Microsoft Edge: User authenticated](index/_static/Done.png)
 
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
+
 ## Troubleshooting
 
 * If you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier on this page](#create-the-app-in-google-api-console). If the sign in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
-* If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
 
-* This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
+* This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 
 * Once you publish your web site to Azure web app, you should reset the `ClientSecret` in the Google API Console.
 
