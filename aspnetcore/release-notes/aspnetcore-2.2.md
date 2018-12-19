@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the new features in ASP.NET Core 2.2.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/03/2018
+ms.date: 12/18/2018
 uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2
@@ -66,7 +66,7 @@ In earlier versions of ASP.NET Core, Kestrel options are configured by calling `
 
 In earlier versions of ASP.NET Core, IIS serves as a reverse proxy. In 2.2, the ASP.NET Core Module can boot the CoreCLR and host an app inside the IIS worker process (*w3wp.exe*). In-process hosting provides performance and diagnostic gains when running with IIS.
 
-For more information, see [IIS in-process hosting](xref:fundamentals/servers/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
+For more information, see [in-process hosting for IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 
 ## SignalR Java client
 

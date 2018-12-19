@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/18/2018
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -19,7 +19,7 @@ For the 1.1 version of this topic, download [Kestrel web server implementation i
 
 Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included by default in ASP.NET Core project templates.
 
-Kestrel supports the following features:
+Kestrel supports the following scenarios:
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -70,7 +70,11 @@ HTTP/2 is disabled by default. For more information on configuration, see the [K
 
 You can use Kestrel by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
 
+Kestrel used as an edge (Internet-facing) web server:
+
 ![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
+
+Kestrel used in a reverse proxy configuration:
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
@@ -784,7 +788,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ### IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic.
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) topic.
 
 ::: moniker range=">= aspnetcore-2.2"
 
