@@ -3,7 +3,7 @@ title: Key storage providers in ASP.NET Core
 author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: riande
-ms.date: 12/06/2018
+ms.date: 12/19/2018
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers in ASP.NET Core
@@ -120,6 +120,38 @@ The generic parameter, `TContext`, must inherit from [DbContext](/dotnet/api/mic
 [IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
 
 [!code-csharp[Main](key-storage-providers/sample/MyKeysContext.cs)]
+
+Create the `DataProtectionKeys` table. 
+
+# [Visual Studio](#tab/visual-studio)
+
+Execute the following commands in the **Package Manager Console** (PMC) window:
+
+```PowerShell
+Add-Migration AddDataProtectionKeys -Context MyKeysContext
+Update-Database -Context MyKeysContext
+```
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+Execute the following commands in a command shell:
+
+```console
+dotnet ef migrations add AddDataProtectionKeys --context MyKeysContext
+dotnet ef database update --context MyKeysContext
+```
+
+---
+
+`MyKeysContext` is the `DbContext` defined in the preceding code sample. If you're using a `DbContext` with a different name, substitute your `DbContext` name for `MyKeysContext`.
+
+The `DataProtectionKeys` class/entity adopts the structure shown in the following table.
+
+| Property/Field | CLR Type | SQL Type              |
+| -------------- | -------- | --------------------- |
+| `Id`           | `int`    | `int`, PK, not null   |
+| `FriendlyName` | `string` | `nvarchar(MAX)`, null |
+| `Xml`          | `string` | `nvarchar(MAX)`, null |
 
 ::: moniker-end
 
