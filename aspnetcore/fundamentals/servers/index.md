@@ -171,7 +171,7 @@ For information on how to use Apache on Linux as a reverse proxy server for Kest
 
 ## IIS HTTP Server
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is a native IIS module that handles native IIS requests between IIS and the in-process IIS HTTP Server. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+IIS HTTP Server is an [in-process server](#in-process-hosting-model) for IIS and required for in-process deployments. The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) handles native IIS requests between IIS and the IIS HTTP Server. For more information, see <xref:host-and-deploy/aspnet-core-module>.
 
 ::: moniker-end
 
