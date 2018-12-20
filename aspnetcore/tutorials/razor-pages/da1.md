@@ -72,7 +72,7 @@ To test the behavior or `@page "{id:int?}"`:
 
 With the `@page "{id:int}"` directive, the break point is never hit. The routing engine return HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404).
 
-Although not recommended, you could write the the delete method as:
+Although not recommended, you could write the `OnGetAsync` method (in *Pages/Movies/Delete.cshtml.cs*) as:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Delete.cshtml.cs?name=snippet)]
 
@@ -120,7 +120,7 @@ When the Movies/Edit page is posted:
   public Movie Movie { get; set; }
   ```
 
-* If there are errors in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is posted again with the submitted values.
+* If there are errors in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is displayed back again with the submitted values.
 * If there are no model errors, the movie is saved.
 
 The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method in the Edit Razor Page.
