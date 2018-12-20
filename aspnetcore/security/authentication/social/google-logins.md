@@ -86,9 +86,9 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+services.AddDefaultIdentity<IdentityUser>()
+        .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
