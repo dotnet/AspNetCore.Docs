@@ -133,6 +133,7 @@ The following code shows the `GetGizmos` and `GetGizmosAsync` methods.
 - The method signature was annotated with the [async](https://msdn.microsoft.com/library/hh156513(VS.110).aspx) keyword, the return type was changed to `Task<List<Gizmo>>`, and *Async* was appended to the method name.
 - The asynchronous [HttpClient](https://msdn.microsoft.com/library/system.net.http.httpclient(VS.110).aspx) class is used instead of the synchronous [WebClient](https://msdn.microsoft.com/library/system.net.webclient.aspx) class.
 - The [await](https://msdn.microsoft.com/library/hh156528(VS.110).aspx) keyword was applied to the [HttpClient](https://msdn.microsoft.com/library/system.net.http.httpclient(VS.110).aspx)[GetAsync](https://msdn.microsoft.com/library/hh158944(VS.110).aspx) asynchronous method.
+- **ATTENTION** You should keep a singleton instance of the HttpClient per-application. Using an instance for each call can lead to unstable behaviour.
 
 The following image shows the asynchronous gizmo view.
 
