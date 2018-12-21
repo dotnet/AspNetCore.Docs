@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to update the generated pages in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
-ms.date: 12/3/2018
+ms.date: 12/20/2018
 uid: tutorials/razor-pages/da1
 ---
 # Update the generated pages in an ASP.NET Core app
@@ -64,22 +64,22 @@ A request to the page with the "{id:int}" route template that does **not** inclu
 @page "{id:int?}"
 ```
 
-To test the behavior or `@page "{id:int?}"`:
+To test the behavior of `@page "{id:int?}"`:
 
-* Set the page directive in *Pages/Movies/Details.cshtml* to `@page "{id:int?}"`
+* Set the page directive in *Pages/Movies/Details.cshtml* to `@page "{id:int?}"`.
 * Set a break point in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
-* Navigate to  `https://localhost:5001/Movies/Details/`
+* Navigate to `https://localhost:5001/Movies/Details/`.
 
 With the `@page "{id:int}"` directive, the break point is never hit. The routing engine return HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404).
 
-Although not recommended, you could write the the delete method as:
+Although not recommended, you could write the `OnGetAsync` method (in *Pages/Movies/Delete.cshtml.cs*) as:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Delete.cshtml.cs?name=snippet)]
 
 Test the preceding code:
 
-* Select a delete link.
-* Remove the ID from the URL. For example, change `https://localhost:5001/Movies/Delete/8` to `https://localhost:5001/Movies/Delete`
+* Select a **Delete** link.
+* Remove the ID from the URL. For example, change `https://localhost:5001/Movies/Delete/8` to `https://localhost:5001/Movies/Delete`.
 * Step through the code in the debugger.
 
 ### Review concurrency exception handling
@@ -120,7 +120,7 @@ When the Movies/Edit page is posted:
   public Movie Movie { get; set; }
   ```
 
-* If there are errors in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is posted again with the submitted values.
+* If there are errors in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is displayed with the submitted values.
 * If there are no model errors, the movie is saved.
 
 The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method in the Edit Razor Page.
