@@ -1,6 +1,6 @@
 ---
 uid: signalr/overview/getting-started/tutorial-getting-started-with-signalr
-title: "Getting Started with SignalR 2 | Microsoft Docs"
+title: "Real-time chat with SignalR 2 | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to use SignalR to create a real-time chat application. You will add SignalR to an empty ASP.NET web application and..."
 ms.author: riande
@@ -10,7 +10,7 @@ msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-s
 msc.type: authoredcontent
 ---
 
-# Tutorial: Getting Started with SignalR 2
+# Tutorial: Real-time chat with SignalR 2
 
 This tutorial shows you how to use SignalR to create a real-time chat application. You'll add SignalR to an empty ASP.NET web application and create an HTML page to send and display messages.
 
@@ -35,15 +35,15 @@ This section shows how to use Visual Studio 2017 and SignalR 2 to create an empt
 
     ![Create web](tutorial-getting-started-with-signalr/_static/image2.png)
 
-1. In the **New ASP.NET Project -SignalRChat** window, leave **Empty** selected and select **OK**.
+1. In the **New ASP.NET Project - SignalRChat** window, leave **Empty** selected and select **OK**.
 
 1. In **Solution Explorer**, right-click the project and select **Add** > **New Item**.
 
-1. In **Add New Item - SignalRChat** select **Installed** > **Visual C#** > **Web** > **SignalR**  and then select **SignalR Hub Class (v2)**.
+1. In **Add New Item - SignalRChat**, select **Installed** > **Visual C#** > **Web** > **SignalR**  and then select **SignalR Hub Class (v2)**.
 
 1. Name the class *ChatHub* and add it to the project.
 
-    This step creates the **ChatHub** class and adds a set of script files and assembly references that support SignalR to the project.
+    This step creates the *ChatHub.cs* class and adds a set of script files and assembly references that support SignalR to the project.
 
 1. Replace the code in the new *ChatHub.cs* class with this code:
 
@@ -61,7 +61,7 @@ This section shows how to use Visual Studio 2017 and SignalR 2 to create an empt
 
 1. In **Solution Explorer**, right-click the HTML page you created and select **Set as Start Page**.
 
-1. Replace the default code in the HTML page with this code.
+1. Replace the default code in the HTML page with this code:
 
     [!code-html[Main](tutorial-getting-started-with-signalr/samples/sample3.html)]
 
@@ -134,23 +134,25 @@ The `Send` method demonstrates several hub concepts:
 
 ### SignalR and jQuery in the index.html
 
-The *index.html* page in the code sample shows how to use the SignalR jQuery library to communicate with a SignalR hub. The code carries out many important tasks. It declares a proxy to reference the hub, declares a function that the server can call to push content to clients, and it starts a connection to send messages to the hub:
+The *index.html* page in the code sample shows how to use the SignalR jQuery library to communicate with a SignalR hub. The code carries out many important tasks. It declares a proxy to reference the hub, declares a function that the server can call to push content to clients, and it starts a connection to send messages to the hub.
 
 [!code-javascript[Main](tutorial-getting-started-with-signalr/samples/sample5.js)]
 
 > [!NOTE]
-> In JavaScript the reference to the server class and its members has to be `camelCase`. The code sample references the C# **ChatHub** class in JavaScript as `chatHub`.
+> In JavaScript the reference to the server class and its members has to be camelCase. The code sample references the C# *ChatHub* class in JavaScript as `chatHub`.
 
-In the code block below, you create a callback function in the script. The hub class on the server calls this function to push content updates to each client. The two lines that HTML encode the content before displaying it are optional and show a good way to prevent script injection.
+In this code block, you create a callback function in the script.
 
 [!code-html[Main](tutorial-getting-started-with-signalr/samples/sample6.html)]
 
+The hub class on the server calls this function to push content updates to each client. The two lines that HTML-encode the content before displaying it are optional and show a good way to prevent script injection.
+
 This code opens a connection with the hub.
+
+[!code-javascript[Main](tutorial-getting-started-with-signalr/samples/sample7.js)]
 
 > [!NOTE]
 > This approach ensures that the code establishes a connection before the event handler executes.
-
-[!code-javascript[Main](tutorial-getting-started-with-signalr/samples/sample7.js)]
 
 The code starts the connection and then passes it a function to handle the click event on the **Send** button in the HTML page.
 
@@ -161,19 +163,11 @@ In this tutorial you learned how to:
 > * Run the sample
 > * Examine the code
 
-## Get the code
-
-[Download Completed Project](http://code.msdn.microsoft.com/SignalR-Getting-Started-b9d18aa9)
-
-Provide a link to the finished tutorial in the https://github.com/dotnet/samples repository. Link to the root directory of the sample.
-
-Provide a second link to a zip file in the parent directory of the sample.
-
 ## Additional resources
 
 For a walkthrough on how to deploy the sample SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
 
-To learn more advanced SignalR developments concepts, got to these sites for SignalR source code and resources:
+To learn more advanced SignalR developments concepts, go to these sites for SignalR source code and resources:
 
 * [SignalR Project](http://signalr.net)
 

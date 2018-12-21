@@ -3207,7 +3207,7 @@
               href: signalr/overview/getting-started/introduction-to-signalr.md
             - name: Supported Platforms
               href: signalr/overview/getting-started/supported-platforms.md
-            - name: "Getting Started with SignalR 2"
+            - name: "Real-time chat with SignalR 2"
               href: signalr/overview/getting-started/tutorial-getting-started-with-signalr.md
             - name: "Tutorial: Getting Started with SignalR 2 and MVC 5"
               href: signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc.md
