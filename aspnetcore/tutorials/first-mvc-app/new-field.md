@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use Entity Framework Code First Migrations to add a new field to a model and migrate that change to a database.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/25/2018
+ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/new-field
 ---
 # Add a new field to an ASP.NET Core MVC app
@@ -35,13 +35,13 @@ Because you've added a new field to the `Movie` class, you need to update the bi
 [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
    ```
 
-Update the view templates in order to display, create and edit the new `Rating` property in the browser view.
+Update the view templates in order to display, create, and edit the new `Rating` property in the browser view.
 
 Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=17,39&range=24-64)]
 
-Update the */Views/Movies/Create.cshtml* with a `Rating` field. 
+Update the */Views/Movies/Create.cshtml* with a `Rating` field.
 
 <!-- VS -------------------------->
 # [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
@@ -68,7 +68,7 @@ This error occurs because the updated Movie model class is different than the sc
 
 There are a few approaches to resolving the error:
 
-1. Have the Entity Framework automatically drop and re-create the database based on the new model class schema. This approach is very convenient early in the development cycle when you are doing active development on a test database; it allows you to quickly evolve the model and database schema together. The downside, though, is that you lose existing data in the database — so you don't want to use this approach on a production database! Using an initializer to automatically seed a database with test data is often a productive way to develop an application. This is a good approach for early development and when using SQLite.
+1. Have the Entity Framework automatically drop and re-create the database based on the new model class schema. This approach is very convenient early in the development cycle when you're doing active development on a test database; it allows you to quickly evolve the model and database schema together. The downside, though, is that you lose existing data in the database — so you don't want to use this approach on a production database! Using an initializer to automatically seed a database with test data is often a productive way to develop an application. This is a good approach for early development and when using SQLite.
 
 2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that you keep your data. You can make this change either manually or by creating a database change script.
 
