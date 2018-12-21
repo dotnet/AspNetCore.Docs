@@ -1,3 +1,9 @@
+As you can read [here](https://developers.google.com/+/web/api/rest/) the tutorial below is outdated. There is no sens of using it anymore, as it relates to actually obsoleted and depreacted Google Plus API, please sort out changingthe document to be compatible with: Google Sign-In API. 
+Suggested way:
+https://developers.google.com/identity/sign-in/web/sign-in#specify_your_apps_client_id
+It uses client to cooperate with Google IdP server's, however I do really think there is a possibility to write kind of Extensions for this so the convention of encapsulated into ServiceProvider IdPs will be kept.
+
+
 ---
 title: Google external login setup in ASP.NET Core
 author: rick-anderson
