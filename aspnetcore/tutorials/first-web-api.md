@@ -161,15 +161,15 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a `TodoContext` class to the *Models* folder.
+Add a `TodoContext` class to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Add a `TodoContext` class in the *Models* folder:
+Add a `TodoContext` class in the *Models* folder:
 
 ---
 
@@ -204,11 +204,11 @@ The preceding code:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* In the *Controllers* folder, create a class named `TodoController`.
+In the *Controllers* folder, create a class named `TodoController`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In the *Controllers* folder, add the class `TodoController`.
+In the *Controllers* folder, add the class `TodoController`.
 
 ---
 
