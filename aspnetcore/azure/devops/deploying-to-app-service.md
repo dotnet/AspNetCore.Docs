@@ -1,9 +1,9 @@
 ---
-title: DevOps with ASP.NET Core and Azure | Deploy an app to App Service
+title: Deploy an app to App Service - DevOps with ASP.NET Core and Azure
 author: CamSoper
-description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
+description: Deploy an ASP.NET Core app to Azure App Service, the first step for DevOps with ASP.NET Core and Azure.
 ms.author: casoper
-ms.custom: mvc
+ms.custom: "mvc, seodec18"
 ms.date: 10/24/2018
 uid: azure/devops/deploy-to-app-service
 ---
@@ -144,12 +144,12 @@ The app has already been deployed from the command shell. Let's use Visual Studi
 3. Press **Ctrl**+**Shift**+**B** to build the app.
 4. In Solution Explorer, right-click on the project and click **Publish**.
 
-    ![Right-click, Publish](./media/deploying-to-app-service/publish.png)
+    ![Screenshot showing Right-click, Publish](./media/deploying-to-app-service/publish.png)
 5. Visual Studio can create a new App Service resource, but this update will be published over the existing deployment. In the **Pick a publish target** dialog, select **App Service** from the list on the left, and then select **Select Existing**. Click **Publish**.
 6. In the **App Service** dialog, confirm that the Microsoft or Organizational account used to create your Azure subscription is displayed in the upper right. If it's not, click the drop-down and add it.
 7. Confirm that the correct Azure **Subscription** is selected. For **View**, select **Resource Group**. Expand the **AzureTutorial** resource group and then select the existing web app. Click **OK**.
 
-    ![Publish App Service dialog](./media/deploying-to-app-service/publish-dialog.png)
+    ![Screenshot showing Publish App Service dialog](./media/deploying-to-app-service/publish-dialog.png)
 
 Visual Studio builds and deploys the app to Azure. Browse to the web app URL. Validate that the `<h2>` element modification is live.
 
@@ -205,7 +205,7 @@ Deployment slots support the staging of changes without impacting the app runnin
 
 6. To verify that V3 has been deployed to the staging slot, open two browser windows. In one window, navigate to the original web app URL. In the other window, navigate to the staging web app URL. The production URL serves V2 of the app. The staging URL serves V3 of the app.
 
-    ![Comparing the browser windows](./media/deploying-to-app-service/ready-to-swap.png)
+    ![Screenshot comparing the browser windows](./media/deploying-to-app-service/ready-to-swap.png)
 
 7. In the Cloud Shell, swap the verified/warmed-up staging slot into production.
 

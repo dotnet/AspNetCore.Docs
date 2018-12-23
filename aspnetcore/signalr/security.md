@@ -5,10 +5,9 @@ description: Learn how to use authentication and authorization in ASP.NET Core S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 10/17/2018
+ms.date: 11/06/2018
 uid: signalr/security
 ---
-
 # Security considerations in ASP.NET Core SignalR
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
@@ -30,7 +29,7 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 * HTTP methods `GET` and `POST` must be allowed.
 * Credentials must be enabled, even when authentication is not used.
 
-For example, the following CORS policy allows a SignalR browser client hosted on `http://example.com` to access the SignalR app hosted on `http://signalr.example.com`:
+For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
 [!code-csharp[Main](security/sample/Startup.cs?name=snippet1)]
 
@@ -38,6 +37,14 @@ For example, the following CORS policy allows a SignalR browser client hosted on
 > SignalR is not compatible with the built-in CORS feature in Azure App Service.
 
 ## WebSocket Origin Restriction
+
+::: moniker range=">= aspnetcore-2.2"
+
+The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](xref:fundamentals/websockets#websocket-origin-restriction).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
@@ -53,9 +60,18 @@ In ASP.NET Core 2.1 and later, header validation can be achieved using a custom 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
 
+::: moniker-end
+
 ## Access token logging
 
-When using WebSockets or Server-Sent Events, the browser client sends the access token in the query string. Receiving the access token via query string is generally as secure as using the standard `Authorization` header. However, many web servers log the URL for each request, including the query string. Logging the URLs may log the access token. A best practice is to set the web server's logging settings to prevent logging access tokens.
+When using WebSockets or Server-Sent Events, the browser client sends the access token in the query string. Receiving the access token via query string is generally as secure as using the standard `Authorization` header. You should always use HTTPS to ensure a secure end-to-end connection between the client and the server. Many web servers log the URL for each request, including the query string. Logging the URLs may log the access token. ASP.NET Core logs the URL for each request by default, which will include the query string. For example:
+
+```
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/myhub?access_token=1234
+```
+
+If you have concerns about logging this data with your server logs, you can disable this logging entirely by configuring the `Microsoft.AspNetCore.Hosting` logger to the `Warning` level or above (these messages are written at `Info` level). See the documentation on [Log Filtering](xref:fundamentals/logging/index#log-filtering) for more information. If you still want to log certain request information, you can [write a middleware](xref:fundamentals/middleware/index#write-middleware) to log the data you require and filter out the `access_token` query string value (if present).
 
 ## Exceptions
 

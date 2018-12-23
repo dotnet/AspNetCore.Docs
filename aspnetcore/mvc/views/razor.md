@@ -520,6 +520,105 @@ The following code is the generated Razor C# class:
 
 The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
 
+## Templated Razor delegates
+
+Razor templates allow you to define a UI snippet with the following format:
+
+```cshtml
+@<tag>...</tag>
+```
+
+The following example illustrates how to specify a templated Razor delegate as a <xref:System.Func`2>. The [dynamic type](/dotnet/csharp/programming-guide/types/using-type-dynamic) is specified for the parameter of the method that the delegate encapsulates. An [object type](/dotnet/csharp/language-reference/keywords/object) is specified as the return value of the delegate. The template is used with a <xref:System.Collections.Generic.List`1> of `Pet` that has a `Name` property.
+
+```csharp
+public class Pet
+{
+    public string Name { get; set; }
+}
+```
+
+```cshtml
+@{
+    Func<dynamic, object> petTemplate = @<p>You have a pet named @item.Name.</p>;
+
+    var pets = new List<Pet>
+    {
+        new Pet { Name = "Rin Tin Tin" },
+        new Pet { Name = "Mr. Bigglesworth" },
+        new Pet { Name = "K-9" }
+    };
+}
+```
+
+The template is rendered with `pets` supplied by a `foreach` statement:
+
+```cshtml
+@foreach (var pet in pets)
+{
+    @petTemplate2(pet)
+}
+```
+
+Rendered output:
+
+```html
+<p>You have a pet named <strong>Rin Tin Tin</strong>.</p>
+<p>You have a pet named <strong>Mr. Bigglesworth</strong>.</p>
+<p>You have a pet named <strong>K-9</strong>.</p>
+```
+
+You can also supply an inline Razor template as an argument to a method. In the following example, the `Repeat` method receives a Razor template. The method uses the template to produce HTML content with repeats of items supplied from a list:
+
+```cshtml
+@using Microsoft.AspNetCore.Html
+
+@functions {
+    public static IHtmlContent Repeat(IEnumerable<dynamic> items, int times, 
+        Func<dynamic, IHtmlContent> template)
+    {
+        var html = new HtmlContentBuilder();
+
+        foreach (var item in items)
+        {
+            for (var i = 0; i < times; i++)
+            {
+                html.AppendHtml(template(item));
+            }
+        }
+
+        return html;
+    }
+}
+```
+
+Using the list of pets from the prior example, the `Repeat` method is called with:
+
+* <xref:System.Collections.Generic.List`1> of `Pet`.
+* Number of times to repeat each pet.
+* Inline template to use for the list items of an unordered list.
+
+```cshtml
+<ul>
+    @Repeat(pets, 3, @<li>@item.Name</li>)
+</ul>
+```
+
+Rendered output:
+
+```html
+<ul>
+    <li>Rin Tin Tin</li>
+    <li>Rin Tin Tin</li>
+    <li>Rin Tin Tin</li>
+    <li>Mr. Bigglesworth</li>
+    <li>Mr. Bigglesworth</li>
+    <li>Mr. Bigglesworth</li>
+    <li>K-9</li>
+    <li>K-9</li>
+    <li>K-9</li>
+</ul>
+```
+
 ## Tag Helpers
 
 There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-helpers/intro).
@@ -636,7 +735,7 @@ The Razor view engine performs case-sensitive lookups for views. However, the ac
 
 Developers are encouraged to match the casing of file and directory names to the casing of:
 
-    * Area, controller, and action names.
-    * Razor Pages.
+* Area, controller, and action names.
+* Razor Pages.
 
 Matching case ensures the deployments find their views regardless of the underlying file system.

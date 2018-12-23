@@ -4,7 +4,7 @@ title: "Routing and Action Selection in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
 ms.author: riande
-ms.date: 07/27/2012
+ms.date: 12/14/2018
 ms.assetid: bcf2d223-cb7f-411e-be05-f43e96a14015
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/routing-and-action-selection
 msc.type: authoredcontent
@@ -56,7 +56,7 @@ If you provide defaults, the route will match a URI that is missing those segmen
 
 [!code-csharp[Main](routing-and-action-selection/samples/sample4.cs)]
 
-The URI "`http://localhost/api/products`" matches this route. The "{category}" segment is assigned the default value "all".
+The URIs `http://localhost/api/products/all` and `http://localhost/api/products` match the preceding route. In the latter URI, the missing `{category}` segment is assigned the default value `all`.
 
 ### Route Dictionary
 

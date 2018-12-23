@@ -3,14 +3,15 @@ title: Facebook external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-ms.date: 08/01/2017
+ms.custom: "mvc, seodec18"
+ms.date: 12/18/2018
 uid: security/authentication/facebook-logins
 ---
 # Facebook external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the [previous page](xref:security/authentication/social/index). Facebook authentication requires the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package. We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
 
 ## Create the app in Facebook
 
@@ -22,19 +23,19 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Fill out the form and tap the **Create App ID** button.
 
-   ![Create a New App ID form](index/_static/FBNewAppId.png)
+  ![Create a New App ID form](index/_static/FBNewAppId.png)
 
 * On the **Select a product** page, click **Set Up** on the **Facebook Login** card.
 
-   ![Product Setup page](index/_static/FBProductSetup.png)
+  ![Product Setup page](index/_static/FBProductSetup.png)
 
 * The **Quickstart** wizard will launch with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **Settings** link in the menu on the left:
 
-   ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
+  ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
 
 * You are presented with the **Client OAuth Settings** page:
 
-![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
+  ![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
 * Enter your development URI with */signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). The Facebook authentication configured later in this tutorial will automatically handle requests at */signin-facebook* route to implement the OAuth flow.
 
@@ -43,10 +44,9 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Click **Save Changes**.
 
-* Click **Settings > Basic** link in the left navigation. 
+* Click **Settings** > **Basic** link in the left navigation.
 
-    On this page, make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
-
+  On this page, make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
 
 * When deploying the site you need to revisit the **Facebook Login** setup page and register a new public URI.
 
@@ -63,14 +63,14 @@ dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
 
 ## Configure Facebook Authentication
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
-services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+services.AddDefaultIdentity<IdentityUser>()
+        .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 services.AddAuthentication().AddFacebook(facebookOptions =>
 {
@@ -81,9 +81,11 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-[!INCLUDE[](~/includes/chain-auth-providers.md)]
+[!INCLUDE[](includes/chain-auth-providers.md)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 Install the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package.
 
@@ -102,7 +104,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 });
 ```
 
----
+::: moniker-end
 
 See the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.builder.facebookoptions) API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:
 
@@ -121,7 +123,7 @@ When you click on **Facebook**, you are redirected to Facebook for authenticatio
 
 Facebook authentication requests public profile and email address by default:
 
-![Facebook authentication page](index/_static/FBLoginDone.png)
+![Facebook authentication page consent screen](index/_static/FBLoginDone.png)
 
 Once you enter your Facebook credentials you are redirected back to your site where you can set your email.
 
@@ -129,12 +131,16 @@ You are now logged in using your Facebook credentials:
 
 ![Web application: User authenticated](index/_static/Done.png)
 
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
+
 ## Troubleshooting
 
 * **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
+
+* Add the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package to your project for advanced Facebook authentication scenarios. This package isn't required to integrate Facebook external login functionality with your app. 
 
 * This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 

@@ -3,24 +3,21 @@
 ## [Compare ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
 ## [Compare .NET Core and .NET Framework](/dotnet/articles/standard/choosing-core-framework-server)
 
+# [Get started](xref:getting-started)
+
 # Tutorials
-## Web apps
-### Razor Pages
-#### [With Visual Studio](xref:tutorials/razor-pages/index)
-#### [With Visual Studio Code](xref:tutorials/razor-pages-vsc/index)
-#### [With Visual Studio for Mac](xref:tutorials/razor-pages-mac/index)
-### MVC
-#### [With Visual Studio](xref:tutorials/first-mvc-app/index)
-#### [With Visual Studio Code](xref:tutorials/first-mvc-app-xplat/index)
-#### [With Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/index)
 ## Web APIs
-### [With Visual Studio](xref:tutorials/first-web-api)
-### [With Visual Studio Code](xref:tutorials/web-api-vsc)
-### [With Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-### [For native mobile apps](xref:mobile/native-mobile-backend)
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
+## Web apps
+### [Razor Pages](xref:tutorials/razor-pages/index)
+### [MVC](xref:tutorials/first-mvc-app/index)
+
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
+## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
+
 ## Data access
 ### [EF Core with Razor Pages](xref:data/ef-rp/index)
 ### [EF Core with MVC, existing DB](/ef/core/get-started/aspnetcore/existing-db)
@@ -32,7 +29,7 @@
 ## [App startup](xref:fundamentals/startup)
 ## [Dependency injection (services)](xref:fundamentals/dependency-injection)
 ## [Routing](xref:fundamentals/routing)
-## [Multiple environments](xref:fundamentals/environments)
+## [Environments (dev, stage, prod)](xref:fundamentals/environments)
 ## [Configuration](xref:fundamentals/configuration/index)
 ## [Options](xref:fundamentals/configuration/options)
 ## [Logging](xref:fundamentals/logging/index)
@@ -45,87 +42,42 @@
 ### [Overview](xref:fundamentals/host/index)
 ### [Web Host](xref:fundamentals/host/web-host)
 ### [Generic Host](xref:fundamentals/host/generic-host)
-## Servers
-### [Overview](xref:fundamentals/servers/index)
-### [Kestrel](xref:fundamentals/servers/kestrel)
-### [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
-### [HTTP.sys](xref:fundamentals/servers/httpsys)
+## [Servers](xref:fundamentals/servers/index)
 ## [Initiate HTTP requests](xref:fundamentals/http-requests)
 
 # Web apps
 ## Razor Pages
 ### [Overview](xref:razor-pages/index)
-### Tutorials
-#### Razor Pages with Visual Studio
-##### [Overview](xref:tutorials/razor-pages/index)
-##### [Get started](xref:tutorials/razor-pages/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages/model)
-##### [Scaffolding](xref:tutorials/razor-pages/page)
-##### [SQL Server](xref:tutorials/razor-pages/sql)
-##### [Update the pages](xref:tutorials/razor-pages/da1)
-##### [Add search](xref:tutorials/razor-pages/search)
-##### [Add a new field](xref:tutorials/razor-pages/new-field)
-##### [Add validation](xref:tutorials/razor-pages/validation)
-#### Razor Pages with Visual Studio Code
-##### [Overview](xref:tutorials/razor-pages-vsc/index)
-##### [Get started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages-vsc/model)
-##### [Scaffolded Razor Pages](xref:tutorials/razor-pages-vsc/page)
-##### [Work with SQLite](xref:tutorials/razor-pages-vsc/sql)
-##### [Update the pages](xref:tutorials/razor-pages-vsc/da1)
-##### [Add search](xref:tutorials/razor-pages-vsc/search)
-#### Razor Pages with Visual Studio for Mac
-##### [Overview](xref:tutorials/razor-pages-mac/index)
-##### [Get started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
-##### [Add a model](xref:tutorials/razor-pages-mac/model)
-##### [Scaffolded Razor Pages](xref:tutorials/razor-pages-mac/page)
-##### [Work with SQLite](xref:tutorials/razor-pages-mac/sql)
-##### [Update the pages](xref:tutorials/razor-pages-mac/da1)
-##### [Add search](xref:tutorials/razor-pages-mac/search)
+### [Razor Pages tutorial](xref:tutorials/razor-pages/index)
+#### [Get started](xref:tutorials/razor-pages/razor-pages-start)
+#### [Add a model](xref:tutorials/razor-pages/model)
+#### [Scaffolding](xref:tutorials/razor-pages/page)
+#### [Work with a DB](xref:tutorials/razor-pages/sql)
+#### [Update the pages](xref:tutorials/razor-pages/da1)
+#### [Add search](xref:tutorials/razor-pages/search)
+#### [Add a new field](xref:tutorials/razor-pages/new-field)
+#### [Add validation](xref:tutorials/razor-pages/validation)
+
+## MVC
+### [MVC Overview](xref:mvc/overview)
+### [MVC tutorial](xref:tutorials/first-mvc-app/index)
+#### [Get started](xref:tutorials/first-mvc-app/start-mvc)
+#### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
+#### [Add a view](xref:tutorials/first-mvc-app/adding-view)
+#### [Add a model](xref:tutorials/first-mvc-app/adding-model)
+#### [Work with a DB](xref:tutorials/first-mvc-app/working-with-sql)
+#### [Controller actions and views](xref:tutorials/first-mvc-app/controller-methods-views)
+#### [Add search](xref:tutorials/first-mvc-app/search)
+#### [Add a new field](xref:tutorials/first-mvc-app/new-field)
+#### [Add validation](xref:tutorials/first-mvc-app/validation)
+#### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+
 ### [Filters](xref:razor-pages/filter)
-### [Class libraries](xref:razor-pages/ui-class)
+### [Razor Class Libraries](xref:razor-pages/ui-class)
 ### [Route and app conventions](xref:razor-pages/razor-pages-conventions)
 ### [Upload files](xref:razor-pages/upload-files)
 ### [Razor SDK](xref:razor-pages/sdk)
-## MVC
-### [Overview](xref:mvc/overview)
-### Tutorials
-#### MVC with Visual Studio
-##### [Overview](xref:tutorials/first-mvc-app/index)
-##### [Get started](xref:tutorials/first-mvc-app/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app/adding-model)
-##### [Work with SQL Server](xref:tutorials/first-mvc-app/working-with-sql)
-##### [Controller actions and views](xref:tutorials/first-mvc-app/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app/search)
-##### [Add a new field](xref:tutorials/first-mvc-app/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
-#### MVC with Visual Studio Code
-##### [Overview](xref:tutorials/first-mvc-app-xplat/index)
-##### [Get started](xref:tutorials/first-mvc-app-xplat/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app-xplat/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app-xplat/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app-xplat/adding-model)
-##### [Work with SQLite](xref:tutorials/first-mvc-app-xplat/working-with-sql)
-##### [Controller methods and views](xref:tutorials/first-mvc-app-xplat/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app-xplat/search)
-##### [Add a new field](xref:tutorials/first-mvc-app-xplat/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app-xplat/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
-#### MVC with Visual Studio for Mac
-##### [Overview](xref:tutorials/first-mvc-app-mac/index)
-##### [Get started](xref:tutorials/first-mvc-app-mac/start-mvc)
-##### [Add a controller](xref:tutorials/first-mvc-app-mac/adding-controller)
-##### [Add a view](xref:tutorials/first-mvc-app-mac/adding-view)
-##### [Add a model](xref:tutorials/first-mvc-app-mac/adding-model)
-##### [Work with SQLite](xref:tutorials/first-mvc-app-mac/working-with-sql)
-##### [Controller methods and views](xref:tutorials/first-mvc-app-mac/controller-methods-views)
-##### [Add search](xref:tutorials/first-mvc-app-mac/search)
-##### [Add a new field](xref:tutorials/first-mvc-app-mac/new-field)
-##### [Add validation](xref:tutorials/first-mvc-app-mac/validation)
-##### [Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
+
 ### [Views](xref:mvc/views/overview)
 ### [Partial views](xref:mvc/views/partial)
 ### [Controllers](xref:mvc/controllers/actions)
@@ -171,30 +123,35 @@
 
 # Web APIs
 ## [Overview](xref:web-api/index)
+
 ## Tutorials
-### [Web API with Visual Studio](xref:tutorials/first-web-api)
-### [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
-### [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-### [Web API for native mobile apps](xref:mobile/native-mobile-backend)
+### [Create a web API](xref:tutorials/first-web-api)
+### [Web API with MongoDB](xref:tutorials/first-mongo-app)
+
 ## Swagger / OpenAPI
-### [Overview](xref:tutorials/get-started-with-swashbuckle)
-### [Swagger help pages](xref:tutorials/web-api-help-pages-using-swagger)
+### [Overview](xref:tutorials/web-api-help-pages-using-swagger)
+### [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 ### [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 ## [Action return types](xref:web-api/action-return-types)
 ## [Format response data](xref:web-api/advanced/formatting)
 ## [Custom formatters](xref:web-api/advanced/custom-formatters)
 
+## [Analyzers](xref:web-api/advanced/analyzers)
+## [Conventions](xref:web-api/advanced/conventions)
+
 # Real-time apps
-## [Overview](xref:signalr/introduction)
+## [SignalR overview](xref:signalr/introduction)
 ## [Supported platforms](xref:signalr/supported-platforms)
 ## Tutorials
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
+## [Samples](https://github.com/aspnet/SignalR-samples)
 ## Server concepts
 ### [Hubs](xref:signalr/hubs)
 ### [HubContext](xref:signalr/hubcontext)
 ### [Users and groups](xref:signalr/groups)
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+### [API design considerations](xref:signalr/api-design)
 ## Clients
 ### [.NET client](xref:signalr/dotnet-client)
 ### [.NET API reference](/dotnet/api/microsoft.aspnetcore.signalr.client)
@@ -202,7 +159,10 @@
 ### [Java API reference](/java/api/com.microsoft.signalr?view=aspnet-signalr-java)
 ### [JavaScript client](xref:signalr/javascript-client)
 ### [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
-### [WebPack and TypeScript](xref:tutorials/signalr-typescript-webpack)
+## Hosting and scaling
+### [Overview](xref:signalr/scale)
+### [Azure SignalR Service](/azure/azure-signalr/signalr-overview)
+### [Redis backplane](xref:signalr/redis-backplane)
 ## [Configuration](xref:signalr/configuration)
 ## [Authentication and authorization](xref:signalr/authn-and-authz)
 ## [Security considerations](xref:signalr/security)
@@ -278,7 +238,7 @@
 ## Host on Azure App Service
 ### [Overview](xref:host-and-deploy/azure-apps/index)
 ### [Publish with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
-### [Publish with CLI tools](/azure/app-service/app-service-web-get-started-dotnet)
+### [Publish with CLI tools](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 ### [Publish with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Continuous deployment with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 ### [Troubleshoot startup errors](xref:host-and-deploy/azure-apps/troubleshoot)
@@ -292,9 +252,11 @@
 ## Host on Windows with IIS
 ### [Overview](xref:host-and-deploy/iis/index)
 ### [Troubleshoot on IIS](xref:host-and-deploy/iis/troubleshoot)
-### [ASP.NET Core Module reference](xref:host-and-deploy/aspnet-core-module)
+### [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module)
 ### [IIS support in Visual Studio](xref:host-and-deploy/iis/development-time-iis-support)
 ### [IIS Modules](xref:host-and-deploy/iis/modules)
+## [Kestrel](xref:fundamentals/servers/kestrel)
+## [HTTP.sys](xref:fundamentals/servers/httpsys)
 ## [Host in a Windows service](xref:host-and-deploy/windows-service)
 ## [Host on Linux with Nginx](xref:host-and-deploy/linux-nginx)
 ## [Host on Linux with Apache](xref:host-and-deploy/linux-apache)
@@ -308,7 +270,7 @@
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
 ## [Errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
-
+## [Health checks](xref:host-and-deploy/health-checks)
 
 # Security and Identity
 ## [Overview](xref:security/index)
@@ -327,7 +289,7 @@
 #### [Twitter authentication](xref:security/authentication/twitter-logins)
 #### [Google authentication](xref:security/authentication/google-logins)
 #### [Microsoft authentication](xref:security/authentication/microsoft-logins)
-#### [Other authentication providers](xref:security/authentication/otherlogins)
+#### [External authentication providers](xref:security/authentication/otherlogins)
 #### [Additional claims](xref:security/authentication/social/additional-claims)
 ### [WS-Federation authentication](xref:security/authentication/ws-federation)
 ### [Account confirmation and password recovery](xref:security/authentication/accconfirm)
@@ -403,6 +365,16 @@
 ## [Share cookies among apps](xref:security/cookie-sharing)
 ## [IP safelist](xref:security/ip-safelist)
 
+# Performance
+## [Overview](xref:performance/performance-best-practices)
+##  Response caching
+### [Overview](xref:performance/caching/response)
+### [In-memory cache](xref:performance/caching/memory)
+### [Distributed caching](xref:performance/caching/distributed)
+### [Response caching middleware](xref:performance/caching/middleware)
+## [Response compression](xref:performance/response-compression)
+## [Diagnostic Tools](xref:performance/diagnostic-tools)
+
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
 ## [Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
@@ -413,20 +385,14 @@
 ## [Change tokens](xref:fundamentals/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
 ## [Background tasks with hosted services](xref:fundamentals/host/hosted-services)
-## [Enhance an app from an external assembly](xref:fundamentals/configuration/platform-specific-configuration)
+## [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
 ## [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app)
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
 ## [Use a file watcher](xref:tutorials/dotnet-watch)
-## Cache responses
-### [Overview](xref:performance/caching/index)
-### [Cache in-memory](xref:performance/caching/memory)
-### [Distributed caching](xref:performance/caching/distributed)
-### [Response caching](xref:performance/caching/response)
-### [Response caching middleware](xref:performance/caching/middleware)
-## [Response compression](xref:performance/response-compression)
 
 # Migration
+## [2.1 to 2.2](xref:migration/21-to-22)
 ## [2.0 to 2.1](xref:migration/20_21)
 ## 1.x to 2.0
 ### [Overview](xref:migration/1x-to-2x/index)
@@ -442,10 +408,11 @@
 ### [HTTP modules to middleware](xref:migration/http-modules)
 
 # What's new
+## [What's new in 2.2](xref:aspnetcore-2.2)
 ## [What's new in 2.1](xref:aspnetcore-2.1)
 ## [What's new in 2.0](xref:aspnetcore-2.0)
 ## [What's new in 1.1](xref:aspnetcore-1.1)
 
-# [API reference](/dotnet/api/?view=aspnetcore-2.0)
+# [API reference](/dotnet/api/?view=aspnetcore-2.2)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)

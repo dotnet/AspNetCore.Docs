@@ -50,6 +50,8 @@ A group is a collection of connections associated with a name. Messages can be s
 
 Group membership isn't preserved when a connection reconnects. The connection needs to rejoin the group when it's re-established. It's not possible to count the members of a group, since this information is not available if the application is scaled to multiple servers.
 
+To protect access to resources while using groups, use [authentication and authorization](xref:signalr/authn-and-authz) functionality in ASP.NET Core. If you only add users to a group when the credentials are valid for that group, messages sent to that group will only go to authorized users. However, groups are not a security feature. Authentication claims have features that groups do not, such as expiry and revocation. If a user's permission to access the group is revoked, you have to manually detect that and remove them from the group.
+
 > [!NOTE]
 > Group names are case-sensitive.
 

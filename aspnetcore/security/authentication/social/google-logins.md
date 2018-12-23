@@ -3,7 +3,8 @@ title: Google external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-ms.date: 08/02/2017
+ms.custom: "mvc, seodec18"
+ms.date: 11/11/2018
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -20,7 +21,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * You are redirected to **API Manager Library** page:
 
-![API Manager Library page](index/_static/GoogleConsoleSwitchboard.png)
+![Landing on the API Manager Library page](index/_static/GoogleConsoleSwitchboard.png)
 
 * Tap **Create** and enter your **Project name**:
 
@@ -28,20 +29,20 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. Find **Google+ API** in the list and click on its link to add the API feature:
 
-![API Manager Library page](index/_static/GoogleConsoleChooseApi.png)
+![Search for "Google+ API" in the API Manager Library page](index/_static/GoogleConsoleChooseApi.png)
 
 * The page for the newly added API is displayed. Tap **Enable** to add Google+ sign in feature to your app:
 
-![API Manager Google+API page](index/_static/GoogleConsoleEnableApi.png)
+![Landing on the API Manager Google+API page](index/_static/GoogleConsoleEnableApi.png)
 
 * After enabling the API, tap **Create credentials** to configure the secrets:
 
-![API Manager Google+API page](index/_static/GoogleConsoleGoCredentials.png)
+![Create credentials button on API Manager Google+API page](index/_static/GoogleConsoleGoCredentials.png)
 
 * Choose:
-   * **Google+ API**
-   * **Web server (e.g. node.js, Tomcat)**, and
-   * **User data**:
+  * **Google+ API**
+  * **Web server (e.g. node.js, Tomcat)**, and
+  * **User data**:
 
 ![API Manager Credentials page: Find out what kind of credentials you need panel](index/_static/GoogleConsoleChooseCred.png)
 
@@ -80,14 +81,14 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 
 ## Configure Google Authentication
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x/)
+::: moniker range=">= aspnetcore-2.0"
 
 Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+services.AddDefaultIdentity<IdentityUser>()
+        .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
@@ -98,9 +99,11 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-[!INCLUDE[](~/includes/chain-auth-providers.md)]
+[!INCLUDE[](includes/chain-auth-providers.md)]
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x/)
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.0"
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
@@ -119,7 +122,7 @@ app.UseGoogleAuthentication(new GoogleOptions()
 });
 ```
 
----
+::: moniker-end
 
 See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
@@ -138,6 +141,8 @@ After entering your Google credentials, then you are redirected back to the web 
 You are now logged in using your Google credentials:
 
 ![Web application running in Microsoft Edge: User authenticated](index/_static/Done.png)
+
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## Troubleshooting
 

@@ -1,9 +1,9 @@
 ---
-title: DevOps with ASP.NET Core and Azure | Tools and downloads
+title: Tools and downloads - DevOps with ASP.NET Core and Azure 
 author: CamSoper
-description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
+description: Tools and downloads required for DevOps with ASP.NET Core and Azure.
 ms.author: casoper
-ms.custom: mvc
+ms.custom: "mvc, seodec18"
 ms.date: 10/24/2018
 uid: azure/devops/tools-and-downloads
 ---

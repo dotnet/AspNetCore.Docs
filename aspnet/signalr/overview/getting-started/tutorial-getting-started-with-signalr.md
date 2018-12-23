@@ -13,6 +13,8 @@ Tutorial: Getting Started with SignalR 2
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 [Download Completed Project](http://code.msdn.microsoft.com/SignalR-Getting-Started-b9d18aa9)
 
 > This tutorial shows how to use SignalR to create a real-time chat application. You will add SignalR to an empty ASP.NET web application and create an HTML page to send and display messages. 

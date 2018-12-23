@@ -135,7 +135,7 @@ The first test confirms that the controller returns an `ActionResult` but not a 
 
 [!code-csharp[](testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsNotFoundObjectResultForNonexistentSession&highlight=7,10,13-14)]
 
-For for a valid session `id`, the second test confirms that the method returns:
+For a valid session `id`, the second test confirms that the method returns:
 
 * An `ActionResult` with a `List<IdeaDTO>` type.
 * The [ActionResult&lt;T&gt;.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult`1.Value*) is a `List<IdeaDTO>` type.
@@ -176,7 +176,6 @@ For a valid session `id`, the final test confirms that:
 
 ## Additional resources
 
-* <xref:test/index>
 * <xref:test/integration-tests>
 * [Create and run unit tests with Visual Studio](/visualstudio/test/unit-test-your-code).
 * [Explicit Dependencies Principle](https://deviq.com/explicit-dependencies-principle/)

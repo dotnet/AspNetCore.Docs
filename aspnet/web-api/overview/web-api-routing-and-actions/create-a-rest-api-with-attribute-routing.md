@@ -46,11 +46,11 @@ For most requests, however, the API will return a subset of this data (title, au
 
 Start by running Visual Studio. From the **File** menu, select **New** and then select **Project**.
 
-Expand the **Installed** > **Visual C#** category. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET MVC 4 Web Application**. Name the project &quot;BooksAPI&quot;.
+Expand the **Installed** > **Visual C#** category. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET Web Application (.NET Framework)**. Name the project &quot;BooksAPI&quot;.
 
 ![](create-a-rest-api-with-attribute-routing/_static/image1.png)
 
-In the **New ASP.NET Project** dialog, select the **Empty** template. Under "Add folders and core references for", select the **Web API** checkbox. Click **Create Project**.
+In the **New ASP.NET Web Application** dialog, select the **Empty** template. Under "Add folders and core references for", select the **Web API** checkbox. Click **OK**.
 
 ![](create-a-rest-api-with-attribute-routing/_static/image2.png)
 
@@ -80,7 +80,7 @@ In Solution Explorer, right-click the Controllers folder. Select **Add**, then s
 
 ![](create-a-rest-api-with-attribute-routing/_static/image4.png)
 
-In the **Add Scaffold** dialog, select "Web API 2 Controller with read/write actions, using Entity Framework."
+In the **Add Scaffold** dialog, select **Web API 2 Controller with actions, using Entity Framework**.
 
 [![](create-a-rest-api-with-attribute-routing/_static/image6.png)](create-a-rest-api-with-attribute-routing/_static/image5.png)
 

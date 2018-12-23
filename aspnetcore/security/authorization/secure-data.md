@@ -3,27 +3,28 @@ title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
 description: Learn how to create a Razor Pages app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
 ms.author: riande
-ms.date: 7/24/2018
+ms.date: 12/18/2018
+ms.custom: seodec18
 uid: security/authorization/secure-data
 ---
 
+# Create an ASP.NET Core app with user data protected by authorization
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
+
 ::: moniker range="<= aspnetcore-1.1"
 
-See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
+See [this PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-See [this pdf](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/asp.net_repo_pdf_July16_18.pdf)
+See [this pdf](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_July16_18.pdf)
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
-
-# Create an ASP.NET Core app with user data protected by authorization
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
 This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
 
@@ -33,25 +34,25 @@ This tutorial shows how to create an ASP.NET Core web app with user data protect
 
 In the following image, user Rick (`rick@example.com`) is signed in. Rick can only view approved contacts and **Edit**/**Delete**/**Create New** links for his contacts. Only the last record, created by Rick, displays **Edit** and **Delete** links. Other users won't see the last record until a manager or administrator changes the status to "Approved".
 
-![image described preceding](secure-data/_static/rick.png)
+![Screenshot showing Rick signed in](secure-data/_static/rick.png)
 
 In the following image, `manager@contoso.com` is signed in and in the managers role:
 
-![image described preceding](secure-data/_static/manager1.png)
+![Screenshot showing manager@contoso.com signed in](secure-data/_static/manager1.png)
 
 The following image shows the managers details view of a contact:
 
-![image described preceding](secure-data/_static/manager.png)
+![Manager's view of a contact](secure-data/_static/manager.png)
 
 The **Approve** and **Reject** buttons are only displayed for managers and administrators.
 
 In the following image, `admin@contoso.com` is signed in and in the administrators role:
 
-![image described preceding](secure-data/_static/admin.png)
+![Screenshot showing admin@contoso.com signed in](secure-data/_static/admin.png)
 
 The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
 
-The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-model#scaffold-the-moviecontroller) the following `Contact` model:
+The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-the-movie-model) the following `Contact` model:
 
 [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet)]
 
@@ -66,16 +67,16 @@ The sample contains the following authorization handlers:
 This tutorial is advanced. You should be familiar with:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication](xref:security/authentication/index)
+* [Authentication](xref:security/authentication/identity)
 * [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
-* [Authorization](xref:security/authorization/index)
+* [Authorization](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
 
-In ASP.NET Core 2.1, `User.IsInRole` fails when using `AddDefaultIdentity`. This tutorial uses `AddDefaultIdentity` and therefore requires ASP.NET Core 2.2 preview 1 or later. See [this GitHub issue](https://github.com/aspnet/Identity/issues/1813#issuecomment-394543909) for a work-around.
+In ASP.NET Core 2.1, `User.IsInRole` fails when using `AddDefaultIdentity`. This tutorial uses `AddDefaultIdentity` and therefore requires ASP.NET Core 2.2 or later. See [this GitHub issue](https://github.com/aspnet/Identity/issues/1813#issuecomment-394543909) for a work-around.
 
 ::: moniker-end
 
@@ -276,25 +277,32 @@ See [this issue](https://github.com/aspnet/Docs/issues/8502) for information on:
 
 ## Test the completed app
 
+If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
+
+* Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol. For example, `Passw0rd!` meets the strong password requirements.
+* Execute the following command from the project's folder, where `<PW>` is the password:
+
+  ```console
+  dotnet user-secrets set SeedUserPW <PW>
+  ```
+
 If the app has contacts:
 
-* Delete all the records in the `Contact` table.
+* Delete all of the records in the `Contact` table.
 * Restart the app to seed the database.
 
-Register a user for browsing the contacts.
+An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate sessions). In one browser, register a new user (for example, `test@example.com`). Sign in to each browser with a different user. Verify the following operations:
 
-An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user (for example, `test@example.com`). Sign in to each browser with a different user. Verify the following operations:
-
-* Registered users can view all the approved contact data.
+* Registered users can view all of the approved contact data.
 * Registered users can edit/delete their own data.
-* Managers can approve or reject contact data. The `Details` view shows **Approve** and **Reject** buttons.
-* Administrators can approve/reject and edit/delete any data.
+* Managers can approve/reject contact data. The `Details` view shows **Approve** and **Reject** buttons.
+* Administrators can approve/reject and edit/delete all data.
 
-| User| Options |
-| ------------ | ---------|
-| test@example.com | Can edit/delete own data |
-| manager@contoso.com | Can approve/reject and edit/delete own data |
-| admin@contoso.com | Can edit/delete and approve/reject all data|
+| User                | Seeded by the app | Options                                  |
+| ------------------- | :---------------: | ---------------------------------------- |
+| test@example.com    | No                | Edit/delete the own data.                |
+| manager@contoso.com | Yes               | Approve/reject and edit/delete own data. |
+| admin@contoso.com   | Yes               | Approve/reject and edit/delete all data. |
 
 Create a contact in the administrator's browser. Copy the URL for delete and edit from the administrator contact. Paste these links into the test user's browser to verify the test user can't perform these operations.
 
@@ -347,7 +355,7 @@ Test that the app seeded the database. If there are any rows in the contact DB, 
 
 * [Build a .NET Core and SQL Database web app in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop). This lab goes into more detail on the security features introduced in this tutorial.
-* [Authorization in ASP.NET Core: Simple, role, claims-based, and custom](xref:security/authorization/index)
+* <xref:security/authorization/introduction>
 * [Custom policy-based authorization](xref:security/authorization/policies)
 
 ::: moniker-end

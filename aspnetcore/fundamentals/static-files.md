@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/18/2018
+ms.date: 12/18/2018
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -90,7 +90,7 @@ Consider a directory hierarchy in which the static files to be served reside out
   * **images**
       * *banner1.svg*
 
-A request can access the *banner1.svg* file by configuring the static file middleware as follows:
+A request can access the *banner1.svg* file by configuring the Static File Middleware as follows:
 
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
@@ -114,12 +114,12 @@ The files have been made publicly cacheable for 10 minutes (600 seconds) in the 
 
 ## Static file authorization
 
-The static file middleware doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly accessible. To serve files based on authorization:
+The Static File Middleware doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly accessible. To serve files based on authorization:
 
-* Store them outside of *wwwroot* and any directory accessible to the static file middleware **and**
+* Store them outside of *wwwroot* and any directory accessible to the Static File Middleware.
 * Serve them via an action method to which authorization is applied. Return a [FileResult](/dotnet/api/microsoft.aspnetcore.mvc.fileresult) object:
 
-[!code-csharp[](static-files/samples/1x/Controllers/HomeController.cs?name=snippet_BannerImageAction)]
+  [!code-csharp[](static-files/samples/1x/Controllers/HomeController.cs?name=snippet_BannerImageAction)]
 
 ## Enable directory browsing
 
@@ -148,7 +148,7 @@ Setting a default home page provides visitors a logical starting point when visi
 [!code-csharp[](static-files/samples/1x/StartupEmpty.cs?name=snippet_ConfigureMethod&highlight=3)]
 
 > [!IMPORTANT]
-> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. Enable the static file middleware via `UseStaticFiles` to serve the file.
+> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. Enable Static File Middleware via `UseStaticFiles` to serve the file.
 
 With `UseDefaultFiles`, requests to a folder search for:
 
@@ -240,7 +240,7 @@ With the preceding code, a request for a file with an unknown content type is re
 
 * The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive&mdash;macOS and Linux aren't.
 
-* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used. It has no chance to handle requests before they're handled by the module.
+* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used. It has no chance to handle requests before they're handled by the module.
 
 * Complete the following steps in IIS Manager to remove the IIS static file handler at the server or website level:
     1. Navigate to the **Modules** feature.

@@ -13,8 +13,8 @@ namespace CompatibilityVersionSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                // Include the 2.1 behaviors
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                // Include the 2.2 behaviors
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 // Except for the following.
                 .AddMvcOptions(options =>
                 {

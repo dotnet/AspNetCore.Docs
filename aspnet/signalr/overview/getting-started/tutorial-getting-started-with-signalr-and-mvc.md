@@ -13,6 +13,8 @@ Tutorial: Getting Started with SignalR 2 and MVC 5
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tim Teebken](https://github.com/timlt)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 [Download Completed Project](http://code.msdn.microsoft.com/Getting-Started-with-c366b2f3)
 
 > This tutorial shows how to use ASP.NET SignalR 2 to create a real-time chat application. You will add SignalR to an MVC 5 application and create a chat view to send and display messages.

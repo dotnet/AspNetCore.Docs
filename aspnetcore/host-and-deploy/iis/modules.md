@@ -4,7 +4,7 @@ author: guardrex
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/12/2018
+ms.date: 11/30/2018
 uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
@@ -15,7 +15,7 @@ Some of the native IIS modules and all of the IIS managed modules aren't able to
 
 ## Native modules
 
-The table indicates native IIS modules that are functional on reverse proxy requests to ASP.NET Core apps.
+The table indicates native IIS modules that are functional with ASP.NET Core apps and the ASP.NET Core Module.
 
 | Module | Functional with ASP.NET Core apps | ASP.NET Core Option |
 | --- | :---: | --- |

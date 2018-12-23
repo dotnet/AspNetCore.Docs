@@ -33,7 +33,7 @@ namespace SpaServicesSampleApp
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            #region webpack-middleware-registration
+            #region snippet_WebpackMiddlewareRegistration
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,7 +48,7 @@ namespace SpaServicesSampleApp
             app.UseStaticFiles();
             #endregion
 
-            #region mvc-routing-table
+            #region snippet_MvcRoutingTable
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

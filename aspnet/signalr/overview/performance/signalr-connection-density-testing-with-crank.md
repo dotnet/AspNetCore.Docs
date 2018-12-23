@@ -1,7 +1,7 @@
 ---
 uid: signalr/overview/performance/signalr-connection-density-testing-with-crank
 title: "SignalR Connection Density Testing with Crank | Microsoft Docs"
-author: tfitzmac
+author: Rick-Anderson
 description: "SignalR Connection Density Testing with Crank"
 ms.author: riande
 ms.date: 02/22/2015
@@ -12,6 +12,8 @@ msc.type: authoredcontent
 SignalR Connection Density Testing with Crank
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > This article describes how to use the Crank tool to test an application with multiple simulated clients.
 

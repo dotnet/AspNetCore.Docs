@@ -5,7 +5,7 @@ description: Learn how to take an existing ASP.NET MVC application and run it in
 keywords: Windows Containers,Docker,ASP.NET MVC
 author: BillWagner
 ms.author: wiwagn
-ms.date: 02/01/2017
+ms.date: 12/14/2018
 ms.assetid: c9f1d52c-b4bd-4b5d-b7f9-8f9ceaf778c4
 uid: mvc/overview/deployment/docker
 ---
@@ -67,16 +67,12 @@ Click **Publish**, and Visual Studio will copy all the needed assets to the dest
 
 ## Build the image
 
-Define your Docker image in a Dockerfile. The Dockerfile contains instructions
-for the base image, additional components, the app you
-want to run, and other configuration images.  The Dockerfile is the input
-to the `docker build` command, which creates the image.
+Create a new file named *Dockerfile* to define your Docker image. *Dockerfile* contains instructions to build the final image and includes any base image names, required components, the app you want to run, and other configuration images. *Dockerfile* is the input to the `docker build` command that creates the image.
 
-You will build an image based on the `microsoft/aspnet`
+For this exercise, you will build an image based on the `microsoft/aspnet`
 image located on [Docker Hub](https://hub.docker.com/r/microsoft/aspnet/).
 The base image, `microsoft/aspnet`, is a Windows Server image. It contains
-Windows Server Core, IIS and ASP.NET 4.6.2. When you run this image in your container, it will
-automatically start IIS and installed websites.
+Windows Server Core, IIS, and ASP.NET 4.7.2. When you run this image in your container, it will automatically start IIS and installed websites.
 
 The Dockerfile that creates your image looks like this:
 
@@ -134,22 +130,7 @@ The `mvcrandomanswers` is the name of the image to start.
 
 ## Verify in the browser
 
-> [!NOTE]
-> With the current Windows Container release, you can't browse to `http://localhost`.
-> This is a known behavior in WinNAT, and it will
-> be resolved in the future. Until that is addressed, you need to use
-> the IP address of the container.
-
-Once the container starts, find its IP address so that you
-can connect to your running container from a browser:
-
-```console
-docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" randomanswers
-172.31.194.61
-```
-
-Connect to the running container using the IPv4 address, `http://172.31.194.61`
-in the example shown. Type that URL into your browser, and you should see the running site.
+Once the container starts, connect to the running container using `http://localhost` in the example shown. Type that URL into your browser, and you should see the running site.
 
 > [!NOTE]
 > Some VPN or proxy software may prevent you from navigating to your site.
@@ -161,10 +142,9 @@ The sample directory on GitHub contains a [PowerShell script](https://github.com
 ./run.ps1
 ```
 
-The command above builds the image, displays the list of images on your machine, starts a container, and displays the IP address for that container.
+The command above builds the image, displays the list of images on your machine, and starts a container.
 
-To stop your container, issue a `docker
-stop` command:
+To stop your container, issue a `docker stop` command:
 
 ```console
 docker stop randomanswers
