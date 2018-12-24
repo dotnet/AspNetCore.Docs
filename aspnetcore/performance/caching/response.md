@@ -3,7 +3,7 @@ title: Response caching in ASP.NET Core
 author: rick-anderson
 description: Learn how to use response caching to lower bandwidth requirements and increase performance of ASP.NET Core apps.
 ms.author: riande
-ms.date: 09/20/2017
+ms.date: 12/24/2017
 uid: performance/caching/response
 ---
 # Response caching in ASP.NET Core
@@ -17,7 +17,7 @@ By [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
 
-The web server can cache responses when you add [Response Caching Middleware](xref:performance/caching/middleware).
+The [ResponseCache attribute](#responsecache-attribute) participates in setting response caching headers, which clients may honor when caching responses. [Response Caching Middleware](xref:performance/caching/middleware) can be used to cache responses on the server. The middleware can use `ResponseCache` attribute properties to influence server-side caching behavior.
 
 ## HTTP-based response caching
 
@@ -48,7 +48,7 @@ The [HTTP 1.1 Caching specification for the Cache-Control header](https://tools.
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
-There's no current developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. [Future enhancements to the middleware](https://github.com/aspnet/ResponseCaching/issues/96) will permit configuring the middleware to ignore a request's `Cache-Control` header when deciding to serve a cached response. This will offer you an opportunity to better control the load on your server when you use the middleware.
+There's no current developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. [Future enhancements to the middleware](https://github.com/aspnet/AspNetCore/issues/2612) will permit configuring the middleware to ignore a request's `Cache-Control` header when deciding to serve a cached response. This will offer you an opportunity to better control the load on your server when you use the middleware.
 
 ## Other caching technology in ASP.NET Core
 
@@ -85,7 +85,7 @@ The [ResponseCacheAttribute](/dotnet/api/Microsoft.AspNetCore.Mvc.ResponseCacheA
 
 [VaryByQueryKeys](/dotnet/api/microsoft.aspnetcore.mvc.responsecacheattribute.varybyquerykeys) varies the stored response by the values of the given list of query keys. When a single value of `*` is provided, the middleware varies responses by all request query string parameters. `VaryByQueryKeys` requires ASP.NET Core 1.1 or later.
 
-The Response Caching Middleware must be enabled to set the `VaryByQueryKeys` property; otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the `VaryByQueryKeys` property. The property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
+[Response Caching Middleware](xref:performance/caching/middleware) must be enabled to set the `VaryByQueryKeys` property; otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the `VaryByQueryKeys` property. The property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
 
 | Request                          | Result                   |
 | -------------------------------- | ------------------------ |
