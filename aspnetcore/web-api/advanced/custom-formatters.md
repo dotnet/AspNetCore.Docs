@@ -98,7 +98,7 @@ Formatters are evaluated in the order you insert them. The first one takes prece
 ## Next steps
 
 * [Plain text formatter sample code on GitHub.](https://github.com/aspnet/Entropy/tree/master/samples/Mvc.Formatters)
-* [Aample app for this doc](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements simple vCard input and output formatters. The apps reads and writes vCards that look like the following example:
+* [Sample app for this doc](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements simple vCard input and output formatters. The apps reads and writes vCards that look like the following example:
 
 ```
 BEGIN:VCARD
