@@ -9,7 +9,7 @@ uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
 
-By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https://rsuter.com)
+By [Christoph Nienaber](https://twitter.com/zuckerthoben),  [Rico Suter](https://rsuter.com), and [Dave Brock](https://twitter.com/daveabrock)
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -23,27 +23,23 @@ By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https
 
 ::: moniker-end
 
-Register the NSwag middlewares to:
+NSwag offers the following capabilities:
 
-* Generate the Swagger specification for the implemented web API.
-* Serve the Swagger UI to browse and test the web API.
+* The ability to introduce the Swagger UI and Swagger generator
+* Flexible code generation capabilities
 
-To use the [NSwag](https://github.com/RSuter/NSwag) ASP.NET Core middlewares, install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. This package contains the middlewares to generate and serve the Swagger specification, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc).
+With NSwag, you don't need an existing API&mdash;you can use third-party APIs that incorporate Swagger and generate a client implementation. NSwag allows you to expedite the development cycle and easily adapt to API changes.
 
-Additionally, it's highly recommended to make use of NSwag's code generation capabilities. Choose one of the following options to use the code generation capabilities:
+## Register the NSwag middleware
 
-* Use [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), a Windows desktop app for generating client code in C# and TypeScript for your API.
-* Use the [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages to do code generation inside your project.
-* Use NSwag from the [command line](https://github.com/NSwag/NSwag/wiki/CommandLine).
-* Use the [NSwag.MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild) NuGet package.
+Register the NSwag middleware to:
 
-## Features
+* Generate the Swagger specification for the implemented web API
+* Serve the Swagger UI to browse and test the web API
 
-The main reason to use NSwag is the ability to not only introduce the Swagger UI and Swagger generator, but to also make use of the flexible code generation capabilities. You don't need an existing API&mdash;you can use third-party APIs that incorporate Swagger and let NSwag generate a client implementation. Either way, the development cycle is expedited and you can more easily adapt to API changes.
+To use the [NSwag](https://github.com/RSuter/NSwag) ASP.NET Core middleware, install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. This package contains the middleware to generate and serve the Swagger specification, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc).
 
-## Package installation
-
-The NSwag NuGet package can be added with the following approaches:
+Use one of the following approaches to install the NSwag NuGet package:
 
 ### [Visual Studio](#tab/visual-studio)
 
@@ -89,59 +85,71 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 
 ## Add and configure Swagger middleware
 
-Import the following namespaces in the `Startup` class:
+To add and configure Swagger middleware to your ASP.NET Core application, perform the following steps from the `Startup` class:
+
+* Import the following namespaces:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_StartupConfigureImports)]
 
-In the `Startup.ConfigureServices` method, register the required Swagger services: 
+* In the `ConfigureServices` method, register the required Swagger services: 
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
 
-In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI v3:
+* In the `Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI v3:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-10)]
 
-Launch the app. Navigate to `http://localhost:<port>/swagger` to view the Swagger UI. Navigate to `http://localhost:<port>/swagger/v1/swagger.json` to view the Swagger specification.
+* Launch the app. Navigate to `http://localhost:<port>/swagger` to view the Swagger UI, and `http://localhost:<port>/swagger/v1/swagger.json` to view the Swagger specification.
 
 ## Code generation
 
-### Via NSwagStudio
+You can take advantage of NSwag's code generation capabilities by choosing one of the following options:
 
-* Install NSwagStudio from the official [GitHub repository](https://github.com/RSuter/NSwag/wiki/NSwagStudio).
-* Launch NSwagStudio. Enter the *swagger.json* file URL in the **Swagger Specification URL** textbox, and click the **Create local Copy** button.
-* Select the **CSharp Client** client output type. Other options include **TypeScript Client** and **CSharp Web API Controller**. Using a Web API Controller is basically a reverse generation. It uses a specification of a service to rebuild the service.
-* Click the **Generate Outputs** button. A complete C# client implementation of the *TodoApi.NSwag* project is produced. Click the **CSharp Client** tab of the **Outputs** section to see the generated client code:
+* [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio), a Windows desktop app for generating API client code in C# or TypeScript
+* The [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages for code generation inside your project
+* NSwag from the [command line](https://github.com/NSwag/NSwag/wiki/CommandLine).
+* The [NSwag.MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild) NuGet package
+
+The following section illustrates how to generate code with the NSwagStudio app.
+
+### Generate code with NSwagStudio
+
+* Install NSwagStudio by following the instructions at the [NSwagStudio GitHub repository](https://github.com/RSuter/NSwag/wiki/NSwagStudio).
+* Launch NSwagStudio and enter the *swagger.json* file URL in the **Swagger Specification URL** textbox. For example, *https://localhost:44354/swagger/v1/swagger.json*.
+* Click the **Create local Copy** button to generate a JSON representation of your Swagger specification.
+* In the Outputs area, click the **CSharp Client** checkbox. Depending on your project, you can also choose **TypeScript Client** or **CSharp Web API Controller**. If you select **CSharp Web API Controller**, a service specification rebuilds the service, serving as a reverse generation.
+* Click **Generate Outputs** to produce a complete C# client implementation of the *TodoApi.NSwag* project. To see the generated client code, click the **CSharp Client** tab:
 
 ```csharp
 //----------------------
 // <auto-generated>
-//     Generated using the NSwag toolchain v11.17.3.0 (NJsonSchema v9.10.46.0 (Newtonsoft.Json v9.0.0.0)) (http://NSwag.org)
+//     Generated using the NSwag toolchain v12.0.9.0 (NJsonSchema v9.13.10.0 (Newtonsoft.Json v11.0.0.0)) (http://NSwag.org)
 // </auto-generated>
 //----------------------
 
 namespace MyNamespace
 {
-    #pragma warning disable // Disable all warnings
+    #pragma warning disable
 
-    [System.CodeDom.Compiler.GeneratedCode("NSwag",
-        "11.17.3.0 (NJsonSchema v9.10.46.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class TodoClient
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "12.0.9.0 (NJsonSchema v9.13.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class TodoClient 
     {
-        private string _baseUrl = "http://localhost:50499";
+        private string _baseUrl = "https://localhost:44354";
+        private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
-
-        public TodoClient()
+    
+        public TodoClient(System.Net.Http.HttpClient httpClient)
         {
-            _settings = new System.Lazy
-                <Newtonsoft.Json.JsonSerializerSettings>(() =>
+            _httpClient = httpClient; 
+            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
         }
-
-        public string BaseUrl
+    
+        public string BaseUrl 
         {
             get { return _baseUrl; }
             set { _baseUrl = value; }
@@ -151,9 +159,9 @@ namespace MyNamespace
 ```
 
 > [!TIP]
-> The C# client code is generated based on settings defined in the **Settings** tab of the **CSharp Client** tab. Modify the settings to perform tasks such as default namespace renaming and synchronous method generation.
+> The C# client code is generated based on what is specified in the **Settings** tab. Modify the settings to perform tasks such as default namespace renaming and synchronous method generation.
 
-* Copy the generated C# code into a file in a client project (for example, a [Xamarin.Forms](/xamarin/xamarin-forms/) app).
+* Copy the generated C# code into a file in a client project (for example, a Web API [Xamarin.Forms](/xamarin/xamarin-forms/) app).
 * Start consuming the web API:
 
 ```csharp
@@ -168,19 +176,6 @@ var createdTodo = await todoClient.CreateAsync(new TodoItem());
 // Get a single to-do by ID
 var foundTodo = await todoClient.GetByIdAsync(1);
 ```
-
-> [!NOTE]
-> You can inject a base URL and/or a HTTP client into the API client. The best practice is to always [reuse the HttpClient](https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/).
-
-### Other ways to generate client code
-
-You can generate the client code in other ways, more suited to your workflow:
-
-* [MSBuild](https://www.nuget.org/packages/NSwag.MSBuild/)
-
-* [In code](https://github.com/NSwag/NSwag/wiki/SwaggerToCSharpClientGenerator)
-
-* [T4 templates](https://github.com/NSwag/NSwag/wiki/T4)
 
 ## Customize
 
@@ -278,7 +273,7 @@ The preceding action returns `ActionResult<T>`. Inside the action, it's returnin
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
 
-In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
 
 ::: moniker-end
 
