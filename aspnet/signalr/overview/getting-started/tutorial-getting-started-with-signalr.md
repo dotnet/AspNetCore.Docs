@@ -156,13 +156,6 @@ This code opens a connection with the hub.
 
 The code starts the connection and then passes it a function to handle the click event on the **Send** button in the HTML page.
 
-In this tutorial you learned how to:
-
-> [!div class="checklist"]
-> * Set up the project
-> * Run the sample
-> * Examine the code
-
 ## Additional resources
 
 For a walkthrough on how to deploy the sample SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
@@ -176,6 +169,13 @@ To learn more advanced SignalR developments concepts, go to these sites for Sign
 * [SignalR Wiki](https://github.com/SignalR/SignalR/wiki)
 
 ## Next Steps
+
+In this tutorial you learned how to:
+
+> [!div class="checklist"]
+> * Set up the project
+> * Run the sample
+> * Examine the code
 
 Advance to the next article to learn how to use SignalR and MVC 5.
 > [!div class="nextstepaction"]
