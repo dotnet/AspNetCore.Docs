@@ -1,62 +1,40 @@
 ---
 uid: signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr
-title: "Tutorial: High-Frequency Realtime with SignalR 2 | Microsoft Docs"
+title: "High-Frequency Real-time with SignalR 2 | Microsoft Docs"
 author: pfletcher
-description: "This tutorial shows how to create a web application that uses ASP.NET SignalR to provide high-frequency messaging functionality. High-frequency messaging in..."
+description: "This tutorial shows how to create a web application that uses ASP.NET SignalR to provide high-frequency messaging functionality. High-frequency ..."
 ms.author: riande
-ms.date: 06/10/2014
+ms.date: 12/28/2014
 ms.assetid: 9f969dda-78ea-4329-b1e3-e51c02210a2b
 msc.legacyurl: /signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr
 msc.type: authoredcontent
 ---
-Tutorial: High-Frequency Realtime with SignalR 2
-====================
-by [Patrick Fletcher](https://github.com/pfletcher)
+
+# Tutorial: High-Frequency Real-time with SignalR 2
+
+This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide high-frequency messaging functionality. In this case, "high-frequency messaging" means updates that are sent at a fixed rate. We'll be sending up to 10 messages a second.
+
+ The application you'll create will display a shape that users can drag. The position of the shape in all connected browsers will then be updated to match the position of the dragged shape using timed updates.
+
+ Concepts introduced in this tutorial have applications in real-time gaming and other simulation applications.
+
+In this tutorial, you learn how to:
+
+> [!div class="checklist"]
+> * Set up the project
+> * Create the base application
+> * Map to the hub when app starts
+> * Add the client
+> * Run the app
+> * Add the client loop
+> * Add the server loop
+> * Add smooth animation
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
-[Download Completed Project](http://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a)
-
-> This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide high-frequency messaging functionality. High-frequency messaging in this case means updates that are sent at a fixed rate; in the case of this application, up to 10 messages a second.
->
-> The application you'll create in this tutorial displays a shape that users can drag. The position of the shape in all other connected browsers will then be updated to match the position of the dragged shape using timed updates.
->
-> Concepts introduced in this tutorial have applications in real-time gaming and other simulation applications.
->
-> ## Software versions used in the tutorial
->
->
-> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
-> - .NET 4.5
-> - SignalR version 2
->
->
->
-> ## Using Visual Studio 2012 with this tutorial
->
->
-> To use Visual Studio 2012 with this tutorial, do the following:
->
-> - Update your [Package Manager](http://docs.nuget.org/docs/start-here/installing-nuget) to the latest version.
-> - Install the [Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx).
-> - In the Web Platform Installer, search for and install **ASP.NET and Web Tools 2013.1 for Visual Studio 2012**. This will install Visual Studio templates for SignalR classes such as **Hub**.
-> - Some templates (such as **OWIN Startup Class**) will not be available; for these, use a Class file instead.
->
->
-> ## Tutorial Versions
->
-> For information about earlier versions of SignalR, see [SignalR Older Versions](../older-versions/index.md).
->
-> ## Questions and comments
->
-> Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
-
-
-## Overview
+<!-- ## Overview
 
 This tutorial demonstrates how to create an application that shares the state of an object with other browsers in real time. The application we'll create is called MoveShape. The MoveShape page will display an HTML Div element that the user can drag; when the user drags the Div, its new position will be sent to the server, which will then tell all other connected clients to update the shape's position to match.
-
-![The application window](tutorial-high-frequency-realtime-with-signalr/_static/image1.png)
 
 The application created in this tutorial is based on a demo by Damian Edwards. A video containing this demo can be seen [here](https://channel9.msdn.com/Series/Building-Web-Apps-with-ASP-NET-Jump-Start/Building-Web-Apps-with-ASPNET-Jump-Start-08-Real-time-Communication-with-SignalR).
 
@@ -70,153 +48,248 @@ This tutorial contains the following sections:
 - [Create the project and add the SignalR and JQuery.UI NuGet package](#createtheproject2013)
 - [Create the base application](#baseapp)
 - [Starting the hub when the application starts](#startup2013)
-- [Add the client loop](#clientloop)
+- [Add the client loop](#clientloop)+++
 - [Add the server loop](#serverloop)
 - [Add smooth animation on the client](#animation)
-- [Further Steps](#furthersteps)
-
-<a id="prerequisites"></a>
+- [Further Steps](#furthersteps) -->
 
 ## Prerequisites
 
-This tutorial requires Visual Studio 2013.
+### Visual Studio 2017
 
-<a id="createtheproject2013"></a>
+If you don't already have it, [download Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) now. 
 
-## Create the project and add the SignalR and JQuery.UI NuGet package
+### ASP.NET and web development workload
 
-In this section, we'll create the project in Visual Studio 2013.
+When Visual Studio Installer opens, make sure you install the **ASP.NET and web development** workload. It's under **Web & Cloud**.
 
-The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Application and add the SignalR and jQuery.UI libraries:
+### NuGet package source api
 
-1. In Visual Studio create an ASP.NET Web Application.
+You'll need to configure the NuGet API to install the jQuery UI package.
 
-    ![Create web](tutorial-high-frequency-realtime-with-signalr/_static/image2.png)
-2. In the **New ASP.NET Project** window, leave **Empty** selected and click **Create Project**.
+1. When Visual Studio 2017 opens, select **Tools** > **Options**.
 
-    ![Create empty web](tutorial-high-frequency-realtime-with-signalr/_static/image3.png)
-3. In **Solution Explorer**, right-click the project, select **Add | SignalR Hub Class (v2)**. Name the class **MoveShapeHub.cs** and add it to the project. This step creates the **MoveShapeHub** class and adds to the project a set of script files and assembly references that support SignalR.
+1. In **Options**, select **NuGet Package Manager** > **Package Sources**.
 
-    > [!NOTE]
-    > You can also add SignalR to a project by clicking **Tools > NuGet Package Manager > Package Manager Console** and running a command:
+1. Next to **Available package sources**, click **+** and enter this information:
 
-    `install-package Microsoft.AspNet.SignalR`.
+    | Setting | Value |
+    | ------- | ----- |
+    | Name | Enter *nuget.org* |
+    | Source | Enter *https://api.nuget.org/v3/index.json* |
 
-    If you use the console to add SignalR, create the SignalR hub class as a separate step after you add SignalR.
-4. Click **Tools > NuGet Package Manager > Package Manager Console**. In the package manager window, run the following command:
+1. Select **OK**.
 
-    `Install-Package jQuery.UI.Combined`
+## Set up the project
 
-    This installs the jQuery UI library, which you'll use to animate the shape.
-5. In **Solution Explorer** expand the Scripts node. Script libraries for jQuery, jQueryUI, and SignalR are visible in the project.
+In this section, we'll create the project in Visual Studio 2017.
 
-    ![Script library references](tutorial-high-frequency-realtime-with-signalr/_static/image4.png)
+This section shows how to use Visual Studio 2017 to create an empty ASP.NET Web Application and add the SignalR and jQuery.UI libraries.
 
-<a id="baseapp"></a>
+1. In Visual Studio, create an ASP.NET Web Application.
+
+    ![Create web](tutorial-high-frequency-realtime-with-signalr/_static/image1.png)
+
+1. In the **New ASP.NET Web Application - MoveShapeDemo** window, leave **Empty** selected and select **OK**.
+
+1. In **Solution Explorer**, right-click the project and select **Add** > **New Item**.
+
+1. In **Add New Item - MoveShapeDemo**, select **Installed** > **Visual C#** > **Web** > **SignalR**  and then select **SignalR Hub Class (v2)**.
+
+1. Name the class *MoveShapeHub* and add it to the project.
+
+    This step creates the **MoveShapeHub** class. Simultaneously, it adds  a set of script files and assembly references that support SignalR to the project.
+
+1. Select **Tools** > **NuGet Package Manager** > **Package Manager Console**. 
+
+1. In the package manager window, run the following command:
+
+    ```console
+    Install-Package jQuery.UI.Combined
+    ```
+
+    This command installs the jQuery UI library. You'll use it to animate the shape.
+
+1. In **Solution Explorer**, expand the Scripts node.
+
+    ![Script library references](tutorial-high-frequency-realtime-with-signalr/_static/image2.png)
+
+    Script libraries for jQuery, jQueryUI, and SignalR are visible in the project.
 
 ## Create the base application
 
-In this section, we'll create a browser application that sends the location of the shape to the server during each mouse move event. The server then broadcasts this information to all other connected clients as it is received. We'll expand on this application in later sections.
+In this section, you'll create a browser application. The app sends the location of the shape to the server during each mouse move event. The server broadcasts this information to all other connected clients in real time. We'll expand on this application in later sections.
 
-1. If you haven't already created the MoveShapeHub.cs class, in **Solution Explorer**, right-click on the project and select **Add**, **Class...**. Name the class **MoveShapeHub** and click **Add**.
-2. Replace the code in the new **MoveShapeHub** class with the following code.
+1. Open the *MoveShapeHub.cs* file.
+
+1. Replace the code in the *MoveShapeHub.cs* file with this code:
 
     [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample1.cs)]
 
-    The `MoveShapeHub` class above is an implementation of a SignalR hub. As in the [Getting Started with SignalR](tutorial-getting-started-with-signalr.md) tutorial, the hub has a method that the clients will call directly. In this case, the client will send an object containing the new X and Y coordinates of the shape to the server, which then gets broadcasted to all other connected clients. SignalR will automatically serialize this object using JSON.
+1. Save the file.
 
-    The object that will be sent to the client (`ShapeModel`) contains members to store the position of the shape. The version of the object on the server also contains a member to track which client's data is being stored, so that a given client won't be sent their own data. This member uses the `JsonIgnore` attribute to keep it from being serialized and sent to the client.
+The `MoveShapeHub` class is an implementation of a SignalR hub. As in the [Getting Started with SignalR](tutorial-getting-started-with-signalr.md) tutorial, the hub has a method that the clients call directly. In this case, the client will send an object with the new X and Y coordinates of the shape to the server. Those coordinates get broadcasted to all other connected clients. SignalR will automatically serialize this object using JSON.
 
-<a id="startup2013"></a>
-## Starting the hub when the application starts
+The `ShapeModel` object will be sent to the client. It contains members to store the position of the shape. The version of the object on the server also contains a member to track which client's data is being stored. This object prevents a client's data from being sent back to them. This member uses the `JsonIgnore` attribute to keep it from being serialized and sent to the client.
 
-1. Next, we'll set up mapping to the hub when the application starts. In SignalR 2, this is done by adding an OWIN startup class, which will call `MapSignalR` when the startup class' `Configuration` method is executed when OWIN starts. The class is added to OWIN's startup process using the `OwinStartup` assembly attribute.
+## Map to the hub when app starts
 
-    In **Solution Explorer**, right-click the project, then click **Add | OWIN Startup Class**. Name the class *Startup* and click **OK**.
-2. Change the contents of Startup.cs to the following:
+Next, you'll set up mapping to the hub when the application starts. In SignalR 2, this mapping is done by adding an OWIN startup class.
+
+1. In **Solution Explorer**, right-click the project and select **Add** > **New Item**.
+
+1. In **Add New Item - MoveShapeDemo** select **Installed** > **Visual C#** > **Web** and then select **OWIN Startup Class**.
+
+1. Name the class *Startup* and select **OK**.
+
+1. Replace the default code in the *Startup.cs* with this code:
 
     [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample2.cs)]
 
-<a id="client"></a>
-## Adding the client
+The OWIN startup class will call `MapSignalR` when the `Configuration` method is executed when OWIN starts. The class is added to OWIN's startup process using the `OwinStartup` assembly attribute.
 
-1. Next, we'll add the client. In **Solution Explorer**, right-click the project, then click **Add | New Item**. In the **Add New Item** dialog, select **Html Page**. Name the page **Default.html** and click **Add**.
-2. In **Solution Explorer**, right-click the page you just created and click **Set as Start Page**.
-3. Replace the default code in the HTML page with the following code snippet.
+## Add the client
 
-    > [!NOTE]
-    > Verify that the script references below match the packages added to your project in the Scripts folder.
+Next, you'll add the HTML client.
+
+1. In **Solution Explorer**, right-click the project and select **Add** > **HTML Page**.
+
+1. Name the page **Default** and select **OK**.
+
+1. In **Solution Explorer**, right-click *Default.html* and select **Set as Start Page**.
+
+1. Replace the default code in the HTML page with this code:
 
     [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample3.html)]
 
-    The above HTML and JavaScript code creates a red Div called Shape, enables the shape's dragging behavior using the jQuery library, and uses the shape's `drag` event to send the shape's position to the server.
-4. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move.
+1. In **Solution Explorer**, expand **Scripts**.
 
-    ![The application window](tutorial-high-frequency-realtime-with-signalr/_static/image5.png)
+    Script libraries for jQuery and SignalR are visible in the project.
 
-<a id="clientloop"></a>
+    > [!IMPORTANT]
+    > The package manager may have installed a later version of the SignalR scripts.
+
+1. Check that the script references in the code block correspond to the versions of the script files in the project.
+
+This HTML and JavaScript code creates a red `div` called `shape`. It enables the shape's dragging behavior using the jQuery library, and uses the `drag` event to send the shape's position to the server.
+
+## Run the app
+
+You can run the app to see it work. When you drag the shape around a browser window, the shape moves in the other browsers too.
+
+1. In the toolbar, turn on **Script Debugging** and then select the play button to run the application in Debug mode.
+
+    ![Screenshot of user turning on debugging mode and selecting play.](tutorial-high-frequency-realtime-with-signalr/_static/image3.png)
+
+    A browser window will open with the red shape in the upper-right corner.
+
+1. Copy the page's URL.
+
+1. Open another browser and paste the URL into the address bar.
+
+1. Drag the shape in one of the browser windows. The shape in the other browser window will follow.
 
 ## Add the client loop
 
-Since sending the location of the shape on every mouse move event will create an unneccesary amount of network traffic, the messages from the client need to be throttled. We'll use the javascript `setInterval` function to set up a loop that sends new position information to the server at a fixed rate. This loop is a very basic representation of a "game loop", a repeatedly called function that drives all of the functionality of a game or other simulation.
+Sending the location of the shape on every mouse move event creates an unnecessary amount of network traffic. The messages from the client need to be throttled.
 
-1. Update the client code in the HTML page to match the following code snippet.
+Use the javascript `setInterval` function to set up a loop that sends new position information to the server at a fixed rate. This loop is a basic representation of a "game loop." It's a repeatedly called function that drives all of the functionality of a game.
+
+1. Replace the client code in the HTML page with this code:
 
     [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample4.html)]
 
-    The above update adds the `updateServerModel` function, which gets called on a fixed frequency. This function sends the position data to the server whenever the `moved` flag indicates that there is new position data to send.
-2. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move. Since the number of messages that get sent to the server will be throttled, the animation will not appear as smooth as in the previous section.
+    > [!IMPORTANT]
+    > You have to replace the script references again. They must match the versions of the scripts in the project.
 
-    ![The application window](tutorial-high-frequency-realtime-with-signalr/_static/image6.png)
+    This new code adds the `updateServerModel` function. It gets called on a fixed frequency. The function sends the position data to the server whenever the `moved` flag indicates that there's new position data to send.
 
-<a id="serverloop"></a>
+1. Select the play button to start the application
+
+1. Copy the page's URL.
+
+1. Open another browser and paste the URL into the address bar.
+
+1. Drag the shape in one of the browser windows. The shape in the other browser window will follow.
+
+Since the number of messages that get sent to the server are throttled, the animation won't appear as smooth did at first.
 
 ## Add the server loop
 
-In the current application, messages sent from the server to the client go out as often as they are received. This presents a similar problem as was seen on the client; messages can be sent more often than they are needed, and the connection could become flooded as a result. This section describes how to update the server to implement a timer that throttles the rate of the outgoing messages.
+In the current application, messages sent from the server to the client go out as often as they're received. This network traffic presents a similar problem as was seen on the client.
 
-1. Replace the contents of `MoveShapeHub.cs` with the following code snippet.
+Messages can be sent more often than they're needed. The connection can become flooded as a result. This section describes how to update the server to add a timer that throttles the rate of the outgoing messages.
+
+1. Replace the contents of `MoveShapeHub.cs` with this code:
 
     [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample5.cs)]
 
-    The above code expands the client to add the `Broadcaster` class, which throttles the outgoing messages using the `Timer` class from the .NET framework.
+1. Select the play button to start the application
 
-    Since the hub itself is transitory (it is created every time it is needed), the `Broadcaster` will be created as a singleton. Lazy initialization (introduced in .NET 4) is used to defer its creation until it is needed, ensuring that the first hub instance is completely created before the timer is started.
+1. Copy the page's URL.
 
-    The call to the clients' `UpdateShape` function is then moved out of the hub's `UpdateModel` method, so that it is no longer called immediately whenever incoming messages are received. Instead, the messages to the clients will be sent at a rate of 25 calls per second, managed by the `_broadcastLoop` timer from within the `Broadcaster` class.
+1. Open another browser and paste the URL into the address bar.
 
-    Lastly, instead of calling the client method from the hub directly, the `Broadcaster` class needs to obtain a reference to the currently operating hub (`_hubContext`) using the `GlobalHost`.
-2. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move. There will not be a visible difference in the browser from the previous section, but the number of messages that get sent to the client will be throttled.
+1. Drag the shape in one of the browser windows.
+    
+This code expands the client to add the `Broadcaster` class. The new class throttles the outgoing messages using the `Timer` class from the .NET framework.
 
-    ![The application window](tutorial-high-frequency-realtime-with-signalr/_static/image7.png)
+It's good to understand that the hub itself is transitory. It's created every time it's needed. So the `Broadcaster` will be created as a singleton. Lazy initialization is used to defer its creation until the `Broadcaster` is needed. That guarantees that the first hub instance is created completely before the timer is started.
 
-<a id="animation"></a>
+The call to the clients' `UpdateShape` function is then moved out of the hub's `UpdateModel` method. It's no longer called immediately whenever incoming messages are received. Instead, the messages to the clients will be sent at a rate of 25 calls per second, managed by the `_broadcastLoop` timer from within the `Broadcaster` class.
 
-## Add smooth animation on the client
+Lastly, instead of calling the client method from the hub directly, the `Broadcaster` class needs to get a reference to the currently operating `_hubContext` hub. It gets the reference with the `GlobalHost`.
 
-The application is almost complete, but we could make one more improvement, in the motion of the shape on the client as it is moved in response to server messages. Rather than setting the position of the shape to the new location given by the server, we'll use the JQuery UI library's `animate` function to move the shape smoothly between its current and new position.
+## Add smooth animation
 
-1. Update the client's `updateShape` method to look like the highlighted code below:
+The application is almost complete, but we could make one more improvement. The motion of the shape on the client is moved in response to server messages. Instead of setting the position of the shape to the new location given by the server, lets' use the JQuery UI library's `animate` function It can move the shape smoothly between its current and new position.
+
+1. Update the client's `updateShape` method in the HTML page to look like the highlighted code:
 
     [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample6.html?highlight=33-40)]
 
-    The above code moves the shape from the old location to the new one given by the server over the course of the animation interval (in this case, 100 milliseconds). Any previous animation running on the shape is cleared before the new animation starts.
-2. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move. The movement of the shape in the other window should appear less jerky as its movement is interpolated over time rather than being set once per incoming message.
+1. Select the play button to start the application
 
-    ![The application window](tutorial-high-frequency-realtime-with-signalr/_static/image8.png)
+1. Copy the page's URL.
 
-<a id="furthersteps"></a>
+1. Open another browser and paste the URL into the address bar.
 
-## Further Steps
+1. Drag the shape in one of the browser windows.
 
-In this tutorial, you've learned how to program a SignalR application that sends high-frequency messages between clients and servers. This communication paradigm is useful for developing online games and other simulations, such as [the ShootR game created with SignalR](https://shootr.azurewebsites.net/).
+The movement of the shape in the other window will appear less jerky. Its movement is interpolated over time rather than being set once per incoming message.
 
-The complete application created in this tutorial can be downloaded from [Code Gallery](https://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a).
+This code moves the shape from the old location to the new one. The position is given by the server over the course of the animation interval. In this case, that's 100 milliseconds. Any previous animation running on the shape is cleared before the new animation starts.
+
+## Additional resources
+
+The communication paradigm you just learned about is useful for developing online games and other simulations, such as [the ShootR game created with SignalR](https://shootr.azurewebsites.net/).
+
+<!-- The complete application created in this tutorial can be downloaded from [Code Gallery](https://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a). -->
+
+For a walkthrough on how to deploy a SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
 
 To learn more about SignalR development concepts, visit the following sites for SignalR source code and resources:
 
-- [SignalR Project](http://signalr.net)
-- [SignalR Github and Samples](https://github.com/SignalR/SignalR)
-- [SignalR Wiki](https://github.com/SignalR/SignalR/wiki)
+* [SignalR Project](http://signalr.net)
 
-For a walkthrough on how to deploy a SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
+* [SignalR GitHub and Samples](https://github.com/SignalR/SignalR)
+
+* [SignalR Wiki](https://github.com/SignalR/SignalR/wiki)
+
+## Next Steps
+
+In this tutorial, you've learned how to:
+
+> [!div class="checklist"]
+> * Set up the project
+> * Create the base application
+> * Map to the hub when app starts
+> * Add the client
+> * Run the app
+> * Add the client loop
+> * Add the server loop
+> * Add smooth animation
+
+Advance to the next article to learn how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality.
+> [!div class="nextstepaction"]
+> [SignalR 2 and server broadcasting](tutorial-server-broadcast-with-signalr.md)
