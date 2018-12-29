@@ -139,7 +139,7 @@ Next, you'll add the HTML client.
 
 1. Replace the default code in the *Default.html* file with this code:
 
-    [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample3.html)]
+    [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample3.html?highlight=14-16)]
 
 1. In **Solution Explorer**, expand **Scripts**.
 
@@ -180,7 +180,7 @@ Use the javascript `setInterval` function to set up a loop that sends new positi
 
 1. Replace the client code in the Default.html file with this code:
 
-    [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample4.html)]
+    [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample4.html?highlight=14-16)]
 
     > [!IMPORTANT]
     > You have to replace the script references again. They must match the versions of the scripts in the project.
