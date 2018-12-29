@@ -2,7 +2,7 @@
 
 namespace ContactManager.Models
 {
-    #region snippet
+    #region snippet1
     public class Contact
     {
         public int ContactId { get; set; }

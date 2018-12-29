@@ -62,7 +62,7 @@ A reverse proxy is a common setup for serving dynamic web apps. A reverse proxy 
 
 ### Use a reverse proxy server
 
-Kestrel is great for serving dynamic content from ASP.NET Core. However, the web serving capabilities aren't as feature rich as servers such as IIS, Apache, or Nginx. A reverse proxy server can offload work such as serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
+Kestrel is great for serving dynamic content from ASP.NET Core. However, the web serving capabilities aren't as feature rich as servers such as IIS, Apache, or Nginx. A reverse proxy server can offload work such as serving static content, caching requests, compressing requests, and HTTPS termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
 
 For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Based on requirements, a different setup may be chosen.
 
@@ -343,7 +343,7 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 Configure the server with additional required modules. Consider using a web app firewall, such as [ModSecurity](https://www.modsecurity.org/), to harden the app.
 
-#### Configure SSL
+#### HTTPS configuration
 
 * Configure the server to listen to HTTPS traffic on port `443` by specifying a valid certificate issued by a trusted Certificate Authority (CA).
 
@@ -351,7 +351,7 @@ Configure the server with additional required modules. Consider using a web app 
 
 * Adding an `HTTP Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS.
 
-* Don't add the HSTS header or chose an appropriate `max-age` if SSL will be disabled in the future.
+* Don't add the HSTS header or chose an appropriate `max-age` if HTTPS will be disabled in the future.
 
 Add the */etc/nginx/proxy.conf* configuration file:
 
