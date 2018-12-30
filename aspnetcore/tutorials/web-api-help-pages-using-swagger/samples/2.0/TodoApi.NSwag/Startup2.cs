@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 #region snippet_StartupConfigureImports
 using NJsonSchema;
 using NSwag.AspNetCore;
-using System.Reflection;
 #endregion
 using TodoApi.Models;
 
@@ -19,21 +18,10 @@ namespace TodoApi
                 opt.UseInMemoryDatabase("TodoList"));
             services.AddMvc();
 
-            // Register the Swagger services
-            services.AddSwagger();
-        }
-        #endregion snippet_ConfigureServices
-
-        #region snippet_Configure
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseStaticFiles();
-
-            #region snippet_UseSwagger
-            // Register the Swagger generator middleware
-            app.UseSwaggerWithApiExplorer(settings =>
+            #region snippet_AddSwaggerDocument
+            services.AddSwaggerDocument(config =>
             {
-                settings.PostProcess = document =>
+                config.PostProcess = document =>
                 {
                     document.Info.Version = "v1";
                     document.Info.Title = "ToDo API";
@@ -52,9 +40,16 @@ namespace TodoApi
                     };
                 };
             });
-            #endregion snippet_UseSwagger
+            #endregion snippet_AddSwaggerDocument
+        }
+        #endregion snippet_ConfigureServices
 
-            // Register the Swagger UI middleware
+        #region snippet_Configure
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseStaticFiles();
+
+            app.UseSwagger();
             app.UseSwaggerUi3();
 
             app.UseMvc();
