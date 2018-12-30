@@ -12,9 +12,9 @@ msc.type: authoredcontent
 
 # Tutorial: Create high-frequency real-time app with SignalR 2
 
-This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide high-frequency messaging functionality. In this case, "high-frequency messaging" means updates that are sent at a fixed rate. We'll be sending up to 10 messages a second.
+This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide high-frequency messaging functionality. In this case, "high-frequency messaging" means the server sends updates at a fixed rate. We'll be sending up to 10 messages a second.
 
-The application you'll create will display a shape that users can drag. The position of the shape in all connected browsers will then be updated to match the position of the dragged shape using timed updates.
+The application you'll create will display a shape that users can drag. The server will update the position of the shape in all connected browsers to match the position of the dragged shape using timed updates.
 
 Concepts introduced in this tutorial have applications in real-time gaming and other simulation applications.
 
@@ -109,11 +109,11 @@ In this section, you'll create a browser application. The app sends the location
 
 The `MoveShapeHub` class is an implementation of a SignalR hub. As in the [Getting Started with SignalR](tutorial-getting-started-with-signalr.md) tutorial, the hub has a method that the clients call directly. In this case, the client will send an object with the new X and Y coordinates of the shape to the server. Those coordinates get broadcasted to all other connected clients. SignalR will automatically serialize this object using JSON.
 
-The `ShapeModel` object will be sent to the client. It has members to store the position of the shape. The version of the object on the server also has a member to track which client's data is being stored. This object prevents a client's data from being sent back to them. This member uses the `JsonIgnore` attribute to keep it from being serialized and sent to the client.
+The app will send the `ShapeModel` object to the client. It has members to store the position of the shape. The version of the object on the server also has a member to track which client's data is being stored. This object prevents the server from sending a client's data back to itself. This member uses the `JsonIgnore` attribute to keep the application from serializing the data and sending it back to the client.
 
 ## Map to the hub when app starts
 
-Next, you'll set up mapping to the hub when the application starts. In SignalR 2, this mapping is done by adding an OWIN startup class.
+Next, you'll set up mapping to the hub when the application starts. In SignalR 2, adding an OWIN startup class creates the mapping.
 
 1. In **Solution Explorer**, right-click the project and select **Add** > **New Item**.
 
@@ -125,7 +125,7 @@ Next, you'll set up mapping to the hub when the application starts. In SignalR 2
 
     [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample2.cs)]
 
-The OWIN startup class will call `MapSignalR` when the `Configuration` method is executed when OWIN starts. The class is added to OWIN's startup process using the `OwinStartup` assembly attribute.
+The OWIN startup class will call `MapSignalR` when the app executes the `Configuration` method. The app adds the class to OWIN's startup process using the `OwinStartup` assembly attribute.
 
 ## Add the client
 
@@ -146,9 +146,9 @@ Next, you'll add the HTML client.
     Script libraries for jQuery and SignalR are visible in the project.
 
     > [!IMPORTANT]
-    > The package manager may have installed a later version of the SignalR scripts.
+    > The package manager will install a later version of the SignalR scripts.
 
-1. Check that the script references in the code block correspond to the versions of the script files in the project.
+1. Update the script references in the code block correspond to the versions of the script files in the project.
 
 This HTML and JavaScript code creates a red `div` called `shape`. It enables the shape's dragging behavior using the jQuery library and uses the `drag` event to send the shape's position to the server.
 
@@ -170,13 +170,13 @@ You can run the app to see it work. When you drag the shape around a browser win
 
     ![GIF of the app in action](tutorial-high-frequency-realtime-with-signalr/_static/move-shape-demo.gif)
 
-While the application will function using this method, it's not a recommended programming model. There's no upper limit to the number of messages getting sent. As a result, the clients and server will get overwhelmed with messages and performance will degrade. The displayed animation on the client will also be disjointed, because the shape moves instantly by each method. It's better if the shape moves smoothly to each new location. Let's learn how to fix those issues.
+While the application will function using this method, it's not a recommended programming model. There's no upper limit to the number of messages getting sent. As a result, the clients and server will get overwhelmed with messages and performance will degrade. Also, the app will display a disjointed animation on the client. This jerky animation happens because the shape moves instantly by each method. It's better if the shape moves smoothly to each new location. Let's learn how to fix those issues.
 
 ## Add the client loop
 
-Sending the location of the shape on every mouse move event creates an unnecessary amount of network traffic. The messages from the client need to be throttled.
+Sending the location of the shape on every mouse move event creates an unnecessary amount of network traffic. The app needs to throttle the messages from the client.
 
-Use the javascript `setInterval` function to set up a loop that sends new position information to the server at a fixed rate. This loop is a basic representation of a "game loop." It's a repeatedly called function that drives all of the functionality of a game.
+Use the javascript `setInterval` function to set up a loop that sends new position information to the server at a fixed rate. This loop is a basic representation of a "game loop." It's a repeatedly called function that drives all the functionality of a game.
 
 1. Replace the client code in the Default.html file with this code:
 
@@ -195,13 +195,13 @@ Use the javascript `setInterval` function to set up a loop that sends new positi
 
 1. Drag the shape in one of the browser windows. The shape in the other browser window will follow.
 
-Since the number of messages that get sent to the server are throttled, the animation won't appear as smooth did at first.
+Since the app throttles the number of messages that get sent to the server, the animation won't appear as smooth did at first.
 
 ## Add the server loop
 
-In the current application, messages sent from the server to the client go out as often as they're received. This network traffic presents a similar problem as was seen on the client.
+In the current application, messages sent from the server to the client go out as often as they're received. This network traffic presents a similar problem as we see on the client.
 
-Messages can be sent more often than they're needed. The connection can become flooded as a result. This section describes how to update the server to add a timer that throttles the rate of the outgoing messages.
+The app can send messages more often than they're needed. The connection can become flooded as a result. This section describes how to update the server to add a timer that throttles the rate of the outgoing messages.
 
 1. Replace the contents of `MoveShapeHub.cs` with this code:
 
@@ -217,15 +217,15 @@ Messages can be sent more often than they're needed. The connection can become f
 
 This code expands the client to add the `Broadcaster` class. The new class throttles the outgoing messages using the `Timer` class from the .NET framework.
 
-It's good to learn that the hub itself is transitory. It's created every time it's needed. So the `Broadcaster` will be created as a singleton. Lazy initialization is used to defer its creation until the `Broadcaster` is needed. That guarantees that the first hub instance is created completely before the timer is started.
+It's good to learn that the hub itself is transitory. It's created every time it's needed. So the app creates the `Broadcaster` as a singleton. It uses lazy initialization to defer the `Broadcaster`'s creation until it's needed. That guarantees that the app creates the first hub instance completely before starting the timer.
 
-The call to the clients' `UpdateShape` function is then moved out of the hub's `UpdateModel` method. It's no longer called immediately whenever incoming messages are received. Instead, the messages to the clients will be sent at a rate of 25 calls per second, managed by the `_broadcastLoop` timer from within the `Broadcaster` class.
+The call to the clients' `UpdateShape` function is then moved out of the hub's `UpdateModel` method. It's no longer called immediately whenever the app receives incoming messages. Instead, the app sends the messages to the clients at a rate of 25 calls per second. The process is  managed by the `_broadcastLoop` timer from within the `Broadcaster` class.
 
 Lastly, instead of calling the client method from the hub directly, the `Broadcaster` class needs to get a reference to the currently operating `_hubContext` hub. It gets the reference with the `GlobalHost`.
 
 ## Add smooth animation
 
-The application is almost finished, but we could make one more improvement. The motion of the shape on the client is moved in response to server messages. Instead of setting the position of the shape to the new location given by the server, lets' use the JQuery UI library's `animate` function It can move the shape smoothly between its current and new position.
+The application is almost finished, but we could make one more improvement. The app moves the shape on the client in response to server messages. Instead of setting the position of the shape to the new location given by the server, lets' use the JQuery UI library's `animate` function. It can move the shape smoothly between its current and new position.
 
 1. Update the client's `updateShape` method in the HTML page to look like the highlighted code:
 
@@ -239,9 +239,9 @@ The application is almost finished, but we could make one more improvement. The 
 
 1. Drag the shape in one of the browser windows.
 
-The movement of the shape in the other window will appear less jerky. Its movement is interpolated over time rather than being set once per incoming message.
+The movement of the shape in the other window will appear less jerky. The app interpolates its movement over time rather than being set once per incoming message.
 
-This code moves the shape from the old location to the new one. The position is given by the server over the course of the animation interval. In this case, that's 100 milliseconds. Any previous animation running on the shape is cleared before the new animation starts.
+This code moves the shape from the old location to the new one. The server gives the position of the shape over the course of the animation interval. In this case, that's 100 milliseconds. The app clears any previous animation running on the shape before the new animation starts.
 
 ## Additional resources
 
