@@ -54,8 +54,8 @@ You'll need to set up the NuGet API to install the jQuery UI package.
 
     | Setting | Value |
     | ------- | ----- |
-    | Name | Enter *nuget.org* |
-    | Source | Enter \*https://api.nuget.org/v3/index.json* |
+    | Name | Enter *nuget.org*. |
+    | Source | Enter *https://api.nuget.org/v3/index.json*. |
 
 1. Select **OK**.
 
@@ -137,7 +137,7 @@ If you examine the server code, it will help you understand how the app works.
 
 #### Storing the singleton instance in a static field
 
-The code initializes the static `_instance` field that backs the `Instance` property with an instance of the class. Because the constructor is private, it's the only instance of the class that the app can create. The app uses [Lazy initialization](dotnet/framework/performance/lazy-initialization) for the `_instance` field. It's not for performance reasons. It's to make sure the instance creation is thread-safe.
+The code initializes the static `_instance` field that backs the `Instance` property with an instance of the class. Because the constructor is private, it's the only instance of the class that the app can create. The app uses [Lazy initialization](/dotnet/framework/performance/lazy-initialization) for the `_instance` field. It's not for performance reasons. It's to make sure the instance creation is thread-safe.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample4.cs)]
 
@@ -529,5 +529,4 @@ In this tutorial, you:
 
 Advance to the next article to learn how to create a real-time web application that uses ASP.NET SignalR 2.
 > [!div class="nextstepaction"]
-> [Create real-time web app with SignalR](real-time-web-applications-with-signalr
-.md)
+> [Create real-time web app with SignalR](real-time-web-applications-with-signalr.md)
