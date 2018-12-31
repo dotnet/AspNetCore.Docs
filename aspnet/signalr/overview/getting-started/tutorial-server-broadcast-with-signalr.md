@@ -11,12 +11,12 @@ msc.type: authoredcontent
 ---
 # Tutorial: Server Broadcast with SignalR 2
 
-This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality. Server broadcast means that the server initiates communications sent to clients.
+This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality. Server broadcast means that the server starts the communications sent to clients.
 
-The application that you'll create in this tutorial simulates a stock ticker, a typical scenario for server broadcast functionality. Periodically the server will randomly updates stock prices and broadcast the updates to all connected clients. In the browser the numbers and symbols in the **Change** and **%** columns dynamically change in response to notifications from the server. If you open additional browsers to the same URL, they all show the same data and the same changes to the data simultaneously.
+The application that you'll create in this tutorial simulates a stock ticker, a typical scenario for server broadcast functionality. Periodically, the server randomly updates stock prices and broadcast the updates to all connected clients. In the browser, the numbers and symbols in the **Change** and **%** columns dynamically change in response to notifications from the server. If you open additional browsers to the same URL, they all show the same data and the same changes to the data simultaneously.
 
 > [!IMPORTANT]
-> If you don't want to work through the steps of building the application, you can install the SignalR.Sample package in a new Empty ASP.NET Web Application project. If you install the NuGet package without performing the steps in this tutorial, you must follow the instructions in the *readme.txt* file. To run the package you need to add an OWIN startup class which calls the ConfigureSignalR method in the installed package. You will receive an error if you do not add the OWIN startup class.
+> If you don't want to work through the steps of building the application, you can install the SignalR.Sample package in a new Empty ASP.NET Web Application project. If you install the NuGet package without performing the steps in this tutorial, you must follow the instructions in the *readme.txt* file. To run the package you need to add an OWIN startup class which calls the `ConfigureSignalR` method in the installed package. You will receive an error if you do not add the OWIN startup class.
 
 In this tutorial, you:
 
@@ -71,7 +71,7 @@ This section shows how to use Visual Studio 2017 to create an empty ASP.NET Web 
 
 ## Set up the server code
 
-In this section you set up the code that runs on the server.
+In this section, you set up the code that runs on the server.
 
 ### Create the Stock class
 
@@ -85,15 +85,15 @@ You begin by creating the *Stock* model class that you'll use to store and trans
 
     [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample1.cs)]
 
-    The two properties that you'll set when you create stocks are `Symbol` (for example, MSFT for Microsoft) and `Price`. The other properties depend on how and when you set `Price`. The first time you set `Price`, the value gets propagated to `DayOpen`. Subsequent times when you set `Price`, the app calculates the `Change` and `PercentChange` property values based on the difference between `Price` and `DayOpen`.
+    The two properties that you'll set when you create stocks are `Symbol` (for example, MSFT for Microsoft) and `Price`. The other properties depend on how and when you set `Price`. The first time you set `Price`, the value gets propagated to `DayOpen`. After that, when you set `Price`, the app calculates the `Change` and `PercentChange` property values based on the difference between `Price` and `DayOpen`.
 
 ### Create the StockTickerHub and StockTicker classes
 
-You'll use the SignalR Hub API to handle server-to-client interaction. A `StockTickerHub` class that derives from the `SignalRHub` class will handle receiving connections and method calls from clients. You also need to maintain stock data and run a `Timer` object. The `Timer` object will periodically trigger price updates independent of client connections. You can't put these functions in a `Hub` class, because Hubs are transient. The app creates a `Hub` class instance for each operation on the hub, like connections and calls from the client to the server. So the mechanism that keeps stock data, updates prices, and broadcasts the price updates has to run in a separate class which you'll name `StockTicker`.
+You'll use the SignalR Hub API to handle server-to-client interaction. A `StockTickerHub` class that derives from the `SignalRHub` class will handle receiving connections and method calls from clients. You also need to maintain stock data and run a `Timer` object. The `Timer` object will periodically trigger price updates independent of client connections. You can't put these functions in a `Hub` class, because Hubs are transient. The app creates a `Hub` class instance for each task on the hub, like connections and calls from the client to the server. So the mechanism that keeps stock data, updates prices, and broadcasts the price updates has to run in a separate class. You'll name the class `StockTicker`.
 
 ![Broadcasting from StockTicker](tutorial-server-broadcast-with-signalr/_static/image2.png)
 
-You only want one instance of the `StockTicker` class to run on the server, so you'll need to set up a reference from each `StockTickerHu`b instance to the singleton `StockTicker` instance. The `StockTicker` class has to be able to broadcast to clients because it has the stock data and triggers updates, but `StockTicker` is not a `Hub` class. Therefore, the `StockTicker` class has to get a reference to the SignalR Hub connection context object. It can then use the SignalR connection context object to broadcast to clients.
+You only want one instance of the `StockTicker` class to run on the server, so you'll need to set up a reference from each `StockTickerHub` instance to the singleton `StockTicker` instance. The `StockTicker` class has to broadcast to clients because it has the stock data and triggers updates, but `StockTicker` isn't a `Hub` class. The `StockTicker` class has to get a reference to the SignalR Hub connection context object. It can then use the SignalR connection context object to broadcast to clients.
 
 #### Create StockTickerHub.cs
 
@@ -111,13 +111,13 @@ You only want one instance of the `StockTicker` class to run on the server, so y
 
 1. Save the file.
 
-The app uses the [Hub](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hub(v=vs.111).aspx) class to define methods the clients can call on the server. You are defining one method: `GetAllStocks()`. When a client initially connects to the server, it will call this method to get a list of all of the stocks with their current prices. The method can execute synchronously and return `IEnumerable<Stock>` because it is returning data from memory.
+The app uses the [Hub](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hub(v=vs.111).aspx) class to define methods the clients can call on the server. You're defining one method: `GetAllStocks()`. When a client initially connects to the server, it will call this method to get a list of all of the stocks with their current prices. The method can run synchronously and return `IEnumerable<Stock>` because it's returning data from memory.
 
-If the method had to get the data by doing something that would involve waiting, such as a database lookup or a web service call, you would specify `Task<IEnumerable<Stock>>` as the return value to enable asynchronous processing. For more information, see [ASP.NET SignalR Hubs API Guide - Server - When to execute asynchronously](../guide-to-the-api/hubs-api-guide-server.md#asyncmethods).
+If the method had to get the data by doing something that would involve waiting, like a database lookup or a web service call, you would specify `Task<IEnumerable<Stock>>` as the return value to enable asynchronous processing. For more information, see [ASP.NET SignalR Hubs API Guide - Server - When to execute asynchronously](../guide-to-the-api/hubs-api-guide-server.md#asyncmethods).
 
 The `HubName` attribute specifies how the app will reference the Hub in JavaScript code on the client. The default name on the client if you don't use this attribute, is a camelCase version of the class name, which in this case would be `stockTickerHub`.
 
-As you'll see later when you create the `StockTicker` class, the app creates a singleton instance of that class in its static `Instance` property. That singleton instance of `StockTicker` remains in memory no matter how many clients connect or disconnect. That instance is what the `GetAllStocks()` method uses to return current stock information.
+As you'll see later when you create the `StockTicker` class, the app creates a singleton instance of that class in its static `Instance` property. That singleton instance of `StockTicker` is in memory no matter how many clients connect or disconnect. That instance is what the `GetAllStocks()` method uses to return current stock information.
 
 #### Create StockTicker.cs
 
@@ -129,15 +129,15 @@ As you'll see later when you create the `StockTicker` class, the app creates a s
 
     [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample3.cs)]
 
-Since multiple threads will be running the same instance of StockTicker code, the StockTicker class has to be thread-safe.
+Since all threads will be running the same instance of StockTicker code, the StockTicker class has to be thread-safe.
 
 ### Examine the server code
 
-If you examine the server code, it will help you understand how the application works.
+If you examine the server code, it will help you understand how the app works.
 
 #### Storing the singleton instance in a static field
 
-The code initializes the static `_instance` field that backs the `Instance` property with an instance of the class. Because the constructor is private, this is the only instance of the class that the app can create. The app sues [Lazy initialization](dotnet/framework/performance/lazy-initialization) for the `_instance` field. It's not for performance reasons but to ensure that the instance creation is thread-safe.
+The code initializes the static `_instance` field that backs the `Instance` property with an instance of the class. Because the constructor is private, it's the only instance of the class that the app can create. The app uses [Lazy initialization](dotnet/framework/performance/lazy-initialization) for the `_instance` field. It's not for performance reasons. It's to make sure the instance creation is thread-safe.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample4.cs)]
 
@@ -153,7 +153,7 @@ The constructor initializes the `_stocks` collection with some sample stock data
 
 The stocks collection defined as a [ConcurrentDictionary](https://msdn.microsoft.com/library/dd287191.aspx) type for thread safety. As an alternative, you could use a [Dictionary](https://msdn.microsoft.com/library/xfhwa508.aspx) object and explicitly lock the dictionary when you make changes to it.
 
-For this sample application, it's OK to store application data in memory and to lose the data when the app disposes of the  `StockTicker` instance. In a real application you would work with a back-end data store such as a database.
+For this sample application, it's OK to store application data in memory and to lose the data when the app disposes of the  `StockTicker` instance. In a real application, you would work with a back-end data store like a database.
 
 #### Periodically updating stock prices
 
@@ -163,25 +163,25 @@ The constructor starts up a `Timer` object that periodically calls methods that 
 
  `Timer` calls `UpdateStockPrices`, which passes in null in the state parameter. Before updating prices, the app takes a lock on the `_updateStockPricesLock` object. The code checks if another thread is already updating prices, and then it calls `TryUpdateStockPrice` on each stock in the list. The `TryUpdateStockPrice` method decides whether to change the stock price, and how much to change it. If the stock price changes, the app calls `BroadcastStockPrice` to broadcast the stock price change to all connected clients.
 
-The `_updatingStockPrices` flag designated [volatile](https://msdn.microsoft.com/library/x13ttww7.aspx) to ensure that access to it is thread-safe.
+The `_updatingStockPrices` flag designated [volatile](https://msdn.microsoft.com/library/x13ttww7.aspx) to make sure it is thread-safe.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample8.cs)]
 
-In a real application, the `TryUpdateStockPrice` method would call a web service to look up the price. In this code it uses a random number generator to make changes randomly.
+In a real application, the `TryUpdateStockPrice` method would call a web service to look up the price. In this code, the app uses a random number generator to make changes randomly.
 
 #### Getting the SignalR context so that the StockTicker class can broadcast to clients
 
-Because the price changes originate here in the `StockTicker` object, this is the object that needs to call an `updateStockPrice` method on all connected clients. In a `Hub` class you have an API for calling client methods, but `StockTicker` does not derive from the `Hub` class and does not have a reference to any `Hub` object. Therefore, in order to broadcast to connected clients, the `StockTicker` class has to get the SignalR context instance for the `StockTickerHub` class and use that to call methods on clients.
+Because the price changes originate here in the `StockTicker` object, it's the object that needs to call an `updateStockPrice` method on all connected clients. In a `Hub` class, you have an API for calling client methods, but `StockTicker` doesn't derive from the `Hub` class and doesn't have a reference to any `Hub` object. To broadcast to connected clients, the `StockTicker` class has to get the SignalR context instance for the `StockTickerHub` class and use that to call methods on clients.
 
 The code gets a reference to the SignalR context when it creates the singleton class instance, passes that reference to the constructor, and the constructor puts it in the `Clients` property.
 
-There are two reasons why you want to get the context just once: getting the context is an expensive operation, and getting it once ensures that the app preserves the intended order of messages sent to the clients.
+There are two reasons why you want to get the context only once: getting the context is an expensive task, and getting it once makes sure the app preserves the intended order of messages sent to the clients.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample9.cs)]
 
 Getting the `Clients` property of the context and putting it in the `StockTickerClient` property lets you write code to call client methods that looks the same as it would in a `Hub` class. For instance, to broadcast to all clients you can write `Clients.All.updateStockPrice(stock)`.
 
-The `updateStockPrice` method that you are calling in `BroadcastStockPric`e doesn't exist yet. You'll add it later when you write code that runs on the client. You can refer to `updateStockPric`e here because `Clients.All` is dynamic, which means the app will evaluated the expression at runtime. When this method call executes, SignalR will send the method name and the parameter value to the client, and if the client has a method named `updateStockPrice`, the app will call that method and pass the parameter value to it.
+The `updateStockPrice` method that you're calling in `BroadcastStockPrice` doesn't exist yet. You'll add it later when you write code that runs on the client. You can refer to `updateStockPrice` here because `Clients.All` is dynamic, which means the app will evaluate the expression at runtime. When this method call executes, SignalR will send the method name and the parameter value to the client, and if the client has a method named `updateStockPrice`, the app will call that method and pass the parameter value to it.
 
 `Clients.All` means send to all clients. SignalR gives you other options to specify which clients or groups of clients to send to. For more information, see [HubConnectionContext](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.hubs.hubconnectioncontext(v=vs.111).aspx).
 
@@ -199,7 +199,7 @@ The server needs to know which URL to intercept and direct to SignalR. To do tha
 
     [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample10.cs)]
 
-You have now completed setting up the server code. In the next section you'll set up the client.
+You have now finished setting up the server code. In the next section, you'll set up the client.
 
 ## Set up the client code
 
@@ -221,9 +221,19 @@ First, you'll add the HTML client.
 
     [!code-html[Main](tutorial-server-broadcast-with-signalr/samples/sample11.html)?highlight=40-43]
 
-    The HTML creates a table with 5 columns, a header row, and a data row with a single cell that spans all 5 columns. The data row displays "loading..." momentarily when the application starts. JavaScript code will remove that row and add in its place rows with stock data retrieved from the server.
+    The HTML creates a table with five columns, a header row, and a data row with a single cell that spans all five columns. The data row shows "loading..." momentarily when the app starts. JavaScript code will remove that row and add in its place rows with stock data retrieved from the server.
 
-    The script tags specify the jQuery script file, the SignalR core script file, the SignalR proxies script file, and a StockTicker script file that you'll create later. The SignalR proxies script file, which specifies the "/signalr/hubs" URL, is dynamically generated and defines proxy methods for the methods on the Hub class, in this case for StockTickerHub.GetAllStocks. If you prefer, you can generate this JavaScript file manually by using [SignalR Utilities](http://nuget.org/packages/Microsoft.AspNet.SignalR.Utils/) and disable dynamic file creation in the MapHubs method call.
+    The script tags specify:
+
+    * The jQuery script file.
+
+    * The SignalR core script file.
+
+    * The SignalR proxies script file.
+
+    * A StockTicker script file that you'll create later.
+
+    The app dynamically generates the SignalR proxies script file. It specifies the "/signalr/hubs" URL and defines proxy methods for the methods on the Hub class, in this case, for `StockTickerHub.GetAllStocks`. If you prefer, you can generate this JavaScript file manually by using [SignalR Utilities](http://nuget.org/packages/Microsoft.AspNet.SignalR.Utils/)  Don't forget to disable dynamic file creation in the `MapHubs` method call.
 
 1. In **Solution Explorer**, expand **Scripts**.
 
@@ -250,7 +260,7 @@ Now create the JavaScript file.
 
 ### Examine the client code
 
-If you examine the client code, it will help you understand how the client code interacts with the server code to make the application work.
+If you examine the client code, it will help you learn how the client code interacts with the server code to make the app work.
 
 #### Starting the connection
 
@@ -260,7 +270,7 @@ If you examine the client code, it will help you understand how the client code 
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample14.cs)]
 
-After you define all the variables and functions, the last line of code in the file initializes the SignalR connection by calling the SignalR `start` function. The `star`t function executes asynchronously and returns a [jQuery Deferred object](http://api.jquery.com/category/deferred-object/). This means you can call the done function to specify the function to call when the app completes the asynchronous operation.
+After you define all the variables and functions, the last line of code in the file initializes the SignalR connection by calling the SignalR `start` function. The `start` function executes asynchronously and returns a [jQuery Deferred object](http://api.jquery.com/category/deferred-object/). You can call the done function to specify the function to call when the app finishes the asynchronous action.
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample15.js)]
 
@@ -275,25 +285,25 @@ The `init` function calls the `getAllStocks` function on the server and uses the
 In the `init` method, the app creates HTML for a table row for each stock object received from the server by calling `formatStock` to format properties of the `stock` object, and then by calling `supplant` to replace placeholders in the `rowTemplate` variable with the `stock` object property values. The resulting HTML is then appended to the stock table.
 
 > [!NOTE]
-> You call `init` by passing it in as a `callback` function that executes after the asynchronous `start` function completes. If you called `init` as a separate JavaScript statement after calling `start`, the function would fail because it would execute immediately without waiting for the start function to finish establishing the connection. In that case, the `init` function would try to call the `getAllStocks` function before the app establishes a server connection.
+> You call `init` by passing it in as a `callback` function that executes after the asynchronous `start` function finishes. If you called `init` as a separate JavaScript statement after calling `start`, the function would fail because it would run immediately without waiting for the start function to finish establishing the connection. In that case, the `init` function would try to call the `getAllStocks` function before the app establishes a server connection.
 
 #### Getting updated stock prices
 
-When the server changes a stock's price, it calls the `updateStockPrice` on connected clients. The app adds the function to the client property of the `stockTicker` proxy in order to make it available to calls from the server.
+When the server changes a stock's price, it calls the `updateStockPrice` on connected clients. The app adds the function to the client property of the `stockTicker` proxy to make it available to calls from the server.
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample18.js)]
 
-The `updateStockPrice` function formats a stock object received from the server into a table row the same way as in the `init` function. However, instead of appending the row to the table, it finds the stock's current row in the table and replaces that row with the new one.
+The `updateStockPrice` function formats a stock object received from the server into a table row the same way as in the `init` function. Instead of appending the row to the table, it finds the stock's current row in the table and replaces that row with the new one.
 
 ## Test the application
 
-You can test the app to make sure it's working. You'll see multiple browser windows display the live stock table with stock prices fluctuating.
+You can test the app to make sure it's working. You'll see all browser windows display the live stock table with stock prices fluctuating.
 
-1. In the toolbar, turn on **Script Debugging** and then select the play button to run the application in Debug mode.
+1. In the toolbar, turn on **Script Debugging** and then select the play button to run the app in Debug mode.
 
     ![Screenshot of user turning on debugging mode and selecting play.](tutorial-server-broadcast-with-signalr/_static/image3.png)
 
-    A browser window will open displaying the **Live Stock Table**. The stock table initially displays the "loading..." line, then after a short delay the app displays the initial stock data, and then the stock prices start to change.
+    A browser window will open displaying the **Live Stock Table**. The stock table initially shows the "loading..." line, then, after a short time, the app shows the initial stock data, and then the stock prices start to change.
 
 1. Copy the URL from the browser, open two other browsers, and paste the URLs into the address bars.
 
@@ -303,13 +313,13 @@ You can test the app to make sure it's working. You'll see multiple browser wind
 
 1. Close all browsers, open a new browser, and go to the same URL.
 
-    The StockTicker singleton object has continued to run in the server, so the stock table display shows that the stocks have continued to change. You don't see the initial table with zero change figures.
+    The StockTicker singleton object continued to run in the server. The **Live Stock Table** shows that the stocks have continued to change. You don't see the initial table with zero change figures.
 
 1. Close the browser.
 
 ## Enable logging
 
-SignalR has a built-in logging function that you can enable on the client to aid in troubleshooting. In this section you enable logging and see examples that show how logs tell you which of the following transport methods SignalR is using:
+SignalR has a built-in logging function that you can enable on the client to aid in troubleshooting. In this section, you enable logging and see examples that show how logs tell you which of the following transport methods SignalR is using:
 
 * [WebSockets](http://en.wikipedia.org/wiki/WebSocket), supported by IIS 8 and current browsers.
 * [Server-sent events](http://en.wikipedia.org/wiki/Server-sent_events), supported by browsers other than Internet Explorer.
@@ -326,27 +336,30 @@ For any given connection, SignalR chooses the best transport method that both th
 
 1. Press **F5** to run the project.
 
-1. Open your browser's developer tools window, and select the Console to see the logs. You might have to refresh the page to see the logs of Signalr negotiating the transport method for a new connection.
+1. Open your browser's developer tools window, and select the Console to see the logs. You might have to refresh the page to see the logs of SignalR negotiating the transport method for a new connection.
 
-    If you are running Internet Explorer 10 on Windows 8 (IIS 8), the transport method is **WebSockets**.
+    If you're running Internet Explorer 10 on Windows 8 (IIS 8), the transport method is **WebSockets**.
 
     ![IE 10 IIS 8 Console](tutorial-server-broadcast-with-signalr/_static/image4.png)
 
-    If you are running Internet Explorer 10 on Windows 7 (IIS 7.5), the transport method is **iframe**.
+    If you're running Internet Explorer 10 on Windows 7 (IIS 7.5), the transport method is **iframe**.
 
     ![IE 10 Console, IIS 7.5](tutorial-server-broadcast-with-signalr/_static/image5.png)
 
-    In Firefox, install the Firebug add-in to get a Console window. If you are running Firefox 19 on Windows 8 (IIS 8), the transport method is **WebSockets**.
+    If you're running Firefox 19 on Windows 8 (IIS 8), the transport method is **WebSockets**.
 
-    ![Firefox 19 IIS 8 Websockets](tutorial-server-broadcast-with-signalr/_static/image6.png)
+    > [!TIP]
+    > In Firefox, install the Firebug add-in to get a Console window.
 
-    If you are running Firefox 19 on Windows 7 (IIS 7.5), the transport method is **server-sent** events.
+    ![Firefox 19 IIS 8 WebSockets](tutorial-server-broadcast-with-signalr/_static/image6.png)
+
+    If you're running Firefox 19 on Windows 7 (IIS 7.5), the transport method is **server-sent** events.
 
     ![Firefox 19 IIS 7.5 Console](tutorial-server-broadcast-with-signalr/_static/image7.png)
 
 ## Install and review the full StockTicker sample
 
-The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet.signalr.sample) installs the StockTicker application. The NuGet package includes more features than the simplified version that you just created from scratch. In this section of the tutorial, you install the NuGet package and review the new features and the code that implements them.
+The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet.signalr.sample) installs the StockTicker application. The NuGet package includes more features than the simplified version that you created from scratch. In this section of the tutorial, you install the NuGet package and review the new features and the code that implements them.
 
 > [!IMPORTANT]
 > If you install the package without performing the earlier steps of this tutorial, you must add an OWIN startup class to your project. This readme.txt file for the NuGet package explains this step.
@@ -360,9 +373,9 @@ The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet
 1. From **Package source**, select **nuget.org**.
 
     > [!TIP]
-    > If you don't have nuget.org configured, take a look at the **Prerequisites** section of this article.
+    > If you don't have nuget.org set up, take a look at the **Prerequisites** section of this article.
 
-1. Enter *SignalR.Sample* in the search box and, when it appears, select **Microsoft.AspNet.SignalR.Sample** > **Install**.
+1. Enter *SignalR.Sample* in the search box and select **Microsoft.AspNet.SignalR.Sample** > **Install**.
 
     ![Install SignalR.Sample package](tutorial-server-broadcast-with-signalr/_static/image8.png)
 
@@ -377,11 +390,11 @@ The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet
 
 ### Run the application
 
- In addition to the grid that you saw earlier, the full stock ticker application shows a horizontally scrolling window that displays the same stock data.
+ The table that you saw in the first app had useful features. The full stock ticker application shows new features: a horizontally scrolling window that shows the stock data and stocks that change color as they rise and fall.
 
-1. Press **F5** to run the application.
+1. Press **F5** to run the app.
 
-     When you run the application for the first time, the "market" is "closed" and you see a static grid and a ticker window that isn't scrolling.
+     When you run the app for the first time, the "market" is "closed" and you see a static table and a ticker window that isn't scrolling.
 
 1. Select **Open Market**.
 
@@ -389,7 +402,7 @@ The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet
 
     * The **Live Stock Ticker** box starts to scroll horizontally, and the server starts to periodically broadcast stock price changes on a random basis.
 
-    * Each time a stock price changes, the app updates both the **Live Stock Table** grid and the **Live Stock Ticker** box.
+    * Each time a stock price changes, the app updates both the **Live Stock Table** and the **Live Stock Ticker**.
 
     * When a stock's price change is positive, the app shows the stock with a green background.
 
@@ -397,7 +410,7 @@ The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet
 
 1. Select **Close Market**.
 
-    * The changes to the grid stops.
+    * The table updates stop.
 
     * The ticker stops scrolling.
 
@@ -415,7 +428,7 @@ The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet
 
 ### Live Stock Ticker display
 
-The **Live Stock Ticker** display is an unordered list in a `<div>` element formatted into a single line by CSS styles. The app initializes and updates the ticker the same way as the table: by replacing placeholders in an `<li>` template string and dynamically adding the `<li>` elements to the `<ul>` element. The app performs the scrolling by using the jQuery `animate` function to vary the margin-left of the unordered list within the `<div>`.
+The **Live Stock Ticker** display is an unordered list in a `<div>` element formatted into a single line by CSS styles. The app initializes and updates the ticker the same way as the table: by replacing placeholders in an `<li>` template string and dynamically adding the `<li>` elements to the `<ul>` element. The app includes  scrolling by using the jQuery `animate` function to vary the margin-left of the unordered list within the `<div>`.
 
 #### SignalR.Sample StockTicker.html
 
@@ -445,7 +458,7 @@ The `StockTickerHub` class defines four additional methods that the client can c
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample23.cs)]
 
-Thw app calls `OpenMarket`, `CloseMarket`, and `Reset` in response to the buttons at the top of the page. They demonstrate the pattern of one client triggering a change in state immediately propagated to all clients. Each of these methods calls a method in the `StockTicker` class that effects the market state change and then broadcasts the new state.
+The app calls `OpenMarket`, `CloseMarket`, and `Reset` in response to the buttons at the top of the page. They demonstrate the pattern of one client triggering a change in state immediately propagated to all clients. Each of these methods calls a method in the `StockTicker` class that effects the market state change and then broadcasts the new state.
 
 #### SignalR.Sample StockTicker.cs
 
@@ -457,7 +470,7 @@ Each of the methods that change the market state do so inside a lock block becau
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample25.cs)]
 
-To ensure that this code is thread-safe, the `_marketState` field that backs the `MarketState` property designated `volatile`:
+To make sure this code is thread-safe, the `_marketState` field that backs the `MarketState` property designated `volatile`:
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample26.cs)]
 
@@ -467,34 +480,38 @@ The `BroadcastMarketStateChange` and `BroadcastMarketReset` methods are similar 
 
 ### Additional functions on the client that the server can call
 
-The `updateStockPrice` function now handles both the grid and the ticker display, and it uses `jQuery.Color` to flash red and green colors.
+The `updateStockPrice` function now handles both the table and the ticker display, and it uses `jQuery.Color` to flash red and green colors.
 
-New functions in *SignalR.StockTicker.js* enable and disable the buttons based on market state, and they stop or start the ticker window horizontal scrolling. Since multiple functions are being added to ticker.client, th app uses the [jQuery extend function](http://api.jquery.com/jQuery.extend/) to add them.
+New functions in *SignalR.StockTicker.js* enable and disable the buttons based on market state. They also stop or start the **Live Stock Ticker** horizontal scrolling. Since many functions are being added to `ticker.client`, the app uses the [jQuery extend function](http://api.jquery.com/jQuery.extend/) to add them.
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample28.js)]
 
 ### Additional client setup after establishing the connection
 
-After the client establishes the connection, it has some additional work to do: find out if the market is open or closed in order to call the appropriate marketOpened or marketClosed function, and attach the server method calls to the buttons.
+After the client establishes the connection, it has some additional work to do:
+
+* Find out if the market is open or closed to call the appropriate `marketOpened` or `marketClosed` function.
+
+* Attach the server method calls to the buttons.
 
 [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample29.js)]
 
-The server methods are not wired up to the buttons until after the app establishes the connection, so that the code can't try to call the server methods before they are available.
+The server methods aren't wired up to the buttons until after the app establishes the connection. It's so the code can't call the server methods before they're available.
 
 ## Additional resources
 
-In this tutorial you've learned how to program a SignalR application that broadcasts messages from the server to all connected clients, both on a periodic basis and in response to notifications from any client. The pattern of using a multi-threaded singleton instance to maintain server state can also be also used in multi-player online game scenarios. For an example, see [the ShootR game based on SignalR](https://github.com/NTaylorMullen/ShootR).
+In this tutorial you've learned how to program a SignalR application that broadcasts messages from the server to all connected clients. Now you can broadcast messages on a periodic basis and in response to notifications from any client. You can use the concept of multi-threaded singleton instance to maintain server state in multi-player online game scenarios. For an example, see [the ShootR game based on SignalR](https://github.com/NTaylorMullen/ShootR).
 
 For tutorials that show peer-to-peer communication scenarios, see [Getting Started with SignalR](introduction-to-signalr.md) and [Real-Time Updating with SignalR](tutorial-high-frequency-realtime-with-signalr.md).
 
-For more information, see the following resources:
+For more about SignalR, see the following resources:
 
 * [ASP.NET SignalR](../../index.md)
 * [SignalR Project](http://signalr.net/)
-* [SignalR Github and Samples](https://github.com/SignalR/SignalR)
+* [SignalR GitHub and Samples](https://github.com/SignalR/SignalR)
 * [SignalR Wiki](https://github.com/SignalR/SignalR/wiki)
 
-For a walkthrough on how to deploy a SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
+For a walkthrough on how to deploy a SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
 
 ## Next steps
 
@@ -509,3 +526,8 @@ In this tutorial, you:
 > * Tested the application
 > * Enable logging
 > * Install and review the full StockTicker sample
+
+Advance to the next article to learn how to create a real-time web application that uses ASP.NET SignalR 2.
+> [!div class="nextstepaction"]
+> [Create real-time web app with SignalR](real-time-web-applications-with-signalr
+.md)
