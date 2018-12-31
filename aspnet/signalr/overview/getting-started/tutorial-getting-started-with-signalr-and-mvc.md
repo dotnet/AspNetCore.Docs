@@ -26,7 +26,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) - When Visual Studio Installer opens, make sure you install **ASP.NET and web development**. It's under **Web & Cloud**.
+* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
 
 ## Set up the Project
 
