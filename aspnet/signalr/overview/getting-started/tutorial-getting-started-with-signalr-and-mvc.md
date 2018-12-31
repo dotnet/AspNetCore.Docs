@@ -173,8 +173,6 @@ The code starts the connection and then passes it a function to handle the click
 
 ## Additional resources
 
-For a walkthrough on how to deploy the sample SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
-
 For more about SignalR, see the following resources:
 
 * [SignalR Project](http://signalr.net)
