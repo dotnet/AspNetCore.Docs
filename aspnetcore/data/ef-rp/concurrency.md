@@ -196,7 +196,7 @@ The following code gets the client values (the values posted to this method) and
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=9,18)]
 
-The follwing code adds a custom error message for each column that has DB values different from what was posted to `OnPostAsync`:
+The following code adds a custom error message for each column that has DB values different from what was posted to `OnPostAsync`:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_err)]
 
