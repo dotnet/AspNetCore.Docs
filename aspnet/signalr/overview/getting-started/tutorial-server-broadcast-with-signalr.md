@@ -219,7 +219,7 @@ First, you'll add the HTML client.
 
 1. Replace the default code in the *StockTicker.html* file with this code:
 
-    [!code-html[Main](tutorial-server-broadcast-with-signalr/samples/sample11.html)?highlight=40-43]
+    [!code-html[Main](tutorial-server-broadcast-with-signalr/samples/sample11.html?highlight=40-43)]
 
     The HTML creates a table with five columns, a header row, and a data row with a single cell that spans all five columns. The data row shows "loading..." momentarily when the app starts. JavaScript code will remove that row and add in its place rows with stock data retrieved from the server.
 
