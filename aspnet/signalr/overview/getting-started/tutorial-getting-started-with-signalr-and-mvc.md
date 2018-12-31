@@ -2,9 +2,9 @@
 uid: signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
 title: "Real-time chat with SignalR 2 and MVC 5 | Microsoft Docs"
 author: pfletcher
-description: "This tutorial shows how to use ASP.NET SignalR 2 to create a real-time chat application. You will add SignalR to an MVC 5 application and create ..."
+description: "This tutorial shows how to use ASP.NET SignalR 2 to create a real-time chat application. You will add SignalR to an MVC 5 application."
 ms.author: riande
-ms.date: 12/27/2018
+ms.date: 12/28/2018
 ms.assetid: 80bfe5fb-bdfc-41fe-ac43-2132e5d69fac
 msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
 msc.type: authoredcontent
@@ -14,7 +14,7 @@ msc.type: authoredcontent
 
 This tutorial shows how to use ASP.NET SignalR 2 to create a real-time chat application. You'll add SignalR to an MVC 5 application and create a chat view to send and display messages.
 
-In this tutorial you learn how to:
+In this tutorial, you:
 
 > [!div class="checklist"]
 > * Set up the project
@@ -49,17 +49,17 @@ This section shows how to use Visual Studio 2017 and SignalR 2 to create an empt
 
 1. Name the class *ChatHub* and add it to the project.
 
-    This step creates the *ChatHub.cs* class and adds a set of script files and assembly references that support SignalR to the project.
+    This step creates the *ChatHub.cs* class file and adds a set of script files and assembly references that support SignalR to the project.
 
-1. Replace the code in the new *ChatHub.cs* class with this code:
+1. Replace the code in the new *ChatHub.cs* class file with this code:
 
     [!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample1.cs)]
 
-1. In **Solution Explorer**, right-click the project and select **Ad** > **Class**.
+1. In **Solution Explorer**, right-click the project and select **Add** > **Class**.
 
 1. Name the new class *Startup* and add it to the project.
 
-1. Replace the code in the *Startup.cs* class with this code:
+1. Replace the code in the *Startup.cs* class file with this code:
 
     [!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample2.cs)]
 
@@ -174,7 +174,7 @@ The code starts the connection and then passes it a function to handle the click
 
 For a walkthrough on how to deploy the sample SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For detailed information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
 
-To learn more advanced SignalR developments concepts, go to these sites for SignalR source code and resources:
+For more about SignalR, see the following resources:
 
 * [SignalR Project](http://signalr.net)
 
@@ -182,14 +182,14 @@ To learn more advanced SignalR developments concepts, go to these sites for Sign
 
 * [SignalR Wiki](https://github.com/SignalR/SignalR/wiki)
 
-## Next Steps
+## Next steps
 
-In this tutorial you learned how to:
+In this tutorial, you:
 
 > [!div class="checklist"]
 > * Set up the project
-> * Run the sample
-> * Examine the code
+> * Ran the sample
+> * Examined the code
 
 Advance to the next article to learn how to create a web application that uses ASP.NET SignalR 2 to provide high-frequency messaging functionality.
 > [!div class="nextstepaction"]
