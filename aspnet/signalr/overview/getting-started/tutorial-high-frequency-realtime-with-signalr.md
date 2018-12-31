@@ -42,7 +42,7 @@ If you don't already have it, [download Visual Studio 2017](https://visualstudio
 
 When Visual Studio Installer opens, make sure you install the **ASP.NET and web development** workload. It's under **Web & Cloud**.
 
-### NuGet package source api
+### NuGet package source API
 
 You'll need to set up the NuGet API to install the jQuery UI package.
 
@@ -81,13 +81,13 @@ This section shows how to use Visual Studio 2017 to create an empty ASP.NET Web 
 
 1. Select **Tools** > **NuGet Package Manager** > **Package Manager Console**.
 
-1. In the package manager window, run the following command:
+1. In **Package Manager Console**, run this command:
 
     ```console
     Install-Package jQuery.UI.Combined
     ```
 
-    This command installs the jQuery UI library. You'll use it to animate the shape.
+    The command installs the jQuery UI library. You'll use it to animate the shape.
 
 1. In **Solution Explorer**, expand the Scripts node.
 
@@ -148,7 +148,7 @@ Next, you'll add the HTML client.
     > [!IMPORTANT]
     > The package manager will install a later version of the SignalR scripts.
 
-1. Update the script references in the code block correspond to the versions of the script files in the project.
+1. Update the script references in the code block to correspond to the versions of the script files in the project.
 
 This HTML and JavaScript code creates a red `div` called `shape`. It enables the shape's dragging behavior using the jQuery library and uses the `drag` event to send the shape's position to the server.
 
@@ -178,7 +178,7 @@ Sending the location of the shape on every mouse move event creates an unnecessa
 
 Use the javascript `setInterval` function to set up a loop that sends new position information to the server at a fixed rate. This loop is a basic representation of a "game loop." It's a repeatedly called function that drives all the functionality of a game.
 
-1. Replace the client code in the Default.html file with this code:
+1. Replace the client code in the *Default.html* file with this code:
 
     [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample4.html?highlight=14-16)]
 
@@ -207,7 +207,7 @@ The app can send messages more often than they're needed. The connection can bec
 
     [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample5.cs)]
 
-1. Select the play button to start the application
+1. Select the play button to start the application.
 
 1. Copy the page's URL.
 
@@ -227,11 +227,11 @@ Lastly, instead of calling the client method from the hub directly, the `Broadca
 
 The application is almost finished, but we could make one more improvement. The app moves the shape on the client in response to server messages. Instead of setting the position of the shape to the new location given by the server, lets' use the JQuery UI library's `animate` function. It can move the shape smoothly between its current and new position.
 
-1. Update the client's `updateShape` method in the HTML page to look like the highlighted code:
+1. Update the client's `updateShape` method in the *Default.html* file to look like the highlighted code:
 
     [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample6.html?highlight=33-40)]
 
-1. Select the play button to start the application
+1. Select the play button to start the application.
 
 1. Copy the page's URL.
 
