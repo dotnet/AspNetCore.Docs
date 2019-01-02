@@ -30,22 +30,13 @@ In this tutorial, you:
 > * Examine the client code
 > * Test the application
 > * Enable logging
-> * Install and review the full StockTicker sample
+> * Install the StockTicker sample
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 ## Prerequisites
 
-### Visual Studio 2017
-
-If you don't already have it, [download Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) now.
-
-### ASP.NET and web development workload
-
-When Visual Studio Installer opens, make sure you install the **ASP.NET and web development** workload. It's under **Web & Cloud**.
-
-
-1. Select **OK**.
+ * [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
 
 ## Create the project
 
@@ -308,8 +299,11 @@ You can test the app to make sure it's working. You'll see all browser windows d
 SignalR has a built-in logging function that you can enable on the client to aid in troubleshooting. In this section, you enable logging and see examples that show how logs tell you which of the following transport methods SignalR is using:
 
 * [WebSockets](http://en.wikipedia.org/wiki/WebSocket), supported by IIS 8 and current browsers.
+
 * [Server-sent events](http://en.wikipedia.org/wiki/Server-sent_events), supported by browsers other than Internet Explorer.
+
 * [Forever frame](http://en.wikipedia.org/wiki/Comet_(programming)#Hidden_iframe), supported by Internet Explorer.
+
 * [Ajax long polling](http://en.wikipedia.org/wiki/Comet_(programming)#Ajax_with_long_polling), supported by all browsers.
 
 For any given connection, SignalR chooses the best transport method that both the server and the client support.
@@ -324,26 +318,18 @@ For any given connection, SignalR chooses the best transport method that both th
 
 1. Open your browser's developer tools window, and select the Console to see the logs. You might have to refresh the page to see the logs of SignalR negotiating the transport method for a new connection.
 
-    If you're running Internet Explorer 10 on Windows 8 (IIS 8), the transport method is **WebSockets**.
+    * If you're running Internet Explorer 10 on Windows 8 (IIS 8), the transport method is **WebSockets**.
 
-    ![IE 10 IIS 8 Console](tutorial-server-broadcast-with-signalr/_static/image4.png)
+    * If you're running Internet Explorer 10 on Windows 7 (IIS 7.5), the transport method is **iframe**.
 
-    If you're running Internet Explorer 10 on Windows 7 (IIS 7.5), the transport method is **iframe**.
+    * If you're running Firefox 19 on Windows 8 (IIS 8), the transport method is **WebSockets**.
 
-    ![IE 10 Console, IIS 7.5](tutorial-server-broadcast-with-signalr/_static/image5.png)
+        > [!TIP]
+        > In Firefox, install the Firebug add-in to get a Console window.
 
-    If you're running Firefox 19 on Windows 8 (IIS 8), the transport method is **WebSockets**.
+    * If you're running Firefox 19 on Windows 7 (IIS 7.5), the transport method is **server-sent** events.
 
-    > [!TIP]
-    > In Firefox, install the Firebug add-in to get a Console window.
-
-    ![Firefox 19 IIS 8 WebSockets](tutorial-server-broadcast-with-signalr/_static/image6.png)
-
-    If you're running Firefox 19 on Windows 7 (IIS 7.5), the transport method is **server-sent** events.
-
-    ![Firefox 19 IIS 7.5 Console](tutorial-server-broadcast-with-signalr/_static/image7.png)
-
-## Install and review the full StockTicker sample
+## Install the StockTicker sample
 
 The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet.signalr.sample) installs the StockTicker application. The NuGet package includes more features than the simplified version that you created from scratch. In this section of the tutorial, you install the NuGet package and review the new features and the code that implements them.
 
@@ -502,7 +488,7 @@ In this tutorial, you:
 > * Examined the client code
 > * Tested the application
 > * Enabled logging
-> * Installed and reviewed the full StockTicker sample
+> * Installed the StockTicker sample
 
 Advance to the next article to learn how to create a real-time web application that uses ASP.NET SignalR 2.
 > [!div class="nextstepaction"]
