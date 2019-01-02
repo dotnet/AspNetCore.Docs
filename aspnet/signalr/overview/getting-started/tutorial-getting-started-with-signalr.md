@@ -2,7 +2,7 @@
 uid: signalr/overview/getting-started/tutorial-getting-started-with-signalr
 title: "Tutorial: Real-time chat with SignalR 2 | Microsoft Docs"
 author: pfletcher
-description: "This tutorial shows how to use SignalR to create a real-time chat application. You will add SignalR to an empty ASP.NET web application."
+description: "This tutorial shows how to use SignalR to create a real-time chat application. You add SignalR to an empty ASP.NET web application."
 ms.author: riande
 ms.date: 12/31/2018
 ms.assetid: a8b3b778-f009-4369-85c7-e90f9878d8b4
@@ -13,7 +13,7 @@ ms.topic: tutorial
 
 # Tutorial: Real-time chat with SignalR 2
 
-This tutorial shows you how to use SignalR to create a real-time chat application. You'll add SignalR to an empty ASP.NET web application and create an HTML page to send and display messages.
+This tutorial shows you how to use SignalR to create a real-time chat application. You add SignalR to an empty ASP.NET web application and create an HTML page to send and display messages.
 
 In this tutorial, you:
 
@@ -100,7 +100,7 @@ This section shows how to use Visual Studio 2017 and SignalR 2 to create an empt
 
 1. In each browser, enter a unique name.
 
-1. Now, add a comment and select **Send**. Repeat that in the other browsers. The comments will appear in real-time.
+1. Now, add a comment and select **Send**. Repeat that in the other browsers. The comments appear in real-time.
 
     > [!NOTE]
     > This simple chat application does not maintain the discussion context on the server. The hub broadcasts comments to all current users. Users who join the chat later will see messages added from the time they join.
