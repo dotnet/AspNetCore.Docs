@@ -20,14 +20,15 @@ by [Tom Dykstra](https://github.com/tdykstra)
 
 ## Overview
 
-This tutorial shows how to deploy an ASP.NET web application to IIS on the local computer.
+In this tutorial, you'll deploy an ASP.NET web application to Internet Information Server (IIS)  on your local computer.
 
-When you develop an application, you generally test by running it in Visual Studio. By default, web application projects in Visual Studio 2012 use IIS Express as the development web server. IIS Express behaves more like full IIS than the Visual Studio Development Server (also known as Cassini), which Visual Studio 2010 uses by default. But neither development web server works exactly like IIS. As a result, it's possible that an application will run correctly when you test it in Visual Studio, but fail when it's deployed to IIS.
+Generally, When you develop an application, you run it and test it in Visual Studio. By default, web application projects in Visual Studio 2017 use IIS Express as the development web server. IIS Express behaves more like full IIS than the Visual Studio Development Server (also known as Cassini), which Visual Studio 2017 uses by default. But neither development web server works exactly like IIS. As a result, it's possible that an application will run correctly when you test it in Visual Studio, but fail when it's deployed to IIS.
 
 You can test your application more reliably in these ways:
 
-1. Deploy the application to IIS on your development computer by using the same process that you'll use later to deploy it to your production environment. You can configure Visual Studio to use IIS when you run a web project, but doing that would not test your deployment process. This method validates your deployment process in addition to validating that your application will run correctly under IIS.
-2. Deploy the application to a test environment that is nearly identical to your production environment. Since the production environment for these tutorials is Web Apps in Azure App Service, the ideal test environment is an additional web app created in Azure App Service. You would use this second web app only for testing, but it would be set up the same way as the production web app.
+1. Deploy the application to IIS on your development computer using the same process that you'll use later to deploy it to your production environment. You can configure Visual Studio to use IIS when you run a web project, but doing that would not test your deployment process. This method validates your deployment process in addition to validating that your application will run correctly under IIS.
+
+2. Deploy the application to a test environment almot identical to your production environment. Since the production environment for these tutorials is Web Apps in Azure App Service, the ideal test environment is an additional web app created in Azure App Service. You would use this second web app only for testing, but it would be set up the same way as the production web app.
 
 Option 2 is the most reliable way to test, and if you do that, you don't necessarily have to do option 1. However, if you are deploying to a third-party hosting provider option 2 might not be feasible or might be expensive, so this tutorial series shows both methods. Guidance for option 2 is provided in the [Deploying to the Production Environment](deploying-to-production.md) tutorial.
 
@@ -45,13 +46,18 @@ To deploy to IIS on your development computer, you must have IIS and Web Deploy 
 
    - [Install IIS and Web Deploy using WebPI](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=IIS7;ASPNET;NETFramework4;WDeploy)
 
-     You'll see messages indicating that IIS 7 will be installed. The link works for IIS 8 in Windows 8, but for Windows 8 make sure that ASP.NET 4.5 is installed by performing the following steps:
+     You'll see messages indicating that IIS 7 will be installed. The link works for IIS 8 in Windows 8, but for Windows 8 make sure that ASP.NET 4.7 is installed by performing the following steps:
 
-   - Open **Control Panel**, **Programs and Features**, **Turn Windows features on or off**.
+   - Open **Control Panel**, **Programs**, **Programs and Features**, **Turn Windows features on or off**.
    - Expand **Internet Information Services**, **World Wide Web Services**, and **Application Development Features**.
-   - Make sure that **ASP.NET 4.5** is selected.
+   - Make sure that **ASP.NET 4.7** is selected.
 
-      ![Select ASP.NET 4.5](deploying-to-iis/_static/image1.png)
+      ![Select ASP.NET 4.7](deploying-to-iis/_static/image1.png)
+   - Make sure that **World Wide Web Services** is selected. This installs IIS Manager.
+    
+   -   ![Select World Wide Web Services](deploying-to-iis/_static/wwwsel.png)
+  
+   - Click **OK**. You'll see dialog box messages indicating installation is taking place.
 
 After installing IIS, run **IIS Manager** to make sure that the .NET Framework version 4 is assigned to the default application pool.
 
@@ -73,7 +79,7 @@ After installing IIS, run **IIS Manager** to make sure that the .NET Framework v
 6. In the **Application Pools** pane, click **DefaultAppPool**, and then in the **Actions** pane click **Basic Settings**.
 
     [![Inetmgr_selecting_Basic_Settings_for_app_pool](deploying-to-iis/_static/image5.png)](deploying-to-iis/_static/image4.png)
-7. In the **Edit Application Pool** dialog box, change **.NET Framework version** to **.NET Framework v4.0.30319** and click **OK**.
+7. In the **Edit Application Pool** dialog box, change **.NET CLR version** to **.NET CLR v4.0.30319** and click **OK**.
 
     [![Selecting_.NET_4_for_DefaultAppPool](deploying-to-iis/_static/image7.png)](deploying-to-iis/_static/image6.png)
 
@@ -83,11 +89,11 @@ IIS is now ready for you to publish a web application to it, but before you can 
 
 ## Install SQL Server Express
 
-LocalDB is not designed to work in IIS, so for your test environment you need to have SQL Server Express installed. If you are using Visual Studio 2010 SQL Server Express is already installed by default. If you are using Visual Studio 2012, you have to install it.
+LocalDB is not designed to work in IIS, so for your test environment you need to have SQL Server Express installed. If you are using Visual Studio 2010 SQL Server Express is already installed by default. If you are using Visual Studio 2017, you have to install it.
 
-To install SQL Server Express, install it from [Download Center: Microsoft SQL Server 2012 Express](https://www.microsoft.com/download/details.aspx?id=29062) by clicking [ENU\x64\SQLEXPR\_x64\_ENU.exe](https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SQLEXPR_x64_ENU.exe) or [ENU\x86\SQLEXPR\_x86\_ENU.exe](https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x86/SQLEXPR_x86_ENU.exe). If you choose the wrong one for your system it will fail to install and you can try the other one.
+To install SQL Server Express, install it from [Download Center: Microsoft SQL Server 2017 Express](https://www.microsoft.com/sql-server/sql-server-editions-express) by clicking [ENU\x64\SQLEXPR\_x64\_ENU.exe](https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SQLEXPR_x64_ENU.exe) or [ENU\x86\SQLEXPR\_x86\_ENU.exe](https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x86/SQLEXPR_x86_ENU.exe). If you choose the wrong one for your system it will fail to install and you can try the other one.
 
-On the first page of the SQL Server Installation Center, click **New SQL Server stand-alone installation or add features to an existing installation**, and follow the instructions, accepting the default choices. In the installation wizard accept the default settings. For more information about installation options, see [Install SQL Server 2012 from the Installation Wizard (Setup)](https://msdn.microsoft.com/library/ms143219.aspx).
+On the first page of the SQL Server Installation Center, click **New SQL Server stand-alone installation or add features to an existing installation**, and follow the instructions, accepting the default choices. In the installation wizard, accept the default settings. For more information about installation options, see [Install SQL Server from the Installation Wizard (Setup)](https://msdn.microsoft.com/library/ms143219.aspx).
 
 ## Create SQL Server Express databases for the test environment
 
