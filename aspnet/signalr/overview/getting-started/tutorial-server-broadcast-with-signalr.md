@@ -1,15 +1,17 @@
 ---
 uid: signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
-title: "Server broadcast with SignalR 2 | Microsoft Docs"
+title: "Tutorial: Server broadcast with SignalR 2 | Microsoft Docs"
 author: tdykstra
 description: "This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality."
 ms.author: riande
-ms.date: 12/31/2018
+ms.date: 1/2/2019
+ms.topic: tutorial
 ms.assetid: 1568247f-60b5-4eca-96e0-e661fbb2b273
 msc.legacyurl: /signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
 msc.type: authoredcontent
 ---
-# Tutorial: Server Broadcast with SignalR 2
+
+# Tutorial: Server broadcast with SignalR 2
 
 This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality. Server broadcast means that the server starts the communications sent to clients.
 
@@ -42,20 +44,6 @@ If you don't already have it, [download Visual Studio 2017](https://visualstudio
 
 When Visual Studio Installer opens, make sure you install the **ASP.NET and web development** workload. It's under **Web & Cloud**.
 
-### NuGet package source api
-
-You'll need to set up the NuGet API to install the jQuery UI package.
-
-1. When Visual Studio 2017 opens, select **Tools** > **Options**.
-
-1. In **Options**, select **NuGet Package Manager** > **Package Sources**.
-
-1. Next to **Available package sources**, select **+** and enter this information:
-
-    | Setting | Value |
-    | ------- | ----- |
-    | Name | Enter *nuget.org*. |
-    | Source | Enter *https://api.nuget.org/v3/index.json*. |
 
 1. Select **OK**.
 
@@ -103,7 +91,7 @@ You only want one instance of the `StockTicker` class to run on the server, so y
 
 1. Name the class *StockTickerHub* and add it to the project.
 
-    This step creates the *StockTickerHub.cs* class file. Simultaneously, it adds  a set of script files and assembly references that support SignalR to the project.
+    This step creates the *StockTickerHub.cs* class file. Simultaneously, it adds a set of script files and assembly references that supports SignalR to the project.
 
 1. Replace the code in the *StockTickerHub.cs* file with this code:
 
@@ -145,13 +133,13 @@ Each time a client connects to the server, a new instance of the StockTickerHub 
 
 #### Storing stock data in a ConcurrentDictionary
 
-The constructor initializes the `_stocks` collection with some sample stock data, and `GetAllStocks` returns the stocks. As you saw earlier, this collection of stocks is in turn returned by `StockTickerHub.GetAllStocks` which is a server method in the `Hub` class that clients can call.
+The constructor initializes the `_stocks` collection with some sample stock data, and `GetAllStocks` returns the stocks. As you saw earlier, this collection of stocks is returned by `StockTickerHub.GetAllStocks`, which is a server method in the `Hub` class that clients can call.
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample5.cs)]
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample6.cs)]
 
-The stocks collection defined as a [ConcurrentDictionary](https://msdn.microsoft.com/library/dd287191.aspx) type for thread safety. As an alternative, you could use a [Dictionary](https://msdn.microsoft.com/library/xfhwa508.aspx) object and explicitly lock the dictionary when you make changes to it.
+The stocks collection is defined as a [ConcurrentDictionary](https://msdn.microsoft.com/library/dd287191.aspx) type for thread safety. As an alternative, you could use a [Dictionary](https://msdn.microsoft.com/library/xfhwa508.aspx) object and explicitly lock the dictionary when you make changes to it.
 
 For this sample application, it's OK to store application data in memory and to lose the data when the app disposes of the  `StockTicker` instance. In a real application, you would work with a back-end data store like a database.
 
@@ -233,7 +221,7 @@ First, you'll add the HTML client.
 
     * A StockTicker script file that you'll create later.
 
-    The app dynamically generates the SignalR proxies script file. It specifies the "/signalr/hubs" URL and defines proxy methods for the methods on the Hub class, in this case, for `StockTickerHub.GetAllStocks`. If you prefer, you can generate this JavaScript file manually by using [SignalR Utilities](http://nuget.org/packages/Microsoft.AspNet.SignalR.Utils/)  Don't forget to disable dynamic file creation in the `MapHubs` method call.
+    The app dynamically generates the SignalR proxies script file. It specifies the "/signalr/hubs" URL and defines proxy methods for the methods on the Hub class, in this case, for `StockTickerHub.GetAllStocks`. If you prefer, you can generate this JavaScript file manually by using [SignalR Utilities](http://nuget.org/packages/Microsoft.AspNet.SignalR.Utils/). Don't forget to disable dynamic file creation in the `MapHubs` method call.
 
 1. In **Solution Explorer**, expand **Scripts**.
 
@@ -242,7 +230,7 @@ First, you'll add the HTML client.
     > [!IMPORTANT]
     > The package manager will install a later version of the SignalR scripts.
 
-1. Update the script references in the code block correspond to the versions of the script files in the project.
+1. Update the script references in the code block to correspond to the versions of the script files in the project.
 
 1. In **Solution Explorer**, right-click *StockTicker.html*, and then select **Set as Start Page**.
 
@@ -250,7 +238,7 @@ First, you'll add the HTML client.
 
 Now create the JavaScript file.
 
-1. In **Solution Explorer**, right-click the project and select **Add** > *JavaScript File**.
+1. In **Solution Explorer**, right-click the project and select **Add** > **JavaScript File**.
 
 1. Name the page **StockTicker** and select **OK**.
 
@@ -306,8 +294,6 @@ You can test the app to make sure it's working. You'll see all browser windows d
     A browser window will open displaying the **Live Stock Table**. The stock table initially shows the "loading..." line, then, after a short time, the app shows the initial stock data, and then the stock prices start to change.
 
 1. Copy the URL from the browser, open two other browsers, and paste the URLs into the address bars.
-
-     ![GIF of the app in action](tutorial-server-broadcast-with-signalr/_static/stock-ticker-demo.gif)
 
     The initial stock display is the same as the first browser and changes happen simultaneously.
 
@@ -368,16 +354,11 @@ The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet
 
 1. In **Solution Explorer**, right-click the project and select **Manage NuGet Packages**.
 
-1. In **NuGet Package manager: SignalR.StockTicker**, select **Browse**
+1. In **NuGet Package manager: SignalR.StockTicker**, select **Browse**.
 
 1. From **Package source**, select **nuget.org**.
 
-    > [!TIP]
-    > If you don't have nuget.org set up, take a look at the **Prerequisites** section of this article.
-
 1. Enter *SignalR.Sample* in the search box and select **Microsoft.AspNet.SignalR.Sample** > **Install**.
-
-    ![Install SignalR.Sample package](tutorial-server-broadcast-with-signalr/_static/image8.png)
 
 1. In **Solution Explorer**, expand the *SignalR.Sample* folder.
 
@@ -397,8 +378,6 @@ The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet
      When you run the app for the first time, the "market" is "closed" and you see a static table and a ticker window that isn't scrolling.
 
 1. Select **Open Market**.
-
-    ![StockTicker Sample demo](tutorial-server-broadcast-with-signalr/_static/stock-ticker-sample-demo.gif)
 
     * The **Live Stock Ticker** box starts to scroll horizontally, and the server starts to periodically broadcast stock price changes on a random basis.
 
@@ -458,7 +437,7 @@ The `StockTickerHub` class defines four additional methods that the client can c
 
 [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample23.cs)]
 
-The app calls `OpenMarket`, `CloseMarket`, and `Reset` in response to the buttons at the top of the page. They demonstrate the pattern of one client triggering a change in state immediately propagated to all clients. Each of these methods calls a method in the `StockTicker` class that effects the market state change and then broadcasts the new state.
+The app calls `OpenMarket`, `CloseMarket`, and `Reset` in response to the buttons at the top of the page. They demonstrate the pattern of one client triggering a change in state immediately propagated to all clients. Each of these methods calls a method in the `StockTicker` class that causes the market state change and then broadcasts the new state.
 
 #### SignalR.Sample StockTicker.cs
 
@@ -511,8 +490,6 @@ For more about SignalR, see the following resources:
 * [SignalR GitHub and Samples](https://github.com/SignalR/SignalR)
 * [SignalR Wiki](https://github.com/SignalR/SignalR/wiki)
 
-For a walkthrough on how to deploy a SignalR application to Azure, see [Using SignalR with Web Apps in Azure App Service](../deployment/using-signalr-with-azure-web-sites.md). For information about how to deploy a Visual Studio web project to a Windows Azure Web Site, see [Create an ASP.NET web app in Azure App Service](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-get-started/).
-
 ## Next steps
 
 In this tutorial, you:
@@ -524,8 +501,8 @@ In this tutorial, you:
 > * Set up the client code
 > * Examined the client code
 > * Tested the application
-> * Enable logging
-> * Install and review the full StockTicker sample
+> * Enabled logging
+> * Installed and reviewed the full StockTicker sample
 
 Advance to the next article to learn how to create a real-time web application that uses ASP.NET SignalR 2.
 > [!div class="nextstepaction"]
