@@ -160,7 +160,7 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
   The `ChatHub` class inherits from the SignalR `Hub` class. The `Hub` class manages connections, groups, and messaging.
 
-  The `SendMessage` method can be called by any connected client. It sends the received message to all clients. You'll see how to call it from a JavaScript client later in the tutorial. SignalR code is asynchronous to provide maximum scalability.
+  The `SendMessage` method can be called by a connected client to send a message to all clients. JavaScript client code that calls the method is shown later in the tutorial. SignalR code is asynchronous to provide maximum scalability.
 
 ## Configure SignalR
 
