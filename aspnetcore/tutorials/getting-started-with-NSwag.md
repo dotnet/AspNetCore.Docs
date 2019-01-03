@@ -169,7 +169,7 @@ namespace MyNamespace
 * Start consuming the web API:
 
 ```csharp
-var toDoClient = new TodoClient();
+ var todoClient = new TodoClient();
 
 // Gets all to-dos from the API
 var allToDos = await todoClient.GetAllAsync();
