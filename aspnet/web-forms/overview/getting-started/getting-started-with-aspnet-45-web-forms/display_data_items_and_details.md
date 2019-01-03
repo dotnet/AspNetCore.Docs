@@ -18,23 +18,27 @@ by [Erik Reitan](https://github.com/Erikre)
 > This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for Web. A Visual Studio 2013 [project with C# source code](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) is available to accompany this tutorial series.
 
 
-This tutorial describes how to display data items and data item details using ASP.NET Web Forms and Entity Framework Code First. This tutorial builds on the previous tutorial "UI and Navigation" and is part of the Wingtip Toy Store tutorial series. When you've completed this tutorial, you'll be able to see products on the *ProductsList.aspx* page and details about an individual product on the *ProductDetails.aspx* page.
+In this tutorial, you'll learn how to display data items and data item details using ASP.NET Web Forms and Entity Framework Code First. This tutorial builds on the previous tutorial "UI and Navigation" and is part of the Wingtip Toy Store tutorial series. When you've completed this tutorial, you'll be able to see products on the *ProductsList.aspx* page and details about an individual product on the *ProductDetails.aspx* page.
 
-## What you'll learn:
+## You'll learn how to:
 
-- How to add a data control to display products from the database.
-- How to connect a data control to the selected data.
-- How to add a data control to display product details from the database.
-- How to retrieve a value from the query string and use that value to limit the data that's retrieved from the database.
+- Add a data control to display products from the database.
+- Connect a data control to the selected data.
+- Add a data control to display product details from the database.
+- Retrieve a value from the query string and use that value to limit the data that's retrieved from the database.
 
-### These are the features introduced in the tutorial:
+### Features introduced in the tutorial:
 
 - Model Binding
 - Value providers
 
 ## Adding a Data Control to Display Products
 
-When binding data to a server control, there are a few different options you can use. The most common options include adding a data source control, adding code by hand, or using model binding.
+You can use a few different options to bind data to a server control. The most common include:
+
+ * Adding a data source control
+ * Adding code by hand
+ * Using model binding
 
 ### Using a Data Source Control to Bind Data
 
