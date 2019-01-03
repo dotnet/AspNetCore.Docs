@@ -33,7 +33,7 @@ You can reliably test your application in two ways:
  
    The production environment for these tutorials is Web Apps in Azure App Service. The ideal test environment, then,  is an additional web app created in the Azure Service. You would use this second web app only for testing, but it would be set up the same way as the production web app.
 
-Option 2 is the most reliable way to test, and if you do that, you don't necessarily have to do option 1. However, if you're deploying to a third-party hosting provider option 2 might not be feasible or might be expensive, so this tutorial series shows both methods. Guidance for option 2 is provided in the [Deploying to the Production Environment](deploying-to-production.md) tutorial.
+Option 2 is the most reliable way to test, and, if you do that, you don't necessarily have to do option 1. However, if you're deploying to a third-party hosting provider option 2 might not be feasible or might be expensive, so this tutorial series shows both methods. Guidance for option 2 is provided in the [Deploying to the Production Environment](deploying-to-production.md) tutorial.
 
 For more information about using web servers in Visual Studio, see [Web Servers in Visual Studio for ASP.NET Web Projects](https://msdn.microsoft.com/library/58wxa9w5.aspx).
 
@@ -41,7 +41,7 @@ Reminder: If you get an error message or something doesn't work as you go throug
 
 ## Download the Contoso University starter project
 
-Download and install the Contoso University Visual Studio starter solution and project. You'll use this solution to complete the steps in this tutorial. 
+Download and install the Contoso University Visual Studio starter solution and project. This solution contains the completed tutorial. 
 
 [Download Starter Project](http://go.microsoft.com/fwlink/p/?LinkId=282627)
 
@@ -53,7 +53,7 @@ To deploy to IIS on your development computer, you must have IIS and Web Deploy 
 
     To run WPI to install IIS and Web Deploy, use this link. If you've already installed IIS, Web Deploy, or any of their required components, the WPI installs only what is missing.
 
-   - [Install IIS and Web Deploy using WebPI](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=IIS7;ASPNET;NETFramework4;WDeploy)
+   - [Install IIS and Web Deploy using WPI](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=IIS7;ASPNET;NETFramework4;WDeploy)
 
      You'll see messages indicating that IIS 7 will be installed. The link works for IIS 8 in Windows 8, but for Windows 8 make sure that ASP.NET 4.7 is installed by performing the following steps:
 
@@ -64,7 +64,7 @@ To deploy to IIS on your development computer, you must have IIS and Web Deploy 
 
       ![Select ASP.NET 4.7](deploying-to-iis/_static/image1a.png)
 
-   - Make sure that **World Wide Web Services** is selected. This installs IIS and IIS Manager.
+   - Make sure that **World Wide Web Services** and **IIS Management Console** is selected. This installs IIS and IIS Manager.
     
      ![Select World Wide Web Services](deploying-to-iis/_static/image24.png)    
   
@@ -84,7 +84,7 @@ After installing IIS, run **IIS Manager** to make sure that the .NET Framework v
 
 4. If you see only two application pools and both of them are set to the .NET Framework 2.0, you have to install ASP.NET 4 in IIS.
 
-    For Windows 8, see the instructions in the previous section for making sure that ASP.NET 4.5 is installed, or see [this KB article](https://support.microsoft.com/kb/2736284). For Windows 7, open a command prompt window by right-clicking **Command Prompt** in the Windows **Start** menu and selecting **Run as Administrator**. Then run [aspnet\_regiis.exe](https://msdn.microsoft.com/library/k6h9cz8h.aspx) to install ASP.NET 4 in IIS, using the following commands. (In 32-bit systems, replace "Framework64" with "Framework".)
+    For Windows 8 or later, see the instructions in the previous section for making sure that ASP.NET 4.7 is installed, or see [this KB article](https://support.microsoft.com/kb/2736284). For Windows 7, open a command prompt window by right-clicking **Command Prompt** in the Windows **Start** menu and selecting **Run as Administrator**. Then run [aspnet\_regiis.exe](https://msdn.microsoft.com/library/k6h9cz8h.aspx) to install ASP.NET 4 in IIS, using the following commands. (In 32-bit systems, replace "Framework64" with "Framework".)
 
     [!code-console[Main](deploying-to-iis/samples/sample1.cmd)]
 
@@ -106,7 +106,7 @@ You are now ready to publish a web application to IIS. Before doing that, howeve
 
 ## Install SQL Server Express
 
-LocalDB is not designed to work in IIS, so for your test environment you need to have SQL Server Express installed. If you are using Visual Studio 2010 SQL Server Express, it is already installed by default. If you are using Visual Studio 2017, you have to install it.
+LocalDB is not designed to work in IIS, so your test environment  needs to have SQL Server Express installed. If you are using Visual Studio 2010 SQL Server Express, it is already installed by default. If you are using Visual Studio 2012 or later, you have to install it.
 
 To install SQL Server Express, download and install it from [Download Center: Microsoft SQL Server 2017 Express edition](https://www.microsoft.com/sql-server/sql-server-editions-express). 
 
@@ -150,7 +150,7 @@ When the application runs in IIS on your development computer, the application u
 In Visual Studio, open the Contoso University solution. Right-click the solution (not one of the projects), and click **Add**, then **Existing Item**, browse to *Grant.sql* and open it.
 
 > [!NOTE]
-> This script is designed to work with SQL Server Express 2012 and with the IIS settings in Windows 10,  Windows 8, or Windows 7 as they are specified in this tutorial. If you're using a different version of SQL Server or Windows, or if you set up IIS on your computer differently, changes to this script might be required. For more information about SQL Server scripts, see [SQL Server Books Online](https://go.microsoft.com/fwlink/?LinkId=132511).
+> This script is designed to work with SQL Server Express 2012 or later and with the IIS settings in Windows 10,  Windows 8, or Windows 7 as they are specified in this tutorial. If you're using a different version of SQL Server or Windows, or if you set up IIS on your computer differently, changes to this script might be required. For more information about SQL Server scripts, see [SQL Server Books Online](https://go.microsoft.com/fwlink/?LinkId=132511).
 
 
 > [!NOTE] 
@@ -186,7 +186,7 @@ There are several ways you can deploy to IIS using Visual Studio and Web Deploy:
 
 The process you went through in the previous tutorials to set up Visual Studio to automate deployment tasks applies to all of these methods. In these tutorials you'll use the first two of these methods. For information about using deployment packages, see [Deploying a web application by creating and installing a web deployment package](https://go.microsoft.com/fwlink/p/?LinkId=282413#package) in the Web Deployment Content Map for Visual Studio and ASP.NET.
 
-Before publishing, make sure that you are running Visual Studio in administrator mode. If you don't see **(Administrator)** in the title bar, close Visual Studio. In the Windows 8 **Start** page or the Windows 7 **Start** menu, right-click the icon for the version of Visual Studio you're using and select **Run as Administrator**. Administrator mode is required for publishing only when you are publishing to IIS on the local computer.
+Before publishing, make sure that you are running Visual Studio in administrator mode. If you don't see **(Administrator)** in the title bar, close Visual Studio. In the Windows 8 (or later) **Start** page, or the Windows 7 **Start** menu, right-click the icon for the version of Visual Studio you're using and select **Run as Administrator**. Administrator mode is required for publishing only when you are publishing to IIS on the local computer.
 
 ### Create the publish profile
 
@@ -202,7 +202,7 @@ Before publishing, make sure that you are running Visual Studio in administrator
 
     ![Publish Web wizard Profile tab](deploying-to-iis/_static/image26.png)
 
-4. From the **Publish Method** drop-down menu, select **Web Deploy**.
+4. From the **Publish method** drop-down menu, select **Web Deploy**.
 5. For **Server**, enter *localhost*.
 6. For **Site name**, enter *Default Web Site/ContosoUniversity*
 7. For **Destination URL** box, enter `http://localhost/ContosoUniversity`
@@ -221,7 +221,7 @@ Before publishing, make sure that you are running Visual Studio in administrator
 
 11. Expand **File Publish Options**, and then select **Exclude files from the App\_Data folder**.
 
-    In the test environment the application will access the databases that you created in the local SQL Server Express instance, not the .mdf files in the *App\_Data* folder.
+    In the test environment, the application accesses the databases that you created in the local SQL Server Express instance, not the .mdf files in the *App\_Data* folder.
 
 12. Leave the **Precompile during publishing** and **Remove additional files at destination** check boxes cleared.
 
@@ -242,13 +242,13 @@ Before publishing, make sure that you are running Visual Studio in administrator
 
 ### Configure deployment for the membership database
 
-The following steps apply to the **DefaultConnection** database in the **Databases** section of the dialog box.
+The following steps apply to the **DefaultConnection** database in the dialog box's **Databases** section.
 
 1. In the **Remote connection string** box, enter the following connection string that points to the new SQL Server Express membership database.
 
     [!code-console[Main](deploying-to-iis/samples/sample3.cmd)]
 
-    The deployment process will put this connection string in the deployed Web.config file because **Use this connection string at runtime** is selected.
+    The deployment process puts this connection string in the deployed Web.config file because **Use this connection string at runtime** is selected.
 
     You can also get the connection string from **Server Explorer**. In **Server Explorer**, expand **Data Connections** and select the **&lt;machinename&gt;\sqlexpress.aspnet-ContosoUniversity** database, then from the **Properties** window copy the **Connection String** value. That connection string will have one additional setting that you can delete: `Pooling=False`.
 2. Select **Update database**.
@@ -273,12 +273,10 @@ The following steps apply to the **SchoolContext** database in the **Databases**
 
     [!code-console[Main](deploying-to-iis/samples/sample4.cmd)]
 
-    The deployment process will put this connection string in the deployed Web.config file because **Use this connection string at runtime** is selected.
+    The deployment process puts this connection string in the deployed Web.config file because **Use this connection string at runtime** is selected.
 
     You can also get the application database connection string from **Server Explorer** the same way you got the membership database connection string.
 2. Select **Execute Code First Migrations (runs on application start)**.
-    
-    (Option doesn't exist in new)
 
     This option causes the deployment process to configure the deployed Web.config file to specify the `MigrateDatabaseToLatestVersion` initializer. This initializer automatically updates the database to the latest version when the application accesses the database for the first time after deployment.
 
