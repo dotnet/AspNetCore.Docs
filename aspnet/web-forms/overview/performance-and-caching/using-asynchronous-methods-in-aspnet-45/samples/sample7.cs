@@ -1,9 +1,10 @@
 public async Task<List<Gizmo>> GetGizmosAsync()
 {
     var uri = Util.getServiceUri("Gizmos");
-    using (HttpClient httpClient = new HttpClient())
+    using (WebClient webClient = new WebClient())
     {
-        var response = await httpClient.GetAsync(uri);
-        return (await response.Content.ReadAsAsync<List<Gizmo>>());
+        return JsonConvert.DeserializeObject<List<Gizmo>>(
+            await webClient.DownloadStringTaskAsync(uri)
+        );
     }
 }

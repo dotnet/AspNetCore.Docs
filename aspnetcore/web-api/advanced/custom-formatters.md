@@ -10,13 +10,13 @@ uid: web-api/advanced/custom-formatters
 
 By [Tom Dykstra](https://github.com/tdykstra)
 
-ASP.NET Core MVC has built-in support for data exchange in web APIs by using JSON, XML, or plain text formats. This article shows how to add support for additional formats by creating custom formatters.
+ASP.NET Core MVC has built-in support for data exchange in web APIs by using JSON or XML. This article shows how to add support for additional formats by creating custom formatters.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use custom formatters
 
-Use a custom formatter when you want the [content negotiation](xref:web-api/advanced/formatting#content-negotiation) process to support a content type that isn't supported by the built-in formatters (JSON, XML, and plain text).
+Use a custom formatter when you want the [content negotiation](xref:web-api/advanced/formatting#content-negotiation) process to support a content type that isn't supported by the built-in formatters (JSON and XML).
 
 For example, if some of the clients for your web API can handle the [Protobuf](https://github.com/google/protobuf) format, you might want to use Protobuf with those clients because it's more efficient. Or you might want your web API to send contact names and addresses in [vCard](https://wikipedia.org/wiki/VCard) format, a commonly used format for exchanging contact data. The sample app provided with this article implements a simple vCard formatter.
 
@@ -97,7 +97,8 @@ Formatters are evaluated in the order you insert them. The first one takes prece
 
 ## Next steps
 
-See the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements simple vCard input and output formatters. The application reads and writes vCards that look like the following example:
+* [Plain text formatter sample code on GitHub.](https://github.com/aspnet/Entropy/tree/master/samples/Mvc.Formatters)
+* [Sample app for this doc](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements simple vCard input and output formatters. The apps reads and writes vCards that look like the following example:
 
 ```
 BEGIN:VCARD

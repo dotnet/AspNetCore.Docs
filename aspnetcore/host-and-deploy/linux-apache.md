@@ -4,7 +4,7 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/20/2018
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -465,6 +465,7 @@ Using *mod_ratelimit*, which is included in the *httpd* module, the bandwidth of
 ```bash
 sudo nano /etc/httpd/conf.d/ratelimit.conf
 ```
+
 The example file limits bandwidth as 600 KB/sec under the root location:
 
 ```
@@ -475,6 +476,13 @@ The example file limits bandwidth as 600 KB/sec under the root location:
     </Location>
 </IfModule>
 ```
+
+### Long request header fields
+
+If the app requires request header fields longer than permitted by the proxy server's default setting (typically 8,190 bytes), adjust the value of the [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) directive. The value to apply is scenario-dependent. For more information, see your server's documentation.
+
+> [!WARNING]
+> Don't increase the default value of `LimitRequestFieldSize` unless necessary. Increasing the value increases the risk of buffer overrun (overflow) and Denial of Service (DoS) attacks by malicious users.
 
 ## Additional resources
 

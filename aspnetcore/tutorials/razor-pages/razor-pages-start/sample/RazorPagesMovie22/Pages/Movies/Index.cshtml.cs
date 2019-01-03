@@ -37,7 +37,7 @@ namespace RazorPagesMovie.Pages.Movies
             var movies = from m in _context.Movie
                          select m;
         #region snippet_SearchNull
-            if (!String.IsNullOrEmpty(SearchString))
+            if (!string.IsNullOrEmpty(SearchString))
             {
                 movies = movies.Where(s => s.Title.Contains(SearchString));
             }
@@ -68,12 +68,12 @@ namespace RazorPagesMovie.Pages.Movies
             var movies = from m in _context.Movie
                          select m;
 
-            if (!String.IsNullOrEmpty(SearchString))
+            if (!string.IsNullOrEmpty(SearchString))
             {
                 movies = movies.Where(s => s.Title.Contains(SearchString));
             }
 
-            if (!String.IsNullOrEmpty(MovieGenre))
+            if (!string.IsNullOrEmpty(MovieGenre))
             {
                 movies = movies.Where(x => x.Genre == MovieGenre);
             }
