@@ -271,7 +271,7 @@ The preceding action returns `IActionResult`, but inside the action it's returni
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Because NSwag uses [reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [ActionResult\<T>](/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1), it can only infer the return type defined by `T`. You can't automatically infer other possible return types. 
+ Because NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1), it can only infer the return type defined by `T`. You can't automatically infer other possible return types. 
 
 Consider the following example:
 
