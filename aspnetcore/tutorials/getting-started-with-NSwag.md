@@ -108,7 +108,7 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 You can take advantage of NSwag's code generation capabilities by choosing one of the following options:
 
  * [NSwagStudio](https://github.com/NSwag/NSwag/wiki/NSwagStudio) &ndash; a Windows desktop app for generating API client code in C# or TypeScript.
-* The [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages for code generation inside your project
+ * The [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) or [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) NuGet packages for code generation inside your project.
 * NSwag from the [command line](https://github.com/NSwag/NSwag/wiki/CommandLine).
 * The [NSwag.MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild) NuGet package
 
