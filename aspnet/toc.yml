@@ -3213,7 +3213,7 @@
               href: signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc.md
             - name: "High-frequency real-time with SignalR 2"
               href: signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr.md
-            - name: "Tutorial: Server Broadcast with SignalR 2"
+            - name: "Server Broadcast with SignalR 2"
               href: signalr/overview/getting-started/tutorial-server-broadcast-with-signalr.md
             - name: "Hands On Lab: Real-Time Web Applications with SignalR"
               href: signalr/overview/getting-started/real-time-web-applications-with-signalr.md
