@@ -99,7 +99,9 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-7)]
 
-* Launch the app. Navigate to `http://localhost:<port>/swagger` to view the Swagger UI, and `http://localhost:<port>/swagger/v1/swagger.json` to view the Swagger specification.
+ * Launch the app. Navigate to:
+   * `http://localhost:<port>/swagger` to view the Swagger UI.
+   * `http://localhost:<port>/swagger/v1/swagger.json` to view the Swagger specification.
 
 ## Code generation
 
