@@ -26,7 +26,7 @@ By [Christoph Nienaber](https://twitter.com/zuckerthoben), [Rico Suter](https://
 NSwag offers the following capabilities:
 
  * The ability to utilize the Swagger UI and Swagger generator.
-* Flexible code generation capabilities
+ * Flexible code generation capabilities.
 
 With NSwag, you don't need an existing API&mdash;you can use third-party APIs that incorporate Swagger and generate a client implementation. NSwag allows you to expedite the development cycle and easily adapt to API changes.
 
