@@ -35,7 +35,7 @@ With NSwag, you don't need an existing API&mdash;you can use third-party APIs th
 Register the NSwag middleware to:
 
  * Generate the Swagger specification for the implemented web API.
-* Serve the Swagger UI to browse and test the web API
+ * Serve the Swagger UI to browse and test the web API.
 
 To use the [NSwag](https://github.com/RSuter/NSwag) ASP.NET Core middleware, install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. This package contains the middleware to generate and serve the Swagger specification, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc).
 
