@@ -4,7 +4,7 @@ title: "ASP.NET Web Deployment using Visual Studio: Deploying to Test | Microsof
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
 ms.author: riande
-ms.date: 03/23/2015
+ms.date: 01/03/2018
 ms.assetid: 8bf2c4fb-4ee5-4841-bfc2-03462c1f7a7a
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis
 msc.type: authoredcontent
@@ -15,7 +15,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 
 [Download Starter Project](http://go.microsoft.com/fwlink/p/?LinkId=282627)
 
-> This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by using Visual Studio 2012 or Visual Studio 2010. For information about the series, see [the first tutorial in the series](introduction.md).
+> This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, using Visual Studio 2017. For information about the series, see [the first tutorial in the series](introduction.md).
 
 
 ## Overview
@@ -28,13 +28,19 @@ You can test your application more reliably in these ways:
 
 1. Deploy the application to IIS on your development computer using the same process that you'll use later to deploy it to your production environment. You can configure Visual Studio to use IIS when you run a web project, but doing that would not test your deployment process. This method validates your deployment process in addition to validating that your application will run correctly under IIS.
 
-2. Deploy the application to a test environment almot identical to your production environment. Since the production environment for these tutorials is Web Apps in Azure App Service, the ideal test environment is an additional web app created in Azure App Service. You would use this second web app only for testing, but it would be set up the same way as the production web app.
+2. Deploy the application to a test environment almost identical to your production environment. Since the production environment for these tutorials is Web Apps in Azure App Service, the ideal test environment is an additional web app created in Azure App Service. You would use this second web app only for testing, but it would be set up the same way as the production web app.
 
 Option 2 is the most reliable way to test, and if you do that, you don't necessarily have to do option 1. However, if you are deploying to a third-party hosting provider option 2 might not be feasible or might be expensive, so this tutorial series shows both methods. Guidance for option 2 is provided in the [Deploying to the Production Environment](deploying-to-production.md) tutorial.
 
 For more information about using web servers in Visual Studio, see [Web Servers in Visual Studio for ASP.NET Web Projects](https://msdn.microsoft.com/library/58wxa9w5.aspx).
 
 Reminder: If you get an error message or something doesn't work as you go through the tutorial, be sure to check the [troubleshooting page](troubleshooting.md).
+
+## Download Contoso University starter project
+
+Download and install the Contoso University Visual Studio starter solution and project. You'll use this solution to complete the steps in this tutorial.
+
+[Download Starter Project](http://go.microsoft.com/fwlink/p/?LinkId=282627)
 
 ## Install IIS
 
@@ -67,7 +73,7 @@ After installing IIS, run **IIS Manager** to make sure that the .NET Framework v
 2. Enter "inetmgr", and then click **OK**.
 3. In the **Connections** pane, expand the server node and select **Application Pools**. In the **Application Pools** pane, if **DefaultAppPool** is assigned to the .NET framework version 4 as in the following illustration, skip to the next section.
 
-    [![Inetmgr_showing_4.0_app_pools](deploying-to-iis/_static/image3.png)](deploying-to-iis/_static/image2.png)
+    ![Inetmgr_showing_4.0_app_pools](deploying-to-iis/_static/image5a.png)
 4. If you see only two application pools and both of them are set to the .NET Framework 2.0, you have to install ASP.NET 4 in IIS.
 
     For Windows 8, see the instructions in the previous section for making sure that ASP.NET 4.5 is installed, or see [this KB article](https://support.microsoft.com/kb/2736284). For Windows 7, open a command prompt window by right-clicking **Command Prompt** in the Windows **Start** menu and selecting **Run as Administrator**. Then run [aspnet\_regiis.exe](https://msdn.microsoft.com/library/k6h9cz8h.aspx) to install ASP.NET 4 in IIS, using the following commands. (In 32-bit systems, replace "Framework64" with "Framework".)
@@ -78,26 +84,33 @@ After installing IIS, run **IIS Manager** to make sure that the .NET Framework v
 5. If you closed **IIS Manager**, run it again, expand the server node, and click **Application Pools** to display the **Application Pools** pane again.
 6. In the **Application Pools** pane, click **DefaultAppPool**, and then in the **Actions** pane click **Basic Settings**.
 
-    [![Inetmgr_selecting_Basic_Settings_for_app_pool](deploying-to-iis/_static/image5.png)](deploying-to-iis/_static/image4.png)
+    [![Inetmgr_selecting_Basic_Settings_for_app_pool](deploying-to-iis/_static/image5a.png)
+
 7. In the **Edit Application Pool** dialog box, change **.NET CLR version** to **.NET CLR v4.0.30319** and click **OK**.
 
-    [![Selecting_.NET_4_for_DefaultAppPool](deploying-to-iis/_static/image7.png)](deploying-to-iis/_static/image6.png)
+    ![Selecting_.NET_4_for_DefaultAppPool](deploying-to-iis/_static/image6a.png)
 
 IIS is now ready for you to publish a web application to it, but before you can do that you have to create the databases that you will use in the test environment.
 
 <a id="sqlexpress"></a>
 
-## Install SQL Server Express
+## Install SQL Server Express with LocalDB
 
-LocalDB is not designed to work in IIS, so for your test environment you need to have SQL Server Express installed. If you are using Visual Studio 2010 SQL Server Express is already installed by default. If you are using Visual Studio 2017, you have to install it.
+LocalDB is not designed to work in IIS, so for your test environment you need to have SQL Server Express installed. If you are using Visual Studio 2010 SQL Server Express, it is already installed by default. If you are using Visual Studio 2017, you have to install it.
 
-To install SQL Server Express, install it from [Download Center: Microsoft SQL Server 2017 Express](https://www.microsoft.com/sql-server/sql-server-editions-express) by clicking [ENU\x64\SQLEXPR\_x64\_ENU.exe](https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SQLEXPR_x64_ENU.exe) or [ENU\x86\SQLEXPR\_x86\_ENU.exe](https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x86/SQLEXPR_x86_ENU.exe). If you choose the wrong one for your system it will fail to install and you can try the other one.
+To install SQL Server Express, install it from [Download Center: Microsoft SQL Server 2017 Express edition](https://www.microsoft.com/sql-server/sql-server-editions-express). Download **SQL Server 2017 Express LocalDB**. If you choose the wrong one for your system, it will fail to install and you can try the other one.
 
 On the first page of the SQL Server Installation Center, click **New SQL Server stand-alone installation or add features to an existing installation**, and follow the instructions, accepting the default choices. In the installation wizard, accept the default settings. For more information about installation options, see [Install SQL Server from the Installation Wizard (Setup)](https://msdn.microsoft.com/library/ms143219.aspx).
 
 ## Create SQL Server Express databases for the test environment
 
-The Contoso University application has two databases: the membership database and the application database. You can deploy these databases to two separate databases or to a single database. You might want to combine them in order to facilitate database joins between your application database and your membership database. If you are deploying to a third-party hosting provider, your hosting plan might also provide a reason to combine them. For example, the hosting provider might charge more for multiple databases or might not even allow more than one database.
+The Contoso University application has two databases: 
+1. Membership database 
+2. Application database 
+
+You can deploy these databases to two separate databases or to a single database. You might want to combine them in order to facilitate database joins between the two. 
+
+If you are deploying to a third-party hosting provider, your hosting plan might also provide a reason to combine them. For example, the hosting provider might charge more for multiple databases or might not even allow more than one database.
 
 In this tutorial, you'll deploy to two databases in the test environment, and to one database in the staging and production environments.
 
@@ -117,19 +130,21 @@ Follow the same procedure to create a new SQL Server Express School database nam
 
 ## Create a grant script for the new databases
 
-When the application runs in IIS on your development computer, the application accesses the database by using the default application pool's credentials. However, by default, the application pool identity does not have permission to open the databases. So you have to run a script to grant that permission. In this section you create the script that you'll run later to make sure that the application can open the databases when it runs in IIS.
+When the application runs in IIS on your development computer, the application uses the default application pool's credentials to access the database. However, by default, the application pool does not have permission to open the databases. This means you need to run a script to grant that permission. In this section, you'll create that script and run it later to make sure that the application can open the databases when it runs in IIS.
 
-Right-click the solution (not one of the projects), and click **Add New Item**, and then create a new **SQL File** named *Grant.sql*. Copy the following SQL commands into the file, and then save and close the file:
+ In a text editor,  copy the following SQL commands into a new file and  save it as *Grant.sql*. 
 
 [!code-sql[Main](deploying-to-iis/samples/sample2.sql)]
 
+In Visual Studio, open the Contoso University solution. Right-click the solution (not one of the projects), and click **Add**, then **Existing Item**, browse to *Grant.sql* and open it.
+
 > [!NOTE]
-> This script is designed to work with SQL Server Express 2012 and with the IIS settings in Windows 8 or Windows 7 as they are specified in this tutorial. If you're using a different version of SQL Server or of Windows, or if you set up IIS on your computer differently, changes to this script might be required. For more information about SQL Server scripts, see [SQL Server Books Online](https://go.microsoft.com/fwlink/?LinkId=132511).
+> This script is designed to work with SQL Server Express 2012 and with the IIS settings in Windows 8 or Windows 7 as they are specified in this tutorial. If you're using a different version of SQL Server or Windows, or if you set up IIS on your computer differently, changes to this script might be required. For more information about SQL Server scripts, see [SQL Server Books Online](https://go.microsoft.com/fwlink/?LinkId=132511).
 
 
 > [!NOTE] 
 > 
-> **Security Note** This script gives db\_owner permissions to the user that accesses the database at run time, which is what you'll have in the production environment. In some scenarios you might want to specify a user that has full database schema update permissions only for deployment, and specify for run time a different user that has permissions only to read and write data. For more information, see [Reviewing the Automatic Web.config Changes for Code First Migrations](#reviewingmigrations) later in this tutorial.
+> **Security Note** This script gives `db_owner` permissions to the user that accesses the database at run time, which is what you'll have in the production environment. In some scenarios you might want to specify a user that has full database schema update permissions only for deployment, and specify for run time a different user that has permissions only to read and write data. For more information, see [Reviewing the Automatic Web.config Changes for Code First Migrations](#reviewingmigrations) later in this tutorial.
 
 
 <a id="publish"></a>
@@ -166,31 +181,34 @@ Before publishing, make sure that you are running Visual Studio in administrator
 
 1. In **Solution Explorer**, right-click the ContosoUniversity project (not the ContosoUniversity.DAL project) and select **Publish**.
 
-    The **Publish Web** wizard appears.
+    The **Pick a publish target** wizard appears.
 
     ![Publish Web wizard Profile tab](deploying-to-iis/_static/image13.png)
-2. In the drop-down list, select **&lt;New...&gt;**. (With the latest Visual Studio update installed, there is no drop-down list, and the button to click in order to create a new profile from scratch is **Custom**.)
-3. In the **New Profile** dialog box, enter "Test", and then click **OK**.
-
-    The wizard automatically advances to the **Connection** tab.
-4. In the **Service URL** box, enter *localhost*.
-5. In the **Site/application** box, enter *Default Web Site/ContosoUniversity*
-6. In the **Destination URL** box, enter `http://localhost/ContosoUniversity`
+2. From the left-hand menu, select **IIS, FTP, etc.**
+3. Select **Publish**. The **Publish** dialog box appears.
+4. From the **Publish Method** drop-down menu, select **Web Deploy**.
+5. For **Server**, enter *localhost*.
+6. For **Site name**, enter *Default Web Site/ContosoUniversity*
+7. For **Destination URL** box, enter `http://localhost/ContosoUniversity`
 
     The **Destination URL** setting isn't required. When Visual Studio finishes deploying the application, it automatically opens your default browser to this URL. If you don't want the browser to open automatically after deployment, leave this box blank.
-7. Click **Validate Connection** to verify that the settings are correct and you can connect to IIS on the local computer.
+
+8. Click **Validate Connection** to verify that the settings are correct and you can connect to IIS on the local computer.
 
     A green check mark verifies that the connection is successful.
 
     ![Publish Web wizard Connection tab](deploying-to-iis/_static/image14.png)
-8. Click **Next** to advance to the **Settings** tab.
-9. The **Configuration** drop-down box specifies the build configuration to deploy. Leave it set to the default value of Release. You won't be deploying Debug builds in this tutorial.
-10. Expand **File Publish Options**, and then select **Exclude files from the App\_Data folder**.
+
+9. Click **Next** to advance to the **Settings** tab.
+
+10. The **Configuration** drop-down box specifies the build configuration to deploy. Leave it set to the default value of **Release**. You won't be deploying Debug builds in this tutorial.
+
+11. Expand **File Publish Options**, and then select **Exclude files from the App\_Data folder**.
 
     In the test environment the application will access the databases that you created in the local SQL Server Express instance, not the .mdf files in the *App\_Data* folder.
 11. Leave the **Precompile during publishing** and **Remove additional files at destination** check boxes cleared.
 
-    ![File Publish Options in Settings tab](deploying-to-iis/_static/image15.png)
+    ![File Publish Options in Settings tab](deploying-to-iis/_static/image15a.png)
 
     Precompiling is an option that is useful mainly for very large sites; it can reduce page startup time for the first time a page is requested after the site is published.
 
@@ -199,11 +217,11 @@ Before publishing, make sure that you are running Visual Studio in administrator
     > [!NOTE] 
     > 
     > [!CAUTION]
-    > If you select **Remove additional files** for a subsequent deployment to the same site, make sure that you use the preview feature so that you see in advance which files will be deleted before you deploy. The expected behavior is that Web Deploy will delete files on the destination server that you have deleted in your project. However, the entire folder structure under the source and destination folders is compared, and in some scenarios Web Deploy might delete files you don't want to delete.
+    > If you select **Remove additional files at desitination** for a subsequent deployment to the same site, make sure that you use the preview feature so that you see in advance which files will be deleted before you deploy. The expected behavior is that Web Deploy will delete files on the destination server that you have deleted in your project. However, the entire folder structure under the source and destination folders is compared, and in some scenarios Web Deploy might delete files you don't want to delete.
     > 
     > For example, if you have a web application in a subfolder on the server when you deploy a project to the root folder, the subfolder will be deleted. You might have one project for the main site at contoso.com and another project for a blog at contoso.com/blog. The blog application is in a subfolder. If you select Remove additional files at destination when you deploy the main site, the blog application will be deleted.
     > 
-    > For another example, your App\_Data folder might get deleted unexpectedly. Certain databases such as SQL Server Compact store database files in the App\_Data folder. After the initial deployment you don't want to keep copying the database files in subsequent deployments so you select  Exclude App\_Data on the Package/Publish Web tab. After you do that, if you have Remove additional files at destination selected, your database files and the App\_Data folder itself will be deleted the next time you publish.
+    > For another example, your App\_Data folder might get deleted unexpectedly. Certain databases such as SQL Server Compact store database files in the App\_Data folder. After the initial deployment you don't want to keep copying the database files in subsequent deployments so you select  **Exclude App\_Data** on the Package/Publish Web tab. After you do that, if you have **Remove additional files at destination** selected, your database files and the App\_Data folder itself will be deleted the next time you publish.
 
 ### Configure deployment for the membership database
 
@@ -242,6 +260,8 @@ The following steps apply to the **SchoolContext** database in the **Databases**
 
     You can also get the application database connection string from **Server Explorer** the same way you got the membership database connection string.
 2. Select **Execute Code First Migrations (runs on application start)**.
+    
+    (Option doesn't exist in new)
 
     This option causes the deployment process to configure the deployed Web.config file to specify the `MigrateDatabaseToLatestVersion` initializer. This initializer automatically updates the database to the latest version when the application accesses the database for the first time after deployment.
 
@@ -266,8 +286,8 @@ The following steps apply to the **SchoolContext** database in the **Databases**
 
 ### Preview the deployment updates
 
-1. Open the **Publish Web** wizard again (right-click the ContosoUniversity project and click **Publish**).
-2. In the **Preview** tab, make sure that the **Test** profile is still selected, and then click **Start Preview** to see a list of the files that will be copied.
+1. Open the **Publish Web** wizard again (right-click the ContosoUniversity project, click **Publish**, the **Preview**).
+2. In the **Preview** dialog box, click **Start Preview** to see a list of the files that will be copied. (image9)
 
     ![Preview button](deploying-to-iis/_static/image18.png)
 
