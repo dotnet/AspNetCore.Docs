@@ -267,8 +267,8 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 ## Additional resources
 
+* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#enable-windows-authentication-with-httpsys)
 * [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
 * <xref:fundamentals/host/index>
 * <xref:test/troubleshoot>
-* <xref:security/authentication/windowsauth#enable-windows-authentication-with-httpsys>
