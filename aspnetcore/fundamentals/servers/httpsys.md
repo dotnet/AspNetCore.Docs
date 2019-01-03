@@ -128,6 +128,11 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 ### Configure Windows Server
 
+In the example app and server configuration in this section:
+
+* The server's local IP address is `10.0.0.4`.
+* The server's public IP address is `104.214.79.47`.
+
 1. Determine the ports to open for the app and use Windows Firewall or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906) to open firewall ports to allow traffic to reach HTTP.sys. When deploying to an Azure VM, open the ports in the [Network Secruity Group](/azure/virtual-network/security-overview). In the following commands and app configuration, port 443 is used.
 
 1. Obtain and install X.509 certificates, if required.
@@ -205,6 +210,22 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
    * `<THUMBPRINT>` &ndash; The X.509 certificate thumbprint.
    * `<GUID>` &ndash; A developer-generated GUID to represent the app for informational purposes.
 
+   For reference purposes, store the GUID in the app as a package tag:
+
+   * In Visual Studio:
+     * Open the app's project properties by right-clicking on the app in **Solution Explorer** and selecting **Properties**.
+     * Select the **Package** tab.
+     * Enter the GUID that you created in the **Tags** field.
+   * When not using Visual Studio:
+     * Open the app's project file.
+     * Add a `<PackageTags>` property to a new or existing `<PropertyGroup>` with the GUID that you created:
+
+       ```xml
+       <PropertyGroup>
+         <PackageTags>9412ee86-c21b-4eb8-bd89-f650fbf44931</PackageTags>
+       </PropertyGroup>
+       ```
+
    In the following example:
 
    * The local IP address of the server is `10.0.0.4`.
@@ -234,7 +255,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
    Administrator privileges aren't required to run the app when binding to localhost using HTTP (not HTTPS) with a port number greater than 1024. For other configurations (for example, using a local IP address or binding to port 443), run the app with administrator privileges.
 
-   The app responds at the server's public IP address.
+   The app responds at the server's public IP address. In this example, the server is reached from the Internet at its public IP address of `104.214.79.47`.
 
    A development certificate is used in this example. The page loads securely after bypassing the browser's untrusted certificate warning.
 
