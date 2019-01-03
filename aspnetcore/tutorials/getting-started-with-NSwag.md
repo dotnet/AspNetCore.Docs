@@ -285,6 +285,6 @@ In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly deco
 
 ::: moniker-end
 
-The Swagger generator can now accurately describe this action, and generated clients know what they receive when calling the endpoint. It's highly recommended to decorate all actions with these attributes. 
+ The Swagger generator can now accurately describe this action, and generated clients know what they receive when calling the endpoint. As a recommendation, decorate all actions with these attributes. 
 
 For guidelines on what HTTP responses your API actions should return, see the [RFC 7231 specification](https://tools.ietf.org/html/rfc7231#section-4.3).
