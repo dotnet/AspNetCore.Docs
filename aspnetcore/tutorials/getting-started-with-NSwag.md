@@ -172,7 +172,7 @@ namespace MyNamespace
  var todoClient = new TodoClient();
 
 // Gets all to-dos from the API
-var allToDos = await todoClient.GetAllAsync();
+ var allTodos = await todoClient.GetAllAsync();
 
 // Create a new ToDoItem, and save it in the API
 var createdTodo = await todoClient.CreateAsync(new TodoItem());
