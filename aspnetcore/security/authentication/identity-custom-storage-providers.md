@@ -230,6 +230,8 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+If the database is SQL Server, `AddTransient` can be replaced with `AddScoped` for increased performance.
+
 ## References
 
 * [Custom Storage Providers for ASP.NET 4.x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
