@@ -13,12 +13,13 @@ msc.type: authoredcontent
 
 # Tutorial: Server broadcast with SignalR 2
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality. Server broadcast means that the server starts the communications sent to clients.
 
 The application that you'll create in this tutorial simulates a stock ticker, a typical scenario for server broadcast functionality. Periodically, the server randomly updates stock prices and broadcast the updates to all connected clients. In the browser, the numbers and symbols in the **Change** and **%** columns dynamically change in response to notifications from the server. If you open additional browsers to the same URL, they all show the same data and the same changes to the data simultaneously.
 
-> [!IMPORTANT]
-> If you don't want to work through the steps of building the application, you can install the SignalR.Sample package in a new Empty ASP.NET Web Application project. If you install the NuGet package without performing the steps in this tutorial, you must follow the instructions in the *readme.txt* file. To run the package you need to add an OWIN startup class which calls the `ConfigureSignalR` method in the installed package. You will receive an error if you do not add the OWIN startup class.
+![Create web](tutorial-server-broadcast-with-signalr/_static/image1.png)
 
 In this tutorial, you:
 
@@ -30,9 +31,10 @@ In this tutorial, you:
 > * Examine the client code
 > * Test the application
 > * Enable logging
-> * Install the StockTicker sample
 
-[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+> [!IMPORTANT]
+> If you don't want to work through the steps of building the application, you can [install the SignalR.Sample package](#install-the-stockticker-sample) in a new Empty ASP.NET Web Application project. If you install the NuGet package without performing the steps in this tutorial, you must follow the instructions in the *readme.txt* file. To run the package you need to add an OWIN startup class which calls the `ConfigureSignalR` method in the installed package. You will receive an error if you do not add the OWIN startup class. See the [Install the StockTicker sample](#install-the-stockticker-sample) section of this article.
+
 
 ## Prerequisites
 
@@ -44,7 +46,7 @@ This section shows how to use Visual Studio 2017 to create an empty ASP.NET Web 
 
 1. In Visual Studio, create an ASP.NET Web Application.
 
-    ![Create web](tutorial-server-broadcast-with-signalr/_static/image1.png)
+    ![Create web](tutorial-server-broadcast-with-signalr/_static/image2.png)
 
 1. In the **New ASP.NET Web Application - SignalR.StockTicker** window, leave **Empty** selected and select **OK**.
 
@@ -70,7 +72,7 @@ You begin by creating the *Stock* model class that you'll use to store and trans
 
 You'll use the SignalR Hub API to handle server-to-client interaction. A `StockTickerHub` class that derives from the `SignalRHub` class will handle receiving connections and method calls from clients. You also need to maintain stock data and run a `Timer` object. The `Timer` object will periodically trigger price updates independent of client connections. You can't put these functions in a `Hub` class, because Hubs are transient. The app creates a `Hub` class instance for each task on the hub, like connections and calls from the client to the server. So the mechanism that keeps stock data, updates prices, and broadcasts the price updates has to run in a separate class. You'll name the class `StockTicker`.
 
-![Broadcasting from StockTicker](tutorial-server-broadcast-with-signalr/_static/image2.png)
+![Broadcasting from StockTicker](tutorial-server-broadcast-with-signalr/_static/image3.png)
 
 You only want one instance of the `StockTicker` class to run on the server, so you'll need to set up a reference from each `StockTickerHub` instance to the singleton `StockTicker` instance. The `StockTicker` class has to broadcast to clients because it has the stock data and triggers updates, but `StockTicker` isn't a `Hub` class. The `StockTicker` class has to get a reference to the SignalR Hub connection context object. It can then use the SignalR connection context object to broadcast to clients.
 
@@ -104,7 +106,7 @@ As you'll see later when you create the `StockTicker` class, the app creates a s
 
 1. Name the class *StockTicker* and add it to the project.
 
-1. Replace the code in the *Stock.cs* file with this code:
+1. Replace the code in the *StockTicker.cs* file with this code:
 
     [!code-csharp[Main](tutorial-server-broadcast-with-signalr/samples/sample3.cs)]
 
@@ -194,7 +196,7 @@ First, you'll add the HTML client.
 
 1. In **Solution Explorer**, right-click the project and select **Add** > **HTML Page**.
 
-1. Name the file **StockTicker** and select **OK**.
+1. Name the file *StockTicker* and select **OK**.
 
 1. Replace the default code in the *StockTicker.html* file with this code:
 
@@ -231,7 +233,7 @@ Now create the JavaScript file.
 
 1. In **Solution Explorer**, right-click the project and select **Add** > **JavaScript File**.
 
-1. Name the page **StockTicker** and select **OK**.
+1. Name the file *StockTicker* and select **OK**.
 
 1. Add this code to the *StockTicker.js* file:
 
@@ -280,7 +282,7 @@ You can test the app to make sure it's working. You'll see all browser windows d
 
 1. In the toolbar, turn on **Script Debugging** and then select the play button to run the app in Debug mode.
 
-    ![Screenshot of user turning on debugging mode and selecting play.](tutorial-server-broadcast-with-signalr/_static/image3.png)
+    ![Screenshot of user turning on debugging mode and selecting play.](tutorial-server-broadcast-with-signalr/_static/image4.png)
 
     A browser window will open displaying the **Live Stock Table**. The stock table initially shows the "loading..." line, then, after a short time, the app shows the initial stock data, and then the stock prices start to change.
 
@@ -364,6 +366,8 @@ The [Microsoft.AspNet.SignalR.Sample](http://nuget.org/packages/microsoft.aspnet
      When you run the app for the first time, the "market" is "closed" and you see a static table and a ticker window that isn't scrolling.
 
 1. Select **Open Market**.
+
+    ![Screenshot of the live ticker.](tutorial-server-broadcast-with-signalr/_static/image5.png)
 
     * The **Live Stock Ticker** box starts to scroll horizontally, and the server starts to periodically broadcast stock price changes on a random basis.
 
@@ -488,7 +492,6 @@ In this tutorial, you:
 > * Examined the client code
 > * Tested the application
 > * Enabled logging
-> * Installed the StockTicker sample
 
 Advance to the next article to learn how to create a real-time web application that uses ASP.NET SignalR 2.
 > [!div class="nextstepaction"]
