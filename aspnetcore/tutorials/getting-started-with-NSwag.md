@@ -257,7 +257,7 @@ Manually add the highlighted lines to the *.csproj* file:
 
 ::: moniker range="<= aspnetcore-2.0"
 
-Because NSwag uses [reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult), it can't infer what your action is doing and what it returns.
+ Because NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [IActionResult](xref:Microsoft.AspNetCore.Mvc.IActionResult), it can't infer what your action is doing and what it returns.
 
 Consider the following example:
 
