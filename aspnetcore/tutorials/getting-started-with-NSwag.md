@@ -165,7 +165,7 @@ namespace MyNamespace
 > [!TIP]
  > The C# client code is generated based on selections in the **Settings** tab. Modify the settings to perform tasks such as default namespace renaming and synchronous method generation.
 
-* Copy the generated C# code into a file into a client project that will consume the API.
+ * Copy the generated C# code into a file in the client project that will consume the API.
 * Start consuming the web API:
 
 ```csharp
