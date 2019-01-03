@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,25 +13,20 @@ namespace HttpSysSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         #region snippet1
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
-            ILogger<Startup> logger)
+            ILogger<Startup> logger, IServer server)
         {
             app.Use(async (context, next) =>
             {
                 context.Features.Get<IHttpMaxRequestBodySizeFeature>()
                     .MaxRequestBodySize = 10 * 1024;
 
-                var serverAddressesFeature = app.ServerFeatures.Get<IServerAddressesFeature>();
+                var serverAddressesFeature = 
+                    app.ServerFeatures.Get<IServerAddressesFeature>();
                 var addresses = string.Join(", ", serverAddressesFeature?.Addresses);
 
                 logger.LogInformation($"Addresses: {addresses}");
@@ -42,7 +37,6 @@ namespace HttpSysSample
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
