@@ -95,7 +95,7 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
 
-* In the `Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI v3:
+ * In the `Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-7)]
 
