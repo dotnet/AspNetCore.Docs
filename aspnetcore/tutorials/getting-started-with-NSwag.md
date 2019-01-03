@@ -197,7 +197,7 @@ The Swagger UI displays the version's information:
 
 ### XML comments
 
-To enable XML comments, perform the following steps from your preferred editor:
+ To enable XML comments, perform the following steps:
 
 # [Visual Studio](#tab/visual-studio-xml/)
 
