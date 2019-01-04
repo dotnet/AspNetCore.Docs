@@ -1,0 +1,67 @@
+---
+title: Migrate from Microsoft.Extensions.Logging 2.1 to 2.2 or 3.0
+author: pakrym
+description: This article outlines the common steps for migrating a non-ASP.NET Core application that uses Microsoft.Extensions.Logging 2.1 to Microsoft.Extensions.Logging 2.2 or 3.0.
+ms.author: pakrym
+ms.custom: mvc
+ms.date: 01/04/2019
+uid: migration/logging-nonaspnetcore
+---
+
+# Migrate from Microsoft.Extensions.Logging 2.1 to 2.2 or 3.0
+
+This article outlines the common steps for migrating a non-ASP.NET Core application that uses `Microsoft.Extensions.Logging` 2.1 to `Microsoft.Extensions.Logging` 2.2 or 3.0.
+
+## 2.1 to 2.2
+
+Manually create `ServiceCollection` and call `AddLogging`.
+
+2.1 example:
+
+``` C#
+using (var loggerFactory = new LoggerFactory())
+{
+    loggerFactory.AddConsole();
+
+    // use loggerFactory
+}
+```
+
+2.2 example:
+
+``` C#
+var serviceCollection = new ServiceCollection();
+serviceCollection.AddLogging(builder => builder.AddConsole());
+
+using (var serviceProvider = serviceCollection.BuildServiceProvider())
+using (var loggerFactory = serviceProvider.GetService<ILoggerFactory>())
+{
+    // use loggerFactory
+}
+```
+
+## 2.1 to 3.0
+
+2.1 example:
+
+``` C#
+using (var loggerFactory = new LoggerFactory())
+{
+    loggerFactory.AddConsole();
+
+    // use loggerFactory
+}
+```
+
+3.0 example:
+
+``` C#
+using (var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole()))
+{
+    // use loggerFactory
+}
+```
+
+## Additional resources
+
+<xref:fundamentals/logging/index>
