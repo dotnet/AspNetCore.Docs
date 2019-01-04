@@ -132,7 +132,7 @@ Next, you'll modify the markup in the *ProductDetails.aspx* page that you added 
 
     [!code-aspx[Main](display_data_items_and_details/samples/sample5.aspx)]
 
-This code uses a **FormView** control to display specific product details. This markup uses methods like the methods used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
+This code uses a **FormView** control to display specific product details. This markup uses methods like those used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
 
 To connect the above markup to the database, you must add additional code to the *ProductDetails.aspx* code.
 
@@ -143,7 +143,7 @@ To connect the above markup to the database, you must add additional code to the
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample6.cs)]
 
-This code checks for a "`productID`" query-string value. If a valid query-string value is found, the matching product is displayed. If the query-string isn't found, or its value isn't valid, no product is displayed.
+This code checks for a "`productID`" query-string value. If a valid query string value is found, the matching product is displayed. If the query string isn't found, or its value isn't valid, no product is displayed.
 
 ### Running the application
 
