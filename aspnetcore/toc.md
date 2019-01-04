@@ -180,6 +180,7 @@
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
 ## [Integration tests](xref:test/integration-tests)
 ## [Troubleshoot](xref:test/troubleshoot)
+## [Logging](xref:fundamentals/logging/index)
 
 # Data access
 ## Tutorials
