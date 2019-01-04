@@ -82,7 +82,7 @@ By setting the `ItemType` property in the **ListView** control, the data-binding
 
 You're also using model binding to specify a `SelectMethod` value. This value (`GetProducts`) corresponds to the method you'll add to the code behind to display products in the next step.
 
-### Adding Code to display products
+### Adding code to display products
 
 In this step, you'll add code to populate the **ListView** control with product data from the database. The code supports showing all products and  individual category products.
 
@@ -91,7 +91,7 @@ In this step, you'll add code to populate the **ListView** control with product 
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample3.cs)]
 
-This code shows the `GetProducts` method that the **ListView** control's  `ItemType` property references in the *ProductList.aspx* page. To limit the results to a specific database category, the code sets the `categoryId` value from the query string value passed to the *ProductList.aspx* page when the *ProductList.aspx* page is navigated to. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the value of the query string variable `id`. This instructs model binding to try to bind a value from the query string to the `categoryId` parameter at run time.
+This code shows the `GetProducts` method that the **ListView** control's `ItemType` property references in the *ProductList.aspx* page. To limit the results to a specific database category, the code sets the `categoryId` value from the query string value passed to the *ProductList.aspx* page when the *ProductList.aspx* page is navigated to. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the value of the query string variable `id`. This instructs model binding to try to bind a value from the query string to the `categoryId` parameter at run time.
 
 When a valid category is passed as a query string to the page, the results of the query are limited to those products in the database that match the `categoryId` value. For instance, if the *ProductsList.aspx* page URL is this:
 
@@ -101,7 +101,7 @@ The page displays only the products where the `category` equals `1`.
 
 All products are displayed if no query string is included when the *ProductList.aspx* page is called.
 
-The sources of values for these methods are referred to as *value providers* (such as *QueryString*), and the parameter attributes that indicate which value provider to use is referred to as value provider attributes (such as `id`). ASP.NET includes value providers and corresponding attributes for all of the typical sources of user input in a Web Forms application such as the query string, cookies, form values, controls, view state, session state, and profile properties. You can also write custom value providers.
+The sources of values for these methods are referred to as *value providers* (such as `QueryString`), and the parameter attributes that indicate which value provider to use is referred to as *value provider attributes* (such as `id`). ASP.NET includes value providers and attributes for all of the typical sources of user input in a Web Forms application such as the query string, cookies, form values, controls, view state, session state, and profile properties. You can also write custom value providers.
 
 ### Running the application
 
@@ -165,7 +165,7 @@ Now you can run the application to see an individual product displayed based on 
 
 In this series tutorial, you added markup and code to display products and  product details. During this process you've learned about strongly typed data controls, model binding, and value providers. In the next tutorial, you'll add a shopping cart to the Wingtip Toys sample application.
 
-## Additional Resources
+## Additional resources
 
 [Retrieving and displaying data with model binding and web forms](../../presenting-and-managing-data/model-binding/retrieving-data.md)
 
