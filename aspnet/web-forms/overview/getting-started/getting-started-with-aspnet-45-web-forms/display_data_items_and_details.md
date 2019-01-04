@@ -107,7 +107,7 @@ The sources of values for these methods are referred to as *value providers* (su
 
 Run the application now to view all products or a category's products.
 
-1. Press **F5** while in Visual Studio to run the application.  
+1. In Visual Studio, press **F5** to run the application.  
  The browser opens and shows the *Default.aspx* page.
 
 2. Select **Cars** from the product category navigation menu.  
@@ -149,13 +149,13 @@ This code checks for a "`productID`" query-string value. If a valid query-string
 
 Now you can run the application to see an individual product displayed based on product ID.
 
-1. Press **F5** while in Visual Studio to run the application.  
+1. In Visual Studio, press **F5** to run the application.  
  The browser opens and shows the *Default.aspx* page.
 
-2. Select "Boats" from the category navigation menu.  
+2. Select **Boats** from the category navigation menu.  
  The *ProductList.aspx* page is displayed.
 
-3. Select the "Paper Boat" product from the product list.  
+3. Select the **Paper Boat** product from the product list.  
  The *ProductDetails.aspx* page is displayed.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image4.png)
