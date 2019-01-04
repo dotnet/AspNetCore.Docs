@@ -46,9 +46,9 @@ namespace WebApiSample.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<Product>> CreateAsync(Product product)
         {
-            if (!ModelState.IsValid)
+            if (product.Description.Contains("XYZ Widget"))
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             await _repository.AddProductAsync(product);
