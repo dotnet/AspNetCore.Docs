@@ -23,12 +23,17 @@ More information is available in [Visual Studio documentation](/visualstudio/pro
 
 [Application Insights](/azure/application-insights/app-insights-overview) provides in-depth performance data for your app. Application Insights automatically collects data on response rates, failure rates, dependency response times, and more. Application Insights supports logging custom events and metrics specific to your app.
 
-Azure Application Insights provides multiple ways to give insights on monitored applications:
+Azure Application Insights provides multiple ways to give insights on monitored apps:
 
-- [Application Map](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-app-map) – helps spot performance bottlenecks or failure hotspots across all components of distributed applications.
-- [Metrics blade in Application Insights portal](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-metrics-explorer?toc=/azure/azure-monitor/toc.json) shows measured values and event counts.
-- [Performance blade in Application Insights portal](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-tutorial-performance) shows performance details for different operations in the monitored application and allows drilling into a single operation to check all parts/dependencies that contribute to a long duration. In addition, Profiler can be invoked from here to collect performance traces on-demand.
-- [Azure Application Insights Profiler](https://docs.microsoft.com/en-us/azure/azure-monitor/app/profiler) allows regular and on-demand profiling of .NET applications.  Azure portal shows captured performance traces with call stacks and hot paths. The trace files can also be downloaded for deeper analysis using PerfView.
+- [Application Map](/azure/application-insights/app-insights-app-map) – helps spot performance bottlenecks or failure hot-spots across all components of distributed apps.
+- [Metrics blade in Application Insights portal](/azure/application-insights/app-insights-metrics-explorer?toc=/azure/azure-monitor/toc.json) shows measured values and event counts.
+- [Performance blade in Application Insights portal](/azure/application-insights/app-insights-tutorial-performance):
+
+  - Shows performance details for different operations in the monitored app.
+  - Allows drilling into a single operation to check all parts/dependencies that contribute to a long duration.
+  - Profiler can be invoked from here to collect performance traces on-demand.
+
+- [Azure Application Insights Profiler](/azure/azure-monitor/app/profiler) allows regular and on-demand profiling of .NET apps.  Azure portal shows captured performance traces with call stacks and hot paths. The trace files can also be downloaded for deeper analysis using PerfView.
 
 Application Insights can be used in a variety environments:
 
@@ -46,7 +51,7 @@ You can learn more about PerfView and how to get started with [PerfView video tu
 
 ## Windows Performance Toolkit
 
-[Windows Performance Toolkit](https://docs.microsoft.com/en-us/windows-hardware/test/wpt/) (WPT) consists of two components: Windows Performance Recorder (WPR) and Windows Performance Analyzer (WPA). The tools produce in-depth performance profiles of Windows operation systems and applications. WPT has richer ways of visualizing data, but its data collecting is less powerful than PerfView's.
+[Windows Performance Toolkit](/windows-hardware/test/wpt/) (WPT) consists of two components: Windows Performance Recorder (WPR) and Windows Performance Analyzer (WPA). The tools produce in-depth performance profiles of Windows operating systems and apps. WPT has richer ways of visualizing data, but its data collecting is less powerful than PerfView's.
 
 ## PerfCollect
 
