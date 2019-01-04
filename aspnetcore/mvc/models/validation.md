@@ -7,9 +7,8 @@ ms.custom: mvc
 ms.date: 11/06/2018
 uid: mvc/models/validation
 ---
-# Model validation in ASP.NET Core MVC
 
-By [Rachel Appel](https://github.com/rachelappel)
+# Model validation in ASP.NET Core MVC
 
 ## Introduction to model validation
 
@@ -78,7 +77,7 @@ Model state represents validation errors in submitted HTML form values.
 
 MVC will continue validating fields until it reaches the maximum number of errors (200 by default). You can configure this number with the following code in `Startup.ConfigureServices`:
 
-[!code-csharp[](validation/sample/Startup.cs?range=27)]
+[!code-csharp[](validation/sample/Startup.cs?range=14-15)]
 
 ## Handle Model State errors
 
