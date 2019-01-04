@@ -40,11 +40,11 @@ Note: This tutorial applies to ASP.NET Core 2.0 SDK version which can be selecte
 * Enter the email and password for the new account, and then select **Register**.
 * Follow the instructions to apply migrations.
 
-## Require SSL
+## Require HTTPS
 
-OAuth 2.0 requires the use of SSL for authentication over the HTTPS protocol.
+OAuth 2.0 requires the use of SSL/TLS for authentication over the HTTPS protocol.
 
-Projects created using the **Web Application** or **Web API** project templates with ASP.NET Core 2.1 or later are automatically configured to enable SSL. The app launches with a secure default endpoint if the **Individual User Accounts** option is selected in the **Change Authentication dialog** of the project wizard.
+Projects created using the **Web Application** or **Web API** project templates with ASP.NET Core 2.1 or later are automatically configured to enable HTTPS. The app launches with a secure default endpoint if the **Individual User Accounts** option is selected in the **Change Authentication dialog** of the project wizard.
 
 For more information, see <xref:security/enforcing-ssl>.
 

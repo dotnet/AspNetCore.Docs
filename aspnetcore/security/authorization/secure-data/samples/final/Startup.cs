@@ -58,19 +58,17 @@ namespace ContactManager
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            #region snippet_SSL 
-            var skipSSL = Configuration.GetValue<bool>("LocalTest:skipSSL");
+            var skipHTTPS = Configuration.GetValue<bool>("LocalTest:skipHTTPS");
             // requires using Microsoft.AspNetCore.Mvc;
             services.Configure<MvcOptions>(options =>
             {
-            // Set LocalTest:skipSSL to true to skip SSL requrement in 
+            // Set LocalTest:skipHTTPS to true to skip HTTPS requirement in 
             // debug mode. This is useful when not using Visual Studio.
-            if (_hostingEnv.IsDevelopment() && !skipSSL)
+            if (_hostingEnv.IsDevelopment() && !skipHTTPS)
                 {
                     options.Filters.Add(new RequireHttpsAttribute());
                 }
             });
-            #endregion
 
             #region snippet_defaultPolicy
             // requires: using Microsoft.AspNetCore.Authorization;
