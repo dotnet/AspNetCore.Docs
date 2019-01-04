@@ -252,7 +252,9 @@ Middleware is generally encapsulated in a class and exposed with an extension me
 
 [!code-csharp[](index/snapshot/Culture/StartupCulture.cs?name=snippet1)]
 
-The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
+In the preceding code, the call `return next();` is equivalent to `return next(context);`.  The The `httpContext` is captured inside the next `Func`. See the [source code](https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNetCore.Http.Abstractions/Extensions/UseExtensions.cs#L27) for more information.
+
+The preceding sample is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
 You can test the middleware by passing in the culture, for example `http://localhost:7997/?culture=no`.
 
