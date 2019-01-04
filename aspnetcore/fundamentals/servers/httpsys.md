@@ -128,12 +128,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 ### Configure Windows Server
 
-In the example app and server configuration in this section:
-
-* The server's local IP address is `10.0.0.4`.
-* The server's public IP address is `104.214.79.47`.
-
-1. Determine the ports to open for the app and use Windows Firewall or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906) to open firewall ports to allow traffic to reach HTTP.sys. When deploying to an Azure VM, open the ports in the [Network Secruity Group](/azure/virtual-network/security-overview). In the following commands and app configuration, port 443 is used.
+1. Determine the ports to open for the app and use Windows Firewall or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906) to open firewall ports to allow traffic to reach HTTP.sys. When deploying to an Azure VM, open the ports in the [Network Security Group](/azure/virtual-network/security-overview). In the following commands and app configuration, port 443 is used.
 
 1. Obtain and install X.509 certificates, if required.
 
@@ -150,7 +145,7 @@ In the example app and server configuration in this section:
 
 1. Configure URLs and ports in the app.
 
-   By default, ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, options include using:
+   By default, ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, options include:
 
    * [UseUrls](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useurls)
    * `urls` command-line argument
