@@ -18,7 +18,7 @@ Windows Authentication relies on the operating system to authenticate users of A
 
 ## Enable Windows Authentication in an ASP.NET Core app
 
-The Web Application template available via Visual Studio or the .NET Core CLI can be configured to support Windows Authentication.
+The **Web Application** template available via Visual Studio or the .NET Core CLI can be configured to support Windows Authentication.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -26,7 +26,7 @@ The Web Application template available via Visual Studio or the .NET Core CLI ca
 
 In Visual Studio:
 
-1. Create a new ASP.NET Core Web Application.
+1. Create a new **ASP.NET Core Web Application**.
 1. Select **Web Application** from the list of templates.
 1. Select the **Change Authentication** button and select **Windows Authentication**.
 
@@ -47,9 +47,9 @@ Alternatively, the properties can be configured in the `iisSettings` node of the
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-Use the Windows Authentication app template.
+Use the **Windows Authentication** app template.
 
-Execute the [dotnet new](/dotnet/core/tools/dotnet-new) command with the `webapp` argument (ASP.NET Core web app) and `--auth Windows` switch:
+Execute the [dotnet new](/dotnet/core/tools/dotnet-new) command with the `webapp` argument (ASP.NET Core Web App) and `--auth Windows` switch:
 
 ```console
 dotnet new webapp --auth Windows
@@ -61,7 +61,7 @@ dotnet new webapp --auth Windows
 
 IIS uses the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to host ASP.NET Core apps. Windows Authentication is configured for IIS via the *web.config* file. The following sections show how to:
 
-* Provide a local *web.config* file that activate Windows Authentication on the server when the app is deployed.
+* Provide a local *web.config* file that activates Windows Authentication on the server when the app is deployed.
 * Use the IIS Manager to configure the *web.config* file of an ASP.NET Core app that has already been deployed to the server.
 
 ### IIS configuration
@@ -89,7 +89,7 @@ Use **either** of the following approaches:
 
 Perform the following steps **before** you [publish and deploy your project](#publish-and-deploy-your-project-to-the-iis-site-folder).
 
-Add the following *web.config* file to the root of the project:
+Add the following *web.config* file to the project root:
 
 [!code-xml[](windowsauth/sample_snapshot/web_2.config)]
 
@@ -108,7 +108,7 @@ When these actions are taken, IIS Manager modifies the app's *web.config* file. 
 
 [!code-xml[](windowsauth/sample_snapshot/web_1.config?highlight=4-5)]
 
-The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the ASP.NET Core SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](xref:host-and-deploy/iis/index#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the SDK provided.
+The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET Core SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](xref:host-and-deploy/iis/index#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the SDK provided.
 
 When IIS Manager is used to add the IIS configuration, it only affects the app's *web.config* file on the server. A subsequent deployment of the app may overwrite the settings on the server if the server's copy of *web.config* is replaced by the project's *web.config* file. Use **either** of the following approaches to manage the settings:
 
