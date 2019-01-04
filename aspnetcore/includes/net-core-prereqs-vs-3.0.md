@@ -1,2 +1,2 @@
 * [Visual Studio 2017 version 15.9 or later](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload
-* [.NET Core SDK 3.0 Preview](https://www.microsoft.com/net/download/all)
+* [.NET Core SDK 3.0 Preview](https://dotnet.microsoft.com/download/dotnet-core/3.0)

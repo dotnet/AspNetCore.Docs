@@ -18,7 +18,7 @@ Manually create `ServiceCollection` and call `AddLogging`.
 
 2.1 example:
 
-``` C#
+```csharp
 using (var loggerFactory = new LoggerFactory())
 {
     loggerFactory.AddConsole();
@@ -29,7 +29,7 @@ using (var loggerFactory = new LoggerFactory())
 
 2.2 example:
 
-``` C#
+```csharp
 var serviceCollection = new ServiceCollection();
 serviceCollection.AddLogging(builder => builder.AddConsole());
 
@@ -46,7 +46,7 @@ In 3.0 use `LoggingFactory.Create`.
 
 2.1 example:
 
-``` C#
+```csharp
 using (var loggerFactory = new LoggerFactory())
 {
     loggerFactory.AddConsole();
@@ -57,7 +57,7 @@ using (var loggerFactory = new LoggerFactory())
 
 3.0 example:
 
-``` C#
+```csharp
 using (var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole()))
 {
     // use loggerFactory
