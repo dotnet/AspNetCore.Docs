@@ -2093,7 +2093,7 @@
             - name: Getting Started with EF 6 using MVC 5
               href: mvc/overview/getting-started/getting-started-with-ef-using-mvc/index.md
               items: 
-                - name: Creating an Entity Framework Data Model
+                - name: Create an Entity Framework Data Model
                   href: mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md
                 - name: Implementing Basic CRUD Functionality
                   href: mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md
