@@ -392,7 +392,7 @@
 ## [Use a file watcher](xref:tutorials/dotnet-watch)
 
 # Migration
-## [2.2 to 3.0 ](xref:migration/21-to-22)
+## [2.2 to 3.0 ](xref:migration/22-to-30)
 ## [2.1 to 2.2](xref:migration/21-to-22)
 ## [2.0 to 2.1](xref:migration/20_21)
 ## 1.x to 2.0

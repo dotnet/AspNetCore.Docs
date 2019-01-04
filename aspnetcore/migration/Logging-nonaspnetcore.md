@@ -42,6 +42,8 @@ using (var loggerFactory = serviceProvider.GetService<ILoggerFactory>())
 
 ## 2.1 to 3.0
 
+In 3.0 use `LoggingFactory.Create`.
+
 2.1 example:
 
 ``` C#
