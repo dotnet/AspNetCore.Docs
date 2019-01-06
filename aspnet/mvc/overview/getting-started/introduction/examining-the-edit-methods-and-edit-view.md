@@ -79,7 +79,9 @@ The [ValidateAntiForgeryToken](https://msdn.microsoft.com/library/system.web.mvc
 
 The [ASP.NET MVC model binder](https://msdn.microsoft.com/library/dd410405.aspx) takes the posted form values and creates a `Movie` object that's passed as the `movie` parameter. The `ModelState.IsValid` verifies that the data submitted in the form can be used to modify (edit or update) a `Movie` object. If the data is valid, the movie data is saved to the `Movies` collection of the `db`(`MovieDBContext` instance). The new movie data is saved to the database by calling the `SaveChanges` method of `MovieDBContext`. After saving the data, the code redirects the user to the `Index` action method of the `MoviesController` class, which displays the movie collection, including the changes just made.
 
-As soon as the client side validation determines the value of a field is not valid, an error message is displayed. If you disable JavaScript, you won't have client side validation but the server will detect the posted values are not valid, and the form values will be redisplayed with error messages. Later in the tutorial we examine validation in more detail.
+As soon as the client-side validation determines the value of a field isn't valid, an error message is displayed. If JavaScript is disabled, client side validation is disabled. However, the server detects the posted values aren't valid, and the form values are redisplayed with error messages.
+
+Validation is examined in more detail later in the tutorial.
 
 The `Html.ValidationMessageFor` helpers in the *Edit.cshtml* view template take care of displaying appropriate error messages.
 
@@ -87,7 +89,7 @@ The `Html.ValidationMessageFor` helpers in the *Edit.cshtml* view template take 
 
 All the `HttpGet` methods follow a similar pattern. They get a movie object (or list of objects, in the case of `Index`), and pass the model to the view. The `Create` method passes an empty movie object to the Create view. All the methods that create, edit, delete, or otherwise modify data do so in the `HttpPost` overload of the method. Modifying data in an HTTP GET method is a security risk, as described in the blog post entry [ASP.NET MVC Tip #46 – Don't use Delete Links because they create Security Holes](http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx). Modifying data in a GET method also violates HTTP best practices and the architectural [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) pattern, which specifies that GET requests should not change the state of your application. In other words, performing a GET operation should be a safe operation that has no side effects and doesn't modify your persisted data.
 
-## jQuery Validation for Non-English Locales
+## jQuery validation for non-English locales
 
 If you are using a US-English computer, you can skip this section and go to the next tutorial. You can download the Globalize version of this tutorial [here](https://archive.msdn.microsoft.com/Project/Download/FileDownload.aspx?ProjectName=aspnetmvcsamples&amp;DownloadId=16475). For an excellent two part tutorial on Internationalization, see [Nadeem's ASP.NET MVC 5 Internationalization](http://afana.me/post/aspnet-mvc-internationalization.aspx).
 
