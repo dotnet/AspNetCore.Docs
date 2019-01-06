@@ -153,7 +153,7 @@ If you use the `DataType` attribute with a date field, you have to specify the `
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[Main](adding-validation/samples/sample10.cs?highlight=6,10)]
+[!code-csharp[Main](adding-validation/samples/sample10.cs?highlight=4,6,10,12)]
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 
