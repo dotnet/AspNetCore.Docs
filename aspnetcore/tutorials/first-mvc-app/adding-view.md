@@ -19,7 +19,7 @@ Currently the `Index` method returns a string with a message that's hard-coded i
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_4)]
 
-The preceding code returns a `View` object. It uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods) such as the `Index` method above, generally return an [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult) (or a class derived from `ActionResult`), not a type like string.
+The preceding code calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View*> method. It uses a view template to generate an HTML response. Controller methods (also known as *action methods*), such as the `Index` method above, generally return an <xref:Microsoft.AspNetCore.Mvc.IActionResult> (or a class derived from <xref:Microsoft.AspNetCore.Mvc.ActionResult>), not a type like `string`.
 
 ## Add a view
 
