@@ -260,7 +260,7 @@ The following steps apply to the **DefaultConnection** database in the dialog bo
 
 3. Select **Configure database updates**.
  
-4. In the **Configure Database Updates** dialog box, select Add SQL Script, and then navigate to the *Grant.sql* script that you saved earlier in the solution folder.
+4. In the **Configure Database Updates** dialog box, select **Add SQL Script**, and then navigate to the *Grant.sql* script that you saved earlier in the solution folder.
 
 5. Repeat the process to add the *aspnet-data-dev.sql* script.
 
