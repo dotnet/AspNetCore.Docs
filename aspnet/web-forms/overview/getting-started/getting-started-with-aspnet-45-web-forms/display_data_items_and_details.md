@@ -21,25 +21,25 @@ In this tutorial, you'll learn how to display data items and data item details u
 
 ## You'll learn how to:
 
-- Add a data control to display products from the database
-- Connect a data control to the selected data
-- Add a data control to display product details from the database
-- Retrieve a value from the query string and use that value to limit the data that's retrieved from the database
+- Add a data control to display database products
+- Connect a data control to selected data
+- Add a data control to display product details
+- Parse a query string value and use it to filter retrieved database data
 
 ### Features introduced in this tutorial:
 
-- Model Binding
+- Model binding
 - Value providers
 
-## Adding a Data Control to display products
+## Adding a data control to display products
 
-You can use a few different options to bind data to a server control. The most common include:
+You have a few options to bind data to a server control. The most common include:
 
  * Adding a data source control
  * Adding code by hand
  * Using model binding
 
-### Using a Data Source Control to bind data
+### Using a data source control to bind data
 
 Adding a data source control allows you to link the data source control to the control that displays the data. With this approach, you can declaratively,  rather than programmatically, connect server-side controls to data sources.
 
@@ -55,22 +55,23 @@ Coding by hand involves:
 
 This approach lets you have full control over your data-access logic.
 
-### Using Model Binding to bind data
+### Using model binding to bind data
 
 Model binding lets you bind results using far less code and gives you the ability to reuse the functionality throughout your application. It simplifies working with code-focused data-access logic while still providing a rich, data-binding framework.
 
 ## Displaying products
 
-In this tutorial, you'll use model binding to bind data. To configure a data control to use model binding to select data, you set the control's `SelectMethod` property to a method name in the page's code. The data control calls the method at the appropriate time in the page life cycle and automatically binds the returned data. There's no need to explicitly call the `DataBind` method.
+In this tutorial, you'll use model binding to bind data. To configure a data control to use model binding to select data, you set the control's `SelectMethod` property to a method in the page's code. The data control calls the method at the appropriate time in the page life cycle and automatically binds the returned data. There's no need to explicitly call the `DataBind` method.
 
-Using the steps below, you'll modify the markup in the *ProductList.aspx* page so that the page can display products.
+Using the steps below, you'll modify *ProductList.aspx* markup to display products.
 
-1. In **Solution Explorer**, open the *ProductList.aspx* page.
+1. In **Solution Explorer**, open *ProductList.aspx*.
+
 2. Replace the existing markup with this markup:   
 
     [!code-aspx[Main](display_data_items_and_details/samples/sample1.aspx)]
 
-This code uses a **ListView** control named `productList` to display  products.
+This markup uses a **ListView** control named `productList` to display  products.
 
 [!code-aspx[Main](display_data_items_and_details/samples/sample2.aspx)]
 
@@ -84,14 +85,14 @@ You're also using model binding to specify a `SelectMethod` value. This value (`
 
 ### Adding code to display products
 
-In this step, you'll add code to populate the **ListView** control with product data from the database. The code supports showing all products and  individual category products.
+In this step, you'll add code to populate the **ListView** control with database product data. The code supports showing all products and individual category products.
 
 1. In **Solution Explorer**, right-click *ProductList.aspx* and then click **View Code**.
-2. Replace the existing code in the *ProductList.aspx.cs* file with the following code:   
+2. Replace the existing code in the *ProductList.aspx.cs* file with this:   
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample3.cs)]
 
-This code shows the `GetProducts` method that the **ListView** control's `ItemType` property references in the *ProductList.aspx* page. To limit the results to a specific database category, the code sets the `categoryId` value from the query string value passed when calling *ProductList.aspx*. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the query string variable `id`'s value. This instructs model binding to, at run time, bind a query string value to the `categoryId` parameter.
+This code shows the `GetProducts` method that the **ListView** control's `ItemType` property references in *ProductList.aspx*. To limit the results to a specific database category, the code sets the `categoryId` value from the query string value passed when  *ProductList.aspx* is called. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the query string variable `id`'s value. This instructs model binding to, at run time, bind a query string value to the `categoryId` parameter.
 
 When a valid category (`categoryId`) is passed, the results are limited to that category's database products. For instance, if the *ProductsList.aspx* page URL is this:
 
