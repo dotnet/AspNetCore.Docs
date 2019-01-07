@@ -5,10 +5,10 @@ description: "In this article, you learn how to create ASP.NET MVC 5 data model 
 author: tdykstra
 ms.author: riande
 ms.date: 01/03/2019
+ms.topic: tutorial
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.topic: tutorial
 ---
 
 # Tutorial: Create Entity Framework 6 Code First data model using MVC 5
@@ -112,18 +112,21 @@ This step is one of a few steps in this tutorial that you have to do manually. Y
 
 Next you create entity classes for the Contoso University application. Start with these three entities:
 
-![Class_diagram](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image8.png)
+**Course** <-> **Enrollment** <-> **Student**
 
-There's a one-to-many relationship between `Student` and `Enrollment` entities, and there's a one-to-many relationship between `Course` and `Enrollment` entities. In other words, a student can be enrolled in any number of courses, and a course can have any number of students enrolled in it.
+| Entities | Relationship |
+| -------- | ------------ |
+| Course to Enrollment | One-to-many |
+| Student to Enrollment | One-to-many |
+
+There's a one-to-many relationship between `Student` and `Enrollment` entities, and there's a one-to-many relationship between `Course` and `Enrollment` entities. In other words, you can enroll a  student in any number of courses, and a course can have any number of students enrolled in it.
 
 In the following sections, you create a class for each one of these entities.
 
 > [!NOTE]
-> If you try to compile the project before you finish creating all of these entity classes, you recieve compiler errors.
+> If you try to compile the project before you finish creating all of these entity classes, you receive compiler errors.
 
 ### The Student entity
-
-![Student_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image9.png)
 
 In the **Models** folder, create a class file named *Student.cs*.
 
@@ -137,17 +140,15 @@ In the **Models** folder, create a class file named *Student.cs*.
 
 1. Save the file.
 
-The `ID` property becomes the primary key column of the database table that corresponds to this class. By default, EF6 interprets a property that's named `ID` or *classname* `ID` as the primary key.
+The `ID` property becomes the primary key column of the database table that corresponds to this class. By default, EF6 interprets a property that's named `ID` or `<classname> ID` as the primary key.
 
-The `Enrollments` property is a *navigation property*. Navigation properties hold other entities that are related to this entity. In this case, the `Enrollments` property of a `Student` entity holds all of the `Enrollment` entities that are related to that `Student` entity. In other words, if a given `Student` row in the database has two related `Enrollment` rows (rows that contain that student's primary key value in their `StudentID` foreign key column), that `Student` entity's `Enrollments` navigation property contains those two `Enrollment` entities.
+The `Enrollments` property is a *navigation property*. Navigation properties hold other entities related to this entity. In this case, the `Enrollments` property of a `Student` entity holds all of the `Enrollment` entities related to that `Student` entity. In other words, if a given `Student` row in the database has two related `Enrollment` rows (rows that contain that student's primary key value in their `StudentID` foreign key column), that `Student` entity's `Enrollments` navigation property contains those two `Enrollment` entities.
 
 Navigation properties are typically defined as `virtual` so that they can take advantage of certain EF6 functionality such as *lazy loading*. Lazy loading is  explained in the [Reading Related Data](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md) tutorial later in this series.
 
-If a navigation property can hold multiple entities (as in many-to-many or one-to-many relationships), its type must be a list in which entries can be added, deleted, and updated, such as `ICollection`.
+If a navigation property can hold multiple entities (as in many-to-many or one-to-many relationships), its type must be a list to which you can add, delete, and update entries. `ICollection` is a good example.
 
 ### The Enrollment entity
-
-![Enrollment_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image10.png)
 
 In the **Models** folder, create a class file named *Enrollment.cs*.
 
@@ -161,19 +162,17 @@ In the **Models** folder, create a class file named *Enrollment.cs*.
 
 1. Save the file.
 
-The `EnrollmentID` property is the primary key. This entity uses the *classname* `ID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a later tutorial, you'll see how using `ID` without `classname` makes it easier to implement inheritance in the data model.
+The `EnrollmentID` property is the primary key. This entity uses the `<classname> ID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a later tutorial, you'll see how using `ID` without `classname` makes it easier to implement inheritance in the data model.
 
-The `Grade` property is an [enum](/ef/ef6/modeling/code-first/data-types/enums). The question mark after the `Grade` type declaration indicates that the `Grade` property is [nullable](/dotnet/csharp/programming-guide/nullable-types/using-nullable-types). A grade that's null is different from a zero grade — null means a grade isn't known or hasn't been assigned yet.
+The `Grade` property is an [enum](/ef/ef6/modeling/code-first/data-types/enums). The question mark after the `Grade` type declaration indicates that the `Grade` property is [nullable](/dotnet/csharp/programming-guide/nullable-types/using-nullable-types). A grade that's null is different from a zero grade. Null means a grade isn't known or the instructor didn't assign it yet.
 
-The `StudentID` property is a foreign key, and the corresponding navigation property is `Student`. An `Enrollment` entity is associated with one `Student` entity, so the property can only hold a single `Student` entity (unlike the `Student.Enrollments` navigation property you saw earlier, which can hold multiple `Enrollment` entities).
+The `StudentID` property is a foreign key, and the corresponding navigation property is `Student`. You associate an `Enrollment` entity with one `Student` entity, so the property can only hold a single `Student` entity (unlike the `Student.Enrollments` navigation property you saw earlier, which can hold multiple `Enrollment` entities).
 
-The `CourseID` property is a foreign key, and the corresponding navigation property is `Course`. An `Enrollment` entity is associated with one `Course` entity.
+The `CourseID` property is a foreign key, and the corresponding navigation property is `Course`. You associate an `Enrollment` entity with one `Course` entity.
 
-EF6 interprets a property as a foreign key property if it's named *&lt;navigation property name&gt;&lt;primary key property name&gt;* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named the same simply *&lt;primary key property name&gt;* (for example, `CourseID` since the `Course` entity's primary key is `CourseID`).
+EF6 interprets a property as a foreign key property if it's named `<navigation property name><primary key property name>` (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). You can also name foreign key properties `<primary key property name>`. For example, `CourseID` since the `Course` entity's primary key is `CourseID`).
 
 ### The Course entity
-
-![Course_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image11.png)
 
 In the **Models** folder, create a class file named *Course.cs*.
 
@@ -187,13 +186,13 @@ In the **Models** folder, create a class file named *Course.cs*.
 
 1. Save the file.
 
-The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
+The `Enrollments` property is a navigation property. You can relate a `Course` entity to any number of `Enrollment` entities.
 
-The `<xref:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>` attribute is explained in a later tutorial in this series. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.
+`<xref:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>` is basically an attribute that lets you enter the primary key for the course rather than having the database generate it. You can find a more in-depth explanation later in this tutorial series.
 
 ## Create the database context
 
-The main class that coordinates EF6 functionality for a given data model is the *database context* class. You create this class by deriving from the [System.Data.Entity.DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext(v=vs.113).aspx) class. In your code, you specify which entities are included in the data model. You can also customize certain EF6 behavior. In this project, the class is named `SchoolContext`.
+The main class that coordinates EF6 functionality for a given data model is the *database context* class. You create this class by deriving from the [System.Data.Entity.DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext(v=vs.113).aspx) class. In your code, you specify which entities yo include in the data model. You can also customize certain EF6 behavior. You name the class `SchoolContext` in this project.
 
 Create a folder in the ContosoUniversity project.
 
@@ -220,23 +219,23 @@ This code creates a [DbSet](https://msdn.microsoft.com/library/system.data.entit
 
 ### Specify the connection string
 
-The name of the connection string (which you'll add to the Web.config file later) is passed in to the constructor.
+The app passes the name of the connection string (which you'll add to the Web.config file later) to the constructor.
 
 [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample7.cs?highlight=1)]
 
-You could also pass in the connection string itself instead of the name of one that is stored in the Web.config file. For more information about options for specifying the database to use, see [Connection strings and models](/ef/ef6/fundamentals/configuring/connection-strings).
+You could also pass in the connection string itself instead of the name of one that the app stores in the `Web.config` file. For more information about options for specifying the database to use, see [Connection strings and models](/ef/ef6/fundamentals/configuring/connection-strings).
 
 If you don't specify a connection string or the name of one explicitly, EF6 assumes that the connection string name is the same as the class name. The default connection string name in this example would then be `SchoolContext`, the same as what you're specifying explicitly.
 
 ### Specify singular table names
 
-The `modelBuilder.Conventions.Remove` statement in the [OnModelCreating](https://msdn.microsoft.com/library/system.data.entity.dbcontext.onmodelcreating(v=vs.103).aspx) method prevents table names from being pluralized. If you didn't do this, the generated tables in the database would be named `Students`, `Courses`, and `Enrollments`. Instead, the table names are `Student`, `Course`, and `Enrollment`. Developers disagree about whether table names should be pluralized or not. This tutorial uses the singular form, but the important point is that you can select whichever form you prefer by including or omitting this line of code.
+The `modelBuilder.Conventions.Remove` statement in the [OnModelCreating](https://msdn.microsoft.com/library/system.data.entity.dbcontext.onmodelcreating(v=vs.103).aspx) method prevents the app from pluralizing table names. If you didn't do this, the app would name the generated tables in the database `Students`, `Courses`, and `Enrollments`. Instead, the table names are `Student`, `Course`, and `Enrollment`. Developers disagree about whether you should pluralize table names or not. This tutorial uses the singular form, but the important point is that you can select whichever form you prefer by including or omitting this line of code.
 
 ## Initialize DB with test data
 
-EF6 can automatically create (or drop and re-create) a database for you when the application runs. You can specify that this should be done every time your application runs or only when the model is out of sync with the existing database. You can also write a `Seed` method that EF6 automatically calls after creating the database in order to populate it with test data.
+EF6 can automatically create (or drop and re-create) a database for you when the application runs. You can specify that the app create a database every time your application runs or only when the model is out of sync with the existing database. You can also write a `Seed` method that EF6 automatically calls after creating the database in order to populate it with test data.
 
-The default behavior is to create a database only if it doesn't exist (and throw an exception if the model has changed and the database already exists). In this section, you specify that the database should be dropped and re-created whenever the model changes. Dropping the database causes the loss of all your data. This is generally okay during development, because the `Seed` method runs when the database is re-created and re-creates your test data. But in production you generally don't want to lose all your data every time you need to change the database schema. Later you'll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
+The default behavior is to create a database only if it doesn't exist (and throw an exception if the model has changed and the database already exists). In this section, you specify that the app drops and re-creates the database whenever the model changes. Dropping the database causes the loss of all your data. This is generally okay during development, because the `Seed` method runs when the database is re-created and re-creates your test data. But in production you generally don't want to lose all your data every time you need to change the database schema. Later you'll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
 
 ### Database Creation
 
@@ -248,11 +247,11 @@ The default behavior is to create a database only if it doesn't exist (and throw
 
     [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample8.cs)]
 
-    This code causes a database to be created when needed and loads test data into the new database.
+    This code causes the app to create a database when needed and loads test data into the new database.
 
 1. Save the file.
 
-The `Seed` method takes the database context object as an input parameter, and the code in the method uses that object to add new entities to the database. For each entity type, the code creates a collection of new  entities, adds them to the appropriate `DbSet` property, and then saves the changes to the database. It isn't necessary to call the `SaveChanges` method after each group of entities, as is done here, but doing that helps you locate the source of a problem if an exception occurs while the code is writing to the database.
+The `Seed` method takes the database context object as an input parameter, and the code in the method uses that object to add new entities to the database. For each entity type, the code creates a collection of new  entities, adds them to the appropriate `DbSet` property, and then saves the changes to the database. As shown here, it isn't necessary to call the `SaveChanges` method after each group of entities, but doing that helps you locate the source of a problem if an exception occurs while the code is writing to the database.
 
 ## Web.config update
 
@@ -283,7 +282,7 @@ The application is now set up so that when you access the database for the first
 
 ## Set up EF6 to use LocalDB
 
-[LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb?view=sql-server-2017) is a lightweight version of the SQL Server Express database engine. It's easy to install and configure, starts on demand, and runs in user mode. LocalDB runs in a special execution mode of SQL Server Express that enables you to work with databases as *.mdf* files. You can put LocalDB database files in the *App\_Data* folder of a web project if you want to be able to copy the database with the project. The user instance feature in SQL Server Express also enables you to work with *.mdf* files, but the user instance feature is deprecated; therefore, LocalDB is recommended for working with *.mdf* files. LocalDB is installed by default with Visual Studio.
+[LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb?view=sql-server-2017) is a lightweight version of the SQL Server Express database engine. It's easy to install and configure, starts on demand, and runs in user mode. LocalDB runs in a special execution mode of SQL Server Express that enables you to work with databases as *.mdf* files. You can put LocalDB database files in the *App\_Data* folder of a web project if you want to be able to copy the database with the project. We recommend LocalDB for working with *.mdf* files. Visual Studio comes with LocalDB by default.
 
 Typically, SQL Server Express is not used for production web applications. LocalDB in particular is not recommended for production use with a web application because it's not designed to work with IIS.
 
@@ -330,7 +329,7 @@ Now you create a web page to display data. The process of requesting the data au
 
 When you select **Add**, the scaffolder creates a *StudentController.cs* file and a set of views (*.cshtml* files) that work with the controller. In the future when you create projects that use EF6, you can also take advantage of some additional functionality of the scaffolder: create your first model class, don't create a connection string, and then in the **Add Controller** box specify **New data context** by selecting the **+** button next to **Data context class**. The scaffolder creates your `DbContext` class and your connection string as well as the controller and views.
 
-Visual Studio opens the *Controllers\StudentController.cs* file. You see that a class variable has been created that instantiates a database context object:
+Visual Studio opens the *Controllers\StudentController.cs* file. You see that the app created class variable that instantiates a database context object:
 
      [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.cs)]
 
@@ -344,62 +343,56 @@ Visual Studio opens the *Controllers\StudentController.cs* file. You see that a 
 
 1. Press **F5** to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
 
-     Click the **Students** tab to see the test data that the `Seed` method inserted. Depending on how narrow your browser window is, you see the Student tab link in the top address bar or you have to select the upper right corner to see the link.
+ 1. Click the **Students** tab to see the test data that the `Seed` method inserted.
 
      ![Menu button](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image14.png)
 
-     ![Student Index page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image15.png)
+1. Close the browser to stop the project.
 
 ## View the database
 
 When you ran the Students page and the application tried to access the database, EF6 discovered that there was no database and created one. EF6 then ran the seed method to populate the database with data.
 
-You can use either **Server Explorer** or **SQL Server Object Explorer** (SSOX) to view the database in Visual Studio. For this tutorial, you use **Server Explorer**.
+You can use **Server Explorer** to view the database in Visual Studio.
 
-1. Close the browser.
+1. In **Server Explorer**, select the refresh button to populate **Data Connections** with the project's database info.
 
-1. In **Server Explorer**, expand **Data Connections** (you may need to select the refresh button first), expand **School Context (ContosoUniversity)**, and then expand **Tables** to see the tables in your new database.
+1. Expand **Data Connections** > **School Context (ContosoUniversity)** > **Tables** to see the tables in your new database.
 
-    ![Database tables in Server Explorer](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image16.png)
+    * _MigrationHistory
 
-1. Right-click the **Student** table and select **Show Table Data** to see the columns that were created and the rows that were inserted into the table.
+    * Course
 
-    ![Student table](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/table-data.png)
+    * Enrollment
 
-1. Close the **Server Explorer** connection.
+    * Student
 
-The *ContosoUniversity1.mdf* and *.ldf* database files are in the *%USERPROFILE%* folder.
+1. Right-click **Student** and select **Show Table Data** to see the columns that the app created and the rows that the app inserted into the table.
 
-Because you're using the `DropCreateDatabaseIfModelChanges` initializer, you could now make a change to the `Student` class, run the application again, and the database would automatically be re-created to match your change. For example, if you add an `EmailAddress` property to the `Student` class, run the Students page again, and then look at the table again, you see a new `EmailAddress` column.
+1. Close **Server Explorer**.
+
+> [!NOTE]
+> The *ContosoUniversity1.mdf* and *.ldf* database files are in the *%USERPROFILE%* folder.
+
+Since you're using the `DropCreateDatabaseIfModelChanges` initializer, you can make changes to the database by making changes to the project. If you make a change to the `Student` class and run the application again, the database would automatically be re-created to match your change. For example, if you add an `EmailAddress` property to the `Student` class, run the Students page, and then look at the table again, you see the new `EmailAddress` column.
 
 ## Conventions
 
-The amount of code you had to write in order for EF6 to be able to create a complete database for you is minimal because of *conventions*, or assumptions that EF6 makes. Some of them have already been noted or were used without your being aware of them:
+The amount of code you had to write in order for EF6 to create a complete database for you is minimal because of *conventions*, or assumptions that EF6 makes. This tutorial explained some of them. The app used other conventions without your being aware of them:
 
-* The pluralized forms of entity class names are used as table names.
+* The app uses pluralized forms of entity class names as table names.
 
-* Entity property names are used for column names.
+* The app uses entity property names column names.
 
-* Entity properties that are named `ID` or *classname* `ID` are recognized as primary key properties.
+* The app recognizes entity properties named `ID` or `<classname> ID` as primary key properties.
 
-* A property is interpreted as a foreign key property if it's named *&lt;navigation property name&gt;&lt;primary key property name&gt;* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named the same simply &lt;primary key property name&gt; (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
+* The app interprets properties named `<navigation property name><primary key property name>;` as a foreign key property. For example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`. You can also simply name foreign key properties `<primary key property name>`. For example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
-You've seen that conventions can be overridden. For example, you specified that table names shouldn't be pluralized, and you'll see later how to explicitly mark a property as a foreign key property. You'll learn more about conventions and how to override them in the [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial later in this series. For more information about conventions, see [Code First Conventions](/ef/ef6/modeling/code-first/conventions/built-in).
-
-## Summary
-
-You've created a simple application that uses EF6 and SQL Server Express LocalDB to store and display data. In the next tutorial you learned how to perform basic create, read, update, and delete (CRUD) operations.
-
-Please leave feedback on how you liked this tutorial and what we could improve.
-
-Links to other EF6 resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
-
-> [!div class="step-by-step"]
-> [Next](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+You've seen that conventions can be overridden. For example, you specified you can't pluralize that table names, and you'll see later how to explicitly mark a property as a foreign key property. You'll learn more about conventions and how to override them in the [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial later in this series. For more information about conventions, see [Code First Conventions](/ef/ef6/modeling/code-first/conventions/built-in).
 
 ## Additional resources
 
-Provide links to where you can learn more about the topics covered in this tutorial
+You can find links to other EF6 resources in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
 ## Next steps
 
