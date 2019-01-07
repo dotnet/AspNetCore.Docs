@@ -142,10 +142,10 @@ For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/ho
 
 **In-process hosting model**
 
-To configure IIS Server options, include a service configuration for [IISServerOptions](/dotnet/api/microsoft.aspnetcore.builder.iisserveroptions) in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices). The following example disables AutomaticAuthentication:
+To configure IIS Server options, include a service configuration for [IISOptions](/dotnet/api/microsoft.aspnetcore.builder.iisserveroptions) in [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices). The following example disables AutomaticAuthentication:
 
 ```csharp
-services.Configure<IISServerOptions>(options => 
+services.Configure<IISOptions>(options => 
 {
     options.AutomaticAuthentication = false;
 });
