@@ -91,17 +91,17 @@ In this step, you'll add code to populate the **ListView** control with product 
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample3.cs)]
 
-This code shows the `GetProducts` method that the **ListView** control's `ItemType` property references in the *ProductList.aspx* page. To limit the results to a specific database category, the code sets the `categoryId` value from the query string value passed to the *ProductList.aspx* page when the *ProductList.aspx* page is navigated to. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the value of the query string variable `id`. This instructs model binding to try to bind a value from the query string to the `categoryId` parameter at run time.
+This code shows the `GetProducts` method that the **ListView** control's `ItemType` property references in the *ProductList.aspx* page. To limit the results to a specific database category, the code sets the `categoryId` value from the query string value passed when calling *ProductList.aspx*. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the query string variable `id`'s value. This instructs model binding to, at run time, bind a query string value to the `categoryId` parameter.
 
-When a valid category is passed as a query string to the page, the results of the query are limited to those products in the database that match the `categoryId` value. For instance, if the *ProductsList.aspx* page URL is this:
+When a valid category (`categoryId`) is passed, the results are limited to that category's database products. For instance, if the *ProductsList.aspx* page URL is this:
 
 [!code-console[Main](display_data_items_and_details/samples/sample4.cmd)]
 
-The page displays only the products where the `category` equals `1`.
+The page displays only the products where the `categoryId` equals `1`.
 
-All products are displayed if no query string is included when the *ProductList.aspx* page is called.
+All products are displayed if no query string is passed.
 
-The sources of values for these methods are referred to as *value providers* (such as `QueryString`), and the parameter attributes that indicate which value provider to use is referred to as *value provider attributes* (such as `id`). ASP.NET includes value providers and attributes for all of the typical sources of user input in a Web Forms application such as the query string, cookies, form values, controls, view state, session state, and profile properties. You can also write custom value providers.
+The value sources for these methods are called *value providers* (such as `QueryString`), and the parameter attributes that indicate which value provider to use are called *value provider attributes* (such as `id`). ASP.NET includes value providers and attributes for all typical Web Forms application user input sources. These include the query string, cookies, form values, controls, view state, session state, and profile properties. You can also write custom value providers.
 
 ### Running the application
 
@@ -110,14 +110,14 @@ Run the application now to view all products or a category's products.
 1. In Visual Studio, press **F5** to run the application.  
  The browser opens and shows the *Default.aspx* page.
 
-2. Select **Cars** from the product category navigation menu.  
+2. From the product category navigation menu, select **Cars**.  
 
    The *ProductList.aspx* page displays showing only **Cars** category products. Later in this tutorial, you'll display product details.  
 
     ![Display Data Items and Details - Cars](display_data_items_and_details/_static/image2.png)
 
 3. Select **Products** from the navigation menu at the top.  
- Again, the *ProductList.aspx* page is displayed, however this time it shows the entire list of products.   
+ Again, the *ProductList.aspx* page is displayed, however this time it shows all products.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image3.png)
 
@@ -125,21 +125,22 @@ Run the application now to view all products or a category's products.
 
 ### Adding a Data Control to display product details
 
-Next, you'll modify the markup in the *ProductDetails.aspx* page that you added in the previous tutorial to display specific product information.
+Next, you'll modify the *ProductDetails.aspx* markup that you added in the previous tutorial to display specific product information.
 
-1. In **Solution Explorer**, open the *ProductDetails.aspx* page.
-2. Replace the existing markup with the following markup:   
+1. In **Solution Explorer**, open *ProductDetails.aspx*.
+
+2. Replace the existing markup with this markup:   
 
     [!code-aspx[Main](display_data_items_and_details/samples/sample5.aspx)]
 
-This code uses a **FormView** control to display specific product details. This markup uses methods like those used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
+This markup uses a **FormView** control to display specific product details. It uses methods like those used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
 
-To connect the above markup to the database, you must add additional code to the *ProductDetails.aspx* code.
+Connecting the above markup to the database requires additional code.
 
 1. In **Solution Explorer**, right-click *ProductDetails.aspx* and then click **View Code**.  
-   The *ProductDetails.aspx.cs* file will be displayed.
+   The *ProductDetails.aspx.cs* file is displayed.
 
-2. Replace the existing code with this code:   
+2. Replace the existing code with this:   
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample6.cs)]
 
@@ -147,15 +148,15 @@ This code checks for a "`productID`" query-string value. If a valid query string
 
 ### Running the application
 
-Now you can run the application to see an individual product displayed based on product ID.
+Now you can run the application to see specific product details based on product ID.
 
 1. In Visual Studio, press **F5** to run the application.  
- The browser opens and shows the *Default.aspx* page.
+ The browser opens to the *Default.aspx* page.
 
-2. Select **Boats** from the category navigation menu.  
+2. From the category menu, select **Boats**.  
  The *ProductList.aspx* page is displayed.
 
-3. Select the **Paper Boat** product from the product list.  
+3. Select **Paper Boat**.  
  The *ProductDetails.aspx* page is displayed.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image4.png)
