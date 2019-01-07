@@ -118,7 +118,7 @@ Run the application now to view all products or a category's products.
     ![Display Data Items and Details - Cars](display_data_items_and_details/_static/image2.png)
 
 3. Select **Products** from the navigation menu at the top.  
- Again, the *ProductList.aspx* page is displayed, however this time it shows all products.   
+ Again, the *ProductList.aspx* page is displayed, however, this time, it shows all products.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image3.png)
 
@@ -165,7 +165,7 @@ Now you can run the application to see specific product details based on product
 
 ## Summary
 
-In this series tutorial, you added markup and code to display products and  product details. During this process you've learned about strongly typed data controls, model binding, and value providers. In the next tutorial, you'll add a shopping cart to the Wingtip Toys sample application.
+In this series tutorial, you added markup and code to display products and  product details. During this, you learned about strongly typed data controls, model binding, and value providers. In the next tutorial, you'll add a shopping cart to the Wingtip Toys  application.
 
 ## Additional resources
 
