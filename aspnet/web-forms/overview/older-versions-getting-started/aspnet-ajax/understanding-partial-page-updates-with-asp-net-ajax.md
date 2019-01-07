@@ -147,7 +147,7 @@ Markup Descendants:
 
 The ScriptManager control is the essential core for the ASP.NET AJAX Extensions. It provides access to the script library (including the extensive client-side script type system), supports partial rendering, and provides extensive support for additional ASP.NET services (such as authentication and profiling, but also other Web Services). The ScriptManager control also provides globalization and localization support for the client scripts.
 
-## Providing Alterative and Supplemental Scripts
+## Providing Alternative and Supplemental Scripts
 
 While the Microsoft ASP.NET 2.0 AJAX Extensions include the entire script code in both debug and release editions as resources embedded in the referenced assemblies, developers are free to redirect the ScriptManager to customized script files, as well as register additional necessary scripts.
 
