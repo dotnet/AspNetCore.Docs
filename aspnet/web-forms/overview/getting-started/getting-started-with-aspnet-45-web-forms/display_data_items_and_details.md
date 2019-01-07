@@ -138,7 +138,7 @@ This markup uses a **FormView** control to display specific product details. It 
 
 Connecting the above markup to the database requires additional code.
 
-1. In **Solution Explorer**, right-click *ProductDetails.aspx* and then click **View Code**.  
+1. In **Solution Explorer**, right-click *ProductDetails.aspx* and then select **View Code**.  
    The *ProductDetails.aspx.cs* file is displayed.
 
 2. Replace the existing code with this:   
