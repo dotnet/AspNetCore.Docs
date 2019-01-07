@@ -28,7 +28,6 @@ namespace ContactManager
 
         #region ConfigureServices
         #region snippet_defaultPolicy
-        #region snippet_SSL 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -42,14 +41,13 @@ namespace ContactManager
             // requires using Microsoft.AspNetCore.Mvc;
             services.Configure<MvcOptions>(options =>
             {
-                // Set LocalTest:skipHTTPS to true to skip SSL requrement in 
+                // Set LocalTest:skipHTTPS to true to skip HTTPS requirement in 
                 // debug mode. This is useful when not using Visual Studio.
                 if (Environment.IsDevelopment() && !skipHTTPS)
                 {
                     options.Filters.Add(new RequireHttpsAttribute());
                 }
             });
-            #endregion
 
             // services.AddMvc();
                 //.AddRazorPagesOptions(options =>

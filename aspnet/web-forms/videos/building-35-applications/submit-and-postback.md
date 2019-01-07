@@ -13,6 +13,6 @@ Submit and Postback
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)
 
-This video will introduce you the what goes on &quot;under the covers&quot; when your ASP.NET application's browser and server interact.
+This video explains what goes on &quot;under the covers&quot; when your ASP.NET application's browser and server interact.
 
 [&#9654; Watch video (19 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/submit-and-postback)
