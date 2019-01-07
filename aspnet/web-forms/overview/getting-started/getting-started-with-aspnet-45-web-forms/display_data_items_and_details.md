@@ -87,12 +87,12 @@ You're also using model binding to specify a `SelectMethod` value. This value (`
 
 In this step, you'll add code to populate the **ListView** control with database product data. The code supports showing all products and individual category products.
 
-1. In **Solution Explorer**, right-click *ProductList.aspx* and then click **View Code**.
+1. In **Solution Explorer**, right-click *ProductList.aspx* and then select **View Code**.
 2. Replace the existing code in the *ProductList.aspx.cs* file with this:   
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample3.cs)]
 
-This code shows the `GetProducts` method that the **ListView** control's `ItemType` property references in *ProductList.aspx*. To limit the results to a specific database category, the code sets the `categoryId` value from the query string value passed when  *ProductList.aspx* is called. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the query string variable `id`'s value. This instructs model binding to, at run time, bind a query string value to the `categoryId` parameter.
+This code shows the `GetProducts` method that the **ListView** control's `ItemType` property references in *ProductList.aspx*. To limit the results to a specific database category, the code sets the `categoryId` value from the query string passed to  *ProductList.aspx*. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the query string variable `id`'s value. This instructs model binding to, at run time, bind a query string value to the `categoryId` parameter.
 
 When a valid category (`categoryId`) is passed, the results are limited to that category's database products. For instance, if the *ProductsList.aspx* page URL is this:
 
@@ -111,13 +111,13 @@ Run the application now to view all products or a category's products.
 1. In Visual Studio, press **F5** to run the application.  
  The browser opens and shows the *Default.aspx* page.
 
-2. From the product category navigation menu, select **Cars**.  
+2. From the product category menu, select **Cars**.  
 
    The *ProductList.aspx* page displays showing only **Cars** category products. Later in this tutorial, you'll display product details.  
 
     ![Display Data Items and Details - Cars](display_data_items_and_details/_static/image2.png)
 
-3. Select **Products** from the navigation menu at the top.  
+3. Select **Products** from the top menu.  
  Again, the *ProductList.aspx* page is displayed, however, this time, it shows all products.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image3.png)
@@ -145,14 +145,14 @@ Connecting the above markup to the database requires additional code.
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample6.cs)]
 
-This code checks for a "`productID`" query string value. If a valid query string value is found, the matching product is displayed. If the query string isn't found, or its value isn't valid, no product is displayed.
+This code checks for a "`productID`" query string value. If a valid value is found, the matching product is displayed. If the query string isn't found, or its value isn't valid, no product is displayed.
 
 ### Running the application
 
 Now you can run the application to see specific product details based on product ID.
 
 1. In Visual Studio, press **F5** to run the application.  
- The browser opens to the *Default.aspx* page.
+ The browser opens to *Default.aspx*.
 
 2. From the category menu, select **Boats**.  
  The *ProductList.aspx* page is displayed.
