@@ -20,12 +20,6 @@ Load testing and stress testing are important to ensure a web app is performant 
 
 Under stress, can the app recover from failure and gracefully return to expected behavior? The app is run under normal conditions.
 
-<!-- We generally don't allow wikipedia links
-[A Wikipedia article](https://en.wikipedia.org/wiki/Software_performance_testing) describes different types of performance testing, include
-[load testing](https://en.wikipedia.org/wiki/Software_performance_testing#Load_testing)
-and [stress testing](https://en.wikipedia.org/wiki/Software_performance_testing#Stress_testing).
- -->
-
 ## Visual Studio Tools
 
 Visual Studio allows users to create, develop, and debug web performance and load tests. An option is available to create tests by recording actions in web browser.
