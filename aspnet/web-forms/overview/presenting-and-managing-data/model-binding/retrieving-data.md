@@ -28,7 +28,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > - Microsoft Visual Studio 2017 or Microsoft Visual Studio Community 2017
 >   
 > 
-> This tutorial also works with Visual Studio 2012 but there will be some differences in the user interface and project template.
+> This tutorial also works with Visual Studio 2012, but there will be some differences in the user interface and project template.
 
 
 ## In this tutorial, you:
@@ -54,7 +54,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 5. Modify site appearance.
 
-   First, you need to make a few changes to customize site appearance. Open the **Site.Master** file, and change the title to display **Contoso University** and not **My ASP.NET Application**.
+   First, you need to make a few changes to customize site appearance. Open the Site.Master file, and change the title to display **Contoso University** and not **My ASP.NET Application**.
 
    [!code-aspx-csharp[Main](retrieving-data/samples/sample1.aspx?highlight=1)]
 
@@ -62,7 +62,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
    [!code-aspx-csharp[Main](retrieving-data/samples/sample2.aspx?highlight=7)]
 
-   Change the navigation header links to site appropriate ones. Remove the links for **About** and **Contact** and, instead, link to a not created yet **Students** page.
+   Change the navigation header links to site appropriate ones. Remove the links for **About** and **Contact** and, instead, link to a not yet created **Students** page.
 
    [!code-aspx-csharp[Main](retrieving-data/samples/sample3.aspx)]
 
@@ -84,7 +84,7 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
    Right-click **Models**, select **Add**, and then **New Item**. The **Add New Item** dialog box appears.
 
-   From the left navigation menu, select **Code**, then **Class**
+   From the left navigation menu, select **Code**, then **Class**.
 
    ![create model class](retrieving-data/_static/image20.png)
 
@@ -96,7 +96,7 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
    The `SchoolContext` class derives from `DbContext`, which manages the database connection and changes in the data.
 
-   In the `Student` class, notice the attributes applied to the **FirstName**, **LastName**, and **Year** properties. This tutorial uses these attributes for data validation. To simplify the code, only these properties are marked with data-validation attributes. In a real project, you would apply validation attributes to all properties needing validation.
+   In the `Student` class, notice the attributes applied to the `FirstName`, `LastName`, and `Year` properties. This tutorial uses these attributes for data validation. To simplify the code, only these properties are marked with data-validation attributes. In a real project, you would apply validation attributes to all properties needing validation.
 
     Save UniversityModels.cs.
 
@@ -115,7 +115,7 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
 2. Pre-populate the database tables with test data.
 
-   Add the following code to the `Seed` method. Also, add a **using** statement for the **ContosoUniversityModelBinding. Models** namespace.
+   Add the following code to the `Seed` method. Also, add a `using` statement for the `ContosoUniversityModelBinding. Models` namespace.
 
    [!code-csharp[Main](retrieving-data/samples/sample5.cs)]
 
@@ -137,7 +137,7 @@ With populated database data, you're now ready to retrieve that data and display
 
    [!code-aspx-csharp[Main](retrieving-data/samples/sample6.aspx)]
 
-   Note a few important concepts here. First, notice the value set for the `SelectMethod` property in the GridView element. This value specifies the method used to retrieve GridView data, which you'll create in the next step. Second, the `ItemType` property is set to the `Student` class created earlier. This setting allows you to reference class properties in the markup. For example, the `Student` class has a collection named `Enrollments`. You can use 1Item.Enrollments1 to retrieve that collection and then use LINQ syntax to retrieve each student's enrolled credits sum.
+   Note a few important concepts here. First, notice the value set for the `SelectMethod` property in the GridView element. This value specifies the method used to retrieve GridView data, which you'll create in the next step. Second, the `ItemType` property is set to the `Student` class created earlier. This setting allows you to reference class properties in the markup. For example, the `Student` class has a collection named `Enrollments`. You can use `Item.Enrollments` to retrieve that collection and then use LINQ syntax to retrieve each student's enrolled credits sum.
 
 2. Add retrieving data code.
 
@@ -155,7 +155,7 @@ With populated database data, you're now ready to retrieve that data and display
 
     By default, the data is sorted by the values of the property marked as the key. You can add an `OrderBy` clause to specify a different sort value. In this example, the default `StudentID` property is used for sorting. In the [Sorting, Paging, and Filtering Data](sorting-paging-and-filtering-data.md) article, the user is enabled to select a column for sorting.
 
-3. Run your web application, and navigate to the **Students** page. The Students page displays the following student information:
+3. Run your web application, and navigate to the **Students** page, which displays the following:
 
    ![show data](retrieving-data/_static/image16.png)
 
