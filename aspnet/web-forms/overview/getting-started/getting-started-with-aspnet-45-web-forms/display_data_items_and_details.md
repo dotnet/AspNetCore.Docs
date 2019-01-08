@@ -132,7 +132,7 @@ Next, you'll modify the *ProductDetails.aspx* markup that you added in the previ
 
 2. Replace the existing markup with this markup:   
 
-    [!code-aspx-csharp[Main](display_data_items_and_details/samples/sample5.aspx)]
+    [!code-aspx-csharp[Main](display_data_items_and_details/samples/sample5.aspx)] 
 
 This markup uses a **FormView** control to display specific product details. It uses methods like those used to display data in *ProductList.aspx*. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
 
