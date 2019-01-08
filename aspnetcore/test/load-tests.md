@@ -9,8 +9,6 @@ uid: test/loadtests
 ---
 # Load and stress testing ASP.NET Core
 
-https://docs.microsoft.com/en-us/azure/devops/test/load-test/index?view=vsts
-
 Load testing and stress testing are important to ensure a web app is performant and scalable. Their goals are different even they often share similar tests.
 
 **Load tests**: Tests whether the app can handle a specified load of users for a certain scenario while still satisfying the response goal. The app is run under normal conditions.
@@ -34,7 +32,7 @@ and [stress testing](https://en.wikipedia.org/wiki/Software_performance_testing#
 
 Visual Studio 2017 allows users to create, develop, and debug web performance and load tests. An option is available to create tests by recording actions in web browser.
 
-[Quickstart: Create a load test project](https://docs.microsoft.com/en-us/visualstudio/test/quickstart-create-a-load-test-project?view=vs-2017)
+[Quickstart: Create a load test project](/visualstudio/test/quickstart-create-a-load-test-project?view=vs-2017)
 shows how to create, configure, and run a load test projects using Visual Studio 2017.
 
 See [Additional Resources](#add) for more information.
@@ -43,7 +41,7 @@ Load tests can be configured to run in on-premise or run in the cloud using Azur
 
 ## Azure DevOps
 
-Load test runs can be started using the [Azure DevOps Test Plans](https://docs.microsoft.com/en-us/azure/devops/test/load-test/index?view=vsts) service.
+Load test runs can be started using the [Azure DevOps Test Plans](/azure/devops/test/load-test/index?view=vsts) service.
 
 ![](./load-tests/_static/azure-devops-load-test.png)
 
@@ -51,12 +49,12 @@ The service supports the following types of test format:
 
 - Visual Studio test – web test created in Visual Studio.
 - HTTP Archive-based test – captured HTTP traffic inside archive is replayed during testing
-- [URL-based test](https://docs.microsoft.com/en-us/azure/devops/test/load-test/get-started-simple-cloud-load-test?view=vsts) – allows specifying URLs to load test, request types, headers, and query strings. Run setting parameters such as duration, load pattern, number of users, etc., can be configured.
+- [URL-based test](/azure/devops/test/load-test/get-started-simple-cloud-load-test?view=vsts) – allows specifying URLs to load test, request types, headers, and query strings. Run setting parameters such as duration, load pattern, number of users, etc., can be configured.
 - [Apache JMeter](https://jmeter.apache.org/) test.
 
 ## Azure portal
 
-[Azure portal allows setting up and running load testing of Web Apps,](https://docs.microsoft.com/en-us/azure/devops/test/load-test/app-service-web-app-performance-test?view=vsts) directly from the Performance tab of the App Service in Azure portal.
+[Azure portal allows setting up and running load testing of Web Apps,](/azure/devops/test/load-test/app-service-web-app-performance-test?view=vsts) directly from the Performance tab of the App Service in Azure portal.
 
 ![](./load-tests/_static/azure-appservice-perf-test.png)
 
