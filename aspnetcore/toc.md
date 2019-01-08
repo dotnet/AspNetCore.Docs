@@ -179,6 +179,7 @@
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
 ## [Integration tests](xref:test/integration-tests)
+## [Load and stress testing](xref:test/loadtests)
 ## [Troubleshoot](xref:test/troubleshoot)
 
 # Data access
