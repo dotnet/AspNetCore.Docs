@@ -19,7 +19,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 
 ## Overview
 
-In this tutorial, you'll deploy an ASP.NET web application to Internet Information Server (IIS)  on your local computer.
+In this tutorial, you'll deploy an ASP.NET web application to Internet Information Server (IIS) on your local computer.
 
 Generally, when you develop an application, you run it and test it in Visual Studio. By default, web application projects in Visual Studio 2017 use IIS Express as the development web server. IIS Express behaves more like full IIS than the Visual Studio Development Server (also known as Cassini), which Visual Studio 2017 uses by default. But neither development web server works exactly like IIS. Consequently, an app could run and test correctly in Visual Studio, but fail when it's deployed to IIS.
 
@@ -31,7 +31,7 @@ You can reliably test your application in two ways:
 
 2. Deploy your application to a test environment very similar to your production environment. 
  
-   The production environment for these tutorials is Web Apps in Azure App Service. The ideal test environment, then,  is an additional web app created in the Azure Service. Though it would be set up the same way as a production web app, you would use it only for testing.
+   The production environment for these tutorials is Web Apps in Azure App Service. The ideal test environment is an additional web app created in the Azure Service. Though it would be set up the same way as a production web app, you would use it only for testing.
 
 Option 2 is the most reliable way to test, and, if you do that, you don't necessarily have to do option 1. However, if you're deploying to a third-party hosting provider, option 2 might not be feasible or might be expensive, so this tutorial series shows both methods. Guidance for option 2 is provided in the [Deploying to the Production Environment](deploying-to-production.md) tutorial.
 
@@ -47,7 +47,7 @@ Download and install the Contoso University Visual Studio starter solution and p
 
 ## Install IIS
 
-To deploy to IIS on your development computer, you must have IIS and Web Deploy installed. By default, Visual Studio installs Web Deploy, but IIS isn't included in the default Windows 10, Windows 8, or Windows 7 configuration. If you have already installed IIS and the default application pool is already set to .NET 4, skip to [the next section](#sqlexpress).
+To deploy to IIS on your development computer, you must have IIS and Web Deploy installed. By default, Visual Studio installs Web Deploy, but IIS isn't included in the default Windows 10, Windows 8, or Windows 7 configuration. If you've already installed IIS and the default application pool is already set to .NET 4, skip to [the next section](#sqlexpress).
 
 1. It is recommended you use the [Web Platform Installer (WPI)](https://www.microsoft.com/web/downloads/platform.aspx) to install IIS and Web Deploy. WPI installs a recommended IIS configuration that includes IIS and Web Deploy prerequisites if necessary.
 
@@ -196,18 +196,18 @@ Before publishing, make sure that you're running Visual Studio in administrator 
 
 ### Create the publish profile
 
-1. In **Solution Explorer**, right-click the ContosoUniversity project (not the ContosoUniversity.DAL project) and select **Publish**. The **Publish** page appears.
+1. In **Solution Explorer**, right-click the **ContosoUniversity** project (not the **ContosoUniversity.DAL** project) and select **Publish**. The **Publish** page appears.
 
 2. Select **New Profile**. The **Pick a publish target** dialog box appears.
 
-3. Select **IIS, FTP, etc** and, then, **Create Profile**. The **Publish** wizard appears.
+3. Select **IIS, FTP, etc** and then, **Create Profile**. The **Publish** wizard appears.
 
     ![Publish Web wizard Profile tab](deploying-to-iis/_static/image26.png)
 
 4. From the **Publish method** drop-down menu, select **Web Deploy**.
 5. For **Server**, enter *localhost*.
 6. For **Site name**, enter *Default Web Site/ContosoUniversity*
-7. For **Destination URL**, enter `http://localhost/ContosoUniversity`
+7. For **Destination URL**, enter *http://localhost/ContosoUniversity*
 
     The **Destination URL** setting isn't required. When Visual Studio finishes deploying the application, it automatically opens your default browser to this URL. If you don't want the browser to open automatically after deployment, leave this box blank.
 
@@ -318,9 +318,7 @@ The following steps apply to the **SchoolContext** database in the dialog box's 
 
 1. Open the **Publish Web** wizard again (right-click the ContosoUniversity project, select **Publish**, then **Preview**).
 
-2. In the **Preview** dialog box, select **Start Preview** to see a list of the files that will be copied. (image9)
-
-    ![Preview button](deploying-to-iis/_static/image28.png)
+2. In the **Preview** dialog box, select **Start Preview** to see a list of the files that will be copied. 
 
     ![Publish Preview](deploying-to-iis/_static/image29.png)
 
@@ -348,7 +346,7 @@ Select **Add Students** from the **Students** menu. Add a student, and then view
 
 From the **Courses** menu, select **Update Credits**. The **Update Credits** page requires administrator permissions, so the **Log In** page is displayed. Enter the administrator account credentials that you created earlier ("admin" and "devpwd"). The **Update Credits** page is displayed. This verifies that the administrator account that you created in the previous tutorial was correctly deployed to the test environment.
 
-Verify that an *Elmah* folder exists in the *c:\inetpub\wwwroot\ContosoUniversity* folder with only the placeholder file in it.
+Verify that an *ELMAH* folder exists in the *c:\inetpub\wwwroot\ContosoUniversity* folder with only the placeholder file in it.
 
 <a id="reviewingmigrations"></a>
 
