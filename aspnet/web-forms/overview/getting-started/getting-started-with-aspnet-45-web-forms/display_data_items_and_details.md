@@ -73,7 +73,7 @@ Using the steps below, you'll modify *ProductList.aspx* markup to display produc
 
 This markup uses a **ListView** control named `productList` to display  products.
 
-[!code-aspx[Main](display_data_items_and_details/samples/sample2.aspx)]
+[!code-aspx-csharp[Main](display_data_items_and_details/samples/sample2.aspx)]
 
 Using templates and styles, you define how the **ListView** control displays data. It's useful for data in any repeating structure. Though this **ListView** example simply displays database data, you can also, without code, enable users to edit, insert, and delete data, and to sort and page data.
 
@@ -132,7 +132,7 @@ Next, you'll modify the *ProductDetails.aspx* markup that you added in the previ
 
 2. Replace the existing markup with this markup:   
 
-    [!code-aspx[Main](display_data_items_and_details/samples/sample5.aspx)]
+    [!code-aspx-csharp[Main](display_data_items_and_details/samples/sample5.aspx)]
 
 This markup uses a **FormView** control to display specific product details. It uses methods like those used to display data in *ProductList.aspx*. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
 
