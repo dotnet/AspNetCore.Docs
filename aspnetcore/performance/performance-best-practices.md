@@ -4,7 +4,7 @@ author: mjrousos
 description: Tips for increasing performance in ASP.NET Core apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
-ms.date: 11/29/2018
+ms.date: 1/9/2019
 uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices
@@ -14,7 +14,6 @@ By [Mike Rousos](https://github.com/mjrousos)
 This topic provides guidelines for performance best practices with ASP.NET Core.
 
 <a name="hot"></a>
-<!-- TODO review hot code paths is jargon that won't MT (machine translate) and is not well defined for native speakers. -->
 In this document, a hot code path is defined as a code path that is frequently called and where much of the execution time occurs. Hot code paths typically limit app scale-out and performance.
 
 ## Cache aggressively
@@ -125,6 +124,10 @@ Recommendations:
 
 * **Do** use ASP.NET Core's [built-in support](xref:client-side/bundling-and-minification) for bundling and minifying client assets.
 * **Do** consider other third-party tools like [Gulp](uid:client-side/bundling-and-minification#consume-bundleconfigjson-from-gulp) or [Webpack](https://webpack.js.org/) for more complex client asset management.
+
+## Compress responses
+
+ Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses. For more information, see [Response compression](xref:performance/response-compression).
 
 ## Use the latest ASP.NET Core release
 
