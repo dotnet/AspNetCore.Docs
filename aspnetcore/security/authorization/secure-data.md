@@ -54,7 +54,7 @@ The administrator has all privileges. She can read/edit/delete any contact and c
 
 The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-the-movie-model) the following `Contact` model:
 
-[!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
 The sample contains the following authorization handlers:
 
@@ -309,33 +309,33 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 ## Create the starter app
 
 * Create a Razor Pages app named "ContactManager"
-   * Create the app with **Individual User Accounts**.
-   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
-   * `-uld` specifies LocalDB instead of SQLite
+  * Create the app with **Individual User Accounts**.
+  * Name it "ContactManager" so the namespace matches the namespace used in the sample.
+  * `-uld` specifies LocalDB instead of SQLite
 
   ```console
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Add *Models\Contact.cs*:
+* Add *Models/Contact.cs*:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
 * Scaffold the `Contact` model.
 * Create initial migration and update the database:
 
-```console
-dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
-dotnet ef database drop -f
-dotnet ef migrations add initial
-dotnet ef database update
-```
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
+  dotnet ef database drop -f
+  dotnet ef migrations add initial
+  dotnet ef database update
+  ```
 
 * Update the **ContactManager** anchor in the *Pages/_Layout.cshtml* file:
 
-```cshtml
-<a asp-page="/Contacts/Index" class="navbar-brand">ContactManager</a>
-```
+  ```cshtml
+  <a asp-page="/Contacts/Index" class="navbar-brand">ContactManager</a>
+  ```
 
 * Test the app by creating, editing, and deleting a contact
 

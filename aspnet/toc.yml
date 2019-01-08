@@ -3207,13 +3207,13 @@
               href: signalr/overview/getting-started/introduction-to-signalr.md
             - name: Supported Platforms
               href: signalr/overview/getting-started/supported-platforms.md
-            - name: "Tutorial: Getting Started with SignalR 2"
+            - name: "Real-time chat with SignalR 2"
               href: signalr/overview/getting-started/tutorial-getting-started-with-signalr.md
-            - name: "Tutorial: Getting Started with SignalR 2 and MVC 5"
+            - name: "Real-time chat with SignalR 2 and MVC 5"
               href: signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc.md
-            - name: "Tutorial: High-Frequency Realtime with SignalR 2"
+            - name: "High-frequency real-time with SignalR 2"
               href: signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr.md
-            - name: "Tutorial: Server Broadcast with SignalR 2"
+            - name: "Server Broadcast with SignalR 2"
               href: signalr/overview/getting-started/tutorial-server-broadcast-with-signalr.md
             - name: "Hands On Lab: Real-Time Web Applications with SignalR"
               href: signalr/overview/getting-started/real-time-web-applications-with-signalr.md

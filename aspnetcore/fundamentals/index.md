@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover the foundational concepts for building ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 01/06/2019
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -57,7 +57,7 @@ The `UseStartup` method on `WebHostBuilder` specifies the `Startup` class for yo
 
 ::: moniker-end
 
-The `Startup` class is where you define the request handling pipeline and where any services needed by the app are configured. The `Startup` class must be public and contain the following methods:
+The `Startup` class is where any services required by the app are configured and the request handling pipeline is defined. The `Startup` class must be public and usually contains the following methods. `Startup.ConfigureServices` is optional.
 
 ::: moniker range=">= aspnetcore-2.0"
 

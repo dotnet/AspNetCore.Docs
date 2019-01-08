@@ -11,8 +11,10 @@ namespace MVCMovie
         {
             services.AddSingleton(new MVCMovieContext());
             services.AddSingleton<IUserRepository>(new UserRepository());
+            #region snippet_MaxModelValidationErrors
             services.AddMvc(options => options.MaxModelValidationErrors = 50)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app)

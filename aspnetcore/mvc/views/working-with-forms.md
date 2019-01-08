@@ -4,7 +4,7 @@ author: rick-anderson
 description: Describes the built-in Tag Helpers used with Forms.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 1/11/2019
 uid: mvc/views/working-with-forms
 ---
 # Tag Helpers in forms in ASP.NET Core
@@ -102,7 +102,7 @@ The `Input` Tag Helper sets the HTML `type` attribute based on the .NET type. Th
 |---|---|
 |Bool|type="checkbox"|
 |String|type="text"|
-|DateTime|type="datetime"|
+|DateTime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
 |Byte|type="number"|
 |Int|type="number"|
 |Single, Double|type="number"|

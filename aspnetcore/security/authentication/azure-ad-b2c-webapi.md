@@ -151,8 +151,8 @@ To verify that the web API requires authentication, first make a request without
     ![401 unauthorized response](./azure-ad-b2c-webapi/postman-401-status.png)
 
 > [!IMPORTANT]
-> If you get a "Could not get any response" error, you may need to disable SSL certificate verification in the [Postman settings](https://learning.getpostman.com/docs/postman/launching_postman/settings). 
- 
+> If you receive a "Could not get any response" error, you may need to disable SSL certificate verification in the [Postman settings](https://learning.getpostman.com/docs/postman/launching_postman/settings).
+
 ### Obtain a bearer token
 
 To make an authenticated request to the web API, a bearer token is required. Postman makes it easy to sign in to the Azure AD B2C tenant and obtain a token.
