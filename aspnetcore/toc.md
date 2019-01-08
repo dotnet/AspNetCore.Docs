@@ -382,6 +382,7 @@
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
 ## [Diagnostic Tools](xref:performance/diagnostic-tools)
+## [Load and stress testing](xref:test/loadtests)
 
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
