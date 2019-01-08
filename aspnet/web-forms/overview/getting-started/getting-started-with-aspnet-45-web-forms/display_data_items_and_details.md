@@ -9,7 +9,7 @@ ms.assetid: 64a491a8-0ed6-4c2f-9c1c-412962eb6006
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/display_data_items_and_details
 msc.type: authoredcontent
 ---
-Display Data Items and Details
+Display data items and details
 ====================
 by [Erik Reitan](https://github.com/Erikre)
 
@@ -31,7 +31,7 @@ In this tutorial, you'll learn how to display data items and data item details u
 - Model binding
 - Value providers
 
-## Adding a data control to display products
+## Add a data control to display products
 
 You have a few options to bind data to a server control. The most common include:
 
@@ -39,11 +39,11 @@ You have a few options to bind data to a server control. The most common include
  * Adding code by hand
  * Using model binding
 
-### Using a data source control to bind data
+### Use a data source control to bind data
 
 Adding a data source control allows you to link the data source control to the control that displays the data. With this approach, you can declaratively,  rather than programmatically, connect server-side controls to data sources.
 
-### Coding by hand to bind data
+### Code by hand to bind data
 
 Coding by hand involves:
 
@@ -55,11 +55,11 @@ Coding by hand involves:
 
 This approach lets you have full control over your data-access logic.
 
-### Using model binding to bind data
+### Use model binding to bind data
 
 Model binding lets you bind results using far less code and gives you the ability to reuse the functionality throughout your application. It simplifies working with code-focused data-access logic while still providing a rich, data-binding framework.
 
-## Displaying products
+## Display products
 
 In this tutorial, you'll use model binding to bind data. To configure a data control to use model binding to select data, you set the control's `SelectMethod` property to a method in the page's code. The data control calls the method at the appropriate time in the page life cycle and automatically binds the returned data. There's no need to explicitly call the `DataBind` method.
 
@@ -69,7 +69,7 @@ Using the steps below, you'll modify *ProductList.aspx* markup to display produc
 
 2. Replace the existing markup with this markup:   
 
-    [!code-aspx[Main](display_data_items_and_details/samples/sample1.aspx)]
+    [!code-aspx-csharp[Main](display_data_items_and_details/samples/sample1.aspx)]
 
 This markup uses a **ListView** control named `productList` to display  products.
 
@@ -83,7 +83,7 @@ By setting the `ItemType` property in the **ListView** control, the data-binding
 
 You're also using model binding to specify a `SelectMethod` value. This value (`GetProducts`) corresponds to the method you'll add to the code behind to display products in the next step.
 
-### Adding code to display products
+### Add code to display products
 
 In this step, you'll add code to populate the **ListView** control with database product data. The code supports showing all products and individual category products.
 
@@ -104,7 +104,7 @@ All products are displayed if no query string is passed.
 
 The value sources for these methods are called *value providers* (such as `QueryString`), and the parameter attributes that indicate which value provider to use are called *value provider attributes* (such as `id`). ASP.NET includes value providers and attributes for all typical Web Forms application user input sources. These include the query string, cookies, form values, controls, view state, session state, and profile properties. You can also write custom value providers.
 
-### Running the application
+### Run the application
 
 Run the application now to view all products or a category's products.
 
@@ -124,7 +124,7 @@ Run the application now to view all products or a category's products.
 
 4. Close the browser and return to Visual Studio.
 
-### Adding a Data Control to display product details
+### Add a Data Control to display product details
 
 Next, you'll modify the *ProductDetails.aspx* markup that you added in the previous tutorial to display specific product information.
 
@@ -147,7 +147,7 @@ Connecting the above markup to the database requires additional code.
 
 This code checks for a "`productID`" query string value. If a valid value is found, the matching product is displayed. If the query string isn't found, or its value isn't valid, no product is displayed.
 
-### Running the application
+### Run the application
 
 Now you can run the application to see specific product details based on product ID.
 
