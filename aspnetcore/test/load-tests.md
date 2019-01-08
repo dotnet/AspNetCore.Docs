@@ -2,7 +2,7 @@
 title: ASP.NET Core load/stress testing
 author: Jeremy-Meng
 description: Describes several notable tools and approaches for load testing and stress testing ASP.NET Core apps.
-ms.author: yumeng
+ms.author: riande
 ms.custom: mvc
 ms.date: 01/04/2019
 uid: test/loadtests
@@ -26,11 +26,9 @@ Under stress, can the app recover from failure and gracefully return to expected
 and [stress testing](https://en.wikipedia.org/wiki/Software_performance_testing#Stress_testing).
  -->
 
-## Microsoft Supported Tools
+## Visual Studio Tools
 
-### Visual Studio 2017
-
-Visual Studio 2017 allows users to create, develop, and debug web performance and load tests. An option is available to create tests by recording actions in web browser.
+Visual Studio allows users to create, develop, and debug web performance and load tests. An option is available to create tests by recording actions in web browser.
 
 [Quickstart: Create a load test project](/visualstudio/test/quickstart-create-a-load-test-project?view=vs-2017)
 shows how to create, configure, and run a load test projects using Visual Studio 2017.
@@ -48,7 +46,7 @@ Load test runs can be started using the [Azure DevOps Test Plans](/azure/devops/
 The service supports the following types of test format:
 
 - Visual Studio test – web test created in Visual Studio.
-- HTTP Archive-based test – captured HTTP traffic inside archive is replayed during testing
+- HTTP Archive-based test – captured HTTP traffic inside archive is replayed during testing.
 - [URL-based test](/azure/devops/test/load-test/get-started-simple-cloud-load-test?view=vsts) – allows specifying URLs to load test, request types, headers, and query strings. Run setting parameters such as duration, load pattern, number of users, etc., can be configured.
 - [Apache JMeter](https://jmeter.apache.org/) test.
 
