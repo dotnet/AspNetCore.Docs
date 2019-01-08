@@ -13,15 +13,13 @@ Retrieving and displaying data with model binding and web forms
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
-> This tutorial series demonstrates basic model binding in an ASP.NET Web Forms project. Model binding makes data interaction more straight-forward than dealing with data source objects (such as [ObjectDataSource](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.objectdatasource?view=netframework-4.7.2) or [SqlDataSource](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.sqldatasource?view=netframework-4.7.2). This series starts with introductory material and moves to more advanced concepts in later tutorials.
+> This tutorial series demonstrates basic model binding in an ASP.NET Web Forms project. Model binding makes data interaction more straight-forward than dealing with data source objects (such as [ObjectDataSource](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.objectdatasource?view=netframework-4.7.2) or [SqlDataSource](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.sqldatasource?view=netframework-4.7.2)). This series starts with introductory material and moves to more advanced concepts in later tutorials.
 > 
-> This tutorial uses Model Binding with Entity Framework, but you could use it with any data access technology. From a data-bound server control, such as a [GridView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.gridview?view=netframework-4.7.2), [ListView](https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.listview?view=netframework-4.7.2), [DetailsView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.detailsview?view=netframework-4.7.2), or [FormView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.formview?view=netframework-4.7.2) control, you can specify methods for selecting, updating, deleting, and creating data. In this tutorial, you'll specify a `SelectMethod` value.
-> 
-> In that method, you provide the logic for retrieving data. In the next tutorial, you'll set values for `UpdateMethod`, `DeleteMethod` and `InsertMethod`.
+> This tutorial uses model binding with Entity Framework, but you could use it with any data access technology. From a data-bound server control, such as a [GridView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.gridview?view=netframework-4.7.2), [ListView](https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.listview?view=netframework-4.7.2), [DetailsView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.detailsview?view=netframework-4.7.2), or [FormView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.formview?view=netframework-4.7.2) control, you can specify methods for selecting, updating, deleting, and creating data. In this tutorial, you'll specify a `SelectMethod`, which provides retrieving data logic. In the next tutorial, you'll set values for `UpdateMethod`, `DeleteMethod` and `InsertMethod`.
 > 
 > You can [download](https://go.microsoft.com/fwlink/?LinkId=286116) the complete project in C# or VB. The downloadable code works with either Visual Studio 2012 or later. It uses the Visual Studio 2012 template, which is slightly different than the Visual Studio 2017 template shown in this tutorial.
 > 
-> In the tutorial. you run the application in Visual Studio. You can also deploy the application to a hosting provider and make it available over the Internet Microsoft offers free web hosting for up to 10 web sites in a  
+> In the tutorial. you run the application in Visual Studio. You can also deploy the application to a hosting provider and make it available over the Internet. Microsoft offers free web hosting for up to 10 web sites in a  
 >  [free Azure trial account](https://azure.microsoft.com/free/?WT.mc_id=A443DD604). For information about how to deploy a Visual Studio web project to Azure App Service Web Apps, see the [ASP.NET Web Deployment using Visual Studio](../../deployment/visual-studio-web-deployment/introduction.md) series. That tutorial also shows how to use Entity Framework Code First Migrations to deploy your SQL Server database to Azure SQL Database.
 > 
 > ## Software versions used in the tutorial
@@ -35,10 +33,10 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 ## In this tutorial, you:
 
-1. Build data objects for a university's students and their courses
-2. Build database tables from the objects
-3. Populate the database with test data
-4. Display data in a web form
+* Build data objects for a university's students and their courses
+* Build database tables from the objects
+* Populate the database with test data
+* Display data in a web form
 
 ## Set up project
 
@@ -56,17 +54,17 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 5. Modify site appearance.
 
-   First, make a few changes to customize site appearance. Open the **Site.Master** file, and change the title to display **Contoso University** and not **My ASP.NET Application**.
+   First, you need to make a few changes to customize site appearance. Open the **Site.Master** file, and change the title to display **Contoso University** and not **My ASP.NET Application**.
 
-   [!code-aspx[Main](retrieving-data/samples/sample1.aspx?highlight=1)]
+   [!code-aspx-csharp[Main](retrieving-data/samples/sample1.aspx?highlight=1)]
 
    Then, change the header text from **Application name** to **Contoso University**.
 
-   [!code-aspx[Main](retrieving-data/samples/sample2.aspx?highlight=7)]
+   [!code-aspx-csharp[Main](retrieving-data/samples/sample2.aspx?highlight=7)]
 
    Change the navigation header links to site appropriate ones. Remove the links for **About** and **Contact** and, instead, link to a not created yet **Students** page.
 
-   [!code-aspx[Main](retrieving-data/samples/sample3.aspx)]
+   [!code-aspx-csharp[Main](retrieving-data/samples/sample3.aspx)]
 
     Save and close **Site.Master**.
 
@@ -113,7 +111,7 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
    ![enable migrations](retrieving-data/_static/image8.png)
 
-   Notice that a file named **Configuration.cs** has been created. The `Configuration` class has a `Seed` method, which you can use to pre-populate the database tables with test data.
+   Notice that a file named "Configuration.cs" has been created. The `Configuration` class has a `Seed` method, which you can use to pre-populate the database tables with test data.
 
 2. Pre-populate the database tables with test data.
 
@@ -135,15 +133,15 @@ With populated database data, you're now ready to retrieve that data and display
 
 1. Add a **GridView** control to display data in columns and rows.
 
-   Open *Students.aspx*, and locate the **MainContent** placeholder. Within that placeholder, add a **GridView** control that includes this code.
+   Open Students.aspx, and locate the `MainContent` placeholder. Within that placeholder, add a **GridView** control that includes this code.
 
-   [!code-aspx[Main](retrieving-data/samples/sample6.aspx)]
+   [!code-aspx-csharp[Main](retrieving-data/samples/sample6.aspx)]
 
-   Note a few important concepts here. First, notice the value set for the **SelectMethod** property in the GridView element. This value specifies the method used to retrieve GridView data, which you'll create in the next step. Second, the **ItemType** property is set to the `Student` class created earlier. This setting allows you to reference class properties in the markup. For example, the `Student` class has a collection named `Enrollments`. You can use **Item.Enrollments** to retrieve that collection and then use LINQ syntax to retrieve each student's enrolled credits sum.
+   Note a few important concepts here. First, notice the value set for the `SelectMethod` property in the GridView element. This value specifies the method used to retrieve GridView data, which you'll create in the next step. Second, the `ItemType` property is set to the `Student` class created earlier. This setting allows you to reference class properties in the markup. For example, the `Student` class has a collection named `Enrollments`. You can use 1Item.Enrollments1 to retrieve that collection and then use LINQ syntax to retrieve each student's enrolled credits sum.
 
 2. Add retrieving data code.
 
-   In the code-behind file, add the method specified for the **SelectMethod** value. Open **Students.aspx.cs**, and add **using** statements for the **ContosoUniversityModelBinding. Models** and **System.Data.Entity** namespaces.
+   In the code-behind file, add the method specified for the `SelectMethod` value. Open Students.aspx.cs, and add `using` statements for the `ContosoUniversityModelBinding. Models` and `System.Data.Entity` namespaces.
 
    [!code-csharp[Main](retrieving-data/samples/sample7.cs)]
 
@@ -169,7 +167,7 @@ When setting a value for the `SelectMethod`, `UpdateMethod`, `InsertMethod`, or 
 
 ![create a method](retrieving-data/_static/image18.png)
 
-Visual Studio not only creates a method in the code-behind with the proper signature, but also generates implementation code to perform the operation. If you first set the **ItemType** property before using the automatic code generation feature, the generated code uses that type for the operations. For example, when setting the `UpdateMethod` property, the following code is automatically generated:
+Visual Studio not only creates a method in the code-behind with the proper signature, but also generates implementation code to perform the operation. If you first set the `ItemType` property before using the automatic code generation feature, the generated code uses that type for the operations. For example, when setting the `UpdateMethod` property, the following code is automatically generated:
 
 [!code-csharp[Main](retrieving-data/samples/sample9.cs)]
 
