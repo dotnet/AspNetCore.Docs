@@ -6,7 +6,7 @@
 # [Get started](xref:getting-started)
 
 # Tutorials
-## Web APIs
+## Web API apps
 ### [Create a web API](xref:tutorials/first-web-api)
 ### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
@@ -121,7 +121,7 @@
 ### [Custom model binding](xref:mvc/advanced/custom-model-binding)
 ### [Compatibility version](xref:mvc/compatibility-version)
 
-# Web APIs
+# Web API apps
 ## [Overview](xref:web-api/index)
 
 ## Tutorials
