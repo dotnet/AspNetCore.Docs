@@ -190,7 +190,7 @@ In the **Models** folder, create a class file named *Course.cs*.
 
 The `Enrollments` property is a navigation property. You can relate a `Course` entity to any number of `Enrollment` entities.
 
-`<xref:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>` is basically an attribute that prompts you to enter the primary key for the course rather than having the database generate it. You can find a more in-depth explanation later in this tutorial series.
+<xref:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute> is basically an attribute that prompts you to enter the primary key for the course rather than having the database generate it. You can find a more in-depth explanation later in this tutorial series.
 
 ## Create the database context
 
