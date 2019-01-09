@@ -1,17 +1,17 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
-title: "Tutorial: Create Entity Framework 6 Code First data model using MVC 5 | Microsoft Docs"
+title: "Tutorial: Create Entity Framework 6 Code First data model by using MVC 5 | Microsoft Docs"
 description: "In this article, you learn how to create ASP.NET MVC 5 data model applications using Entity Framework 6 and Visual Studio."
 author: tdykstra
 ms.author: riande
-ms.date: 01/03/2019
+ms.date: 01/10/2019
 ms.topic: tutorial
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
 
-# Tutorial: Create Entity Framework 6 Code First data model using MVC 5
+# Tutorial: Create Entity Framework 6 Code First data model by using MVC 5
 
 > [!NOTE]
 > For new development, it's recommend to use [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. For a tutorial series similar to this one using Razor Pages, see [Tutorial: Get started with Razor Pages in ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start). The new tutorial:
@@ -24,7 +24,7 @@ msc.type: authoredcontent
 
 In this article, you learn how to create ASP.NET MVC 5 data model applications using Entity Framework (EF) 6 and Visual Studio. This tutorial uses the Code First workflow. For information about how to choose between Code First, Database First, and Model First, see [Create a model](/ef/ef6/modeling/).
 
-This tutorial series explains how to build the Contoso University sample application. The sample application is a simple university website. With it, you can view and update student, course, and instructor information. Here are a few of the screens you create:
+This tutorial series explains how to build the Contoso University sample application. The sample application is a simple university website. With it, you can view and update student, course, and instructor information. Here are two of the screens you create:
 
 ![Students_Index_page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image1.png)
 
@@ -53,7 +53,7 @@ In this tutorial, you:
 
 ## Create an MVC web app
 
-1. Open Visual Studio and create a new C# web project using the **ASP.NET Web Application (.NET Framework)** template. Name the project *ContosoUniversity* and select **OK**.
+1. Open Visual Studio and create a C# web project using the **ASP.NET Web Application (.NET Framework)** template. Name the project *ContosoUniversity* and select **OK**.
 
    ![New Project dialog box in Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/new-project-dialog.png)
 
@@ -62,7 +62,7 @@ In this tutorial, you:
    ![New web app dialog box in Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/new-web-app-dialog.png)
 
     > [!NOTE]
-    > By default, the **Authentication** option is set to **No Authentication**. For this tutorial, the web app doesn't require users to sign in, nor does it restrict access based on who's signed in.
+    > By default, the **Authentication** option is set to **No Authentication**. For this tutorial, the web app doesn't require users to sign in. Also, it doens't restrict access based on who's signed in.
 
 1. Select **OK** to create the project.
 
@@ -80,21 +80,21 @@ A few simple changes set up the site menu, layout, and home page.
 
     * Changed each occurrence of `My ASP.NET Application` and `Application name` to `Contoso University`.
 
-    * Added menu entries for `Students`, `Courses`, `Instructors`, and `Departments`
+    * Added menu entries for `Students`, `Courses`, `Instructors`, and `Departments`.
 
     * Deleted the `Contact` menu entry.
 
-1. In **Solution Explorer**, open **Views** > **Home** > *Index.cshtml*
+1. In **Solution Explorer**, open **Views** > **Home** > *Index.cshtml*.
 
 1. Replace the code in the *Index.cshtml* file with this code:
 
    [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample2.cshtml)]
 
-1. From the menu bar, select **File** > **Save All**
+1. From the menu bar, select **File** > **Save All**.
 
-1. Press **F5** to run the project.
+1. To run the project, press **F5**.
 
-    A browser window opens and the Conostco University home page appears.
+    A browser window opens and the Contoso University home page appears.
 
 ## Install Entity Framework 6
 
@@ -170,7 +170,7 @@ The `StudentID` property is a foreign key, and the corresponding navigation prop
 
 The `CourseID` property is a foreign key, and the corresponding navigation property is `Course`. You associate an `Enrollment` entity with one `Course` entity.
 
-EF 6 interprets a property as a foreign key property if it's named `<navigation property name><primary key property name>` (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). You can also name foreign key properties `<primary key property name>`. For example, `CourseID` since the `Course` entity's primary key is `CourseID`).
+EF 6 interprets a property as a foreign key property if it's named `<navigation property name><primary key property name>` (for example, `StudentID` for the `Student` navigation property because the `Student` entity's primary key is `ID`). You can also name foreign key properties `<primary key property name>`. For example, `CourseID` because the `Course` entity's primary key is `CourseID`.
 
 ### The Course entity
 
@@ -188,7 +188,7 @@ In the **Models** folder, create a class file named *Course.cs*.
 
 The `Enrollments` property is a navigation property. You can relate a `Course` entity to any number of `Enrollment` entities.
 
-`<xref:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>` is basically an attribute that lets you enter the primary key for the course rather than having the database generate it. You can find a more in-depth explanation later in this tutorial series.
+`<xref:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute>` is basically an attribute that prompts you to enter the primary key for the course rather than having the database generate it. You can find a more in-depth explanation later in this tutorial series.
 
 ## Create the database context
 
@@ -223,9 +223,9 @@ The app passes the name of the connection string (which you'll add to the Web.co
 
 [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample7.cs?highlight=1)]
 
-You could also pass in the connection string itself instead of the name of one that the app stores in the `Web.config` file. for more info about options for specifying the database to use, see [Connection strings and models](/ef/ef6/fundamentals/configuring/connection-strings).
+You could also pass in the connection string itself instead of the name of one that the app stores in the `Web.config` file. For more info about options for specifying the database to use, see [Connection strings and models](/ef/ef6/fundamentals/configuring/connection-strings).
 
-If you don't specify a connection string or the name of one explicitly, EF 6 assumes that the connection string name is the same as the class name. The default connection string name in this example would then be `SchoolContext`, It's the same as the one you're specifying explicitly.
+If you don't specify a connection string or the name of one explicitly, EF 6 assumes that the connection string name is the same as the class name. The default connection string name in this example would then be `SchoolContext`. It's the same as the one you're specifying explicitly.
 
 ### Specify singular table names
 
@@ -262,7 +262,7 @@ To tell EF 6 to use your initializer class, add an element to the `entityFramewo
    [!code-xml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample9.xml?highlight=2-6)]
 
     > [!NOTE]
-    >Information the user should notice even if skimming(Make sure you update the *Web.config* file in the root project folder. There's also a *Web.config* file in the *Views* subfolder. You don't need to update that one.
+    >Make sure you update the *Web.config* file in the root project folder. There's also a *Web.config* file in the *Views* subfolder. You don't need to update that one.
 
 1. Paste it into the *<entityFramework>* element.
 
@@ -271,7 +271,7 @@ To tell EF 6 to use your initializer class, add an element to the `entityFramewo
 The `context type` specifies the fully qualified context class name and the assembly it's in, and the `databaseinitializer type` specifies the fully qualified name of the initializer class and the assembly it's in.
 
 > [!NOTE]
-> When you don't want EF 6 to use the initializer, you can set an attribute on the `context` element: `disableDatabaseInitialization="true"`.) for more info, see [Configuration File Settings](/ef/ef6/fundamentals/configuring/config-file).
+> When you don't want EF 6 to use the initializer, you can set an attribute on the `context` element: `disableDatabaseInitialization="true"`. For more info, see [Configuration File Settings](/ef/ef6/fundamentals/configuring/config-file).
 
 The application is now set up so that when you access the database for the first time in a given run of the application, EF 6 compares the database to the model (your `SchoolContext` and entity classes). If there's a difference, the application drops and re-creates the database.
 
@@ -293,15 +293,15 @@ Typically, SQL Server Express is not used for production web applications. Local
    [!code-xml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample10.xml?highlight=1-3)]
 
     > [!NOTE]
-    >Information the user should notice even if skimming(Make sure you update the *Web.config* file in the root project folder. There's also a *Web.config* file in the *Views* subfolder. You don't need to update that one.
+    >Make sure you update the *Web.config* file in the root project folder. There's also a *Web.config* file in the *Views* subfolder. You don't need to update that one.
 
 1. Paste it between the `<configSections>` and `<appSettings>` elements.
 
 1. Save the file.
 
-The connection string you've added specifies that EF 6 uses a LocalDB database named *ContosoUniversity1.mdf*. The database doesn't exist yet. EF 6 creates it.) If you want to create the database in your *App\_Data* folder, you could add `AttachDBFilename=|DataDirectory|\ContosoUniversity1.mdf` to the connection string. for more info about connection strings, see [SQL Server Connection Strings for ASP.NET Web Applications](/previous-versions/aspnet/jj653752(v=vs.110)).
+The connection string you've added specifies that EF 6 uses a LocalDB database named *ContosoUniversity1.mdf*. The database doesn't exist yet. EF 6 creates it. If you want to create the database in your *App\_Data* folder, you can add `AttachDBFilename=|DataDirectory|\ContosoUniversity1.mdf` to the connection string. For more info about connection strings, see [SQL Server Connection Strings for ASP.NET Web Applications](/previous-versions/aspnet/jj653752(v=vs.110)).
 
-You don't actually need a connection string in the *Web.config* file. If you don't supply a connection string, EF 6 uses a default connection string based on your context class. for more info, see [Code First to a New Database](/ef/ef6/modeling/code-first/workflows/new-database).
+You don't actually need a connection string in the *Web.config* file. If you don't supply a connection string, EF 6 uses a default connection string based on your context class. For more info, see [Code First to a New Database](/ef/ef6/modeling/code-first/workflows/new-database).
 
 ## Create controller and views
 
@@ -319,29 +319,39 @@ Now you create a web page to display data. The process of requesting the data au
     | ------- | ----- |
     | Model class | Select **Student (ContosoUniversity.Models)**. If you don't see this option in the drop-down list, press **F5** to build the project and try again. |
     | Data context class | Select **SchoolContext (ContosoUniversity.DAL)**. |
-    | Controller name | Enter **StudentController**. Be careful. Student**s**Controller is automatically populated in the **Controller name** field. Make sure you edit it to make **Students** singular|
+    | Controller name | Enter **StudentController**. Be careful. The pluralized value *StudentsController* is automatically populated in the **Controller name** field. Make sure you edit it to make *Students* singular. |
 
     Leave the default values for the other fields.
 
-1. Select **Add**
+1. Select **Add**.
 
-When you select **Add**, the scaffolder creates a *StudentController.cs* file and a set of views (*.cshtml* files) that work with the controller. In the future when you create projects that use EF 6, you can also take advantage of some additional functionality of the scaffolder: create your first model class, don't create a connection string, and then in the **Add Controller** box specify **New data context** by selecting the **+** button next to **Data context class**. The scaffolder creates your `DbContext` class and your connection string as well as the controller and views.
+When you select **Add**, the scaffolder creates a *StudentController.cs* file and a set of views (*.cshtml* files) that work with the controller. In the future, when you create projects that use EF 6, you can also take advantage of some other scaffolder functionality. Here's the general workflow:
+
+> You don't have do these steps now. This is just an example: 
+>
+> 1. Create your first model class.
+>
+> 1. Don't create a connection string.
+>
+> 1. In **Add Controller**, specify **New data context** by selecting the **+** button next to **Data context class**.
+>
+> The scaffolder creates your `DbContext` class and your connection string as well as the controller and views.
 
 Visual Studio opens the *Controllers\StudentController.cs* file. You see that the app created class variable that instantiates a database context object:
 
-     [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.cs)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.cs)]
 
-     The `Index` action method gets a list of students from the *Students* entity set by reading the `Students` property of the database context instance:
+    The `Index` action method gets a list of students from the *Students* entity set by reading the `Students` property of the database context instance:
 
-     [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample12.cs)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample12.cs)]
 
-     The *Student\Index.cshtml* view displays this list in a table:
+    The *Student\Index.cshtml* view displays this list in a table:
 
-     [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.cshtml)]
+    [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.cshtml)]
 
-1. Press **F5** to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
+1. To run the project, press **F5**. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
 
- 1. Click the **Students** tab to see the test data that the `Seed` method inserted.
+1. Click the **Students** tab to see the test data that the `Seed` method inserted.
 
      ![Menu button](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image14.png)
 
@@ -384,9 +394,9 @@ The amount of code you had to write in order for EF 6 to create a complete datab
 
 * The app recognizes entity properties named `ID` or `<classname> ID` as primary key properties.
 
-* The app interprets properties named `<navigation property name><primary key property name>;` as a foreign key property. For example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`. You can also simply name foreign key properties `<primary key property name>`. For example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
+* The app interprets properties named `<navigation property name><primary key property name>;` as a foreign key property. For example, `StudentID` for the `Student` navigation property because the `Student` entity's primary key is `ID`. You can also simply name foreign key properties `<primary key property name>`. For example, `EnrollmentID` because the `Enrollment` entity's primary key is `EnrollmentID`.
 
-You've seen that conventions can be overridden. For example, you specified you can't pluralize that table names, and you'll see later how to explicitly mark a property as a foreign key property. You'll learn more about conventions and how to override them in the [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial later in this series. for more info about conventions, see [Code First Conventions](/ef/ef6/modeling/code-first/conventions/built-in).
+You've seen that conventions can be overridden. For example, you specified you can't pluralize that table names, and you'll see later how to explicitly mark a property as a foreign key property. You'll learn more about conventions and how to override them in the [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial later in this series. For more info about conventions, see [Code First Conventions](/ef/ef6/modeling/code-first/conventions/built-in).
 
 ## Additional resources
 
