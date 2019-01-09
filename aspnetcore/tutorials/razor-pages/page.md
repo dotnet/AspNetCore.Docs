@@ -56,9 +56,9 @@ The `@model` directive specifies the type of the model passed to the Razor Page.
 
 ### The layout page
 
-Select the menu links (**RazorPagesMovie**, **Home**, and **Privacy**). Each page shows the same menu layout. The menu layout is implemented in the *Views/Shared/_Layout.cshtml* file. Open the *Views/Shared/_Layout.cshtml* file.
+Select the menu links (**RazorPagesMovie**, **Home**, and **Privacy**). Each page shows the same menu layout. The menu layout is implemented in the *Pages/Shared/_Layout.cshtml* file. Open the *Pages/Shared/_Layout.cshtml* file.
 
-[Layout](xref:mvc/views/layout) templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views you create show up, *wrapped* in the layout page. For example, if you select the **Privacy** link, the **Views/Home/Privacy.cshtml** view is rendered inside the `RenderBody` method.
+[Layout](xref:mvc/views/layout) templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views you create show up, *wrapped* in the layout page. For example, if you select the **Privacy** link, the **Pages/Privacy.cshtml** view is rendered inside the `RenderBody` method.
 
 <a name="vd"></a>
 ### ViewData and layout
