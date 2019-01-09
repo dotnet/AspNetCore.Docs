@@ -31,7 +31,9 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > This tutorial also works with Visual Studio 2012, but there will be some differences in the user interface and project template.
 
 
-## In this tutorial, you:
+## What you'll build
+
+In this tutorial, you:
 
 * Build data objects for a university's students and their courses
 * Build database tables from the objects
@@ -161,7 +163,7 @@ With populated database data, you're now ready to retrieve that data and display
 
 ## Automatic generation of model binding methods
 
-In this tutorial series, you can copy tutorial code to your project, but there's also a Visual Studio feature to automatically generate code for model binding methods. This feature can save you time and help you gain a sense of  operation implementation. It's described here, though it's only informational and doesn't have any code you need to implement in your project.
+In this tutorial series, you can copy tutorial code to your project, but there's also a Visual Studio feature to automatically generate code for model binding methods. This feature can save you time and help you gain a sense of operation implementation. It's described here, though it's only informational and doesn't have any code you need to implement in your project.
 
 When setting a value for the `SelectMethod`, `UpdateMethod`, `InsertMethod`, or `DeleteMethod` properties in the markup code, you can select the **Create New Method** option.
 
@@ -181,7 +183,7 @@ In this tutorial, you:
 
 2. Filled the database tables with test data
 
-3. Used model binding to retrieve data from the database and  display it in a GridView.
+3. Used model binding to retrieve data from the database and display it in a GridView.
 
 In the next [tutorial](updating-deleting-and-creating-data.md) in this series, you'll enable updating, deleting, and creating data.
 
