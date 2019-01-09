@@ -400,7 +400,7 @@ The amount of code you had to write for EF 6 to create a complete database for y
 
 * The app interprets properties named `<navigation property name><primary key property name>;` as a foreign key property. For example, `StudentID` for the `Student` navigation property because the `Student` entity's primary key is `ID`. You can also simply name foreign key properties `<primary key property name>`. For example, `EnrollmentID` because the `Enrollment` entity's primary key is `EnrollmentID`.
 
-You've seen that conventions can be overridden. For example, you specified you can't pluralize that table names, and you see later how to explicitly mark a property as a foreign key property.  
+You've seen that conventions can be overridden. For example, you specified you can't pluralize that table names. You learn in a later article how to explicitly mark a property as a foreign key property.
 
 ## Additional resources
 
