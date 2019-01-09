@@ -156,11 +156,8 @@ Now you can run the application to see specific product details based on product
  The *ProductDetails.aspx* page is displayed.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image4.png)
-4. Close the browser.
 
-## Summary
-
-In this series tutorial, you added markup and code to display products and product details. You learned about strongly typed data controls, model binding, and value providers. In the next tutorial, you'll add a shopping cart to the Wingtip Toys application.
+In the next tutorial, you add a shopping cart to the Wingtip Toys application.
 
 ## Additional resources
 
