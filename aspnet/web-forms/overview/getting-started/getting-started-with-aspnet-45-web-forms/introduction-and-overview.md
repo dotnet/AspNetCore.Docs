@@ -15,35 +15,19 @@ by [Erik Reitan](https://github.com/Erikre)
 
 [Download Wingtip Toys Sample Project (C#)](http://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) or [Download E-book (PDF)](http://download.microsoft.com/download/0/F/B/0FBFAA46-2BFD-478F-8E56-7BF3C672DF9D/Getting%20Started%20with%20ASP.NET%204.5%20Web%20Forms%20and%20Visual%20Studio%202013.pdf)
 
-This step-by-step tutorial series teaches you the basics of building an ASP.NET Web Forms application using ASP.NET 4.7 and Microsoft Visual Studio. 
+This tutorial series teaches you how to build an ASP.NET Web Forms application with ASP.NET 4.5 and Microsoft Visual Studio 2017. 
 
 ## Introduction
 
-This series of tutorials guides you through creating an ASP.NET Web Forms application using Visual Studio Express 2017 for Web and ASP.NET 4.7.
+This tutorial series guides you through creating an ASP.NET Web Forms application using Visual Studio 2017 and ASP.NET 4.5. You will create an application named **Wingtip Toys** - a simplified storefront web site selling items online. New ASP.NET 4.5 features are highlighted.
 
-You'll create an application named **Wingtip Toys** - a simplified store front web site selling items online. This tutorial series highlights new features available in ASP.NET 4.7.
+Comments are welcome, and every effort is made to make updates based on your suggestions.
 
-Comments are welcome, and we make every effort to update this tutorial series based on your suggestions.
+### Target audience
 
-### Download completed project
+The target audience for this tutorial series is developers new to ASP.NET Web Forms.
 
-You can download the completed tutorial as a C# project.
-
-- [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#)
-
-### Take a ASP.NET Web Forms quiz to review content
-
-After you complete this tutorial, take the following quiz to test your knowledge and reinforce key concepts.
-
-  [ASP.NET Web Forms Quiz](http://quizapp.cloudapp.net/?quiz=ASP.NET&cdn_id=2014-01-17-001). 
-
-This quiz specifically addresses content in this tutorial series. Each question provides an explanation and links to additional guidance.
-
-- [ASP.NET Web Forms Quiz](http://quizapp.cloudapp.net/?quiz=ASP.NET)
-
-### Audience
-
-The target audiences for this tutorial series are experienced developers who are new to ASP.NET Web Forms. You should have some familiarity in the following areas:
+You should have some familiarity in the following areas:
 
 - Object-oriented programming (OOP) and languages
 - Web development (HTML, CSS, JavaScript)
@@ -67,68 +51,83 @@ The ASP.NET Web Form features presented in this series include:
 - Bootstrap
 - Entity Framework Code First, LocalDB
 - Request Validation
-- Strongly-typed Data Controls, Model Binding, Data Annotations, and Value Providers
+- Strongly-typed Data Controls
+- Model Binding
+- Data Annotations
+- Value Providers
 - SSL and OAuth
 - ASP.NET Identity, Configuration, and Authorization
 - Unobtrusive Validation
 - Routing
 - ASP.NET Error Handling
 
-### Application Scenarios and Tasks
+### Application scenarios and tasks
 
-Tasks demonstrated in this series include:
+Tutorial series tasks include:
 
 - Creating, reviewing, and running a new project
 - Creating a database structure
 - Initializing and seeding a database
-- Customizing the UI using styles, graphics, and a master page
+- Customizing the UI with styles, graphics, and a master page
 - Adding pages and navigation
 - Displaying menu details and product data
 - Creating a shopping cart
 - Adding SSL and OAuth support
 - Adding a payment method
-- Including an adminiDstrator role and a user to the application
+- Including an administrator role and a user to the application
 - Restricting access to specific pages and folder
 - Uploading a file to the web application
 - Implementing input validation
 - Registering routes for the web application
 - Implementing error handling and error logging
 
+### Take a ASP.NET Web Forms quiz to review content
+
+After completing this tutorial, take a quiz to test your knowledge and reinforce key concepts. The quiz specifically addresses tutorial series content. Each question provides an explanation and links to additional guidance.
+
+ * [ASP.NET Web Forms Quiz](https://blogs.msdn.microsoft.com/erikreitan/2016/01/08/asp-net-web-forms-quiz/) 
+
 ## Overview
 
-If you are new to ASP.NET Web Forms, but are familiar with programming concepts, then you have the right tutorial. If you are already familiar with ASP.NET Web Forms, you can still learn about new ASP.NET 4.7 features in this tutorial series. If you are unfamiliar with programming concepts and ASP.NET Web Forms, see the additional tutorials provided in the Web Forms [Getting Started](../../../index.md) section on the ASP.NET Web site.
+This tutorial is intended for someone familiar with programming concepts, but new to ASP.NET Web Forms. If you're already familiar with ASP.NET Web Forms, this tutorial series can still help you learn about new ASP.NET 4.5 features. For readers unfamiliar with programming concepts and ASP.NET Web Forms, see the additional Web Forms tutorials provided in the [Getting Started](../../../index.md) section on the ASP.NET Web site.
 
-The specific **latest** ASP.NET 4.7 features provided in this Web Forms tutorial series include the following:
+The specific **latest** ASP.NET 4.5 provided in this Web Forms tutorial series include the following features:
 
-- A simple UI for creating projects that offer [support for multiple ASP.NET frameworks](../../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#add) (Web Forms, MVC, and Web API).
-- [Bootstrap](../../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#bootstrap), a layout and theming framework that provides responsive design and theming capabilities.
+- A simple UI for creating projects that offers [support for many ASP.NET frameworks](../../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#add) (Web Forms, MVC, and Web API).
+- [Bootstrap](../../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#bootstrap), a layout, theming, and responsive design framework.
 - [ASP.NET Identity](../../../../identity/index.md), a new ASP.NET membership system that works the same in all ASP.NET frameworks and works with web hosting software other than IIS.
-- [Entity Framework 6](https://msdn.microsoft.com/data/ef.aspx), an update to the Entity Framework which allows you retrieve and manipulate data as strongly typed objects, access data asynchronously, handle transient connection faults, and log SQL statements.
+- [Entity Framework 6](https://msdn.microsoft.com/data/ef.aspx)
 
-For a complete list of ASP.NET 4.5 features, see [ASP.NET and Web Tools for Visual Studio 2013 Release Notes](../../../../visual-studio/overview/2013/release-notes.md).
+  An update to the Entity Framework enabling you to:
+  - Retrieve and manipulate data as strongly-typed objects
+  - Access data asynchronously
+  - Handle transient connection faults
+  - Log SQL statements
 
-### The Wingtip Toys Sample Application
+For a complete ASP.NET 4.5 feature list, see [ASP.NET and Web Tools for Visual Studio 2013 Release Notes](../../../../visual-studio/overview/2013/release-notes.md).
 
-The following screen shots provide a quick view of the ASP.NET Web forms application that you will create in this tutorial series. When you run the application from Visual Studio, the following web Home page appears.
+### The Wingtip Toys sample application
+
+The following screenshots are from the ASP.NET Web Forms application that you create in this tutorial series. When you run the application in Visual Studio, the following web Home page appears.
 
 ![Wingtip Toys - Default page](introduction-and-overview/_static/image1.png)
 
-You can register as a new user, or sign in as an existing user. The top navigation provides links for each product category and its products from the database.
+You can register as a new user, or sign in as an existing user. The top navigation has links to product categories and their products from the database.
 
 If you select **Products**, all available products are displayed. 
 
 ![Wingtip Toys - Products](introduction-and-overview/_static/image2.png)
 
-If you select a specific product, details about that product are displayed.
+If you select a specific product, product details are displayed.
 
 
 ![Wingtip Toys - Product Details](introduction-and-overview/_static/image3.png)
 
-As a user, you can register and sign in with Web Forms template default functionality. This tutorial also explains how to sign in  using an existing Gmail account. Additionally, you can sign in as the administrator to add and remove products from the database.
+As a user, you can register and sign in with Web Forms template default functionality. This tutorial also explains how to sign in using an existing Gmail account. Additionally, you can sign in as the administrator to add and remove products from the database.
 
-![Wingtip Toys - Log in](introduction-and-overview/_static/image4.png)
+![Wingtip Toys - Sign in](introduction-and-overview/_static/image4.png)
 
-Once you have signed in as a user, you can add products to the shopping cart and checkout with PayPal. Note that this sample application is designed to function with PayPal's developer sandbox. No actual money transaction takes place.
+Once you've signed in as a user, you can add products to the shopping cart and checkout with PayPal. The sample application is designed to work in PayPal's developer sandbox. No actual money transaction takes place.
 
 ![Wingtip Toys - Shopping Cart](introduction-and-overview/_static/image5.png)
 
@@ -144,7 +143,9 @@ After returning from PayPal, you can review and complete your order.
 
 Before you start, make sure the following software is installed on your computer:
 
-- [Microsoft Visual Studio 2013](https://www.microsoft.com/visualstudio/11/downloads#vs) or [Microsoft Visual Studio Express 2013 for Web](https://www.microsoft.com/visualstudio/11/downloads#express-web). The .NET Framework is installed automatically.
+- [Microsoft Visual Studio 2017 or Microsoft Visual Studio Community 2017](https://visualstudio.microsoft.com/downloads/).
+
+The .NET Framework is installed automatically.
 
 This tutorial series uses Microsoft Visual Studio Community 2017 for Web. You can use either that or Microsoft Visual Studio 2017 to complete this tutorial series.
 
@@ -153,43 +154,42 @@ This tutorial series uses Microsoft Visual Studio Community 2017 for Web. You ca
 > Microsoft Visual Studio 2017 and Microsoft Visual Studio Community 2017 for Web are referred to as Visual Studio throughout this tutorial series.
 
 
-If you already have a Visual Studio version installed, the installation process will install Visual Studio 2013 or Microsoft Visual Studio Express 2013 for Web next to the existing version. Sites that you created in earlier versions can be opened in Visual Studio 2013 and continue to open in previous versions.
+Note that Visual Studio 2017 gets installed next to any older versions already installed. Sites created in earlier versions can be opened in Visual Studio 2017 and continue to open in previous versions.
 
 > [!NOTE] 
 > 
-> This walkthrough assumes that you selected the *Web Development* collection of settings the first time that you started Visual Studio. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
+> This walkthrough assumes that the first time you started Visual Studio you selected the *Web Development* settings. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
 
 
 ## Download the sample application
 
-After installing the prerequisites, you are ready to begin creating the new Web project presented in this tutorial series. If you would like to **optionally** run the sample application that this tutorial series creates, you can download it from the MSDN Samples site. This download contains the following:
+After installing the prerequisites, you're ready to begin creating the Web project presented in this tutorial series. To run the sample application this tutorial series creates, you can download it from the MSDN Samples site:
+
+[Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) 
+
+ This download has the following items:
 
 - The sample application in the *WingtipToys* folder.
 - The resources used to create the sample application in the *WingtipToys-Assets* folder in the *WingtipToys* folder.
 
-#### Download the file from MSDN Samples site:
+The download is a *.zip* file. To see the completed project that this tutorial series creates, find and select the *C#* folder in the .zip file. Save the C# folder to the folder you use to work with Visual Studio projects. By default, the Visual Studio 2017 projects folder is:
 
-[Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) 
-
-The download is a <em>.zip</em> file. To see the completed project that this tutorial series creates, find and select the <em>C#</em>folder in the <em>.zip</em> file. Save the <em>C#</em> folderto the folder you use to work with Visual Studio 2013 projects. By default, the Visual Studio 2013 projects folder is the following:
-
-<strong>C:\Users&#92;</strong><strong><em>&lt;username&gt;</em></strong><strong>\Documents\Visual Studio 2013\Projects</strong>
+<strong>C:\Users&#92;</strong><strong><em>&lt;username&gt;</em></strong><strong>\source\repos</strong>
 
 Rename the ***C#*** folder to ***WingtipToys***.
 
 > [!NOTE]
 > If you already have a folder named *WingtipToys* in your Projects folder, temporarily rename that existing folder before renaming the *C#* folder to *WingtipToys*.
 
+To run the completed project, open the *WingtipToys* folder and double-click the *WingtipToys.sln* file. Visual Studio 2017 opens the project. Next, right-click the *Default.aspx* file in **Solution Explorer** and select **View In Browser**.
 
-To run the completed project, open the *WingtipToys* folder and double-click the *WingtipToys.sln* file. Visual Studio 2013 will open the project. Next, right-click the *Default.aspx* file in the Solution Explorer window and click View In Browser from the right-click menu.
+### Tutorial support and comments
 
-### Tutorial Support and Comments
+Use the Q and A section included with the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample for any questions or comments.
 
-Use the Q AND A section included with the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample for any questions or comments.
+Comments on this tutorial series are welcome. When this tutorial series is updated, every effort is made to consider corrections or suggestions for improvements.
 
-Comments on this tutorial series are welcome, and when this tutorial series is updated every effort will be made to take into account corrections or suggestions for improvements that are provided in the tutorial comments.
-
-When an error happens during development, or if the Web site does not run correctly, the error messages may give complex clues to the source of the problem or might not explain how to fix it. To help you with some common problem scenarios, you can also use the [ASP.NET forums](https://forums.asp.net/) or the Q AND A section included with the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample. If you get an error message or something doesn't work as you go through the tutorials, be sure to check the above locations.
+If an error occurs, the corresponding error messages could be confusing with no good explanation on how to fix it. For help, you can check the [ASP.NET forums](https://forums.asp.net/). Another good source is the Q and A section in the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample. 
 
 > [!div class="step-by-step"]
 > [Next](create-the-project.md)
