@@ -306,7 +306,7 @@ Add the following `PostTodoItem` method:
 
 The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
-The `CreatedAtRoute` method:
+The `CreatedAtAction` method:
 
 * Returns a 201 response. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).

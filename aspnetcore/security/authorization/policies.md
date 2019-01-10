@@ -50,11 +50,11 @@ The preceding code determines if the current user principal has a date of birth 
 
 ### Use a handler for multiple requirements
 
-The following is an example of a one-to-many relationship in which a permission handler utilizes three requirements:
+The following is an example of a one-to-many relationship in which a permission handler can handle three different types of requirements:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/PermissionHandler.cs?name=snippet_PermissionHandlerClass)]
 
-The preceding code traverses [PendingRequirements](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;a property containing requirements not marked as successful. If the user has read permission, he or she must be either an owner or a sponsor to access the requested resource. If the user has edit or delete permission, he or she must be an owner to access the requested resource. When authorization is successful, `context.Succeed` is invoked with the satisfied requirement as its sole parameter.
+The preceding code traverses [PendingRequirements](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. In the case of an `EditPermission` or `DeletePermission` requirement, he or she must be an owner to access the requested resource.
 
 <a name="security-authorization-policies-based-handler-registration"></a>
 
