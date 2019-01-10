@@ -597,6 +597,7 @@ The following releases of the jQuery UI library are hosted on this CDN. Click ea
 
 The following releases of the jQuery Validation library are hosted on this CDN. Click each link to see the actual list of files.
 
+- [jQuery Validate 1.19.0](jquery-validate/cdnjqueryvalidate1190.md "jQuery Validation 1.19.0")
 - [jQuery Validate 1.17.0](jquery-validate/cdnjqueryvalidate1170.md "jQuery Validation 1.17.0")
 - [jQuery Validate 1.16.0](jquery-validate/cdnjqueryvalidate1160.md "jQuery Validation 1.16.0")
 - [jQuery Validate 1.15.1](jquery-validate/cdnjqueryvalidate1151.md "jQuery Validation 1.15.1")
