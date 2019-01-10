@@ -121,15 +121,17 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
 ## Pre-populate the database
 
-   1. Add the following code to the `Seed` method. Also, add a `using` statement for the `ContosoUniversityModelBinding. Models` namespace.
+   1. Open Configuration.cs.
+   
+   2. Add the following code to the `Seed` method. Also, add a `using` statement for the `ContosoUniversityModelBinding. Models` namespace.
 
       [!code-csharp[Main](retrieving-data/samples/sample5.cs)]
 
-   2. Save Configuration.cs.
+   3. Save Configuration.cs.
 
-   3. In the Package Manager Console, run the command **add-migration initial**.
+   4. In the Package Manager Console, run the command **add-migration initial**.
 
-   4. Run the command **update-database**.
+   5. Run the command **update-database**.
 
       If you receive an exception when running this command, the `StudentID` and `CourseID` values might be different from the `Seed` method values. Open those database tables and find existing values for `StudentID` and `CourseID`. Add those values to the code for seeding the `Enrollments` table.
 
@@ -146,17 +148,19 @@ With populated database data, you're now ready to retrieve that data and display
    
    * The `ItemType` property is set to the `Student` class created earlier. This setting allows you to reference class properties in the markup. For example, the `Student` class has a collection named `Enrollments`. You can use `Item.Enrollments` to retrieve that collection and then use [LINQ syntax](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) to retrieve each student's enrolled credits sum.
    
-2. Save Students.aspx
+2. Save Students.aspx.
 
-## Add retrieving data code
+## Add code to retrieve data
 
    In the Students.aspx code-behind file, add the method specified for the `SelectMethod` value. 
    
-   1. Open Students.aspx.cs, and add `using` statements for the `ContosoUniversityModelBinding. Models` and `System.Data.Entity` namespaces.
+   1. Open Students.aspx.cs.
+   
+   2. Add `using` statements for the `ContosoUniversityModelBinding. Models` and `System.Data.Entity` namespaces.
 
       [!code-csharp[Main](retrieving-data/samples/sample7.cs)]
 
-   2. Add the method you specified for `SelectMethod`:
+   3. Add the method you specified for `SelectMethod`:
 
       [!code-csharp[Main](retrieving-data/samples/sample8.cs)]
 
