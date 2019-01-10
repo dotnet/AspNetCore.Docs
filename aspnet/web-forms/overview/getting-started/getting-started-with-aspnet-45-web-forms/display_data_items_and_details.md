@@ -2,152 +2,164 @@
 uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/display_data_items_and_details
 title: "Display Data Items and Details | Microsoft Docs"
 author: Erikre
-description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."
+description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application with ASP.NET 4.7 and Microsoft Visual Studio Community 2017 for the Web"
 ms.author: riande
-ms.date: 09/08/2014
+ms.date: 1/09/2019
 ms.assetid: 64a491a8-0ed6-4c2f-9c1c-412962eb6006
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/display_data_items_and_details
 msc.type: authoredcontent
 ---
-Display Data Items and Details
+Display data items and details
 ====================
 by [Erik Reitan](https://github.com/Erikre)
 
-[Download Wingtip Toys Sample Project (C#)](http://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) or [Download E-book (PDF)](http://download.microsoft.com/download/0/F/B/0FBFAA46-2BFD-478F-8E56-7BF3C672DF9D/Getting%20Started%20with%20ASP.NET%204.5%20Web%20Forms%20and%20Visual%20Studio%202013.pdf)
+> This tutorial series teaches you the basics of building an ASP.NET Web Forms application with ASP.NET 4.7 and Microsoft Visual Studio Community 2017 for the Web.
 
-> This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for Web. A Visual Studio 2013 [project with C# source code](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) is available to accompany this tutorial series.
+In this tutorial, you learn how to display data items and data item details with ASP.NET Web Forms and Entity Framework Code First. This tutorial builds on the previous "UI and Navigation" tutorial as part of the Wingtip Toy Store tutorial series. In the completed tutorial, products on the *ProductsList.aspx* page and a product's details on the *ProductDetails.aspx* page are displayed.
 
+## What you learn
 
-This tutorial describes how to display data items and data item details using ASP.NET Web Forms and Entity Framework Code First. This tutorial builds on the previous tutorial "UI and Navigation" and is part of the Wingtip Toy Store tutorial series. When you've completed this tutorial, you'll be able to see products on the *ProductsList.aspx* page and details about an individual product on the *ProductDetails.aspx* page.
+- Add a data control to display database products.
+- Connect a data control to selected data.
+- Add a data control to display product details.
+- Parse a query string value and use it to filter retrieved database data.
 
-## What you'll learn:
+Features introduced in this tutorial include model binding and value providers.
 
-- How to add a data control to display products from the database.
-- How to connect a data control to the selected data.
-- How to add a data control to display product details from the database.
-- How to retrieve a value from the query string and use that value to limit the data that's retrieved from the database.
+## Add a data control to display products
+ 
+You have a few options to bind data to a server control. The most common include:
 
-### These are the features introduced in the tutorial:
+ * Adding a data source control
+ * Adding code by hand
+ * Implementing model binding
 
-- Model Binding
-- Value providers
+### Use a data source control to bind data
 
-## Adding a Data Control to Display Products
+Adding a data source control links the data source control to the control that displays the data. With this approach, you can declaratively, rather than programmatically, connect server-side controls to data sources.
 
-When binding data to a server control, there are a few different options you can use. The most common options include adding a data source control, adding code by hand, or using model binding.
+### Code by hand to bind data
 
-### Using a Data Source Control to Bind Data
+Coding by hand involves:
 
-Adding a data source control allows you to link the data source control to the control that displays the data. This approach allows you to declaratively connect server-side controls directly to data sources, rather than using a programmatic approach.
+1. Reading a value
+2. Checking if it's null
+3. Converting it to an appropriate type
+4. Checking conversion success
+5. Making a query with the converted value 
 
-### Coding By Hand to Bind Data
+With this approach, you have full control over your data-access logic.
 
-Adding code by hand involves reading the value, checking for a null value, attempting to convert it to the appropriate type, checking whether the conversion was successful, and finally, using the value in the query. You would use this approach when you need to retain full control over your data-access logic.
+### Use model binding to bind data
 
-### Using Model Binding to Bind Data
+With model binding, you bind results with far less code and it gives you the ability to reuse the functionality throughout your application. It simplifies working with code-focused data-access logic while still providing a rich, data-binding framework.
 
-Using model binding allows you to bind results using far less code and gives you the ability to reuse the functionality throughout your application. Model binding aims to simplify working with code-focused data-access logic while still retaining the benefits of a rich, data-binding framework.
+## Display products
 
-## Displaying Products
+In this tutorial, you use model binding to bind data. To configure a data control to use model binding to select data, you set the control's `SelectMethod` property to a method in the page's code. The data control calls the method at the appropriate time in the page life cycle and automatically binds the returned data. There's no need to explicitly call the `DataBind` method.
 
-In this tutorial, you'll use model binding to bind data. To configure a data control to use model binding to select data, you set the control's `SelectMethod` property to the name of a method in the page's code. The data control calls the method at the appropriate time in the page life cycle and automatically binds the returned data. There's no need to explicitly call the `DataBind` method.
+Working through the following steps, you modify *ProductList.aspx* markup to display products.
 
-Using the steps below, you'll modify the markup in the *ProductList.aspx* page so that the page can display products.
+1. In **Solution Explorer**, open *ProductList.aspx*.
 
-1. In **Solution Explorer**, open the *ProductList.aspx* page.
-2. Replace the existing markup with the following markup:   
+2. Replace the existing markup with the following markup: 
 
-    [!code-aspx[Main](display_data_items_and_details/samples/sample1.aspx)]
+    [!code-aspx-csharp[Main](display_data_items_and_details/samples/sample1.aspx)]
 
-This code uses a **ListView** control named "productList" to display the products.
+The preceding markup uses a **ListView** control named `productList` to display products.
 
-[!code-aspx[Main](display_data_items_and_details/samples/sample2.aspx)]
+[!code-aspx-csharp[Main](display_data_items_and_details/samples/sample2.aspx)]
 
-The **ListView** control displays data in a format that you define by using templates and styles. It is useful for data in any repeating structure. This **ListView** example simply shows data from the database, however you can enable users to edit, insert, and delete data, and to sort and page data, all without code.
+With templates and styles, you define how the **ListView** control displays data. It's useful for data in any repeating structure. Though this **ListView** example simply displays database data, you can also, without code, enable users to edit, insert, and delete data, and to sort and page data.
 
-By setting the `ItemType` property in the **ListView** control, the data-binding expression `Item` is available and the control becomes strongly typed. As mentioned in the previous tutorial, you can select details of the Item object using IntelliSense, such as specifying the `ProductName`:
+When you set the `ItemType` property in the **ListView** control, the data-binding expression `Item` is available and the control becomes strongly typed. As mentioned in the previous tutorial, you can select Item object details with IntelliSense, such as specifying the `ProductName`:
 
 ![Display Data Items and Details - IntelliSense](display_data_items_and_details/_static/image1.png)
 
-In addition, you are using model binding to specify a `SelectMethod` value. This value (`GetProducts`) will correspond to the method that you will add to the code behind to display products in the next step.
+With model binding, you're specifying a `SelectMethod` value (`GetProducts`). This is the method you add to the code behind to display products in the next step.
 
-### Adding Code to Display Products
+### Add code to display products
 
-In this step, you'll add code to populate the **ListView** control with product data from the database. The code will support showing products by individual category, as well as showing all products.
+In this step, you add code to populate the **ListView** control with database product data. The code supports showing all products and individual category products.
 
-1. In **Solution Explorer**, right-click *ProductList.aspx* and then click **View Code**.
-2. Replace the existing code in the *ProductList.aspx.cs* file with the following code:   
+1. In **Solution Explorer**, right-click *ProductList.aspx* and then select **View Code**.
+2. Replace the existing code in the *ProductList.aspx.cs* file with this:   
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample3.cs)]
 
-This code shows the `GetProducts` method that's referenced by the `ItemType` property of the **ListView** control in the *ProductList.aspx* page. To limit the results to a specific category in the database, the code sets the `categoryId` value from the query string value passed to the *ProductList.aspx* page when the *ProductList.aspx* page is navigated to. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the value of the query string variable id. This instructs model binding to try to bind a value from the query string to the `categoryId` parameter at run time.
+This code shows the `GetProducts` method that the **ListView** control's `ItemType` property references in *ProductList.aspx*. To limit the results to a specific database category, the code sets the `categoryId` value from the query string passed to *ProductList.aspx*. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the query string variable `id`'s value. This instructs model binding to, at run time, bind a query string value to the `categoryId` parameter.
 
-When a valid category is passed as a query string to the page, the results of the query are limited to those products in the database that match the `categoryId` value. For instance, if the URL to the *ProductsList.aspx* page is the following:
+When a valid category (`categoryId`) is passed, the results are limited to that category's database products. For instance, if the *ProductsList.aspx* page URL is this:
 
 [!code-console[Main](display_data_items_and_details/samples/sample4.cmd)]
 
-The page displays only the products where the `category` equals `1`.
+The page displays only the products where the `categoryId` equals `1`.
 
-If no query string is included when navigating to the *ProductList.aspx* page, all products will be displayed.
+All products are displayed if no query string is passed.
 
-The sources of values for these methods are referred to as *value providers* (such as *QueryString*), and the parameter attributes that indicate which value provider to use are referred to as value provider attributes (such as "`id`"). ASP.NET includes value providers and corresponding attributes for all of the typical sources of user input in a Web Forms application, such as the query string, cookies, form values, controls, view state, session state, and profile properties. You can also write custom value providers.
+The value sources for these methods are called *value providers* (such as `QueryString`), and the parameter attributes that indicate which value provider to use are called *value provider attributes* (such as `id`). ASP.NET includes value providers and attributes for all typical Web Forms application user input sources. These include the query string, cookies, form values, controls, view state, session state, and profile properties. You can also write custom value providers.
 
-### Running the Application
+### Run the application
 
-Run the application now to see how you can view all of the products or just a set of products limited by category.
+Run the application now to view all products or a category's products.
 
-1. In the **Solution Explorer**, right-click the *Default.aspx* page and select **View in Browser**.  
- The browser will open and show the *Default.aspx* page.
-2. Select **Cars** from the product category navigation menu.  
- The *ProductList.aspx* page is displayed showing only products included in the "Cars" category. Later in this tutorial, you will display product details.  
+1. In Visual Studio, press **F5** to run the application.
+ The browser opens and shows the *Default.aspx* page.
+
+2. From the product category menu, select **Cars**.
+
+   The *ProductList.aspx* page appears, showing only products from the **Cars** category. Later in this tutorial, you display product details.
 
     ![Display Data Items and Details - Cars](display_data_items_and_details/_static/image2.png)
-3. Select **Products** from the navigation menu at the top.  
- Again, the *ProductList.aspx* page is displayed, however this time it shows the entire list of products.   
+
+3. Select **Products** from the top menu.
+ The *ProductList.aspx* page now displays all products. 
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image3.png)
+
 4. Close the browser and return to Visual Studio.
 
-### Adding a Data Control to Display Product Details
+### Add a Data Control to display product details
 
-Next, you'll modify the markup in the *ProductDetails.aspx* page that you added in the previous tutorial so that the page can display information about an individual product.
+Modify the *ProductDetails.aspx* markup that you added in the previous tutorial to display specific product information:
 
-1. In **Solution Explorer**, open the *ProductDetails.aspx* page.
-2. Replace the existing markup with the following markup:   
+1. In **Solution Explorer**, open *ProductDetails.aspx*.
 
-    [!code-aspx[Main](display_data_items_and_details/samples/sample5.aspx)]
+2. Replace the existing markup with this markup:
 
-This code uses a **FormView** control to display details about an individual product. This markup uses methods like those that are used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. The templates contain controls, binding expressions, and formatting that define the look and functionality of the form.
+    [!code-aspx-csharp[Main](display_data_items_and_details/samples/sample5.aspx)] 
 
-To connect the above markup to the database, you must add additional code to the *ProductDetails.aspx* code.
+This markup uses a **FormView** control to display specific product details. It uses methods like those used to display data in *ProductList.aspx*. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
 
-1. In **Solution Explorer**, right-click *ProductDetails.aspx* and then click **View Code**.  
-   The *ProductDetails.aspx.cs* file will be displayed.
-2. Replace the existing code with the following code:   
+Connecting the previous markup to the database requires additional code.
+
+1. In **Solution Explorer**, right-click *ProductDetails.aspx* and then select **View Code**.  
+   The *ProductDetails.aspx.cs* file is displayed.
+
+2. Replace the existing code with this:   
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample6.cs)]
 
-This code checks for a "`productID`" query-string value. If a valid query-string value is found, the matching product is displayed. If no query-string is found, or the query-string value is not valid, no product is displayed on the *ProductDetails.aspx* page.
+This code checks for a "`productID`" query string value. If a valid value is found, the matching product is displayed. If the query string isn't found, or its value isn't valid, no product is displayed.
 
-### Running the Application
+### Run the application
 
-Now you can run the application to see an individual product displayed based on the id of the product.
+Now you can run the application to see specific product details based on product ID.
 
-1. Press **F5** while in Visual Studio to run the application.  
- The browser will open and show the *Default.aspx* page.
-2. Select "Boats" from the category navigation menu.  
+1. In Visual Studio, press **F5** to run the application.  
+ The browser opens to *Default.aspx*.
+
+2. From the category menu, select **Boats**.  
  The *ProductList.aspx* page is displayed.
-3. Select the "Paper Boat" product from the product list.  
+
+3. Select **Paper Boat**.  
  The *ProductDetails.aspx* page is displayed.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image4.png)
-4. Close the browser.
 
-## Summary
+In the next tutorial, you add a shopping cart to the Wingtip Toys application.
 
-In this tutorial of the series you have add markup and code to display a product list and to display product details. During this process you have learned about strongly typed data controls, model binding, and value providers. In the next tutorial, you'll add a shopping cart to the Wingtip Toys sample application.
-
-## Additional Resources
+## Additional resources
 
 [Retrieving and displaying data with model binding and web forms](../../presenting-and-managing-data/model-binding/retrieving-data.md)
 

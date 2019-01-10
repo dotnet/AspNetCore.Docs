@@ -5,8 +5,14 @@
 
 # [Get started](xref:getting-started)
 
+# What's new
+## [What's new in 2.2](xref:aspnetcore-2.2)
+## [What's new in 2.1](xref:aspnetcore-2.1)
+## [What's new in 2.0](xref:aspnetcore-2.0)
+## [What's new in 1.1](xref:aspnetcore-1.1)
+
 # Tutorials
-## Web APIs
+## Web API apps
 ### [Create a web API](xref:tutorials/first-web-api)
 ### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
@@ -121,7 +127,7 @@
 ### [Custom model binding](xref:mvc/advanced/custom-model-binding)
 ### [Compatibility version](xref:mvc/compatibility-version)
 
-# Web APIs
+# Web API apps
 ## [Overview](xref:web-api/index)
 
 ## Tutorials
@@ -376,6 +382,7 @@
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
 ## [Diagnostic Tools](xref:performance/diagnostic-tools)
+## [Load and stress testing](xref:test/loadtests)
 
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
@@ -410,12 +417,6 @@
 ### [Membership to Identity](xref:migration/proper-to-2x/membership-to-core-identity)
 ### [HTTP modules to middleware](xref:migration/http-modules)
 ## [Logging (not ASP.NET Core)](xref:migration/logging-nonaspnetcore)
-
-# What's new
-## [What's new in 2.2](xref:aspnetcore-2.2)
-## [What's new in 2.1](xref:aspnetcore-2.1)
-## [What's new in 2.0](xref:aspnetcore-2.0)
-## [What's new in 1.1](xref:aspnetcore-1.1)
 
 # [API reference](/dotnet/api/?view=aspnetcore-2.2)
 

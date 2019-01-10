@@ -18,7 +18,7 @@ Load testing and stress testing are important to ensure a web app is performant 
 * High user load – either spikes or gradually increasing.
 * Limited computing resources.  
 
-Under stress, can the app recover from failure and gracefully return to expected behavior? The app is run under normal conditions.
+Under stress, can the app recover from failure and gracefully return to expected behavior? Under stress, the app is *not* run under normal conditions.
 
 ## Visual Studio Tools
 
