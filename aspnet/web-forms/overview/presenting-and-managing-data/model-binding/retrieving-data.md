@@ -60,25 +60,29 @@ In this tutorial, you:
 
    Make a few changes to customize site appearance. 
    
-   1. Open the Site.Master file, and change the title to display **Contoso University** and not **My ASP.NET Application**.
+   1. Open the Site.Master file.
+   
+   2. Change the title to display **Contoso University** and not **My ASP.NET Application**.
 
       [!code-aspx-csharp[Main](retrieving-data/samples/sample1.aspx?highlight=1)]
 
-   2. Change the header text from **Application name** to **Contoso University**.
+   3. Change the header text from **Application name** to **Contoso University**.
 
       [!code-aspx-csharp[Main](retrieving-data/samples/sample2.aspx?highlight=7)]
 
-   3. Change the navigation header links to site appropriate ones. Remove the links for **About** and **Contact** and, instead, link to a **Students** page, which you will create.
+   4. Change the navigation header links to site appropriate ones. 
+   
+      Remove the links for **About** and **Contact** and, instead, link to a **Students** page, which you will create.
 
       [!code-aspx-csharp[Main](retrieving-data/samples/sample3.aspx)]
 
-   4. Save and close Site.Master.
+   5. Save Site.Master.
 
 ## Add a web form to display student data
 
    1. In **Solution Explorer**, right-click your project, select **Add** and then **New Item**. 
    
-   2. In the **Add New Item** dialog box, select the **Web Form with Master Page** template, and name it **Students.aspx**.
+   2. In the **Add New Item** dialog box, select the **Web Form with Master Page** template and name it **Students.aspx**.
 
       ![create page](retrieving-data/_static/image5.png)
 
@@ -124,7 +128,7 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
       ![enable migrations](retrieving-data/_static/image8.png)
 
-      Notice that a file named *Configuration.cs* has been created. The `Configuration` class has a `Seed` method, which you can use to pre-populate the database tables with test data.
+      Notice that a file named *Configuration.cs* has been created. The `Configuration` class has a `Seed` method, which can pre-populate the database tables with test data.
 
 ## Pre-populate the database
 
@@ -146,7 +150,9 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
 With populated database data, you're now ready to retrieve that data and display it. 
 
-1. Open Students.aspx, and locate the `MainContent` placeholder. Within that placeholder, add a **GridView** control that includes this code.
+1. Open Students.aspx.
+
+2. Locate the `MainContent` placeholder. Within that placeholder, add a **GridView** control that includes this code.
 
    [!code-aspx-csharp[Main](retrieving-data/samples/sample6.aspx)]
 
@@ -155,7 +161,7 @@ With populated database data, you're now ready to retrieve that data and display
    
    * The `ItemType` property is set to the `Student` class created earlier. This setting allows you to reference class properties in the markup. For example, the `Student` class has a collection named `Enrollments`. You can use `Item.Enrollments` to retrieve that collection and then use [LINQ syntax](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) to retrieve each student's enrolled credits sum.
    
-2. Save Students.aspx.
+3. Save Students.aspx.
 
 ## Add code to retrieve data
 
@@ -176,6 +182,8 @@ The `Include` clause improves query performance but isn't required. Without the 
 For more information about performance considerations when loading related data, see the **Lazy, Eager, and Explicit Loading of Related Data** section in the [Reading Related Data with the Entity Framework in an ASP.NET MVC Application](../../../../mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md) article.
 
  By default, the data is sorted by the values of the property marked as the key. You can add an `OrderBy` clause to specify a different sort value. In this example, the default `StudentID` property is used for sorting. In the [Sorting, Paging, and Filtering Data](sorting-paging-and-filtering-data.md) article, the user is enabled to select a column for sorting.
+ 
+   4. Save Students.aspx.cs.
 
 ## Run your application 
 
