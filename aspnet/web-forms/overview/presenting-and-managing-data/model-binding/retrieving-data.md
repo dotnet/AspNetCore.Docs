@@ -76,11 +76,18 @@ In this tutorial, you:
 
 ## Add a web form to display student data
 
-   1. In **Solution Explorer**, right-click your project, select **Add** and then **New Item**. Select the **Web Form with Master Page** template, and name it **Students.aspx**.
+   1. In **Solution Explorer**, right-click your project, select **Add** and then **New Item**. 
+   
+   2. In the **Add New Item** dialog box, select the **Web Form with Master Page** template, and name it **Students.aspx**.
 
       ![create page](retrieving-data/_static/image5.png)
 
-   2. Select **Add**, and then, for the web form's master page, select **Site.Master**.
+   3. Select **Add**.
+   
+   4. For the web form's master page, select **Site.Master**.
+   
+   5. Select **OK**.
+   
 
 ## Add the data model
 
@@ -190,7 +197,7 @@ Visual Studio not only creates a method in the code-behind with the proper signa
 
 Again, this code doesn't need to be added to your project. In the next tutorial, you'll implement methods for updating, deleting, and adding new data.
 
-## Conclusion
+## Summary
 
 In this tutorial, you:
 
