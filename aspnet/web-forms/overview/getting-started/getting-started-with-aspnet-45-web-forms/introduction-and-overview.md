@@ -19,13 +19,13 @@ This tutorial series teaches you how to build an ASP.NET Web Forms application w
 
 ## Introduction
 
-This tutorial series guides you through creating an ASP.NET Web Forms application using Visual Studio 2017 and ASP.NET 4.5. You will create an application named **Wingtip Toys** - a simplified storefront web site selling items online. New ASP.NET 4.5 features are highlighted.
+This tutorial series guides you through creating an ASP.NET Web Forms application using Visual Studio 2017 and ASP.NET 4.5. You'll create an application named **Wingtip Toys** - a simplified storefront web site selling items online. During the series, new ASP.NET 4.5 features are highlighted.
 
 Comments are welcome, and every effort is made to make updates based on your suggestions.
 
 ### Target audience
 
-The target audience for this tutorial series is developers new to ASP.NET Web Forms.
+Developers new to ASP.NET Web Forms are the target audience for this tutorial series.
 
 You should have some familiarity in the following areas:
 
@@ -81,17 +81,11 @@ Tutorial series tasks include:
 - Registering routes for the web application
 - Implementing error handling and error logging
 
-### Take a ASP.NET Web Forms quiz to review content
-
-After completing this tutorial, take a quiz to test your knowledge and reinforce key concepts. The quiz specifically addresses tutorial series content. Each question provides an explanation and links to additional guidance.
-
- * [ASP.NET Web Forms Quiz](https://blogs.msdn.microsoft.com/erikreitan/2016/01/08/asp-net-web-forms-quiz/) 
-
 ## Overview
 
-This tutorial is intended for someone familiar with programming concepts, but new to ASP.NET Web Forms. If you're already familiar with ASP.NET Web Forms, this tutorial series can still help you learn about new ASP.NET 4.5 features. For readers unfamiliar with programming concepts and ASP.NET Web Forms, see the additional Web Forms tutorials provided in the [Getting Started](../../../index.md) section on the ASP.NET Web site.
+This tutorial series is intended for someone familiar with programming concepts, but new to ASP.NET Web Forms. If you're already familiar with ASP.NET Web Forms, this series can still help you learn about new ASP.NET 4.5 features. For readers unfamiliar with programming concepts and ASP.NET Web Forms, see the additional Web Forms tutorials provided in the [Getting Started](../../../index.md) section on the ASP.NET Web site.
 
-The specific **latest** ASP.NET 4.5 provided in this Web Forms tutorial series include the following features:
+The ASP.NET 4.5 provided in this tutorial series includes the following features:
 
 - A simple UI for creating projects that offers [support for many ASP.NET frameworks](../../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#add) (Web Forms, MVC, and Web API).
 - [Bootstrap](../../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#bootstrap), a layout, theming, and responsive design framework.
@@ -147,18 +141,15 @@ Before you start, make sure the following software is installed on your computer
 
 The .NET Framework is installed automatically.
 
-This tutorial series uses Microsoft Visual Studio Community 2017 for Web. You can use either that or Microsoft Visual Studio 2017 to complete this tutorial series.
+This tutorial series uses Microsoft Visual Studio Community 2017. You can use either that or Microsoft Visual Studio 2017 to complete this tutorial series.
 
-> [!NOTE] 
-> 
-> Microsoft Visual Studio 2017 and Microsoft Visual Studio Community 2017 for Web are referred to as Visual Studio throughout this tutorial series.
+Note the following about Visual Studio:
 
+* Microsoft Visual Studio 2017 and Microsoft Visual Studio Community 2017 are referred to as Visual Studio throughout this tutorial series.
 
-Note that Visual Studio 2017 gets installed next to any older versions already installed. Sites created in earlier versions can be opened in Visual Studio 2017 and continue to open in previous versions.
+* Visual Studio 2017 gets installed next to any older versions already installed. Sites created in earlier versions can be opened in Visual Studio 2017 and continue to open in previous versions.
 
-> [!NOTE] 
-> 
-> This walkthrough assumes that the first time you started Visual Studio you selected the *Web Development* settings. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
+* It is assumed that the first time you started Visual Studio you selected the *Web Development* settings. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
 
 
 ## Download the sample application
@@ -183,9 +174,15 @@ Rename the ***C#*** folder to ***WingtipToys***.
 
 To run the completed project, open the *WingtipToys* folder and double-click the *WingtipToys.sln* file. Visual Studio 2017 opens the project. Next, right-click the *Default.aspx* file in **Solution Explorer** and select **View In Browser**.
 
-### Tutorial support and comments
+## Take a ASP.NET Web Forms quiz to review content
 
-Use the Q and A section included with the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample for any questions or comments.
+After completing the tutorial series, take a quiz to test your knowledge and reinforce key concepts. The quiz specifically addresses tutorial series content. Each question provides an explanation and links to additional guidance.
+
+ * [ASP.NET Web Forms Quiz](https://blogs.msdn.microsoft.com/erikreitan/2016/01/08/asp-net-web-forms-quiz/) 
+
+## Tutorial support and comments
+
+For questions and comments, use the Q and A section included with the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample.
 
 Comments on this tutorial series are welcome. When this tutorial series is updated, every effort is made to consider corrections or suggestions for improvements.
 
