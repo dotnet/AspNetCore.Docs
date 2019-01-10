@@ -173,4 +173,4 @@ VSTest executes when any file changes in either test project.
 
 ## `dotnet-watch` in GitHub
 
-`dotnet-watch` is part of the GitHub [aspnet/AspNetCore repository](https://github.com/aspnet/AspNetCore/blob/master/src/Tools/dotnet-watch).
+`dotnet-watch` is part of the GitHub [aspnet/AspNetCore repository](https://github.com/aspnet/AspNetCore/tree/master/src/Tools/dotnet-watch).
