@@ -27,7 +27,7 @@ Comments are welcome, and every effort is made to make updates based on your sug
 
 Developers new to ASP.NET Web Forms are the target audience for this tutorial series.
 
-You should have some familiarity in the following areas:
+You should have some knowledge in the following areas:
 
 - Object-oriented programming (OOP) and languages
 - Web development (HTML, CSS, JavaScript)
@@ -145,7 +145,7 @@ This tutorial series uses Microsoft Visual Studio Community 2017. You can use ei
 
 Note the following about Visual Studio:
 
-* Microsoft Visual Studio 2017 and Microsoft Visual Studio Community 2017 are referred to as Visual Studio throughout this tutorial series.
+* Microsoft Visual Studio 2017 and Microsoft Visual Studio Community 2017 are referred to as *Visual Studio* throughout this tutorial series.
 
 * Visual Studio 2017 gets installed next to any older versions already installed. Sites created in earlier versions can be opened in Visual Studio 2017 and continue to open in previous versions.
 
@@ -154,7 +154,7 @@ Note the following about Visual Studio:
 
 ## Download the sample application
 
-After installing the prerequisites, you're ready to begin creating the Web project presented in this tutorial series. To run the sample application this tutorial series creates, you can download it from the MSDN Samples site:
+After installing the prerequisites, you're ready to begin creating the Web project presented in this tutorial series. To run the sample application prior to this, you can download it from the MSDN Samples site:
 
 [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) 
 
@@ -176,17 +176,17 @@ To run the completed project, open the *WingtipToys* folder and double-click the
 
 ## Take a ASP.NET Web Forms quiz to review content
 
-After completing the tutorial series, take a quiz to test your knowledge and reinforce key concepts. The quiz specifically addresses tutorial series content. Each question provides an explanation and links to additional guidance.
+After completing the tutorial series, take a quiz to test your knowledge and reinforce key concepts. Each question provides an explanation and links to additional guidance.
 
  * [ASP.NET Web Forms Quiz](https://blogs.msdn.microsoft.com/erikreitan/2016/01/08/asp-net-web-forms-quiz/) 
 
 ## Tutorial support and comments
 
-For questions and comments, use the Q and A section included with the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample.
+For questions and comments, use the Q and A section included on the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample page.
 
 Comments on this tutorial series are welcome. When this tutorial series is updated, every effort is made to consider corrections or suggestions for improvements.
 
-If an error occurs, the corresponding error messages could be confusing with no good explanation on how to fix it. For help, you can check the [ASP.NET forums](https://forums.asp.net/). Another good source is the Q and A section in the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample. 
+If an error occurs, the corresponding error messages could be confusing, with no good explanation on how to fix it. For help, you can check the [ASP.NET forums](https://forums.asp.net/). Another good source is the Q and A section in the [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) sample page. 
 
 > [!div class="step-by-step"]
 > [Next](create-the-project.md)
