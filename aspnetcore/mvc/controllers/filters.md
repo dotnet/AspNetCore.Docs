@@ -231,6 +231,7 @@ When using `TypeFilterAttribute`, setting `IsReusable` is a hint that the filter
 The following example demonstrates how to pass arguments to a type using `TypeFilterAttribute`:
 
 [!code-csharp[](../../mvc/controllers/filters/sample/src/FiltersSample/Controllers/HomeController.cs?name=snippet_TypeFilter&highlight=1,2)]
+[!code-csharp[](../../mvc/controllers/filters/sample/src/FiltersSample/Filters/LogConstantFilter.cs?name=snippet_TypeFilter_Implementation&highlight=6)]
 
 ### IFilterFactory implemented on your attribute
 
