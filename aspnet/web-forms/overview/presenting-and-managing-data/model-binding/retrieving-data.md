@@ -50,9 +50,11 @@ In this tutorial, you:
 
    ![select web forms](retrieving-data/_static/image3.png)
 
-3. Select the **Web Forms** template. If necessary, change the authentication to **Individual User Accounts**. 
+3. Select the **Web Forms** template. 
 
-4. Select **OK** to create the project.
+4. If necessary, change the authentication to **Individual User Accounts**. 
+
+5. Select **OK** to create the project.
 
 ## Modify site appearance
 
@@ -72,7 +74,7 @@ In this tutorial, you:
 
    4. Save and close Site.Master.
 
-## Create a web form to display student data
+## Add a web form to display student data
 
    1. In **Solution Explorer**, right-click your project, select **Add** and then **New Item**. Select the **Web Form with Master Page** template, and name it **Students.aspx**.
 
@@ -80,7 +82,7 @@ In this tutorial, you:
 
    2. Select **Add**, and then, for the web form's master page, select **Site.Master**.
 
-## Create the data model
+## Add the data model
 
 In the **Models** folder, add a class named **UniversityModels.cs**.
 
@@ -102,7 +104,7 @@ In the **Models** folder, add a class named **UniversityModels.cs**.
 
    4. Save UniversityModels.cs.
 
-## Use Code First Migrations to set up a database based on classes
+## Set up the database based on classes
 
 This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/migrations/) to create objects and database tables. These tables store information about the students and their courses.
 
@@ -117,7 +119,7 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
       Notice that a file named *Configuration.cs* has been created. The `Configuration` class has a `Seed` method, which you can use to pre-populate the database tables with test data.
 
-## Pre-populate the database tables with test data
+## Pre-populate the database
 
    1. Add the following code to the `Seed` method. Also, add a `using` statement for the `ContosoUniversityModelBinding. Models` namespace.
 
@@ -127,11 +129,11 @@ This tutorial uses [Code First Migrations](https://docs.microsoft.com/en-us/ef/e
 
    3. In the Package Manager Console, run the command **add-migration initial**.
 
-   4. Then, run the command **update-database**.
+   4. Run the command **update-database**.
 
       If you receive an exception when running this command, the `StudentID` and `CourseID` values might be different from the `Seed` method values. Open those database tables and find existing values for `StudentID` and `CourseID`. Add those values to the code for seeding the `Enrollments` table.
 
-## Add a **GridView** control to display data in columns and rows
+## Add a GridView control
 
 With populated database data, you're now ready to retrieve that data and display it. 
 
@@ -154,15 +156,15 @@ With populated database data, you're now ready to retrieve that data and display
 
       [!code-csharp[Main](retrieving-data/samples/sample7.cs)]
 
-   2. Then, add the method you specified for `SelectMethod`:
+   2. Add the method you specified for `SelectMethod`:
 
       [!code-csharp[Main](retrieving-data/samples/sample8.cs)]
 
-      The `Include` clause improves query performance but isn't required. Without the `Include` clause, the data is retrieved using [*lazy loading*](https://en.wikipedia.org/wiki/Lazy_loading), which involves sending a separate query to the database each time related data is retrieved. With the `Include` clause, data is retrieved using *eager loading*, which means a single database query retrieves all related data. If related data isn't used, eager loading is less efficient because more data is retrieved. However, in this case, eager loading gives you the best performance because the related data is displayed for each record.
+The `Include` clause improves query performance but isn't required. Without the `Include` clause, the data is retrieved using [*lazy loading*](https://en.wikipedia.org/wiki/Lazy_loading), which involves sending a separate query to the database each time related data is retrieved. With the `Include` clause, data is retrieved using *eager loading*, which means a single database query retrieves all related data. If related data isn't used, eager loading is less efficient because more data is retrieved. However, in this case, eager loading gives you the best performance because the related data is displayed for each record.
 
-     For more information about performance considerations when loading related data, see the **Lazy, Eager, and Explicit Loading of Related Data** section in the [Reading Related Data with the Entity Framework in an ASP.NET MVC Application](../../../../mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md) article.
+For more information about performance considerations when loading related data, see the **Lazy, Eager, and Explicit Loading of Related Data** section in the [Reading Related Data with the Entity Framework in an ASP.NET MVC Application](../../../../mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md) article.
 
-     By default, the data is sorted by the values of the property marked as the key. You can add an `OrderBy` clause to specify a different sort value. In this example, the default `StudentID` property is used for sorting. In the [Sorting, Paging, and Filtering Data](sorting-paging-and-filtering-data.md) article, the user is enabled to select a column for sorting.
+ By default, the data is sorted by the values of the property marked as the key. You can add an `OrderBy` clause to specify a different sort value. In this example, the default `StudentID` property is used for sorting. In the [Sorting, Paging, and Filtering Data](sorting-paging-and-filtering-data.md) article, the user is enabled to select a column for sorting.
 
 ## Run your application 
 
