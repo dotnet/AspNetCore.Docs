@@ -30,12 +30,12 @@ ASP.NET Core 2.0 follows the [Identity](/aspnet/identity/index) principle introd
 
 The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a new ASP.NET Core 2.0 app. Follow these steps in Visual Studio 2017:
 
-* Select **File** > **New** > **Project**.
-* Create a new **ASP.NET Core Web Application** project named *CoreIdentitySample*.
-* Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application**. This template produces a [Razor Pages](xref:razor-pages/index) app. Before clicking **OK**, click **Change Authentication**.
-* Choose **Individual User Accounts** for the Identity templates. Finally, click **OK**, then **OK**. Visual Studio creates a project using the ASP.NET Core Identity template.
-* Select **Tools** > **NuGet Package Manager** > **Package Manager Console** to open the **Package Manager Console** (PMC) window.
-* Navigate to the project root in PMC, and run the [Entity Framework (EF) Core](/ef/core) `Update-Database` command.
+1. Select **File** > **New** > **Project**.
+1. Create a new **ASP.NET Core Web Application** project named *CoreIdentitySample*.
+1. Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application**. This template produces a [Razor Pages](xref:razor-pages/index) app. Before clicking **OK**, click **Change Authentication**.
+1. Choose **Individual User Accounts** for the Identity templates. Finally, click **OK**, then **OK**. Visual Studio creates a project using the ASP.NET Core Identity template.
+1. Select **Tools** > **NuGet Package Manager** > **Package Manager Console** to open the **Package Manager Console** (PMC) window.
+1. Navigate to the project root in PMC, and run the [Entity Framework (EF) Core](/ef/core) `Update-Database` command.
 
     ASP.NET Core 2.0 Identity uses EF Core to interact with the database storing the authentication data. In order for the newly created app to work, there needs to be a database to store this data. After creating a new app, the fastest way to inspect the schema in a database environment is to create the database using [EF Core Migrations](/ef/core/managing-schemas/migrations/). This process creates a database, either locally or elsewhere, which mimics that schema. Review the preceding documentation for more information.
 
@@ -48,11 +48,11 @@ The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a 
       }
     }
     ```
-* Select **View** > **SQL Server Object Explorer**. Expand the node corresponding to the database name specified in the `ConnectionStrings:DefaultConnection` property of *appsettings.json*.
+1. Select **View** > **SQL Server Object Explorer**. Expand the node corresponding to the database name specified in the `ConnectionStrings:DefaultConnection` property of *appsettings.json*.
 
     The `Update-Database` command created the database specified with the schema and any data needed for app initialization. The following image depicts the table structure that's created with the preceding steps.
 
-       ![Identity Tables](identity/_static/identity-tables.png)
+    ![Identity Tables](identity/_static/identity-tables.png)
 
 ## Migrate the schema
 
