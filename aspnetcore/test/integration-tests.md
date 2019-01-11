@@ -167,9 +167,9 @@ The `SendAsync` helper extension methods (*Helpers/HttpClientExtensions.cs*) and
 
 * `GetDocumentAsync` &ndash; Receives the [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) and returns an `IHtmlDocument`. `GetDocumentAsync` uses a factory that prepares a *virtual response* based on the original `HttpResponseMessage`. For more information, see the [AngleSharp documentation](https://github.com/AngleSharp/AngleSharp#documentation).
 * `SendAsync` extension methods for the `HttpClient` compose an [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) and call [SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) to submit requests to the SUT. Overloads for `SendAsync` accept the HTML form (`IHtmlFormElement`) and the following:
-  - Submit button of the form (`IHtmlElement`)
-  - Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
-  - Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)
+  * Submit button of the form (`IHtmlElement`)
+  * Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
+  * Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)
 
 > [!NOTE]
 > [AngleSharp](https://anglesharp.github.io/) is a third-party parsing library used for demonstration purposes in this topic and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](http://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly.
