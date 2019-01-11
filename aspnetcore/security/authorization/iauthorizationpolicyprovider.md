@@ -19,7 +19,7 @@ Examples of scenarios where a custom [IAuthorizationPolicyProvider](/dotnet/api/
 * Using a large range of policies (for different room numbers or ages, for example), so it doesn’t make sense to add each individual authorization policy with an `AuthorizationOptions.AddPolicy` call.
 * Creating policies at runtime based on information in an external data source (like a database) or determining authorization requirements dynamically through another mechanism.
 
-[View or download sample code](https://github.com/aspnet/AuthSamples/tree/master/samples/CustomPolicyProvider) from the [aspnet/AuthSamples GitHub repository](https://github.com/aspnet/AuthSamples). Download the aspnet/AuthSamples repository ZIP file.
+[View or download sample code](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/AuthSamples/) from the [AspNetCore GitHub repository](https://github.com/aspnet/AspNetCore). Download the aspnet/AuthSamples repository ZIP file.
 Unzip the *AuthSamples-master.zip* file. Navigate to the *samples/CustomPolicyProvider* project folder.
 
 ## Customize policy retrieval
