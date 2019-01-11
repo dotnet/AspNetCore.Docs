@@ -11,7 +11,6 @@ msc.type: authoredcontent
 ---
 Using Web API 2 with Entity Framework 6
 ====================
-by [Mike Wasson](https://github.com/MikeWasson)
 
 [Download Completed Project](https://github.com/MikeWasson/BookService)
 
@@ -20,7 +19,7 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > ## Software versions used in the tutorial
 >
 > - Web API 2.1
-> - Visual Studio 2013 (download Visual Studio 2017 [here](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017))
+> - Visual Studio 2017 (download Visual Studio 2017 [here](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017))
 > - Entity Framework 6
 > - .NET 4.5
 > - [Knockout.js](http://knockoutjs.com/) 3.1
@@ -55,27 +54,28 @@ You need an Azure account to deploy this solution to Azure. If you do not alread
 
 Open Visual Studio. From the **File** menu, select **New**, then select **Project**. (Or click **New Project** on the Start page.)
 
-In the **New Project** dialog, click **Web** in the left pane and **ASP.NET Web Application** in the middle pane. Name the project BookService and click **OK**.
+In the **New Project** dialog, click **Web** in the left pane and **ASP.NET Web Application (.NET Framework)** in the middle pane. Name the project BookService and click **OK**.
 
-[![](part-1/_static/image4.png)](part-1/_static/image3.png)
+[![](part-1/_static/image11.png)](part-1/_static/image11.png)
 
 In the **New ASP.NET Project** dialog, select the **Web API** template.
 
-[![](part-1/_static/image6.png)](part-1/_static/image5.png)
+[![](part-1/_static/image12.png)](part-1/_static/image12.png)
 
-If you want to host the project in a Azure App Service, leave the **Host in the cloud** box checked.
 
 Click **OK** to create the project.
 
 ## Configure Azure Settings (Optional)
 
-If you left the **Host in Cloud** option checked, Visual Studio will prompt you to sign in to Microsoft Azure
+After you create the project, in the dialog box that appears, select **Publish** from the left-side navigation. In the next dialog box that appears, select **Start**. The **Pick a publish target** dialog box appears.
 
-[![](part-1/_static/image8.png)](part-1/_static/image7.png)
+[![](part-1/_static/image14.png)](part-1/_static/image14.png)
 
-After you sign in to Azure, Visual Studio prompts you to configure the web app. Enter a name for the site, select your Azure subscription, and select a geographical region. Under **Database server**, select **Create new server**. Enter an administrator username and password.
+Accept the defaults (as shown) and select **Create Profile**. The **Create App Service** dialog box appears.
 
-[![](part-1/_static/image10.png)](part-1/_static/image9.png)
+[![](part-1/_static/image15.png)](part-1/_static/image15.png)
+
+Accept the defaults, or enter different values. Click **Create** when you are done.
 
 > [!div class="step-by-step"]
 > [Next](part-2.md)
