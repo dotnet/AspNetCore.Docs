@@ -1,34 +1,44 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application
-title: "Implementing Basic CRUD Functionality with the Entity Framework in ASP.NET MVC Application | Microsoft Docs"
+title: "Tutorial: Implement CRUD Functionality with the Entity Framework in ASP.NET MVC | Microsoft Docs"
+description: "Review and customize the create, read, update, delete (CRUD) code that the MVC scaffolding automatically creates in controllers and views."
 author: tdykstra
-description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: riande
-ms.date: 10/05/2015
+ms.date: 01/11/2019
+ms.topic: tutorial
 ms.assetid: a2f70ba4-83d1-4002-9255-24732726c4f2
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-Implementing Basic CRUD Functionality with the Entity Framework in ASP.NET MVC Application
-====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+# Tutorial: Implement CRUD Functionality with the Entity Framework in ASP.NET MVC
 
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
-In the previous tutorial, you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial, you'll review and customize the create, read, update, delete (CRUD) code that the MVC scaffolding automatically creates for you in controllers and views.
+In the [previous tutorial](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md), you created an MVC application that stores and displays data using the Entity Framework (EF) 6 and SQL Server LocalDB. In this tutorial, you review and customize the create, read, update, delete (CRUD) code that the MVC scaffolding automatically creates for you in controllers and views.
 
 > [!NOTE]
-> It's a common practice to implement the repository pattern in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use the Entity Framework itself, they don't use repositories. For information about how to implement repositories, see the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
+> It's a common practice to implement the repository pattern in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use EF 6 itself, they don't use repositories. For info about how to implement repositories, see the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-In this tutorial, you'll create the following web pages:
+Here are examples of the web pages you create:
 
-![Student_Details_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image1.png)
+![A screenshot of the student details page.](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image1.png)
 
-![Student_Edit_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image2.png)
+![A screenshot of the student create page.](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image2.png)
 
-![Student_delete_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image3.png)
+![A screenshot ot the student delete page.](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image3.png)
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Create a Details page
+> * Update the Create page
+> * Update the HttpPost Edit method
+> * Update the Delete page
+> * Close database connections
+> * Handle transactions
+
+## Prerequisites
+
+* [Create the Entity Framework Data Model](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)
 
 ## Create a Details page
 
@@ -80,9 +90,7 @@ In the following code, `courseID` doesn't match a parameter in the default route
 
 3. Open the Details page by starting the program (**Ctrl**+**F5**), selecting the **Students** tab, and then clicking the **Details** link for Alexander Carson. (If you press **Ctrl**+**F5** while the *Details.cshtml* file is open, you get an HTTP 400 error. This is because Visual Studio tries to run the Details page, but it wasn't reached from a link that specifies the student to display. If that happens, remove "Student/Details" from the URL and try again, or, close the browser, right-click the project, and click **View** > **View in Browser**.)
 
-    You see the list of courses and grades for the selected student:
-
-    ![Student_Details_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image4.png)
+    You see the list of courses and grades for the selected student.
 
 4. Close the browser.
 
@@ -130,19 +138,15 @@ In the following code, `courseID` doesn't match a parameter in the default route
 
 3. Enter names and an invalid date and click **Create** to see the error message.
 
-    ![Students_Create_page_error_message](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image6.png)
-
     This is server-side validation that you get by default. In a later tutorial, you'll see how to add attributes that generate code for client-side validation. The following highlighted code shows the model validation check in the **Create** method.
 
     [!code-csharp[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample10.cs?highlight=1)]
 
 4. Change the date to a valid value and click **Create** to see the new student appear in the **Index** page.
 
-    ![Students_Index_page_with_new_student](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image7.png)
-
 5. Close the browser.
 
-## Update the Edit HttpPost method
+## Update HttpPost Edit method
 
 1. Replace the <xref:System.Web.Mvc.HttpPostAttribute> `Edit` action method with the following code:
 
@@ -183,11 +187,7 @@ In the following code, `courseID` doesn't match a parameter in the default route
 
 2. Run the page by starting the program, selecting the **Students** tab, and then clicking an **Edit** hyperlink.
 
-   ![Student_Edit_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image8.png)
-
 3. Change some of the data and click **Save**. You see the changed data in the Index page.
-
-   ![Students_Index_page_after_edit](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image9.png)
 
 4. Close the browser.
 
@@ -223,9 +223,7 @@ You'll add a `try-catch` block to the <xref:System.Web.Mvc.HttpPostAttribute> `D
 
     [!code-cshtml[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample15.cshtml?highlight=2)]
 
-4. Run the page by starting the program, selecting the **Students** tab, and then clicking a **Delete** hyperlink:
-
-    ![Student_Delete_page](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/_static/image10.png)
+4. Run the page by starting the program, selecting the **Students** tab, and then clicking a **Delete** hyperlink.
 
 5. Choose **Delete** on the page that says **Are you sure you want to delete this?**.
 
@@ -243,16 +241,24 @@ The base `Controller` class already implements the `IDisposable` interface, so t
 
 By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control&mdash;for example, if you want to include operations done outside of Entity Framework in a transaction&mdash;see [Working with Transactions](/ef/ef6/saving/transactions).
 
-## Summary
+## Additional resources
 
-You now have a complete set of pages that perform simple CRUD operations for `Student` entities. You used MVC helpers to generate UI elements for data fields. For more information about MVC helpers, see [Rendering a Form Using HTML Helpers](/previous-versions/aspnet/dd410596(v=vs.98)) (the article is for MVC 3 but is still relevant for MVC 5).
+You now have a complete set of pages that perform simple CRUD operations for `Student` entities. You used MVC helpers to generate UI elements for data fields. For more info about MVC helpers, see [Rendering a Form Using HTML Helpers](/previous-versions/aspnet/dd410596(v=vs.98)) (the article is for MVC 3 but is still relevant for MVC 5).
 
-In the next tutorial, you'll expand the functionality of the Index page by adding sorting and paging.
+Links to other EF 6 resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-Please leave feedback on how you liked this tutorial and what we could improve.
+## Next steps
 
-Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
+In this tutorial, you:
 
-> [!div class="step-by-step"]
-> [Previous](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)
-> [Next](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+> [!div class="checklist"]
+> * Created a Details page
+> * Updated the Create page
+> * Updated the HttpPost Edit method
+> * Updated the Delete page
+> * Closed database connections
+> * Handled transactions
+
+Advance to the next article to learn how to add sorting, filtering, and paging to the project.
+> [!div class="nextstepaction"]
+> [Sorting, Filtering, and Paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
