@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 01/11/2019
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -108,7 +108,7 @@ These prerequisites can be seen in the [sample app](https://github.com/aspnet/Do
 
 [WebApplicationFactory&lt;TEntryPoint&gt;](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) is used to create a [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
 
-Test classes implement a *class fixture* interface ([`IClassFixture`](https://xunit.github.io/docs/shared-context)) to indicate the class contains tests and provide shared object instances across the tests in the class.
+Test classes implement a *class fixture* interface ([IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)) to indicate the class contains tests and provide shared object instances across the tests in the class.
 
 ### Basic test of app endpoints
 
