@@ -11,11 +11,10 @@ msc.type: authoredcontent
 ---
 Retrieving and displaying data with model binding and web forms
 ====================
-by [Tom FitzMacken](https://github.com/tfitzmac)
 
-> This tutorial series demonstrates basic model binding in an ASP.NET Web Forms project. With model binding, data interaction is more straight-forward and easier than dealing with data source objects, such as [ObjectDataSource](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.objectdatasource?view=netframework-4.7.2) or [SqlDataSource](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.sqldatasource?view=netframework-4.7.2). This series starts with introductory material and moves to more advanced concepts.
+> This tutorial series demonstrates basic aspects of using model binding with an ASP.NET Web Forms project. Model binding makes data interaction more straight-forward than dealing with data source objects (such as ObjectDataSource or SqlDataSource). This series starts with introductory material and moves to more advanced concepts in later tutorials.
 > 
-> Although this tutorial uses model binding with Entity Framework, you could use it with any data access technology. From a data-bound server control, such as a [GridView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.gridview?view=netframework-4.7.2), [ListView](https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.listview?view=netframework-4.7.2), [DetailsView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.detailsview?view=netframework-4.7.2), or [FormView](https://docs.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.formview?view=netframework-4.7.2) control, you can specify methods for selecting, updating, deleting, and creating data. In this tutorial, you specify a `SelectMethod`, which provides retrieving data logic. In the next tutorial, you set values for `UpdateMethod`, `DeleteMethod` and `InsertMethod`.
+>  The model binding pattern works with any data access technology. In this tutorial, you will use Entity Framework, but you could use the data access technology that is most familiar to you. From a data-bound server control, such as a GridView, ListView, DetailsView, or FormView control, you specify the names of the methods to use for selecting, updating, deleting, and creating data. In this tutorial, you will specify a value for the SelectMethod. 
 > 
 > You can [download](https://go.microsoft.com/fwlink/?LinkId=286116) the complete project in C# or Visual Basic. The downloadable code works with Visual Studio 2012 and later. It uses the Visual Studio 2012 template, which is slightly different than the Visual Studio 2017 template shown in this tutorial.
 > 
@@ -24,18 +23,16 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > 
 > ## Software versions used in the tutorial
 > 
-> 
 > - Microsoft Visual Studio 2017 or Microsoft Visual Studio Community 2017
 >   
-> 
-> This tutorial also works with Visual Studio 2012, but there are some differences in the user interface and project template.
+> This tutorial also works with Visual Studio 2012 and Visual Studio 2013, but there are some differences in the user interface and project template.
 
 
 ## What you'll build
 
-In this tutorial, you:
+In this tutorial, you'll:
 
-* Build data objects for a university's students and their courses
+* Build data objects that reflect a university with students enrolled in courses
 * Build database tables from the objects
 * Populate the database with test data
 * Display data in a web form
@@ -193,7 +190,7 @@ Run your web application (**F5**) and navigate to the **Students** page, which d
 
 ## Automatic generation of model binding methods
 
-In this tutorial series, you can copy tutorial code to your project, but there's also a Visual Studio feature to automatically generate code for model binding methods. This feature can save you time and help you gain a sense of operation implementation. It's described here, though it's only informational and doesn't have any code you need to implement in your project.
+When working through this tutorial series, you can simply copy the code from the tutorial to your project. However, one disadvantage of this approach is that you may not become aware of the feature provided by Visual Studio to automatically generate code for model binding methods. When working on your own projects, automatic code generation can save you time and help you gain a sense of how to implement an operation. This section describes the automatic code generation feature. This section is only informational and does not contain any code you need to implement in your project. 
 
 When setting a value for the `SelectMethod`, `UpdateMethod`, `InsertMethod`, or `DeleteMethod` properties in the markup code, you can select the **Create New Method** option.
 
@@ -207,13 +204,7 @@ Again, this code doesn't need to be added to your project. In the next tutorial,
 
 ## Summary
 
-In this tutorial, you:
-
-1. Created data model classes and generated a database from those classes 
-
-2. Filled the database tables with test data
-
-3. Used model binding to retrieve data from the database and display it in a GridView.
+In this tutorial, you created data model classes and generated a database from those classes. You filled the database tables with test data. You used model binding to retrieve data from the database, and then displayed the data in a GridView.
 
 In the next [tutorial](updating-deleting-and-creating-data.md) in this series, you'll enable updating, deleting, and creating data.
 
