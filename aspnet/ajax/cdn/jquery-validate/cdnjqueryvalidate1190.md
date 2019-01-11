@@ -5,7 +5,6 @@ author: guardrex
 description: ""
 ms.author: chrissfanos
 ms.date: 01/10/2019
-ms.assetid: f038f3d6-daad-43de-8514-d2483c7e6609
 msc.type: content
 ---
 jQuery Validation 1.19.0
