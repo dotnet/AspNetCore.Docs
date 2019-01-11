@@ -106,41 +106,6 @@ namespace RazorPagesProject.Tests
         }
         #endregion
 
-        #region snippet6
-        [Fact]
-        public async Task Post_AddMessageHandler_ReturnsRedirectToRootAndAddsMessage()
-        {
-            // Arrange
-            var defaultPage = await _client.GetAsync("/");
-            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
-            var messageText = "Test message to add.";
-
-            // Act
-            var response = await _client.SendAsync(
-                (IHtmlFormElement)content.QuerySelector("form[id='addMessage']"),
-                (IHtmlButtonElement)content.QuerySelector("button[id='addMessageBtn']"),
-                new Dictionary<string, string> {
-                    ["Message.Text"] = messageText
-                });
-
-            // Make another request to the Index page because the client
-            // for these tests is configured not to follow redirects.
-            defaultPage = await _client.GetAsync("/");
-            content = await HtmlHelpers.GetDocumentAsync(defaultPage);
-            var messageListItems = 
-                content.QuerySelector("form[id='messages']")
-                       .QuerySelector("ul")
-                       .QuerySelectorAll("li");
-
-            // Assert
-            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-            Assert.Equal("/", response.Headers.Location.OriginalString);
-            Assert.Contains(messageListItems, 
-                m => m.InnerHtml.Contains("Test message to add."));
-        }
-        #endregion
-
         [Fact]
         public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMissingMessageText()
         {
