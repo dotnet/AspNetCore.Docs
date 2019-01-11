@@ -21,7 +21,7 @@ Using Web API 2 with Entity Framework 6
 > - Web API 2.1
 > - Visual Studio 2017 (download Visual Studio 2017 [here](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017))
 > - Entity Framework 6
-> - .NET 4.5
+> - .NET 4.7
 > - [Knockout.js](http://knockoutjs.com/) 3.1
 
 This tutorial uses ASP.NET Web API 2 with Entity Framework 6 to create a web application that manipulates a back-end database. Here is a screen shot of the application that you will create.
