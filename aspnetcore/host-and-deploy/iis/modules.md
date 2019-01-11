@@ -4,7 +4,7 @@ author: guardrex
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 01/11/2019
 uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
@@ -115,6 +115,18 @@ If opting to remove a module with a setting in *web.config*, unlock the module a
       </modules>
     </system.webServer>
    </configuration>
+   ```
+   
+In order to manipulate modules for IIS Express using *web.config*, you must modify *applicationHost.config* to unlock the `<modules>` section:
+
+1. Navigate to *%USERPROFILE%\Documents\IISExpress\config* and open the *applicationhost.config* file.
+
+1. Locate the `<section>` element for IIS modules and change `overrideModeDefault` from `Deny` to `Allow`:
+
+   ```xml
+   <section name="modules" 
+            allowDefinition="MachineToApplication" 
+            overrideModeDefault="Allow" />
    ```
 
 An IIS module can also be removed with *Appcmd.exe*. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command:
