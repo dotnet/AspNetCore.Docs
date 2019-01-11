@@ -11,17 +11,14 @@ msc.type: authoredcontent
 ---
 Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2017
 ====================
-by [Erik Reitan](https://github.com/Erikre)
 
 [Download Wingtip Toys Sample Project (C#)](http://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) or [Download E-book (PDF)](http://download.microsoft.com/download/0/F/B/0FBFAA46-2BFD-478F-8E56-7BF3C672DF9D/Getting%20Started%20with%20ASP.NET%204.5%20Web%20Forms%20and%20Visual%20Studio%202013.pdf)
 
-This tutorial series teaches you how to build an ASP.NET Web Forms application with ASP.NET 4.5 and Microsoft Visual Studio 2017. 
+This tutorial series shows you how to build an ASP.NET Web Forms application with ASP.NET 4.5 and Microsoft Visual Studio 2017. 
 
 ## Introduction
 
 This tutorial series guides you through creating an ASP.NET Web Forms application using Visual Studio 2017 and ASP.NET 4.5. You'll create an application named **Wingtip Toys** - a simplified storefront web site selling items online. During the series, new ASP.NET 4.5 features are highlighted.
-
-Comments are welcome, and every effort is made to make updates based on your suggestions.
 
 ### Target audience
 
@@ -147,14 +144,15 @@ Note the following about Visual Studio:
 
 * Microsoft Visual Studio 2017 and Microsoft Visual Studio Community 2017 are referred to as *Visual Studio* throughout this tutorial series.
 
-* Visual Studio 2017 gets installed next to any older versions already installed. Sites created in earlier versions can be opened in Visual Studio 2017 and continue to open in previous versions.
+* Visual Studio 2017 is installed next to any older versions already installed. Sites created in earlier versions can be opened in Visual Studio 2017 and continue to open in previous versions.
 
-* It is assumed that the first time you started Visual Studio you selected the *Web Development* settings. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
+* The first time you started Visual Studio, it is assumed you selected the *Web Development* settings. For more information, see [How to: Select Web Development Environment Settings](https://msdn.microsoft.com/library/ff521558.aspx).
 
+After installing the prerequisites, you're ready to begin creating the Web project presented in this tutorial series.
 
 ## Download the sample application
 
-After installing the prerequisites, you're ready to begin creating the Web project presented in this tutorial series. To run the sample application prior to this, you can download it from the MSDN Samples site:
+ You can download the completed sample applicatiion at anytime from the MSDN Samples site:
 
 [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 - Wingtip Toys](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) (C#) 
 
