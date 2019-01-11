@@ -67,7 +67,7 @@ Click **OK** to create the project.
 
 ## Configure Azure Settings (Optional)
 
-After you create the project, in the dialog box that appears, select **Publish** from the left-side navigation. In the next dialog box that appears, select **Start**. The **Pick a publish target** dialog box appears.
+After you create the project, in the dialog box that appears, select **Publish** from the left-side navigation. In the next dialog box, select **Start**. The **Pick a publish target** dialog box appears.
 
 [![](part-1/_static/image14.png)](part-1/_static/image14.png)
 
@@ -76,6 +76,8 @@ Accept the defaults (as shown) and select **Create Profile**. The **Create App S
 [![](part-1/_static/image15.png)](part-1/_static/image15.png)
 
 Accept the defaults, or enter different values. Click **Create** when you are done.
+
+To use this profile to deploy and run your application, in **Solution Explorer**, right-click on your solution, select **Publish**. The **Publish** dialog box appears. Select **Publish** to deploy and run your application.
 
 > [!div class="step-by-step"]
 > [Next](part-2.md)
