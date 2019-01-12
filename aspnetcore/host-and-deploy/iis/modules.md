@@ -135,7 +135,7 @@ In order to manipulate modules for IIS Express using *web.config*, you must modi
    <add name="CgiModule" lockItem="false" />
    ```
    
-1. After the `<modules>` section and individual modules are unlocked, you're free to manipulate the modules in the app's local *web.config* file in Visual Studio for IIS Express.
+1. After the `<modules>` section and individual modules are unlocked, you're free to manipulate the modules in the app's local *web.config* file for IIS Express invoked by Visual Studio.
 
 An IIS module can also be removed with *Appcmd.exe*. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command:
 
