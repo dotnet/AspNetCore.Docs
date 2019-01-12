@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 01/12/2018
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -536,7 +536,7 @@ The Hosting Bundle installer logs for the module are found at *C:\\Users\\%UserN
 
 **IIS Express**
 
-   * %ProgramFiles%\IIS Express\config\templates\PersonalWebServer\applicationHost.config
+   * {APPLICATION ROOT}\\.vs\config\applicationHost.config
 
 The files can be found by searching for *aspnetcore* in the *applicationHost.config* file.
 
