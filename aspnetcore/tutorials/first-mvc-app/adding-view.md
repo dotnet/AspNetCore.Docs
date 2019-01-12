@@ -81,9 +81,9 @@ Select the menu links (**MvcMovie**, **Home**, and **Privacy**). Each page shows
 
 [Layout](xref:mvc/views/layout) templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-specific pages you create show up, *wrapped* in the layout page. For example, if you select the **Privacy** link, the **Views/Home/Privacy.cshtml** view is rendered inside the `RenderBody` method.
 
-## Change the title and menu link in the layout file
+## Change the title, footer, and menu link in the layout file
 
-* In the title element, change `MvcMovie` to `Movie App`.
+* In the title and footer elements, change `MvcMovie` to `Movie App`.
 * Change the anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
 The following markup shows the highlighted changes:
