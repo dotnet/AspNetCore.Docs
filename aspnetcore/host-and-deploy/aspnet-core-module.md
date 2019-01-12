@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/12/2018
+ms.date: 01/11/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -38,6 +38,8 @@ To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` p
   <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
 </PropertyGroup>
 ```
+
+The in-process hosting model isn't supported for ASP.NET Core apps that target the .NET Framework.
 
 If the `<AspNetCoreHostingModel>` property isn't present in the file, the default value is `OutOfProcess`.
 
