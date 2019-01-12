@@ -129,7 +129,7 @@ In order to manipulate modules for IIS Express using *web.config*, you must modi
             overrideModeDefault="Allow" />
    ```
    
-1. Locate the `<location path="" overrideMode="Allow"><system.webServer><modules>` section. For any modules that you wish to remove, set `lockItem` from `true` to `false`. In the following example, the CgiModule is unlocked:
+1. Locate the `<location path="" overrideMode="Allow"><system.webServer><modules>` section. For any modules that you wish to remove, set `lockItem` from `true` to `false`. In the following example, the CGI Module is unlocked:
 
    ```xml
    <add name="CgiModule" lockItem="false" />
