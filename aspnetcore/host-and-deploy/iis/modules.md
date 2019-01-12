@@ -119,7 +119,7 @@ If opting to remove a module with a setting in *web.config*, unlock the module a
    
 In order to manipulate modules for IIS Express using *web.config*, you must modify *applicationHost.config* to unlock the `<modules>` section:
 
-1. Navigate to *%USERPROFILE%\Documents\IISExpress\config* and open the *applicationhost.config* file.
+1. Navigate to *{APPLICATION ROOT PATH}\\.vs\config* and open the *applicationhost.config* file.
 
 1. Locate the `<section>` element for IIS modules and change `overrideModeDefault` from `Deny` to `Allow`:
 
