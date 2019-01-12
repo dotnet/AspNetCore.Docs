@@ -1,4 +1,4 @@
-﻿#define UseOptions // or NoOptions
+﻿#define UseOptions // or NoOptions or UseOptionsAO
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Logging.Debug;
 
 namespace EchoApp
 {
@@ -20,14 +22,19 @@ namespace EchoApp
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging(builder => builder
+                .AddConsole()
+                .AddFilter<ConsoleLoggerProvider>
+                    (category: null, level: LogLevel.Debug));
+            services.AddLogging(builder => builder
+                .AddDebug()
+                .AddFilter<DebugLoggerProvider>
+                    (category: null, level: LogLevel.Debug));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(LogLevel.Debug);
-            loggerFactory.AddDebug(LogLevel.Debug);
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -40,14 +47,30 @@ namespace EchoApp
 #endif
 #if UseOptions
             #region UseWebSocketsOptions
+            var webSocketOptions = new WebSocketOptions() 
+            {
+                KeepAliveInterval = TimeSpan.FromSeconds(120),
+                ReceiveBufferSize = 4 * 1024
+            };
+
+            app.UseWebSockets(webSocketOptions);
+            #endregion
+#endif
+
+#if UseOptionsAO
+            #region UseWebSocketsOptionsAO
             var webSocketOptions = new WebSocketOptions()
             {
                 KeepAliveInterval = TimeSpan.FromSeconds(120),
                 ReceiveBufferSize = 4 * 1024
             };
+            webSocketOptions.AllowedOrigins.Add("https://client.com");
+            webSocketOptions.AllowedOrigins.Add("https://www.client.com");
+
             app.UseWebSockets(webSocketOptions);
             #endregion
 #endif
+
             #region AcceptWebSocket
             app.Use(async (context, next) =>
             {
