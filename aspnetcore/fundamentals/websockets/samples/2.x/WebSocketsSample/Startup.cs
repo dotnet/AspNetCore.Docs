@@ -25,8 +25,7 @@ namespace EchoApp
             services.AddLogging(builder => builder
                 .AddConsole()
                 .AddFilter<ConsoleLoggerProvider>
-                    (category: null, level: LogLevel.Debug));
-            services.AddLogging(builder => builder
+                    (category: null, level: LogLevel.Debug)
                 .AddDebug()
                 .AddFilter<DebugLoggerProvider>
                     (category: null, level: LogLevel.Debug));
