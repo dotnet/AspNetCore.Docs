@@ -1,6 +1,6 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Sorting, Filtering, and Paging with the Entity Framework in an ASP.NET MVC Application | Microsoft Docs"
+title: "Tutorial: Add sorting, filtering, and paging with the Entity Framework in an ASP.NET MVC application | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: riande
@@ -9,21 +9,28 @@ ms.assetid: d5723e46-41fe-4d09-850a-e03b9e285bfa
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-# Sorting, filtering, and paging with the Entity Framework in an ASP.NET MVC application
 
-by [Tom Dykstra](https://github.com/tdykstra)
+# Tutorial: Add sorting, filtering, and paging with the Entity Framework in an ASP.NET MVC application
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+In the [previous tutorial](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md), you implemented a set of web pages for basic CRUD operations for `Student` entities. In this tutorial you'll add sorting, filtering, and paging functionality to the **Students** Index page. You'll also create a page that does simple grouping.
 
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
-In the previous tutorial, you implemented a set of web pages for basic CRUD operations for `Student` entities. In this tutorial you'll add sorting, filtering, and paging functionality to the **Students** Index page. You'll also create a page that does simple grouping.
-
-The following illustration shows what the page will look like when you're done. The column headings are links that the user can click to sort by that column. Clicking a column heading repeatedly toggles between ascending and descending sort order.
+The following image shows what the page will look like when you're done. The column headings are links that the user can click to sort by that column. Clicking a column heading repeatedly toggles between ascending and descending sort order.
 
 ![Students_Index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
 
-## Add column sort links to the Students index page
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Add column sort links
+> * Add a Search box
+> * Add paging
+> * Create an About page
+
+## Prerequisites
+
+* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
+
+## Add column sort links
 
 To add sorting to the Student Index page, you'll change the `Index` method of the `Student` controller and add code to the `Student` Index view.
 
@@ -70,7 +77,7 @@ As an alternative to writing different LINQ statements for each sort order, you 
 
    ![Student index view in web browser](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
 
-## Add a search box to the Students index page
+## Add a Search box
 
 To add filtering to the Students index page, you'll add a text box and a submit button to the view and make corresponding changes in the `Index` method. The text box lets you enter a string to search for in the first name and last name fields.
 
@@ -101,7 +108,7 @@ The code adds a `searchString` parameter to the `Index` method. The search strin
 
    Notice the URL doesn't contain the "an" search string, which means that if you bookmark this page, you won't get the filtered list when you use the bookmark. This applies also to the column sort links, as they will sort the whole list. You'll change the **Search** button to use query strings for filter criteria later in the tutorial.
 
-## Add paging to the Students index page
+## Add paging
 
 To add paging to the Students index page, you'll start by installing the **PagedList.Mvc** NuGet package. Then you'll make additional changes in the `Index` method and add paging links to the `Index` view. **PagedList.Mvc** is one of many good paging and sorting packages for ASP.NET MVC, and its use here is intended only as an example, not as a recommendation for it over other options. The following illustration shows the paging links.
 
@@ -197,7 +204,7 @@ The NuGet **PagedList.Mvc** package automatically installs the **PagedList** pac
 
    ![Students index page with search filter text](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
 
-## Create an About page that shows Student statistics
+## Create an About page
 
 For the Contoso University website's About page, you'll display how many students have enrolled for each enrollment date. This requires grouping and simple calculations on the groups. To accomplish this, you'll do the following:
 
@@ -251,6 +258,16 @@ Please leave feedback on how you liked this tutorial and what we could improve.
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Previous](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
-> [Next](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Add column sort links
+> * Add a Search box
+> * Add paging
+> * Create an About page
+
+Advance to the next article to learn how to use connection resiliency and command interception.
+> [!div class="nextstepaction"]
+> [Connection resiliency and command interception](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md)
