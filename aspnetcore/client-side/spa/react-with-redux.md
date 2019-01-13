@@ -13,7 +13,7 @@ uid: spa/react-with-redux
 ::: moniker range="= aspnetcore-2.0"
 
 > [!NOTE]
-> This documentation isn't about the React-with-Redux project template included in ASP.NET Core 2.0. It's about the newer React-with-Redux template to which you can update manually. The template is included in ASP.NET Core 2.1 and later.
+> This documentation doesn't pertain to the React-with-Redux project template included in ASP.NET Core 2.0. It pertains to the newer React-with-Redux template that you can update manually. The template is available in ASP.NET Core 2.1 or later.
 
 ::: moniker-end
 
