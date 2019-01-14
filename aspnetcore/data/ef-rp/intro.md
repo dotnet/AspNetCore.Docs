@@ -257,6 +257,8 @@ In the *Data* folder, create a new class file named *DbInitializer.cs* and add t
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Intro)]
 
+Note: The preceding code uses `Models` for the namespace (`namespace ContosoUniversity.Models`) rather than `Data`. `Models` is consistent with the scaffolder-generated code. For more information, see [this GitHub scaffolding issue](https://github.com/aspnet/Scaffolding/issues/822).
+
 The code checks if there are any students in the DB. If there are no students in the DB, the DB is initialized with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
 The `EnsureCreated` method automatically creates the DB for the DB context. If the DB exists, `EnsureCreated` returns without modifying the DB.

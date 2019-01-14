@@ -44,6 +44,8 @@ Conventions don't compose; each action may be associated with exactly one conven
     [ProducesResponseType(400)]
     ```
 
+For more information on `[ProducesDefaultResponseType]`, see [Default Response](https://swagger.io/docs/specification/describing-responses/#default).
+
 1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to a controller &mdash; Applies the specified convention type to all actions on the controller. A convention method is decorated with hints that determine the actions to which the convention method applies. For more information on hints, see [Create web API conventions](#create-web-api-conventions)).
 
     In the following example, the default set of conventions is applied to all actions in *ContactsConventionController*:
