@@ -49,7 +49,7 @@ To access the Application Event Log, use the **Diagnose and solve problems** bla
 1. Select **Diagnose and solve problems**.
 1. Select the **Diagnostic Tools** heading.
 1. Under **Support Tools**, select the **Application Events** button.
-1. Examine the latest error provided by the *IIS AspNetCoreModule V2* in the **Source** column.
+1. Examine the latest error provided by the *IIS AspNetCoreModule* or *IIS AspNetCoreModule V2* entry in the **Source** column.
 
 An alternative to using the **Diagnose and solve problems** blade is to examine the Application Event Log file directly using [Kudu](https://github.com/projectkudu/kudu/wiki):
 
@@ -100,6 +100,8 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 >
 > For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
+::: moniker range=">= aspnetcore-2.2"
+
 ### ASP.NET Core Module debug log
 
 The ASP.NET Core Module debug log provides additional, deeper logging from the ASP.NET Core Module. To enable and view stdout logs:
@@ -125,6 +127,8 @@ The ASP.NET Core Module debug log provides additional, deeper logging from the A
 > Failure to disable the debug log can lead to app or server failure. There's no limit on log file size. Only use debug logging to troubleshoot app startup problems.
 >
 > For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+
+::: moniker-end
 
 ## Common startup errors
 

@@ -163,7 +163,7 @@ Troubleshooting:
 
 * **Browser:** HTTP Error 500.0 - ANCM In-Process Handler Load Failure
 
-* **Application Log:** Application '{PATH}' wasn't able to start. Executable was not found at '{PATH}'. Failed to start application '/LM/W3SVC/2/ROOT', ErrorCode '0x8007023e'.
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\{PATH}\' failed to start process with commandline '"{...}" ', ErrorCode = '0x80070002 : 0. Application '{PATH}' wasn't able to start. Executable was not found at '{PATH}'. Failed to start application '/LM/W3SVC/2/ROOT', ErrorCode '0x8007023e'.
 
 * **ASP.NET Core Module stdout Log:** The log file isn't created.
 
@@ -175,7 +175,7 @@ Troubleshooting:
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\{PATH}\' failed to start process with commandline '".\{ASSEMBLY}.exe" ', ErrorCode = '0x80070002 : 0.
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' with physical root 'C:\{PATH}\' failed to start process with commandline '"{...}" ', ErrorCode = '0x80070002 : 0.
 
 * **ASP.NET Core Module stdout Log:** The log file is created but empty.
 
