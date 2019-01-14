@@ -21,7 +21,7 @@
             url: serviceUrl
         }).done(function (data) {
             $('#value1').text(data);
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).fail(function (jqXHR, textStatus, errorThrown) {
             $('#value1').text(jqXHR.responseText || textStatus);
         });
     }
