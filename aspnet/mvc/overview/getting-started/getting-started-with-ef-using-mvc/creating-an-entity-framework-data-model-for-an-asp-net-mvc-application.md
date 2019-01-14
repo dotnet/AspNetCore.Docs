@@ -14,7 +14,7 @@ msc.type: authoredcontent
 # Tutorial: Get Started with Entity Framework 6 Code First using MVC 5
 
 > [!NOTE]
-> For new development, it's recommend to use [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. For a tutorial series similar to this one using Razor Pages, see [Tutorial: Get started with Razor Pages in ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start). The new tutorial:
+> For new development, we recommend to use [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. For a tutorial series similar to this one using Razor Pages, see [Tutorial: Get started with Razor Pages in ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start). The new tutorial:
 > * Is easier to follow.
 > * Provides more EF Core best practices.
 > * Uses more efficient queries.
@@ -79,7 +79,7 @@ A few simple changes will set up the site menu, layout, and home page.
 
    [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample2.cshtml)]
 
-3. Press **Ctrl**+**F5** to run the web site. You see the home page with the main menu.
+3. Press Ctrl+F5 to run the web site. You see the home page with the main menu.
 
 ## Install Entity Framework 6
 
@@ -248,7 +248,7 @@ Now you'll create a web page to display data. The process of requesting the data
      The *Student\Index.cshtml* view displays this list in a table:
 
      [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.cshtml)]
-5. Press **Ctrl**+**F5** to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
+5. Press Ctrl+F5 to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
 
      Click the **Students** tab to see the test data that the `Seed` method inserted. Depending on how narrow your browser window is, you'll see the Student tab link in the top address bar or you'll have to click the upper right corner to see the link.
 
@@ -285,11 +285,11 @@ You've seen that conventions can be overridden. For example, you specified that 
 
 For more about EF 6, see these articles:
 
-* You can find links to other EF 6 resources in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
+* [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md)
 
-* To learn about conventions, see [Code First Conventions](/ef/ef6/modeling/code-first/conventions/built-in).
+* [Code First Conventions](/ef/ef6/modeling/code-first/conventions/built-in)
 
-* To learn how to override conventions, see [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial later in this series.
+* [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
 
 ## Next steps
 
