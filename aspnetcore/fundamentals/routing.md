@@ -494,7 +494,6 @@ The following table shows the responses with the given URIs.
 | ---------------------- | ------------------------------------------------- |
 | `/package/create/3`    | Hello! Route values: [operation, create], [id, 3] |
 | `/package/track/-3`    | Hello! Route values: [operation, track], [id, -3] |
-| `/package/track/-3/`   | Hello! Route values: [operation, track], [id, -3] |
 | `/package/track/`      | The request falls through, no match.              |
 | `GET /hello/Joe`       | Hi, Joe!                                          |
 | `POST /hello/Joe`      | The request falls through, matches HTTP GET only. |
