@@ -14,7 +14,7 @@ msc.type: authoredcontent
 # Tutorial: Get Started with Entity Framework 6 Code First using MVC 5
 
 > [!NOTE]
-> For new development, we recommend to use [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. For a tutorial series similar to this one using Razor Pages, see [Tutorial: Get started with Razor Pages in ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start). The new tutorial:
+> For new development, we recommend [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. For a tutorial series similar to this one using Razor Pages, see [Tutorial: Get started with Razor Pages in ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start). The new tutorial:
 > * Is easier to follow.
 > * Provides more EF Core best practices.
 > * Uses more efficient queries.
