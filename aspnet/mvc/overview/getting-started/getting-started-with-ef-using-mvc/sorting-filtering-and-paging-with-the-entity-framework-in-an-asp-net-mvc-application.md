@@ -11,7 +11,7 @@ msc.type: authoredcontent
 ms.topic: tutorial
 ---
 
-# Tutorial: Add sorting, filtering, and paging with the Entity Framework in an ASP.NET MVC application
+# Tutorial: Add sorting, filtering, and paging with Entity Framework in an ASP.NET MVC app
 
 In the [previous tutorial](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md), you implemented a set of web pages for basic CRUD operations for `Student` entities. In this tutorial you add sorting, filtering, and paging functionality to the **Students** Index page. You also create a simple grouping page.
 
