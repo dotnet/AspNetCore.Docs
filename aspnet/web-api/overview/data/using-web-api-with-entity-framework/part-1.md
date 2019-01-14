@@ -67,17 +67,32 @@ Click **OK** to create the project.
 
 ## Configure Azure Settings (Optional)
 
-After you create the project, in the dialog box that appears, select **Publish** from the left-side navigation. In the next dialog box, select **Start**. The **Pick a publish target** dialog box appears.
+After you create the project, you can choose to deploy to Azure App Service Web Apps at any time. 
 
-[![](part-1/_static/image14.png)](part-1/_static/image14.png)
+1. In Solution Explorer, right-click on your project and select **Publish**.
 
-Accept the defaults (as shown) and select **Create Profile**. The **Create App Service** dialog box appears.
+2. In the window that appears, select **Start**. The **Pick a publish target** dialog box appears.
 
-[![](part-1/_static/image15.png)](part-1/_static/image15.png)
+   [![](part-1/_static/image14.png)](part-1/_static/image14.png)
 
-Accept the defaults, or enter different values. Click **Create** when you are done.
+3. Select **Create Profile**. The **Create App Service** dialog box appears.
 
-To use this profile to deploy and run your application, in **Solution Explorer**, right-click on your solution, select **Publish**. The **Publish** dialog box appears. Select **Publish** to deploy and run your application.
+   [![](part-1/_static/image15.png)](part-1/_static/image15.png)
+
+   Accept the defaults, or enter different values. 
+
+4. Select **Create a SQL database**. The **Configure SQL Server** dialog box appears. 
+
+   [![](part-1/_static/image16.png)](part-1/_static/image16.png)
+
+   Accept the defaults or enter different values. Enter an **Administrator Password** for your new database. Select **OK** when you're done.
+
+5. Click **Create** to create your profile. A message appears in the lower right indicating that deployment is in progress. After a short while, the **Publish** window reappears.
+
+    [![](part-1/_static/image17.png)](part-1/_static/image17.png)
+   
+    The profile you created is now available to deploy the app. You can select **Site URL** to see your application when deployed.
+
 
 > [!div class="step-by-step"]
 > [Next](part-2.md)
