@@ -386,4 +386,5 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 
 ## Next actions
 
-To experiment with filters, [download, test and modify the sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+* See [Filter methods for Razor Pages](xref:razor-pages/filter)
+* To experiment with filters, [download, test and modify the Github sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
