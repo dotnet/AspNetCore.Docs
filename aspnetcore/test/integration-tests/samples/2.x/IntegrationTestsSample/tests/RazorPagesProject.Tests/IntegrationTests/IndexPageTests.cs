@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,10 +17,12 @@ using RazorPagesProject.Tests.Helpers;
 namespace RazorPagesProject.Tests
 {
     #region snippet1
-    public class IndexPageTests : IClassFixture<CustomWebApplicationFactory<RazorPagesProject.Startup>>
+    public class IndexPageTests : 
+        IClassFixture<CustomWebApplicationFactory<RazorPagesProject.Startup>>
     {
         private readonly HttpClient _client;
-        private readonly CustomWebApplicationFactory<RazorPagesProject.Startup> _factory;
+        private readonly CustomWebApplicationFactory<RazorPagesProject.Startup> 
+            _factory;
 
         public IndexPageTests(
             CustomWebApplicationFactory<RazorPagesProject.Startup> factory)
@@ -102,28 +105,6 @@ namespace RazorPagesProject.Tests
             Assert.Equal("/", response.Headers.Location.OriginalString);
         }
         #endregion
-
-        [Fact]
-        public async Task Post_AddMessageHandler_ReturnsRedirectToRoot()
-        {
-            // Arrange
-            var defaultPage = await _client.GetAsync("/");
-            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
-            var messageText = "Test message to add.";
-
-            // Act
-            var response = await _client.SendAsync(
-                (IHtmlFormElement)content.QuerySelector("form[id='addMessage']"),
-                (IHtmlButtonElement)content.QuerySelector("button[id='addMessageBtn']"),
-                new Dictionary<string, string> {
-                    ["Message.Text"] = messageText
-                });
-
-            // Assert
-            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-            Assert.Equal("/", response.Headers.Location.OriginalString);
-        }
 
         [Fact]
         public async Task Post_AddMessageHandler_ReturnsSuccess_WhenMissingMessageText()
