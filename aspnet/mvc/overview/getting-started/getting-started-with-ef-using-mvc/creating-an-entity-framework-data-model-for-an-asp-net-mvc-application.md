@@ -1,22 +1,20 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
-title: "Getting Started with Entity Framework 6 Code First using MVC 5 | Microsoft Docs"
+title: "Tutorial: Get Started with Entity Framework 6 Code First using MVC 5 | Microsoft Docs"
+description: "In this series of tutorials, you learn how to build an ASP.NET MVC 5 application that uses Entity Framework 6 for data access."
 author: tdykstra
 ms.author: riande
-ms.date: 12/04/2018
+ms.date: 01/10/2019
+ms.topic: tutorial
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-# Get started with Entity Framework 6 Code First using MVC 5
 
-by [Tom Dykstra](https://github.com/tdykstra)
-
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+# Tutorial: Get Started with Entity Framework 6 Code First using MVC 5
 
 > [!NOTE]
 > For new development, we recommend [ASP.NET Core Razor Pages](/aspnet/core/razor-pages) over ASP.NET MVC controllers and views. For a tutorial series similar to this one using Razor Pages, see [Tutorial: Get started with Razor Pages in ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start). The new tutorial:
->
 > * Is easier to follow.
 > * Provides more EF Core best practices.
 > * Uses more efficient queries.
@@ -24,59 +22,45 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > * Covers more features.
 > * Is the preferred approach for new application development.
 
-> This article demonstrates how to create ASP.NET MVC 5 applications using Entity Framework 6 and Visual Studio. This tutorial uses the Code First workflow. For information about how to choose between Code First, Database First, and Model First, see [Create a model](/ef/ef6/modeling/).
->
-> The sample application is a web site for a fictional university named Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This tutorial series explains how to build the Contoso University sample application. You can [download the completed application](https://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8).
->
-> A Visual Basic version translated by Mike Brind is available: [MVC 5 with EF 6 in Visual Basic](http://www.mikesdotnetting.com/Article/241/MVC-5-with-EF-6-in-Visual-Basic-Creating-an-Entity-Framework-Data-Model) on the Mikesdotnetting site.
->
-> ## Software versions used in the tutorial
->
-> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
-> - [Entity Framework 6](https://www.nuget.org/packages/EntityFramework)
-> - [Windows Azure SDK 2.2](https://go.microsoft.com/fwlink/p/?linkid=323510) (optional)
->
-> ## Tutorial versions
->
-> For previous versions of this tutorial, see [the EF 4.1 / MVC 3 e-book](https://social.technet.microsoft.com/wiki/contents/articles/11608.e-book-gallery-for-microsoft-technologies.aspx#GettingStartedwiththeEntityFramework4.1usingASP.NETMVC) and [Getting Started with EF 5 using MVC 4](../../older-versions/getting-started-with-ef-5-using-mvc-4/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
->
-> ## Questions and comments
->
-> Please leave feedback on how you liked this tutorial and what we could improve using the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET Entity Framework forum](https://forums.asp.net/1227.aspx) or [StackOverflow.com](http://stackoverflow.com/).
->
-> If you run into a problem that you can't resolve, you can generally find the solution to the problem by comparing your code to the completed project that you can download. For some common errors and how to solve them, see [Common errors, and solutions or workarounds](advanced-entity-framework-scenarios-for-an-mvc-web-application.md#errors).
+In this series of tutorials, you learn how to build an ASP.NET MVC 5 application that uses Entity Framework 6 for data access. This tutorial uses the Code First workflow. For information about how to choose between Code First, Database First, and Model First, see [Create a model](/ef/ef6/modeling/).
 
-## The Contoso University web app
-
-The application you'll build in these tutorials is a simple university web site. Users can view and update student, course, and instructor information. Here are a few of the screens you'll create:
+This tutorial series explains how to build the Contoso University sample application. The sample application is a simple university website. With it, you can view and update student, course, and instructor information. Here are two of the screens you create:
 
 ![Students_Index_page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image1.png)
 
 ![Edit Student](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image2.png)
 
-So that the tutorial can focus mainly on how to use Entity Framework, the user interface of the web site won't be changed much from what's generated by the built-in templates.
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Create an MVC web app
+> * Set up the site style
+> * Install Entity Framework 6
+> * Create the data model
+> * Create the database context
+> * Initialize DB with test data
+> * Set up EF 6 to use LocalDB
+> * Create controller and views
+> * View the database
 
 ## Prerequisites
 
-See **Software Versions** at the top of the page. Entity Framework 6 is not a prerequisite because you install the EF NuGet package as part of the tutorial.
+* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 
 ## Create an MVC web app
 
-1. Open Visual Studio and create a new C# web project using the **ASP.NET Web Application (.NET Framework)** template. Name the project "ContosoUniversity".
+1. Open Visual Studio and create a C# web project using the **ASP.NET Web Application (.NET Framework)** template. Name the project *ContosoUniversity* and select **OK**.
 
    ![New Project dialog box in Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/new-project-dialog.png)
 
-2. In the New ASP.NET Project dialog box, select the **MVC** template.
+1. In **New ASP.NET Web Application - ContosoUniversity**, select **MVC**.
 
    ![New web app dialog box in Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/new-web-app-dialog.png)
 
-3. If **Authentication** is not set to **No Authentication**, change it by clicking **Change Authentication**.
+    > [!NOTE]
+    > By default, the **Authentication** option is set to **No Authentication**. For this tutorial, the web app doesn't require users to sign in. Also, it doesn't restrict access based on who's signed in.
 
-   In the **Change Authentication** dialog box, select **No Authentication**, and then choose **OK**. For this tutorial, the web app doesn't require users to sign in, nor does it restrict access based on who's signed in.
-
-   ![Change Authentication dialog box in Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/change-authentication.png)
-
-4. Back in the New ASP.NET Project dialog box, click **OK** to create the project.
+1. Select **OK** to create the project.
 
 ## Set up the site style
 
@@ -95,9 +79,7 @@ A few simple changes will set up the site menu, layout, and home page.
 
    [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample2.cshtml)]
 
-3. Press **Ctrl**+**F5** to run the web site. You see the home page with the main menu.
-
-   ![Contoso University home page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image6.png)
+3. Press Ctrl+F5 to run the web site. You see the home page with the main menu.
 
 ## Install Entity Framework 6
 
@@ -109,17 +91,18 @@ A few simple changes will set up the site menu, layout, and home page.
    Install-Package EntityFramework
    ```
 
-   ![EF installed](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image7.png)
-
-   The image shows 6.0.0 being installed, but NuGet will install the latest version of Entity Framework (excluding pre-release versions), which as of the most recent update to the tutorial is 6.2.0.
-
 This step is one of a few steps that this tutorial has you do manually, but that could have been done automatically by the ASP.NET MVC scaffolding feature. You're doing them manually so that you can see the steps required to use Entity Framework (EF). You'll use scaffolding later to create the MVC controller and views. An alternative is to let scaffolding automatically install the EF NuGet package, create the database context class, and create the connection string. When you're ready to do it that way, all you have to do is skip those steps and scaffold your MVC controller after you create your entity classes.
 
 ## Create the data model
 
 Next you'll create entity classes for the Contoso University application. You'll start with the following three entities:
 
-![Class_diagram](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image8.png)
+**Course** <-> **Enrollment** <-> **Student**
+
+| Entities | Relationship |
+| -------- | ------------ |
+| Course to Enrollment | One-to-many |
+| Student to Enrollment | One-to-many |
 
 There's a one-to-many relationship between `Student` and `Enrollment` entities, and there's a one-to-many relationship between `Course` and `Enrollment` entities. In other words, a student can be enrolled in any number of courses, and a course can have any number of students enrolled in it.
 
@@ -129,8 +112,6 @@ In the following sections, you'll create a class for each one of these entities.
 > If you try to compile the project before you finish creating all of these entity classes, you'll get compiler errors.
 
 ### The Student entity
-
-![Student_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image9.png)
 
 - In the *Models* folder, create a class file named *Student.cs* by right-clicking on the folder in **Solution Explorer** and choosing **Add** > **Class**. Replace the template code with the following code:
 
@@ -145,8 +126,6 @@ Navigation properties are typically defined as `virtual` so that they can take a
 If a navigation property can hold multiple entities (as in many-to-many or one-to-many relationships), its type must be a list in which entries can be added, deleted, and updated, such as `ICollection`.
 
 ### The Enrollment entity
-
-![Enrollment_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image10.png)
 
 - In the *Models* folder, create *Enrollment.cs* and replace the existing code with the following code:
 
@@ -163,8 +142,6 @@ The `CourseID` property is a foreign key, and the corresponding navigation prope
 Entity Framework interprets a property as a foreign key property if it's named *&lt;navigation property name&gt;&lt;primary key property name&gt;* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named the same simply *&lt;primary key property name&gt;* (for example, `CourseID` since the `Course` entity's primary key is `CourseID`).
 
 ### The Course entity
-
-![Course_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image11.png)
 
 - In the *Models* folder, create *Course.cs*, replacing the template code with the following code:
 
@@ -204,7 +181,7 @@ If you don't specify a connection string or the name of one explicitly, Entity F
 
 The `modelBuilder.Conventions.Remove` statement in the [OnModelCreating](https://msdn.microsoft.com/library/system.data.entity.dbcontext.onmodelcreating(v=vs.103).aspx) method prevents table names from being pluralized. If you didn't do this, the generated tables in the database would be named `Students`, `Courses`, and `Enrollments`. Instead, the table names will be `Student`, `Course`, and `Enrollment`. Developers disagree about whether table names should be pluralized or not. This tutorial uses the singular form, but the important point is that you can select whichever form you prefer by including or omitting this line of code.
 
-## Set up EF to initialize the database with test data
+## Initialize DB with test data
 
 Entity Framework can automatically create (or drop and re-create) a database for you when the application runs. You can specify that this should be done every time your application runs or only when the model is out of sync with the existing database. You can also write a `Seed` method that Entity Framework automatically calls after creating the database in order to populate it with test data.
 
@@ -229,7 +206,7 @@ The application is now set up so that when you access the database for the first
 > [!NOTE]
 > When you deploy an application to a production web server, you must remove or disable code that drops and re-creates the database. You'll do that in a later tutorial in this series.
 
-## Set up EF to use a SQL Server Express LocalDB database
+## Set up EF 6 to use LocalDB
 
 [LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb?view=sql-server-2017) is a lightweight version of the SQL Server Express database engine. It's easy to install and configure, starts on demand, and runs in user mode. LocalDB runs in a special execution mode of SQL Server Express that enables you to work with databases as *.mdf* files. You can put LocalDB database files in the *App\_Data* folder of a web project if you want to be able to copy the database with the project. The user instance feature in SQL Server Express also enables you to work with *.mdf* files, but the user instance feature is deprecated; therefore, LocalDB is recommended for working with *.mdf* files. LocalDB is installed by default with Visual Studio.
 
@@ -243,7 +220,7 @@ The connection string you've added specifies that Entity Framework will use a Lo
 
 You don't actually need a connection string in the *Web.config* file. If you don't supply a connection string, Entity Framework uses a default connection string based on your context class. For more information, see [Code First to a New Database](/ef/ef6/modeling/code-first/workflows/new-database).
 
-## Create a Student controller and views
+## Create controller and views
 
 Now you'll create a web page to display data. The process of requesting the data automatically triggers the creation of the database. You'll begin by creating a new controller. But before you do that, build the project to make the model and context classes available to MVC controller scaffolding.
 
@@ -259,8 +236,6 @@ Now you'll create a web page to display data. The process of requesting the data
    - Controller name: **StudentController** (not StudentsController).
    - Leave the default values for the other fields.
 
-     ![Add Controller dialog in Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/add-controller.png)
-
      When you click **Add**, the scaffolder creates a *StudentController.cs* file and a set of views (*.cshtml* files) that work with the controller. In the future when you create projects that use Entity Framework, you can also take advantage of some additional functionality of the scaffolder: create your first model class, don't create a connection string, and then in the **Add Controller** box specify **New data context** by selecting the **+** button next to **Data context class**. The scaffolder will create your `DbContext` class and your connection string as well as the controller and views.
 4. Visual Studio opens the *Controllers\StudentController.cs* file. You see that a class variable has been created that instantiates a database context object:
 
@@ -273,13 +248,11 @@ Now you'll create a web page to display data. The process of requesting the data
      The *Student\Index.cshtml* view displays this list in a table:
 
      [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.cshtml)]
-5. Press **Ctrl**+**F5** to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
+5. Press Ctrl+F5 to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
 
      Click the **Students** tab to see the test data that the `Seed` method inserted. Depending on how narrow your browser window is, you'll see the Student tab link in the top address bar or you'll have to click the upper right corner to see the link.
 
      ![Menu button](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image14.png)
-
-     ![Student Index page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image15.png)
 
 ## View the database
 
@@ -290,11 +263,8 @@ You can use either **Server Explorer** or **SQL Server Object Explorer** (SSOX) 
 1. Close the browser.
 2. In **Server Explorer**, expand **Data Connections** (you may need to select the refresh button first), expand **School Context (ContosoUniversity)**, and then expand **Tables** to see the tables in your new database.
 
-    ![Database tables in Server Explorer](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image16.png)
-
 3. Right-click the **Student** table and click **Show Table Data** to see the columns that were created and the rows that were inserted into the table.
 
-    ![Student table](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/table-data.png)
 4. Close the **Server Explorer** connection.
 
 The *ContosoUniversity1.mdf* and *.ldf* database files are in the *%USERPROFILE%* folder.
@@ -310,15 +280,32 @@ The amount of code you had to write in order for Entity Framework to be able to 
 - Entity properties that are named `ID` or *classname* `ID` are recognized as primary key properties.
 - A property is interpreted as a foreign key property if it's named *&lt;navigation property name&gt;&lt;primary key property name&gt;* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named the same simply &lt;primary key property name&gt; (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
-You've seen that conventions can be overridden. For example, you specified that table names shouldn't be pluralized, and you'll see later how to explicitly mark a property as a foreign key property. You'll learn more about conventions and how to override them in the [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial later in this series. For more information about conventions, see [Code First Conventions](/ef/ef6/modeling/code-first/conventions/built-in).
+You've seen that conventions can be overridden. For example, you specified that table names shouldn't be pluralized, and you'll see later how to explicitly mark a property as a foreign key property.
+## Additional resources
 
-## Summary
+For more about EF 6, see these articles:
 
-You've created a simple application that uses Entity Framework and SQL Server Express LocalDB to store and display data. In the next tutorial you'll learn how to perform basic create, read, update, and delete (CRUD) operations.
+* [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md)
 
-Please leave feedback on how you liked this tutorial and what we could improve.
+* [Code First Conventions](/ef/ef6/modeling/code-first/conventions/built-in)
 
-Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
+* [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
 
-> [!div class="step-by-step"]
-> [Next](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Created an MVC web app
+> * Set up the site style
+> * Installed Entity Framework 6
+> * Created the data model
+> * Created the database context
+> * Initialized DB with test data
+> * Set up EF 6 to use LocalDB
+> * Created controller and views
+> * Viewed the database
+
+Advance to the next article to learn how to review and customize the create, read, update, delete (CRUD) code in your controllers and views.
+> [!div class="nextstepaction"]
+> [Implement basic CRUD functionality](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)

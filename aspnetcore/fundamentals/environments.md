@@ -105,9 +105,9 @@ The following JSON shows three profiles from a *launchSettings.json* file:
 
 When the app is launched with [dotnet run](/dotnet/core/tools/dotnet-run), the first profile with `"commandName": "Project"` is used. The value of `commandName` specifies the web server to launch. `commandName` can be any one of the following:
 
-* IIS Express
-* IIS
-* Project (which launches Kestrel)
+* `IISExpress`
+* `IIS`
+* `Project` (which launches Kestrel)
 
 When an app is launched with [dotnet run](/dotnet/core/tools/dotnet-run):
 
