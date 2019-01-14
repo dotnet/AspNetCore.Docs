@@ -23,6 +23,4 @@ The list below is sorted alphabetically.
 | [Okta](https://www.okta.com/) | The Okta Identity Cloud service (SAAS) is a foundation for secure connections between people and technology. Okta powers frictionless customer experiences through Customer Identity and Access Management (CIAM) solutions, including SDKs for modern development environments and full protocol support.  See sample code at https://github.com/okta/samples-aspnetcore |
 | [OpenIddict](https://github.com/openiddict/openiddict-core) | OpenIddict is an easy-to-use OpenID Connect server for ASP.NET Core. |
 
-
-
 To add a provider, [edit this page](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Faspnet%2FDocs%2Fedit%2Fmaster%2Faspnetcore%2Fsecurity%2Fauthentication%2Fcommunity.md).
