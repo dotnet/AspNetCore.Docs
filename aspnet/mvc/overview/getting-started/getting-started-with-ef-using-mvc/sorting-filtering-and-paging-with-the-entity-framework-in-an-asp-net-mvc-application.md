@@ -2,17 +2,18 @@
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 title: "Tutorial: Add sorting, filtering, and paging with the Entity Framework in an ASP.NET MVC application | Microsoft Docs"
 author: tdykstra
-description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
+description: "In this tutorial you add sorting, filtering, and paging functionality to the **Students** Index page. You also create a simple grouping page."
 ms.author: riande
-ms.date: 10/08/2018
+ms.date: 01/14/2019
 ms.assetid: d5723e46-41fe-4d09-850a-e03b9e285bfa
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
+ms.topic: tutorial
 ---
 
 # Tutorial: Add sorting, filtering, and paging with the Entity Framework in an ASP.NET MVC application
 
-In the [previous tutorial](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md), you implemented a set of web pages for basic CRUD operations for `Student` entities. In this tutorial you'll add sorting, filtering, and paging functionality to the **Students** Index page. You'll also create a page that does simple grouping.
+In the [previous tutorial](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md), you implemented a set of web pages for basic CRUD operations for `Student` entities. In this tutorial you add sorting, filtering, and paging functionality to the **Students** Index page. You also create a simple grouping page.
 
 The following image shows what the page will look like when you're done. The column headings are links that the user can click to sort by that column. Clicking a column heading repeatedly toggles between ascending and descending sort order.
 
@@ -28,7 +29,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
+* [Implementing Basic CRUD Functionality](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
 
 ## Add column sort links
 
@@ -71,11 +72,7 @@ As an alternative to writing different LINQ statements for each sort order, you 
 
 2. Run the page and click the **Last Name** and **Enrollment Date** column headings to verify that sorting works.
 
-   ![Students_Index_page_with_sort_hyperlinks](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image2.png)
-
    After you click the **Last Name** heading, students are displayed in descending last name order.
-
-   ![Student index view in web browser](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
 
 ## Add a Search box
 
@@ -104,15 +101,11 @@ The code adds a `searchString` parameter to the `Index` method. The search strin
 
 2. Run the page, enter a search string, and click **Search** to verify that filtering is working.
 
-   ![Students_Index_page_with_search_box](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
-
    Notice the URL doesn't contain the "an" search string, which means that if you bookmark this page, you won't get the filtered list when you use the bookmark. This applies also to the column sort links, as they will sort the whole list. You'll change the **Search** button to use query strings for filter criteria later in the tutorial.
 
 ## Add paging
 
-To add paging to the Students index page, you'll start by installing the **PagedList.Mvc** NuGet package. Then you'll make additional changes in the `Index` method and add paging links to the `Index` view. **PagedList.Mvc** is one of many good paging and sorting packages for ASP.NET MVC, and its use here is intended only as an example, not as a recommendation for it over other options. The following illustration shows the paging links.
-
-![Students_index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
+To add paging to the Students index page, you'll start by installing the **PagedList.Mvc** NuGet package. Then you'll make additional changes in the `Index` method and add paging links to the `Index` view. **PagedList.Mvc** is one of many good paging and sorting packages for ASP.NET MVC, and its use here is intended only as an example, not as a recommendation for it over other options.
 
 ### Install the PagedList.MVC NuGet package
 
@@ -125,8 +118,6 @@ The NuGet **PagedList.Mvc** package automatically installs the **PagedList** pac
    ```text
    Install-Package PagedList.Mvc
    ```
-
-   ![Install PagedList.Mvc](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
 
 3. Build the project.
 
@@ -198,11 +189,7 @@ The NuGet **PagedList.Mvc** package automatically installs the **PagedList** pac
 
 2. Run the page.
 
-   ![Students index page with paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
-
    Click the paging links in different sort orders to make sure paging works. Then enter a search string and try paging again to verify that paging also works correctly with sorting and filtering.
-
-   ![Students index page with search filter text](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
 
 ## Create an About page
 
@@ -250,11 +237,7 @@ Create a *ViewModels* folder in the project folder. In that folder, add a class 
 
    ![About_page](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
 
-## Summary
-
-In this tutorial you've seen how to create a data model and implement basic CRUD, sorting, filtering, paging, and grouping functionality. In the next tutorial, you'll begin looking at more advanced topics by expanding the data model.
-
-Please leave feedback on how you liked this tutorial and what we could improve.
+## Additional resources
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
