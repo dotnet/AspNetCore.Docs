@@ -4,7 +4,7 @@ author: rick-anderson
 description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core. 
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/11/2018
+ms.date: 01/15/2019
 uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
@@ -81,7 +81,7 @@ cd aspnetcoreapp
 dotnet run
 ```
 
-After seeing the message `Application started.`, browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
+After the command shell indicates that the app has started, browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
 
 ## Edit a Razor page
 
