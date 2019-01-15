@@ -4,14 +4,13 @@ title: "Reading Related Data with the Entity Framework in an ASP.NET MVC Applica
 author: tdykstra
 description: "/ajax/tutorials/using-ajax-control-toolkit-controls-and-control-extenders-vb"
 ms.author: riande
-ms.date: 11/07/2014
+ms.date: 01/19/2019
 ms.assetid: 18cdd896-8ed9-4547-b143-114711e3eafb
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
 Reading Related Data with the Entity Framework in an ASP.NET MVC Application
 ====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 

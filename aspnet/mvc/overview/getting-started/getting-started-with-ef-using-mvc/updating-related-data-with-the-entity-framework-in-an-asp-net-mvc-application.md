@@ -4,14 +4,13 @@ title: "Updating Related Data with the Entity Framework in an ASP.NET MVC Applic
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: riande
-ms.date: 05/01/2015
+ms.date: 01/19/2019
 ms.assetid: 7ba88418-5d0a-437d-b6dc-7c3816d4ec07
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
 Updating Related Data with the Entity Framework in an ASP.NET MVC Application
 ====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
@@ -110,9 +109,12 @@ Replace the `HttpPost` `Edit` method with the following code. which handles offi
 
 [!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.cs)]
 
-The reference to `RetryLimitExceededException` requires a `using` statement; to add it, right-click `RetryLimitExceededException`, and then click **Resolve** - **using System.Data.Entity.Infrastructure**.
+The reference to `RetryLimitExceededException` requires a `using` statement; to add it, hover your mouse over `RetryLimitExceededException`. The following message appears:
+![ Retry exception message](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
 
-![Resolve Retry exception](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
+Select **Show Potentital Fixes**, then **using System.Data.Entity.Infrastructure**
+
+![Resolve Retry exception](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image14.png)
 
 The code does the following:
 
