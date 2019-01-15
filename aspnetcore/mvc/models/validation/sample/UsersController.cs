@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace MVCMovie.Controllers
 {
@@ -16,6 +18,7 @@ namespace MVCMovie.Controllers
             return View();
         }
 
+        #region snippet_VerifyEmail
         [AcceptVerbs("Get", "Post")]
         public IActionResult VerifyEmail(string email)
         {
@@ -26,7 +29,9 @@ namespace MVCMovie.Controllers
 
             return Json(true);
         }
+        #endregion
 
+        #region snippet_VerifyName
         [AcceptVerbs("Get", "Post")]
         public IActionResult VerifyName(string firstName, string lastName)
         {
@@ -37,5 +42,25 @@ namespace MVCMovie.Controllers
 
             return Json(data: true);
         }
+        #endregion
+
+        public IActionResult CheckPhone()
+        {
+            return View();
+        }
+
+        #region snippet_VerifyPhone
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyPhone(
+            [RegularExpression(@"^\d{3}-\d{3}-\d{4}$")] string phone)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json($"Phone {phone} has an invalid format. Format: ###-###-####");
+            }
+
+            return Json(true);
+        }
+        #endregion
     }
 }
