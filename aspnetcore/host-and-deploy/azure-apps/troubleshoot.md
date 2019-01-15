@@ -1,10 +1,10 @@
 ---
-title: Troubleshoot ASP.NET Core startup errors on Azure App Service
+title: Troubleshoot ASP.NET Core on Azure App Service
 author: guardrex
 description: Learn how to diagnose problems with ASP.NET Core Azure App Service deployments.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 01/11/2019
 uid: host-and-deploy/azure-apps/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on Azure App Service
@@ -43,17 +43,17 @@ The ASP.NET Core Module is configured with a default *startupTimeLimit* of 120 s
 
 ### Application Event Log
 
-To access the Application Event Log, use the **Diagnose and solve problems** blade in the Azure portal :
+To access the Application Event Log, use the **Diagnose and solve problems** blade in the Azure portal:
 
-1. In the Azure portal, open the app's blade in the **App Services** blade.
-1. Select the **Diagnose and solve problems** blade.
-1. Under **SELECT PROBLEM CATEGORY**, select the **Web App Down** button.
-1. Under **Suggested Solutions**, open the pane for **Open Application Event Logs**. Select the **Open Application Event Logs** button.
-1. Examine the latest error provided by the *IIS AspNetCoreModule* in the **Source** column.
+1. In the Azure portal, open the app in **App Services**.
+1. Select **Diagnose and solve problems**.
+1. Select the **Diagnostic Tools** heading.
+1. Under **Support Tools**, select the **Application Events** button.
+1. Examine the latest error provided by the *IIS AspNetCoreModule* or *IIS AspNetCoreModule V2* entry in the **Source** column.
 
 An alternative to using the **Diagnose and solve problems** blade is to examine the Application Event Log file directly using [Kudu](https://github.com/projectkudu/kudu/wiki):
 
-1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the **LogFiles** folder.
 1. Select the pencil icon next to the *eventlog.xml* file.
@@ -63,7 +63,7 @@ An alternative to using the **Diagnose and solve problems** blade is to examine 
 
 Many startup errors don't produce useful information in the Application Event Log. You can run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
 
-1. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the folders to the path **site** > **wwwroot**.
 1. In the console, run the app by executing the app's assembly.
@@ -89,7 +89,7 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 1. Inspect the **Modified** column and select the pencil icon to edit the stdout log with the latest modification date.
 1. When the log file opens, the error is displayed.
 
-**Important!** Disable stdout logging when troubleshooting is complete.
+Disable stdout logging when troubleshooting is complete:
 
 1. In the Kudu **Diagnostic Console**, return to the path **site** > **wwwroot** to reveal the *web.config* file. Open the **web.config** file again by selecting the pencil icon.
 1. Set **stdoutLogEnabled** to `false`.
@@ -100,7 +100,37 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 >
 > For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
-## Common startup errors 
+::: moniker range=">= aspnetcore-2.2"
+
+### ASP.NET Core Module debug log
+
+The ASP.NET Core Module debug log provides additional, deeper logging from the ASP.NET Core Module. To enable and view stdout logs:
+
+1. To enable the enhanced diagnostic log, perform either of the following:
+   * Follow the instructions in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) to configure the app for an enhanced diagnostic logging. Redeploy the app.
+   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) to the live app's *web.config* file using the Kudu console:
+     1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+     1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
+     1. Open the folders to the path **site** > **wwwroot**. Edit the *web.config* file by selecting the pencil button. Add the `<handlerSettings>` section as shown in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Select the **Save** button.
+1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
+1. Open the folders to the path **site** > **wwwroot**. If you didn't supply a path for the *aspnetcore-debug.log* file, the file appears in the list. If you supplied a path, navigate to the location of the log file.
+1. Open the log file with the pencil button next to the file name.
+
+Disable debug logging when troubleshooting is complete:
+
+1. To disable the enhanced debug log, peform either of the following:
+   * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
+   * Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
+
+> [!WARNING]
+> Failure to disable the debug log can lead to app or server failure. There's no limit on log file size. Only use debug logging to troubleshoot app startup problems.
+>
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+
+::: moniker-end
+
+## Common startup errors
 
 See <xref:host-and-deploy/azure-iis-errors-reference>. Most of the common problems that prevent app startup are covered in the reference topic.
 
@@ -151,7 +181,7 @@ Proceed to activate diagnostic logging:
 1. Make a request to the app.
 1. Within the log stream data, the cause of the error is indicated.
 
-**Important!** Be sure to disable stdout logging when troubleshooting is complete. See the instructions in the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) section.
+Be sure to disable stdout logging when troubleshooting is complete. See the instructions in the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) section.
 
 To view the failed request tracing logs (FREB logs):
 
