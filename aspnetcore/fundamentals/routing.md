@@ -734,4 +734,4 @@ Link generation only generates a link for this route when the matching values fo
 
 ## Complex segments
 
-Complex segments (for example [Route("/x{token}y")]) are processed by matching up literals from right to left in a non-greedy way. For detailed instructions, see the [source code](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L289).
+Complex segments (for example `[Route("/x{token}y")]`) are processed by matching up literals from right to left in a non-greedy way. For detailed instructions, see the [source code](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293).
