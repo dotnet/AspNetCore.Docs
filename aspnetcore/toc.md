@@ -420,6 +420,6 @@
 ### [HTTP modules to middleware](xref:migration/http-modules)
 ## [Logging (not ASP.NET Core)](xref:migration/logging-nonaspnetcore)
 
-# [API reference](/dotnet/api/?view=aspnetcore-2.2)
+# [API reference](/dotnet/api/?view=aspnetcore-2.1)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
