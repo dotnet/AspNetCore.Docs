@@ -1,6 +1,6 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Tutorial: Create connection resiliency and command interception with the EF in an ASP.NET MVC app"
+title: "Tutorial: Use connection resiliency and command interception with EF in an ASP.NET MVC app"
 author: tdykstra
 description: "In this tutorial you'll learn how to use connection resiliency and command interception. They are two important features of Entity Framework 6."
 ms.author: riande
