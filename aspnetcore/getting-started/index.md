@@ -81,7 +81,7 @@ cd aspnetcoreapp
 dotnet run
 ```
 
-Browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
+After seeing the message `Application started.`, browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
 
 ## Edit a Razor page
 
