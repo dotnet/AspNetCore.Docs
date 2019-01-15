@@ -184,8 +184,6 @@ You'll deploy the database to Azure SQL database. SQL database is a cloud-based 
 
 4. On the **App Service** page, select the **Subscription** you added the App Service to. Under **View**, select **Resource Group**. Expand the resource group you added the App Service to, and then select the App Service. Choose **OK** to publish the app.
 
-    ![Select App Service](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/app-service-page.png)
-
 5. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.
 
 6. Upon successful deployment, the default browser automatically opens to the URL of the deployed web site.
