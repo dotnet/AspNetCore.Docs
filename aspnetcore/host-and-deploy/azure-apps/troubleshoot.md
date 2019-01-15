@@ -89,7 +89,7 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 1. Inspect the **Modified** column and select the pencil icon to edit the stdout log with the latest modification date.
 1. When the log file opens, the error is displayed.
 
-**Important!** Disable stdout logging when troubleshooting is complete.
+Disable stdout logging when troubleshooting is complete:
 
 1. In the Kudu **Diagnostic Console**, return to the path **site** > **wwwroot** to reveal the *web.config* file. Open the **web.config** file again by selecting the pencil icon.
 1. Set **stdoutLogEnabled** to `false`.
@@ -117,7 +117,7 @@ The ASP.NET Core Module debug log provides additional, deeper logging from the A
 1. Open the folders to the path **site** > **wwwroot**. If you didn't supply a path for the *aspnetcore-debug.log* file, the file appears in the list. If you supplied a path, navigate to the location of the log file.
 1. Open the log file with the pencil button next to the file name.
 
-**Important!** Disable debug logging when troubleshooting is complete.
+Disable debug logging when troubleshooting is complete:
 
 1. To disable the enhanced debug log, peform either of the following:
    * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
@@ -181,7 +181,7 @@ Proceed to activate diagnostic logging:
 1. Make a request to the app.
 1. Within the log stream data, the cause of the error is indicated.
 
-**Important!** Be sure to disable stdout logging when troubleshooting is complete. See the instructions in the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) section.
+Be sure to disable stdout logging when troubleshooting is complete. See the instructions in the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) section.
 
 To view the failed request tracing logs (FREB logs):
 
