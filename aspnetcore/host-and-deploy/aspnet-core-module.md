@@ -538,7 +538,9 @@ The Hosting Bundle installer logs for the module are found at *C:\\Users\\%UserN
 
 **IIS Express**
 
-   * {APPLICATION ROOT}\\.vs\config\applicationHost.config
+   * Visual Studio: {APPLICATION ROOT}\\.vs\config\applicationHost.config
+   
+   * *iisexpress.exe* CLI: %USERPROFILE%\Documents\IISExpress\config\applicationhost.config
 
 The files can be found by searching for *aspnetcore* in the *applicationHost.config* file.
 
