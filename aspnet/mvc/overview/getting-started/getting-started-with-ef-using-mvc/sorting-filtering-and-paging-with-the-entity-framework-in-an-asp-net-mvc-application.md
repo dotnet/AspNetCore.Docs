@@ -1,6 +1,6 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Tutorial: Add sorting, filtering, and paging with the EF in an ASP.NET MVC app"
+title: "Tutorial: Add sorting, filtering, and paging with EF in an ASP.NET MVC app"
 author: tdykstra
 description: "In this tutorial you add sorting, filtering, and paging functionality to the **Students** Index page. You also create a simple grouping page."
 ms.author: riande
