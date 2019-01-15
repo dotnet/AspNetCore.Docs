@@ -18,5 +18,7 @@ namespace MVCMovie.Models
 
         [Remote(action: "VerifyPhone", controller: "Users")]
         public string Phone { get; set; }
+
+        public int Age { get; set; }
     }
 }

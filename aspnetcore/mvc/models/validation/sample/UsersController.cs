@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using MVCMovie.Models;
 
 namespace MVCMovie.Controllers
 {
@@ -62,5 +63,30 @@ namespace MVCMovie.Controllers
             return Json(true);
         }
         #endregion
+
+        public IActionResult CheckAge()
+        {
+            return View();
+        }
+
+        #region snippet_CheckAge
+        [HttpPost]
+        public IActionResult CheckAge(
+            [BindRequired, FromQuery] int age)
+        {
+        #endregion
+            if (!ModelState.IsValid)
+            {
+                ViewData["ValidationResult"] = "Validation failed.";
+                ViewData["ValidationResultColorStyle"] = "red";
+
+                return View();
+            }
+
+            ViewData["ValidationResult"] = "Validation successful.";
+            ViewData["ValidationResultColorStyle"] = "green";
+
+            return View();
+        }
     }
 }
