@@ -83,7 +83,7 @@ Links to API Reference topics are to the .NET 4.5 version of the API. If you're 
 
 ## Client setup
 
-Install the [Microsoft.AspNet.SignalR.Client](http://nuget.org/packages/Microsoft.AspNet.SignalR.Client) NuGet package (not the [Microsoft.AspNet.SignalR](http://nuget.org/packages/microsoft.aspnet.signalr) package). This package supports WinRT, Silverlight, WPF, console application, and Windows Phone clients, for both .NET 4, and .NET 4.5.
+Install the [Microsoft.AspNet.SignalR.Client](http://nuget.org/packages/Microsoft.AspNet.SignalR.Client) NuGet package (not the [Microsoft.AspNet.SignalR](http://nuget.org/packages/microsoft.aspnet.signalr) package). This package supports WinRT, Silverlight, WPF, console application, and Windows Phone clients, for both .NET 4 and .NET 4.5.
 
 If the version of SignalR that you have on the client is different from the version that you have on the server, SignalR is often able to adapt to the difference. For example, a server running SignalR version 2 will support clients that have 1.1.x installed as well as clients that have version 2 installed. If the difference between the version on the server and the version on the client is too great, or if the client is newer than the server, SignalR throws an `InvalidOperationException` exception when the client tries to establish a connection. The error message is "`You are using a version of the client that isn't compatible with the server. Client version X.X, server version X.X`".
 
