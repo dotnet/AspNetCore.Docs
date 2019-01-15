@@ -54,7 +54,7 @@ You need an Azure account to deploy this solution to Azure. If you do not alread
 
 Open Visual Studio. From the **File** menu, select **New**, then select **Project**. (Or click **New Project** on the Start page.)
 
-In the **New Project** dialog, click **Web** in the left pane and **ASP.NET Web Application (.NET Framework)** in the middle pane. Name the project BookService and click **OK**.
+In the **New Project** dialog, click **Web** in the left pane and **ASP.NET Web Application (.NET Framework)** in the middle pane. Name the project **BookService** and click **OK**.
 
 [![](part-1/_static/image11.png)](part-1/_static/image11.png)
 
@@ -85,7 +85,7 @@ After you create the project, you can choose to deploy to Azure App Service Web 
 
    [![](part-1/_static/image16.png)](part-1/_static/image16.png)
 
-   Accept the defaults or enter different values. Enter an **Administrator Password** for your new database. Select **OK** when you're done.
+   Accept the defaults or enter different values. Enter an **Adminstrator Username** and **Administrator Password** for your new database. Select **OK** when you're done.
 
 5. Click **Create** to create your profile. A message appears in the lower right indicating that deployment is in progress. After a short while, the **Publish** window reappears.
 
