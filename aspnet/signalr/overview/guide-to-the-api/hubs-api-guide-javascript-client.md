@@ -140,7 +140,7 @@ When you run a web project in Visual Studio 2017 in debug mode, and if you use I
 
 ![JavaScript generated proxy file in Solution Explorer](hubs-api-guide-javascript-client/_static/image1.png)
 
-To see the contents of the file, double-click **hubs**. If you are not using Visual Studio 2012 or 2017 and Internet Explorer, or if you are not in debug mode, you can also get the contents of the file by browsing to the "/signalR/hubs" URL. For example, if your site is running at `http://localhost:56699`, go to `http://localhost:56699/SignalR/hubs` in your browser.
+To see the contents of the file, double-click **hubs**. If you are not using Visual Studio 2012 or 2013 and Internet Explorer, or if you are not in debug mode, you can also get the contents of the file by browsing to the "/signalR/hubs" URL. For example, if your site is running at `http://localhost:56699`, go to `http://localhost:56699/SignalR/hubs` in your browser.
 
 <a id="manualproxy"></a>
 
