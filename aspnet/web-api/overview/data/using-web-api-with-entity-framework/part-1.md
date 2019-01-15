@@ -79,7 +79,7 @@ After you create the project, you can choose to deploy to Azure App Service Web 
 
    [![](part-1/_static/image15.png)](part-1/_static/image15.png)
 
-   Accept the defaults, or enter different values. 
+   Accept the defaults, or enter different values for the application, resource group, hosting plan, Azure subscription, and geographical region. 
 
 4. Select **Create a SQL database**. The **Configure SQL Server** dialog box appears. 
 
@@ -91,7 +91,7 @@ After you create the project, you can choose to deploy to Azure App Service Web 
 
     [![](part-1/_static/image17.png)](part-1/_static/image17.png)
    
-    The profile you created is now available to deploy the app. You can select **Site URL** to see your application when deployed.
+    The profile you created is now available to deploy the app. 
 
 
 > [!div class="step-by-step"]
