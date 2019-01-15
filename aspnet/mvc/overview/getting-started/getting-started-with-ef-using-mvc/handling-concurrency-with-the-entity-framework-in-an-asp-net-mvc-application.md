@@ -4,14 +4,14 @@ title: "Handling Concurrency with the Entity Framework 6 in an ASP.NET MVC 5 App
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: riande
-ms.date: 12/08/2014
+ms.date: 01/15/2019
 ms.assetid: be0c098a-1fb2-457e-b815-ddca601afc65
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
 Handling Concurrency with the Entity Framework 6 in an ASP.NET MVC 5 Application (10 of 12)
 ====================
-by [Tom Dykstra](https://github.com/tdykstra)
+
 
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
