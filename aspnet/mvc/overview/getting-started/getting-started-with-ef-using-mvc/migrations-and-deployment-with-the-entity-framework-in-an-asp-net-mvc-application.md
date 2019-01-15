@@ -1,16 +1,17 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Tutorial: Code First migrations and deployment with the EF in an ASP.NET MVC App | Microsoft Docs"
+title: "Tutorial: Code First migrations and deployment with EF in an ASP.NET MVC App | Microsoft Docs"
 author: tdykstra
 description: "In this tutorial, you enable Code First migrations and deploy the application to the cloud in Azure."
 ms.author: riande
 ms.date: 01/15/2019
+ms.topic: tutorial
 ms.assetid: d4dfc435-bda6-4621-9762-9ba270f8de4e
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
 
-# Tutorial: Code First migrations and deployment with the EF in an ASP.NET MVC app
+# Tutorial: Code First migrations and deployment with Entity Framework in an ASP.NET MVC app
 
 So far the Contoso University sample web application has been running locally in IIS Express on your development computer. To make a real application available for other people to use over the Internet, you have to deploy it to a web hosting provider. In this tutorial, you enable Code First migrations and deploy the application to the cloud in Azure:
 
@@ -220,11 +221,7 @@ In the deployment section, you saw the [MigrateDatabaseToLatestVersion](https://
 
 For more information about initializers, see [Understanding Database Initializers in Entity Framework Code First](http://www.codeguru.com/csharp/article.php/c19999/Understanding-Database-Initializers-in-Entity-Framework-Code-First.htm) and chapter 6 of the book [Programming Entity Framework: Code First](http://shop.oreilly.com/product/0636920022220.do) by Julie Lerman and Rowan Miller.
 
-## Summary
-
-In this tutorial, you learned how to enable migrations and deploy the application. In the next tutorial, you'll begin looking at more advanced topics by expanding the data model.
-
-Please leave feedback on how you liked this tutorial and what we could improve.
+## Additional resources
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](xref:whitepapers/aspnet-data-access-content-map).
 
