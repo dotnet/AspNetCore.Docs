@@ -20,7 +20,7 @@ Handling Concurrency with the Entity Framework 6 in an ASP.NET MVC 5 Application
 
 In earlier tutorials you learned how to update data. This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 
-You'll change the web pages that work with the `Department` entity so that they handle concurrency errors. The following illustrations show the Index and Delete pages, including some messages that are displayed if a concurrency conflict occurs.
+You'll change the web pages that work with the `Department` entity so that they handle concurrency errors. The following illustrations show the Index and Delete pages. They include some messages that are displayed if a concurrency conflict occurs.
 
 ![Department_Index_page_before_edits](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
 
