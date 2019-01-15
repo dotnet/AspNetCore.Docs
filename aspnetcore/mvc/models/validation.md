@@ -96,14 +96,7 @@ public IActionResult PostData(
 
 Validation is enabled by default and controlled by the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.AllowValidatingTopLevelNodes*> property of <xref:Microsoft.AspNetCore.Mvc.MvcOptions>. To disable top-level node validation, set `AllowValidatingTopLevelNodes` to `false` in MVC options (`Startup.ConfigureServices`):
 
-```csharp
-services.AddMvc(options => 
-    {
-        options.MaxModelValidationErrors = 50;
-        options.AllowValidatingTopLevelNodes = false;
-    })
-    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-```
+[!code-csharp[](validation/sample_snapshot/Startup.cs?name=snippet_AddMvc&highlight=4)]
 
 ::: moniker-end
 
