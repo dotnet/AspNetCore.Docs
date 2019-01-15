@@ -26,7 +26,7 @@ by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://githu
 > ## Software versions used in this topic
 >
 >
-> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 > - .NET 4.5
 > - SignalR version 2
 >
