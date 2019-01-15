@@ -11,7 +11,7 @@ msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/c
 msc.type: authoredcontent
 ---
 
-# Tutorial: Create connection resiliency and command interception with the EF in an ASP.NET MVC app
+# Tutorial: Use connection resiliency and command interception with Entity Framework in an ASP.NET MVC app
 
 So far the application has been running locally in IIS Express on your development computer. To make a real application available for other people to use over the Internet, you have to deploy it to a web hosting provider, and you have to deploy the database to a database server.
 
