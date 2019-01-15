@@ -91,7 +91,7 @@ For more information on using [C# preprocessor directives](/dotnet/csharp/langua
 
 ### Regions in sample code
 
-Some sample apps contain sections of code surrounded by [#region](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) and [#end-region](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endregion) C# statements. The documentation build system injects these regions into the rendered documentation topics.  
+Some sample apps contain sections of code surrounded by [`#region`](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) and [`#endregion`](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endregion) C# statements. The documentation build system injects these regions into the rendered documentation topics.  
 
 Region names usually contain the word "snippet." The following example shows a region named `snippet_FilterInCode`:
 
@@ -112,7 +112,7 @@ The preceding C# code snippet is referenced in the topic's markdown file with th
 [!code-csharp[](sample/SampleApp/Program.cs?name=snippet_FilterInCode)]
 ```
 
-You may safely ignore (or remove) the `#region` and `#end-region` statements that surround the code. Don't alter the code within these statements if you plan to run the sample scenarios described in the topic. Feel free to alter the code when experimenting with other scenarios.
+You may safely ignore (or remove) the `#region` and `#endregion` statements that surround the code. Don't alter the code within these statements if you plan to run the sample scenarios described in the topic. Feel free to alter the code when experimenting with other scenarios.
 
 For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md#code-snippets).
 
