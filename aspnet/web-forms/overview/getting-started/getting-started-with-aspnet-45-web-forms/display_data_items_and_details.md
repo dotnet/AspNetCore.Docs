@@ -166,7 +166,7 @@ Now you can run the application to see an individual product displayed based on 
 
 ## Next steps
 
-In this tutorial, you added markup and code to display products and product details. You learned about strongly typed data controls, model binding, and value providers. In the next tutorial, you'll add a shopping cart to the Wingtip Toys sample application.
+In this tutorial, you added markup and code to display products and product details. You learned about strongly typed data controls, model binding, and value providers. In the next tutorial, you'll add a shopping cart to the Wingtip Toys sample application. 
 
 > [!div class="step-by-step"]
 > [Previous](ui_and_navigation.md)
