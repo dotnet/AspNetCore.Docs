@@ -11,13 +11,23 @@ msc.type: authoredcontent
 ---
 Search
 ====================
-by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 [!INCLUDE [Tutorial Note](sample/code-location.md)]
 
 ## Adding a Search Method and Search View
 
 In this section you'll add search capability to the `Index` action method that lets you search movies by genre or name.
+
+## Prerequisites
+
+This section requires that you first run the application (F5) and add the following movies to the database.
+
+| Title | Release Date | Genre | Price |
+| ----- | ------------ | ----- | ----- |
+| Ghostbusters | 6/8/1984 | Comedy | 6.99 |
+| Ghostbusters II | 6/16/1989 | Comedy | 6.99 |
+| Planet of the Apes | 3/27/1986 | Action | 5.99 |
+
 
 ## Updating the Index Form
 
@@ -62,7 +72,7 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 ![](adding-search/_static/image2.png)
 
-However, you can't expect users to modify the URL every time they want to search for a movie. So now you you'll add UI to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound ID parameter, change it back so that your `Index` method takes a string parameter named `searchString`:
+However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound ID parameter, change it back so that your `Index` method takes a string parameter named `searchString`:
 
 [!code-csharp[Main](adding-search/samples/sample7.cs)]
 
@@ -114,13 +124,13 @@ The following code is a LINQ query that retrieves all the genres from the databa
 
 [!code-csharp[Main](adding-search/samples/sample12.cs)]
 
-The code uses the `AddRange` method of the generic `List` collection to add all the distinct genres to the list. (Without the `Distinct` modifier, duplicate genres would be added — for example, comedy would be added twice in our sample). The code then stores the list of genres in the `ViewBag.MovieGenre` object. Storing category data (such a movie genre's) as a [SelectList](https://msdn.microsoft.cus/library/system.web.mvc.selectlist(v=vs.108).aspx) object in a `ViewBag`, then accessing the category data in a dropdown list box is a typical approach for MVC applications.
+The code uses the `AddRange` method of the generic `List` collection to add all the distinct genres to the list. (Without the `Distinct` modifier, duplicate genres would be added — for example, comedy would be added twice in our sample). The code then stores the list of genres in the `ViewBag.MovieGenre` object. Storing category data (such a movie genres) as a [SelectList](https://msdn.microsoft.cus/library/system.web.mvc.selectlist(v=vs.108).aspx) object in a `ViewBag`, then accessing the category data in a dropdown list box is a typical approach for MVC applications.
 
 The following code shows how to check the `movieGenre` parameter. If it's not empty, the code further constrains the movies query to limit the selected movies to the specified genre.
 
 [!code-csharp[Main](adding-search/samples/sample13.cs)]
 
-As stated previously, the query is not run on the data base until the movie list is iterated over (which happens in the View, after the `Index` action method returns).
+As stated previously, the query is not run on the database until the movie list is iterated over (which happens in the View, after the `Index` action method returns).
 
 ## Adding Markup to the Index View to Support Search by Genre
 
