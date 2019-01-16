@@ -109,10 +109,10 @@ Replace the `HttpPost` `Edit` method with the following code. which handles offi
 
 [!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.cs)]
 
-The reference to `RetryLimitExceededException` requires a `using` statement; to add it, hover your mouse over `RetryLimitExceededException`. The following message appears:
+The reference to `RetryLimitExceededException` requires a `using` statement; to add it - hover your mouse over `RetryLimitExceededException`. The following message appears:
 ![ Retry exception message](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
 
-Select **Show Potentital Fixes**, then **using System.Data.Entity.Infrastructure**
+Select **Show potentital fixes**, then **using System.Data.Entity.Infrastructure**
 
 ![Resolve Retry exception](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image14.png)
 
