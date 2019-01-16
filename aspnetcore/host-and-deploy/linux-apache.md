@@ -318,15 +318,15 @@ icmp-blocks:
 rich rules: 
 ```
 
-### SSL configuration
+### HTTPS configuration
 
-To configure Apache for SSL, the *mod_ssl* module is used. When the *httpd* module was installed, the *mod_ssl* module was also installed. If it wasn't installed, use `yum` to add it to the configuration.
+To configure Apache for HTTPS, the *mod_ssl* module is used. When the *httpd* module was installed, the *mod_ssl* module was also installed. If it wasn't installed, use `yum` to add it to the configuration.
 
 ```bash
 sudo yum install mod_ssl
 ```
 
-To enforce SSL, install the `mod_rewrite` module to enable URL rewriting:
+To enforce HTTPS, install the `mod_rewrite` module to enable URL rewriting:
 
 ```bash
 sudo yum install mod_rewrite

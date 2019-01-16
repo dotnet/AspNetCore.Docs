@@ -219,7 +219,7 @@ services.AddAntiforgery(options =>
 | [CookiePath](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | The path set on the cookie. This property is obsolete and will be removed in a future version. The recommended alternative is Cookie.Path. |
 | [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
 | [HeaderName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
-| [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | Specifies whether SSL is required by the antiforgery system. If `true`, non-SSL requests fail. Defaults to `false`. This property is obsolete and will be removed in a future version. The recommended alternative is to set Cookie.SecurePolicy. |
+| [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | Specifies whether HTTPS is required by the antiforgery system. If `true`, non-HTTPS requests fail. Defaults to `false`. This property is obsolete and will be removed in a future version. The recommended alternative is to set Cookie.SecurePolicy. |
 | [SuppressXFrameOptionsHeader](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.suppressxframeoptionsheader) | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
 ::: moniker-end

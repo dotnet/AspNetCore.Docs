@@ -4,7 +4,7 @@ author: guardrex
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 01/11/2019
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
@@ -42,6 +42,8 @@ The ASP.NET Core Module:
   * Loads the [CoreCLR](/dotnet/standard/glossary#coreclr).
   * Calls `Program.Main`.
 * Handles the lifetime of the IIS native request.
+
+The in-process hosting model isn't supported for ASP.NET Core apps that target the .NET Framework.
 
 The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and an app hosted in-process:
 

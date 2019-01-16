@@ -255,7 +255,7 @@ See [this GitHub issue](https://github.com/aspnet/Docs/issues/6199).
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Host ASP.NET Core on Linux with Apache: SSL configuration](xref:host-and-deploy/linux-apache#ssl-configuration)
-* [Host ASP.NET Core on Linux with Nginx: SSL configuration](xref:host-and-deploy/linux-nginx#configure-ssl)
+* [Host ASP.NET Core on Linux with Apache: HTTPS configuration](xref:host-and-deploy/linux-apache#https-configuration)
+* [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)

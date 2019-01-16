@@ -10,7 +10,7 @@ namespace RazorPagesProject.Tests
 {
     #region snippet1
     public class CustomWebApplicationFactory<TStartup> 
-        : WebApplicationFactory<RazorPagesProject.Startup>
+        : WebApplicationFactory<TStartup> where TStartup: class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {

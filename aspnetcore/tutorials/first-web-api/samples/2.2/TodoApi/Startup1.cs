@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TodoApi.Models;
 
-namespace TodoAp
+namespace TodoApi
 {
     public class Startup
     {

@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 #region snippet_StartupConfigureImports
 using NJsonSchema;
 using NSwag.AspNetCore;
-using System.Reflection;
 #endregion
 using TodoApi.Models;
 
@@ -20,7 +19,7 @@ namespace TodoApi
             services.AddMvc();
 
             // Register the Swagger services
-            services.AddSwagger();
+            services.AddSwaggerDocument();
         }
         #endregion snippet_ConfigureServices
 
@@ -30,11 +29,8 @@ namespace TodoApi
             app.UseStaticFiles();
 
             // Register the Swagger generator and the Swagger UI middlewares
-            app.UseSwaggerUi3WithApiExplorer(settings =>
-            {
-                settings.GeneratorSettings.DefaultPropertyNameHandling = 
-                    PropertyNameHandling.CamelCase;
-            });
+            app.UseSwagger();
+            app.UseSwaggerUi3();
 
             app.UseMvc();
         }

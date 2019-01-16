@@ -4,7 +4,7 @@ title: "Adding Validation | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: riande
-ms.date: 10/17/2013
+ms.date: 01/06/2019
 ms.assetid: 9f35ca15-e216-4db6-9ebf-24380b0f31b4
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-validation
 msc.type: authoredcontent
@@ -91,7 +91,7 @@ You might wonder how the validation UI was generated without any updates to the 
 
 [!code-csharp[Main](adding-validation/samples/sample5.cs)]
 
-The first (HTTP GET) `Create` action method displays the initial Create form. The second (`[HttpPost]`) version handles the form post. The second `Create` method (The `HttpPost` version) calls `ModelState.IsValid` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the `Create` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, **the form is not posted to the server when there are validation errors detected on the client side; the second** `Create`**method is never called**. If you disable JavaScript in your browser, client validation is disabled and the HTTP POST `Create` method calls `ModelState.IsValid` to check whether the movie has any validation errors.
+The first (HTTP GET) `Create` action method displays the initial Create form. The second (`[HttpPost]`) version handles the form post. The second `Create` method (the `HttpPost` version) checks `ModelState.IsValid` to see whether the movie has any validation errors. Getting this property evaluates any validation attributes that have been applied to the object. If the object has validation errors, the `Create` method redisplays the form. If there are no errors, the method saves the new movie in the database. In our movie example, **the form isn't posted to the server when there are validation errors detected on the client side; the second** `Create` **method is never called**. If you disable JavaScript in your browser, client validation is disabled, and the HTTP POST `Create` method gets `ModelState.IsValid` to check whether the movie has any validation errors.
 
 You can set a break point in the `HttpPost Create` method and verify the method is never called, client side validation will not submit the form data when validation errors are detected. If you disable JavaScript in your browser, then submit the form with errors, the break point will be hit. You still get full validation without JavaScript. The following image shows how to disable JavaScript in Internet Explorer.
 
@@ -153,7 +153,7 @@ If you use the `DataType` attribute with a date field, you have to specify the `
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[Main](adding-validation/samples/sample10.cs?highlight=6,10)]
+[!code-csharp[Main](adding-validation/samples/sample10.cs?highlight=4,6,10,12)]
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 

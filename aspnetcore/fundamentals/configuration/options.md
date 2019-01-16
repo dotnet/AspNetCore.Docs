@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 12/29/2018
 uid: fundamentals/configuration/options
 ---
 # Options pattern in ASP.NET Core
@@ -211,7 +211,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 Named options support with <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> is demonstrated as Example &num;6 in the sample app.
 
-*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*>. `Configure` calls the extension method <xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*> method:
+*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), which calls the [ConfigureNamedOptions\<TOptions>.Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) extension method:
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 

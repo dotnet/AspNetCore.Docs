@@ -142,6 +142,10 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 ---
 
+The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
+
+You can ignore that warning, it will be fixed in a later tutorial.
+
 The scaffold process creates and updates the following files:
 
 ### Files created

@@ -90,7 +90,7 @@ In Visual Studio:
 Return to the browser window with the B2C app properties still open. Change the temporary **Reply URL** specified earlier to the value copied from Visual Studio. Select **Save** at the top of the window.
 
 > [!TIP]
-> If you didn't copy the Reply URL, use the SSL address from the Debug tab in the web project properties, and append the **CallbackPath** value from *appsettings.json*.
+> If you didn't copy the Reply URL, use the HTTPS address from the Debug tab in the web project properties, and append the **CallbackPath** value from *appsettings.json*.
 
 ## Configure policies
 

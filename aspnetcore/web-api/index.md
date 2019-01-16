@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn about the features available for building a web API in ASP.NET Core and when it's appropriate to use each feature.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/06/2018
+ms.date: 01/11/2019
 uid: web-api/index
 ---
 # Build web APIs with ASP.NET Core
@@ -127,7 +127,9 @@ A binding source attribute defines the location at which an action parameter's v
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
 
-Without the `[ApiController]` attribute, binding source attributes are explicitly defined. In the following example, the `[FromQuery]` attribute indicates that the `discontinuedOnly` parameter value is provided in the request URL's query string:
+Without the `[ApiController]` attribute, binding source attributes are explicitly defined. Without `[ApiController]` or other binding source attributes like `[FromQuery]`, the ASP.NET Core runtime attempts to use the complex object model binder. The complex object model binder pulls data from value providers (which have a defined order). For instance, the 'body model binder' is always opt in.
+
+In the following example, the `[FromQuery]` attribute indicates that the `discontinuedOnly` parameter value is provided in the request URL's query string:
 
 [!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_BindingSourceAttributes&highlight=3)]
 
@@ -135,7 +137,10 @@ Inference rules are applied for the default data sources of action parameters. T
 
 * **[FromBody]** is inferred for complex type parameters. An exception to this rule is any complex, built-in type with a special meaning, such as <xref:Microsoft.AspNetCore.Http.IFormCollection> and <xref:System.Threading.CancellationToken>. The binding source inference code ignores those special types. `[FromBody]` isn't inferred for simple types such as `string` or `int`. Therefore, the `[FromBody]` attribute should be used for simple types when that functionality is needed. When an action has more than one parameter explicitly specified (via `[FromBody]`) or inferred as bound from the request body, an exception is thrown. For example, the following action signatures cause an exception:
 
-[!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/TestController.cs?name=snippet_ActionsCausingExceptions)]
+    [!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/TestController.cs?name=snippet_ActionsCausingExceptions)]
+
+    > [!NOTE]
+    > In ASP.NET Core 2.1, collection type parameters such as lists and arrays are incorrectly inferred as [[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute). [[FromBody]](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) should be used for these parameters if they are to be bound from the request body. This behavior is fixed in ASP.NET Core 2.2 or later, where collection type parameters are inferred to be bound from the body by default.
 
 * **[FromForm]** is inferred for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. It's not inferred for any simple or user-defined types.
 * **[FromRoute]** is inferred for any action parameter name matching a parameter in the route template. When more than one route matches an action parameter, any route value is considered `[FromRoute]`.
@@ -236,3 +241,4 @@ Use the `ClientErrorMapping` property to configure the contents of the `ProblemD
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
+****

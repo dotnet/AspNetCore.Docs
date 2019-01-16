@@ -54,6 +54,12 @@ The `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the
 
 The `@model` directive specifies the type of the model passed to the Razor Page. In the preceding example, the `@model` line makes the `PageModel`-derived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayFor` [HTML Helpers](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
+### The layout page
+
+Select the menu links (**RazorPagesMovie**, **Home**, and **Privacy**). Each page shows the same menu layout. The menu layout is implemented in the *Pages/Shared/_Layout.cshtml* file. Open the *Pages/Shared/_Layout.cshtml* file.
+
+[Layout](xref:mvc/views/layout) templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views you create show up, *wrapped* in the layout page. For example, if you select the **Privacy** link, the **Pages/Privacy.cshtml** view is rendered inside the `RenderBody` method.
+
 <a name="vd"></a>
 ### ViewData and layout
 

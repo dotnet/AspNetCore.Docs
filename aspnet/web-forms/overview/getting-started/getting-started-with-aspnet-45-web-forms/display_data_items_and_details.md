@@ -9,13 +9,11 @@ ms.assetid: 64a491a8-0ed6-4c2f-9c1c-412962eb6006
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/display_data_items_and_details
 msc.type: authoredcontent
 ---
-Display Data Items and Details
+Display data items and details
 ====================
 by [Erik Reitan](https://github.com/Erikre)
 
-[Download Wingtip Toys Sample Project (C#)](http://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) or [Download E-book (PDF)](http://download.microsoft.com/download/0/F/B/0FBFAA46-2BFD-478F-8E56-7BF3C672DF9D/Getting%20Started%20with%20ASP.NET%204.5%20Web%20Forms%20and%20Visual%20Studio%202013.pdf)
-
-> This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.7 and Microsoft Visual Studio 2017. A Visual Studio [project with C# source code](https://go.microsoft.com/fwlink/?LinkID=389434&clcid=0x409) is available to accompany this tutorial series.
+> This tutorial series teaches you the basics of building an ASP.NET Web Forms application with ASP.NET 4.7 and Microsoft Visual Studio 2017 for the Web.
 
 In this tutorial, you'll learn how to display data items and data item details using ASP.NET Web Forms and Entity Framework Code First. This tutorial builds on the previous "UI and Navigation" tutorial as part of the Wingtip Toy Store tutorial series. After completing this tutorial, you'll see products on the *ProductsList.aspx* page and a product's details on the *ProductDetails.aspx* page.
 
@@ -63,16 +61,14 @@ Model binding lets you bind results using far less code and gives you the abilit
 
 In this tutorial, you'll use model binding to bind data. To configure a data control to use model binding to select data, you set the control's `SelectMethod` property to a method name in the page's code. The data control calls the method at the appropriate time in the page life cycle and automatically binds the returned data. There's no need to explicitly call the `DataBind` method.
 
-Using the steps below, you'll modify the markup in the *ProductList.aspx* page so that the page can display products.
-
-1. In **Solution Explorer**, open the *ProductList.aspx* page.
+1. In **Solution Explorer**, open *ProductList.aspx*.
 2. Replace the existing markup with this markup:   
 
-    [!code-aspx[Main](display_data_items_and_details/samples/sample1.aspx)]
+    [!code-aspx-csharp[Main](display_data_items_and_details/samples/sample1.aspx)]
 
 This code uses a **ListView** control named `productList` to display products.
 
-[!code-aspx[Main](display_data_items_and_details/samples/sample2.aspx)]
+[!code-aspx-csharp[Main](display_data_items_and_details/samples/sample2.aspx)]
 
 Using templates and styles, you define how the **ListView** control displays data. It's useful for data in any repeating structure. Though this **ListView** example simply displays database data, you can also, without code, enable users to edit, insert, and delete data, and to sort and page data.
 
@@ -82,12 +78,12 @@ By setting the `ItemType` property in the **ListView** control, the data-binding
 
 You're also using model binding to specify a `SelectMethod` value. This value (`GetProducts`) corresponds to the method you'll add to the code behind to display products in the next step.
 
-### Adding Code to display products
+### Add Code to display products
 
 In this step, you'll add code to populate the **ListView** control with product data from the database. The code supports showing all products and  individual category products.
 
-1. In **Solution Explorer**, right-click *ProductList.aspx* and then click **View Code**.
-2. Replace the existing code in the *ProductList.aspx.cs* file with the following code:   
+1. In **Solution Explorer**, right-click *ProductList.aspx* and then select **View Code**.
+2. Replace the existing code in the *ProductList.aspx.cs* file with this:   
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample3.cs)]
 
@@ -95,15 +91,16 @@ This code shows the `GetProducts` method that the **ListView** control's `ItemTy
 
 When a valid category is passed as a query string to the page, the results of the query are limited to those products in the database that match the `categoryId` value. For instance, if the *ProductsList.aspx* page URL is this:
 
+
 [!code-console[Main](display_data_items_and_details/samples/sample4.cmd)]
 
-The page displays only the products where the `category` equals `1`.
+The page displays only the products where the `categoryId` equals `1`.
 
 All products are displayed if no query string is included when the *ProductList.aspx* page is called.
 
 The sources of values for these methods are referred to as *value providers* (such as *QueryString*), and the parameter attributes that indicate which value provider to use is referred to as value provider attributes (such as `id`). ASP.NET includes value providers and corresponding attributes for all of the typical sources of user input in a Web Forms application such as the query string, cookies, form values, controls, view state, session state, and profile properties. You can also write custom value providers.
 
-### Running the application
+### Run the application
 
 Run the application now to view all products or a category's products.
 
@@ -123,18 +120,17 @@ Run the application now to view all products or a category's products.
 
 4. Close the browser and return to Visual Studio.
 
-### Adding a data control to display product details
+### Add a data control to display product details
 
 Next, you'll modify the markup in the *ProductDetails.aspx* page that you added in the previous tutorial to display specific product information.
 
-1. In **Solution Explorer**, open the *ProductDetails.aspx* page.
-2. Replace the existing markup with the following markup:   
+2. Replace the existing markup with this markup:
 
-    [!code-aspx[Main](display_data_items_and_details/samples/sample5.aspx)]
+    [!code-aspx-csharp[Main](display_data_items_and_details/samples/sample5.aspx)] 
 
-This code uses a **FormView** control to display specific product details. This markup uses methods like the methods used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
+    This code uses a **FormView** control to display specific product details. This markup uses methods like the methods used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. These templates contain controls, binding expressions, and formatting that define the form's look and functionality.
 
-To connect the above markup to the database, you must add additional code to the *ProductDetails.aspx* code.
+Connecting the previous markup to the database requires additional code.
 
 1. In **Solution Explorer**, right-click *ProductDetails.aspx* and then click **View Code**.  
    The *ProductDetails.aspx.cs* file will be displayed.
@@ -145,7 +141,7 @@ To connect the above markup to the database, you must add additional code to the
 
 This code checks for a "`productID`" query-string value. If a valid query-string value is found, the matching product is displayed. If the query-string isn't found, or its value isn't valid, no product is displayed.
 
-### Running the application
+### Run the application
 
 Now you can run the application to see an individual product displayed based on product ID.
 

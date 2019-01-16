@@ -1,3 +1,5 @@
+# [ASP.NET Core documentation](/aspnet/#pivot=core)
+
 # Overview
 ## [About ASP.NET Core](xref:index)
 ## [Compare ASP.NET Core and ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
@@ -5,8 +7,14 @@
 
 # [Get started](xref:getting-started)
 
+# What's new
+## [What's new in 2.2](xref:aspnetcore-2.2)
+## [What's new in 2.1](xref:aspnetcore-2.1)
+## [What's new in 2.0](xref:aspnetcore-2.0)
+## [What's new in 1.1](xref:aspnetcore-1.1)
+
 # Tutorials
-## Web APIs
+## Web API apps
 ### [Create a web API](xref:tutorials/first-web-api)
 ### [Web API with MongoDB](xref:tutorials/first-mongo-app)
 ## Web apps
@@ -121,7 +129,7 @@
 ### [Custom model binding](xref:mvc/advanced/custom-model-binding)
 ### [Compatibility version](xref:mvc/compatibility-version)
 
-# Web APIs
+# Web API apps
 ## [Overview](xref:web-api/index)
 
 ## Tutorials
@@ -179,7 +187,9 @@
 ## [Snapshot debugging](/azure/application-insights/app-insights-snapshot-debugger)
 ## [Snapshot debugging in Visual Studio](/visualstudio/debugger/debug-live-azure-applications)
 ## [Integration tests](xref:test/integration-tests)
+## [Load and stress testing](xref:test/loadtests)
 ## [Troubleshoot](xref:test/troubleshoot)
+## [Logging](xref:fundamentals/logging/index)
 
 # Data access
 ## Tutorials
@@ -241,7 +251,9 @@
 ### [Publish with CLI tools](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 ### [Publish with Visual Studio and Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Continuous deployment with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
-### [Troubleshoot startup errors](xref:host-and-deploy/azure-apps/troubleshoot)
+### [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module)
+### [Troubleshoot](xref:host-and-deploy/azure-apps/troubleshoot)
+### [Errors reference](xref:host-and-deploy/azure-iis-errors-reference)
 ## DevOps 
 ### [Overview](xref:azure/devops/index)
 ### [Tools and downloads](xref:azure/devops/tools-and-downloads)
@@ -251,10 +263,11 @@
 ### [Next steps](xref:azure/devops/next-steps)
 ## Host on Windows with IIS
 ### [Overview](xref:host-and-deploy/iis/index)
-### [Troubleshoot on IIS](xref:host-and-deploy/iis/troubleshoot)
 ### [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module)
 ### [IIS support in Visual Studio](xref:host-and-deploy/iis/development-time-iis-support)
 ### [IIS Modules](xref:host-and-deploy/iis/modules)
+### [Troubleshoot](xref:host-and-deploy/iis/troubleshoot)
+### [Errors reference](xref:host-and-deploy/azure-iis-errors-reference)
 ## [Kestrel](xref:fundamentals/servers/kestrel)
 ## [HTTP.sys](xref:fundamentals/servers/httpsys)
 ## [Host in a Windows service](xref:host-and-deploy/windows-service)
@@ -269,7 +282,6 @@
 ## [Host in a web farm](xref:host-and-deploy/web-farm)
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Directory structure](xref:host-and-deploy/directory-structure)
-## [Errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
 ## [Health checks](xref:host-and-deploy/health-checks)
 
 # Security and Identity
@@ -374,12 +386,13 @@
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
 ## [Diagnostic Tools](xref:performance/diagnostic-tools)
+## [Load and stress testing](xref:test/loadtests)
 
 # Other topics
 ## [Globalization and localization](xref:fundamentals/localization)
 ## [Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
 ## [URL rewriting](xref:fundamentals/url-rewriting)
-## [File providers](xref:fundamentals/file-providers)
+## [File Providers](xref:fundamentals/file-providers)
 ## [Request Features](xref:fundamentals/request-features)
 ## [Access HttpContext](xref:fundamentals/httpcontext)
 ## [Change tokens](xref:fundamentals/change-tokens)
@@ -392,6 +405,7 @@
 ## [Use a file watcher](xref:tutorials/dotnet-watch)
 
 # Migration
+## [2.2 to 3.0](xref:migration/22-to-30)
 ## [2.1 to 2.2](xref:migration/21-to-22)
 ## [2.0 to 2.1](xref:migration/20_21)
 ## 1.x to 2.0
@@ -406,13 +420,8 @@
 ### [ClaimsPrincipal.Current](xref:migration/claimsprincipal-current)
 ### [Membership to Identity](xref:migration/proper-to-2x/membership-to-core-identity)
 ### [HTTP modules to middleware](xref:migration/http-modules)
+## [Logging (not ASP.NET Core)](xref:migration/logging-nonaspnetcore)
 
-# What's new
-## [What's new in 2.2](xref:aspnetcore-2.2)
-## [What's new in 2.1](xref:aspnetcore-2.1)
-## [What's new in 2.0](xref:aspnetcore-2.0)
-## [What's new in 1.1](xref:aspnetcore-1.1)
-
-# [API reference](/dotnet/api/?view=aspnetcore-2.2)
+# [API reference](/dotnet/api/?view=aspnetcore-2.1)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)

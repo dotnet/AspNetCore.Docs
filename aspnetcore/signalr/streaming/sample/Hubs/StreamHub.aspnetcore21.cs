@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace SignalRChat.Hubs
 {
+    #region snippet1
     public class StreamHub : Hub
     {
         public ChannelReader<int> Counter(int count, int delay)
@@ -28,14 +29,22 @@ namespace SignalRChat.Hubs
             int count,
             int delay)
         {
-            for (var i = 0; i < count; i++)
+            try
             {
-                await writer.WriteAsync(i);
-                await Task.Delay(delay);
+                for (var i = 0; i < count; i++)
+                {
+                    await writer.WriteAsync(i);
+                    await Task.Delay(delay);
+                }
+            }
+            catch (Exception ex)
+            {
+                writer.TryComplete(ex);
             }
 
             writer.TryComplete();
         }
     }
+    #endregion
 }
 #endif

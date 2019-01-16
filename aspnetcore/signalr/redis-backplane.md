@@ -19,7 +19,10 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
 * Deploy a Redis server.
 
-  For production use, a Redis backplane is recommended only for on-premises infrastructure. To minimize latency, the Redis server should be in the same data center as the SignalR app. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. You can use the Azure Redis Cache Service for development and test environments. For more information, see the following resources:
+  > [!IMPORTANT] 
+  > For production use, a Redis backplane is recommended only when it runs in the same data center as the SignalR app. Otherwise, network latency degrades performance. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. You can use the Azure Redis Cache Service for development and test environments.
+
+  For more information, see the following resources:
 
   * <xref:signalr/scale>
   * [Redis documentation](https://redis.io/)
