@@ -91,11 +91,11 @@ Top-level nodes can use <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequired
 
 [!code-csharp[](validation/sample/UsersController.cs?name=snippet_CheckAge)]
 
-In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value as a query string. For example: `https://localhost:5001/Users/CheckAge?Age=99`
+In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value of `99` as a query string: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 When a properly formatted `age` parameter from the query string is submitted, the form validates.
 
-In the sample app, the second form on the Check Age page submits an `Age` value in the body of the request, and validation fails. Binding fails because the `age` parameter must come from a query string.
+The second form on the Check Age page submits the `Age` value in the body of the request, and validation fails. Binding fails because the `age` parameter must come from a query string.
 
 Validation is enabled by default and controlled by the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.AllowValidatingTopLevelNodes*> property of <xref:Microsoft.AspNetCore.Mvc.MvcOptions>. To disable top-level node validation, set `AllowValidatingTopLevelNodes` to `false` in MVC options (`Startup.ConfigureServices`):
 
