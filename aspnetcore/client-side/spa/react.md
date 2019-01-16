@@ -103,5 +103,10 @@ There's a drawback to this default setup. Each time you modify your C# code and 
     ```csharp
     spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
     ```
+3. Add a proxy field to your `package.json` with your development server's URL to ensure fetching data from a relative URL works properly.
+
+    ```
+    "proxy": "https://localhost:<your sslPort value from launchSettings.json>"
+    ```
 
 When you start your ASP.NET Core app, it won't launch a CRA server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for your React app to rebuild each time.
