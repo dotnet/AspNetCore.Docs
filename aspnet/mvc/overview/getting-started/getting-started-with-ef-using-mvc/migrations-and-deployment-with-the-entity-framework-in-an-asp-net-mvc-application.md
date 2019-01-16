@@ -28,8 +28,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Sorting, Filtering, and Paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-* [Connection Resiliency and Command Interception](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md) (optional) - If you skip this tutorial, a few minor adjustments will have to be made in subsequent tutorials.
+- [Connection Resiliency and Command Interception](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md)
 
 ## Enable Code First migrations
 
