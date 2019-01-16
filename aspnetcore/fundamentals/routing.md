@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how ASP.NET Core routing is responsible for mapping request URIs to endpoint selectors and dispatching incoming requests to endpoints.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/29/2018
+ms.date: 01/14/2019
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -40,7 +40,7 @@ services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-For more information on <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](xref:fundamentals/routing?view=aspnetcore-2.1).
+For more information on <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](/aspnet/core/fundamentals/routing?view=aspnetcore-2.1).
 
 ::: moniker-end
 

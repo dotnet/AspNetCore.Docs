@@ -31,7 +31,7 @@ The *publish* directory represents the *content root path*, also called the *app
 
 The *wwwroot* directory, if present, only contains static assets.
 
-The stdout *Logs* directory can be created for the deployment using one of the following two approaches:
+A *Logs* directory can be created for the deployment using one of the following two approaches:
 
 * Add the following `<Target>` element to the project file:
 
@@ -51,6 +51,8 @@ The stdout *Logs* directory can be created for the deployment using one of the f
 * Physically create the *Logs* directory on the server in the deployment.
 
 The deployment directory requires Read/Execute permissions. The *Logs* directory requires Read/Write permissions. Additional directories where files are written require Read/Write permissions.
+
+[ASP.NET Core Module stdout logging](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) doesn't require a *Logs* folder in the deployment. The module is capable of creating any folders in the `stdoutLogFile` path when the log file is created. Creating a *Logs* folder is useful for [ASP.NET Core Module enhanced debug logging](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Folders in the path provided to the `<handlerSetting>` value aren't created by the module automatically and should pre-exist in the deployment to allow the module to write the debug log.
 
 ## Additional resources
 

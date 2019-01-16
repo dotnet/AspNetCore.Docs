@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 Middleware is software that's assembled into an app pipeline to handle requests and responses. Each component:
 
 * Chooses whether to pass the request to the next component in the pipeline.
-* Can perform work before and after the next component in the pipeline is invoked.
+* Can perform work before and after the next component in the pipeline.
 
 Request delegates are used to build the request pipeline. The request delegates handle each HTTP request.
 

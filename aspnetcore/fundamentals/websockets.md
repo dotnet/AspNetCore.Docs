@@ -150,13 +150,7 @@ However, browsers do send the `Origin` header when issuing WebSocket requests. A
 
 If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the `AllowedOrigins` list for WebSockets to verify.
 
-```csharp
-app.UseWebSockets(new WebSocketOptions()
-{
-    AllowedOrigins.Add("https://client.com");
-    AllowedOrigins.Add("https://www.client.com");
-});
-```
+[!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=UseWebSocketsOptionsAO&highlight=6-7)]
 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. Do **not** use these headers as an authentication mechanism.
