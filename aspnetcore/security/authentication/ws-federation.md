@@ -77,7 +77,7 @@ By default, the new middleware:
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
 * Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.
-* Add WS-Federation to the `Configure` method in *Startup.cs*:
+* Add WS-Federation to the `ConfigureServices` method in *Startup.cs*:
 
     ```csharp
     services.AddIdentity<ApplicationUser, IdentityRole>()
