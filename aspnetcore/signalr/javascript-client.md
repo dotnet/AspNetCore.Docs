@@ -54,7 +54,7 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40aspnet/signalr/hubconnection#invoke) method of the [HubConnection](/javascript/api/%40aspnet/signalr/hubconnection). The `invoke` method accepts two arguments:
 
 * The name of the hub method. In the following example, the method name on the hub is `SendMessage`.
-* Any arguments defined in the hub method. In the following example, the argument name is `message`.
+* Any arguments defined in the hub method. In the following example, the argument name is `message`. The example code uses arrow function syntax that is supported in current versions of all major browsers except Internet Explorer.
 
   [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
 
