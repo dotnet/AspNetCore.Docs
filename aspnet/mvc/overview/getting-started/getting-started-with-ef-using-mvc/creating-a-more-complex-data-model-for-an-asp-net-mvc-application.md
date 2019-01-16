@@ -104,9 +104,7 @@ The `add-migration` command creates a file named *&lt;timeStamp&gt;\_MaxLengthOn
 
 The timestamp prepended to the migrations file name is used by Entity Framework to order the migrations. You can create multiple migrations before running the `update-database` command, and then all of the migrations are applied in the order in which they were created.
 
-Run the **Create** page, and enter either name longer than 50 characters. When you click **Create**, client side validation shows an error message.
-
-![client side val error](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image3.png)
+Run the **Create** page, and enter either name longer than 50 characters. When you click **Create**, client side validation shows an error message: *The field LastName must be a string with a maximum length of 50.*
 
 ### The Column Attribute
 
@@ -124,8 +122,6 @@ The addition of the [Column attribute](https://msdn.microsoft.com/library/system
 
 In **Server Explorer**, open the *Student* table designer by double-clicking the *Student* table.
 
-![](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image4.png)
-
 The following image shows the original column name as it was before you applied the first two migrations. In addition to the column name changing from `FirstMidName` to `FirstName`, the two name columns have changed from `MAX` length to 50 characters.
 
 ![](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image5.png)
@@ -136,8 +132,6 @@ You can also make database mapping changes using the [Fluent API](https://msdn.m
 > If you try to compile before you finish creating all of the entity classes in the following sections, you might get compiler errors.
 
 ## Update Student entity
-
-![Student_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image6.png)
 
 In *Models\Student.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
@@ -158,8 +152,6 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. Therefore it has only a `get` accessor, and no `FullName` column will be generated in the database.
 
 ## Create Instructor entity
-
-![Instructor_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image7.png)
 
 Create *Models\Instructor.cs*, replacing the template code with the following code:
 
@@ -184,8 +176,6 @@ Our business rules state an instructor can only have at most one office, so `Off
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample12.cs)]
 
 ## Create OfficeAssignment entity
-
-![OfficeAssignment_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image8.png)
 
 Create *Models\OfficeAssignment.cs* with the following code:
 
@@ -217,8 +207,6 @@ You could put a `[Required]` attribute on the Instructor navigation property to 
 
 ## Modify the Course entity
 
-![Course_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image9.png)
-
 In *Models\Course.cs*, replace the code you added earlier with the following code:
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample15.cs)]
@@ -249,8 +237,6 @@ The foreign key properties and navigation properties in the `Course` entity refl
 
 ## Create the Department entity
 
-![Department_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image10.png)
-
 Create *Models\Department.cs* with the following code:
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample20.cs)]
@@ -280,8 +266,6 @@ The foreign key and navigation properties reflect the following relationships:
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample24.cs)]
 
 ## Modify the Enrollment entity
-
-![Enrollment_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image11.png)
 
  In *Models\Enrollment.cs*, replace the code you added earlier with the following code
 
@@ -322,7 +306,7 @@ The Entity Framework automatically creates the `CourseInstructor` table, and you
 
 The following illustration shows the diagram that the Entity Framework Power Tools create for the completed School model.
 
-![School_data_model_diagram](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image15.png)
+![School_data_model_diagram](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image1.png)
 
 Besides the many-to-many relationship lines (\* to \*) and the one-to-many relationship lines (1 to \*), you can see here the one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities and the zero-or-one-to-many relationship line (0..1 to \*) between the Instructor and Department entities.
 
