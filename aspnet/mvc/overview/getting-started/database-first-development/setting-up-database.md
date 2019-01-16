@@ -31,13 +31,13 @@ For guidance on selecting which Entity Framework approach to use, see [Entity Fr
 
 ## Prerequisites
 
-[Visual Studio 2017 or Visual Studio Community 2017](https://visualstudio.microsoft.com/downloads/)
+[Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 
 ## Set up the database
 
 To mimic the environment of having an existing database, you will first create a database with some pre-filled data, and then create your web application that connects to the database.
 
-This tutorial was developed using LocalDB with either Visual Studio 2017 or Visual Studio Community 2017. You can use an existing database server instead of LocalDB, but depending on your version of Visual Studio and your type of database, all of the data tools in Visual Studio might not be supported. If the tools are not available for your database, you may need to perform some of the database-specific steps within the management suite for your database.
+This tutorial was developed using LocalDB with Visual Studio 2017. You can use an existing database server instead of LocalDB, but depending on your version of Visual Studio and your type of database, all of the data tools in Visual Studio might not be supported. If the tools are not available for your database, you may need to perform some of the database-specific steps within the management suite for your database.
 
 If you have a problem with the database tools in your version of Visual Studio, make sure you have installed the latest version of the database tools. For information about updating or installing the database tools, see [Microsoft SQL Server Data Tools](https://msdn.microsoft.com/data/hh297027).
 
