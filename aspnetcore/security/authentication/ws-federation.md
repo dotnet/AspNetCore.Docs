@@ -4,7 +4,7 @@ author: chlowell
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/27/2018
+ms.date: 01/16/2019
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
@@ -77,7 +77,7 @@ By default, the new middleware:
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
 * Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.
-* Add WS-Federation to the `ConfigureServices` method in *Startup.cs*:
+* Add WS-Federation to `Startup.ConfigureServices`:
 
     ```csharp
     services.AddIdentity<ApplicationUser, IdentityRole>()
