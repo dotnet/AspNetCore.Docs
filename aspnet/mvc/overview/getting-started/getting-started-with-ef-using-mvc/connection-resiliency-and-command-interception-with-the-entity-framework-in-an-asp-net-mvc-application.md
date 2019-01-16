@@ -1,27 +1,34 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Connection Resiliency and Command Interception with the Entity Framework in an ASP.NET MVC Application | Microsoft Docs"
+title: "Tutorial: Use connection resiliency and command interception with EF in an ASP.NET MVC app"
 author: tdykstra
-description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
+description: "In this tutorial you'll learn how to use connection resiliency and command interception. They are two important features of Entity Framework 6."
 ms.author: riande
-ms.date: 01/13/2015
+ms.date: 01/14/2018
+ms.topic: tutorial
 ms.assetid: c89d809f-6c65-4425-a3fa-c9f6e8ac89f2
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-Connection Resiliency and Command Interception with the Entity Framework in an ASP.NET MVC Application
-====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
-
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
+# Tutorial: Use connection resiliency and command interception with Entity Framework in an ASP.NET MVC app
 
 So far the application has been running locally in IIS Express on your development computer. To make a real application available for other people to use over the Internet, you have to deploy it to a web hosting provider, and you have to deploy the database to a database server.
 
-In this tutorial you'll learn how to use two features of Entity Framework 6 that are especially valuable when you are deploying to the cloud environment: connection resiliency (automatic retries for transient errors) and command interception (catch all SQL queries sent to the database in order to log or change them).
+In this tutorial you'll learn how to use connection resiliency and command interception. They are two important features of Entity Framework 6 that are especially valuable when you are deploying to the cloud environment: connection resiliency (automatic retries for transient errors) and command interception (catch all SQL queries sent to the database in order to log or change them).
 
 This connection resiliency and command interception tutorial is optional. If you skip this tutorial, a few minor adjustments will have to be made in subsequent tutorials.
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Enable connection resiliency
+> * Enable command interception
+> * Test the new configuration
+
+## Prerequisites
+
+* [Sorting, Filtering, and Paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
 
 ## Enable connection resiliency
 
@@ -58,7 +65,7 @@ All you have to do to enable connection resiliency is create a class in your ass
 
 For more information, see [Entity Framework Connection Resiliency / Retry Logic](https://msdn.microsoft.com/data/dn456835).
 
-## Enable Command Interception
+## Enable command interception
 
 Now that you've turned on a retry policy, how do you test to verify that it is working as expected? It's not so easy to force a transient error to happen, especially when you're running locally, and it would be especially difficult to integrate actual transient errors into an automated unit test. To test the connection resiliency feature, you need a way to intercept queries that Entity Framework sends to SQL Server and replace the SQL Server response with an exception type that is typically transient.
 
@@ -129,7 +136,7 @@ Next you'll create the classes that the Entity Framework will call into every ti
 
     You've written the transient error simulation code in a way that lets you cause transient errors by entering a different value in the UI. As an alternative, you could write the interceptor code to always generate the sequence of transient exceptions without checking for a particular parameter value. You could then add the interceptor only when you want to generate transient errors. If you do this, however, don't add the interceptor until after database initialization has completed. In other words, do at least one database operation such as a query on one of your entity sets before you start generating transient errors. The Entity Framework executes several queries during database initialization, and they aren't executed in a transaction, so errors during initialization could cause the context to get into an inconsistent state.
 
-## Test logging and connection resiliency
+## Test the new configuration
 
 1. Press **F5** to run the application in debug mode, and then click the **Students** tab.
 2. Look at the Visual Studio **Output** window to see the tracing output. You might have to scroll up past some JavaScript errors to get to the logs written by your logger.
@@ -161,14 +168,19 @@ Next you'll create the classes that the Entity Framework will call into every ti
     ![Dummy Exception](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
 5. Uncomment the *SetExecutionStrategy* line in *SchoolConfiguration.cs*.
 
-## Summary
-
-In this tutorial you've seen how to enable connection resiliency and log SQL commands that Entity Framework composes and sends to the database. In the next tutorial you'll deploy the application to the Internet, using Code First Migrations to deploy the database.
-
-Please leave feedback on how you liked this tutorial and what we could improve.
+## Additional resources
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Previous](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-> [Next](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Enabled connection resiliency
+> * Enabled command interception
+> * Tested the new configuration
+
+Advance to the next article to learn about Code First migrations and Azure deployment.
+> [!div class="nextstepaction"]
+> [Code First migrations and Azure deployment](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application.md)
