@@ -57,7 +57,7 @@ This approach lets you have full control over your data-access logic.
 
 Model binding lets you bind results with far less code and gives you the ability to reuse the functionality throughout your application. It simplifies working with code-focused data-access logic while still providing a rich, data-binding framework.
 
-## Displaying products
+## Display products
 
 In this tutorial, you'll use model binding to bind data. To configure a data control to use model binding to select data, you set the control's `SelectMethod` property to a method name in the page's code. The data control calls the method at the appropriate time in the page life cycle and automatically binds the returned data. There's no need to explicitly call the `DataBind` method.
 
@@ -78,7 +78,7 @@ By setting the `ItemType` property in the **ListView** control, the data-binding
 
 You're also using model binding to specify a `SelectMethod` value. This value (`GetProducts`) corresponds to the method you'll add to the code behind to display products in the next step.
 
-### Add Code to display products
+### Add code to display products
 
 In this step, you'll add code to populate the **ListView** control with product data from the database. The code supports showing all products and  individual category products.
 
@@ -122,6 +122,8 @@ Run the application now to view all products or a category's products.
 ### Add a data control to display product details
 
 Next, you'll modify the markup in the *ProductDetails.aspx* page that you added in the previous tutorial to display specific product information.
+
+1. In **Solution Explorer**, open *ProductDetails.aspx*.
 
 2. Replace the existing markup with this markup:
 
