@@ -1,17 +1,17 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Tutorial: Code First migrations and deployment with EF in an ASP.NET MVC App | Microsoft Docs"
+title: "Tutorial: Use EF Migrations in an ASP.NET MVC app and deploy to Azure"
 author: tdykstra
 description: "In this tutorial, you enable Code First migrations and deploy the application to the cloud in Azure."
 ms.author: riande
-ms.date: 01/15/2019
+ms.date: 01/16/2019
 ms.topic: tutorial
 ms.assetid: d4dfc435-bda6-4621-9762-9ba270f8de4e
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
 
-# Tutorial: Code First migrations and deployment with Entity Framework in an ASP.NET MVC app
+# Tutorial: Use EF Migrations in an ASP.NET MVC app and deploy to Azure
 
 So far the Contoso University sample web application has been running locally in IIS Express on your development computer. To make a real application available for other people to use over the Internet, you have to deploy it to a web hosting provider. In this tutorial, you enable Code First migrations and deploy the application to the cloud in Azure:
 
