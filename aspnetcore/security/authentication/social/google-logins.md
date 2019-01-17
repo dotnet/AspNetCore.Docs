@@ -44,24 +44,15 @@ Add the Google service to `Startup.ConfigureServices`:
 
 ## Sign in with Google
 
-Run your application and click **Log in**. An option to sign in with Google appears:
-
-![Web application running in Microsoft Edge: User not authenticated](index/_static/DoneGoogle.png)
-
-When you click on Google, you are redirected to Google for authentication:
-
-![Google authentication dialog](index/_static/GoogleLogin.png)
-
-After entering your Google credentials, then you are redirected back to the web site where you can set your email.
-
-You are now logged in using your Google credentials:
-
-![Web application running in Microsoft Edge: User authenticated](index/_static/Done.png)
+* Run the app and click **Log in**. An option to sign in with Google appears.
+* Click on the **Google** button, which redirecteds to Google for authentication.
+* After entering your Google credentials, you are redirected back to the web site.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
+<!-- REVIEW: Should See the [GoogleOptions] be deleted? -->
 See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
 ## Change the default callback URI
@@ -77,7 +68,5 @@ The URI segment `/signin-google` is set as the default callback of the Google au
 ## Next steps
 
 * This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
-
-* Once you publish your web site to Azure web app, you should reset the `ClientSecret` in the Google API Console.
-
+* Once you publish the app to Azure, reset the `ClientSecret` in the Google API Console.
 * Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
