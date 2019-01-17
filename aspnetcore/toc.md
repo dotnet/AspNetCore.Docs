@@ -388,9 +388,11 @@
 ## [Diagnostic Tools](xref:performance/diagnostic-tools)
 ## [Load and stress testing](xref:test/loadtests)
 
+# Globalization and localization
+## [Overview](xref:fundamentals/localization)
+## [Portable Object localization](xref:fundamentals/portable-object-localization)
+
 # Other topics
-## [Globalization and localization](xref:fundamentals/localization)
-## [Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
 ## [URL rewriting](xref:fundamentals/url-rewriting)
 ## [File Providers](xref:fundamentals/file-providers)
 ## [Request Features](xref:fundamentals/request-features)
