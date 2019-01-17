@@ -49,7 +49,10 @@ namespace MVCMovie.Controllers
                 Preorder = preorder,
             };
 
+            #region snippet_TryValidateModel
             TryValidateModel(movie);
+            #endregion
+
             if (ModelState.IsValid)
             {
                 _context.AddMovie(movie);
