@@ -79,7 +79,7 @@ After you create the project, you can choose to deploy to Azure App Service Web 
 
    [![](part-1/_static/image15.png)](part-1/_static/image15.png)
 
-   Accept the defaults, or enter different values for the application name resource group, hosting plan, Azure subscription, and geographical region. 
+   Accept the defaults, or enter different values for the application name, resource group, hosting plan, Azure subscription, and geographical region. 
 
 4. Select **Create a SQL database**. The **Configure SQL Server** dialog box appears. 
 
