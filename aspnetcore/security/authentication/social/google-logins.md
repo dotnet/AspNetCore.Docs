@@ -13,7 +13,7 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 
 Google is starting to [shut down](https://developers.google.com/+/api-shutdown) Google+ sign in. For more information on the mitigation approach for ASP.NET Core, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/6486). This tutorial has been updated to use the current mitigation.
 
-This tutorial shows you how to enable users to sign in with their Google account using the  ASP.NET Core 2.2 project created on the [previous page](xref:security/authentication/social/index).
+This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core 2.2 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create a Google API Console project and client ID
 
