@@ -12,20 +12,20 @@ uid: fundamentals/startup
 
 By [Tom Dykstra](https://github.com/tdykstra), [Luke Latham](https://github.com/guardrex), and [Steve Smith](https://ardalis.com)
 
-Learn how the `Startup` class configures services and the app's request pipeline.
+The `Startup` class configures services and the app's request pipeline.
 
 ## The Startup class
 
 ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention. The `Startup` class:
 
-* Optionally includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method to configure the app's services.
+* Optionally includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method to configure the app's *services*. A service is a reusable component that provides app functionality. Services are configured&mdash;also described as *registered*&mdash;in `ConfigureServices` and consumed across the app via [dependency injection (DI)](xref:fundamentals/dependency-injection) or <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 * Includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method to create the app's request processing pipeline.
 
 `ConfigureServices` and `Configure` are called by the runtime when the app starts:
 
 [!code-csharp[](startup/sample_snapshot/Startup1.cs?highlight=4,10)]
 
-Specify the `Startup` class with the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method:
+The `Startup` class is specified to the app when the app's [host](xref:fundamentals/host/index) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 [!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=10)]
 
@@ -53,13 +53,13 @@ The <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method is
 
 The typical pattern is to call all the `Add{Service}` methods and then call all of the `services.Configure{Service}` methods. For example, see [Configure Identity services](xref:security/authentication/identity#pw).
 
-Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
-
 The host may configure some services before `Startup` methods are called. For more information, see <xref:fundamentals/host/index>.
 
 For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC:
 
 [!code-csharp[](startup/sample_snapshot/Startup3.cs?highlight=4,7,11)]
+
+Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 
 ## The Configure method
 
@@ -87,7 +87,7 @@ For more information on how to use `IApplicationBuilder` and the order of middle
 
 ## Convenience methods
 
-`ConfigureServices` and `Configure` convenience methods provide an alternative approach to specifying a `Startup` class. Multiple calls to `ConfigureServices` append to one another. If multiple `Configure` method calls exist, the last `Configure` call is used.
+To configure services and the request processing pipeline without using a `Startup` class, call `ConfigureServices` and `Configure` convenience methods on the host builder. Multiple calls to `ConfigureServices` append to one another. If multiple `Configure` method calls exist, the last `Configure` call is used.
 
 [!code-csharp[](startup/sample_snapshot/Program1.cs?highlight=18,22)]
 
