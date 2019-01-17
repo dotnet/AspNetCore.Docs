@@ -83,7 +83,7 @@ Create a controller named `CourseController` (not CoursesController) for the `Co
 | ------- | ----- |
 | Model class | Select **Course (ContosoUniversity.Models)**. |
 | Data context class | Select **SchoolContext (ContosoUniversity.DAL)**. |
-| Controller name | Enter *CourseController*. Again, not CoursesController with an *s*. When you selected **Course (ContosoUniversity.Models)**, the **Controller name** value was automatically populated. You have to change the value. |
+| Controller name | Enter *CourseController*. Again, not *CoursesController* with an *s*. When you selected **Course (ContosoUniversity.Models)**, the **Controller name** value was automatically populated. You have to change the value. |
 
 Leave the other default values and add the controller.
 
@@ -127,13 +127,13 @@ In the *ViewModels* folder, create *InstructorIndexData.cs* and replace the exis
 
 ### Create the Instructor Controller and Views
 
-Create an `InstructorController` (not InstructorsController) controller with EF read/write actions as shown in the following illustration:
+Create an `InstructorController` (not InstructorsController) controller with EF read/write action:
 
 | Setting | Value |
 | ------- | ----- |
 | Model class | Select **Instructor (ContosoUniversity.Models)**. |
 | Data context class | Select **SchoolContext (ContosoUniversity.DAL)**. |
-| Controller name | Enter *InstructorController*. Again, not InstructorsController with an *s*. When you selected **Course (ContosoUniversity.Models)**, the **Controller name** value was automatically populated. You have to change the value. |
+| Controller name | Enter *InstructorController*. Again, not *InstructorsController* with an *s*. When you selected **Course (ContosoUniversity.Models)**, the **Controller name** value was automatically populated. You have to change the value. |
 
 Leave the other default values and add the controller.
 
