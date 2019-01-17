@@ -11,9 +11,9 @@ uid: security/authentication/google-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Google is starting to [shut down](https://developers.google.com/+/api-shutdown) Google+ Signin. For more information on the mitigation approach for ASP.NET Core, see [this Github issue](https://github.com/aspnet/AspNetCore/issues/6486). This tutorial has been updated to use the current mitigation.
+Google is starting to [shut down](https://developers.google.com/+/api-shutdown) Google+ sign in. For more information on the mitigation approach for ASP.NET Core, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/6486). This tutorial has been updated to use the current mitigation.
 
-This tutorial shows you how to enable your users to sign in with their Google account using the  ASP.NET Core 2.2 project created on the [previous page](xref:security/authentication/social/index).
+This tutorial shows you how to enable users to sign in with their Google account using the  ASP.NET Core 2.2 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create a Google API Console project and client ID
 
@@ -25,14 +25,14 @@ This tutorial shows you how to enable your users to sign in with their Google ac
 
 ## Store Google ClientID and ClientSecret
 
-Link sensitive settings like Google `Client ID` and `Client Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret`:
+Store sensitive settings such as the Google `Client ID` and `Client Secret` with the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret`:
 
 ```console
 dotnet user-secrets set "Authentication:Google:ClientId" "X.apps.googleusercontent.com"
 dotnet user-secrets set "Authentication:Google:ClientSecret" "<client secret>"
 ```
 
-You can manage your API credentials and usage later in the [API Console](https://console.developers.google.com/apis/dashboard).
+You can manage your API credentials and usage in the [API Console](https://console.developers.google.com/apis/dashboard).
 
 ## Configure Google authentication
 
@@ -45,7 +45,7 @@ Add the Google service to `Startup.ConfigureServices`:
 ## Sign in with Google
 
 * Run the app and click **Log in**. An option to sign in with Google appears.
-* Click on the **Google** button, which redirecteds to Google for authentication.
+* Click the **Google** button, which redirects to Google for authentication.
 * After entering your Google credentials, you are redirected back to the web site.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
@@ -61,9 +61,9 @@ The URI segment `/signin-google` is set as the default callback of the Google au
 
 ## Troubleshooting
 
-* If the sign in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
-* If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
-* If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
+* If the sign-in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
+* If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate results in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
 
