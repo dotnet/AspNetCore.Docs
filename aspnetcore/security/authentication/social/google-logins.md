@@ -40,9 +40,8 @@ You can manage your API credentials and usage later in the [API Console](https:/
 
 Add the Google service to `Startup.ConfigureServices`:
 
-[!code-csharp[Main]("~/security/authentication/social/google-logins/sample/Startup.cs")]
+[!code-csharp[Main](~/security/authentication/social/google-logins/sample/Startup.cs)]
 
-```csharp
 services.AddDefaultIdentity<IdentityUser>()
         .AddDefaultUI(UIFramework.Bootstrap4)
         .AddEntityFrameworkStores<ApplicationDbContext>();
