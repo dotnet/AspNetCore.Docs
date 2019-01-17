@@ -17,29 +17,27 @@ public class Program
             })
             .ConfigureServices(services =>
             {
-                services.AddMvc();
+                ...
             })
             .Configure(app =>
             {
                 var loggerFactory = app.ApplicationServices
                     .GetRequiredService<ILoggerFactory>();
                 var logger = loggerFactory.CreateLogger<Program>();
+
                 logger.LogInformation("Logged in Configure");
 
                 if (HostingEnvironment.IsDevelopment())
                 {
-                    app.UseDeveloperExceptionPage();
+                    ...
                 }
                 else
                 {
-                    app.UseExceptionHandler("/Error");
+                    ...
                 }
 
-                // Configuration is available during startup. Examples:
-                // Configuration["key"]
-                // Configuration["subsection:suboption1"]
+                var configValue = Configuration["subsection:suboption1"];
 
-                app.UseMvcWithDefaultRoute();
-                app.UseStaticFiles();
+                ...
             });
 }
