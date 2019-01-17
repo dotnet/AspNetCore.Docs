@@ -11,6 +11,8 @@ uid: security/authentication/google-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+Google is starting to [shut down](https://developers.google.com/+/api-shutdown) Google+ Signin. For more information on the mitigation approach for ASP.NET Core, see [this Github issue](https://github.com/aspnet/AspNetCore/issues/6486). This tutorial has been updated to use the current mitigation.
+
 This tutorial shows you how to enable your users to sign in with their Google account using the  ASP.NET Core 2.2 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create a Google API Console project and client ID
@@ -30,28 +32,17 @@ This tutorial shows you how to enable your users to sign in with their Google ac
 Link sensitive settings like Google `Client ID` and `Client Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret`:
 
 ```console
-dotnet user-secrets set "Authentication:Google:ClientId" "12345.apps.googleusercontent.com"
+dotnet user-secrets set "Authentication:Google:ClientId" "X.apps.googleusercontent.com"
 dotnet user-secrets set "Authentication:Google:ClientSecret" "<client secret>"
 ```
 
 You can manage your API credentials and usage later in the [API Console](https://console.developers.google.com/apis/dashboard).
 
-## Configure Google Authentication
+## Configure Google authentication
 
 Add the Google service to `Startup.ConfigureServices`:
 
-[!code-csharp[Main](~/security/authentication/social/google-logins/sample/Startup.cs)]
-
-services.AddDefaultIdentity<IdentityUser>()
-        .AddDefaultUI(UIFramework.Bootstrap4)
-        .AddEntityFrameworkStores<ApplicationDbContext>();
-
-services.AddAuthentication().AddGoogle(googleOptions =>
-{
-    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-});
-```
+[!code-csharp[Main](~/security/authentication/social/google-logins/sample/Startup.cs?name=snippet&highlight=17-33)]
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
