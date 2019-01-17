@@ -4,7 +4,7 @@ title: "Search | Microsoft Docs"
 author: Rick-Anderson
 description: ""
 ms.author: riande
-ms.date: 05/22/2015
+ms.date: 01/17/2019
 ms.assetid: df001954-18bf-4550-b03d-43911a0ea186
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-search
 msc.type: authoredcontent
@@ -20,7 +20,7 @@ In this section you'll add search capability to the `Index` action method that l
 
 ## Prerequisites
 
-This section requires that you first run the application (F5) and add the following movies to the database.
+To match this section's screenshots, you need to run the application (F5) and add the following movies to the database.
 
 | Title | Release Date | Genre | Price |
 | ----- | ------------ | ----- | ----- |
