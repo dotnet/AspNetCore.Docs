@@ -41,7 +41,7 @@ Here are the main building blocks for this app:
 
 ## See this app running on Azure
 
-Would you like to see the finished site running as a live web app? You can deploy a complete version of the app to your Azure account by simply clicking the following button.
+Would you like to see the finished site running as a live web app? You can deploy a complete version of the app to your Azure account by selecting the following button.
 
 [![](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/?WT.mc_id=deploy_azure_aspnet&repository=https://github.com/tfitzmac/BookService)
 
@@ -52,9 +52,9 @@ You need an Azure account to deploy this solution to Azure. If you do not alread
 
 ## Create the project
 
-Open Visual Studio. From the **File** menu, select **New**, then select **Project**. (Or click **New Project** on the Start page.)
+Open Visual Studio. From the **File** menu, select **New**, then select **Project**. (Or select **New Project** on the Start page.)
 
-In the **New Project** dialog, click **Web** in the left pane and **ASP.NET Web Application (.NET Framework)** in the middle pane. Name the project **BookService** and click **OK**.
+In the **New Project** dialog, select **Web** in the left pane and **ASP.NET Web Application (.NET Framework)** in the middle pane. Name the project **BookService** and select **OK**.
 
 [![](part-1/_static/image11.png)](part-1/_static/image11.png)
 
@@ -63,7 +63,7 @@ In the **New ASP.NET Project** dialog, select the **Web API** template.
 [![](part-1/_static/image12.png)](part-1/_static/image12.png)
 
 
-Click **OK** to create the project.
+Select **OK** to create the project.
 
 ## Configure Azure settings (optional)
 
@@ -87,7 +87,7 @@ After you create the project, you can choose to deploy to Azure App Service Web 
 
    Accept the defaults or enter different values. Enter an **Adminstrator Username** and **Administrator Password** for your new database. Select **OK** when you're done. The **Create App Service** page reappears.
 
-5. Click **Create** to create your profile. A message appears in the lower-right corner indicating that deployment is in progress. After a short while, the **Publish** window reappears.
+5. Select **Create** to create your profile. A message appears in the lower-right corner indicating that deployment is in progress. After a short while, the **Publish** window reappears.
 
     [![](part-1/_static/image17.png)](part-1/_static/image17.png)
    
