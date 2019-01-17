@@ -109,7 +109,7 @@ You're now ready to publish a web application to IIS. First, however, create dat
 
 ## Install SQL Server Express
 
-LocalDB isn't designed to work in IIS, so your test environment has to have SQL Server Express installed. If you're using Visual Studio 2010 SQL Server Express, it's already installed by default. If you're using Visual Studio 2012 or later, install it.
+LocalDB isn't designed to work in IIS, so your test environment has to have SQL Server Express installed. If you're using Visual Studio 2010 SQL Server Express, it's already installed by default. If you're using Visual Studio 2012 or later, install SQL Server Express.
 
 To install SQL Server Express, download and install it from [Download Center: Microsoft SQL Server 2017 Express edition](https://www.microsoft.com/sql-server/sql-server-editions-express). 
 
