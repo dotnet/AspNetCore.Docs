@@ -1,17 +1,17 @@
+using Microsoft.Net.Http.Headers;
 using System;
 using System.IO;
-using Microsoft.Net.Http.Headers;
 
-namespace FileUploadSample
+namespace Hrm.API.Infrastructure.Extensions
 {
     public static class MultipartRequestHelper
-    {
+    {  
         // Content-Type: multipart/form-data; boundary="----WebKitFormBoundarymx2fSWqWSd0OxQqq"
         // The spec says 70 characters is a reasonable limit.
         public static string GetBoundary(MediaTypeHeaderValue contentType, int lengthLimit)
         {
             var boundary = HeaderUtilities.RemoveQuotes(contentType.Boundary);
-            if (string.IsNullOrWhiteSpace(boundary))
+            if (string.IsNullOrWhiteSpace(boundary.Value))
             {
                 throw new InvalidDataException("Missing content-type boundary.");
             }
@@ -22,7 +22,7 @@ namespace FileUploadSample
                     $"Multipart boundary length limit {lengthLimit} exceeded.");
             }
 
-            return boundary;
+            return boundary.Value;
         }
 
         public static bool IsMultipartContentType(string contentType)
@@ -36,8 +36,8 @@ namespace FileUploadSample
             // Content-Disposition: form-data; name="key";
             return contentDisposition != null
                    && contentDisposition.DispositionType.Equals("form-data")
-                   && string.IsNullOrEmpty(contentDisposition.FileName)
-                   && string.IsNullOrEmpty(contentDisposition.FileNameStar);
+                   && string.IsNullOrEmpty(contentDisposition.FileName.Value)
+                   && string.IsNullOrEmpty(contentDisposition.FileNameStar.Value);
         }
 
         public static bool HasFileContentDisposition(ContentDispositionHeaderValue contentDisposition)
@@ -45,8 +45,8 @@ namespace FileUploadSample
             // Content-Disposition: form-data; name="myfile1"; filename="Misc 002.jpg"
             return contentDisposition != null
                    && contentDisposition.DispositionType.Equals("form-data")
-                   && (!string.IsNullOrEmpty(contentDisposition.FileName)
-                       || !string.IsNullOrEmpty(contentDisposition.FileNameStar));
+                   && (!string.IsNullOrEmpty(contentDisposition.FileName.Value)
+                       || !string.IsNullOrEmpty(contentDisposition.FileNameStar.Value));
         }
     }
 }
