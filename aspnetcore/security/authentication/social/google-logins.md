@@ -36,7 +36,7 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-Add the Google service to `Startup.ConfigureServices`:
+Add the Google service to `Startup.ConfigureServices`. See the code in [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/6486).
 
 [!code-csharp[Main](~/security/authentication/social/google-logins/sample/Startup.cs?name=snippet&highlight=17-33)]
 
@@ -52,7 +52,6 @@ Add the Google service to `Startup.ConfigureServices`:
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-<!-- REVIEW: Should See the [GoogleOptions] be deleted? -->
 See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
 ## Change the default callback URI
