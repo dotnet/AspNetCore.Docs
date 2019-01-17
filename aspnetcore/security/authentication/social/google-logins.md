@@ -38,8 +38,6 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 Add the Google service to `Startup.ConfigureServices`.
 
-[!code-csharp[Main](~/security/authentication/social/google-logins/sample/Startup.cs?name=snippet&highlight=17-33)]
-
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
 ## Sign in with Google
