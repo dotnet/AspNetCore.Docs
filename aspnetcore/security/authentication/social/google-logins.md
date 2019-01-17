@@ -17,14 +17,10 @@ This tutorial shows you how to enable your users to sign in with their Google ac
 
 ## Create a Google API Console project and client ID
 
-* On the [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) page, select **CONFIGURE A PROJECT**, and create a project.
-* On the **Configure your OAuth client**, select **Web server**.
-* In the **Authorized redirect URIs**, set the redirect URI. For example, `https://localhost:5001/signin-google`
+* Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) and select **CONFIGURE A PROJECT**.
+* In the **Configure your OAuth client** dialog, select **Web server**.
+* In the **Authorized redirect URIs** text entry box, set the redirect URI. For example, `https://localhost:5001/signin-google`
 * Save the **Client ID** and **Client Secret**.
-
-> [!NOTE]
-> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) class.
-
 * When deploying the site, register the new public url from the **Google Console**.
 
 ## Store Google ClientID and ClientSecret
@@ -44,11 +40,7 @@ Add the Google service to `Startup.ConfigureServices`:
 
 [!code-csharp[Main](~/security/authentication/social/google-logins/sample/Startup.cs?name=snippet&highlight=17-33)]
 
-[!INCLUDE [default settings configuration](includes/default-settings.md)]
-
-[!INCLUDE[](includes/chain-auth-providers.md)]
-
-See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
+[!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
 ## Sign in with Google
 
@@ -67,6 +59,14 @@ You are now logged in using your Google credentials:
 ![Web application running in Microsoft Edge: User authenticated](index/_static/Done.png)
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
+
+[!INCLUDE[](includes/chain-auth-providers.md)]
+
+See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
+
+## Change the default callback URI
+
+The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) class.
 
 ## Troubleshooting
 
