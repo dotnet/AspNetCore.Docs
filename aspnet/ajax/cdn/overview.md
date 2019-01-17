@@ -791,6 +791,21 @@ The following releases of [https://github.com/scottjehl/Respond](https://github.
 
 The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstrap.com") bootstrap are hosted on the CDN:
 
+#### Bootstrap version 4.2.1
+
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/bootstrap.bundle.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap-grid.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap-grid.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap-grid.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap-reboot.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap-reboot.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap-reboot.css.map
+
 #### Bootstrap version 4.1.1
 
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/bootstrap.js
@@ -820,6 +835,22 @@ The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstr
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap-reboot.css
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap-reboot.min.css
 - https://ajax.aspnetcdn.com/ajax/bootstrap/4.0.0/css/bootstrap-reboot.css.map
+
+#### Bootstrap version 3.4.0
+
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/css/bootstrap-theme.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/css/bootstrap-theme.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/css/bootstrap-theme.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.eot
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.svg
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.ttf
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.woff
+- https://ajax.aspnetcdn.com/ajax/bootstrap/3.4.0/fonts/glyphicons-halflings-regular.woff2
 
 #### Bootstrap version 3.3.7
 

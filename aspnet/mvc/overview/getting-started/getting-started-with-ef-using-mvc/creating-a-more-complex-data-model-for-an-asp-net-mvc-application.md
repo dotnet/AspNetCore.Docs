@@ -1,29 +1,44 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application
-title: "Creating a More Complex Data Model for an ASP.NET MVC Application | Microsoft Docs"
+title: "Tutorial: Create a more complex data model for an ASP.NET MVC app"
 author: tdykstra
-description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
+description: "In this tutorial you'll add more entities and relationships and you'll customize the data model by specifying formatting, validation, and database mapping rules."
 ms.author: riande
-ms.date: 01/15/2019
+ms.date: 01/16/2019
+ms.topic: tutorial
 ms.assetid: 46f7f3c9-274f-4649-811d-92222a9b27e2
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-Creating a More Complex Data Model for an ASP.NET MVC Application
-====================
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+# Tutorial: Create a more complex data model for an ASP.NET MVC app
 
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
-
-In the previous tutorials you worked with a simple data model that was composed of three entities. In this tutorial you'll add more entities and relationships and you'll customize the data model by specifying formatting, validation, and database mapping rules. You'll see two ways to customize the data model: by adding attributes to entity classes and by adding code to the database context class.
+In the previous tutorials you worked with a simple data model that was composed of three entities. In this tutorial you add more entities and relationships and you customize the data model by specifying formatting, validation, and database mapping rules. This article shows two ways to customize the data model: by adding attributes to entity classes and by adding code to the database context class.
 
 When you're finished, the entity classes will make up the completed data model that's shown in the following illustration:
 
 ![School_class_diagram](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image1.png)
 
-## Customize the Data Model by Using Attributes
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Customize the data model
+> * Update Student entity
+> * Create Instructor entity
+> * Create OfficeAssignment entity
+> * Modify the Course entity
+> * Create the Department entity
+> * Modify the Enrollment entity
+> * Add code to database context
+> * Seed database with test data
+> * Add a migration
+> * Update the database
+
+## Prerequisites
+
+* [Code First migrations and deployment](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+
+## Customize the data model
 
 In this section you'll see how to customize the data model by using attributes that specify formatting, validation, and database mapping rules. Then in several of the following sections you'll create the complete `School` data model by adding attributes to the classes you already created and creating new classes for the remaining entity types in the model.
 
@@ -89,9 +104,7 @@ The `add-migration` command creates a file named *&lt;timeStamp&gt;\_MaxLengthOn
 
 The timestamp prepended to the migrations file name is used by Entity Framework to order the migrations. You can create multiple migrations before running the `update-database` command, and then all of the migrations are applied in the order in which they were created.
 
-Run the **Create** page, and enter either name longer than 50 characters. When you click **Create**, client side validation shows an error message.
-
-![client side val error](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image3.png)
+Run the **Create** page, and enter either name longer than 50 characters. When you click **Create**, client side validation shows an error message: *The field LastName must be a string with a maximum length of 50.*
 
 ### The Column Attribute
 
@@ -109,8 +122,6 @@ The addition of the [Column attribute](https://msdn.microsoft.com/library/system
 
 In **Server Explorer**, open the *Student* table designer by double-clicking the *Student* table.
 
-![](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image4.png)
-
 The following image shows the original column name as it was before you applied the first two migrations. In addition to the column name changing from `FirstMidName` to `FirstName`, the two name columns have changed from `MAX` length to 50 characters.
 
 ![](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image5.png)
@@ -120,10 +131,7 @@ You can also make database mapping changes using the [Fluent API](https://msdn.m
 > [!NOTE]
 > If you try to compile before you finish creating all of the entity classes in the following sections, you might get compiler errors.
 
-
-## Complete Changes to the Student Entity
-
-![Student_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image6.png)
+## Update Student entity
 
 In *Models\Student.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
@@ -143,9 +151,7 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. Therefore it has only a `get` accessor, and no `FullName` column will be generated in the database.
 
-## Create the Instructor Entity
-
-![Instructor_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image7.png)
+## Create Instructor entity
 
 Create *Models\Instructor.cs*, replacing the template code with the following code:
 
@@ -169,9 +175,7 @@ Our business rules state an instructor can only have at most one office, so `Off
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample12.cs)]
 
-## Create the OfficeAssignment Entity
-
-![OfficeAssignment_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image8.png)
+## Create OfficeAssignment entity
 
 Create *Models\OfficeAssignment.cs* with the following code:
 
@@ -201,9 +205,7 @@ The `Instructor` entity has a nullable `OfficeAssignment` navigation property (b
 
 You could put a `[Required]` attribute on the Instructor navigation property to specify that there must be a related instructor, but you don't have to do that because the InstructorID foreign key (which is also the key to this table) is non-nullable.
 
-## Modify the Course Entity
-
-![Course_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image9.png)
+## Modify the Course entity
 
 In *Models\Course.cs*, replace the code you added earlier with the following code:
 
@@ -233,9 +235,7 @@ The foreign key properties and navigation properties in the `Course` entity refl
 
     [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample19.cs)]
 
-## Create the Department Entity
-
-![Department_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image10.png)
+## Create the Department entity
 
 Create *Models\Department.cs* with the following code:
 
@@ -265,10 +265,7 @@ The foreign key and navigation properties reflect the following relationships:
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample24.cs)]
 
-
-## Modify the Enrollment Entity
-
-![Enrollment_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image11.png)
+## Modify the Enrollment entity
 
  In *Models\Enrollment.cs*, replace the code you added earlier with the following code
 
@@ -305,15 +302,15 @@ A join table is required in the database, however, as shown in the following dat
 
 The Entity Framework automatically creates the `CourseInstructor` table, and you read and update it indirectly by reading and updating the `Instructor.Courses` and `Course.Instructors` navigation properties.
 
-## Entity Diagram Showing Relationships
+## Entity relationship diagram
 
 The following illustration shows the diagram that the Entity Framework Power Tools create for the completed School model.
 
-![School_data_model_diagram](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image15.png)
+![School_data_model_diagram](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image1.png)
 
 Besides the many-to-many relationship lines (\* to \*) and the one-to-many relationship lines (1 to \*), you can see here the one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities and the zero-or-one-to-many relationship line (0..1 to \*) between the Instructor and Department entities.
 
-## Customize the Data Model by adding Code to the Database Context
+## Add code to database context
 
 Next you'll add the new entities to the `SchoolContext` class and customize some of the mapping using [fluent API](https://msdn.microsoft.com/data/jj591617) calls. The API is "fluent" because it's often used by stringing a series of method calls together into a single statement, as in the following example:
 
@@ -339,7 +336,7 @@ The following code provides an example of how you could have used fluent API ins
 
 For information about what "fluent API" statements are doing behind the scenes, see the [Fluent API](https://blogs.msdn.com/b/aspnetue/archive/2011/05/04/entity-framework-code-first-tutorial-supplement-what-is-going-on-in-a-fluent-api-call.aspx) blog post.
 
-## Seed the Database with Test Data
+## Seed database with test data
 
 Replace the code in the *Migrations\Configuration.cs* file with the following code in order to provide seed data for the new entities you've created.
 
@@ -351,7 +348,7 @@ As you saw in the first tutorial, most of this code simply updates or creates ne
 
 When you create a `Course` object, you initialize the `Instructors` navigation property as an empty collection using the code `Instructors = new List<Instructor>()`. This makes it possible to add `Instructor` entities that are related to this `Course` by using the `Instructors.Add` method. If you didn't create an empty list, you wouldn't be able to add these relationships, because the `Instructors` property would be null and wouldn't have an `Add` method. You could also add the list initialization to the constructor.
 
-## Add a Migration and Update the Database
+## Add a migration
 
 From the PMC, enter the `add-migration` command (don't do the `update-database` command yet):
 
@@ -369,6 +366,8 @@ Edit the &lt;*timestamp&gt;\_ComplexDataModel.cs* file, comment out the line of 
 
 When the `Seed` method runs, it will insert rows in the `Department` table and it will relate existing `Course` rows to those new `Department` rows. If you haven't added any courses in the UI, you would then no longer need the "Temp" department or the default value on the `Course.DepartmentID` column. To allow for the possibility that someone might have added courses by using the application, you'd also want to update the `Seed` method code to ensure that all `Course` rows (not just the ones inserted by earlier runs of the `Seed` method) have valid `DepartmentID` values before you remove the default value from the column and delete the "Temp" department.
 
+## Update the database
+
 After you have finished editing the &lt;*timestamp&gt;\_ComplexDataModel.cs* file, enter the `update-database` command in the PMC to execute the migration.
 
 [!code-powershell[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample35.ps1)]
@@ -384,7 +383,6 @@ After you have finished editing the &lt;*timestamp&gt;\_ComplexDataModel.cs* fil
 >
 > `update-database -TargetMigration:0`
 
-
 Open the database in **Server Explorer** as you did earlier, and expand the **Tables** node to see that all of the tables have been created. (If you still have **Server Explorer** open from the earlier time, click the **Refresh** button.)
 
 ![](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image16.png)
@@ -395,14 +393,28 @@ Right-click the `CourseInstructor` table and select **Show Table Data** to verif
 
 ![Table_data_in_CourseInstructor_table](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image17.png)
 
-## Summary
-
-You now have a more complex data model and corresponding database. In the following tutorial you'll learn more about different ways to access related data.
-
-Please leave feedback on how you liked this tutorial and what we could improve.
+## Additional resources
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Previous](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-> [Next](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Customized the data model
+> * Updated Student entity
+> * Created Instructor entity
+> * Created OfficeAssignment entity
+> * Modified the Course entity
+> * Created the Department entity
+> * Modified the Enrollment entity
+> * Added code to database context
+> * Seeded database with test data
+> * Added a migration
+> * Updated the database
+
+Advance to the next article to learn how to read and display related data that the Entity Framework loads into navigation properties.
+
+> [!div class="nextstepaction"]
+> [Read related data](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)

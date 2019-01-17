@@ -4,14 +4,14 @@ author: rick-anderson
 description: This tutorial demonstrates how to build an ASP.NET Core 2.x app using OAuth 2.0 with external authentication providers.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2018
+ms.date: 1/19/2019
 uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial demonstrates how to build an ASP.NET Core 2.x app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
+This tutorial demonstrates how to build an ASP.NET Core 2.2 app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
 
 [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), and [Microsoft](xref:security/authentication/microsoft-logins) providers are covered in the following sections. Other providers are available in third-party packages such as [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
@@ -24,29 +24,13 @@ Enabling users to sign in with their existing credentials is convenient for the 
 * In Visual Studio 2017, create a new project from the Start Page, or via **File** > **New** > **Project**.
 
 * Select the **ASP.NET Core Web Application** template available in the **Visual C#** > **.NET Core** category:
-
-![New Project dialog](index/_static/new-project.png)
-
-* Tap **Web Application** and verify **Authentication** is set to **Individual User Accounts**:
-
-![New Web Application dialog](index/_static/select-project.png)
-
-Note: This tutorial applies to ASP.NET Core 2.0 SDK version which can be selected at the top of the wizard.
+* Select **Change Authentication** and set authentication to **Individual User Accounts**.
 
 ## Apply migrations
 
-* Run the app and select the **Log in** link.
-* Select the **Register as a new user** link.
+* Run the app and select the **Register** link.
 * Enter the email and password for the new account, and then select **Register**.
 * Follow the instructions to apply migrations.
-
-## Require HTTPS
-
-OAuth 2.0 requires the use of SSL/TLS for authentication over the HTTPS protocol.
-
-Projects created using the **Web Application** or **Web API** project templates with ASP.NET Core 2.1 or later are automatically configured to enable HTTPS. The app launches with a secure default endpoint if the **Individual User Accounts** option is selected in the **Change Authentication dialog** of the project wizard.
-
-For more information, see <xref:security/enforcing-ssl>.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
@@ -77,11 +61,11 @@ When you register with an external login provider, you don't have a password reg
 
 To create a password and sign in using your email that you set during the sign in process with external providers:
 
-* Tap the **Hello &lt;email alias&gt;** link at the top right corner to navigate to the **Manage** view.
+* Select the **Hello &lt;email alias&gt;** link at the top right corner to navigate to the **Manage** view.
 
 ![Web application Manage view](index/_static/pass1a.png)
 
-* Tap **Create**
+* Select **Create**
 
 ![Set your password page](index/_static/pass2a.png)
 
