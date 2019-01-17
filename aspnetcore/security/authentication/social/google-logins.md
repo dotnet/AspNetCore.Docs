@@ -36,7 +36,7 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-Add the Google service to `Startup.ConfigureServices`. See the code in [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/6486).
+Add the Google service to `Startup.ConfigureServices`.
 
 [!code-csharp[Main](~/security/authentication/social/google-logins/sample/Startup.cs?name=snippet&highlight=17-33)]
 
