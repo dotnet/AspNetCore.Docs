@@ -117,7 +117,7 @@ If opting to remove a module with a setting in *web.config*, unlock the module a
    </configuration>
    ```
    
-In order to add or remove modules for IIS Express using *web.config*, *applicationHost.config* must be modified to unlock the `<modules>` section:
+In order to add or remove modules for IIS Express using *web.config*, modify *applicationHost.config* to unlock the `<modules>` section:
 
 1. Open *{APPLICATION ROOT}\\.vs\config\applicationhost.config*.
 
