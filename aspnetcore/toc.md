@@ -392,7 +392,7 @@
 ## [Overview](xref:fundamentals/localization)
 ## [Portable Object localization](xref:fundamentals/portable-object-localization)
 
-# Other topics
+# Advanced
 ## [URL rewriting](xref:fundamentals/url-rewriting)
 ## [File Providers](xref:fundamentals/file-providers)
 ## [Request Features](xref:fundamentals/request-features)
