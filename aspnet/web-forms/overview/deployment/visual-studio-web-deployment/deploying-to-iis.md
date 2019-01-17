@@ -45,7 +45,7 @@ Download and install the Contoso University Visual Studio starter solution and p
 
 ## Install IIS
 
-To deploy to IIS on your development computer, you must have IIS and Web Deploy installed. By default, Visual Studio installs Web Deploy, but IIS isn't included in the default Windows 10, Windows 8, or Windows 7 configuration. If you've already installed IIS and the default application pool is already set to .NET 4, skip to [the next section](#sqlexpress).
+To deploy to IIS on your development computer, confirm that IIS and Web Deploy are installed. By default, Visual Studio installs Web Deploy, but IIS isn't included in the default Windows 10, Windows 8, or Windows 7 configuration. If you've already installed IIS and the default application pool is already set to .NET 4, skip to [the next section](#sqlexpress).
 
 1. It's recommended you use the [Web Platform Installer (WPI)](https://www.microsoft.com/web/downloads/platform.aspx) to install IIS and Web Deploy. WPI installs a recommended IIS configuration that includes IIS and Web Deploy prerequisites if necessary.
 
@@ -85,13 +85,13 @@ After installing IIS, run **IIS Manager** to make sure that the .NET Framework v
 
    ![Inetmgr_showing_4.0_app_pools](deploying-to-iis/_static/image5a.png)
 
-4. If you see only two application pools and both are set to .NET Framework 2.0, you must install ASP.NET 4 in IIS.
+4. If you see only two application pools and both are set to .NET Framework 2.0, install ASP.NET 4 in IIS.
 
    For Windows 8 or later, see the previous section's instructions for making sure that ASP.NET 4.7 is installed or see [How to install ASP.NET 4.5 on Windows 8 and Windows Server 2012](https://support.microsoft.com/kb/2736284). For Windows 7, open a command prompt window by right-clicking **Command Prompt** in the Windows **Start** menu and selecting **Run as Administrator**. Run [aspnet\_regiis.exe](https://msdn.microsoft.com/library/k6h9cz8h.aspx) to install ASP.NET 4 in IIS using the following commands. (In 32-bit systems, replace "Framework64" with "Framework".)
 
    [!code-console[Main](deploying-to-iis/samples/sample1.cmd)]
 
-   This command creates new application pools for the .NET Framework 4, but the default application pool will remain set to 2.0. You're deploying an application that targets .NET 4 to that application pool, so you must change the application pool to .NET 4.
+   This command creates new application pools for the .NET Framework 4, but the default application pool will remain set to 2.0. You're deploying an application that targets .NET 4 to that application pool, so change the application pool to .NET 4.
 
 5. If you closed **IIS Manager**, run it again, expand the server node, and select **Application Pools**.
 
@@ -103,13 +103,13 @@ After installing IIS, run **IIS Manager** to make sure that the .NET Framework v
 
    ![Selecting_.NET_4_for_DefaultAppPool](deploying-to-iis/_static/image6a.png)
 
-You're now ready to publish a web application to IIS. First, however, you must create databases for testing.
+You're now ready to publish a web application to IIS. First, however, create databases for testing.
 
 <a id="sqlexpress"></a>
 
 ## Install SQL Server Express
 
-LocalDB isn't designed to work in IIS, so your test environment must have SQL Server Express installed. If you're using Visual Studio 2010 SQL Server Express, it's already installed by default. If you're using Visual Studio 2012 or later, you must install it.
+LocalDB isn't designed to work in IIS, so your test environment has to have SQL Server Express installed. If you're using Visual Studio 2010 SQL Server Express, it's already installed by default. If you're using Visual Studio 2012 or later, install SQL Server Express.
 
 To install SQL Server Express, download and install it from [Download Center: Microsoft SQL Server 2017 Express edition](https://www.microsoft.com/sql-server/sql-server-editions-express). 
 
