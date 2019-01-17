@@ -539,7 +539,7 @@ public class Pet
 
 ```cshtml
 @{
-    Func<dynamic, object> petTemplate = @<p>You have a pet named @item.Name.</p>;
+    Func<dynamic, object> petTemplate = @<p>You have a pet named <strong>@item.Name</strong>.</p>;
 
     var pets = new List<Pet>
     {
@@ -555,7 +555,7 @@ The template is rendered with `pets` supplied by a `foreach` statement:
 ```cshtml
 @foreach (var pet in pets)
 {
-    @petTemplate2(pet)
+    @petTemplate(pet)
 }
 ```
 
