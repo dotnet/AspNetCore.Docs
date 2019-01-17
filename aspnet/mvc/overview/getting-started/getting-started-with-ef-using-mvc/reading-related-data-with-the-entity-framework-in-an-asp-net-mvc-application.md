@@ -77,9 +77,15 @@ Here are some other [ways to disable lazy loading](https://msdn.microsoft.com/da
 
 The `Course` entity includes a navigation property that contains the `Department` entity of the department that the course is assigned to. To display the name of the assigned department in a list of courses, you need to get the `Name` property from the `Department` entity that is in the `Course.Department` navigation property.
 
-Create a controller named `CourseController` (not CoursesController) for the `Course` entity type, using the same options for the **MVC 5 Controller with views, using Entity Framework** scaffolder that you did earlier for the `Student` controller, as shown in the following illustration:
+Create a controller named `CourseController` (not CoursesController) for the `Course` entity type, using the same options for the **MVC 5 Controller with views, using Entity Framework** scaffolder that you did earlier for the `Student` controller:
 
-![Add_Controller_dialog_box_for_Course_controller](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
+| Setting | Value |
+| ------- | ----- |
+| Model class | Select **Course (ContosoUniversity.Models)**. |
+| Data context class | Select **SchoolContext (ContosoUniversity.DAL)**. |
+| Controller name | Enter *CourseController*. Again, not CoursesController with an *s*. When you selected **Course (ContosoUniversity.Models)**, the **Controller name** value was automatically populated. You have to change the value. |
+
+Leave the other default values and add the controller.
 
 Open *Controllers\CourseController.cs* and look at the `Index` method:
 
@@ -103,15 +109,9 @@ Notice that for the Department column, the scaffolded code displays the `Name` p
 
 Run the page (select the **Courses** tab on the Contoso University home page) to see the list with department names.
 
-![Courses_index_page_with_department_names](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
-
 ## Create an Instructors page
 
-In this section you'll create a controller and view for the `Instructor` entity in order to display the Instructors page:
-
-![Instructors_index_page_with_instructor_and_course_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
-
-This page reads and displays related data in the following ways:
+In this section you'll create a controller and view for the `Instructor` entity in order to display the Instructors page. This page reads and displays related data in the following ways:
 
 - The list of instructors displays related data from the `OfficeAssignment` entity. The `Instructor` and `OfficeAssignment` entities are in a one-to-zero-or-one relationship. You'll use eager loading for the `OfficeAssignment` entities. As explained earlier, eager loading is typically more efficient when you need the related data for all retrieved rows of the primary table. In this case, you want to display office assignments for all displayed instructors.
 - When the user selects an instructor, related `Course` entities are displayed. The `Instructor` and `Course` entities are in a many-to-many relationship. You'll use eager loading for the `Course` entities and their related `Department` entities. In this case, lazy loading might be more efficient because you need courses only for the selected instructor. However, this example shows how to use eager loading for navigation properties within entities that are themselves in navigation properties.
@@ -129,7 +129,13 @@ In the *ViewModels* folder, create *InstructorIndexData.cs* and replace the exis
 
 Create an `InstructorController` (not InstructorsController) controller with EF read/write actions as shown in the following illustration:
 
-![Add_Controller_dialog_box_for_Instructor_controller](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
+| Setting | Value |
+| ------- | ----- |
+| Model class | Select **Instructor (ContosoUniversity.Models)**. |
+| Data context class | Select **SchoolContext (ContosoUniversity.DAL)**. |
+| Controller name | Enter *InstructorController*. Again, not InstructorsController with an *s*. When you selected **Course (ContosoUniversity.Models)**, the **Controller name** value was automatically populated. You have to change the value. |
+
+Leave the other default values and add the controller.
 
 Open *Controllers\InstructorController.cs* and add a `using` statement for the `ViewModels` namespace:
 
@@ -193,8 +199,6 @@ You've made the following changes to the existing code:
 
 Run the application and select the **Instructors** tab. The page displays the `Location` property of related `OfficeAssignment` entities and an empty table cell when there's no related `OfficeAssignment` entity.
 
-![Instructors_index_page_with_nothing_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
-
 In the *Views\Instructor\Index.cshtml* file, after the closing `table` element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
 
 [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.cshtml)]
@@ -203,8 +207,6 @@ This code reads the `Courses` property of the view model to display a list of co
 
 Run the page and select an instructor. Now you see a grid that displays courses assigned to the selected instructor, and for each course you see the name of the assigned department.
 
-![Instructors_index_page_with_instructor_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
-
 After the code block you just added, add the following code. This displays a list of the students who are enrolled in a course when that course is selected.
 
 [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.cshtml)]
@@ -212,8 +214,6 @@ After the code block you just added, add the following code. This displays a lis
 This code reads the `Enrollments` property of the view model in order to display a list of students enrolled in the course.
 
 Run the page and select an instructor. Then select a course to see the list of enrolled students and their grades.
-
-![Instructors_index_page_with_instructor_and_course_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
 
 ### Adding Explicit Loading
 
