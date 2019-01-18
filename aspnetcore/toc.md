@@ -276,6 +276,7 @@
 ### [Build Docker images](/dotnet/articles/core/docker/building-net-docker-images)
 ### [Visual Studio Tools](xref:host-and-deploy/docker/visual-studio-tools-for-docker)
 ### [Publish to a Docker image](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
+### [Sample Docker images](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md)
 ## [Proxy and load balancer configuration](xref:host-and-deploy/proxy-load-balancer)
 ## [Host in a web farm](xref:host-and-deploy/web-farm)
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
