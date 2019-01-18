@@ -139,6 +139,10 @@ This section requires you to have completed the optional **Deploying the app to 
 
     The first time you run a page that accesses the database, the Entity Framework runs all of the migrations `Up` methods required to bring the database up to date with the current data model. You can now use all of the web pages that you added since the last time you deployed, including the Department pages that you added in this tutorial.
 
+## Get the code
+
+You can go to the MSDN code gallery and [download the completed project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8).
+
 ## Additional resources
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
