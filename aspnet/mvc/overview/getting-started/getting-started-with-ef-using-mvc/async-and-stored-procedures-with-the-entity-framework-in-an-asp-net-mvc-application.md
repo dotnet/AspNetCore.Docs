@@ -141,7 +141,7 @@ This section requires you to have completed the optional **Deploying the app to 
 
 ## Get the code
 
-You can go to the MSDN code gallery and [download the completed project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8).
+[Download the Completed Project](http://<link-to-completed-project>)
 
 ## Additional resources
 
