@@ -15,9 +15,9 @@ msc.type: authoredcontent
 
 In earlier tutorials you learned how to read and update data using the synchronous programming model. In this tutorial you see how to implement the asynchronous programming model. Asynchronous code can help an application perform better because it makes better use of server resources.
 
-In this tutorial you'll also see how to use stored procedures for insert, update, and delete operations on an entity.
+In this tutorial you also see how to use stored procedures for insert, update, and delete operations on an entity.
 
-Finally, you'll redeploy the application to Azure, along with all of the database changes that you've implemented since the first time you deployed.
+Finally, you redeploy the application to Azure, along with all of the database changes that you've implemented since the first time you deployed.
 
 The following illustrations show some of the pages that you'll work with.
 
