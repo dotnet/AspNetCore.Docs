@@ -29,6 +29,7 @@ namespace MVCMovie.Models
 
         public bool Preorder { get; set; }
 
+        #region snippet_Validate
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (Genre == Genre.Classic && ReleaseDate.Year > _classicYear)
@@ -38,5 +39,6 @@ namespace MVCMovie.Models
                     new[] { "ReleaseDate" });
             }
         }
+        #endregion
     }
 }
