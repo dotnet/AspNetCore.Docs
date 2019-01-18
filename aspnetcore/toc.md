@@ -17,6 +17,8 @@
 ## Web API apps
 ### [Create a web API](xref:tutorials/first-web-api)
 ### [Web API with MongoDB](xref:tutorials/first-mongo-app)
+### [Backend for mobile](xref:mobile/native-mobile-backend)
+
 ## Web apps
 ### [Razor Pages](xref:tutorials/razor-pages/index)
 ### [MVC](xref:tutorials/first-mvc-app/index)
@@ -24,7 +26,6 @@
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
-## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
 
 ## Data access
 ### [EF Core with Razor Pages](xref:data/ef-rp/index)
