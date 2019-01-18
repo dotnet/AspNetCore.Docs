@@ -218,6 +218,10 @@ In the deployment section, you saw the [MigrateDatabaseToLatestVersion](https://
 
 For more information about initializers, see [Understanding Database Initializers in Entity Framework Code First](http://www.codeguru.com/csharp/article.php/c19999/Understanding-Database-Initializers-in-Entity-Framework-Code-First.htm) and chapter 6 of the book [Programming Entity Framework: Code First](http://shop.oreilly.com/product/0636920022220.do) by Julie Lerman and Rowan Miller.
 
+## Get the code
+
+[Download the Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+
 ## Additional resources
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](xref:whitepapers/aspnet-data-access-content-map).
