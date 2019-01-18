@@ -249,6 +249,6 @@ The two accounts have been combined. You are able to log on with either account.
 Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around existing user lockout, use one of the following approaches:
 
 * Update the database to mark all existing users as being confirmed.
-* Confirm exiting users. For example, batch-send emails with confirmation links.
+* Confirm existing users. For example, batch-send emails with confirmation links.
 
 ::: moniker-end
