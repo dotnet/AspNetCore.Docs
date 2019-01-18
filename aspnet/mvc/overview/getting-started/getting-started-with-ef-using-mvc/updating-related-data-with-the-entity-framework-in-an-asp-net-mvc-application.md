@@ -26,17 +26,17 @@ The following illustrations show some of the pages that you'll work with.
 In this tutorial, you:
 
 > [!div class="checklist"]
-> * Customize the Create and Edit Pages for Courses
-> * Add office to the Edit page
-> * Add courses to the Edit page
-> * Update DeleteConfirmed method
+> * Customize courses pages
+> * Add office to instructors page
+> * Add courses to instructors page
+> * Update DeleteConfirmed
 > * Add office location and courses to the Create page
 
 ## Prerequisites
 
 * [Reading Related Data](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
 
-## Customize the Create and Edit Pages for Courses
+## Customize courses pages
 
 When a new course entity is created, it must have a relationship to an existing department. To facilitate this, the scaffolded code includes controller methods and Create and Edit views that include a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key property, and that's all the Entity Framework needs in order to load the `Department` navigation property with the appropriate `Department` entity. You'll use the scaffolded code, but change it slightly to add error handling and sort the drop-down list.
 
@@ -97,7 +97,7 @@ Run the **Edit** page (display the Course Index page and click **Edit** on a cou
 
 Change data on the page and click **Save**. The Course Index page is displayed with the updated course data.
 
-## Add office to the Edit page
+## Add office to instructors page
 
 When you edit an instructor record, you want to be able to update the instructor's office assignment. The `Instructor` entity has a one-to-zero-or-one relationship with the `OfficeAssignment` entity, which means you must handle the following situations:
 
@@ -141,7 +141,7 @@ In *Views\Instructor\Edit.cshtml*, after the `div` elements for the **Hire Date*
 
 Run the page (select the **Instructors** tab and then click **Edit** on an instructor). Change the **Office Location** and click **Save**.
 
-## Add courses to the Edit page
+## Add courses to instructors page
 
 Instructors may teach any number of courses. Now you'll enhance the Instructor Edit page by adding the ability to change course assignments using a group of check boxes.
 
@@ -211,7 +211,7 @@ Change some course assignments and click **Save**. The changes you make are refl
 
  Note: The approach taken here to edit instructor course data works well when there is a limited number of courses. For collections that are much larger, a different UI and a different updating method would be required.
 
-## Update DeleteConfirmed method
+## Update DeleteConfirmed
 
 In *InstructorController.cs*, delete the `DeleteConfirmed` method and insert the following code in its place.
 
@@ -258,6 +258,10 @@ Run the Create page and add an instructor.
 
 As explained in the [Basic CRUD Functionality tutorial](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md), by default the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Working with Transactions](https://msdn.microsoft.com/data/dn456843) on MSDN.
 
+## Get the code
+
+[Download the Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+
 ## Additional resources
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
@@ -267,10 +271,10 @@ Links to other Entity Framework resources can be found in [ASP.NET Data Access -
 In this tutorial, you:
 
 > [!div class="checklist"]
-> * Customized the Create and Edit Pages for Courses
-> * Added office to the Edit page
-> * Added courses to the Edit page
-> * Updated DeleteConfirmed method
+> * Customized courses pages
+> * Added office to instructors page
+> * Added courses to instructors page
+> * Updated DeleteConfirmed
 > * Added office location and courses to the Create page
 
 Advance to the next article to learn how to implement an asynchronous programming model.
