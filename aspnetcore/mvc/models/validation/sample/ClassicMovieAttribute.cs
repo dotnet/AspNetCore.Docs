@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace MVCMovie.Models
 {
+    #region snippet_ClassicMovieAttribute
     public class ClassicMovieAttribute : ValidationAttribute, IClientModelValidator
     {
         private int _year;
@@ -15,7 +16,8 @@ namespace MVCMovie.Models
             _year = year;
         }
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult IsValid(
+            object value, ValidationContext validationContext)
         {
             Movie movie = (Movie)validationContext.ObjectInstance;
 
@@ -26,7 +28,9 @@ namespace MVCMovie.Models
 
             return ValidationResult.Success;
         }
+        #endregion
 
+        #region snippet_AddValidation
         public void AddValidation(ClientModelValidationContext context)
         {
             if (context == null)
@@ -40,6 +44,7 @@ namespace MVCMovie.Models
             var year = _year.ToString(CultureInfo.InvariantCulture);
             MergeAttribute(context.Attributes, "data-val-classicmovie-year", year);
         }
+        #endregion
 
         private bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
         {
@@ -52,9 +57,11 @@ namespace MVCMovie.Models
             return true;
         }
 
+        #region snippet_GetErrorMessage
         private string GetErrorMessage()
         {
             return $"Classic movies must have a release year earlier than {_year}.";
         }
+        #endregion
     }
 }

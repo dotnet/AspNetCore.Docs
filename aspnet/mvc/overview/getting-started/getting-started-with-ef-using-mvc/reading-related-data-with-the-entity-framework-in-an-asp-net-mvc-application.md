@@ -1,22 +1,17 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Reading Related Data with the Entity Framework in an ASP.NET MVC Application | Microsoft Docs"
+title: "Tutorial: Read related data with EF in an ASP.NET MVC app"
+description: "In this tutorial you'll read and display related data — that is, data that the Entity Framework loads into navigation properties."
 author: tdykstra
-description: "/ajax/tutorials/using-ajax-control-toolkit-controls-and-control-extenders-vb"
 ms.author: riande
-ms.date: 11/07/2014
+ms.date: 01/17/2019
+ms.topic: tutorial
 ms.assetid: 18cdd896-8ed9-4547-b143-114711e3eafb
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-Reading Related Data with the Entity Framework in an ASP.NET MVC Application
-====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
-
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
+# Tutorial: Read related data with EF in an ASP.NET MVC app
 
 In the previous tutorial you completed the School data model. In this tutorial you'll read and display related data — that is, data that the Entity Framework loads into navigation properties.
 
@@ -26,7 +21,18 @@ The following illustrations show the pages that you'll work with.
 
 ![Instructors_index_page_with_instructor_and_course_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image2.png)
 
-## Lazy, Eager, and Explicit Loading of Related Data
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learn how to load related data
+> * Create a Courses page
+> * Create an Instructors page
+
+## Prerequisites
+
+* [Create a more complex data model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
+
+## Learn how to load related data
 
 There are several ways that the Entity Framework can load related data into the navigation properties of an entity:
 
@@ -67,13 +73,19 @@ Here are some other [ways to disable lazy loading](https://msdn.microsoft.com/da
 
     [!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
-## Create a Courses Page That Displays Department Name
+## Create a Courses page
 
 The `Course` entity includes a navigation property that contains the `Department` entity of the department that the course is assigned to. To display the name of the assigned department in a list of courses, you need to get the `Name` property from the `Department` entity that is in the `Course.Department` navigation property.
 
-Create a controller named `CourseController` (not CoursesController) for the `Course` entity type, using the same options for the **MVC 5 Controller with views, using Entity Framework** scaffolder that you did earlier for the `Student` controller, as shown in the following illustration:
+Create a controller named `CourseController` (not CoursesController) for the `Course` entity type, using the same options for the **MVC 5 Controller with views, using Entity Framework** scaffolder that you did earlier for the `Student` controller:
 
-![Add_Controller_dialog_box_for_Course_controller](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
+| Setting | Value |
+| ------- | ----- |
+| Model class | Select **Course (ContosoUniversity.Models)**. |
+| Data context class | Select **SchoolContext (ContosoUniversity.DAL)**. |
+| Controller name | Enter *CourseController*. Again, not *CoursesController* with an *s*. When you selected **Course (ContosoUniversity.Models)**, the **Controller name** value was automatically populated. You have to change the value. |
+
+Leave the other default values and add the controller.
 
 Open *Controllers\CourseController.cs* and look at the `Index` method:
 
@@ -97,15 +109,9 @@ Notice that for the Department column, the scaffolded code displays the `Name` p
 
 Run the page (select the **Courses** tab on the Contoso University home page) to see the list with department names.
 
-![Courses_index_page_with_department_names](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
+## Create an Instructors page
 
-## Create an Instructors Page That Shows Courses and Enrollments
-
-In this section you'll create a controller and view for the `Instructor` entity in order to display the Instructors page:
-
-![Instructors_index_page_with_instructor_and_course_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
-
-This page reads and displays related data in the following ways:
+In this section you'll create a controller and view for the `Instructor` entity in order to display the Instructors page. This page reads and displays related data in the following ways:
 
 - The list of instructors displays related data from the `OfficeAssignment` entity. The `Instructor` and `OfficeAssignment` entities are in a one-to-zero-or-one relationship. You'll use eager loading for the `OfficeAssignment` entities. As explained earlier, eager loading is typically more efficient when you need the related data for all retrieved rows of the primary table. In this case, you want to display office assignments for all displayed instructors.
 - When the user selects an instructor, related `Course` entities are displayed. The `Instructor` and `Course` entities are in a many-to-many relationship. You'll use eager loading for the `Course` entities and their related `Department` entities. In this case, lazy loading might be more efficient because you need courses only for the selected instructor. However, this example shows how to use eager loading for navigation properties within entities that are themselves in navigation properties.
@@ -121,9 +127,15 @@ In the *ViewModels* folder, create *InstructorIndexData.cs* and replace the exis
 
 ### Create the Instructor Controller and Views
 
-Create an `InstructorController` (not InstructorsController) controller with EF read/write actions as shown in the following illustration:
+Create an `InstructorController` (not InstructorsController) controller with EF read/write action:
 
-![Add_Controller_dialog_box_for_Instructor_controller](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
+| Setting | Value |
+| ------- | ----- |
+| Model class | Select **Instructor (ContosoUniversity.Models)**. |
+| Data context class | Select **SchoolContext (ContosoUniversity.DAL)**. |
+| Controller name | Enter *InstructorController*. Again, not *InstructorsController* with an *s*. When you selected **Course (ContosoUniversity.Models)**, the **Controller name** value was automatically populated. You have to change the value. |
+
+Leave the other default values and add the controller.
 
 Open *Controllers\InstructorController.cs* and add a `using` statement for the `ViewModels` namespace:
 
@@ -187,8 +199,6 @@ You've made the following changes to the existing code:
 
 Run the application and select the **Instructors** tab. The page displays the `Location` property of related `OfficeAssignment` entities and an empty table cell when there's no related `OfficeAssignment` entity.
 
-![Instructors_index_page_with_nothing_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
-
 In the *Views\Instructor\Index.cshtml* file, after the closing `table` element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
 
 [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.cshtml)]
@@ -197,8 +207,6 @@ This code reads the `Courses` property of the view model to display a list of co
 
 Run the page and select an instructor. Now you see a grid that displays courses assigned to the selected instructor, and for each course you see the name of the assigned department.
 
-![Instructors_index_page_with_instructor_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
-
 After the code block you just added, add the following code. This displays a list of the students who are enrolled in a course when that course is selected.
 
 [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.cshtml)]
@@ -206,8 +214,6 @@ After the code block you just added, add the following code. This displays a lis
 This code reads the `Enrollments` property of the view model in order to display a list of students enrolled in the course.
 
 Run the page and select an instructor. Then select a course to see the list of enrolled students and their grades.
-
-![Instructors_index_page_with_instructor_and_course_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
 
 ### Adding Explicit Loading
 
@@ -233,14 +239,20 @@ Notice that you use the `Collection` method to load a collection property, but f
 
 Run the Instructor Index page now and you'll see no difference in what's displayed on the page, although you've changed how the data is retrieved.
 
-## Summary
-
-You've now used all three ways (lazy, eager, and explicit) to load related data into navigation properties. In the next tutorial you'll learn how to update related data.
-
-Please leave feedback on how you liked this tutorial and what we could improve.
+## Additional resources
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Previous](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
-> [Next](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learned how to load related data
+> * Created a Courses page
+> * Created an Instructors page
+
+Advance to the next article to learn how to update related data.
+
+> [!div class="nextstepaction"]
+> [Update related data](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)

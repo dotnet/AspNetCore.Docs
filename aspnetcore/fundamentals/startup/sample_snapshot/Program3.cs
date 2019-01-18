@@ -1,9 +1,16 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Builder;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace MVCMovie
+namespace WebApp
 {
+    #region snippet_Program
     public class Program
     {
         public static void Main(string[] args)
@@ -15,4 +22,5 @@ namespace MVCMovie
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
+    #endregion
 }
