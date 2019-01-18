@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2018
+ms.date: 1/15/2019
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -12,9 +12,6 @@ uid: mvc/controllers/filters
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
 
 *Filters* in ASP.NET Core MVC allow you to run code before or after specific stages in the request processing pipeline.
-
-> [!IMPORTANT]
-> This topic does **not** apply to Razor Pages. ASP.NET Core 2.1 and later supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) for Razor Pages. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
  Built-in filters handle tasks such as:
 
@@ -26,7 +23,7 @@ Custom filters can be created to handle cross-cutting concerns. Filters can avoi
 
 [View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
 
-## How do filters work?
+## How filters work
 
 Filters run within the *MVC action invocation pipeline*, sometimes referred to as the *filter pipeline*.  The filter pipeline runs after MVC selects the action to execute.
 
@@ -40,7 +37,7 @@ Each filter type is executed at a different stage in the filter pipeline.
 
 * [Resource filters](#resource-filters) are the first to handle a request after authorization.  They can run code before the rest of the filter pipeline, and after the rest of the pipeline has completed. They're useful to implement caching or otherwise short-circuit the filter pipeline for performance reasons. They run before model binding, so they can influence model binding.
 
-* [Action filters](#action-filters) can run code immediately before and after an individual action method is called. They can be used to manipulate the arguments passed into an action and the result returned from the action.
+* [Action filters](#action-filters) can run code immediately before and after an individual action method is called. They can be used to manipulate the arguments passed into an action and the result returned from the action. Action filters are not supported in Razor Pages.
 
 * [Exception filters](#exception-filters) are used to apply global policies to unhandled exceptions that occur before anything has been written to the response body.
 
@@ -62,14 +59,13 @@ Asynchronous filters define a single On*Stage*ExecutionAsync method. This method
 
 [!code-csharp[](./filters/sample/src/FiltersSample/Filters/SampleAsyncActionFilter.cs?highlight=6,8-10,13)]
 
-You can implement interfaces for multiple filter stages in a single class. For example, the [ActionFilterAttribute](/dotnet/api/microsoft.aspnetcore.mvc.filters.actionfilterattribute?view=aspnetcore-2.0) class implements `IActionFilter`, `IResultFilter`, and their async equivalents.
+You can implement interfaces for multiple filter stages in a single class. For example, the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> class implements `IActionFilter`, `IResultFilter`, and their async equivalents.
 
 > [!NOTE]
-> Implement **either** the synchronous or the async version of a filter interface, not both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If you were to implement both interfaces on one class, only the async method would be called. When using abstract classes like [ActionFilterAttribute](/dotnet/api/microsoft.aspnetcore.mvc.filters.actionfilterattribute?view=aspnetcore-2.0) you would override only the synchronous methods or the async method for each filter type.
+> Implement **either** the synchronous or the async version of a filter interface, not both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If you were to implement both interfaces on one class, only the async method would be called. When using abstract classes like <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> you would override only the synchronous methods or the async method for each filter type.
 
 ### IFilterFactory
-
-[IFilterFactory](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory) implements [IFilterMetadata](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifiltermetadata). Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the framework prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the [CreateInstance](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory.createinstance) method is called to create the `IFilterMetadata` instance that will be invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
+[IFilterFactory](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory) implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the framework prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the [CreateInstance](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory.createinstance) method is called to create the `IFilterMetadata` instance that will be invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
 
 You can implement `IFilterFactory` on your own attribute implementations as another approach to creating filters:
 
@@ -275,6 +271,9 @@ The [short circuiting resource filter](#short-circuiting-resource-filter) shown 
 
 ## Action filters
 
+> [!IMPORTANT]
+> Action filters do **not** apply to Razor Pages. Razor Pages supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter) . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+
 *Action filters*:
 
 * Implement either the `IActionFilter` or `IAsyncActionFilter` interface.
@@ -386,4 +385,5 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 
 ## Next actions
 
-To experiment with filters, [download, test and modify the sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+* See [Filter methods for Razor Pages](xref:razor-pages/filter)
+* To experiment with filters, [download, test and modify the Github sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
