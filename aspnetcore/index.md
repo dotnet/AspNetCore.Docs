@@ -9,6 +9,14 @@ uid: index
 ---
 # Introduction to ASP.NET Core
 
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions?displayProperty=fullName>
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions)
+
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Limits>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Limits?displayProperty=fullName>
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Limits)
+
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://twitter.com/dicshaunary)
 
 ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/aspnet/home) framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:
