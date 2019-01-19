@@ -21,32 +21,32 @@ Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions Class
 
 Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() CTOR
 
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions?displayProperty=fullName>
-* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions)
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.-ctor>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.-ctor?displayProperty=fullName>
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.-ctor)
 
 ## Method 1
 
 Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPEndPoint) Method
 
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*?displayProperty=fullName>
 * [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*)
 
 ## Method 2
 
 Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, Int32, Action\<ListenOptions>) Method
 
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*?displayProperty=fullName>
 * [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*)
 
 ## Method 3
 
 Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, Int32) Method
 
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*?displayProperty=fullName>
 * [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*)
 
 ## Property
