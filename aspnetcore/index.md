@@ -31,7 +31,7 @@ Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPEndPoint)
 
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen?displayProperty=fullName>
-* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen)
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*)
 
 ## Method 2
 
@@ -39,7 +39,7 @@ Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, 
 
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen?displayProperty=fullName>
-* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen)
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*)
 
 ## Method 3
 
@@ -47,7 +47,7 @@ Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, 
 
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen?displayProperty=fullName>
-* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen)
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*)
 
 ## Property
 
