@@ -21,9 +21,9 @@ Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions Class
 
 Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() CTOR
 
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions..ctor>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions..ctor?displayProperty=fullName>
-* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions..ctor)
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.#ctor*>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.#ctor*?displayProperty=fullName>
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.#ctor*)
 
 ## Method 1
 
