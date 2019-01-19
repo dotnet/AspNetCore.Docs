@@ -220,7 +220,7 @@ For more information about initializers, see [Understanding Database Initializer
 
 ## Get the code
 
-[Download the Completed Project](https://github.com/tdykstra/aspnet-docs/blob/efmvc2/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sample/ef6-mvc5-sample-app.zip?raw=true)
+[Download the Completed Project](https://github.com/aspnet/Docs/blob/master/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sample/ef6-mvc5-sample-app.zip?raw=true)
 
 ## Additional resources
 

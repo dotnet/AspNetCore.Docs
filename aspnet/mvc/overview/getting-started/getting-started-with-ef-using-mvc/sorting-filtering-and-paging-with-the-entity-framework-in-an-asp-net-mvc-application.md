@@ -13,7 +13,7 @@ msc.type: authoredcontent
 
 by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](https://github.com/tdykstra/aspnet-docs/blob/efmvc2/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sample/ef6-mvc5-sample-app.zip?raw=true)
+[Download Completed Project](https://github.com/aspnet/Docs/blob/master/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sample/ef6-mvc5-sample-app.zip?raw=true)
 
 > The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 
