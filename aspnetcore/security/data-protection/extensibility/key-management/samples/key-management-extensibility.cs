@@ -34,8 +34,6 @@ public class Program
 
         public MyKeyEscrowSink(IServiceProvider services)
         {
-            ILoggerFactory loggerFactory = new LoggerFactory();
-
             // Assuming I'm on a machine that's a member of the CONTOSO
             // domain, I can use the Domain Admins SID to generate an
             // encrypted payload that only they can read. Sample SID from
@@ -43,7 +41,7 @@ public class Program
             _escrowEncryptor = new DpapiNGXmlEncryptor(
                 "SID=S-1-5-21-1004336348-1177238915-682003330-512",
                 DpapiNGProtectionDescriptorFlags.None,
-                loggerFactory);
+                new LoggerFactory());
         }
 
         public void Store(Guid keyId, XElement element)
