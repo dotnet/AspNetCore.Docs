@@ -260,7 +260,7 @@ As explained in the [Basic CRUD Functionality tutorial](implementing-basic-crud-
 
 ## Get the code
 
-[Download the Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+[Download the Completed Project](https://github.com/tdykstra/aspnet-docs/blob/efmvc2/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sample/ef6-mvc5-sample-app.zip?raw=true)
 
 ## Additional resources
 
