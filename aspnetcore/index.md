@@ -17,62 +17,11 @@ Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions Class
 * <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions?displayProperty=fullName>
 * [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions)
 
-<!--
 ## CTOR
 
 Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() CTOR
 
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ctor>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ctor?displayProperty=fullName>
-* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ctor)
--->
-
-## CTOR ..
-
-Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() ..CTOR
-
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions..ctor>
-
-## CTOR .-
-
-Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() .-CTOR
-
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.-ctor>
-
-
-## CTOR .#
-
-Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() .#CTOR
-
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.#ctor>
-
-## CTOR .# with *
-
-Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() .#CTOR*
-
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.#ctor*>
-
-## CTOR .__
-
-Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() .__CTOR
-
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.__ctor>
-
-## CTOR __
-
-Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions() __CTOR
-
-* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions__ctor>
-
-
-
-
-
-
-
-
-
-
+* [LINK_TEXT](/dotnet/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions.-ctor)
 
 ## Method 1
 
