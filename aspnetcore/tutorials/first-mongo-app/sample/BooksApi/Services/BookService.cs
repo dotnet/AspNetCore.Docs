@@ -28,9 +28,7 @@ namespace BooksApi.Services
 
         public Book Get(string id)
         {
-            var docId = new ObjectId(id);
-
-            return _books.Find<Book>(book => book.Id == docId).FirstOrDefault();
+            return _books.Find<Book>(book => book.Id == id).FirstOrDefault();
         }
 
         public Book Create(Book book)
@@ -41,9 +39,7 @@ namespace BooksApi.Services
 
         public void Update(string id, Book bookIn)
         {
-            var docId = new ObjectId(id);
-
-            _books.ReplaceOne(book => book.Id == docId, bookIn);
+            _books.ReplaceOne(book => book.Id == id, bookIn);
         }
 
         public void Remove(Book bookIn)
@@ -51,7 +47,7 @@ namespace BooksApi.Services
             _books.DeleteOne(book => book.Id == bookIn.Id);
         }
 
-        public void Remove(ObjectId id)
+        public void Remove(string id)
         {
             _books.DeleteOne(book => book.Id == id);
         }
