@@ -9,9 +9,37 @@ uid: index
 ---
 # Introduction to ASP.NET Core
 
+## Class
+
 * <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions?displayProperty=fullName>
 * [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions)
+
+## CTOR
+
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions()>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions()?displayProperty=fullName>
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions())
+
+## Method 1
+
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPEndPoint)>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPEndPoint)?displayProperty=fullName>
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPEndPoint))
+
+## Method 2
+
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, Int32, Action<ListenOptions>)>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, Int32, Action<ListenOptions>)?displayProperty=fullName>
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, Int32, Action<ListenOptions>))
+
+## Method 3
+
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, Int32)>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, Int32)?displayProperty=fullName>
+* [LINK_TEXT](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen(IPAddress, Int32))
+
+## Property
 
 * <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Limits>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Limits?displayProperty=fullName>
