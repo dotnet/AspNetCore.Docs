@@ -272,7 +272,7 @@ The [short circuiting resource filter](#short-circuiting-resource-filter) shown 
 ## Action filters
 
 > [!IMPORTANT]
-> Action filters do **not** apply to Razor Pages. Razor Pages supports [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter) . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+> Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
 *Action filters*:
 
@@ -283,13 +283,13 @@ Here's a sample action filter:
 
 [!code-csharp[](./filters/sample/src/FiltersSample/Filters/SampleActionFilter.cs?name=snippet_ActionFilter)]
 
-The [ActionExecutingContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutingcontext) provides the following properties:
+The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the following properties:
 
 * `ActionArguments` - lets you manipulate the inputs to the action.
 * `Controller` - lets you manipulate the controller instance. 
 * `Result` - setting this short-circuits execution of the action method and subsequent action filters. Throwing an exception also prevents execution of the action method and subsequent filters, but is treated as a failure instead of a successful result.
 
-The [ActionExecutedContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.actionexecutedcontext) provides `Controller` and `Result` plus the following properties:
+The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Controller` and `Result` plus the following properties:
 
 * `Canceled` - will be true if the action execution was short-circuited by another filter.
 * `Exception` - will be non-null if the action or a subsequent action filter threw an exception. Setting this property to null effectively 'handles' an exception, and `Result` will be executed as if it were returned from the action method normally.
