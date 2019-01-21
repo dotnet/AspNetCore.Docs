@@ -18,6 +18,10 @@ namespace BackgroundTasksSample
                     config.AddConsole();
                     config.AddDebug();
                 })
+                .ConfigureHostConfiguration(configHost =>
+                {
+                    configHost.AddEnvironmentVariables(prefix: "ASPNET_");
+                })
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
                     config.AddEnvironmentVariables();
