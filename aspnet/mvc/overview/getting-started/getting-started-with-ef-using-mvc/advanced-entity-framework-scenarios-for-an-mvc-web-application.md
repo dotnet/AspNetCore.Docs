@@ -26,7 +26,7 @@ In this tutorial, you:
 > * Perform no-tracking queries
 > * Examine SQL queries sent to database
 
-In this tutorial, you also learn about:
+You also learn about:
 
 > [!div class="checklist"]
 > * Creating an abstraction layer
@@ -39,8 +39,6 @@ In this tutorial, you also learn about:
 ## Prerequisite
 
 * [Implementing Inheritance](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-
-<!-- <a id="rawsql"></a> -->
 
 ## Perform raw SQL queries
 
@@ -106,8 +104,6 @@ Click **Back to List** to see the list of courses with the revised number of cre
 
 For more information about raw SQL queries, see [Raw SQL Queries](https://msdn.microsoft.com/data/jj592907) on MSDN.
 
-<!-- <a id="notracking"></a> -->
-
 ## No-tracking queries
 
 When a database context retrieves table rows and creates entity objects that represent them, by default it keeps track of whether the entities in memory are in sync with what's in the database. The data in memory acts as a cache and is used when you update an entity. This caching is often unnecessary in a web application because context instances are typically short-lived (a new one is created and disposed for each request) and the context that reads an entity is typically disposed before that entity is used again.
@@ -118,8 +114,6 @@ You can disable tracking of entity objects in memory by using the [AsNoTracking]
 - You want to attach an entity in order to update it, but you earlier retrieved the same entity for a different purpose. Because the entity is already being tracked by the database context, you can't attach the entity that you want to change. One way to handle this situation is to use the `AsNoTracking` option with the earlier query.
 
 For an example that demonstrates how to use the [AsNoTracking](https://msdn.microsoft.com/library/gg679352(v=vs.103).aspx) method, see [the earlier version of this tutorial](../../older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application.md). This version of the tutorial doesn't set the Modified flag on a model-binder-created entity in the Edit method, so it doesn't need `AsNoTracking`.
-
-<!-- <a id="sql"></a> -->
 
 ## Examine SQL sent to database
 
@@ -165,8 +159,6 @@ You can see that the query is now a `JOIN` query that loads `Department` data al
 
 Remove the `var sql = courses.ToString()` line.
 
-<!-- <a id="repo"></a> -->
-
 ## Create an abstraction layer
 
 Many developers write code to implement the repository and unit of work patterns as a wrapper around code that works with the Entity Framework. These patterns are intended to create an abstraction layer between the data access layer and the business logic layer of an application. Implementing these patterns can help insulate your application from changes in the data store and can facilitate automated unit testing or test-driven development (TDD). However, writing additional code to implement these patterns is not always the best choice for applications that use EF, for several reasons:
@@ -201,8 +193,6 @@ Most of the time you don't need to be aware of this use of proxies, but there ar
 
 For more information, see [Working with Proxies](https://msdn.microsoft.com/data/JJ592886.aspx) on MSDN.
 
-<!-- <a id="changedetection"></a> -->
-
 ## Automatic change detection
 
 The Entity Framework determines how an entity has changed (and therefore which updates need to be sent to the database) by comparing the current values of an entity with the original values. The original values are stored when the entity is queried or attached. Some of the methods that cause automatic change detection are the following:
@@ -219,13 +209,9 @@ The Entity Framework determines how an entity has changed (and therefore which u
 
 If you're tracking a large number of entities and you call one of these methods many times in a loop, you might get significant performance improvements by temporarily turning off automatic change detection using the [AutoDetectChangesEnabled](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbcontextconfiguration.autodetectchangesenabled.aspx) property. For more information, see [Automatically Detecting Changes](https://msdn.microsoft.com/data/jj556205) on MSDN.
 
-<!-- <a id="validation"></a> -->
-
 ## Automatic validation
 
 When you call the `SaveChanges` method, by default the Entity Framework validates the data in all properties of all changed entities before updating the database. If you've updated a large number of entities and you've already validated the data, this work is unnecessary and you could make the process of saving the changes take less time by temporarily turning off validation. You can do that using the [ValidateOnSaveEnabled](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbcontextconfiguration.validateonsaveenabled.aspx) property. For more information, see [Validation](https://msdn.microsoft.com/data/gg193959) on MSDN.
-
-<!-- <a id="tools"></a> -->
 
 ## Entity Framework Power Tools
 
@@ -233,15 +219,11 @@ When you call the `SaveChanges` method, by default the Entity Framework validate
 
 ![EF diagram](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image15.png)
 
-<!-- <a id="source"></a> -->
-
 ## Entity Framework source code
 
 The source code for Entity Framework 6 is available at [GitHub](https://github.com/aspnet/EntityFramework6). You can file bugs, and you can contribute your own enhancements to the EF source code.
 
 Although the source code is open, Entity Framework is fully supported as a Microsoft product. The Microsoft Entity Framework team keeps control over which contributions are accepted and tests all code changes to ensure the quality of each release.
-
-<!-- <a id="acknowledgments"></a> -->
 
 ## Acknowledgments
 
@@ -249,13 +231,9 @@ Although the source code is open, Entity Framework is fully supported as a Micro
 - [Rick Anderson](https://blogs.msdn.com/b/rickandy/) (twitter [@RickAndMSFT](http://twitter.com/RickAndMSFT)) did most of the work updating the tutorial for EF 5 and MVC 4 and co-authored the EF 6 update. Rick is a senior programming writer for Microsoft focusing on Azure and MVC.
 - [Rowan Miller](http://www.romiller.com) and other members of the Entity Framework team assisted with code reviews and helped debug many issues with migrations that arose while we were updating the tutorial for EF 5 and EF 6.
 
-<!-- <a id="vb"></a> -->
-
 ## Build a sample VB project
 
 When the tutorial was originally produced for EF 4.1, we provided both C# and VB versions of the completed download project. Due to time limitations and other priorities we have not done that for this version. If you build a VB project using these tutorials and would be willing to share that with others, please let us know.
-
-<!-- <a id="errors"></a> -->
 
 ## Troubleshoot common errors
 
@@ -314,8 +292,6 @@ Check the connection string. If you have manually deleted the database, change t
 
 [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
-<!-- <a id="summary"></a> -->
-
 ## Additional resources
 
  For more information about how to work with data using the Entity Framework, see the [EF documentation page on MSDN](https://msdn.microsoft.com/data/ee712907) and [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
@@ -335,7 +311,7 @@ In this tutorial, you:
 > * Performed no-tracking queries
 > * Examined SQL queries sent to the database
 
-In this tutorial, you also learned about:
+You also learned about:
 
 > [!div class="checklist"]
 > * Creating an abstraction layer
@@ -348,5 +324,3 @@ In this tutorial, you also learned about:
 Advance to the next node to learn about Entity Framework Database First with ASP.NET MVC.
 > [!div class="nextstepaction"]
 > [Entity Framework Database First](../database-first-development/setting-up-database.md)
-
-https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/database-first-development/
