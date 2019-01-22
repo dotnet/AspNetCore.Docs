@@ -236,7 +236,7 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable with *web.config*, see 
 
 **Project file or publish profile**
 
-Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file. This approach sets the environment in *web.config* when the project is published:
+**For Windows IIS deployments:** Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file. This approach sets the environment in *web.config* when the project is published:
 
 ```xml
 <PropertyGroup>
