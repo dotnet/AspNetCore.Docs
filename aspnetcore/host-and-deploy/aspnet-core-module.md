@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/11/2019
+ms.date: 01/22/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -280,7 +280,20 @@ For information on IIS sub-application configuration, see <xref:host-and-deploy/
 
 ### Setting environment variables
 
-Environment variables can be specified for the process in the `processPath` attribute. Specify an environment variable with the `environmentVariable` child element of an `environmentVariables` collection element. Environment variables set in this section take precedence over system environment variables.
+::: moniker range=">= aspnetcore-3.0"
+
+Environment variables can be specified for the process in the `processPath` attribute. Specify an environment variable with the `<environmentVariable>` child element of an `<environmentVariables>` collection element. Environment variables set in this section take precedence over system environment variables.
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
+Environment variables can be specified for the process in the `processPath` attribute. Specify an environment variable with the `<environmentVariable>` child element of an `<environmentVariables>` collection element.
+
+> [!WARNING]
+> Environment variables set in this section conflict with system environment variables set with the same name. If an environment variable is set in both the *web.config* file and at the system level in Windows, the value from the *web.config* file becomes appended to the system environment variable value (for example, `ASPNETCORE_ENVIRONMENT: Development;Development`), which prevents the app from starting.
+
+::: moniker-end
 
 The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer may temporarily set this value in the *web.config* file in order to force the [Developer Exception Page](xref:fundamentals/error-handling) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
 
