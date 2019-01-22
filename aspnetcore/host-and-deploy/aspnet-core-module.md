@@ -332,13 +332,14 @@ The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` c
 
 ::: moniker range=">= aspnetcore-2.2"
 
-As an alternative to setting the environment directly in *web.config*, include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file to set the app's [environment](xref:fundamentals/environments), which sets the environment in *web.config* when the project is published:
-
-```xml
-<PropertyGroup>
-  <EnvironmentName>Development</EnvironmentName>
-</PropertyGroup>
-```
+> [!NOTE]
+> An alternative to setting the environment directly in *web.config* is to include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file. This approach sets the environment in *web.config* when the project is published:
+>
+> ```xml
+> <PropertyGroup>
+>   <EnvironmentName>Development</EnvironmentName>
+> </PropertyGroup>
+> ```
 
 ::: moniker-end
 
