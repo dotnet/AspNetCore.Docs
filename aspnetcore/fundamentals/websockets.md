@@ -5,7 +5,7 @@ description: Learn how to get started with WebSockets in ASP.NET Core.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/06/2018
+ms.date: 01/17/2019
 uid: fundamentals/websockets
 ---
 # WebSockets support in ASP.NET Core
@@ -138,6 +138,12 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
 
 ::: moniker range=">= aspnetcore-2.2"
+
+### Handle client disconnects
+
+The server is not automatically informed when the client disconnects due to loss of connectivity. The server receives a disconnect message only if the client sends it, which can't be done if the internet connection is lost. If you want to take some action when that happens, set a timeout after nothing is received from the client within a certain time window.
+
+If the client isn't always sending messages and you don't want to timeout just because the connection goes idle, have the client use a timer to send a ping message every X seconds. On the server, if a message hasn't arrived within 2\*X seconds after the previous one, terminate the connection and report that the client disconnected. Wait for twice the expected time interval to leave extra time for network delays that might hold up the ping message.
 
 ### WebSocket origin restriction
 
