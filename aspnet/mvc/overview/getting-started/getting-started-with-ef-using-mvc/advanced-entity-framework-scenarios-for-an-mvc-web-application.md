@@ -4,7 +4,7 @@ title: "Tutorial: Learn about advanced EF Scenarios for an MVC 5 Web app"
 description: "This tutorial includes introduces several topics that are useful to be aware of when you go beyond the basics of developing ASP.NET web applications that use Entity Framework Code First."
 author: tdykstra
 ms.author: riande
-ms.date: 01/21/2019
+ms.date: 01/22/2019
 ms.topic: tutorial
 ms.assetid: f35a9b0c-49ef-4cde-b06d-19d1543feb0b
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
@@ -231,10 +231,6 @@ Although the source code is open, Entity Framework is fully supported as a Micro
 - [Rick Anderson](https://blogs.msdn.com/b/rickandy/) (twitter [@RickAndMSFT](http://twitter.com/RickAndMSFT)) did most of the work updating the tutorial for EF 5 and MVC 4 and co-authored the EF 6 update. Rick is a senior programming writer for Microsoft focusing on Azure and MVC.
 - [Rowan Miller](http://www.romiller.com) and other members of the Entity Framework team assisted with code reviews and helped debug many issues with migrations that arose while we were updating the tutorial for EF 5 and EF 6.
 
-## Build a sample VB project
-
-When the tutorial was originally produced for EF 4.1, we provided both C# and VB versions of the completed download project. Due to time limitations and other priorities we have not done that for this version. If you build a VB project using these tutorials and would be willing to share that with others, please let us know.
-
 ## Troubleshoot common errors
 
 ### Cannot create/shadow copy
@@ -302,8 +298,6 @@ For information about other topics related to MVC, such as authentication and au
 
 ## Next steps
 
-This completes this series of tutorials on using the Entity Framework in an ASP.NET MVC application. You can continue learning about Entity Framework in the next node.
-
 In this tutorial, you:
 
 > [!div class="checklist"]
@@ -321,6 +315,6 @@ You also learned about:
 > * Entity Framework Power Tools
 > * Entity Framework source code
 
-Advance to the next node to learn about Entity Framework Database First with ASP.NET MVC.
+This completes this series of tutorials on using the Entity Framework in an ASP.NET MVC application. If you want to learn about EF Database First, see the DB First tutorial series.
 > [!div class="nextstepaction"]
 > [Entity Framework Database First](../database-first-development/setting-up-database.md)
