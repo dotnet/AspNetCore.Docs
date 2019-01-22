@@ -17,6 +17,8 @@
 ## Web API apps
 ### [Create a web API](xref:tutorials/first-web-api)
 ### [Web API with MongoDB](xref:tutorials/first-mongo-app)
+### [Backend for mobile](xref:mobile/native-mobile-backend)
+
 ## Web apps
 ### [Razor Pages](xref:tutorials/razor-pages/index)
 ### [MVC](xref:tutorials/first-mvc-app/index)
@@ -24,7 +26,6 @@
 ## Real-time web apps
 ### [SignalR with JavaScript](xref:tutorials/signalr)
 ### [SignalR with TypeScript](xref:tutorials/signalr-typescript-webpack)
-## [Create backend services for native mobile apps](xref:mobile/native-mobile-backend)
 
 ## Data access
 ### [EF Core with Razor Pages](xref:data/ef-rp/index)
@@ -42,16 +43,13 @@
 ## [Options](xref:fundamentals/configuration/options)
 ## [Logging](xref:fundamentals/logging/index)
 ## [Handle errors](xref:fundamentals/error-handling)
-## Middleware
-### [Overview](xref:fundamentals/middleware/index)
-### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
-### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
+## [Middleware](xref:fundamentals/middleware/index)
 ## Host
 ### [Overview](xref:fundamentals/host/index)
 ### [Web Host](xref:fundamentals/host/web-host)
 ### [Generic Host](xref:fundamentals/host/generic-host)
 ## [Servers](xref:fundamentals/servers/index)
-## [Initiate HTTP requests](xref:fundamentals/http-requests)
+## [Make HTTP requests](xref:fundamentals/http-requests)
 
 # Web apps
 ## Razor Pages
@@ -278,6 +276,7 @@
 ### [Build Docker images](/dotnet/articles/core/docker/building-net-docker-images)
 ### [Visual Studio Tools](xref:host-and-deploy/docker/visual-studio-tools-for-docker)
 ### [Publish to a Docker image](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
+### [Sample Docker images](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md)
 ## [Proxy and load balancer configuration](xref:host-and-deploy/proxy-load-balancer)
 ## [Host in a web farm](xref:host-and-deploy/web-farm)
 ## [Visual Studio publish profiles](xref:host-and-deploy/visual-studio-publish-profiles)
@@ -365,7 +364,7 @@
 #### [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
 ### Compatibility
 #### [Overview](xref:security/data-protection/compatibility/index)
-#### [Replace <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
+#### [Replace machineKey in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
 ## [Protect secrets in development](xref:security/app-secrets)
 ## [Enforce HTTPS](xref:security/enforcing-ssl)
 ## [EU General Data Protection Regulation (GDPR) support](xref:security/gdpr)
@@ -388,12 +387,14 @@
 ## [Diagnostic Tools](xref:performance/diagnostic-tools)
 ## [Load and stress testing](xref:test/loadtests)
 
-# Other topics
-## [Globalization and localization](xref:fundamentals/localization)
-## [Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
+# Globalization and localization
+## [Overview](xref:fundamentals/localization)
+## [Portable Object localization](xref:fundamentals/portable-object-localization)
+
+# Advanced
 ## [URL rewriting](xref:fundamentals/url-rewriting)
 ## [File Providers](xref:fundamentals/file-providers)
-## [Request Features](xref:fundamentals/request-features)
+## [Request-feature interfaces](xref:fundamentals/request-features)
 ## [Access HttpContext](xref:fundamentals/httpcontext)
 ## [Change tokens](xref:fundamentals/change-tokens)
 ## [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
@@ -403,6 +404,8 @@
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 ## [Logging with LoggerMessage](xref:fundamentals/logging/loggermessage)
 ## [Use a file watcher](xref:tutorials/dotnet-watch)
+### [Factory-based middleware](xref:fundamentals/middleware/extensibility)
+### [Factory-based middleware with third-party container](xref:fundamentals/middleware/extensibility-third-party-container)
 
 # Migration
 ## [2.2 to 3.0](xref:migration/22-to-30)

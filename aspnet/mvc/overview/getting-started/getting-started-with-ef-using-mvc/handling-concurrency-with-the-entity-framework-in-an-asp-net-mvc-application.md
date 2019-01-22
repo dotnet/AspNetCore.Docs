@@ -1,32 +1,38 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Handling Concurrency with the Entity Framework 6 in an ASP.NET MVC 5 Application (10 of 12) | Microsoft Docs"
+title: "Tutorial: Handle Concurrency with EF in an ASP.NET MVC 5 app"
+description: "This tutorial shows how to use optimistic concurrency to handle conflicts when multiple users update the same entity at the same time."
 author: tdykstra
-description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: riande
-ms.date: 12/08/2014
+ms.date: 01/21/2019
+ms.topic: tutorial
 ms.assetid: be0c098a-1fb2-457e-b815-ddca601afc65
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-Handling Concurrency with the Entity Framework 6 in an ASP.NET MVC 5 Application (10 of 12)
-====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+# Tutorial: Handle Concurrency with EF in an ASP.NET MVC 5 app
 
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
+In earlier tutorials you learned how to update data. This tutorial shows how to use optimistic concurrency to handle conflicts when multiple users update the same entity at the same time. You change the web pages that work with the `Department` entity so that they handle concurrency errors. The following illustrations show the Edit and Delete pages, including some messages that are displayed if a concurrency conflict occurs.
 
+![Department_Edit_page_2_after_clicking_Save](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
 
-In earlier tutorials you learned how to update data. This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
+![Department_Edit_page_2_after_clicking_Save](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image15.png)
 
-You'll change the web pages that work with the `Department` entity so that they handle concurrency errors. The following illustrations show the Index and Delete pages, including some messages that are displayed if a concurrency conflict occurs.
+In this tutorial, you:
 
-![Department_Index_page_before_edits](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
+> [!div class="checklist"]
+> * Learn about concurrency conflicts
+> * Add optimistic concurrency
+> * Modify Department controller
+> * Test concurrency handling
+> * Update the Delete page
 
-![Department_Edit_page_2_after_clicking_Save](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image2.png)
+## Prerequisites
 
-## Concurrency Conflicts
+* [Async and Stored Procedures](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+
+## Concurrency conflicts
 
 A concurrency conflict occurs when one user displays an entity's data in order to edit it, and then another user updates the same entity's data before the first user's change is written to the database. If you don't enable the detection of such conflicts, whoever updates the database last overwrites the other user's changes. In many applications, this risk is acceptable: if there are few users, or few updates, or if isn't really critical if some changes are overwritten, the cost of programming for concurrency might outweigh the benefit. In that case, you don't have to configure the application to handle concurrency conflicts.
 
@@ -40,11 +46,7 @@ Managing locks has disadvantages. It can be complex to program. It requires sign
 
 The alternative to pessimistic concurrency is *optimistic concurrency*. Optimistic concurrency means allowing concurrency conflicts to happen, and then reacting appropriately if they do. For example, John runs the Departments Edit page, changes the **Budget** amount for the English department from $350,000.00 to $0.00.
 
-![Changing_English_dept_budget_to_100000](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
-
 Before John clicks **Save**, Jane runs the same page and changes the **Start Date** field from 9/1/2007 to 8/8/2013.
-
-![Changing_English_dept_start_date_to_1999](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
 
 John clicks **Save** first and sees his change when the browser returns to the Index page, then Jane clicks **Save**. What happens next is determined by how you handle concurrency conflicts. Some of the options include the following:
 
@@ -69,7 +71,7 @@ You can resolve conflicts by handling [OptimisticConcurrencyException](https://m
 
 In the remainder of this tutorial you'll add a [rowversion](https://msdn.microsoft.com/library/ms182776(v=sql.110).aspx) tracking property to the `Department` entity, create a controller and views, and test to verify that everything works correctly.
 
-## Add an Optimistic Concurrency Property to the Department Entity
+## Add optimistic concurrency
 
 In *Models\Department.cs*, add a tracking property named `RowVersion`:
 
@@ -85,7 +87,7 @@ By adding a property you changed the database model, so you need to do another m
 
 [!code-console[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cmd)]
 
-## Modify the Department Controller
+## Modify Department controller
 
 In *Controllers\DepartmentController.cs*, add a `using` statement:
 
@@ -129,37 +131,23 @@ In *Views\Department\Edit.cshtml*, add a hidden field to save the `RowVersion` p
 
 [!code-cshtml[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cshtml?highlight=18)]
 
-## Testing Optimistic Concurrency Handling
+## Test concurrency handling
 
-Run the site and click **Departments**:
-
-![Department_Index_page_before_edits](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
+Run the site and click **Departments**.
 
 Right click the **Edit** hyperlink for the English department and select **Open in new tab,** then click the **Edit** hyperlink for the English department. The two tabs display the same information.
 
-![Department_Edit_page_before_changes](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
-
 Change a field in the first browser tab and click **Save**.
-
-![Department_Edit_page_1_after_change](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
 
 The browser shows the Index page with the changed value.
 
-![Departments_Index_page_after_first_budget_edit](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
-
-Change a field in the second browser tab and click **Save**.
-
-![Department_Edit_page_2_after_change](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
-
-Click **Save** in the second browser tab. You see an error message:
+Change a field in the second browser tab and click **Save**. You see an error message:
 
 ![Department_Edit_page_2_after_clicking_Save](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
 
 Click **Save** again. The value you entered in the second browser tab is saved along with the original value of the data you changed in the first browser. You see the saved values when the Index page appears.
 
-![Department_Index_page_with_change_from_second_browser](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image11.png)
-
-## Updating the Delete Page
+## Update the Delete page
 
 For the Delete page, the Entity Framework detects concurrency conflicts caused by someone else editing the department in a similar manner. When the `HttpGet` `Delete` method displays the confirmation view, the view includes the original `RowVersion` value in a hidden field. That value is then available to the `HttpPost` `Delete` method that's called when the user confirms the deletion. When the Entity Framework creates the SQL `DELETE` command, it includes a `WHERE` clause with the original `RowVersion` value. If the command results in zero rows affected (meaning the row was changed after the Delete confirmation page was displayed), a concurrency exception is thrown, and the `HttpGet Delete` method is called with an error flag set to `true` in order to redisplay the confirmation page with an error message. It's also possible that zero rows were affected because the row was deleted by another user, so in that case a different error message is displayed.
 
@@ -203,17 +191,11 @@ Finally, it adds hidden fields for the `DepartmentID` and `RowVersion` propertie
 
 Run the Departments Index page. Right click the **Delete** hyperlink for the English department and select **Open in new tab,** then in the first tab click the **Edit** hyperlink for the English department.
 
-In the first window, change one of the values, and click **Save** :
-
-![Department_Edit_page_after_change_before_delete](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image12.png)
+In the first window, change one of the values, and click **Save**.
 
 The Index page confirms the change.
 
-![Departments_Index_page_after_budget_edit_before_delete](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
-
 In the second tab, click **Delete**.
-
-![Department_Delete_confirmation_page_before_concurrency_error](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image14.png)
 
 You see the concurrency error message, and the Department values are refreshed with what's currently in the database.
 
@@ -221,12 +203,27 @@ You see the concurrency error message, and the Department values are refreshed w
 
 If you click **Delete** again, you're redirected to the Index page, which shows that the department has been deleted.
 
-## Summary
+## Get the code
 
-This completes the introduction to handling concurrency conflicts. For information about other ways to handle various concurrency scenarios, see [Optimistic Concurrency Patterns](https://msdn.microsoft.com/data/jj592904) and [Working with Property Values](https://msdn.microsoft.com/data/jj592677) on MSDN. The next tutorial shows how to implement table-per-hierarchy inheritance for the `Instructor` and `Student` entities.
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+
+## Additional resources
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Previous](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-> [Next](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+For information about other ways to handle various concurrency scenarios, see [Optimistic Concurrency Patterns](https://msdn.microsoft.com/data/jj592904) and [Working with Property Values](https://msdn.microsoft.com/data/jj592677) on MSDN. The next tutorial shows how to implement table-per-hierarchy inheritance for the `Instructor` and `Student` entities.
+
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learned about concurrency conflicts
+> * Added optimistic concurrency
+> * Modified Department controller
+> * Tested concurrency handling
+> * Updated the Delete page
+
+Advance to the next article to learn how to implement inheritance in the data model.
+> [!div class="nextstepaction"]
+> [Implement inheritance in the data model](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)

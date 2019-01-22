@@ -22,7 +22,7 @@ The purpose of this tutorial is to provide you with a brief introduction to ASP.
 
 For ASP.NET or Active Server Pages, ASP.NET MVC does not include anything that directly corresponds to a page. In an ASP.NET MVC application, there is not a page on disk that corresponds to the path in the URL that you type into the address bar of your browser. The closest thing to a page in an ASP.NET MVC application is something called a *view*.
 
-ASP.NET MVC application, incoming browser requests are mapped to controller actions. A controller action might return a view. However, a controller action might perform some other type of action such as redirecting you to another controller action.
+In an ASP.NET MVC application, incoming browser requests are mapped to controller actions. A controller action might return a view. However, a controller action might perform some other type of action such as redirecting you to another controller action.
 
 Listing 1 contains a simple controller named the HomeController. The HomeController exposes two controller actions named Index() and Details().
 
@@ -85,7 +85,7 @@ Since you call Response.Write() so often, Microsoft provides you with a shortcut
 
 [!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample3.aspx)]
 
-You can use any .NET language to generate dynamic content in a view. Normally, you�ll use either Visual Basic .NET or C# to write your controllers and views.
+You can use any .NET language to generate dynamic content in a view. Normally, you'll use either Visual Basic .NET or C# to write your controllers and views.
 
 ## Using HTML Helpers to Generate View Content
 
@@ -133,7 +133,7 @@ The view in Listing 7 retrieves the message from the view data and renders the m
 
 Notice that the view takes advantage of the Html.Encode() HTML Helper method when rendering the message. The Html.Encode() HTML Helper encodes special characters such as &lt; and &gt; into characters that are safe to display in a web page. Whenever you render content that a user submits to a website, you should encode the content to prevent JavaScript injection attacks.
 
-(Because we created the message ourselves in the ProductController, we don�t really need to encode the message. However, it is a good habit to always call the Html.Encode() method when displaying content retrieved from view data within a view.)
+(Because we created the message ourselves in the ProductController, we don't really need to encode the message. However, it is a good habit to always call the Html.Encode() method when displaying content retrieved from view data within a view.)
 
 In Listing 7, we took advantage of view data to pass a simple string message from a controller to a view. You also can use view data to pass other types of data, such as a collection of database records, from a controller to a view. For example, if you want to display the contents of the Products database table in a view, then you would pass the collection of database records in view data.
 
