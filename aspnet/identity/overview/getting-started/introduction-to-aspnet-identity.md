@@ -4,14 +4,13 @@ title: "Introduction to ASP.NET Identity | Microsoft Docs"
 author: jongalloway
 description: "The ASP.NET membership system was introduced with ASP.NET 2.0 back in 2005, and since then there have been many changes in the ways web applications typicall..."
 ms.author: riande
-ms.date: 10/17/2013
+ms.date: 01/22/2019
 ms.assetid: 38717fc1-5989-43cf-952d-4007cc1dd923
 msc.legacyurl: /identity/overview/getting-started/introduction-to-aspnet-identity
 msc.type: authoredcontent
 ---
 Introduction to ASP.NET Identity
 ====================
-by [Jon Galloway](https://github.com/jongalloway), [Pranav Rastogi](https://github.com/rustd), [Rick Anderson]((https://twitter.com/RickAndMSFT)), [Tom Dykstra](https://github.com/tdykstra)
 
 > The ASP.NET membership system was introduced with ASP.NET 2.0 back in 2005, and since then there have been many changes in the ways web applications typically handle authentication and authorization. ASP.NET Identity is a fresh look at what the membership system should be when you are building modern applications for the web, phone, or tablet.
 > 
@@ -25,7 +24,7 @@ by [Jon Galloway](https://github.com/jongalloway), [Pranav Rastogi](https://gith
 [ASP.NET Membership](https://msdn.microsoft.com/library/yh26yfzy(v=VS.100).aspx) was designed to solve site membership requirements that were common in 2005, which involved Forms Authentication, and a SQL Server database for user names, passwords, and profile data. Today there is a much broader array of data storage options for web applications, and most developers want to enable their sites to use social identity providers for authentication and authorization functionality. The limitations of ASP.NET Membership's design make this transition difficult:
 
 - The database schema was designed for SQL Server and you can't change it. You can add profile information, but the additional data is packed into a different table, which makes it difficult to access by any means except through the Profile Provider API.
-- The provider system enables you to change the backing data store, but the system is designed around assumptions appropriate for a relational database. You can write a provider to store membership information in a non-relational storage mechanism, such as Azure Storage Tables, but then you have to work around the relational design by writing a lot of code and a lot of `System.NotImplementedException` exceptions for methods that don't apply to NoSQL databases.
+- The provider system enables you to change the backing data store, but the system is designed around assumptions appropriate for a relational database. You can write a provider to store membership information in a non-relational storage mechanism, such as Azure Storage Tables, but then you have to work around the relational design by writing much code and a lot of `System.NotImplementedException` exceptions for methods that don't apply to NoSQL databases.
 - Since the log-in/log-out functionality is based on Forms Authentication, the membership system can't use [OWIN](../../../aspnet/overview/owin-and-katana/an-overview-of-project-katana.md). OWIN includes middleware components for authentication, including support for log-ins using external identity providers (like Microsoft Accounts, Facebook, Google, Twitter), and log-ins using organizational accounts from on-premises Active Directory or Azure Active Directory. OWIN also includes support for OAuth 2.0, JWT and CORS.
 
 ### ASP.NET Simple Membership
@@ -119,15 +118,11 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
 4. Log in.  
    If the user was successfully created, she is logged in by the `SignInAsync` method.  
 
-    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample2.cs?highlight=12)]
+    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample6.cs?highlight=12)]
 
-    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample3.cs?highlight=5-6)]
 
-   The highlighted code above in the `SignInAsync` method generates a [ClaimsIdentity](https://msdn.microsoft.com/library/system.security.claims.claimsidentity.aspx). Since ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a ClaimsIdentity for the user. ClaimsIdentity has information about all the claims for the user, such as what roles the user belongs to. You can also add more claims for the user at this stage.  
-  
-   The highlighted code below in the `SignInAsync` method signs in the user by using the AuthenticationManager from OWIN and calling `SignIn` and passing in the ClaimsIdentity.  
-
-    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample4.cs?highlight=8-11)]
+   The `SignInManager.SignInAsync` method generates a [ClaimsIdentity](https://msdn.microsoft.com/library/system.security.claims.claimsidentity.aspx). Since ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a ClaimsIdentity for the user. ClaimsIdentity has information about all the claims for the user, such as what roles the user belongs to.   
+ 
 5. Log off.  
    Clicking the **Log off** link calls the LogOff action in the account controller. 
 
