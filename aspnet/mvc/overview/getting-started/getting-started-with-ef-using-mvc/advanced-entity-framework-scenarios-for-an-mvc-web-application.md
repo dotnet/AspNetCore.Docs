@@ -347,4 +347,6 @@ In this tutorial, you also learned about:
 
 Advance to the next node to learn about Entity Framework Database First with ASP.NET MVC.
 > [!div class="nextstepaction"]
-> [Entity Framework Database First](setting-up-database.md)
+> [Entity Framework Database First](../database-first-development/setting-up-database.md)
+
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/database-first-development/
