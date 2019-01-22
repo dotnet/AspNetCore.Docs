@@ -660,7 +660,7 @@ For more information on regular expression syntax, see [.NET Framework Regular E
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
-## Custom Routing Constraints
+## Custom Route Constraints
 
 In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains a single method, `Match`, which should return true if the constraint is satisfied and false otherwise.
 
