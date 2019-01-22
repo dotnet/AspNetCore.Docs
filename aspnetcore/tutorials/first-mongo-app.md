@@ -4,7 +4,7 @@ author: prkhandelwal
 description: This tutorial demonstrates how to build an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 11/29/2018
+ms.date: 01/22/2019
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -182,7 +182,13 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs)]
 
-In the preceding class, the `Id` property is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection. Other properties in the class are decorated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
+In the preceding class, the `Id` property:
+
+* Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
+* Is annotated with `[BsonId]` to designate this property as the document's primary key.
+* Is annotated with `[BsonRepresentation(BsonType.ObjectId)]` to allow passing the parameter as type `string` instead of `ObjectId`. Mongo handles the conversion from `string` to `ObjectId`.
+
+Other properties in the class are annotated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
 
 ## Add a CRUD operations class
 
