@@ -181,7 +181,7 @@ For more information about how to implement the repository and unit of work patt
 - [Testing with a mocking framework](https://msdn.microsoft.com/data/dn314429)
 - [Testing with your own test doubles](https://msdn.microsoft.com/data/dn314431)
 
-<!-- <a id="proxies"></a> -->
+<a id="proxies"></a>
 
 ## Proxy classes
 
@@ -347,4 +347,4 @@ In this tutorial, you also learned about:
 
 Advance to the next node to learn about Entity Framework Database First with ASP.NET MVC.
 > [!div class="nextstepaction"]
-> [Entity Framework Database First](database-first-development.md)
+> [Entity Framework Database First](setting-up-database.md)
