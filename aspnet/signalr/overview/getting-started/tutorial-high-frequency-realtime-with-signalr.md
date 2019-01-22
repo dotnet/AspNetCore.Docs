@@ -4,7 +4,7 @@ title: "Tutorial: Create high-frequency real-time app with SignalR 2 | Microsoft
 author: pfletcher
 description: "This tutorial shows how to create a web application that uses ASP.NET SignalR to provide high-frequency messaging functionality."
 ms.author: riande
-ms.date: 01/02/2019
+ms.date: 01/22/2019
 ms.assetid: 9f969dda-78ea-4329-b1e3-e51c02210a2b
 msc.legacyurl: /signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr
 msc.type: authoredcontent
@@ -218,6 +218,10 @@ The application is almost finished, but we could make one more improvement. The 
 The movement of the shape in the other window appears less jerky. The app interpolates its movement over time rather than being set once per incoming message.
 
 This code moves the shape from the old location to the new one. The server gives the position of the shape over the course of the animation interval. In this case, that's 100 milliseconds. The app clears any previous animation running on the shape before the new animation starts.
+
+## Get the code
+
+[Download Completed Project](http://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a)
 
 ## Additional resources
 

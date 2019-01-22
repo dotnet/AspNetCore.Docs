@@ -4,7 +4,7 @@ title: "Tutorial: Real-time chat with SignalR 2 | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to use SignalR to create a real-time chat application. You add SignalR to an empty ASP.NET web application."
 ms.author: riande
-ms.date: 01/02/2019
+ms.date: 01/22/2019
 ms.assetid: a8b3b778-f009-4369-85c7-e90f9878d8b4
 msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-signalr
 msc.type: authoredcontent
@@ -156,6 +156,10 @@ This code opens a connection with the hub.
 > This approach ensures that the code establishes a connection before the event handler executes.
 
 The code starts the connection and then passes it a function to handle the click event on the **Send** button in the HTML page.
+
+## Get the code
+
+[Download Completed Project](http://code.msdn.microsoft.com/SignalR-Getting-Started-b9d18aa9)
 
 ## Additional resources
 
