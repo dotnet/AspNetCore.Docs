@@ -4,7 +4,7 @@ title: "Tutorial: Get Started with Entity Framework 6 Code First using MVC 5 | M
 description: "In this series of tutorials, you learn how to build an ASP.NET MVC 5 application that uses Entity Framework 6 for data access."
 author: tdykstra
 ms.author: riande
-ms.date: 01/10/2019
+ms.date: 01/22/2019
 ms.topic: tutorial
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
@@ -281,6 +281,11 @@ The amount of code you had to write in order for Entity Framework to be able to 
 - A property is interpreted as a foreign key property if it's named *&lt;navigation property name&gt;&lt;primary key property name&gt;* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named the same simply &lt;primary key property name&gt; (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
 You've seen that conventions can be overridden. For example, you specified that table names shouldn't be pluralized, and you'll see later how to explicitly mark a property as a foreign key property.
+
+## Get the code
+
+* [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+
 ## Additional resources
 
 For more about EF 6, see these articles:

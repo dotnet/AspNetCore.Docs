@@ -4,7 +4,7 @@ title: "Tutorial: Read related data with EF in an ASP.NET MVC app"
 description: "In this tutorial you'll read and display related data — that is, data that the Entity Framework loads into navigation properties."
 author: tdykstra
 ms.author: riande
-ms.date: 01/17/2019
+ms.date: 01/22/2019
 ms.topic: tutorial
 ms.assetid: 18cdd896-8ed9-4547-b143-114711e3eafb
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
@@ -238,6 +238,10 @@ Then it explicitly loads each `Enrollment` entity's related `Student` entity:
 Notice that you use the `Collection` method to load a collection property, but for a property that holds just one entity, you use the `Reference` method.
 
 Run the Instructor Index page now and you'll see no difference in what's displayed on the page, although you've changed how the data is retrieved.
+
+## Get the code
+
+* [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 ## Additional resources
 

@@ -4,7 +4,7 @@ title: "Tutorial: Create a more complex data model for an ASP.NET MVC app"
 author: tdykstra
 description: "In this tutorial you'll add more entities and relationships and you'll customize the data model by specifying formatting, validation, and database mapping rules."
 ms.author: riande
-ms.date: 01/16/2019
+ms.date: 01/22/2019
 ms.topic: tutorial
 ms.assetid: 46f7f3c9-274f-4649-811d-92222a9b27e2
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application
@@ -392,6 +392,10 @@ You didn't create a model class for the `CourseInstructor` table. As explained e
 Right-click the `CourseInstructor` table and select **Show Table Data** to verify that it has data in it as a result of the `Instructor` entities you added to the `Course.Instructors` navigation property.
 
 ![Table_data_in_CourseInstructor_table](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image17.png)
+
+## Get the code
+
+* [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 ## Additional resources
 
