@@ -24,7 +24,6 @@ namespace BackgroundTasksSample
                 })
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.AddEnvironmentVariables();
                     config.AddJsonFile("appsettings.json", optional: true);
                     config.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
                     config.AddCommandLine(args);
