@@ -18,9 +18,9 @@ namespace BackgroundTasksSample
                     config.AddConsole();
                     config.AddDebug();
                 })
-                .ConfigureHostConfiguration(configHost =>
+                .ConfigureHostConfiguration(config =>
                 {
-                    configHost.AddEnvironmentVariables();
+                    config.AddEnvironmentVariables();
                 })
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
