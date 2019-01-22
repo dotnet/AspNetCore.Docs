@@ -284,7 +284,7 @@ You've seen that conventions can be overridden. For example, you specified that 
 
 ## Get the code
 
-* [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 ## Additional resources
 

@@ -221,7 +221,7 @@ This code moves the shape from the old location to the new one. The server gives
 
 ## Get the code
 
-* [Download Completed Project](http://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a)
+[Download Completed Project](http://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a)
 
 ## Additional resources
 

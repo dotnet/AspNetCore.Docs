@@ -171,9 +171,9 @@ This code opens a connection with the hub.
 
 The code starts the connection and then passes it a function to handle the click event on the **Send** button in the Chat page.
 
-## Get the ode
+## Get the code
 
-* [Download Completed Project](http://code.msdn.microsoft.com/Getting-Started-with-c366b2f3)
+[Download Completed Project](http://code.msdn.microsoft.com/Getting-Started-with-c366b2f3)
 
 ## Additional resources
 

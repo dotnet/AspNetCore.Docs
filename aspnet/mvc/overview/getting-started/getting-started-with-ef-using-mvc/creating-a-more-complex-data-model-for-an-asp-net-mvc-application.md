@@ -395,7 +395,7 @@ Right-click the `CourseInstructor` table and select **Show Table Data** to verif
 
 ## Get the code
 
-* [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 ## Additional resources
 

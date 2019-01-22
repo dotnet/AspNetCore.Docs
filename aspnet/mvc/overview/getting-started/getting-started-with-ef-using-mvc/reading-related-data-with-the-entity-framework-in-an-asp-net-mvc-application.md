@@ -241,7 +241,7 @@ Run the Instructor Index page now and you'll see no difference in what's display
 
 ## Get the code
 
-* [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 ## Additional resources
 

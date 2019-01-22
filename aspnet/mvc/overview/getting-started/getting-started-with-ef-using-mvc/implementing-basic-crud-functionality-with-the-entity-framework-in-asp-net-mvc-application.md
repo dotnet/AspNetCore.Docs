@@ -243,7 +243,7 @@ By default the Entity Framework implicitly implements transactions. In scenarios
 
 ## Get the code
 
-* [Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 ## Additional resources
 
