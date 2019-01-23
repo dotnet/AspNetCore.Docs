@@ -1,9 +1,9 @@
 ---
 uid: signalr/overview/guide-to-the-api/handling-connection-lifetime-events
 title: "Understanding and Handling Connection Lifetime Events in SignalR | Microsoft Docs"
-author: pfletcher
+author: bradygaster
 description: "This article describes how to use the events exposed by the Hubs API."
-ms.author: riande
+ms.author: bradyg
 ms.date: 01/15/2019
 ms.assetid: 03960de2-8d95-4444-9169-4426dcc64913
 msc.legacyurl: /signalr/overview/guide-to-the-api/handling-connection-lifetime-events

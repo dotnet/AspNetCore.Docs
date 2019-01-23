@@ -4,7 +4,7 @@ title: "Tutorial: Use connection resiliency and command interception with EF in 
 author: tdykstra
 description: "In this tutorial you'll learn how to use connection resiliency and command interception. They are two important features of Entity Framework 6."
 ms.author: riande
-ms.date: 01/14/2018
+ms.date: 01/22/2019
 ms.topic: tutorial
 ms.assetid: c89d809f-6c65-4425-a3fa-c9f6e8ac89f2
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application
@@ -167,6 +167,10 @@ Next you'll create the classes that the Entity Framework will call into every ti
 
     ![Dummy Exception](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
 5. Uncomment the *SetExecutionStrategy* line in *SchoolConfiguration.cs*.
+
+## Get the code
+
+[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
 ## Additional resources
 

@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core SignalR production hosting and scaling
-author: tdykstra
+author: bradygaster
 description: Learn how to avoid performance and scaling problems in apps that use ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/28/2018
 uid: signalr/scale
