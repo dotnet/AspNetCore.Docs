@@ -23,9 +23,9 @@ Adding ASP.NET Identity to an Empty or Existing Web Forms Project
 
 1. Start by installing and running [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/).
 2. Select **New Project** from the Start page, or you can use the menu and select **File**, and then **New Project**.
-3. Select **Visual C#** n the left pane, then **Web** and then select **ASP.NET Web Application**. Name your project "WebFormsIdentity" and then select **OK**.   
+3. Select **Visual C#** in the left pane, then **Web**, and then select **ASP.NET Web Application**. Name your project "WebFormsIdentity" and then select **OK**.   
   
-    ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image1.png)
+    ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image17.png)
 4. In the **New ASP.NET Project** dialog, select the **Empty** template.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image2.png)  
