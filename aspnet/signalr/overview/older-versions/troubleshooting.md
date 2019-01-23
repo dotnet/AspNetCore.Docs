@@ -1,9 +1,9 @@
 ---
 uid: signalr/overview/older-versions/troubleshooting
 title: "SignalR Troubleshooting (SignalR 1.x) | Microsoft Docs"
-author: pfletcher
+author: bradygaster
 description: "This article describes common issues with developing SignalR applications."
-ms.author: riande
+ms.author: bradyg
 ms.date: 06/05/2013
 ms.assetid: 347210ba-c452-4feb-886f-b51d89f58971
 msc.legacyurl: /signalr/overview/older-versions/troubleshooting

@@ -1,9 +1,9 @@
 ---
 uid: signalr/index
 title: "SignalR | Microsoft Docs"
-author: rick-anderson
+author: bradygaster
 description: "Microsoft ASP.NET SignalR is a library for ASP.NET developers that simplifies the process of adding real-time web functionality to your applications."
-ms.author: riande
+ms.author: bradyg
 ms.date: 10/24/2012
 ms.assetid: 282a521f-2b86-4fac-bcf6-b6d5e0fe969c
 msc.legacyurl: /signalr
