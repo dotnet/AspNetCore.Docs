@@ -1,9 +1,9 @@
 ---
 uid: signalr/overview/performance/scaleout-in-signalr
 title: "Introduction to Scaleout in SignalR | Microsoft Docs"
-author: MikeWasson
+author: bradygaster
 description: "Software versions used in this topic Visual Studio 2013 .NET 4.5 SignalR version 2 Previous versions of this topic For information about earlier versions of..."
-ms.author: riande
+ms.author: bradyg
 ms.date: 06/10/2014
 ms.assetid: 7e781fc1-1c1f-45a8-bc1d-338e96dbe9c9
 msc.legacyurl: /signalr/overview/performance/scaleout-in-signalr
