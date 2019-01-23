@@ -1,22 +1,32 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/generating-views
-title: "EF Database First with ASP.NET MVC: Generating Views | Microsoft Docs"
+title: "Tutorial: Generate views for EF Database First with ASP.NET MVC"
+description: "This article focuses on using ASP.NET Scaffolding to generate the controllers and views."
 author: Rick-Anderson
-description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: riande
 ms.date: 12/29/2014
 ms.assetid: 669367cf-8e30-4eb6-821d-10a7d9bb906c
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/generating-views
 msc.type: authoredcontent
 ---
-EF Database First with ASP.NET MVC: Generating Views
-====================
-by [Tom FitzMacken](https://github.com/tfitzmac)
 
-> Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
-> 
-> This part of the series focuses on using ASP.NET Scaffolding to generate the controllers and views.
+# Tutorial: Generate views for EF Database First with ASP.NET MVC
 
+Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
+
+This article focuses on using ASP.NET Scaffolding to generate the controllers and views.
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Add scaffold
+> * Add links to new views
+> * Display student views
+> * Display enrollment views
+
+## Prerequisite
+
+* [Create the web application and data models](creating-the-web-application.md)
 
 ## Add scaffold
 
@@ -100,6 +110,16 @@ Furthermore, validation of the provided values is automatically applied based on
 
 You have verified that the automatically-generated views enable users to work with the data in the database. In the next tutorial in this series, you will update the database and make the corresponding changes in the web application.
 
-> [!div class="step-by-step"]
-> [Previous](creating-the-web-application.md)
-> [Next](changing-the-database.md)
+## Next step
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Added scaffold
+> * Added links to new views
+> * Displayed student views
+> * Displayed enrollment views
+
+Advance to the next article to learn how to change the database.
+> [!div class="nextstepaction"]
+> [Change the database](changing-the-database.md)
