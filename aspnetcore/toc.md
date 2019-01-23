@@ -393,7 +393,7 @@
 
 # Advanced
 ## [URL rewriting](xref:fundamentals/url-rewriting)
-## [File Providers](xref:fundamentals/file-providers)
+## [File providers](xref:fundamentals/file-providers)
 ## [Request-feature interfaces](xref:fundamentals/request-features)
 ## [Access HttpContext](xref:fundamentals/httpcontext)
 ## [Change tokens](xref:fundamentals/change-tokens)
