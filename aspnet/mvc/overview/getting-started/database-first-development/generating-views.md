@@ -86,7 +86,7 @@ Furthermore, validation of the provided values is automatically applied based on
 
 You have verified that the automatically-generated views enable users to work with the data in the database. In the next tutorial in this series, you will update the database and make the corresponding changes in the web application.
 
-## Next step
+## Next steps
 
 In this tutorial, you:
 
