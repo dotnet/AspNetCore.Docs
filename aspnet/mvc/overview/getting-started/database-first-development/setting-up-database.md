@@ -28,7 +28,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Visual Studio 2017](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)
+* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 
 ## Introduction
 
