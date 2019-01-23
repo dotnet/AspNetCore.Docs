@@ -25,7 +25,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Getting Started with Entity Framework 6 Database First using MVC 5](setting-up-database.md)
+* [Getting started with Entity Framework 6 Database First using MVC 5](setting-up-database.md)
 
 ## Create an ASP.NET web app
 
