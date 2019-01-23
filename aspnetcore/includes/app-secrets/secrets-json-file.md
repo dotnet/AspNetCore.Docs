@@ -1,6 +1,13 @@
-```json
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace SendGrid.Services
 {
-  "Movies:ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Movie-1;Trusted_Connection=True;MultipleActiveResultSets=true",
-  "Movies:ServiceApiKey": "12345"
+    public class AuthMessageSenderOptions
+    {
+        public string SendGridUser { get; set; }
+        public string SendGridKey { get; set; }
+    }
 }
-```
