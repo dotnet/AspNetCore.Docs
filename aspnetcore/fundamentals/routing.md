@@ -662,7 +662,7 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 ## Custom Route Constraints
 
-In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains a single method, `Match`, which should return true if the constraint is satisfied and false otherwise.
+In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains a single method, <xref:System.Web.Routing.HttpMethodConstraint.System.Web.Routing.IRouteConstraint.Match*>, which returns `true` if the constraint is satisfied and `false` otherwise.
 
 To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's `RouteOptions.ConstraintMap` in the app's service container. A <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `RouteOptions.ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a `services.AddRouting` call or by configuring `RouteOptions` directly with `services.Configure<RouteOptions>`. For example:
 
