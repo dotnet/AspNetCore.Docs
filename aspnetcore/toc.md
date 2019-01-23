@@ -294,7 +294,7 @@
 ### [Configure Identity](xref:security/authentication/identity-configuration)
 ### [Configure Windows Authentication](xref:security/authentication/windowsauth)
 ### [Custom storage providers for Identity](xref:security/authentication/identity-custom-storage-providers)
-### Google, Facebook, MSA ...
+### Google, Facebook ...
 #### [Overview](xref:security/authentication/social/index)
 #### [Google authentication](xref:security/authentication/google-logins)
 #### [Facebook authentication](xref:security/authentication/facebook-logins)
