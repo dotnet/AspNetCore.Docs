@@ -20,14 +20,14 @@ This article focuses on creating the web application, and generating the data mo
 In this tutorial, you:
 
 > [!div class="checklist"]
-> * Create a new ASP.NET web app
+> * Create an ASP.NET web app
 > * Generate the models
 
 ## Prerequisites
 
 * [Getting Started with Entity Framework 6 Database First using MVC 5](setting-up-database.md)
 
-## Create a new ASP.NET web app
+## Create an ASP.NET web app
 
 In either a new solution or the same solution as the database project, create a new project in Visual Studio and select the **ASP.NET Web Application** template. Name the project **ContosoSite**.
 
@@ -94,7 +94,7 @@ Before proceeding with this tutorial, build the project. In the next section, yo
 In this tutorial, you:
 
 > [!div class="checklist"]
-> * Created a new ASP.NET web app
+> * Created an ASP.NET web app
 > * Generated the models
 
 Advance to the next article to learn how to create generate code based on the data models.
