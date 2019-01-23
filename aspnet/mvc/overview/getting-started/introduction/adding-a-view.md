@@ -3,7 +3,7 @@ title: Adding a View to an MVC app
 author: Rick-Anderson
 description: Adding a view to an MVC app
 ms.author: riande
-ms.date: 09/1721/2017
+ms.date: 01/23/2019
 uid: mvc/overview/getting-started/introduction/adding-a-view
 ---
 Adding a View
@@ -54,7 +54,7 @@ Alternatively, run the application and browse to the `HelloWorld` controller (`h
 
 ![](adding-a-view/_static/image6.png)
 
-Looks pretty good. However, notice that the browser's title bar shows &quot;Index - My ASP.NET Application" and the big link on the top of the page says "Application name." Depending on how small you make your browser window, you might need to click the three bars in the upper right to see the to the **Home**, **About**, **Contact**, **Register** and **Log in** links.
+Looks pretty good. However, notice that the browser's title bar shows "Index - My ASP.NET Application," and the big link at the top of the page says "Application name." Depending on how small you make your browser window, you might need to click the three bars in the upper right to see the to the **Home**, **About**, **Contact**, **Register** and **Log in** links.
 
 ## Changing Views and Layout Pages
 
