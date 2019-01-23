@@ -90,7 +90,7 @@ A *<project_name>.PrecompiledViews.dll* file, containing the compiled Razor file
 
 ::: moniker-end
 
-## Recompile views on file change behavior
+## Recompile Razor files on change
 
 The <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions> `AllowRecompilingViewsOnFileChange` gets or sets a value that determines if Razor files (Razor Views and Razor Pages) are recompiled and updated if files change on disk.
 
