@@ -294,13 +294,13 @@
 ### [Configure Identity](xref:security/authentication/identity-configuration)
 ### [Configure Windows Authentication](xref:security/authentication/windowsauth)
 ### [Custom storage providers for Identity](xref:security/authentication/identity-custom-storage-providers)
-### External providers
+### Google, Facebook, MSA ...
 #### [Overview](xref:security/authentication/social/index)
-#### [Facebook authentication](xref:security/authentication/facebook-logins)
-#### [Twitter authentication](xref:security/authentication/twitter-logins)
 #### [Google authentication](xref:security/authentication/google-logins)
+#### [Facebook authentication](xref:security/authentication/facebook-logins)
 #### [Microsoft authentication](xref:security/authentication/microsoft-logins)
-#### [External authentication providers](xref:security/authentication/otherlogins)
+#### [Twitter authentication](xref:security/authentication/twitter-logins)
+#### [Other providers](xref:security/authentication/otherlogins)
 #### [Additional claims](xref:security/authentication/social/additional-claims)
 ### [WS-Federation authentication](xref:security/authentication/ws-federation)
 ### [Account confirmation and password recovery](xref:security/authentication/accconfirm)
