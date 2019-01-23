@@ -11,7 +11,6 @@ msc.type: authoredcontent
 ---
 Use OWIN to Self-Host ASP.NET Web API 2
 ====================
-by [Kanchan Mehrotra](https://twitter.com/kanchanmeh)
 
 > This tutorial shows how to host ASP.NET Web API in a console application, using OWIN to self-host the Web API framework.
 >
@@ -20,23 +19,23 @@ by [Kanchan Mehrotra](https://twitter.com/kanchanmeh)
 > ## Software versions used in the tutorial
 >
 >
-> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013) (also works with Visual Studio 2012)
-> - Web API 2
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) 
+> - Web API 5.2.7
 
 
 > [!NOTE]
 > You can find the complete source code for this tutorial at [aspnet.codeplex.com](https://aspnet.codeplex.com/SourceControl/latest#Samples/WebApi/OwinSelfhostSample/ReadMe.txt).
 
 
-## Create a Console Application
+## Create a console application
 
-On the **File** menu, click **New**, then click **Project**. From **Installed Templates**, under Visual C#, click **Windows** and then click **Console Application**. Name the project "OwinSelfhostSample" and click **OK**.
+On the **File** menu,  **New**, then select **Project**. From **Installed**, under **Visual C#**, select **Windows Desktop** and then select **Console App (.Net Framework)**. Name the project "OwinSelfhostSample" and select **OK**.
 
-[![](use-owin-to-self-host-web-api/_static/image2.png)](use-owin-to-self-host-web-api/_static/image1.png)
+[![](use-owin-to-self-host-web-api/_static/image7.png)](use-owin-to-self-host-web-api/_static/image7.png)
 
-## Add the Web API and OWIN Packages
+## Add the Web API and OWIN packages
 
-From the **Tools** menu, click **NuGet Package Manager**, then click **Package Manager Console**. In the Package Manager Console window, enter the following command:
+From the **Tools** menu, select **NuGet Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
 `Install-Package Microsoft.AspNet.WebApi.OwinSelfHost`
 
@@ -44,9 +43,9 @@ This will install the WebAPI OWIN selfhost package and all the required OWIN pac
 
 [![](use-owin-to-self-host-web-api/_static/image4.png)](use-owin-to-self-host-web-api/_static/image3.png)
 
-## Configure Web API for Self-Host
+## Configure Web API for self-host
 
-In Solution Explorer, right click the project and select **Add** / **Class** to add a new class. Name the class `Startup`.
+In Solution Explorer, right-click the project and select **Add** / **Class** to add a new class. Name the class `Startup`.
 
 ![](use-owin-to-self-host-web-api/_static/image5.png)
 
@@ -54,21 +53,21 @@ Replace all of the boilerplate code in this file with the following:
 
 [!code-csharp[Main](use-owin-to-self-host-web-api/samples/sample1.cs)]
 
-## Add a Web API Controller
+## Add a Web API controller
 
-Next, add a Web API controller class. In Solution Explorer, right click the project and select **Add** / **Class** to add a new class. Name the class `ValuesController`.
+Next, add a Web API controller class. In Solution Explorer, right-click the project and select **Add** / **Class** to add a new class. Name the class `ValuesController`.
 
 Replace all of the boilerplate code in this file with the following:
 
 [!code-csharp[Main](use-owin-to-self-host-web-api/samples/sample2.cs)]
 
-## Start the OWIN Host and Make a Request Using HttpClient
+## Start the OWIN Host and make a request with HttpClient
 
 Replace all of the boilerplate code in the Program.cs file with the following:
 
 [!code-csharp[Main](use-owin-to-self-host-web-api/samples/sample3.cs)]
 
-## Running the Application
+## Run the application
 
 To run the application, press F5 in Visual Studio. The output should look like the following:
 
@@ -76,7 +75,7 @@ To run the application, press F5 in Visual Studio. The output should look like t
 
 ![](use-owin-to-self-host-web-api/_static/image6.png)
 
-## Additional Resources
+## Additional resources
 
 [An Overview of Project Katana](../../../aspnet/overview/owin-and-katana/an-overview-of-project-katana.md)
 
