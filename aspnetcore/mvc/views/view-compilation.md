@@ -5,7 +5,7 @@ description: Learn about the benefits of precompiling Razor files and how to acc
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/17/2018
+ms.date: 01/23/2019
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -89,6 +89,25 @@ A *<project_name>.PrecompiledViews.dll* file, containing the compiled Razor file
 ![Razor views inside DLL](view-compilation/_static/razor-views-in-dll.png)
 
 ::: moniker-end
+
+## Recompile views on file change behavior
+
+The <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions> `AllowRecompilingViewsOnFileChange` gets or sets a value that determines if Razor files (Razor Views and Razor Pages) are recompiled and updated if files change on disk.
+
+When set to `true`, MVC uses [IFileProvider.Watch](xref:<xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*>) to watch for changes to Razor files in configured <xref:Microsoft.Extensions.FileProviders.IFileProvider> instances.
+
+The default value is `true` for:
+
+* ASP.NET Core 2.1 or earlier apps.
+* ASP.NET Core 2.2 or later apps in the Development environment.
+
+`AllowRecompilingViewsOnFileChange` is associated with a compatibility switch and can provide different behavior depending on the configured compatibility version for the app. Configuring the app by setting `AllowRecompilingViewsOnFileChange` takes precedence over the value implied by the app's compatibility version. 
+
+* If the app's compatibility version is set to <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1> or earlier, `AllowRecompilingViewsOnFileChange` is set to `true` unless explicitly configured.
+
+* If the app's compatibility version is set to `CompatibilityVersion.Version_2_2` or later, `AllowRecompilingViewsOnFileChange` is set to `false` unless the environment is Development or the value is explicitly configured.
+
+For guidance and examples of setting the app's compatibility version, see <xref:mvc/compatibility-version>.
 
 ## Additional resources
 
