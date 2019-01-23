@@ -1,8 +1,8 @@
 ---
 title: Get started with ASP.NET Core SignalR
-author: tdykstra
+author: bradygaster
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
-ms.author: tdykstra
+ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/30/2018
 uid: tutorials/signalr
