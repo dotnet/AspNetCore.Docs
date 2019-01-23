@@ -65,8 +65,8 @@
 #### [Add validation](xref:tutorials/razor-pages/validation)
 
 ## MVC
-### [MVC Overview](xref:mvc/overview)
-### [MVC tutorial](xref:tutorials/first-mvc-app/index)
+### [Overview](xref:mvc/overview)
+### [Tutorial](xref:tutorials/first-mvc-app/index)
 #### [Get started](xref:tutorials/first-mvc-app/start-mvc)
 #### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
 #### [Add a view](xref:tutorials/first-mvc-app/adding-view)
@@ -154,7 +154,7 @@
 ## [Samples](https://github.com/aspnet/SignalR-samples)
 ## Server concepts
 ### [Hubs](xref:signalr/hubs)
-### [HubContext](xref:signalr/hubcontext)
+### [Send from outside a hub](xref:signalr/hubcontext)
 ### [Users and groups](xref:signalr/groups)
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 ### [API design considerations](xref:signalr/api-design)
@@ -294,13 +294,13 @@
 ### [Configure Identity](xref:security/authentication/identity-configuration)
 ### [Configure Windows Authentication](xref:security/authentication/windowsauth)
 ### [Custom storage providers for Identity](xref:security/authentication/identity-custom-storage-providers)
-### External providers
+### Google, Facebook ...
 #### [Overview](xref:security/authentication/social/index)
-#### [Facebook authentication](xref:security/authentication/facebook-logins)
-#### [Twitter authentication](xref:security/authentication/twitter-logins)
 #### [Google authentication](xref:security/authentication/google-logins)
+#### [Facebook authentication](xref:security/authentication/facebook-logins)
 #### [Microsoft authentication](xref:security/authentication/microsoft-logins)
-#### [External authentication providers](xref:security/authentication/otherlogins)
+#### [Twitter authentication](xref:security/authentication/twitter-logins)
+#### [Other providers](xref:security/authentication/otherlogins)
 #### [Additional claims](xref:security/authentication/social/additional-claims)
 ### [WS-Federation authentication](xref:security/authentication/ws-federation)
 ### [Account confirmation and password recovery](xref:security/authentication/accconfirm)
@@ -332,7 +332,7 @@
 ### [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
 ## Data protection
 ### [Overview](xref:security/data-protection/introduction)
-### [Data Protection APIs](xref:security/data-protection/using-data-protection)
+### [Data protection APIs](xref:security/data-protection/using-data-protection)
 ### Consumer APIs
 #### [Overview](xref:security/data-protection/consumer-apis/overview)
 #### [Purpose strings](xref:security/data-protection/consumer-apis/purpose-strings)
@@ -384,7 +384,7 @@
 ### [Distributed caching](xref:performance/caching/distributed)
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
-## [Diagnostic Tools](xref:performance/diagnostic-tools)
+## [Diagnostic tools](xref:performance/diagnostic-tools)
 ## [Load and stress testing](xref:test/loadtests)
 
 # Globalization and localization
@@ -393,7 +393,7 @@
 
 # Advanced
 ## [URL rewriting](xref:fundamentals/url-rewriting)
-## [File Providers](xref:fundamentals/file-providers)
+## [File providers](xref:fundamentals/file-providers)
 ## [Request-feature interfaces](xref:fundamentals/request-features)
 ## [Access HttpContext](xref:fundamentals/httpcontext)
 ## [Change tokens](xref:fundamentals/change-tokens)
