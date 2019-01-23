@@ -90,7 +90,7 @@ Considering these changes in web application development, ASP.NET Identity was d
     - ASP.NET Identity is redistributed as a NuGet package which is installed in the ASP.NET MVC, Web Forms and Web API templates that ship with Visual Studio 2013. You can download this NuGet package from the NuGet gallery.
     - Releasing ASP.NET Identity as a NuGet package makes it easier for the ASP.NET team to iterate on new features and bug fixes, and deliver these to developers in an agile manner.
 
-## Getting started with ASP.NET Identity
+## Get started with ASP.NET Identity
 
 ASP.NET Identity is used in the Visual Studio 2013 project templates for ASP.NET MVC, Web Forms, Web API and SPA. In this walkthrough, we'll illustrate how the project templates use ASP.NET Identity to add functionality to register, log in and log out a user.
 
@@ -112,7 +112,7 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
   
     ![](introduction-to-aspnet-identity/_static/image2.png)  
   
-   When the user clicks the **Register** button, the `Register` action of the Account controller creates the user by calling the ASP.NET Identity API, as highlighted below:
+   When the user selects the **Register** button, the `Register` action of the Account controller creates the user by calling the ASP.NET Identity API, as highlighted below:
 
     [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample1.cs?highlight=8-9)]
 4. Log in.  
@@ -124,7 +124,7 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
    The `SignInManager.SignInAsync` method generates a [ClaimsIdentity](https://msdn.microsoft.com/library/system.security.claims.claimsidentity.aspx). Since ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a ClaimsIdentity for the user. ClaimsIdentity has information about all the claims for the user, such as what roles the user belongs to.   
  
 5. Log off.  
-   Clicking the **Log off** link calls the LogOff action in the account controller. 
+   Selecting the **Log off** link calls the LogOff action in the account controller. 
 
     [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample5.cs?highlight=6)]
 
@@ -132,7 +132,7 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
 
 ## Components of ASP.NET Identity
 
-The diagram below shows the components of the ASP.NET Identity system (click on [this](introduction-to-aspnet-identity/_static/image3.png) or on the diagram to enlarge it). The packages in green make up the ASP.NET Identity system. All the other packages are dependencies which are needed to use the ASP.NET Identity system in ASP.NET applications.
+The diagram below shows the components of the ASP.NET Identity system (select on [this](introduction-to-aspnet-identity/_static/image3.png) or on the diagram to enlarge it). The packages in green make up the ASP.NET Identity system. All the other packages are dependencies which are needed to use the ASP.NET Identity system in ASP.NET applications.
 
 [![](introduction-to-aspnet-identity/_static/image5.png)](introduction-to-aspnet-identity/_static/image4.png)
 

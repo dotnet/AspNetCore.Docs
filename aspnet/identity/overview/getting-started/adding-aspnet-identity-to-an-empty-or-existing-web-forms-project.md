@@ -85,7 +85,7 @@ Note that this package will install the dependency packages: **EntityFramework**
 1. In the **View** menu, select **Server Explorer**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image7.png)
-2. Expand **DefaultConnection (WebFormsIdentity)**, expand **Tables**, right click **AspNetUsers** and select **Show Table Data**.  
+2. Expand **DefaultConnection (WebFormsIdentity)**, expand **Tables**, right-click **AspNetUsers** and select **Show Table Data**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image8.png)  
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image9.png)
@@ -96,7 +96,7 @@ At this point we have only added support for creating users. Now, we are going t
 
 ## Install authentication packages to your application
 
-1. In Solution Explorer, right-click your project and select **Manage NuGet Packages**. Search for and install the **Microsoft.AspNet.Identity.Owin** package. 
+1. In Solution Explorer, right-click your project and select **Manage NuGet Packages**. Search for and install the ***Microsoft.AspNet.Identity.Owin*** package. 
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image16.png)
 
@@ -118,7 +118,7 @@ At this point we have only added support for creating users. Now, we are going t
     > [!NOTE]
     > This class contains the `OwinStartup` attribute for specifying the OWIN startup class. Every OWIN application has a startup class where you specify components for the application pipeline. See [OWIN Startup Class Detection](../../../aspnet/overview/owin-and-katana/owin-startup-class-detection.md) for more info on this model.
 
-## Add web forms for registering and signing in Users
+## Add web forms for registering and signing in users
 
 1. Open the *Register.aspx.cs* file and add the following code which signs in the user when registration succeeds. The changes are highlighted below.
 
@@ -128,7 +128,7 @@ At this point we have only added support for creating users. Now, we are going t
     > 
     > - Since ASP.NET Identity and OWIN Cookie Authentication are claims based system, the framework requires the app developer to generate a [ClaimsIdentity](https://msdn.microsoft.com/library/microsoft.identitymodel.claims.claimsidentity.aspx) for the user. ClaimsIdentity has information about all the claims for the user such as what Roles the user belongs to. You can also add more claims for the user at this stage.
     > - You can sign in the user by using the AuthenticationManager from OWIN and calling `SignIn` and passing in the ClaimsIdentity as shown above. This code will sign in the user and generate a cookie as well. This call is analogous to [FormAuthentication.SetAuthCookie](https://msdn.microsoft.com/library/system.web.security.formsauthentication.setauthcookie.aspx) used by the [FormsAuthentication](https://msdn.microsoft.com/library/system.web.security.formsauthenticationmodule.aspx) module.
-2. In **Solution Explorer**, right-click your project select **Add**, and then **Web Form**. Name the web form **Login**.  
+2. In **Solution Explorer**, right-click your project, select **Add**, and then **Web Form**. Name the web form **Login**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image12.png)
 3. Replace the contents of the *Login.aspx* file with the following code:  
@@ -151,7 +151,7 @@ At this point we have only added support for creating users. Now, we are going t
     >  This code will sign in the user and generate a cookie as well. This call is analogous to [FormAuthentication.SetAuthCookie](https://msdn.microsoft.com/library/system.web.security.formsauthentication.setauthcookie.aspx) used by the [FormsAuthentication](https://msdn.microsoft.com/library/system.web.security.formsauthenticationmodule.aspx) module.
     > - `SignOut` method:   
     >  Gets a reference to the `AuthenticationManager` from OWIN and calls `SignOut`. This is analogous to [FormsAuthentication.SignOut](https://msdn.microsoft.com/library/system.web.security.formsauthentication.signout.aspx) method used by the [FormsAuthentication](https://msdn.microsoft.com/library/system.web.security.formsauthenticationmodule.aspx) module.
-5. Press **Ctrl + F5** to build and run the web application. Enter a new user name and password and then click on **Register**.  
+5. Press **Ctrl + F5** to build and run the web application. Enter a new user name and password and then select **Register**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image13.png)  
    Note: At this point, the new user is created and logged in.
