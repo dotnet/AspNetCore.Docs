@@ -1,10 +1,11 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/setting-up-database
 title: "Tutorial: Get started with EF Database First using MVC 5"
-author: Rick-Anderson
 description: "This article shows how to start with an existing database and quickly create a web application that enables users to interact with the data."
+author: Rick-Anderson
 ms.author: riande
-ms.date: 10/01/2014
+ms.date: 01/23/2019
+ms.topic: tutorial
 ms.assetid: 095abad4-3bfe-4f06-b092-ae6a735b7e49
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/setting-up-database
 msc.type: authoredcontent
