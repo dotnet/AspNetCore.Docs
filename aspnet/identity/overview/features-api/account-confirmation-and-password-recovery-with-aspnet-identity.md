@@ -9,16 +9,15 @@ ms.assetid: 8d54180d-f826-4df7-b503-7debf5ed9fb3
 msc.legacyurl: /identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity
 msc.type: authoredcontent
 ---
-Account Confirmation and Password Recovery with ASP.NET Identity (C#)
+Account confirmation and password recovery with ASP.NET Identity (C#)
 ====================
 
-> Before doing this tutorial you should first complete [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset](../../../mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md). This tutorial contains more details and will show you how to set up email for local account confirmation and allow users to reset their forgotten password in ASP.NET Identity. This article was written by Rick Anderson ([@RickAndMSFT](https://twitter.com/#!/RickAndMSFT)), Pranav Rastogi ([@rustd](https://twitter.com/rustd)), Hao Kung, and Suhas Joshi. The NuGet sample was written primarily by Hao Kung.
-
+> Before doing this tutorial you should first complete [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset](../../../mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md). This tutorial contains more details and will show you how to set up email for local account confirmation and allow users to reset their forgotten password in ASP.NET Identity.
 
 A local user account requires the user to create a password for the account, and that password is stored (securely) in the web app. ASP.NET Identity also supports social accounts, which don't require the user to create a password for the app. [Social accounts](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) use a third party (such as Google, Twitter, Facebook, or Microsoft) to authenticate users. This topic covers the following:
 
 - [Create an ASP.NET MVC app](#createMvc) and explore ASP.NET Identity features.
-- [Building the Identity sample](#build)
+- [Build the Identity sample](#build)
 - [Set up email confirmation](#email)
 
 New users register their email alias, which creates a local account.
@@ -58,7 +57,7 @@ Selecting the **Reset** button will confirm the password has been reset.
 
 <a id="createMvc"></a>
 
-## Create an ASP.NET Web app
+## Create an ASP.NET web app
 
 Start by installing and running [Visual Studio 2017](https://visualstudio.microsoft.com/).
 
@@ -135,18 +134,18 @@ It's a good idea to confirm the email a new user register with to verify they ar
 In this section, you'll use NuGet to download a more complete sample we will work with.
 
 1. Create a new ***empty*** ASP.NET Web project.
-2. In the Package Manager Console, enter the following the following commands: 
+2. In the Package Manager Console, enter the following commands: 
 
     [!code-console[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample4.cmd)]
 
    In this tutorial, we'll use [SendGrid](http://sendgrid.com/) to send email. The `Identity.Samples` package installs the code we will be working with.
 3. Set the [project to use SSL](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md).
-4. Test local account creation by running the app, selecting on **Register** link, and posting the registration form.
+4. Test local account creation by running the app, selecting the **Register** link, and posting the registration form.
 5. Select the demo email link, which simulates email confirmation.
 6. Remove the demo email link confirmation code from the sample (The `ViewBag.Link` code in the account controller. See the `DisplayEmail` and `ForgotPasswordConfirmation` action methods and razor views ).
 
-> [!NOTE]
-> Warning: If you change any of the security settings in this sample, productions apps will need to undergo a security audit that explicitly calls the changes made.
+> [!WARNING]
+> If you change any of the security settings in this sample, productions apps will need to undergo a security audit that explicitly calls the changes made.
 
 
 ## Examine the code in App\_Start\IdentityConfig.cs
