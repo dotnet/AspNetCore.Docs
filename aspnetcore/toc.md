@@ -65,8 +65,8 @@
 #### [Add validation](xref:tutorials/razor-pages/validation)
 
 ## MVC
-### [MVC Overview](xref:mvc/overview)
-### [MVC tutorial](xref:tutorials/first-mvc-app/index)
+### [Overview](xref:mvc/overview)
+### [Tutorial](xref:tutorials/first-mvc-app/index)
 #### [Get started](xref:tutorials/first-mvc-app/start-mvc)
 #### [Add a controller](xref:tutorials/first-mvc-app/adding-controller)
 #### [Add a view](xref:tutorials/first-mvc-app/adding-view)
@@ -154,7 +154,7 @@
 ## [Samples](https://github.com/aspnet/SignalR-samples)
 ## Server concepts
 ### [Hubs](xref:signalr/hubs)
-### [HubContext](xref:signalr/hubcontext)
+### [Send from outside a hub](xref:signalr/hubcontext)
 ### [Users and groups](xref:signalr/groups)
 ### [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 ### [API design considerations](xref:signalr/api-design)
@@ -332,7 +332,7 @@
 ### [Limit identity by scheme](xref:security/authorization/limitingidentitybyscheme)
 ## Data protection
 ### [Overview](xref:security/data-protection/introduction)
-### [Data Protection APIs](xref:security/data-protection/using-data-protection)
+### [Data protection APIs](xref:security/data-protection/using-data-protection)
 ### Consumer APIs
 #### [Overview](xref:security/data-protection/consumer-apis/overview)
 #### [Purpose strings](xref:security/data-protection/consumer-apis/purpose-strings)
@@ -384,7 +384,7 @@
 ### [Distributed caching](xref:performance/caching/distributed)
 ### [Response caching middleware](xref:performance/caching/middleware)
 ## [Response compression](xref:performance/response-compression)
-## [Diagnostic Tools](xref:performance/diagnostic-tools)
+## [Diagnostic tools](xref:performance/diagnostic-tools)
 ## [Load and stress testing](xref:test/loadtests)
 
 # Globalization and localization
