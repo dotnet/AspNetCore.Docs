@@ -58,26 +58,26 @@ namespace TodoApi.Controllers
         #region snippet_Create
         // POST: api/Todo
         [HttpPost]
-        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem item)
         {
-            _context.TodoItems.Add(todoItem);
+            _context.TodoItems.Add(item);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            return CreatedAtAction(nameof(GetTodoItem), new { id = item.Id }, item);
         }
         #endregion
 
         #region snippet_Update
         // PUT: api/Todo/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
+        public async Task<IActionResult> PutTodoItem(long id, TodoItem item)
         {
-            if (id != todoItem.Id)
+            if (id != item.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(todoItem).State = EntityState.Modified;
+            _context.Entry(item).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return NoContent();
