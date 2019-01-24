@@ -173,7 +173,7 @@ Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilde
 
 In the preceding code, the `ValidateHeaderHandler` is registered with DI. The handler **must** be registered in DI as a transient service, never scoped. If the hander were to be registered as a scoped service and the services that the handler depends upon are disposable, the handler's services could be disposed before the handler goes out of scope causing the handler to fail.
 
-Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the type for the handler.
+Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the handler type.
 
 ::: moniker-end
 
