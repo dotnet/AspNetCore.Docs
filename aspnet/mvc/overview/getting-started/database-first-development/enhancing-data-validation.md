@@ -75,11 +75,9 @@ Notice that each class is marked as a `partial` class, and each matches the name
 
 To regenerate the automatically-generated classes, open the *ContosoModel.edmx* file. Once again, right-click on the design surface and select **Update Model from Database**. Even though you have not changed the database, this process will regenerate the classes. In the **Refresh** tab, select **Tables** and **Finish**.
 
-![refresh tables](enhancing-data-validation/_static/image4.png)
-
 Save the *ContosoModel.edmx* file to apply the changes.
 
-Open the *Student.c*s file or the *Enrollment.cs* file, and notice that the data validation attributes you applied earlier are no longer in the file. However, run the application, and notice that the validation rules are still applied when you enter data.
+Open the *Student.cs* file or the *Enrollment.cs* file, and notice that the data validation attributes you applied earlier are no longer in the file. However, run the application, and notice that the validation rules are still applied when you enter data.
 
 ## Additional resources
 
