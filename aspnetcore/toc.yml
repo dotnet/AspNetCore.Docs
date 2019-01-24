@@ -162,7 +162,7 @@
           uid: mvc/controllers/dependency-injection
         - name: Dependency injection - views
           uid: mvc/views/dependency-injection
-        - name: Unit testing
+        - name: Unit test
           uid: mvc/controllers/testing
     - name: Session and app state
       uid: fundamentals/app-state
