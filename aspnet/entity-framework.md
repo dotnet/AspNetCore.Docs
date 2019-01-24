@@ -25,4 +25,4 @@ Use Entity Framework with ASP.NET
 
 - [Web Forms Tutorials](web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-1.md)
 - [MVC Tutorials](mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)
-- [Sample Application](https://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+- [Sample Application](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
