@@ -7,7 +7,7 @@
     - name: Compare ASP.NET Core and ASP.NET
       uid: fundamentals/choose-between-aspnet-and-aspnetcore
     - name: Compare .NET Core and .NET Framework
-      href: /dotnet/articles/standard/choosing-core-framework-server
+      href: /dotnet/standard/choosing-core-framework-server
 - name: Get started
   uid: getting-started
 - name: What's new
@@ -325,7 +325,7 @@
 - name: Test, debug, and troubleshoot
   items: 
     - name: Unit testing
-      href: /dotnet/articles/core/testing/unit-testing-with-dotnet-test
+      href: /dotnet/core/testing/unit-testing-with-dotnet-test
     - name: Razor Pages unit tests
       uid: test/razor-pages-tests
     - name: Test controllers
@@ -509,7 +509,7 @@
         - name: Overview
           uid: host-and-deploy/docker/index
         - name: Build Docker images
-          href: /dotnet/articles/core/docker/building-net-docker-images
+          href: /dotnet/core/docker/building-net-docker-images
         - name: Visual Studio Tools
           uid: host-and-deploy/docker/visual-studio-tools-for-docker
         - name: Publish to a Docker image
