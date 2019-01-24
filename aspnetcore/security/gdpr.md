@@ -86,7 +86,7 @@ Notes:
 * To generate the `Account/Manage` code, see [Scaffold Identity](xref:security/authentication/scaffold-identity).
 * The **Delete** and **Download** links only act on the default identity data. Apps that create custom user data must be extended to delete/download the custom user data. For more information, see [Add, download, and delete custom user data to Identity](xref:security/authentication/add-user-data).
 * Saved tokens for the user that are stored in the Identity database table `AspNetUserTokens` are deleted when the user is deleted via the cascading delete behavior due to the [foreign key](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
-* [External provider authentication](xref:security/authentication/social/index) such as Facebook and Google is not available before the cookie policy is accepted.
+* [External provider authentication](xref:security/authentication/social/index), such as Facebook and Google, isn't available before the cookie policy is accepted.
 
 ## Encryption at rest
 
