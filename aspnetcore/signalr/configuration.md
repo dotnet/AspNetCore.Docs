@@ -57,6 +57,7 @@ The following table describes options for configuring SignalR hubs:
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
+| `ClientTimeoutInterval` | 30 seconds | The server will consider the client disconnected if it hasn't received a message (including keep-alive) in this interval. It is possible for it to take longer than this timeout interval for the client to actually be marked disconnected, due to how this is implemented. |
 | `HandshakeTimeout` | 15 seconds | If the client doesn't send an initial handshake message within this time interval, the connection is closed. This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `KeepAliveInterval` | 15 seconds | If the server hasn't sent a message within this interval, a ping message is sent automatically to keep the connection open. When changing `KeepAliveInterval`, change the `ServerTimeout`/`serverTimeoutInMilliseconds` setting on the client. The recommended `ServerTimeout`/`serverTimeoutInMilliseconds` value is double the `KeepAliveInterval` value.  |
 | `SupportedProtocols` | All installed protocols | Protocols supported by this hub. By default, all protocols registered on the server are allowed, but protocols can be removed from this list to disable specific protocols for individual hubs. |
