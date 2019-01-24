@@ -660,6 +660,26 @@ For more information on regular expression syntax, see [.NET Framework Regular E
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
+## Custom Route Constraints
+
+In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains a single method, `Match`, which returns `true` if the constraint is satisfied and `false` otherwise.
+
+To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's `RouteOptions.ConstraintMap` in the app's service container. A <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `RouteOptions.ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a `services.AddRouting` call or by configuring `RouteOptions` directly with `services.Configure<RouteOptions>`. For example:
+
+```csharp
+services.AddRouting(options =>
+{
+    options.ConstraintMap.Add("customName", typeof(MyCustomConstraint));
+});
+```
+
+The constraint can then be applied to routes in the usual manner, using the name specified when registering the constraint type. For example:
+
+```csharp
+[HttpGet("{id:customName}")]
+public ActionResult<string> Get(string id)
+```
+
 ::: moniker range=">= aspnetcore-2.2"
 
 ## Parameter transformer reference

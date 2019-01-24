@@ -4,7 +4,7 @@ author: rick-anderson
 description: Build a web API with ASP.NET Core MVC
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/10/2018
+ms.date: 01/24/2019
 uid: tutorials/first-web-api
 ---
 
@@ -163,13 +163,9 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Add a `TodoContext` class to the *Models* folder.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Add a `TodoContext` class in the *Models* folder:
 
 ---
 
@@ -202,13 +198,9 @@ The preceding code:
 
   ![Add new Item dialog with controller in search box and web api controller selected](first-web-api/_static/new_controller.png)
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * In the *Controllers* folder, create a class named `TodoController`.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In the *Controllers* folder, add the class `TodoController`.
 
 ---
 
@@ -266,8 +258,6 @@ In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for th
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
-The `Name = "GetTodo"` parameter creates a named route. You'll see later how the app can use the name to create an HTTP link using the route name.
-
 ## Return values
 
 The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
@@ -308,9 +298,9 @@ The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dot
 
 The `CreatedAtAction` method:
 
-* Returns a 201 response. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
-* Adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-* Uses the "GetTodo" named route to create the URL. The "GetTodo" named route is defined in `GetTodoItem`:
+* Returns an HTTP 201 status code, if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
+* Adds a `Location` header to the response. The `Location` header specifies the URI of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
   [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 

@@ -8,7 +8,7 @@ namespace AuthoringTagHelpers.TagHelpers2
         private const string EmailDomain = "contoso.com";
 
         // Can be passed via <email mail-to="..." />. 
-        // Pascal case gets translated into lower-kebab-case.
+        // PascalCase gets translated into kebab-case.
         public string MailTo { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
