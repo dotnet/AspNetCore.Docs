@@ -21,6 +21,8 @@ ASP.NET Core ships with support for authenticator applications for individual au
 
 The ASP.NET Core web app templates support authenticators, but don't provide support for QRCode generation. QRCode generators ease the setup of 2FA. This document will guide you through adding [QR Code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page.
 
+Two factor authentication is not supported when using an external authentication provider, such as [Google](xref:security/authentication/social/google-logins) or [Facebook](security/authentication/social/facebook-logins). External logins are protected by whatever the external login provider provides. Consider, for example, the [Microsoft](security/authentication/social/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. Users would be required to satisfy two 2FA approaches.
+
 ## Adding QR Codes to the 2FA configuration page
 
 These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcodejs/ repo.
