@@ -111,6 +111,16 @@
               uid: tutorials/razor-pages/new-field
             - name: Add validation
               uid: tutorials/razor-pages/validation
+        - name: Filters
+          uid: razor-pages/filter
+        - name: Razor Class Libraries
+          uid: razor-pages/ui-class
+        - name: Route and app conventions
+          uid: razor-pages/razor-pages-conventions
+        - name: Upload files
+          uid: razor-pages/upload-files
+        - name: Razor SDK
+          uid: razor-pages/sdk
     - name: MVC
       items: 
         - name: Overview
@@ -138,16 +148,6 @@
               uid: tutorials/first-mvc-app/validation
             - name: Examine the Details and Delete methods
               uid: tutorials/first-mvc-app/details
-        - name: Filters
-          uid: razor-pages/filter
-        - name: Razor Class Libraries
-          uid: razor-pages/ui-class
-        - name: Route and app conventions
-          uid: razor-pages/razor-pages-conventions
-        - name: Upload files
-          uid: razor-pages/upload-files
-        - name: Razor SDK
-          uid: razor-pages/sdk
         - name: Views
           uid: mvc/views/overview
         - name: Partial views
