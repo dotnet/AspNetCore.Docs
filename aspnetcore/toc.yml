@@ -92,7 +92,7 @@
       items: 
         - name: Overview
           uid: razor-pages/index
-        - name: Razor Pages tutorial
+        - name: Tutorial
           uid: tutorials/razor-pages/index
           items: 
             - name: Get started
