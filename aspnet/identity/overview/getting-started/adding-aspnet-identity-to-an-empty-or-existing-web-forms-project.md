@@ -9,21 +9,19 @@ ms.assetid: 1cbc0ed2-5bd6-4b62-8d34-4c193dcd8b25
 msc.legacyurl: /identity/overview/getting-started/adding-aspnet-identity-to-an-empty-or-existing-web-forms-project
 msc.type: authoredcontent
 ---
-Adding ASP.NET Identity to an Empty or Existing Web Forms Project
-====================
+# Adding ASP.NET Identity to an Empty or Existing Web Forms Project
+
 
 > This tutorial shows you how to add [ASP.NET Identity](introduction-to-aspnet-identity.md) (the new membership system for ASP.NET) to an ASP.NET application.
 > 
-> When you create a new Web Forms or MVC project in Visual Studio 2013 RTM with Individual Accounts, Visual Studio will install all the required packages and add all necessary classes for you. This tutorial will illustrate the steps to add ASP.NET Identity support to your existing Web Forms project or a new empty project. I will outline all the NuGet packages you need to install, and classes you need to add. I will go over sample Web Forms for registering new users and logging in while highlighting all main entry point APIs for user management and authentication. This sample will use the ASP.NET Identity default implementation for SQL data storage which is built on Entity Framework. This tutorial, we will use LocalDB for the SQL database.
+> When you create a new Web Forms or MVC project in Visual Studio 2017 RTM with Individual Accounts, Visual Studio will install all the required packages and add all necessary classes for you. This tutorial will illustrate the steps to add ASP.NET Identity support to your existing Web Forms project or a new empty project. I will outline all the NuGet packages you need to install, and classes you need to add. I will go over sample Web Forms for registering new users and logging in while highlighting all main entry point APIs for user management and authentication. This sample will use the ASP.NET Identity default implementation for SQL data storage which is built on Entity Framework. This tutorial, we will use LocalDB for the SQL database.
 > 
-> This tutorial was written by Raquel Soares De Almeida and Rick Anderson ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) ).
-
 
 ## Get started  with ASP.NET Identity
 
 1. Start by installing and running [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/).
 2. Select **New Project** from the Start page, or you can use the menu and select **File**, and then **New Project**.
-3. Select **Visual C#** in the left pane, then **Web**, and then select **ASP.NET Web Application**. Name your project "WebFormsIdentity" and then select **OK**.   
+3. In the left pane, expand **Visual C#**, then select **Web**. Select **ASP.NET Web Application (.Net Framework)**. Name your project "WebFormsIdentity" and select **OK**.
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image17.png)
 4. In the **New ASP.NET Project** dialog, select the **Empty** template.  
@@ -40,7 +38,7 @@ In Solution Explorer, right-click your project and select **Manage NuGet Package
   
 Note that this package will install the dependency packages: **EntityFramework** and **Microsoft ASP.NET Identity Core**.
 
-## Add web form to register users
+## Add a web form to register users
 
 1. In **Solution Explorer**, right-click your project and select **Add**, and then **Web Form**.  
   
@@ -108,7 +106,7 @@ At this point we have only added support for creating users. Now, we are going t
 
 ## Add OWIN startup and authentication configuration classes
 
-1. In **Solution Explorer**, right-click your project, select **Add**, and then **Add New Item**. In the search text box dialog, type "*owin*". Name the class "*Startup*" and select **Add**.   
+1. In **Solution Explorer**, right-click your project, select **Add**, and then **Add New Item**. In the search text box dialog, type "*owin*". Name the class "*Startup*" and select **Add**. 
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image11.png)
 2. In the Startup.cs file, add the highlighted code shown below to configure OWIN cookie authentication.

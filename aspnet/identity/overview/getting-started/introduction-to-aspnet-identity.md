@@ -14,7 +14,6 @@ Introduction to ASP.NET Identity
 
 > The ASP.NET membership system was introduced with ASP.NET 2.0 back in 2005, and since then there have been many changes in the ways web applications typically handle authentication and authorization. ASP.NET Identity is a fresh look at what the membership system should be when you are building modern applications for the web, phone, or tablet.
 > 
-> This article was written by Pranav Rastogi ([@rustd](https://twitter.com/rustd)), Jon Galloway ([@jongalloway](https://twitter.com/jongalloway)), Tom Dykstra, and Rick Anderson ([@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) ).
 
 
 ## Background: Membership in ASP.NET
@@ -87,7 +86,7 @@ Considering these changes in web application development, ASP.NET Identity was d
     - ASP.NET Identity uses OWIN Authentication for log-in/log-out of users in the web site. This means that instead of using FormsAuthentication to generate the cookie, the application uses OWIN CookieAuthentication to do that.
 - **NuGet package**
 
-    - ASP.NET Identity is redistributed as a NuGet package which is installed in the ASP.NET MVC, Web Forms and Web API templates that ship with Visual Studio 2013. You can download this NuGet package from the NuGet gallery.
+    - ASP.NET Identity is redistributed as a NuGet package which is installed in the ASP.NET MVC, Web Forms and Web API templates that ship with Visual Studio 2017. You can download this NuGet package from the NuGet gallery.
     - Releasing ASP.NET Identity as a NuGet package makes it easier for the ASP.NET team to iterate on new features and bug fixes, and deliver these to developers in an agile manner.
 
 ## Get started with ASP.NET Identity
