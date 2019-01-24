@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use the Configuration API to configure an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/07/2018
+ms.date: 01/23/2019
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -50,12 +50,6 @@ The *options pattern* is an extension of the configuration concepts described in
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-The examples provided in this topic rely upon:
-
-* Setting the base path of the app with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package.
-* Resolving sections of configuration files with <xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*>. `GetSection` is made available to an app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package.
-* Binding configuration to .NET classes with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> and [Get&lt;T&gt;](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*). `Bind` and `Get<T>` are made available to an app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package. `Get<T>` is available in ASP.NET Core 1.1 or later.
-
 ::: moniker range=">= aspnetcore-2.1"
 
 These three packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
@@ -71,6 +65,22 @@ These three packages are included in the [Microsoft.AspNetCore.All metapackage](
 ## Host vs. app configuration
 
 Before the app is configured and started, a *host* is configured and launched. The host is responsible for app startup and lifetime management. Both the app and the host are configured using the configuration providers described in this topic. Host configuration key-value pairs become part of the app's global configuration. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/host/index>.
+
+## Default configuration
+
+Web apps based on the ASP.NET Core [dotnet new](/dotnet/core/tools/dotnet-new) templates call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> when building a host. `CreateDefaultBuilder` provides default configuration for the app.
+
+* Host configuration is provided from:
+  * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`) using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
+  * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
+* App configuration is provided from (in the following order):
+  * *appsettings.json* using the [File Configuration Provider](#file-configuration-provider).
+  * *appsettings.{Environment}.json* using the [File Configuration Provider](#file-configuration-provider).
+  * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
+  * Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
+  * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
+
+The configuration providers are explained later in this topic. For more information on the host and `CreateDefaultBuilder`, see <xref:fundamentals/host/web-host#set-up-a-host>.
 
 ## Security
 
@@ -110,7 +120,7 @@ When the file is read into configuration, unique keys are created to maintain th
 * section1:key0
 * section1:key1
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists).
+<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists). `GetSection` is made available to an app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 ## Conventions
 
@@ -232,7 +242,8 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the preceding example, the environment name (`env.EnvironmentName`) and app assembly name (`env.ApplicationName`) are provided by the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment>. For more information, see <xref:fundamentals/environments>.
+In the preceding example, the environment name (`env.EnvironmentName`) and app assembly name (`env.ApplicationName`) are provided by the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment>. For more information, see <xref:fundamentals/environments>. The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+.
 
 ::: moniker-end
 
@@ -240,7 +251,7 @@ In the preceding example, the environment name (`env.EnvironmentName`) and app a
 
 ## ConfigureAppConfiguration
 
-Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the Web Host to specify the app's configuration providers in addition to those added automatically by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>:
+Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration providers in addition to those added automatically by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>:
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=19)]
 
@@ -757,6 +768,8 @@ public class Program
 }
 ```
 
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ::: moniker-end
@@ -787,6 +800,8 @@ public class Program
 }
 ```
 
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ::: moniker-end
@@ -808,6 +823,8 @@ var host = new WebHostBuilder()
     .UseKestrel()
     .UseStartup<Startup>();
 ```
+
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 A generic example of an INI configuration file:
 
@@ -888,6 +905,8 @@ public class Program
 }
 ```
 
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ::: moniker-end
@@ -920,6 +939,8 @@ public class Program
 }
 ```
 
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ::: moniker-end
@@ -941,6 +962,8 @@ var host = new WebHostBuilder()
     .UseKestrel()
     .UseStartup<Startup>();
 ```
+
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 **Example**
 
@@ -1003,6 +1026,8 @@ public class Program
 }
 ```
 
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ::: moniker-end
@@ -1033,6 +1058,8 @@ public class Program
 }
 ```
 
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ::: moniker-end
@@ -1054,6 +1081,8 @@ var host = new WebHostBuilder()
     .UseKestrel()
     .UseStartup<Startup>();
 ```
+
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 XML configuration files can use distinct element names for repeating sections:
 
@@ -1154,6 +1183,8 @@ public class Program
             .UseStartup<Startup>();
 }
 ```
+
+The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. `SetBasePath` is made available to an app by referencing the [Microsoft.Extensions.Configuration.FileExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.FileExtensions/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
@@ -1320,13 +1351,15 @@ When the file is read into configuration, the following unique hierarchical keys
 
 ### GetSection
 
-[IConfiguration.GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) extracts a configuration subsection with the specified subsection key.
+[IConfiguration.GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) extracts a configuration subsection with the specified subsection key. `GetSection` is made available to an app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 To return an <xref:Microsoft.Extensions.Configuration.IConfigurationSection> containing only the key-value pairs in `section1`, call `GetSection` and supply the section name:
 
 ```csharp
 var configSection = _config.GetSection("section1");
 ```
+
+The `configSection` doesn't have a value, only a key and a path.
 
 Similarly, to obtain the values for keys in `section2:subsection0`, call `GetSection` and supply the section path:
 
@@ -1335,6 +1368,8 @@ var configSection = _config.GetSection("section2:subsection0");
 ```
 
 `GetSection` never returns `null`. If a matching section isn't found, an empty `IConfigurationSection` is returned.
+
+When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Value> isn't populated. A <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Key> and <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Path> are returned when the section exists.
 
 ### GetChildren
 
@@ -1367,7 +1402,7 @@ Given the example data, `sectionExists` is `false` because there isn't a `sectio
 
 Configuration can be bound to classes that represent groups of related settings using the *options pattern*. For more information, see <xref:fundamentals/configuration/options>.
 
-Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects.
+Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects. `Bind` is made available to an app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 The sample app contains a `Starship` model (*Models/Starship.cs*):
 
@@ -1422,9 +1457,11 @@ The sample app calls `GetSection` with the `starship` key. The `starship` key-va
 
 ::: moniker-end
 
+`GetSection` is made available to an app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
 ## Bind to an object graph
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> is capable of binding an entire POCO object graph.
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> is capable of binding an entire POCO object graph. `Bind` is made available to an app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 The sample contains a `TvShow` model whose object graph includes `Metadata` and `Actors` classes (*Models/TvShow.cs*):
 
@@ -1494,11 +1531,13 @@ viewModel.TvShow = tvShow;
 
 ::: moniker-end
 
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*> is made available to an app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). `Get<T>` is available in ASP.NET Core 1.1 or later. `GetSection` is made available to an app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
 ## Bind an array to a class
 
 *The sample app demonstrates the concepts explained in this section.*
 
-The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment (`:0:`, `:1:`, &hellip; `:{n}:`) is capable of array binding to a POCO class array.
+The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment (`:0:`, `:1:`, &hellip; `:{n}:`) is capable of array binding to a POCO class array. `Bind`` is made available to an app by referencing the [Microsoft.Extensions.Configuration.Binder](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Binder/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 > [!NOTE]
 > Binding is provided by convention. Custom configuration providers aren't required to implement array binding.
@@ -1551,6 +1590,8 @@ The configuration data is bound to the object:
 var arrayExample = new ArrayExample();
 _config.GetSection("array").Bind(arrayExample);
 ```
+
+`GetSection` is made available to an app by referencing the [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) package, which is made available to any app that references the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 ::: moniker range=">= aspnetcore-1.1"
 
