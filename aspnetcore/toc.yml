@@ -80,7 +80,7 @@
           uid: fundamentals/host/index
         - name: Web host
           uid: fundamentals/host/web-host
-        - name: Generic Host
+        - name: Generic host
           uid: fundamentals/host/generic-host
     - name: Servers
       uid: fundamentals/servers/index
