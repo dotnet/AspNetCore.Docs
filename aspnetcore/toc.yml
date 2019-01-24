@@ -78,7 +78,7 @@
       items: 
         - name: Overview
           uid: fundamentals/host/index
-        - name: Web Host
+        - name: Web host
           uid: fundamentals/host/web-host
         - name: Generic Host
           uid: fundamentals/host/generic-host
