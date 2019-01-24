@@ -37,7 +37,7 @@ Select **Models** > **ContosoModel.edmx** > **ContosoModel.tt** and open the *St
 
 [!code-csharp[Main](enhancing-data-validation/samples/sample1.cs?highlight=5,15,17,20)]
 
-Open **Enrollment.cs** and add the following highlighted code.
+Open *Enrollment.cs* and add the following highlighted code.
 
 [!code-csharp[Main](enhancing-data-validation/samples/sample2.cs?highlight=5,10)]
 
@@ -57,7 +57,7 @@ To avoid this problem, you can add a metadata class that contains the attributes
 
 In the **Models** folder, add a class named *Metadata.cs*.
 
-Replace the code in Metadata.cs with the following code.
+Replace the code in *Metadata.cs* with the following code.
 
 [!code-csharp[Main](enhancing-data-validation/samples/sample3.cs)]
 
