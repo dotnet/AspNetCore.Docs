@@ -5,6 +5,8 @@ about: Create an issue to help us improve
 
 # Before you open an issue
 
+If the issue is with an ASP.NET Core document, open the issue with the **Content feedback** button at the bottom of that document page.
+
 If the issue is:
 
 - A simple typo or similar correction, you can submit a PR. See [the contributor guide](https://docs.microsoft.com/contribute/#quick-edits-to-existing-documents) for instructions.
@@ -15,7 +17,7 @@ If the issue is:
 
 # Issue description
 
-&lt;include description here&gt;
+{ description here }
 
 # Software versions
 
