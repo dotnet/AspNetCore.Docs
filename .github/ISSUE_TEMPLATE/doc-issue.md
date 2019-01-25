@@ -5,7 +5,7 @@ about: Create an issue to help us improve
 
 # Before you open an issue
 
-If the issue is with an ASP.NET Core document, open the issue with the **Content feedback** button at the bottom of the page.
+If the issue is with an ASP.NET Core document, open the issue with the **Content feedback** button at the bottom of that document page.
 
 If the issue is:
 
