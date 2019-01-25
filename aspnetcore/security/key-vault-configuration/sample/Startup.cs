@@ -1,34 +1,21 @@
-using System.IO;
-using System.Text;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Azure.KeyVault.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
+using System.Reflection;
+using System.Text;
 
-namespace KeyVaultConfigProviderSample
+namespace SampleApp
 {
     public class Startup
     {
-        #region snippet1
-        public Startup()
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false)
-                .AddEnvironmentVariables();
-
-            var config = builder.Build();
-
-            builder.AddAzureKeyVault(
-                    $"https://{config["Vault"]}.vault.azure.net/",
-                    config["ClientId"],
-                    config["ClientSecret"]);
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
-        #endregion
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfiguration Configuration { get; set; }
 
         public void Configure(IApplicationBuilder app)
         {

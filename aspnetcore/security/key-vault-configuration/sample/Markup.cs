@@ -1,4 +1,4 @@
-namespace KeyVaultConfigProviderSample
+namespace SampleApp
 {
     internal static class Markup
     {

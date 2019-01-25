@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration.AzureKeyVault;
 using System.Reflection;
 using System.Text;
 
-namespace KeyVaultConfigProviderSample
+namespace SampleApp
 {
     public class Startup
     {
