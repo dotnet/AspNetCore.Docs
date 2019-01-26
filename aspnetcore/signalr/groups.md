@@ -26,7 +26,7 @@ Send a message to a specific user by passing the user identifier to the `User` f
 > [!NOTE]
 > The user identifier is case-sensitive.
 
-[!code-csharp[Configure service](groups/hubs/chathub.cs?range=29-32)]
+[!code-csharp[Configure service](groups/sample/hubs/chathub.cs?range=29-32)]
 
 The user identifier can be customized by creating an `IUserIdProvider`, and registering it in `ConfigureServices`.
 
