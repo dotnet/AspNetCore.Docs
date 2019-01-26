@@ -26,12 +26,7 @@ Send a message to a specific user by passing the user identifier to the `User` f
 > [!NOTE]
 > The user identifier is case-sensitive.
 
-```csharp
-public Task SendPrivateMessage(string user, string message)
-{
-    return Clients.User(user).SendAsync("ReceiveMessage", message);
-}
-```
+[!code-csharp[Configure service](groups/hubs/chathub.cs?range=29-32)]
 
 The user identifier can be customized by creating an `IUserIdProvider`, and registering it in `ConfigureServices`.
 
