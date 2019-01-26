@@ -120,7 +120,7 @@ DocFX requires:
   docfx --serve
   ```
 	
-* In a browser, navigate to `http://localhost:8080`.
+* In a browser, navigate to `http://localhost:8080/group1-dest/`.
 
 ### Mono instructions
 
@@ -137,7 +137,7 @@ DocFX requires:
   alias docfx='mono $HOME/bin/docfx/docfx.exe'
   alias docfx-serve='mono $HOME/bin/docfx/docfx.exe --serve'
   ```
-* Execute `docfx` from the root of the repo to build the site. Execute `docfx-serve` to view the site at `http://localhost:8080`.
+* Execute `docfx` from the root of the repo to build the site. Execute `docfx-serve` to view the site at `http://localhost:8080/group1-dest/`.
 
 ## Voice and tone
 
