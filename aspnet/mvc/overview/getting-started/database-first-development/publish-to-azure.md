@@ -1,7 +1,7 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/publish-to-azure
 title: "Tutorial: Publish MVC Database First site to Azure"
-description: "This article focuses on publishing the web app and database to Azure."
+description: "This tutorial focuses on publishing the web app and database to Azure."
 author: Rick-Anderson
 ms.author: riande
 ms.date: 01/28/2019
@@ -15,7 +15,7 @@ msc.type: authoredcontent
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
 
-This article focuses on publishing the web app and database to Azure.
+This tutorialr focuses on publishing the web app and database to Azure.
 
 In this tutorial, you:
 
@@ -143,6 +143,6 @@ In this tutorial, you:
 > * Deployed your web app on Azure
 > * Published the database to SQL Azure
 
-This completes this series of tutorials on using the Entity Framework Database First in an ASP.NET MVC application. If you want to learn about the lifecycle of an ASP.NET MVC 5 application, go to the next article.
+This completes this series of tutorials on using the Entity Framework Database First in an ASP.NET MVC application. If you want to learn about the lifecycle of an ASP.NET MVC 5 application, go to the next tutorial.
 > [!div class="step-by-step"]
 > [Lifecycle of an ASP.NET MVC 5 app](../lifecycle-of-an-aspnet-mvc-5-application.md)
