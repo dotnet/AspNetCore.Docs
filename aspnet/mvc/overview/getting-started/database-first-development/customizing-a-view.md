@@ -1,7 +1,7 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/customizing-a-view
 title: "Tutorial: Customize view for EF Database First with ASP.NET MVC app"
-description: "This article focuses on changing the automatically-generated views to enhance the presentation."
+description: "This tutorial focuses on changing the automatically-generated views to enhance the presentation."
 author: Rick-Anderson
 ms.author: riande
 ms.date: 01/24/2019
@@ -15,7 +15,7 @@ msc.type: authoredcontent
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
 
-This article focuses on changing the automatically-generated views to enhance the presentation.
+This tutorial focuses on changing the automatically-generated views to enhance the presentation.
 
 In this tutorial, you:
 
@@ -39,7 +39,7 @@ This code creates a table that displays a row for each record in the Enrollment 
 
 ## Confirm courses are added
 
-Built the solution. Click **List of students** and select **Details** for one of the students. You will see the enrolled courses have been included in the view.
+Run the solution. Click **List of students** and select **Details** for one of the students. You will see the enrolled courses have been included in the view.
 
 ![student with enrollment](customizing-a-view/_static/image1.png)
 
@@ -50,6 +50,6 @@ In this tutorial, you:
 > * Added courses to the student detail page
 > * Confirmed that the courses are added to the page
 
-Advance to the next article to learn how to add data annotations to the data model to specify validation requirements and display formatting.
+Advance to the next tutorial to learn how to add data annotations to specify validation requirements and display formatting.
 > [!div class="nextstepaction"]
 > [Enhance data validation](enhancing-data-validation.md)
