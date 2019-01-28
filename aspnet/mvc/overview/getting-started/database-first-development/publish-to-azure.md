@@ -141,6 +141,5 @@ In this tutorial, you:
 > * Published the database to SQL Azure
 
 This completes this series of tutorials on using the Entity Framework Database First in an ASP.NET MVC application. If you want to learn about the lifecycle of an ASP.NET MVC 5 application, go to the next article.
-
 > [!div class="step-by-step"]
-> [Lifecycle of an ASP.NET MVC 5 app](lifecycle-of-an-aspnet-mvc-5-application.md)
+> [Lifecycle of an ASP.NET MVC 5 app](../lifecycle-of-an-aspnet-mvc-5-application.md)
