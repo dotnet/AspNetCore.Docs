@@ -1,10 +1,10 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/enhancing-data-validation
 title: "Tutorial: Enhance data validation for EF Database First with ASP.NET MVC app"
-description: "This article focuses on adding data annotations to the data model to specify validation requirements and display formatting."
+description: "This tutorial focuses on adding data annotations to the data model to specify validation requirements and display formatting."
 author: Rick-Anderson
 ms.author: riande
-ms.date: 01/24/2019
+ms.date: 01/28/2019
 ms.topic: tutorial
 ms.assetid: 0ed5e67a-34c0-4b57-84a6-802b0fb3cd00
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/enhancing-data-validation
@@ -15,7 +15,7 @@ msc.type: authoredcontent
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
 
-This article focuses on adding data annotations to the data model to specify validation requirements and display formatting. It was improved based on feedback from users in the comments section.
+This tutorial focuses on adding data annotations to the data model to specify validation requirements and display formatting. It was improved based on feedback from users in the comments section.
 
 In this tutorial, you:
 
@@ -91,6 +91,6 @@ In this tutorial, you:
 > * Added data annotations
 > * Added metadata classes
 
-Advance to the next article to learn how to publish the web app and database to Azure.
+Advance to the next tutorial to learn how to publish the web app and database to Azure.
 > [!div class="nextstepaction"]
 > [Publish to Azure](publish-to-azure.md)
