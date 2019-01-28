@@ -1,10 +1,11 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/publish-to-azure
 title: "Tutorial: Publish MVC Database First site to Azure"
-author: Rick-Anderson
 description: "This article focuses on publishing the web app and database to Azure."
+author: Rick-Anderson
 ms.author: riande
-ms.date: 12/22/2014
+ms.date: 01/28/2019
+ms.topic: tutorial
 ms.assetid: 7131f1c1-cef3-4396-ab44-ed4519676546
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/publish-to-azure
 msc.type: authoredcontent
@@ -43,7 +44,7 @@ If you are not signed in to Azure, provide your Azure account credentials. **Cre
 
 ![Screenshot of Create App Service dialog.](publish-to-azure/_static/image3.png)
 
-Create a unique name for your web app. You will know the name is unique if you see a green check mark to the right of the name field. Select your subscription and then either select an existing resource group and hosting plan, or create new ones.
+Create a unique name for your web app. You will know the name is not unique if you see this error message: *Name is not available, please choose another*. Select your subscription and then either select an existing resource group and hosting plan, or create new ones.
 
 Select **Create a SQL Database**.
 
@@ -74,9 +75,11 @@ Before publishing your database, you must make sure your local computer can conn
 
 Login to your Azure account through the Azure portal.
 
-In the left pane, select **SQL databases** and then select your new database. From the menu at the top of the **Overview** section, select **Connect with** > **Visual Studio**. On the blade that opens, select **Open in Visual Studio**. A warning message appears. Select **Yes**. Visual Studio opens.
+In the left pane, select **SQL databases** and then select your new database. From the menu at the top of the **Overview** section, select **Connect with** > **Visual Studio**.
 
 ![manage](publish-to-azure/_static/image10.png)
+
+On the blade that opens, select **Open in Visual Studio**. A warning message appears. Select **Yes**. Visual Studio opens.
 
 In the **Connect** dialog, enter your **User Name** and **Password** and select **Connect**.
 
@@ -96,11 +99,11 @@ You may need to wait a few minutes before the allowed IP addresses are correctly
 
 When you can successfully log in the database, you have finished setting up your connection to the database.
 
-Return Visual Studio 2017 and open your database project in **Solution Explorer**. Select **File** > **Open** > **Project/Solution** > **ContosoUniversityData** > **ContosoUniversityData.sln**.  Right-click the project and select **Publish**.
+Restart Visual Studio 2017 and open your database project in **Solution Explorer**. Select **File** > **Open** > **Project/Solution** > **ContosoUniversityData** > **ContosoUniversityData.sln**.  Right-click the project and select **Publish**.
 
 In the **Publish Database** window, select **Edit**.
 
-In the **Connect** dialog, on the **History** tab, select your database. Select **Show Connection Properties** and provide authentication credentials for the server and select **OK**.
+In the **Connect** dialog, on the **History** tab, select your database. Select **Show Connection Properties**, provide authentication credentials for the server, and select **OK**.
 
 ![save profile](publish-to-azure/_static/image18.png)
 
@@ -114,7 +117,7 @@ Now, click **Publish** to create the database on Azure.
 
 After running for a while, the publishing results are displayed.
 
-Now, you can go to the **Query editor** for your database. IN Azure, select **SQL databases** > **Query Editor**. Enter your database password and select **OK**.  Refresh the design view, and notice the 3 tables with pre-filled data have been deployed.
+Now, you can go to the **Query editor** for your database. In Azure, select **SQL databases** > **Query Editor**. Enter your database password and select **OK**.  Refresh the design view, and notice the three tables with pre-filled data have been deployed.
 
 ![new tables](publish-to-azure/_static/image22.png)
 
