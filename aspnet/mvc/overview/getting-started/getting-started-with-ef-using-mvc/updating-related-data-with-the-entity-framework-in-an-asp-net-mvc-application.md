@@ -260,7 +260,7 @@ As explained in the [Basic CRUD Functionality tutorial](implementing-basic-crud-
 
 ## Get the code
 
-[Download the Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+[Download the Completed Project](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
 
 ## Additional resources
 
