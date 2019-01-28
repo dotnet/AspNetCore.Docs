@@ -1,10 +1,10 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/changing-the-database
 title: "Tutorial: Change the database for EF Database First with ASP.NET MVC app"
-description: "This article focuses on making an update to the database structure and propagating that change throughout the web application."
+description: "This tutorial focuses on making an update to the database structure and propagating that change throughout the web application."
 author: Rick-Anderson
 ms.author: riande
-ms.date: 01/24/2019
+ms.date: 01/28/2019
 ms.topic: tutorial
 ms.assetid: cfd5c083-a319-482e-8f25-5b38caa93954
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/changing-the-database
@@ -15,7 +15,7 @@ msc.type: authoredcontent
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
 
-This article focuses on making an update to the database structure and propagating that change throughout the web application.
+This tutorial focuses on making an update to the database structure and propagating that change throughout the web application.
 
 In this tutorial, you:
 
@@ -63,6 +63,6 @@ In this tutorial, you:
 > * Added a column
 > * Added the property to the views
 
-Advance to the next article to learn how to customize the view for showing details about a student record.
+Advance to the next tutorial to learn how to customize the view for showing details about a student record.
 > [!div class="nextstepaction"]
 > [Customize a view](customizing-a-view.md)
