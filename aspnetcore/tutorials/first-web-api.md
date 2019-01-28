@@ -324,7 +324,7 @@ The `CreatedAtAction` method:
 
   ![Postman with create request](first-web-api/_static/create.png)
 
-  If you get a 405 Method Not Allowed error, it's probably the result of not compiling the project after adding the after adding the `PostTodoItem` method.
+  If you get a 405 Method Not Allowed error, it's probably the result of not compiling the project after adding the `PostTodoItem` method.
 
 ### Test the location header URI
 
