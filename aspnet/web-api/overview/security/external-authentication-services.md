@@ -4,18 +4,16 @@ title: "External Authentication Services with ASP.NET Web API (C#) | Microsoft D
 author: rmcmurray
 description: "Describes using External Authentication Services in ASP.NET Web API."
 ms.author: riande
-ms.date: 06/26/2013
+ms.date: 01/28/2019
 ms.assetid: 3bb8eb15-b518-44f5-a67d-a27e051aedc6
 msc.legacyurl: /web-api/overview/security/external-authentication-services
 msc.type: authoredcontent
 ---
-External Authentication Services with ASP.NET Web API (C#)
-====================
-by [Robert McMurray](https://github.com/rmcmurray)
+# External Authentication Services with ASP.NET Web API (C#)
 
-Visual Studio 2013 and ASP.NET 4.5.1 expand the security options for [Single Page Applications](../../../single-page-application/index.md) (SPA) and [Web API](../../index.md) services to integrate with external authentication services, which include several OAuth/OpenID and social media authentication services: Microsoft Accounts, Twitter, Facebook, and Google.
+Visual Studio 2017 and ASP.NET 4.7.2 expand the security options for [Single Page Applications](../../../single-page-application/index.md) (SPA) and [Web API](../../index.md) services to integrate with external authentication services, which include several OAuth/OpenID and social media authentication services: Microsoft Accounts, Twitter, Facebook, and Google.
 
-### In This Walkthrough
+### In this Walkthrough
 
 - [Using External Authentication Services](#USING)
 - [Creating the Sample Web Application](#SAMPLE)
@@ -34,7 +32,7 @@ Visual Studio 2013 and ASP.NET 4.5.1 expand the security options for [Single Pag
 
 To follow the examples in this walkthrough, you need to have the following:
 
-- Visual Studio 2013
+- Visual Studio 2017
 - An account for at least one of the following external authentication services:
 
     - A Google user account
@@ -59,41 +57,41 @@ In this second example, the user agent negotiates with the web application and e
 
 [![](external-authentication-services/_static/image4.png "Click to Expand the Image")](external-authentication-services/_static/image3.png)
 
-Visual Studio 2013 and ASP.NET 4.5.1 make integration with external authentication services easier for developers by providing built-in integration for the following authentication services:
+Visual Studio 2017 and ASP.NET 4.7.2 make integration with external authentication services easier for developers by providing built-in integration for the following authentication services:
 
 - Facebook
 - Google
 - Microsoft Accounts (Windows Live ID accounts)
 - Twitter
 
-The examples in this walkthrough will demonstrate how to configure each of the supported external authentication services by using the new ASP.NET Web Application template that ships with Visual Studio 2013.
+The examples in this walkthrough will demonstrate how to configure each of the supported external authentication services by using the new ASP.NET Web Application template that ships with Visual Studio 2017.
 
 > [!NOTE]
 > If necessary, you may need to add your FQDN to the settings for your external authentication service. This requirement is based on security constraints for some external authentication services which require the FQDN in your application settings to match the FQDN that is used by your clients. (The steps for this will vary greatly for each external authentication service; you will need to consult the documentation for each external authentication service to see if this is required and how to configure these settings.) If you need to configure IIS Express to use an FQDN for testing this environment, see the [Configuring IIS Express to use a Fully Qualified Domain Name](#FQDN) section later in this walkthrough.
 
 
 <a id="SAMPLE"></a>
-## Creating a Sample Web Application
+## Create a sample web application
 
 The following steps will lead you through creating a sample application by using the ASP.NET Web Application template, and you will use this sample application for each of the external authentication services later in this walkthrough.
 
-Start Visual Studio 2013 select **New Project** from the Start page. Or, from the **File** menu, select **New** and then **Project**.
+Start Visual Studio 2017 select **New Project** from the Start page. Or, from the **File** menu, select **New** and then **Project**.
 
-[![](external-authentication-services/_static/image6.png "Click to Expand the Image")](external-authentication-services/_static/image5.png)
+<!-- [![](external-authentication-services/_static/image6.png "Click to Expand the Image")](external-authentication-services/_static/image5.png) -->
 
 When the **New Project** dialog box is displayed, select **Installed** **Templates** and expand **Visual C#**. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET Web Application**. Enter a name for your project and click **OK**.
 
-[![](external-authentication-services/_static/image8.png "Click to Expand the Image")](external-authentication-services/_static/image7.png)
+[![](external-authentication-services/_static/image71.png "Click to Expand the Image")](external-authentication-services/_static/image71.png)
 
-When the **New ASP.NET Project** is displayed, select the **SPA** template and click **Create Project**.
+When the **New ASP.NET Project** is displayed, select the **Single Page Application** template and click **Create Project**.
 
-[![](external-authentication-services/_static/image10.png "Click to Expand the Image")](external-authentication-services/_static/image9.png)
+[![](external-authentication-services/_static/image72.png "Click to Expand the Image")](external-authentication-services/_static/image72.png)
 
-Wait as Visual Studio 2013 creates your project.
+Wait as Visual Studio 2017 creates your project.
 
-[![](external-authentication-services/_static/image12.png "Click to Expand the Image")](external-authentication-services/_static/image11.png)
+<!-- [![](external-authentication-services/_static/image12.png "Click to Expand the Image")](external-authentication-services/_static/image11.png) -->
 
-When Visual Studio 2013 has finished creating your project, open the *Startup.Auth.cs* file that is located in the **App\_Start** folder.
+When Visual Studio 2017 has finished creating your project, open the *Startup.Auth.cs* file that is located in the **App\_Start** folder.
 
 [![](external-authentication-services/_static/image14.png "Click to Expand the Image")](external-authentication-services/_static/image13.png)
 
@@ -103,20 +101,21 @@ When you first create the project, none of the external authentication services 
 
 When you press F5 to build and debug your web application, it will display a login screen where you will see that no external authentication services have been defined.
 
-[![](external-authentication-services/_static/image16.png "Click to Expand the Image")](external-authentication-services/_static/image15.png)
+[![](external-authentication-services/_static/image73.png "Click to Expand the Image")](external-authentication-services/_static/image73.png)
 
-In the following sections, you will learn how to enable each of the external authentication services that are provided with ASP.NET in Visual Studio 2013.
+In the following sections, you will learn how to enable each of the external authentication services that are provided with ASP.NET in Visual Studio 2017.
 
 <a id="FACEBOOK"></a>
-## Enabling Facebook Authentication
+## Enable Facebook authentication
 
 Using Facebook authentication requires you to create a Facebook developer account, and your project will require an application ID and secret key from Facebook in order to function. For information about creating a Facebook developer account and obtaining your application ID and secret key, see [https://go.microsoft.com/fwlink/?LinkID=252166](https://go.microsoft.com/fwlink/?LinkID=252166).
 
 Once you have obtained your application ID and secret key, use the following steps to enable Facebook authentication for your web application:
 
-1. When your project is open in Visual Studio 2013, open the *Startup.Auth.cs* file:
+1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
-    [![](external-authentication-services/_static/image18.png "Click to Expand the Image")](external-authentication-services/_static/image17.png)
+   <!-- [![](external-authentication-services/_static/image18.png "Click to Expand the Image")](external-authentication-services/_static/image17.png) -->
+
 2. Locate the highlighted section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample2.cs)]
@@ -125,7 +124,7 @@ Once you have obtained your application ID and secret key, use the following ste
     [!code-csharp[Main](external-authentication-services/samples/sample3.cs)]
 4. When you press F5 to open your web application in your web browser, you will see that Facebook has been defined as an external authentication service:
 
-    [![](external-authentication-services/_static/image20.png "Click to Expand the Image")](external-authentication-services/_static/image19.png)
+    [![](external-authentication-services/_static/image74.png "Click to Expand the Image")](external-authentication-services/_static/image74.png)
 5. When you click the **Facebook** button, your browser will be redirected to the Facebook login page:
 
     [![](external-authentication-services/_static/image22.png "Click to Expand the Image")](external-authentication-services/_static/image21.png)
@@ -143,9 +142,9 @@ Google is by far the easiest of the external authentication services to enable b
 
 To enable Google authentication for your web application, use the following steps:
 
-1. When your project is open in Visual Studio 2013, open the *Startup.Auth.cs* file:
+1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
-    [![](external-authentication-services/_static/image28.png "Click to Expand the Image")](external-authentication-services/_static/image27.png)
+  <!--  [![](external-authentication-services/_static/image28.png "Click to Expand the Image")](external-authentication-services/_static/image27.png) -->
 2. Locate the highlighted section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample4.cs)]
@@ -154,7 +153,7 @@ To enable Google authentication for your web application, use the following step
     [!code-csharp[Main](external-authentication-services/samples/sample5.cs)]
 4. When you press F5 to open your web application in your web browser, you will see that Google has been defined as an external authentication service:
 
-    [![](external-authentication-services/_static/image30.png "Click to Expand the Image")](external-authentication-services/_static/image29.png)
+    [![](external-authentication-services/_static/image75.png "Click to Expand the Image")](external-authentication-services/_static/image75.png)
 5. When you click the **Google** button, your browser will be redirected to the Google login page:
 
     [![](external-authentication-services/_static/image32.png "Click to Expand the Image")](external-authentication-services/_static/image31.png)
@@ -175,7 +174,7 @@ Microsoft authentication requires you to create a developer account, and it requ
 
 Once you have obtained your consumer key and consumer secret, use the following steps to enable Microsoft authentication for your web application:
 
-1. When your project is open in Visual Studio 2013, open the *Startup.Auth.cs* file:
+1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
     [![](external-authentication-services/_static/image40.png "Click to Expand the Image")](external-authentication-services/_static/image39.png)
 2. Locate the highlighted section of code:
@@ -207,7 +206,7 @@ Twitter authentication requires you to create a developer account, and it requir
 
 Once you have obtained your consumer key and consumer secret, use the following steps to enable Twitter authentication for your web application:
 
-1. When your project is open in Visual Studio 2013, open the *Startup.Auth.cs* file:
+1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
     [![](external-authentication-services/_static/image52.png "Click to Expand the Image")](external-authentication-services/_static/image51.png)
 2. Locate the highlighted section of code:
@@ -245,9 +244,9 @@ For greater flexibility, you can define multiple external authentication service
 [![](external-authentication-services/_static/image62.png "Click to Expand the Image")](external-authentication-services/_static/image61.png)
 
 <a id="FQDN"></a>
-### Configuring IIS Express to use a Fully Qualified Domain Name
+### Configure IIS Express to use a fully qualified domain name
 
-Some external authentication providers do not support testing your application by using an HTTP address like `http://localhost:port/`. To work around this issue, you can add a static Fully Qualified Domain Name (FQDN) mapping to your HOSTS file and configure your project options in Visual Studio 2013 to use the FQDN for testing/debugging. To do so, use the following steps:
+Some external authentication providers do not support testing your application by using an HTTP address like `http://localhost:port/`. To work around this issue, you can add a static Fully Qualified Domain Name (FQDN) mapping to your HOSTS file and configure your project options in Visual Studio 2017 to use the FQDN for testing/debugging. To do so, use the following steps:
 
 - Add a static FQDN mapping your HOSTS file:
 
@@ -262,7 +261,7 @@ Some external authentication providers do not support testing your application b
 
 - Configure your Visual Studio project to use the FQDN:
 
-  1. When your project is open in Visual Studio 2013, click the **Project** menu, and then select your project's properties. For example, you might select **WebApplication1 Properties**.
+  1. When your project is open in Visual Studio 2017, click the **Project** menu, and then select your project's properties. For example, you might select **WebApplication1 Properties**.
   2. Select the **Web** tab.
   3. Enter your FQDN for the <strong>Project Url</strong>. For example, you would enter <kbd><http://www.wingtiptoys.com></kbd> if that was the FQDN mapping that you added to your HOSTS file.
 
