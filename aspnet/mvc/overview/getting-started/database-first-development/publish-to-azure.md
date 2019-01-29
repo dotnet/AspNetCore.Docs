@@ -15,7 +15,7 @@ msc.type: authoredcontent
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
 
-This tutorialr focuses on publishing the web app and database to Azure.
+This tutorial focuses on publishing the web app and database to Azure.
 
 In this tutorial, you:
 
@@ -73,7 +73,7 @@ Click **OK** to close the database connection string window and **Cancel** to cl
 
 Before publishing your database, you must make sure your local computer can connect to the database server. The firewall for your database server restricts which machines can connect to the database. You need to add the IP address of your computer to the allowed IP addresses for the firewall.
 
-Login to your Azure account through the Azure portal.
+Sign in to your Azure account through the Azure portal.
 
 In the left pane, select **SQL databases** and then select your new database. From the menu at the top of the **Overview** section, select **Connect with** > **Visual Studio**.
 
@@ -121,7 +121,7 @@ Now, you can go to the **Query editor** for your database. In Azure, select **SQ
 
 ![new tables](publish-to-azure/_static/image22.png)
 
-Now you are ready to test the web app that is deployed to Azure. Navigate to the web app on Azure (such as http://contosositeexample.azurewebsites.net/). Click the link for List of students and you should see the index view for students.
+Now you are ready to test the web app that is deployed to Azure. Navigate to the web app on Azure (such as http://contosositeexample.azurewebsites.net/). Click the **List of students** link and you should see the index view for students.
 
 ![view](publish-to-azure/_static/image23.png)
 
