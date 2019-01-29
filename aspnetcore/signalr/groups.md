@@ -28,13 +28,6 @@ Send a message to a specific user by passing the user identifier to the `User` f
 
 [!code-csharp[Configure service](groups/sample/hubs/chathub.cs?range=29-32)]
 
-The user identifier can be customized by creating an `IUserIdProvider`, and registering it in `ConfigureServices`.
-
-[!code-csharp[Configure service](groups/sample/startup.cs?range=21-22,39-42)]
-
-> [!NOTE]
-> AddSignalR must be called before registering your custom SignalR services.
-
 ## Groups in SignalR
 
 A group is a collection of connections associated with a name. Messages can be sent to all connections in a group. Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application. A connection can be a member of multiple groups. This makes groups ideal for something like a chat application, where each room can be represented as a group. Connections can be added to or removed from groups via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods.
