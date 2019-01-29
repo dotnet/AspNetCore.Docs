@@ -104,7 +104,7 @@ When you press F5 to build and debug your web application, it will display a log
 In the following sections, you will learn how to enable each of the external authentication services that are provided with ASP.NET in Visual Studio 2017.
 
 <a id="FACEBOOK"></a>
-## Enable Facebook authentication
+## Enabling Facebook authentication
 
 Using Facebook authentication requires you to create a Facebook developer account, and your project will require an application ID and secret key from Facebook in order to function. For information about creating a Facebook developer account and obtaining your application ID and secret key, see [https://go.microsoft.com/fwlink/?LinkID=252166](https://go.microsoft.com/fwlink/?LinkID=252166).
 
