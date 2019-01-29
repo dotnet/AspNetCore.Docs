@@ -35,12 +35,12 @@ To follow the examples in this walkthrough, you need to have the following:
 - Visual Studio 2017
 - An account for at least one of the following external authentication services:
 
-    - A Google user account
     - A developer account with the application identifier and secret key for one of the following social media authentication services:
 
         - Microsoft Accounts ([https://go.microsoft.com/fwlink/?LinkID=144070](https://go.microsoft.com/fwlink/?LinkID=144070))
         - Twitter ([https://dev.twitter.com/](https://dev.twitter.com/))
         - Facebook ([https://developers.facebook.com/](https://developers.facebook.com/))
+        - Google ([https://developers.google.com/](https://developers.google.com))
 
 <a id="USING"></a>
 ## Using External Authentication Services
@@ -71,15 +71,15 @@ The examples in this walkthrough will demonstrate how to configure each of the s
 
 
 <a id="SAMPLE"></a>
-## Create a sample web application
+## Create a Sample Web Application
 
 The following steps will lead you through creating a sample application by using the ASP.NET Web Application template, and you will use this sample application for each of the external authentication services later in this walkthrough.
 
-Start Visual Studio 2017 select **New Project** from the Start page. Or, from the **File** menu, select **New** and then **Project**.
+Start Visual Studio 2017 and select **New Project** from the Start page. Or, from the **File** menu, select **New** and then **Project**.
 
 <!-- [![](external-authentication-services/_static/image6.png "Click to Expand the Image")](external-authentication-services/_static/image5.png) -->
 
-When the **New Project** dialog box is displayed, select **Installed** **Templates** and expand **Visual C#**. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET Web Application**. Enter a name for your project and click **OK**.
+When the **New Project** dialog box is displayed, select **Installed** and expand **Visual C#**. Under **Visual C#**, select **Web**. In the list of project templates, select **ASP.NET Web Application (.Net Framework)**. Enter a name for your project and click **OK**.
 
 [![](external-authentication-services/_static/image71.png "Click to Expand the Image")](external-authentication-services/_static/image71.png)
 
@@ -92,8 +92,6 @@ Wait as Visual Studio 2017 creates your project.
 <!-- [![](external-authentication-services/_static/image12.png "Click to Expand the Image")](external-authentication-services/_static/image11.png) -->
 
 When Visual Studio 2017 has finished creating your project, open the *Startup.Auth.cs* file that is located in the **App\_Start** folder.
-
-[![](external-authentication-services/_static/image14.png "Click to Expand the Image")](external-authentication-services/_static/image13.png)
 
 When you first create the project, none of the external authentication services are enabled in *Startup.Auth.cs* file; the following illustrates what your code might resemble, with the sections highlighted for where you would enable an external authentication service and any relevant settings in order to use Microsoft Accounts, Twitter, Facebook, or Google authentication with your ASP.NET application:
 
@@ -138,7 +136,8 @@ Once you have obtained your application ID and secret key, use the following ste
 <a id="GOOGLE"></a>
 ## Enabling Google Authentication
 
-Google is by far the easiest of the external authentication services to enable because it doesn't require a developer account, nor does it require additional information like your application ID or secret key as the other external authentication services necessitate.
+Using Google authentication requires you to create a Google developer account, and your project will require an application ID and secret key from Facebook in order to function. For information about creating a Facebook developer account and obtaining your application ID and secret key, see [https://developers.facebook.com](https://developers.facebook.com).
+
 
 To enable Google authentication for your web application, use the following steps:
 
@@ -148,7 +147,7 @@ To enable Google authentication for your web application, use the following step
 2. Locate the highlighted section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample4.cs)]
-3. Remove the &quot;//&quot; characters to uncomment the highlighted line of code, and then recompile your project:
+3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your application ID and secret key. Once you have added those parameters, you can recompile your project:
 
     [!code-csharp[Main](external-authentication-services/samples/sample5.cs)]
 4. When you press F5 to open your web application in your web browser, you will see that Google has been defined as an external authentication service:
@@ -176,7 +175,6 @@ Once you have obtained your consumer key and consumer secret, use the following 
 
 1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
-    [![](external-authentication-services/_static/image40.png "Click to Expand the Image")](external-authentication-services/_static/image39.png)
 2. Locate the highlighted section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample6.cs)]
@@ -208,7 +206,6 @@ Once you have obtained your consumer key and consumer secret, use the following 
 
 1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
-    [![](external-authentication-services/_static/image52.png "Click to Expand the Image")](external-authentication-services/_static/image51.png)
 2. Locate the highlighted section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample8.cs)]
@@ -284,13 +281,15 @@ Linking an application to Windows Live for Microsoft Authentication is a simple 
 
 1. Browse to [https://go.microsoft.com/fwlink/?LinkID=144070](https://go.microsoft.com/fwlink/?LinkID=144070) and enter your Microsoft account name and password when prompted, then click **Sign in**:
 
-    [![](external-authentication-services/_static/image64.png "Click to Expand the Image")](external-authentication-services/_static/image63.png)
-2. Enter the name and language of your application when prompted, and then click **I accept**:
+   <!--  [![](external-authentication-services/_static/image64.png "Click to Expand the Image")](external-authentication-services/_static/image63.png) -->
+2. Select **Add an app** and enter the name and language of your application when prompted, and then click **Create**:
 
-    [![](external-authentication-services/_static/image66.png "Click to Expand the Image")](external-authentication-services/_static/image65.png)
-3. On the **API Settings** page for your application, enter the redirect domain for your application and copy the **Client ID** and **Client secret** for your project, and then click **Save**:
+    [![](external-authentication-services/_static/image79.png "Click to Expand the Image")](external-authentication-services/_static/image79.png)
+3. Select your app under **Name** and its application properties page appears.
 
-    [![](external-authentication-services/_static/image68.png "Click to Expand the Image")](external-authentication-services/_static/image67.png)
+4. Enter the redirect domain for your application. Copy the **Application ID** and, under **Application Secrets**, select **Generate Password**. Copy the password that appears. The application ID and password are your client ID and client secret. Select **Ok** and then **Save**.
+
+    [![](external-authentication-services/_static/image77.png "Click to Expand the Image")](external-authentication-services/_static/image77.png)
 
 <a id="DISABLE"></a>
 ### Optional: Disable Local Registration
