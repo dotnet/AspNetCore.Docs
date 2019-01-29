@@ -4,14 +4,12 @@ title: "Configuring a Web Server for Web Deploy Publishing (Web Deploy Handler) 
 author: jrjlee
 description: "This topic describes how to configure an Internet Information Services (IIS) web server to support web publishing and deployment using the IIS Web Deploy Han..."
 ms.author: riande
-ms.date: 05/04/2012
+ms.date: 01/29/2017
 ms.assetid: 90ebf911-1c46-4470-b876-1335bd0f590f
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler
 msc.type: authoredcontent
 ---
-Configuring a Web Server for Web Deploy Publishing (Web Deploy Handler)
-====================
-by [Jason Lee](https://github.com/jrjlee)
+# Configuring a Web Server for Web Deploy Publishing (Web Deploy Handler)
 
 [Download PDF](https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/63/56/8130.DeployingWebAppsInEnterpriseScenarios.pdf)
 
@@ -53,7 +51,7 @@ To host the ContactManager sample solution specifically, you'll also need to:
 
 This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you're starting with a clean server build running Windows Server 2008 R2. Before you continue, ensure that:
 
-- Windows Server 2008 R2 Service Pack 1 and all available updates are installed.
+- Windows Server 2016
 - The server is domain-joined.
 - The server has a static IP address.
 
@@ -139,7 +137,7 @@ Now that you've installed everything you need, the next step is to configure the
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image3.png)
 3. In the center pane, under **IIS**, double-click **Authentication**.
 
-    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image4.png)
+    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image20.png)
 4. Right-click **Basic Authentication**, and then click **Enable**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image5.png)
