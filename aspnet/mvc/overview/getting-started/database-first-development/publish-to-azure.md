@@ -14,7 +14,7 @@ msc.type: authoredcontent
 # Tutorial: Publish MVC Database First site to Azure
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
-
+g
 This tutorial focuses on publishing the web app and database to Azure.
 
 In this tutorial, you:
@@ -42,15 +42,15 @@ In **Pick a publish target**, select **App Service** > **Create New** and then s
 
 If you are not signed in to Azure, provide your Azure account credentials. **Create App Service** appears.
 
-![Screenshot of Create App Service dialog.](publish-to-azure/_static/image3.png)
-
 Create a unique name for your web app. You will know the name is not unique if you see this error message: *Name is not available, please choose another*. Select your subscription and then either select an existing resource group and hosting plan, or create new ones.
 
 Select **Create a SQL Database**.
 
-![Screenshot of Configure SQL Database dialog.](publish-to-azure/_static/image4.png)
+![Screenshot of Create App Service dialog.](publish-to-azure/_static/image3.png)
 
 In **Configure SQL Database**, next to the **SQL Server** drop-down list, select **New**. Enter **Administrator Username** and **Administrator Password** credentials. Leave the other default values and select **OK**.
+
+![Screenshot of Configure SQL Database dialog.](publish-to-azure/_static/image4.png)
 
 Back in **Create App Service**, select **Create**.
 
