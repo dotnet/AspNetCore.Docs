@@ -30,8 +30,6 @@ Send a message to a specific user by passing the user identifier to the `User` f
 
 The user identifier can be customized by creating an `IUserIdProvider`, and registering it in `ConfigureServices`.
 
-[!code-csharp[UserIdProvider](groups/sample/customuseridprovider.cs?range=4-10)]
-
 [!code-csharp[Configure service](groups/sample/startup.cs?range=21-22,39-42)]
 
 > [!NOTE]
