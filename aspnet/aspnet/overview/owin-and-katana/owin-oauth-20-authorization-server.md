@@ -21,7 +21,7 @@ msc.type: authoredcontent
 >
 > | **Shown in the tutorial** | **Also works with** |
 > | --- | --- |
-> | Windows 8.1 | Windows 8, Windows 7 |
+> | Windows 8.1 | Windows 10, Windows 8, Windows 7 |
 > | [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 > | .NET 4.7.2 |  |
 >
