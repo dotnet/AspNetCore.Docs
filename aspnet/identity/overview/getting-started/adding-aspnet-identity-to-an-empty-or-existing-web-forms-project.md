@@ -46,7 +46,7 @@ Note that this package will install the dependency packages: **EntityFramework**
 2. In the **Specify Name for Item** dialog box, name the new web form **Register**, and then select **OK**
 3. Replace the markup in the generated *Register.aspx* file with the code below. The code changes are highlighted. 
 
-    [!code-aspx[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample1.aspx?highlight=9,12-40)]
+    [!code-html[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample1.aspx?highlight=9,12-40)]
 
     > [!NOTE]
     > This is just a simplified version of the *Register.aspx* file that is created when you create a new ASP.NET Web Forms project. The markup above adds form fields and a button to register a new user.
@@ -118,7 +118,7 @@ At this point we have only added support for creating users. Now, we are going t
 
 ## Add web forms for registering and signing in users
 
-1. Open the *Register.aspx.cs* file and add the following code which signs in the user when registration succeeds. The changes are highlighted below.
+1. Open the *Register.aspx.cs* file and add the following code which signs in the user when registration succeeds.
 
     [!code-csharp[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample5.cs)]
 
