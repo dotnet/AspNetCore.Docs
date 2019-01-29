@@ -1,10 +1,10 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/creating-the-web-application
 title: "Tutorial: Create the the Web Application and Data Models for EF Database First with ASP.NET MVC"
-description: "This article focuses on creating the web application, and generating the data models based on your database tables."
+description: "This tutorial focuses on creating the web application, and generating the data models based on your database tables."
 author: Rick-Anderson
 ms.author: riande
-ms.date: 01/23/2019
+ms.date: 01/28/2019
 ms.topic: tutorial
 ms.assetid: bc8f2bd5-ff57-4dcd-8418-a5bd517d8953
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/creating-the-web-application
@@ -15,7 +15,7 @@ msc.type: authoredcontent
 
  Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
 
-This article focuses on creating the web application, and generating the data models based on your database tables.
+This tutorial focuses on creating the web application, and generating the data models based on your database tables.
 
 In this tutorial, you:
 
@@ -97,6 +97,6 @@ In this tutorial, you:
 > * Created an ASP.NET web app
 > * Generated the models
 
-Advance to the next article to learn how to create generate code based on the data models.
+Advance to the next tutorial to learn how to create generate code based on the data models.
 > [!div class="nextstepaction"]
 > [Generating views](generating-views.md)

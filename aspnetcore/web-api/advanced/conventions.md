@@ -52,7 +52,7 @@ For more information on `[ProducesDefaultResponseType]`, see [Default Response](
 
     [!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=snippet_ApiConventionTypeAttribute&highlight=2)]
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to an assembly &mdash; Applies the specified convention type to all controllers in the current assembly. As a recommendation, apply assembly-level attributes to the `Startup` class.
+1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` applied to an assembly &mdash; Applies the specified convention type to all controllers in the current assembly. As a recommendation, apply assembly-level attributes in the *Startup.cs* file.
 
     In the following example, the default set of conventions is applied to all controllers in the assembly:
 
