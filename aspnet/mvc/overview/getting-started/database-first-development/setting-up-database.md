@@ -1,10 +1,10 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/setting-up-database
 title: "Tutorial: Get started with EF Database First using MVC 5"
-description: "This article shows how to start with an existing database and quickly create a web application that enables users to interact with the data."
+description: "This tutorial shows how to start with an existing database and quickly create a web application that enables users to interact with the data."
 author: Rick-Anderson
 ms.author: riande
-ms.date: 01/23/2019
+ms.date: 01/28/2019
 ms.topic: tutorial
 ms.assetid: 095abad4-3bfe-4f06-b092-ae6a735b7e49
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/setting-up-database
@@ -15,7 +15,7 @@ msc.type: authoredcontent
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table. In the last part of the series, you will deploy the site and database to Azure.
 
-This article shows how to start with an existing database and quickly create a web application that enables users to interact with the data. It uses the Entity Framework 6 and MVC 5 to build the web application. The ASP.NET Scaffolding feature enables you to automatically generate code for displaying, updating, creating and deleting data. Using the publishing tools within Visual Studio, you can easily deploy the site and database to Azure.
+This tutorial shows how to start with an existing database and quickly create a web application that enables users to interact with the data. It uses the Entity Framework 6 and MVC 5 to build the web application. The ASP.NET Scaffolding feature enables you to automatically generate code for displaying, updating, creating and deleting data. Using the publishing tools within Visual Studio, you can easily deploy the site and database to Azure.
 
 This part of the series focuses on creating a database and populating it with data.
 
@@ -32,7 +32,7 @@ In this tutorial, you:
 
 ## Introduction
 
-This article addresses the situation where you have a database and want to generate code for a web application based on the fields of that database. This approach is called Database First development. If you do not already have an existing database, you can instead use an approach called Code First development which involves defining data classes and generating the database from the class properties.
+This tutorial addresses the situation where you have a database and want to generate code for a web application based on the fields of that database. This approach is called Database First development. If you do not already have an existing database, you can instead use an approach called Code First development which involves defining data classes and generating the database from the class properties.
 
 ## Set up the database
 
@@ -97,6 +97,6 @@ In this tutorial, you:
 > [!div class="checklist"]
 > * Set up the database
 
-Advance to the next article to learn how to create the web application and data models.
+Advance to the next tutorial to learn how to create the web application and data models.
 > [!div class="nextstepaction"]
 > [Create the web application and data models](creating-the-web-application.md)

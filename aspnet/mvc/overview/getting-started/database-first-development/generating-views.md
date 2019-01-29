@@ -1,10 +1,10 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/generating-views
 title: "Tutorial: Generate views for EF Database First with ASP.NET MVC app"
-description: "This article focuses on using ASP.NET Scaffolding to generate the controllers and views."
+description: "This tutorial focuses on using ASP.NET Scaffolding to generate the controllers and views."
 author: Rick-Anderson
 ms.author: riande
-ms.date: 01/23/2019
+ms.date: 01/28/2019
 ms.topic: tutorial
 ms.assetid: 669367cf-8e30-4eb6-821d-10a7d9bb906c
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/generating-views
@@ -15,7 +15,7 @@ msc.type: authoredcontent
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table.
 
-This article focuses on using ASP.NET Scaffolding to generate the controllers and views.
+This tutorial focuses on using ASP.NET Scaffolding to generate the controllers and views.
 
 In this tutorial, you:
 
@@ -96,6 +96,6 @@ In this tutorial, you:
 > * Displayed student views
 > * Displayed enrollment views
 
-Advance to the next article to learn how to change the database.
+Advance to the next tutorial to learn how to change the database.
 > [!div class="nextstepaction"]
 > [Change the database](changing-the-database.md)
