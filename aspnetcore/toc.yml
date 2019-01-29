@@ -538,6 +538,8 @@
           uid: security/authentication/scaffold-identity
         - name: Add custom user data to Identity
           uid: security/authentication/add-user-data
+        - name: Authentication samples
+          uid: security/authentication/samples
         - name: Customize Identity
           uid: security/authentication/customize_identity_model
         - name: Community OSS authentication options
