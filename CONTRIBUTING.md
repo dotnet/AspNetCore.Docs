@@ -114,7 +114,7 @@ DocFX requires:
 
 * Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases).
 * Add DocFX to your PATH.
-* In a Command Prompt window, navigate to the folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command:
+* In a command shell, navigate to the folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command:
 
   ```console
   docfx --serve
