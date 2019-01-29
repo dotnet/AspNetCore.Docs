@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ViewComponentSample.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace ViewComponentSample
 {
     public class Startup
-    {
+    { 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ToDoContext>(options =>
-                   options.UseInMemoryDatabase("db"));
-            services.AddMvc();
+                    options.UseInMemoryDatabase("db"));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -21,9 +23,9 @@ namespace ViewComponentSample
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseStaticFiles();
-
+           
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
