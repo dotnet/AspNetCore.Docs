@@ -103,6 +103,35 @@ var connection = new HubConnectionBuilder()
 
 Windows Authentication is only supported by the browser client when using Microsoft Internet Explorer or Microsoft Edge.
 
+### Using Claims to Customize Identity Handling
+
+If you're using organizational or social authentication in your apps and you'd prefer to have more fine-grained control over how SignalR identifies users, you can implement `IUserIdProvider` to return values from one of the claims collected by the identity provider. 
+
+The code below demonstrates how you would use Claims to select the user's email address as the identifying property. 
+
+```csharp
+public class EmailBasedUserIdProvider : IUserIdProvider
+{
+    public virtual string GetUserId(HubConnectionContext connection)
+    {
+        return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
+    }
+}
+```
+
+In the sample code, the account registration code contains the following line of code, which adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database. 
+
+```csharp
+await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Email, Input.Email));
+```
+
+The sample code contains both the `Identity.Name`-specific and email-specific implementations. Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`. 
+
+```csharp
+services.AddSignalR();
+services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
+```
+
 ## Authorize users to access hubs and hub methods
 
 By default, all methods in a hub can be called by an unauthenticated user. In order to require authentication, apply the [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute to the hub:
