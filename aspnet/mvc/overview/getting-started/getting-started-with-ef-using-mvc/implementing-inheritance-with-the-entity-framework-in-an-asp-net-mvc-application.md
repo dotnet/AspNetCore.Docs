@@ -1,28 +1,38 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Implementing Inheritance with the Entity Framework 6 in an ASP.NET MVC 5 Application (11 of 12) | Microsoft Docs"
+title: "Template: Implement Inheritance with EF in an ASP.NET MVC 5 appS"
+description: "This tutorial will show you how to implement inheritance in the data model."
 author: tdykstra
-description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: riande
-ms.date: 11/07/2014
+ms.date: 01/21/2019
+ms.topic: tutorial
 ms.assetid: 08834147-77ec-454a-bb7a-d931d2a40dab
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-Implementing Inheritance with the Entity Framework 6 in an ASP.NET MVC 5 Application (11 of 12)
-====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
-
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
+# Template: Implement Inheritance with EF in an ASP.NET MVC 5 app
 
 In the previous tutorial you handled concurrency exceptions. This tutorial will show you how to implement inheritance in the data model.
 
 In object-oriented programming, you can use [inheritance](http://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)) to facilitate [code reuse](http://en.wikipedia.org/wiki/Code_reuse). In this tutorial, you'll change the `Instructor` and `Student` classes so that they derive from a `Person` base class which contains properties such as `LastName` that are common to both instructors and students. You won't add or change any web pages, but you'll change some of the code and those changes will be automatically reflected in the database.
 
-## Options for mapping inheritance to database tables
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learn to map inheritance to database
+> * Create the Person class
+> * Update Instructor and Student
+> * Add Person to the Model
+> * Create and Update Migrations
+> * Test the implementation
+> * Deploy to Azure
+
+## Prerequisites
+
+* [Implementing Inheritance](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+
+## Map inheritance to database
 
 The `Instructor` and `Student` classes in the `School` data model have several properties that are identical:
 
@@ -56,7 +66,9 @@ In the *Models* folder, create *Person.cs* and replace the template code with th
 
 [!code-csharp[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
-## Make Student and Instructor classes inherit from Person
+## Update Instructor and Student
+
+Now update the *Instructor.cs* and *Sudent.cs* to inherit values from the *Person.sc*.
 
 In *Instructor.cs*, derive the `Instructor` class from the `Person` class and remove the key and name fields. The code will look like the following example:
 
@@ -66,7 +78,7 @@ Make similar changes to *Student.cs*. The `Student` class will look like the fol
 
 [!code-csharp[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cs)]
 
-## Add the Person Entity Type to the Model
+## Add Person to the Model
 
 In *SchoolContext.cs*, add a `DbSet` property for the `Person` entity type:
 
@@ -74,7 +86,7 @@ In *SchoolContext.cs*, add a `DbSet` property for the `Person` entity type:
 
 This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is updated, it will have a `Person` table in place of the `Student` and `Instructor` tables.
 
-## Create and Update a Migrations File
+## Create and Update Migrations
 
 In the Package Manager Console (PMC), enter the following command:
 
@@ -115,18 +127,13 @@ Run the `update-database` command again.
 >
 > With a new database, there is no data to migrate, and the `update-database` command is much more likely to complete without errors. For instructions on how to delete the database, see [How to Drop a Database from Visual Studio 2012](http://romiller.com/2013/05/17/how-to-drop-a-database-from-visual-studio-2012/). If you take this approach in order to continue with the tutorial, skip the deployment step at the end of this tutorial or deploy to a new site and database. If you deploy an update to the same site you've been deploying to already, EF will get the same error there when it runs migrations automatically. If you want to troubleshoot a migrations error, the best resource is one of the Entity Framework forums or StackOverflow.com.
 
-
-## Testing
+## Test the implementation
 
 Run the site and try various pages. Everything works the same as it did before.
 
 In **Server Explorer,** expand **Data Connections\SchoolContext** and then **Tables**, and you see that the **Student** and **Instructor** tables have been replaced by a **Person** table. Expand the **Person** table and you see that it has all of the columns that used to be in the **Student** and **Instructor** tables.
 
-![Server_Explorer_showing_Person_table](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
-
 Right-click the Person table, and then click **Show Table Data** to see the discriminator column.
-
-![](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
 
 The following diagram illustrates the structure of the new School database:
 
@@ -138,22 +145,37 @@ This section requires you to have completed the optional **Deploying the app to 
 
 1. In Visual Studio, right-click the project in **Solution Explorer** and select **Publish** from the context menu.
 
-    ![Publish in project context menu](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
 2. Click **Publish**.
 
-    ![publish](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
+    The Web app opens in your default browser.
 
-   The Web app will open in your default browser.
 3. Test the application to verify it's working.
 
     The first time you run a page that accesses the database, the Entity Framework runs all of the migrations `Up` methods required to bring the database up to date with the current data model.
 
-## Summary
+## Get the code
 
-You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, and `Instructor` classes. For more information about this and other inheritance structures, see [TPT Inheritance Pattern](https://msdn.microsoft.com/data/jj618293) and [TPH Inheritance Pattern](https://msdn.microsoft.com/data/jj618292) on MSDN. In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
+[Download Completed Project](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
+
+## Additional resources
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-> [Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)
+For more information about this and other inheritance structures, see [TPT Inheritance Pattern](https://msdn.microsoft.com/data/jj618293) and [TPH Inheritance Pattern](https://msdn.microsoft.com/data/jj618292) on MSDN. In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
+
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learned to map inheritance to database
+> * Created the Person class
+> * Updated Instructor and Student
+> * Added Person to the Model
+> * Created and Update Migrations
+> * Tested the implementation
+> * Deployed to Azure
+
+Advance to the next article to learn about topics that are useful to be aware of when you go beyond the basics of developing ASP.NET web applications that use Entity Framework Code First.
+> [!div class="nextstepaction"]
+> [Advanced Entity Framework Scenarios](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)

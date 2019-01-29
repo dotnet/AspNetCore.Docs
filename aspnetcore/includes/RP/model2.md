@@ -22,6 +22,8 @@ Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design 
 ```console
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
 ```
 
 The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.

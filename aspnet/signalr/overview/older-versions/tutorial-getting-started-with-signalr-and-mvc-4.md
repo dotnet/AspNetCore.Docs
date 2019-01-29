@@ -1,9 +1,9 @@
 ---
 uid: signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4
 title: "Tutorial: Getting Started with SignalR 1.x and MVC 4 | Microsoft Docs"
-author: pfletcher
+author: bradygaster
 description: "Use ASP.NET SignalR and ASP.NET MVC 4 to build a real-time chat application."
-ms.author: riande
+ms.author: bradyg
 ms.date: 03/29/2013
 ms.assetid: eeef9f73-6de3-49f9-b50b-9af22108f2ce
 msc.legacyurl: /signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4

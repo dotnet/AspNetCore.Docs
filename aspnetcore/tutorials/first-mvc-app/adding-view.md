@@ -88,7 +88,7 @@ Select the menu links (**MvcMovie**, **Home**, and **Privacy**). Each page shows
 
 The following markup shows the highlighted changes:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24)]
+[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24,51)]
 
 In the preceding markup, the `asp-area` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) was omitted because this app is not using [Areas](xref:mvc/controllers/areas).
 
@@ -99,7 +99,7 @@ In the preceding markup, the `asp-area` [anchor Tag Helper attribute](xref:mvc/v
 
 **Note**: The `Movies` controller has not been implemented. At this point, the `Movie App` link is not functional.
 
-Save your changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy - Movie App** instead of **Privacy - Mvc Movie**:
+Save your changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - Mvc Movie**:
 
 ![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 
