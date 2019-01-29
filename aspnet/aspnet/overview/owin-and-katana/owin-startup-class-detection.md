@@ -19,7 +19,7 @@ OWIN Startup Class Detection
 > [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 
 
-## OWIN startup class detection
+## OWIN Startup Class Detection
 
  Every OWIN Application has a startup class where you specify components for the application pipeline. There are different ways you can connect your startup class with the runtime, depending on the hosting model you choose (OwinHost, IIS, and IIS-Express). The startup class shown in this tutorial can be used in every hosting application. You connect the startup class with the hosting runtime using one of the these approaches:
 
@@ -48,7 +48,7 @@ OWIN Startup Class Detection
 
     [!code-xml[Main](owin-startup-class-detection/samples/sample6.xml)]
 
-## Create an ASP.NET web Aapp using OWIN startup
+## Create an ASP.NET Web App using OWIN Startup
 
 1. Create an empty Asp.Net web application and name it **StartupDemo**. - Install `Microsoft.Owin.Host.SystemWeb` using the NuGet package manager. From the **Tools** menu, select **NuGet Package Manager**, and then **Package Manager Console**. Enter the following command:
 
@@ -79,7 +79,7 @@ OWIN Startup Class Detection
 
     ![](owin-startup-class-detection/_static/image5.png)
 
-## Add more startup classes
+## Add More Startup Classes
 
 In this section we'll add another Startup class. You can add multiple OWIN startup class to your application. For example, you might want to create startup classes for development, testing and production.
 
