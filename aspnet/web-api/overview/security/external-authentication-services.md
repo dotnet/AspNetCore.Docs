@@ -114,7 +114,7 @@ Once you have obtained your application ID and secret key, use the following ste
 
    <!-- [![](external-authentication-services/_static/image18.png "Click to Expand the Image")](external-authentication-services/_static/image17.png) -->
 
-2. Locate the highlighted section of code:
+2. Locate the Facebook authentication section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample2.cs)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your application ID and secret key. Once you have added those parameters, you can recompile your project:
@@ -144,7 +144,7 @@ To enable Google authentication for your web application, use the following step
 1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
   <!--  [![](external-authentication-services/_static/image28.png "Click to Expand the Image")](external-authentication-services/_static/image27.png) -->
-2. Locate the highlighted section of code:
+2. Locate the Google authentication section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample4.cs)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your application ID and secret key. Once you have added those parameters, you can recompile your project:
@@ -175,7 +175,7 @@ Once you have obtained your consumer key and consumer secret, use the following 
 
 1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
-2. Locate the highlighted section of code:
+2. Locate the Microsoft authentication section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample6.cs)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your client ID and client secret. Once you have added those parameters, you can recompile your project:
@@ -206,7 +206,7 @@ Once you have obtained your consumer key and consumer secret, use the following 
 
 1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
 
-2. Locate the highlighted section of code:
+2. Locate the Twitter authentication section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample8.cs)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your consumer key and consumer secret. Once you have added those parameters, you can recompile your project:
