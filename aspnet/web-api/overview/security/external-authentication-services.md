@@ -136,7 +136,7 @@ Once you have obtained your application ID and secret key, use the following ste
 <a id="GOOGLE"></a>
 ## Enabling Google Authentication
 
-Using Google authentication requires you to create a Google developer account, and your project will require an application ID and secret key from Facebook in order to function. For information about creating a Facebook developer account and obtaining your application ID and secret key, see [https://developers.facebook.com](https://developers.facebook.com).
+Using Google authentication requires you to create a Google developer account, and your project will require an application ID and secret key from Google in order to function. For information about creating a Google developer account and obtaining your application ID and secret key, see [https://developers.google.com](https://developers.google.com).
 
 
 To enable Google authentication for your web application, use the following steps:
