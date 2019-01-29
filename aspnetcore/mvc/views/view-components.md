@@ -201,9 +201,9 @@ Copy the *Views/Shared/Components/PriorityList/Default.cshtml* file to a view na
 
 [!code-cshtml[](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-Update *Views/ToDoList/Index.cshtml*:
+Update *Views/ToDo/Index.cshtml*:
 
-<!-- Views/ToDoList/Index.cshtml is never imported, so change to test tutorial -->
+<!-- Views/ToDo/Index.cshtml is never imported, so change to test tutorial -->
 
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml?range=35)]
 
