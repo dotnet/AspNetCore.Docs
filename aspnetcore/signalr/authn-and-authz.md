@@ -63,15 +63,7 @@ If [Windows authentication](xref:security/authentication/windowsauth) is configu
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
 
-```csharp
-public class NameUserIdProvider : IUserIdProvider
-{
-    public string GetUserId(HubConnectionContext connection)
-    {
-        return connection.User?.FindFirst(ClaimTypes.Name)?.Value;
-    }
-}
-```
+[!code-csharp[Identity.Name-based provider](authn-and-authz/sample/nameuseridprovider.cs?range=5-11)]
 
 Rather than `ClaimTypes.Name`, you can use any value from the `User` (such as the Windows SID identifier, etc.).
 
@@ -109,20 +101,13 @@ If you're using organizational or social authentication in your apps and you'd p
 
 The code below demonstrates how you would use Claims to select the user's email address as the identifying property. 
 
-```csharp
-public class EmailBasedUserIdProvider : IUserIdProvider
-{
-    public virtual string GetUserId(HubConnectionContext connection)
-    {
-        return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
-    }
-}
-```
+[!code-csharp[Email claim-based provider](authn-and-authz/sample/EmailBasedUserIdProvider.cs?range=6-12)]
 
 In the sample code, the account registration code contains the following line of code, which adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database. 
 
 ```csharp
 await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Email, Input.Email));
+[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?range=64)]
 ```
 
 The sample code contains both the `Identity.Name`-specific and email-specific implementations. Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`. 
