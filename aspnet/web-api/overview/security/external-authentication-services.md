@@ -33,14 +33,12 @@ Visual Studio 2017 and ASP.NET 4.7.2 expand the security options for [Single Pag
 To follow the examples in this walkthrough, you need to have the following:
 
 - Visual Studio 2017
-- An account for at least one of the following external authentication services:
+- A developer account with the application identifier and secret key for one of the following social media authentication services:
 
-    - A developer account with the application identifier and secret key for one of the following social media authentication services:
-
-        - Microsoft Accounts ([https://go.microsoft.com/fwlink/?LinkID=144070](https://go.microsoft.com/fwlink/?LinkID=144070))
-        - Twitter ([https://dev.twitter.com/](https://dev.twitter.com/))
-        - Facebook ([https://developers.facebook.com/](https://developers.facebook.com/))
-        - Google ([https://developers.google.com/](https://developers.google.com))
+  - Microsoft Accounts ([https://go.microsoft.com/fwlink/?LinkID=144070](https://go.microsoft.com/fwlink/?LinkID=144070))
+  - Twitter ([https://dev.twitter.com/](https://dev.twitter.com/))
+  - Facebook ([https://developers.facebook.com/](https://developers.facebook.com/))
+  - Google ([https://developers.google.com/](https://developers.google.com))
 
 <a id="USING"></a>
 ## Using External Authentication Services
