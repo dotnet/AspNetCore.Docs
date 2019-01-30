@@ -97,9 +97,9 @@ Windows Authentication is only supported by the browser client when using Micros
 
 ### Using Claims to Customize Identity Handling
 
-If you're using organizational or social authentication in your apps and you'd prefer to have more fine-grained control over how SignalR identifies users, you can implement `IUserIdProvider` to return values from one of the claims collected by the identity provider. 
+An app that authenticates users can derive SignalR user IDs from user claims. To specify how SignalR creates user IDs, implement `IUserIdProvider` and register the implementation.
 
-The code below demonstrates how you would use Claims to select the user's email address as the identifying property. 
+The sample code demonstrates how you would use claims to select the user's email address as the identifying property. 
 
 [!code-csharp[Email claim-based provider](authn-and-authz/sample/EmailBasedUserIdProvider.cs?range=6-12)]
 
@@ -107,7 +107,7 @@ In the sample code, the account registration code contains the following line of
 
 [!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?range=64)]
 
-The sample code contains both the `Identity.Name`-specific and email-specific implementations. Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`. 
+The sample code contains both the name and email implementations. Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`. 
 
 ```csharp
 services.AddSignalR();
