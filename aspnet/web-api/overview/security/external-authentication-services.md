@@ -280,7 +280,7 @@ Linking an application to Windows Live for Microsoft Authentication is a simple 
 1. Browse to [https://go.microsoft.com/fwlink/?LinkID=144070](https://go.microsoft.com/fwlink/?LinkID=144070) and enter your Microsoft account name and password when prompted, then click **Sign in**:
 
    <!--  [![](external-authentication-services/_static/image64.png "Click to Expand the Image")](external-authentication-services/_static/image63.png) -->
-2. Select **Add an app** and enter the name and language of your application when prompted, and then click **Create**:
+2. Select **Add an app** and enter the name of your application when prompted, and then click **Create**:
 
     [![](external-authentication-services/_static/image79.png "Click to Expand the Image")](external-authentication-services/_static/image79.png)
 3. Select your app under **Name** and its application properties page appears.
