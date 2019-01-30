@@ -9,7 +9,7 @@ uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
 
-By [Mike Wasson](https://github.com/mikewasson), [Shayne Boyer](https://twitter.com/spboyer), and [Tom Dykstra](https://github.com/tdykstra)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Mike Wasson](https://github.com/mikewasson), and [Tom Dykstra](https://github.com/tdykstra)
 
 Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites make cross-origin requests to your app.
 
@@ -34,29 +34,17 @@ These URLs have different origins than the previous two URLs:
 > [!NOTE]
 > Internet Explorer doesn't consider the port when comparing origins.
 
-## Register CORS services
+## CORS sample
 
-::: moniker range=">= aspnetcore-2.1"
+The following code enables CORS:
 
-Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.AspNetCore.Cors](https://www.nuget.org/packages/Microsoft.AspNetCore.Cors/) package.
+[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,39)]
 
-::: moniker-end
+The preceding code sets the policy name to "_myAllowSpecificOrigins". The policy name is arbitrary.
 
-::: moniker range="= aspnetcore-2.0"
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> call adds CORS services to the app's service container:
 
-Reference the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) or add a package reference to the [Microsoft.AspNetCore.Cors](https://www.nuget.org/packages/Microsoft.AspNetCore.Cors/) package.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-Add a package reference to the [Microsoft.AspNetCore.Cors](https://www.nuget.org/packages/Microsoft.AspNetCore.Cors/) package.
-
-::: moniker-end
-
-Call <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> in `Startup.ConfigureServices` to add CORS services to the app's service container:
-
-[!code-csharp[](cors/sample/CorsExample1/Startup.cs?name=snippet_addcors&highlight=3)]
+[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet2)]
 
 ## Enable CORS
 
