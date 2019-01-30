@@ -454,6 +454,8 @@
           uid: host-and-deploy/azure-apps/index
         - name: Publish with Visual Studio
           uid: tutorials/publish-to-azure-webapp-using-vs
+        - name: Publish with Visual Studio for Mac
+          href: /visualstudio/mac/publish-app-svc
         - name: Publish with CLI tools
           href: /azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
         - name: Publish with Visual Studio and Git
@@ -522,6 +524,8 @@
       uid: host-and-deploy/web-farm
     - name: Visual Studio publish profiles
       uid: host-and-deploy/visual-studio-publish-profiles
+    - name: Visual Studio for Mac publish to folder
+      href: /visualstudio/mac/publish-folder
     - name: Directory structure
       uid: host-and-deploy/directory-structure
     - name: Health checks
