@@ -4,7 +4,7 @@ title: "Enabling Cross-Origin Requests in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to support Cross-Origin Resource Sharing (CORS) in ASP.NET Web API."
 ms.author: riande
-ms.date: 10/10/2018
+ms.date: 01/29/2019
 ms.assetid: 9b265a5a-6a70-4a82-adce-2d7c56ae8bdd
 msc.legacyurl: /web-api/overview/security/enabling-cross-origin-requests-in-web-api
 msc.type: authoredcontent
@@ -84,7 +84,7 @@ When you click the "Try It" button, an AJAX request is submitted to the WebServi
 !['Try it' error in browser](enabling-cross-origin-requests-in-web-api/_static/image7.png)
 
 > [!NOTE]
-> If you watch the HTTP traffic in a tool like [Fiddler](http://www.telerik.com/fiddler), you'll see that the browser does send the GET request, and the request succeeds, but the AJAX call returns an error. It's important to understand that same-origin policy does not prevent the browser from *sending* the request. Instead, it prevents the application from seeing the *response*.
+> If you watch the HTTP traffic in a tool like [Fiddler](https://www.telerik.com/fiddler), you'll see that the browser does send the GET request, and the request succeeds, but the AJAX call returns an error. It's important to understand that same-origin policy does not prevent the browser from *sending* the request. Instead, it prevents the application from seeing the *response*.
 
 ![Fiddler web debugger showing web requests](enabling-cross-origin-requests-in-web-api/_static/image8.png)
 
@@ -158,6 +158,22 @@ Here is an example response, assuming that the server allows the request:
 [!code-console[Main](enabling-cross-origin-requests-in-web-api/samples/sample9.cmd?highlight=6-7)]
 
 The response includes an Access-Control-Allow-Methods header that lists the allowed methods, and optionally an Access-Control-Allow-Headers header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request, as described earlier.
+
+Tools commonly used to test endpoints with preflight OPTIONS requests (for example, [Fiddler](https://www.telerik.com/fiddler) and [Postman](https://www.getpostman.com/)) don't send the required OPTIONS headers by default. Confirm that the `Access-Control-Request-Method` and `Access-Control-Request-Headers` headers are sent with the request and that OPTIONS headers reach the app through IIS.
+
+To configure IIS to allow an ASP.NET app to receive and handle OPTION requests, add the following configuration to the app's *web.config* file in the `<system.webServer><handlers>` section:
+
+```xml
+<system.webServer>
+  <handlers>
+    <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+    <remove name="OPTIONSVerbHandler" />
+    <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+  </handlers>
+</system.webServer>
+```
+
+The removal of `OPTIONSVerbHandler` prevents IIS from handling OPTIONS requests. The replacement of `ExtensionlessUrlHandler-Integrated-4.0` allows OPTIONS requests to reach the app because the default module registration only allows GET, HEAD, POST, and DEBUG requests with extensionless URLs.
 
 ## Scope Rules for [EnableCors]
 
