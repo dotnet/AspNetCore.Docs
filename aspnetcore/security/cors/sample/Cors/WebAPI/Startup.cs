@@ -18,7 +18,7 @@ namespace WebAPI
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
