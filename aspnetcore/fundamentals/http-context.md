@@ -103,7 +103,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-In the preceding example:
+In the following example:
 
 * `UserRepository` declares its dependency on `IHttpContextAccessor`.
 * The dependency is supplied when dependency injection resolves the dependency chain and creates an instance of `UserRepository`.
