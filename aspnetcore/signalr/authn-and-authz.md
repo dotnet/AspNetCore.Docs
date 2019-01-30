@@ -105,10 +105,7 @@ The code below demonstrates how you would use Claims to select the user's email 
 
 In the sample code, the account registration code contains the following line of code, which adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database. 
 
-```csharp
-await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Email, Input.Email));
 [!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?range=64)]
-```
 
 The sample code contains both the `Identity.Name`-specific and email-specific implementations. Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`. 
 
