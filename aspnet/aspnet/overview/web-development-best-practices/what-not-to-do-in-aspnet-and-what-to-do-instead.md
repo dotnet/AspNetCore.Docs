@@ -209,7 +209,7 @@ The following example shows a button click handler that contains asynchronous co
 
 [!code-csharp[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample11.cs)]
 
-If you are using asynchronous Tasks, set the Http runtime target framework to 4.5 (or higher) in the Web.config file. Setting the target framework to 4.5 turns on the new synchronization context that was added in .NET 4.5. This value is set by default in new projects in Visual Studio, but is not be set if you are working with an existing project.
+If you are using asynchronous Tasks, set the Http runtime target framework to 4.5 (or later) in the Web.config file. Setting the target framework to 4.5 turns on the new synchronization context that was added in .NET 4.5. This value is set by default in new projects in Visual Studio, but is not be set if you are working with an existing project.
 
 [!code-xml[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample12.xml)]
 
