@@ -83,6 +83,10 @@ Open the *Student.cs* file or the *Enrollment.cs* file, and notice that the data
 
 For a full list of data validation annotations you can apply to properties and classes, see [System.ComponentModel.DataAnnotations](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx).
 
+For an introductory example of Code First development, see [Getting Started with ASP.NET MVC 5](../introduction/getting-started.md).
+
+For a more advanced example, see [Creating an Entity Framework Data Model for an ASP.NET MVC 4 App](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md). Note that the DbContext API that you use for working with data in Database First is the same as the API you use for working with data in Code First. Even if you intend to use Database First, you can learn how to handle more complex scenarios such as reading and updating related data, handling concurrency conflicts, and so forth from a Code First tutorial. The only difference is in how the database, context class, and entity classes are created.
+
 ## Next steps
 
 In this tutorial, you:
@@ -91,6 +95,8 @@ In this tutorial, you:
 > * Added data annotations
 > * Added metadata classes
 
-Advance to the next tutorial to learn how to publish the web app and database to Azure.
+This series provided a simple example of how to generate code from an existing database that enables users to edit, update, create and delete data. It used ASP.NET MVC 5, Entity Framework and ASP.NET Scaffolding to create the project.
+
+Advance to the Azure tutorial to learn how to deploy your web app and publish your database to Azure.
 > [!div class="nextstepaction"]
-> [Publish to Azure](publish-to-azure.md)
+> [Deploy and publish to Azure](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase.md)
