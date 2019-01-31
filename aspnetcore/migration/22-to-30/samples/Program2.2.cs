@@ -15,5 +15,5 @@ namespace WebAPI
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
-    #region snippet
+    #endregion
 }
