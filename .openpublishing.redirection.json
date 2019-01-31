@@ -706,6 +706,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnet/mvc/overview/getting-started/database-first-development/publish-to-azure.md",
+            "redirect_url": "/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/fundamentals/configuration/platform-specific-configuration.md",
             "redirect_url": "/aspnet/core/fundamentals/host/platform-specific-configuration",
             "redirect_document_id": false
