@@ -99,6 +99,6 @@ In this tutorial, you:
 > * Added data annotations
 > * Added metadata classes
 
-Advance to the Azure tutorial to learn how to deploy your web app and publish your database to Azure.
+To learn how to deploy a web app and SQL database to Azure App Service, see this tutorial:
 > [!div class="nextstepaction"]
 > [Deploy a .NET app to Azure App Service](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase/)
