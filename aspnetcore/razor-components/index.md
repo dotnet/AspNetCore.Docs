@@ -1,7 +1,7 @@
 ---
 title: Introduction to Razor Components
 author: guardrex
-description: Explore Blazor, a new experimental .NET web framework using C#/Razor and HTML that runs in the browser with WebAssembly.
+description: Explore Blazor, a .NET web framework using C#/Razor and HTML that runs in the browser with WebAssembly.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
