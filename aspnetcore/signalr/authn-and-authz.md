@@ -5,7 +5,7 @@ description: Learn how to use authentication and authorization in ASP.NET Core S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 06/29/2018
+ms.date: 01/31/2019
 uid: signalr/authn-and-authz
 ---
 
