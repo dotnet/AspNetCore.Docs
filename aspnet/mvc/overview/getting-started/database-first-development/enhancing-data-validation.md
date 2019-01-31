@@ -99,4 +99,4 @@ This series provided a simple example of how to generate code from an existing d
 
 Advance to the Azure tutorial to learn how to deploy your web app and publish your database to Azure.
 > [!div class="nextstepaction"]
-> [Deploy and publish to Azure](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase.md)
+> [Deploy and publish to Azure](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase)
