@@ -13,7 +13,7 @@ msc.type: authoredcontent
 
 # Tutorial: Get started with EF Database First using MVC 5
 
-Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table. In the last part of the series, you will deploy the site and database to Azure.
+Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table. In the last part of the series, you learn how add data annotations to the data model to specify validation requirements and display formatting. When you're done, you can advance to an Azure article to learn how to deploy the site and database to Azure.
 
 This tutorial shows how to start with an existing database and quickly create a web application that enables users to interact with the data. It uses the Entity Framework 6 and MVC 5 to build the web application. The ASP.NET Scaffolding feature enables you to automatically generate code for displaying, updating, creating and deleting data. Using the publishing tools within Visual Studio, you can easily deploy the site and database to Azure.
 
@@ -46,7 +46,7 @@ Launch Visual Studio and create a **SQL Server Database Project**. Name the proj
 
 ![create database project](setting-up-database/_static/image1.png)
 
-You now have an empty database project. You will deploy this database to Azure later in this tutorial, so you'll need to set Azure SQL Database as the target platform for the project. Setting the target platform does not actually deploy the database; it only means that the database project will verify that the database design is compatible with the target platform. To set the target platform, open the **Properties** for the project and select **Microsoft Azure SQL Database** for the target platform.
+You now have an empty database project. You will deploy this database to Azure, so you'll need to set Azure SQL Database as the target platform for the project. Setting the target platform does not actually deploy the database; it only means that the database project will verify that the database design is compatible with the target platform. To set the target platform, open the **Properties** for the project and select **Microsoft Azure SQL Database** for the target platform.
 
 You can create the tables needed for this tutorial by adding SQL scripts that define the tables. Right-click your project and add a new item. Select **Tables and Views** > **Table** and name it *Student*.
 
