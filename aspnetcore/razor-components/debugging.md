@@ -1,14 +1,14 @@
 ---
-title: Razor Components debugging
+title: Debug Razor Components
 author: guardrex
 description: Learn how to debug Blazor and Razor Components apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/29/2019
-uid: razor-components/debugging
+uid: razor-components/debug
 ---
-# Razor Components debugging
+# Debug Razor Components
 
 [Daniel Roth](https://github.com/danroth27)
 

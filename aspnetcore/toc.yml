@@ -457,7 +457,7 @@
         - name: JavaScript interop
           uid: razor-components/javascript-interop
         - name: Debug
-          uid: razor-components/debugging
+          uid: razor-components/debug
         - name: Hosting models
           uid: razor-components/hosting-models
         - name: Host and deploy
