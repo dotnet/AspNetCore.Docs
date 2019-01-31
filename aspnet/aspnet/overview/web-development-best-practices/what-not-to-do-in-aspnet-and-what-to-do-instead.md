@@ -205,7 +205,7 @@ Recommendation: In Web Forms, avoid writing async void methods for Page lifecycl
 
 When you mark a page event with **async** and **void**, you cannot determine when the asynchronous code has finished. Instead, use Page.RegisterAsyncTask to run the asynchronous code in a way that enables you to track its completion.
 
-The following example shows a button select handler that contains asynchronous code. This example includes reading a string value asynchronously, which is provided only as a simplified example of an asynchronous task and not as a recommended practice.
+The following example shows a button click handler that contains asynchronous code. This example includes reading a string value asynchronously, which is provided only as a simplified example of an asynchronous task and not as a recommended practice.
 
 [!code-csharp[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample11.cs)]
 
