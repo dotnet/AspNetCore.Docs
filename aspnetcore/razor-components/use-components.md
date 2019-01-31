@@ -1,14 +1,14 @@
 ---
-title: Razor Components
+title: Create and use Razor Components
 author: guardrex
 description: Learn how to create and use components in Blazor and Razor Components apps, the fundamental building blocks provided by compiled Razor or C# files.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/29/2019
-uid: razor-components/components
+uid: razor-components/use-components
 ---
-# Razor Components
+# Create and use Razor Components
 
 By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Morné Zaayman](https://github.com/MorneZaayman)
 
