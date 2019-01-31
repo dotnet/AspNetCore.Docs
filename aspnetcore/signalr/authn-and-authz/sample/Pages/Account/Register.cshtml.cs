@@ -59,9 +59,14 @@ namespace SignalRAuthenticationSample.Pages.Account
             ReturnUrl = returnUrl;
             if (ModelState.IsValid)
             {
+#region AddEmailClaim
+                // create a new user
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                // add the email claim and value for this user
                 await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Email, Input.Email));
+#endregion
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

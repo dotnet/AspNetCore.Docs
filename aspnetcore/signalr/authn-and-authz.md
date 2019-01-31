@@ -63,7 +63,7 @@ If [Windows authentication](xref:security/authentication/windowsauth) is configu
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
 
-[!code-csharp[Identity.Name-based provider](authn-and-authz/sample/nameuseridprovider.cs?range=5-11)]
+[!code-csharp[Name based provider](authn-and-authz/sample/nameuseridprovider.cs?name=NameUserIdProvider)]
 
 Rather than `ClaimTypes.Name`, you can use any value from the `User` (such as the Windows SID identifier, etc.).
 
@@ -101,11 +101,11 @@ An app that authenticates users can derive SignalR user IDs from user claims. To
 
 The sample code demonstrates how you would use claims to select the user's email address as the identifying property. 
 
-[!code-csharp[Email claim-based provider](authn-and-authz/sample/EmailBasedUserIdProvider.cs?range=6-12)]
+[!code-csharp[Email provider](authn-and-authz/sample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
 
 In the sample code, the account registration code contains the following line of code, which adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database. 
 
-[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?range=64)]
+[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?name=AddEmailClaim)]
 
 The sample code contains both the name and email implementations. Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`. 
 
