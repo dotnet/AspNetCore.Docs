@@ -152,6 +152,7 @@ In this section we'll add another Startup class. You can add multiple OWIN start
 
    The Production startup class is loaded.
     ![](owin-startup-class-detection/_static/image9.png)
+
    Our application has multiple startup classes, and in this example we have deferred which startup class to load until runtime.
 8. Test the following runtime startup options:
 
