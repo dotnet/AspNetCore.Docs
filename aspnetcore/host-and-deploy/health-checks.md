@@ -409,6 +409,8 @@ dotnet run --scenario liveness
 
 In a browser, visit `/health/ready` several times until 15 seconds have passed. The health check reports `Unhealthy` for the first 15 seconds. After 15 seconds, the endpoint reports `Healthy`, which reflects the completion of the long-running task by the hosted service.
 
+This example also creates a Health Check Publisher (`IHealthCheckPublisher` implementation) that runs the readiness check every two seconds after the initial five second startup delay. For more information, see the [Health Check Publisher](#health-check-publisher) section.
+
 ### Kubernetes example
 
 Using separate readiness and liveness checks is useful in an environment such as [Kubernetes](https://kubernetes.io/). In Kubernetes, an app might be required to perform time-consuming startup work before accepting requests, such as a test of the underlying database availability. Using separate checks allows the orchestrator to distinguish whether the app is functioning but not yet ready or if the app has failed to start. For more information on readiness and liveness probes in Kubernetes, see [Configure Liveness and Readiness Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) in the Kubernetes documentation.
@@ -632,6 +634,38 @@ The `IHealthCheckPublisher` interface has a single method:
 ```csharp
 Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 ```
+
+`HealthCheckPublisherOptions` allow you to set:
+
+* `Delay` &ndash; The initial delay applied after the app starts before executing `IHealthCheckPublisher` instances. The delay is applied once at startup and doesn't apply to subsequent iterations. The default value is five seconds.
+* `Period` &ndash; The period of `IHealthCheckPublisher` execution. The default value is 30 seconds.
+* `Predicate` &ndash; If `Predicate` is `null` (default), the health check publisher service runs all registered health checks. To run a subset of health checks, provide a function that filters the set of checks. The predicate is evaluated each period.
+* `Timeout` &ndash; The timeout for executing the health checks for all `IHealthCheckPublisher`instances. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> to execute without a timeout. The default value is 30 seconds.
+
+In the sample app, `ReadinessPublisher` is an `IHealthCheckPublisher` implementation. The health check status is recorded in `Entries` and logged for each check:
+
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/ReadinessPublisher.cs?name=snippet_ReadinessPublisher&highlight=20,22-23)]
+
+In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` readiness check is performed every two seconds after the initial five second startup delay. To activate the `IHealthCheckPublisher` implementation, the sample registers `ReadinessPublisher` as a singleton service in the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
+
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_ConfigureServices&highlight=12-17,28)]
+
+::: moniker range="= aspnetcore-2.2"
+
+> [!NOTE]
+> The following workaround permits adding an `IHealthCheckPublisher` instance to the service container when one or more other hosted services have already been added to the app. This workaround won't be required with the release of ASP.NET Core 3.0. For more information, see: https://github.com/aspnet/Extensions/issues/639.
+>
+> ```csharp
+> private const string HealthCheckServiceAssembly = 
+>     "Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherHostedService";
+>
+> services.TryAddEnumerable(
+>     ServiceDescriptor.Singleton(typeof(IHostedService), 
+>         typeof(HealthCheckPublisherOptions).Assembly
+>             .GetType(HealthCheckServiceAssembly)));
+> ```
+
+::: moniker-end
 
 > [!NOTE]
 > [BeatPulse](https://github.com/Xabaril/BeatPulse) includes publishers for several systems, including [Application Insights](/azure/application-insights/app-insights-overview).
