@@ -70,7 +70,7 @@ Rather than `ClaimTypes.Name`, you can use any value from the `User` (such as th
 > [!NOTE]
 > The value you choose must be unique among all the users in your system. Otherwise, a message intended for one user could end up going to a different user.
 
-Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`
+Register this component in your `Startup.ConfigureServices` method.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -101,16 +101,18 @@ An app that authenticates users can derive SignalR user IDs from user claims. To
 
 The sample code demonstrates how you would use claims to select the user's email address as the identifying property. 
 
+> [!NOTE]
+> The value you choose must be unique among all the users in your system. Otherwise, a message intended for one user could end up going to a different user.
+
 [!code-csharp[Email provider](authn-and-authz/sample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
 
-In the sample code, the account registration code contains the following line of code, which adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database. 
+The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database.
 
 [!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?name=AddEmailClaim)]
 
-The sample code contains both the name and email implementations. Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`. 
+Register this component in your `Startup.ConfigureServices`.
 
 ```csharp
-services.AddSignalR();
 services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 ```
 
