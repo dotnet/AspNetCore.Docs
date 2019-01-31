@@ -108,9 +108,7 @@ Using Facebook authentication requires you to create a Facebook developer accoun
 
 Once you have obtained your application ID and secret key, use the following steps to enable Facebook authentication for your web application:
 
-1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
-
-   <!-- [![](external-authentication-services/_static/image18.png "Click to Expand the Image")](external-authentication-services/_static/image17.png) -->
+1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file.
 
 2. Locate the Facebook authentication section of code:
 
@@ -139,9 +137,8 @@ Using Google authentication requires you to create a Google developer account, a
 
 To enable Google authentication for your web application, use the following steps:
 
-1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
+1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file.
 
-  <!--  [![](external-authentication-services/_static/image28.png "Click to Expand the Image")](external-authentication-services/_static/image27.png) -->
 2. Locate the Google authentication section of code:
 
     [!code-csharp[Main](external-authentication-services/samples/sample4.cs)]
@@ -171,7 +168,7 @@ Microsoft authentication requires you to create a developer account, and it requ
 
 Once you have obtained your consumer key and consumer secret, use the following steps to enable Microsoft authentication for your web application:
 
-1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
+1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file.
 
 2. Locate the Microsoft authentication section of code:
 
@@ -202,7 +199,7 @@ Twitter authentication requires you to create a developer account, and it requir
 
 Once you have obtained your consumer key and consumer secret, use the following steps to enable Twitter authentication for your web application:
 
-1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file:
+1. When your project is open in Visual Studio 2017, open the *Startup.Auth.cs* file.
 
 2. Locate the Twitter authentication section of code:
 
