@@ -139,7 +139,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 1. Go to **File** > **New** > **Project**.
 1. Select **ASP.NET Core Web Application**, name the project *BooksApi*, and click **OK**.
 1. Select the **.NET Core** target framework and **ASP.NET Core 2.1**. Select the **API** project template, and click **OK**:
-1. Visit [.NET Driver for MongoDB: Releases](https://github.com/mongodb/mongo-csharp-driver/releases) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
+1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```powershell
     Install-Package MongoDB.Driver -Version {VERSION}
@@ -157,7 +157,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
     A new ASP.NET Core web API project targeting .NET Core is generated and opened in Visual Studio Code.
 
 1. Click **Yes** when the *Required assets to build and debug are missing from 'BooksApi'. Add them?* notification appears.
-1. Visit [.NET Driver for MongoDB: Releases](https://github.com/mongodb/mongo-csharp-driver/releases) to determine the latest stable version of the .NET driver for MongoDB. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
+1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```console
     dotnet add BooksApi.csproj package MongoDB.Driver -v {VERSION}
