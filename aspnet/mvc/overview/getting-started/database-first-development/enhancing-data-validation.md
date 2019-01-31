@@ -101,4 +101,4 @@ In this tutorial, you:
 
 Advance to the Azure tutorial to learn how to deploy your web app and publish your database to Azure.
 > [!div class="nextstepaction"]
-> [Deploy and publish to Azure](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase/)
+> [Deploy a .NET app to Azure App Service](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase/)
