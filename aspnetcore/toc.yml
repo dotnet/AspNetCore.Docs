@@ -447,7 +447,7 @@
         - name: Components
           uid: razor-components/components
         - name: Component libraries
-          uid: razor-components/component-class-libraries
+          uid: razor-components/class-libraries
         - name: Layouts
           uid: razor-components/layouts
         - name: Dependency injection

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/29/2019
-uid: razor-components/component-class-libraries
+uid: razor-components/class-libraries
 ---
 # Razor Components Class Libraries
 
