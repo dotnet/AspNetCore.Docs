@@ -75,7 +75,8 @@
         "signalr/**/**.md": "aspnetcore-signalr",
         "test/**/**.md": "aspnetcore-test",
         "tutorials/**/**.md": "aspnetcore-tutorials",
-        "web-api/**/**.md": "aspnetcore-webapi"
+        "web-api/**/**.md": "aspnetcore-webapi",
+        "razor-components/**/**.md": "aspnetcore-blazor"
       },
       "ms.topic": {
         "azure/**/**.md": "conceptual",
@@ -95,7 +96,8 @@
         "signalr/**/**.md": "conceptual",
         "test/**/**.md": "conceptual",
         "tutorials/**/**.md": "tutorial",
-        "web-api/**/**.md": "conceptual"
+        "web-api/**/**.md": "conceptual",
+        "razor-components/**/**.md": "conceptual"
       }
     },
     "template": [],

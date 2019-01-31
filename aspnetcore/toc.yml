@@ -164,6 +164,8 @@
           uid: mvc/views/dependency-injection
         - name: Unit test
           uid: mvc/controllers/testing
+    - name: Razor Components
+      uid: razor-components/index
     - name: Session and app state
       uid: fundamentals/app-state
     - name: Tag Helpers
@@ -432,6 +434,38 @@
       uid: client-side/bundling-and-minification
     - name: Browser Link
       uid: client-side/using-browserlink
+    - name: Razor Components
+      items: 
+        - name: Overview
+          uid: razor-components/index
+        - name: FAQ
+          uid: razor-components/faq
+        - name: Get started
+          uid: razor-components/get-started
+        - name: Build your first app
+          uid: tutorials/first-blazor-app
+        - name: Components
+          uid: razor-components/components/index
+        - name: Component libraries
+          uid: razor-components/component-class-libraries
+        - name: Layouts
+          uid: razor-components/layouts
+        - name: Dependency injection
+          uid: razor-components/dependency-injection
+        - name: Routing
+          uid: razor-components/routing
+        - name: JavaScript interop
+          uid: razor-components/javascript-interop
+        - name: Debugging
+          uid: razor-components/debugging
+        - name: Hosting models
+          uid: razor-components/hosting-models
+        - name: Host and deploy
+          items:
+            - name: Overview
+              uid: razor-components/host-and-deploy/index
+            - name: Configure the Linker
+              uid: razor-components/host-and-deploy/configure-linker
     - name: Single Page Apps
       items: 
         - name: Overview
