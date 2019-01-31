@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/29/2019
-uid: razor-components/host-and-deploy/index
+uid: host-and-deploy/razor-components/index
 ---
 # Host and deploy Razor Components
 
@@ -16,19 +16,19 @@ By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.time
 
 ## Publish the app
 
-Apps are published for deployment in Release configuration with the [dotnet publish](https://docs.microsoft.com/dotnet/core/tools/dotnet-publish) command. An IDE may handle executing the `dotnet publish` command automatically using its built-in publishing features, so it might not be necessary to manually execute the command from a command prompt depending on the development tools in use.
+Apps are published for deployment in Release configuration with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. An IDE may handle executing the `dotnet publish` command automatically using its built-in publishing features, so it might not be necessary to manually execute the command from a command prompt depending on the development tools in use.
 
 ```console
 dotnet publish -c Release
 ```
 
-`dotnet publish` triggers a [restore](https://docs.microsoft.com/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](https://docs.microsoft.com/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times. The deployment is created in the */bin/Release/&lt;target-framework&gt;/publish* folder.
+`dotnet publish` triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times. The deployment is created in the */bin/Release/&lt;target-framework&gt;/publish* folder.
 
 The assets in the *publish* folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
 
 ## Host configuration values
 
-Razor Components apps that use the [server-side hosting model](xref:razor-components/hosting-models#server-side-hosting-model) can accept [Web Host configuration values](https://docs.microsoft.com/aspnet/core/fundamentals/host/web-host#host-configuration-values).
+Razor Components apps that use the [server-side hosting model](xref:razor-components/hosting-models#server-side-hosting-model) can accept [Web Host configuration values](xref:fundamentals/host/web-host#host-configuration-values).
 
 Blazor apps that use the [client-side hosting model](xref:razor-components/hosting-models#client-side-hosting-model) can accept the following host configuration values as command-line arguments at runtime in the development environment.
 
@@ -112,7 +112,7 @@ With the [client-side hosting model](xref:razor-components/hosting-models#client
   
 ### Configure the Linker
 
-Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. You can control assembly linking on build. For more information, see <xref:razor-components/host-and-deploy/configure-linker>.
+Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. You can control assembly linking on build. For more information, see <xref:host-and-deploy/razor-components/configure-linker>.
 
 ### Rewrite URLs for correct routing
 
@@ -183,19 +183,16 @@ For more information, see the [path base host configuration value](#path-base) s
 
 ### Client-side Blazor hosted deployment with ASP.NET Core
 
-A *hosted deployment* serves the client-side Blazor app to browsers from an [ASP.NET Core app](https://docs.microsoft.com/aspnet/core/) that runs on a server.
+A *hosted deployment* serves the client-side Blazor app to browsers from an [ASP.NET Core app](xref:index) that runs on a server.
 
-The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor (ASP.NET Core hosted)** project template (`blazorhosted` template when using the [dotnet new](https://docs.microsoft.com/dotnet/core/tools/dotnet-new) command).
+The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor (ASP.NET Core hosted)** project template (`blazorhosted` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
 
-For more information on ASP.NET Core app hosting and deployment, see [Host and deploy ASP.NET Core](https://docs.microsoft.com/aspnet/core/host-and-deploy).
+For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
 
 For information on deploying to Azure App Service, see the following topics:
 
-[Publish to Azure with Visual Studio](https://docs.microsoft.com/aspnet/core/tutorials/publish-to-azure-webapp-using-vs)  
+<xref:tutorials/publish-to-azure-webapp-using-vs>  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
-
-[Publish to Azure with CLI tools](https://docs.microsoft.com/aspnet/core/tutorials/publish-to-azure-webapp-using-cli)  
-Learn how to publish an ASP.NET Core app to Azure App Service using the Git command-line client.
 
 ### Client-side Blazor standalone deployment
 
@@ -203,7 +200,7 @@ A *standalone deployment* serves the client-side Blazor app as a set of static f
 
 #### Client-side Blazor standalone hosting with IIS
 
-IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](https://docs.microsoft.com/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
+IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
 Published assets are created in the *\\bin\\Release\\&lt;target-framework&gt;\\publish* folder. Host the contents of the *publish* folder on the web server or hosting service.
 
@@ -242,7 +239,7 @@ Set the website's **Physical path** to the app's folder. The folder contains:
 
 If a *500 Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the *web.config* file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
 
-For more information on troubleshooting deployments to IIS, see [Troubleshoot ASP.NET Core on IIS](https://docs.microsoft.com/aspnet/core/host-and-deploy/iis/troubleshoot).
+For more information on troubleshooting deployments to IIS, see <xref:host-and-deploy/iis/troubleshoot>.
 
 #### Client-side Blazor standalone hosting with Nginx
 
@@ -286,7 +283,7 @@ When using a project site instead of an organization site, add or update the `<b
 
 With the [server-side hosting model](xref:razor-components/hosting-models#server-side-hosting-model), Razor Components is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a SignalR connection.
 
-The app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a server-side deployment, Visual Studio includes the **Blazor (Server-side in ASP.NET Core)** project template (`blazorserver` template when using the [dotnet new](https://docs.microsoft.com/dotnet/core/tools/dotnet-new) command).
+The app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a server-side deployment, Visual Studio includes the **Blazor (Server-side in ASP.NET Core)** project template (`blazorserver` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
 
 <!--
 
@@ -298,12 +295,9 @@ The app is included with the ASP.NET Core app in the published output so that th
 
 -->
 
-When the ASP.NET Core app is published, the Razor Components app is included in the published output so that the ASP.NET Core app and the Razor Components app can be deployed together. For more information on ASP.NET Core app hosting and deployment, see [Host and deploy ASP.NET Core](https://docs.microsoft.com/aspnet/core/host-and-deploy).
+When the ASP.NET Core app is published, the Razor Components app is included in the published output so that the ASP.NET Core app and the Razor Components app can be deployed together. For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
 
 For information on deploying to Azure App Service, see the following topics:
 
-[Publish to Azure with Visual Studio](https://docs.microsoft.com/aspnet/core/tutorials/publish-to-azure-webapp-using-vs)  
+<xref:tutorials/publish-to-azure-webapp-using-vs>  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
-
-[Publish to Azure with CLI tools](https://docs.microsoft.com/aspnet/core/tutorials/publish-to-azure-webapp-using-cli)  
-Learn how to publish an ASP.NET Core app to Azure App Service using the Git command-line client.

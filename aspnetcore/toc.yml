@@ -445,7 +445,7 @@
         - name: Build your first app
           uid: tutorials/first-blazor-app
         - name: Components
-          uid: razor-components/components/index
+          uid: razor-components/components
         - name: Component libraries
           uid: razor-components/component-class-libraries
         - name: Layouts
@@ -463,9 +463,9 @@
         - name: Host and deploy
           items:
             - name: Overview
-              uid: razor-components/host-and-deploy/index
+              uid: host-and-deploy/razor-components/index
             - name: Configure the Linker
-              uid: razor-components/host-and-deploy/configure-linker
+              uid: host-and-deploy/razor-components/configure-linker
     - name: Single Page Apps
       items: 
         - name: Overview
@@ -564,6 +564,12 @@
       uid: host-and-deploy/directory-structure
     - name: Health checks
       uid: host-and-deploy/health-checks
+    - name: Razor Components
+      items:
+        - name: Overview
+          uid: host-and-deploy/razor-components/index
+        - name: Configure the Linker
+          uid: host-and-deploy/razor-components/configure-linker
 - name: Security and Identity
   items: 
     - name: Overview

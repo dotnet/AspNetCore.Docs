@@ -92,7 +92,7 @@ Razor Components offers the core facilities that most apps require, including:
 * Routing
 * Dependency injection
 
-All of these features are optional. When one of these features isn't used in an app, the implementation is stripped out of the app when published by the [Intermediate Language (IL) Linker](xref:razor-components/host-and-deploy/configure-linker).
+All of these features are optional. When one of these features isn't used in an app, the implementation is stripped out of the app when published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/razor-components/configure-linker).
 
 ## Code sharing and .NET Standard
 

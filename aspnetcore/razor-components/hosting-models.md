@@ -18,7 +18,7 @@ Razor Components is a web framework designed to run client-side in the browser o
 
 ## Client-side hosting model
 
-The principal hosting model for Blazor is running client-side in the browser. In this model, the Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. All UI updates and event handling happens within the same process. The app assets can be deployed as static files using whatever web server is preferred (see [Host and deploy](xref:razor-components/host-and-deploy/index)).
+The principal hosting model for Blazor is running client-side in the browser. In this model, the Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. All UI updates and event handling happens within the same process. The app assets can be deployed as static files using whatever web server is preferred (see [Host and deploy](xref:host-and-deploy/razor-components/index)).
 
 ![Blazor client-side: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/client-side.png)
 
@@ -47,7 +47,7 @@ Visual Studio includes the **Blazor (ASP.NET Core hosted)** project template for
 > [!IMPORTANT]
 > If a client-side Blazor app is served by an ASP.NET Core app hosted as an IIS sub-app, disable the inherited ASP.NET Core Module handler. Set the app base path in the Blazor app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
 >
-> For more information, see [App base path](xref:razor-components/host-and-deploy/index#app-base-path).
+> For more information, see [App base path](xref:host-and-deploy/razor-components/index#app-base-path).
 
 ## Server-side hosting model
 

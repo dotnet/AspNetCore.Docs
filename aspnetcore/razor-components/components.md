@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/29/2019
-uid: razor-components/components/index
+uid: razor-components/components
 ---
 # Razor Components
 
@@ -46,7 +46,7 @@ Components can include other components by declaring them using HTML element syn
 
 The following markup renders a `HeadingComponent` (*HeadingComponent.cshtml*) instance:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/Index.cshtml?start=11&end=11)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.cshtml?start=11&end=11)]
 
 ## Component parameters
 
@@ -56,11 +56,11 @@ In the following example, the `ParentComponent` sets the value of the `Title` pr
 
 *ParentComponent.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?start=1&end=7&highlight=5)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?start=1&end=7&highlight=5)]
 
 *ChildComponent.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=7-8)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=7-8)]
 
 ## Child content
 
@@ -68,13 +68,13 @@ Components can set the content in another component. The assigning component pro
 
 *ParentComponent.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?start=1&end=7&highlight=6)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?start=1&end=7&highlight=6)]
 
 The child component has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the child component's markup where the content should be rendered. In the following example, the value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
 *ChildComponent.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=3,10-11)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=3,10-11)]
 
 > [!NOTE]
 > The property receiving the `RenderFragment` content must be named `ChildContent` by convention.
@@ -404,7 +404,7 @@ When a *\*.cshtml* file with an `@page` directive is compiled, the generated cla
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/BlazorRoute.cshtml?start=1&end=4)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.cshtml?start=1&end=4)]
 
 ## Route parameters
 
@@ -412,7 +412,7 @@ Components can receive route parameters from the route template provided in the 
 
 *RouteParameter.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/RouteParameter.cshtml?start=1&end=9)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.cshtml?start=1&end=9)]
 
 Optional parameters aren't supported, so two `@page` directives are applied in the example above. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
@@ -424,11 +424,11 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-com
 
 *BlazorRocks.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/BlazorRocks.cshtml?start=1&end=8)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRocks.cshtml?start=1&end=8)]
 
 *BlazorRocksBase.cs*:
 
-[!code-csharp[](../common/samples/3.x/BlazorSample/Pages/BlazorRocksBase.cs)]
+[!code-csharp[](common/samples/3.x/BlazorSample/Pages/BlazorRocksBase.cs)]
 
 The base class should derive from `BlazorComponent`.
 
@@ -510,7 +510,7 @@ A templated component is defined by specifying one or more component parameters 
 
 *Components/TableTemplate.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Components/TableTemplate.cshtml)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TableTemplate.cshtml)]
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters (`TableHeader` and `RowTemplate` in the following example):
 
@@ -565,7 +565,7 @@ Templated components are often generically typed. For example, a generic ListVie
 
 *Components/ListViewTemplate.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Components/ListViewTemplate.cshtml?highlight=1)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.cshtml?highlight=1)]
 
 When using generic-typed components, the type parameter is inferred if possible:
 
@@ -689,23 +689,23 @@ Cascading parameters also enable components to collaborate across the component 
 
 The sample app has an `ITab` interface that tabs implement:
 
-[!code-cs[](../common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
+[!code-cs[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
 
 The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Pages/CascadingValuesParametersTabSet.cshtml?name=snippet_TabSet)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/CascadingValuesParametersTabSet.cshtml?name=snippet_TabSet)]
 
 The child `Tab` components aren't explicitly passed as parameters to the `TabSet`. Instead, the child `Tab` components are part of the child content of the `TabSet`. However, the `TabSet` still needs to know about each `Tab` so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.
 
 *Components/TabSet.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Components/TabSet.cshtml)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TabSet.cshtml)]
 
 The descendent `Tab` components capture the containing `TabSet` as a cascading parameter, so the `Tab` components add themselves to the `TabSet` and coordinate on which `Tab` is active.
 
 *Components/Tab.cshtml*:
 
-[!code-cshtml[](../common/samples/3.x/BlazorSample/Components/Tab.cshtml)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/Tab.cshtml)]
 
 ## Razor templates
 
