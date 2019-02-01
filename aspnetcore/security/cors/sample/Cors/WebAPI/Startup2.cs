@@ -6,10 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebAPI
 {
-    #region snippet
-    public class Startup
+    public class Startup2
     {
-        public Startup(IConfiguration configuration)
+        public Startup2(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -28,7 +27,9 @@ namespace WebAPI
                 {
                     builder.WithOrigins("http://example.com",
                                         "http://www.contoso.com",
-                                        "https://localhost:5001");
+                                        "https://localhost:5001")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
                 });
             });
 
@@ -36,7 +37,6 @@ namespace WebAPI
         }
         #endregion
 
-        #region snippet3
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -53,8 +53,6 @@ namespace WebAPI
             app.UseHttpsRedirection();
             app.UseMvc();
         }
-        #endregion
     }
-    #endregion
 
 }
