@@ -2134,8 +2134,6 @@
                   href: mvc/overview/getting-started/database-first-development/customizing-a-view.md
                 - name: Enhancing Data Validation
                   href: mvc/overview/getting-started/database-first-development/enhancing-data-validation.md
-                - name: Publish to Azure
-                  href: mvc/overview/getting-started/database-first-development/publish-to-azure.md
             - name: Lifecycle of an ASP.NET MVC 5 Application
               href: mvc/overview/getting-started/lifecycle-of-an-aspnet-mvc-5-application.md
             - name: MVC Recommended Resources
