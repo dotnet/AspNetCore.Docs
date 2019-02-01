@@ -11,7 +11,7 @@ uid: fundamentals/file-providers
 
 By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guardrex)
 
-ASP.NET Core abstracts file system access through the use of File Providers. File Providers are used throughout the ASP.NET Core framework:
+ASP.NET Core abstracts file system access through the use of .NET Core File Providers. File Providers are used throughout the ASP.NET Core framework:
 
 * [IHostingEnvironment](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment) exposes the app's content root and web root as `IFileProvider` types.
 * [Static File Middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
