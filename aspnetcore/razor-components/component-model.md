@@ -1,7 +1,7 @@
 ---
 title: Razor Components component model
 author: guardrex
-description: Learn about the Blazor and Razor Components component model.
+description: Learn how to work with the Razor Components component model: create and use components, bind to data, handle events, understand life cycle methods, and more.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
