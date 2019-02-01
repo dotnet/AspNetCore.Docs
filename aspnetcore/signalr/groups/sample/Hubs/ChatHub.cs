@@ -25,5 +25,10 @@ namespace SignalRChat.Hubs
 
             await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has left the group {groupName}.");
         }
+
+        public Task SendPrivateMessage(string user, string message)
+        {
+            return Clients.User(user).SendAsync("ReceiveMessage", message);
+        }
     }
 }

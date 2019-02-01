@@ -1,9 +1,9 @@
-﻿// Unused usings removed.
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ViewComponentSample
+namespace WebAPI
 {
+    #region snippet
     public class Program
     {
         public static void Main(string[] args)
@@ -15,4 +15,5 @@ namespace ViewComponentSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
+    #endregion
 }

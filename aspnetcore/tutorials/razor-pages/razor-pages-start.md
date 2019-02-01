@@ -24,7 +24,7 @@ In this tutorial, you:
 
 At the end of this tutorial you'll have a working Razor Pages web app that you'll build on in later tutorials.
 
-[Home or Index page](razor-pages-start/_static/home2.2.png)
+![Home or Index page](razor-pages-start/_static/home2.2.png)
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
