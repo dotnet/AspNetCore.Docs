@@ -43,14 +43,10 @@
 #
 # image files are treated as binary by default.
 ###############################################################################
-*.jpg   binary
-*.JPG   binary
-*.png   binary
-*.PNG   binary
-*.gif   binary
-*.GIF   binary
-*.ico   binary
-*.ICO   binary
+*.[jJ][pP][gG]   binary
+*.[pP][nN][gG]   binary
+*.[gG][iI][fF]   binary
+*.[iI][cC][oO]   binary
 
 
 ###############################################################################
@@ -58,22 +54,14 @@
 #
 # has line ending converted
 ###############################################################################
-*.pdf  binary
-*.PDF  binary
-*.ttf  binary
-*.TTF  binary
-*.eot  binary
-*.EOT  binary
-*.woff binary
-*.WOFF binary
-*.wmv  binary
-*.WMV  binary
-*.zip  binary
-*.ZIP  binary
-*.exe  binary
-*.EXE  binary
-*.db   binary
-*.DB   binary
+*.[pP][dD][fF]      binary
+*.[tT][tT][fF]      binary
+*.[eE][oO][tT]      binary
+*.[wW][oO][fF][fF]  binary
+*.[wW][mM][vV]      binary
+*.[zZ][iI][pP]      binary
+*.[eE][xX][eE]      binary
+*.[dD][bB]          binary
 
 ###############################################################################
 # diff behavior for common document formats
