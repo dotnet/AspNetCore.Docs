@@ -156,7 +156,7 @@ For some options, it may be helpful to read the [How CORS works](#how-cors-works
 
   ::: moniker-end
 
-  This setting affects preflight requests and the `Access-Control-Allow-Origin` header. For more information, see the [Preflight requests](#preflight-requests) section.
+  `AllowAnyOrigin` affects preflight requests and the `Access-Control-Allow-Origin` header. For more information, see the [Preflight requests](#preflight-requests) section.
 
 ::: moniker range=">= aspnetcore-2.0"
 
