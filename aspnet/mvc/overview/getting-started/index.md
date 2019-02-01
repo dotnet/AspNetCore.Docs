@@ -49,7 +49,6 @@ ASP.NET MVC Getting Started
     - [Changing the Database](database-first-development/changing-the-database.md)
     - [Customizing a View](database-first-development/customizing-a-view.md)
     - [Enhancing Data Validation](database-first-development/enhancing-data-validation.md)
-    - [Publish to Azure](database-first-development/publish-to-azure.md)
 - [Lifecycle of an ASP.NET MVC 5 Application](lifecycle-of-an-aspnet-mvc-5-application.md)
 - [MVC Recommended Resources](recommended-resources-for-mvc.md)
 - [MVC recommended tutorials and articles](mvc-learning-sequence.md)
