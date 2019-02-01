@@ -12,6 +12,8 @@ namespace WebAPI
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                //.UseStartup<Startup>();
+                //.UseStartup<Startup2>();
+                .UseStartup<Startup3>();
     }
 }

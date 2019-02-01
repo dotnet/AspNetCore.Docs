@@ -31,10 +31,28 @@ These URLs have different origins than the previous two URLs:
 * `http://example.com/foo.html` &ndash; Different scheme
 * `https://example.com:9000/foo.html` &ndash; Different port
 
-> [!NOTE]
-> Internet Explorer doesn't consider the port when comparing origins.
+Internet Explorer doesn't consider the port when comparing origins.
 
-## CORS sample
+## Enable CORS with middleware
+
+CORS Middleware handles cross-origin requests. The following code enables CORS for the entire app with the specified origins:
+
+[!code-csharp[](cors/sample/Cors/WebAPI/Startup3.cs?name=snippet2&highlight=13-18)]
+
+In the preceding code, the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method enables cores. The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this topic. The policy allows cross-origin requests from the listed origins only.
+
+Note:
+
+* `UseCors` must be called before `UseMvc`.
+* The URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
+
+<!-- 
+CORS Middleware must precede any defined endpoints in your app where you want to support cross-origin requests (for example, before the call to `UseMvc` for MVC/Razor Pages Middleware).
+-->
+
+See [Test CORS](#test) for instructions on testing this app.
+
+### CORS with named policy
 
 The following code enables CORS for the entire app with the specified origins:
 
@@ -56,46 +74,19 @@ The sample code enables CORS middleware:
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet3&highlight=12)]
 
-The preceding highlighted code applies CORS policies to all the apps endpoints via [CORS Middleware](#enable-cors-with-cors-middleware). The section 
+The preceding highlighted code applies CORS policies to all the apps endpoints via [CORS Middleware](#enable-cors-with-cors-middleware).
 
-To apply the CORS policy to specific Razor Pages, Razor Pages action methods, controllers, or action methods, 
+See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
 
-## Enable CORS
-
-After registering CORS services, use either of the following approaches to enable CORS in an ASP.NET Core app:
-
-* [CORS Middleware](#enable-cors-with-cors-middleware) &ndash; Apply CORS policies globally to the app via middleware.
-* [CORS in MVC](#enable-cors-in-mvc) &ndash; Apply CORS policies per action or per controller. CORS Middleware isn't used.
-
-### Enable CORS with CORS Middleware
-
-CORS Middleware handles cross-origin requests to the app. To enable CORS Middleware in the request processing pipeline, call the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method in `Startup.Configure`.
-
-CORS Middleware must precede any defined endpoints in your app where you want to support cross-origin requests (for example, before the call to `UseMvc` for MVC/Razor Pages Middleware).
-
-A *cross-origin policy* can be specified when adding the CORS Middleware using the <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> class. There are two approaches for defining a CORS policy:
-
-* Call `UseCors` with a lambda:
-
-  [!code-csharp[](cors/sample/CorsExample1/Startup.cs?highlight=11,12&range=22-38)]
-
-  The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this topic. In the preceding example, the policy allows cross-origin requests from `https://example.com` and no other origins.
-
-  The URL must be specified without a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
-
-  `CorsPolicyBuilder` has a fluent API, so you can chain method calls:
-
-  [!code-csharp[](cors/sample/CorsExample3/Startup.cs?highlight=2-3&range=29-32)]
-
-* Define one or more named CORS policies and select the policy by name at runtime. The following example adds a user-defined CORS policy named *AllowSpecificOrigin*. To select the policy, pass the name to `UseCors`:
-
-  [!code-csharp[](cors/sample/CorsExample2/Startup.cs?name=snippet_begin&highlight=5-6,21)]
+<a name="ecors"></a>
 
 ## Enable CORS in Razor Pages, controllers, and action methods
 
-The `app.UseCors` in the following code enables the CORS middleware for the entire app:
+The following code enables CORS for the entire app with the specified origins:
 
-[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet3&highlight=12)]
+[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,39)]
+
+The preceding code sets the policy name to "_myAllowSpecificOrigins". The policy name is arbitrary.
 
 The [&lbrack;EnableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors("{Policy String}")]` attribute can be applied to a:
 
@@ -104,12 +95,12 @@ The [&lbrack;EnableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.EnableCorsAttrib
 * Controller
 * Controller action method
 
-You can apply different policies to controller/page model/action with the  `[EnableCors("{Policy String}")]` attribute. When the `[EnableCors("{Policy String}")]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, the attribute take precedence.
+You can apply different policies to controller/page model/action with the  `[EnableCors("{Policy String}")]` attribute. When the `[EnableCors("{Policy String}")]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, the attribute takes precedence.
 
 Policies have the following precedence:
 
-1. action method
-1. controller or `PageModel`
+1. Action method
+1. Controller or `PageModel`
 1. Middleware
 
 The following code applies `"AnotherPolicy"` to `ActionResult<string> Get(int id)` and `"MyPolicy"` to non-decorated methods in the controller:
@@ -381,6 +372,12 @@ Test message
 ```
 
 If the response doesn't include the `Access-Control-Allow-Origin` header, the cross-origin request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client app.
+
+<a name="test"></a>
+
+## Test CORS
+
+
 
 ## Additional resources
 
