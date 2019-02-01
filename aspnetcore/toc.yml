@@ -90,11 +90,12 @@
   items: 
     - name: Razor Pages
       items: 
-        - name: Overview
+        - name: Introduction
           uid: razor-pages/index
         - name: Tutorial
-          uid: tutorials/razor-pages/index
           items: 
+            - name: Overview          
+              uid: tutorials/razor-pages/index
             - name: Get started
               uid: tutorials/razor-pages/razor-pages-start
             - name: Add a model
