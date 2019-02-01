@@ -43,11 +43,11 @@
 #
 # image files are treated as binary by default.
 ###############################################################################
-*.[jJ][pP][gG]   binary
-*.[pP][nN][gG]   binary
-*.[gG][iI][fF]   binary
-*.[iI][cC][oO]   binary
-
+*.[jJ][pP][gG]       binary
+*.[jJ][pP][eE][gG]   binary
+*.[pP][nN][gG]       binary
+*.[gG][iI][fF]       binary
+*.[iI][cC][oO]       binary
 
 ###############################################################################
 # behavior for others files that should not
