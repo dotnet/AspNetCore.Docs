@@ -95,7 +95,7 @@ var connection = new HubConnectionBuilder()
 
 Windows Authentication is only supported by the browser client when using Microsoft Internet Explorer or Microsoft Edge.
 
-### Using Claims to Customize Identity Handling
+### Use claims to customize identity handling
 
 An app that authenticates users can derive SignalR user IDs from user claims. To specify how SignalR creates user IDs, implement `IUserIdProvider` and register the implementation.
 
