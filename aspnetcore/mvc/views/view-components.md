@@ -3,7 +3,7 @@ title: View components in ASP.NET Core
 author: rick-anderson
 description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 ms.author: riande
-ms.date: 12/03/2018
+ms.date: 1/30/2019
 uid: mvc/views/view-components
 ---
 # View components in ASP.NET Core
@@ -69,9 +69,11 @@ A view component defines its logic in an `InvokeAsync` method that returns a `Ta
 
 The runtime searches for the view in the following paths:
 
-* /Pages/Components/{View Component Name}/{View Name}
 * /Views/{Controller Name}/Components/{View Component Name}/{View Name}
 * /Views/Shared/Components/{View Component Name}/{View Name}
+* /Pages/Shared/Components/{View Component Name}/{View Name}
+
+The search path applies to projects using controllers + views and Razor Pages.
 
 The default view name for a view component is *Default*, which means your view file will typically be named *Default.cshtml*. You can specify a different view name when creating the view component result or when calling the `View` method.
 
