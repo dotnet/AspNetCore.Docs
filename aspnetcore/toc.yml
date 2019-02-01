@@ -444,8 +444,8 @@
           uid: razor-components/get-started
         - name: Build your first app
           uid: tutorials/first-blazor-app
-        - name: Create and use components
-          uid: razor-components/use-components
+        - name: Component model
+          uid: razor-components/component-model
         - name: Component libraries
           uid: razor-components/class-libraries
         - name: Layouts
