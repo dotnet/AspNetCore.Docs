@@ -11,7 +11,11 @@ uid: tutorials/razor-pages/razor-pages-start
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This is the first tutorial of a series. [The series](xref:tutorials/razor-pages/index) teaches the basics of building an ASP.NET Core Razor Pages web app. At the end of the series you'll have an app that manages a database of movies.  
+This is the first tutorial of a series. [The series](xref:tutorials/razor-pages/index) teaches the basics of building an ASP.NET Core Razor Pages web app.
+
+[!INCLUDE[](~/includes/advancedRP.md)]
+
+At the end of the series you'll have an app that manages a database of movies.  
 
 [!INCLUDE[View or download sample code](~/includes/rp/download.md)]
 
