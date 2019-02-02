@@ -91,14 +91,22 @@ The project is configured to start its own instance of the CRA development serve
 
 There's a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process. To do so:
 
-1. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:
+1. Add a *.env* file to the *ClientApp* subdirectory with the following setting:
+
+    ```
+    BROWSER=none
+    ```
+    
+    This will prevent your web browser from opening when starting the CRA server externally.
+
+2. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:
 
     ```console
     cd ClientApp
     npm start
     ```
 
-2. Modify your ASP.NET Core app to use the external CRA server instance instead of launching one of its own. In your *Startup* class, replace the `spa.UseReactDevelopmentServer` invocation with the following:
+3. Modify your ASP.NET Core app to use the external CRA server instance instead of launching one of its own. In your *Startup* class, replace the `spa.UseReactDevelopmentServer` invocation with the following:
 
     ```csharp
     spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");

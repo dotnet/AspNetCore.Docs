@@ -11,4 +11,8 @@
 //   appId: "",
 //   appSecret: "");
 
-app.UseGoogleAuthentication();
+app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+{
+    ClientId = "477522346600.apps.googleusercontent.com",
+    ClientSecret = "gobkdpbocikdfbnfahjladnetpdkvmic"
+});

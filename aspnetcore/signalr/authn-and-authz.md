@@ -3,9 +3,9 @@ title: Authentication and authorization in ASP.NET Core SignalR
 author: bradygaster
 description: Learn how to use authentication and authorization in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: anurse
+ms.author: bradyg
 ms.custom: mvc
-ms.date: 06/29/2018
+ms.date: 01/31/2019
 uid: signalr/authn-and-authz
 ---
 
@@ -63,22 +63,14 @@ If [Windows authentication](xref:security/authentication/windowsauth) is configu
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
 
-```csharp
-public class NameUserIdProvider : IUserIdProvider
-{
-    public string GetUserId(HubConnectionContext connection)
-    {
-        return connection.User?.FindFirst(ClaimTypes.Name)?.Value;
-    }
-}
-```
+[!code-csharp[Name based provider](authn-and-authz/sample/nameuseridprovider.cs?name=NameUserIdProvider)]
 
 Rather than `ClaimTypes.Name`, you can use any value from the `User` (such as the Windows SID identifier, etc.).
 
 > [!NOTE]
 > The value you choose must be unique among all the users in your system. Otherwise, a message intended for one user could end up going to a different user.
 
-Register this component in your `Startup.ConfigureServices` method **after** the call to `.AddSignalR`
+Register this component in your `Startup.ConfigureServices` method.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -102,6 +94,27 @@ var connection = new HubConnectionBuilder()
 ```
 
 Windows Authentication is only supported by the browser client when using Microsoft Internet Explorer or Microsoft Edge.
+
+### Use claims to customize identity handling
+
+An app that authenticates users can derive SignalR user IDs from user claims. To specify how SignalR creates user IDs, implement `IUserIdProvider` and register the implementation.
+
+The sample code demonstrates how you would use claims to select the user's email address as the identifying property. 
+
+> [!NOTE]
+> The value you choose must be unique among all the users in your system. Otherwise, a message intended for one user could end up going to a different user.
+
+[!code-csharp[Email provider](authn-and-authz/sample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
+
+The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.NET identity database.
+
+[!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/sample/pages/account/Register.cshtml.cs?name=AddEmailClaim)]
+
+Register this component in your `Startup.ConfigureServices`.
+
+```csharp
+services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
+```
 
 ## Authorize users to access hubs and hub methods
 

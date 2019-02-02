@@ -4,14 +4,12 @@ title: "OWIN OAuth 2.0 Authorization Server | Microsoft Docs"
 author: hongyes
 description: "This tutorial will guide you on how to implement an OAuth 2.0 Authorization Server using OWIN OAuth middleware. This is an advanced tutorial that only outlin..."
 ms.author: riande
-ms.date: 03/20/2014
+ms.date: 01/28/2019
 ms.assetid: 20acee16-c70c-41e9-b38f-92bfcf9a4c1c
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server
 msc.type: authoredcontent
 ---
-OWIN OAuth 2.0 Authorization Server
-====================
-by [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https://twitter.com/RickAndMSFT))
+# OWIN OAuth 2.0 Authorization Server
 
 > This tutorial will guide you on how to implement an OAuth 2.0 Authorization Server using OWIN OAuth middleware. This is an advanced tutorial that only outlines the steps to create an OWIN OAuth 2.0 Authorization Server. This is not a step by step tutorial. [Download the sample code](https://code.msdn.microsoft.com/OWIN-OAuth-20-Authorization-ba2b8783/file/114932/1/AuthorizationServer.zip).
 >
@@ -23,11 +21,11 @@ by [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://gith
 >
 > | **Shown in the tutorial** | **Also works with** |
 > | --- | --- |
-> | Windows 8.1 | Windows 8, Windows 7 |
-> | [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013) | [Visual Studio 2013 Express for Desktop](https://my.visualstudio.com/Downloads?q=visual%20studio%202013#d-2013-express). Visual Studio 2012 with the latest update should work, but the tutorial has not been tested with it, and some menu selections and dialog boxes are different. |
-> | .NET 4.5 |  |
+> | Windows 8.1 | Windows 10, Windows 8, Windows 7 |
+> | [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
+> | .NET 4.7.2 |  |
 >
-> ## Questions and Comments
+> ## Questions and comments
 >
 > If you have questions that are not directly related to the tutorial, you can post them at [Katana Project on GitHub](https://github.com/aspnet/AspNetKatana/). For questions and comments regarding the tutorial itself, see the comments section at the bottom of the page.
 
@@ -47,7 +45,7 @@ This tutorial will cover:
 <a id="prerequisites"></a>
 ## Prerequisites
 
-- [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/downloads#d-2013-editions) or the free [Visual Studio Express 2013](https://www.microsoft.com/visualstudio/eng/downloads#d-2013-express), as indicated in **Software Versions** at the top of the page.
+- [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) as indicated in **Software Versions** at the top of the page.
 - Familiarity with OWIN. See [Getting Started with the Katana Project](https://msdn.microsoft.com/magazine/dn451439.aspx) and [What's new in OWIN and Katana](index.md).
 - Familiarity with [OAuth](http://tools.ietf.org/html/rfc6749) terminology, including [Roles](http://tools.ietf.org/html/rfc6749#section-1.1), [Protocol Flow](http://tools.ietf.org/html/rfc6749#section-1.2), and [Authorization Grant](http://tools.ietf.org/html/rfc6749#section-1.3). [OAuth 2.0 introduction](http://tools.ietf.org/html/rfc6749#section-1) provides a good introduction.
 
