@@ -166,7 +166,7 @@
         - name: Unit test
           uid: mvc/controllers/testing
     - name: Razor Components
-      uid: razor-components/index
+      uid: razor-components/introduction
     - name: Session and app state
       uid: fundamentals/app-state
     - name: Tag Helpers
@@ -438,7 +438,7 @@
     - name: Razor Components
       items: 
         - name: Overview
-          uid: razor-components/index
+          uid: razor-components/introduction
         - name: FAQ
           uid: razor-components/faq
         - name: Get started
