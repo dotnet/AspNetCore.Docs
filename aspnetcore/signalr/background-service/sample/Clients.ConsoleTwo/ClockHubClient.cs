@@ -8,8 +8,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Clients.ConsoleTwo
 {
-    public class ClockHubClient : IClock, IHostedService
+    public partial class ClockHubClient : IClock, IHostedService
     {
+#region ClockHubClientCtor
         private readonly ILogger<ClockHubClient> _logger;
         private HubConnection _connection;
 
@@ -21,7 +22,8 @@ namespace Clients.ConsoleTwo
                 .WithUrl(Strings.HubUrl)
                 .Build();
 
-            _connection.On<DateTime>(Strings.Events.TimeSent, dateTime => _ = ShowTime(dateTime));
+            _connection.On<DateTime>(Strings.Events.TimeSent, 
+                dateTime => _ = ShowTime(dateTime));
         }
 
         public Task ShowTime(DateTime currentTime)
@@ -30,7 +32,9 @@ namespace Clients.ConsoleTwo
 
             return Task.CompletedTask;
         }
+#endregion
 
+#region StartAsync
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             while (true)
@@ -47,10 +51,12 @@ namespace Clients.ConsoleTwo
                 }
             }
         }
-
+#endregion
+#region StopAsync
         public Task StopAsync(CancellationToken cancellationToken)
         {
             return _connection.DisposeAsync();
         }
     }
+#endregion
 }
