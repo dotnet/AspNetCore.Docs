@@ -64,11 +64,11 @@ During initialization, the `ClockHubClient` creates an instance of a `HubConnect
 
 In the `IHostedService.StartAsync` implementation, the `HubConnection` is started asynchronously.
 
-[!code-csharp[The ClockHubClient constructor](background-service/sample/Clients.ConsoleTwo/ClockHubClient.cs?name=StartAsync)]
+[!code-csharp[StartAsync method](background-service/sample/Clients.ConsoleTwo/ClockHubClient.cs?name=StartAsync)]
 
 During the `IHostedService.StopAsync` method, the `HubConnection` is disposed of asynchronously.
 
-[!code-csharp[The ClockHubClient constructor](background-service/sample/Clients.ConsoleTwo/ClockHubClient.cs?name=StopAsync)]
+[!code-csharp[StopAsync method](background-service/sample/Clients.ConsoleTwo/ClockHubClient.cs?name=StopAsync)]
 
 ## Related resources
 
