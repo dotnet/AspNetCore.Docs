@@ -18,7 +18,7 @@ This article provides guidance for hosting SignalR Hubs using background worker 
 
 ## Wiring up SignalR during Startup
 
-Hosting ASP.NET Core SignalR Hubs in the context of a background worker process is identical to that of hosting a Hub in an ASP.NET Core web app. In the `ConfigureServices` method the `AddSignalR` method of a `Startup` class adds the required services to the ASP.NET Core DI layer to support SignalR. Then, in `Configure`, the `UseSignalR` method is called to wire up the Hub endpoint(s) in the ASP.NET Core request pipeline.
+Hosting ASP.NET Core SignalR Hubs in the context of a background worker process is identical to that of hosting a Hub in an ASP.NET Core web app. In the `ConfigureServices` method of a `Startup` class, calling `services.AddSignalR` adds the required services to the ASP.NET Core DI layer to support SignalR. Then, in `Configure`, the `UseSignalR` method is called to wire up the Hub endpoint(s) in the ASP.NET Core request pipeline.
 
 [!code-csharp[Startup](background-service/sample/Server/Startup.cs?name=Startup)]
 
