@@ -12,7 +12,7 @@ uid: signalr/background-services
 
 By [Brady Gaster](https://twitter.com/bradygaster)
 
-This article provides guidance for hosting SignalR Hubs using background worker process hosted with ASP.NET Core, and how to send messages to connected clients from within a .NET Core BackgroundService(/dotnet/api/microsoft.extensions.hosting.backgroundservice).
+This article provides guidance for hosting SignalR Hubs using background worker process hosted with ASP.NET Core, and how to send messages to connected clients from within a .NET Core [BackgroundService](/dotnet/api/microsoft.extensions.hosting.backgroundservice).
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/background-services/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
