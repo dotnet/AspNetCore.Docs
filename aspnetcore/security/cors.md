@@ -15,6 +15,9 @@ Browser security prevents a web page from making requests to a different domain 
 
 [Cross Origin Resource Sharing](https://www.w3.org/TR/cors/) (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques, such as [JSONP](https://wikipedia.org/wiki/JSONP). This topic shows how to enable CORS in an ASP.NET Core app.
 
+[View or download sample code]
+(https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
 ## Same origin
 
 Two URLs have the same origin if they have identical schemes, hosts, and ports ([RFC 6454](https://tools.ietf.org/html/rfc6454)).
@@ -112,8 +115,6 @@ Controllers/WidgetController.cs
 
 The [&lbrack;DisableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute disables CORS for the controller/page model/action.
 
-[!code-csharp[](cors/sample/CorsMVC/Controllers/ValuesController.cs?name=DisableOnAction&highlight=2)]
-
 <a name="cpo"></a>
 
 ## CORS policy options
@@ -146,6 +147,13 @@ For some options, it may be helpful to read the [How CORS works](#how-cors-works
   > Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration and can result in cross-site request forgery. For a secure app, specify an exact list of origins if the client must authorize itself to access server resources.
 
   ::: moniker-end
+
+<!-- REVIEW required
+I changed from
+This setting affects preflight requests and the ...
+to
+`AllowAnyOrigin` affects preflight requests and the
+-->
 
   `AllowAnyOrigin` affects preflight requests and the `Access-Control-Allow-Origin` header. For more information, see the [Preflight requests](#preflight-requests) section.
 
@@ -377,7 +385,23 @@ If the response doesn't include the `Access-Control-Allow-Origin` header, the cr
 
 ## Test CORS
 
+To test CORS:
 
+* [Create an API project](xref:tutorials/first-web-api). Alternatively, you can [download the sample]
+(https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors).
+* Enable CORS:
+
+  [!code-csharp[](cors/sample/Cors/WebAPI/Startup3.cs?name=snippet2&highlight=13-18)]
+* Create a web app project (Razor Pages or MVC). The sample uses Razor Pages. You can create the web app in the same solution as the API project.
+* Add the following highlighted code to the *Index.cshtml* file:
+
+  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index.cshtml?highlight=17-99)]
+
+* Deploy the API project. For example, [deploy to Azure](xref:host-and-deploy/azure-apps/index).
+* Run the Razor Pages or MVC app from the desktop and click on the **Test** button. Use the F12 tools to review error messages.
+* Remove the localhost origin from `WithOrigins`.
+* Deploy the app.
+* Test with the client app. Use the F12 tools to review the error.
 
 ## Additional resources
 
