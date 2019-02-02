@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about ASP.NET Core middleware and the request pipeline.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2018
+ms.date: 10/11/2018
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
