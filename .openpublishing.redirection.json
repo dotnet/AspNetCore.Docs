@@ -51,6 +51,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/tutorials/first-mvc-app-mac/start-mvc.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/index",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/index.md",
             "redirect_url": "/aspnet/core/tutorials/first-mvc-app/index",
             "redirect_document_id": false
@@ -698,6 +703,11 @@
         {
             "source_path": "aspnet/mvc/overview/getting-started/introduction/sample/code-location.md",
             "redirect_url": "/aspnet/mvc/overview/getting-started/introduction/index",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnet/mvc/overview/getting-started/database-first-development/publish-to-azure.md",
+            "redirect_url": "/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase",
             "redirect_document_id": false
         },
         {

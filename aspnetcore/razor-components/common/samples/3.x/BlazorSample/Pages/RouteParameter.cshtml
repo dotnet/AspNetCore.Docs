@@ -1,0 +1,34 @@
+@page "/RouteParameter"
+@page "/RouteParameter/{text}"
+
+<h1>Blazor is @Text!</h1>
+
+@functions {
+    [Parameter]
+    private string Text { get; set; } = "fantastic";
+}
+
+<h2>RouteParameter.cshtml</h2>
+
+<p>
+    Request this page with a route parameter, and the
+    parameter is included in the heading. The Blazor 
+    client-side router uses route parameters to populate 
+    the corresponding component parameters.
+</p>
+
+<pre><code>@@page "/RouteParameter"
+@@page "/RouteParameter/{Text}"
+
+&lt;h1&gt;Blazor is @@Text!&lt;/h1&gt;
+
+@@functions {
+    [Parameter]
+    private string Text { get; set; } = "fantastic";
+}</code></pre>
+<p>
+    Example:
+    <pre><code>/RouteParameter/amazing</code></pre>
+    Renders HTML:
+    <pre><code>&lt;h1&gt;Blazor is amazing!&lt;/h1&gt;</code></pre>
+</p>

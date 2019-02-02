@@ -4,14 +4,12 @@ title: "What not to do in ASP.NET, and what to do instead | Microsoft Docs"
 author: Rick-Anderson
 description: "This topic describes several common mistakes people make within ASP.NET web projects. It provides recommendations for what you should do to avoid these commo..."
 ms.author: riande
-ms.date: 05/08/2014
+ms.date: 01/28/2019
 ms.assetid: c39b9965-545c-4b04-8f55-21be7f28a9e5
 msc.legacyurl: /aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead
 msc.type: authoredcontent
 ---
-What not to do in ASP.NET, and what to do instead
-====================
-by [Tom FitzMacken](https://github.com/tfitzmac)
+# What not to do in ASP.NET, and what to do instead
 
 > This topic describes several common mistakes people make within ASP.NET web projects. It provides recommendations for what you should do to avoid these common mistakes. It is based on a [presentation](http://vimeo.com/68390507) by **Damian Edwards** at Norwegian Developers Conference.
 
@@ -55,7 +53,7 @@ This topic contains the following sections:
 
 <a id="adapters"></a>
 
-### Control Adapters
+### Control adapters
 
 Recommendation: Stop using control adapters for adaptive rendering, and instead use CSS media queries and standards-compliant HTML.
 
@@ -65,7 +63,7 @@ For more information, see [Media Queries](http://www.w3.org/TR/css3-mediaqueries
 
 <a id="styleprop"></a>
 
-### Style Properties on Controls
+### Style properties on controls
 
 Recommendation: Stop setting style values in the control markup, and instead set formatting values in CSS stylesheets.
 
@@ -81,7 +79,7 @@ The next example shows how to dynamically apply the CSS class.
 
 <a id="callback"></a>
 
-### Page and Control Callbacks
+### Page and control callbacks
 
 Recommendation: Stop using page and control callbacks, and instead use any of the following: AJAX, UpdatePanel, MVC action methods, Web API, or SignalR.
 
@@ -89,7 +87,7 @@ In earlier versions of ASP.NET, Page and Control callback methods enabled you to
 
 <a id="browsercap"></a>
 
-### Browser Capability Detection
+### Browser capability detection
 
 Recommendation: Stop using static browser capability detection, and instead use dynamic feature detection.
 
@@ -101,7 +99,7 @@ In earlier versions of ASP.NET, the supported features for each browser were sto
 
 <a id="validation"></a>
 
-### Request Validation
+### Request validation
 
 Recommendation: Validate user input, and encode output from users.
 
@@ -131,7 +129,7 @@ The next example shows how to HTML encode a value in code-behind.
 
 To safely encode a value for SQL commands, use command parameters such as the [SqlParameter](https://msdn.microsoft.com/library/system.data.sqlclient.sqlparameter.aspx). <a id="cookieless"></a>
 
-### Cookieless Forms Authentication and Session
+### Cookieless forms authentication and session
 
 Recommendation: Require cookies.
 
@@ -157,7 +155,7 @@ The following example shows how to set EnableViewStateMac to true. You do not ne
 
 <a id="medium"></a>
 
-### Medium Trust
+### Medium trust
 
 Recommendation: Do not depend on Medium Trust (or any other trust level) as a security boundary.
 
@@ -187,7 +185,7 @@ The following example shows how to pass an encoded URL as a query string paramet
 
 <a id="performance"></a>
 
-## Reliability and Performance
+## Reliability and performance
 
 <a id="presend"></a>
 
@@ -201,7 +199,7 @@ You can use the [PreSendRequestHeaders](https://msdn.microsoft.com/library/syste
 
 <a id="asyncevents"></a>
 
-### Asynchronous Page Events with Web Forms
+### Asynchronous page events with web forms
 
 Recommendation: In Web Forms, avoid writing async void methods for Page lifecycle events, and instead use [Page.RegisterAsyncTask](https://msdn.microsoft.com/library/system.web.ui.page.registerasynctask.aspx) for asynchronous code.
 
@@ -211,13 +209,13 @@ The following example shows a button click handler that contains asynchronous co
 
 [!code-csharp[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample11.cs)]
 
-If you are using asynchronous Tasks, set the Http runtime target framework to 4.5 in the Web.config file. Setting the target framework to 4.5 turns on the new synchronization context that was added in .NET 4.5. This value is set by default in new projects in Visual Studio 2012, but is not be set if you are working with an existing project.
+If you are using asynchronous Tasks, set the Http runtime target framework to 4.5 (or later) in the Web.config file. Setting the target framework to 4.5 turns on the new synchronization context that was added in .NET 4.5. This value is set by default in new projects in Visual Studio, but is not be set if you are working with an existing project.
 
 [!code-xml[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample12.xml)]
 
 <a id="fire"></a>
 
-### Fire-and-Forget Work
+### Fire-and-forget work
 
 Recommendation: When handling a request within ASP.NET, avoid launching fire-and-forget work (such calling the ThreadPool.QueueUserWorkItem method or creating a timer that repeatedly calls a delegate).
 
@@ -229,7 +227,7 @@ If you must perform this work within ASP.NET, you can add the Nuget package call
 
 <a id="requestentity"></a>
 
-### Request Entity Body
+### Request entity body
 
 Recommendation: Avoid reading Request.Form or Request.InputStream before the handler's execute event.
 
@@ -275,7 +273,7 @@ For more information, see [Introducing ASP.NET Universal Providers](http://www.h
 
 <a id="long"></a>
 
-### Long-running Requests (>110 seconds)
+### Long-running requests (>110 seconds)
 
 Recommendation: Use [WebSockets](https://msdn.microsoft.com/library/system.net.websockets.websocket.aspx) or [SignalR](../../../signalr/index.md) for connected clients, and use asynchronous I/O operations.
 

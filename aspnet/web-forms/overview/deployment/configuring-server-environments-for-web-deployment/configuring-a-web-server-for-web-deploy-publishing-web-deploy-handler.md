@@ -4,14 +4,12 @@ title: "Configuring a Web Server for Web Deploy Publishing (Web Deploy Handler) 
 author: jrjlee
 description: "This topic describes how to configure an Internet Information Services (IIS) web server to support web publishing and deployment using the IIS Web Deploy Han..."
 ms.author: riande
-ms.date: 05/04/2012
+ms.date: 01/29/2017
 ms.assetid: 90ebf911-1c46-4470-b876-1335bd0f590f
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler
 msc.type: authoredcontent
 ---
-Configuring a Web Server for Web Deploy Publishing (Web Deploy Handler)
-====================
-by [Jason Lee](https://github.com/jrjlee)
+# Configuring a Web Server for Web Deploy Publishing (Web Deploy Handler)
 
 [Download PDF](https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/63/56/8130.DeployingWebAppsInEnterpriseScenarios.pdf)
 
@@ -51,9 +49,9 @@ To host the ContactManager sample solution specifically, you'll also need to:
 - Install the .NET Framework 4.0.
 - Install ASP.NET MVC 3.
 
-This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you're starting with a clean server build running Windows Server 2008 R2. Before you continue, ensure that:
+This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you're starting with a clean server build running Windows Server 2016. Before you continue, ensure that:
 
-- Windows Server 2008 R2 Service Pack 1 and all available updates are installed.
+- Windows Server 2016
 - The server is domain-joined.
 - The server has a static IP address.
 
@@ -75,7 +73,7 @@ In this case, you need to install these things:
 - **ASP.NET MVC 3**. This installs the assemblies you need to run MVC 3 applications.
 
 > [!NOTE]
-> This walkthrough describes the use of the Web Platform Installer to install and configure various components. Although you don't have to use the Web Platform Installer, it simplifies the installation process by automatically detecting dependencies and ensuring that you always get the latest product versions. For more information, see [Microsoft Web Platform Installer 3.0](https://go.microsoft.com/?linkid=9805118).
+> This walkthrough describes the use of the Web Platform Installer to install and configure various components. Although you don't have to use the Web Platform Installer, it simplifies the installation process by automatically detecting dependencies and ensuring that you always get the latest product versions. For more information, see [Microsoft Web Platform Installer](https://go.microsoft.com/?linkid=9805118).
 
 
 **To install the required products and components**
@@ -85,7 +83,7 @@ In this case, you need to install these things:
 
     > [!NOTE]
     > You can now launch the Web Platform Installer at any time from the **Start** menu. To do this, on the **Start** menu, click **All Programs**, and then click **Microsoft Web Platform Installer**.
-3. At the top of the **Web Platform Installer 3.0** window, click **Products**.
+3. At the top of the **Web Platform Installer** window, click **Products**.
 4. On the left side of the window, in the navigation pane, click **Frameworks**.
 5. In the **Microsoft .NET Framework 4** row, if the .NET Framework is not already installed, click **Add**.
 
@@ -103,7 +101,7 @@ In this case, you need to install these things:
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image2.png)
 13. Review the license terms, and if you consent to the terms, click **I Accept**.
-14. When the installation is complete, click **Finish**, and then close the **Web Platform Installer 3.0** window.
+14. When the installation is complete, click **Finish**, and then close the **Web Platform Installer** window.
 
 If you installed the .NET Framework 4.0 before you installed IIS, you'll need to run the [ASP.NET IIS Registration Tool](https://msdn.microsoft.com/library/k6h9cz8h(v=VS.100).aspx) (aspnet\_regiis.exe) to register the latest version of ASP.NET with IIS. If you don't do this, you'll find that IIS will serve static content (like HTML files) without any problems, but it will return **HTTP Error 404.0 – Not Found** when you attempt to browse to ASP.NET content. You can use the next procedure to ensure that ASP.NET 4.0 is registered.
 
@@ -139,7 +137,7 @@ Now that you've installed everything you need, the next step is to configure the
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image3.png)
 3. In the center pane, under **IIS**, double-click **Authentication**.
 
-    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image4.png)
+    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image20.png)
 4. Right-click **Basic Authentication**, and then click **Enable**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image5.png)
@@ -201,7 +199,7 @@ Although there's nothing stopping you from deploying content to the default webs
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image11.png)
 
     > [!NOTE]
-    > In a production environment, you'll likely want to host your website on port 80 and configure a host header, together with matching DNS records. For more information on configuring host headers in IIS 7, see [Configure a Host Header for a Web Site (IIS 7)](https://technet.microsoft.com/library/cc753195(WS.10).aspx). For more information on the DNS Server role in Windows Server 2008 R2, see [DNS Server Overview](https://technet.microsoft.com/en-gb/library/cc770392.aspx) and [DNS Server](https://technet.microsoft.com/windowsserver/dd448607).
+    > In a production environment, you'll likely want to host your website on port 80 and configure a host header, together with matching DNS records. For more information on configuring host headers in IIS 7, see [Configure a Host Header for a Web Site (IIS 7)](https://technet.microsoft.com/library/cc753195(WS.10).aspx). For more information on the DNS Server role in Windows Server, see [DNS Server Overview](https://technet.microsoft.com/en-gb/library/cc770392.aspx) and [DNS Server](https://technet.microsoft.com/windowsserver/dd448607).
 9. In the **Actions** pane, under **Edit Site**, click **Bindings**.
 10. In the **Site Bindings** dialog box, click **Add**.
 
@@ -216,9 +214,9 @@ Although there's nothing stopping you from deploying content to the default webs
 13. In the **Site Bindings** dialog box, click **Close**.
 14. In the **Connections** pane, click **Application Pools**.
 15. In the **Application Pools** pane, right-click the name of your application pool, and then click **Basic Settings**. By default, the name of your application pool will match the name of your website (for example, **DemoSite**).
-16. In the **.NET Framework version** list, select **.NET Framework v4.0.30319**, and then click **OK**.
+16. In the **.NET CLR version** list, select **.NET CLR v4.0.30319**, and then click **OK**.
 
-    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image14.png)
+    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image21.png)
 
     > [!NOTE]
     > The sample solution requires .NET Framework 4.0. This is not a requirement for Web Deploy in general.

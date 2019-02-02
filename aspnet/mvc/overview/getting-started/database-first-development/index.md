@@ -20,4 +20,3 @@ Getting Started with Entity Framework 6 Database First Using MVC 5
 - [Changing the Database](changing-the-database.md)
 - [Customizing a View](customizing-a-view.md)
 - [Enhancing Data Validation](enhancing-data-validation.md)
-- [Publish to Azure](publish-to-azure.md)
