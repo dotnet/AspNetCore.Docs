@@ -70,7 +70,7 @@ To test the behavior of `@page "{id:int?}"`:
 * Set a break point in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
 * Navigate to `https://localhost:5001/Movies/Details/`.
 
-With the `@page "{id:int}"` directive, the break point is never hit. The routing engine return HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404).
+With the `@page "{id:int}"` directive, the break point is never hit. The routing engine returns HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404).
 
 Although not recommended, you could write the `OnGetAsync` method (in *Pages/Movies/Delete.cshtml.cs*) as:
 
