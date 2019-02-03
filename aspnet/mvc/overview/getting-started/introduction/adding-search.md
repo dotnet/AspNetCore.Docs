@@ -120,7 +120,7 @@ The following code shows how to check the `movieGenre` parameter. If it's not em
 
 [!code-csharp[Main](adding-search/samples/sample13.cs)]
 
-As stated previously, the query is not run on the data base until the movie list is iterated over (which happens in the View, after the `Index` action method returns).
+As stated previously, the query is not run on the database until the movie list is iterated over (which happens in the View, after the `Index` action method returns).
 
 ## Adding Markup to the Index View to Support Search by Genre
 
