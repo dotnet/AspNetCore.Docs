@@ -1,15 +1,16 @@
 using System;
 using HubServiceInterfaces;
 using Microsoft.AspNetCore.SignalR;
+using System.Threading.Tasks;
 
 namespace Server
 {
 #region ClockHub
     public class ClockHub : Hub<IClock>
     {
-        public void SendTimeToClients(DateTime dateTime)
+        public async Task SendTimeToClients(DateTime dateTime)
         {
-            Clients.All.ShowTime(dateTime);
+            await Clients.All.ShowTime(dateTime);
         }
     }
 #endregion
