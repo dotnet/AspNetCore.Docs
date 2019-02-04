@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebAPI
 {
-    public class Startup3
+    public class StartupTest
     {
-        public Startup3(IConfiguration configuration)
+        public StartupTest(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -35,9 +35,8 @@ namespace WebAPI
             // Shows UseCors with CorsPolicyBuilder.
             app.UseCors(builder =>
             {
-                builder.WithOrigins("http://example.com",
-                                    "http://www.contoso.com",
-                                    "https://localhost:5001");
+            builder.WithOrigins("http://example.com",
+                                "http://www.contoso.com");
             });
 
             app.UseHttpsRedirection();

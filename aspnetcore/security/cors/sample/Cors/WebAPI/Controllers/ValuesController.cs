@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
+    #region snippet
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -30,4 +31,5 @@ namespace WebAPI.Controllers
         }
        
     }
+    #endregion
 }

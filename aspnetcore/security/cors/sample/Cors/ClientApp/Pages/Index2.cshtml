@@ -1,0 +1,31 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cors Test</h1>
+</div>
+
+<div>
+    <input type="button" value="Test" onclick="requestVal()" />
+    <span id='result'> </span>
+</div>
+
+
+<script>
+
+    function requestVal() {
+        $.ajax({
+            url: 'https://<web app>.azurewebsites.net/api/values/1',
+            type: 'GET',
+            error: function () {
+                $('#result').text("See F12 Console for error");
+            }
+        }).done(function (result) {
+            $('#result').text(result);
+        });
+    }
+
+</script>

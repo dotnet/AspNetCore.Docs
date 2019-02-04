@@ -6,36 +6,21 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebAPI
 {
-    #region snippet
-    public class Startup
+    public class Startup3
     {
-        public Startup(IConfiguration configuration)
+        public Startup3(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
         public IConfiguration Configuration { get; }
 
-        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                builder =>
-                {
-                    builder.WithOrigins("http://example.com",
-                                        "http://www.contoso.com");
-                });
-            });
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-        #endregion
 
-        #region snippet3
+        #region snippet2
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,13 +32,18 @@ namespace WebAPI
                 app.UseHsts();
             }
 
-            app.UseCors(MyAllowSpecificOrigins);
+            // Shows UseCors with CorsPolicyBuilder.
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://example.com",
+                                    "http://www.contoso.com",
+                                    "https://localhost:5001");
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
         }
         #endregion
     }
-    #endregion
 
 }

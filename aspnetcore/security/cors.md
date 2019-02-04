@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/27/2018
+ms.date: 2/8/2019
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -40,7 +40,7 @@ Internet Explorer doesn't consider the port when comparing origins.
 
 CORS Middleware handles cross-origin requests. The following code enables CORS for the entire app with the specified origins:
 
-[!code-csharp[](cors/sample/Cors/WebAPI/Startup3.cs?name=snippet2&highlight=13-18)]
+[!code-csharp[](cors/sample/Cors/WebAPI/Startup3.cs?name=snippet2&highlight=13-17)]
 
 In the preceding code, the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method enables cores. The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this topic. The policy allows cross-origin requests from the listed origins only.
 
@@ -53,7 +53,7 @@ Note:
 CORS Middleware must precede any defined endpoints in your app where you want to support cross-origin requests (for example, before the call to `UseMvc` for MVC/Razor Pages Middleware).
 -->
 
-See [Test CORS](#test) for instructions on testing this app.
+See [Test CORS](#test) for instructions on testing the preceding code.
 
 ### CORS with named policy
 
@@ -80,6 +80,8 @@ The sample code enables CORS middleware:
 The preceding highlighted code applies CORS policies to all the apps endpoints via [CORS Middleware](#enable-cors-with-cors-middleware).
 
 See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
+
+See [Test CORS](#test) for instructions on testing the preceding code.
 
 <a name="ecors"></a>
 
@@ -387,21 +389,34 @@ If the response doesn't include the `Access-Control-Allow-Origin` header, the cr
 
 To test CORS:
 
-* [Create an API project](xref:tutorials/first-web-api). Alternatively, you can [download the sample]
-(https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors).
-* Enable CORS:
+* [Create an API project](xref:tutorials/first-web-api). Alternatively, you can [download the sample](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors).
+* Enable CORS using one of the approaches in this document. For example:
 
-  [!code-csharp[](cors/sample/Cors/WebAPI/Startup3.cs?name=snippet2&highlight=13-18)]
+  [!code-csharp[](cors/sample/Cors/WebAPI/StartupTest.cs?name=snippet2&highlight=13-18)]
+  
+  > [!WARNING]
+  > `WithOrigins("https://localhost:5001");` should only be used for testing a sample app similar to the [download sample code]
+(https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors).
+
 * Create a web app project (Razor Pages or MVC). The sample uses Razor Pages. You can create the web app in the same solution as the API project.
 * Add the following highlighted code to the *Index.cshtml* file:
 
-  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index.cshtml?highlight=17-99)]
+  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index.cshtml?highlight=11-99)]
+
+* In the preceding code, replace `url: 'https://<web app>.azurewebsites.net/api/values/1',` with the URL to the deployed app.
 
 * Deploy the API project. For example, [deploy to Azure](xref:host-and-deploy/azure-apps/index).
 * Run the Razor Pages or MVC app from the desktop and click on the **Test** button. Use the F12 tools to review error messages.
-* Remove the localhost origin from `WithOrigins`.
-* Deploy the app.
-* Test with the client app. Use the F12 tools to review the error.
+* Remove the localhost origin from `WithOrigins` and deploy the app. Alternatively, run the client app with a different port. For example, run from Visual Studio.
+* Test with the client app. Use the F12 tools to review the error. Depending on the browser, you get an error (in the console) similar to the following:
+
+  * Using Edge:
+
+   **SEC7120: [CORS] The origin 'https://localhost:44375' did not find 'https://localhost:44375' in the Access-Control-Allow-Origin response header for cross-origin  resource at 'https://webapi.azurewebsites.net/api/values/1'.**
+   
+  * Using Chrome:
+
+    **Access to XMLHttpRequest at 'https://webapi.azurewebsites.net/api/values/1' from origin 'https://localhost:44375' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.**
 
 ## Additional resources
 

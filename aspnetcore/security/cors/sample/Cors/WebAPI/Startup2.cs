@@ -26,8 +26,7 @@ namespace WebAPI
                 builder =>
                 {
                     builder.WithOrigins("http://example.com",
-                                        "http://www.contoso.com",
-                                        "https://localhost:5001")
+                                        "http://www.contoso.com")
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
                 });
