@@ -110,7 +110,6 @@ Policies have the following precedence:
 
 The following code applies `"AnotherPolicy"` to `ActionResult<string> Get(int id)` and `"MyPolicy"` to non-decorated methods in the controller:
 
-Controllers/WidgetController.cs
 [!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet&highlight=1,15)]
 
 ### Disable CORS
@@ -395,8 +394,7 @@ To test CORS:
   [!code-csharp[](cors/sample/Cors/WebAPI/StartupTest.cs?name=snippet2&highlight=13-18)]
   
   > [!WARNING]
-  > `WithOrigins("https://localhost:5001");` should only be used for testing a sample app similar to the [download sample code]
-(https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors).
+  > `WithOrigins("https://localhost:5001");` should only be used for testing a sample app similar to the [download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors).
 
 * Create a web app project (Razor Pages or MVC). The sample uses Razor Pages. You can create the web app in the same solution as the API project.
 * Add the following highlighted code to the *Index.cshtml* file:
@@ -408,7 +406,7 @@ To test CORS:
 * Deploy the API project. For example, [deploy to Azure](xref:host-and-deploy/azure-apps/index).
 * Run the Razor Pages or MVC app from the desktop and click on the **Test** button. Use the F12 tools to review error messages.
 * Remove the localhost origin from `WithOrigins` and deploy the app. Alternatively, run the client app with a different port. For example, run from Visual Studio.
-* Test with the client app. Use the F12 tools to review the error. Depending on the browser, you get an error (in the console) similar to the following:
+* Test with the client app. Use the F12 tools to review the error. Depending on the browser, you get an error (in the F12 tools console) similar to the following:
 
   * Using Edge:
 
