@@ -223,7 +223,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
    > [!NOTE]
    > You can use the following markup with a closing tag and remove the line with `TagMode.StartTagAndEndTag` in the tag helper:
    >
-   > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutNotSelfClosing.cshtml?range=13-18)]
+   > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutNotSelfClosing.cshtml?range=20-21)]
 
 ## Condition Tag Helper
 
