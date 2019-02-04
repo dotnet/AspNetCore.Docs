@@ -26,21 +26,7 @@ Send a message to a specific user by passing the user identifier to the `User` f
 > [!NOTE]
 > The user identifier is case-sensitive.
 
-```csharp
-public Task SendPrivateMessage(string user, string message)
-{
-    return Clients.User(user).SendAsync("ReceiveMessage", message);
-}
-```
-
-The user identifier can be customized by creating an `IUserIdProvider`, and registering it in `ConfigureServices`.
-
-[!code-csharp[UserIdProvider](groups/sample/customuseridprovider.cs?range=4-10)]
-
-[!code-csharp[Configure service](groups/sample/startup.cs?range=21-22,39-42)]
-
-> [!NOTE]
-> AddSignalR must be called before registering your custom SignalR services.
+[!code-csharp[Configure service](groups/sample/hubs/chathub.cs?range=29-32)]
 
 ## Groups in SignalR
 

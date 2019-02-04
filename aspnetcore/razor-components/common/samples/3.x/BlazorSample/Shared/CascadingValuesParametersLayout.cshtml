@@ -1,0 +1,21 @@
+﻿@inherits BlazorLayoutComponent
+@using BlazorSample.UIThemeClasses
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <NavMenu />
+        </div>
+        <div class="col-sm-9">
+            <CascadingValue Value="@theme">
+                <div class="content px-4">
+                    @Body
+                </div>
+            </CascadingValue>
+        </div>
+    </div>
+</div>
+
+@functions {
+    ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
+}

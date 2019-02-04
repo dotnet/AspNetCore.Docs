@@ -97,6 +97,12 @@ namespace SignalRAuthenticationSample
             // If the Name claim isn't unique, users could receive messages 
             // intended for a different user!
             services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
+
+            // Change to use email as the user identifier for SignalR
+            // services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
+
+            // WARNING: use *either* the NameUserIdProvider *or* the 
+            // EmailBasedUserIdProvider, but do not use both. 
         }
         #endregion
 

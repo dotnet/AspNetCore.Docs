@@ -90,11 +90,12 @@
   items: 
     - name: Razor Pages
       items: 
-        - name: Overview
+        - name: Introduction
           uid: razor-pages/index
         - name: Tutorial
-          uid: tutorials/razor-pages/index
           items: 
+            - name: Overview          
+              uid: tutorials/razor-pages/index
             - name: Get started
               uid: tutorials/razor-pages/razor-pages-start
             - name: Add a model
@@ -164,6 +165,8 @@
           uid: mvc/views/dependency-injection
         - name: Unit test
           uid: mvc/controllers/testing
+    - name: Razor Components
+      uid: razor-components/index
     - name: Session and app state
       uid: fundamentals/app-state
     - name: Tag Helpers
@@ -432,6 +435,38 @@
       uid: client-side/bundling-and-minification
     - name: Browser Link
       uid: client-side/using-browserlink
+    - name: Razor Components
+      items: 
+        - name: Overview
+          uid: razor-components/index
+        - name: FAQ
+          uid: razor-components/faq
+        - name: Get started
+          uid: razor-components/get-started
+        - name: Build your first app
+          uid: tutorials/first-blazor-app
+        - name: Components
+          uid: razor-components/components
+        - name: Component libraries
+          uid: razor-components/class-libraries
+        - name: Layouts
+          uid: razor-components/layouts
+        - name: Dependency injection
+          uid: razor-components/dependency-injection
+        - name: Routing
+          uid: razor-components/routing
+        - name: JavaScript interop
+          uid: razor-components/javascript-interop
+        - name: Debug
+          uid: razor-components/debug
+        - name: Hosting models
+          uid: razor-components/hosting-models
+        - name: Host and deploy
+          items:
+            - name: Overview
+              uid: host-and-deploy/razor-components/index
+            - name: Configure the Linker
+              uid: host-and-deploy/razor-components/configure-linker
     - name: Single Page Apps
       items: 
         - name: Overview
@@ -454,6 +489,8 @@
           uid: host-and-deploy/azure-apps/index
         - name: Publish with Visual Studio
           uid: tutorials/publish-to-azure-webapp-using-vs
+        - name: Publish with Visual Studio for Mac
+          href: /visualstudio/mac/publish-app-svc
         - name: Publish with CLI tools
           href: /azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
         - name: Publish with Visual Studio and Git
@@ -522,10 +559,18 @@
       uid: host-and-deploy/web-farm
     - name: Visual Studio publish profiles
       uid: host-and-deploy/visual-studio-publish-profiles
+    - name: Visual Studio for Mac publish to folder
+      href: /visualstudio/mac/publish-folder
     - name: Directory structure
       uid: host-and-deploy/directory-structure
     - name: Health checks
       uid: host-and-deploy/health-checks
+    - name: Razor Components
+      items:
+        - name: Overview
+          uid: host-and-deploy/razor-components/index
+        - name: Configure the Linker
+          uid: host-and-deploy/razor-components/configure-linker
 - name: Security and Identity
   items: 
     - name: Overview

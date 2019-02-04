@@ -171,4 +171,4 @@ The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movi
 
 > [!div class="step-by-step"]
 > [Previous: Adding a model](xref:tutorials/razor-pages/model)
-> [Next: Data Base](xref:tutorials/razor-pages/sql)
+> [Next: Database](xref:tutorials/razor-pages/sql)
