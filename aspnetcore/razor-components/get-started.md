@@ -30,7 +30,7 @@ To create your first Razor Components project in Visual Studio:
 
 1. Press **F5** to run the app.
 
-Congrats! You just ran your first Razor Components app!
+Congratulations! You just ran your first Razor Components app!
 
 <!--
 
@@ -84,7 +84,7 @@ To create your first project Razor Components project in Visual Studio for Mac:
 1. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
 1. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
 
-Congrats! You just ran your first Razor Components app!
+Congratulations! You just ran your first Razor Components app!
 -->
 
 # [.NET Core CLI](#tab/netcore-cli/)
@@ -101,7 +101,7 @@ cd WebApplication1
 dotnet run
 ```
 
-Congrats! You just ran your first Razor Components app!
+Congratulations! You just ran your first Razor Components app!
 
 ---
 
