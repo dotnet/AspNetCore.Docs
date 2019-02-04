@@ -18,7 +18,7 @@ namespace Clients.ConsoleOne
                 Console.WriteLine(dateTime.ToString());
             });
 
-            // loop is here just to keep the worker running
+            // Loop is here to wait until the server is running
             while (true)
             {
                 try

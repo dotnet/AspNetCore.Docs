@@ -37,7 +37,7 @@ namespace Clients.ConsoleTwo
 #region StartAsync
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            // loop is here to keep the worker running
+            // Loop is here to wait until the server is running
             while (true)
             {
                 try
