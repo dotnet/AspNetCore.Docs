@@ -311,7 +311,7 @@
           href: /azure/azure-signalr/signalr-overview
         - name: Redis backplane
           uid: signalr/redis-backplane
-        - name: SignalR with Background Services
+        - name: SignalR with background services
           uid: signalr/background-services
     - name: Configuration
       uid: signalr/configuration
