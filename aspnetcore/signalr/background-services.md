@@ -30,7 +30,7 @@ In the preceding example, the `ClockHub` class implements the `Hub<T>` class to 
 For more information on strongly typed Hubs, see [Use hubs in SignalR for ASP.NET Core](xref:signalr/hubs#strongly-typed-hubs).
 
 > [!NOTE]
-> This functionality is not limited to the [Hub<T>](/dotnet/api/microsoft.aspnetcore.signalr.hub-1) class. Any class that inherits from [Hub](/dotnet/api/microsoft.aspnetcore.signalr.hub), such such as [DynamicHub](/dotnet/api/microsoft.aspnetcore.signalr.dynamichub), will also work.
+> This functionality is not limited to the [Hub\<T>](/dotnet/api/microsoft.aspnetcore.signalr.hub-1) class. Any class that inherits from [Hub](/dotnet/api/microsoft.aspnetcore.signalr.hub), such such as [DynamicHub](/dotnet/api/microsoft.aspnetcore.signalr.dynamichub), will also work.
 
 [!code-csharp[Startup](background-service/sample/Server/ClockHub.cs?name=ClockHub)]
 
