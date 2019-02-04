@@ -28,9 +28,11 @@ To create your first Razor Components project in Visual Studio:
 
    ![New app dialog](https://msdnshared.blob.core.windows.net/media/2019/01/razor-components-template.png)
 
-1. Press **Ctrl-F5** to run the app *without the debugger*. Running with the debugger (**F5**) isn't supported at this time.
+1. Press **F5** to run the app.
 
 Congrats! You just ran your first Razor Components app!
+
+<!--
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -66,11 +68,11 @@ Congrats! You just ran your first Razor Components app!
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-.NET Core 3.0 Preview 2 isn't available on macOS at this time. .NET Core 3.0 will be supported with Visual Studio for Mac version 8.0 or later.
+.NET Core 3.0 will be supported with Visual Studio for Mac version 8.0 or later. Visual Studio for Mac version 8.0 Preview isn't available at this time.
 
-Use the [Visual Studio version of this topic](xref:razor-components/get-started?tabs=visual-studio-code) on macOS.
+Use the [.NET Core CLI version of this topic](xref:razor-components/get-started?tabs=netcore-cli) on macOS.
 
-<!--
+
 [!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
 
 To create your first project Razor Components project in Visual Studio for Mac:
@@ -159,13 +161,6 @@ Specify an `IncrementAmount` parameter in the Home component's `<Counter>` eleme
 [!code-cshtml[](get-started/samples_snapshot/3.x/Index2.cshtml)]
 
 Run the app. The homepage has its own counter that increments by ten each time the **Click me** button is selected.
-
-## Support & feedback
-
-Your feedback on Razor Components is important to us. If you run into issues or have questions while working with Razor Components, please let us know.
-
-* [File issues on GitHub](https://github.com/aspnet/AspNetCore/issues) for any problems you run into or to make suggestions for improvement.
-* Chat with us and the Razor Components community on [Gitter](https://gitter.im/aspnet/blazor).
 
 ## Next steps
 
