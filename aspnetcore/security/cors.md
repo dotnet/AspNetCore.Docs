@@ -59,7 +59,7 @@ See [Test CORS](#test) for instructions on testing the preceding code.
 
 The following code enables CORS for the entire app with the specified origins:
 
-[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,39)]
+[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,38)]
 
 The preceding code sets the policy name to "_myAllowSpecificOrigins". The policy name is arbitrary.
 
@@ -89,7 +89,7 @@ See [Test CORS](#test) for instructions on testing the preceding code.
 
 The following code enables CORS for the entire app with the specified origins:
 
-[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,39)]
+[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,38)]
 
 The preceding code sets the policy name to "_myAllowSpecificOrigins". The policy name is arbitrary.
 
