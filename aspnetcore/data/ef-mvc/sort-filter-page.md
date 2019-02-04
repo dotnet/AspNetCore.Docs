@@ -1,21 +1,14 @@
 ---
-title: ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10
+title: "Tutorial: Add sorting, filtering, and paging with EF Core in an ASP.NET Core MVC app"
+description: "In this tutorial you'll add sorting, filtering, and paging functionality to the Students Index page. You'll also create a page that does simple grouping."
 author: rick-anderson
-description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.date: 02/04/2019
+ms.topic: tutorial
 uid: data/ef-mvc/sort-filter-page
 ---
 
-# ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+# Tutorial: Add sorting, filtering, and paging with EF Core in an ASP.NET Core MVC app
 
 In the previous tutorial, you implemented a set of web pages for basic CRUD operations for Student entities. In this tutorial you'll add sorting, filtering, and paging functionality to the Students Index page. You'll also create a page that does simple grouping.
 
@@ -23,7 +16,21 @@ The following illustration shows what the page will look like when you're done. 
 
 ![Students index page](sort-filter-page/_static/paging.png)
 
-## Add Column Sort Links to the Students Index Page
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Add column sort links
+> * Add a Search box
+> * Add paging to Students Index
+> * Add paging to Index method
+> * Add paging links
+> * Create an About page
+
+## Prerequisites
+
+* [Implement CRUD Functionality with EF Core in an ASP.NET Core MVC web app](crud.md)
+
+## Add column sort links
 
 To add sorting to the Student Index page, you'll change the `Index` method of the Students controller and add code to the Student Index view.
 
@@ -66,7 +73,7 @@ Run the app, select the **Students** tab, and click the **Last Name** and **Enro
 
 ![Students index page in name order](sort-filter-page/_static/name-order.png)
 
-## Add a Search Box to the Students Index page
+## Add a Search box
 
 To add filtering to the Students Index page, you'll add a text box and a submit button to the view and make corresponding changes in the `Index` method. The text box will let you enter a string to search for in the first name and last name fields.
 
@@ -105,7 +112,7 @@ If you bookmark this page, you'll get the filtered list when you use the bookmar
 
 At this stage, if you click a column heading sort link you'll lose the filter value that you entered in the **Search** box. You'll fix that in the next section.
 
-## Add paging functionality to the Students Index page
+## Add paging to Students Index
 
 To add paging to the Students Index page, you'll create a `PaginatedList` class that uses `Skip` and `Take` statements to filter data on the server instead of always retrieving all rows of the table. Then you'll make additional changes in the `Index` method and add paging buttons to the `Index` view. The following illustration shows the paging buttons.
 
@@ -119,7 +126,7 @@ The `CreateAsync` method in this code takes page size and page number and applie
 
 A `CreateAsync` method is used instead of a constructor to create the `PaginatedList<T>` object because constructors can't run asynchronous code.
 
-## Add paging functionality to the Index method
+## Add paging to Index method
 
 In *StudentsController.cs*, replace the `Index` method with the following code.
 
@@ -162,7 +169,7 @@ return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pa
 
 The `PaginatedList.CreateAsync` method takes a page number. The two question marks represent the null-coalescing operator. The null-coalescing operator defines a default value for a nullable type; the expression `(page ?? 1)` means return the value of `page` if it has a value, or return 1 if `page` is null.
 
-## Add paging links to the Student Index view
+## Add paging links
 
 In *Views/Students/Index.cshtml*, replace the existing code with the following code. The changes are highlighted.
 
@@ -194,7 +201,7 @@ Run the app and go to the Students page.
 
 Click the paging links in different sort orders to make sure paging works. Then enter a search string and try paging again to verify that paging also works correctly with sorting and filtering.
 
-## Create an About page that shows Student statistics
+## Create an About page
 
 For the Contoso University website's **About** page, you'll display how many students have enrolled for each enrollment date. This requires grouping and simple calculations on the groups. To accomplish this, you'll do the following:
 
@@ -238,14 +245,22 @@ Replace the code in the *Views/Home/About.cshtml* file with the following code:
 
 Run the app and go to the About page. The count of students for each enrollment date is displayed in a table.
 
-![About page](sort-filter-page/_static/about.png)
+## Get the code
 
-## Summary
+[Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-In this tutorial, you've seen how to perform sorting, filtering, paging, and grouping. In the next tutorial, you'll learn how to handle data model changes by using migrations.
+## Next steps
 
-::: moniker-end
+In this tutorial, you:
 
-> [!div class="step-by-step"]
-> [Previous](crud.md)
-> [Next](migrations.md)
+> [!div class="checklist"]
+> * Added column sort links
+> * Added a Search box
+> * Added paging to Students Index
+> * Added paging to Index method
+> * Added paging links
+> * Created an About page
+
+Advance to the next article to learn how to handle data model changes by using migrations.
+> [!div class="nextstepaction"]
+> [Handle data model changes](migrations.md)
