@@ -743,7 +743,7 @@
       uid: security/enforcing-ssl
     - name: EU General Data Protection Regulation (GDPR) support
       uid: security/gdpr
-    - name: Azure Key Vault configuration provider
+    - name: Azure Key Vault Configuration Provider
       uid: security/key-vault-configuration
     - name: Anti-request forgery
       uid: security/anti-request-forgery
