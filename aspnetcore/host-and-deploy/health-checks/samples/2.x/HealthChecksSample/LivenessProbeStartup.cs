@@ -45,7 +45,7 @@ namespace SampleApp
 
             services.Configure<HealthCheckPublisherOptions>(options =>
             {
-                options.Period = TimeSpan.FromSeconds(2);
+                options.Delay = TimeSpan.FromSeconds(2);
                 options.Predicate = (check) => check.Tags.Contains("ready");
             });
 
