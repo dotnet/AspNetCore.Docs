@@ -105,9 +105,7 @@ The `migrations add` command warns that data loss may occur, because the change 
 
 The timestamp prefixed to the migrations file name is used by Entity Framework to order the migrations. You can create multiple migrations before running the update-database command, and then all of the migrations are applied in the order in which they were created.
 
-Run the app, select the **Students** tab, click **Create New**, and enter either name longer than 50 characters. When you click **Create**, client side validation shows an error message.
-
-![Students index page showing string length errors](complex-data-model/_static/string-length-errors.png)
+Run the app, select the **Students** tab, click **Create New**, and try to enter either name longer than 50 characters. The application should prevent you from doing this. 
 
 ### The Column attribute
 

@@ -88,7 +88,7 @@ When the **Update** button is clicked, the HttpPost method is called, and multip
 
 In **Solution Explorer**, right-click the *Views/Courses* folder, and then click **Add > New Item**.
 
-In the **Add New Item** dialog, click **ASP.NET** under **Installed** in the left pane, click **MVC View Page**, and name the new view *UpdateCourseCredits.cshtml*.
+In the **Add New Item** dialog, click **ASP.NET Core** under **Installed** in the left pane, click **Razor View**, and name the new view *UpdateCourseCredits.cshtml*.
 
 In *Views/Courses/UpdateCourseCredits.cshtml*, replace the template code with the following code:
 
