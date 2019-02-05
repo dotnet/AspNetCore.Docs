@@ -1,22 +1,15 @@
 ---
-title: ASP.NET Core MVC with EF Core - Concurrency - 8 of 10
+title: "Tutorial: Handle concurrency with EF Core in an ASP.NET Core MVC web app"
+description: "This tutorial shows how to handle conflicts when multiple users update the same entity at the same time."
 author: rick-anderson
-description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/05/2019
+ms.topic: tutorial
 uid: data/ef-mvc/concurrency
 ---
 
-# ASP.NET Core MVC with EF Core - Concurrency - 8 of 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+# Tutorial: Handle concurrency with EF Core in an ASP.NET Core MVC web app
 
 In earlier tutorials, you learned how to update data. This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 
@@ -25,6 +18,23 @@ You'll create web pages that work with the Department entity and handle concurre
 ![Department Edit page](concurrency/_static/edit-error.png)
 
 ![Department Delete page](concurrency/_static/delete-error.png)
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learn about concurrency conflicts
+> * Add a tracking property
+> * Create Departments controller and views
+> * Update Index view
+> * Update Edit methods
+> * Update Edit view
+> * Test concurrency conflicts
+> * Update the Delete page
+> * Update Details and Create views
+
+## Prerequisites
+
+* [Update related data with EF Core in an ASP.NET Core MVC web app](update-related-data.md)
 
 ## Concurrency conflicts
 
@@ -82,7 +92,7 @@ You can resolve conflicts by handling `DbConcurrencyException` exceptions that t
 
 In the remainder of this tutorial you'll add a `rowversion` tracking property to the Department entity, create a controller and views, and test to verify that everything works correctly.
 
-## Add a tracking property to the Department entity
+## Add a tracking property
 
 In *Models/Department.cs*, add a tracking property named RowVersion:
 
@@ -109,7 +119,7 @@ dotnet ef migrations add RowVersion
 dotnet ef database update
 ```
 
-## Create a Departments controller and views
+## Create Departments controller and views
 
 Scaffold a Departments controller and views as you did earlier for Students, Courses, and Instructors.
 
@@ -119,7 +129,7 @@ In the *DepartmentsController.cs* file, change all four occurrences of "FirstMid
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_Dropdown)]
 
-## Update the Departments Index view
+## Update Index view
 
 The scaffolding engine created a RowVersion column in the Index view, but that field shouldn't be displayed.
 
@@ -129,7 +139,7 @@ Replace the code in *Views/Departments/Index.cshtml* with the following code.
 
 This changes the heading to "Departments", deletes the RowVersion column, and shows full name instead of first name for the administrator.
 
-## Update the Edit methods in the Departments controller
+## Update Edit methods
 
 In both the HttpGet `Edit` method and the `Details` method, add `AsNoTracking`. In the HttpGet `Edit` method, add eager loading for the Administrator.
 
@@ -167,7 +177,7 @@ Finally, the code sets the `RowVersion` value of the `departmentToUpdate` to the
 
 The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value. In the view, the `ModelState` value for a field takes precedence over the model property values when both are present.
 
-## Update the Department Edit view
+## Update Edit view
 
 In *Views/Departments/Edit.cshtml*, make the following changes:
 
@@ -177,7 +187,7 @@ In *Views/Departments/Edit.cshtml*, make the following changes:
 
 [!code-html[](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
 
-## Test concurrency conflicts in the Edit page
+## Test concurrency conflicts
 
 Run the app and go to the Departments Index page. Right-click the **Edit** hyperlink for the English department and select **Open in new tab**, then click the **Edit** hyperlink for the English department. The two browser tabs now display the same information.
 
@@ -271,12 +281,29 @@ Replace the code in *Views/Departments/Create.cshtml* to add a Select option to 
 
 [!code-html[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 
-## Summary
+## Get the code
 
-This completes the introduction to handling concurrency conflicts. For more information about how to handle concurrency in EF Core, see [Concurrency conflicts](/ef/core/saving/concurrency). The next tutorial shows how to implement table-per-hierarchy inheritance for the Instructor and Student entities.
+[Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## Additional resources
 
-> [!div class="step-by-step"]
-> [Previous](update-related-data.md)
-> [Next](inheritance.md)
+ For more information about how to handle concurrency in EF Core, see [Concurrency conflicts](/ef/core/saving/concurrency).
+
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learned about concurrency conflicts
+> * Added a tracking property
+> * Created Departments controller and views
+> * Updated Index view
+> * Updated Edit methods
+> * Updated Edit view
+> * Tested concurrency conflicts
+> * Updated the Delete page
+> * Updated Details and Create views
+
+Advance to the next article to learn how to implement table-per-hierarchy inheritance for the Instructor and Student entities.
+> [!div class="nextstepaction"]
+> [Implement table-per-hierarchy inheritance](inheritance.md)

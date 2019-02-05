@@ -1,22 +1,15 @@
 ---
-title: ASP.NET Core MVC with EF Core - Data Model - 5 of 10
+title: "Tutorial: Create a more complex data model with EF Core for an ASP.NET Core MVC web app"
+description: "In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules."
 author: rick-anderson
-description: In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/05/2019
+ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
 ---
 
-# ASP.NET Core MVC with EF Core - Data Model - 5 of 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+# Tutorial: Create a more complex data model with EF Core for an ASP.NET Core MVC web app
 
 In the previous tutorials, you worked with a simple data model that was composed of three entities. In this tutorial, you'll add more entities and relationships and you'll customize the data model by specifying formatting, validation, and database mapping rules.
 
@@ -24,7 +17,27 @@ When you're finished, the entity classes will make up the completed data model t
 
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
-## Customize the Data Model by Using Attributes
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Customize the Data model
+> * Make changes to Student entity
+> * Create Instructor entity
+> * Create OfficeAssignment entity
+> * Modify Course entity
+> * Create Department entity
+> * Modify Enrollment entity
+> * Update the database context
+> * Seed database with test data
+> * Add a migration
+> * Change the connection string
+> * Update the database
+
+## Prerequisites
+
+* [Using the EF Core migrations feature for ASP.NET Core in an MVC web app](migrations.md)
+
+## Customize the Data model
 
 In this section you'll see how to customize the data model by using attributes that specify formatting, validation, and database mapping rules. Then in several of the following sections you'll create the complete School data model by adding attributes to the classes you already created and creating new classes for the remaining entity types in the model.
 
@@ -127,7 +140,7 @@ Before you applied the first two migrations, the name columns were of type nvarc
 > [!Note]
 > If you try to compile before you finish creating all of the entity classes in the following sections, you might get compiler errors.
 
-## Final changes to the Student entity
+## Changes to Student entity
 
 ![Student entity](complex-data-model/_static/student-entity.png)
 
@@ -155,7 +168,7 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. Therefore it has only a get accessor, and no `FullName` column will be generated in the database.
 
-## Create the Instructor Entity
+## Create Instructor entity
 
 ![Instructor entity](complex-data-model/_static/instructor-entity.png)
 
@@ -191,7 +204,7 @@ Contoso University business rules state that an instructor can only have at most
 public OfficeAssignment OfficeAssignment { get; set; }
 ```
 
-## Create the OfficeAssignment entity
+## Create OfficeAssignment entity
 
 ![OfficeAssignment entity](complex-data-model/_static/officeassignment-entity.png)
 
@@ -218,7 +231,7 @@ The Instructor entity has a nullable `OfficeAssignment` navigation property (bec
 
 You could put a `[Required]` attribute on the Instructor navigation property to specify that there must be a related instructor, but you don't have to do that because the `InstructorID` foreign key (which is also the key to this table) is non-nullable.
 
-## Modify the Course Entity
+## Modify Course entity
 
 ![Course entity](complex-data-model/_static/course-entity.png)
 
@@ -267,7 +280,7 @@ A course may be taught by multiple instructors, so the `CourseAssignments` navig
 public ICollection<CourseAssignment> CourseAssignments { get; set; }
 ```
 
-## Create the Department entity
+## Create Department entity
 
 ![Department entity](complex-data-model/_static/department-entity.png)
 
@@ -313,7 +326,7 @@ public ICollection<Course> Courses { get; set; }
 >    .OnDelete(DeleteBehavior.Restrict)
 > ```
 
-## Modify the Enrollment entity
+## Modify Enrollment entity
 
 ![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
@@ -339,7 +352,7 @@ public int StudentID { get; set; }
 public Student Student { get; set; }
 ```
 
-## Many-to-Many Relationships
+## Many-to-Many relationships
 
 There's a many-to-many relationship between the Student and Course entities, and the Enrollment entity functions as a many-to-many join table *with payload* in the database. "With payload" means that the Enrollment table contains additional data besides foreign keys for the joined tables (in this case, a primary key and a Grade property).
 
@@ -379,7 +392,7 @@ Add the following highlighted code to the *Data/SchoolContext.cs* file:
 
 This code adds the new entities and configures the CourseAssignment entity's composite primary key.
 
-## Fluent API alternative to attributes
+## About a fluent API alternative
 
 The code in the `OnModelCreating` method of the `DbContext` class uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement, as in this example from the [EF Core documentation](/ef/core/modeling/#methods-of-configuration):
 
@@ -406,7 +419,7 @@ The following illustration shows the diagram that the Entity Framework Power Too
 
 Besides the one-to-many relationship lines (1 to \*), you can see here the one-to-zero-or-one relationship line (1 to 0..1) between the Instructor and OfficeAssignment entities and the zero-or-one-to-many relationship line (0..1 to *) between the Instructor and Department entities.
 
-## Seed the Database with Test Data
+## Seed database with test data
 
 Replace the code in the *Data/DbInitializer.cs* file with the following code in order to provide seed data for the new entities you've created.
 
@@ -451,7 +464,7 @@ In a production application, you would write code or scripts to add Department r
 
 Save your changes and build the project.
 
-## Change the connection string and update the database
+## Change the connection string
 
 You now have new code in the `DbInitializer` class that adds seed data for the new entities to an empty database. To make EF create a new empty database, change the name of the database in the connection string in *appsettings.json* to ContosoUniversity3 or some other name that you haven't used on the computer you're using.
 
@@ -469,6 +482,8 @@ Save your change to *appsettings.json*.
 > ```console
 > dotnet ef database drop
 > ```
+
+## Update the database
 
 After you have changed the database name or deleted the database, run the `database update` command in the command window to execute the migrations.
 
@@ -488,12 +503,28 @@ Right-click the **CourseAssignment** table and select **View Data** to verify th
 
 ![CourseAssignment data in SSOX](complex-data-model/_static/ssox-ci-data.png)
 
-## Summary
+## Get the code
 
-You now have a more complex data model and corresponding database. In the following tutorial, you'll learn more about how to access related data.
+[Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## Next steps
 
-> [!div class="step-by-step"]
-> [Previous](migrations.md)
-> [Next](read-related-data.md)
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Customized the Data model
+> * Made changes to Student entity
+> * Created Instructor entity
+> * Created OfficeAssignment entity
+> * Modified Course entity
+> * Created Department entity
+> * Modified Enrollment entity
+> * Updated the database context
+> * Seeded database with test data
+> * Added a migration
+> * Changed the connection string
+> * Updated the database
+
+Advance to the next article to learn more about how to access related data.
+> [!div class="nextstepaction"]
+> [Access related data](read-related-data.md)
