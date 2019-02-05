@@ -811,11 +811,10 @@
       uid: fundamentals/logging/loggermessage
     - name: Use a file watcher
       uid: tutorials/dotnet-watch
-      items: 
-        - name: Factory-based middleware
-          uid: fundamentals/middleware/extensibility
-        - name: Factory-based middleware with third-party container
-          uid: fundamentals/middleware/extensibility-third-party-container
+    - name: Factory-based middleware
+      uid: fundamentals/middleware/extensibility
+    - name: Factory-based middleware with third-party container
+      uid: fundamentals/middleware/extensibility-third-party-container
 - name: Migration
   items: 
     - name: 2.2 to 3.0
