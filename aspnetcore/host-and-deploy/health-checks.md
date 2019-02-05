@@ -642,6 +642,13 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 * `Predicate` &ndash; If `Predicate` is `null` (default), the health check publisher service runs all registered health checks. To run a subset of health checks, provide a function that filters the set of checks. The predicate is evaluated each period.
 * `Timeout` &ndash; The timeout for executing the health checks for all `IHealthCheckPublisher`instances. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> to execute without a timeout. The default value is 30 seconds.
 
+::: moniker range="= aspnetcore-2.2"
+
+> [!WARNING]
+> Due to an issue in the ASP.NET Core 2.2 release, setting `Period` isn't honored by the `IHealthCheckPublisher` implementation and inadvertently sets the value of `Delay`. This issue will be fixed in ASP.NET Core 3.0. For more information, see [HealthCheckPublisherOptions.Period sets the value of .Delay](https://github.com/aspnet/Extensions/issues/1041).
+
+::: moniker-end
+
 In the sample app, `ReadinessPublisher` is an `IHealthCheckPublisher` implementation. The health check status is recorded in `Entries` and logged for each check:
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/ReadinessPublisher.cs?name=snippet_ReadinessPublisher&highlight=20,22-23)]
