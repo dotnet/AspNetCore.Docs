@@ -52,7 +52,11 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).
+The generated project provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class). The Identity Razor Class Library exposes endpoints with the `Identity` area. For example:
+
+* /Identity/Account/Login
+* /Identity/Account/Logout
+* /Identity/Account/Manage
 
 ### Test Register and Login
 
