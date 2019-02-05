@@ -44,7 +44,7 @@ Follow the guidance in the [Get started](xref:razor-components/get-started) topi
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/Counter2.cshtml?highlight=14)]
 
-1. Refresh the counter page in the browser to see the changes. Select the **Click me** button, and the counter increments by two.
+1. Rebuild and run the app to see the changes. Select the **Click me** button, and the counter increments by two.
 
 ## Use components
 
@@ -56,11 +56,11 @@ Include a component into another component using an HTML-like syntax.
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/Index.cshtml?highlight=7)]
 
-1. Refresh the home page in the browser. The home page has its own counter.
+1. Rebuild and run the app. The home page has its own counter.
 
 ## Component parameters
 
-Components can also have parameters. Component parameters are defined using private properties on the component class decorated with `[Parameter]`. Use attributes to specify arguments for a component in markup.
+Components can also have parameters. Component parameters are defined using non-public properties on the component class decorated with `[Parameter]`. Use attributes to specify arguments for a component in markup.
 
 1. Update the component's `@functions` C# code:
 
@@ -71,8 +71,10 @@ Components can also have parameters. Component parameters are defined using priv
 
    [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/WebApplication1/WebApplication1.App/Pages/Counter.cshtml?highlight=12,16)]
 
+<!-- Add back when supported.
    > [!NOTE]
    > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
+-->
 
 1. Specify an `IncrementAmount` parameter in the Home component's `<Counter>` element using an attribute. Set the value to increment the counter by ten.
 
@@ -100,7 +102,7 @@ The `FetchData` component uses the injected service, as `ForecastService`, to re
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData2.cshtml?highlight=6)]
 
-An [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
+A [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData3.cshtml?highlight=11-19)]
 
@@ -118,7 +120,11 @@ Add a new page to the app that implements a simple todo list.
    <h1>Todo</h1>
    ```
 
-1. Add the Todo page to the navigation bar by updating *WebApplication1.App/Shared/NavMenu.cshtml*. Add a `<NavLink>` for the Todo page by adding the following list item markup below the existing list items.
+1. Add the Todo page to the navigation bar.
+
+   The NavMenu component (*WebApplication1/Shared/NavMenu.csthml*) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app. For more information, see <xref:razor-components/layouts>.
+
+   Add a `<NavLink>` for the Todo page by adding the following list item markup below the existing list items in the *WebApplication1/Shared/NavMenu.csthml* file:
 
    ```cshtml
    <li class="nav-item px-3">
@@ -128,7 +134,7 @@ Add a new page to the app that implements a simple todo list.
    </li>
    ```
 
-1. Refresh the app in the browser. Visit the new Todo page to confirm that the link to the Todo page works.
+1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the Todo page works.
 
 1. Add a *TodoItem.cs* file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
@@ -145,7 +151,7 @@ Add a new page to the app that implements a simple todo list.
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData5.cshtml?highlight=12-13)]
 
-1. Refresh the browser. When the **Add todo** button is selected, nothing happens because an event handler isn't wired up to the button.
+1. Rebuild and run the app. When the **Add todo** button is selected, nothing happens because an event handler isn't wired up to the button.
 
 1. Add an `AddTodo` method to the `Todo` component and register it for button clicks using the `onclick` attribute:
 
@@ -165,9 +171,9 @@ Add a new page to the app that implements a simple todo list.
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData8.cshtml?highlight=19-26)]
 
-1. Refresh the browser. Add some todos to the todo list to test the new code.
+1. Rebuild and run the app. Add some todos to the todo list to test the new code.
 
-1. The title text for each todo item can be made editable as well. Add a check box input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `@todo.Title`:
+1. The title text for each todo item can be made editable and a check box can help the user keep track of completed items. Add a check box input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `@todo.Title`:
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData9.cshtml?highlight=5-6)]
 
@@ -181,7 +187,7 @@ Add a new page to the app that implements a simple todo list.
 
    [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/WebApplication1/WebApplication1.App/Pages/Todo.cshtml)]
 
-1. Refresh the app in the browser. Add todo items to test the new code.
+1. Rebuild and run the app. Add todo items to test the new code.
 
 ## Publish and deploy the app
 
