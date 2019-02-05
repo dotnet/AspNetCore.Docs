@@ -1,5 +1,5 @@
 ---
-title: Initiate HTTP requests
+title: Make HTTP requests using IHttpClientFactory in ASP.NET Core
 author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 01/25/2019
 uid: fundamentals/http-requests
 ---
-# Initiate HTTP requests
+# Make HTTP requests using IHttpClientFactory in ASP.NET Core
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak), and [Steve Gordon](https://github.com/stevejgordon)
 

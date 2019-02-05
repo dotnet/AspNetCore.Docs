@@ -4,7 +4,7 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/14/2019
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -63,6 +63,24 @@ There are several advantages to targeting .NET Core, and these advantages increa
 
 We're working hard to close the API gap from .NET Framework to .NET Core. The [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
 
+## Recommended learning path
+
+We recommend the following sequence of tutorials and articles for an introduction to developing ASP.NET Core apps:
+
+1. Follow a quick tutorial to build a "Hello world!" app.
+   * <xref:getting-started>
+1. Follow a tutorial for the type of app you want to develop:
+   * Web app &mdash; <xref:tutorials/razor-pages/razor-pages-start>
+   * Web API app &mdash; <xref:tutorials/first-web-api>\*
+   * Real-time app (for example, a chat app) &mdash; <xref:tutorials/signalr>
+1. Follow a tutorial that shows how to do basic data access:
+   * <xref:data/ef-rp/intro>
+1. Read through an overview of ASP.NET Core features and subsystems that apply to all app types:
+  * <xref:fundamentals/index>
+1. Browse the Table of Contents for other topics of interest.
+
+\* There is a new [web API tutorial that you follow entirely in the browser](https://docs.microsoft.com/en-us/learn/modules/build-web-api-net-core), no local IDE installation required.  The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
+
 ## How to download a sample
 
 Many of the articles and tutorials include links to sample code.
@@ -120,7 +138,7 @@ For more information, see [Contribute to the ASP.NET documentation: Code snippet
 
 For more information, see the following resources:
 
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* <xref:getting-started>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.

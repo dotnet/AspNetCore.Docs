@@ -12,11 +12,34 @@ uid: fundamentals/host/generic-host
 
 By [Luke Latham](https://github.com/guardrex)
 
-.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. This topic covers the ASP.NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>), which is useful for hosting apps that don't process HTTP requests. For coverage of the Web Host (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>), see <xref:fundamentals/host/web-host>.
+::: moniker range="<= aspnetcore-2.2"
 
-The goal of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on the Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
+ASP.NET Core apps configure and launch a host. The host is responsible for app startup and lifetime management.
 
-The Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For web hosting scenarios, use the [Web Host](xref:fundamentals/host/web-host). The Generic Host is under development to replace the Web Host in a future release and act as the primary host API in both HTTP and non-HTTP scenarios.
+This article covers the ASP.NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>), which is used for apps that don't process HTTP requests.
+
+The purpose of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on the Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
+
+The Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For web hosting scenarios, use the [Web Host](xref:fundamentals/host/web-host). The Generic Host will replace the Web Host in a future release and act as the primary host API in both HTTP and non-HTTP scenarios.
+
+::: moniker-end
+
+::: moniker range="> aspnetcore-2.2"
+
+ASP.NET Core apps configure and launch a host. The host is responsible for app startup and lifetime management.
+
+This article covers the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+
+The Generic Host differs from the Web Host in that it decouples the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads can use the Generic Host and benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
+
+Starting in ASP.NET Core 3.0, the Generic Host is recommended for both HTTP and non-HTTP workloads. An HTTP server implementation, if included, runs as an implementation of <xref:Microsoft.Extensions.Hosting.IHostedService>. `IHostedService` is an interface that can be used for other workloads as well.
+
+The Web Host is no longer recommended for web apps but remains available for backward compatibility.
+
+> [!NOTE]
+> This remainder of this article has not yet been updated for 3.0.
+
+::: moniker-end
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
