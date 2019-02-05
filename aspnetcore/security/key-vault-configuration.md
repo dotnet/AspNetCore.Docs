@@ -34,8 +34,8 @@ To adopt the Azure Managed Service Identity scenario, add a package reference to
 
 The sample app runs in either of two modes determined by the `#define` statement at the top of the *Program.cs* file:
 
-* `Basic` &ndash; Demonstrates the use of an Azure Key Vault Application ID and Password (Client Secret) to access secrets stored in the key vault. Deploy the `Basic` version of the sample to any host capable of serving an ASP.NET Core app.
-* `Managed` &ndash; Demonstrates how to use Azure's [Managed Service Identity (MSI)](/azure/active-directory/managed-identities-azure-resources/overview) to authenticate the app to Azure Key Vault with Azure AD authentication without credentials stored in the app's code or configuration. When using MSI to authenticate, an Azure AD Application ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure.
+* `Basic` &ndash; Demonstrates the use of an Azure Key Vault Application ID and Password (Client Secret) to access secrets stored in the key vault. Deploy the `Basic` version of the sample to any host capable of serving an ASP.NET Core app. Follow the guidance in the [Use Application ID and Client Secret for non-Azure-hosted apps](#use-application-id-and-client-secret-for-non-azure-hosted-apps) section.
+* `Managed` &ndash; Demonstrates how to use Azure's [Managed Service Identity (MSI)](/azure/active-directory/managed-identities-azure-resources/overview) to authenticate the app to Azure Key Vault with Azure AD authentication without credentials stored in the app's code or configuration. When using MSI to authenticate, an Azure AD Application ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the Managed Service Identity (MSI) Provider for Azure-hosted apps](#use-the-managed-service-identity-msi-provider-for-azure-hosted-apps) section.
 
 For more information on how to configure a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
 
@@ -105,9 +105,9 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
    az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "Section--SecretName" --value "secret_value_2_prod"
    ```
 
-## Use Application ID and Client Secret
+## Use Application ID and Client Secret for non-Azure-hosted apps
 
-Configure Azure AD, Azure Key Vault, and the app to use an Application ID and Password (Client Secret) to authenticate to a key vault when the app is hosted outside of Azure.
+Configure Azure AD, Azure Key Vault, and the app to use an Application ID and Password (Client Secret) to authenticate to a key vault **when the app is hosted outside of Azure**.
 
 > [!NOTE]
 > Although using an Application ID and Password (Client Secret) is supported for apps hosted in Azure, we recommend using the [Managed Service Identity (MSI) Provider](#use-the-managed-service-identity-msi-provider) when hosting an app in Azure. MSI doesn't require storing credentials in the app or its configuration, so it's regarded as a generally safer approach.
@@ -149,9 +149,9 @@ Example values:
 
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values load with the `_dev` suffix. In the Production environment, the values load with the `_prod` suffix.
 
-## Use the Managed Service Identity (MSI) Provider
+## Use the Managed Service Identity (MSI) Provider for Azure-hosted apps
 
-An app deployed to Azure can take advantage of Managed Service Identity (MSI), which allows the app to authenticate with Azure Key Vault using Azure AD authentication without credentials (Application ID and Password/Client Secret) stored in the app.
+**An app deployed to Azure** can take advantage of Managed Service Identity (MSI), which allows the app to authenticate with Azure Key Vault using Azure AD authentication without credentials (Application ID and Password/Client Secret) stored in the app.
 
 The sample app uses MSI when the `#define` statement at the top of the *Program.cs* file is set to `Managed`.
 
