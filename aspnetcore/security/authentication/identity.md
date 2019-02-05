@@ -41,7 +41,7 @@ Create an ASP.NET Core Web Application project with Individual User Accounts.
 
 * Select **File** > **New** > **Project**.
 * Select **ASP.NET Core Web Application**. Name the project **WebApp1** to have the same namespace as the project download. Click **OK**.
-* Select an ASP.NET Core **Web Application** for ASP.NET Core 2.1, then select **Change Authentication**.
+* Select an ASP.NET Core **Web Application**, then select **Change Authentication**.
 * Select **Individual User Accounts** and click **OK**.
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -58,8 +58,6 @@ The generated project provides [ASP.NET Core Identity](xref:security/authenticat
 
 Run the app and register a user. Depending on your screen size, you might need to select the navigation toggle button to see the **Register** and **Login** links.
 
-![toggle navbar button](identity/_static/navToggle.png)
-
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
 <a name="pw"></a>
@@ -69,13 +67,13 @@ Services are added in `ConfigureServices`. The typical pattern is to call all th
 
 ::: moniker range=">= aspnetcore-2.1"
 
-   [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Startup.cs?name=snippet_configureservices)]
+[!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configureservices)]
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
    Identity is enabled by calling [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
-   [!code-csharp[](identity/sample/src/ASPNETv2.1-IdentityDemo/Startup.cs?name=snippet_configure&highlight=18)]
+   [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configure&highlight=18)]
 
 ::: moniker-end
 
