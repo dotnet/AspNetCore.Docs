@@ -4,7 +4,7 @@ author: rick-anderson
 description: Build a web API with ASP.NET Core MVC
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/24/2019
+ms.date: 02/4/2019
 uid: tutorials/first-web-api
 ---
 
@@ -346,6 +346,8 @@ Add the following `PutTodoItem` method:
 `PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 ### Test the PutTodoItem method
+
+This sample uses an in-memory database that must be initialed each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there is an item in the database before making a PUT call.
 
 Update the to-do item that has id = 1 and set its name to "feed fish":
 
