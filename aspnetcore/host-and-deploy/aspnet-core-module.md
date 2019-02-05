@@ -45,7 +45,7 @@ If the `<AspNetCoreHostingModel>` property isn't present in the file, the defaul
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. When running in-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host)) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. For in-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host)) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
@@ -82,7 +82,7 @@ To configure an app for out-of-process hosting, use either of the following appr
 
 [Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-When running out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host)) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host)) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
