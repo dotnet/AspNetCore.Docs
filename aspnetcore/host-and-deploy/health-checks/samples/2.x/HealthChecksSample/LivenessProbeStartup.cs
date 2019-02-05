@@ -25,7 +25,7 @@ namespace SampleApp
     //
     // The readiness check runs all registered checks, including a check with a long initialization time (15 seconds). The liveness check uses an 'identity' check that always returns healthy.
     //
-    // This example also creates a ReadinessPublisher (IHealthCheckPublisher implementation) that runs the readiness check every two seconds after the initial five second startup delay.
+    // This example also creates a ReadinessPublisher (IHealthCheckPublisher implementation) that runs the readiness check with a two second delay.
 
     public class LivenessProbeStartup
     {

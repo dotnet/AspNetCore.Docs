@@ -409,7 +409,7 @@ dotnet run --scenario liveness
 
 In a browser, visit `/health/ready` several times until 15 seconds have passed. The health check reports `Unhealthy` for the first 15 seconds. After 15 seconds, the endpoint reports `Healthy`, which reflects the completion of the long-running task by the hosted service.
 
-This example also creates a Health Check Publisher (`IHealthCheckPublisher` implementation) that runs the readiness check every two seconds after the initial five second startup delay. For more information, see the [Health Check Publisher](#health-check-publisher) section.
+This example also creates a Health Check Publisher (`IHealthCheckPublisher` implementation) that runs the first readiness check with a two second delay. For more information, see the [Health Check Publisher](#health-check-publisher) section.
 
 ### Kubernetes example
 
