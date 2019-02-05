@@ -65,7 +65,7 @@ var hubConnection = new HubConnectionBuilder()
 
 ### JavaScript client
 
-MessagePack support for the Javascript client is provided by the `@aspnet/signalr-protocol-msgpack` NPM package.
+MessagePack support for the JavaScript client is provided by the `@aspnet/signalr-protocol-msgpack` npm package.
 
 ```console
 npm install @aspnet/signalr-protocol-msgpack
