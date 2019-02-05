@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/15/2019
+ms.date: 02/05/2019
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -65,6 +65,7 @@ You can implement interfaces for multiple filter stages in a single class. For e
 > Implement **either** the synchronous or the async version of a filter interface, not both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If you were to implement both interfaces on one class, only the async method would be called. When using abstract classes like <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> you would override only the synchronous methods or the async method for each filter type.
 
 ### IFilterFactory
+
 [IFilterFactory](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory) implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the framework prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the [CreateInstance](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory.createinstance) method is called to create the `IFilterMetadata` instance that will be invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
 
 You can implement `IFilterFactory` on your own attribute implementations as another approach to creating filters:
@@ -343,8 +344,12 @@ The `ExceptionFilterAttribute` can be subclassed.
 
 ## Result filters
 
-* Implement either the `IResultFilter` or `IAsyncResultFilter` interface.
+* Implement an interface:
+  * `IResultFilter` or `IAsyncResultFilter`.
+  * `IAlwaysRunResultFilter` or `IAsyncAlwaysRunResultFilter`
 * Their execution surrounds the execution of action results. 
+
+### IResultFilter and IAsyncResultFilter
 
 Here's an example of a Result filter that adds an HTTP header.
 
@@ -366,6 +371,36 @@ When the `OnResultExecuted` method runs, the response has likely been sent to th
 For an `IAsyncResultFilter` a call to `await next` on the `ResultExecutionDelegate` executes any subsequent result filters and the action result. To short-circuit, set `ResultExecutingContext.Cancel` to true and don't call the `ResultExectionDelegate`.
 
 The framework provides an abstract `ResultFilterAttribute` that you can subclass. The [AddHeaderAttribute](#add-header-attribute) class shown earlier is an example of a result filter attribute.
+
+### IAlwaysRunResultFilter and IAsyncAlwaysRunResultFilter
+
+The <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter> interfaces declare an <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> implementation that runs for all action results, even if the response is short-circuited in the request processing pipeline.
+
+Because these filters implement <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>, they aren't executed in cases where the request is short-circuited by:
+
+* An authorization filter that prevents execution of the action.
+* An exception filter that handles an exception.
+
+For example, the following filter always runs and returns a <xref:Microsoft.AspNetCore.Mvc.NotFoundResult> if a `null` <xref:Microsoft.AspNetCore.Mvc.ObjectResult> is returned from anywhere in the request processing pipeline:
+
+```csharp
+public class NotFoundAlwaysRunFilterAttribute : Attribute, 
+    IAlwaysRunResultFilter
+{
+    public void OnResultExecuting(ResultExecutingContext context)
+    {
+        if (context.Result is ObjectResult objResult && 
+            objResult.Value == null)
+        {
+            context.Result = new NotFoundResult();
+        }
+    }
+
+    public void OnResultExecuted(ResultExecutedContext context)
+    {
+    }
+}
+```
 
 ## Using middleware in the filter pipeline
 
