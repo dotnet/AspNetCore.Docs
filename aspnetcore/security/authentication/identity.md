@@ -130,7 +130,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
    When a user clicks the **Register** link, the `RegisterModel.OnPostAsync` action is invoked. The user is created by [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) on the `_userManager` object. `_userManager` is provided by dependency injection):
 
-   [!code-csharp[](identity/sample/WebApp1/Register.cshtml.cs?name=snippet&highlight=7,22)]
+   [!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=7,22)]
 
 ::: moniker-end
 
@@ -157,7 +157,7 @@ The Login form is displayed when:
 
 When the form on the Login page is submitted, the `OnPostAsync` action is called. `PasswordSignInAsync` is called on the `_signInManager` object (provided by dependency injection).
 
-   [!code-csharp[](identity/sample/WebApp1/Login.cshtml.cs?name=snippet&highlight=10-11)]
+   [!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
    The base `Controller` class exposes a `User` property that you can access from controller methods. For instance, you can enumerate `User.Claims` and make authorization decisions. For more information, see <xref:security/authorization/introduction>.
 
@@ -181,13 +181,13 @@ The base (`Controller` or `PageModel`) class exposes a `User` property. For exam
 
 The **Log out** link invokes the `LogoutModel.OnPost` action. 
 
-[!code-csharp[](identity/sample/WebApp1/Logout.cshtml.cs)]
+[!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Logout.cshtml.cs)]
 
 [SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) clears the user's claims stored in a cookie. Don't redirect after calling `SignOutAsync` or the user will **not** be signed out.
 
 Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
-[!code-csharp[](identity/sample/WebApp1/_LoginPartial.cshtml?highlight=16)]
+[!code-csharp[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
 ::: moniker-end
 
