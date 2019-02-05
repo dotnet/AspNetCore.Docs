@@ -205,7 +205,7 @@ Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
 The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) to the Privacy page.
 
-[!code-csharp[](identity/sample/WebApp1/Privacy.cshtml.cs&highlight=6)]
+[!code-csharp[](identity/sample/WebApp1/Privacy.cshtml.cs?highlight=6)]
 
 If you are signed in, sign out. Run the app and select the **Privacy** link. You are redirected to the login page.
 
