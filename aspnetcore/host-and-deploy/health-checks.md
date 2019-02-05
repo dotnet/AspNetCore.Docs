@@ -645,7 +645,7 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 ::: moniker range="= aspnetcore-2.2"
 
 > [!WARNING]
-> Due to an issue in the ASP.NET Core 2.2 release, setting `Period` isn't honored by the `IHealthCheckPublisher` implementation and inadvertently sets the value of `Delay`. This issue will be fixed in ASP.NET Core 3.0. For more information, see [HealthCheckPublisherOptions.Period sets the value of .Delay](https://github.com/aspnet/Extensions/issues/1041).
+> In the ASP.NET Core 2.2 release, setting `Period` isn't honored by the `IHealthCheckPublisher` implementation; it sets the value of `Delay`. This issue will be fixed in ASP.NET Core 3.0. For more information, see [HealthCheckPublisherOptions.Period sets the value of .Delay](https://github.com/aspnet/Extensions/issues/1041).
 
 ::: moniker-end
 
