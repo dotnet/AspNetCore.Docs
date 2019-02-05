@@ -28,19 +28,24 @@ Follow the guidance in the [Get started](xref:razor-components/get-started) topi
 
 1. On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Razor Components provides a better approach using C#.
 
-1. Examine the implementation of the `Counter` component in the *Counter.cshtml* file.
+1. Examine the implementation of the Counter component in the *Counter.cshtml* file.
 
    *WebApplication1.App/Pages/Counter.cshtml*:
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/Counter1.cshtml)]
 
-   The UI of the `Counter` component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). The HTML markup and C# rendering logic are converted into a component class at build time. The name of the generated .NET class matches the name of the file.
+   The UI of the Counter component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). The HTML markup and C# rendering logic are converted into a component class at build time. The name of the generated .NET class matches the file name.
 
    Members of the component class are defined in a `@functions` block. In the `@functions` block, component state (properties, fields) and methods are specified for event handling or for defining other component logic. These members are then used as part of the component's rendering logic and for handling events.
 
-   When the **Click me** button is selected, the `Counter` component's registered `onclick` handler is called (the `IncrementCount` method), and the `Counter` component regenerates its render tree. The new render tree is compared to the previous one and only modifications to the Document Object Model (DOM) are applied. The displayed count is updated.
+   When the **Click me** button is selected:
 
-1. Modify the C# logic of the `Counter` component to make the count increment by two instead of one.
+   * The Counter component's registered `onclick` handler is called (the `IncrementCount` method).
+   * The Counter component regenerates its render tree.
+   * The new render tree is compared to the previous one.
+   * Only modifications to the Document Object Model (DOM) are applied. The displayed count is updated.
+
+1. Modify the C# logic of the Counter component to make the count increment by two instead of one.
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/Counter2.cshtml?highlight=14)]
 
@@ -86,19 +91,19 @@ Components can also have parameters. Component parameters are defined using non-
 
 ## Route to components
 
-The `@page` directive at the top of the *Counter.cshtml* file specifies that this component is a routing endpoint. The `Counter` component handles requests sent to `/Counter`. Without the `@page` directive, the component doesn't handle routed requests, but the component can still be used by other components.
+The `@page` directive at the top of the *Counter.cshtml* file specifies that this component is a routing endpoint. The Counter component handles requests sent to `/Counter`. Without the `@page` directive, the component doesn't handle routed requests, but the component can still be used by other components.
 
 ## Dependency injection
 
 Services registered in the app's service container are available to components via [dependency injection (DI)](xref:fundamentals/dependency-injection). Inject services into a component using the `@inject` directive.
 
-Examine the directives of the `FetchData` component (*WebApplication1.App/Pages/FetchData.cshtml*). The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component:
+Examine the directives of the FetchData component (*WebApplication1.App/Pages/FetchData.cshtml*). The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData1.cshtml?highlight=3)]
 
 The `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes), so one instance of the service is available throughout the app.
 
-The `FetchData` component uses the injected service, as `ForecastService`, to retrieve an array of `WeatherForecast` objects:
+The FetchData component uses the injected service, as `ForecastService`, to retrieve an array of `WeatherForecast` objects:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData2.cshtml?highlight=6)]
 
@@ -153,7 +158,7 @@ Add a new page to the app that implements a simple todo list.
 
 1. Rebuild and run the app. When the **Add todo** button is selected, nothing happens because an event handler isn't wired up to the button.
 
-1. Add an `AddTodo` method to the `Todo` component and register it for button clicks using the `onclick` attribute:
+1. Add an `AddTodo` method to the Todo component and register it for button clicks using the `onclick` attribute:
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData6.cshtml?highlight=2,7-10)]
 
@@ -183,7 +188,7 @@ Add a new page to the app that implements a simple todo list.
    <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
    ```
 
-1. The completed `Todo` component (*Todo.cshtml*):
+1. The completed Todo component (*Todo.cshtml*):
 
    [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/WebApplication1/WebApplication1.App/Pages/Todo.cshtml)]
 
