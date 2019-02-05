@@ -17,7 +17,7 @@ This article provides guidance for:
 * Hosting SignalR Hubs using a background worker process hosted with ASP.NET Core.
 * Sending messages to connected clients from within a .NET Core [BackgroundService](xref:Microsoft.Extensions.Hosting.BackgroundService).
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/background-services/sample/) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/background-service/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Wire up SignalR during startup
 
