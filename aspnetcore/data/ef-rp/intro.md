@@ -172,6 +172,7 @@ Run the following commands to scaffold the student model.
 
 ```console
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
+dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
 ```
 ------
