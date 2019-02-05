@@ -64,7 +64,7 @@ This change sets up the project so that the first migration will create a new da
 
 Save your changes and build the project. Then open a command window and navigate to the project folder. Here's a quick way to do that:
 
-* In **Solution Explorer**, right-click the project and choose **Open in File Explorer** from the context menu.
+* In **Solution Explorer**, right-click the project and choose **Open Folder in File Explorer** from the context menu.
 
   ![Open in File Explorer menu item](migrations/_static/open-in-file-explorer.png)
 
