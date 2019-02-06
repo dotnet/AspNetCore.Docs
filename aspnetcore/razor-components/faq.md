@@ -5,7 +5,7 @@ description: Find the answers to frequently asked questions about Razor Componen
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2019
+ms.date: 02/06/2019
 uid: razor-components/faq
 ---
 # Frequently asked questions (FAQ) about Razor Components
@@ -16,7 +16,7 @@ uid: razor-components/faq
 
 *ASP.NET Core Razor Components* a single-page web app framework built on .NET that executes server-side in ASP.NET Core.
 
-*Blazor* is an extension of Razor Components for client-side app execution that runs in the browser with WebAssembly. Blazor provides all of the benefits of a client-side web UI framework using .NET on the client.
+*Blazor* is an experimental extension of Razor Components for client-side app execution that runs in the browser with WebAssembly. Blazor provides all of the benefits of a client-side web UI framework using .NET on the client.
 
 ## I'm new to .NET. What's .NET?
 
@@ -41,7 +41,7 @@ No, a Blazor app consists of normal compiled .NET assemblies that are downloaded
 
 ## Wouldn't the app download size be huge if it also includes a .NET runtime?
 
-Not necessarily. .NET runtimes come in all shapes in sizes. Early Blazor prototypes used a compact .NET runtime (including assembly execution, garbage collection, threading) that compiled to a mere 60KB of WebAssembly. Blazor now runs on Mono, which is currently significantly larger. However, opportunities for size optimization abound, including merging and trimming the runtime and application binaries. Other potential download size mitigations include caching and using a CDN.
+Not necessarily. .NET runtimes come in all shapes in sizes. Early Blazor prototypes used a compact .NET runtime (including assembly execution, garbage collection, and threading) that compiled to a mere 60KB of WebAssembly. Blazor now runs on Mono, which is currently significantly larger. However, opportunities for size optimization abound, including merging and trimming the runtime and application binaries. Other potential download size mitigations include caching and using a CDN.
 
 ## What features will Razor Components and Blazor support?
 
@@ -131,4 +131,4 @@ By comparison, [.NET Core](https://www.microsoft.com/net/learn/get-started/windo
 
 ## Where did the name "Blazor" come from?
 
-Blazor makes heavy use of [Razor](/aspnet/core/mvc/views/razor?view=aspnetcore-2.1), a markup syntax for HTML and C#. **Browser + Razor = Blazor!** When pronounced, it's also the name of a swanky jacket worn by hipsters that have excellent taste in fashion, style, and programming languages.
+Blazor makes heavy use of [Razor](xref:mvc/views/razor), a markup syntax for HTML and C#. **Browser + Razor = Blazor!** When pronounced, it's also the name of a swanky jacket worn by hipsters that have excellent taste in fashion, style, and programming languages.
