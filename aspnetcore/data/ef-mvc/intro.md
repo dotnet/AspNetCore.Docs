@@ -253,11 +253,9 @@ If the **Add MVC Dependencies** dialog appears:
 
   * Select **MVC controller with views, using Entity Framework**.
 
-  * Click **Add**.
+  * Click **Add**. The **Add MVC Controller with views, using Entity Framework** dialog box appears.
 
-![Scaffold Student](intro/_static/scaffold-student2.png)
-
-* In the **Add Controller** dialog box:
+    ![Scaffold Student](intro/_static/scaffold-student2.png)
 
   * In **Model class** select **Student**.
 
