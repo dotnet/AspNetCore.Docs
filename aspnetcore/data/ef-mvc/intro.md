@@ -4,7 +4,7 @@ description: "This is the first in a series of tutorials that explain how to bui
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/04/2019
+ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
 ---
@@ -70,19 +70,19 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * Enter **ContosoUniversity** as the name and click **OK**.
 
-  ![New Project dialog](intro/_static/new-project.png)
+  ![New Project dialog](intro/_static/new-project2.png)
 
 * Wait for the **New ASP.NET Core Web Application (.NET Core)** dialog to appear
 
-* Select **ASP.NET Core 2.0** and the **Web Application (Model-View-Controller)** template.
+  ![New ASP.NET Core Project dialog](intro/_static/new-aspnet2.png)
 
-  **Note:** This tutorial requires ASP.NET Core 2.0 and EF Core 2.0 or later -- make sure that **ASP.NET Core 1.1** isn't selected.
+* Select **ASP.NET Core 2.2** and the **Web Application (Model-View-Controller)** template.
+
+  **Note:** This tutorial requires ASP.NET Core 2.2 and EF Core 2.0 or later.
 
 * Make sure **Authentication** is set to **No Authentication**.
 
 * Click **OK**
-
-  ![New ASP.NET Core Project dialog](intro/_static/new-aspnet.png)
 
 ## Set up the site style
 
@@ -96,7 +96,7 @@ Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,30,36-39,48)]
+[!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,32-35,51)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
