@@ -265,7 +265,7 @@ If the **Add MVC Dependencies** dialog appears:
 
   * Click **Add**.
 
-  ![Scaffold Student](intro/_static/scaffold-student.png)
+  ![Scaffold Student](intro/_static/scaffold-student2.png)
 
   When you click **Add**, the Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
 
