@@ -92,11 +92,11 @@ Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
 * Change each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
 
-* Add menu entries for **Students**, **Courses**, **Instructors**, and **Departments**, and delete the **Contact** menu entry.
+* Add menu entries for **About**, **Students**, **Courses**, **Instructors**, and **Departments**, and delete the **Privacy** menu entry.
 
 The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,32-35,51)]
+[!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,32-36,51)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
@@ -255,6 +255,8 @@ If the **Add MVC Dependencies** dialog appears:
 
   * Click **Add**.
 
+![Scaffold Student](intro/_static/scaffold-student2.png)
+
 * In the **Add Controller** dialog box:
 
   * In **Model class** select **Student**.
@@ -264,8 +266,6 @@ If the **Add MVC Dependencies** dialog appears:
   * Accept the default **StudentsController** as the name.
 
   * Click **Add**.
-
-  ![Scaffold Student](intro/_static/scaffold-student2.png)
 
   When you click **Add**, the Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
 
