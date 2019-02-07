@@ -1,30 +1,34 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Code First Migrations and Deployment with the Entity Framework in an ASP.NET MVC Application | Microsoft Docs"
+title: "Tutorial: Use EF Migrations in an ASP.NET MVC app and deploy to Azure"
 author: tdykstra
-description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
+description: "In this tutorial, you enable Code First migrations and deploy the application to the cloud in Azure."
 ms.author: riande
-ms.date: 10/08/2018
+ms.date: 01/16/2019
+ms.topic: tutorial
 ms.assetid: d4dfc435-bda6-4621-9762-9ba270f8de4e
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-Code First migrations and deployment with the Entity Framework in an ASP.NET MVC application
-====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+# Tutorial: Use EF Migrations in an ASP.NET MVC app and deploy to Azure
 
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
-So far the application has been running locally in IIS Express on your development computer. To make a real application available for other people to use over the Internet, you have to deploy it to a web hosting provider. In this tutorial, you'll deploy the Contoso University application to the cloud in Azure.
-
-The tutorial contains the following sections:
+So far the Contoso University sample web application has been running locally in IIS Express on your development computer. To make a real application available for other people to use over the Internet, you have to deploy it to a web hosting provider. In this tutorial, you enable Code First migrations and deploy the application to the cloud in Azure:
 
 - Enable Code First Migrations. The Migrations feature enables you to change the data model and deploy your changes to production by updating the database schema without having to drop and re-create the database.
 - Deploy to Azure. This step is optional; you can continue with the remaining tutorials without having deployed the project.
 
 We recommend that you use a continuous integration process with source control for deployment, but this tutorial does not cover those topics. For more information, see the [source control](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control) and [continuous integration](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery) chapters of [Building Real-World Cloud Apps with Azure](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction).
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Enable Code First migrations
+> * Deploy the app in Azure (optional)
+
+## Prerequisites
+
+- [Connection Resiliency and Command Interception](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md)
 
 ## Enable Code First migrations
 
@@ -49,15 +53,11 @@ This method of keeping the database in sync with the data model works well until
     add-migration InitialCreate
     ```
 
-    ![enable-migrations command](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
-
     The `enable-migrations` command creates a *Migrations* folder in the ContosoUniversity project, and it puts in that folder a *Configuration.cs* file that you can edit to configure Migrations.
 
     (If you missed the step above that directs you to change the database name, Migrations will find the existing database and automatically do the `add-migration` command. That's okay, it just means you won't run a test of the migrations code before you deploy the database. Later when you run the `update-database` command nothing will happen because the database already exists.)
 
-    ![Migrations folder](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image2.png)
-
-    Like the initializer class that you saw earlier, the `Configuration` class includes a `Seed` method.
+    Open the *ContosoUniversity\Migrations\Configuration.cs* file. Like the initializer class that you saw earlier, the `Configuration` class includes a `Seed` method.
 
     [!code-csharp[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cs)]
 
@@ -115,8 +115,6 @@ If you created the initial migration when the database already exists, the datab
 
     `update-database`
 
-    ![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
-
     The `update-database` command runs the `Up` method to create the database and then it runs the `Seed` method to populate the database. The same process will run automatically in production after you deploy the application, as you'll see in the following section.
 2. Use **Server Explorer** to inspect the database as you did in the first tutorial, and run the application to verify that everything still works the same as before.
 
@@ -151,8 +149,6 @@ You'll deploy the database to Azure SQL database. SQL database is a cloud-based 
 
 2. Enter a string in the **App name** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the default domain of Azure App Services (.azurewebsites.net). If the **App name** is already taken, the Wizard notifies you with a red *The app name is not available* message. If the **App name** is available, you see a green checkmark.
 
-    ![Create with Database link in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/create-web-app-sql-resource.png)
-
 3. In the **Subscription** box, choose the Azure Subscription in which you want the **App Service** to reside.
 
 4. In the **Resource Group** text box, choose a Resource Group or create a new one. This setting specifies which data center your web site will run in. For more information about Resource Groups, see [Resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups).
@@ -160,8 +156,6 @@ You'll deploy the database to Azure SQL database. SQL database is a cloud-based 
 5. Create a new **App Service Plan** by clicking the *App Service section*, **Create New**, and fill in **App Service plan** (can be same name as App Service), **Location**, and **Pricing tier** (there is a free option).
 
 6. Click **SQL Database**, and then choose **Create a new database** or select an existing database.
-
-    ![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/new-sql-database.png)
 
 7. In the **Name** box, enter a name for your database.
 8. Click the **Target Server** box, and then select **Create a new server**. Alternatively, if you previously created a server, you can select that server from list of available servers.
@@ -181,8 +175,6 @@ You'll deploy the database to Azure SQL database. SQL database is a cloud-based 
 
 1. In Visual Studio, right-click the project in **Solution Explorer** and select **Publish** from the context menu.
 
-    ![Publish menu item in Solution Explorer](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
-
 2. On the **Pick a publish target** page, choose **App Service** and then **Select Existing**, and then choose **Publish**.
 
     ![Pick a publish target page](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/publish-select-existing-azure-app-service.png)
@@ -191,11 +183,7 @@ You'll deploy the database to Azure SQL database. SQL database is a cloud-based 
 
 4. On the **App Service** page, select the **Subscription** you added the App Service to. Under **View**, select **Resource Group**. Expand the resource group you added the App Service to, and then select the App Service. Choose **OK** to publish the app.
 
-    ![Select App Service](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/app-service-page.png)
-
 5. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.
-
-    ![Output window reporting successful deployment](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/publish-output.png)
 
 6. Upon successful deployment, the default browser automatically opens to the URL of the deployed web site.
 
@@ -230,14 +218,22 @@ In the deployment section, you saw the [MigrateDatabaseToLatestVersion](https://
 
 For more information about initializers, see [Understanding Database Initializers in Entity Framework Code First](http://www.codeguru.com/csharp/article.php/c19999/Understanding-Database-Initializers-in-Entity-Framework-Code-First.htm) and chapter 6 of the book [Programming Entity Framework: Code First](http://shop.oreilly.com/product/0636920022220.do) by Julie Lerman and Rowan Miller.
 
-## Summary
+## Get the code
 
-In this tutorial, you learned how to enable migrations and deploy the application. In the next tutorial, you'll begin looking at more advanced topics by expanding the data model.
+[Download the Completed Project](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
 
-Please leave feedback on how you liked this tutorial and what we could improve.
+## Additional resources
 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](xref:whitepapers/aspnet-data-access-content-map).
 
-> [!div class="step-by-step"]
-> [Previous](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application)
-> [Next](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application)
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Enabled Code First migrations
+> * Deployed the app in Azure (optional)
+
+Advance to the next article to learn how to create a more complex data model for an ASP.NET MVC Application.
+> [!div class="nextstepaction"]
+> [Create a more complex data model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)

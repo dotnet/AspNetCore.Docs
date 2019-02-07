@@ -4,7 +4,7 @@ title: "Tutorial: Implement CRUD Functionality with the Entity Framework in ASP.
 description: "Review and customize the create, read, update, delete (CRUD) code that the MVC scaffolding automatically creates in controllers and views."
 author: tdykstra
 ms.author: riande
-ms.date: 01/11/2019
+ms.date: 01/22/2019
 ms.topic: tutorial
 ms.assetid: a2f70ba4-83d1-4002-9255-24732726c4f2
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application
@@ -130,7 +130,7 @@ In the following code, `courseID` doesn't match a parameter in the default route
 
     [!code-cshtml[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample9.cshtml)]
 
-    *Create.chstml* also includes `@Html.AntiForgeryToken()`, which works with the `ValidateAntiForgeryToken` attribute in the controller to help prevent [cross-site request forgery](../../security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md) attacks.
+    *Create.cshtml* also includes `@Html.AntiForgeryToken()`, which works with the `ValidateAntiForgeryToken` attribute in the controller to help prevent [cross-site request forgery](../../security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md) attacks.
 
     No changes are required in *Create.cshtml*.
 
@@ -240,6 +240,10 @@ The base `Controller` class already implements the `IDisposable` interface, so t
 ## Handle transactions
 
 By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control&mdash;for example, if you want to include operations done outside of Entity Framework in a transaction&mdash;see [Working with Transactions](/ef/ef6/saving/transactions).
+
+## Get the code
+
+[Download Completed Project](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
 
 ## Additional resources
 

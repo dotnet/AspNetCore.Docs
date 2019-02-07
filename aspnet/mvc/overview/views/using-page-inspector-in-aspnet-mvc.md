@@ -155,7 +155,7 @@ In the Page Inspector browser window, move the mouse pointer over the "Home Page
 
 ![Hovering over div.content-wrapper](using-page-inspector-in-aspnet-mvc/_static/image26.png)
 
-Click within the div.content-wrapper section once, and then move the mouse pointer to the **Styles** window. The **Syles** window shows all of the CSS rules for this element. Scroll down to find the .featured .content-wrapper class selector. Now clear the checkbox for the background-color property.
+Click within the div.content-wrapper section once, and then move the mouse pointer to the **Styles** window. The **Styles** window shows all of the CSS rules for this element. Scroll down to find the .featured .content-wrapper class selector. Now clear the checkbox for the background-color property.
 
 ![Clear background color](using-page-inspector-in-aspnet-mvc/_static/image28.png)
 
@@ -180,7 +180,7 @@ Click **Inspect** to put Page Inspector in Inspection Mode.
 
 In the Page Inspector browser, move the mouse pointer over the "Home Page" section until the **div.content-wrapper** label appears. Click once to select this element.
 
-The **Syles** window shows all of the CSS rules for this element. Scroll down to find the .featured .content-wrapper class selector. Click on ".featured .content-wrapper". Page Inspector opens the CSS file that defines this style (Site.css) and highlights the corresponding CSS style.
+The **Styles** window shows all of the CSS rules for this element. Scroll down to find the .featured .content-wrapper class selector. Click on ".featured .content-wrapper". Page Inspector opens the CSS file that defines this style (Site.css) and highlights the corresponding CSS style.
 
 ![](using-page-inspector-in-aspnet-mvc/_static/image32.png)
 

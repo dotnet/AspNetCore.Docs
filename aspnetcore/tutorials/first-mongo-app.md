@@ -4,7 +4,7 @@ author: prkhandelwal
 description: This tutorial demonstrates how to build an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 11/29/2018
+ms.date: 01/31/2019
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -48,11 +48,11 @@ In this tutorial, you learn how to:
 
 ## Configure MongoDB
 
-If using Windows, MongoDB is installed at *C:\Program Files\MongoDB* by default. Add *C:\Program Files\MongoDB\Server\<version_number>\bin* to the `Path` environment variable. This change enables MongoDB access from anywhere on your development machine.
+If using Windows, MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `Path` environment variable. This change enables MongoDB access from anywhere on your development machine.
 
 Use the mongo Shell in the following steps to create a database, make collections, and store documents. For more information on mongo Shell commands, see [Working with the mongo Shell](https://docs.mongodb.com/manual/mongo/#working-with-the-mongo-shell).
 
-1. Choose a directory on your development machine for storing the data. For example, *C:\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
+1. Choose a directory on your development machine for storing the data. For example, *C:\\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
 1. Open a command shell. Run the following command to connect to MongoDB on default port 27017. Remember to replace `<data_directory_path>` with the directory you chose in the previous step.
 
     ```console
@@ -139,10 +139,10 @@ The database is ready. You can start creating the ASP.NET Core web API.
 1. Go to **File** > **New** > **Project**.
 1. Select **ASP.NET Core Web Application**, name the project *BooksApi*, and click **OK**.
 1. Select the **.NET Core** target framework and **ASP.NET Core 2.1**. Select the **API** project template, and click **OK**:
-1. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
+1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```powershell
-    Install-Package MongoDB.Driver -Version 2.7.2
+    Install-Package MongoDB.Driver -Version {VERSION}
     ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -157,10 +157,10 @@ The database is ready. You can start creating the ASP.NET Core web API.
     A new ASP.NET Core web API project targeting .NET Core is generated and opened in Visual Studio Code.
 
 1. Click **Yes** when the *Required assets to build and debug are missing from 'BooksApi'. Add them?* notification appears.
-1. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
+1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```console
-    dotnet add BooksApi.csproj package MongoDB.Driver -v 2.7.2
+    dotnet add BooksApi.csproj package MongoDB.Driver -v {VERSION}
     ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -182,7 +182,13 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs)]
 
-In the preceding class, the `Id` property is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection. Other properties in the class are decorated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
+In the preceding class, the `Id` property:
+
+* Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
+* Is annotated with `[BsonId]` to designate this property as the document's primary key.
+* Is annotated with `[BsonRepresentation(BsonType.ObjectId)]` to allow passing the parameter as type `string` instead of `ObjectId`. Mongo handles the conversion from `string` to `ObjectId`.
+
+Other properties in the class are annotated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
 
 ## Add a CRUD operations class
 

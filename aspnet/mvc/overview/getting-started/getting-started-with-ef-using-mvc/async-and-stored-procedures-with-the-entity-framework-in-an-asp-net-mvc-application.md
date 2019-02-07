@@ -1,28 +1,23 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application
-title: "Async and Stored Procedures with the Entity Framework in an ASP.NET MVC Application | Microsoft Docs"
+title: "Tutorial: Use async and stored procedures with EF in an ASP.NET MVC App"
+description: "In this tutorial you see how to implement the asynchronous programming model and learn how to use stored procedures."
 author: tdykstra
-description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
 ms.author: riande
-ms.date: 11/07/2014
+ms.date: 01/18/2019
+ms.topic: tutorial
 ms.assetid: 27d110fc-d1b7-4628-a763-26f1e6087549
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
 ---
-Async and Stored Procedures with the Entity Framework in an ASP.NET MVC Application
-====================
-by [Tom Dykstra](https://github.com/tdykstra)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
-
-> The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
+# Tutorial: Use async and stored procedures with EF in an ASP.NET MVC App
 
 In earlier tutorials you learned how to read and update data using the synchronous programming model. In this tutorial you see how to implement the asynchronous programming model. Asynchronous code can help an application perform better because it makes better use of server resources.
 
-In this tutorial you'll also see how to use stored procedures for insert, update, and delete operations on an entity.
+In this tutorial you also see how to use stored procedures for insert, update, and delete operations on an entity.
 
-Finally, you'll redeploy the application to Azure, along with all of the database changes that you've implemented since the first time you deployed.
+Finally, you redeploy the application to Azure, along with all of the database changes that you've implemented since the first time you deployed.
 
 The following illustrations show some of the pages that you'll work with.
 
@@ -30,7 +25,19 @@ The following illustrations show some of the pages that you'll work with.
 
 ![Create Department](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image2.png)
 
-## Why bother with asynchronous code
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learn about asynchronous code
+> * Create a Department controller
+> * Use stored procedures
+> * Deploy to Azure
+
+## Prerequisites
+
+* [Updating Related Data](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+
+## Why use asynchronous code
 
 A web server has a limited number of threads available, and in high load situations all of the available threads might be in use. When that happens, the server can't process new requests until the threads are freed up. With synchronous code, many threads may be tied up while they aren't actually doing any work because they're waiting for I/O to complete. With asynchronous code, when a process is waiting for I/O to complete, its thread is freed up for the server to use for processing other requests. As a result, asynchronous code enables server resources to be use more efficiently, and the server is enabled to handle more traffic without delays.
 
@@ -38,11 +45,9 @@ In earlier versions of .NET, writing and testing asynchronous code was complex, 
 
 For more information about asynchronous programming, see [Use .NET 4.5's async support to avoid blocking calls](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices.md#async).
 
-## Create the Department controller
+## Create Department controller
 
-Create a Department controller the same way you did the earlier controllers, except this time select the **Use async controller** actions check box.
-
-![Department controller scaffold](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
+Create a Department controller the same way you did the earlier controllers, except this time select the **Use async controller actions** check box.
 
 The following highlights show what was added to the synchronous code for the `Index` method to make it asynchronous:
 
@@ -83,8 +88,6 @@ In the Delete and Details views use the following code:
 
 Run the application, and click the **Departments** tab.
 
-![Departments page](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
-
 Everything works the same as in the other controllers, but in this controller all of the SQL queries are executing asynchronously.
 
 Some things to be aware of when you are using asynchronous programming with the Entity Framework:
@@ -92,7 +95,7 @@ Some things to be aware of when you are using asynchronous programming with the 
 - The async code is not thread safe. In other words, in other words, don't try to do multiple operations in parallel using the same context instance.
 - If you want to take advantage of the performance benefits of async code, make sure that any library packages that you're using (such as for paging), also use async if they call any Entity Framework methods that cause queries to be sent to the database.
 
-## Use stored procedures for inserting, updating, and deleting
+## Use stored procedures
 
 Some developers and DBAs prefer to use stored procedures for database access. In earlier versions of Entity Framework you can retrieve data using a stored procedure by [executing a raw SQL query](advanced-entity-framework-scenarios-for-an-mvc-web-application.md), but you can't instruct EF to use stored procedures for update operations. In EF 6 it's easy to configure Code First to use stored procedures.
 
@@ -114,7 +117,6 @@ Some developers and DBAs prefer to use stored procedures for database access. In
 4. Run the application in debug mode, click the **Departments** tab, and then click **Create New**.
 5. Enter data for a new department, and then click **Create**.
 
-     ![Create Department](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
 6. In Visual Studio, look at the logs in the **Output** window to see that a stored procedure was used to insert the new Department row.
 
      ![Department Insert SP](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
@@ -137,12 +139,24 @@ This section requires you to have completed the optional **Deploying the app to 
 
     The first time you run a page that accesses the database, the Entity Framework runs all of the migrations `Up` methods required to bring the database up to date with the current data model. You can now use all of the web pages that you added since the last time you deployed, including the Department pages that you added in this tutorial.
 
-## Summary
+## Get the code
 
-In this tutorial you saw how to improve server efficiency by writing code that executes asynchronously, and how to use stored procedures for insert, update, and delete operations. In the next tutorial, you'll see how to prevent data loss when multiple users try to edit the same record at the same time.
+[Download the Completed Project](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
+
+## Additional resources
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Previous](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-> [Next](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+## Next steps
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learned about asynchronous code
+> * Created a Department controller
+> * Used stored procedures
+> * Deployed to Azure
+
+Advance to the next article to learn how to handle conflicts when multiple users update the same entity at the same time.
+> [!div class="nextstepaction"]
+> [Handling concurrency](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)

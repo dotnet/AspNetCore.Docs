@@ -4,20 +4,19 @@ title: "OWIN Startup Class Detection | Microsoft Docs"
 author: Praburaj
 description: "This tutorial shows how to configure which OWIN startup class is loaded. For more information on OWIN, see An Overview of Project Katana. This tutorial was..."
 ms.author: riande
-ms.date: 10/17/2013
+ms.date: 01/28/2019
 ms.assetid: 08257f55-36f4-4e39-9c88-2a5602838c79
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-startup-class-detection
 msc.type: authoredcontent
 ---
 OWIN Startup Class Detection
 ====================
-by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > This tutorial shows how to configure which OWIN startup class is loaded. For more information on OWIN, see [An Overview of Project Katana](an-overview-of-project-katana.md). This tutorial was written by Rick Anderson ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) ), Praburaj Thiagarajan, and Howard Dierking ( [@howard\_dierking](https://twitter.com/howard_dierking) ).
 >
 > ## Prerequisites
 >
-> [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
+> [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 
 
 ## OWIN Startup Class Detection
@@ -54,7 +53,7 @@ by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https:/
 1. Create an empty Asp.Net web application and name it **StartupDemo**. - Install `Microsoft.Owin.Host.SystemWeb` using the NuGet package manager. From the **Tools** menu, select **NuGet Package Manager**, and then **Package Manager Console**. Enter the following command:
 
     [!code-powershell[Main](owin-startup-class-detection/samples/sample7.ps1)]
-2. Add an OWIN startup class. In Visual Studio 2013 right click the project and select **Add Class**.- In the **Add New Item** dialog box, enter *OWIN* in the search field, and change the name to Startup.cs, and then click **Add**.
+2. Add an OWIN startup class. In Visual Studio 2017 right-click the project and select **Add Class**.- In the **Add New Item** dialog box, enter *OWIN* in the search field, and change the name to Startup.cs, and then select **Add**.
 
      ![](owin-startup-class-detection/_static/image1.png)
 
@@ -62,7 +61,7 @@ by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https:/
 
      ![](owin-startup-class-detection/_static/image2.png)
 
-   Alternatively, you can right click the project and select **Add**, then select **New Item**, and then select the **Owin Startup class**.
+   Alternatively, you can right-click the project and select **Add**, then select **New Item**, and then select the **Owin Startup class**.
 
      ![](owin-startup-class-detection/_static/image3.png)
 
@@ -153,6 +152,7 @@ In this section we'll add another Startup class. You can add multiple OWIN start
 
    The Production startup class is loaded.
     ![](owin-startup-class-detection/_static/image9.png)
+
    Our application has multiple startup classes, and in this example we have deferred which startup class to load until runtime.
 8. Test the following runtime startup options:
 

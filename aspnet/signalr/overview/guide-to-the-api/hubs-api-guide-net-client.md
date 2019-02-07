@@ -1,17 +1,16 @@
 ---
 uid: signalr/overview/guide-to-the-api/hubs-api-guide-net-client
 title: "ASP.NET SignalR Hubs API Guide - .NET Client (C#) | Microsoft Docs"
-author: pfletcher
+author: bradygaster
 description: "This document provides an introduction to using the Hubs API for SignalR version 2 in .NET clients, such as Windows Store (WinRT), WPF, Silverlight, and cons..."
-ms.author: riande
-ms.date: 06/10/2014
+ms.author: bradyg
+ms.date: 01/15/2019
 ms.assetid: 6d02d9f7-94e5-4140-9f51-5a6040f274f6
 msc.legacyurl: /signalr/overview/guide-to-the-api/hubs-api-guide-net-client
 msc.type: authoredcontent
 ---
 ASP.NET SignalR Hubs API Guide - .NET Client (C#)
 ====================
-by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
@@ -24,7 +23,7 @@ by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://githu
 > ## Software versions used in this topic
 >
 >
-> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 > - .NET 4.5
 > - SignalR version 2
 >

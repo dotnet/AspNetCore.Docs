@@ -660,6 +660,26 @@ For more information on regular expression syntax, see [.NET Framework Regular E
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
+## Custom Route Constraints
+
+In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains a single method, `Match`, which returns `true` if the constraint is satisfied and `false` otherwise.
+
+To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's `RouteOptions.ConstraintMap` in the app's service container. A <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `RouteOptions.ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a `services.AddRouting` call or by configuring `RouteOptions` directly with `services.Configure<RouteOptions>`. For example:
+
+```csharp
+services.AddRouting(options =>
+{
+    options.ConstraintMap.Add("customName", typeof(MyCustomConstraint));
+});
+```
+
+The constraint can then be applied to routes in the usual manner, using the name specified when registering the constraint type. For example:
+
+```csharp
+[HttpGet("{id:customName}")]
+public ActionResult<string> Get(string id)
+```
+
 ::: moniker range=">= aspnetcore-2.2"
 
 ## Parameter transformer reference
@@ -731,3 +751,9 @@ routes.MapRoute("blog_route", "blog/{*slug}",
 ```
 
 Link generation only generates a link for this route when the matching values for `controller` and `action` are provided.
+
+## Complex segments
+
+Complex segments (for example `[Route("/x{token}y")]`) are processed by matching up literals from right to left in a non-greedy way. See [this code](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) for a detailed explanation of how complex segments are matched. The [code sample](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) is not used by ASP.NET Core, but it provides a good explanation of complex segments.
+<!-- While that code is no longer used by ASP.NET Core for complex segment matching, it provides a good match to the current algorithm. The [current code](https://github.com/aspnet/AspNetCore/blob/91514c9af7e0f4c44029b51f05a01c6fe4c96e4c/src/Http/Routing/src/Matching/DfaMatcherBuilder.cs#L227-L244) is too abstracted from matching to be useful for understanding complex segment matching.
+-->

@@ -254,6 +254,8 @@ In the *SchoolViewModels* folder, add a *EnrollmentDateGroup.cs* with the follow
 
 ### Update the About page model
 
+The web templates in ASP.NET Core 2.2 do not include the About page. If you are using ASP.NET Core 2.2, create the About Razor Page.
+
 Update the *Pages/About.cshtml.cs* file with the following code:
 
 [!code-csharp[](intro/samples/cu21/Pages/About.cshtml.cs)]

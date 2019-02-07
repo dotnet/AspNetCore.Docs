@@ -1,9 +1,9 @@
 ---
 uid: signalr/overview/performance/signalr-performance
 title: "SignalR Performance | Microsoft Docs"
-author: pfletcher
+author: bradygaster
 description: "SignalR Performance"
-ms.author: riande
+ms.author: bradyg
 ms.date: 06/10/2014
 ms.assetid: 3751f5e7-59db-4be0-a290-50abc24e5c84
 msc.legacyurl: /signalr/overview/performance/signalr-performance

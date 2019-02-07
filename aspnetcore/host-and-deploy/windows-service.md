@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 01/22/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -38,7 +38,9 @@ Based on your choice of [deployment type](#deployment-type), update the project 
 
 #### Framework-dependent Deployment (FDD)
 
-Add a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) to the `<PropertyGroup>` that contains the target framework. Add the `<SelfContained>` property set to `false`. Disable the creation of a *web.config* file by adding the `<IsTransformWebConfigDisabled>` property set to `true`.
+Add a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) to the `<PropertyGroup>` that contains the target framework. In the following example, the RID is set to `win7-x64`. Add the `<SelfContained>` property set to `false`. These properties instruct the SDK to generate an executable (*.exe*) file for Windows.
+
+A *web.config* file, which is normally produced when publishing an ASP.NET Core app, is unnecessary for a Windows Services app. To disable the creation of the *web.config* file, add the `<IsTransformWebConfigDisabled>` property set to `true`.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -54,6 +56,8 @@ Add a Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) to the `<Prop
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
+
+Add the `<UseAppHost>` property set to `true`. This property provides the service with an activation path (an executable, *.exe*) for an FDD.
 
 ```xml
 <PropertyGroup>

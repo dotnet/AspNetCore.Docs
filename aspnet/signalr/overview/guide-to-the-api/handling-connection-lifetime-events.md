@@ -1,17 +1,16 @@
 ---
 uid: signalr/overview/guide-to-the-api/handling-connection-lifetime-events
 title: "Understanding and Handling Connection Lifetime Events in SignalR | Microsoft Docs"
-author: pfletcher
+author: bradygaster
 description: "This article describes how to use the events exposed by the Hubs API."
-ms.author: riande
-ms.date: 06/10/2014
+ms.author: bradyg
+ms.date: 01/15/2019
 ms.assetid: 03960de2-8d95-4444-9169-4426dcc64913
 msc.legacyurl: /signalr/overview/guide-to-the-api/handling-connection-lifetime-events
 msc.type: authoredcontent
 ---
 Understanding and Handling Connection Lifetime Events in SignalR
 ====================
-by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
@@ -26,7 +25,7 @@ by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://githu
 > ## Software versions used in this topic
 >
 >
-> - [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
+> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 > - .NET 4.5
 > - SignalR version 2
 >

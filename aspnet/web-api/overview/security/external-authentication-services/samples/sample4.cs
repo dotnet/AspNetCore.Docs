@@ -4,11 +4,15 @@
 //    clientSecret: "");
 
 //app.UseTwitterAuthentication(
-//   consumerKey: "",
-//   consumerSecret: "");
+//    consumerKey: "",
+//    consumerSecret: "");
 
 //app.UseFacebookAuthentication(
-//   appId: "",
-//   appSecret: "");
+//    appId: "",
+//    appSecret: "");
 
-//app.UseGoogleAuthentication();
+//app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+//{
+//    ClientId = "",
+//    ClientSecret = ""
+//});

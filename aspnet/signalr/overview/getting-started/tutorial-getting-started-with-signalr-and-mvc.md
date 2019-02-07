@@ -1,10 +1,10 @@
 ---
 uid: signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
 title: "Tutorial: Real-time chat with SignalR 2 and MVC 5 | Microsoft Docs"
-author: pfletcher
+author: bradygaster
 description: "This tutorial shows how to use ASP.NET SignalR 2 to create a real-time chat application. You add SignalR to an MVC 5 application."
-ms.author: riande
-ms.date: 01/02/2019
+ms.author: bradyg
+ms.date: 01/22/2019
 ms.assetid: 80bfe5fb-bdfc-41fe-ac43-2132e5d69fac
 msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
 msc.type: authoredcontent
@@ -170,6 +170,10 @@ This code opens a connection with the hub.
 > This approach ensures that you establish a connection before the event handler executes.
 
 The code starts the connection and then passes it a function to handle the click event on the **Send** button in the Chat page.
+
+## Get the code
+
+[Download Completed Project](http://code.msdn.microsoft.com/Getting-Started-with-c366b2f3)
 
 ## Additional resources
 
