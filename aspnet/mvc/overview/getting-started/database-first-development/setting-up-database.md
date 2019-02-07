@@ -5,12 +5,12 @@ author: Rick-Anderson
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."
 ms.author: riande
 ms.date: 01/15/2019
+ms.topic: tutorial
 ms.assetid: 095abad4-3bfe-4f06-b092-ae6a735b7e49
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/setting-up-database
 msc.type: authoredcontent
 ---
-Getting Started with Entity Framework 6 Database First using MVC 5
-====================
+# Getting Started with Entity Framework 6 Database First using MVC 5
 
 > Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table. In the last part of the series, you will deploy the site and database to Azure.
 > 
