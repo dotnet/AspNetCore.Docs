@@ -106,6 +106,8 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
+The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
+
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `ApplicationMaxBufferSize` | 32 KB | The maximum number of bytes received from the client that the server buffers. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
