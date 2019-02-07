@@ -101,7 +101,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         configure.MapHub<MyHub>("/myhub", (options) => 
         {
             options.Transports = desiredTransports;
-        });s
+        });
     });
 }
 ```
