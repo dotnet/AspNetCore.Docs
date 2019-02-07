@@ -4,9 +4,8 @@ title: "Tutorial: Handle Concurrency with EF in an ASP.NET MVC 5 app"
 description: "This tutorial shows how to use optimistic concurrency to handle conflicts when multiple users update the same entity at the same time."
 author: tdykstra
 ms.author: riande
-
+ms.topic: tutorial
 ms.date: 01/15/2019
-
 ms.assetid: be0c098a-1fb2-457e-b815-ddca601afc65
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
