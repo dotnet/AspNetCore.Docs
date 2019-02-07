@@ -50,7 +50,7 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 * In the **New File** dialog:
 
   * Select **General** in the left pane.
-  * Select **Empty Class** in the center pain.
+  * Select **Empty Class** in the center pane.
   * Name the class **Movie** and select **New**.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]

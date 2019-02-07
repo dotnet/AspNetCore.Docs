@@ -53,7 +53,7 @@ Visual Studio includes the **Blazor (ASP.NET Core hosted)** project template for
 
 In the ASP.NET Core Razor Components server-side hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a SignalR connection.
 
-![ASP.NET Core Razor Components server-side: The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/client-side.png)
+![ASP.NET Core Razor Components server-side: The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/server-side.png)
 
 To create a Razor Components app using the server-side hosting model, use the **Blazor (Server-side in ASP.NET Core)** template (`blazorserver` when using [dotnet new](/dotnet/core/tools/dotnet-new) at a command prompt). An ASP.NET Core app hosts the Razor Components server-side app and sets up the SignalR endpoint where clients connect. The ASP.NET Core app references the app's `Startup` class to add:
 
