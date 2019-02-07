@@ -341,6 +341,8 @@ Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or p
 </PropertyGroup>
 ```
 
+If you require *web.config* transformations (for example, setting environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/webconfig-transformation>.
+
 ## Exclude files
 
 When publishing ASP.NET Core web apps, the build artifacts and contents of the *wwwroot* folder are included. `msbuild` supports [globbing patterns](https://gruntjs.com/configuring-tasks#globbing-patterns). For example, the following `<Content>` element excludes all text (*.txt*) files from the *wwwroot/content* folder and all its subfolders.
@@ -515,3 +517,4 @@ Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console
 * [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifies deployment of web apps and websites to IIS servers.
 * [https://github.com/aspnet/websdk](https://github.com/aspnet/websdk/issues): File issues and request features for deployment.
 * [Publish an ASP.NET Web App to an Azure VM from Visual Studio](/azure/virtual-machines/windows/publish-web-app-from-visual-studio)
+* <xref:host-and-deploy/webconfig-transformation>
