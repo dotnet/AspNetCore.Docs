@@ -87,7 +87,7 @@ services.AddSignalR().AddHubOptions<MyHub>(options =>
 
 ### Advanced HTTP configuration options
 
-Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to [MapHub\<T>](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub).
+Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to [MapHub\<T>](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub) in `Startup.Configure`.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
