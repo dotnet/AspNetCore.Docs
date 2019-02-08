@@ -3399,7 +3399,7 @@
   href: visual-studio/overview/2017/index.md
   items: 
     - name: Optimize build performance for solution
-      href: visual-studio/overview/2017/optimize-build-perf
+      href: visual-studio/overview/2017/optimize-build-perf.md
 - name: Visual Studio 2013
   href: visual-studio/overview/2013/index.md
   items: 
