@@ -61,7 +61,7 @@ namespace SampleApp
                                     azureServiceTokenProvider.KeyVaultTokenCallback));
 
                             config.AddAzureKeyVault(
-                                $"https://{builtConfig["Vault"]}.vault.azure.net/",
+                                $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
                                 keyVaultClient,
                                 new DefaultKeyVaultSecretManager());
                     }
