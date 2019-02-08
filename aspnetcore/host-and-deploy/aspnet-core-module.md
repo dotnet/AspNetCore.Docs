@@ -496,7 +496,9 @@ The ASP.NET Core Module installer runs with the privileges of the **SYSTEM** acc
 
 ## Application Initialization
 
-App initialization is achieved for apps that use the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model) with [IIS Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization):
+[IIS Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) is an IIS feature that sends a fake HTTP request to the app. The request triggers the app to start. Application Initialization can be used by both the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model) and [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model) with the ASP.NET Core Module version 2.
+
+To enable Application Initialization:
 
 1. Confirm that the IIS Application Initialization role feature in enabled:
    * On Windows 7 or later: Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen). Open **Internet Information Services** > **World Wide Web Services** > **Application Development Features**. Select the check box for **Application Initialization**.
