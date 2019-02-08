@@ -8,9 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebAPI
 {
-    public class Startup3
+    public class StartupAttributeTest
     {
-        public Startup3(IConfiguration configuration)
+        public StartupAttributeTest(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -19,10 +19,20 @@ namespace WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyAllowSpecificOrigins",
+                builder =>
+                {
+                    builder.WithOrigins("http://example.com",
+                                        "http://www.contoso.com",
+                                         "https://localhost:5001");
+                });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        #region snippet2
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -34,18 +44,11 @@ namespace WebAPI
                 app.UseHsts();
             }
 
-            // Shows UseCors with CorsPolicyBuilder.
-            app.UseCors(builder =>
-            {
-                builder.WithOrigins("http://example.com",
-                                    "http://www.contoso.com",
-                                    "https://localhost:5001");
-            });
+            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseMvc();
         }
-        #endregion
     }
 
 }

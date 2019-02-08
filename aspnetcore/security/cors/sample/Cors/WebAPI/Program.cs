@@ -14,6 +14,7 @@ namespace WebAPI
             WebHost.CreateDefaultBuilder(args)
                 //.UseStartup<Startup>();
                 //.UseStartup<Startup2>();
-                .UseStartup<Startup3>();
+                //.UseStartup<Startup3>();
+        .UseStartup<StartupAttributeTest>();
     }
 }

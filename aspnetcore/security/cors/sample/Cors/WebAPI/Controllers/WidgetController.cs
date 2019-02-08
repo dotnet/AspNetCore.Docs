@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace WebAPI.Controllers
 {
     #region snippet
-    [EnableCors("MyPolicy")]
+    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class WidgetController : ControllerBase
