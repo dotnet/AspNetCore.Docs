@@ -10,22 +10,16 @@
 
 <div>
     <input type="button" value="Test" onclick="requestVal()" />
-    <span id='result'> </span>
+    <span id='result'></span>
 </div>
 
-
 <script>
+function requestVal() {
+    const resultSpan = document.getElementById('result');
 
-    function requestVal() {
-        $.ajax({
-            url: 'https://webapi20190128063025.azurewebsites.net/api/values/1',
-            type: 'GET',
-            error: function () {
-                $('#result').text("See F12 Console for error");
-            }
-        }).done(function (result) {
-            $('#result').text(result);
-        });
-    }
-
+    fetch('https://webapi20190128063025.azurewebsites.net/api/values/1')
+        .then(response => response.json())
+        .then(data => resultSpan.innerText = data)
+        .catch(error => resultSpan.innerText = 'See F12 Console for error');
+}
 </script>
