@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+// All the xxxTest.cs are used only for testing and not in the cors.md file.
+
 namespace WebAPI
 {
-    public class Startup3
+    public class StartupTest
     {
-        public Startup3(IConfiguration configuration)
+        public StartupTest(IConfiguration configuration)
         {
             Configuration = configuration;
         }

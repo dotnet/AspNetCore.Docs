@@ -5,21 +5,22 @@ using System.Collections.Generic;
 namespace WebAPI.Controllers
 {
     #region snippet
-    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class WidgetController : ControllerBase
     {
         // GET api/values
+        [EnableCors("AnotherPolicy")]
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "green widget", "red widget" };
         }
 
+        #region snippet2
         // GET api/values/5
+        [EnableCors]        // Default policy.
         [HttpGet("{id}")]
-        [EnableCors("AnotherPolicy")]
         public ActionResult<string> Get(int id)
         {
             switch (id)
@@ -32,7 +33,7 @@ namespace WebAPI.Controllers
                     return NotFound();
             }
         }
-       
+        #endregion
     }
     #endregion
 }

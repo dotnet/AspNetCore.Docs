@@ -4,38 +4,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+// All the xxxTest.cs are used only for testing and not in the cors.md file.
+
 namespace WebAPI
 {
-    #region snippet
-    public class Startup
+    public class StartupAttributeTest
     {
-        public Startup(IConfiguration configuration)
+        public StartupAttributeTest(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
         public IConfiguration Configuration { get; }
 
-        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-                options.AddPolicy(MyAllowSpecificOrigins,
+                options.AddPolicy("MyAllowSpecificOrigins",
                 builder =>
                 {
                     builder.WithOrigins("http://example.com",
-                                        "http://www.contoso.com");
+                                        "http://www.contoso.com",
+                                         "https://localhost:5001");
                 });
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-        #endregion
 
-        #region snippet3
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,13 +44,11 @@ namespace WebAPI
                 app.UseHsts();
             }
 
-            app.UseCors(MyAllowSpecificOrigins); // Default policy.
+            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseMvc();
         }
-        #endregion
     }
-    #endregion
 
 }

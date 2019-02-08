@@ -7,9 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 namespace WebAPI
 {
     #region snippet
-    public class Startup
+    public class StartupMultiPolicy
     {
-        public Startup(IConfiguration configuration)
+        public StartupMultiPolicy(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -18,24 +18,30 @@ namespace WebAPI
 
         public IConfiguration Configuration { get; }
 
-        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,
-                builder =>
-                {
-                    builder.WithOrigins("http://example.com",
-                                        "http://www.contoso.com");
-                });
+                    builder =>
+                    {
+                        builder.WithOrigins("http://example.com",
+                                            "http://www.contoso.com");
+                    });
+
+                options.AddPolicy("AnotherPolicy",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://www.contoso.com")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-        #endregion
 
-        #region snippet3
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,13 +53,11 @@ namespace WebAPI
                 app.UseHsts();
             }
 
-            app.UseCors(MyAllowSpecificOrigins); // Default policy.
+            app.UseCors(MyAllowSpecificOrigins);  // Default policy.
 
             app.UseHttpsRedirection();
             app.UseMvc();
         }
-        #endregion
     }
     #endregion
-
 }

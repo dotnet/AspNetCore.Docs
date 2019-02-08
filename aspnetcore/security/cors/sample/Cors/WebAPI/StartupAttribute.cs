@@ -6,24 +6,24 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebAPI
 {
+    // This sample is used in the ## Enable CORS with attributes
+    // cors.md file. StartupAttributeTest is a copy of this with
+    //   "https://localhost:5001" for easy testing.
     #region snippet
-    public class Startup
+    public class StartupAttribute
     {
-        public Startup(IConfiguration configuration)
+        public StartupAttribute(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
         public IConfiguration Configuration { get; }
 
-        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-                options.AddPolicy(MyAllowSpecificOrigins,
+                options.AddPolicy("MyAllowSpecificOrigins",
                 builder =>
                 {
                     builder.WithOrigins("http://example.com",
@@ -33,9 +33,7 @@ namespace WebAPI
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-        #endregion
 
-        #region snippet3
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,12 +45,10 @@ namespace WebAPI
                 app.UseHsts();
             }
 
-            app.UseCors(MyAllowSpecificOrigins); // Default policy.
-
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
-        #endregion
     }
     #endregion
 
