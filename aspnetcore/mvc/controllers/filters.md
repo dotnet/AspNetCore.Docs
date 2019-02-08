@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 02/08/2019
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -381,18 +381,20 @@ Because these filters implement <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFi
 * An authorization filter that prevents execution of the action.
 * An exception filter that handles an exception.
 
-For example, the following filter always runs and returns a <xref:Microsoft.AspNetCore.Mvc.NotFoundResult> if a `null` <xref:Microsoft.AspNetCore.Mvc.ObjectResult> is returned from anywhere in the request processing pipeline:
+For example, the following filter always runs and sets an action result (<xref:Microsoft.AspNetCore.Mvc.ObjectResult>) with a *422 Unprocessable Entity* status code when content negotiation fails:
 
 ```csharp
-public class NotFoundAlwaysRunFilterAttribute : Attribute, 
-    IAlwaysRunResultFilter
+public class UnprocessableResultFilter : Attribute, IAlwaysRunResultFilter
 {
     public void OnResultExecuting(ResultExecutingContext context)
     {
-        if (context.Result is ObjectResult objResult && 
-            objResult.Value == null)
+        if (context.Result is StatusCodeResult statusCodeResult &&
+            statusCodeResult.StatusCode == 415)
         {
-            context.Result = new NotFoundResult();
+            context.Result = new ObjectResult("Can't process this!")
+            {
+                StatusCode = 422,
+            };
         }
     }
 
