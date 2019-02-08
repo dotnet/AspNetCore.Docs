@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace WebAPI.Controllers
 {
     #region snippet
-    [EnableCors("AnotherPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class WidgetController : ControllerBase
     {
         // GET api/values
+        [EnableCors("AnotherPolicy")]
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {

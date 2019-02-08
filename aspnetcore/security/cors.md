@@ -95,25 +95,14 @@ The preceding code sets the policy name to "MyAllowSpecificOrigins". The policy 
 The [&lbrack;EnableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors("{Policy String}")]` attribute can be applied to a:
 
 * Razor Page `PageModel`
-* Razor Page action method
 * Controller
 * Controller action method
 
-You can apply different policies to controller/page model/action with the  `[EnableCors("{Policy String}")]` attribute. When the `[EnableCors("{Policy String}")]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, the attribute takes precedence.
+You can apply different policies to controller/page model/action with the  `[EnableCors("{Policy String}")]` attribute. When the `[EnableCors("{Policy String}")]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, both policies are applied. We recommend against combining policies, use the `[EnableCors]` attribute or middleware.
 
-Policies have the following precedence:
-
-1. Action method
-1. Controller or `PageModel`
-1. Middleware
-
-The following code applies `"AnotherPolicy"` to non-decorated methods in the controller:
+The following code applies a different policy to each method:
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet)]
-
-The default policy is applied to the following action method:
-
-[!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet2)]
 
 ## Enable CORS without named policy
 
