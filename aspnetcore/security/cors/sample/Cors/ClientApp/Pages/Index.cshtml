@@ -5,28 +5,29 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Cors Test</h1>
+    <h1 class="display-4">CORS Test</h1>
 </div>
 
+
 <div>
-    <input type="button" value="Test" onclick="requestVal()" />
+    <input type="button" value="Fetch" onclick="callOtherDomain()" />
     <span id='result'> </span>
 </div>
 
 
 <script>
 
-    function requestVal() {
-        $.ajax({
-            //url: 'https://webapi20190128063025.azurewebsites.net/api/values/1',
-            url: 'https://webapi20190128063025.azurewebsites.net/api/widget',
-            type: 'GET',
-            error: function () {
-                $('#result').text("See F12 Console for error");
-            }
-        }).done(function (result) {
-            $('#result').text(result);
-        });
+  function callOtherDomain() {
+     // fetch('https://webapi20190128063025.azurewebsites.net/api/values/1')
+    fetch('https://webapi20190128063025.azurewebsites.net/api/widget')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+     $('#result').text(myJson);
+  }).catch(function(error) {
+     $('#result').text("See F12 Console for error");
+ });
     }
 
 </script>

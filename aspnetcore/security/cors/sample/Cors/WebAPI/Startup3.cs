@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebAPI
 {
-    public class StartupTest
+    public class Startup3
     {
-        public StartupTest(IConfiguration configuration)
+        public Startup3(IConfiguration configuration)
         {
             Configuration = configuration;
         }

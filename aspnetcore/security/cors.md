@@ -80,11 +80,17 @@ See [Test CORS](#test) for instructions on testing the preceding code.
 
 ## Enable CORS with attributes
 
+The following code creates two named policies for CORS:
+
+[!code-csharp[](cors/sample/Cors/WebAPI/StartupMultiPolicy.cs?name=snippet&highlight=8,14-31,47)]
+
+In the preceding code, `app.UseCors(MyAllowSpecificOrigins);` is the default policy for the app.
+
 The following code creates a named policy for CORS:
 
 [!code-csharp[](cors/sample/Cors/WebAPI/StartupAttribute.cs?name=snippet&highlight=12-20,36)]
 
-The preceding code sets the policy name to "MyAllowSpecificOrigins". The policy name is arbitrary. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> enables the CORS middleware, but does not enable CORS for the app. 
+The preceding code sets the policy name to "MyAllowSpecificOrigins". The policy name is arbitrary. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> enables the CORS middleware, but does not enable CORS for the app. When using the parameter-less `UseCors()`, the `[EnableCors]` attribute is used to enable CORS.
 
 The [&lbrack;EnableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors("{Policy String}")]` attribute can be applied to a:
 
@@ -101,9 +107,13 @@ Policies have the following precedence:
 1. Controller or `PageModel`
 1. Middleware
 
-The following code applies `"AnotherPolicy"` to `ActionResult<string> Get(int id)` and `"MyAllowSpecificOrigins"` to non-decorated methods in the controller:
+The following code applies `"AnotherPolicy"` to non-decorated methods in the controller:
 
-[!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet&highlight=1,15)]
+[!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet)]
+
+The default policy is applied to the following action method:
+
+[!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet2)]
 
 ## Enable CORS without named policy
 
