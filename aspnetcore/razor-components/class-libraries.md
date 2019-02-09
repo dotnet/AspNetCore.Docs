@@ -25,7 +25,7 @@ Components can be shared in component libraries across projects. Components can 
 
 Just as components are regular .NET types, component libraries are normal .NET assemblies.
 
-To create a new component library, use the `blazorlib` template with the [dotnet new](/dotnet/core/tools/dotnet-new) command. The template is part of the templates installed when [setting up Razor Components](/docs/get-started.html#setup).
+To create a new component library, use the `blazorlib` template with the [dotnet new](/dotnet/core/tools/dotnet-new) command. The template is part of the templates installed when [setting up Razor Components](/aspnet/core/razor-components/get-started.html#setup).
 
 ```console
 dotnet new blazorlib -o MyComponentLib1
