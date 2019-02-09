@@ -441,8 +441,6 @@
       items: 
         - name: Overview
           uid: razor-components/index
-        - name: FAQ
-          uid: razor-components/faq
         - name: Get started
           uid: razor-components/get-started
         - name: Build your first app
