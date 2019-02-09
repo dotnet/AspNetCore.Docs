@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Razor Components, a .NET web framework using C
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/06/2019
+ms.date: 02/09/2019
 uid: razor-components/index
 ---
 # Introduction to Razor Components
@@ -14,19 +14,19 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 [!INCLUDE[](~/includes/razor-components-preview-notice.md)]
 
-*Razor Components* is a .NET web framework using C#/Razor and HTML that makes web development easier and more productive:
+*Razor Components* is a new way to build interactive client-side web UI with .NET:
 
-* Build rich interactive UIs using .NET instead of JavaScript.
-* Write client-side code and share server and client-side logic among apps.
-* Razor Components render the UI as HTML markup and JavaScript for wide browser support, including mobile browsers.
+* Build rich interactive UIs using C# instead of JavaScript.
+* Share server-side and client-side app logic all written with .NET.
+* Render the UI as HTML and CSS for wide browser support, including mobile browsers.
 
 ## Components
 
-Apps are built with *components*. A component is a piece of UI, such as a page, dialog, or data entry form. Components handle user events and define flexible UI rendering logic. Components can be nested and reused.
+A *Razor Component* is a piece of UI, such as a page, dialog, or data entry form. Components handle user events and define flexible UI rendering logic. Components can be nested and reused.
 
 Components are .NET classes built into .NET assemblies that can be shared and distributed as NuGet packages. The class can either be written in the form of a Razor markup page (*.cshtml*) or as a C# class (*.cs*).
 
-[Razor](xref:mvc/views/razor) is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) support. Razor Pages and MVC views also use Razor. Unlike Razor Pages and MVC views, which are built around a request/response model, components are used specifically for handling UI composition. Razor Components can be used with your existing Razor Pages and MVC apps.
+[Razor](xref:mvc/views/razor) is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) support. Razor Pages and MVC views also use Razor. Unlike Razor Pages and MVC views, which are built around a request/response model, components are used specifically for handling UI composition. Razor Components can be used specifically for client-side UI logic and composition.
 
 The following markup is an example of a custom dialog component in a Razor file (*DialogComponent.cshtml*):
 
@@ -46,9 +46,9 @@ The following markup is an example of a custom dialog component in a Razor file 
 
 When this component is used elsewhere in the app, IntelliSense speeds development with syntax and parameter completion.
 
-Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
+Components render into an in-memory representation of the browser DOM called a *render tree* that can then be used to update the UI in a flexible and efficient way.
 
-Core facilities that most apps require are provided by the Razor Components framework, including:
+Razor Components support core facilities required by most apps, including:
 
 * Parameters
 * Event handling
@@ -82,9 +82,9 @@ For more information, see <xref:razor-components/hosting-models#server-side-host
 
 ### Client-side hosting model
 
-*Blazor* is the experimental client-side hosting model of Razor Components. Blazor runs on .NET in the browser using open web standards without plugins or code transpilation. Blazor works in all modern web browsers, including mobile browsers. Blazor will be supported in a future release of .NET Core.
+*Blazor* is the experimental client-side hosting model of Razor Components. Blazor runs on .NET in the browser using open web standards without plugins or code transpilation. Blazor works in all modern web browsers, including mobile browsers.
 
-Running .NET code inside web browsers is made possible by a relatively new technology, [WebAssembly](http://webassembly.org) (abbreviated *wasm*). WebAssembly is an open web standard and supported in web browsers without plugins. WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed.
+Running .NET code inside web browsers is made possible by [WebAssembly](http://webassembly.org) (abbreviated *wasm*). WebAssembly is an open web standard and supported in web browsers without plugins. WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed.
 
 WebAssembly code can access the full functionality of the browser via JavaScript interop. At the same time, WebAssembly code runs in the same trusted sandbox as JavaScript to prevent malicious actions on the client machine.
 
