@@ -37,6 +37,16 @@ Resource file naming issues are one of the common problems that we had ever seen
 
 ## Missing resources
 
+Missing localization resources is one of common cases that may occur in many web applications, because the localization resource names are incorrect, the localization resources are not exist in the actual `.resx` files or resource file naming issues as its mentioned above.
+
+To avoid such issues be sure that:
+- Your localization resource names are set correctly
+- Your localization resources are exist in the `resx` file of the current culture of your application
+- Check the localization log messages - which they are in `Debug` level - for more details about the missing resources.
+
+_**Hint:** In the case of `CookieRequestCultureProvider` be sure there's no single quotes surrounds the cultures inside the localization cookie value, so `c='en-UK'|uic='en-US'` is invalid cookie value, while `c=en-UK|uic=en-US` is a valid one._
+
+
 ## Resources & Class Libraries issues
 
 ## CustomRequestCultureProvide doesn't work as expected
