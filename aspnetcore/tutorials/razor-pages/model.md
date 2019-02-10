@@ -111,7 +111,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 * **For Windows**: Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
