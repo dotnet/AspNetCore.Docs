@@ -471,6 +471,14 @@
       items: 
         - name: Overview
           uid: spa/index
+        - name: Blazor
+          items:
+            - name: Overview
+              uid: spa/blazor/index
+            - name: Get started
+              uid: spa/blazor/get-started
+            - name: Build your first app
+              uid: tutorials/first-razor-components-app
         - name: Angular
           uid: spa/angular
         - name: React
