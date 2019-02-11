@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Get started with EF Core in an ASP.NET Core MVC web app"
+title: "Tutorial: Get started with EF Core in an ASP.NET MVC web app"
 description: "This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch."
 author: rick-anderson
 ms.author: tdykstra
@@ -9,7 +9,7 @@ ms.topic: tutorial
 uid: data/ef-mvc/intro
 ---
 
-# Tutorial: Get started with EF Core in an ASP.NET Core MVC web app
+# Tutorial: Get started with EF Core in an ASP.NET MVC web app
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
