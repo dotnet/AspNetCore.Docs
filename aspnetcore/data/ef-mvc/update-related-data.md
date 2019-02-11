@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Update related data with EF Core in an ASP.NET Core MVC web app"
+title: "Tutorial: Update related data - ASP.NET MVC with EF Core"
 description: "In this tutorial you'll update related data by updating foreign key fields and navigation properties."
 author: rick-anderson
 ms.author: tdykstra
@@ -9,7 +9,7 @@ ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
 ---
 
-# Tutorial: Update related data with EF Core in an ASP.NET Core MVC web app
+# Tutorial: Update related data - ASP.NET MVC with EF Core
 
 In the previous tutorial you displayed related data; in this tutorial you'll update related data by updating foreign key fields and navigation properties.
 
