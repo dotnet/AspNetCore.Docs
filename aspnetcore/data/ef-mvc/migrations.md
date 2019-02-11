@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Using the EF Core migrations feature for ASP.NET Core in an MVC web app"
+title: "Tutorial: Using the migrations feature - ASP.NET MVC with EF Core"
 description: "In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application."
 author: rick-anderson
 ms.author: tdykstra
@@ -9,7 +9,7 @@ ms.topic: tutorial
 uid: data/ef-mvc/migrations
 ---
 
-# Tutorial: Using the EF Core migrations feature for ASP.NET Core in an MVC web app
+# Tutorial: Using the migrations feature - ASP.NET MVC with EF Core
 
 In this tutorial, you start using the EF Core migrations feature for managing data model changes. In later tutorials, you'll add more migrations as you change the data model.
 
