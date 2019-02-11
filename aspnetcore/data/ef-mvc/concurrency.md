@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Handle concurrency with EF Core in an ASP.NET Core MVC web app"
+title: "Tutorial: Handle concurrency - ASP.NET MVC with EF Core"
 description: "This tutorial shows how to handle conflicts when multiple users update the same entity at the same time."
 author: rick-anderson
 ms.author: tdykstra
@@ -9,7 +9,7 @@ ms.topic: tutorial
 uid: data/ef-mvc/concurrency
 ---
 
-# Tutorial: Handle concurrency with EF Core in an ASP.NET Core MVC web app
+# Tutorial: Handle concurrency - ASP.NET MVC with EF Core
 
 In earlier tutorials, you learned how to update data. This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 
