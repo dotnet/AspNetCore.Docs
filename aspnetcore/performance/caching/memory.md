@@ -27,7 +27,7 @@ The `IMemoryCache` cache will evict cache entries under memory pressure unless t
 
 ::: moniker-end
 
-The in-memory cache can store any object; the distributed cache interface is limited to `byte[]`. The in-memory and distributed cache store cache objects as key-value pairs.
+The in-memory cache can store any object; the distributed cache interface is limited to `byte[]`. The in-memory and distributed cache store cache items as key-value pairs.
 
 ## System.Runtime.Caching/MemoryCache
 
