@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Learn about advanced EF Core scenarios for an ASP.NET Core MVC web app"
+title: "Tutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core"
 description: "This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core."
 author: rick-anderson
 ms.author: tdykstra
@@ -9,7 +9,7 @@ ms.topic: tutorial
 uid: data/ef-mvc/advanced
 ---
 
-# Tutorial: Learn about advanced EF Core scenarios for an ASP.NET Core MVC web app
+# Tutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core
 
 In the previous tutorial, you implemented table-per-hierarchy inheritance. This tutorial introduces several topics that are useful to be aware of when you go beyond the basics of developing ASP.NET Core web applications that use Entity Framework Core.
 
