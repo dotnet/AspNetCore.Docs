@@ -171,10 +171,6 @@ The preceding commands generate the following warning: "No type was specified fo
 
 You can ignore that warning, it will be fixed in a later tutorial.
 
-The schema is based on the model specified in the `DbContext` (In the *Models/MvcMovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
-
 <!-- VS -------------------------->
 
 # [Visual Studio](#tab/visual-studio)
