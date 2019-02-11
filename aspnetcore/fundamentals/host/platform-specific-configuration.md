@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 11/22/2018
+ms.date: 02/11/2019
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
@@ -76,7 +76,7 @@ The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamen
 * Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration using the in-memory configuration provider ([AddInMemoryCollection](/dotnet/api/microsoft.extensions.configuration.memoryconfigurationbuilderextensions.addinmemorycollection)).
 * Includes a `HostingStartup` attribute that identifies the hosting startup's namespace and class.
 
-The `ServiceKeyInjection` class's [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add enhancements to an app. `IHostingStartup.Configure` in the hosting startup assembly is called by the runtime before `Startup.Configure` in user code, which allows user code to overwrite any configuration provided by the hosting startup assembly.
+The `ServiceKeyInjection` class's [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add enhancements to an app. `IHostingStartup.Configure` in the hosting startup assembly is called by the runtime before `Startup.Configure` in user code. However, delegates registered by `IHostingStartup` (for example, when calling `ConfigureAppConfiguration`) run after user code. To ensure that configuration code that relies on callbacks is executed before user code, call `UseConfiguration` to apply the configuration to the app.
 
 *HostingStartupLibrary/ServiceKeyInjection.cs*:
 
