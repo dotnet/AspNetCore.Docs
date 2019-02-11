@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
@@ -27,8 +28,8 @@ namespace WebApiSample.Controllers
 
         #region snippet_GetById
         [HttpGet("{id}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Product> GetById(int id)
         {
             if (!_repository.TryGetProduct(id, out var product))
@@ -42,8 +43,8 @@ namespace WebApiSample.Controllers
 
         #region snippet_CreateAsync
         [HttpPost]
-        [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Product>> CreateAsync(Product product)
         {
             if (product.Description.Contains("XYZ Widget"))
