@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Implement CRUD Functionality with EF Core in an ASP.NET Core MVC web app"
+title: "Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core"
 description: "In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views."
 author: rick-anderson
 ms.author: tdykstra
@@ -9,7 +9,7 @@ ms.topic: tutorial
 uid: data/ef-mvc/crud
 ---
 
-# Tutorial: Implement CRUD Functionality with EF Core in an ASP.NET Core MVC web app
+# Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core
 
 In the previous tutorial, you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views.
 
