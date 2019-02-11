@@ -194,7 +194,7 @@ The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ
 
 ## Acknowledgments
 
-Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan Miller, Diego Vega, and other members of the Entity Framework team assisted with code reviews and helped debug issues that arose while we were writing code for the tutorials.
+Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan Miller, Diego Vega, John Parente, Paul Goldman, and other members of the Entity Framework team assisted with code reviews and helped debug issues that arose while we were writing code for the tutorials.
 
 <a id="common-errors"></a>
 ## Troubleshoot common errors
