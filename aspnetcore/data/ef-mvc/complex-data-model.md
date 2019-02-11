@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Create a more complex data model with EF Core for an ASP.NET Core MVC web app"
+title: "Tutorial: Create a complex data model - ASP.NET MVC with EF Core"
 description: "In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules."
 author: rick-anderson
 ms.author: tdykstra
@@ -9,7 +9,7 @@ ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
 ---
 
-# Tutorial: Create a more complex data model with EF Core for an ASP.NET Core MVC web app
+# Tutorial: Create a complex data model - ASP.NET MVC with EF Core
 
 In the previous tutorials, you worked with a simple data model that was composed of three entities. In this tutorial, you'll add more entities and relationships and you'll customize the data model by specifying formatting, validation, and database mapping rules.
 
