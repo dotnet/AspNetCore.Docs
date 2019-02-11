@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Implement inheritance with EF Core in an ASP.NET Core MVC web app"
+title: "Tutorial: Implement inheritance - ASP.NET MVC with EF Core"
 description: "This tutorial will show you how to implement inheritance in the data model, using Entity Framework Core in an ASP.NET Core application."
 author: rick-anderson
 ms.author: tdykstra
@@ -9,7 +9,7 @@ ms.topic: tutorial
 uid: data/ef-mvc/inheritance
 ---
 
-# Tutorial: Implement inheritance with EF Core in an ASP.NET Core MVC web app
+# Tutorial: Implement inheritance - ASP.NET MVC with EF Core
 
 In the previous tutorial, you handled concurrency exceptions. This tutorial will show you how to implement inheritance in the data model.
 
