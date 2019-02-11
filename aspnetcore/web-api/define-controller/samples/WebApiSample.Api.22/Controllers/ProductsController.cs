@@ -17,7 +17,7 @@ namespace WebApiSample.Api._22.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(Product), 200)]
         [ProducesResponseType(404)]
         public async Task<ActionResult<Product>> GetByIdAsync(int id)
         {
@@ -34,6 +34,7 @@ namespace WebApiSample.Api._22.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<Product>), 200)]
         public async Task<ActionResult<List<Product>>> GetAsync(
             [FromQuery] bool discontinuedOnly = false)
         {
@@ -52,7 +53,7 @@ namespace WebApiSample.Api._22.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(201)]
+        [ProducesResponseType(typeof(Product), 201)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<Product>> CreateAsync(Product product)
         {
