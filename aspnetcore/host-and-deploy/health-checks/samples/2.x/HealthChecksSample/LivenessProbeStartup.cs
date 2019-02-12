@@ -63,7 +63,7 @@ namespace SampleApp
         #endregion
 
         #region snippet_Configure
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             // The readiness check uses all registered checks with the 'ready' tag.
             app.UseHealthChecks("/health/ready", new HealthCheckOptions()
