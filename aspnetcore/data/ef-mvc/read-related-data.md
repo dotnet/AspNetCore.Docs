@@ -1,21 +1,14 @@
 ---
-title: ASP.NET Core MVC with EF Core - Read Related Data - 6 of 10
+title: "Tutorial: Read related data - ASP.NET MVC with EF Core"
+description: "In this tutorial you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties."
 author: rick-anderson
-description: In this tutorial you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.date: 02/05/2019
+ms.topic: tutorial
 uid: data/ef-mvc/read-related-data
 ---
 
-# ASP.NET Core MVC with EF Core - Read Related Data - 6 of 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+# Tutorial: Read related data - ASP.NET MVC with EF Core
 
 In the previous tutorial, you completed the School data model. In this tutorial, you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 
@@ -25,7 +18,19 @@ The following illustrations show the pages that you'll work with.
 
 ![Instructors Index page](read-related-data/_static/instructors-index.png)
 
-## Eager, explicit, and lazy Loading of related data
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learn how to load related data
+> * Create a Courses page
+> * Create an Instructors page
+> * Learn about explicit loading
+
+## Prerequisites
+
+* [Create a more complex data model with EF Core for an ASP.NET Core MVC web app](complex-data-model.md)
+
+## Learn how to load related data
 
 There are several ways that Object-Relational Mapping (ORM) software such as Entity Framework can load related data into the navigation properties of an entity:
 
@@ -49,7 +54,7 @@ If you know you need related data for every entity retrieved, eager loading ofte
 
 On the other hand, in some scenarios separate queries is more efficient. Eager loading of all related data in one query might cause a very complex join to be generated, which SQL Server can't process efficiently. Or if you need to access an entity's navigation properties only for a subset of a set of the entities you're processing, separate queries might perform better because eager loading of everything up front would retrieve more data than you need. If performance is critical, it's best to test performance both ways in order to make the best choice.
 
-## Create a Courses page that displays Department name
+## Create a Courses page
 
 The Course entity includes a navigation property that contains the Department entity of the department that the course is assigned to. To display the name of the assigned department in a list of courses, you need to get the Name property from the Department entity that's in the `Course.Department` navigation property.
 
@@ -83,7 +88,7 @@ Run the app and select the **Courses** tab to see the list with department names
 
 ![Courses Index page](read-related-data/_static/courses-index.png)
 
-## Create an Instructors page that shows Courses and Enrollments
+## Create an Instructors page
 
 In this section, you'll create a controller and view for the Instructor entity in order to display the Instructors page:
 
@@ -221,7 +226,7 @@ Refresh the page again and select an instructor. Then select a course to see the
 
 ![Instructors Index page instructor and course selected](read-related-data/_static/instructors-index.png)
 
-## Explicit loading
+## About explicit loading
 
 When you retrieved the list of instructors in *InstructorsController.cs*, you specified eager loading for the `CourseAssignments` navigation property.
 
@@ -233,12 +238,20 @@ The new code drops the *ThenInclude* method calls for enrollment data from the c
 
 Run the app, go to the Instructors Index page now and you'll see no difference in what's displayed on the page, although you've changed how the data is retrieved.
 
-## Summary
+## Get the code
 
-You've now used eager loading with one query and with multiple queries to read related data into navigation properties. In the next tutorial you'll learn how to update related data.
+[Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## Next steps
 
->[!div class="step-by-step"]
->[Previous](complex-data-model.md)
->[Next](update-related-data.md)
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learned how to load related data
+> * Created a Courses page
+> * Created an Instructors page
+> * Learned about explicit loading
+
+Advance to the next article to learn how to update related data.
+> [!div class="nextstepaction"]
+> [Update related data](update-related-data.md)
