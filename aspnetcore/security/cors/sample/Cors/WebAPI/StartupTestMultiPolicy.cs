@@ -7,9 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 namespace WebAPI
 {
     #region snippet
-    public class StartupMultiPolicy
+    public class StartupTestMultiPolicy
     {
-        public StartupMultiPolicy(IConfiguration configuration)
+        public StartupTestMultiPolicy(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -25,13 +25,17 @@ namespace WebAPI
                     {
                        
                         builder.WithOrigins("http://example.com",
+                                            "https://localhost:5001",
+                                            "https://localhost:44375",
                                             "http://www.contoso.com");
                     });
 
                 options.AddPolicy("AnotherPolicy",
                     builder =>
                     {
-                        builder.WithOrigins("http://www.contoso.com")
+                        builder.WithOrigins("http://www.contoso.com",
+                                            "https://localhost:44375",
+                                            "https://localhost:5001")
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();
                     });
