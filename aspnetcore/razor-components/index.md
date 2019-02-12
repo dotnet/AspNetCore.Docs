@@ -1,20 +1,18 @@
 ---
 title: Introduction to Razor Components
 author: guardrex
-description: Explore ASP.NET Core Razor Components, a new way to build interactive client-side web UI with .NET in an ASP.NET Core app.
+description: Explore ASP.NET Core Razor Components, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2019
+ms.date: 02/12/2019
 uid: razor-components/index
 ---
 # Introduction to Razor Components
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
-*Razor Components* is a new way to build interactive client-side web UI with .NET:
+*Razor Components* is a way to build interactive client-side web UI with .NET:
 
 * Build rich interactive UIs using C# instead of JavaScript.
 * Share server-side and client-side app logic all written with .NET.
