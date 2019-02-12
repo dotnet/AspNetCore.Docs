@@ -416,27 +416,7 @@
 - name: Client-side development
   items: 
     - name: Overview
-      uid: client-side/index
-    - name: Gulp
-      uid: client-side/using-gulp
-    - name: Grunt
-      uid: client-side/using-grunt
-    - name: LibMan
-      items: 
-        - name: Overview
-          uid: client-side/libman/index
-        - name: CLI
-          uid: client-side/libman/libman-cli
-        - name: Visual Studio
-          uid: client-side/libman/libman-vs
-    - name: Bower
-      uid: client-side/bower
-    - name: LESS, Sass, and Font Awesome
-      uid: client-side/less-sass-fa
-    - name: Bundle and minify
-      uid: client-side/bundling-and-minification
-    - name: Browser Link
-      uid: client-side/using-browserlink
+      uid: razor-components/index
     - name: Razor Components
       items: 
         - name: Overview
@@ -467,10 +447,28 @@
               uid: host-and-deploy/razor-components/index
             - name: Configure the Linker
               uid: host-and-deploy/razor-components/configure-linker
-    - name: Single Page Apps
+    - name: LibMan
       items: 
         - name: Overview
-          uid: spa/index
+          uid: client-side/libman/index
+        - name: CLI
+          uid: client-side/libman/libman-cli
+        - name: Visual Studio
+          uid: client-side/libman/libman-vs
+    - name: Gulp
+      uid: client-side/using-gulp
+    - name: Grunt
+      uid: client-side/using-grunt
+    - name: Bower
+      uid: client-side/bower
+    - name: LESS, Sass, and Font Awesome
+      uid: client-side/less-sass-fa
+    - name: Bundle and minify
+      uid: client-side/bundling-and-minification
+    - name: Browser Link
+      uid: client-side/using-browserlink
+    - name: Single Page Apps
+      items: 
         - name: Blazor
           items:
             - name: Overview
