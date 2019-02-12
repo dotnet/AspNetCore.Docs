@@ -1,36 +1,33 @@
 ---
-title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10
+title: "Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core"
+description: "In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views."
 author: rick-anderson
-description:
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/04/2019
+ms.topic: tutorial
 uid: data/ef-mvc/crud
 ---
-# ASP.NET Core MVC with EF Core - CRUD - 2 of 10
 
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+# Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core
 
 In the previous tutorial, you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views.
 
 > [!NOTE]
 > It's a common practice to implement the repository pattern in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use the Entity Framework itself, they don't use repositories. For information about repositories with EF, see [the last tutorial in this series](advanced.md).
 
-In this tutorial, you'll work with the following web pages:
+In this tutorial, you:
 
-![Student Details page](crud/_static/student-details.png)
+> [!div class="checklist"]
+> * Customize the Details page
+> * Update the Create page
+> * Update the Edit page
+> * Update the Delete page
+> * Close database connections
 
-![Student Create page](crud/_static/student-create.png)
+## Prerequisites
 
-![Student Edit page](crud/_static/student-edit.png)
-
-![Student Delete page](crud/_static/student-delete.png)
+* [Get started with EF Core in an ASP.NET Core MVC web app](intro.md)
 
 ## Customize the Details page
 
@@ -264,13 +261,13 @@ Run the app, select the **Students** tab, and click a **Delete** hyperlink:
 
 Click **Delete**. The Index page is displayed without the deleted student. (You'll see an example of the error handling code in action in the concurrency tutorial.)
 
-## Closing database connections
+## Close database connections
 
 To free up the resources that a database connection holds, the context instance must be disposed as soon as possible when you are done with it. The ASP.NET Core built-in [dependency injection](../../fundamentals/dependency-injection.md) takes care of that task for you.
 
 In *Startup.cs*, you call the [AddDbContext extension method](https://github.com/aspnet/EntityFrameworkCore/blob/03bcb5122e3f577a84498545fcf130ba79a3d987/src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs) to provision the `DbContext` class in the ASP.NET Core DI container. That method sets the service lifetime to `Scoped` by default. `Scoped` means the context object lifetime coincides with the web request life time, and the `Dispose` method will be called automatically at the end of the web request.
 
-## Handling Transactions
+## Handle transactions
 
 By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](/ef/core/saving/transactions).
 
@@ -288,12 +285,21 @@ You can disable tracking of entity objects in memory by calling the `AsNoTrackin
 
 For more information, see [Tracking vs. No-Tracking](/ef/core/querying/tracking).
 
-## Summary
+## Get the code
 
-You now have a complete set of pages that perform simple CRUD operations for Student entities. In the next tutorial you'll expand the functionality of the **Index** page by adding sorting, filtering, and paging.
+[Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## Next steps
 
-> [!div class="step-by-step"]
-> [Previous](intro.md)
-> [Next](sort-filter-page.md)
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Customized the Details page
+> * Updated the Create page
+> * Updated the Edit page
+> * Updated the Delete page
+> * Closed database connections
+
+Advance to the next article to learn how to expand the functionality of the **Index** page by adding sorting, filtering, and paging.
+> [!div class="nextstepaction"]
+> [Sorting, filtering, and paging](sort-filter-page.md)
