@@ -95,7 +95,7 @@ You can apply different policies to controller/page-model/action with the  `[Ena
 
 The following code applies a different policy to each method:
 
-[!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet)]
+[!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet&highlight=6,14)]
 
 The following code creates a CORS default policy and a policy named `"AnotherPolicy"`:
 
