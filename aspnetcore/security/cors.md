@@ -86,15 +86,15 @@ The following code creates a CORS default policy and a policy named `"AnotherPol
 
 [!code-csharp[](cors/sample/Cors/WebAPI/StartupMultiPolicy.cs?name=snippet&highlight=12-28)]
 
-The [&lbrack;EnableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors("{Policy String}")]`. Use `[EnableCors]` to specify the default policy.
+The [&lbrack;EnableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. Use `[EnableCors]` to specify the default policy and `[EnableCors("{Policy String}")]` to specify a policy.
 
-`[EnableCors]` attributes can be applied to a:
+The `[EnableCors]` attribute can be applied to:
 
 * Razor Page `PageModel`
 * Controller
 * Controller action method
 
-You can apply different policies to controller/page model/action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, both policies are applied. We recommend against combining policies. Use the `EnableCors]` attribute or middleware, not both in the same app.
+You can apply different policies to controller/page model/action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers/page-model/action method, and CORS is enabled in middleware, both policies are applied. We recommend against combining policies. Use the `[EnableCors]` attribute or middleware, not both in the same app.
 
 The following code applies a different policy to each method:
 
@@ -102,13 +102,13 @@ The following code applies a different policy to each method:
 
 ### Disable CORS
 
-The [&lbrack;DisableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute disables CORS for the controller/page model/action.
+The [&lbrack;DisableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute disables CORS for the controller/page-model/action.
 
 <a name="cpo"></a>
 
 ## CORS policy options
 
-This section describes the various options that you can set in a CORS policy. The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> method is called in `Startup.ConfigureServices`.
+This section describes the various options that can be set in a CORS policy:
 
 * [Set the allowed origins](#set-the-allowed-origins)
 * [Set the allowed HTTP methods](#set-the-allowed-http-methods)
@@ -117,7 +117,7 @@ This section describes the various options that you can set in a CORS policy. Th
 * [Credentials in cross-origin requests](#credentials-in-cross-origin-requests)
 * [Set the preflight expiration time](#set-the-preflight-expiration-time)
 
-For some options, it may be helpful to read the [How CORS works](#how-cors) section first.
+ <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> is called in `Startup.ConfigureServices`. For some options, it may be helpful to read the [How CORS works](#how-cors) section first.
 
 ## Set the allowed origins
 
@@ -411,7 +411,7 @@ To test CORS:
 1. Create a web app project (Razor Pages or MVC). The sample uses Razor Pages. You can create the web app in the same solution as the API project.
 1. Add the following highlighted code to the *Index.cshtml* file:
 
-  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index.cshtml?highlight=11-99)]
+  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index2.cshtml?highlight=7-99)]
 
 1. In the preceding code, replace `url: 'https://<web app>.azurewebsites.net/api/values/1',` with the URL to the deployed app.
 1. Deploy the API project. For example, [deploy to Azure](xref:host-and-deploy/azure-apps/index).

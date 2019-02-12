@@ -39,6 +39,7 @@ namespace WebAPI
             {
                 builder.WithOrigins("http://example.com",
                                     "http://www.contoso.com",
+                                    "https://localhost:44375",
                                     "https://localhost:5001");
             });
 
