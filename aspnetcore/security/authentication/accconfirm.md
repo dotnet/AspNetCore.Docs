@@ -3,7 +3,7 @@ title: Account confirmation and password recovery in ASP.NET Core
 author: rick-anderson
 description: Learn how to build an ASP.NET Core app with email confirmation and password reset.
 ms.author: riande
-ms.date: 7/11/2018
+ms.date: 2/11/2019
 uid: security/authentication/accconfirm
 ---
 
@@ -71,7 +71,7 @@ Follow the instructions in [Enable authentication](xref:security/authentication/
 
 ## Test new user registration
 
-Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't log in until their email is validated.
+Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't sign in until their email is validated.
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
@@ -161,7 +161,7 @@ To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar 
 
 Add the following code to the `ConfigureServices` method in the *Startup.cs* file:
 
-* Add `EmailSender` as a singleton service.
+* Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
@@ -190,8 +190,8 @@ Run the web app, and test the account confirmation and password recovery flow.
 
 * Check your email for the account confirmation link. See [Debug email](#debug) if you don't get the email.
 * Click the link to confirm your email.
-* Log in with your email and password.
-* Log off.
+* Sign in with your email and password.
+* Sign out.
 
 ### View the manage page
 
@@ -206,10 +206,10 @@ The manage page is displayed with the **Profile** tab selected. The **Email** sh
 
 ### Test password reset
 
-* If you're logged in, select **Logout**.
-* Select the **Log in** link and select the **Forgot your password?** link.
+* If you're logged in, select **sign out**.
+* Select the **sign in** link and select the **Forgot your password?** link.
 * Enter the email you used to register the account.
-* An email with a link to reset your password is sent. Check your email and click the link to reset your password. After your password has been successfully reset, you can log in with your email and new password.
+* An email with a link to reset your password is sent. Check your email and click the link to reset your password. After your password has been successfully reset, you can sign in with your email and new password.
 
 <a name="debug"></a>
 
@@ -242,7 +242,7 @@ Click the link to another login service and accept the app requests. In the foll
 
 ![Manage your external logins view listing Facebook](accconfirm/_static/fb.png)
 
-The two accounts have been combined. You are able to log on with either account. You might want your users to add local accounts in case their social login authentication service is down, or more likely they've lost access to their social account.
+The two accounts have been combined. You are able to sign in with either account. You might want your users to add local accounts in case their social login authentication service is down, or more likely they've lost access to their social account.
 
 ## Enable account confirmation after a site has users
 
