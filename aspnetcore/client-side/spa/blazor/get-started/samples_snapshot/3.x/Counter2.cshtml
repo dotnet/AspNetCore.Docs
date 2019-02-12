@@ -1,0 +1,10 @@
+@functions {
+    int currentCount = 0;
+
+    [Parameter] int IncrementAmount { get; set; } = 1;
+
+    void IncrementCount()
+    {
+        currentCount += IncrementAmount;
+    }
+}
