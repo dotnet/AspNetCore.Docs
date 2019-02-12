@@ -31,9 +31,9 @@ namespace SampleApp
                         var builtConfig = config.Build();
 
                         config.AddAzureKeyVault(
-                            $"https://{builtConfig["Vault"]}.vault.azure.net/",
-                            builtConfig["ClientId"],
-                            builtConfig["ClientSecret"],
+                            $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
+                            builtConfig["AzureADApplicationId"],
+                            builtConfig["AzureADPassword"],
                             new PrefixKeyVaultSecretManager(versionPrefix));
                     }
                 })

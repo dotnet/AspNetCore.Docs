@@ -492,6 +492,32 @@ The ASP.NET Core Module installer runs with the privileges of the **SYSTEM** acc
 1. Export the updated *applicationHost.config* file to the share.
 1. Re-enable the IIS Shared Configuration.
 
+::: moniker range=">= aspnetcore-2.2"
+
+## Application Initialization
+
+[IIS Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) is an IIS feature that sends an HTTP request to the app when the app pool starts or is recycled. The request triggers the app to start. Application Initialization can be used by both the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model) and [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model) with the ASP.NET Core Module version 2.
+
+To enable Application Initialization:
+
+1. Confirm that the IIS Application Initialization role feature in enabled:
+   * On Windows 7 or later: Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen). Open **Internet Information Services** > **World Wide Web Services** > **Application Development Features**. Select the check box for **Application Initialization**.
+   * On Windows Server 2008 R2 or later, open the **Add Roles and Features Wizard**. When you reach the **Select role services** panel, open the **Application Development** node and select the **Application Initialization** check box.
+1. In IIS Manager, select **Application Pools** in the **Connections** panel.
+1. Select the app's app pool in the list.
+1. Select **Advanced Settings** under **Edit Application Pool** in the **Actions** panel.
+1. Set **Start Mode** to **AlwaysRunning**.
+1. Open the **Sites** node in the **Connections** panel.
+1. Select the app.
+1. Select **Advanced Settings** under **Manage Website** in the **Actions** panel.
+1. Set **Preload Enabled** to **True**.
+
+For more information, see [IIS 8.0 Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization).
+
+Apps that use the [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model) must use an external service to periodically ping the app in order to keep it running.
+
+::: moniker-end
+
 ## Module version and Hosting Bundle installer logs
 
 To determine the version of the installed ASP.NET Core Module:

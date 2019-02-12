@@ -1,32 +1,41 @@
 ---
-title: ASP.NET Core MVC with EF Core - Migrations - 4 of 10
+title: "Tutorial: Using the migrations feature - ASP.NET MVC with EF Core"
+description: "In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application."
 author: rick-anderson
-description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/04/2019
+ms.topic: tutorial
 uid: data/ef-mvc/migrations
 ---
 
-# ASP.NET Core MVC with EF Core - Migrations - 4 of 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+# Tutorial: Using the migrations feature - ASP.NET MVC with EF Core
 
 In this tutorial, you start using the EF Core migrations feature for managing data model changes. In later tutorials, you'll add more migrations as you change the data model.
 
-## Introduction to migrations
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learn about migrations
+> * Learn about NuGet migration packages
+> * Change the connection string
+> * Create an initial migration
+> * Examine Up and Down methods
+> * Learn about the data model snapshot
+> * Apply the migration
+
+
+## Prerequisites
+
+* [Add sorting, filtering, and paging with EF Core in an ASP.NET Core MVC app](sort-filter-page.md)
+
+## About migrations
 
 When you develop a new application, your data model changes frequently, and each time the model changes, it gets out of sync with the database. You started these tutorials by configuring the Entity Framework to create the database if it doesn't exist. Then each time you change the data model -- add, remove, or change entity classes or change your DbContext class -- you can delete the database and EF creates a new one that matches the model, and seeds it with test data.
 
 This method of keeping the database in sync with the data model works well until you deploy the application to production. When the application is running in production it's usually storing data that you want to keep, and you don't want to lose everything each time you make a change such as adding a new column. The EF Core Migrations feature solves this problem by enabling EF to update the database schema instead of creating  a new database.
 
-## Entity Framework Core NuGet packages for migrations
+## About NuGet migration packages
 
 To work with migrations, you can use the **Package Manager Console** (PMC) or the command-line interface (CLI).  These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
 
@@ -55,7 +64,7 @@ This change sets up the project so that the first migration will create a new da
 
 Save your changes and build the project. Then open a command window and navigate to the project folder. Here's a quick way to do that:
 
-* In **Solution Explorer**, right-click the project and choose **Open in File Explorer** from the context menu.
+* In **Solution Explorer**, right-click the project and choose **Open Folder in File Explorer** from the context menu.
 
   ![Open in File Explorer menu item](migrations/_static/open-in-file-explorer.png)
 
@@ -84,7 +93,7 @@ Done. To undo this action, use 'ef migrations remove'
 
 If you see an error message "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*", find the IIS Express icon in the Windows System Tray, and right-click it, then click **ContosoUniversity > Stop Site**.
 
-## Examine the Up and Down methods
+## Examine Up and Down methods
 
 When you executed the `migrations add` command, EF generated the code that will create the database from scratch. This code is in the *Migrations* folder, in the file named *\<timestamp>_InitialCreate.cs*. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets, and the `Down` method deletes them, as shown in the following example.
 
@@ -104,7 +113,7 @@ When deleting a migration, use the [dotnet ef migrations remove](/ef/core/miscel
 
 See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migrations/teams) for more information about how the snapshot file is used.
 
-## Apply the migration to the database
+## Apply the migration
 
 In the command window, enter the following command to create the database and tables in it.
 
@@ -146,7 +155,8 @@ Run the application to verify that everything still works the same as before.
 ![Students Index page](migrations/_static/students-index.png)
 
 <a id="pmc"></a>
-## Command-line interface (CLI) vs. Package Manager Console (PMC)
+
+## Compare CLI and PMC
 
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
 
@@ -158,12 +168,23 @@ For more information about the CLI commands, see [.NET Core CLI](/ef/core/miscel
 
 For more information about the PMC commands, see [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell).
 
-## Summary
+## Get the code
 
-In this tutorial, you've seen how to create and apply your first migration. In the next tutorial, you'll begin looking at more advanced topics by expanding the data model. Along the way you'll create and apply additional migrations.
+[Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## Next step
 
-> [!div class="step-by-step"]
-> [Previous](sort-filter-page.md)
-> [Next](complex-data-model.md)
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Learned about migrations
+> * Learned about NuGet migration packages
+> * Changed the connection string
+> * Created an initial migration
+> * Examined Up and Down methods
+> * Learned about the data model snapshot
+> * Applied the migration
+
+Advance to the next article to begin looking at more advanced topics about expanding the data model. Along the way you'll create and apply additional migrations.
+> [!div class="nextstepaction"]
+> [Create and apply additional migrations](complex-data-model.md)

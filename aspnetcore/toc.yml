@@ -441,8 +441,6 @@
       items: 
         - name: Overview
           uid: razor-components/index
-        - name: FAQ
-          uid: razor-components/faq
         - name: Get started
           uid: razor-components/get-started
         - name: Build your first app
@@ -850,6 +848,6 @@
     - name: Logging (not ASP.NET Core)
       uid: migration/logging-nonaspnetcore
 - name: API reference
-  href: /dotnet/api/?view=aspnetcore-2.1
+  href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
   href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md

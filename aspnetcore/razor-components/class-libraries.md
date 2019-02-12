@@ -5,7 +5,7 @@ description: Discover how components can be included in Razor Components apps fr
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2019
+ms.date: 02/09/2019
 uid: razor-components/class-libraries
 ---
 # Razor Components Class Libraries
@@ -25,7 +25,7 @@ Components can be shared in component libraries across projects. Components can 
 
 Just as components are regular .NET types, component libraries are normal .NET assemblies.
 
-To create a new component library, use the `blazorlib` template with the [dotnet new](/dotnet/core/tools/dotnet-new) command. The template is part of the templates installed when [setting up Razor Components](/docs/get-started.html#setup).
+To create a new component library, use the `blazorlib` template with the [dotnet new](/dotnet/core/tools/dotnet-new) command. The template is part of the templates installed when [setting up Razor Components](xref:razor-components/get-started).
 
 ```console
 dotnet new blazorlib -o MyComponentLib1
