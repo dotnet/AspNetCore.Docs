@@ -15,6 +15,7 @@ namespace WebAPI
                 //.UseStartup<Startup>();
                 //.UseStartup<Startup2>();
                 //.UseStartup<Startup3>();
-        .UseStartup<StartupAttributeTest>();
+                .UseStartup<StartupMultiPolicy>();
+       // .UseStartup<StartupAttributeTest>();
     }
 }

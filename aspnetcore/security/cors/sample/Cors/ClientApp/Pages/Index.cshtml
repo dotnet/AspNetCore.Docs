@@ -8,19 +8,45 @@
     <h1 class="display-4">CORS Test</h1>
 </div>
 
-
 <div>
-    <input type="button" value="Test" onclick="requestVal()" />
+<h3>Test results:</h3>   
     <span id='result'></span>
 </div>
 
-<script>
-function requestVal() {
-    const resultSpan = document.getElementById('result');
+<div>
+    <input type="button" value="Test Widget 1"
+           onclick="requestVal('https://webapi20190128063025.azurewebsites.net/api/widget/1')" />
+    <input type="button" value="Test All Widgets"
+           onclick="requestJson('https://webapi20190128063025.azurewebsites.net/api/widget')" />
+    <input type="button" value="Test All Val"
+           onclick="requestJson('https://webapi20190128063025.azurewebsites.net/api/values')" />
+    <input type="button" value="Test Val 1"
+           onclick="requestVal2('https://webapi20190128063025.azurewebsites.net/api/values/1')" />
+</div>
 
-    fetch('https://webapi20190128063025.azurewebsites.net/api/values/1')
-        .then(response => response.json())
-        .then(data => resultSpan.innerText = data)
-        .catch(error => resultSpan.innerText = 'See F12 Console for error');
-}
+<script>
+    function requestJson(uri) {
+        const resultSpan = document.getElementById('result');
+
+        fetch(uri)
+            .then(response => response.json())
+            .then(data => resultSpan.innerText = data)
+            .catch(error => resultSpan.innerText = 'See F12 Console for error');
+    }
 </script>
+
+<script>
+    function requestVal2(uri) {
+        const resultSpan = document.getElementById('result');
+
+        fetch(uri)
+            .then(response => response.text())
+            .then(data => resultSpan.innerText = data)
+            .catch(error => resultSpan.innerText = 'See F12 Console for error');
+    }
+</script>
+
+
+
+
+

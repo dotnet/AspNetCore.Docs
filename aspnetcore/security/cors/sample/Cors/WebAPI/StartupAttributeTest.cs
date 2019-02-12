@@ -26,6 +26,8 @@ namespace WebAPI
                 {
                     builder.WithOrigins("http://example.com",
                                         "http://www.contoso.com",
+                                         // Never use localhost in a production app.
+                                         // localhost is used for testing only.
                                          "https://localhost:5001");
                 });
             });
