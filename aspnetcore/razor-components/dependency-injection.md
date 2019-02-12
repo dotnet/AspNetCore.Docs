@@ -12,8 +12,6 @@ uid: razor-components/dependency-injection
 
 By [Rainer Stropek](https://www.timecockpit.com)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 [Dependency injection (DI)](/aspnet/core/fundamentals/dependency-injection) is built-in. Apps can use built-in services by having them injected into components. Apps can also define custom services and make them available via DI.
 
 ## Dependency injection

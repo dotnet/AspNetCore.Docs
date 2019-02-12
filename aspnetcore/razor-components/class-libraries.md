@@ -12,8 +12,6 @@ uid: razor-components/class-libraries
 
 By [Simon Timms](https://github.com/stimms)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 > [!NOTE]
 > The .NET Core 3.0 Preview 2 SDK doesn't include a project template for Razor Component Class Libraries, but we expect to add a template in a future preview. In meantime, you can use the Blazor Component Class Library template explained in this topic.
 
