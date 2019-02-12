@@ -3,7 +3,7 @@ title: Add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 ms.author: riande
-ms.date: 12/8/2017
+ms.date: 02/12/2019
 uid: tutorials/first-mvc-app/adding-model
 ---
 
@@ -136,56 +136,57 @@ You need to create the database, and you use the EF Core [Migrations](xref:data/
 
 ## Initial migration
 
-<!-- VS -------------------------->
-
-# [Visual Studio](#tab/visual-studio)
-
-In this section, the Package Manager Console (PMC) is used to:
+In this section, the following tasks are completed:
 
 * Add an initial migration.
 * Update the database with the initial migration.
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+# [Visual Studio](#tab/visual-studio)
 
-  ![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
+1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
-In the PMC, enter the following commands:
+   ![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
-```PMC
-Add-Migration Initial
-Update-Database
-```
+1. In the PMC, enter the following commands:
 
-The `Add-Migration` command generates code to create the initial database schema.
-<!-- Code -------------------------->
+   ```console
+   Add-Migration Initial
+   Update-Database
+   ```
+
+   The `Add-Migration` command generates code to create the initial database schema.
+
+   The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `Initial` argument is the migration name. Any name can be used, but by convention, a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
+
+   The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
+
 The `ef migrations add InitialCreate` command generates code to create the initial database schema.
 
+The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration.
+
 ---  
-<!-- End of VS tabs -->
 
-The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
+The preceding commands generate the following warning:
 
-You can ignore that warning, it will be fixed in a later tutorial.
+```text
+No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+```
 
-The schema is based on the model specified in the `DbContext` (In the *Models/MvcMovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
-
-<!-- VS -------------------------->
-
-# [Visual Studio](#tab/visual-studio)
+You can ignore that warning. It will be fixed in a later tutorial.
 
 ## Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with DI during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
 
-The scaffolding tool automatically created a DB context and registered it with the dependency injection container.
+# [Visual Studio](#tab/visual-studio)
 
-Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
+The scaffolding tool automatically created a DB context and registered it with the DI container.
+
+Examine the following `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
@@ -193,22 +194,15 @@ The `MvcMovieContext` coordinates EF Core functionality (Create, Read, Update, D
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Data/MvcMovieContext.cs)]
 
-The preceding code creates a [`DbSet<Movie>`](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
-<!-- Code -------------------------->
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
-
-You created a DB context and registered it with the dependency injection container.
+You created a DB context and registered it with the DI container.
 
 ---
-
-The schema is based on the model specified in the `MvcMovieContext` (In the *Data/MvcMovieContext.cs* file). The `Initial` argument is used to name the migrations. Any name can be used, but by convention a name that describes the migration is used. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
-
-The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 <a name="test"></a>
 

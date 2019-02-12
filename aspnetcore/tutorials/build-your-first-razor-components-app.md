@@ -1,11 +1,11 @@
 ---
 title: Build your first Razor Components app
 author: guardrex
-description: Build a Razor Components app step-by-step and learn basic Razor Components framework concepts.
+description: Build a Razor Components app step-by-step and learn basic Razor Components concepts.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/04/2019
+ms.date: 02/11/2019
 uid: tutorials/first-razor-components-app
 ---
 # Build your first Razor Components app
@@ -14,23 +14,31 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 [!INCLUDE[](~/includes/razor-components-preview-notice.md)]
 
-This tutorial shows you how to build a Razor Components app and demonstrates basic Razor Components framework concepts.
+This tutorial shows you how to build an app with Razor Components and demonstrates basic Razor Components concepts. You can enjoy this tutorial using either a Razor Components-based project (supported in .NET Core 3.0 or later) or using a Blazor-based project (supported in a future release of .NET Core).
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/build-your-first-razor-components-app/samples/) ([how to download](xref:index#how-to-download-a-sample)). See the [Get started](xref:razor-components/get-started) topic for prerequisites.
+For an experience using ASP.NET Core Razor Components (*recommended*):
 
-## Create an app from the Razor Components template
+* Follow the guidance in <xref:razor-components/get-started> to create a Razor Components-based project.
+* Name the project `RazorComponents`.
+* A multi-project solution is created from the Razor Components template. The Razor Components project is generated as *RazorComponents.App*.
 
-Follow the guidance in the [Get started](xref:razor-components/get-started) topic to create a Razor Components project from the Razor Components template. Name the solution *WebApplication1*. You can use Visual Studio or a command shell with .NET Core CLI commands.
+For an experience using Blazor:
+
+* Follow the guidance in <xref:spa/blazor/get-started> to create a Blazor-based project.
+* Name the project `Blazor`.
+* A single-project solution is created from the Blazor template.
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/build-your-first-razor-components-app/samples/) ([how to download](xref:index#how-to-download-a-sample)). See the following topics for prerequisites:
 
 ## Build components
 
-1. Browse to each of the app's three pages: Home, Counter, and Fetch data. These pages are implemented by Razor files in the *WebApplication1.App/Pages* folder: *Index.cshtml*, *Counter.cshtml*, and *FetchData.cshtml*.
+1. Browse to each of the app's three pages: Home, Counter, and Fetch data. These pages are implemented by Razor files in the *Pages* folder: *Index.cshtml*, *Counter.cshtml*, and *FetchData.cshtml*.
 
 1. On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Razor Components provides a better approach using C#.
 
 1. Examine the implementation of the Counter component in the *Counter.cshtml* file.
 
-   *WebApplication1.App/Pages/Counter.cshtml*:
+   *Pages/Counter.cshtml*:
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/Counter1.cshtml)]
 
@@ -57,7 +65,9 @@ Include a component into another component using an HTML-like syntax.
 
 1. Add the Counter component to the app's Index (home page) component by adding a `<Counter />` element to the Index component.
 
-   *WebApplication1.App/Pages/Index.cshtml*:
+   If you're using Blazor for this experience, a Survey Prompt component (`<SurveyPrompt>` element) is in the Index component. Replace the `<SurveyPrompt>` element with the `<Counter>` element.
+
+   *Pages/Index.cshtml*:
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/Index.cshtml?highlight=7)]
 
@@ -72,9 +82,9 @@ Components can also have parameters. Component parameters are defined using non-
    * Add a `IncrementAmount` property decorated with the `[Parameter]` attribute.
    * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
-   *WebApplication1.App/Pages/Counter.cshtml*:
+   *Pages/Counter.cshtml*:
 
-   [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/WebApplication1/WebApplication1.App/Pages/Counter.cshtml?highlight=12,16)]
+   [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/RazorComponents/RazorComponents.App/Pages/Counter.cshtml?highlight=12,16)]
 
 <!-- Add back when supported.
    > [!NOTE]
@@ -83,9 +93,9 @@ Components can also have parameters. Component parameters are defined using non-
 
 1. Specify an `IncrementAmount` parameter in the Home component's `<Counter>` element using an attribute. Set the value to increment the counter by ten.
 
-   *WebApplication1.App/Pages/Index.cshtml*:
+   *Pages/Index.cshtml*:
 
-   [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/WebApplication1/WebApplication1.App/Pages/Index.cshtml?highlight=7)]
+   [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/RazorComponents/RazorComponents.App/Pages/Index.cshtml?highlight=7)]
 
 1. Reload the page. The home page counter increments by ten each time the **Click me** button is selected. The counter on the *Counter* page increments by one.
 
@@ -97,7 +107,7 @@ The `@page` directive at the top of the *Counter.cshtml* file specifies that thi
 
 Services registered in the app's service container are available to components via [dependency injection (DI)](xref:fundamentals/dependency-injection). Inject services into a component using the `@inject` directive.
 
-Examine the directives of the FetchData component (*WebApplication1.App/Pages/FetchData.cshtml*). The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component:
+Examine the directives of the FetchData component (*Pages/FetchData.cshtml*). The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData1.cshtml?highlight=3)]
 
@@ -115,7 +125,7 @@ A [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used
 
 Add a new page to the app that implements a simple todo list.
 
-1. Add an empty file to the *WebApplication1.App/Pages* folder named *Todo.cshtml*.
+1. Add an empty file to the *Pages* folder named *Todo.cshtml*.
 
 1. Provide the initial markup for the page:
 
@@ -127,9 +137,9 @@ Add a new page to the app that implements a simple todo list.
 
 1. Add the Todo page to the navigation bar.
 
-   The NavMenu component (*WebApplication1/Shared/NavMenu.csthml*) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app. For more information, see <xref:razor-components/layouts>.
+   The NavMenu component (*Shared/NavMenu.csthml*) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app. For more information, see <xref:razor-components/layouts>.
 
-   Add a `<NavLink>` for the Todo page by adding the following list item markup below the existing list items in the *WebApplication1/Shared/NavMenu.csthml* file:
+   Add a `<NavLink>` for the Todo page by adding the following list item markup below the existing list items in the *Shared/NavMenu.csthml* file:
 
    ```cshtml
    <li class="nav-item px-3">
@@ -143,7 +153,7 @@ Add a new page to the app that implements a simple todo list.
 
 1. Add a *TodoItem.cs* file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
-   [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/WebApplication1/WebApplication1.App/TodoItem.cs)]
+   [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/RazorComponents/RazorComponents.App/TodoItem.cs)]
 
 1. Return to the Todo component (*Todo.cshtml*):
 
@@ -190,7 +200,7 @@ Add a new page to the app that implements a simple todo list.
 
 1. The completed Todo component (*Todo.cshtml*):
 
-   [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/WebApplication1/WebApplication1.App/Pages/Todo.cshtml)]
+   [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/RazorComponents/RazorComponents.App/Pages/Todo.cshtml)]
 
 1. Rebuild and run the app. Add todo items to test the new code.
 

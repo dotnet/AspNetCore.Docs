@@ -1,7 +1,7 @@
 ---
 title: Get started with Razor Components
 author: guardrex
-description: Learn how to get started with the Razor Components framework.
+description: Learn how to get started with Razor Components by creating and modifying a Razor Components project.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
@@ -11,8 +11,6 @@ uid: razor-components/get-started
 # Get started with Razor Components
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -64,7 +62,7 @@ To create your first Razor Components project in Visual Studio Code:
 
 1. In a browser, navigate to `https://localhost:5001`.
 
-Congrats! You just ran your first Razor Components app!
+Congratulations! You just ran your first Razor Components app!
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -93,13 +91,15 @@ Prerequisites:
 
 * [.NET Core SDK 3.0 Preview](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
-To create your first Razor Components project from a command shell:
+1. To create your first Razor Components project from a command shell:
 
-```console
-dotnet new razorcomponents -o WebApplication1
-cd WebApplication1
-dotnet run
-```
+   ```console
+   dotnet new razorcomponents -o WebApplication1
+   cd WebApplication1
+   dotnet run
+   ```
+
+1. In a browser, navigate to `https://localhost:5001`.
 
 Congratulations! You just ran your first Razor Components app!
 

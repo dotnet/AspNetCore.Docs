@@ -12,8 +12,6 @@ uid: razor-components/routing
 
 By [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 Learn how to route requests in apps and about the NavLink component.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-components/common/samples/) ([how to download](xref:index#how-to-download-a-sample)). See the [Get started](xref:razor-components/get-started) topic for prerequisites.
