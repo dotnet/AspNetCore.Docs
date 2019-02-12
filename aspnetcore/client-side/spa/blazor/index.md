@@ -14,17 +14,20 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 [!INCLUDE[](~/includes/razor-components-preview-notice.md)]
 
-*Blazor* is the client-side hosting model of [Razor Components](xref:razor-components/index). Blazor is a new way to build interactive client-side apps with .NET that run in the browser with WebAssembly. Blazor uses open web standards without plugins or code transpilation. Blazor works in all modern web browsers, including mobile browsers.
+Blazor is a single-page app framework for building interactive client-side Web apps with .NET. Blazor uses open web standards without plugins or code transpilation. Blazor works in all modern web browsers, including mobile browsers.
 
-Blazor provides all of the benefits of a client-side web UI framework using .NET on the client:
+Using .NET in the browser for client-side web development offers many advantages:
 
-* TBD
-* TBD
-* TBD
+* **C# language**: Write code in C# instead of JavaScript.
+* **.NET Ecosystem**: Leverage the existing ecosystem of .NET libraries.
+* **Full-stack development**: Share server and client-side logic.
+* **Speed and scalability**: NET was built for performance, reliability, and security.
+* **Industry-leading tools**: Stay productive with Visual Studio on Windows, Linux, and macOS.
+* **Stability and consistency**:  Build on a commonset of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 
 Running .NET code inside web browsers is made possible by [WebAssembly](http://webassembly.org) (abbreviated *wasm*). WebAssembly is an open web standard and supported in web browsers without plugins. WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed.
 
-WebAssembly code can access the full functionality of the browser via JavaScript interop. At the same time, WebAssembly code runs in the same trusted sandbox as JavaScript to prevent malicious actions on the client machine.
+WebAssembly code can access the full functionality of the browser via JavaScript interop. At the same time, .NET code executed via WebAssembly runs in the same trusted sandbox as JavaScript to prevent malicious actions on the client machine.
 
 ![Blazor runs .NET code in the browser with WebAssembly.](index/_static/blazor.png)
 
@@ -32,7 +35,7 @@ When a Blazor app is built and run in a browser:
 
 * C# code files and Razor files are compiled into .NET assemblies.
 * The assemblies and the .NET runtime are downloaded to the browser.
-* Blazor uses JavaScript to bootstrap the .NET runtime and configures the runtime to load assemblies. Document Object Model (DOM) manipulation and browser API calls are handled by the Blazor runtime via JavaScript interop.
+* Blazor bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. Document Object Model (DOM) manipulation and browser API calls are handled by the Blazor runtime via JavaScript interop.
 
 Blazor supports core facilities required by most apps, including:
 
@@ -45,13 +48,9 @@ Blazor supports core facilities required by most apps, including:
 * Templating
 * Cascading values
 
-These scenarios are optional. For any of these scenarios not used by a Blazor app, the implementation is stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/razor-components/configure-linker).
+To reduce the size of the downloaded app unused code stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/razor-components/configure-linker).
 
-To support older browsers that don't support WebAssembly, use the [server-side Razor Components hosting model](xref:razor-components/index).
-
-For more information, see <xref:razor-components/hosting-models#client-side-hosting-model>.
-
-Because Razor Components decouple a component's rendering logic from how UI updates are applied, there's flexibility in how Razor Components can be hosted. ASP.NET Core Razor Components in .NET Core 3.0 adds support for hosting Razor Components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection. For more information, see <xref:razor-components/hosting-models#server-side-hosting-model>.
+Blazor is the client-side hosting model for Razor Components. Because Razor Components decouple a component's rendering logic from how UI updates are applied, there's flexibility in how Razor Components can be hosted. ASP.NET Core Razor Components in .NET Core 3.0 adds support for hosting Razor Components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection. For more information, see <xref:razor-components/hosting-models#server-side-hosting-model>. 
 
 ## Components
 
