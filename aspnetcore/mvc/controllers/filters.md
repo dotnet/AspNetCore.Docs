@@ -374,7 +374,12 @@ The framework provides an abstract `ResultFilterAttribute` that you can subclass
 
 ### IAlwaysRunResultFilter and IAsyncAlwaysRunResultFilter
 
-The <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter> interfaces declare an <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> implementation that runs for action results. The filter is applied to an action result unless an <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter> applies and short-circuits the response.
+The <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter> interfaces declare an <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> implementation that runs for all action results,  even if the response is short-circuited, except for:
+
+* <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter>
+* <xref:Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter>
+
+In other words, these "always run" filters, always run, except when an exception or authorization filter short-circuits them. Filters other than `IExceptionFilter` and `IAuthorizationFilter` don't short circuit them.
 
 For example, the following filter always runs and sets an action result (<xref:Microsoft.AspNetCore.Mvc.ObjectResult>) with a *422 Unprocessable Entity* status code when content negotiation fails:
 
