@@ -11,11 +11,6 @@ uid: security/cors
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-<!-- Call UseCors with a lambda:
-
-The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. 
--->
-
 This topic shows how to enable CORS in an ASP.NET Core app.
 
 Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites make cross-origin requests to your app. For more information see the excellent [Mozilla CORS article](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
@@ -53,7 +48,11 @@ CORS Middleware handles cross-origin requests. The following code enables CORS f
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,38)]
 
-The preceding code sets the policy name to "_myAllowSpecificOrigins". The policy name is arbitrary. The <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method enables cores.
+The preceding code:
+
+* Sets the policy name to "_myAllowSpecificOrigins". The policy name is arbitrary.
+* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method, which enables cores. The `UseCors` call is called with a lambda expression](dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this topic.
+* Policy allows cross-origin requests from `https://example.com` and `"http://www.contoso.com"`, but no other origins.
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> method call adds CORS services to the app's service container:
 
@@ -99,10 +98,6 @@ You can apply different policies to controller/page model/action with the  `[Ena
 The following code applies a different policy to each method:
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet)]
-
-<!-- 
-In the preceding code, the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method enables cores. The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. 
--->
 
 ### Disable CORS
 
