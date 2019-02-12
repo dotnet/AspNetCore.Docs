@@ -206,8 +206,8 @@ The manage page is displayed with the **Profile** tab selected. The **Email** sh
 
 ### Test password reset
 
-* If you're logged in, select **sign out**.
-* Select the **sign in** link and select the **Forgot your password?** link.
+* If you're logged in, select **Logout**.
+* Select the **Log in** link and select the **Forgot your password?** link.
 * Enter the email you used to register the account.
 * An email with a link to reset your password is sent. Check your email and click the link to reset your password. After your password has been successfully reset, you can sign in with your email and new password.
 
