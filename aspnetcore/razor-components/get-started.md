@@ -12,8 +12,6 @@ uid: razor-components/get-started
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 # [Visual Studio](#tab/visual-studio)
 
 Prerequisites:

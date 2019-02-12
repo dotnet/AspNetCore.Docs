@@ -455,6 +455,28 @@
               uid: spa/blazor/get-started
             - name: Build your first app
               uid: tutorials/first-razor-components-app
+            - name: Components
+              uid: razor-components/components
+            - name: Component libraries
+              uid: razor-components/class-libraries
+            - name: Layouts
+              uid: razor-components/layouts
+            - name: Dependency injection
+              uid: razor-components/dependency-injection
+            - name: Routing
+              uid: razor-components/routing
+            - name: JavaScript interop
+              uid: razor-components/javascript-interop
+            - name: Debug
+              uid: razor-components/debug
+            - name: Hosting models
+              uid: razor-components/hosting-models
+            - name: Host and deploy
+              items:
+                - name: Overview
+                  uid: host-and-deploy/razor-components/index
+                - name: Configure the Linker
+                  uid: host-and-deploy/razor-components/configure-linker
         - name: Angular
           uid: spa/angular
         - name: React

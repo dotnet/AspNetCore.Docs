@@ -12,8 +12,6 @@ uid: razor-components/javascript-interop
 
 By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 A Razor Components app can invoke JavaScript functions from .NET and .NET methods from JavaScript code.
 
 ## Invoke JavaScript functions from .NET methods
