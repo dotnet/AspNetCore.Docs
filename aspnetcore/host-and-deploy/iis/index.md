@@ -213,9 +213,9 @@ Sensitive files exist on the app's physical path, such as *\<assembly>.runtimeco
 
 **The *web.config* file must be present in the deployment at all times, correctly named, and able to configure the site for normal start up. Never remove the *web.config* file from a production deployment.**
 
-### web.config transformations
+### Transform web.config
 
-If you require *web.config* transformations (for example, setting environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/webconfig-transformation>.
+If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
 
 ## IIS configuration
 
@@ -632,4 +632,4 @@ Distinguish common errors when hosting ASP.NET Core apps on IIS.
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
-* <xref:host-and-deploy/webconfig-transformation>
+* <xref:host-and-deploy/iis/transform-webconfig>

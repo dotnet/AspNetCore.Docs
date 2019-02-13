@@ -209,6 +209,10 @@ The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the la
 
 Secure protocol bindings allow you specify a certificate to use when responding to requests over HTTPS. Binding requires a valid private certificate (*.pfx*) issued for the specific hostname. For more information, see [Tutorial: Bind an existing custom SSL certificate to Azure Web Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
+## Transform web.config
+
+If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
+
 ## Additional resources
 
 * [Web Apps overview (5-minute overview video)](/azure/app-service/app-service-web-overview)
@@ -220,7 +224,6 @@ Secure protocol bindings allow you specify a certificate to use when responding 
 Azure App Service on Windows Server uses [Internet Information Services (IIS)](https://www.iis.net/). The following topics pertain to the underlying IIS technology:
 
 * <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 * [Microsoft TechNet Library: Windows Server](/windows-server/windows-server-versions)

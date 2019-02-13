@@ -1,20 +1,20 @@
 ---
-title: web.config transformation
+title: Transform web.config
 author: guardrex
-description: Learn how to transform the web.config file when publishing an app.
+description: Learn how to transform the web.config file when publishing an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2019
-uid: host-and-deploy/webconfig-transformation
+uid: host-and-deploy/iis/transform-webconfig
 ---
-# web.config transformation
+# Transform web.config
 
 By [Vijay Ramakrishnan](https://github.com/vijayrkn) and [Luke Latham](https://github.com/guardrex)
 
 Transformations to the *web.config* file can be applied automatically when an app is published based on:
 
-* [Configuration](#configuration)
+* [Build configuration](#build-configuration)
 * [Profile](#profile)
 * [Environment](#environment)
 * [Custom](#custom)
@@ -24,11 +24,11 @@ These transformations occur for either of the following *web.config* generation 
 * Generated automatically by the `Microsoft.NET.Sdk.Web` SDK.
 * Provided by the developer in the content root of the app.
 
-## Configuration
+## Build configuration
 
-Configuration transforms are run first.
+Build configuration transforms are run first.
 
-Include a *web.{CONFIGURATION}.config* file for each configuration requiring a *web.config* transformation.
+Include a *web.{CONFIGURATION}.config* file for each [build configuration (Debug|Release)](/dotnet/core/tools/dotnet-publish#options) requiring a *web.config* transformation.
 
 In the following example, a configuration-specific environment variable is set in *web.Release.config*:
 
@@ -39,7 +39,10 @@ In the following example, a configuration-specific environment variable is set i
     <system.webServer>
       <aspNetCore>
         <environmentVariables xdt:Transform="InsertIfMissing">
-          <environmentVariable  name="Configuration_Specific" value="Configuration_Specific_Value" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
+          <environmentVariable name="Configuration_Specific" 
+                               value="Configuration_Specific_Value" 
+                               xdt:Locator="Match(name)" 
+                               xdt:Transform="InsertIfMissing" />
         </environmentVariables>
       </aspNetCore>
     </system.webServer>
@@ -47,7 +50,7 @@ In the following example, a configuration-specific environment variable is set i
 </configuration>
 ```
 
-The transform is applied when the configuration is set to *Release*:
+The transform is applied when the configuration is set to Release:
 
 ```console
 dotnet publish --configuration Release
@@ -57,11 +60,11 @@ The MSBuild property for the configuration is `$(Configuration)`.
 
 ## Profile
 
-Profile transformations are run second, after [Configuration](#configuration) transforms.
+Profile transformations are run second, after [Build configuration](#build-configuration) transforms.
 
-Include a *web.{PROFILE}.config* file for each configuration requiring a *web.config* transformation.
+Include a *web.{PROFILE}.config* file for each profile configuration requiring a *web.config* transformation.
 
-In the following example, a profile-specific environment variable is set in *web.FolderPublish.config*:
+In the following example, a profile-specific environment variable is set in *web.FolderProfile.config* for a folder publish profile:
 
 ```xml
 <?xml version="1.0"?>
@@ -70,7 +73,10 @@ In the following example, a profile-specific environment variable is set in *web
     <system.webServer>
       <aspNetCore>
         <environmentVariables xdt:Transform="InsertIfMissing">
-          <environmentVariable  name="Profile_Specific" value="Profile_Specific_Value" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
+          <environmentVariable name="Profile_Specific" 
+                               value="Profile_Specific_Value" 
+                               xdt:Locator="Match(name)" 
+                               xdt:Transform="InsertIfMissing" />
         </environmentVariables>
       </aspNetCore>
     </system.webServer>
@@ -78,7 +84,7 @@ In the following example, a profile-specific environment variable is set in *web
 </configuration>
 ```
 
-The transform is applied when the profile is *FolderPublish*:
+The transform is applied when the profile is *FolderProfile*:
 
 ```console
 dotnet publish --configuration Release /p:PublishProfile=FolderProfile
@@ -90,11 +96,11 @@ If no profile is passed, the default profile name is **FileSystem** and *web.Fil
 
 ## Environment
 
-Environment transformations are run third, after [Configuration](#configuration) and [Profile](#profile) transforms.
+Environment transformations are run third, after [Build configuration](#build-configuration) and [Profile](#profile) transforms.
 
-Include a *web.{ENVIRONMENT}.config* file for each configuration requiring a *web.config* transformation.
+Include a *web.{ENVIRONMENT}.config* file for each [environment](xref:fundamentals/environments) requiring a *web.config* transformation.
 
-In the following example, a environment-specific environment variable is set in *web.Production.config*:
+In the following example, a environment-specific environment variable is set in *web.Production.config* for the Production environment:
 
 ```xml
 <?xml version="1.0"?>
@@ -103,7 +109,10 @@ In the following example, a environment-specific environment variable is set in 
     <system.webServer>
       <aspNetCore>
         <environmentVariables xdt:Transform="InsertIfMissing">
-          <environmentVariable  name="Environment_Specific" value="Environment_Specific_Value" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
+          <environmentVariable name="Environment_Specific" 
+                               value="Environment_Specific_Value" 
+                               xdt:Locator="Match(name)" 
+                               xdt:Transform="InsertIfMissing" />
         </environmentVariables>
       </aspNetCore>
     </system.webServer>
@@ -125,9 +134,9 @@ The `ASPNETCORE_ENVIRONMENT` environment variable is automatically added to the 
 
 ## Custom
 
-Custom transformations are run last, after [Configuration](#configuration), [Profile](#profile), and [Environment](#environment) transforms.
+Custom transformations are run last, after [Build configuration](#build-configuration), [Profile](#profile), and [Environment](#environment) transforms.
 
-Include a *{CUSTOM_NAME}.transform* file for each configuration requiring a *web.config* transformation.
+Include a *{CUSTOM_NAME}.transform* file for each custom configuration requiring a *web.config* transformation.
 
 In the following example, a custom transform environment variable is set in *custom.transform*:
 
@@ -138,7 +147,10 @@ In the following example, a custom transform environment variable is set in *cus
     <system.webServer>
       <aspNetCore>
         <environmentVariables xdt:Transform="InsertIfMissing">
-          <environmentVariable  name="Custom_Specific" value="Custom_Specific_Value" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
+          <environmentVariable name="Custom_Specific" 
+                               value="Custom_Specific_Value" 
+                               xdt:Locator="Match(name)" 
+                               xdt:Transform="InsertIfMissing" />
         </environmentVariables>
       </aspNetCore>
     </system.webServer>
@@ -161,3 +173,8 @@ To prevent transformations of the *web.config* file, set the MSBuild property `$
 ```console
 dotnet publish /p:IsWebConfigTransformDisabled=true
 ```
+
+## Additional resources
+
+* [Web.config Transformation Syntax for Web Application Project Deployment](http://go.microsoft.com/fwlink/?LinkId=301874)
+* [Web.config Transformation Syntax for Web Project Deployment Using Visual Studio](https://docs.microsoft.com/previous-versions/aspnet/dd465326(v=vs.110))

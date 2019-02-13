@@ -505,8 +505,6 @@
           uid: host-and-deploy/azure-apps/troubleshoot
         - name: Errors reference
           uid: host-and-deploy/azure-iis-errors-reference
-        - name: web.config transformation
-          uid: host-and-deploy/webconfig-transformation
     - name: DevOps
       items: 
         - name: Overview
@@ -535,8 +533,8 @@
           uid: host-and-deploy/iis/troubleshoot
         - name: Errors reference
           uid: host-and-deploy/azure-iis-errors-reference
-        - name: web.config transformation
-          uid: host-and-deploy/webconfig-transformation
+        - name: Transform web.config
+          uid: host-and-deploy/iis/transform-webconfig
     - name: Kestrel
       uid: fundamentals/servers/kestrel
     - name: HTTP.sys
