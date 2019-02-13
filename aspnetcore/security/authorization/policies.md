@@ -27,6 +27,8 @@ An authorization requirement is a collection of data parameters that a policy ca
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs?name=snippet_MinimumAgeRequirementClass)]
 
+If an authorization policy contains multiple authorization requirements, all requirements must pass in order for the policy evaluation to succeed. In other words, multiple authorization requirements added to a single authorization policy are treated on an **AND** basis.
+
 > [!NOTE]
 > A requirement doesn't need to have data or properties.
 
