@@ -131,4 +131,4 @@ This example authorizes users who belong to the `Administrator`, `PowerUser` or 
 
 Append <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles<TRole>*> to add Role services:
 
-[!code-csharp[](roles/samples/Startup.cs?name=snippet&highlight=12)]
+[!code-csharp[](roles/samples/Startup.cs?name=snippet&highlight=7)]
