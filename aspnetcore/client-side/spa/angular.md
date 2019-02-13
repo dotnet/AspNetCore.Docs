@@ -2,20 +2,13 @@
 title: Use the Angular project template with ASP.NET Core
 author: SteveSandersonMS
 description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for Angular and the Angular CLI.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: stevesa
 ms.custom: mvc
-ms.date: 02/21/2018
+ms.date: 02/13/2019
 uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core
-
-::: moniker range="= aspnetcore-2.0"
-
-> [!NOTE]
-> This documentation isn't about the Angular project template included in ASP.NET Core 2.0. It's about the newer Angular template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
-
-::: moniker-end
 
 The updated Angular project template provides a convenient starting point for ASP.NET Core apps using Angular and the Angular CLI to implement a rich, client-side user interface (UI).
 
@@ -23,17 +16,7 @@ The template is equivalent to creating an ASP.NET Core project to act as an API 
 
 ## Create a new app
 
-::: moniker range="= aspnetcore-2.0"
-
-If using ASP.NET Core 2.0, ensure you've [installed the updated Angular project template](xref:spa/index#installation).
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 If you have ASP.NET Core 2.1 installed, there's no need to install the Angular project template.
-
-::: moniker-end
 
 Create a new project from a command prompt using the command `dotnet new angular` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 

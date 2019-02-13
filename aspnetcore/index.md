@@ -4,7 +4,7 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2019
+ms.date: 02/13/2019
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -38,7 +38,7 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-
 
 ## Client-side development
 
-ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](https://getbootstrap.com/). For more information, see [Client-side development](xref:client-side/index).
+ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Razor Components](xref:razor-components/index), [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](https://getbootstrap.com/). For more information, see [Razor Components](xref:razor-components/index) and related topics under *Client-side development*.
 
 <a name="target-framework"></a>
 

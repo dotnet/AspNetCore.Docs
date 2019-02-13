@@ -4,7 +4,7 @@ author: isaac2004
 description: Learn about the new features in ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/30/2018
+ms.date: 02/13/2019
 uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
@@ -138,7 +138,12 @@ For more information, see [.NET Generic Host](xref:fundamentals/host/generic-hos
 The Single Page Application templates for Angular, React, and React with Redux are updated to use the standard project structures and build systems for each framework.
 
 The Angular template is based on the Angular CLI, and the React templates are based on create-react-app.
-For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index).
+
+For more information, see:
+
+* <xref:spa/angular>
+* <xref:spa/react>
+* <xref:spa/react-with-redux>
 
 ## Razor Pages search for Razor assets
 
