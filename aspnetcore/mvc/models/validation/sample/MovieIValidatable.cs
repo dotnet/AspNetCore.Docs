@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVCMovie.Models
 {
+    #region snippet
     public class MovieIValidatable : IValidatableObject
     {
         private const int _classicYear = 1960;
@@ -41,4 +42,5 @@ namespace MVCMovie.Models
         }
         #endregion
     }
+    #endregion
 }
