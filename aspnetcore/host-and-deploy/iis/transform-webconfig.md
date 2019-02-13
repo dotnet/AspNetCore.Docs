@@ -50,7 +50,7 @@ In the following example, a configuration-specific environment variable is set i
 </configuration>
 ```
 
-The transform is applied when the configuration is set to Release:
+The transform is applied when the configuration is set to *Release*:
 
 ```console
 dotnet publish --configuration Release
