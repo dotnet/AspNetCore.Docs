@@ -143,9 +143,10 @@ Only part of the file is shown. The assembly name in the example is `StartupEnha
 
 ## Configuration provided by the hosting startup
 
-Provide configuration to the app using <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> to load the configuration after the app's <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> delegates execute. The app can't override configuration values provided by the hosting startup using this approach.
+There are two approaches to handling configuration depending on whether you want the hosting startup's configuration to take precedence or the app's configuration to take precedence:
 
-Provide configuration to the app using <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> to load the configuration before the app's <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> delegates execute. The app can change the configuration values provided by the hosting startup using this approach.
+1. Provide configuration to the app using <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> to load the configuration after the app's <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> delegates execute. Hosting startup configuration takes priority over the app's configuration using this approach.
+1. Provide configuration to the app using <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> to load the configuration before the app's <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> delegates execute. The app's configuration values take priority over those provided by the hosting startup using this approach.
 
 ```csharp
 public class ConfigurationInjection : IHostingStartup
@@ -159,7 +160,7 @@ public class ConfigurationInjection : IHostingStartup
             dict = new Dictionary<string, string>
             {
                 {"ConfigurationKey1", 
-                    "From IHostingStartup: Can't be overridden by the app."},
+                    "From IHostingStartup: Higher priority than the app's configuration."},
             };
 
             config.AddInMemoryCollection(dict);
@@ -168,7 +169,7 @@ public class ConfigurationInjection : IHostingStartup
         dict = new Dictionary<string, string>
         {
             {"ConfigurationKey2", 
-                "From IHostingStartup: The app can override this value."},
+                "From IHostingStartup: Lower priority than the app's configuration."},
         };
 
         var builtConfig = new ConfigurationBuilder()
