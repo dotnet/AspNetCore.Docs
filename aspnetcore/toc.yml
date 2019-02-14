@@ -557,6 +557,8 @@
           uid: host-and-deploy/iis/troubleshoot
         - name: Errors reference
           uid: host-and-deploy/azure-iis-errors-reference
+        - name: Transform web.config
+          uid: host-and-deploy/iis/transform-webconfig
     - name: Kestrel
       uid: fundamentals/servers/kestrel
     - name: HTTP.sys
