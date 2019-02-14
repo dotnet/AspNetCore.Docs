@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how ASP.NET Core routing is responsible for mapping request URIs to endpoint selectors and dispatching incoming requests to endpoints.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/14/2019
+ms.date: 02/13/2019
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -32,7 +32,7 @@ services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-The `EnableEndpointRouting` option determines if routing should internally use endpoint-based logic or the <xref:Microsoft.AspNetCore.Routing.IRouter>-based logic of ASP.NET Core 2.1 or earlier. When the compatibility version is set to 2.2 or later, the default value is `true`. Set the value to `false` to use the prior routing logic:
+The <xref:Microsoft.AspNetCore.Mvc.MvcOptions.EnableEndpointRouting> option determines if routing should internally use endpoint-based logic or the <xref:Microsoft.AspNetCore.Routing.IRouter>-based logic of ASP.NET Core 2.1 or earlier. When the compatibility version is set to 2.2 or later, the default value is `true`. Set the value to `false` to use the prior routing logic:
 
 ```csharp
 // Use the routing logic of ASP.NET Core 2.1 or earlier:
@@ -91,7 +91,7 @@ The routing system has the following characteristics:
 
 * Route template syntax is used to define routes with tokenized route parameters.
 * Conventional-style and attribute-style endpoint configuration is permitted.
-* `IRouteConstraint` is used to determine whether a URL parameter contains a valid value for a given endpoint constraint.
+* <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> is used to determine whether a URL parameter contains a valid value for a given endpoint constraint.
 * App models, such as MVC/Razor Pages, register all of their endpoints, which have a predictable implementation of routing scenarios.
 * The routing implementation makes routing decisions wherever desired in the middleware pipeline.
 * Middleware that appears after a Routing Middleware can inspect the result of the Routing Middleware's endpoint decision for a given request URI.
@@ -99,8 +99,8 @@ The routing system has the following characteristics:
 * An app can use routing to generate URLs (for example, for redirection or links) based on endpoint information and thus avoid hard-coded URLs, which helps maintainability.
 * URL generation is based on addresses, which support arbitrary extensibility:
 
-  * The Link Generator API (`LinkGenerator`) can be resolved anywhere using [dependency injection (DI)](xref:fundamentals/dependency-injection) to generate URLs.
-  * Where the Link Generator API isn't available via DI, `IUrlHelper` offers methods to build URLs.
+  * The Link Generator API (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>) can be resolved anywhere using [dependency injection (DI)](xref:fundamentals/dependency-injection) to generate URLs.
+  * Where the Link Generator API isn't available via DI, <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> offers methods to build URLs.
 
 > [!NOTE]
 > With the release of endpoint routing in ASP.NET Core 2.2, endpoint linking is limited to MVC/Razor Pages actions and pages. The expansions of endpoint-linking capabilities is planned for future releases.
@@ -120,10 +120,10 @@ The routing system has the following characteristics:
 
 * Route template syntax is used to define routes with tokenized route parameters.
 * Conventional-style and attribute-style endpoint configuration is permitted.
-* `IRouteConstraint` is used to determine whether a URL parameter contains a valid value for a given endpoint constraint.
+* <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> is used to determine whether a URL parameter contains a valid value for a given endpoint constraint.
 * App models, such as MVC/Razor Pages, register all of their routes, which have a predictable implementation of routing scenarios.
 * A response can use routing to generate URLs (for example, for redirection or links) based on route information and thus avoid hard-coded URLs, which helps maintainability.
-* URL generation is based on routes, which support arbitrary extensibility. `IUrlHelper` offers methods to build URLs.
+* URL generation is based on routes, which support arbitrary extensibility. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> offers methods to build URLs.
 
 ::: moniker-end
 
@@ -137,7 +137,7 @@ URL matching is the process by which routing dispatches an incoming request to a
 
 The routing system in endpoint routing is responsible for all dispatching decisions. Since the middleware applies policies based on the selected endpoint, it's important that any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
-When the endpoint delegate is executed, the properties of `RouteContext.RouteData` are set to appropriate values based on the request processing performed thus far.
+When the endpoint delegate is executed, the properties of [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) are set to appropriate values based on the request processing performed thus far.
 
 ::: moniker-end
 
@@ -145,19 +145,19 @@ When the endpoint delegate is executed, the properties of `RouteContext.RouteDat
 
 URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is based on data in the URL path but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an app.
 
-Incoming requests enter the `RouterMiddleware`, which calls the <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> method on each route in sequence. The <xref:Microsoft.AspNetCore.Routing.IRouter> instance chooses whether to *handle* the request by setting the [RouteContext.Handler](xref:Microsoft.AspNetCore.Routing.RouteContext.Handler*) to a non-null <xref:Microsoft.AspNetCore.Http.RequestDelegate>. If a route sets a handler for the request, route processing stops, and the handler is invoked to process the request. If no route handler is found to process the request, the middleware hands the request off to the next middleware in the request pipeline.
+Incoming requests enter the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware>, which calls the <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> method on each route in sequence. The <xref:Microsoft.AspNetCore.Routing.IRouter> instance chooses whether to *handle* the request by setting the [RouteContext.Handler](xref:Microsoft.AspNetCore.Routing.RouteContext.Handler*) to a non-null <xref:Microsoft.AspNetCore.Http.RequestDelegate>. If a route sets a handler for the request, route processing stops, and the handler is invoked to process the request. If no route handler is found to process the request, the middleware hands the request off to the next middleware in the request pipeline.
 
-The primary input to `RouteAsync` is the [RouteContext.HttpContext](xref:Microsoft.AspNetCore.Routing.RouteContext.HttpContext*) associated with the current request. The `RouteContext.Handler` and [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData*) are outputs set after a route is matched.
+The primary input to <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> is the [RouteContext.HttpContext](xref:Microsoft.AspNetCore.Routing.RouteContext.HttpContext*) associated with the current request. The [RouteContext.Handler](xref:Microsoft.AspNetCore.Routing.RouteContext.Handler) and [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData*) are outputs set after a route is matched.
 
-A match that calls `RouteAsync` also sets the properties of the `RouteContext.RouteData` to appropriate values based on the request processing performed thus far.
+A match that calls <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> also sets the properties of the [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) to appropriate values based on the request processing performed thus far.
 
 ::: moniker-end
 
 [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values*) is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL and can be used to accept user input or to make further dispatching decisions inside the app.
 
-[RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) is a property bag of additional data related to the matched route. `DataTokens` are provided to support associating state data with each route so that the app can make decisions based on which route matched. These values are developer-defined and do **not** affect the behavior of routing in any way. Additionally, values stashed in `RouteData.DataTokens` can be of any type, in contrast to `RouteData.Values`, which must be convertible to and from strings.
+[RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) is a property bag of additional data related to the matched route. <xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*> are provided to support associating state data with each route so that the app can make decisions based on which route matched. These values are developer-defined and do **not** affect the behavior of routing in any way. Additionally, values stashed in [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) can be of any type, in contrast to [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values), which must be convertible to and from strings.
 
-[RouteData.Routers](xref:Microsoft.AspNetCore.Routing.RouteData.Routers*) is a list of the routes that took part in successfully matching the request. Routes can be nested inside of one another. The `Routers` property reflects the path through the logical tree of routes that resulted in a match. Generally, the first item in `Routers` is the route collection and should be used for URL generation. The last item in `Routers` is the route handler that matched.
+[RouteData.Routers](xref:Microsoft.AspNetCore.Routing.RouteData.Routers) is a list of the routes that took part in successfully matching the request. Routes can be nested inside of one another. The <xref:Microsoft.AspNetCore.Routing.RouteData.Routers> property reflects the path through the logical tree of routes that resulted in a match. Generally, the first item in <xref:Microsoft.AspNetCore.Routing.RouteData.Routers> is the route collection and should be used for URL generation. The last item in <xref:Microsoft.AspNetCore.Routing.RouteData.Routers> is the route handler that matched.
 
 ### URL generation
 
@@ -165,45 +165,45 @@ A match that calls `RouteAsync` also sets the properties of the `RouteContext.Ro
 
 URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your endpoints and the URLs that access them.
 
-Endpoint routing includes the Link Generator API (`LinkGenerator`). `LinkGenerator` is a singleton service that can be retrieved from DI. The API can be used outside of the context of an executing request. MVC's `IUrlHelper` and scenarios that rely on `IUrlHelper`, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
+Endpoint routing includes the Link Generator API (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>). <xref:Microsoft.AspNetCore.Routing.LinkGenerator> is a singleton service that can be retrieved from DI. The API can be used outside of the context of an executing request. MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
 
 The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from MVC/Razor Pages are implemented as an address scheme.
 
 The link generator can link to MVC/Razor Pages actions and pages via the following extension methods:
 
-* `GetPathByAction`
-* `GetUriByAction`
-* `GetPathByPage`
-* `GetUriByPage`
+* <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*>
+* <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*>
+* <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetPathByPage*>
+* <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetUriByPage*>
 
 An overload of these methods accepts arguments that include the `HttpContext`. These methods are functionally equivalent to `Url.Action` and `Url.Page` but offer additional flexibility and options.
 
 The `GetPath*` methods are most similar to `Url.Action` and `Url.Page` in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The ambient route values, URL base path, scheme, and host from the executing request are used unless overridden.
 
-`LinkGenerator` is called with an address. Generating a URI occurs in two steps:
+<xref:Microsoft.AspNetCore.Routing.LinkGenerator> is called with an address. Generating a URI occurs in two steps:
 
 1. An address is bound to a list of endpoints that match the address.
 1. Each endpoint's `RoutePattern` is evaluated until a route pattern that matches the supplied values is found. The resulting output is combined with the other URI parts supplied to the link generator and returned.
 
-The methods provided by `LinkGenerator` support standard link generation capabilities for any type of address. The most convenient way to use the link generator is through extension methods that perform operations for a specific address type.
+The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> support standard link generation capabilities for any type of address. The most convenient way to use the link generator is through extension methods that perform operations for a specific address type.
 
 | Extension Method   | Description                                                         |
 | ------------------ | ------------------------------------------------------------------- |
-| `GetPathByAddress` | Generates a URI with an absolute path based on the provided values. |
-| `GetUriByAddress`  | Generates an absolute URI based on the provided values.             |
+| <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*> | Generates a URI with an absolute path based on the provided values. |
+| <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetUriByAddress*> | Generates an absolute URI based on the provided values.             |
 
 > [!WARNING]
-> Pay attention to the following implications of calling `LinkGenerator` methods:
+> Pay attention to the following implications of calling <xref:Microsoft.AspNetCore.Routing.LinkGenerator> methods:
 >
 > * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view/page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
 >
-> * Use `LinkGenerator` with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the `LinkGenerator` APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
+> * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
 
 ## Differences from earlier versions of routing
 
 A few differences exist between endpoint routing in ASP.NET Core 2.2 or later and earlier versions of routing in ASP.NET Core:
 
-* The endpoint routing system doesn't support `IRouter`-based extensibility, including inheriting from `Route`.
+* The endpoint routing system doesn't support <xref:Microsoft.AspNetCore.Routing.IRouter>-based extensibility, including inheriting from <xref:Microsoft.AspNetCore.Routing.Route>.
 
 * Endpoint routing doesn't support [WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim). Use the 2.1 [compatibility version](xref:mvc/compatibility-version) (`.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)`) to continue using the compatibility shim.
 
@@ -224,7 +224,7 @@ A few differences exist between endpoint routing in ASP.NET Core 2.2 or later an
   var link = Url.Action("ReadPost", "blog", new { id = 17, });
   ```
 
-  With `IRouter`-based routing, this code generates a URI of `/blog/ReadPost/17`, which respects the casing of the provided route value. Endpoint routing in ASP.NET Core 2.2 or later produces `/Blog/ReadPost/17` ("Blog" is capitalized). Endpoint routing provides the `IOutboundParameterTransformer` interface that can be used to customize this behavior globally or to apply different conventions for mapping URLs.
+  With <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, this code generates a URI of `/blog/ReadPost/17`, which respects the casing of the provided route value. Endpoint routing in ASP.NET Core 2.2 or later produces `/Blog/ReadPost/17` ("Blog" is capitalized). Endpoint routing provides the `IOutboundParameterTransformer` interface that can be used to customize this behavior globally or to apply different conventions for mapping URLs.
 
   For more information, see the [Parameter transformer reference](#parameter-transformer-reference) section.
 
@@ -283,7 +283,7 @@ A few differences exist between endpoint routing in ASP.NET Core 2.2 or later an
 
 ### Middleware example
 
-In the following example, a middleware uses the `LinkGenerator` API to create link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app.
+In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app.
 
 ```csharp
 using Microsoft.AspNetCore.Routing;
@@ -314,20 +314,20 @@ public class ProductsLinkMiddleware
 
 URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between route handlers and the URLs that access them.
 
-URL generation follows a similar iterative process, but it starts with user or framework code calling into the <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> method of the route collection. Each *route* has its `GetVirtualPath` method called in sequence until a non-null <xref:Microsoft.AspNetCore.Routing.VirtualPathData> is returned.
+URL generation follows a similar iterative process, but it starts with user or framework code calling into the <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> method of the route collection. Each *route* has its <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> method called in sequence until a non-null <xref:Microsoft.AspNetCore.Routing.VirtualPathData> is returned.
 
-The primary inputs to `GetVirtualPath` are:
+The primary inputs to <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> are:
 
-* [VirtualPathContext.HttpContext](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext*)
-* [VirtualPathContext.Values](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.Values*)
-* [VirtualPathContext.AmbientValues](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues*)
+* [VirtualPathContext.HttpContext](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext)
+* [VirtualPathContext.Values](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.Values)
+* [VirtualPathContext.AmbientValues](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues)
 
-Routes primarily use the route values provided by `Values` and `AmbientValues` to decide whether it's possible to generate a URL and what values to include. The `AmbientValues` are the set of route values that were produced from matching the current request. In contrast, `Values` are the route values that specify how to generate the desired URL for the current operation. The `HttpContext` is provided in case a route should obtain services or additional data associated with the current context.
+Routes primarily use the route values provided by <xref:Microsoft.AspNetCore.Routing.VirtualPathContext.Values> and <xref:Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues> to decide whether it's possible to generate a URL and what values to include. The <xref:Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues> are the set of route values that were produced from matching the current request. In contrast, <xref:Microsoft.AspNetCore.Routing.VirtualPathContext.Values> are the route values that specify how to generate the desired URL for the current operation. The <xref:Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext> is provided in case a route should obtain services or additional data associated with the current context.
 
 > [!TIP]
 > Think of [VirtualPathContext.Values](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.Values*) as a set of overrides for the [VirtualPathContext.AmbientValues](xref:Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues*). URL generation attempts to reuse route values from the current request to generate URLs for links using the same route or route values.
 
-The output of `GetVirtualPath` is a `VirtualPathData`. `VirtualPathData` is a parallel of `RouteData`. `VirtualPathData` contains the `VirtualPath` for the output URL and some additional properties that should be set by the route.
+The output of <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> is a <xref:Microsoft.AspNetCore.Routing.VirtualPathData>. <xref:Microsoft.AspNetCore.Routing.VirtualPathData> is a parallel of <xref:Microsoft.AspNetCore.Routing.RouteData>. <xref:Microsoft.AspNetCore.Routing.VirtualPathData> contains the <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> for the output URL and some additional properties that should be set by the route.
 
 The [VirtualPathData.VirtualPath](xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath*) property contains the *virtual path* produced by the route. Depending on your needs, you may need to process the path further. If you want to render the generated URL in HTML, prepend the base path of the app.
 
@@ -341,25 +341,25 @@ The [VirtualPathData.DataTokens](xref:Microsoft.AspNetCore.Routing.VirtualPathDa
 
 ::: moniker range="< aspnetcore-2.2"
 
-Routing provides the <xref:Microsoft.AspNetCore.Routing.Route> class as the standard implementation of <xref:Microsoft.AspNetCore.Routing.IRouter>. `Route` uses the *route template* syntax to define patterns to match against the URL path when <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> is called. `Route` uses the same route template to generate a URL when `GetVirtualPath` is called.
+Routing provides the <xref:Microsoft.AspNetCore.Routing.Route> class as the standard implementation of <xref:Microsoft.AspNetCore.Routing.IRouter>. <xref:Microsoft.AspNetCore.Routing.Route> uses the *route template* syntax to define patterns to match against the URL path when <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> is called. <xref:Microsoft.AspNetCore.Routing.Route> uses the same route template to generate a URL when <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> is called.
 
 ::: moniker-end
 
-Most apps create routes by calling <xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> or one of the similar extension methods defined on <xref:Microsoft.AspNetCore.Routing.IRouteBuilder>. Any of the `IRouteBuilder` extension methods create an instance of <xref:Microsoft.AspNetCore.Routing.Route> and add it to the route collection.
+Most apps create routes by calling <xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> or one of the similar extension methods defined on <xref:Microsoft.AspNetCore.Routing.IRouteBuilder>. Any of the <xref:Microsoft.AspNetCore.Routing.IRouteBuilder> extension methods create an instance of <xref:Microsoft.AspNetCore.Routing.Route> and add it to the route collection.
 
 ::: moniker range=">= aspnetcore-2.2"
 
-`MapRoute` doesn't accept a route handler parameter. `MapRoute` only adds routes that are handled by the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>. To learn more about routing in MVC, see <xref:mvc/controllers/routing>.
+<xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> doesn't accept a route handler parameter. <xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> only adds routes that are handled by the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>. To learn more about routing in MVC, see <xref:mvc/controllers/routing>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-`MapRoute` doesn't accept a route handler parameter. `MapRoute` only adds routes that are handled by the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>. The default handler is an `IRouter`, and the handler might not handle the request. For example, ASP.NET Core MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing in MVC, see <xref:mvc/controllers/routing>.
+<xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> doesn't accept a route handler parameter. <xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> only adds routes that are handled by the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>. The default handler is an `IRouter`, and the handler might not handle the request. For example, ASP.NET Core MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing in MVC, see <xref:mvc/controllers/routing>.
 
 ::: moniker-end
 
-The following code example is an example of a `MapRoute` call used by a typical ASP.NET Core MVC route definition:
+The following code example is an example of a <xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> call used by a typical ASP.NET Core MVC route definition:
 
 ```csharp
 routes.MapRoute(
@@ -385,9 +385,9 @@ routes.MapRoute(
 
 This template matches a URL path like `/Products/Details/17` but not `/Products/Details/Apples`. Route constraints implement <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> and inspect route values to verify them. In this example, the route value `id` must be convertible to an integer. See [route-constraint-reference](#route-constraint-reference) for an explanation of route constraints provided by the framework.
 
-Additional overloads of `MapRoute` accept values for `constraints`, `dataTokens`, and `defaults`. The typical usage of these parameters is to pass an anonymously typed object, where the property names of the anonymous type match route parameter names.
+Additional overloads of <xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> accept values for `constraints`, `dataTokens`, and `defaults`. The typical usage of these parameters is to pass an anonymously typed object, where the property names of the anonymous type match route parameter names.
 
-The following `MapRoute` examples create equivalent routes:
+The following <xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> examples create equivalent routes:
 
 ```csharp
 routes.MapRoute(
@@ -448,10 +448,10 @@ The preceding template matches a URL path like `/en-US/Products/5` and extracts 
 
 ### Route class URL generation
 
-The `Route` class can also perform URL generation by combining a set of route values with its route template. This is logically the reverse process of matching the URL path.
+The <xref:Microsoft.AspNetCore.Routing.Route> class can also perform URL generation by combining a set of route values with its route template. This is logically the reverse process of matching the URL path.
 
 > [!TIP]
-> To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the `Route` class.
+> To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the <xref:Microsoft.AspNetCore.Routing.Route> class.
 
 The following example uses a general ASP.NET Core MVC default route:
 
@@ -508,22 +508,22 @@ If you're configuring a single route, call <xref:Microsoft.AspNetCore.Builder.Ro
 
 The framework provides a set of extension methods for creating routes (<xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions>):
 
-* `MapDelete`
-* `MapGet`
-* `MapMiddlewareDelete`
-* `MapMiddlewareGet`
-* `MapMiddlewarePost`
-* `MapMiddlewarePut`
-* `MapMiddlewareRoute`
-* `MapMiddlewareVerb`
-* `MapPost`
-* `MapPut`
-* `MapRoute`
-* `MapVerb`
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapDelete*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapMiddlewareDelete*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapMiddlewareGet*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapMiddlewarePost*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapMiddlewarePut*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapMiddlewareRoute*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapMiddlewareVerb*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPost*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPut*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapRoute*>
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapVerb*>
 
 ::: moniker range="< aspnetcore-2.2"
 
-Some of listed methods, such as `MapGet`, require a `RequestDelegate`. The `RequestDelegate` is used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline for use as the route handler. If the `Map*` method doesn't accept a handler, such as `MapRoute`, it uses the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>.
+Some of listed methods, such as <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*>, require a <xref:Microsoft.AspNetCore.Http.RequestDelegate>. The <xref:Microsoft.AspNetCore.Http.RequestDelegate> is used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline for use as the route handler. If the `Map*` method doesn't accept a handler, such as <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapRoute*>, it uses the <xref:Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler*>.
 
 ::: moniker-end
 
@@ -582,7 +582,7 @@ The following table demonstrates example route templates and their behavior.
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
 > [!TIP]
-> Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as `Route`, match requests.
+> Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
 
 ## Reserved routing names
 
@@ -662,9 +662,9 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 ## Custom Route Constraints
 
-In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains a single method, `Match`, which returns `true` if the constraint is satisfied and `false` otherwise.
+In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface contains a single method, `Match`, which returns `true` if the constraint is satisfied and `false` otherwise.
 
-To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's `RouteOptions.ConstraintMap` in the app's service container. A <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `RouteOptions.ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a `services.AddRouting` call or by configuring `RouteOptions` directly with `services.Configure<RouteOptions>`. For example:
+To use a custom <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the app's service container. A <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> is a dictionary that maps route constraint keys to <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> implementations that validate those constraints. An app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> can be updated in `Startup.ConfigureServices` either as part of a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `services.Configure<RouteOptions>`. For example:
 
 ```csharp
 services.AddRouting(options =>
@@ -686,7 +686,7 @@ public ActionResult<string> Get(string id)
 
 Parameter transformers:
 
-* Execute when generating a link for a `Route`.
+* Execute when generating a link for a <xref:Microsoft.AspNetCore.Routing.Route>.
 * Implement `Microsoft.AspNetCore.Routing.IOutboundParameterTransformer`.
 * Are configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
 * Take the parameter's route value and transform it to a new string value.
@@ -728,9 +728,9 @@ The following example shows how to generate a link to a route given a dictionary
 
 [!code-csharp[](routing/samples/2.x/RoutingSample/Startup.cs?name=snippet_Dictionary)]
 
-The `VirtualPath` generated at the end of the preceding sample is `/package/create/123`. The dictionary supplies the `operation` and `id` route values of the "Track Package Route" template, `package/{operation}/{id}`. For details, see the sample code in the [Use Routing Middleware](#use-routing-middleware) section or the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/routing/samples).
+The <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> generated at the end of the preceding sample is `/package/create/123`. The dictionary supplies the `operation` and `id` route values of the "Track Package Route" template, `package/{operation}/{id}`. For details, see the sample code in the [Use Routing Middleware](#use-routing-middleware) section or the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/routing/samples).
 
-The second parameter to the `VirtualPathContext` constructor is a collection of *ambient values*. Ambient values are convenient to use because they limit the number of values a developer must specify within a request context. The current route values of the current request are considered ambient values for link generation. In an ASP.NET Core MVC app's `About` action of the `HomeController`, you don't need to specify the controller route value to link to the `Index` action&mdash;the ambient value of `Home` is used.
+The second parameter to the <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> constructor is a collection of *ambient values*. Ambient values are convenient to use because they limit the number of values a developer must specify within a request context. The current route values of the current request are considered ambient values for link generation. In an ASP.NET Core MVC app's `About` action of the `HomeController`, you don't need to specify the controller route value to link to the `Index` action&mdash;the ambient value of `Home` is used.
 
 Ambient values that don't match a parameter are ignored. Ambient values are also ignored when an explicitly provided value overrides the ambient value. Matching occurs from left to right in the URL.
 
