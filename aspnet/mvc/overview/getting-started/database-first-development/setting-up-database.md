@@ -11,9 +11,6 @@ msc.legacyurl: /mvc/overview/getting-started/database-first-development/setting-
 msc.type: authoredcontent
 ---
 
-# Getting Started with Entity Framework 6 Database First using MVC 5
-
-
 # Tutorial: Get started with EF Database First using MVC 5
 
 Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial series shows you how to automatically generate code that enables users to display, edit, create, and delete data that resides in a database table. The generated code corresponds to the columns in the database table. In the last part of the series, you learn how add data annotations to the data model to specify validation requirements and display formatting. When you're done, you can advance to an Azure article to learn how to deploy a .NET app and SQL database to Azure App Service.
