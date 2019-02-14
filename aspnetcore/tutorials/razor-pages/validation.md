@@ -2,7 +2,6 @@
 title: Add validation to an ASP.NET Core Razor Page
 author: rick-anderson
 description: Discover how to add validation to a Razor Page in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/5/2018
