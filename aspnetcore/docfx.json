@@ -70,7 +70,7 @@
         "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",
         "performance/**/**.md": "aspnetcore-performance",
-        "razor-components/**/**.md": "aspnetcore-blazor",
+        "razor-components/**/**.md": "aspnetcore-razorcomponents",
         "razor-pages/**/**.md": "aspnetcore-razorpages",
         "release-notes/**/**.md": "aspnetcore-releasenotes",
         "security/**/**.md": "aspnetcore-security",
