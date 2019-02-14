@@ -23,22 +23,19 @@
 
 <p>The layout component (<em>CascadingValuesParametersLayout.cshtml</em>) supplies a cascading <code>ThemeInfo</code> object to the components of the <code>Body</code> property that use this layout:</p>
 
-<pre><code>@@inherits BlazorLayoutComponent
+<pre><code>@@inherits LayoutComponentBase
 @@using BlazorSample.UIThemeClasses
 
-&lt;div class="container-fluid"&gt;
-    &lt;div class="row"&gt;
-        &lt;div class="col-sm-3"&gt;
-            &lt;NavMenu /&gt;
+&lt;div class="sidebar"&gt;
+    &lt;NavMenu /&gt;
+&lt;/div&gt;
+
+&lt;div class="main"&gt;
+    &lt;CascadingValue Value="@@theme"&gt;
+        &lt;div class="content px-4"&gt;
+            @@Body
         &lt;/div&gt;
-        &lt;div class="col-sm-9"&gt;
-            &lt;CascadingValue Value="@@theme"&gt;
-                &lt;div class="content px-4"&gt;
-                    @@Body
-                &lt;/div&gt;
-            &lt;/CascadingValue&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
+    &lt;/CascadingValue&gt;
 &lt;/div&gt;
 
 @@functions {
