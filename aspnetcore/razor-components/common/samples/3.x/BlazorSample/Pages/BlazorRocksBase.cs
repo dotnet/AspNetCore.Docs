@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 
-public class BlazorRocksBase : BlazorComponent
+public class BlazorRocksBase : ComponentBase
 {
     public string BlazorRocksText { get; set; } = "Blazor rocks the browser!";
 }
