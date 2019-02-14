@@ -54,7 +54,7 @@ In the following example, the `ParentComponent` sets the value of the `Title` pr
 
 *ParentComponent.cshtml*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?start=1&end=7&highlight=5)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?start=1&end=8&highlight=5)]
 
 *ChildComponent.cshtml*:
 
@@ -66,7 +66,7 @@ Components can set the content of another component. The assigning component pro
 
 *ParentComponent.cshtml*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?start=1&end=7&highlight=6)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?start=1&end=8&highlight=6-7)]
 
 The Child component has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the child component's markup where the content should be rendered. In the following example, the value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
@@ -131,7 +131,9 @@ Parent component:
 
 <ChildComponent bind-Year="@ParentYear" />
 
-<button class="btn btn-primary" onclick="@ChangeTheYear">Change Year to 1986</button>
+<button class="btn btn-primary" onclick="@ChangeTheYear">
+    Change Year to 1986
+</button>
 
 @functions {
     [Parameter]
@@ -303,7 +305,7 @@ While capturing component references uses a similar syntax to [capturing element
 
 ## Lifecycle methods
 
-`OnInitAsync` and `OnInit` execute code after the component initialization. To perform an asynchronous operation, use `OnInitAsync` and the `await` keyword on the operation:
+`OnInitAsync` and `OnInit` execute code to initialize the component. To perform an asynchronous operation, use `OnInitAsync` and the `await` keyword on the operation:
 
 ```csharp
 protected override async Task OnInitAsync()
@@ -321,7 +323,7 @@ protected override void OnInit()
 }
 ```
 
-`OnParametersSetAsync` and `OnParametersSet` are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after `OnInit` during component initialization:
+`OnParametersSetAsync` and `OnParametersSet` are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after component initialization and then each time the component is rendered:
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -477,7 +479,7 @@ If `IsCompleted` is `false`, the check box is rendered as:
 
 **Additional information on Razor**
 
-For more information on Razor, see the [Razor syntax reference](xref:mvc/views/razor). Note that not all of the features of Razor are available with Razor Components at this time.
+For more information on Razor, see the [Razor syntax reference](xref:mvc/views/razor).
 
 ## Raw HTML
 
