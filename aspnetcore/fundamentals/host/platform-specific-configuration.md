@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 02/11/2019
+ms.date: 02/14/2019
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
@@ -76,7 +76,7 @@ The [sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamen
 * Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration using the in-memory configuration provider ([AddInMemoryCollection](/dotnet/api/microsoft.extensions.configuration.memoryconfigurationbuilderextensions.addinmemorycollection)).
 * Includes a `HostingStartup` attribute that identifies the hosting startup's namespace and class.
 
-The `ServiceKeyInjection` class's [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add enhancements to an app. `IHostingStartup.Configure` in the hosting startup assembly is called by the runtime before `Startup.Configure` in user code. However, delegates registered by `IHostingStartup` (for example, when calling `ConfigureAppConfiguration`) run after user code. To ensure that configuration code that relies on callbacks is executed before user code, call `UseConfiguration` to apply the configuration to the app.
+The `ServiceKeyInjection` class's [Configure](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup.configure) method uses an [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) to add enhancements to an app.
 
 *HostingStartupLibrary/ServiceKeyInjection.cs*:
 
@@ -140,6 +140,45 @@ When building an `IHostingStartup` project, the dependencies file (*\*.deps.json
 [!code-json[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
 Only part of the file is shown. The assembly name in the example is `StartupEnhancement`.
+
+## Configuration provided by the hosting startup
+
+Provide configuration to the app using <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> to load the configuration after the app's <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> delegates execute. The app can't override configuration values provided by the hosting startup using this approach.
+
+Provide configuration to the app using <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> to load the configuration before the app's <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureAppConfiguration*> delegates execute. The app can change the configuration values provided by the hosting startup using this approach.
+
+```csharp
+public class ConfigurationInjection : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder)
+    {
+        Dictionary<string, string> dict;
+
+        builder.ConfigureAppConfiguration(config =>
+        {
+            dict = new Dictionary<string, string>
+            {
+                {"ConfigurationKey1", 
+                    "From IHostingStartup: Can't be overridden by the app."},
+            };
+
+            config.AddInMemoryCollection(dict);
+        });
+
+        dict = new Dictionary<string, string>
+        {
+            {"ConfigurationKey2", 
+                "From IHostingStartup: The app can override this value."},
+        };
+
+        var builtConfig = new ConfigurationBuilder()
+            .AddInMemoryCollection(dict)
+            .Build();
+
+        builder.UseConfiguration(builtConfig);
+    }
+}
+```
 
 ## Specify the hosting startup assembly
 
