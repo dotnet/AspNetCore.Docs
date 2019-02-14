@@ -35,37 +35,21 @@ Area features:
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
 
 * Project name
-
   * Areas
-
     * Products
-
       * Controllers
-
         * HomeController.cs
-
         * ManageController.cs
-
       * Views
-
         * Home
-
           * Index.cshtml
-
         * Manage
-
           * Index.cshtml
-
     * Services
-
       * Controllers
-
         * HomeController.cs
-
       * Views
-
         * Home
-
           * Index.cshtml
 
 When MVC tries to render a view in an Area, by default, it tries to look in the following locations:
