@@ -4,12 +4,15 @@ title: "Tutorial: Get started with EF Database First using MVC 5"
 description: "This tutorial shows how to start with an existing database and quickly create a web application that enables users to interact with the data."
 author: Rick-Anderson
 ms.author: riande
-ms.date: 01/28/2019
+ms.date: 01/15/2019
 ms.topic: tutorial
 ms.assetid: 095abad4-3bfe-4f06-b092-ae6a735b7e49
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/setting-up-database
 msc.type: authoredcontent
 ---
+
+# Getting Started with Entity Framework 6 Database First using MVC 5
+
 
 # Tutorial: Get started with EF Database First using MVC 5
 
@@ -28,17 +31,16 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
+[Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 
-## Introduction
-
-This tutorial addresses the situation where you have a database and want to generate code for a web application based on the fields of that database. This approach is called Database First development. If you do not already have an existing database, you can instead use an approach called Code First development which involves defining data classes and generating the database from the class properties.
 
 ## Set up the database
 
 To mimic the environment of having an existing database, you will first create a database with some pre-filled data, and then create your web application that connects to the database.
 
-This tutorial was developed using LocalDB. You can use an existing database server instead of LocalDB, but depending on your version of Visual Studio and your type of database, all of the data tools in Visual Studio might not be supported. If the tools are not available for your database, you may need to perform some of the database-specific steps within the management suite for your database.
+
+This tutorial was developed using LocalDB with Visual Studio 2017. You can use an existing database server instead of LocalDB, but depending on your version of Visual Studio and your type of database, all of the data tools in Visual Studio might not be supported. If the tools are not available for your database, you may need to perform some of the database-specific steps within the management suite for your database.
+
 
 If you have a problem with the database tools in your version of Visual Studio, make sure you have installed the latest version of the database tools. For information about updating or installing the database tools, see [Microsoft SQL Server Data Tools](https://msdn.microsoft.com/data/hh297027).
 
