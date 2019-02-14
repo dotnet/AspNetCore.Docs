@@ -1,7 +1,7 @@
 ---
 title: .NET Generic Host
 author: guardrex
-description: Learn about the Generic Host in .NET, which is responsible for app startup and lifetime management.
+description: Learn about Generic Host in .NET, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
@@ -18,9 +18,9 @@ ASP.NET Core apps configure and launch a host. The host is responsible for app s
 
 This article covers the ASP.NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>), which is used for apps that don't process HTTP requests.
 
-The purpose of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on the Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
+The purpose of Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
 
-The Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For web hosting scenarios, use the [Web Host](xref:fundamentals/host/web-host). The Generic Host will replace the Web Host in a future release and act as the primary host API in both HTTP and non-HTTP scenarios.
+Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For web hosting scenarios, use the [Web Host](xref:fundamentals/host/web-host). Generic Host will replace Web Host in a future release and act as the primary host API in both HTTP and non-HTTP scenarios.
 
 ::: moniker-end
 
@@ -30,11 +30,11 @@ ASP.NET Core apps configure and launch a host. The host is responsible for app s
 
 This article covers the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
 
-The Generic Host differs from the Web Host in that it decouples the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads can use the Generic Host and benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
+Generic Host differs from Web Host in that it decouples the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads can use Generic Host and benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
 
-Starting in ASP.NET Core 3.0, the Generic Host is recommended for both HTTP and non-HTTP workloads. An HTTP server implementation, if included, runs as an implementation of <xref:Microsoft.Extensions.Hosting.IHostedService>. `IHostedService` is an interface that can be used for other workloads as well.
+Starting in ASP.NET Core 3.0, Generic Host is recommended for both HTTP and non-HTTP workloads. An HTTP server implementation, if included, runs as an implementation of <xref:Microsoft.Extensions.Hosting.IHostedService>. `IHostedService` is an interface that can be used for other workloads as well.
 
-The Web Host is no longer recommended for web apps but remains available for backward compatibility.
+Web Host is no longer recommended for web apps but remains available for backward compatibility.
 
 > [!NOTE]
 > This remainder of this article has not yet been updated for 3.0.
@@ -52,7 +52,7 @@ To set the console in Visual Studio Code:
 
 ## Introduction
 
-The Generic Host library is available in the <xref:Microsoft.Extensions.Hosting> namespace and provided by the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting/) package. The `Microsoft.Extensions.Hosting` package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later).
+the Generic Host library is available in the <xref:Microsoft.Extensions.Hosting> namespace and provided by the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting/) package. The `Microsoft.Extensions.Hosting` package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later).
 
 <xref:Microsoft.Extensions.Hosting.IHostedService> is the entry point to code execution. Each `IHostedService` implementation is executed in the order of [service registration in ConfigureServices](#configureservices). <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*> is called on each `IHostedService` when the host starts, and <xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*> is called in reverse registration order when the host shuts down gracefully.
 

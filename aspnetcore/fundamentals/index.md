@@ -64,7 +64,7 @@ For more information, see <xref:fundamentals/middleware/index>.
 
 <a id="host"/>
 
-## The Host
+## The host
 
 The first thing an ASP.NET Core app does on starting up is build a *host*. The host is an object that encapsulates all of the the app's resources, such as:
 
@@ -80,7 +80,7 @@ The code to create a host is in `Program.Main` and follows the [builder pattern]
 
 ::: moniker range="<= aspnetcore-2.2"
 
-ASP.NET Core 2.2 and earlier versions use the Web Host (`WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` extension methods that set up a host with commonly used options, such as the following:
+ASP.NET Core 2.2 and earlier versions use Web Host (`WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` extension methods that set up a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, environment variables, command line arguments, and other sources.
@@ -102,7 +102,7 @@ For more information, see <xref:fundamentals/host/web-host>.
 
 ::: moniker range="> aspnetcore-2.2"
 
-In ASP.NET Core 3.0, the Web Host (`WebHost` class) or the Generic Host (`Host` class) can be used in a web app. The Generic Host is recommended, and the Web Host is available for backwards compatibility.
+In ASP.NET Core 3.0, Web Host (`WebHost` class) or Generic Host (`Host` class) can be used in a web app. Generic Host is recommended, and Web Host is available for backwards compatibility.
 
 The framework provides `CreateDefaultBuilder` and `ConfigureWebHostDefaults` extension methods that set up a host with commonly used options, such as the following:
 
@@ -122,13 +122,13 @@ For more information, see <xref:fundamentals/host/generic-host> and <xref:fundam
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-The Web Host is designed to include an HTTP server implementation, which isn't needed for other kinds of .NET apps. Starting in 2.1, the Generic Host (`Host` class) is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. The Generic Host lets you use cross-cutting features such as logging, DI, configuration, and app lifetime management in other types of apps. For more information, see <xref:fundamentals/host/generic-host>.
+Web Host is designed to include an HTTP server implementation, which isn't needed for other kinds of .NET apps. Starting in 2.1, Generic Host (`Host` class) is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host lets you use cross-cutting features such as logging, DI, configuration, and app lifetime management in other types of apps. For more information, see <xref:fundamentals/host/generic-host>.
 
 ::: moniker-end
 
 ::: moniker range="> aspnetcore-2.2"
 
-The Generic Host is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. The Generic Host lets you use cross-cutting features such as logging, DI, configuration, and app lifetime management in other types of apps. For more information, see <xref:fundamentals/host/generic-host>.
+Generic Host is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host lets you use cross-cutting features such as logging, DI, configuration, and app lifetime management in other types of apps. For more information, see <xref:fundamentals/host/generic-host>.
 
 ::: moniker-end
 

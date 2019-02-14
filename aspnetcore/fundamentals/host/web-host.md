@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Web Host
 author: guardrex
-description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
+description: Learn about Web Host in ASP.NET Core, which is responsible for app startup and lifetime management.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2018
@@ -27,7 +27,7 @@ This article covers the ASP.NET Core Web Host ([IWebHostBuilder](/dotnet/api/mic
 
 ::: moniker range="> aspnetcore-2.2"
 
-This article covers the ASP.NET Core Web Host ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)). In ASP.NET Core 3.0, the Generic Host replaces the Web Host. For more information, see [The host](xref:fundamentals/index#host).
+This article covers the ASP.NET Core Web Host ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)). In ASP.NET Core 3.0, Generic Host replaces Web Host. For more information, see [The host](xref:fundamentals/index#host).
 
 ::: moniker-end
 
@@ -320,7 +320,7 @@ Kestrel has its own endpoint configuration API. For more information, see <xref:
 
 ### Shutdown Timeout
 
-Specifies the amount of time to wait for the web host to shut down.
+Specifies the amount of time to wait for Web Host to shut down.
 
 **Key**: shutdownTimeoutSeconds  
 **Type**: *int*  
@@ -381,7 +381,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure the web host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration). `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
+Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration). `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
 Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
 
