@@ -5,7 +5,7 @@
 
     public class MinimumAgeRequirement : IAuthorizationRequirement
     {
-        public int MinimumAge { get; set; }
+        public int MinimumAge { get; }
 
         public MinimumAgeRequirement(int minimumAge)
         {

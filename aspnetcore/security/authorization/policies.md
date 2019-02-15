@@ -13,13 +13,13 @@ Underneath the covers, [role-based authorization](xref:security/authorization/ro
 
 An authorization policy consists of one or more requirements. It's registered as part of the authorization service configuration, in the `Startup.ConfigureServices` method:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=40-41,50-55,63,72)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,49-54,62,67)]
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
 Policies are applied by using the `[Authorize]` attribute with the policy name. For example:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
 ## Requirements
 
@@ -64,7 +64,7 @@ The preceding code traverses [PendingRequirements](/dotnet/api/microsoft.aspnetc
 
 Handlers are registered in the services collection during configuration. For example:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=40-41,50-55,63-65,72)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,49-54,62-64,67)]
 
 Each handler is added to the services collection by invoking `services.AddSingleton<IAuthorizationHandler, YourHandlerClass>();`.
 
@@ -106,7 +106,7 @@ There may be situations in which fulfilling a policy is simple to express in cod
 
 For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=52-53,57-63)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=51-52,56-62)]
 
 ## Accessing MVC request context in handlers
 
