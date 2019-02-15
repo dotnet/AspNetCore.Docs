@@ -5,7 +5,7 @@ description: Discover how the Startup class in ASP.NET Core configures services 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/10/2018
+ms.date: 02/15/2019
 uid: mvc/compatibility-version
 ---
 # Compatibility version for ASP.NET Core MVC
@@ -29,8 +29,8 @@ The default compatibility for ASP.NET Core 2.1 and later 2.x apps that do **not*
 
 The following code sets the compatibility mode to ASP.NET Core 2.2, except for the following behaviors:
 
-* [AllowCombiningAuthorizeFilters](https://docs.microsoft.com/en-gb/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions.allowcombiningauthorizefilters?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_MvcOptions_AllowCombiningAuthorizeFilters)
-* [InputFormatterExceptionPolicy](https://docs.microsoft.com/en-gb/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions.inputformatterexceptionpolicy?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_MvcOptions_InputFormatterExceptionPolicy)
+* <xref:Microsoft.AspNetCore.Mvc.MvcOptions.AllowCombiningAuthorizeFilters>
+* <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatterExceptionPolicy>
 
 [!code-csharp[Main](compatibility-version/samples/2.x/CompatibilityVersionSample/Startup2.cs?name=snippet1)]
 
