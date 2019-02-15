@@ -20,7 +20,6 @@ namespace WebApiSample.Api._21.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Pet>), 200)]
         public async Task<ActionResult<List<Pet>>> GetAllAsync()
         {
             return await _repository.GetPetsAsync();
@@ -41,8 +40,8 @@ namespace WebApiSample.Api._21.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Pet), 201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Pet>> CreateAsync(Pet pet)
         {
             if (!ModelState.IsValid)

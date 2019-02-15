@@ -38,7 +38,7 @@ namespace WebApiSample.Api.Pre21.Controllers
 
         #region snippet_BindingSourceAttributes
         [HttpGet]
-        [ProducesResponseType(typeof(List<Product>), 200)]
+        [ProducesResponseType(typeof(List<Product>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAsync(
             [FromQuery] bool discontinuedOnly = false)
         {

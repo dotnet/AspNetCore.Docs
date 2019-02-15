@@ -34,7 +34,6 @@ namespace WebApiSample.Api._22.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<Product>), 200)]
         public async Task<ActionResult<List<Product>>> GetAsync(
             [FromQuery] bool discontinuedOnly = false)
         {
@@ -53,8 +52,8 @@ namespace WebApiSample.Api._22.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Product), 201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Product>> CreateAsync(Product product)
         {
             await _repository.AddProductAsync(product);

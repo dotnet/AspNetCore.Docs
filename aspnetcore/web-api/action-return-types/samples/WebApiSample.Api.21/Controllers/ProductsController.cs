@@ -28,7 +28,6 @@ namespace WebApiSample.Controllers
 
         #region snippet_GetById
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Product> GetById(int id)
         {
@@ -43,7 +42,7 @@ namespace WebApiSample.Controllers
 
         #region snippet_CreateAsync
         [HttpPost]
-        [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Product>> CreateAsync(Product product)
         {
