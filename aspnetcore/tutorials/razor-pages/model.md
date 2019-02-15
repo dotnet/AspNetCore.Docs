@@ -207,7 +207,7 @@ The `ef database update` command runs the `Up` method in the *Migrations/\<time-
 
 # [Visual Studio](#tab/visual-studio)
 
-## Examine the context registered with dependency injection
+### Examine the context registered with dependency injection
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
 
