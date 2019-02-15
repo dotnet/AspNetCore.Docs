@@ -10,7 +10,7 @@ uid: security/authentication/community
 
 This page contains community-provided, open source authentication options for ASP.NET Core. This page is periodically updated as new providers become available.
 
-# OSS authentication providers
+## OSS authentication providers
 
 The list below is sorted alphabetically.
 
