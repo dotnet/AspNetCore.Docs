@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <UserSecretsId>aspnet-PoliciesAuthApp1-B243341F-3D65-46F9-8ED5-BB110F689100</UserSecretsId>
+    <UserSecretsId>aspnet-PoliciesAuthApp1-67D29486-87B0-48B0-93DC-98456275D806</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
