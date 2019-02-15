@@ -29,8 +29,8 @@ The default compatibility for ASP.NET Core 2.1 and later 2.x apps that do **not*
 
 The following code sets the compatibility mode to ASP.NET Core 2.2, except for the following behaviors:
 
-* [AllowCombiningAuthorizeFilters](https://docs.microsoft.com/en-gb/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions?view=aspnetcore-2.2#properties)
-* [InputFormatterExceptionPolicy](https://docs.microsoft.com/en-gb/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions?view=aspnetcore-2.2#properties)
+* [AllowCombiningAuthorizeFilters](https://docs.microsoft.com/en-gb/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions.allowcombiningauthorizefilters?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_MvcOptions_AllowCombiningAuthorizeFilters)
+* [InputFormatterExceptionPolicy](https://docs.microsoft.com/en-gb/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions.inputformatterexceptionpolicy?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_MvcOptions_InputFormatterExceptionPolicy)
 
 [!code-csharp[Main](compatibility-version/samples/2.x/CompatibilityVersionSample/Startup2.cs?name=snippet1)]
 
