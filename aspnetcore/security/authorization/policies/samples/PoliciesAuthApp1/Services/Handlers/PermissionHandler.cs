@@ -1,6 +1,7 @@
 ﻿namespace PoliciesAuthApp1.Services.Handlers
 {
     #region snippet_PermissionHandlerClass
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;

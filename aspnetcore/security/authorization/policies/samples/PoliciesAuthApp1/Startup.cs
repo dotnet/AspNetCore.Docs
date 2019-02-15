@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -10,9 +11,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PoliciesAuthApp1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PoliciesAuthApp1.Data;
+using PoliciesAuthApp1.Services.Handlers;
+using PoliciesAuthApp1.Services.Requirements;
 
 namespace PoliciesAuthApp1
 {
@@ -44,6 +47,23 @@ namespace PoliciesAuthApp1
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AtLeast21", policy =>
+                    policy.Requirements.Add(new MinimumAgeRequirement(21)));
+
+                options.AddPolicy("BadgeEntry", policy =>
+                    policy.RequireAssertion(context =>
+                        context.User.HasClaim(c =>
+                            (c.Type == "BadgeId" ||
+                             c.Type == "TemporaryBadgeId") &&
+                             c.Issuer == "https://microsoftsecurity")));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
+            services.AddSingleton<IAuthorizationHandler, BadgeEntryHandler>();
+            services.AddSingleton<IAuthorizationHandler, TemporaryStickerHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
