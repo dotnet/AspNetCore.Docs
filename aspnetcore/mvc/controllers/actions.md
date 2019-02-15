@@ -77,7 +77,7 @@ There are two result types within this category: [View](xref:mvc/views/overview)
 
     This type returns JSON or a similar data exchange format to represent an object in a specific manner. For example, `return Json(customer);` serializes the provided object into JSON format.
     
-    Other common methods of this type include `File`, `PhysicalFile`, and `VirtualFile`. For example, `return PhysicalFile(customerFilePath, "text/xml");` returns an XML file described by a `Content-Type` response header value of "text/xml".
+    Other common methods of this type include `File` and `PhysicalFile`. For example, `return PhysicalFile(customerFilePath, "text/xml");` returns [PhysicalFileResult](/dotnet/api/microsoft.aspnetcore.mvc.physicalfileresult).
 
 #### 3. Methods resulting in a non-empty response body formatted in a content type negotiated with the client
 
