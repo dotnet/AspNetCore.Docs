@@ -431,10 +431,9 @@ Generally, the app shouldn't use these properties directly. Instead, request the
 Best practices are to:
 
 * Design services to use dependency injection to obtain their dependencies.
-* Avoid stateful, static method calls (a practice known as [static cling](https://deviq.com/static-cling/)).
+* Avoid stateful, static method calls.
 * Avoid direct instantiation of dependent classes within services. Direct instantiation couples the code to a particular implementation.
-
-By following the [SOLID Principles of Object Oriented Design](https://deviq.com/solid/), app classes naturally tend to be small, well-factored, and easily tested.
+* Make app classes small, well-factored, and easily tested.
 
 If a class seems to have too many injected dependencies, this is generally a sign that the class has too many responsibilities and is violating the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into a new class. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns. Business rules and data access implementation details should be kept in classes appropriate to these [separate concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns).
 
@@ -557,5 +556,4 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 * [Container-Managed Application Design, Prelude: Where does the Container Belong?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)
 * [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
 * [Inversion of Control Containers and the Dependency Injection Pattern (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
-* [New is Glue ("gluing" code to a particular implementation)](https://ardalis.com/new-is-glue)
 * [How to register a service with multiple interfaces in ASP.NET Core DI](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)
