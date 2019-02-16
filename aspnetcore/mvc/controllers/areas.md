@@ -142,7 +142,7 @@ Browsing to `http://<yourApp>/products`, the `Index` action method of the `HomeC
 
 The following code changes the default area name from `"Areas"` to `"MyAreas"`:
 
-[!code-csharp[](areas/samples/MVCareas/Startup2.cs&name=snippet)]
+[!code-csharp[](areas/samples/MVCareas/Startup2.cs?name=snippet)]
 
 <!-- TODO review - can we delete this. Areas doesn't change publishing - right? -->
 ## Publishing Areas
