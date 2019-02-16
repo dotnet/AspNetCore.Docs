@@ -481,7 +481,7 @@ The built-in service container is meant to serve the needs of the framework and 
 * Custom lifetime management
 * `Func<T>` support for lazy initialization
 
-See the [Dependency Injection readme.md file](https://github.com/aspnet/DependencyInjection#using-other-containers-with-microsoftextensionsdependencyinjection) for a list of some of the containers that support adapters.
+See the [Dependency Injection readme.md file](https://github.com/aspnet/Extensions/tree/master/src/DependencyInjection) for a list of some of the containers that support adapters.
 
 The following sample replaces the built-in container with [Autofac](https://autofac.org/):
 
