@@ -3,36 +3,27 @@ title: Areas in ASP.NET Core
 author: rick-anderson
 description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 ms.author: riande
-ms.date: 02/14/2017
+ms.date: 02/14/2019
 uid: mvc/controllers/areas
 ---
 # Areas in ASP.NET Core
 
-By [Dhananjay Kumar](https://twitter.com/debug_mode)  and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Dhananjay Kumar](https://twitter.com/debug_mode)
 
-Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller` and `action`.
+Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller` and `action` or a Razor Page `action`.
 
-Areas provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC structure inside an application. In an MVC project, logical components like Model, Controller, and View are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the  app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, and models. In this scenario, you can use Areas to physically partition the business components in the same project.
+Areas provide a way to partition an ASP.NET Core Web app into smaller functional groups. An area is effectively an MVC structure inside an application. In an ASP.NET Core web project, logical components like Pages, Model, Controller, and View are kept in different folders. The ASP.NET Core runtime uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search. Each of these units have their own area to contain views, controllers, Razor Pages, and models.
 
-An area can be defined as smaller functional units in an ASP.NET Core MVC project with its own set of controllers, views, and models.
+An area can be defined as smaller functional units in an ASP.NET Core MVC project with its own set of Razor Pages, controllers, views, and models.
 
-Consider using Areas in an MVC project when:
+Consider using Areas in an project when the app:
 
-* Your application is made of multiple high-level functional components that should be logically separated
+* Is made of multiple high-level functional components that can be logically separated.
+* You want to partition the app so that each functional area can be worked on independently.
 
-* You want to partition your MVC project so that each functional area can be worked on independently
+## Areas for controllers with views
 
-Area features:
-
-* An ASP.NET Core MVC app can have any number of areas.
-
-* Each area has its own controllers, models, and views.
-
-* Areas allow you to organize large MVC projects into multiple high-level components that can be worked on independently.
-
-* Areas support multiple controllers with the same name, as long as they have different *areas*.
-
-Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
+Consider an app that has two logical groups, Products and Services. Using areas, the folder structure would be similar to the following:
 
 * Project name
   * Areas
@@ -45,6 +36,7 @@ Let's take a look at an example to illustrate how Areas are created and used. Le
           * Index.cshtml
         * Manage
           * Index.cshtml
+          * About.cshtml
     * Services
       * Controllers
         * HomeController.cs
@@ -52,26 +44,12 @@ Let's take a look at an example to illustrate how Areas are created and used. Le
         * Home
           * Index.cshtml
 
-When MVC tries to render a view in an Area, by default, it tries to look in the following locations:
+View discovery searches for a matching area view file in this order:
 
 ```text
 /Areas/<Area-Name>/Views/<Controller-Name>/<Action-Name>.cshtml
-   /Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
-   /Views/Shared/<Action-Name>.cshtml
-   ```
-
-These are the default locations which can be changed via the `AreaViewLocationFormats` on the `Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions`.
-
-For example, in the below code instead of having the folder name as 'Areas', it has been changed to 'Categories'.
-
-```csharp
-services.Configure<RazorViewEngineOptions>(options =>
-   {
-       options.AreaViewLocationFormats.Clear();
-       options.AreaViewLocationFormats.Add("/Categories/{2}/Views/{1}/{0}.cshtml");
-       options.AreaViewLocationFormats.Add("/Categories/{2}/Views/Shared/{0}.cshtml");
-       options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
-   });
+/Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
+/Views/Shared/<Action-Name>.cshtml
    ```
 
 One thing to note is that the structure of the *Views* folder is the only one which is considered important here and the content of the rest of the folders like *Controllers* and *Models* does **not** matter. For example, you need not have a *Controllers* and *Models* folder at all. This works because the content of *Controllers* and *Models* is just code which gets compiled into a .dll where as the content of the *Views* isn't until a request to that view has been made.
@@ -158,6 +136,15 @@ Browsing to `http://<yourApp>/products`, the `Index` action method of the `HomeC
 
   Since we want to generate links to a non-area based controller action, we empty the ambient value for 'area' here.
 
+<a name="rename"></a>
+
+## Change default area name
+
+The following code changes the default area name from `"Areas"` to `"MyAreas"`:
+
+[!code-csharp[](areas\samples\MVCareas\Startup2.cs&name=snippet)]
+
+<!-- TODO review - can we delete this. Areas doesn't change publishing - right? -->
 ## Publishing Areas
 
 All `*.cshtml` and `wwwroot/**` files are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj* file.

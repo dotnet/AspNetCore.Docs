@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h2>Areas</h2>
+</div>
+
+<a href='@ViewData["url"] '> Test URL for Products/Manage/About</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Links with asp-area="Products" </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a asp-area="Products" asp-controller="Manage" asp-action="Index">Manage Products</a> |
+                <a asp-area="Products" asp-controller="Manage" asp-action="About">About Products</a> |
+                <a asp-area="Products" asp-controller="Home" asp-action="Index">Products Home</a> |
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>with OUT asp-area="Products" </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a asp-controller="Manage" asp-action="Index">Manage Products</a> |
+                <a asp-controller="Manage" asp-action="About">About Products</a> |
+                <a asp-controller="Home" asp-action="Index">Products Home</a>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
