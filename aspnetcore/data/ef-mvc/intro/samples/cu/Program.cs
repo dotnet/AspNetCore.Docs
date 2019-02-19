@@ -19,7 +19,7 @@ namespace ContosoUniversity
 #region snippet_Seed
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
+             var host = CreateWebHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
             {
@@ -40,9 +40,8 @@ namespace ContosoUniversity
         }
 #endregion
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
     }
 }

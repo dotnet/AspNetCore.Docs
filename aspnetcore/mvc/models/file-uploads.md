@@ -102,9 +102,10 @@ public async Task<IActionResult> Register(RegisterViewModel model)
     ViewData["ReturnUrl"] = returnUrl;
     if  (ModelState.IsValid)
     {
-        var user = new ApplicationUser {
-          UserName = model.Email,
-          Email = model.Email
+        var user = new ApplicationUser 
+        {
+            UserName = model.Email,
+            Email = model.Email
         };
         using (var memoryStream = new MemoryStream())
         {

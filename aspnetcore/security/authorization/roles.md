@@ -102,7 +102,8 @@ public void ConfigureServices(IServiceCollection services)
 
     services.AddAuthorization(options =>
     {
-        options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Administrator"));
+        options.AddPolicy("RequireAdministratorRole",
+             policy => policy.RequireRole("Administrator"));
     });
 }
 ```
@@ -125,3 +126,9 @@ options.AddPolicy("ElevatedRights", policy =>
 ```
 
 This example authorizes users who belong to the `Administrator`, `PowerUser` or `BackupAdministrator` roles.
+
+### Add Role services to Identity
+
+Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
+
+[!code-csharp[](roles/samples/Startup.cs?name=snippet&highlight=7)]

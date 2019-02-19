@@ -2,20 +2,13 @@
 title: Use the React project template with ASP.NET Core
 author: SteveSandersonMS
 description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React and create-react-app.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/21/2018
+ms.date: 02/13/2019
 uid: spa/react
 ---
 # Use the React project template with ASP.NET Core
-
-::: moniker range="= aspnetcore-2.0"
-
-> [!NOTE]
-> This documentation isn't about the React project template included in ASP.NET Core 2.0. It's about the newer React template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
-
-::: moniker-end
 
 The updated React project template provides a convenient starting point for ASP.NET Core apps using React and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
 
@@ -23,17 +16,7 @@ The template is equivalent to creating both an ASP.NET Core project to act as an
 
 ## Create a new app
 
-::: moniker range="= aspnetcore-2.0"
-
-If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index#installation).
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 If you have ASP.NET Core 2.1 installed, there's no need to install the React project template.
-
-::: moniker-end
 
 Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 

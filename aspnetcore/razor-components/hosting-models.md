@@ -12,11 +12,11 @@ uid: razor-components/hosting-models
 
 By [Daniel Roth](https://github.com/danroth27)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 Razor Components is a web framework designed to run client-side in the browser on a WebAssembly-based .NET runtime (*Blazor*) or server-side in ASP.NET Core (*ASP.NET Core Razor Components*). Regardless of the hosting model, the app and component models *remain the same*. This article discusses the available hosting models.
 
 ## Client-side hosting model
+
+[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
 
 The principal hosting model for Blazor is running client-side in the browser. In this model, the Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. All UI updates and event handling happens within the same process. The app assets can be deployed as static files using whatever web server is preferred (see [Host and deploy](xref:host-and-deploy/razor-components/index)).
 

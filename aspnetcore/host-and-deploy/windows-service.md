@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/22/2019
+ms.date: 02/13/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -106,7 +106,7 @@ Make the following changes in `Program.Main`:
 
   If the conditions are false (the app is run as a service):
 
-  * Call <xref:System.IO.Directory.SetCurrentDirectory*> and use a path to the app's published location. Don't call <xref:System.IO.Directory.GetCurrentDirectory*> to obtain the path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder when `GetCurrentDirectory` is called. For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
+  * Call <xref:System.IO.Directory.SetCurrentDirectory*> and use a path to the app's published location. Don't call <xref:System.IO.Directory.GetCurrentDirectory*> to obtain the path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder when <xref:System.IO.Directory.GetCurrentDirectory*> is called. For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
   * Call <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> to run the app as a service.
 
   Because the [Command-line Configuration Provider](xref:fundamentals/configuration/index#command-line-configuration-provider) requires name-value pairs for command-line arguments, the `--console` switch is removed from the arguments before <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> receives them.
@@ -141,11 +141,13 @@ dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
 
 ### Create a user account
 
-Create a user account for the service using the `net user` command:
+Create a user account for the service using the `net user` command from an administrative command shell:
 
 ```console
 net user {USER ACCOUNT} {PASSWORD} /add
 ```
+
+The default password expiration is six weeks.
 
 For the sample app, create a user account with the name `ServiceUser` and a password. In the following command, replace `{PASSWORD}` with a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
 
@@ -161,9 +163,13 @@ net localgroup {GROUP} {USER ACCOUNT} /add
 
 For more information, see [Service User Accounts](/windows/desktop/services/service-user-accounts).
 
+An alternative approach to managing users when using Active Directory is to use Managed Service Accounts. For more information, see [Group Managed Service Accounts Overview](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
+
 ### Set permissions
 
-Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command:
+#### Access to the app folder
+
+Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command from an administrative command shell:
 
 ```console
 icacls "{PATH}" /grant {USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS} /t
@@ -189,11 +195,23 @@ icacls "c:\svc" /grant ServiceUser:(OI)(CI)WRX /t
 
 For more information, see [icacls](/windows-server/administration/windows-commands/icacls).
 
+#### Log on as a service
+
+To grant the [Log on as a service](/windows/security/threat-protection/security-policy-settings/log-on-as-a-service) privilege to the user account:
+
+1. Locate the **User Rights Assignment** policies in either the Local Security Policy console or Local Group Policy Editor console. For instructions, see: [Configure security policy settings](/windows/security/threat-protection/security-policy-settings/how-to-configure-security-policy-settings).
+1. Locate the `Log on as a service` policy. Double-click the policy to open it.
+1. Select **Add User or Group**.
+1. Select **Advanced** and select **Find Now**.
+1. Select the user account created in the [Create a user account](#create-a-user-account) section earlier. Select **OK** to accept the selection.
+1. Select **OK** after confirming that the object name is correct.
+1. Select **Apply**. Select **OK** to close the policy window.
+
 ## Manage the service
 
 ### Create the service
 
-Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character of each parameter and value is required.**
+Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service from an administrative command shell. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character of each parameter and value is required.**
 
 ```console
 sc create {SERVICE NAME} binPath= "{PATH}" obj= "{DOMAIN}\{USER ACCOUNT}" password= "{PASSWORD}"
@@ -201,7 +219,7 @@ sc create {SERVICE NAME} binPath= "{PATH}" obj= "{DOMAIN}\{USER ACCOUNT}" passwo
 
 * `{SERVICE NAME}` &ndash; The name to assign to the service in [Service Control Manager](/windows/desktop/services/service-control-manager).
 * `{PATH}` &ndash; The path to the service executable.
-* `{DOMAIN}` &ndash; The domain of a domain-joined machine. If the machine isn't domain-joined, the local machine name.
+* `{DOMAIN}` &ndash; The domain of a domain-joined machine. If the machine isn't domain-joined, use the local machine name.
 * `{USER ACCOUNT}` &ndash; The user account under which the service runs.
 * `{PASSWORD}` &ndash; The user account password.
 

@@ -27,7 +27,7 @@ Most web apps have a common layout that provides the user with a consistent expe
 
 ![Page Layout example](layout/_static/page-layout.png)
 
-Common HTML structures such as scripts and stylesheets are also frequently used by many pages within an app. All of these shared elements may be defined in a *layout* file, which can then be referenced by any view used within the app. Layouts reduce duplicate code in views, helping them follow the [Don't Repeat Yourself (DRY) principle](http://deviq.com/don-t-repeat-yourself/).
+Common HTML structures such as scripts and stylesheets are also frequently used by many pages within an app. All of these shared elements may be defined in a *layout* file, which can then be referenced by any view used within the app. Layouts reduce duplicate code in views.
 
 By convention, the default layout for an ASP.NET Core app is named *_Layout.cshtml*. The layout file for new ASP.NET Core projects created with the templates:
 
