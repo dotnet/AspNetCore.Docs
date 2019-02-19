@@ -26,7 +26,7 @@ Here's a sample `Startup` class:
 
 ::: moniker-end
 
-For more information, see <xref:fundamentals/startup>.
+For more information, see [App startup](xref:fundamentals/startup).
 
 ## Dependency injection (services)
 
@@ -42,7 +42,7 @@ Here's a class that uses DI to get an Entity Framework Core context object. The 
 
 While DI is built in, it's designed to let you plug in a third-party Inversion of Control (IoC) container if you prefer.
 
-For more information, see <xref:fundamentals/dependency-injection>.
+For more information, see [Dependency injection](xref:fundamentals/dependency-injection).
 
 ## Middleware
 
@@ -60,13 +60,13 @@ The highlighted code in the following example configures the request handling pi
 
 ASP.NET Core includes a rich set of built-in middleware, and you can write custom middleware.
 
-For more information, see <xref:fundamentals/middleware/index>.
+For more information, see [Middleware](xref:fundamentals/middleware/index).
 
 <a id="host"/>
 
 ## The host
 
-The first thing an ASP.NET Core app does on starting up is build a *host*. The host is an object that encapsulates all of the the app's resources, such as:
+An ASP.NET Core app builds a *host* on startup. The host is an object that encapsulates all of the the app's resources, such as:
 
 * An HTTP server implementation
 * Middleware components
@@ -80,7 +80,7 @@ The code to create a host is in `Program.Main` and follows the [builder pattern]
 
 ::: moniker range="<= aspnetcore-2.2"
 
-ASP.NET Core 2.2 and earlier versions use Web Host (`WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` extension methods that set up a host with commonly used options, such as the following:
+ASP.NET Core 2.x uses Web Host (the `WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` extension methods that set up a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, environment variables, command line arguments, and other sources.
@@ -90,13 +90,11 @@ ASP.NET Core 2.2 and earlier versions use Web Host (`WebHost` class) for web app
 
 ::: moniker range=">= aspnetcore-2.0 <= aspnetcore-2.2"
 
-Here are samples of code that builds a host. One uses the `CreateDefaultBuilder` method and one does not:
+Here's sample code that builds a host:
 
 [!code-csharp[](index/snapshots/2.x/Program1.cs?highlight=9)]
 
-[!code-csharp[](index/snapshots/2.x/Program2.cs?highlight=6-9)]
-
-For more information, see <xref:fundamentals/host/web-host>.
+For more information, see [Web Host](xref:fundamentals/host/web-host).
 
 ::: moniker-end
 
@@ -114,7 +112,7 @@ Here's sample code that builds a host. The extension methods that set up the hos
 
 [!code-csharp[](index/snapshots/3.x/Program1.cs?highlight=9-10)]
 
-For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/web-host>
+For more information, see [Generic Host](xref:fundamentals/host/generic-host) and [Web Host](xref:fundamentals/host/web-host)
 
 ::: moniker-end
 
@@ -122,17 +120,17 @@ For more information, see <xref:fundamentals/host/generic-host> and <xref:fundam
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-Web Host is designed to include an HTTP server implementation, which isn't needed for other kinds of .NET apps. Starting in 2.1, Generic Host (`Host` class) is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host lets you use cross-cutting features such as logging, DI, configuration, and app lifetime management in other types of apps. For more information, see <xref:fundamentals/host/generic-host>.
+Web Host is designed to include an HTTP server implementation, which isn't needed for other kinds of .NET apps. Starting in 2.1, Generic Host (`Host` class) is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host lets you use cross-cutting features such as logging, DI, configuration, and app lifetime management in other types of apps. For more information, see [Generic Host](xref:fundamentals/host/generic-host).
 
 ::: moniker-end
 
 ::: moniker range="> aspnetcore-2.2"
 
-Generic Host is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host lets you use cross-cutting features such as logging, DI, configuration, and app lifetime management in other types of apps. For more information, see <xref:fundamentals/host/generic-host>.
+Generic Host is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host lets you use cross-cutting features such as logging, DI, configuration, and app lifetime management in other types of apps. For more information, see [Generic Host](xref:fundamentals/host/generic-host).
 
 ::: moniker-end
 
-You can also use the host to run background tasks. For more information, see <xref:fundamentals/host/hosted-services>.
+You can also use the host to run background tasks. For more information, see [Background tasks](xref:fundamentals/host/hosted-services).
 
 ## Servers
 
@@ -181,7 +179,7 @@ ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP
 
 ::: moniker-end
 
-For more information, see <xref:fundamentals/servers/index>.
+For more information, see [Servers](xref:fundamentals/servers/index).
 
 ## Configuration
 
@@ -191,13 +189,13 @@ For example, you could specify that configuration comes from *appsettings.json* 
 
 For managing confidential configuration data such as passwords, ASP.NET Core provides a [Secret Manager tool](xref:security/app-secrets). For production secrets, we recommend [Azure Key Vault](https://docs.microsoft.com/en-us/aspnet/core/security/key-vault-configuration).
 
-For more information, see <xref:fundamentals/configuration/index>.
+For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 ## Options
 
 Wherever possible, ASP.NET Core follows the *options pattern* for storing and retrieving configuration values. The options pattern uses classes to represent groups of related settings.
 
-For more information, see <xref:fundamentals/configuration/options>.
+For more information, see [Options](xref:fundamentals/configuration/options).
 
 ## Environments
 
@@ -211,7 +209,7 @@ Here's sample code from the `Startup` class that configures the app to provide d
 
 ::: moniker-end
 
-For more information, see <xref:fundamentals/environments>.
+For more information, see [Environments](xref:fundamentals/environments).
 
 ## Logging
 
@@ -237,13 +235,13 @@ Here's sample code that uses an `ILogger` object, with constructor injection and
 
 The `ILogger` interface lets you pass any number of fields to the logging provider. The fields are commonly used to construct a message string, but the provider can also send them as separate fields to a data store. This feature makes it possible for logging providers to implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
 
-For more information, see <xref:fundamentals/logging/index>.
+For more information, see [Logging](xref:fundamentals/logging/index).
 
 ## Routing
 
 A *route* is a URL pattern that is mapped to a handler. The handler is typically a Razor page, an action method in an MVC controller, or a middleware. ASP.NET Core routing gives you control over the URLs used by your app.
 
-For more information, see <xref:fundamentals/routing>.
+For more information, see [Routing](xref:fundamentals/routing).
 
 ## Error handling
 
@@ -254,7 +252,7 @@ ASP.NET Core has built-in features for handling errors, such as:
 * Static status code pages
 * Startup exception handling
 
-For more information, see <xref:fundamentals/error-handling>.
+For more information, see [Error handling](xref:fundamentals/error-handling).
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -268,7 +266,7 @@ An implementation of `IHttpClientFactory` is available for creating  `HttpClient
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via *ILogger*) for all requests sent through clients created by the factory.
 
-For more information, see <xref:fundamentals/http-requests>.
+For more information, see [Make HTTP requests](xref:fundamentals/http-requests).
 
 ::: moniker-end
 
@@ -294,4 +292,4 @@ The web root (also known as *webroot*) is the base path to public, static resour
 
 In Razor (*.cshtml*) files, the tilde-slash  `~/` points to the web root. Paths beginning with `~/` are referred to as virtual paths.
 
-For more information, see <xref:fundamentals/static-files>
+For more information, see [Static files](xref:fundamentals/static-files).

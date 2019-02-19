@@ -67,16 +67,14 @@ We're working hard to close the API gap from .NET Framework to .NET Core. The [W
 
 We recommend the following sequence of tutorials and articles for an introduction to developing ASP.NET Core apps:
 
-1. Follow a quick tutorial to build a "Hello world!" app.
-   * <xref:getting-started>
 1. Follow a tutorial for the type of app you want to develop:
-   * Web app &mdash; <xref:tutorials/razor-pages/razor-pages-start>
-   * Web API app &mdash; <xref:tutorials/first-web-api>\*
-   * Real-time app (for example, a chat app) &mdash; <xref:tutorials/signalr>
+   * Web app &mdash; [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+   * Web API app &mdash; [Create a web API](xref:tutorials/first-web-api)\*
+   * Real-time app (for example, a chat app) &mdash; [Get started with SignalR](xref:tutorials/signalr)
 1. Follow a tutorial that shows how to do basic data access:
-   * <xref:data/ef-rp/intro>
-1. Read through an overview of ASP.NET Core features and subsystems that apply to all app types:
-  * <xref:fundamentals/index>
+   * [Razor Pages with Entity Framework Core](xref:data/ef-rp/intro)
+1. Read an overview of ASP.NET Core features that apply to all app types:
+   * [Fundamentals](xref:fundamentals/index)
 1. Browse the Table of Contents for other topics of interest.
 
 \* There is a new [web API tutorial that you follow entirely in the browser](https://docs.microsoft.com/en-us/learn/modules/build-web-api-net-core), no local IDE installation required.  The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
