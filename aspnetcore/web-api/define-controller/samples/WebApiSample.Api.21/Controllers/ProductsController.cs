@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
@@ -21,7 +22,7 @@ namespace WebApiSample.Api._21.Controllers
 
         #region snippet_GetById
         [HttpGet("{id}")]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Product>> GetByIdAsync(int id)
         {
             var product = await _repository.GetProductAsync(id);
@@ -56,8 +57,8 @@ namespace WebApiSample.Api._21.Controllers
         #endregion
 
         [HttpPost]
-        [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Product>> CreateAsync(Product product)
         {
             await _repository.AddProductAsync(product);
