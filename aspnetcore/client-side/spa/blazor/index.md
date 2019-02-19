@@ -21,7 +21,7 @@ Using .NET in the browser for client-side web development offers many advantages
 * **C# language**: Write code in C# instead of JavaScript.
 * **.NET Ecosystem**: Leverage the existing ecosystem of .NET libraries.
 * **Full-stack development**: Share server and client-side logic.
-* **Speed and scalability**: NET was built for performance, reliability, and security.
+* **Speed and scalability**: .NET was built for performance, reliability, and security.
 * **Industry-leading tools**: Stay productive with Visual Studio on Windows, Linux, and macOS.
 * **Stability and consistency**:  Build on a commonset of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 

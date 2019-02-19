@@ -1,19 +1,16 @@
-﻿@inherits BlazorLayoutComponent
+﻿@inherits LayoutComponentBase
 @using BlazorSample.UIThemeClasses
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3">
-            <NavMenu />
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <CascadingValue Value="@theme">
+        <div class="content px-4">
+            @Body
         </div>
-        <div class="col-sm-9">
-            <CascadingValue Value="@theme">
-                <div class="content px-4">
-                    @Body
-                </div>
-            </CascadingValue>
-        </div>
-    </div>
+    </CascadingValue>
 </div>
 
 @functions {
