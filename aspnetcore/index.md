@@ -67,14 +67,26 @@ We're working hard to close the API gap from .NET Framework to .NET Core. The [W
 
 We recommend the following sequence of tutorials and articles for an introduction to developing ASP.NET Core apps:
 
-1. Follow a tutorial for the type of app you want to develop:
-   * Web app &mdash; [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-   * Web API app &mdash; [Create a web API](xref:tutorials/first-web-api)\*
-   * Real-time app (for example, a chat app) &mdash; [Get started with SignalR](xref:tutorials/signalr)
+1. Follow a tutorial for the type of app you want to develop or maintain:
+
+   |App type  |Scenario  |Tutorial  |
+   |----------|----------|----------|
+   |Web app       | For new development        |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
+   |Web app       | For maintaining an MVC app |[Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc)|
+   |Web API       |                            |[Create a web API](xref:tutorials/first-web-api)\*  |
+   |Real-time app |                            |[Get started with SignalR](xref:tutorials/signalr) |
+
 1. Follow a tutorial that shows how to do basic data access:
-   * [Razor Pages with Entity Framework Core](xref:data/ef-rp/intro)
+
+   |Scenario  |Tutorial  |
+   |----------|----------|
+   | For new development        |[Razor Pages with Entity Framework Core](xref:data/ef-rp/intro) |
+   | For maintaining an MVC app |[ASP.NET MVC with EF Core](xref:data/ef-mvc/intro)
+
 1. Read an overview of ASP.NET Core features that apply to all app types:
+
    * [Fundamentals](xref:fundamentals/index)
+
 1. Browse the Table of Contents for other topics of interest.
 
 \* There is a new [web API tutorial that you follow entirely in the browser](https://docs.microsoft.com/en-us/learn/modules/build-web-api-net-core), no local IDE installation required.  The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
