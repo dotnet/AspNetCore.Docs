@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/08/2019
+ms.date: 02/19/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -62,10 +62,6 @@ The following characteristics apply when hosting in-process:
 * If setting up the app's host manually with `WebHostBuilder` (not using [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host)) and the app is ever run directly on the Kestrel server (self-hosted), call `UseKestrel` before calling `UseIISIntegration`. If the order is reversed, the host fails to start.
 
 * Client disconnects are detected. The [HttpContext.RequestAborted](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
-
-* <xref:System.IO.Directory.GetCurrentDirectory*> returns the worker directory of the process started by IIS rather than the app's directory (for example, *C:\Windows\System32\inetsrv* for *w3wp.exe*).
-
-  For sample code that sets the app's current directory, see the [CurrentDirectoryHelpers class](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/2.x/CurrentDirectoryHelpers.cs). Call the `SetCurrentDirectory` method. Subsequent calls to <xref:System.IO.Directory.GetCurrentDirectory*> provide the app's directory.
 
 ### Out-of-process hosting model
 
