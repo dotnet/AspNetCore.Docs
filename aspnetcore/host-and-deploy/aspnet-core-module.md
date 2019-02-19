@@ -494,7 +494,7 @@ A pairing token is used to guarantee that the requests received by Kestrel were 
 
 ## ASP.NET Core Module with an IIS Shared Configuration
 
-The ASP.NET Core Module installer runs with the privileges of the **SYSTEM** account. Because the local system account doesn't have modify permission for the share path used by the IIS Shared Configuration, the installer throws an access denied error when attempting to configure the module settings in the *applicationHost.config* file on the share.
+The ASP.NET Core Module installer runs with the privileges of the **TrustedInstaller** account. Because the local system account doesn't have modify permission for the share path used by the IIS Shared Configuration, the installer throws an access denied error when attempting to configure the module settings in the *applicationHost.config* file on the share.
 
 ::: moniker range=">= aspnetcore-2.2"
 
