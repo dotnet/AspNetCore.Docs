@@ -15,7 +15,7 @@ This article is an overview of key topics for understanding how to develop ASP.N
 
 The `Startup` class is where any services required by the app are configured, and the request handling pipeline is defined.
 
-* Code to configure (or *register*) services is added to the `ConfigureServices` method. *Services* are components that are used by the app. For example, an Entity Framework Core context object is a service.
+* Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. *Services* are components that are used by the app. For example, an Entity Framework Core context object is a service.
 * Code to configure the request handling pipeline is added to the `Startup.Configure` method. The pipeline is composed as a series of *middleware* components. For example, a middleware might handle requests for static files or redirect HTTP requests to HTTPS. Each middleware performs asynchronous operations on an `HttpContext` and then either invokes the next middleware in the pipeline or terminates the request.
 
 ::: moniker range=">= aspnetcore-2.0"
