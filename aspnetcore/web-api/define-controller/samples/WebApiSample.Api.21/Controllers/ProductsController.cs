@@ -21,7 +21,6 @@ namespace WebApiSample.Api._21.Controllers
 
         #region snippet_GetById
         [HttpGet("{id}")]
-        [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<ActionResult<Product>> GetByIdAsync(int id)
         {

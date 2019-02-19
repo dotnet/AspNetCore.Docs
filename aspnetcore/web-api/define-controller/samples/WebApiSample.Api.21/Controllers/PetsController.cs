@@ -39,6 +39,7 @@ namespace WebApiSample.Api._21.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<Pet>> CreateAsync(Pet pet)
         {
