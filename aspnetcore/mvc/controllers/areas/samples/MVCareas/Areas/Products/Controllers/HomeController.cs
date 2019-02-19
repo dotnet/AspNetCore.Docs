@@ -7,8 +7,6 @@ namespace MVCareas.Areas.Products.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["url"] = Url.Action("About", "Manage");
-
             return View();
         }
     }

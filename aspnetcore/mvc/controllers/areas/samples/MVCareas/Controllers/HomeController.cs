@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MVCareas.Models;
+using System.Diagnostics;
 
 namespace MVCareas.Controllers
 {
@@ -12,11 +8,16 @@ namespace MVCareas.Controllers
     {
         public IActionResult Index()
         {
-            // URL to /Products/Manage/About
-            ViewData["url"] =
-            #region snippet
-                Url.Action("About", "Manage", new { area = "Products" });
-            #endregion
+            //// URL to /Products/Manage/About
+            //ViewData["url"] =
+            //#region snippet
+            //    Url.Action("About", "Manage", new { area = "Products" });
+            //#endregion
+
+            //ViewData["urlNo"] =
+            //#region snippet_test
+            //    Url.Action("About", "Manage");
+            //#endregion
 
             return View();
         }
@@ -28,10 +29,6 @@ namespace MVCareas.Controllers
 
         public IActionResult Test()
         {
-            ViewData["url"] =
-            #region snippet_test
-                Url.Action("About", "Manage");
-            #endregion
             return View();
         }
 

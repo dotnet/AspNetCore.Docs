@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MVCareas.Filters;
 
 namespace MVCareas
 {
@@ -24,10 +25,18 @@ namespace MVCareas
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddMvc(options =>
+            {
+                //options.Filters.Add(new AddHeaderAttribute("GlobalAddHeader",
+                //    "Result filter added to MvcOptions.Filters")); // an instance
+                options.Filters.Add(typeof(SetURLattribute)); // by type
+               // options.Filters.Add(new SetURLattribute()); // an instance
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
+        #region snippet
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -42,12 +51,11 @@ namespace MVCareas
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                  name: "areas",
+                  name: "MyArea",
                   template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
                 routes.MapRoute(
@@ -55,5 +63,6 @@ namespace MVCareas
                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+        #endregion
     }
 }

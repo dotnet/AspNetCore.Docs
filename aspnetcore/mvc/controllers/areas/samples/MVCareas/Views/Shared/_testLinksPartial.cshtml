@@ -1,3 +1,45 @@
-﻿<a asp-area="Products" asp-controller="Manage" asp-action="Index">Manage Products</a> |
-<a asp-area="Products" asp-controller="Manage" asp-action="About">About Products</a> |
-<a asp-area="Products" asp-controller="Home" asp-action="Index">Products Home</a> |
+﻿
+<div >
+    <h3>Links generated using asp-area </h3>
+
+    <ul>
+        <li>Anchor Tag Helper links (&#x3C;a asp-area=&#x22;Products&#x22; asp-controller=&#x22;Manage&#x22; asp-action=&#x22;Index&#x22;&#x3E;)</li>
+        <ul>
+            <li>     <a asp-area="Products" asp-controller="Manage" asp-action="Index">Products Home</a> </li>
+            <li>
+                <a asp-area="Products" asp-controller="Manage" asp-action="About">About Products</a>
+            </li>
+            <li>
+                <a asp-area="Services" asp-controller="Home" asp-action="About">Services About</a>
+            </li>
+        </ul>
+        <li>Url.Action generated links</li>
+        <ul>
+            <li><a href='@ViewData["url"] '>Products/Manage/About</a></li>
+        </ul>
+    </ul>
+
+</div>
+
+<div>
+    <h3>Links generated NOT using asp-area </h3>
+
+    <ul>
+        <li>Anchor Tag Helper links (asp-controller=&#x22;Manage&#x22; asp-action=&#x22;Index&#x22;&#x3E;)</li>
+        <ul>
+            <li>     <a asp-controller="Manage" asp-action="Index">Products Home</a> </li>
+            <li>
+                <a asp-controller="Manage" asp-action="About">About Products</a>
+            </li>
+            <li>
+                <a  asp-controller="Home" asp-action="About">Services About</a>
+            </li>
+        </ul>
+        <li>Url.Action generated links <strong>NOT</strong> using Area</li>
+        <ul>
+            <li><a href='@ViewData["urlNo"] '>Products/Manage/About</a></li>
+        </ul>
+    </ul>
+
+</div>
+

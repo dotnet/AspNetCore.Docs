@@ -8,7 +8,7 @@ uid: mvc/controllers/areas
 ---
 # Areas in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Dhananjay Kumar](https://twitter.com/debug_mode)
+By [Dhananjay Kumar](https://twitter.com/debug_mode) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller` and `action` or a Razor Page `action`.
 
@@ -23,7 +23,7 @@ Consider using Areas in an project when the app:
 
 ## Areas for controllers with views
 
-Consider an app that has two logical groups, Products and Services. Using areas, the folder structure would be similar to the following:
+Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
 
 * Project name
   * Areas
@@ -44,57 +44,37 @@ Consider an app that has two logical groups, Products and Services. Using areas,
         * Home
           * Index.cshtml
 
-View discovery searches for a matching area view file in this order:
+While the preceding layout is typical when using Areas, only the view files are required to use this folder structure. View discovery searches for a matching area view file in the following order:
 
 ```text
 /Areas/<Area-Name>/Views/<Controller-Name>/<Action-Name>.cshtml
 /Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
 /Views/Shared/<Action-Name>.cshtml
+/Pages/Shared/<Action-Name>.cshtml
    ```
 
-One thing to note is that the structure of the *Views* folder is the only one which is considered important here and the content of the rest of the folders like *Controllers* and *Models* does **not** matter. For example, you need not have a *Controllers* and *Models* folder at all. This works because the content of *Controllers* and *Models* is just code which gets compiled into a .dll where as the content of the *Views* isn't until a request to that view has been made.
+The location of non-view folders like *Controllers* and *Models* does **not** matter. For example, the *Controllers* and *Models* folder are not required. The content of *Controllers* and *Models* is code which gets compiled into a .dll. The content of the *Views* isn't compiled until a request to that view has been made.
 
-Once you've defined the folder hierarchy, you need to tell MVC that each controller is associated with an area. You do that by decorating the controller name with the `[Area]` attribute.
+<!-- TODO review:
+The content of the *Views* isn't compiled until a request to that view has been made.
 
-```csharp
-...
-   namespace MyStore.Areas.Products.Controllers
-   {
-       [Area("Products")]
-       public class HomeController : Controller
-       {
-           // GET: /Products/Home/Index
-           public IActionResult Index()
-           {
-               return View();
-           }
+What about precompiled views? 
+ -->
 
-           // GET: /Products/Home/Create
-           public IActionResult Create()
-           {
-               return View();
-           }
-       }
-   }
-   ```
+### Associate the controller with an Area
 
-Set up a route definition that works with your newly created areas. The [Route to controller actions](routing.md) article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, open the *Startup.cs* file and modify it by adding the `areaRoute` named route definition below.
+Area controllers are designated with the [&lbrack;Area&rbrack;](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute:
 
-```csharp
-...
-   app.UseMvc(routes =>
-   {
-     routes.MapRoute(
-         name: "areaRoute",
-         template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+[!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?hightlight=5
+)]
 
-     routes.MapRoute(
-         name: "default",
-         template: "{controller=Home}/{action=Index}/{id?}");
-   });
-   ```
+### Add Area route
 
-Browsing to `http://<yourApp>/products`, the `Index` action method of the `HomeController` in the `Products` area will be invoked.
+Area routes typically use conventional routing rather than attribute routing:
+
+[!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet)]
+
+For more information, see [Route to controller actions](xref:mvc/controllers/routing).
 
 ## Link Generation
 
