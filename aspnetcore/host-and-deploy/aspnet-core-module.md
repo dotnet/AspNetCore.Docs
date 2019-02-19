@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/08/2019
+ms.date: 02/19/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -494,12 +494,35 @@ A pairing token is used to guarantee that the requests received by Kestrel were 
 
 ## ASP.NET Core Module with an IIS Shared Configuration
 
-The ASP.NET Core Module installer runs with the privileges of the **SYSTEM** account. Because the local system account doesn't have modify permission for the share path used by the IIS Shared Configuration, the installer hits an access denied error when attempting to configure the module settings in *applicationHost.config* on the share. When using an IIS Shared Configuration, follow these steps:
+The ASP.NET Core Module installer runs with the privileges of the **SYSTEM** account. Because the local system account doesn't have modify permission for the share path used by the IIS Shared Configuration, the installer throws an access denied error when attempting to configure the module settings in the *applicationHost.config* file on the share.
+
+::: moniker range=">= aspnetcore-2.2"
+
+When using an IIS Shared Configuration on the same machine as the IIS installation, run the ASP.NET Core Hosting Bundle installer with the `OPT_NO_SHARED_CONFIG_CHECK` parameter set to `1`:
+
+```console
+dotnet-hosting-{VERSION}.exe OPT_NO_SHARED_CONFIG_CHECK=1
+```
+
+When the path to the shared configuration isn't on the same machine as the IIS installation, follow these steps:
 
 1. Disable the IIS Shared Configuration.
 1. Run the installer.
 1. Export the updated *applicationHost.config* file to the share.
 1. Re-enable the IIS Shared Configuration.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+When using an IIS Shared Configuration, follow these steps:
+
+1. Disable the IIS Shared Configuration.
+1. Run the installer.
+1. Export the updated *applicationHost.config* file to the share.
+1. Re-enable the IIS Shared Configuration.
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.2"
 
