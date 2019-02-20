@@ -8,9 +8,9 @@ using MVCareas.Filters;
 
 namespace MVCareas
 {
-    public class Startup
+    public class StartupMapAreaRoute
     {
-        public Startup(IConfiguration configuration)
+        public StartupMapAreaRoute(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -19,6 +19,12 @@ namespace MVCareas
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(SetURLattribute));
@@ -45,10 +51,16 @@ namespace MVCareas
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                  name: "MyArea",
-                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
+                routes.MapAreaRoute(
+                    name: "MyAreaProducts",
+                    areaName:"Products",
+                    template: "Products/{controller=Home}/{action=Index}/{id?}"
+                    );
+                routes.MapAreaRoute(
+                    name: "MyAreaServices",
+                    areaName: "Services",
+                    template: "Services/{controller=Home}/{action=Index}/{id?}"
+                    );
                 routes.MapRoute(
                    name: "default",
                    template: "{controller=Home}/{action=Index}/{id?}");

@@ -14,9 +14,9 @@ Areas are an ASP.NET feature used to organize related functionality into a group
 
 Areas provide a way to partition an ASP.NET Core Web app into smaller functional groups, each  with its own set of Razor Pages, controllers, views, and models. An area is effectively a structure inside an app. In an ASP.NET Core web project, logical components like Pages, Model, Controller, and View are kept in different folders. The ASP.NET Core runtime uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search. Each of these units have their own area to contain views, controllers, Razor Pages, and models.
 
-Consider using Areas in an project when the app:
+Consider using Areas in an project when:
 
-* Is made of multiple high-level functional components that can be logically separated.
+* The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
@@ -26,8 +26,9 @@ Consider using Areas in an project when the app:
 A typical ASP.NET Core web app using areas, controllers, and views contains the following:
 
 * An [Area folder structure](#area-folder-structure)
-* Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area.
-* The [area route added to startup](add-area-route).
+* Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area:
+  [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
+* The [area route added to startup](#add-area-route).
 
 ## Area folder structure
 Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
@@ -73,13 +74,19 @@ What about precompiled views?
 
 Area controllers are designated with the [&lbrack;Area&rbrack;](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute:
 
-[!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?hightlight=5&name=snippet)]
+[!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=5&name=snippet)]
 
 ### Add Area route
 
 Area routes typically use conventional routing rather than attribute routing:
 
-[!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet)]
+[!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet&highlight=18-21)]
+
+In the preceding code, `exists` applies a constraint that the route must match an area.
+
+The following code uses <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> to create two named area routes:
+
+[!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet&highlight=18-27)]
 
 For more information, see [Route to controller actions](xref:mvc/controllers/routing).
 
@@ -91,9 +98,9 @@ The following code from the [sample download](https://github.com/aspnet/Docs/tre
 
 The links generated with the preceding code are valid anywhere in the app.
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and links without specifying the area. The partial view is referenced in the [layout file](), so every page in the app displays the generated views. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
-When the area or controller is not specified, routing depends on the `ambient` values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, depending on the the ambient values generates incorrect links.
+When the area or controller is not specified, routing depends on the `ambient` values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
 The sample app contains the following [filter](xref:mvc/controllers/filters) to generate links using [Url.Action](/dotnet/api/microsoft.aspnetcore.mvc.urlhelperextensions.action?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_UrlHelperExtensions_Action_Microsoft_AspNetCore_Mvc_IUrlHelper_System_String_System_String_System_Object_), with and without the area specified:
 

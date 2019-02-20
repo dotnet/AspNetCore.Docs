@@ -7,7 +7,7 @@ namespace MVCareas.Areas.Products.Controllers
     [Area("Products")]
     public class ManageController : Controller
     {
-        #endregion
+    #endregion
         public IActionResult Index()
         {
             return View();

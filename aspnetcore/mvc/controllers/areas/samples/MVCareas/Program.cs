@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿#define DEFAULT
+
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace MVCareas
 {
@@ -19,6 +14,10 @@ namespace MVCareas
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+#if DEFAULT
+                     .UseStartup<Startup>();
+#else
+                     .UseStartup<StartupMapAreaRoute>();
+#endif
     }
 }
