@@ -5,7 +5,7 @@ description: Learn how to configure and use Response Caching Middleware in ASP.N
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/16/2019
+ms.date: 02/20/2019
 uid: performance/caching/middleware
 ---
 # Response Caching Middleware in ASP.NET Core
@@ -132,7 +132,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 
 * The request must result in a server response with a 200 (OK) status code.
 * The request method must be GET or HEAD.
-* Terminal middleware must not process the response prior to the Response Caching Middleware.
+* In `Startup.Configure`, Response Caching Middleware must be placed before middleware that require compression. For more information, see <xref:fundamentals/middleware/index>.
 * The `Authorization` header must not be present.
 * `Cache-Control` header parameters must be valid, and the response must be marked `public` and not marked `private`.
 * The `Pragma: no-cache` header must not be present if the `Cache-Control` header isn't present, as the `Cache-Control` header overrides the `Pragma` header when present.
