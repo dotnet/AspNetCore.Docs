@@ -10,11 +10,9 @@ uid: mvc/controllers/areas
 
 By [Dhananjay Kumar](https://twitter.com/debug_mode) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller` and `action` or a Razor Page `action`.
+Areas are an ASP.NET feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller` and `action` or a Razor Page `action`.
 
-Areas provide a way to partition an ASP.NET Core Web app into smaller functional groups. An area is effectively an MVC structure inside an application. In an ASP.NET Core web project, logical components like Pages, Model, Controller, and View are kept in different folders. The ASP.NET Core runtime uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search. Each of these units have their own area to contain views, controllers, Razor Pages, and models.
-
-An area can be defined as smaller functional units in an ASP.NET Core MVC project with its own set of Razor Pages, controllers, views, and models.
+Areas provide a way to partition an ASP.NET Core Web app into smaller functional groups, each  with its own set of Razor Pages, controllers, views, and models. An area is effectively a structure inside an app. In an ASP.NET Core web project, logical components like Pages, Model, Controller, and View are kept in different folders. The ASP.NET Core runtime uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search. Each of these units have their own area to contain views, controllers, Razor Pages, and models.
 
 Consider using Areas in an project when the app:
 
@@ -87,7 +85,7 @@ For more information, see [Route to controller actions](xref:mvc/controllers/rou
 
 ## Link Generation with Areas
 
-The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples shows link generation with the area specified:
+The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) shows link generation with the area specified:
 
 [!code-cshtml[](areas/samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
@@ -97,19 +95,23 @@ The sample download includes a [partial view](xref:mvc/views/partial) that conta
 
 When the area or controller is not specified, routing depends on the `ambient` values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, depending on the the ambient values generates incorrect links.
 
-The sample app contains the following [filter](xref:mvc/controllers/filters) to generate links using [Url.Action] (/dotnet/api/microsoft.aspnetcore.mvc.urlhelperextensions.action?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_UrlHelperExtensions_Action_Microsoft_AspNetCore_Mvc_IUrlHelper_System_String_System_String_System_Object_), with and without the area specified. When the area is not specified, the links work only when the ambient area value is correct.
+The sample app contains the following [filter](xref:mvc/controllers/filters) to generate links using [Url.Action](/dotnet/api/microsoft.aspnetcore.mvc.urlhelperextensions.action?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_UrlHelperExtensions_Action_Microsoft_AspNetCore_Mvc_IUrlHelper_System_String_System_String_System_Object_), with and without the area specified:
+
+[!code-csharp[](areas/samples/MVCareas/Filters/SetURLattribute.cs?name=snippet)]
+
+In the preceding code, when the area is not specified, the links are valid only when the ambient area values are correct.
 
 For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
 
 <a name="rename"></a>
 
-## Change default area name
+### Change default area name
 
 The following code changes the default area name from `"Areas"` to `"MyAreas"`:
 
 [!code-csharp[](areas/samples/MVCareas/Startup2.cs?name=snippet)]
 
 <!-- TODO review - can we delete this. Areas doesn't change publishing - right? -->
-## Publishing Areas
+### Publishing Areas
 
 All `*.cshtml` and `wwwroot/**` files are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj* file.
