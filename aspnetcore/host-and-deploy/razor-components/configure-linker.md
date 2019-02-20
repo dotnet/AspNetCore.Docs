@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Linker when bui
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2019
+ms.date: 02/20/2019
 uid: host-and-deploy/razor-components/configure-linker
 ---
 # Configure the Linker for Blazor
@@ -67,7 +67,7 @@ The following is an example configuration file (*Linker.xml*):
 </linker>
 ```
 
-To learn more about the file format for the configuration file, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/linker/README.md#syntax-of-xml-descriptor).
+To learn more about the file format for the configuration file, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).
 
 Specify the configuration file in the project file with the `BlazorLinkerDescriptor` item:
 
