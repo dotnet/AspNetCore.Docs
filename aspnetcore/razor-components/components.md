@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/20/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -742,18 +742,20 @@ The time is 10/04/2018 01:26:52.
 
 Your pet's name is Rex.
 ```
-## Dynamic Components
 
-Dynamic Components can be used to dynamically generate content.  Microsoft.AspNetCore.Components.RenderTree provides  methods for manipulating components and elements. For example :
+## Dynamic components
+
+Dynamic components can be used to dynamically generate content. `Microsoft.AspNetCore.Components.RenderTree` provides methods for manipulating components and elements.
 
 ```cshtml
-<p>Pet Details Component <p>
+<p>Pet Details Component<p>
 
 <p>@PetDetails<p>
 
 @function
 {
-   [Parameter] string PetDetails { get; set; }
+    [Parameter]
+    string PetDetails { get; set; }
 }
 
 ```
@@ -761,7 +763,7 @@ Dynamic Components can be used to dynamically generate content.  Microsoft.AspNe
 ```cshtml
 <h1>Generate dynamic content</h1>
 
-<p>@PetName </p>
+<p>@PetName</p>
 
 @CustomRender
 
@@ -772,16 +774,16 @@ Dynamic Components can be used to dynamically generate content.  Microsoft.AspNe
 @functions {
     RenderFragment CustomRender { get; set; }
     
-        RenderFragment CreateDynamicComponent() => builder =>
+    RenderFragment CreateDynamicComponent() => builder =>
     {
         builder.OpenComponent(0, typeof(PetDetailComponent));
-        builder.AddAttribute(1, "PetDetails", "Man's best friend");              
+        builder.AddAttribute(1, "PetDetails", "Someone's best friend");              
         builder.CloseComponent();
     };    
     
     void RenderStuff()
     {
-       CustomRender = CreateDynamicComponent();
+        CustomRender = CreateDynamicComponent();
     }
 }
 ```
