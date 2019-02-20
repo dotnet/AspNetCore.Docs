@@ -195,6 +195,17 @@ For more information, see [Configuration](xref:fundamentals/configuration/index)
 
 Wherever possible, ASP.NET Core follows the *options pattern* for storing and retrieving configuration values. The options pattern uses classes to represent groups of related settings.
 
+For example, the following code sets WebSockets options:
+
+```csharp
+var options = new WebSocketOptions()  
+{  
+   KeepAliveInterval = TimeSpan.FromSeconds(120),  
+   ReceiveBufferSize = 4096
+};  
+app.UseWebSockets(options);
+```
+
 For more information, see [Options](xref:fundamentals/configuration/options).
 
 ## Environments
