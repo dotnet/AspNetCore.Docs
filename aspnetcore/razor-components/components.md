@@ -757,7 +757,6 @@ Dynamic components can be used to dynamically generate content. `Microsoft.AspNe
     [Parameter]
     string PetDetails { get; set; }
 }
-
 ```
 
 ```cshtml
