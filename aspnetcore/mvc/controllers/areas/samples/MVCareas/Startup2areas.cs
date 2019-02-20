@@ -7,9 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MVCareas
 {
-    public class Startup
+    public class Startup2areas
     {
-        public Startup(IConfiguration configuration)
+        public Startup2areas(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -40,8 +40,12 @@ namespace MVCareas
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                  name: "MyArea",
-                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                      name: "MyAreaP",
+                      template: "{area:Products}/{controller=Home}/{action=Index}/{id?}"
+                    );
+                routes.MapRoute(
+                  name: "MyAreaS",
+                  template: "{area:Services}/{controller=Home}/{action=Index}/{id?}"
                 );
                 routes.MapRoute(
                    name: "default",

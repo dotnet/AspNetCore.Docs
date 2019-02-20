@@ -19,7 +19,7 @@ Consider using Areas in an project when:
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 ## Areas for controllers with views
 
@@ -78,11 +78,13 @@ Area controllers are designated with the [&lbrack;Area&rbrack;](xref:Microsoft.A
 
 ### Add Area route
 
-Area routes typically use conventional routing rather than attribute routing:
+Area routes typically use conventional routing rather than attribute routing. Area routes should be registered before non-area routes. Registering non-area routes first has the potential to generate a incorrect link when targeting an action in an area.
+
+`{area:...}` can be used as a token in route templates if url space is uniform across all areas:
 
 [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet&highlight=18-21)]
 
-In the preceding code, `exists` applies a constraint that the route must match an area.
+In the preceding code, `exists` applies a constraint that the route must match an area. Using `{area:...}` is the least complicated mechanism to adding routing to areas.
 
 The following code uses <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> to create two named area routes:
 
@@ -101,12 +103,6 @@ The links generated with the preceding code are valid anywhere in the app.
 The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
 When the area or controller is not specified, routing depends on the `ambient` values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
-
-The sample app contains the following [filter](xref:mvc/controllers/filters) to generate links using [Url.Action](/dotnet/api/microsoft.aspnetcore.mvc.urlhelperextensions.action?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_UrlHelperExtensions_Action_Microsoft_AspNetCore_Mvc_IUrlHelper_System_String_System_String_System_Object_), with and without the area specified:
-
-[!code-csharp[](areas/samples/MVCareas/Filters/SetURLattribute.cs?name=snippet)]
-
-In the preceding code, when the area is not specified, the links are valid only when the ambient area values are correct.
 
 For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
 

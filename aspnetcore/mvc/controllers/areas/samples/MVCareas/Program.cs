@@ -1,6 +1,4 @@
-﻿#define DEFAULT
-
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace MVCareas
@@ -14,10 +12,9 @@ namespace MVCareas
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-#if DEFAULT
-                     .UseStartup<Startup>();
-#else
-                     .UseStartup<StartupMapAreaRoute>();
-#endif
+                                       //  .UseStartup<Startup>();
+                                         .UseStartup<StartupMapAreaRoute>();
+                                       // .UseStartup<Startup2areas>();
+
     }
 }
