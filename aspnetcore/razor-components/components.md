@@ -742,3 +742,46 @@ The time is 10/04/2018 01:26:52.
 
 Your pet's name is Rex.
 ```
+## Dynamic Components
+
+Dynamic Components can be used to dynamically generate content.  Microsoft.AspNetCore.Components.RenderTree provides  methods for manipulating components and elements. For example :
+
+```cshtml
+<p>Pet Details Component <p>
+
+<p>@PetDetails<p>
+
+@function
+{
+   [Parameter] string PetDetails { get; set; }
+}
+
+```
+
+```cshtml
+<h1>Generate dynamic content</h1>
+
+<p>@PetName </p>
+
+@CustomRender
+
+<button type="button" onclick=@RenderStuff>
+    Dynamic
+</button>
+
+@functions {
+    RenderFragment CustomRender { get; set; }
+    
+        RenderFragment CreateDynamicComponent() => builder =>
+    {
+        builder.OpenComponent(0, typeof(PetDetailComponent));
+        builder.AddAttribute(1, "PetDetails", "Man's best friend");              
+        builder.CloseComponent();
+    };    
+    
+    void RenderStuff()
+    {
+       CustomRender = CreateDynamicComponent();
+    }
+}
+```
