@@ -21,8 +21,17 @@ Consider using Areas in an project when the app:
 * Is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+
 ## Areas for controllers with views
 
+A typical ASP.NET Core web app using areas, controllers, and views contains the following:
+
+* An [Area folder structure](#area-folder-structure)
+* Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area.
+* The [area route added to startup](add-area-route).
+
+## Area folder structure
 Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
 
 * Project name
@@ -60,13 +69,13 @@ The content of the *Views* isn't compiled until a request to that view has been 
 
 What about precompiled views? 
  -->
+<a name="attribute"></a>
 
 ### Associate the controller with an Area
 
 Area controllers are designated with the [&lbrack;Area&rbrack;](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute:
 
-[!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?hightlight=5
-)]
+[!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?hightlight=5&name=snippet)]
 
 ### Add Area route
 
@@ -76,45 +85,21 @@ Area routes typically use conventional routing rather than attribute routing:
 
 For more information, see [Route to controller actions](xref:mvc/controllers/routing).
 
-## Link Generation
+## Link Generation with Areas
 
-* Generating links from an action within an area based controller to another action within the same controller.
+The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples shows link generation with the area specified:
 
-  Let's say the current request's path is like `/Products/Home/Create`
+[!code-cshtml[](areas/samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
-  HtmlHelper syntax: `@Html.ActionLink("Go to Product's Home Page", "Index")`
+The links generated with the preceding code are valid anywhere in the app.
 
-  TagHelper syntax: `<a asp-action="Index">Go to Product's Home Page</a>`
+The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and links without specifying the area. The partial view is referenced in the [layout file](), so every page in the app displays the generated views. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
-  Note that we need not supply the 'area' and 'controller' values here as they're already available in the context of the current request. These kind of values are called `ambient` values.
+When the area or controller is not specified, routing depends on the `ambient` values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, depending on the the ambient values generates incorrect links.
 
-* Generating links from an action within an area based controller to another action on a different controller
+The sample app contains the following [filter](xref:mvc/controllers/filters) to generate links using [Url.Action] (/dotnet/api/microsoft.aspnetcore.mvc.urlhelperextensions.action?view=aspnetcore-2.2#Microsoft_AspNetCore_Mvc_UrlHelperExtensions_Action_Microsoft_AspNetCore_Mvc_IUrlHelper_System_String_System_String_System_Object_), with and without the area specified. When the area is not specified, the links work only when the ambient area value is correct.
 
-  Let's say the current request's path is like `/Products/Home/Create`
-
-  HtmlHelper syntax: `@Html.ActionLink("Go to Manage Products Home Page", "Index", "Manage")`
-
-  TagHelper syntax: `<a asp-controller="Manage" asp-action="Index">Go to Manage Products Home Page</a>`
-
-  Note that here the ambient value of an 'area' is used but the 'controller' value is specified explicitly above.
-
-* Generating links from an action within an area based controller to another action on a different controller and a different area.
-
-  Let's say the current request's path is like `/Products/Home/Create`
-
-  HtmlHelper syntax: `@Html.ActionLink("Go to Services Home Page", "Index", "Home", new { area = "Services" })`
-
-  TagHelper syntax: `<a asp-area="Services" asp-controller="Home" asp-action="Index">Go to Services Home Page</a>`
-
-  Note that here no ambient values are used.
-
-* Generating links from an action within an area based controller to another action on a different controller and **not** in an area.
-
-  HtmlHelper syntax: `@Html.ActionLink("Go to Manage Products  Home Page", "Index", "Home", new { area = "" })`
-
-  TagHelper syntax: `<a asp-area="" asp-controller="Manage" asp-action="Index">Go to Manage Products Home Page</a>`
-
-  Since we want to generate links to a non-area based controller action, we empty the ambient value for 'area' here.
+For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
 
 <a name="rename"></a>
 

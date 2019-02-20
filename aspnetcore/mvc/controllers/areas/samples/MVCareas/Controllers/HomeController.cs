@@ -8,17 +8,6 @@ namespace MVCareas.Controllers
     {
         public IActionResult Index()
         {
-            //// URL to /Products/Manage/About
-            //ViewData["url"] =
-            //#region snippet
-            //    Url.Action("About", "Manage", new { area = "Products" });
-            //#endregion
-
-            //ViewData["urlNo"] =
-            //#region snippet_test
-            //    Url.Action("About", "Manage");
-            //#endregion
-
             return View();
         }
 
@@ -27,7 +16,7 @@ namespace MVCareas.Controllers
             return View();
         }
 
-        public IActionResult Test()
+        public IActionResult About()
         {
             return View();
         }

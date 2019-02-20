@@ -9,5 +9,9 @@ namespace MVCareas.Areas.Products.Controllers
         {
             return View();
         }
+        public IActionResult About()
+        {
+            return View();
+        }
     }
 }

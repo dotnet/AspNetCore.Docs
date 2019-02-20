@@ -1,21 +1,34 @@
 ﻿
-<div >
+<div>
     <h3>Links generated using asp-area </h3>
 
     <ul>
-        <li>Anchor Tag Helper links (&#x3C;a asp-area=&#x22;Products&#x22; asp-controller=&#x22;Manage&#x22; asp-action=&#x22;Index&#x22;&#x3E;)</li>
+        <!-- <snippet> -->
+        <li>Anchor Tag Helper links</li>
         <ul>
-            <li>     <a asp-area="Products" asp-controller="Manage" asp-action="Index">Products Home</a> </li>
             <li>
-                <a asp-area="Products" asp-controller="Manage" asp-action="About">About Products</a>
+                <a asp-area="Products" asp-controller="Manage" asp-action="Index">Products/Manage</a>
+            </li>
+            <li>
+                <a asp-area="Products" asp-controller="Home" asp-action="About">Products/Home/About</a>
             </li>
             <li>
                 <a asp-area="Services" asp-controller="Home" asp-action="About">Services About</a>
             </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="About">/Home/About</a>
+            </li>
         </ul>
+        <li>Html.ActionLink generated links</li>
+        <ul>
+            <li>
+                @Html.ActionLink("Product About", "About", "Manage", new { area = "Products" })
+            </li>
+        </ul>
+        <!-- </snippet> -->
         <li>Url.Action generated links</li>
         <ul>
-            <li><a href='@ViewData["url"] '>Products/Manage/About</a></li>
+            <li><a href='@ViewData["Url"] '>Products/Manage/About</a></li>
         </ul>
     </ul>
 
@@ -25,21 +38,31 @@
     <h3>Links generated NOT using asp-area </h3>
 
     <ul>
-        <li>Anchor Tag Helper links (asp-controller=&#x22;Manage&#x22; asp-action=&#x22;Index&#x22;&#x3E;)</li>
+        <li>Anchor Tag Helper links</li>
         <ul>
-            <li>     <a asp-controller="Manage" asp-action="Index">Products Home</a> </li>
             <li>
-                <a asp-controller="Manage" asp-action="About">About Products</a>
+                <a asp-controller="Manage" asp-action="Index">Products/Manage</a>
             </li>
             <li>
-                <a  asp-controller="Home" asp-action="About">Services About</a>
+                <a asp-controller="Home" asp-action="About">Products/Home/About</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="About">Services About</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="About">/Home/About</a>
             </li>
         </ul>
         <li>Url.Action generated links <strong>NOT</strong> using Area</li>
         <ul>
-            <li><a href='@ViewData["urlNo"] '>Products/Manage/About</a></li>
+            <li><a href='@ViewData["UrlNoArea"] '>Products/Manage/About</a></li>
+        </ul>
+        <li>Html.ActionLink generated links</li>
+        <ul>
+            <li>
+                @Html.ActionLink("Product About", "About", "Manage")
+            </li>
         </ul>
     </ul>
-
 </div>
 

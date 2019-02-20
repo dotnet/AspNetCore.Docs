@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace MVCareas.Filters
 {
+    #region snippet
     public class SetURLattribute : ActionFilterAttribute
     {
         public SetURLattribute() { }
@@ -15,10 +16,12 @@ namespace MVCareas.Filters
                 return;
             }
 
-            controller.ViewData["url"] = controller.Url.Action("About", "Manage", new { area = "Products" });
-            controller.ViewData["urlNo"] = controller.Url.Action("About", "Manage");
+            controller.ViewData["Url"] = controller.Url.Action("About", "Manage", 
+                                                        new { area = "Products" });
+            controller.ViewData["UrlNoArea"] = controller.Url.Action("About", "Manage");
 
             base.OnActionExecuting(filterContext);
         }
     }
+    #endregion
 }
