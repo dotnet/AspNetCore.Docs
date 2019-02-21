@@ -72,7 +72,7 @@ We recommend the following sequence of tutorials and articles for an introductio
    |App type  |Scenario  |Tutorial  |
    |----------|----------|----------|
    |Web app       | For new development        |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
-   |Web app       | For maintaining an MVC app |[Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc)|
+   |Web app       | For maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
    |Web API       |                            |[Create a web API](xref:tutorials/first-web-api)\*  |
    |Real-time app |                            |[Get started with SignalR](xref:tutorials/signalr) |
 
