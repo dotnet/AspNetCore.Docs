@@ -19,7 +19,7 @@ namespace ControllerDI
 
         public IConfiguration Configuration { get; }
 
-        #region snippet1
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IDateTime, SystemDateTime>();

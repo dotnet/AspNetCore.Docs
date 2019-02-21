@@ -12,9 +12,7 @@ uid: mvc/controllers/dependency-injection
 
 By [Shadi Namrouti](https://github.com/shadinamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://github.com/ardalis)
 
-ASP.NET Core MVC controllers request their dependencies explicitly via their constructors. In some instances, individual controller actions may require a service, and it may not make sense to request at the controller level. In this case, you can also choose to inject a service as a parameter on the action method.
-
-ASP.NET Core has built-in support for [dependency injection](xref:fundamentals/dependency-injection), which makes apps easier to test and maintain.
+ASP.NET Core MVC controllers request their dependencies explicitly via their constructors. ASP.NET Core has built-in support for [dependency injection](xref:fundamentals/dependency-injection), which makes apps easier to test and maintain.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/dependency-injection/sample) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -46,9 +44,11 @@ The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> attribute enables inje
 
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/HomeController.cs?name=snippet2)]
 
+<!-- Removing this because we don't want to encourage setting options via DI
+
 ## Accessing Settings from a Controller
 
-Accessing application or configuration settings from within a controller is a common pattern. This access should use the Options pattern described in [configuration](xref:fundamentals/configuration/index). You generally shouldn't request settings directly from your controller using dependency injection. A better approach is to request an `IOptions<T>` instance, where `T` is the configuration class you need.
+Accessing application or configuration settings from within a controller is a common pattern. This access should use the Options pattern described in [Configuration](xref:fundamentals/configuration/index). You generally shouldn't request settings directly from your controller using dependency injection. A better approach is to request an `IOptions<T>` instance, where `T` is the configuration class you need.
 
 To work with the options pattern, you need to create a class that represents the options, such as this one:
 
@@ -69,6 +69,8 @@ Once you've specified a strongly-typed configuration object (in this case, `Samp
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/SettingsController.cs?highlight=2-7&range=12-27)]
 
 Following the Options pattern allows settings and configuration to be decoupled from one another, and ensures the controller is following [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns), since it doesn't need to know how or where to find the settings information. It also makes the controller easier to [unit test](testing.md), since there's no direct instantiation of settings classes within the controller class.
+
+-->
 
 ## Addition resources
 
