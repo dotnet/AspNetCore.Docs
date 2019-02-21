@@ -9,8 +9,8 @@ public class IndexModel : PageModel
     // ...
     public async Task OnGetAsync()
     {
-        var movies = from m in _context.Movie
+        var movies = from m in _context.Movies
                         select m;
-        Movie = await movies.ToListAsync();
+        Movies = await movies.ToListAsync();
     }
 }
