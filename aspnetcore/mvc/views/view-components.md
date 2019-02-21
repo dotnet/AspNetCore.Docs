@@ -235,7 +235,7 @@ If the PVC view isn't rendered, verify you are calling the view component with a
 
 ![ToDo output with Shared component view](view-components/_static/shared.png)
 
-### Avoiding magic strings
+### Avoiding hard-coded strings
 
 If you want compile time safety, you can replace the hard-coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
 

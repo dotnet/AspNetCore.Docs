@@ -1,7 +1,6 @@
 ---
 title: Get started with ASP.NET Core MVC
 author: rick-anderson
-monikerRange: '>= aspnetcore-2.2'
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/12/2018
@@ -28,9 +27,6 @@ The app manages a database of movie titles. You learn how to:
 At the end, you have an app that can manage and display movie data.
 
 [!INCLUDE[](~/includes/mvc-intro/download.md)]
-
-> [!NOTE]
-> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/aa11wn82).
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 

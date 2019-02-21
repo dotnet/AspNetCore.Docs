@@ -2,7 +2,6 @@
 title: Work with a database and ASP.NET Core
 author: rick-anderson
 description: Explains working with a database and ASP.NET Core.
-monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.date: 12/07/2017
 uid: tutorials/razor-pages/sql

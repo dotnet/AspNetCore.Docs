@@ -37,7 +37,7 @@ You can now override which filters apply to a given action method or controller 
 
 ### Attribute routing
 
-ASP.NET MVC now supports [attribute routing](https://blogs.msdn.com/b/webdev/archive/2013/10/17/attribute-routing-in-asp-net-mvc-5.aspx), thanks to a contribution by Tim McCall, the author of [http://attributerouting.net](http://attributerouting.net). With attribute routing you can specify your routes by annotating your actions and controllers.
+ASP.NET MVC now supports [attribute routing](https://blogs.msdn.com/b/webdev/archive/2013/10/17/attribute-routing-in-asp-net-mvc-5.aspx), thanks to a contribution by Tim McCall, the author of [AttributeRouting](https://github.com/mccalltd/AttributeRouting). With attribute routing you can specify your routes by annotating your actions and controllers.
 
 ## New Web Project Experience
 

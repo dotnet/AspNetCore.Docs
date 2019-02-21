@@ -2,7 +2,6 @@
 title: Update the generated pages in an ASP.NET Core app
 author: rick-anderson
 description: Learn how to update the generated pages in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.date: 12/20/2018
 uid: tutorials/razor-pages/da1
