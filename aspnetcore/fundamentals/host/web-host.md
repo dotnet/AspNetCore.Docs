@@ -11,7 +11,7 @@ uid: fundamentals/host/web-host
 
 By [Luke Latham](https://github.com/guardrex)
 
-ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, DI, and configuration.
+ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
 
 ::: moniker range="<= aspnetcore-1.1"
 
