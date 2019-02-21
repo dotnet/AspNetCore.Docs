@@ -10,9 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ControllerDI
 {
-    public class Startup
+    public class Startup1
     {
-        public Startup(IConfiguration configuration)
+        public Startup1(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -23,15 +23,7 @@ namespace ControllerDI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IDateTime, SystemDateTime>();
-            services.Configure<SampleWebSettings>(Configuration);
 
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         #endregion

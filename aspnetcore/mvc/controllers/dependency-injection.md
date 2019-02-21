@@ -3,78 +3,48 @@ title: Dependency injection into controllers in ASP.NET Core
 author: ardalis
 description: Discover how ASP.NET Core MVC controllers request their dependencies explicitly via their constructors with dependency injection in ASP.NET Core.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 2/24/2019
 uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers in ASP.NET Core
 
 <a name="dependency-injection-controllers"></a>
 
-By [Steve Smith](https://github.com/ardalis)
+By [Shadi Namrouti](https://github.com/shadinamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://github.com/ardalis)
 
-ASP.NET Core MVC controllers should request their dependencies explicitly via their constructors. In some instances, individual controller actions may require a service, and it may not make sense to request at the controller level. In this case, you can also choose to inject a service as a parameter on the action method.
+ASP.NET Core MVC controllers request their dependencies explicitly via their constructors. In some instances, individual controller actions may require a service, and it may not make sense to request at the controller level. In this case, you can also choose to inject a service as a parameter on the action method.
+
+ASP.NET Core has built-in support for [dependency injection](xref:fundamentals/dependency-injection), which makes apps easier to test and maintain.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/dependency-injection/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-## Dependency Injection
-
-ASP.NET Core has built-in support for [dependency injection](../../fundamentals/dependency-injection.md), which makes applications easier to test and maintain.
-
 ## Constructor Injection
 
-ASP.NET Core's built-in support for constructor-based dependency injection extends to MVC controllers. By simply adding a service type to your controller as a constructor parameter, ASP.NET Core will attempt to resolve that type using its built in service container. Services are typically, but not always, defined using interfaces. For example, if your application has business logic that depends on the current time, you can inject a service that retrieves the time (rather than hard-coding it), which would allow your tests to pass in implementations that use a set time.
+Services are added as a constructor parameter, and the runtime resolves the service from the service container. Services are typically defined using interfaces. For example, consider an app that requires the current time. The following interface exposes the `IDateTime` service:
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Interfaces/IDateTime.cs)]
-
 
 The following code implements the `IDateTime` interface:
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Services/SystemDateTime.cs)]
 
+Add the service to the dependency container:
 
-With this in place, we can use the service in our controller. In this case, we have added some logic to the `HomeController` `Index` method to display a greeting to the user based on the time of day.
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Startup1.cs?name=snippet)]
 
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/HomeController.cs?highlight=14,16-19, 23-35&range=1-38)]
+For more information on <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>, see  [see DI service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
-If we run the application now, we will most likely encounter an error:
+The following shows the `HomeController.Index` method code used display a greeting to the user based on the time of day:
 
-```
-An unhandled exception occurred while processing the request.
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/HomeController.cs?name=snippet)]
 
-InvalidOperationException: Unable to resolve service for type 'ControllerDI.Interfaces.IDateTime' while attempting to activate 'ControllerDI.Controllers.HomeController'.
-Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, bool isDefaultParameterRequired)
-```
+Run the app and a message is displayed based on the time.
 
-This error occurs when we have not configured a service in the `ConfigureServices` method in our `Startup` class. To specify that requests for `IDateTime` should be resolved using an instance of `SystemDateTime`, add the highlighted line in the listing below to your `ConfigureServices` method:
+## Action injection with FromServices
 
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Startup.cs?highlight=4&range=27-30)]
+The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> attribute enables injecting a service directly into action method without using constructor injection:
 
-> [!NOTE]
-> This particular service could be implemented using any of several different lifetime options (`Transient`, `Scoped`, or `Singleton`). See [Dependency Injection](../../fundamentals/dependency-injection.md) to understand how each of these scope options will affect the behavior of your service.
-
-Once the service has been configured, running the application and navigating to the home page should display the time-based message as expected:
-
-![Server Greeting](dependency-injection/_static/server-greeting.png?v=2.2)
-
->[!TIP]
-> See [Test controller logic](testing.md) to learn how to make code easier to test by explicitly requesting dependencies in controllers.
-
-ASP.NET Core's built-in dependency injection supports having only a single constructor for classes requesting services. If you have more than one constructor, you may get an exception stating:
-
-```
-An unhandled exception occurred while processing the request.
-
-InvalidOperationException: Multiple constructors accepting all given argument types have been found in type 'ControllerDI.Controllers.HomeController'. There should only be one applicable constructor.
-Microsoft.Extensions.DependencyInjection.ActivatorUtilities.TryFindMatchingConstructor(Type instanceType, Type[] argumentTypes, ref ConstructorInfo matchingConstructor, ref Nullable<int>[] parameterMap)
-```
-
-As the error message states, you can correct this problem with the use of a single constructor. You can also [replace the default dependency injection container with a third party implementation](xref:fundamentals/dependency-injection#default-service-container-replacement), many of which support multiple constructors.
-
-## Action Injection with FromServices
-
-Sometimes you don't need a service for more than one action within your controller. In this case, it may make sense to inject the service as a parameter to the action method. This is done by marking the parameter with the attribute `[FromServices]` as shown here:
-
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/HomeController.cs?highlight=1&range=50-55)]
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/HomeController.cs?name=snippet2)]
 
 ## Accessing Settings from a Controller
 
@@ -99,3 +69,9 @@ Once you've specified a strongly-typed configuration object (in this case, `Samp
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/SettingsController.cs?highlight=2-7&range=12-27)]
 
 Following the Options pattern allows settings and configuration to be decoupled from one another, and ensures the controller is following [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns), since it doesn't need to know how or where to find the settings information. It also makes the controller easier to [unit test](testing.md), since there's no direct instantiation of settings classes within the controller class.
+
+## Addition resources
+
+* See [Test controller logic](testing.md) to learn how to make code easier to test by explicitly requesting dependencies in controllers.
+
+* [Replace the default dependency injection container with a third party implementation](xref:fundamentals/dependency-injection#default-service-container-replacement).

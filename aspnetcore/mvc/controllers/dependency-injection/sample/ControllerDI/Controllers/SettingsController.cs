@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ControllerDI.Models;
 using Microsoft.AspNetCore.Mvc;
-using ControllerDI.Models;
 using Microsoft.Extensions.Options;
 
 namespace ControllerDI.Controllers
 {
+    #region snippet
     public class SettingsController : Controller
     {
         private readonly SampleWebSettings _settings;
@@ -25,4 +21,5 @@ namespace ControllerDI.Controllers
             return View();
         }
     }
+    #endregion
 }

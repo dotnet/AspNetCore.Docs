@@ -9,6 +9,7 @@ using ControllerDI.Interfaces;
 
 namespace ControllerDI.Controllers
 {
+    #region snippet
     public class HomeController : Controller
     {
         private readonly IDateTime _dateTime;
@@ -35,6 +36,7 @@ namespace ControllerDI.Controllers
             }
             return View();
         }
+        #endregion
 
         public IActionResult Privacy()
         {
@@ -47,12 +49,14 @@ namespace ControllerDI.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        #region snippet2
         public IActionResult About([FromServices] IDateTime dateTime)
         {
             ViewData["Message"] = "Currently on the server the time is " + dateTime.Now;
 
             return View();
         }
-        
+        #endregion
+
     }
 }
