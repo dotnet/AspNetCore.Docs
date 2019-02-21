@@ -14,7 +14,6 @@ namespace MVCareas
             WebHost.CreateDefaultBuilder(args)
                                        //  .UseStartup<Startup>();
                                          .UseStartup<StartupMapAreaRoute>();
-                                       // .UseStartup<Startup2areas>();
 
     }
 }

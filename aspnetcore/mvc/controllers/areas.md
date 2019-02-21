@@ -25,10 +25,12 @@ Consider using Areas in an project when:
 
 A typical ASP.NET Core web app using areas, controllers, and views contains the following:
 
-* An [Area folder structure](#area-folder-structure)
+* An [Area folder structure](#area-folder-structure).
 * Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area:
   [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
-* The [area route added to startup](#add-area-route).
+* The [area route added to startup](#add-area-route):
+  [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=1-6)]
+
 
 ## Area folder structure
 Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
@@ -78,7 +80,7 @@ Area controllers are designated with the [&lbrack;Area&rbrack;](xref:Microsoft.A
 
 ### Add Area route
 
-Area routes typically use conventional routing rather than attribute routing. Area routes should be registered before non-area routes. Registering non-area routes first has the potential to generate a incorrect link when targeting an action in an area.
+Area routes typically use conventional routing rather than attribute routing. Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they're more specific than routes without an area.
 
 `{area:...}` can be used as a token in route templates if url space is uniform across all areas:
 
@@ -88,11 +90,13 @@ In the preceding code, `exists` applies a constraint that the route must match a
 
 The following code uses <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> to create two named area routes:
 
-[!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet&highlight=18-27)]
+[!code-csharp[](areas/samples/MVCareas/StartupMapAreaRoute.cs?name=snippet&highlight=18-27)]
 
-For more information, see [Route to controller actions](xref:mvc/controllers/routing).
+When using `MapAreaRoute` with ASP.NET Core 2.2, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/7772).
 
-## Link Generation with Areas
+For more information, see [Area routing](xref:mvc/controllers/routing#areas).
+
+### Link Generation with Areas
 
 The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) shows link generation with the area specified:
 
@@ -105,7 +109,11 @@ The sample download includes a [partial view](xref:mvc/views/partial) that conta
 When the area or controller is not specified, routing depends on the `ambient` values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
 For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
+<!-- This section will be completed after https://github.com/aspnet/Docs/pull/10978 is merged.
+<a name="arp"></a>
 
+## Areas for Razor Pages
+-->
 <a name="rename"></a>
 
 ### Change default area name

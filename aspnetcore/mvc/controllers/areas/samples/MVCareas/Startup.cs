@@ -37,6 +37,7 @@ namespace MVCareas
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            #region snippet
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -47,6 +48,7 @@ namespace MVCareas
                    name: "default",
                    template: "{controller=Home}/{action=Index}/{id?}");
             });
+            #endregion
         }
         #endregion
     }
