@@ -21,7 +21,7 @@ Middleware is generally encapsulated in a class and exposed with an extension me
 
 The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
-You can test the middleware by passing in the culture, for example `http://localhost:7997/?culture=no`.
+You can test the middleware by passing in the culture. For example, `http://localhost:7997/?culture=no`.
 
 The following code moves the middleware delegate to a class:
 
