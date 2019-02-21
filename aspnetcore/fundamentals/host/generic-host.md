@@ -1,7 +1,7 @@
 ---
 title: .NET Generic Host
 author: guardrex
-description: Learn about Generic Host in .NET, which is responsible for app startup and lifetime management.
+description: Learn about ASP.NET Core's Generic Host, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
