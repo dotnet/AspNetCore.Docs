@@ -1,4 +1,4 @@
-public class TodoController : Controller
+public class TodoController : ControllerBase
 {
     private readonly ILogger _logger;
 
