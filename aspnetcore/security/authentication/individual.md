@@ -30,6 +30,8 @@ dotnet new razor -au Individual
 
 ::: moniker-end
 
+See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5833) For web API authentication.
+
 <a name="no"></a>
 ## No Authentication
 
