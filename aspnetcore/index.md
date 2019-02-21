@@ -81,7 +81,7 @@ We recommend the following sequence of tutorials and articles for an introductio
    |Scenario  |Tutorial  |
    |----------|----------|
    | For new development        |[Razor Pages with Entity Framework Core](xref:data/ef-rp/intro) |
-   | For maintaining an MVC app |[ASP.NET MVC with EF Core](xref:data/ef-mvc/intro)
+   | For maintaining an MVC app |[MVC with Entity Framework Core](xref:data/ef-mvc/intro)
 
 1. Read an overview of ASP.NET Core features that apply to all app types:
 
