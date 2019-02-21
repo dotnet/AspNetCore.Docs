@@ -5,7 +5,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/21/2019
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -129,7 +129,9 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 ### Configure Windows Server
 
-1. Determine the ports to open for the app and use Windows Firewall or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906) to open firewall ports to allow traffic to reach HTTP.sys. When deploying to an Azure VM, open the ports in the [Network Security Group](/azure/virtual-network/security-overview). In the following commands and app configuration, port 443 is used.
+1. Determine the ports to open for the app and use [Windows Firewall](/windows/security/threat-protection/windows-firewall/create-an-inbound-port-rule) or the [New-NetFirewallRule](/powershell/module/netsecurity/new-netfirewallrule) PowerShell cmdlet to open firewall ports to allow traffic to reach HTTP.sys. In the following commands and app configuration, port 443 is used.
+
+1. When deploying to an Azure VM, open the ports in the [Network Security Group](/azure/virtual-machines/windows/nsg-quickstart-portal). In the following commands and app configuration, port 443 is used.
 
 1. Obtain and install X.509 certificates, if required.
 
