@@ -31,7 +31,6 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
 * The [area route added to startup](#add-area-route):
   [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=1-6)]
 
-
 ## Area folder structure
 Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
 
@@ -109,6 +108,11 @@ The sample download includes a [partial view](xref:mvc/views/partial) that conta
 When the area or controller is not specified, routing depends on the `ambient` values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
 For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
+
+### Shared layout for Areas using the _ViewStart.cshtml file
+
+To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
+
 <!-- This section will be completed after https://github.com/aspnet/Docs/pull/10978 is merged.
 <a name="arp"></a>
 

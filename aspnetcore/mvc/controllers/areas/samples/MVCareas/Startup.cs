@@ -37,7 +37,7 @@ namespace MVCareas
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            #region snippet
+            #region snippet2
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
