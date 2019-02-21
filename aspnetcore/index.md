@@ -89,7 +89,7 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 1. Browse the Table of Contents for other topics of interest.
 
-\* There is a new [web API tutorial that you follow entirely in the browser](https://docs.microsoft.com/en-us/learn/modules/build-web-api-net-core), no local IDE installation required.  The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
+\* There is a new [web API tutorial that you follow entirely in the browser](https://docs.microsoft.com/learn/modules/build-web-api-net-core), no local IDE installation required.  The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
 
 ## How to download a sample
 
