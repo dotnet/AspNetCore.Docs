@@ -74,7 +74,7 @@ An ASP.NET Core app builds a *host* on startup. The host is an object that encap
 * An HTTP server implementation
 * Middleware components
 * Logging
-* Dependency injection
+* DI
 * Configuration
 
 The main reason for including all of the app's interdependent resources in one object is lifetime management: control over app startup and graceful shutdown.
