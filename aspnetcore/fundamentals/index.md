@@ -79,7 +79,7 @@ An ASP.NET Core app builds a *host* on startup. The host is an object that encap
 
 The main reason for including all of the app's interdependent resources in one object is lifetime management: control over app startup and graceful shutdown.
 
-The code to create a host is in `Program.Main` and follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern): methods are called to configure each resource that is part of the host, and then a builder method is called to pull it all together and instantiate the host object.
+The code to create a host is in `Program.Main` and follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern). Methods are called to configure each resource that is part of the host. A builder method is called to pull it all together and instantiate the host object.
 
 ::: moniker range="<= aspnetcore-2.2"
 
