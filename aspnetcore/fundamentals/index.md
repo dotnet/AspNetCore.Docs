@@ -286,7 +286,7 @@ For more information, see [Make HTTP requests](xref:fundamentals/http-requests).
 
 ## Content root
 
-The content root is the base path to any private content used by the app, such as its Razor pages and MVC views. By default, the content root is the base path for the executable hosting the app. An alternative location can be specified when [building the host](#host).
+The content root is the base path to any private content used by the app, such as its Razor files. By default, the content root is the base path for the executable hosting the app. An alternative location can be specified when [building the host](#host).
 
 ::: moniker range="<= aspnetcore-2.2"
 
