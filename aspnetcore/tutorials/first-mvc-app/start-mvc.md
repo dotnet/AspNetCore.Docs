@@ -93,7 +93,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 ---  
 <!-- End of VS tabs -->
 
-[!INCLUDE[](~/includes/trust-cert.md)]
+[!INCLUDE[](~/includes/trustCertVS.md)]
 
 ### Run the app
 
