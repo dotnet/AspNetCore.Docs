@@ -190,7 +190,7 @@ ASP.NET Core provides a configuration framework that isn't based on [System.Conf
 
 For example, you could specify that configuration comes from *appsettings.json* and environment variables. Then when the value of *ConnectionString* is requested, the framework looks first in the *appsettings.json* file. If the value is found there but also in an environment variable, the value from the environment variable would take precedence.
 
-For managing confidential configuration data such as passwords, ASP.NET Core provides a [Secret Manager tool](xref:security/app-secrets). For production secrets, we recommend [Azure Key Vault](https://docs.microsoft.com/en-us/aspnet/core/security/key-vault-configuration).
+For managing confidential configuration data such as passwords, ASP.NET Core provides a [Secret Manager tool](xref:security/app-secrets). For production secrets, we recommend [Azure Key Vault](/aspnet/core/security/key-vault-configuration).
 
 For more information, see [Configuration](xref:fundamentals/configuration/index).
 
