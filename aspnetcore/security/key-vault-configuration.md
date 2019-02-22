@@ -5,7 +5,7 @@ description: Learn how to use the Azure Key Vault Configuration Provider to conf
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/08/2019
+ms.date: 02/22/2019
 uid: security/key-vault-configuration
 ---
 # Azure Key Vault Configuration Provider in ASP.NET Core
@@ -110,7 +110,7 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
 Configure Azure AD, Azure Key Vault, and the app to use an Application ID and Password (Client Secret) to authenticate to a key vault **when the app is hosted outside of Azure**.
 
 > [!NOTE]
-> Although using an Application ID and Password (Client Secret) is supported for apps hosted in Azure, we recommend using [Managed identities for Azure resources](#use-managed-identities-for-azure-resources) when hosting an app in Azure. Managed identities does not require storing credentials in the app or its configuration, so it's regarded as a generally safer approach.
+> Although using an Application ID and Password (Client Secret) is supported for apps hosted in Azure, we recommend using [Managed identities for Azure resources](#use-managed-identities-for-azure-resources) when hosting an app in Azure. Managed identities doesn't require storing credentials in the app or its configuration, so it's regarded as a generally safer approach.
 
 The sample app uses an Application ID and Password (Client Secret) when the `#define` statement at the top of the *Program.cs* file is set to `Basic`.
 
