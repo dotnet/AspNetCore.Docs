@@ -272,7 +272,7 @@ For more information, see [Error handling](xref:fundamentals/error-handling).
 
 ## Make HTTP requests
 
-An implementation of `IHttpClientFactory` is available for creating  `HttpClient` instances. The factory:
+An implementation of `IHttpClientFactory` is available for creating `HttpClient` instances. The factory:
 
 * Provides a central location for naming and configuring logical `HttpClient` instances. For example, a *github* client can be registered and configured to access GitHub. A default client can be registered for other purposes.
 * Supports registration and chaining of multiple delegating handlers to build an outgoing request middleware pipeline. This pattern is similar to the inbound middleware pipeline in ASP.NET Core. The pattern provides a mechanism to manage cross-cutting concerns around HTTP requests, including caching, error handling, serialization, and logging.
