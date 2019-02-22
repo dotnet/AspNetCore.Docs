@@ -201,7 +201,7 @@ Where possible, ASP.NET Core follows the *options pattern* for storing and retri
 For example, the following code sets WebSockets options:
 
 ```csharp
-var options = new WebSocketOptions()  
+var options = new WebSocketOptions  
 {  
    KeepAliveInterval = TimeSpan.FromSeconds(120),  
    ReceiveBufferSize = 4096
