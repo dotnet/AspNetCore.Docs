@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 02/14/2019
 uid: fundamentals/middleware/write
 ---
-# Write custom ASP.NET Core Middleware
+# Write custom ASP.NET Core middleware
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
