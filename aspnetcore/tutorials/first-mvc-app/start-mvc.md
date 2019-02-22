@@ -12,8 +12,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
-https://docs.microsoft.com/en-us/visualstudio/ide/visual-studio-ide?view=vs-2017
-
 This tutorial teaches the basics of building an ASP.NET Core MVC web app.
 
 The app manages a database of movie titles. You learn how to:
