@@ -143,7 +143,7 @@ An ASP.NET Core app uses an HTTP server implementation to listen for HTTP reques
 
 # [Windows](#tab/windows)
 
-ASP.NET Core provides the following server implementations for Windows:
+ASP.NET Core provides the following server implementations:
 
 * *Kestrel* is a cross-platform web server. Kestrel is often run in a reverse proxy configuration using [IIS](https://www.iis.net/). In ASP.NET Core 2.0 or later, Kestrel can be run as a public-facing edge server exposed directly to the Internet.
 * *IIS HTTP Server* is a server for windows that uses IIS. With this server, the ASP.NET Core app and IIS run in the same process.
@@ -151,7 +151,7 @@ ASP.NET Core provides the following server implementations for Windows:
 
 # [macOS](#tab/macos)
 
-ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP.NET Core 2.0 or later, Kestrel can be run as a public-facing edge server exposed directly to the Internet.
+ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP.NET Core 2.0 or later, Kestrel can be run as a public-facing edge server exposed directly to the Internet. Kestrel is often run in a reverse proxy configuration with [Nginx](https://nginx.org) or [Apache](https://httpd.apache.org/).
 
 # [Linux](#tab/linux)
 
@@ -172,7 +172,7 @@ ASP.NET Core provides the following server implementations:
 
 # [macOS](#tab/macos)
 
-ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP.NET Core 2.0 or later, Kestrel can be run as a public-facing edge server exposed directly to the Internet.
+ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP.NET Core 2.0 or later, Kestrel can be run as a public-facing edge server exposed directly to the Internet. Kestrel is often run in a reverse proxy configuration with [Nginx](https://nginx.org) or [Apache](https://httpd.apache.org/).
 
 # [Linux](#tab/linux)
 
@@ -186,7 +186,7 @@ For more information, see [Servers](xref:fundamentals/servers/index).
 
 ## Configuration
 
-ASP.NET Core provides a configuration framework that isn't based on [System.Configuration](xref:System.Configuration) or *web.config*. The framework gets settings as name-value pairs from an ordered set of configuration providers. There are built-in configuration providers for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. You can also write custom configuration providers.
+ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers. There are built-in configuration providers for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. You can also write custom configuration providers.
 
 For example, you could specify that configuration comes from *appsettings.json* and environment variables. Then when the value of *ConnectionString* is requested, the framework looks first in the *appsettings.json* file. If the value is found there but also in an environment variable, the value from the environment variable would take precedence.
 
