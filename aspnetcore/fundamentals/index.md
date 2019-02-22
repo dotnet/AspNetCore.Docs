@@ -217,7 +217,7 @@ Execution environments, such as *Development*, *Staging*, and *Production*, are 
 
 ::: moniker range=">= aspnetcore-2.0"
 
-Here's sample code from the `Startup` class that configures the app to provide detailed error information only when it runs in development:
+The following sample code from the `Startup` class configures the app to provide detailed error information only when it runs in development:
 
 [!code-csharp[](index/snapshots/2.x/Startup2.cs?highlight=3-6)]
 
