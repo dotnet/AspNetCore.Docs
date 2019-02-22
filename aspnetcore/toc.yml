@@ -876,6 +876,6 @@
     - name: Logging (not ASP.NET Core)
       uid: migration/logging-nonaspnetcore
 - name: API reference
-  href: /dotnet/api/?view=aspnetcore-2.2
+  href: /dotnet/api/
 - name: Contribute
   href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
