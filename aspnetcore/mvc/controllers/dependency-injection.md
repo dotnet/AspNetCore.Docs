@@ -50,7 +50,7 @@ Accessing application or configuration settings from within a controller is a co
 
 Create a class that represents the options. For example:
 
-[!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs&name=snippet)]
+[!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs?name=snippet)]
 
 Add the configuration class to the services collection:
 
@@ -58,7 +58,7 @@ Add the configuration class to the services collection:
 
 We configured the app to read the settings from a JSON-formatted file:
 
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Program.cs?name=snippet&range=10-15)]
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Program.cs?name=snippet1&range=10-15)]
 
 The following code request the `IOptions<SampleWebSettings>`settings from a controller and uses them in the `Index` method:
 
