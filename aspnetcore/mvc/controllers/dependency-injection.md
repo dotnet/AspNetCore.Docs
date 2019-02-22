@@ -3,7 +3,7 @@ title: Dependency injection into controllers in ASP.NET Core
 author: ardalis
 description: Discover how ASP.NET Core MVC controllers request their dependencies explicitly via their constructors with dependency injection in ASP.NET Core.
 ms.author: riande
-ms.date: 2/24/2019
+ms.date: 02/24/2019
 uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers in ASP.NET Core
