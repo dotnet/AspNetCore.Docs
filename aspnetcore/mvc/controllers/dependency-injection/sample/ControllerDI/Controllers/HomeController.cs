@@ -52,7 +52,7 @@ namespace ControllerDI.Controllers
         #region snippet2
         public IActionResult About([FromServices] IDateTime dateTime)
         {
-            ViewData["Message"] = "Currently on the server the time is " + dateTime.Now;
+            ViewData["Message"] = $"Current server time: {dateTime.Now}";
 
             return View();
         }
