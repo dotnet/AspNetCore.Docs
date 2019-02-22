@@ -196,7 +196,7 @@ For more information, see [Configuration](xref:fundamentals/configuration/index)
 
 ## Options
 
-Wherever possible, ASP.NET Core follows the *options pattern* for storing and retrieving configuration values. The options pattern uses classes to represent groups of related settings.
+Where possible, ASP.NET Core follows the *options pattern* for storing and retrieving configuration values. The options pattern uses classes to represent groups of related settings.
 
 For example, the following code sets WebSockets options:
 
