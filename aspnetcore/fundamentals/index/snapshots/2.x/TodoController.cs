@@ -17,6 +17,6 @@ public class TodoController : ControllerBase
             _logger.LogWarning(LoggingEvents.GetItemNotFound, "GetById({ID}) NOT FOUND", id);
             return NotFound();
         }
-        return new ObjectResult(item);
+        return item;
     }
 }
