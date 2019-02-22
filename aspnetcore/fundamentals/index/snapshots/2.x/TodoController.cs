@@ -8,7 +8,7 @@ public class TodoController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "GetTodo")]
-    public IActionResult GetById(string id)
+    public ActionResult<TodoItem> GetById(string id)
     {
         _logger.LogInformation(LoggingEvents.GetItem, "Getting item {ID}", id);
         // Item lookup code removed.
