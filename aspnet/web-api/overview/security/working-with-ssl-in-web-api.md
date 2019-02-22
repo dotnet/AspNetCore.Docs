@@ -63,7 +63,7 @@ The **SslNegotiateCert** flag means IIS will accept a certificate from the clien
 
 ### Creating a Client Certificate for Testing
 
-For testing purposes, you can use [MakeCert.exe](https://msdn.microsoft.com/library/bfsktky3.aspx) to create a client certificate. First, create a test root authority:
+For testing purposes, you can use [MakeCert.exe](https://docs.microsoft.com/en-us/windows/desktop/SecCrypto/makecert) to create a client certificate. First, create a test root authority:
 
 [!code-console[Main](working-with-ssl-in-web-api/samples/sample4.cmd)]
 
