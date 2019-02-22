@@ -1,5 +1,5 @@
 ---
-title: Write custom ASP.NET Core Middleware
+title: Write custom ASP.NET Core middleware
 author: rick-anderson
 description: Learn how to write custom ASP.NET Core middleware.
 ms.author: riande
