@@ -44,23 +44,21 @@ The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> attribute enables inje
 
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/HomeController.cs?name=snippet2)]
 
-<!-- Removing this because we don't want to encourage setting options via DI
+## Accessing settings from a controller
 
-## Accessing Settings from a Controller
+Accessing application or configuration settings from within a controller is a common pattern. Generally, the *options pattern* described in [Configuration](xref:fundamentals/configuration/index) is the preferred approach to get settings. You generally shouldn't request IConfiguration directly from your controller
 
-Accessing application or configuration settings from within a controller is a common pattern. This access should use the Options pattern described in [Configuration](xref:fundamentals/configuration/index). You generally shouldn't request settings directly from your controller using dependency injection. A better approach is to request an `IOptions<T>` instance, where `T` is the configuration class you need.
+To work with the options pattern, create a class that represents the options. For example:
 
-To work with the options pattern, you need to create a class that represents the options, such as this one:
+[!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs&name=snippet)]
 
-[!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs)]
-
-Then you need to configure the application to use the options model and add your configuration class to the services collection in `ConfigureServices.cs`:
+Configure the app to use the options model and add your configuration class to the services collection in `ConfigureServices.cs`:
 
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Startup.cs?highlight=5&range=27-32)]
 
 
 > [!NOTE]
-> We configured the application to read the settings from a JSON-formatted file by modifying `Program.cs`
+> We configured the app to read the settings from a JSON-formatted file by modifying `Program.cs`
 > [!code-csharp[](./dependency-injection/sample/ControllerDI/Program.cs?highlight=4-7&range=21-28)]
 > You can also configure the settings entirely in code, as is shown in the commented code above. See [Configuration](xref:fundamentals/configuration/index) for further configuration options.
 
@@ -70,7 +68,6 @@ Once you've specified a strongly-typed configuration object (in this case, `Samp
 
 Following the Options pattern allows settings and configuration to be decoupled from one another, and ensures the controller is following [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns), since it doesn't need to know how or where to find the settings information. It also makes the controller easier to [unit test](testing.md), since there's no direct instantiation of settings classes within the controller class.
 
--->
 
 ## Addition resources
 
