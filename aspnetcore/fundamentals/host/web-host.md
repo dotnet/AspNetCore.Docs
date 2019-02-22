@@ -21,7 +21,7 @@ For the 1.1 version of this topic, download [ASP.NET Core Web Host (version 1.1,
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-This article covers the ASP.NET Core Web Host ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)), which is for hosting web apps. For information about the .NET Generic Host ([IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder)), see <xref:fundamentals/host/generic-host>.
+This article covers the ASP.NET Core Web Host (<xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>), which is for hosting web apps. For information about the .NET Generic Host ([IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder)), see <xref:fundamentals/host/generic-host>.
 
 ::: moniker-end
 
