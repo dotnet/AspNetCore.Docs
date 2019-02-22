@@ -3,6 +3,7 @@ using ControllerDI.Interfaces;
 
 namespace ControllerDI.Services
 {
+    #region snippet
     public class SystemDateTime : IDateTime
     {
         public DateTime Now
@@ -10,4 +11,5 @@ namespace ControllerDI.Services
             get { return DateTime.Now; }
         }
     }
+    #endregion
 }

@@ -12,7 +12,7 @@ uid: mvc/controllers/dependency-injection
 
 By [Shadi Namrouti](https://github.com/shadinamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://github.com/ardalis)
 
-ASP.NET Core MVC controllers request their dependencies explicitly via their constructors. ASP.NET Core has built-in support for [dependency injection](xref:fundamentals/dependency-injection), which makes apps easier to test and maintain.
+ASP.NET Core MVC controllers request dependencies explicitly via constructors. ASP.NET Core has built-in support for [dependency injection](xref:fundamentals/dependency-injection) (DI). DI makes apps easier to test and maintain.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/dependency-injection/sample) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -20,19 +20,19 @@ ASP.NET Core MVC controllers request their dependencies explicitly via their con
 
 Services are added as a constructor parameter, and the runtime resolves the service from the service container. Services are typically defined using interfaces. For example, consider an app that requires the current time. The following interface exposes the `IDateTime` service:
 
-[!code-csharp[](dependency-injection/sample/ControllerDI/Interfaces/IDateTime.cs)]
+[!code-csharp[](dependency-injection/sample/ControllerDI/Interfaces/IDateTime.cs&name=snippet)]
 
 The following code implements the `IDateTime` interface:
 
-[!code-csharp[](dependency-injection/sample/ControllerDI/Services/SystemDateTime.cs)]
+[!code-csharp[](dependency-injection/sample/ControllerDI/Services/SystemDateTime.cs&name=snippet)]
 
 Add the service to the dependency container:
 
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Startup1.cs?name=snippet)]
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Startup1.cs?name=snippet&highlight=3)]
 
 For more information on <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>, see  [see DI service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
-The following shows the `HomeController.Index` method code used display a greeting to the user based on the time of day:
+The following code displays a greeting to the user based on the time of day:
 
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/HomeController.cs?name=snippet)]
 
@@ -56,11 +56,11 @@ Add the configuration class to the services collection:
 
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Startup.cs?highlight=4&name=snippet1)]
 
-We configured the app to read the settings from a JSON-formatted file:
+Configure the app to read the settings from a JSON-formatted file:
 
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Program.cs?name=snippet&range=10-15)]
 
-The following code request the `IOptions<SampleWebSettings>`settings from a controller and uses them in the `Index` method:
+The following code requests the `IOptions<SampleWebSettings>`settings from the service container and uses them in the `Index` method:
 
 [!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
 

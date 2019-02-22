@@ -17,7 +17,7 @@ namespace ControllerDI
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.AddJsonFile("samplewebsettings.json", 
-                                    optional: false,   // File is not optional
+                                    optional: false,        // File is not optional.
                                     reloadOnChange: false);
             })
             .UseStartup<Startup>();
