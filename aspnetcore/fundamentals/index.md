@@ -304,6 +304,6 @@ For more information, see [Content root](xref:fundamentals/host/generic-host#con
 
 The web root (also known as *webroot*) is the base path to public, static resources, such as CSS, JavaScript, and image files. The static files middleware will only serve files from the web root directory (and sub-directories) by default. The web root path defaults to *\<content root>/wwwroot*, but a different location can be specified when [building the host](#host).
 
-In Razor (*.cshtml*) files, the tilde-slash  `~/` points to the web root. Paths beginning with `~/` are referred to as virtual paths.
+In Razor (*.cshtml*) files, the tilde-slash `~/` points to the web root. Paths beginning with `~/` are referred to as virtual paths.
 
 For more information, see [Static files](xref:fundamentals/static-files).
