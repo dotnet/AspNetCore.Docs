@@ -46,28 +46,23 @@ The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> attribute enables inje
 
 ## Accessing settings from a controller
 
-Accessing application or configuration settings from within a controller is a common pattern. Generally, the *options pattern* described in [Configuration](xref:fundamentals/configuration/index) is the preferred approach to get settings. You generally shouldn't request IConfiguration directly from your controller
+Accessing application or configuration settings from within a controller is a common pattern. Generally, the *options pattern* described in [Configuration](xref:fundamentals/configuration/index) is the preferred approach to get settings. You generally shouldn't request <xref:Microsoft.Extensions.Configuration.IConfiguration> directly from your controller
 
-To work with the options pattern, create a class that represents the options. For example:
+Create a class that represents the options. For example:
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs&name=snippet)]
 
-Configure the app to use the options model and add your configuration class to the services collection in `ConfigureServices.cs`:
+Add the configuration class to the services collection:
 
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Startup.cs?highlight=5&range=27-32)]
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Startup.cs?highlight=4&name=snippet)]
 
+We configured the app to read the settings from a JSON-formatted file:
 
-> [!NOTE]
-> We configured the app to read the settings from a JSON-formatted file by modifying `Program.cs`
-> [!code-csharp[](./dependency-injection/sample/ControllerDI/Program.cs?highlight=4-7&range=21-28)]
-> You can also configure the settings entirely in code, as is shown in the commented code above. See [Configuration](xref:fundamentals/configuration/index) for further configuration options.
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Program.cs?name=snippet&range=10-15)]
 
-Once you've specified a strongly-typed configuration object (in this case, `SampleWebSettings`) and added it to the services collection, you can request it from any Controller or Action method by requesting an instance of `IOptions<T>` (in this case, `IOptions<SampleWebSettings>`). The following code shows how one would request the settings from a controller:
+The following code request the `IOptions<SampleWebSettings>`settings from a controller and uses them in the `Index` method:
 
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/SettingsController.cs?highlight=2-7&range=12-27)]
-
-Following the Options pattern allows settings and configuration to be decoupled from one another, and ensures the controller is following [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns), since it doesn't need to know how or where to find the settings information. It also makes the controller easier to [unit test](testing.md), since there's no direct instantiation of settings classes within the controller class.
-
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
 
 ## Addition resources
 

@@ -3,7 +3,6 @@ using ControllerDI.Models;
 using ControllerDI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,13 +23,6 @@ namespace ControllerDI
         {
             services.AddSingleton<IDateTime, SystemDateTime>();
             services.Configure<SampleWebSettings>(Configuration);
-
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -48,7 +40,6 @@ namespace ControllerDI
             }
 
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
