@@ -20,11 +20,11 @@ ASP.NET Core MVC controllers request dependencies explicitly via constructors. A
 
 Services are added as a constructor parameter, and the runtime resolves the service from the service container. Services are typically defined using interfaces. For example, consider an app that requires the current time. The following interface exposes the `IDateTime` service:
 
-[!code-csharp[](dependency-injection/sample/ControllerDI/Interfaces/IDateTime.cs&name=snippet)]
+[!code-csharp[](dependency-injection/sample/ControllerDI/Interfaces/IDateTime.cs?name=snippet)]
 
 The following code implements the `IDateTime` interface:
 
-[!code-csharp[](dependency-injection/sample/ControllerDI/Services/SystemDateTime.cs&name=snippet)]
+[!code-csharp[](dependency-injection/sample/ControllerDI/Services/SystemDateTime.cs?name=snippet)]
 
 Add the service to the dependency container:
 
