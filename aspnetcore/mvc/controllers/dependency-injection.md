@@ -54,11 +54,11 @@ Create a class that represents the options. For example:
 
 Add the configuration class to the services collection:
 
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Startup.cs?highlight=4&name=snippet)]
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Startup.cs?highlight=4&name=snippet1)]
 
 We configured the app to read the settings from a JSON-formatted file:
 
-[!code-csharp[](./dependency-injection/sample/ControllerDI/Program.cs?name=snippet1&range=10-15)]
+[!code-csharp[](./dependency-injection/sample/ControllerDI/Program.cs?name=snippet&range=10-15)]
 
 The following code request the `IOptions<SampleWebSettings>`settings from a controller and uses them in the `Index` method:
 
