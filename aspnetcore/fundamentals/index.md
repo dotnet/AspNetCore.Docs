@@ -33,7 +33,7 @@ For more information, see [App startup](xref:fundamentals/startup).
 
 ## Dependency injection (services)
 
-ASP.NET Core has a built-in dependency injection (DI) framework that makes configured services available to an app's classes. One way to get an instance of a service in a class is to create a constructor with a parameter of the required type. The parameter can be the service type or an interface, and at run time the DI system provides the service.
+ASP.NET Core has a built-in dependency injection (DI) framework that makes configured services available to an app's classes. One way to get an instance of a service in a class is to create a constructor with a parameter of the required type. The parameter can be the service type or an interface. The DI system provides the service at runtime.
 
 ::: moniker range=">= aspnetcore-2.0"
 
