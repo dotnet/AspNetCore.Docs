@@ -13,7 +13,7 @@ The following table lists the files and folders in the project. For this tutoria
 | wwwroot | Contains static files. See [Static files](xref:fundamentals/static-files). |
 | Pages | Folder for [Razor Pages](xref:razor-pages/index). |
 | *appsettings.json* | [Configuration](xref:fundamentals/configuration/index) |
-| *Program.cs* | [Hosts](xref:fundamentals/host/index) the ASP.NET Core app.|
+| *Program.cs* | [Hosts](xref:fundamentals/index#host) the ASP.NET Core app.|
 | *Startup.cs* | Configures services and the request pipeline. See [Startup](xref:fundamentals/startup).|
 
 ### The Pages folder

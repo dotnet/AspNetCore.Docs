@@ -22,8 +22,8 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 
 The sample app is provided in two versions:
 
-* Web Host &ndash; The Web Host is useful for hosting web apps. The example code shown in this topic is from the Web Host version of the sample. For more information, see the [Web Host](xref:fundamentals/host/web-host) topic.
-* Generic Host &ndash; The Generic Host is new in ASP.NET Core 2.1. For more information, see the [Generic Host](xref:fundamentals/host/generic-host) topic.
+* Web Host &ndash; Web Host is useful for hosting web apps. The example code shown in this topic is from Web Host version of the sample. For more information, see the [Web Host](xref:fundamentals/host/web-host) topic.
+* Generic Host &ndash; Generic Host is new in ASP.NET Core 2.1. For more information, see the [Generic Host](xref:fundamentals/host/generic-host) topic.
 
 ## Package
 
@@ -48,8 +48,8 @@ Hosted services implement the <xref:Microsoft.Extensions.Hosting.IHostedService>
 
   To extend the default five second shutdown timeout, set:
 
-  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> when using the Generic Host. For more information, see <xref:fundamentals/host/generic-host#shutdown-timeout>.
-  * Shutdown timeout host configuration setting when using the Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.
+  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> when using Generic Host. For more information, see <xref:fundamentals/host/generic-host#shutdown-timeout>.
+  * Shutdown timeout host configuration setting when using Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.
 
 The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 

@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Web Host
 author: guardrex
-description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
+description: Learn about Web Host in ASP.NET Core, which is responsible for app startup and lifetime management.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2018
@@ -11,13 +11,25 @@ uid: fundamentals/host/web-host
 
 By [Luke Latham](https://github.com/guardrex)
 
+ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
+
 ::: moniker range="<= aspnetcore-1.1"
 
 For the 1.1 version of this topic, download [ASP.NET Core Web Host (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Web-Host_1.1.pdf).
 
 ::: moniker-end
 
-ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. This topic covers the ASP.NET Core Web Host ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)), which is useful for hosting web apps. For coverage of the .NET Generic Host ([IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder)), see <xref:fundamentals/host/generic-host>.
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+
+This article covers the ASP.NET Core Web Host (<xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>), which is for hosting web apps. For information about the .NET Generic Host ([IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder)), see <xref:fundamentals/host/generic-host>.
+
+::: moniker-end
+
+::: moniker range="> aspnetcore-2.2"
+
+This article covers the ASP.NET Core Web Host ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)). In ASP.NET Core 3.0, Generic Host replaces Web Host. For more information, see [The host](xref:fundamentals/index#host).
+
+::: moniker-end
 
 ## Set up a host
 
@@ -308,7 +320,7 @@ Kestrel has its own endpoint configuration API. For more information, see <xref:
 
 ### Shutdown Timeout
 
-Specifies the amount of time to wait for the web host to shut down.
+Specifies the amount of time to wait for Web Host to shut down.
 
 **Key**: shutdownTimeoutSeconds  
 **Type**: *int*  
@@ -369,7 +381,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure the web host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration). `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
+Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration). `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
 Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
 
@@ -664,7 +676,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-`IHostingEnvironment` can be injected into the `Invoke` method when creating custom [middleware](xref:fundamentals/middleware/index#write-middleware):
+`IHostingEnvironment` can be injected into the `Invoke` method when creating custom [middleware](xref:fundamentals/middleware/write):
 
 ```csharp
 public async Task Invoke(HttpContext context, IHostingEnvironment env)

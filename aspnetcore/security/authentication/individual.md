@@ -16,7 +16,6 @@ The authentication templates are available in .NET Core CLI with `-au Individual
 
 ```console
 dotnet new mvc -au Individual
-dotnet new webapi -au Individual
 dotnet new webapp -au Individual
 ```
 
@@ -26,11 +25,12 @@ dotnet new webapp -au Individual
 
 ```console
 dotnet new mvc -au Individual
-dotnet new webapi -au Individual
 dotnet new razor -au Individual
 ```
 
 ::: moniker-end
+
+See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5833) for web API authentication.
 
 <a name="no"></a>
 ## No Authentication
