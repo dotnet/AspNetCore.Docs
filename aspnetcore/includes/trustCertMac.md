@@ -1,8 +1,8 @@
 Visual Studio for Mac displays a following dialog with the following message:
 
-*This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate. Would you like to trust the IIS Express SSL certificate?*(~/includes/img/trustCert.png)
+*This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate. Would you like to trust the IIS Express SSL certificate?*
 
-The following dialog is displayed:
+TSelect **Yes** and the following dialog is displayed:
 
 ![Security warning dialog](~/getting-started/_static/cert.png)
 

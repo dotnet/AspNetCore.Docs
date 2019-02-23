@@ -35,12 +35,6 @@ Open a command shell, and enter the following command:
 dotnet new webapp -o aspnetcoreapp
 ```
 
-<!--
-`## Enable local HTTPS` is duplicated at 
-[!INCLUDE[](~/includes/trust-cert.md)]
-with different tabs. If you update this, update the include.
- -->
-
 ## Enable local HTTPS
 
 Trust the HTTPS development certificate:
