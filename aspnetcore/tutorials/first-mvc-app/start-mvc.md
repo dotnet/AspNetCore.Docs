@@ -93,13 +93,13 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 ---  
 <!-- End of VS tabs -->
 
-[!INCLUDE[](~/includes/trustCertVS.md)]
-
 ### Run the app
 
 # [Visual Studio](#tab/visual-studio) 
 
 Select **Ctrl-F5** to run the app in non-debug mode.
+
+[!INCLUDE[](~/includes/trustCertVS.md)]
 
 * Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. The URL in the browser shows `localhost:5000`. When you run the app, you'll see a different port number.
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
@@ -115,6 +115,8 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 
 * Press **Ctrl-F5** to run without the debugger.
 
+[!INCLUDE[](~/includes/trustCertVSC.md)]
+
   Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
   Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
@@ -122,6 +124,8 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Run** > **Start Without Debugging** to launch the app. Visual Studio for Mac starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+
+[!INCLUDE[](~/includes/trustCertMac.md)]
 
 * The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
 * You can launch the app in debug or non-debug mode from the **Run** menu.
