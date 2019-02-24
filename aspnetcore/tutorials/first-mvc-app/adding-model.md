@@ -168,16 +168,6 @@ The `ef migrations add InitialCreate` command generates code to create the initi
 
 The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration.
 
----  
-
-The preceding commands generate the following warning:
-
-```text
-No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
-```
-
-You can ignore that warning. It will be fixed in a later tutorial.
-
 ## Examine the context registered with dependency injection
 
 ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with DI during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
