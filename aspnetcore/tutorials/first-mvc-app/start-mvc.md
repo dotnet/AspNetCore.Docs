@@ -12,8 +12,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
-https://docs.microsoft.com/en-us/visualstudio/ide/visual-studio-ide?view=vs-2017
-
 This tutorial teaches the basics of building an ASP.NET Core MVC web app.
 
 The app manages a database of movie titles. You learn how to:
@@ -93,7 +91,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
 * Press **Ctrl-F5** to run without the debugger.
 
-  Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+  Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
   Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
 

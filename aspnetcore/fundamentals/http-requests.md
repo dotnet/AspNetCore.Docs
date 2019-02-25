@@ -1,5 +1,5 @@
 ---
-title: Initiate HTTP requests
+title: Make HTTP requests using IHttpClientFactory in ASP.NET Core
 author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 01/25/2019
 uid: fundamentals/http-requests
 ---
-# Initiate HTTP requests
+# Make HTTP requests using IHttpClientFactory in ASP.NET Core
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak), and [Steve Gordon](https://github.com/stevejgordon)
 
@@ -268,3 +268,9 @@ It may be necessary to control the configuration of the inner `HttpMessageHandle
 An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
 [!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet12)]
+
+## Additional resources
+
+* [Use HttpClientFactory to implement resilient HTTP requests](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
+* [Implement HTTP call retries with exponential backoff with HttpClientFactory and Polly policies](/dotnet/standard/microservices-architecture/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly)
+* [Implement the Circuit Breaker pattern](/dotnet/standard/microservices-architecture/implement-resilient-applications/implement-circuit-breaker-pattern)

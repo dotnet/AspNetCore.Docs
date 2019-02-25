@@ -56,36 +56,36 @@
   items: 
     - name: Overview
       uid: fundamentals/index
-    - name: App startup
+    - name: The Startup class
       uid: fundamentals/startup
     - name: Dependency injection (services)
       uid: fundamentals/dependency-injection
-    - name: Routing
-      uid: fundamentals/routing
-    - name: Environments (dev, stage, prod)
-      uid: fundamentals/environments
+    - name: Middleware
+      uid: fundamentals/middleware/index
+    - name: The Host
+      items: 
+      - name: Web Host
+        uid: fundamentals/host/web-host
+      - name: Generic Host
+        uid: fundamentals/host/generic-host
+    - name: Servers
+      uid: fundamentals/servers/index
     - name: Configuration
       uid: fundamentals/configuration/index
     - name: Options
       uid: fundamentals/configuration/options
+    - name: Environments (dev, stage, prod)
+      uid: fundamentals/environments
     - name: Logging
       uid: fundamentals/logging/index
+    - name: Routing
+      uid: fundamentals/routing
     - name: Handle errors
       uid: fundamentals/error-handling
-    - name: Middleware
-      uid: fundamentals/middleware/index
-    - name: Host
-      items: 
-        - name: Overview
-          uid: fundamentals/host/index
-        - name: Web host
-          uid: fundamentals/host/web-host
-        - name: Generic host
-          uid: fundamentals/host/generic-host
-    - name: Servers
-      uid: fundamentals/servers/index
     - name: Make HTTP requests
       uid: fundamentals/http-requests
+    - name: Static files
+      uid: fundamentals/static-files
 - name: Web apps
   items: 
     - name: Razor Pages
@@ -94,7 +94,7 @@
           uid: razor-pages/index
         - name: Tutorial
           items: 
-            - name: Overview          
+            - name: Overview
               uid: tutorials/razor-pages/index
             - name: Get started
               uid: tutorials/razor-pages/razor-pages-start
@@ -209,8 +209,6 @@
               href: mvc/views/working-with-forms.md#the-validation-summary-tag-helper
     - name: Layout
       uid: mvc/views/layout
-    - name: Static files
-      uid: fundamentals/static-files
     - name: Model binding
       uid: mvc/models/model-binding
     - name: Model validation
@@ -813,6 +811,8 @@
       uid: fundamentals/portable-object-localization
 - name: Advanced
   items: 
+    - name: Write middleware
+      uid: fundamentals/middleware/write
     - name: URL rewriting
       uid: fundamentals/url-rewriting
     - name: File providers
