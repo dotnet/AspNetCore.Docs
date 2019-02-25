@@ -75,6 +75,11 @@ The following characteristics apply when hosting in-process:
       services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
       services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
   }
+  
+  public void Configure(IApplicationBuilder app)
+  {
+      app.UseAuthentication();
+  }
   ```
 
 ### Out-of-process hosting model
