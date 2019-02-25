@@ -105,7 +105,7 @@ The links generated with the preceding code are valid anywhere in the app.
 
 The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
-When the area or controller is not specified, routing depends on the `ambient` values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
+When the area or controller is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
 For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
 
@@ -120,9 +120,9 @@ To share a common layout for the entire app, move the *_ViewStart.cshtml* to the
 -->
 <a name="rename"></a>
 
-### Change default area name
+### Change default area folder where views are stored
 
-The following code changes the default area name from `"Areas"` to `"MyAreas"`:
+The following code changes the default area folder from `"Areas"` to `"MyAreas"`:
 
 [!code-csharp[](areas/samples/MVCareas/Startup2.cs?name=snippet)]
 

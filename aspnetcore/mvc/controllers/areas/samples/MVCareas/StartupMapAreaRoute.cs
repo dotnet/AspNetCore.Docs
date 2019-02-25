@@ -43,13 +43,13 @@ namespace MVCareas
                 routes.MapAreaRoute(
                     name: "MyAreaProducts",
                     areaName:"Products",
-                    template: "Products/{controller=Home}/{action=Index}/{id?}"
-                    );
+                    template: "Products/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapAreaRoute(
                     name: "MyAreaServices",
                     areaName: "Services",
-                    template: "Services/{controller=Home}/{action=Index}/{id?}"
-                    );
+                    template: "Services/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                    name: "default",
                    template: "{controller=Home}/{action=Index}/{id?}");
