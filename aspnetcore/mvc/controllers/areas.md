@@ -19,7 +19,7 @@ Consider using Areas in an project when:
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 ## Areas for controllers with views
 
