@@ -4,7 +4,7 @@ author: rick-anderson
 description: Build a web API with ASP.NET Core MVC
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2019
+ms.date: 02/4/2019
 uid: tutorials/first-web-api
 ---
 
@@ -163,11 +163,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-* Add a `TodoContext` class to the *Models* folder.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Add a `TodoContext` class to the *Models* folder.
 
@@ -202,11 +198,7 @@ The preceding code:
 
   ![Add new Item dialog with controller in search box and web api controller selected](first-web-api/_static/new_controller.png)
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-* In the *Controllers* folder, create a class named `TodoController`.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * In the *Controllers* folder, create a class named `TodoController`.
 
