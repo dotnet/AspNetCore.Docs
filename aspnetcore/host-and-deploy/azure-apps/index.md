@@ -16,10 +16,10 @@ uid: host-and-deploy/azure-apps/index
 
 The Azure [Web Apps Documentation](/azure/app-service/) is the home for Azure Apps documentation, tutorials, samples, how-to guides, and other resources. Two notable tutorials that pertain to hosting ASP.NET Core apps are:
 
-[Quickstart: Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet)  
+[Quickstart: Create an ASP.NET Core web app in Azure App Service on Windows](/azure/app-service/app-service-web-get-started-dotnet)  
 Use Visual Studio to create and deploy an ASP.NET Core web app to Azure App Service on Windows.
 
-[Quickstart: Create a .NET Core web app in App Service on Linux](/azure/app-service/containers/quickstart-dotnetcore)  
+[Quickstart: Create an ASP.NET Core web app in Azure App Service on Linux](/azure/app-service/containers/quickstart-dotnetcore)  
 Use the command line to create and deploy an ASP.NET Core web app to Azure App Service on Linux.
 
 The following articles are available in ASP.NET Core documentation:
