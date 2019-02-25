@@ -1,8 +1,10 @@
-#define Basic // Managed
+#define Certificate // Managed
 // Change to 'Managed' to run the sample in Managed Identity configuration.
 // For details, see the Azure Key Vault Configuration Provider topic:
 // https://docs.microsoft.com/aspnet/core/security/key-vault-configuration
 
+
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Azure.KeyVault;
@@ -19,8 +21,9 @@ namespace SampleApp
             CreateWebHostBuilder(args).Build().Run();
         }
 
-#if Basic
+#if Certificate
         #region snippet1
+        // using System.Security.Cryptography.X509Certificates;
         // using Microsoft.Extensions.Configuration;
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -34,7 +37,7 @@ namespace SampleApp
                         config.AddAzureKeyVault(
                             $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
                             builtConfig["AzureADApplicationId"],
-                            builtConfig["AzureADPassword"]);
+                            new X509Certificate2("TestCert.pfx"));
                     }
                 })
                 .UseStartup<Startup>();
