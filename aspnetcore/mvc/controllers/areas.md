@@ -29,7 +29,7 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
 * Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area:
   [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
 * The [area route added to startup](#add-area-route):
-  [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=1-6)]
+  [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
 ## Area folder structure
 Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
