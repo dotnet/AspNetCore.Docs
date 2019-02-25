@@ -5,7 +5,7 @@ description: Learn how to configure Windows Authentication in ASP.NET Core, usin
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 01/15/2019
+ms.date: 02/25/2019
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
@@ -186,3 +186,7 @@ ASP.NET Core doesn't implement impersonation. Apps run with the app's identity f
 [!code-csharp[](windowsauth/sample_snapshot/Startup.cs?highlight=10-19)]
 
 `RunImpersonated` doesn't support asynchronous operations and shouldn't be used for complex scenarios. For example, wrapping entire requests or middleware chains isn't supported or recommended.
+
+### Claims transformations
+
+When hosting in-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services. For a code example that activates claims transformations when hosting in-process, see <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.
