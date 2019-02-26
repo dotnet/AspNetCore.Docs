@@ -126,14 +126,19 @@ public class UserRepository : IUserRepository
 }
 ```
 
-## Using HttpContext from a background thread
+## HttpContext access from a background thread
 
-The `HttpContext` is not thread-safe, and you must not attempt to read or write properties of the `HttpContext` outside of processing a request.
+`HttpContext` is not thread-safe. Reading or writing properties of the `HttpContext` outside of processing a request can result in a `NullReferenceException`.
 
 > [!NOTE]
-> Using `HttpContext` in an unsafe way will usually result in a `NullReferenceException` while trying to access one of the properties. If you see sporadic `NullReferenceException`s reported, then you should look over parts of the code that start background processing, or that continue processing after a request completes. You should also look for a common mistakes like defining a controller method as `async void`. 
+> Using `HttpContext` outside of processing a request often results in a `NullReferenceException`. If your app generates sporadic `NullReferenceException`s , review parts of the code that start background processing, or that continue processing after a request completes. Look for a mistakes like defining a controller method as `async void`.
 
-To safely perform background work using data from the `HttpContext`, capture the data that you need during request processing and then start your background work. A good way to avoid mistakes is to make sure that you never pass the `HttpContext` into a method that does background work - pass the data you need instead.
+To safely perform background work with `HttpContext` data:
+
+* Copy the required data during request processing.
+* Pass the copied data to a background task.
+
+To avoid unsafe code, never pass the `HttpContext` into a method that does background work - pass the data you need instead.
 
 ```csharp
 public class EmailController
