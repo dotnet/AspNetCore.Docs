@@ -311,7 +311,7 @@ You can use an action filter to validate model state and return any errors if th
 The `OnActionExecuted` method runs after the action method and can see and manipulate the results of the action through the `ActionExecutedContext.Result` property. `ActionExecutedContext.Canceled` will be set to true if the action execution was short-circuited by another filter. `ActionExecutedContext.Exception` will be set to a non-null value if the action or a subsequent action filter threw an exception. Setting `ActionExecutedContext.Exception` to null:
 
 * Effectively 'handles' an exception.
-* `ActionExectedContext.Result` is executed as if it were returned normally from the action method.
+* `ActionExecutedContext.Result` is executed as if it were returned normally from the action method.
 
 ## Exception filters
 

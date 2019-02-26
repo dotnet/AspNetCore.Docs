@@ -1,47 +1,75 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using BackgroundTasksSample.Data;
 using BackgroundTasksSample.Services;
 
 namespace BackgroundTasksSample.Pages
 {
+    #region snippet1
     public class IndexModel : PageModel
     {
-        private readonly IApplicationLifetime _appLifetime;
+        private readonly AppDbContext _db;
         private readonly ILogger _logger;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
 
-        #region snippet1
-        public IndexModel(IBackgroundTaskQueue queue, 
-            IApplicationLifetime appLifetime,
-            ILogger<IndexModel> logger)
+        public IndexModel(AppDbContext db, IBackgroundTaskQueue queue, 
+            ILogger<IndexModel> logger, IServiceScopeFactory serviceScopeFactory)
         {
-            Queue = queue;
-            _appLifetime = appLifetime;
+            _db = db;
             _logger = logger;
+            Queue = queue;
+            _serviceScopeFactory = serviceScopeFactory;
         }
 
         public IBackgroundTaskQueue Queue { get; }
-        #endregion
+    #endregion
+        public IReadOnlyList<Message> Messages { get; private set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
+            Messages = await _db.Messages.AsNoTracking().ToListAsync();
         }
 
         #region snippet2
-        public IActionResult OnPostAddTask()
+        public IActionResult OnPostAddTaskAsync()
         {
             Queue.QueueBackgroundWorkItem(async token =>
             {
                 var guid = Guid.NewGuid().ToString();
 
-                for (int delayLoop = 0; delayLoop < 3; delayLoop++)
+                using (var scope = _serviceScopeFactory.CreateScope())
                 {
-                    _logger.LogInformation(
-                        $"Queued Background Task {guid} is running. {delayLoop}/3");
-                    await Task.Delay(TimeSpan.FromSeconds(5), token);
+                    var scopedServices = scope.ServiceProvider;
+                    var db = scopedServices.GetRequiredService<AppDbContext>();
+
+                    for (int delayLoop = 1; delayLoop < 4; delayLoop++)
+                    {
+                        try
+                        {
+                            db.Messages.Add(
+                                new Message() 
+                                { 
+                                    Text = $"Queued Background Task {guid} has " +
+                                        $"written a step. {delayLoop}/3"
+                                });
+                            await db.SaveChangesAsync();
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, 
+                                "An error occurred writing to the " +
+                                $"database. Error: {ex.Message}");
+                        }
+
+                        await Task.Delay(TimeSpan.FromSeconds(5), token);
+                    }
                 }
 
                 _logger.LogInformation(
