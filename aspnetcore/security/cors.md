@@ -20,9 +20,9 @@ Browser security prevents a web page from making requests to a different domain 
 * Is a W3C standard that allows a server to relax the same-origin policy.
 * Is **not** a security feature, CORS relaxes security. An API is not safer by allowing CORS. For more information, see [How CORS works](#how-cors).
 * Allows a server to explicitly allow some cross-origin requests while rejecting others.
-* Is safer and more flexible than earlier techniques, such as [JSONP](dotnet/framework/wcf/samples/jsonp).
+* Is safer and more flexible than earlier techniques, such as [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/2.2-stage-samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Same origin
 
@@ -52,7 +52,7 @@ The preceding code:
 
 * Sets the policy name to "_myAllowSpecificOrigins". The policy name is arbitrary.
 * Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method, which enables cores.
-* Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
+* Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> method call adds CORS services to the app's service container:
 
@@ -360,7 +360,7 @@ This section describes what happens in a [CORS](https://developer.mozilla.org/en
   * It's up to the client (browser) to enforce CORS. The server executes the request and returns the response, it's the client that returns an error and blocks the response. For example, any of the following tools will display the server response:
      * [Fiddler](https://www.telerik.com/fiddler)
      * [Postman](https://www.getpostman.com/)
-     * [.NET HttpClient](dotnet/csharp/tutorials/console-webapiclient)
+     * [.NET HttpClient](/dotnet/csharp/tutorials/console-webapiclient)
      * A web browser by entering the URL in the address bar.
 * It's a way for a server to allow browsers to execute a cross-origin [XHR](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) request that otherwise would be forbidden.
   * Browsers (without CORS) can't do cross-origin requests. Before CORS, [JSONP](https://www.w3schools.com/js/js_json_jsonp.asp) was used to circumvent this restriction. JSONP doesn't use XHR, it uses the `<script>` tag to receive the response. Scripts are allowed to be loaded cross-origin.
