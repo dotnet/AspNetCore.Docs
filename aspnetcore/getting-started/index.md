@@ -59,12 +59,9 @@ dotnet dev-certs https --trust
 
 The preceding command displays the following message:
 
-*Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`.  
-*This command might prompt you for your password to install the certificate on the system keychain.
-
-Password:*
-
-Enter your password if you agree to trust the development certificate.
+*Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`.
+ 
+This command command might prompt you for your password to install the certificate on the system keychain. Enter your password if you agree to trust the development certificate.
 
 # [Linux](#tab/linux)
 
@@ -72,7 +69,7 @@ See the documentation for your Linux distribution on how to trust the HTTPS deve
 
 ---
 
-For more information, see [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl)
+For more information, see [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
 
 ## Run the app
 
