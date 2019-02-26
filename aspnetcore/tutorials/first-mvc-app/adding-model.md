@@ -3,7 +3,7 @@ title: Add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 ms.author: riande
-ms.date: 02/12/2019
+ms.date: 02/25/2019
 uid: tutorials/first-mvc-app/adding-model
 ---
 
@@ -167,6 +167,8 @@ In this section, the following tasks are completed:
 The `ef migrations add InitialCreate` command generates code to create the initial database schema.
 
 The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration.
+
+---
 
 ## Examine the context registered with dependency injection
 
