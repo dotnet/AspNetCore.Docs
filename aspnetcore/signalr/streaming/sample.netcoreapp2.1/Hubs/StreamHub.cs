@@ -1,6 +1,4 @@
-﻿// This file contains the ASP.NET Core 2.1 version of this file and is no longer used in the sample, hence we use '#if false' to avoid compiling it.
-#if false
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Threading.Channels;
@@ -47,4 +45,3 @@ namespace SignalRChat.Hubs
     }
     #endregion
 }
-#endif
