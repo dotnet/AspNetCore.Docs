@@ -84,10 +84,10 @@ public class ControlPanelController : Controller
 
 ::: moniker range=">= aspnetcore-2.0"
 
-For Razor Pages, the `AuthorizeAttribute` can be applied in the following ways:
+For Razor Pages, the `AuthorizeAttribute` can be applied by either:
 
-* using a [convention](xref:razor-pages/razor-pages-conventions#page-model-action-conventions) 
-* or by applying the `AuthorizeAttribute` to the `PageModel` instance:
+* Using a [convention](xref:razor-pages/razor-pages-conventions#page-model-action-conventions), or
+* Applying the `AuthorizeAttribute` to the `PageModel` instance:
 
 ```csharp
 [Authorize(Policy = "RequireAdministratorRole")]
