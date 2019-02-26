@@ -1,7 +1,7 @@
 # Policy Schemes
 
-Authentication policy schemes were introduced to make it easier to have a single logical authentication scheme potentially do different things. It makes it easy to forward any authentication action to another scheme.
-All authentication schemes that use derived `Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions` and the associated `Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>` automatically are policy schemes as of 2.1.
+Authentication policy schemes were introduced to make it easier to have a single logical authentication scheme potentially do different things. It makes it easy to forward any authentication action to another scheme, and also forward dynamically based on the request.
+All authentication schemes that use derived `Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions` and the associated `Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>` automatically are policy schemes as of 2.1 and the feature can be enabled via configuring the scheme's options.
 
 ```C#
     public class AuthenticationSchemeOptions
