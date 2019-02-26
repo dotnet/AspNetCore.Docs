@@ -106,12 +106,7 @@ These prerequisites can be seen in the [sample app](https://github.com/aspnet/Do
 
 ## SUT environment
 
-If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development. If the SUT requires a different environment when tests are executed (for example, Staging, Testing, Production):
-
-* Specify the environment on the test system (for example, set the `ASPNETCORE_ENVIRONMENT` environment variable to a value that reflects a staging or testing environment, such as `Staging` or `Testing`).
-* Provide code in the SUT's [Startup](xref:fundamentals/startup) that loads services and configures the request pipeline based on its environment.
-
-For more information, see <xref:fundamentals/environments>.
+If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development.
 
 ## Basic tests with the default WebApplicationFactory
 
