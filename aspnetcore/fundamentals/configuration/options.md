@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/29/2018
+ms.date: 02/26/2019
 uid: fundamentals/configuration/options
 ---
 # Options pattern in ASP.NET Core
@@ -268,21 +268,22 @@ services.AddOptions<MyOptions>("optionalName")
     .Configure(o => o.Property = "named");
 ```
 
-## Using DI Services to configure options
+## Use DI services to configure options
 
-You can access other services from dependency injection while configuring options in two ways. 
+You can access other services from dependency injection while configuring options in two ways:
 
-The simplest way is to pass a configuration delegate to `Configure` on `OptionsBuilder<TOptions>`. `OptionsBuilder<TOptions>` provides overloads of `Configure` that allow you to use up to five services to configure options:
+* Pass a configuration delegate to [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) on [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1). [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) provides overloads of [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) that allow you to use up to five services to configure options:
 
-```csharp
-services.AddOptions<MyOptions>("optionalName")
-    .Configure<Service1, Service2, Service3, Service4, Service5>(
-        (o, s, s2, s3, s4, s5) => 
-            o.Property = DoSomethingWith(s, s2, s3, s4, s5));
-```
+  ```csharp
+  services.AddOptions<MyOptions>("optionalName")
+      .Configure<Service1, Service2, Service3, Service4, Service5>(
+          (o, s, s2, s3, s4, s5) => 
+              o.Property = DoSomethingWith(s, s2, s3, s4, s5));
+  ```
 
+* Create your own type that implements <xref:Microsoft.Extensions.Options.IConfigureOptions`1> or <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> and register the type as a service.
 
-If you prefer, you can also write your own type that implements <xref:Microsoft.Extensions.Options.IConfigureOptions`1> or <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> and register it as a service. You should consider `Configure` as your first choice, since writing a service will require more moving parts. Writing your own type is equivalent to what the framework does for you when you use `Configure`. Calling `Configure` registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, which has a constructor that accepts the generic service types specified. 
+We recommend passing a configuration delegate to [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*), since creating a service is more complex. Creating your own type is equivalent to what the framework does for you when you use [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*). Calling [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, which has a constructor that accepts the generic service types specified. 
 
 ::: moniker range=">= aspnetcore-2.2"
 
