@@ -90,7 +90,7 @@ As shown in the [Middleware](xref:fundamentals/middleware/index) page, an ASP.NE
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
-The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/index#write-middleware).
+The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/write).
 
 The *MyMiddlewareExtensions* helper class makes it easier to configure your middleware in your `Startup` class. The `UseMyMiddleware` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 
