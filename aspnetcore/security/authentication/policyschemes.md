@@ -82,10 +82,8 @@ All authentication schemes that use derived `Microsoft.AspNetCore.Authentication
                 .AddCookie(options =>
                 {
                     // For example, can foward any requests that start with /api to the api scheme
-                    options.ForwardDefaultSelector = ctx =>
-                    {
-                        return ctx.Request.Path.StartsWithSegments("/api") ? "Api" : null;
-                    })
-                    .AddYourApiAuth("Api");
+                    options.ForwardDefaultSelector = ctx => ctx.Request.Path.StartsWithSegments("/api") ? "Api" : null;
+                })
+                .AddYourApiAuth("Api");
         }
 ```
