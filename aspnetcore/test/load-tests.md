@@ -20,6 +20,9 @@ Load testing and stress testing are important to ensure a web app is performant 
 
 Under stress, can the app recover from failure and gracefully return to expected behavior? Under stress, the app is *not* run under normal conditions.
 
+> [!NOTE]
+> Web performance and load test functionality is deprecated. Visual Studio 2019 is the last version where web performance and load testing will be available. Additionally, the Azure DevOps cloud-based load testing service will close down March 31st, 2020.
+
 ## Visual Studio Tools
 
 Visual Studio allows users to create, develop, and debug web performance and load tests. An option is available to create tests by recording actions in web browser.
