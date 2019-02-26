@@ -268,9 +268,11 @@ services.AddOptions<MyOptions>("optionalName")
     .Configure(o => o.Property = "named");
 ```
 
-## Configure&lt;TOptions, TDep1, ... TDep4&gt; method
+## Using DI Services to configure options
 
-Using services from DI to configure options by implementing `IConfigure[Named]Options` in a boilerplate manner is verbose. Overloads for `ConfigureOptions` on `OptionsBuilder<TOptions>` allow you to use up to five services to configure options:
+You can access other services from dependency injection while configuring options in two ways. 
+
+The simplest way is to pass a configuration delegate to `Configure` on `OptionsBuilder<TOptions>`. `OptionsBuilder<TOptions>` provides overloads of `Configure` that allow you to use up to five services to configure options:
 
 ```csharp
 services.AddOptions<MyOptions>("optionalName")
@@ -279,7 +281,8 @@ services.AddOptions<MyOptions>("optionalName")
             o.Property = DoSomethingWith(s, s2, s3, s4, s5));
 ```
 
-The overload registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, which has a constructor that accepts the generic service types specified. 
+
+If you prefer, you can also write your own type that implements <xref:Microsoft.Extensions.Options.IConfigureOptions`1> or <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> and register it as a service. You should consider `Configure` as your first choice, since writing a service will require more moving parts. Writing your own type is equivalent to what the framework does for you when you use `Configure`. Calling `Configure` registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, which has a constructor that accepts the generic service types specified. 
 
 ::: moniker range=">= aspnetcore-2.2"
 
