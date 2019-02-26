@@ -99,6 +99,14 @@ Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue" />`) i
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `bind` handles a few cases where type conversions are performed. In principle, `bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
+In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what we want to bind to:
+
+```cshtml
+<input type="text" bind-value-oninput="@CurrentValue" />
+```
+
+Unlike `onchange`, `oninput` fires for every character that is input into the text box.
+
 **Format strings**
 
 Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
@@ -162,8 +170,6 @@ Child component:
 }
 ```
 
-The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
-
 Loading the `ParentComponent` produces the following markup:
 
 ```html
@@ -187,6 +193,16 @@ If the value of the `ParentYear` property is changed by selecting the button in 
 
 <p>Year: 1986</p>
 ```
+
+The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+
+By convention, `<ChildComponent bind-Year="@ParentYear" />` is essentially equivalent to writing,
+
+```cshtml
+    <ChildComponent bind-Year-YearChanged="@ParentYear" />
+```
+
+In general, a property can be bound to a corresponding event handler using `bind-property-event` attribute.
 
 ## Event handling
 
