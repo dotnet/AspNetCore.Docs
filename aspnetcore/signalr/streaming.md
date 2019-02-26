@@ -29,7 +29,7 @@ A hub method automatically becomes a streaming hub method when it returns a `Cha
 A hub method automatically becomes a streaming hub method when it returns a `ChannelReader<T>` or a `Task<ChannelReader<T>>`.
 ::: moniker-end
 
-Below is a sample that shows the basics of streaming data to the client using Channels. Whenever an object is written to the `ChannelWriter` that object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
+The following sample shows the basics of streaming data to the client using Channels. Whenever an object is written to the `ChannelWriter` that object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
 
 > [!NOTE]
 > * Write to the `ChannelWriter` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations will be blocked until a `ChannelReader` is returned.
