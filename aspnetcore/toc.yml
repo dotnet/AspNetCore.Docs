@@ -1,7 +1,7 @@
 - name: ASP.NET Core documentation
   href: /aspnet/#pivot=core
 - name: Overview
-  items: 
+  items:
     - name: About ASP.NET Core
       uid: index
     - name: Compare ASP.NET Core and ASP.NET
@@ -11,7 +11,7 @@
 - name: Get started
   uid: getting-started
 - name: What's new
-  items: 
+  items:
     - name: What's new in 2.2
       uid: aspnetcore-2.2
     - name: What's new in 2.1
@@ -21,9 +21,9 @@
     - name: What's new in 1.1
       uid: aspnetcore-1.1
 - name: Tutorials
-  items: 
+  items:
     - name: Web API apps
-      items: 
+      items:
         - name: Create a web API
           displayName: tutorial
           uid: tutorials/first-web-api
@@ -34,7 +34,7 @@
           displayName: tutorial
           uid: mobile/native-mobile-backend
     - name: Web apps
-      items: 
+      items:
         - name: Razor Pages
           displayName: tutorial
           items: 
@@ -82,7 +82,7 @@
             - name: Examine the Details and Delete methods
               uid: tutorials/first-mvc-app/details
     - name: Real-time web apps
-      items: 
+      items:
         - name: SignalR with JavaScript
           displayName: tutorial
           uid: tutorials/signalr
@@ -90,7 +90,7 @@
           displayName: tutorial
           uid: tutorials/signalr-typescript-webpack
     - name: Data access
-      items: 
+      items:
         - name: EF Core with Razor Pages
           displayName: tutorial
           items: 
@@ -143,7 +143,7 @@
             - name: Advanced topics
               uid: data/ef-mvc/advanced
 - name: Fundamentals
-  items: 
+  items:
     - name: Overview
       uid: fundamentals/index
     - name: The Startup class
@@ -153,7 +153,7 @@
     - name: Middleware
       uid: fundamentals/middleware/index
     - name: Host
-      items: 
+      items:
       - name: Web Host
         uid: fundamentals/host/web-host
       - name: Generic Host
@@ -178,13 +178,13 @@
     - name: Static files
       uid: fundamentals/static-files
 - name: Web apps
-  items: 
+  items:
     - name: Razor Pages
-      items: 
+      items:
         - name: Introduction
           uid: razor-pages/index
         - name: Tutorial
-          items: 
+          items:
             - name: Overview
               uid: tutorials/razor-pages/index
             - name: Get started
@@ -214,12 +214,12 @@
         - name: Razor SDK
           uid: razor-pages/sdk
     - name: MVC
-      items: 
+      items:
         - name: Overview
           uid: mvc/overview
         - name: Tutorial
           uid: tutorials/first-mvc-app/index
-          items: 
+          items:
             - name: Get started
               uid: tutorials/first-mvc-app/start-mvc
             - name: Add a controller
@@ -261,7 +261,7 @@
     - name: Session and app state
       uid: fundamentals/app-state
     - name: Tag Helpers
-      items: 
+      items:
         - name: Overview
           uid: mvc/views/tag-helpers/intro
         - name: Create Tag Helpers
@@ -271,7 +271,7 @@
         - name: Tag Helper Components
           uid: mvc/views/tag-helpers/th-components
         - name: Built-in Tag Helpers
-          items: 
+          items:
             - name: Anchor
               uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
             - name: Cache
@@ -307,7 +307,7 @@
     - name: Razor syntax
       uid: mvc/views/razor
     - name: Advanced
-      items: 
+      items:
         - name: View components
           uid: mvc/views/view-components
         - name: View compilation
@@ -325,17 +325,17 @@
         - name: Compatibility version
           uid: mvc/compatibility-version
 - name: Web API apps
-  items: 
+  items:
     - name: Overview
       uid: web-api/index
     - name: Tutorials
-      items: 
+      items:
         - name: Create a web API
           uid: tutorials/first-web-api
         - name: Web API with MongoDB
           uid: tutorials/first-mongo-app
     - name: Swagger / OpenAPI
-      items: 
+      items:
         - name: Overview
           uid: tutorials/web-api-help-pages-using-swagger
         - name: Get started with Swashbuckle
@@ -361,7 +361,7 @@
       uid: signalr/supported-platforms
       displayName: signalr
     - name: Tutorials
-      items: 
+      items:
         - name: SignalR with JavaScript
           uid: tutorials/signalr
         - name: SignalR with TypeScript
@@ -446,8 +446,20 @@
     - name: Logging and diagnostics
       displayName: signalr
       uid: signalr/diagnostics
+- name: gRPC
+  items:
+    - name: Overview
+      uid: grpc/index
+    - name: Tutorial
+      items:
+        - name: Overview
+          uid: tutorials/grpc/index
+        - name: Get started
+          uid: tutorials/grpc/grpc-start
+        - name: Add a duplex streaming call
+          uid: tutorials/grpc/grpc-duplex-streaming
 - name: Test, debug, and troubleshoot
-  items: 
+  items:
     - name: Unit testing
       href: /dotnet/core/testing/unit-testing-with-dotnet-test?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
     - name: Razor Pages unit tests
@@ -469,11 +481,11 @@
     - name: Logging
       uid: fundamentals/logging/index
 - name: Data access
-  items: 
+  items:
     - name: Tutorials
-      items: 
+      items:
         - name: EF Core with Razor Pages
-          items: 
+          items:
             - name: Overview
               uid: data/ef-rp/index
             - name: Get started
@@ -497,7 +509,7 @@
         - name: EF Core with MVC, existing database
           href: /ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: EF Core with MVC, 10 tutorials
-          items: 
+          items:
             - name: Overview
               uid: data/ef-mvc/index
             - name: Get started
@@ -523,7 +535,7 @@
     - name: EF 6 with ASP.NET Core
       uid: data/entity-framework-6
     - name: Azure Storage with Visual Studio
-      items: 
+      items:
         - name: Connected Services
           href: /visualstudio/azure/vs-azure-tools-connected-services-storage
         - name: Blob storage
@@ -533,9 +545,9 @@
         - name: Table storage
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Client-side development
-  items: 
+  items:
     - name: Razor Components
-      items: 
+      items:
         - name: Overview
           uid: razor-components/index
         - name: Get started
@@ -565,7 +577,7 @@
             - name: Configure the Linker
               uid: host-and-deploy/razor-components/configure-linker
     - name: Single Page Apps
-      items: 
+      items:
         - name: Blazor
           items:
             - name: Overview
@@ -605,7 +617,7 @@
         - name: JavaScriptServices
           uid: client-side/spa-services
     - name: LibMan
-      items: 
+      items:
         - name: Overview
           uid: client-side/libman/index
         - name: CLI
@@ -661,7 +673,7 @@
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
     - name: DevOps
-      items: 
+      items:
         - name: Overview
           displayName: azure, deploy, publish
           uid: azure/devops/index
@@ -767,7 +779,7 @@
     - name: Overview
       uid: security/index
     - name: Authentication
-      items: 
+      items:
         - name: Introduction to Identity
           uid: security/authentication/identity
         - name: Identity with SPA
@@ -789,7 +801,7 @@
         - name: Custom storage providers for Identity
           uid: security/authentication/identity-custom-storage-providers
         - name: Google, Facebook ...
-          items: 
+          items:
             - name: Overview
               uid: security/authentication/social/index
             - name: Google authentication
@@ -817,7 +829,7 @@
         - name: Use Cookie Authentication without Identity
           uid: security/authentication/cookie
         - name: Azure Active Directory
-          items: 
+          items:
             - name: Overview
               uid: security/authentication/azure-active-directory/index
             - name: Integrate Azure AD into a web app
@@ -837,7 +849,7 @@
         - name: Individual user accounts
           uid: security/authentication/individual
     - name: Authorization
-      items: 
+      items:
         - name: Overview
           uid: security/authorization/introduction
         - name: Create a web app with authorization
@@ -870,7 +882,7 @@
         - name: Data protection APIs
           uid: security/data-protection/using-data-protection
         - name: Consumer APIs
-          items: 
+          items:
             - name: Overview
               uid: security/data-protection/consumer-apis/overview
             - name: Purpose strings
@@ -884,7 +896,7 @@
             - name: Unprotect payloads whose keys have been revoked
               uid: security/data-protection/consumer-apis/dangerous-unprotect
         - name: Configuration
-          items: 
+          items:
             - name: Overview
               uid: security/data-protection/configuration/index
             - name: Configure data protection
@@ -896,7 +908,7 @@
             - name: Non-DI aware scenarios
               uid: security/data-protection/configuration/non-di-scenarios
         - name: Extensibility APIs
-          items: 
+          items:
             - name: Overview
               uid: security/data-protection/extensibility/index
             - name: Core cryptography extensibility
@@ -906,7 +918,7 @@
             - name: Miscellaneous APIs
               uid: security/data-protection/extensibility/misc-apis
         - name: Implementation
-          items: 
+          items:
             - name: Overview
               uid: security/data-protection/implementation/index
             - name: Authenticated encryption details
@@ -928,7 +940,7 @@
             - name: Ephemeral data protection providers
               uid: security/data-protection/implementation/key-storage-ephemeral
         - name: Compatibility
-          items: 
+          items:
             - name: Overview
               uid: security/data-protection/compatibility/index
             - name: Replace machineKey in ASP.NET
@@ -955,11 +967,11 @@
     - name: IP safelist
       uid: security/ip-safelist
 - name: Performance
-  items: 
+  items:
     - name: Overview
       uid: performance/performance-best-practices
     - name: Response caching
-      items: 
+      items:
         - name: Overview
           uid: performance/caching/response
         - name: In-memory cache
@@ -975,13 +987,13 @@
     - name: Load and stress testing
       uid: test/loadtests
 - name: Globalization and localization
-  items: 
+  items:
     - name: Overview
       uid: fundamentals/localization
     - name: Portable Object localization
       uid: fundamentals/portable-object-localization
 - name: Advanced
-  items: 
+  items:
     - name: Write middleware
       uid: fundamentals/middleware/write
     - name: Request and response operations
@@ -1016,7 +1028,7 @@
     - name: Factory-based middleware with third-party container
       uid: fundamentals/middleware/extensibility-third-party-container
 - name: Migration
-  items: 
+  items:
     - name: 2.2 to 3.0
       displayName: migrate, migration
       uid: migration/22-to-30
