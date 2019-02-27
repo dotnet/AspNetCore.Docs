@@ -132,7 +132,7 @@ The WebSocket transport has additional options that can be configured using the 
 
 ## Configure client options
 
-Client options can be configured on the `HubConnectionBuilder` type (available in the .NET and Javascipt clients. It is also available on the Java client but the `HttpHubConnectionBuilder` subclass is what contains the builder configuation options.), as well as on the `HubConnection` itself.
+Client options can be configured on the `HubConnectionBuilder` type (available in the .NET and JavaScript clients). It's also available in the Java client, but the `HttpHubConnectionBuilder` subclass is what contains the builder configuration options, as well as on the `HubConnection` itself.
 
 ### Configure logging
 
