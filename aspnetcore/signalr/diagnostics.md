@@ -121,7 +121,7 @@ If you connect using HTTPS, there are some extra steps to ensure Fiddler can dec
 
 Once you've collected the trace, you can export the trace by choosing "File" > "Save" > "All Sessions..." from the menu bar.
 
-![Exporting all sessions from Fiddler](signalr/fiddler-export.png)
+![Exporting all sessions from Fiddler](diagnostics/fiddler-export.png)
 
 ### Using tcpdump (macOS and Linux only)
 
@@ -173,7 +173,7 @@ Most browser Developer Tools have a "Network" tab that allows you to capture net
 3. Refresh the page (if needed) and reproduce the problem
 4. Right click anywhere in the list of requests and choose "Save All As HAR"
 
-!["Save All As HAR" option in Mozilla Firefox Dev Tools Network Tab](firefox-har-export.png)
+!["Save All As HAR" option in Mozilla Firefox Dev Tools Network Tab](diagnostics/firefox-har-export.png)
 
 ## Attaching Diagnostics files to GitHub issues
 
