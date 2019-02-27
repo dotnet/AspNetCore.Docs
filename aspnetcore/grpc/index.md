@@ -43,19 +43,19 @@ For example, the `greet.proto` file defines a `Greeter` service which defines a 
 
 [!code-proto[](tutorials/grpc/grpc-start/samples/GrpcStart/Protos/greet.proto)]
 
-# Tooling support for `.proto` files
+### Tooling support for `.proto` files
 
 The tooling package (Grpc.Tools)[https://www.nuget.org/packages/Grpc.Tools/] is required to generate the C# assets from `.proto` files. The assets are generated on a as-needed basis every time the project is built. This dependency is required by both the server and client projects and can be added by using the Package Manager in Visual Studio or adding a `<PackageReference>` to your project file:
 
 [!code-xml[](tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=16)]
 
-# Adding a `.proto` files to your project
+### Adding a `.proto` files to your project
 
 The `.proto` file is included in your project by adding it to the `<ProtoBuf>` item group:
 
 [!code-xml[](tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=8)]
 
-# Generated C# assets
+### Generated C# assets
 
 The tooling package will generate the C# types representing the messages defined in the included `.proto` files.
 
@@ -77,13 +77,13 @@ Similarly the attribute is set to `Client` in client projects:
 
 ## Adding gRPC services to your ASP.NET Core application
 
-# Prerequisite packages
+### Prerequisite packages
 
 To obtain the gRPC APIs for ASP.NET Core projects, the [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package must be added to the project:
 
 [!code-xml[](tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13)]
 
-# Configuring `Startup.cs`
+### Configuring `Startup.cs`
 
 gRPC is enabled in `Startup.cs` through the `AddGrpc` method in `ConfigureServices`:
 
@@ -110,7 +110,7 @@ gRPC services have full access to the ASP.NET Core features such as Dependency I
 
 By default, the service implementation can resolve services with Singleton and Scoped lifetimes.
 
-# Resolving `HttpContext` in gRPC methods
+### Resolving `HttpContext` in gRPC methods
 
 The gRPC API provides access to some underlying data of the HTTP/2 message such as the method, host, header and trailers through the `ServerCallContext` argument passed to each gRPC method:
 
@@ -140,7 +140,7 @@ By default, services will be created with a Scoped lifetime as defined in the [D
 > [!WARNING]
 > The Scoped lifetime of service implementation in ASP.NET Core is a behavioral difference from grpc C Core. Since a new instance of the service implementation is constructed for each request, it's no longer possible to share state between requests via instance members on the implementation type. Instead, the expectation is to store shared states in a Singleton service in the DI container and resolve it in the constructor of the gRPC service implementation.
 
-# Adding a singleton service
+### Adding a singleton service
 
 To facilitate the transition from grpc C Core implementation to ASP.NET Core, it is possible to change the service lifetime of the service implementation from Scoped to Singleton. This involves adding an instance of the service implementation to the DI container:
 
