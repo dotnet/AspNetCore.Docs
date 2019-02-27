@@ -637,6 +637,8 @@
               uid: security/authentication/otherlogins
             - name: Additional claims
               uid: security/authentication/social/additional-claims
+        - name: Policy schemes
+          uid: security/authentication/ws-federation
         - name: WS-Federation authentication
           uid: security/authentication/ws-federation
         - name: Account confirmation and password recovery
