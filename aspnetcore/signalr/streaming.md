@@ -51,7 +51,7 @@ In ASP.NET Core 3.0 or later, streaming hub methods can return `IAsyncEnumerable
 
 [!INCLUDE[](~/includes/csharp-8-required.md)]
 
-[!code-csharp[Streaming hub async iterator method](streaming/sample/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
+[!code-csharp[Streaming hub async iterator method](streaming/sample.netcoreapp3.0/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
 
 ::: moniker-end
 
