@@ -325,6 +325,8 @@
       uid: signalr/version-differences
     - name: WebSockets without SignalR
       uid: fundamentals/websockets
+    - name: Diagnostics and Troubleshooting
+      uid: signalr/diagnostics
 - name: Test, debug, and troubleshoot
   items: 
     - name: Unit testing
