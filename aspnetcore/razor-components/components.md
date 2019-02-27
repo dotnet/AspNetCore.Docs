@@ -292,6 +292,9 @@ It's often convenient to close over additional values, such as when iterating ov
 }
 ```
 
+> [!NOTE]
+> Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable will is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the above example) and then use it.
+
 ## Capture references to components
 
 Component references provide a way get a reference to a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `ref` attribute to the child component and then define a field with the same name and the same type as the child component.
