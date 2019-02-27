@@ -116,17 +116,17 @@ When sending from the JavaScript client, you must use `PascalCased` property nam
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
 ```
 
-Using `camelCased` names will not properly bind to the C# class. You can work around this by using the `Key` attribute to specify a different name for the MessagePack property. See [the MessagePack-CSharp documentation](https://github.com/neuecc/MessagePack-CSharp#object-serialization) for more information.
+Using `camelCased` names won't properly bind to the C# class. You can work around this by using the `Key` attribute to specify a different name for the MessagePack property. For more information, see [the MessagePack-CSharp documentation](https://github.com/neuecc/MessagePack-CSharp#object-serialization).
 
 ### DateTime.MinValue is not supported by MessagePack in JavaScript
 
-The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client does not support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001` which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client is not supported. Usually, `DateTime.MinValue` is used to encode a "missing" or `null` value. If you need to encode that value in MessagePack, use a nullable `DateTime` value (`DateTime?`) or encode a separate `bool` value indicating if the date is present.
+The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001` which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. Usually, `DateTime.MinValue` is used to encode a "missing" or `null` value. If you need to encode that value in MessagePack, use a nullable `DateTime` value (`DateTime?`) or encode a separate `bool` value indicating if the date is present.
 
-See [aspnet/SignalR#2228](https://github.com/aspnet/SignalR/issues/2228) for more information on this limitation.
+For more information on this limitation, see [aspnet/SignalR#2228](https://github.com/aspnet/SignalR/issues/2228).
 
 ### MessagePack support in "ahead-of-time" compilation environment
 
-The [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp) library used by the .NET Client and Server uses code generation to optimize serialization. As a result, it is not supported by default on environmment that use "ahead-of-time" compilation (such as Xamarin iOS or Unity). It is possible to use MessagePack in these environments by "pre-generating" the serializer/deserializer code. For more information see [the MessagePack-CSharp documentation](https://github.com/neuecc/MessagePack-CSharp#pre-code-generationunityxamarin-supports). Once you have pre-generated the serializers, you can register them using the configuration delegate passed to `AddMessagePackProtocol`:
+The [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp) library used by the .NET client and server uses code generation to optimize serialization. As a result, it isn't supported by default on environments that use "ahead-of-time" compilation (such as Xamarin iOS or Unity). It's possible to use MessagePack in these environments by "pre-generating" the serializer/deserializer code. For more information, see [the MessagePack-CSharp documentation](https://github.com/neuecc/MessagePack-CSharp#pre-code-generationunityxamarin-supports). Once you have pre-generated the serializers, you can register them using the configuration delegate passed to `AddMessagePackProtocol`:
 
 ```csharp
 services.AddSignalR()
@@ -142,15 +142,15 @@ services.AddSignalR()
 
 ### Type checks are more strict in MessagePack
 
-The JSON Hub Protocol will perform type conversions during deserialization. For example, if the incoming object has an property value that is a number (`{ foo: 42 }`) but the property on the .NET class is of type `string`, the value will be converted. However, MessagePack does not perform this conversion, and will throw an `InvalidDataException` instead.
+The JSON Hub Protocol will perform type conversions during deserialization. For example, if the incoming object has a property value that is a number (`{ foo: 42 }`) but the property on the .NET class is of type `string`, the value will be converted. However, MessagePack doesn't perform this conversion and will throw an `InvalidDataException` instead.
 
-See [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937) for more information on this limitation.
+For more information on this limitation, see [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
 
 ### DateTime.Kind is not preserved when serializing/deserializing
 
-The MessagePack protocol does not provide a way to encode the `Kind` value of a `DateTime`. As a result, when deserializing a date, the MessagePack Hub Protocol assumes the incoming date is in UTC format. If you are working with `DateTime` values in local time, we recommend converting to UTC before sending them, and convert them from UTC to local time when you receive them.
+The MessagePack protocol doesn't provide a way to encode the `Kind` value of a `DateTime`. As a result, when deserializing a date, the MessagePack Hub Protocol assumes the incoming date is in UTC format. If you're working with `DateTime` values in local time, we recommend converting to UTC before sending them. Convert them from UTC to local time when you receive them.
 
-See [aspnet/SignalR#2632](https://github.com/aspnet/SignalR/issues/2632) for more information on this limitation.
+For more information on this limitation, see [aspnet/SignalR#2632](https://github.com/aspnet/SignalR/issues/2632).
 
 ## Related resources
 
