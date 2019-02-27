@@ -162,7 +162,7 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-See [Logging in SignalR](xref:signalr/java-client#Add-logging) for how to enable logging in the Java client
+For details on how to enable logging in the Java client, see [Logging in SignalR](xref:signalr/java-client#Add-logging).
 
 > [!NOTE]
 > To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
@@ -199,7 +199,7 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-In the Java client the transport is selected with the `withTransport` method on the HttpHubConnectionBuilder. The Java client defaults to using the WebSockets transport.
+In the Java client, the transport is selected with the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to using the WebSockets transport.
 
 ```java
         HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
