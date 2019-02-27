@@ -101,10 +101,9 @@ namespace CookieSample.Pages.Account
 
                     //IsPersistent = true,
                     // Whether the authentication session is persisted across 
-                    // multiple requests. Required when setting the 
-                    // ExpireTimeSpan option of CookieAuthenticationOptions 
-                    // set with AddCookie. Also required when setting 
-                    // ExpiresUtc.
+                    // multiple requests. When used with cookies, controls
+                    // whether the cookie's lifetime is absolute (matching the
+                    // lifetime of the authentication ticket) or session-based.
 
                     //IssuedUtc = <DateTimeOffset>,
                     // The time at which the authentication ticket was issued.

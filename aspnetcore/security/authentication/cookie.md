@@ -398,7 +398,7 @@ The [AuthenticationProperties](/dotnet/api/microsoft.aspnetcore.http.authenticat
 
 ## Absolute cookie expiration
 
-You can set an absolute expiration time with `ExpiresUtc`. You must also set `IsPersistent`; otherwise, `ExpiresUtc` is ignored and a single-session cookie is created. When `ExpiresUtc` is set on `SignInAsync`, it overrides the value of the `ExpireTimeSpan` option of `CookieAuthenticationOptions`, if set.
+You can set an absolute expiration time with `ExpiresUtc`. To create a persistent cookie, you must also set `IsPersistent`; otherwise, the cookie is created with a session-based lifetime and could expire either before or after the authentication ticket that it holds. When `ExpiresUtc` is set on `SignInAsync`, it overrides the value of the `ExpireTimeSpan` option of `CookieAuthenticationOptions`, if set.
 
 The following code snippet creates an identity and corresponding cookie that lasts for 20 minutes. This ignores any sliding expiration settings previously configured.
 

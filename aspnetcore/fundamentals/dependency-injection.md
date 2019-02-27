@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/25/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -247,7 +247,7 @@ When services are resolved by `ActivatorUtilities`, constructor injection requir
 
 ## Entity Framework contexts
 
-Entity Framework contexts should be added to the service container using the scoped lifetime. This is handled automatically with a call to the [AddDbContext](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) method when registering the database context. Services that use the database context should also use the scoped lifetime.
+Entity Framework contexts are usually added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the request. The default lifetime is scoped if a lifetime isn't specified by an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> overload when registering the database context. Services of a given lifetime shouldn't use a database context with a shorter lifetime than the service.
 
 ## Lifetime and registration options
 
