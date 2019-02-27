@@ -79,9 +79,9 @@ Similarly the attribute is set to `Client` in client projects:
 
 ### Prerequisite packages
 
-To obtain the gRPC APIs for ASP.NET Core projects, the [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package must be added to the project:
+To obtain the gRPC APIs for ASP.NET Core projects, the [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package must be added to the project. The [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) must also be added to ensure the APIs for protobuf messages are available.
 
-[!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13)]
+[!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13-14)]
 
 ### Configuring `Startup.cs`
 
