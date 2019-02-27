@@ -44,7 +44,6 @@ gulp.task('min:html', async function () {
     }))
 });
 
-
 gulp.task('min', gulp.series(['min:js', 'min:css', 'min:html']));
 
 gulp.task('clean', () => {
