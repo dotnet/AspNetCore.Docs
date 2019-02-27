@@ -17,4 +17,4 @@ This series includes the following tutorials:
 1. [Create a gRPC service](xref:tutorials/grpc/grpc-start)
 1. [Add a duplex streaming call](xref:tutorials/grpc/grpc-duplex-streaming)
 
-At the end, you'll have a gRPC service that echos greetings.
+At the end, you'll have a gRPC service that echoes greetings.

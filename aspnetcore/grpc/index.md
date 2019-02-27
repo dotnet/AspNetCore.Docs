@@ -11,7 +11,7 @@ uid: grpc/index
 
 By [John Luo](https://github.com/juntaoluo)
 
-gRPC is a language agnostic, high-performance Remote Procedure Call (RPC) framework incubated by the Cloud Native Computing Foundation (CNCF). For more on gRPC fundamentals please see the [gRPC documentation page](https://grpc.io/docs/). While a C# implementation is currently available on the official [gRPC page](https://grpc.io/docs/quickstart/csharp.html), the current implementation relies on the native library written in C (grpc C Core).
+gRPC is a language agnostic, high-performance Remote Procedure Call (RPC) framework incubated by the Cloud Native Computing Foundation (CNCF). For more on gRPC fundamentals, see the [gRPC documentation page](https://grpc.io/docs/). While a C# implementation is currently available on the official [gRPC page](https://grpc.io/docs/quickstart/csharp.html), the current implementation relies on the native library written in C (grpc C Core).
 
 Work is currently in progress to provide a new implementation based on the Kestrel HTTP server and the ASP.NET Core stack that is fully managed. This document provides an introduction to building gRPC services with this new implementation.
 
@@ -49,7 +49,7 @@ The tooling package (Grpc.Tools)[https://www.nuget.org/packages/Grpc.Tools/] is 
 
 [!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=16)]
 
-### Adding a `.proto` files to your project
+### Add a `.proto` file to your project
 
 The `.proto` file is included in your project by adding it to the `<ProtoBuf>` item group:
 
@@ -75,7 +75,7 @@ Similarly the attribute is set to `Client` in client projects:
 
 [!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Client/GrpcGreeter.Client.csproj?highlight=10)]
 
-## Adding gRPC services to your ASP.NET Core application
+## Add gRPC services to your ASP.NET Core app
 
 ### Prerequisite packages
 
@@ -83,13 +83,13 @@ To obtain the gRPC APIs for ASP.NET Core projects, the [Grpc.AspNetCore.Server](
 
 [!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13-14)]
 
-### Configuring `Startup.cs`
+### Configure `Startup`
 
-gRPC is enabled in `Startup.cs` through the `AddGrpc` method in `ConfigureServices`:
+gRPC is enabled in the `Startup.ConfigureServices` method through the `AddGrpc` method:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=18)]
 
-Each gRPC service is added to the ASP.NET Core routing pipeline through the `MapGrpc` method in `Configure`:
+Each gRPC service is added to the ASP.NET Core routing pipeline through the `MapGrpc` method in `Startup.Configure`:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=29-32)]
 
@@ -100,17 +100,17 @@ Since ASP.NET Core middlewares and features share the routing pipeline, an appli
 gRPC services have full access to the ASP.NET Core features such as Dependency Injection (DI) and Logging. For example, the service implementation can resolve a logger from the DI container via the constructor:
 
 ```csharp
-    public class GreeterService : Greeter.GreeterBase
+public class GreeterService : Greeter.GreeterBase
+{
+    public GreeterService(ILogger<GreeterService> logger)
     {
-        public GreeterService(ILogger<GreeterService> logger)
-        {
-        }
     }
+}
 ```
 
 By default, the service implementation can resolve services with Singleton and Scoped lifetimes.
 
-### Resolving `HttpContext` in gRPC methods
+### Resolve `HttpContext` in gRPC methods
 
 The gRPC API provides access to some underlying data of the HTTP/2 message such as the method, host, header and trailers through the `ServerCallContext` argument passed to each gRPC method:
 
@@ -119,18 +119,18 @@ The gRPC API provides access to some underlying data of the HTTP/2 message such 
 While this may be sufficient for many purposes, to ensure full access to ASP.NET Core APIs, the `HttpContext` representing the underlying HTTP/2 message can be accessed through the `GetHttpContext` extension method:
 
 ```csharp
-    public class GreeterService : Greeter.GreeterBase
+public class GreeterService : Greeter.GreeterBase
+{
+    public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
     {
-        public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
-        {
-            HttpContext httpContext = context.GetHttpContext();
+        HttpContext httpContext = context.GetHttpContext();
 
-            return Task.FromResult(new HelloReply
-            {
-                Message = "Using https: " + httpContext.Request.IsHttps
-            });
-        }
+        return Task.FromResult(new HelloReply
+        {
+            Message = "Using https: " + httpContext.Request.IsHttps
+        });
     }
+}
 ```
 
 ## gRPC service implementation lifetime
@@ -140,41 +140,41 @@ By default, services will be created with a Scoped lifetime as defined in the [D
 > [!WARNING]
 > The Scoped lifetime of service implementation in ASP.NET Core is a behavioral difference from grpc C Core. Since a new instance of the service implementation is constructed for each request, it's no longer possible to share state between requests via instance members on the implementation type. Instead, the expectation is to store shared states in a Singleton service in the DI container and resolve it in the constructor of the gRPC service implementation.
 
-### Adding a singleton service
+### Add a singleton service
 
 To facilitate the transition from grpc C Core implementation to ASP.NET Core, it is possible to change the service lifetime of the service implementation from Scoped to Singleton. This involves adding an instance of the service implementation to the DI container:
 
 ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddGrpc();
-        services.AddSingleton(new GreeterService());
-    }
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddGrpc();
+    services.AddSingleton(new GreeterService());
+}
 ```
 
 However, service implementation with Singleton lifetime will no longer be able to resolve Scoped services through constructor injection.
 
-## Configuring gRPC services options
+## Configure gRPC services options
 
 `GrpcServiceOptions` provides a way to modify the behavior of the gRPC service implementation instances. For example, it can be used to configure settings such as `SendMaxMessageSize` and `ReceiveMaxMessageSize`. These settings can be applied globally to all gRPC services or to an individual service implementation type:
 
 ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services
-            .AddGrpc(globalOptions =>
-            {
-                // Global settings
-                globalOptions.SendMaxMessageSize = 4096
-                globalOptions.ReceiveMaxMessageSize = 4096
-            })
-            .AddServiceOptions<GreeterService>(greeterOptions =>
-            {
-                // Individual settings
-                globalOptions.SendMaxMessageSize = 2048
-                globalOptions.ReceiveMaxMessageSize = 2048
-            })
-    }
+public void ConfigureServices(IServiceCollection services)
+{
+    services
+        .AddGrpc(globalOptions =>
+        {
+            // Global settings
+            globalOptions.SendMaxMessageSize = 4096
+            globalOptions.ReceiveMaxMessageSize = 4096
+        })
+        .AddServiceOptions<GreeterService>(greeterOptions =>
+        {
+            // Individual settings
+            globalOptions.SendMaxMessageSize = 2048
+            globalOptions.ReceiveMaxMessageSize = 2048
+        })
+}
 ```
 
 Options specified for individual service implementation types will override global settings when configured.
