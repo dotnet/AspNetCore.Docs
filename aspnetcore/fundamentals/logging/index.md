@@ -826,28 +826,9 @@ An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.Ad
 
 To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateWebHostBuilder(args).Build().Run();
-    }
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_AzLogOptions&highlight=11-18)]
 
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
-            .ConfigureServices(serviceCollection => serviceCollection
-                    .Configure<AzureFileLoggerOptions>(options => {
-                        options.FileName = "azure-diagnostics-";
-                        options.FileSizeLimit = 50 * 1024;
-                        options.RetainedFileCountLimit = 5;
-                    }).Configure<AzureBlobLoggerOptions>(options => {
-                        options.BlobName = "log.txt";
-                    }))
-            .UseStartup<Startup>();
-}
-```
+::: moniker-end
 
 ::: moniker-end
 
