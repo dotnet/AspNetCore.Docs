@@ -53,7 +53,7 @@ The tooling package (Grpc.Tools)[https://www.nuget.org/packages/Grpc.Tools/] is 
 
 The `.proto` file is included in your project by adding it to the `<ProtoBuf>` item group:
 
-[!code-xml[](tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=8)]
+[!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=8)]
 
 ### Generated C# assets
 
