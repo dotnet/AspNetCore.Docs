@@ -103,7 +103,7 @@ In ASP.NET Core 2.2 or later, server to client streaming hub methods can accept 
 
 ### Client to server streaming
 
-A hub method automatically becomes a client to server streaming hub method when it accepts a <xref:System.Threading.Channels.ChannelReader`1>. The following sample shows the basics of reading streaming data from the client. Whenever the client writes to the stream, the data is made available via the `ChannelReader` on the server which the hub method should be reading from.
+A hub method automatically becomes a client to server streaming hub method when it accepts a <xref:System.Threading.Channels.ChannelReader`1>. Below is a sample that shows the basics of reading streaming data from the client. Whenever the client writes to the <xref:System.Threading.Channels.ChannelWriter`1> the data is written into the `ChannelReader` on the server which the hub method should be reading from.
 
 [!code-csharp[Streaming upload hub method](streaming/sample.netcoreapp3.0/Hubs/StreamHub.cs?name=snippet2)]
 
@@ -168,14 +168,14 @@ To invoke a client to server streaming hub method from the .NET Client create a 
 
 Whenever data is written to the `ChannelWriter` the hub method on the server will receive a new item with the data from the client.
 
-To end the stream, complete the channel with `channel.Writer.TryComplete()`.
+To end the stream, complete the channel with `channel.Writer.Complete()`.
 
 ```csharp
 var channel = Channel.CreateBounded<string>(10);
 await connection.SendAsync("UploadStream", channel.Reader);
 await channel.Writer.WriteAsync("some data");
 await channel.Writer.WriteAsync("some more data");
-await channel.Writer.TryComplete();
+channel.Writer.Complete();
 ```
 
 ::: moniker-end
@@ -211,7 +211,7 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 
 ### Client to server streaming
 
-JavaScript clients call client to server streaming methods on hubs by passing in a `Subject` as one of the arguments in `send`, `invoke`, or `stream`, depending on the hub method being invoked. The `Subject` needs to be a class that looks like a `Subject`. For example, if you use RxJS then you can use the `Subject` class from that library.
+JavaScript clients call client to server streaming methods on hubs by passing in a `Subject` as one of the arguments in `send`, `invoke`, or `stream`, depending on the hub method being invoked. The `Subject` needs to be a class that looks like a `Subject`. For example, if you use RxJS then you can use the [Subject](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) class from that library.
 
 [!code-javascript[Upload javascript](streaming/sample.netcoreapp3.0/wwwroot/js/stream.js?range=74-84)]
 
