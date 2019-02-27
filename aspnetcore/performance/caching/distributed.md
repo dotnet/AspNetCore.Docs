@@ -134,8 +134,23 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 
 ### Distributed Redis Cache
 
-[Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache. You can use Redis locally, and you can configure an [Azure Redis Cache](https://azure.microsoft.com/services/cache/) for an Azure-hosted ASP.NET Core app. An app configures the cache implementation using a <xref:Microsoft.Extensions.Caching.Redis.RedisCache> instance (<xref:Microsoft.Extensions.DependencyInjection.RedisCacheServiceCollectionExtensions.AddDistributedRedisCache*>):
+::: moniker range=">= aspnetcore-2.2"
 
+[Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache. You can use Redis locally, and you can configure an [Azure Redis Cache](https://azure.microsoft.com/services/cache/) for an Azure-hosted ASP.NET Core app. An app configures the cache implementation using a `RedisCache` instance (`AddStackExchangeRedisCache`):
+
+```csharp
+services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost";
+    options.InstanceName = "SampleInstance";
+});
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+[Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache. You can use Redis locally, and you can configure an [Azure Redis Cache](https://azure.microsoft.com/services/cache/) for an Azure-hosted ASP.NET Core app. An app configures the cache implementation using a <xref:Microsoft.Extensions.Caching.Redis.RedisCache> instance (<xref:Microsoft.Extensions.DependencyInjection.RedisCacheServiceCollectionExtensions.AddDistributedRedisCache*>):
 ```csharp
 services.AddDistributedRedisCache(options =>
 {
@@ -143,6 +158,8 @@ services.AddDistributedRedisCache(options =>
     options.InstanceName = "SampleInstance";
 });
 ```
+
+::: moniker-end
 
 To install Redis on your local machine:
 
