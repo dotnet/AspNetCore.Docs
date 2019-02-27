@@ -143,6 +143,7 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 * <xref:fundamentals/localization>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
+* [YouTube version of this tutorial](https://youtu.be/b63m66eu7us)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)
