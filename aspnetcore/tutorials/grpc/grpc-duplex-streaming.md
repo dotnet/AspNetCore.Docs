@@ -4,7 +4,7 @@ author: John Luo
 description: This series of tutorials shows how to create a gRPC Service on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file and add an duplex streaming call.
 ms.author: johluo
 ms.date: 2/26/2019
-uid: tutorials/grpc/grpc-start
+uid: tutorials/grpc/grpc-duplex-streaming
 ---
 
 # Tutorial: Add a duplex streaming call to a gRPC service in ASP.NET Core

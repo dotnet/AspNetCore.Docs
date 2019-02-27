@@ -73,7 +73,7 @@ From a terminal, run the following commands:
 
 ```console
   dotnet new grpc -o GrpcGreeter
-cd GrpcGreeter
+  cd GrpcGreeter
 ```
 
 The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a gRPC service.
