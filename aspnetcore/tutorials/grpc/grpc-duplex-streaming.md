@@ -20,4 +20,4 @@ At the end, you'll have a gRPC service that echos greetings.
 
 
 > [!div class="step-by-step"]
-> [Previous: Adding Search](xref:tutorials/razor-pages/search)
+> [Previous: Adding Search](xref:tutorials/grpc/grpc-start)
