@@ -1,5 +1,5 @@
 ---
-title: Logging and diagnostics
+title: Logging and diagnostics in ASP.NET Core SignalR
 author: anurse
 description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
@@ -8,16 +8,16 @@ ms.custom: signalr
 ms.date: 02/27/2019
 uid: signalr/diagnostics
 ---
-# Logging and diagnostics
+# Logging and diagnostics in ASP.NET Core SignalR
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
-This article provides guidance for gathering diagnostics from your SignalR application to help troubleshoot issues.
+This article provides guidance for gathering diagnostics from your ASP.NET Core SignalR app to help troubleshoot issues.
 
 ## Server-side logging
 
 > [!WARNING]
-> Server-side logs may contain sensitive information from your application. **Never** post raw logs from production applications to public forums like GitHub.
+> Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
 Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs very little information, but this can configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index#configuration) for details on configuring ASP.NET Core logging.
 
@@ -41,7 +41,7 @@ If you aren't using JSON-based configuration, set the following configuration va
 
 Check the documentation for your configuration system to determine how to specify nested configuration values. For example, when using environment variables, two `_` characters are used instead of the `:` (such as: `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
 
-We recommend using the `Debug` level when gathering more detailed diagnostics for your application. The `Trace` level produces very low-level diagnostics and is rarely needed to diagnose issues in your application.
+We recommend using the `Debug` level when gathering more detailed diagnostics for your app. The `Trace` level produces very low-level diagnostics and is rarely needed to diagnose issues in your app.
 
 ## Access server-side logs
 
@@ -66,7 +66,7 @@ If you're running in another environment (Docker, Kubernetes, Windows Service, e
 ## JavaScript client logging
 
 > [!WARNING]
-> Client-side logs may contain sensitive information from your app. **Never** post raw logs from production applications to public forums like GitHub.
+> Client-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
 When using the JavaScript client, you can configure logging options using the `configureLogging` method on `HubConnectionBuilder`:
 
