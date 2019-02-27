@@ -99,7 +99,7 @@ Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in 
 > [!WARNING]
 > Ensure the policy names are exactly as described in the documentation, as those policies were used in the **Change Authentication** dialog in Visual Studio. The policy names can be verified in *appsettings.json*.
 
-## Configuring the underlying OpenIdConnectOptions/JwtBearer/Cookie options
+## Configure the underlying OpenIdConnectOptions/JwtBearer/Cookie options
 
 If you need to configure the OpenIdConnectOptions directly, you can configure them using the scheme constant:
 
