@@ -53,7 +53,7 @@ args[0] = web::json::value::string("some text");
 connection.invoke("Echo", args)
     .then([](const web::json::value& value)
     {
-        uout << value.serialize() << std::endl;
+        ucout << value.serialize() << std::endl;
     }).get();
 ```
 
@@ -72,6 +72,26 @@ connection.on("ReceiveMessage", [](const web::json::value& m)
 The preceding code in `connection.on` runs when server-side code calls it using the `SendAsync` method.
 
 [!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?name=snippet_SendMessage)]
+
+## Custom logging
+
+To add logging to the client create a class that inherits from `signalr::log_writer` and add a `write` method that overrides the pure virtual base class.
+
+```c++
+class custom_logger : public signalr::log_writer
+{
+    virtual void write(const utility::string_t& log) override
+    {
+        ucout << log << std::endl;
+    }
+}
+```
+
+Then when creating the hub_connection pass a `shared_ptr<custom_logger>` into the constructor.
+
+```c++
+signalr::hub_connection connection("http://localhost:5000/default", signalr::trace_level::all, std::make_shared<custom_logger>());
+```
 
 ## Additional resources
 
