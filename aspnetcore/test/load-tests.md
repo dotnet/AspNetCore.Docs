@@ -20,6 +20,10 @@ Load testing and stress testing are important to ensure a web app is performant 
 
 Under stress, can the app recover from failure and gracefully return to expected behavior? Under stress, the app is *not* run under normal conditions.
 
+Visual Studio 2019 will be the last version of Visual Studio with load test features. For customers requiring load testing tools, we recommend using alternate load testing tools such as Apache JMeter, Akamai CloudTest, Blazemeter. For more information, see the [Visual Studio 2019 Preview Release Notes](/visualstudio/releases/2019/release-notes-preview#test-tools).
+
+The load testing service in Azure DevOps is ending in 2020. For more information see [Cloud-based load testing service end of life](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/).
+
 ## Visual Studio Tools
 
 Visual Studio allows users to create, develop, and debug web performance and load tests. An option is available to create tests by recording actions in web browser.
