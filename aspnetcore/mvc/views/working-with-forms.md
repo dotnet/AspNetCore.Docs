@@ -566,7 +566,7 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 
 ## The Form Action Tag Helper
 
-The Form Action Tag Helper enables you to control where a form submits its data. It binds to [\<input>](https://www.w3.org/wiki/HTML/Elements/input) elements of type `image` and [\<button>](https://www.w3.org/wiki/HTML/Elements/button) elements. The Form Action Tag Helper enables the usage of several [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` attributes to control what `formaction` link is generated for the corresponding element.
+The Form Action Tag Helper controls where a form submits its data. It binds to [\<input>](https://www.w3.org/wiki/HTML/Elements/input) elements of type `image` and [\<button>](https://www.w3.org/wiki/HTML/Elements/button) elements. The Form Action Tag Helper enables the usage of several [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` attributes to control what `formaction` link is generated for the corresponding element.
 
 Supported [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) attributes to control the value of `formaction`:
 
@@ -584,16 +584,16 @@ Supported [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-hel
 
 ### Submit to controller example
 
-The following example submits the form to the `Index` action of `HomeController` if either the input or button were clicked:
+The following code submits the form to the `Index` action of `HomeController` when the input or button are selected:
 
 ```cshtml
 <form method="post">
     <button asp-controller="Home" asp-action="Index">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" asp-controller="Home" asp-action="Index" />
+    <input type="image" src="..." alt="Alt" asp-controller="Home" asp-action="Index" />
 </form>
 ```
 
-The following HTML is generated:
+The previous markup generates following HTML:
 
 ```html
 <form method="post">
@@ -604,7 +604,7 @@ The following HTML is generated:
 
 ### Submit to page example
 
-The following example submits the form to the `About` Razor Page:
+The following code submits the form to the `About` Razor Page:
 
 ```cshtml
 <form method="post">
@@ -613,7 +613,7 @@ The following example submits the form to the `About` Razor Page:
 </form>
 ```
 
-The following HTML is generated:
+The previous markup generates following HTML:
 
 ```html
 <form method="post">
@@ -624,7 +624,7 @@ The following HTML is generated:
 
 ### Submit to route example
 
-The following example would submit the form to the `/Home/Test` endpoint.
+Consider the `/Home/Test` endpoint:
 
 ```csharp
 public class HomeController : Controller
@@ -637,6 +637,8 @@ public class HomeController : Controller
 }
 ```
 
+The following markup submits the form to the `/Home/Test` endpoint.
+
 ```cshtml
 <form method="post">
     <button asp-route="Custom">Click Me</button>
@@ -644,7 +646,7 @@ public class HomeController : Controller
 </form>
 ```
 
-The following HTML is generated:
+The previous markup generates following HTML:
 
 ```html
 <form method="post">
