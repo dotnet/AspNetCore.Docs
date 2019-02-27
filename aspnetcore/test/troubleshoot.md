@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 02/26/2019
 uid: test/troubleshoot
 ---
 # Troubleshoot ASP.NET Core projects
@@ -57,10 +57,10 @@ In the **New Project** dialog for ASP.NET Core, you may see the following warnin
 
 ![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/NoNetCore.png)
 
-This warning appears when the environment variable `PATH` doesn't point to any .NET Core SDKs on the machine. To resolve this problem:
+This warning appears when the environment variable `PATH` doesn't point to any .NET Core SDKs on the machine (for example, `C:\Program Files\dotnet\` and `C:\Program Files (x86)\dotnet\`). To resolve this problem:
 
-* Install or verify the .NET Core SDK is installed.
-* Verify that the `PATH` environment variable points to the location in which the SDK is installed. The installer normally sets the `PATH`.
+* Install or verify the .NET Core SDK is installed. Obtain the latest installer from [.NET Downloads](https://dotnet.microsoft.com/download). 
+* Verify that the `PATH` environment variable points to the location where the SDK is installed. The installer normally sets the `PATH`.
 
 ## Obtain data from an app
 
