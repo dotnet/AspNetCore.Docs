@@ -21,7 +21,7 @@ ASP.NET Core SignalR supports streaming return values of server methods. This is
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core SignalR supports streaming from client to server and from server to client. This is useful for scenarios where fragments of data will come in over time. When streaming, each fragment is sent to the client or server as soon as it becomes available, rather than waiting for all the data to become available.
+ASP.NET Core SignalR supports streaming from client-to-server and from server-to-client. This is useful for scenarios where fragments of data will come in over time. When streaming, each fragment is sent to the client or server as soon as it becomes available, rather than waiting for all the data to become available.
 
 ::: moniker-end
 
@@ -95,7 +95,7 @@ The following sample shows the basics of streaming data to the client using Chan
 
 ::: moniker range=">= aspnetcore-2.2"
 
-In ASP.NET Core 2.2 or later, server to client streaming hub methods can accept a `CancellationToken` parameter that will be triggered when the client unsubscribes from the stream. Use this token to stop the server operation and release any resources if the client disconnects before the end of the stream.
+In ASP.NET Core 2.2 or later, server-to-client streaming hub methods can accept a `CancellationToken` parameter that will be triggered when the client unsubscribes from the stream. Use this token to stop the server operation and release any resources if the client disconnects before the end of the stream.
 
 ::: moniker-end
 
@@ -113,7 +113,7 @@ A hub method automatically becomes a client to server streaming hub method when 
 
 ### Server to client streaming
 
-The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a server to client streaming method. Pass the hub method name, and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation, and represents the stream on the client. To read data, a common pattern is to loop over `WaitToReadAsync` and call `TryRead` when data is available. The loop will end when the stream has been closed by the server, or the cancellation token passed to `StreamAsChannelAsync` is canceled.
+The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a server-to-client streaming method. Pass the hub method name, and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation, and represents the stream on the client. To read data, a common pattern is to loop over `WaitToReadAsync` and call `TryRead` when data is available. The loop will end when the stream has been closed by the server, or the cancellation token passed to `StreamAsChannelAsync` is canceled.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -164,18 +164,18 @@ Console.WriteLine("Streaming completed");
 
 ### Client to server streaming
 
-To invoke a client to server streaming hub method from the .NET Client create a `Channel` and pass the `ChannelReader` as an argument to `SendAsync`, `InvokeAsync`, or `StreamAsChannelAsync`, depending on the hub method being invoked.
+To invoke a client-to-server streaming hub method from the .NET Client create a `Channel` and pass the `ChannelReader` as an argument to `SendAsync`, `InvokeAsync`, or `StreamAsChannelAsync`, depending on the hub method being invoked.
 
 Whenever data is written to the `ChannelWriter` the hub method on the server will receive a new item with the data from the client.
 
-To end the stream, complete the channel with `channel.Writer.Complete()`.
+To end the stream, complete the channel with `channel.Writer.TryComplete()`.
 
 ```csharp
 var channel = Channel.CreateBounded<string>(10);
 await connection.SendAsync("UploadStream", channel.Reader);
 await channel.Writer.WriteAsync("some data");
 await channel.Writer.WriteAsync("some more data");
-channel.Writer.Complete();
+channel.Writer.TryComplete();
 ```
 
 ::: moniker-end
@@ -184,7 +184,7 @@ channel.Writer.Complete();
 
 ### Server to client streaming
 
-JavaScript clients call server to client streaming methods on hubs by using `connection.stream`. The `stream` method accepts two arguments:
+JavaScript clients call server-to-client streaming methods on hubs by using `connection.stream`. The `stream` method accepts two arguments:
 
 * The name of the hub method. In the following example, the hub method name is `Counter`.
 * Arguments defined in the hub method. In the following example, the arguments are: a count for the number of stream items to receive, and the delay between stream items.
@@ -211,7 +211,7 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 
 ### Client to server streaming
 
-JavaScript clients call client to server streaming methods on hubs by passing in a `Subject` as one of the arguments in `send`, `invoke`, or `stream`, depending on the hub method being invoked. The `Subject` needs to be a class that looks like a `Subject`. For example, if you use RxJS then you can use the [Subject](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) class from that library.
+JavaScript clients call client-to-server streaming methods on hubs by passing in a `Subject` as one of the arguments in `send`, `invoke`, or `stream`, depending on the hub method being invoked. The `Subject` needs to be a class that looks like a `Subject`. For example, if you use RxJS then you can use the [Subject](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) class from that library.
 
 [!code-javascript[Upload javascript](streaming/sample.netcoreapp3.0/wwwroot/js/stream.js?range=74-84)]
 
