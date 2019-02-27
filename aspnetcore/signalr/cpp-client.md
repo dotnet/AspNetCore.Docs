@@ -39,21 +39,21 @@ connection.set_disconnected([]()
 
 ## Call hub methods from client
 
-`send` calls methods on the hub and does not expect or wait for a response.
+`connection.send` calls methods on the hub and does not expect or wait for a response.
 ```c++
 web::json::value args{};
 args[0] = web::json::value::string("some text");
 connection.send("Echo", args).get();
 ```
 
-`invoke` calls methods on the hub and waits for a response.
+`connection.invoke` calls methods on the hub and waits for a response.
 ```c++
 web::json::value args{};
 args[0] = web::json::value::string("some text");
 connection.invoke("Echo", args)
     .then([](const web::json::value& value)
     {
-        // consume 'value'
+        uout << value.serialize() << std::endl;
     }).get();
 ```
 
@@ -61,7 +61,7 @@ Pass the hub method name and any arguments defined in the hub method to `invoke`
 
 ## Call client methods from hub
 
-Define methods the hub calls using `connection.on` after creating the connection, but before starting it. The `json::value` parameter will be an array of values sent from the server.
+Define methods the hub calls using `connection.on` after creating the connection, but before starting it. The `web::json::value` parameter will be an array of values sent from the server.
 ```c++
 connection.on("ReceiveMessage", [](const web::json::value& m)
 {
