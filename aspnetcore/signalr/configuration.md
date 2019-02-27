@@ -202,9 +202,9 @@ let connection = new signalR.HubConnectionBuilder()
 In the Java client, the transport is selected with the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to using the WebSockets transport.
 
 ```java
-        HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
-                .withTransport(TransportEnum.WEBSOCKETS)
-                .build();
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+    .withTransport(TransportEnum.WEBSOCKETS)
+    .build();
 ```
 
 > [!NOTE]
@@ -241,7 +241,7 @@ let connection = new signalR.HubConnectionBuilder()
 ```
 
 
-In the SignalR Java client, you can configure a bearer token to use for authentication by providing an "access token factory" to the [HttpHubConnectionBuilder](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Use [withAccessTokenFactory](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single<String>](http://reactivex.io/documentation/single.html). With a call to [Single.defer](http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
+In the SignalR Java client, you can configure a bearer token to use for authentication by providing an access token factory to the [HttpHubConnectionBuilder](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Use [withAccessTokenFactory](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single<String>](http://reactivex.io/documentation/single.html). With a call to [Single.defer](http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
 
 ```java
 HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
@@ -262,6 +262,25 @@ Additional options for configuring timeout and keep-alive behavior are available
 
 In the .NET Client, timeout values are specified as `TimeSpan` values. In the JavaScript client, timeout values are specified as a number indicating the duration in milliseconds.
 
+[.NET](#tab/dotnet)
+| .NET Option | Default Value | Description |
+| ----------- | ------------- | ----------- |
+| `ServerTimeout` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `Closed` event (`onclose` in JavaScript). This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's `KeepAliveInterval` value, to allow time for pings to arrive. |
+| `HandshakeTimeout` | 15 seconds | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and triggers the `Closed` event (`onclose` in JavaScript). This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+
+In the .NET Client, timeout values are specified as `TimeSpan` values.
+
+[Javascript](#tab/javascript)
+| JavaScript Option | Default Value | Description |
+| ----------------- | ------------- | ----------- |
+ `serverTimeoutInMilliseconds` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `onclose` event. This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's `KeepAliveInterval` value, to allow time for pings to arrive. |
+
+ [Java](#tab/java)
+| Java Option | Default Value | Description |
+| ----------- | ------------- | ----------- |
+|`getServerTimeout` `setServerTimeout` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `onClose` event. This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's `KeepAliveInterval` value, to allow time for pings to arrive. |
+| `withHandshakeResponseTimeout` | 15 seconds | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and triggers the `onClose` event. This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+
 ### Configure additional options
 
 Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) method on `HubConnectionBuilder` or on the various configuration APIs on the `HttpHubConnectionBuilder` in the Java client:
@@ -269,12 +288,12 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | .NET Option | JavaScript Option | Java Option | Default Value | Description |
 | ----------- | ----------------- | ----------- | ------------- | ----------- |
 | `AccessTokenProvider` | `accessTokenFactory` | `withAccessTokenProvider` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
-| `SkipNegotiation` | `skipNegotiation` | `shoudlSkipNegotiate` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
+| `SkipNegotiation` | `skipNegotiation` | `shouldSkipNegotiate` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
 | `ClientCertificates` | Not configurable * | Empty | A collection of TLS certificates to send to authenticate requests. |
 | `Cookies` | Not configurable * | Not configurable | Empty | A collection of HTTP cookies to send with every HTTP request. |
 | `Credentials` | Not configurable * | Not configurable | Empty | Credentials to send with every HTTP request. |
 | `CloseTimeout` | Not configurable * | Not configurable | 5 seconds | WebSockets only. The maximum amount of time the client waits after closing for the server to acknowledge the close request. If the server doesn't acknowledge the close within this time, the client disconnects. |
-| `Headers` | Not configurable * | `withHeader``withHeaders` | Empty | A dictionary of additional HTTP headers to send with every HTTP request. |
+| `Headers` | Not configurable * | `withHeader``withHeaders` | Empty | A Map of additional HTTP headers to send with every HTTP request. |
 | `HttpMessageHandlerFactory` | Not configurable * | Not configurable | `null` | A delegate that can be used to configure or replace the `HttpMessageHandler` used to send HTTP requests. Not used for WebSocket connections. This delegate must return a non-null value, and it receives the default value as a parameter. Either modify settings on that default value and return it, or return a new `HttpMessageHandler` instance. **When replacing the handler make sure to copy the settings you want to keep from the provided handler, otherwise, the configured options (such as Cookies and Headers) won't apply to the new handler.** |
 | `Proxy` | Not configurable * | Not configurable | `null` | An HTTP proxy to use when sending HTTP requests. |
 | `UseDefaultCredentials` | Not configurable * | Not configurable | `false` | Set this boolean to send the default credentials for HTTP and WebSockets requests. This enables the use of Windows authentication. |
@@ -309,11 +328,11 @@ In the Java client, these options can be configured with the methods on the `Htt
 
 
 ```java
-    HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
-            .withHeader("Foo", "Bar")
-            .shoudldSkipNegotiate(true)
-            .withHandshakeResponseTimeout(30*1000)
-            .build();
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+        .withHeader("Foo", "Bar")
+        .shouldSkipNegotiate(true)
+        .withHandshakeResponseTimeout(30*1000)
+        .build();
 ```
 
 ## Additional resources
