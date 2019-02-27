@@ -47,12 +47,6 @@ ASP.NET Core SignalR supports streaming from client to server and from server to
 
 A hub method automatically becomes a streaming hub method when it returns a `ChannelReader<T>`, `IAsyncEnumerable<T>`, `Task<ChannelReader<T>>`, or `Task<IAsyncEnumerable<T>>`.
 
-In ASP.NET Core 3.0 or later, streaming hub methods can return `IAsyncEnumerable<T>` in addition to `ChannelReader<T>`. The simplest way to return `IAsyncEnumerable<T>` is by making the hub method an async iterator method as the following sample demonstrates. Hub async iterator methods can accept a `CancellationToken` parameter that will be triggered when the client unsubscribes from the stream. Async iterator methods easily avoid problems common with Channels such as not returning the `ChannelReader` early enough or exiting the method without completing the `ChannelWriter`.
-
-[!INCLUDE[](~/includes/csharp-8-required.md)]
-
-[!code-csharp[Streaming hub async iterator method](streaming/sample.netcoreapp3.0/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -92,6 +86,16 @@ The following sample shows the basics of streaming data to the client using Chan
 ::: moniker range=">= aspnetcore-2.2"
 
 In ASP.NET Core 2.2 or later, server to client streaming hub methods can accept a `CancellationToken` parameter that will be triggered when the client unsubscribes from the stream. Use this token to stop the server operation and release any resources if the client disconnects before the end of the stream.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+In ASP.NET Core 3.0 or later, streaming hub methods can return `IAsyncEnumerable<T>` in addition to `ChannelReader<T>`. The simplest way to return `IAsyncEnumerable<T>` is by making the hub method an async iterator method as the following sample demonstrates. Hub async iterator methods can accept a `CancellationToken` parameter that will be triggered when the client unsubscribes from the stream. Async iterator methods easily avoid problems common with Channels such as not returning the `ChannelReader` early enough or exiting the method without completing the `ChannelWriter`.
+
+[!INCLUDE[](~/includes/csharp-8-required.md)]
+
+[!code-csharp[Streaming hub async iterator method](streaming/sample.netcoreapp3.0/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
 
 ::: moniker-end
 
