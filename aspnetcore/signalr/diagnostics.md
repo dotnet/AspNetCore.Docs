@@ -67,6 +67,21 @@ When using the JavaScript client, you can configure logging options using the `.
 
 [!code-javascript[Configuring logging in the JavaScript client](diagnostics/logging-config-js.js?highlight=3)]
 
+> [!NOTE]
+> To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
+
+Log levels available to the JavaScript client are listed below. Setting the log level to one of these values enables logging of message at that level, as well as all log levels above it on the table below:
+
+| Level | Description |
+| ----- | ----------- |
+| `None` | No messages are logged. |
+| `Critical` | Messages that indicate a failure in the entire app. |
+| `Error` | Messages that indicate a failure in the current operation. |
+| `Warning` | Messages that indicate a non-fatal problem. |
+| `Information` | Informational messages. |
+| `Debug` | Diagnostic messages useful for debugging. |
+| `Trace` | Very detailed diagnostic messages designed for diagnosing specific issues. |
+
 Once you've configured the verbosity, the logs will be written to the Browser Console (or Standard Output in a NodeJS application).
 
 If you want to send logs to a custom logging system, you can provide a JavaScript object implementing the `ILogger` interface. The only method that needs to be implemented is `log`, which takes the level of the event and the message associated with the event. For example:
@@ -183,3 +198,9 @@ You can attach Diagnostics files to GitHub issues by renaming them so they have 
 > Please do not paste the content of log files or network traces in GitHub issue. These logs and traces can be quite large and GitHub will usually truncate them.
 
 ![Dragging log files on to a GitHub issue](diagnostics/attaching-diagnostics-files.png)
+
+## Additional resources
+
+* <xref:signalr/configuration>
+* <xref:signalr/javascript-client>
+* <xref:signalr/dotnet-client>
