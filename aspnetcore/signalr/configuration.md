@@ -199,6 +199,14 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
+::: moniker range=">= aspnetcore-2.2"
+
+In this version of the Java client websockets is the only available transport.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-3.0"
+
 In the Java client, the transport is selected with the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to using the WebSockets transport.
 
 ```java
@@ -206,6 +214,8 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
     .withTransport(TransportEnum.WEBSOCKETS)
     .build();
 ```
+
+::: moniker-end
 
 > [!NOTE]
 > The SignalR Java client doesn't support transport fallback yet.
