@@ -1,89 +1,34 @@
-# Policy Schemes
+---
+title: Policy schemes in ASP.NET Core
+author: rick-anderson
+description: Authentication policy schemes make it easier to have a single logical authentication scheme
+ms.author: riande
+ms.date: 2/28/2019
+uid: security/authentication/policyschemes
+---
 
-Authentication policy schemes were introduced to make it easier to have a single logical authentication scheme potentially do different things. It makes it easy to forward any authentication action to another scheme, and also forward dynamically based on the request.
-All authentication schemes that use derived `Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions` and the associated `Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>` automatically are policy schemes as of 2.1 and the feature can be enabled via configuring the scheme's options.
+# Policy schemes in ASP.NET Core
 
-```C#
-    public class AuthenticationSchemeOptions
-    {
-        /// <summary>
-        /// If set, this specifies a default scheme that authentication handlers should forward all authentication operations to
-        /// by default. The default forwarding logic will check the most specific ForwardAuthenticate/Challenge/Forbid/SignIn/SignOut 
-        /// setting first, followed by checking the ForwardDefaultSelector, followed by ForwardDefault. The first non null result
-        /// will be used as the target scheme to forward to.
-        /// </summary>
-        public string ForwardDefault { get; set; }
+Authentication policy schemes make it easier to have a single logical authentication scheme potentially use multiple approaches. For example, a policy scheme might use Google authentication for challenges, and cookie authentication for everything else. Authentication policy schemes make it:
 
-        /// <summary>
-        /// If set, this specifies the target scheme that this scheme should forward AuthenticateAsync calls to.
-        /// For example Context.AuthenticateAsync("ThisScheme") => Context.AuthenticateAsync("ForwardAuthenticateValue");
-        /// Set the target to the current scheme to disable forwarding and allow normal processing.
-        /// </summary>
-        public string ForwardAuthenticate { get; set; }
+* Easy to forward any authentication action to another scheme.
+* Forward dynamically based on the request.
 
-        /// <summary>
-        /// If set, this specifies the target scheme that this scheme should forward ChallengeAsync calls to.
-        /// For example Context.ChallengeAsync("ThisScheme") => Context.ChallengeAsync("ForwardChallengeValue");
-        /// Set the target to the current scheme to disable forwarding and allow normal processing.
-        /// </summary>
-        public string ForwardChallenge { get; set; }
+All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> and the associated [`AuthenticationHandler<TOptions>`](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
 
-        /// <summary>
-        /// If set, this specifies the target scheme that this scheme should forward ForbidAsync calls to.
-        /// For example Context.ForbidAsync("ThisScheme") => Context.ForbidAsync("ForwardForbidValue");
-        /// Set the target to the current scheme to disable forwarding and allow normal processing.
-        /// </summary>
-        public string ForwardForbid { get; set; }
+* Are automatically policy schemes in ASP.NET Core 2.1 and later.
+* Can be enabled via configuring the scheme's options.
 
-        /// <summary>
-        /// If set, this specifies the target scheme that this scheme should forward SignInAsync calls to.
-        /// For example Context.SignInAsync("ThisScheme") => Context.SignInAsync("ForwardSignInValue");
-        /// Set the target to the current scheme to disable forwarding and allow normal processing.
-        /// </summary>
-        public string ForwardSignIn { get; set; }
-
-        /// <summary>
-        /// If set, this specifies the target scheme that this scheme should forward SignOutAsync calls to.
-        /// For example Context.SignOutAsync("ThisScheme") => Context.SignInAsync("ForwardSignOutValue");
-        /// Set the target to the current scheme to disable forwarding and allow normal processing.
-        /// </summary>
-        public string ForwardSignOut { get; set; }
-
-        /// <summary>
-        /// Used to select a default scheme for the current request that authentication handlers should forward all authentication operations to
-        /// by default. The default forwarding logic will check the most specific ForwardAuthenticate/Challenge/Forbid/SignIn/SignOut 
-        /// setting first, followed by checking the ForwardDefaultSelector, followed by ForwardDefault. The first non null result
-        /// will be used as the target scheme to forward to.
-        /// </summary>
-        public Func<HttpContext, string> ForwardDefaultSelector { get; set; }
-    }
-```
-
-
+[!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]
 
 ## Examples
-* A higher level scheme that combines lower level schemes, where Google is used for challenges, and Cookie is used for everything else.
 
-```C#
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options => options.ForwardChallenge = "Google")
-                .AddGoogle(options => { });
-        }
-```
+The following example shows a higher level scheme that combines lower level schemes. Google authentication is used for challenges, and cookie authentication is used for everything else:
 
-* Enables dynamic selection of schemes on a per request basis (i.e. how to mix cookies and api authentication)
+[!code-csharp[sample](policyschemes/samples/Startup.cs?name=snippet1)]
 
-```C#
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    // For example, can foward any requests that start with /api to the api scheme
-                    options.ForwardDefaultSelector = ctx => ctx.Request.Path.StartsWithSegments("/api") ? "Api" : null;
-                })
-                .AddYourApiAuth("Api");
-        }
-```
+The following example enables dynamic selection of schemes on a per request basis. That is, how to mix cookies and API authentication.
+
+ <!-- REVIEW, missing If set in public Func<HttpContext, string> ForwardDefaultSelector -->
+
+[!code-csharp[sample](policyschemes/samples/Startup.cs?name=snippet2)]
