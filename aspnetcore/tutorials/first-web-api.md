@@ -449,6 +449,7 @@ For more information, see the following resources:
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
+* [Youtube version of this tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
 
 ## Next steps
 
