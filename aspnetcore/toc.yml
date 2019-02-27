@@ -446,7 +446,7 @@
     - name: Logging and diagnostics
       displayName: signalr
       uid: signalr/diagnostics
-- name: gRPC
+- name: Remote Procedure Call apps
   items:
     - name: Overview
       uid: grpc/index
