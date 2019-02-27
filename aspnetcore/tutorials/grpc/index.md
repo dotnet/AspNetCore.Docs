@@ -1,6 +1,6 @@
 ---
 title: "Tutorial: Create a gRPC with ASP.NET Core"
-author: John Luo
+author: juntaoluo
 description: Create a gRPC service on Windows with Visual Studio and ASP.NET Core.
 ms.author: johluo
 ms.date: 02/26/2019

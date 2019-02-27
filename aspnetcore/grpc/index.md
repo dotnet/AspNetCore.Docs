@@ -1,6 +1,6 @@
 ---
 title: Introduction to gRPC on ASP.NET Core
-author: John Luo
+author: juntaoluo
 description: Learn how to build gRPC services with Kestrel server and the ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
