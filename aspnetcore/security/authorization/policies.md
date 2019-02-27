@@ -66,7 +66,7 @@ Handlers are registered in the services collection during configuration. For exa
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,49-54,62-64,67)]
 
-Each handler is added to the services collection by invoking `services.AddSingleton<IAuthorizationHandler, YourHandlerClass>();`.
+The preceding code registers `MinimumAgeHandler` as a singleton by invoking `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
 ## What should a handler return?
 
