@@ -126,6 +126,10 @@ The HTTP GET methods in the Index, Create, and Delete Razor pages follow a simil
 
 Search is added in the next tutorial.
 
+## Additional resources
+
+* [YouTube version of this tutorial](https://youtu.be/yLnnleREMtQ)
+
 > [!div class="step-by-step"]
 > [Previous: Working with a database](xref:tutorials/razor-pages/sql)
 > [Next: Add search](xref:tutorials/razor-pages/search)
