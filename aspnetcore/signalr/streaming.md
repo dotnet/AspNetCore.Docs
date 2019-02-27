@@ -69,10 +69,10 @@ In ASP.NET Core 3.0 or later, streaming hub methods can return `IAsyncEnumerable
 
 ::: moniker-end
 
-The following sample shows the basics of streaming data to the client using Channels. Whenever an object is written to the `ChannelWriter` that object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
+The following sample shows the basics of streaming data to the client using Channels. Whenever an object is written to the <xref:System.Threading.Channels.ChannelWriter`1> that object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
 
 > [!NOTE]
-> * Write to the <xref:System.Threading.Channels.ChannelWriter`1> on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations will be blocked until a `ChannelReader` is returned.
+> * Write to the `ChannelWriter<T>` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations will be blocked until a `ChannelReader` is returned.
 > * Wrap your logic in a `try ... catch` and complete the `Channel` in the catch and outside the catch to make sure the hub method invocation is completed properly.
 
 ::: moniker range="= aspnetcore-2.1"
