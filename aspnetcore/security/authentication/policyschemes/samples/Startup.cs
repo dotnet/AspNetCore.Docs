@@ -1,4 +1,4 @@
-﻿#define S1
+﻿//#define S1
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,8 +25,10 @@ namespace policyschemes
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    // For example, can foward any requests that start with /api to the api scheme
-                    options.ForwardDefaultSelector = ctx => ctx.Request.Path.StartsWithSegments("/api") ? "Api" : null;
+                    // For example, can foward any requests that start with /api 
+                    // to the api scheme.
+                    options.ForwardDefaultSelector = ctx => 
+                       ctx.Request.Path.StartsWithSegments("/api") ? "Api" : null;
                 })
                 .AddYourApiAuth("Api");
         }

@@ -14,7 +14,7 @@ Authentication policy schemes make it easier to have a single logical authentica
 * Easy to forward any authentication action to another scheme.
 * Forward dynamically based on the request.
 
-All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> and the associated [`AuthenticationHandler<TOptions>`](dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
+All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> and the associated [`AuthenticationHandler<TOptions>`](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
 
 * Are automatically policy schemes in ASP.NET Core 2.1 and later.
 * The authentication policy schemes can be enabled via configuring the scheme's options.
@@ -23,12 +23,12 @@ All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentic
 
 ## Examples
 
-* A higher level scheme that combines lower level schemes, where Google is used for challenges, and Cookie is used for everything else.
+The following example shows a higher level scheme that combines lower level schemes. Google authentication is used for challenges, and cookie authentication is used for everything else:
 
 [!code-csharp[sample](policyschemes/samples/Startup.cs?name=snippet1)]
 
-* Enables dynamic selection of schemes on a per request basis (i.e. how to mix cookies and api authentication)
+The following example enables dynamic selection of schemes on a per request basis. That is, how to mix cookies and api authentication.
 
-        /// <!-- REVIEW, missing If set in public Func<HttpContext, string> ForwardDefaultSelector -->
+ <!-- REVIEW, missing If set in public Func<HttpContext, string> ForwardDefaultSelector -->
 
 [!code-csharp[sample](policyschemes/samples/Startup.cs?name=snippet2)]
