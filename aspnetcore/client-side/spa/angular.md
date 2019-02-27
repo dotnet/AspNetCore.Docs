@@ -5,7 +5,7 @@ description: Learn how to get started with the ASP.NET Core Single Page Applicat
 monikerRange: '>= aspnetcore-2.1'
 ms.author: stevesa
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/27/2019
 uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core
@@ -85,7 +85,7 @@ npm install --save <package_name>
 
 In development, the app runs in a mode optimized for developer convenience. For example, JavaScript bundles include source maps (so that when debugging, you can see your original TypeScript code). The app watches for TypeScript, HTML, and CSS file changes on disk and automatically recompiles and reloads when it sees those files change.
 
-In production, serve a version of your app that's optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, ahead-of-time (AoT) compiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server (unless you have enabled [server-side prerendering](#server-side-rendering)).
+In production, serve a version of your app that's optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, ahead-of-time (AoT) compiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server.
 
 You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and-deploy/index).
 
