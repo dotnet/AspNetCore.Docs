@@ -5,7 +5,7 @@ description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 06/04/2018
+ms.date: 02/27/2019
 uid: signalr/messagepackhubprotocol
 ---
 
@@ -94,7 +94,7 @@ const connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > At this time, there are no configuration options for the MessagePack protocol on the JavaScript client.
 
-## MessagePack Quirks
+## MessagePack quirks
 
 There are a few unique issues to be aware of when using the MessagePack Hub Protocol.
 
@@ -118,11 +118,23 @@ connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
 
 Using `camelCased` names won't properly bind to the C# class. You can work around this by using the `Key` attribute to specify a different name for the MessagePack property. For more information, see [the MessagePack-CSharp documentation](https://github.com/neuecc/MessagePack-CSharp#object-serialization).
 
+### DateTime.Kind is not preserved when serializing/deserializing
+
+The MessagePack protocol doesn't provide a way to encode the `Kind` value of a `DateTime`. As a result, when deserializing a date, the MessagePack Hub Protocol assumes the incoming date is in UTC format. If you're working with `DateTime` values in local time, we recommend converting to UTC before sending them. Convert them from UTC to local time when you receive them.
+
+For more information on this limitation, see GitHub issue [aspnet/SignalR#2632](https://github.com/aspnet/SignalR/issues/2632).
+
 ### DateTime.MinValue is not supported by MessagePack in JavaScript
 
-The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001` which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. Usually, `DateTime.MinValue` is used to encode a "missing" or `null` value. If you need to encode that value in MessagePack, use a nullable `DateTime` value (`DateTime?`) or encode a separate `bool` value indicating if the date is present.
+The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001` which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. When `DateTime.MinValue` is received by the JavaScript client, the following error is thrown:
 
-For more information on this limitation, see [aspnet/SignalR#2228](https://github.com/aspnet/SignalR/issues/2228).
+```
+Uncaught Error: unable to find ext type 255 at decoder.js:427
+```
+
+Usually, `DateTime.MinValue` is used to encode a "missing" or `null` value. If you need to encode that value in MessagePack, use a nullable `DateTime` value (`DateTime?`) or encode a separate `bool` value indicating if the date is present.
+
+For more information on this limitation, see GitHub issue [aspnet/SignalR#2228](https://github.com/aspnet/SignalR/issues/2228).
 
 ### MessagePack support in "ahead-of-time" compilation environment
 
@@ -142,15 +154,13 @@ services.AddSignalR()
 
 ### Type checks are more strict in MessagePack
 
-The JSON Hub Protocol will perform type conversions during deserialization. For example, if the incoming object has a property value that is a number (`{ foo: 42 }`) but the property on the .NET class is of type `string`, the value will be converted. However, MessagePack doesn't perform this conversion and will throw an `InvalidDataException` instead.
+The JSON Hub Protocol will perform type conversions during deserialization. For example, if the incoming object has a property value that is a number (`{ foo: 42 }`) but the property on the .NET class is of type `string`, the value will be converted. However, MessagePack doesn't perform this conversion and will throw an exception that can be seen in server-side logs (and in the console):
 
-For more information on this limitation, see [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
+```
+InvalidDataException: Error binding arguments. Make sure that the types of the provided values match the types of the hub method being invoked.
+```
 
-### DateTime.Kind is not preserved when serializing/deserializing
-
-The MessagePack protocol doesn't provide a way to encode the `Kind` value of a `DateTime`. As a result, when deserializing a date, the MessagePack Hub Protocol assumes the incoming date is in UTC format. If you're working with `DateTime` values in local time, we recommend converting to UTC before sending them. Convert them from UTC to local time when you receive them.
-
-For more information on this limitation, see [aspnet/SignalR#2632](https://github.com/aspnet/SignalR/issues/2632).
+For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
 
 ## Related resources
 
