@@ -147,6 +147,10 @@ dotnet ef database update
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
 
+## Additional resources
+
+* [YouTube version of this tutorial](https://youtu.be/3i7uMxiGGR8)
+
 > [!div class="step-by-step"]
 > [Previous: Adding Search](xref:tutorials/razor-pages/search)
 > [Next: Adding Validation](xref:tutorials/razor-pages/validation)
