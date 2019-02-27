@@ -110,7 +110,7 @@ public class GreeterService : Greeter.GreeterBase
 
 By default, the service implementation can resolve services with Singleton and Scoped lifetimes.
 
-### Resolve `HttpContext` in gRPC methods
+### Resolve HttpContext in gRPC methods
 
 The gRPC API provides access to some underlying data of the HTTP/2 message such as the method, host, header and trailers through the `ServerCallContext` argument passed to each gRPC method:
 
