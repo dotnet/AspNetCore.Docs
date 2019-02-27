@@ -99,7 +99,7 @@ Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue" />`) i
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `bind` handles a few cases where type conversions are performed. In principle, `bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what we want to bind to:
+In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what to bind to:
 
 ```cshtml
 <input type="text" bind-value-oninput="@CurrentValue" />
@@ -275,7 +275,7 @@ It's often convenient to close over additional values, such as when iterating ov
 {
     var buttonNumber = i;
 
-    <button class="btn btn-primary" 
+    <button class="btn btn-primary"
             onclick="@(e => UpdateHeading(e, buttonNumber))">
         Button #@i
     </button>
@@ -293,7 +293,7 @@ It's often convenient to close over additional values, such as when iterating ov
 ```
 
 > [!NOTE]
-> Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable will is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the above example) and then use it.
+> Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the preceding example) and then use it.
 
 ## Capture references to components
 
