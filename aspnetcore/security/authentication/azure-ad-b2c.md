@@ -101,7 +101,7 @@ Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in 
 
 ## Configure the underlying OpenIdConnectOptions/JwtBearer/Cookie options
 
-If you need to configure the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> directly, you can configure them using the scheme constant:
+If you need to configure the underlying options directly, you can configure them using the scheme constant:
 
 `serviceCollection.Configure<OpenIdConnectOptions>(AzureAD[B2C]Defaults.OpenIdScheme, o => { ... }`
 `serviceCollection.Configure<CookieAuthenticationOptions>(AzureAD[B2C]Defaults.CookieScheme , o => { ... }`
