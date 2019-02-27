@@ -612,7 +612,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 *Shared/CascadingValuesParametersLayout.cshtml*:
 
 ```cshtml
-@inherits BlazorLayoutComponent
+@inherits LayoutComponentBase
 @using BlazorSample.UIThemeClasses
 
 <div class="container-fluid">
