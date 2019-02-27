@@ -106,10 +106,10 @@ If the debug logs are too verbose, you can set the default minimum level to `Inf
 
 ## Network traces
 
-If you encounter an issue, a network trace can sometimes provide a lot of helpful information. This is particularly useful if you are going to file an issue on our issue tracker.
-
 > [!NOTE]
 > A network trace contains the full contents of every message sent by your application. **Never** post raw network traces from production applications to public forums like GitHub.
+
+If you encounter an issue, a network trace can sometimes provide a lot of helpful information. This is particularly useful if you are going to file an issue on our issue tracker.
 
 ### Using Fiddler (preferred option)
 
