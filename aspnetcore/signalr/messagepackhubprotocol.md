@@ -96,7 +96,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 ## MessagePack quirks
 
-There are a few unique issues to be aware of when using the MessagePack Hub Protocol.
+There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
 ### MessagePack is case-sensitive
 
