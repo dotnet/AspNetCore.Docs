@@ -103,7 +103,7 @@ In ASP.NET Core 2.2 or later, server to client streaming hub methods can accept 
 
 ### Client to server streaming
 
-A hub method automatically becomes a client to server streaming hub method when it accepts a <xref:System.Threading.Channels.ChannelReader`1>. Below is a sample that shows the basics of reading streaming data from the client. Whenever the client writes to the stream the data is written into the `ChannelReader` on the server which the hub method should be reading from.
+A hub method automatically becomes a client to server streaming hub method when it accepts a <xref:System.Threading.Channels.ChannelReader`1>. The following sample shows the basics of reading streaming data from the client. Whenever the client writes to the stream, the data is made available via the `ChannelReader` on the server which the hub method should be reading from.
 
 [!code-csharp[Streaming upload hub method](streaming/sample.netcoreapp3.0/Hubs/StreamHub.cs?name=snippet2)]
 
