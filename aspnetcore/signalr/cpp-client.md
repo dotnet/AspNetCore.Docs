@@ -24,26 +24,54 @@ signalr::hub_connection connection("http://localhost:5000/default", signalr::tra
 connection.start().get();
 ```
 
-## Call hub methods from client
+## Handle lost connection
+
+Register a handler for the disconnected event to respond to a lost connection. For example, you might want to automate reconnection.
+
+The disconnected event can be registered by calling `set_disconnected` and passing in a function;
 
 ```c++
-connection.send("Echo").get();
-auto value = connection.invoke("Echo").get();
+connection.set_disconnected([]()
+{
+    // Do your close logic.
+});
 ```
-`invoke` calls methods on the hub and waits for a response. `send` calls methods on the hub and does not expect a response.
+
+## Call hub methods from client
+
+`send` calls methods on the hub and does not expect or wait for a response.
+```c++
+web::json::value args{};
+args[0] = web::json::value::string("some text");
+connection.send("Echo", args).get();
+```
+
+`invoke` calls methods on the hub and waits for a response.
+```c++
+web::json::value args{};
+args[0] = web::json::value::string("some text");
+connection.invoke("Echo", args)
+    .then([](const web::json::value& value)
+    {
+        // consume 'value'
+    }).get();
+```
+
 Pass the hub method name and any arguments defined in the hub method to `invoke` or `send`.
 
 ## Call client methods from hub
 
-Define methods the hub calls using `connection.on` after creating the connection, but before starting it.
+Define methods the hub calls using `connection.on` after creating the connection, but before starting it. The `json::value` parameter will be an array of values sent from the server.
 ```c++
-connection.on("Send", [](const web::json::value& m)
+connection.on("ReceiveMessage", [](const web::json::value& m)
 {
-    std::cout << m.at(0).as_string() << std::endl;
+    ucout << m.at(0).as_string() << m.at(1).as_string() std::endl;
 });
 ```
 
-The registered handler in `connection.on` runs when server-side code calls it using the `SendAsync` method.
+The preceding code in `connection.on` runs when server-side code calls it using the `SendAsync` method.
+
+[!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?name=snippet_SendMessage)]
 
 ## Additional resources
 
