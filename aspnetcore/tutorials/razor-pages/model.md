@@ -266,6 +266,10 @@ You missed the [migrations step](#pmc).
 
 The next tutorial explains the files created by scaffolding.
 
+## Additional resources
+
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=sFVIsdR_RcM)
+
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
 > [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
