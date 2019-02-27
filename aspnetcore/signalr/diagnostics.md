@@ -1,5 +1,5 @@
 ---
-title: Diagnostics
+title: Logging and diagnostics
 author: anurse
 description: Learn how to gather diagnostics from your SignalR application.
 monikerRange: '>= aspnetcore-2.1'
@@ -8,23 +8,23 @@ ms.custom: signalr
 ms.date: 02/27/2019
 uid: signalr/diagnostics
 ---
-# Diagnostics
+# Logging and diagnostics
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
-This article provides guidance for gather diagnostics from your SignalR application to help troubleshoot issues.
+This article provides guidance for gathering diagnostics from your SignalR application to help troubleshoot issues.
 
 ## Server-Side Logging
 
-> [!NOTE]
+> [!WARNING]
 > Server-side logs may contain sensitive information from your application. **Never** post raw logs from production applications to public forums like GitHub.
 
-Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core Logging system. In the default configuration, SignalR logs very little information, but this can configured. See the documentation on [ASP.NET Core Logging](xref:fundamentals/logging/index#configuration) for details on configuring ASP.NET Core logging.
+Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs very little information, but this can configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index#configuration) for details on configuring ASP.NET Core logging.
 
-SignalR uses two logging prefixes:
+SignalR uses two logger categories:
 
-* `Microsoft.AspNetCore.SignalR` - for logs related to Hub Protocols, activating Hubs, invoking methods, etc.
-* `Microsoft.AspNetCore.Http.Connections` - for logs related to transports such as WebSockets, Long Polling and Server-Sent Events.
+* `Microsoft.AspNetCore.SignalR` - for logs related to Hub Protocols, activating Hubs, invoking methods, and other Hub-related activities.
+* `Microsoft.AspNetCore.Http.Connections` - for logs related to transports such as WebSockets, Long Polling and Server-Sent Events and low-level SignalR infrastructure.
 
 To enable detailed logs from SignalR, configure both of these prefixes to the `Debug` level in your `appsettings.json` file by adding the following items to the `LogLevel` sub-section in `Logging`:
 
@@ -36,8 +36,12 @@ You can also configure this in code in your `CreateWebHostBuilder` method:
 
 If you aren't using JSON-based configuration, set the following configuration values in your configuration system:
 
-* `Logging::LogLevel::Microsoft.AspNetCore.SignalR` = `Debug`
-* `Logging::LogLevel::Microsoft.AspNetCore.Http.Connections` = `Debug`
+* `Logging:LogLevel:Microsoft.AspNetCore.SignalR` = `Debug`
+* `Logging:LogLevel:Microsoft.AspNetCore.Http.Connections` = `Debug`
+
+Check the documentation for your configuration system to determine how to specify nested configuration values. For example, when using environment variables, two `_` characters are used instead of the `:` (such as: `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
+
+We recommend using the `Debug` level when gathering more detailed diagnostics for your application. The `Trace` level produces very low-level diagnostics and is rarely needed to diagnose issues in your application.
 
 ## Accessing Server-Side Logs
 How you access server-side logs depends on the environment in which you are running.
@@ -60,17 +64,16 @@ If you are running in another environment (Docker, Kubernetes, Windows Service, 
 
 ## JavaScript client logging
 
-> [!NOTE]
+> [!WARNING]
 > Client-side logs may contain sensitive information from your application. **Never** post raw logs from production applications to public forums like GitHub.
 
-When using the JavaScript client, you can configure logging options using the `.configureLogging` method on `HubConnectionBuilder`:
+When using the JavaScript client, you can configure logging options using the `configureLogging` method on `HubConnectionBuilder`:
 
 [!code-javascript[Configuring logging in the JavaScript client](diagnostics/logging-config-js.js?highlight=3)]
 
-> [!NOTE]
-> To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
+To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
 
-Log levels available to the JavaScript client are listed below. Setting the log level to one of these values enables logging of message at that level, as well as all log levels above it on the table below:
+The following table shows log levels available to the JavaScript client. Setting the log level to one of these values enables logging at that level and all levels above it in the table.
 
 | Level | Description |
 | ----- | ----------- |
@@ -90,10 +93,10 @@ If you want to send logs to a custom logging system, you can provide a JavaScrip
 
 ## .NET client logging
 
-> [!NOTE]
+> [!WARNING]
 > Client-side logs may contain sensitive information from your application. **Never** post raw logs from production applications to public forums like GitHub.
 
-To get logs from the .NET client, you can use the `.ConfigureLogging` method on `HubConnectionBuilder`. This works the same way as the `.ConfigureLogging` method on `WebHostBuilder` and `HostBuilder`. You can configure the same logging providers you use in ASP.NET Core. However, you have to manually install and enable the NuGet packages for the individual logging providers.
+To get logs from the .NET client, you can use the `ConfigureLogging` method on `HubConnectionBuilder`. This works the same way as the `ConfigureLogging` method on `WebHostBuilder` and `HostBuilder`. You can configure the same logging providers you use in ASP.NET Core. However, you have to manually install and enable the NuGet packages for the individual logging providers.
 
 ### Console logging
 
@@ -109,24 +112,24 @@ You can also configure logs to go to the Output Window in Visual Studio. Install
 
 ### Other logging providers
 
-You can also use other logging providers such as Serilog, Seq, NLog, or any other logging system that integrates with `Microsoft.Extensions.Logging`. If your logging system provides an `ILoggerProvider`, you can register it with `.AddProvider`:
+SignalR supports other logging providers such as Serilog, Seq, NLog, or any other logging system that integrates with `Microsoft.Extensions.Logging`. If your logging system provides an `ILoggerProvider`, you can register it with `AddProvider`:
 
 [!code-csharp[Configuring a custom logging provider in .NET client](diagnostics/net-client-custom-log.cs?highlight=6)]
 
 ### Controlling verbosity
 
-If the debug logs are too verbose, you can set the default minimum level to `Information` and just increase the logging level for SignalR logs. This can be done in code, in much the same was as on the server:
+If you are logging from other places in your app, changing the default level to `Debug` may be too verbose. You can use a Filter to configure the logging level for SignalR logs. This can be done in code, in much the same way as on the server:
 
-[!code-csharp[Controlling verbosity in .NET client](diagnostics/logging-config-client-code.cs?highlight=8-10)]
+[!code-csharp[Controlling verbosity in .NET client](diagnostics/logging-config-client-code.cs?highlight=9-10)]
 
 ## Network traces
 
-> [!NOTE]
+> [!WARNING]
 > A network trace contains the full contents of every message sent by your application. **Never** post raw network traces from production applications to public forums like GitHub.
 
 If you encounter an issue, a network trace can sometimes provide a lot of helpful information. This is particularly useful if you are going to file an issue on our issue tracker.
 
-### Using Fiddler (preferred option)
+## Collect a network trace with Fiddler (preferred option)
 
 This method works for all apps.
 
@@ -138,7 +141,7 @@ Once you've collected the trace, you can export the trace by choosing "File" > "
 
 ![Exporting all sessions from Fiddler](diagnostics/fiddler-export.png)
 
-### Using tcpdump (macOS and Linux only)
+## Collect a network trace with tcpdump (macOS and Linux only)
 
 This method works for all apps.
 
@@ -150,18 +153,13 @@ tcpdump -i [interface] -w trace.pcap
 
 Replace `[interface]` with the network interface you wish to capture on. Usually this is something like `/dev/eth0` (for your standard Ethernet interface) or `/dev/lo0` (for localhost traffic). See the `tcpdump` man page on your host system for more information.
 
-### Using a browser
+## Collect a network trace in the browser
 
 This method only works for browser-based apps.
 
-You can also use a browser to capture some network traffic.
+Most browser Developer Tools have a "Network" tab that allows you to capture network activity between the browser and the server. However, these traces don't include WebSocket and Server-Sent Event messages. If you are using those transports, using a tool like Fiddler or TcpDump (described below) is a better approach.
 
-> [!NOTE]
-> Most browsers don't include WebSocket and Server-Sent Event messages in exported network traces. If you are using those transports, using a tool like Fiddler or TcpDump (described below) is a better approach.
-
-Most browser Developer Tools have a "Network" tab that allows you to capture network activity between the browser and the server.
-
-#### Microsoft Edge and Internet Explorer
+### Microsoft Edge and Internet Explorer
 
 (The instructions are the same for both Edge and Internet Explorer)
 
@@ -172,7 +170,7 @@ Most browser Developer Tools have a "Network" tab that allows you to capture net
 
 ![The Save Icon on the Microsoft Edge Dev Tools Network Tab](diagnostics/ie-edge-har-export.png)
 
-#### Google Chrome
+### Google Chrome
 
 1. Press F12 to open the Dev Tools
 2. Click the Network Tab
@@ -181,7 +179,7 @@ Most browser Developer Tools have a "Network" tab that allows you to capture net
 
 !["Save as HAR with Content" option in Google Chrome Dev Tools Network Tab](diagnostics/chrome-har-export.png)
 
-#### Mozilla Firefox
+### Mozilla Firefox
 
 1. Press F12 to open the Dev Tools
 2. Click the Network Tab
