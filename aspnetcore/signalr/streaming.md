@@ -1,7 +1,7 @@
 ---
 title: Use streaming in ASP.NET Core SignalR
 author: bradygaster
-description:
+description: Learn how to return streams of values from server hub methods and consume the streams using the .NET and JavaScript clients.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
