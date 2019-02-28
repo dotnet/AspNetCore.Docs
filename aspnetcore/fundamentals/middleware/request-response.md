@@ -16,7 +16,7 @@ This article explains how to read from the request body and write to the respons
 
 In ASP.NET Core 3.0, there are two abstractions for the request and response bodies: <xref:System.IO.Stream> and <xref:System.IO.Pipelines.Pipe>. For request reading, [HttpRequest.Body](xref:Microsoft.AspNetCore.Http.HttpRequest.Body) is a <xref:System.IO.Stream>, and `HttpRequest.BodyPipe` is a <xref:System.IO.Pipelines.PipeReader>. For response writing, [HttpResponse.Body](xref:Microsoft.AspNetCore.Http.HttpResponse.Body) is a `HttpResponse.BodyPipe` is a <xref:System.IO.Pipelines.PipeWriter>.
 
-We recommend pipes over streams. Streams can be easier to use for some simple operations, but pipes have a performance advantage and are easier to use in most scenarios. In 3.0, ASP.NET Core is starting to use pipes instead of streams internally. Examples include:
+We recommend pipelines over streams. Streams can be easier to use for some simple operations, but pipelines have a performance advantage and are easier to use in most scenarios. In 3.0, ASP.NET Core is starting to use pipelines instead of streams internally. Examples include:
 
 - `FormReader`
 - `TextReader`
@@ -50,9 +50,9 @@ However, there are still are a few issues:
 - If newline characters are sparse, much of the request body is buffered in the string .
 - It still creates strings (`remainingString`) and adds them to the string buffer, which results in an extra allocation.
 
-These issues are fixable, but the code is becoming more and more complicated with little improvement. Pipes provide a way to solve these problems with minimal code complexity.
+These issues are fixable, but the code is becoming more and more complicated with little improvement. Pipelines provide a way to solve these problems with minimal code complexity.
 
-## Pipes
+## Pipelines
 
 The following example shows how the same scenario can be handled using a `PipeReader`:
 
