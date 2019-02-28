@@ -12,6 +12,8 @@ uid: test/integration-tests
 
 By [Luke Latham](https://github.com/guardrex) and [Steve Smith](https://ardalis.com/)
 
+This feature requires ASP.NET Core 2.1 and later targeting .NET Core 2.1 and later.
+
 Integration tests ensure that an app's components function correctly at a level that includes the app's supporting infrastructure, such as the database, file system, and network. ASP.NET Core supports integration tests using a unit test framework with a test web host and an in-memory test server.
 
 This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) topic and its linked content.
