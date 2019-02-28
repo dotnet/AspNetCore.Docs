@@ -34,7 +34,7 @@ The host provides services that are available to the `Startup` class constructor
 A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
 
 * <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> to configure services by environment.
-* <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> to read configuration.
+* <xref:Microsoft.Extensions.Configuration.IConfiguration> to read configuration.
 * <xref:Microsoft.Extensions.Logging.ILoggerFactory> to create a logger in `Startup.ConfigureServices`.
 
 [!code-csharp[](startup/sample_snapshot/Startup2.cs?highlight=7-8)]
