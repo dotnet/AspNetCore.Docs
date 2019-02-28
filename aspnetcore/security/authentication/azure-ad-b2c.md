@@ -101,11 +101,18 @@ Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in 
 
 ## Configure the underlying OpenIdConnectOptions/JwtBearer/Cookie options
 
-If you need to configure the underlying options directly, you can configure them using the scheme constant:
+To configure the underlying options directly, use the appropriate scheme constant in `Startup.ConfigureServices`:
 
-`serviceCollection.Configure<OpenIdConnectOptions>(AzureAD[B2C]Defaults.OpenIdScheme, o => { ... }`
-`serviceCollection.Configure<CookieAuthenticationOptions>(AzureAD[B2C]Defaults.CookieScheme , o => { ... }`
-`serviceCollection.Configure<JwtBearerOptions>(AzureAD[B2C]Defaults.JwtBearerAuthenticationScheme , o => { ... }`
+```csharp
+services.Configure<OpenIdConnectOptions>(
+    AzureAD[B2C]Defaults.OpenIdScheme, options => { ... });
+
+services.Configure<CookieAuthenticationOptions>(
+    AzureAD[B2C]Defaults.CookieScheme, options => { ... });
+
+services.Configure<JwtBearerOptions>(
+    AzureAD[B2C]Defaults.JwtBearerAuthenticationScheme, options => { ... });
+```
 
 ## Run the app
 
