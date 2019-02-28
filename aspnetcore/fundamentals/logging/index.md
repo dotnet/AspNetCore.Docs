@@ -830,8 +830,6 @@ To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppS
 
 ::: moniker-end
 
-::: moniker-end
-
 When you deploy to an App Service app, the application honors the settings in the [Diagnostic Logs](/azure/app-service/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
 ![Azure logging settings](index/_static/azure-logging-settings.png)
