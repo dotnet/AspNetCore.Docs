@@ -4,7 +4,7 @@ author: guardrex
 description: Obtain troubleshooting advice for common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/26/2019
+ms.date: 02/28/2019
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 # Common errors reference for Azure App Service and IIS with ASP.NET Core
@@ -51,7 +51,9 @@ Troubleshooting:
 
 Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any app pool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Core Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Select **Repair** when the installer is run.
 
-## Missing site extension, x86 and x64 site extensions installed, or wrong process bitness set for an Azure App
+## Missing site extension, 32-bit (x86) and 64-bit (x64) site extensions installed, or wrong process bitness set
+
+*Applies to apps hosted by Azure App Services.*
 
 * **Browser:** HTTP Error 500.0 - ANCM In-Process Handler Load Failure 
 
@@ -67,11 +69,20 @@ Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved d
 
 Troubleshooting:
 
-If running the app on a preview runtime, install the correct site extension (x86 or x64). Restart the app. Wait several seconds for the restart to complete. For more information, see <xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension>.
+* If running the app on a preview runtime, install either the 32-bit (x86) **or** 64-bit (x64) site extension that matches the bitness of the app and the app's runtime version. **Don't install both extensions or multiple runtime versions of the extension.**
 
-If running the app on a preview runtime and both the x86 and x64 site extensions are installed, uninstall the [site extension](xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension) that doesn't match the bitness of the app. After removing the site extension, restart the app. Wait several seconds for the restart to complete.
+  * ASP.NET Core {RUNTIME VERSION} (x86) Runtime
+  * ASP.NET Core {RUNTIME VERSION} (x64) Runtime
 
-Confirm that the app's **Platform** in **Application Settings** matches the bitness of the app.
+  Restart the app. Wait several seconds for the app to restart. 
+
+* If running the app on a preview runtime and both the 32-bit (x86) and 64-bit (x64) [site extensions](xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension) are installed, uninstall the site extension that doesn't match the bitness of the app. After removing the site extension, restart the app. Wait several seconds for the app to restart.
+
+* If running the app on a preview runtime and the site extension's bitness matches that of the app, confirm that the preview site extension's *runtime version* matches the app's runtime version.
+
+* Confirm that the app's **Platform** in **Application Settings** matches the bitness of the app.
+
+For more information, see <xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension>.
 
 ## An x86 app is deployed but the app pool isn't enabled for 32-bit apps
 
