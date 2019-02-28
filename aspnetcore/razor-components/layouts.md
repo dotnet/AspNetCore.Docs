@@ -16,7 +16,7 @@ Apps typically contain more than one component. Layout elements, such as menus, 
 
 Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can contain [data binding](xref:razor-components/components#data-binding), [dependency injection](xref:razor-components/dependency-injection), and other ordinary features of components.
 
-Two additional aspects turn a *component* into a *layout*:
+Two additional aspects turn a *component* into a *layout*
 
 * The layout component must inherit from `LayoutComponentBase`. `LayoutComponentBase` defines a `Body` property that contains the content to be rendered inside the layout.
 * The layout component uses the `Body` property to specify where the body content should be rendered using the Razor syntax `@Body`. During rendering, `@Body` is replaced by the content of the layout.
@@ -33,7 +33,6 @@ The following code sample demonstrates the concept. The content of this componen
 
 ```cshtml
 @layout MasterLayout
-
 @page "/master-list"
 
 <h2>Master Episode List</h2>
@@ -55,7 +54,6 @@ The following code samples show how to use nested layouts. The *EpisodesComponen
 
 ```cshtml
 @layout MasterListLayout
-
 @page "/master-list/episodes"
 
 <h1>Episodes</h1>

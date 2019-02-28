@@ -84,8 +84,9 @@ Optional: Add the login partial (`_LoginPartial`) to the layout file:
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
 Use = 2.0: dotnet new razor -au Individual -o RPauth
+uld option: Use Local DB, not SQLite
 
-dotnet new webapp -au Individual -o RPauth
+dotnet new webapp -au Individual -uld -o RPauth
 cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore

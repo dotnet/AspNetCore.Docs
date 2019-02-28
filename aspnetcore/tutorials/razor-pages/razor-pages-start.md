@@ -91,23 +91,29 @@ From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie
 
 ---
 
-## Run the web app
+## Run the app
 
 # [Visual Studio](#tab/visual-studio)
 
 * Press Ctrl+F5 to run without the debugger.
 
-  Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for the local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5001. When you run the app, you'll see a different port number.
+  [!INCLUDE[](~/includes/trustCertVS.md)]
+
+  Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for the local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server.
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Press **Ctrl-F5** to run without the debugger.
 
-  Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+  [!INCLUDE[](~/includes/trustCertVSC.md)]
+
+  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
   
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
+
+[!INCLUDE[](~/includes/trustCertMac.md)]
 
 <!-- End of VS tabs -->
 
@@ -152,6 +158,10 @@ Contains the entry point for the program. For more information, see <xref:fundam
 ### Startup.cs
 
 Contains code that configures app behavior, such as whether it requires consent for cookies. For more information, see <xref:fundamentals/startup>.
+
+## Additional resources
+
+* [Youtube version of this tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
 ## Next steps
 

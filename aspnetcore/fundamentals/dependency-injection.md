@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/25/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -173,7 +173,7 @@ In the sample app, the `IMyDependency` instance is requested and used to call th
 
 ## Framework-provided services
 
-The `Startup.ConfigureServices` method is responsible for defining the services the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](xref:fundamentals/host/index)):
+The `Startup.ConfigureServices` method is responsible for defining the services the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](xref:fundamentals/index#host)):
 
 | Service Type | Lifetime |
 | ------------ | -------- |
@@ -247,7 +247,7 @@ When services are resolved by `ActivatorUtilities`, constructor injection requir
 
 ## Entity Framework contexts
 
-Entity Framework contexts should be added to the service container using the scoped lifetime. This is handled automatically with a call to the [AddDbContext](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) method when registering the database context. Services that use the database context should also use the scoped lifetime.
+Entity Framework contexts are usually added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the request. The default lifetime is scoped if a lifetime isn't specified by an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> overload when registering the database context. Services of a given lifetime shouldn't use a database context with a shorter lifetime than the service.
 
 ## Lifetime and registration options
 
@@ -431,10 +431,9 @@ Generally, the app shouldn't use these properties directly. Instead, request the
 Best practices are to:
 
 * Design services to use dependency injection to obtain their dependencies.
-* Avoid stateful, static method calls (a practice known as [static cling](https://deviq.com/static-cling/)).
+* Avoid stateful, static method calls.
 * Avoid direct instantiation of dependent classes within services. Direct instantiation couples the code to a particular implementation.
-
-By following the [SOLID Principles of Object Oriented Design](https://deviq.com/solid/), app classes naturally tend to be small, well-factored, and easily tested.
+* Make app classes small, well-factored, and easily tested.
 
 If a class seems to have too many injected dependencies, this is generally a sign that the class has too many responsibilities and is violating the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into a new class. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns. Business rules and data access implementation details should be kept in classes appropriate to these [separate concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns).
 
@@ -482,7 +481,7 @@ The built-in service container is meant to serve the needs of the framework and 
 * Custom lifetime management
 * `Func<T>` support for lazy initialization
 
-See the [Dependency Injection readme.md file](https://github.com/aspnet/DependencyInjection#using-other-containers-with-microsoftextensionsdependencyinjection) for a list of some of the containers that support adapters.
+See the [Dependency Injection readme.md file](https://github.com/aspnet/Extensions/tree/master/src/DependencyInjection) for a list of some of the containers that support adapters.
 
 The following sample replaces the built-in container with [Autofac](https://autofac.org/):
 
@@ -557,5 +556,4 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 * [Container-Managed Application Design, Prelude: Where does the Container Belong?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)
 * [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
 * [Inversion of Control Containers and the Dependency Injection Pattern (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
-* [New is Glue ("gluing" code to a particular implementation)](https://ardalis.com/new-is-glue)
 * [How to register a service with multiple interfaces in ASP.NET Core DI](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)

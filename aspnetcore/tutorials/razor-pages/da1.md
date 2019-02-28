@@ -2,7 +2,6 @@
 title: Update the generated pages in an ASP.NET Core app
 author: rick-anderson
 description: Learn how to update the generated pages in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.date: 12/20/2018
 uid: tutorials/razor-pages/da1
@@ -126,6 +125,10 @@ When the Movies/Edit page is posted:
 The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method in the Edit Razor Page.
 
 Search is added in the next tutorial.
+
+## Additional resources
+
+* [YouTube version of this tutorial](https://youtu.be/yLnnleREMtQ)
 
 > [!div class="step-by-step"]
 > [Previous: Working with a database](xref:tutorials/razor-pages/sql)

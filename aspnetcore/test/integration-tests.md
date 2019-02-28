@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/11/2019
+ms.date: 02/25/2019
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -103,6 +103,10 @@ These prerequisites can be seen in the [sample app](https://github.com/aspnet/Do
 * [xunit](https://www.nuget.org/packages/xunit/)
 * [xunit.runner.visualstudio](https://www.nuget.org/packages/xunit.runner.visualstudio/)
 * [AngleSharp](https://www.nuget.org/packages/AngleSharp/)
+
+## SUT environment
+
+If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development.
 
 ## Basic tests with the default WebApplicationFactory
 

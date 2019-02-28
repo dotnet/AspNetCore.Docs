@@ -9,7 +9,7 @@
 <p>Run the app locally and monitor console output to track background service processing.</p>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">Timed Hosted Service</h2>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">Scoped Hosted Service</h2>
@@ -35,7 +35,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <form method="post">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -48,6 +48,16 @@
                     <div class="form-group">
                         <button type="submit" asp-page-handler="AddTask" class="btn btn-default">Add Task</button>
                     </div>
+                    <h3>Database Messages</h3>
+                    <p>After selecting the <b>Add Task</b> button a few times. Refresh the page in the browser every few seconds. As the tasks are running, task status messages are saved into the database. The page shows the current contents of the database on each page refresh.</p>
+                    <ol>
+                        @foreach (var message in Model.Messages)
+                        {
+                            <li>
+                                @message.Text
+                            </li>
+                        }
+                    </ol>
                 </div>
             </div>
         </form>

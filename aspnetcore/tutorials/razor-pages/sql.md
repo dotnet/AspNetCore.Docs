@@ -2,7 +2,6 @@
 title: Work with a database and ASP.NET Core
 author: rick-anderson
 description: Explains working with a database and ASP.NET Core.
-monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.date: 12/07/2017
 uid: tutorials/razor-pages/sql
@@ -171,6 +170,10 @@ The app shows the seeded data:
 ![Movie application open in Chrome showing movie data](sql/_static/m55.png)
 
 The next tutorial will clean up the presentation of the data.
+
+## Additional resources
+
+* [YouTube version of this tutorial](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
 > [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)

@@ -2,7 +2,6 @@
 title: Add search to ASP.NET Core Razor Pages
 author: rick-anderson
 description: Shows how to add search to ASP.NET Core Razor Pages
-monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.date: 12/3/2018
 uid: tutorials/razor-pages/search
@@ -100,6 +99,11 @@ Update *Index.cshtml* as follows:
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 Test the app by searching by genre, by movie title, and by both.
+
+## Additional resources
+
+* [YouTube version of this tutorial](https://youtu.be/4B6pHtdyo08)
+
 
 > [!div class="step-by-step"]
 > [Previous: Updating the pages](xref:tutorials/razor-pages/da1)

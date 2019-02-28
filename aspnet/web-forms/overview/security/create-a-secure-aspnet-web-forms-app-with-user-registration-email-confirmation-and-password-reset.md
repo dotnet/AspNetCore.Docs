@@ -65,6 +65,8 @@ You generally want to prevent new users from posting any data to your website be
 <a id="SG"></a>
 ## Hook up SendGrid
 
+SendGrid has changed it's API since this tutorial was written. For current SendGrid instructions, see [SendGrid](http://sendgrid.com/) or [Enable account confirmation and password recovery](xref:security/authentication/accconfirm#enable-account-confirmation-and-password-recovery).
+
 Although this tutorial only shows how to add email notification through [SendGrid](http://sendgrid.com/), you can send email using SMTP and other mechanisms (see [additional resources](#addRes)).
 
 1. In Visual Studio, open the **Package Manager Console** (**Tools** -&gt; **NuGet Package Manger** -&gt; **Package Manager Console**), and enter the following command:  
