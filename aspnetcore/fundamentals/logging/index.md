@@ -92,7 +92,7 @@ The Log *level* indicates the severity of the logged event. The log *category* i
 
 To write logs in the `Startup` class, include an `ILogger` parameter in the constructor signature:
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,19,26)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,20,27)]
 
 ### Create logs in Program
 
