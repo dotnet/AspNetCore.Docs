@@ -4,7 +4,7 @@ author: guardrex
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/17/2019
+ms.date: 02/28/2019
 uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
@@ -30,11 +30,12 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Digest Authentication**<br>`DigestAuthenticationModule`                                        | Yes | |
 | **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | [Directory Browsing Middleware](xref:fundamentals/static-files#enable-directory-browsing) |
 | **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response Compression Middleware](xref:performance/response-compression) |
-| **Tracing**<br>`FailedRequestsTracingModule`                                                     | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index#tracesource-provider) |
+| **Failed Requests Tracing**<br>`FailedRequestsTracingModule`                                     | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index#tracesource-provider) |
 | **File Caching**<br>`FileCacheModule`                                                            | No  | [Response Caching Middleware](xref:performance/caching/middleware) |
 | **HTTP Caching**<br>`HttpCacheModule`                                                            | No  | [Response Caching Middleware](xref:performance/caching/middleware) |
 | **HTTP Logging**<br>`HttpLoggingModule`                                                          | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index) |
 | **HTTP Redirection**<br>`HttpRedirectionModule`                                                  | Yes | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) |
+| **HTTP Tracing**<br>`TracingModule`                                                              | Yes | |
 | **IIS Client Certificate Mapping Authentication**<br>`IISCertificateMappingAuthenticationModule` | Yes | |
 | **IP and Domain Restrictions**<br>`IpRestrictionModule`                                          | Yes | |
 | **ISAPI Filters**<br>`IsapiFilterModule`                                                         | Yes | [Middleware](xref:fundamentals/middleware/index) |
