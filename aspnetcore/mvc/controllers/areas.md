@@ -131,6 +131,7 @@ Areas with Razor Pages require and *Areas/&lt;area name&gt;/Pages* folder in the
   * Areas
     * Products
       * Pages
+        * _ViewImports
         * About
         * Index
     * Services
@@ -143,7 +144,7 @@ Areas with Razor Pages require and *Areas/&lt;area name&gt;/Pages* folder in the
 
 The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified:
 
-[!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml.cshtml?name=snippet)]
+[!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
 The links generated with the preceding code are valid anywhere in the app.
 
@@ -155,9 +156,35 @@ When the area or controller is not specified, routing depends on the *ambient* v
 For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
 -->
 
-### Shared layout for Areas using the _ViewStart.cshtml file
+### Import namespace and Tag Helpers with _ViewImports file
 
-To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
+A *_ViewImports* file can be added to each *Pages* area folder to import the namespace and Tag Helpers to each Razor Page in the folder.
+
+Consider the Services area of the sample code, which doesn't contain a *_ViewImports* file. The following markup shows the */Services/Manage/About* Razor Page:
+
+[!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
+
+In the preceding markup:
+
+* The fully qualified domain name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
+* [Tag Helpers]() are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+
+In the sample download, the Products area contains the following *_ViewImports* file:
+
+[!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
+
+The following markup shows the */Products/About* Razor Page:
+[!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/About.cshtml)]
+
+In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file:
+
+For more information, see [Managing Tag Helper scope]](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope).
+
+### Shared layout for Razor Pages Areas
+
+To share a common layout for the entire app, add the following *_ViewStart.cshtml* to the *Areas* folder:
+
+[!code-cshtml[](areas/samples/RPareas/Areas/_ViewStart.cshtml)]
 
 ### Publishing Areas
 
