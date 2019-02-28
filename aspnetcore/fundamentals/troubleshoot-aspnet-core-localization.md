@@ -9,14 +9,14 @@ uid: fundamentals/troubleshoot-aspnet-core-localization
 
 By [Hisham Bin Ateya](https://github.com/hishamco)
 
-This article provides instructions on how to diagnose an ASP.NET Core app localization issues.
+This article provides instructions on how to diagnose ASP.NET Core app localization issues.
 
 ## Localization configuration issues
 
-**Localization middleware order setup**  
-The app may not localized because the localization middleware order doesn't configured as expected.
+**Localization middleware order**  
+The app may not localize because the localization middleware isn't ordered as expected.
 
-To resolve such issue, please ensure that localization middleware is registered before MVC middleware, otherwise the localization will not applied on the running app.
+To resolve this issue, ensure that localization middleware is registered before MVC middleware. Otherwise the localization will not applied on the running app.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -33,22 +33,20 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Resource file naming issues
 
-Resource file naming issues are one of the common problems that we had ever seen in the community, especially the new developers. ASP.NET Core became with set of predefine rules and guidelines for localization resources file naming, which descriped in deatils in [Resource file naming](localization#resource-file-naming)
+ASP.NET Core has predefined rules and guidelines for localization resources file naming, which are described in detail [here](xref:fundamentals/localization?view=aspnetcore-2.2#resource-file-naming).
 
 ## Missing resources
 
-Missing localization resources is one of common cases that may occur in many web applications, because the localization resource names are incorrect, the localization resources are not exist in the actual `.resx` files or resource file naming issues as its mentioned above.
+Common causes of resources not being found include:
 
-To avoid such issues be sure that:
-- Your localization resource names are set correctly
-- Your localization resources are exist in the `resx` file of the current culture of your application
-- Check the localization log messages - which they are in `Debug` level - for more details about the missing resources.
+- Resource names are misspelled in either the `resx` file or the localizer request.
+- The resource is missing from the `resx` for some languages, but exists in others.
+- If you're still having trouble check the localization log messages (which are at `Debug` log level) for more details about the missing resources.
 
-_**Hint:** In the case of `CookieRequestCultureProvider` be sure there's no single quotes surrounds the cultures inside the localization cookie value, so `c='en-UK'|uic='en-US'` is invalid cookie value, while `c=en-UK|uic=en-US` is a valid one._
-
+_**Hint:** In the case of `CookieRequestCultureProvider` be sure there's no single quotes around the cultures inside the localization cookie value. So `c='en-UK'|uic='en-US'` is an invalid cookie value, while `c=en-UK|uic=en-US` is a valid one._
 
 ## Resources & Class Libraries issues
 
-## CustomRequestCultureProvide doesn't work as expected
+## CustomRequestCultureProvider doesn't work as expected
 
 ## Root Namespace issues
