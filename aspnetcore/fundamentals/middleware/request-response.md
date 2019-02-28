@@ -43,7 +43,7 @@ Despite some of these optimizations being feasible things to fix, the examples a
 
 Instead of reading from a Stream, we will now be reading from a PipeReader. Let's look at this approach using a PipeReader. 
 
-[!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStreamMoreEfficient)]
+[!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
 This improves many issues that the previous implementation had:
 - Buffering bytes that haven't been used is now handled by the PipeReader, removing the need to have a StringBuffer.
