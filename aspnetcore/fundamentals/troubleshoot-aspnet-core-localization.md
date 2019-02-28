@@ -49,4 +49,25 @@ _**Hint:** In the case of `CookieRequestCultureProvider` be sure there's no sing
 
 ## CustomRequestCultureProvider doesn't work as expected
 
+The `RequestLocalizationOptions` class come up with three default providers:
+
+1. `QueryStringRequestCultureProvider`
+2. `CookieRequestCultureProvider`
+3. `AcceptLanguageHeaderRequestCultureProvider`
+
+The [CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.customrequestcultureprovider?view=aspnetcore-2.1) is allows you to customize how the localization culture is provided in your application, in case the default providers doesn't meet your requirements.
+
+The common cause that custom provider may not work properly is that your provider isn't the first provider in the `RequestCultureProviders` list. To resolve this issue:
+- Insert your custom provider at the position 0 in the `RequestCultureProviders` list as the following:
+```csharp
+options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
+    {
+        // My custom request culture logic
+        return new ProviderCultureResult("en");
+    }));
+```
+- Use `AddInitialRequestCultureProvider` extension method to set your custom provider as initial provider.
+
 ## Root Namespace issues
+
+When the root namespace of an assembly is different than the assembly name, the Localization does not work by default. To avoid this issue use the [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) which is described in detail [here](xref:fundamentals/localization?view=aspnetcore-2.2#resource-file-naming)
