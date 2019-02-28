@@ -92,7 +92,7 @@ The Log *level* indicates the severity of the logged event. The log *category* i
 
 To write logs in the `Startup` class, include an `ILogger` parameter in the constructor signature:
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,19,26)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,20,27)]
 
 ### Create logs in Program
 
@@ -826,28 +826,7 @@ An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.Ad
 
 To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateWebHostBuilder(args).Build().Run();
-    }
-
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
-            .ConfigureServices(serviceCollection => serviceCollection
-                    .Configure<AzureFileLoggerOptions>(options => {
-                        options.FileName = "azure-diagnostics-";
-                        options.FileSizeLimit = 50 * 1024;
-                        options.RetainedFileCountLimit = 5;
-                    }).Configure<AzureBlobLoggerOptions>(options => {
-                        options.BlobName = "log.txt";
-                    }))
-            .UseStartup<Startup>();
-}
-```
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_AzLogOptions&highlight=19-27)]
 
 ::: moniker-end
 
