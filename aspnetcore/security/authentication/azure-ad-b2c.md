@@ -105,13 +105,22 @@ To configure the underlying options directly, use the appropriate scheme constan
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(
-    AzureAD[B2C]Defaults.OpenIdScheme, options => { ... });
+    AzureAD[B2C]Defaults.OpenIdScheme, options => 
+    {
+        // Omitted for brevity
+    });
 
 services.Configure<CookieAuthenticationOptions>(
-    AzureAD[B2C]Defaults.CookieScheme, options => { ... });
+    AzureAD[B2C]Defaults.CookieScheme, options => 
+    {
+        // Omitted for brevity
+    });
 
 services.Configure<JwtBearerOptions>(
-    AzureAD[B2C]Defaults.JwtBearerAuthenticationScheme, options => { ... });
+    AzureAD[B2C]Defaults.JwtBearerAuthenticationScheme, options => 
+    {
+        // Omitted for brevity
+    });
 ```
 
 ## Run the app
