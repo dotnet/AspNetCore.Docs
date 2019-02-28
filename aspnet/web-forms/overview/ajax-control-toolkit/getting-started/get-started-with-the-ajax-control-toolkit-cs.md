@@ -20,7 +20,9 @@ The AJAX Control Toolkit contains more than 30 free controls that you can use in
 
 ## Downloading the AJAX Control Toolkit
 
-The [AJAX Control Toolkit](http://devexpress.com/act) is an open source project developed by the members of the ASP.NET community and the ASP.NET team. 
+The [AJAX Control Toolkit](http://devexpress.com/act) is an open source project developed by the members of the ASP.NET community and the ASP.NET team.
+
+When the current version is downloaded the installation is performed automatically, including adding the AJAX Control Toolkit tab to the toolbox. First exit out of all instances of Visual Studio then click the Download link in the DevExpress web site. All the remaining steps shown here are not necessary.
 
 
 [![Downloading the AJAX Control Toolkit](get-started-with-the-ajax-control-toolkit-cs/_static/image1.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image1.png)
