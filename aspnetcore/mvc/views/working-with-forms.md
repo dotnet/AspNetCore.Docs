@@ -589,7 +589,8 @@ The following markup submits the form to the `Index` action of `HomeController` 
 ```cshtml
 <form method="post">
     <button asp-controller="Home" asp-action="Index">Click Me</button>
-    <input type="image" src="..." alt="Alt" asp-controller="Home" asp-action="Index" />
+    <input type="image" src="..." alt="Or Click Me" asp-controller="Home" 
+                                asp-action="Index" />
 </form>
 ```
 
