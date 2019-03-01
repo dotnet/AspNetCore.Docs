@@ -26,7 +26,7 @@ namespace ErrorHandlingSample
             }
             else
             {
-                app.UseExceptionHandler("/error");
+                app.UseExceptionHandler("/Error");
             }
         #endregion
 
@@ -47,7 +47,7 @@ namespace ErrorHandlingSample
 
 #if StatusCodePagesWithRedirect
             #region snippet_StatusCodePagesWithRedirect
-            app.UseStatusCodePagesWithRedirects("/error/{0}");
+            app.UseStatusCodePagesWithRedirects("/Error/{0}");
             #endregion
 #endif
 

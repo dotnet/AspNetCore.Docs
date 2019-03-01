@@ -10,7 +10,7 @@ uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
 
-By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](https://ardalis.com/)
+By [Tom Dykstra](https://github.com/tdykstra/), [Luke Latham](https://github.com/guardrex), and [Steve Smith](https://ardalis.com/)
 
 This article covers common approaches to handling errors in ASP.NET Core apps.
 
@@ -36,15 +36,19 @@ To see the Developer Exception Page, run the sample app with the environment set
 
 ## Configure a custom exception handling page
 
-Configure an exception handler page to use when the app isn't running in the `Development` environment:
+When the app isn't running in the Development environment, call the <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> extension method to add Exception Handling Middleware. The middleware:
+
+* Catches exceptions.
+* Logs exceptions.
+* Re-executes the request in an alternate pipeline for the page or controller indicated. The request isn't re-executed if the response has started.
+
+In the following example from the sample app, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> adds the Exception Handling Middleware in non-Development environments. The extension method specifies an error page or controller at the `/Error` endpoint for re-executed requests after exceptions are caught and logged:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=9)]
 
-In a Razor Pages app, the [dotnet new](/dotnet/core/tools/dotnet-new) Razor Pages template provides an Error page and an error <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class in the *Pages* folder.
+The Razor Pages app template provides an Error page (*.cshtml*) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the Pages folder.
 
-In an MVC app, don't decorate the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the method. Allow anonymous access to the method so that unauthenticated users are able to receive the error view.
-
-For example, the following error handler method is provided by the [dotnet new](/dotnet/core/tools/dotnet-new) MVC template and appears in the Home controller:
+In an MVC app, the following error handler method is included in the MVC app template and appears in the Home controller:
 
 ```csharp
 [AllowAnonymous]
@@ -55,9 +59,11 @@ public IActionResult Error()
 }
 ```
 
+Don't decorate the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the method. Allow anonymous access to the method so that unauthenticated users are able to receive the error view.
+
 ## Configure status code pages
 
-By default, an app doesn't provide a rich status code page for HTTP status codes, such as *404 - Not Found*. To provide status code pages, use Status Code Pages Middleware.
+By default, an ASP.NET Core app doesn't provide a status code page for HTTP status codes, such as *404 - Not Found*. The app returns a status code and an empty response body. To provide status code pages, use Status Code Pages Middleware.
 
 The middleware is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
@@ -75,36 +81,50 @@ By default, Status Code Pages Middleware adds text-only handlers for common stat
 Status Code: 404; Not Found
 ```
 
-The middleware supports several extension methods. One method takes a lambda expression:
+The middleware supports several extension methods that allow you to customize its behavior.
+
+An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> takes a lambda expression, which you can use to process custom error-handling logic and manually write the response:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePages)]
 
-An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> takes a content type and format string:
+An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> takes a content type and format string, which you can use to customize the content type and response text:
 
 ```csharp
 app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 ```
 
-### Redirect re-execute extension methods
+### Redirect and re-execute extension methods
 
 <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*>:
 
 * Sends a *302 - Found* status code to the client.
 * Redirects the client to the location provided in the URL template.
 
-The template may include a placeholder (`{0}`) for the status code. The template must start with a forward slash (`/`).
-
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
+
+<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*> is commonly used when the app:
+
+* Should redirect the client to a different endpoint, usually in cases where a different app processes the error. For web apps, the client's browser address bar reflects the redirected endpoint.
+* Shouldn't preserve and return the original status code with the initial redirect response.
 
 <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>:
 
 * Returns the original status code to the client.
 * Generates the response body by re-executing the request pipeline using an alternate path.
 
-The template may include a placeholder (`{0}`) for the status code. The template must start with a forward slash (`/`).
-
 ```csharp
-app.UseStatusCodePagesWithReExecute("/error/{0}");
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
+```
+
+<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> is commonly used when the app should:
+
+* Process the request without redirecting to a different endpoint. For web apps, the client's browser address bar reflects the originally requested endpoint.
+* Preserve and return the original status code with the response.
+
+Templates may include a placeholder (`{0}`) for the status code. The template must start with a forward slash (`/`). When using a placeholder, confirm that the endpoint (page or controller) can process the path segment. For example, a Razor Page for errors should accept the optional path segment value with the `@page` directive:
+
+```cshtml
+@page "{code?}"
 ```
 
 Status code pages can be disabled for specific requests in a Razor Pages handler method or in an MVC controller. To disable status code pages, attempt to retrieve the <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature> from the request's [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features) collection and disable the feature if it's available:
@@ -118,7 +138,7 @@ if (statusCodePagesFeature != null)
 }
 ```
 
-To use a <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> overload that points to an endpoint within the app, create an MVC view or Razor Page for the endpoint. For example, the [dotnet new](/dotnet/core/tools/dotnet-new) template for a Razor Pages app produces the following page and page model class:
+To use a <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> overload that points to an endpoint within the app, create an MVC view or Razor Page for the endpoint. For example, the Razor Pages app template produces the following page and page model class:
 
 *Error.cshtml*:
 
@@ -239,11 +259,11 @@ Also, be aware that once the headers for a response are sent:
 
 ## Server exception handling
 
-In addition to the exception handling logic in your app, the [server](xref:fundamentals/servers/index) hosting your app performs some exception handling. If the server catches an exception before the headers are sent, the server sends a *500 - Internal Server Error* response without a response body. If the server catches an exception after the headers are sent, the server closes the connection. Requests that aren't handled by your app are handled by the server. Any exception that occurs is handled by the server's exception handling. Any configured custom error pages or exception handling middleware or filters don't affect this behavior.
+In addition to the exception handling logic in your app, the [server implementation](xref:fundamentals/servers/index) can handle some exceptions. If the server catches an exception before response headers are sent, the server sends a *500 - Internal Server Error* response without a response body. If the server catches an exception after response headers are sent, the server closes the connection. Requests that aren't handled by your app are handled by the server. Any exception that occurs is handled by the server's exception handling. Any configured custom error pages or exception handling middleware or filters don't affect this behavior.
 
 ## Startup exception handling
 
-Only the hosting layer can handle exceptions that take place during app startup. Using the [Web Host](xref:fundamentals/host/web-host), you can [configure how the host behaves in response to errors during startup](xref:fundamentals/host/web-host#detailed-errors) with the `captureStartupErrors` and `detailedErrors` keys.
+Only the hosting layer can handle exceptions that take place during app startup. Using [Web Host](xref:fundamentals/host/web-host), you can [configure how the host behaves in response to errors during startup](xref:fundamentals/host/web-host#detailed-errors) with the `captureStartupErrors` and `detailedErrors` keys.
 
 Hosting can only show an error page for a captured startup error if the error occurs after host address/port binding. If any binding fails for any reason:
 
@@ -268,7 +288,7 @@ Exception filters can be configured globally or on a per-controller or per-actio
 
 [Model validation](xref:mvc/models/validation) occurs prior to invoking each controller action, and it's the action method's responsibility to inspect [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) and react appropriately.
 
-Some apps choose to follow a standard convention for dealing with model validation errors, in which case a [filter](xref:mvc/controllers/filters) may be an appropriate place to implement such a policy. You should test how your actions behave with invalid model states. For more information, see <xref:mvc/controllers/testing>.
+Some apps choose to follow a standard convention for dealing with [model validation](xref:mvc/models/validation) errors, in which case a [filter](xref:mvc/controllers/filters) may be an appropriate place to implement such a policy. You should test how your actions behave with invalid model states. For more information, see <xref:mvc/controllers/testing>.
 
 ## Additional resources
 
