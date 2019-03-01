@@ -177,7 +177,21 @@ Log levels available to the JavaScript client are listed below. Setting the log 
 | `Debug` | Diagnostic messages useful for debugging. |
 | `Trace` | Very detailed diagnostic messages designed for diagnosing specific issues. |
 
-For details on how to enable logging in the Java client, see [Logging in SignalR](xref:signalr/java-client#Add-logging).
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
+
+```gradle
+implementation 'org.slf4j:slf4j-jdk14:1.7.25'
+```
+
+If you don't configure logging in your dependencies, SLF4J loads a default no-operation logger with the following warning message:
+
+```
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+```
+
+This can safely be ignored.
 
 ### Configure allowed transports
 
@@ -214,10 +228,9 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
     .withTransport(TransportEnum.WEBSOCKETS)
     .build();
 ```
-
-
 > [!NOTE]
 > The SignalR Java client doesn't support transport fallback yet.
+
 ::: moniker-end
 
 ### Configure bearer authentication
