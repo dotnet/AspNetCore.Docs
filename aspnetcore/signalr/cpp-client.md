@@ -1,15 +1,15 @@
 ---
-title: ASP.NET Core SignalR C++ Client
+title: ASP.NET Core SignalR C++ client
 author: bradygaster
-description: Information about the ASP.NET Core SignalR C++ Client
+description: Information about the ASP.NET Core SignalR C++ client
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 2/26/2019
+ms.date: 02/26/2019
 uid: signalr/cpp-client
 ---
 
-# ASP.NET Core SignalR C++ Client
+# ASP.NET Core SignalR C++ client
 
 The ASP.NET Core SignalR C++ client library lets you communicate with SignalR hubs from native applications.
 
@@ -28,7 +28,7 @@ connection.start().get();
 
 Register a handler for the disconnected event to respond to a lost connection. For example, you might want to automate reconnection.
 
-The disconnected event can be registered by calling `set_disconnected` and passing in a function;
+The disconnected event can be registered by calling `set_disconnected` and passing in a function:
 
 ```c++
 connection.set_disconnected([]()
@@ -39,7 +39,8 @@ connection.set_disconnected([]()
 
 ## Call hub methods from client
 
-`connection.send` calls methods on the hub and does not expect or wait for a response.
+`connection.send` calls methods on the hub and doesn't expect or wait for a response.
+
 ```c++
 web::json::value args{};
 args[0] = web::json::value::string("some text");
@@ -47,6 +48,7 @@ connection.send("Echo", args).get();
 ```
 
 `connection.invoke` calls methods on the hub and waits for a response.
+
 ```c++
 web::json::value args{};
 args[0] = web::json::value::string("some text");
@@ -62,6 +64,7 @@ Pass the hub method name and any arguments defined in the hub method to `invoke`
 ## Call client methods from hub
 
 Define methods the hub calls using `connection.on` after creating the connection, but before starting it. The `web::json::value` parameter will be an array of values sent from the server.
+
 ```c++
 connection.on("ReceiveMessage", [](const web::json::value& m)
 {
@@ -87,7 +90,7 @@ class custom_logger : public signalr::log_writer
 }
 ```
 
-Then when creating the hub_connection pass a `shared_ptr<custom_logger>` into the constructor.
+When creating the `hub_connection`, pass a `shared_ptr<custom_logger>` into the constructor.
 
 ```c++
 signalr::hub_connection connection("http://localhost:5000/default", signalr::trace_level::all, std::make_shared<custom_logger>());
