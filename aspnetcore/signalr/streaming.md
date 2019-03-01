@@ -133,9 +133,30 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-3.0"
+## Java client
+The SignalR Java client uses the `stream` method to invoke streaming methods. It accepts three arguments:
+
+* The expected type of the stream items 
+* The name of the hub method. In the following example we use an example server hub method.
+* Arguments defined in the hub method. 
+
+```java
+Observable<String> result = hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1");
+Disposable subscription = result.subscribe((item) -> {/*onNext*/ },
+        (error) -> {/*onError*/},
+        () -> {/*onCompleted*/completed.set(true);});
+```
+The `stream` method on `HubConnection` returns an Observable of the stream item type. The Observable types `susbscribe` method is where you define your `onNext`,  `onError` and  `onCompleted`
+
+::: moniker-end
+
 ## Related resources
 
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)
+::: moniker range=">= aspnetcore-3.0"
+* [Java client](xref:signalr/java-client)
+::: moniker-end
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
