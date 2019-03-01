@@ -71,6 +71,11 @@ Many startup errors don't produce useful information in the Application Event Lo
    * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable. In the following command, substitute the name of the app's assembly for `<assembly_name>`: `<assembly_name>.exe`
 1. The console output from the app, showing any errors, is piped to the Kudu console.
 
+If you're testing a 64-bit framework-dependent deployment, you'll need to use dotnet.exe located in the **d:\Program Files\dotnet** directory. To do that:
+
+1. Enter `cd \Program Files\dotnet` to change into the directory containing the 64-bit version of dotnet.exe.
+1. In the console, run the app by executing the app's assembly using the following command and subtituting the name of the app's assembly for `<assembly_name>`: `dotnet \home\site\wwwroot\<assembly_name>.dll`
+
 ### ASP.NET Core Module stdout log
 
 The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
