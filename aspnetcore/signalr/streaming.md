@@ -156,7 +156,4 @@ The `stream` method on `HubConnection` returns an Observable of the stream item 
 * [Hubs](xref:signalr/hubs)
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)
-::: moniker range=">= aspnetcore-3.0"
-* [Java client](xref:signalr/java-client)
-::: moniker-end
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
