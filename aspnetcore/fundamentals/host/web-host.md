@@ -663,7 +663,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
     if (env.IsDevelopment())
     {
-        // In Development, use the developer exception page
+        // In Development, use the Developer Exception Page
         app.UseDeveloperExceptionPage();
     }
     else
