@@ -813,6 +813,8 @@
   items: 
     - name: Write middleware
       uid: fundamentals/middleware/write
+    - name: Request and response operations
+      uid: fundamentals/middleware/request-response
     - name: URL rewriting
       uid: fundamentals/url-rewriting
     - name: File providers
