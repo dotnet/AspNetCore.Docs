@@ -20,23 +20,20 @@ namespace ErrorHandlingSample
         #region snippet_DevExceptionPage
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            env.EnvironmentName = EnvironmentName.Production;
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/error");
+                app.UseExceptionHandler("/Error");
             }
         #endregion
 
 #if StatusCodePages
             #region snippet_StatusCodePages
-            // Expose the members of the 'Microsoft.AspNetCore.Http' namespace 
-            // at the top of the file:
             // using Microsoft.AspNetCore.Http;
+
             app.UseStatusCodePages(async context =>
             {
                 context.HttpContext.Response.ContentType = "text/plain";
@@ -50,13 +47,12 @@ namespace ErrorHandlingSample
 
 #if StatusCodePagesWithRedirect
             #region snippet_StatusCodePagesWithRedirect
-            app.UseStatusCodePagesWithRedirects("/error/{0}");
+            app.UseStatusCodePagesWithRedirects("/Error/{0}");
             #endregion
 #endif
 
             app.MapWhen(context => context.Request.Path == "/missingpage", builder => { });
 
-            // "/error/400"
             app.Map("/error", error =>
             {
                 error.Run(async context =>
@@ -83,7 +79,6 @@ namespace ErrorHandlingSample
                 });
             });
 
-            #region snippet_AppRun
             app.Run(async (context) =>
             {
                 if (context.Request.Query.ContainsKey("throw"))
@@ -101,7 +96,6 @@ namespace ErrorHandlingSample
                 context.Response.ContentType = "text/html";
                 await context.Response.WriteAsync(builder.ToString());
             });
-            #endregion
         }
     }
 }
