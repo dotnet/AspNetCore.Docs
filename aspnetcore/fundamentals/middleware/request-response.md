@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jkotalik
 ms.custom: mvc
 ms.date: 02/26/2019
-uid: fundamentals/request-response
+uid: fundamentals/middleware/request-response
 ---
 # Request and response operations in ASP.NET Core
 
