@@ -21,6 +21,8 @@ Consider using Areas in an project when:
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
+If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-pages) in this document.
+
 ## Areas for controllers with views
 
 A typical ASP.NET Core web app using areas, controllers, and views contains the following:
@@ -64,11 +66,6 @@ While the preceding layout is typical when using Areas, only the view files are 
 
 The location of non-view folders like *Controllers* and *Models* does **not** matter. For example, the *Controllers* and *Models* folder are not required. The content of *Controllers* and *Models* is code which gets compiled into a .dll. The content of the *Views* isn't compiled until a request to that view has been made.
 
-<!-- TODO review:
-The content of the *Views* isn't compiled until a request to that view has been made.
-
-What about precompiled views? 
- -->
 <a name="attribute"></a>
 
 ### Associate the controller with an Area
@@ -103,7 +100,7 @@ The following code from the [sample download](https://github.com/aspnet/Docs/tre
 
 The links generated with the preceding code are valid anywhere in the app.
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
 When the area or controller is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
@@ -152,15 +149,11 @@ The sample download includes a [partial view](xref:mvc/views/partial) that conta
 
 When the area or controller is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
-<!-- 
-For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
--->
-
 ### Import namespace and Tag Helpers with _ViewImports file
 
-A *_ViewImports* file can be added to each *Pages* area folder to import the namespace and Tag Helpers to each Razor Page in the folder.
+A *_ViewImports* file can be added to each area *Pages* folder to import the namespace and Tag Helpers to each Razor Page in the folder.
 
-Consider the Services area of the sample code, which doesn't contain a *_ViewImports* file. The following markup shows the */Services/Manage/About* Razor Page:
+Consider the *Services* area of the sample code, which doesn't contain a *_ViewImports* file. The following markup shows the */Services/Manage/About* Razor Page:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
@@ -178,13 +171,11 @@ The following markup shows the */Products/About* Razor Page:
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file:
 
-For more information, see [Managing Tag Helper scope]](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope).
+For more information, see [Managing Tag Helper scope](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 
-To share a common layout for the entire app, add the following *_ViewStart.cshtml* to the *Areas* folder:
-
-[!code-cshtml[](areas/samples/RPareas/Areas/_ViewStart.cshtml)]
+To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
 
 ### Publishing Areas
 
