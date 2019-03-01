@@ -9,4 +9,8 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\classicMovieValidators.js" />
+  </ItemGroup>
+
 </Project>

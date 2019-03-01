@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using ValidationSample.Models;
 
-namespace MVCMovie.Models
+namespace ValidationSample.Attributes
 {
-    #region snippet_ClassicMovieAttribute
-    public class ClassicMovieAttribute : ValidationAttribute, IClientModelValidator
+    // The ClassicMovie attribute is an
+    // example that doesn't use an AttributeAdapter to
+    // provide client-side validation.
+
+    #region snippet_ClassicMovie2Attribute
+
+    public class ClassicMovie2Attribute : ValidationAttribute, IClientModelValidator
     {
         private int _year;
 
-        public ClassicMovieAttribute(int year)
+        public ClassicMovie2Attribute(int year)
         {
             _year = year;
         }
@@ -19,18 +25,17 @@ namespace MVCMovie.Models
         protected override ValidationResult IsValid(
             object value, ValidationContext validationContext)
         {
-            Movie movie = (Movie)validationContext.ObjectInstance;
+            var movie = (Movie)validationContext.ObjectInstance;
+            var releaseYear = ((DateTime)value).Year;
 
-            if (movie.Genre == Genre.Classic && movie.ReleaseDate.Year > _year)
+            if (movie.Genre == Genre.Classic && releaseYear > _year)
             {
                 return new ValidationResult(GetErrorMessage());
             }
 
             return ValidationResult.Success;
         }
-        #endregion
 
-        #region snippet_AddValidation
         public void AddValidation(ClientModelValidationContext context)
         {
             if (context == null)
@@ -39,13 +44,11 @@ namespace MVCMovie.Models
             }
 
             MergeAttribute(context.Attributes, "data-val", "true");
-            MergeAttribute(context.Attributes, "data-val-classicmovie", GetErrorMessage());
+            MergeAttribute(context.Attributes, "data-val-classicmovie2", GetErrorMessage());
 
             var year = _year.ToString(CultureInfo.InvariantCulture);
-            MergeAttribute(context.Attributes, "data-val-classicmovie-year", year);
+            MergeAttribute(context.Attributes, "data-val-classicmovie2-year", year);
         }
-        #endregion
-
         private bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
         {
             if (attributes.ContainsKey(key))
@@ -56,12 +59,11 @@ namespace MVCMovie.Models
             attributes.Add(key, value);
             return true;
         }
-
-        #region snippet_GetErrorMessage
-        private string GetErrorMessage()
+        protected string GetErrorMessage()
         {
-            return $"Classic movies must have a release year earlier than {_year}.";
+            return $"Classic movies must have a release year no later than {_year} [from attribute 2].";
         }
-        #endregion
     }
+#endregion
+
 }

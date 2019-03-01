@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MVCMovie.Controllers
+namespace ValidationSample.Data
 {
     public class UserRepository : IUserRepository
     {

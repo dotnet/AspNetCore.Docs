@@ -1,4 +1,4 @@
-﻿namespace MVCMovie.Models
+﻿namespace ValidationSample.Models
 {
     public enum Genre
     {

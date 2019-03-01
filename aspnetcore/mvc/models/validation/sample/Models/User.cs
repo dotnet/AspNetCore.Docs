@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MVCMovie.Models
+namespace ValidationSample.Models
 {
     public class User
     {
