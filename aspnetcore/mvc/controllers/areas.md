@@ -139,13 +139,13 @@ Areas with Razor Pages require and *Areas/&lt;area name&gt;/Pages* folder in the
 
 ### Link generation with Razor Pages and areas
 
-The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified:
+The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
 
 [!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
 The links generated with the preceding code are valid anywhere in the app.
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
 When the area or controller is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
