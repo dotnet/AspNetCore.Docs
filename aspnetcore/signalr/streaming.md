@@ -142,10 +142,11 @@ The SignalR Java client uses the `stream` method to invoke streaming methods. It
 * Arguments defined in the hub method. 
 
 ```java
-Observable<String> result = hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1");
-Disposable subscription = result.subscribe((item) -> {/*onNext*/ },
-        (error) -> {/*onError*/},
-        () -> {/*onCompleted*/completed.set(true);});
+hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
+    .subscribe(
+        (item) -> {/* Define your onNext handler here. */ },
+        (error) -> {/* Define your onError handler here. */},
+        () -> {/* Define your onCompleted handler here. */});
 ```
 The `stream` method on `HubConnection` returns an Observable of the stream item type. The Observable types `susbscribe` method is where you define your `onNext`,  `onError` and  `onCompleted`
 
