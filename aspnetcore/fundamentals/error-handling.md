@@ -310,7 +310,7 @@ When running on [IIS](/iis) or [IIS Express](/iis/extensions/introduction-to-iis
 Exception filters can be configured globally or on a per-controller or per-action basis in an MVC app. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter. These filters aren't called otherwise. For more information, see <xref:mvc/controllers/filters#exception-filters>.
 
 > [!TIP]
-> Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. We recommend the use of middleware. Use filters only where you need to perform error handling *differently* based on which MVC action is chosen.
+> Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the Exception Handling Middleware. We recommend using the middleware. Use filters only where you need to perform error handling *differently* based on which MVC action is chosen.
 
 ### Handle model state errors
 
