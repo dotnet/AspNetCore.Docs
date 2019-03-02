@@ -83,7 +83,7 @@ The code to create a host is in `Program.Main` and follows the [builder pattern]
 
 ::: moniker range="<= aspnetcore-2.2"
 
-ASP.NET Core 2.x uses Web Host (the `WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` convenience methods that set up a host with commonly used options, such as the following:
+ASP.NET Core 2.x uses Web Host (the `WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` to set up a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, environment variables, command line arguments, and other sources.
@@ -105,7 +105,7 @@ For more information, see [Web Host](xref:fundamentals/host/web-host).
 
 In ASP.NET Core 3.0, Web Host (`WebHost` class) or Generic Host (`Host` class) can be used in a web app. Generic Host is recommended, and Web Host is available for backwards compatibility.
 
-The framework provides `CreateDefaultBuilder` convenience and `ConfigureWebHostDefaults` extension methods that set up a host with commonly used options, such as the following:
+The framework provides the `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods to set up a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, *appsettings.[EnvironmentName].json*, environment variables, and command line arguments.
