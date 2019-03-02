@@ -1,8 +1,9 @@
+#define  SQLServer // Redis
+
 using System;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
@@ -21,15 +22,18 @@ namespace SampleApp
             _hostContext = hostContext;
         }
 
-        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             if (_hostContext.IsDevelopment())
             {
+                #region snippet_AddDistributedMemoryCache
                 services.AddDistributedMemoryCache();
+                #endregion
             }
             else
             {
+#if SQLServer
+                #region snippet_AddDistributedSqlServerCache
                 services.AddDistributedSqlServerCache(options =>
                 {
                     options.ConnectionString = 
@@ -37,16 +41,19 @@ namespace SampleApp
                     options.SchemaName = "dbo";
                     options.TableName = "TestCache";
                 });
+                #endregion
+#else
+                #region snippet_AddStackExchangeRedisCache
+                services.AddStackExchangeRedisCache(options =>
+                {
+                    options.Configuration = "localhost";
+                    options.InstanceName = "SampleInstance";
+                });
+                #endregion
+#endif
             }
-        #endregion
 
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         #region snippet_Configure
@@ -71,12 +78,9 @@ namespace SampleApp
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
             app.UseMvc();
         }
     }
