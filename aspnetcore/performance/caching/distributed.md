@@ -26,8 +26,6 @@ Distributed cache configuration is implementation specific. This article describ
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/distributed/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
-The sample app is configured to use a distributed SQL Server cache. To reconfigure the app to use a distributed Redis cache, change the preprocessor directive at the top of the *Startup.cs* file to use Redis (`#define Redis // SQLServer`). For more information, see <xref:index#preprocessor-directives-in-sample-code>.
-
 ## Prerequisites
 
 ::: moniker range=">= aspnetcore-2.2"
