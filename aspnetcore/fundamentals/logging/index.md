@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/14/2019
+ms.date: 03/02/2019
 uid: fundamentals/logging/index
 ---
 # Logging in ASP.NET Core
@@ -25,7 +25,7 @@ To add a provider, call the provider's `Add{provider name}` extension method in 
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=17-19)]
 
-The default project template calls the <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> extension method, which adds the following logging providers:
+The default project template calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, which adds the following logging providers:
 
 * Console
 * Debug
