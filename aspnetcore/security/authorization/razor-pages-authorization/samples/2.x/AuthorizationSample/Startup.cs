@@ -11,12 +11,6 @@ namespace AuthorizationSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             #region snippet1
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
@@ -26,7 +20,7 @@ namespace AuthorizationSample
                     options.Conventions.AllowAnonymousToPage("/Private/PublicPage");
                     options.Conventions.AllowAnonymousToFolder("/Private/PublicPages");
                 })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             #endregion
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -48,7 +42,6 @@ namespace AuthorizationSample
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
             app.UseAuthentication();
 
