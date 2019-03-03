@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/14/2019
+ms.date: 03/02/2019
 uid: fundamentals/logging/index
 ---
 # Logging in ASP.NET Core
@@ -25,7 +25,7 @@ To add a provider, call the provider's `Add{provider name}` extension method in 
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=17-19)]
 
-The default project template calls the <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> extension method, which adds the following logging providers:
+The default project template calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, which adds the following logging providers:
 
 * Console
 * Debug
@@ -92,7 +92,7 @@ The Log *level* indicates the severity of the logged event. The log *category* i
 
 To write logs in the `Startup` class, include an `ILogger` parameter in the constructor signature:
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,19,26)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,20,27)]
 
 ### Create logs in Program
 
@@ -826,28 +826,7 @@ An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.Ad
 
 To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateWebHostBuilder(args).Build().Run();
-    }
-
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
-            .ConfigureServices(serviceCollection => serviceCollection
-                    .Configure<AzureFileLoggerOptions>(options => {
-                        options.FileName = "azure-diagnostics-";
-                        options.FileSizeLimit = 50 * 1024;
-                        options.RetainedFileCountLimit = 5;
-                    }).Configure<AzureBlobLoggerOptions>(options => {
-                        options.BlobName = "log.txt";
-                    }))
-            .UseStartup<Startup>();
-}
-```
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_AzLogOptions&highlight=19-27)]
 
 ::: moniker-end
 

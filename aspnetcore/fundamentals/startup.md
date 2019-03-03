@@ -34,7 +34,7 @@ The host provides services that are available to the `Startup` class constructor
 A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
 
 * <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> to configure services by environment.
-* <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> to read configuration.
+* <xref:Microsoft.Extensions.Configuration.IConfiguration> to read configuration.
 * <xref:Microsoft.Extensions.Logging.ILoggerFactory> to create a logger in `Startup.ConfigureServices`.
 
 [!code-csharp[](startup/sample_snapshot/Startup2.cs?highlight=7-8)]
@@ -67,7 +67,7 @@ The <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method is used to
 
 The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeline with support for:
 
-* [Developer exception page](xref:fundamentals/error-handling#the-developer-exception-page)
+* [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page)
 * [Exception handler](xref:fundamentals/error-handling#configure-a-custom-exception-handling-page)
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [HTTPS redirection](xref:security/enforcing-ssl)
