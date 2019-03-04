@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with ASP.NET Core Azure App Service deployments.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/02/2019
+ms.date: 03/04/2019
 uid: host-and-deploy/azure-apps/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on Azure App Service
@@ -69,18 +69,20 @@ Many startup errors don't produce useful information in the Application Event Lo
 #### Test a 32-bit (x86) app
 
 1. Open the folders to the path **site** > **wwwroot**.
-1. In the console, run the app by executing the app's assembly.
+1. In the console, run the app:
    * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), run the app's assembly with `dotnet .\{ASSEMBLY NAME}.dll`.
    * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable with `{ASSEMBLY NAME}.exe`.
-1. The console output from the app, showing any errors, is piped to the Kudu console.
+
+The console output from the app, showing any errors, is piped to the Kudu console.
 
 #### Test a 64-bit (x64) app
 
-* If the app is a 64-bit (x64) [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), run the app using the 64-bit *dotnet.exe* located in the `D:\Program Files\dotnet` directory:
-  1. In the console, execute `cd \Program Files\dotnet` to change directories.
-  1. Run the app by executing the app's assembly with `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`.
-  1. The console output from the app, showing any errors, is piped to the Kudu console.
+* If the app is a 64-bit (x64) [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
+  1. In the console, execute `cd D:\Program Files\dotnet`.
+  1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`.
 * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable with `{ASSEMBLY NAME}.exe`.
+
+The console output from the app, showing any errors, is piped to the Kudu console.
 
 ### ASP.NET Core Module stdout log
 
