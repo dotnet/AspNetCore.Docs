@@ -1326,10 +1326,29 @@ var host = new WebHostBuilder()
 
 [ConfigurationBinder.GetValue&lt;T&gt;](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a value from configuration with a specified key and converts it to the specified type. An overload permits you to provide a default value if the key isn't found.
 
-The following example extracts the string value from configuration with the key `NumberKey`, types the value as an `int`, and stores the value in the variable `intValue`. If `NumberKey` isn't found in the configuration keys, `intValue` receives the default value of `99`:
+The following example:
+
+* Extracts the string value from configuration with the key `NumberKey`. If `NumberKey` isn't found in the configuration keys, the default value of `99` is used.
+* Types the value as an `int`.
+* Stores the value in the `NumberConfig` property for use by the page.
 
 ```csharp
-var intValue = config.GetValue<int>("NumberKey", 99);
+// using Microsoft.Extensions.Configuration;
+
+public class IndexModel : PageModel
+{
+    public IndexModel(IConfiguration config)
+    {
+        _config = config;
+    }
+    
+    public int NumberConfig { get; private set; }
+        
+    public void OnGet()
+    {
+        NumberConfig = _config.GetValue<int>("NumberKey", 99);
+    }
+}
 ```
 
 ## GetSection, GetChildren, and Exists
