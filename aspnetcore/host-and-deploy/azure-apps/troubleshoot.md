@@ -91,7 +91,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 * If the app is a 64-bit (x64) [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
   1. In the console, execute `cd D:\Program Files\dotnet` when running on the current release. When running on a preview release with the ASP.NET Core {VERSION} (x64) Runtime site extension installed, execute `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64`, where `{X.Y}` is the runtime version.
   1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`.
-* If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable with `{ASSEMBLY NAME}.exe`.
+* If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable with `{ASSEMBLY NAME}.exe` from the `\home\site\wwwroot` directory.
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
