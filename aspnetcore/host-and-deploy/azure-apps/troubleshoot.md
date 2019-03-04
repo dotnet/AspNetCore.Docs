@@ -68,10 +68,21 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 #### Test a 32-bit (x86) app
 
+##### Current release
+
 1. Open the folders to the path **site** > **wwwroot**.
 1. In the console, run the app:
    * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), run the app's assembly with `dotnet .\{ASSEMBLY NAME}.dll`.
    * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable with `{ASSEMBLY NAME}.exe`.
+   
+The console output from the app, showing any errors, is piped to the Kudu console.
+   
+##### Framework-depdendent deployment running on a preview release
+
+*Requires installation of the the ASP.NET Core {VERSION} (x86) Runtime site extension.*
+
+1. Execute `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32`, where `{X.Y}` is the runtime version.
+1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`.
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
