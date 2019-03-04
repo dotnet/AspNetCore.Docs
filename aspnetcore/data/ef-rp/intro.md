@@ -311,5 +311,9 @@ In the next tutorial, basic CRUD (create, read, update, delete) operations are e
 
 ::: moniker-end
 
+## Additional resources
+
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=P7iTtQnkrNs)
+
 > [!div class="step-by-step"]
 > [Next](xref:data/ef-rp/crud)
