@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use the Configuration API to configure an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/25/2019
+ms.date: 03/04/2019
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -128,7 +128,26 @@ At app startup, configuration sources are read in the order that their configura
 
 File Configuration Providers have the ability to reload configuration when an underlying settings file is changed after app startup. The File Configuration Provider is described later in this topic.
 
-<xref:Microsoft.Extensions.Configuration.IConfiguration> is available in the app's [Dependency Injection (DI)](xref:fundamentals/dependency-injection) container. Configuration providers can't utilize DI, as it's not available when they're set up by the host.
+<xref:Microsoft.Extensions.Configuration.IConfiguration> is available in the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) container. <xref:Microsoft.Extensions.Configuration.IConfiguration> can be injected into a Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> to obtain configuration for the class:
+
+```csharp
+// using Microsoft.Extensions.Configuration;
+
+public class IndexModel : PageModel
+{
+    private readonly IConfiguration _config;
+
+    public IndexModel(IConfiguration config)
+    {
+        _config = config;
+    }
+        
+    // The _config local variable is used to obtain configuration 
+    // throughout the class.
+}
+```
+
+Configuration providers can't utilize DI, as it's not available when they're set up by the host.
 
 Configuration keys adopt the following conventions:
 
@@ -256,6 +275,8 @@ Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=19)]
 
 ::: moniker-end
+
+Configuration supplied to the app in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> is available during the app's startup, including `Startup.ConfigureServices`. For more information, see the [Access configuration during startup](#access-configuration-during-startup) section.
 
 ## Command-line Configuration Provider
 
