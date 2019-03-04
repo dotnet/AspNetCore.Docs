@@ -1,7 +1,7 @@
 ﻿#define StatusCodePages  // or StatusCodePagesWithRedirect
 #define PageErrorHandler // or LambdaErrorHandler
 
-using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -48,16 +48,16 @@ namespace ErrorHandlingSample
                         await context.Response.WriteAsync("<html lang=\"en\"><body>\r\n");
                         await context.Response.WriteAsync("ERROR!<br><br>\r\n");
 
-                        var error = context.Features.Get<IExceptionHandlerFeature>();
+                        var exceptionHandlerPathFeature = 
+                            context.Features.Get<IExceptionHandlerPathFeature>();
 
-                        if (error != null)
+                        // Use exceptionHandlerPathFeature to process the exception (for example, 
+                        // logging), but do NOT expose sensitive error information directly to 
+                        // the client.
+
+                        if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
                         {
-                            // FOR DEMONSTRATION PURPOSES ONLY!
-                            // Do NOT expose an error message to the client 
-                            // with the following code.
-                            await context.Response.WriteAsync("Error: " + 
-                                HtmlEncoder.Default.Encode(error.Error.Message) + 
-                                "<br><br>\r\n");
+                            await context.Response.WriteAsync("File error thrown!<br><br>\r\n");
                         }
 
                         await context.Response.WriteAsync("<a href=\"/\">Home</a><br>\r\n");
@@ -130,7 +130,7 @@ namespace ErrorHandlingSample
             {
                 if (context.Request.Query.ContainsKey("throw"))
                 {
-                    throw new Exception("Exception triggered!");
+                    throw new FileNotFoundException("File Not Found Exception triggered!");
                 }
 
                 var builder = new StringBuilder();

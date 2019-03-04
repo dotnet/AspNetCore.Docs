@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/02/2019
+ms.date: 03/04/2019
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -18,7 +18,7 @@ This article covers common approaches to handling errors in ASP.NET Core apps.
 
 ## Developer Exception Page
 
-To configure an app to display a page that shows detailed information about exceptions, use the *Developer Exception Page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method when the app is running in the Development [environment](xref:fundamentals/environments):
+To configure an app to display a page that shows detailed information about request exceptions, use the *Developer Exception Page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method when the app is running in the Development [environment](xref:fundamentals/environments):
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseDeveloperExceptionPage)]
 
@@ -42,7 +42,7 @@ When the app isn't running in the Development environment, call the <xref:Micros
 * Logs exceptions.
 * Re-executes the request in an alternate pipeline for the page or controller indicated. The request isn't re-executed if the response has started.
 
-In the following example from the sample app, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> adds the Exception Handling Middleware in non-Development environments. The extension method specifies an error page or controller at the `/Error` endpoint for re-executed requests after exceptions are caught and logged in `Startup.Configure`:
+In the following example from the sample app, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> adds the Exception Handling Middleware in non-Development environments. The extension method specifies an error page or controller at the `/Error` endpoint for re-executed requests after exceptions are caught and logged:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseExceptionHandler1)]
 
@@ -63,31 +63,33 @@ Don't decorate the error handler action method with HTTP method attributes, such
 
 ## Access the exception
 
-If you need to access the exception in a controller or page, obtain <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> from [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features) and read the <xref:System.Exception?displayProperty=fullName> ([IExceptionHandlerFeature.Error](xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature.Error)):
+If you need to access the exception or the original request path in a controller or page, use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature>:
+
+* The path is available from the <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature.Path> property.
+* Read the <xref:System.Exception?displayProperty=fullName> from the inherited [IExceptionHandlerFeature.Error](xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature.Error) property.
 
 ```csharp
 // using Microsoft.AspNetCore.Diagnostics;
 
-var exceptionHandlerFeature = 
-    HttpContext.Features.Get<IExceptionHandlerFeature>();
-var error = exceptionHandlerFeature?.Error;
+var exceptionHandlerPathFeature = 
+    HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+var path = exceptionHandlerPathFeature?.Path;
+var error = exceptionHandlerPathFeature?.Error;
 ```
 
 > [!WARNING]
-> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> to clients. Serving sensitive information from errors can compromise the app's security.
+> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving sensitive information from errors can compromise the app's security.
 
 ## Configure custom exception handling code
 
 An alternative to serving an endpoint for errors with a [custom exception handling page](#configure-a-custom-exception-handling-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. This approach permits the app to work directly with the error before returning a response.
 
-The sample app demonstrates the approach in `Startup.Configure`. Set the preprocessor directive at the top of the `Startup.cs` file to `LambdaErrorHandler` and run the app in the Production [environment](xref:fundamentals/environments). After the app starts, trigger an exception with the **Throw Exception** link on the Index page. The following lambda runs:
+The sample app demonstrates the approach in `Startup.Configure`. Trigger an exception with the **Throw Exception** link on the Index page. The following lambda runs:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseExceptionHandler2)]
 
 > [!WARNING]
-> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> to clients. Serving sensitive information from errors can compromise the app's security. **The sample app serves sensitive information from [IExceptionHandlerFeature.Error](xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature.Error) [Exception.Message](xref:System.Exception.Message) for demonstration purposes only!**
-
-For more information on using preprocessor directives with documentation sample apps, see <xref:index#preprocessor-directives-in-sample-code>.
+> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving sensitive information from errors can compromise the app's security.
 
 ## Configure status code pages
 
