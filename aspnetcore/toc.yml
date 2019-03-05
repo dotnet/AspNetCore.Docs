@@ -605,6 +605,8 @@
       items: 
         - name: Introduction to Identity
           uid: security/authentication/identity
+        - name: Identity with SPA
+          uid: security/authentication/identity/spa
         - name: Scaffold Identity
           uid: security/authentication/scaffold-identity
         - name: Add custom user data to Identity
