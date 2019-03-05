@@ -13,30 +13,32 @@ In ASP.NET 3.0 we are introducing support for authentication in single page appl
 
 We have added a new authentication parameter to our Angular and React templates that is similar to the authentication parameter in our mvc and razor pages templates with allowed values 'None' and 'Individual'.
 
-## Creating an Angular application with API authorization support
+## Create an Angular app with API authorization support
 
-To create a new angular application with support for authenticating and authorizing users we need to open the command line, navigate to the folder where we want to create the project and run the command below:
+To create a new Angular app with support for authentication and authorization of users, open a command shell and run the following command:
 
-```
-dotnet new angular -au Individual
-```
-
-This will create an ASP.NET Core application with a ClientApp folder where our angular application will live.
-
-## Creating a React application with API authorization support
-
-To create a new react application with support for authenticating and authorizing users we need to open the command line, navigate to the folder where we want to create the project and run the command below:
-
-```
-dotnet new react -au Individual
+```console
+dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-This will create an ASP.NET Core application with a ClientApp folder where our react application will live.
+The preceding command creates an ASP.NET Core app with a *ClientApp* directory containing the Angular app.
 
-## General description of the ASP.NET Core components of the application
+## Create a React app with API authorization support
+
+To create a new React app with support for authentication and authorization of users, open a command shell and run the following command:
+
+```console
+dotnet new react -o <output_directory_name> -au Individual
+```
+
+The preceding command creates an ASP.NET Core app with a *ClientApp* directory containing the React app.
+
+## General description of the ASP.NET Core components of the app
+
 There are several additions to the project when we include support for authentication:
 
 ### Startup class
+
 If we look at the code in the Startup class below we can appreciate the following inclusions:
 * Inside `public void ConfigureServices(IServiceCollection services)`:
   * Identity with the default UI.
@@ -147,10 +149,12 @@ RouterModule.forRoot([
 
 It is important to mention that protecting a route doesn't protect the actual endpoint (which still requires an `[Authorize]` attribute applied to it) but that it only prevents the user from navigating to the given client side route when it is not authenticated.
 
-## Authenticating API requests (Angular)
+## Authenticate API requests (Angular)
+
 Authenticating requests to APIs hosted along side the application is done automatically through the use of the HTTP client interceptor defined by the application.
 
-## Protecting a client-side route (React)
+## Protect a client-side route (React)
+
 Protecting a client side route is done by using the AuthorizeRoute component instead of the plain Route component. As an example you can see how the fetch-data route is configured within the App component:
 
 ```jsx
@@ -159,15 +163,18 @@ Protecting a client side route is done by using the AuthorizeRoute component ins
 
 It is important to mention that protecting a route doesn't protect the actual endpoint (which still requires an `[Authorize]` attribute applied to it) but that it only prevents the user from navigating to the given client side route when it is not authenticated.
 
-## Authenticating API requests (React)
+## Authenticate API requests (React)
+
 Authenticating requests with react is done by first importing the `authService` instance from the `AuthorizeService` and then retrieving the access token from the authService and attaching it to the request as shown below. In react components this is typically done in the componentDidMount lifecycle method or as the result from some user interaction.
 
-### Importing the authService into your component.
+### Import the authService into your component
+
 ```js
 import authService from './api-authorization/AuthorizeService'
 ```
 
-### Retrieving and attaching the access token to the response
+### Retrieve and attach the access token to the response
+
 ```js
 async populateWeatherData() {
   const token = await authService.getAccessToken();
@@ -179,7 +186,8 @@ async populateWeatherData() {
 }
 ```
 
-## Deploying into production
+## Deploy into production
+
 In order to deploy the application into production we need to provision several resources:
 * A database to store the Identity user accounts and the identity server grants.
 * A production certificate to use for signing tokens.
@@ -187,7 +195,8 @@ In order to deploy the application into production we need to provision several 
   * It can be generated through standard tools like powershell or openssl.
   * It can be installed into the certificate store on the target machines or deployed as a pfx file with a strong password.
 
-### Example: Deploying into Azure Websites
+### Example: Deploy into Azure Websites
+
 In this section we are going to deploy the application to Azure websites using a certificate stored in the certificate store. We need to modify the application to load a certicate from the certificate store. To do so, our app service plan needs to be at least on the standard tier when we configure in a later step. In our application we simply need to modify the IdentityServer section on appsettings.json to include the key details:
 ```json
   "IdentityServer": {
@@ -204,9 +213,9 @@ In this section we are going to deploy the application to Azure websites using a
 * The store location represents where to load the certificate from (CurrentUrser or LocalMachine).
 * The store name represents the name of the certificate store where the certificate is stored, in this case it points to the personal user store.
 
-In order to deploy to Azure Websites we first deploy the application following the steps in: https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-2.2#deploy-the-app-to-azure to create all the resources needed on Azure and deploy the aplication to production.
+To deploy to Azure Websites, deploy the app following the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure) to create the necessary Azure resources and deploy the app to production.
 
-After doing this, the application is deployed into Azure but is not yet completely functional as we still need to setup the certificate to be used by the application. To do so, we need to have the thumbprint for the certificate we are going to use and follow the steps described in https://docs.microsoft.com/en-us/azure/app-service/app-service-web-ssl-cert-load#load-your-certificates.
+After doing this, the application is deployed into Azure but is not yet completely functional as we still need to setup the certificate to be used by the application. To do so, we need to have the thumbprint for the certificate we are going to use and follow the steps described in [Load your certificates](/azure/app-service/app-service-web-ssl-cert-load#load-your-certificates).
 
 While these steps mention SSL, there is a "Private certificates" section on the portal where we can upload our provisioned certificate to use with our app.
 
