@@ -325,6 +325,8 @@
       uid: signalr/version-differences
     - name: WebSockets without SignalR
       uid: fundamentals/websockets
+    - name: Logging and diagnostics
+      uid: signalr/diagnostics
 - name: Test, debug, and troubleshoot
   items: 
     - name: Unit testing
@@ -817,6 +819,8 @@
   items: 
     - name: Write middleware
       uid: fundamentals/middleware/write
+    - name: Request and response operations
+      uid: fundamentals/middleware/request-response
     - name: URL rewriting
       uid: fundamentals/url-rewriting
     - name: File providers

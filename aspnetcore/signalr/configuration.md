@@ -165,17 +165,7 @@ let connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
 
-Log levels available to the JavaScript client are listed below. Setting the log level to one of these values enables logging of messages at **or above** that level.
-
-| Level | Description |
-| ----- | ----------- |
-| `None` | No messages are logged. |
-| `Critical` | Messages that indicate a failure in the entire app. |
-| `Error` | Messages that indicate a failure in the current operation. |
-| `Warning` | Messages that indicate a non-fatal problem. |
-| `Information` | Informational messages. |
-| `Debug` | Diagnostic messages useful for debugging. |
-| `Trace` | Very detailed diagnostic messages designed for diagnosing specific issues. |
+For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
 
 The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
