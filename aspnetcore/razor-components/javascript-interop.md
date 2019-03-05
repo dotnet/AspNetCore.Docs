@@ -172,7 +172,7 @@ window.myLib = {
 *ElementRefExtensions.cs*:
 
 ```csharp
-using Microsoft.AspNetCore.Blazor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 

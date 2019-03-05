@@ -605,6 +605,8 @@
       items: 
         - name: Introduction to Identity
           uid: security/authentication/identity
+        - name: Identity with SPA
+          uid: security/authentication/identity/spa
         - name: Scaffold Identity
           uid: security/authentication/scaffold-identity
         - name: Add custom user data to Identity
@@ -637,6 +639,8 @@
               uid: security/authentication/otherlogins
             - name: Additional claims
               uid: security/authentication/social/additional-claims
+        - name: Policy schemes
+          uid: security/authentication/policyschemes
         - name: WS-Federation authentication
           uid: security/authentication/ws-federation
         - name: Account confirmation and password recovery

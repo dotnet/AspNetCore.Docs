@@ -16,13 +16,13 @@ Apps typically contain more than one page. Layout elements, such as menus, copyr
 
 Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can contain data binding, dependency injection, and other ordinary features of components. Two additional aspects turn a *component* into a *layout*:
 
-* The layout component must inherit from `BlazorLayoutComponent`. `BlazorLayoutComponent` defines a `Body` property that contains the content to be rendered inside the layout.
+* The layout component must inherit from `LayoutComponentBase`. `LayoutComponentBase` defines a `Body` property that contains the content to be rendered inside the layout.
 * The layout component uses the `Body` property to specify where the body content should be rendered using the Razor syntax `@Body`. During rendering, `@Body` is replaced by the content of the layout.
 
-The following code sample shows the Razor template of a layout component. Note the use of `BlazorLayoutComponent` and `@Body`:
+The following code sample shows the Razor template of a layout component. Note the use of `LayoutComponentBase` and `@Body`:
 
 ```csharp
-@inherits BlazorLayoutComponent
+@inherits LayoutComponentBase
 
 <header>
     <h1>ERP Master 3000</h1>
@@ -90,7 +90,7 @@ The *MasterDataLayout.cshtml* file provides the `MasterDataLayout`. The layout r
 
 ```csharp
 @layout MainLayout
-@inherits BlazorLayoutComponent
+@inherits LayoutComponentBase
 
 <nav>
     <!-- Menu structure of master data module -->
@@ -105,7 +105,7 @@ Finally, `MainLayout` contains the top-level layout elements, such as the header
 *MainLayout.cshtml*:
 
 ```csharp
-@inherits BlazorLayoutComponent
+@inherits LayoutComponentBase
 
 <header>...</header>
 <nav>...</nav>

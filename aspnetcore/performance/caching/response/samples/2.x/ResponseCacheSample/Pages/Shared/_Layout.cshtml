@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>body{margin:0;padding-bottom:20px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff;}header ul li{display:inline;margin-right:15px}header ul li a{font-size:16px}h1{font-size:24px;margin:.67em 0;}pre{overflow:auto;}code,pre{font-family:monospace, monospace;font-size:1em;}.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;width:800px;}.panel{margin-bottom:20px;background-color:#fff;border:1px solid transparent;border-radius:4px;box-shadow:0 1px 1px rgba(0, 0, 0, .05);}.panel-body{padding:15px;}.panel-heading{padding:10px 15px;border-bottom:1px solid transparent;border-top-left-radius:3px;border-top-right-radius:3px;}.panel-title{margin-top:0;margin-bottom:0;font-size:16px;color:inherit;}.panel-default{border-color:#ddd;}.panel-default > .panel-heading{color:#333;background-color:#f5f5f5;border-color:#ddd;}.clearfix:before,.clearfix:after,.container:before,.container:after,.panel-body:before,.panel-body:after{display:table;content:" ";}.clearfix:after,.container:after,.panel-body:after{clear:both;}.body-content{padding-left:15px;padding-right:15px;}.panel-body{font-size:16px;}</style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <ul>
+                <li>
+                    <a asp-area="" asp-page="/Index">Home</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/Cache1">Cache 1</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/Cache2">Cache 2</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/Cache3">Cache 3</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/Cache4">Cache 4</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+</html>

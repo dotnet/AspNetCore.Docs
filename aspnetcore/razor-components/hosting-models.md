@@ -22,7 +22,7 @@ The principal hosting model for Blazor is running client-side in the browser. In
 
 ![Blazor client-side: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/client-side.png)
 
-To create a Blazor app using the client-side hosting model, use the **Blazor** or **Blazor (ASP.NET Core Hosted)** project templates (`blazor` or `blazorhosted` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command at a command prompt). The included *blazor.webassembly.js* script handles:
+To create a Blazor app using the client-side hosting model, use the **Blazor** or **Blazor (ASP.NET Core Hosted)** project templates (`blazor` or `blazorhosted` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command at a command prompt). The included *components.webassembly.js* script handles:
 
 * Downloading the .NET runtime, the app, and its dependencies.
 * Initialization of the runtime to run the app.
@@ -62,7 +62,7 @@ To create a Razor Components app using the server-side hosting model, use the **
 
 [!code-csharp[](hosting-models/samples_snapshot/Startup.cs?highlight=5,27)]
 
-The *blazor.server.js* script&dagger; establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection).
+The *components.server.js* script&dagger; establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection).
 
 The server-side hosting model offers several benefits:
 
@@ -80,4 +80,4 @@ There are downsides to server-side hosting:
 * Has reduced scalability: The server must manage multiple client connections and handle client state.
 * Requires an ASP.NET Core server to serve the app. Deployment without a server (for example, from a CDN) isn't possible.
 
-&dagger;The *blazor.server.js* script is published to the following path: *bin/{Debug|Release}/{TARGET FRAMEWORK}/publish/{APPLICATION NAME}.App/dist/_framework*.
+&dagger;The *components.server.js* script is published to the following path: *bin/{Debug|Release}/{TARGET FRAMEWORK}/publish/{APPLICATION NAME}.App/dist/_framework*.

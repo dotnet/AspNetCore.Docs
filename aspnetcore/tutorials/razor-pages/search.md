@@ -100,6 +100,11 @@ Update *Index.cshtml* as follows:
 
 Test the app by searching by genre, by movie title, and by both.
 
+## Additional resources
+
+* [YouTube version of this tutorial](https://youtu.be/4B6pHtdyo08)
+
+
 > [!div class="step-by-step"]
 > [Previous: Updating the pages](xref:tutorials/razor-pages/da1)
 > [Next: Adding a new field](xref:tutorials/razor-pages/new-field)

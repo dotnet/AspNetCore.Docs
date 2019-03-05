@@ -327,6 +327,11 @@ Test the app. From a users perspective, the app behaves identically to the previ
 
 The next tutorial shows how to update related data.
 
+## Additional resources
+
+* [YouTube version of this tutorial (part1)](https://www.youtube.com/watch?v=PzKimUDmrvE)
+* [YouTube version of this tutorial (part2)](https://www.youtube.com/watch?v=xvDDrIHv5ko)
+
 >[!div class="step-by-step"]
 >[Previous](xref:data/ef-rp/complex-data-model)
 >[Next](xref:data/ef-rp/update-related-data)
