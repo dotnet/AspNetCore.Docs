@@ -542,7 +542,7 @@ services.AddMvc()
 
 * <xref:index>
 * <xref:mvc/views/razor>
-* <xref:mvc/controllers/areas#areas-with-razor-pages>
+* <xref:mvc/controllers/areas>
 * <xref:tutorials/razor-pages/razor-pages-start>
 * <xref:security/authorization/razor-pages-authorization>
 * <xref:razor-pages/razor-pages-conventions>
