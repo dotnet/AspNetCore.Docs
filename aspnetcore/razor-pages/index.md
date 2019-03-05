@@ -168,7 +168,7 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`. Use the `asp-area` attribute to specify an area. For more information, see <xref:mvc/controllers/areas>.
 
 The *Pages/Edit.cshtml* file:
 
@@ -395,6 +395,14 @@ URL generation for pages supports relative names. The following table shows whic
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
 ::: moniker range=">= aspnetcore-2.1"
+
+To redirect to a page in a different [Area](uid:mvc/controllers/areas), specify the area:
+
+```csharp
+RedirectToPage("/Index", new { area = "Services" });
+```
+
+For more information, see <xref:mvc/controllers/areas>.
 
 ## ViewData attribute
 
