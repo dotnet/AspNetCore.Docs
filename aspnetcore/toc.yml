@@ -554,62 +554,75 @@
       displayName: deploy, publish
       items: 
         - name: Overview
-          displayName: azure
+          displayName: azure, deploy, publish
           uid: host-and-deploy/azure-apps/index
         - name: Publish with Visual Studio
-          displayName: azure
+          displayName: azure, deploy, publish
           uid: tutorials/publish-to-azure-webapp-using-vs
         - name: Publish with Visual Studio for Mac
-          displayName: azure
+          displayName: azure, deploy, publish
           href: /visualstudio/mac/publish-app-svc
         - name: Publish with CLI tools
-          displayName: azure
+          displayName: azure, deploy, publish
           href: /azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
         - name: Publish with Visual Studio and Git
-          displayName: azure
+          displayName: azure, deploy, publish
           uid: host-and-deploy/azure-apps/azure-continuous-deployment
         - name: Continuous deployment with Azure Pipelines
-          displayName: azure
+          displayName: azure, deploy, publish
           href: /azure/devops/pipelines/get-started-yaml
         - name: ASP.NET Core Module
-          displayName: azure
+          displayName: azure, deploy, publish
           uid: host-and-deploy/aspnet-core-module
         - name: Troubleshoot
-          displayName: azure
+          displayName: azure, deploy, publish
           uid: host-and-deploy/azure-apps/troubleshoot
         - name: Errors reference
-          displayName: azure
+          displayName: azure, deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
     - name: DevOps
       items: 
         - name: Overview
+          displayName: azure, deploy, publish
           uid: azure/devops/index
         - name: Tools and downloads
+          displayName: azure, deploy, publish
           uid: azure/devops/tools-and-downloads
         - name: Deploy to App Service
+          displayName: azure, deploy, publish
           uid: azure/devops/deploy-to-app-service
         - name: Continuous integration and deployment
+          displayName: azure, deploy, publish
           uid: azure/devops/cicd
         - name: Monitor and troubleshoot
+          displayName: azure, deploy, publish
           uid: azure/devops/monitor
         - name: Next steps
+          displayName: azure, deploy, publish
           uid: azure/devops/next-steps
     - name: Host on Windows with IIS
       displayName: deploy, publish
       items: 
         - name: Overview
+          displayName: deploy, publish
           uid: host-and-deploy/iis/index
         - name: ASP.NET Core Module
+          displayName: deploy, publish
           uid: host-and-deploy/aspnet-core-module
         - name: IIS support in Visual Studio
+          displayName: deploy, publish
           uid: host-and-deploy/iis/development-time-iis-support
         - name: IIS Modules
+          displayName: deploy, publish
           uid: host-and-deploy/iis/modules
         - name: Troubleshoot
+          displayName: deploy, publish
           uid: host-and-deploy/iis/troubleshoot
         - name: Errors reference
+          displayName: deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
         - name: Transform web.config
+          displayName: deploy, publish
           uid: host-and-deploy/iis/transform-webconfig
     - name: Kestrel
       uid: fundamentals/servers/kestrel
@@ -630,14 +643,19 @@
       displayName: deploy, publish
       items: 
         - name: Overview
+          displayName: deploy, publish, docker
           uid: host-and-deploy/docker/index
         - name: Build Docker images
+          displayName: deploy, publish, docker
           href: /dotnet/core/docker/building-net-docker-images
         - name: Visual Studio Tools
+          displayName: deploy, publish, docker
           uid: host-and-deploy/docker/visual-studio-tools-for-docker
         - name: Publish to a Docker image
+          displayName: deploy, publish, docker
           href: /azure/vs-azure-tools-docker-hosting-web-apps-in-docker
         - name: Sample Docker images
+          displayName: deploy, publish, docker
           href: https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md
     - name: Proxy and load balancer configuration
       displayName: deploy, publish
