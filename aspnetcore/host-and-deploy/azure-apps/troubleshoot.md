@@ -80,7 +80,7 @@ Many startup errors don't produce useful information in the Application Event Lo
    * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
 
      ```console
-     {ASSEMBLY NAME}.exe`
+     {ASSEMBLY NAME}.exe
      ```
    
 The console output from the app, showing any errors, is piped to the Kudu console.
