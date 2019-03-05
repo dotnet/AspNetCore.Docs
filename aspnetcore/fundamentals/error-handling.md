@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/04/2019
+ms.date: 03/05/2019
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -63,7 +63,7 @@ Don't decorate the error handler action method with HTTP method attributes, such
 
 ## Access the exception
 
-If you need to access the exception or the original request path in a controller or page, use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature>:
+Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to access the exception or the original request path in a controller or page:
 
 * The path is available from the <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature.Path> property.
 * Read the <xref:System.Exception?displayProperty=fullName> from the inherited [IExceptionHandlerFeature.Error](xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature.Error) property.
@@ -78,18 +78,18 @@ var error = exceptionHandlerPathFeature?.Error;
 ```
 
 > [!WARNING]
-> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving sensitive information from errors can compromise the app's security.
+> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving errors is a security risk.
 
 ## Configure custom exception handling code
 
-An alternative to serving an endpoint for errors with a [custom exception handling page](#configure-a-custom-exception-handling-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. This approach permits the app to work directly with the error before returning a response.
+An alternative to serving an endpoint for errors with a [custom exception handling page](#configure-a-custom-exception-handling-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda with <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> allows access to the error before returning the response.
 
-The sample app demonstrates the approach in `Startup.Configure`. Trigger an exception with the **Throw Exception** link on the Index page. The following lambda runs:
+The sample app demonstrates custom exception handling code in `Startup.Configure`. Trigger an exception with the **Throw Exception** link on the Index page. The following lambda runs:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseExceptionHandler2)]
 
 > [!WARNING]
-> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving sensitive information from errors can compromise the app's security.
+> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving errors is a security risk.
 
 ## Configure status code pages
 

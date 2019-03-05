@@ -1,5 +1,23 @@
-﻿#define StatusCodePages  // or StatusCodePagesWithRedirect
+﻿// Set the preprocessor directive to enable either of the following scenarios:
+//
+// StatusCodePages - Status code pages with UseStatusCodePages and a lambda.
+//
+// StatusCodePagesWithRedirect - Executes a redirect to an endpoint for status code pages.
+//
+#define StatusCodePages  // or StatusCodePagesWithRedirect
+
+// Set the preprocessor directive to enable either of the following scenarios:
+//
+// PageErrorHandler - Executes an endpoint with UseExceptionHandler.
+//                    Run the app in the Production environment for this scenario.
+//
+// LambdaErrorHandler - Passes a lambda to UseExceptionHandler.
+//                      Run the app in the Production environment for this scenario.
+//
 #define PageErrorHandler // or LambdaErrorHandler
+
+// For more information on preprocessor directives and sample apps, see:
+//  https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
 
 using System.IO;
 using System.Net;
