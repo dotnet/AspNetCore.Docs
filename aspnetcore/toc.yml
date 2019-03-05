@@ -25,30 +25,40 @@
     - name: Web API apps
       items: 
         - name: Create a web API
+          displayName: tutorial
           uid: tutorials/first-web-api
         - name: Web API with MongoDB
+          displayName: tutorial
           uid: tutorials/first-mongo-app
         - name: Backend for mobile
+          displayName: tutorial
           uid: mobile/native-mobile-backend
     - name: Web apps
       items: 
         - name: Razor Pages
+          displayName: tutorial
           uid: tutorials/razor-pages/index
         - name: MVC
+          displayName: tutorial
           uid: tutorials/first-mvc-app/index
     - name: Real-time web apps
       items: 
         - name: SignalR with JavaScript
+          displayName: tutorial
           uid: tutorials/signalr
         - name: SignalR with TypeScript
+          displayName: tutorial
           uid: tutorials/signalr-typescript-webpack
     - name: Data access
       items: 
         - name: EF Core with Razor Pages
+          displayName: tutorial
           uid: data/ef-rp/index
         - name: EF Core with MVC, existing DB
+          displayName: tutorial
           href: /ef/core/get-started/aspnetcore/existing-db
         - name: EF Core with MVC, new DB
+          displayName: tutorial
           href: /ef/core/get-started/aspnetcore/new-db
         - name: EF Core with MVC, long tutorial
           uid: data/ef-mvc/index
@@ -62,7 +72,7 @@
       uid: fundamentals/dependency-injection
     - name: Middleware
       uid: fundamentals/middleware/index
-    - name: The Host
+    - name: Host
       items: 
       - name: Web Host
         uid: fundamentals/host/web-host
@@ -83,6 +93,7 @@
     - name: Handle errors
       uid: fundamentals/error-handling
     - name: Make HTTP requests
+      displayName: httpclient, httpclientfactory
       uid: fundamentals/http-requests
     - name: Static files
       uid: fundamentals/static-files
@@ -262,11 +273,13 @@
     - name: Conventions
       uid: web-api/advanced/conventions
 - name: Real-time apps
+  displayName: signalr
   items: 
     - name: SignalR overview
       uid: signalr/introduction
     - name: Supported platforms
       uid: signalr/supported-platforms
+      displayName: signalr
     - name: Tutorials
       items: 
         - name: SignalR with JavaScript
@@ -275,57 +288,83 @@
           uid: tutorials/signalr-typescript-webpack
     - name: Samples
       href: https://github.com/aspnet/SignalR-samples
+      displayName: signalr
     - name: Server concepts
+      displayName: signalr
       items: 
         - name: Hubs
           uid: signalr/hubs
+          displayName: signalr
         - name: Send from outside a hub
           uid: signalr/hubcontext
+          displayName: signalr
         - name: Users and groups
           uid: signalr/groups
+          displayName: signalr
         - name: Publish to Azure
           uid: signalr/publish-to-azure-web-app
+          displayName: signalr
         - name: API design considerations
           uid: signalr/api-design
+          displayName: signalr
     - name: Clients
+      displayName: signalr
       items: 
         - name: .NET client
           uid: signalr/dotnet-client
+          displayName: signalr
         - name: .NET API reference
           href: /dotnet/api/microsoft.aspnetcore.signalr.client
+          displayName: signalr
         - name: Java client
           uid: signalr/java-client
+          displayName: signalr
         - name: Java API reference
           href: /java/api/com.microsoft.signalr?view=aspnet-signalr-java
+          displayName: signalr
         - name: JavaScript client
           uid: signalr/javascript-client
+          displayName: signalr
         - name: JavaScript API reference
           href: /javascript/api/?view=signalr-js-latest
+          displayName: signalr
     - name: Hosting and scaling
+      displayName: signalr
       items: 
         - name: Overview
+          displayName: signalr
           uid: signalr/scale
         - name: Azure SignalR Service
+          displayName: signalr
           href: /azure/azure-signalr/signalr-overview
         - name: Redis backplane
+          displayName: signalr
           uid: signalr/redis-backplane
         - name: SignalR with background services
           uid: signalr/background-services
     - name: Configuration
       uid: signalr/configuration
+      displayName: signalr
     - name: Authentication and authorization
       uid: signalr/authn-and-authz
+      displayName: signalr
     - name: Security considerations
       uid: signalr/security
+      displayName: signalr
     - name: MessagePack Hub Protocol
       uid: signalr/messagepackhubprotocol
+      displayName: signalr
     - name: Streaming
       uid: signalr/streaming
+      displayName: signalr
     - name: Compare SignalR and SignalR Core
       uid: signalr/version-differences
+      displayName: signalr
     - name: WebSockets without SignalR
+      displayName: signalr
       uid: fundamentals/websockets
     - name: Logging and diagnostics
+      displayName: signalr
       uid: signalr/diagnostics
 - name: Test, debug, and troubleshoot
   items: 
@@ -506,28 +545,40 @@
     - name: Browser Link
       uid: client-side/using-browserlink
 - name: Hosting and deployment
+  displayName: publish
   items: 
     - name: Overview
+      displayName: azure, deploy, publish
       uid: host-and-deploy/index
     - name: Host on Azure App Service
+      displayName: deploy, publish
       items: 
         - name: Overview
+          displayName: azure
           uid: host-and-deploy/azure-apps/index
         - name: Publish with Visual Studio
+          displayName: azure
           uid: tutorials/publish-to-azure-webapp-using-vs
         - name: Publish with Visual Studio for Mac
+          displayName: azure
           href: /visualstudio/mac/publish-app-svc
         - name: Publish with CLI tools
+          displayName: azure
           href: /azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
         - name: Publish with Visual Studio and Git
+          displayName: azure
           uid: host-and-deploy/azure-apps/azure-continuous-deployment
         - name: Continuous deployment with Azure Pipelines
+          displayName: azure
           href: /azure/devops/pipelines/get-started-yaml
         - name: ASP.NET Core Module
+          displayName: azure
           uid: host-and-deploy/aspnet-core-module
         - name: Troubleshoot
+          displayName: azure
           uid: host-and-deploy/azure-apps/troubleshoot
         - name: Errors reference
+          displayName: azure
           uid: host-and-deploy/azure-iis-errors-reference
     - name: DevOps
       items: 
@@ -544,6 +595,7 @@
         - name: Next steps
           uid: azure/devops/next-steps
     - name: Host on Windows with IIS
+      displayName: deploy, publish
       items: 
         - name: Overview
           uid: host-and-deploy/iis/index
@@ -561,15 +613,21 @@
           uid: host-and-deploy/iis/transform-webconfig
     - name: Kestrel
       uid: fundamentals/servers/kestrel
+      displayName: deploy, publish, server
     - name: HTTP.sys
+      displayName: deploy, publish, server
       uid: fundamentals/servers/httpsys
     - name: Host in a Windows service
+      displayName: deploy, publish
       uid: host-and-deploy/windows-service
     - name: Host on Linux with Nginx
+      displayName: deploy, publish
       uid: host-and-deploy/linux-nginx
     - name: Host on Linux with Apache
+      displayName: deploy, publish
       uid: host-and-deploy/linux-apache
     - name: Host in Docker
+      displayName: deploy, publish
       items: 
         - name: Overview
           uid: host-and-deploy/docker/index
@@ -582,17 +640,23 @@
         - name: Sample Docker images
           href: https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md
     - name: Proxy and load balancer configuration
+      displayName: deploy, publish
       uid: host-and-deploy/proxy-load-balancer
     - name: Host in a web farm
+      displayName: deploy, publish
       uid: host-and-deploy/web-farm
     - name: Visual Studio publish profiles
+      displayName: deploy, publish
       uid: host-and-deploy/visual-studio-publish-profiles
     - name: Visual Studio for Mac publish to folder
+      displayName: deploy, publish
       href: /visualstudio/mac/publish-folder
     - name: Directory structure
+      displayName: deploy, publish
       uid: host-and-deploy/directory-structure
     - name: Health checks
       uid: host-and-deploy/health-checks
+      displayName: deploy, publish
     - name: Razor Components
       items:
         - name: Overview
@@ -600,6 +664,7 @@
         - name: Configure the Linker
           uid: host-and-deploy/razor-components/configure-linker
 - name: Security and Identity
+  displayName: authentication, authorization
   items: 
     - name: Overview
       uid: security/index
@@ -700,6 +765,7 @@
         - name: Limit identity by scheme
           uid: security/authorization/limitingidentitybyscheme
     - name: Data protection
+      displayName: encryption
       items: 
         - name: Overview
           uid: security/data-protection/introduction
@@ -770,6 +836,7 @@
             - name: Replace machineKey in ASP.NET
               uid: security/data-protection/compatibility/replacing-machinekey
     - name: Protect secrets in development
+      displayName: password
       uid: security/app-secrets
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
@@ -820,6 +887,7 @@
     - name: Write middleware
       uid: fundamentals/middleware/write
     - name: Request and response operations
+      displayName: middleware
       uid: fundamentals/middleware/request-response
     - name: URL rewriting
       uid: fundamentals/url-rewriting
@@ -852,18 +920,23 @@
 - name: Migration
   items: 
     - name: 2.2 to 3.0
+      displayName: migrate, migration
       uid: migration/22-to-30
     - name: 2.1 to 2.2
+      displayName: migrate, migration
       uid: migration/21-to-22
     - name: 2.0 to 2.1
+      displayName: migrate, migration
       uid: migration/20_21
     - name: 1.x to 2.0
+      displayName: migrate, migration
       items: 
         - name: Overview
           uid: migration/1x-to-2x/index
         - name: Authentication and Identity
           uid: migration/1x-to-2x/identity-2x
     - name: ASP.NET to ASP.NET Core
+      displayName: migrate, migration
       items: 
         - name: Overview
           uid: migration/proper-to-2x/index
@@ -882,6 +955,7 @@
         - name: HTTP modules to middleware
           uid: migration/http-modules
     - name: Logging (not ASP.NET Core)
+      displayName: migrate, migration
       uid: migration/logging-nonaspnetcore
 - name: API reference
   href: /dotnet/api/?view=aspnetcore-2.2
