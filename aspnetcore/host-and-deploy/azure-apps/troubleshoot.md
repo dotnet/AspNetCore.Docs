@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with ASP.NET Core Azure App Service deployments.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/04/2019
+ms.date: 03/05/2019
 uid: host-and-deploy/azure-apps/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on Azure App Service
@@ -70,10 +70,10 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 ##### Current release
 
-1. Open the folders to the path **site** > **wwwroot**.
-1. In the console, run the app:
-   * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), run the app's assembly with `dotnet .\{ASSEMBLY NAME}.dll`.
-   * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable with `{ASSEMBLY NAME}.exe`.
+1. Execute `cd d:\home\site\wwwroot`.
+1. Run the app:
+   * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), run the app with `dotnet .\{ASSEMBLY NAME}.dll`.
+   * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app with `{ASSEMBLY NAME}.exe`.
    
 The console output from the app, showing any errors, is piped to the Kudu console.
    
@@ -88,10 +88,23 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 #### Test a 64-bit (x64) app
 
+##### Current release
+
 * If the app is a 64-bit (x64) [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
-  1. In the console, execute `cd D:\Program Files\dotnet` when running on the current release. When running on a preview release with the ASP.NET Core {VERSION} (x64) Runtime site extension installed, execute `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64`, where `{X.Y}` is the runtime version.
-  1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`.
-* If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable with `{ASSEMBLY NAME}.exe` from the `\home\site\wwwroot` directory.
+  1. Execute `cd D:\Program Files\dotnet`.
+  1. Run the app with `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`.
+* If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
+  1. Execute `cd D:\home\site\wwwroot`.
+  1. Run the app with `{ASSEMBLY NAME}.exe`.
+
+The console output from the app, showing any errors, is piped to the Kudu console.
+
+##### Framework-depdendent deployment running on a preview release
+
+*Requires installation of the the ASP.NET Core {VERSION} (x64) Runtime site extension.*
+
+1. Execute `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64`, where `{X.Y}` is the runtime version.
+1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`.
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
