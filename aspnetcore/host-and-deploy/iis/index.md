@@ -286,7 +286,7 @@ To obtain an earlier version of the installer:
 1. Download the installer using the **Runtime & Hosting Bundle** link.
 
 > [!WARNING]
-> Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://www.microsoft.com/net/download/dotnet-core/2.0).
+> Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 
 ### Install the Hosting Bundle
 
