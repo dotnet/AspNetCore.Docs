@@ -164,7 +164,7 @@ Console.WriteLine("Streaming completed");
 
 ### Client to server streaming
 
-To invoke a client-to-server streaming hub method from the .NET Client create a `Channel` and pass the `ChannelReader` as an argument to `SendAsync`, `InvokeAsync`, or `StreamAsChannelAsync`, depending on the hub method being invoked.
+To invoke a client-to-server streaming hub method from the .NET client create a `Channel` and pass the `ChannelReader` as an argument to `SendAsync`, `InvokeAsync`, or `StreamAsChannelAsync`, depending on the hub method being invoked.
 
 Whenever data is written to the `ChannelWriter` the hub method on the server will receive a new item with the data from the client.
 
