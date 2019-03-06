@@ -396,7 +396,7 @@ Relative name linking is useful when building sites with a complex structure. If
 
 ::: moniker range=">= aspnetcore-2.1"
 
-To redirect to a page in a different [Area](uid:mvc/controllers/areas), specify the area:
+To redirect to a page in a different [Area](xref:mvc/controllers/areas), specify the area:
 
 ```csharp
 RedirectToPage("/Index", new { area = "Services" });
