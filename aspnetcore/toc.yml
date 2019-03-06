@@ -37,7 +37,25 @@
       items: 
         - name: Razor Pages
           displayName: tutorial
-          uid: tutorials/razor-pages/index
+          items: 
+            - name: Overview
+              uid: tutorials/razor-pages/index
+            - name: Get started
+              uid: tutorials/razor-pages/razor-pages-start
+            - name: Add a model
+              uid: tutorials/razor-pages/model
+            - name: Scaffolding
+              uid: tutorials/razor-pages/page
+            - name: Work with a DB
+              uid: tutorials/razor-pages/sql
+            - name: Update the pages
+              uid: tutorials/razor-pages/da1
+            - name: Add search
+              uid: tutorials/razor-pages/search
+            - name: Add a new field
+              uid: tutorials/razor-pages/new-field
+            - name: Add validation
+              uid: tutorials/razor-pages/validation
         - name: MVC
           displayName: tutorial
           uid: tutorials/first-mvc-app/index
