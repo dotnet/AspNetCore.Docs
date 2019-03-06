@@ -2,7 +2,9 @@
 title: Introduction to authentication for Single Page Applications on ASP.NET Core
 author: 
 description: Use Identity with a single page application hosted inside an ASP.NET Core app.
+monikerRange: '>= aspnetcore-3.0'
 ms.author: 
+ms.custom: mvc
 ms.date: 03/05/2018
 uid: security/authentication/identity/spa
 ---
