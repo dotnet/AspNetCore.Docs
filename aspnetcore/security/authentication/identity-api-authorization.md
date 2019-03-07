@@ -12,7 +12,7 @@ uid: security/authentication/identity/spa
 
 ASP.NET Core 3.0 or later offers authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [IdentityServer](https://identityserver.io/) for implementing Open ID Connect.
 
-An authentication parameter was added to the Angular and React project templates that is similar to the authentication parameter in the MVC and Razor Pages project templates. The allowed values are **None** and **Individual**.
+An authentication parameter was added to the **Angular** and **React** project templates that is similar to the authentication parameter in the **Web Application (Model-View-Controller)** (MVC) and **Web Application** (Razor Pages) project templates. The allowed parameter values are **None** and **Individual**. The **React.js and Redux** project template doesn't support the authentication parameter at this time.
 
 ## Create an app with API authorization support
 
