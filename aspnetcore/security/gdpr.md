@@ -71,7 +71,7 @@ The [Tempdata provider](xref:fundamentals/app-state#tempdata) cookie isn't essen
 
 [Session state](xref:fundamentals/app-state) cookies are not essential. Session state isn't functional when tracking is disabled. The following code makes session cookies essential:
 
-[!code-csharp[Main](gdpr/sample/RP/Startup.cs?name=snippet2)]
+[!code-csharp[](gdpr/sample/RP/Startup.cs?name=snippet2)]
 
 <a name="pd"></a>
 
