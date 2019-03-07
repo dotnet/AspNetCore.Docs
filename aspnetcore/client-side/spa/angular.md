@@ -5,7 +5,7 @@ description: Learn how to get started with the ASP.NET Core Single Page Applicat
 monikerRange: '>= aspnetcore-2.1'
 ms.author: stevesa
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 03/07/2019
 uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core
@@ -142,3 +142,7 @@ At the same time, there are significant drawbacks to enabling SSR. It adds compl
         // Call browser-specific APIs here
     }
     ```
+
+## Additional resources
+
+* <xref:security/authentication/identity/spa>
