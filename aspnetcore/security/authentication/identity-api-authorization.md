@@ -327,4 +327,3 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 * <xref:spa/angular>
 * <xref:spa/react>
-* <xref:spa/react-with-redux]>
