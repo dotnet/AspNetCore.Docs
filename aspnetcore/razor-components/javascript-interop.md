@@ -18,7 +18,7 @@ A Razor Components app can invoke JavaScript functions from .NET and .NET method
 
 There are times when .NET code is required to call a JavaScript function. For example, a JavaScript call can expose browser capabilities or functionality from a JavaScript library to the app.
 
-To call into JavaScript from .NET, use the `IJSRuntime` abstraction. The `InvokeAsync<T>` method on `IJSRuntime` takes an identifier for the JavaScript function you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable.
+To call into JavaScript from .NET, use the `IJSRuntime` abstraction. The `InvokeAsync<T>` method takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable.
 
 For server-side ASP.NET Core Razor Components apps:
 
@@ -41,7 +41,11 @@ Inside the `<head>` element of *wwwroot/index.html*, provide a function that use
 </script>
 ```
 
-JavaScript code, such as the code shown in the preceding example, can also be loaded by a JavaScript file with a reference to the script file in the *wwwroot/index.html* file.
+JavaScript code, such as the code shown in the preceding example, can also be loaded from a JavaScript file (*.js*) with a reference to the script file in the *wwwroot/index.html* file:
+
+```html
+<script src="exampleJsInterop.js"></script>
+```
 
 The following component:
 
@@ -153,9 +157,9 @@ Place the `<script>` tag that references the JavaScript file in the *wwwroot/ind
 
 [!code-html[](./common/samples/3.x/BlazorSample/wwwroot/index.html?highlight=15)]
 
-Don't place a script tag in a component file because the script tag can't be updated dynamically.
+Don't place a `<script>` tag in a component file because the `<script>` tag can't be updated dynamically.
 
-.NET methods interop with the JavaScript functions by calling `InvokeAsync<T>` method on `IJSRuntime`.
+.NET methods interop with the JavaScript functions in the *exampleJsInterop.js* file by calling `IJSRuntime.InvokeAsync<T>`.
 
 The sample app uses a pair of C# methods, `Prompt` and `Display`, to invoke the `showPrompt` and `displayWelcome` JavaScript functions:
 
@@ -163,13 +167,13 @@ The sample app uses a pair of C# methods, `Prompt` and `Display`, to invoke the 
 
 [!code-csharp[](./common/samples/3.x/BlazorSample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=13-15,21-23)]
 
-The `IJSRuntime` abstraction is asynchronous to allow for server-side scenarios. If the app runs client-side and you want to invoke a JavaScript function synchronously, downcast to `IJSInProcessRuntime` and call `Invoke<T>` instead. We recommend that most JavaScript interop libraries use the async APIs to ensure the libraries are available in all scenarios, client-side or server-side.
+The `IJSRuntime` abstraction is asynchronous to allow for server-side scenarios. If the app runs client-side and you want to invoke a JavaScript function synchronously, downcast to `IJSInProcessRuntime` and call `Invoke<T>` instead. We recommend that most JavaScript interop libraries use the async APIs to ensure that the libraries are available in all scenarios, client-side or server-side.
 
-The sample app includes a component to demonstrate JS interop. The component:
+The sample app includes a component to demonstrate JavaScript interop. The component:
 
-* Receives user input via a JS prompt.
+* Receives user input via a JavaScript prompt.
 * Returns the text to the component for processing.
-* Calls a second JS function that interacts with the DOM to display a welcome message.
+* Calls a second JavaScript function that interacts with the DOM to display a welcome message.
 
 *Pages/JSInterop.cshtml*:
 
@@ -189,7 +193,7 @@ You can capture references to HTML elements in a component by adding a `ref` att
 
 The following example shows capturing a reference to the username input element:
 
-```csharp
+```cshtml
 <input ref="username" ... />
 
 @functions {
@@ -200,7 +204,7 @@ The following example shows capturing a reference to the username input element:
 > [!NOTE]
 > Do **not** use captured element references as a way of populating the DOM. Doing so may interfere with the declarative rendering model.
 
-As far as .NET code is concerned, an `ElementRef` is an opaque handle. The *only* thing you can do with it is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
+As far as .NET code is concerned, an `ElementRef` is an opaque handle. The *only* thing you can do with `ElementRef` is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
 
 For example, the following code defines a .NET extension method that enables setting the focus on an element:
 
@@ -234,13 +238,14 @@ namespace MyLib
 
         public static Task Focus(this ElementRef elementRef)
         {
-            return _jsRuntime.InvokeAsync<object>("myLib.focusElement", elementRef);
+            return _jsRuntime.InvokeAsync<object>(
+                "myLib.focusElement", elementRef);
         }
     }
 }
 ```
 
-Now you can focus inputs in any of your components:
+Use `MyLib` and call `Focus` on an `ElementRef` to focus inputs in any component:
 
 ```cshtml
 @using MyLib
@@ -265,7 +270,7 @@ Now you can focus inputs in any of your components:
 
 ### Static .NET method call
 
-To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. Again, the async version is preferred to support server-side scenarios. To be invokable from JavaScript, the .NET method must be public, static, and decorated with `[JSInvokable]`. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
+To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support server-side scenarios. To be invokable from JavaScript, the .NET method must be public, static, and decorated with `[JSInvokable]`. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
 
 The sample app includes a C# method to return an array of `int`s. The method is decorated with the `JSInvokable` attribute.
 
@@ -279,7 +284,9 @@ JavaScript served to the client invokes the C# .NET method.
 
 [!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=8-12)]
 
-When the **Trigger .NET static method ReturnArrayAsync** button is selected, examine the console output in the browser's web developer tools:
+When the **Trigger .NET static method ReturnArrayAsync** button is selected, examine the console output in the browser's web developer tools.
+
+The console output is:
 
 ```console
 Array(4) [ 1, 2, 3, 4 ]
@@ -324,8 +331,10 @@ Hello, Blazor!
 
 ## Share interop code in a Razor Component class library
 
-JavaScript interop code can be included in a Razor Component class library (`dotnet new blazorlib`), which allows you to share the code in a NuGet package.
+JavaScript interop code can be included in a Razor Component class library (`dotnet new razorclasslib`), which allows you to share the code in a NuGet package.
 
-The Razor Component class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the *wwwroot* folder, and the tooling takes care of embedding the resources when the library is built.
+The Razor Component class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the *wwwroot* folder. The tooling takes care of embedding the resources when the library is built.
 
-The built NuGet package is referenced in the project file of the app just as any normal NuGet package is referenced. After the app has been restored, app code can call into JavaScript as if it were C#.
+The built NuGet package is referenced in the project file of the app just as any normal NuGet package is referenced. After the app is restored, app code can call into JavaScript as if it were C#.
+
+For more information, see <xref:razor-components/class-libraries>.
