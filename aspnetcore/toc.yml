@@ -142,8 +142,8 @@
               uid: data/ef-mvc/inheritance
             - name: Advanced topics
               uid: data/ef-mvc/advanced
-  - name: Fundamentals
-    items: 
+- name: Fundamentals
+  items: 
     - name: Overview
       uid: fundamentals/index
     - name: The Startup class
