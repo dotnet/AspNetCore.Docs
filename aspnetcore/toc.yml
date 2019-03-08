@@ -527,11 +527,11 @@
         - name: Connected Services
           href: /azure/vs-azure-tools-connected-services-storage?toc=/aspnet/core/toc.json
         - name: Blob storage
-          href: /azure/vs-storage-aspnet5-getting-started-blobs?toc=/aspnet/core/toc.json
+          href: /azure/visual-studio/vs-storage-aspnet5-getting-started-blobs?toc=/aspnet/core/toc.json
         - name: Queue storage
-          href: /azure/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json
+          href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json
         - name: Table storage
-          href: /azure/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json
+          href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json
 - name: Client-side development
   items: 
     - name: Razor Components
