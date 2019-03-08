@@ -733,7 +733,7 @@
           uid: host-and-deploy/docker/visual-studio-tools-for-docker
         - name: Publish to a Docker image
           displayName: deploy, publish, docker
-          href: /azure/vs-azure-tools-docker-hosting-web-apps-in-docker?toc=/aspnet/core/toc.json
+          href: visualstudio/containers/vs-azure-tools-docker-hosting-web-apps-in-docker?toc=/aspnet/core/toc.json
         - name: Sample Docker images
           displayName: deploy, publish, docker
           href: https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md
