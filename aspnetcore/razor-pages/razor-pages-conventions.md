@@ -4,7 +4,8 @@ author: guardrex
 description: Discover how route and app model provider conventions help you control page routing, discovery, and processing.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 02/27/2019
+ms.custom: mvc
+ms.date: 03/07/2019
 uid: razor-pages/razor-pages-conventions
 ---
 # Razor Pages route and app conventions in ASP.NET Core
@@ -293,4 +294,5 @@ The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filte
 
 ## Additional resources
 
-* [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
+* <xref:security/authorization/razor-pages-authorization>
+* <xref:mvc/controllers/areas#areas-with-razor-pages>

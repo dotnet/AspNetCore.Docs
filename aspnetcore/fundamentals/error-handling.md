@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/01/2019
+ms.date: 03/05/2019
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -18,9 +18,9 @@ This article covers common approaches to handling errors in ASP.NET Core apps.
 
 ## Developer Exception Page
 
-To configure an app to display a page that shows detailed information about exceptions, use the *Developer Exception Page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method:
+To configure an app to display a page that shows detailed information about request exceptions, use the *Developer Exception Page*. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add a line to the `Startup.Configure` method when the app is running in the Development [environment](xref:fundamentals/environments):
 
-[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=5)]
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseDeveloperExceptionPage)]
 
 Place the call to <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*> in front of any middleware where you want to catch exceptions.
 
@@ -44,7 +44,7 @@ When the app isn't running in the Development environment, call the <xref:Micros
 
 In the following example from the sample app, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> adds the Exception Handling Middleware in non-Development environments. The extension method specifies an error page or controller at the `/Error` endpoint for re-executed requests after exceptions are caught and logged:
 
-[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=9)]
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseExceptionHandler1)]
 
 The Razor Pages app template provides an Error page (*.cshtml*) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the Pages folder.
 
@@ -60,6 +60,36 @@ public IActionResult Error()
 ```
 
 Don't decorate the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the method. Allow anonymous access to the method so that unauthenticated users are able to receive the error view.
+
+## Access the exception
+
+Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to access the exception or the original request path in a controller or page:
+
+* The path is available from the <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature.Path> property.
+* Read the <xref:System.Exception?displayProperty=fullName> from the inherited [IExceptionHandlerFeature.Error](xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature.Error) property.
+
+```csharp
+// using Microsoft.AspNetCore.Diagnostics;
+
+var exceptionHandlerPathFeature = 
+    HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+var path = exceptionHandlerPathFeature?.Path;
+var error = exceptionHandlerPathFeature?.Error;
+```
+
+> [!WARNING]
+> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving errors is a security risk.
+
+## Configure custom exception handling code
+
+An alternative to serving an endpoint for errors with a [custom exception handling page](#configure-a-custom-exception-handling-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda with <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> allows access to the error before returning the response.
+
+The sample app demonstrates custom exception handling code in `Startup.Configure`. Trigger an exception with the **Throw Exception** link on the Index page. The following lambda runs:
+
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseExceptionHandler2)]
+
+> [!WARNING]
+> Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving errors is a security risk.
 
 ## Configure status code pages
 
@@ -259,7 +289,7 @@ Also, be aware that once the headers for a response are sent:
 
 ## Server exception handling
 
-In addition to the exception handling logic in your app, the [server implementation](xref:fundamentals/servers/index) can handle some exceptions. If the server catches an exception before response headers are sent, the server sends a *500 - Internal Server Error* response without a response body. If the server catches an exception after response headers are sent, the server closes the connection. Requests that aren't handled by your app are handled by the server. Any exception that occurs is handled by the server's exception handling. Any configured custom error pages or exception handling middleware or filters don't affect this behavior.
+In addition to the exception handling logic in your app, the [server implementation](xref:fundamentals/servers/index) can handle some exceptions. If the server catches an exception before response headers are sent, the server sends a *500 - Internal Server Error* response without a response body. If the server catches an exception after response headers are sent, the server closes the connection. Requests that aren't handled by your app are handled by the server. Any exception that occurs when the server is handling the request is handled by the server's exception handling. The app's custom error pages, exception handling middleware, and filters don't affect this behavior.
 
 ## Startup exception handling
 
@@ -279,10 +309,10 @@ When running on [IIS](/iis) or [IIS Express](/iis/extensions/introduction-to-iis
 
 ### Exception filters
 
-Exception filters can be configured globally or on a per-controller or per-action basis in an MVC app. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter. These filters aren't called otherwise. To learn more, see <xref:mvc/controllers/filters>.
+Exception filters can be configured globally or on a per-controller or per-action basis in an MVC app. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter. These filters aren't called otherwise. For more information, see <xref:mvc/controllers/filters#exception-filters>.
 
 > [!TIP]
-> Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. We recommend the use of middleware. Use filters only where you need to perform error handling *differently* based on which MVC action is chosen.
+> Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the Exception Handling Middleware. We recommend using the middleware. Use filters only where you need to perform error handling *differently* based on which MVC action is chosen.
 
 ### Handle model state errors
 

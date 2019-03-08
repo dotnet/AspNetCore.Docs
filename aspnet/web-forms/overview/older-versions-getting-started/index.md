@@ -2,7 +2,7 @@
 uid: web-forms/overview/older-versions-getting-started/index
 title: "Older Versions - Web Forms Getting Started | Microsoft Docs"
 author: rick-anderson
-description: "Documentation on ASP.NET Web Forms 4 and earlier versions."
+description: "Tutorial on ASP.NET Web Forms 4 and earlier versions."
 ms.author: riande
 ms.date: 10/18/2014
 ms.assetid: e03585c2-80bf-4083-99ba-9fcbc883ccd8
@@ -11,7 +11,7 @@ msc.type: chapter
 ---
 Older Versions - Web Forms Getting Started
 ====================
-> Documentation on ASP.NET Web Forms 4 and earlier versions.
+> Tutorial on ASP.NET Web Forms 4 and earlier versions.
 
 
 - [ASP.NET 4 - Tailspin Spyworks](tailspin-spyworks/index.md)
