@@ -17,9 +17,21 @@ An authorization policy consists of one or more requirements. It's registered as
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
-Policies are applied by using the `[Authorize]` attribute with the policy name. For example:
+## Applying policies
+
+If you're using Razor Pages, see [Applying policies to Razor Pages](#applying-policies-to-razor-pages) in this document.
+
+Policies are applied to controllers by using the `[Authorize]` attribute with the policy name. For example:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
+
+## Applying policies to Razor Pages
+
+Policies are applied to Razor Pages by using the `[Authorize]` attribute with the policy name. For example:
+
+[!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
+
+Policies can also be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
 
 ## Requirements
 
