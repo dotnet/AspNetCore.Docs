@@ -37,10 +37,50 @@
       items: 
         - name: Razor Pages
           displayName: tutorial
-          uid: tutorials/razor-pages/index
+          items: 
+            - name: Overview
+              uid: tutorials/razor-pages/index
+            - name: Get started
+              uid: tutorials/razor-pages/razor-pages-start
+            - name: Add a model
+              uid: tutorials/razor-pages/model
+            - name: Scaffolding
+              uid: tutorials/razor-pages/page
+            - name: Work with a database
+              uid: tutorials/razor-pages/sql
+            - name: Update the pages
+              uid: tutorials/razor-pages/da1
+            - name: Add search
+              uid: tutorials/razor-pages/search
+            - name: Add a new field
+              uid: tutorials/razor-pages/new-field
+            - name: Add validation
+              uid: tutorials/razor-pages/validation
         - name: MVC
           displayName: tutorial
-          uid: tutorials/first-mvc-app/index
+          items: 
+            - name: Overview
+              uid: tutorials/first-mvc-app/index
+            - name: Get started
+              uid: tutorials/first-mvc-app/start-mvc
+            - name: Add a controller
+              uid: tutorials/first-mvc-app/adding-controller
+            - name: Add a view
+              uid: tutorials/first-mvc-app/adding-view
+            - name: Add a model
+              uid: tutorials/first-mvc-app/adding-model
+            - name: Work with a database
+              uid: tutorials/first-mvc-app/working-with-sql
+            - name: Controller actions and views
+              uid: tutorials/first-mvc-app/controller-methods-views
+            - name: Add search
+              uid: tutorials/first-mvc-app/search
+            - name: Add a new field
+              uid: tutorials/first-mvc-app/new-field
+            - name: Add validation
+              uid: tutorials/first-mvc-app/validation
+            - name: Examine the Details and Delete methods
+              uid: tutorials/first-mvc-app/details
     - name: Real-time web apps
       items: 
         - name: SignalR with JavaScript
@@ -53,15 +93,55 @@
       items: 
         - name: EF Core with Razor Pages
           displayName: tutorial
-          uid: data/ef-rp/index
-        - name: EF Core with MVC, existing DB
+          items: 
+            - name: Overview
+              uid: data/ef-rp/index
+            - name: Get started
+              uid: data/ef-rp/intro
+            - name: Create, Read, Update, and Delete
+              uid: data/ef-rp/crud
+            - name: Sort, filter, page, and group
+              uid: data/ef-rp/sort-filter-page
+            - name: Migrations
+              uid: data/ef-rp/migrations
+            - name: Create a complex data model
+              uid: data/ef-rp/complex-data-model
+            - name: Read related data
+              uid: data/ef-rp/read-related-data
+            - name: Update related data
+              uid: data/ef-rp/update-related-data
+            - name: Handle concurrency conflicts
+              uid: data/ef-rp/concurrency
+        - name: EF Core with MVC, existing database
           displayName: tutorial
           href: /ef/core/get-started/aspnetcore/existing-db
-        - name: EF Core with MVC, new DB
+        - name: EF Core with MVC, new database
           displayName: tutorial
           href: /ef/core/get-started/aspnetcore/new-db
-        - name: EF Core with MVC, long tutorial
-          uid: data/ef-mvc/index
+        - name: EF Core with MVC, 10 tutorials
+          items: 
+            - name: Overview
+              uid: data/ef-mvc/index
+            - name: Get started
+              uid: data/ef-mvc/intro
+            - name: Create, Read, Update, and Delete
+              uid: data/ef-mvc/crud
+            - name: Sort, filter, page, and group
+              uid: data/ef-mvc/sort-filter-page
+            - name: Migrations
+              uid: data/ef-mvc/migrations
+            - name: Create a complex data model
+              uid: data/ef-mvc/complex-data-model
+            - name: Read related data
+              uid: data/ef-mvc/read-related-data
+            - name: Update related data
+              uid: data/ef-mvc/update-related-data
+            - name: Handle concurrency conflicts
+              uid: data/ef-mvc/concurrency
+            - name: Inheritance
+              uid: data/ef-mvc/inheritance
+            - name: Advanced topics
+              uid: data/ef-mvc/advanced
 - name: Fundamentals
   items: 
     - name: Overview
@@ -113,7 +193,7 @@
               uid: tutorials/razor-pages/model
             - name: Scaffolding
               uid: tutorials/razor-pages/page
-            - name: Work with a DB
+            - name: Work with a database
               uid: tutorials/razor-pages/sql
             - name: Update the pages
               uid: tutorials/razor-pages/da1
@@ -148,7 +228,7 @@
               uid: tutorials/first-mvc-app/adding-view
             - name: Add a model
               uid: tutorials/first-mvc-app/adding-model
-            - name: Work with a DB
+            - name: Work with a database
               uid: tutorials/first-mvc-app/working-with-sql
             - name: Controller actions and views
               uid: tutorials/first-mvc-app/controller-methods-views
@@ -412,11 +492,11 @@
               uid: data/ef-rp/update-related-data
             - name: Handle concurrency conflicts
               uid: data/ef-rp/concurrency
-        - name: EF Core with MVC, new DB
+        - name: EF Core with MVC, new database
           href: /ef/core/get-started/aspnetcore/new-db
-        - name: EF Core with MVC, existing DB
+        - name: EF Core with MVC, existing database
           href: /ef/core/get-started/aspnetcore/existing-db
-        - name: EF Core with MVC, long tutorial
+        - name: EF Core with MVC, 10 tutorials
           items: 
             - name: Overview
               uid: data/ef-mvc/index
