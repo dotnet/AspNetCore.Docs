@@ -66,7 +66,7 @@ You generally want to prevent new users from posting any data to your web site b
 
 Update `Startup.ConfigureServices`  to require a confirmed email:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=10-13)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=8-11)]
 
 `config.SignIn.RequireConfirmedEmail = true;` prevents registered users from logging in until their email is confirmed.
 
@@ -76,13 +76,9 @@ In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You ne
 
 Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/AuthMessageSenderOptions.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
 #### Configure SendGrid user secrets
-
-Add a unique `<UserSecretsId>` value to the `<PropertyGroup>` element of the project file:
-
-[!code-xml[](accconfirm/sample/WebPWrecover21/WebPWrecover.csproj?highlight=5)]
 
 Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
 
@@ -93,7 +89,7 @@ info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 On Windows, Secret Manager stores keys/value pairs in a *secrets.json* file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
 
-The contents of the *secrets.json* file aren't encrypted. The *secrets.json* file is shown below (the `SendGridKey` value has been removed.)
+The contents of the *secrets.json* file aren't encrypted. The following markup shows the *secrets.json* file. The `SendGridKey` value has been removed.
 
  ```json
   {
@@ -110,7 +106,7 @@ This tutorial shows how to add email notifications through [SendGrid](https://se
 
 Install the `SendGrid` NuGet package:
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
 From the Package Manager Console, enter the following command:
 
@@ -133,7 +129,7 @@ See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register
 
 To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar to the following:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/EmailSender.cs)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Services/EmailSender.cs)]
 
 ### Configure startup to support email
 
@@ -142,13 +138,13 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=15-99)]
 
 ## Enable account confirmation and password recovery
 
 The template has the code for account confirmation and password recovery. Find the `OnPostAsync` method in *Areas/Identity/Pages/Account/Register.cshtml.cs*.
 
-Prevent newly registered users from being automatically logged on by commenting out the following line:
+Prevent newly registered users from being automatically signed in by commenting out the following line:
 
 ```csharp
 await _signInManager.SignInAsync(user, isPersistent: false);
@@ -156,16 +152,13 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 The complete method is shown with the changed line highlighted:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Areas/Identity/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Areas/Identity/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
 
 ## Register, confirm email, and reset password
 
 Run the web app, and test the account confirmation and password recovery flow.
 
 * Run the app and register a new user
-
-  ![Web application Account Register view](accconfirm/_static/loginaccconfirm1.png)
-
 * Check your email for the account confirmation link. See [Debug email](#debug) if you don't get the email.
 * Click the link to confirm your email.
 * Sign in with your email and password.
@@ -176,15 +169,11 @@ Run the web app, and test the account confirmation and password recovery flow.
 Select your user name in the browser:
 ![browser window with user name](accconfirm/_static/un.png)
 
-You might need to expand the navbar to see user name.
-
-![navbar](accconfirm/_static/x.png)
-
 The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed.
 
 ### Test password reset
 
-* If you're logged in, select **Logout**.
+* If you're signed in, select **Logout**.
 * Select the **Log in** link and select the **Forgot your password?** link.
 * Enter the email you used to register the account.
 * An email with a link to reset your password is sent. Check your email and click the link to reset your password. After your password has been successfully reset, you can sign in with your email and new password.
