@@ -3,6 +3,6 @@
   topicHref: /aspnet/index/
   items:
     - name: ASP.NET Core
-      tocHref: dotnet/standard/
+      tocHref: /dotnet/standard/
       topicHref: /aspnet/index#pivot=core
    
