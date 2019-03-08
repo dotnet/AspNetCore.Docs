@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/13/2018
+ms.date: 03/08/2019
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -378,3 +378,4 @@ When hosting in a [Docker](/dotnet/standard/microservices-architecture/container
 * <xref:security/data-protection/configuration/non-di-scenarios>
 * <xref:security/data-protection/configuration/machine-wide-policy>
 * <xref:host-and-deploy/web-farm>
+* <xref:security/data-protection/implementation/key-storage-providers>
