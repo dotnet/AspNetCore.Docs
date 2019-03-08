@@ -115,7 +115,7 @@
         - name: EF Core with MVC, existing database
           displayName: tutorial
           href: /ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json
-        - name: EF Core with MVC, new DB
+        - name: EF Core with MVC, new database
           displayName: tutorial
           href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json
         - name: EF Core with MVC, 10 tutorials
@@ -142,7 +142,6 @@
               uid: data/ef-mvc/inheritance
             - name: Advanced topics
               uid: data/ef-mvc/advanced
-          uid: data/ef-mvc/index
 - name: Fundamentals
   items: 
     - name: Overview
@@ -493,11 +492,11 @@
               uid: data/ef-rp/update-related-data
             - name: Handle concurrency conflicts
               uid: data/ef-rp/concurrency
-        - name: EF Core with MVC, new DB
+        - name: EF Core with MVC, new database
           href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json
-        - name: EF Core with MVC, existing DB
+        - name: EF Core with MVC, existing database
           href: /ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json
-        - name: EF Core with MVC, long tutorial
+        - name: EF Core with MVC, 10 tutorials
           items: 
             - name: Overview
               uid: data/ef-mvc/index
