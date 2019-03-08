@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 03/08/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -15,6 +15,10 @@ By [Luke Latham](https://github.com/guardrex) and [Tom Dykstra](https://github.c
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after reboots.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:index#how-to-download-a-sample))
+
+## Prerequisites
+
+* [PowerShell 6](https://github.com/PowerShell/PowerShell)
 
 ## Deployment type
 
@@ -115,13 +119,13 @@ Make the following changes in `Program.Main`:
 
 [!code-csharp[](windows-service/samples/2.x/AspNetCoreService/Program.cs?name=snippet_Program)]
 
-### Publish the app
+## Publish the app
 
 Publish the app using [dotnet publish](/dotnet/articles/core/tools/dotnet-publish), a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles), or Visual Studio Code. When using Visual Studio, select the **FolderProfile** and configure the **Target Location** before selecting the **Publish** button.
 
 To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder with a Release configuration passed to the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option. Use the [-o|--output](/dotnet/core/tools/dotnet-publish#options) option with a path to publish to a folder outside of the app.
 
-#### Publish a Framework-dependent Deployment (FDD)
+### Publish a Framework-dependent Deployment (FDD)
 
 In the following example, the app is published to the *c:\\svc* folder:
 
@@ -129,7 +133,7 @@ In the following example, the app is published to the *c:\\svc* folder:
 dotnet publish --configuration Release --output c:\svc
 ```
 
-#### Publish a Self-contained Deployment (SCD)
+### Publish a Self-contained Deployment (SCD)
 
 The RID must be specified in the `<RuntimeIdenfifier>` (or `<RuntimeIdentifiers>`) property of the project file. Supply the runtime to the [-r|--runtime](/dotnet/core/tools/dotnet-publish#options) option of the `dotnet publish` command.
 
@@ -139,9 +143,9 @@ In the following example, the app is published for the `win7-x64` runtime to the
 dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
 ```
 
-### Create a user account
+## Create a user account
 
-Create a user account for the service using the `net user` command from an administrative command shell:
+Create a user account for the service using the `net user` command from an administrative PowerShell 6 command shell:
 
 ```console
 net user {USER ACCOUNT} {PASSWORD} /add
@@ -165,106 +169,76 @@ For more information, see [Service User Accounts](/windows/desktop/services/serv
 
 An alternative approach to managing users when using Active Directory is to use Managed Service Accounts. For more information, see [Group Managed Service Accounts Overview](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
 
-### Set permissions
-
-#### Access to the app folder
-
-Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command from an administrative command shell:
-
-```console
-icacls "{PATH}" /grant {USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS} /t
-```
-
-* `{PATH}` &ndash; Path to the app's folder.
-* `{USER ACCOUNT}` &ndash; The user account (SID).
-* `(OI)` &ndash; The Object Inherit flag propagates permissions to subordinate files.
-* `(CI)` &ndash; The Container Inherit flag propagates permissions to subordinate folders.
-* `{PERMISSION FLAGS}` &ndash; Sets the app's access permissions.
-  * Write (`W`)
-  * Read (`R`)
-  * Execute (`X`)
-  * Full (`F`)
-  * Modify (`M`)
-* `/t` &ndash; Apply recursively to existing subordinate folders and files.
-
-For the sample app published to the *c:\\svc* folder and the `ServiceUser` account with write/read/execute permissions, use the following command:
-
-```console
-icacls "c:\svc" /grant ServiceUser:(OI)(CI)WRX /t
-```
-
-For more information, see [icacls](/windows-server/administration/windows-commands/icacls).
-
-#### Log on as a service
+## Set permission: Log on as a service
 
 To grant the [Log on as a service](/windows/security/threat-protection/security-policy-settings/log-on-as-a-service) privilege to the user account:
 
-1. Locate the **User Rights Assignment** policies in either the Local Security Policy console or Local Group Policy Editor console. For instructions, see: [Configure security policy settings](/windows/security/threat-protection/security-policy-settings/how-to-configure-security-policy-settings).
-1. Locate the `Log on as a service` policy. Double-click the policy to open it.
-1. Select **Add User or Group**.
-1. Select **Advanced** and select **Find Now**.
-1. Select the user account created in the [Create a user account](#create-a-user-account) section earlier. Select **OK** to accept the selection.
-1. Select **OK** after confirming that the object name is correct.
-1. Select **Apply**. Select **OK** to close the policy window.
+1. Open the [local security template (LOCAL_SECURITY_TEMPLATE.inf)](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/templates).
+1. Replace `DOMAIN\USER` with the domain and user account. If the machine isn't domain-joined, use the local machine name (for example, `Desktop-PC\ServiceUser`).
+1. Save the file and close it.
+1. Use the [secedit](/windows-server/administration/windows-commands/secedit) command to grant the *Log on as a service* privilege to the user account. From an administrative PowerShell 6 command prompt, execute the following command:
 
-## Manage the service
+   ```console
+   secedit /configure /db secedit.sdb /cfg "c:\Users\guard\Desktop\LOCAL_SECURITY_TEMPLATE.inf"
+   ```
 
-### Create the service
+## Create the service
 
-Use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create the service from an administrative command shell. The `binPath` value is the path to the app's executable, which includes the executable file name. **The space between the equal sign and the quote character of each parameter and value is required.**
+Use the [RegisterService.ps1](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/scripts) PowerShell script to register the service. From an administrative PowerShell 6 command prompt, execute the following command:
 
 ```console
-sc create {SERVICE NAME} binPath= "{PATH}" obj= "{DOMAIN}\{USER ACCOUNT}" password= "{PASSWORD}"
+.\RegisterService.ps1 
+    -Name {NAME} 
+    -DisplayName "{DISPLAY NAME}" 
+    -Description "{DESCRIPTION}" 
+    -Path "{PATH}" 
+    -Exe {ASSEMBLY}.exe 
+    -User {DOMAIN\USER}
 ```
-
-* `{SERVICE NAME}` &ndash; The name to assign to the service in [Service Control Manager](/windows/desktop/services/service-control-manager).
-* `{PATH}` &ndash; The path to the service executable.
-* `{DOMAIN}` &ndash; The domain of a domain-joined machine. If the machine isn't domain-joined, use the local machine name.
-* `{USER ACCOUNT}` &ndash; The user account under which the service runs.
-* `{PASSWORD}` &ndash; The user account password.
-
-> [!WARNING]
-> Do **not** omit the `obj` parameter. The default value for `obj` is the [LocalSystem account](/windows/desktop/services/localsystem-account) account. Running a service under the `LocalSystem` account presents a significant security risk. Always run a service with a user account that has restricted privileges.
 
 In the following example for the sample app:
 
 * The service is named **MyService**.
-* The published service resides in the *c:\\svc* folder. The app executable is named *SampleApp.exe*. Enclose the `binPath` value in double quotation marks (").
-* The service runs under the `ServiceUser` account. Replace `{DOMAIN}` with the user account's domain or local machine name. Enclose the `obj` value in double quotation marks ("). Example: If the hosting system is a local machine named `MairaPC`, set `obj` to `"MairaPC\ServiceUser"`.
-* Replace `{PASSWORD}` with the user account's password. Enclose the `password` value in double quotation marks (").
+* The published service resides in the *c:\\svc* folder. The app executable is named *SampleApp.exe*.
+* The service runs under the `ServiceUser` account. In the following example, the local machine name is `Desktop-PC`.
 
 ```console
-sc create MyService binPath= "c:\svc\sampleapp.exe" obj= "{DOMAIN}\ServiceUser" password= "{PASSWORD}"
+.\RegisterService.ps1 
+    -Name MyService 
+    -DisplayName "My Cool Service" 
+    -Description "This is the Sample App service." 
+    -Path "c:\svc" 
+    -Exe SampleApp.exe 
+    -User Desktop-PC\ServiceUser
 ```
 
-> [!IMPORTANT]
-> Make sure that the spaces between the parameters' equal signs and the parameters' values are present.
+## Manage the service
 
 ### Start the service
 
-Start the service with the `sc start {SERVICE NAME}` command.
+Start the service with the `Start-Service -Name {NAME}` PowerShell 6 command.
 
 To start the sample app service, use the following command:
 
 ```console
-sc start MyService
+Start-Service -Name MyService
 ```
 
 The command takes a few seconds to start the service.
 
 ### Determine the service status
 
-To check the status of the service, use the `sc query {SERVICE NAME}` command. The status is reported as one of the following values:
+To check the status of the service, use the `Get-Service -Name {NAME}` PowerShell 6 command. The status is reported as one of the following values:
 
-* `START_PENDING`
-* `RUNNING`
-* `STOP_PENDING`
-* `STOPPED`
+* `Starting`
+* `Running`
+* `Stopping`
+* `Stopped`
 
 Use the following command to check the status of the sample app service:
 
 ```console
-sc query MyService
+Get-Service -Name MyService
 ```
 
 ### Browse a web app service
@@ -275,28 +249,22 @@ For the sample app service, browse the app at `http://localhost:5000`.
 
 ### Stop the service
 
-Stop the service with the `sc stop {SERVICE NAME}` command.
+Stop the service with the `Stop-Service -Name {NAME}` Powershell 6 command.
 
 The following command stops the sample app service:
 
 ```console
-sc stop MyService
+Stop-Service -Name MyService
 ```
 
-### Delete the service
+### Remove the service
 
-After a short delay to stop a service, uninstall the service with the `sc delete {SERVICE NAME}` command.
+After a short delay to stop a service, remove the service with the `Remove-Service -Name {NAME}` Powershell 6 command.
 
 Check the status of the sample app service:
 
 ```console
-sc query MyService
-```
-
-When the sample app service is in the `STOPPED` state, use the following command to uninstall the sample app service:
-
-```console
-sc delete MyService
+Remove-Service -Name MyService
 ```
 
 ## Handle starting and stopping events

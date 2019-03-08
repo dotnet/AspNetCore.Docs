@@ -1,0 +1,19 @@
+[Unicode]
+
+Unicode=yes
+
+[Registry Values]
+
+[Privilege Rights]
+
+SeServiceLogonRight = "DOMAIN\USER"
+
+[Version]
+
+signature="$CHICAGO$"
+
+Revision=1
+
+[Profile Description]
+
+Description=Local Security Template
