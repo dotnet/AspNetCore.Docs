@@ -7,7 +7,7 @@
     - name: Compare ASP.NET Core and ASP.NET
       uid: fundamentals/choose-between-aspnet-and-aspnetcore
     - name: Compare .NET Core and .NET Framework
-      href: /dotnet/standard/choosing-core-framework-server
+      href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json
 - name: Get started
   uid: getting-started
 - name: What's new
@@ -114,10 +114,10 @@
               uid: data/ef-rp/concurrency
         - name: EF Core with MVC, existing database
           displayName: tutorial
-          href: /ef/core/get-started/aspnetcore/existing-db
-        - name: EF Core with MVC, new database
+          href: /ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json
+        - name: EF Core with MVC, new DB
           displayName: tutorial
-          href: /ef/core/get-started/aspnetcore/new-db
+          href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json
         - name: EF Core with MVC, 10 tutorials
           items: 
             - name: Overview
@@ -142,6 +142,7 @@
               uid: data/ef-mvc/inheritance
             - name: Advanced topics
               uid: data/ef-mvc/advanced
+          uid: data/ef-mvc/index
 - name: Fundamentals
   items: 
     - name: Overview
@@ -416,7 +417,7 @@
           uid: signalr/scale
         - name: Azure SignalR Service
           displayName: signalr
-          href: /azure/azure-signalr/signalr-overview
+          href: /azure/azure-signalr/signalr-overview?toc=/aspnet/core/toc.json
         - name: Redis backplane
           displayName: signalr
           uid: signalr/redis-backplane
@@ -449,17 +450,17 @@
 - name: Test, debug, and troubleshoot
   items: 
     - name: Unit testing
-      href: /dotnet/core/testing/unit-testing-with-dotnet-test
+      href: /dotnet/core/testing/unit-testing-with-dotnet-test?toc=/aspnet/core/toc.json
     - name: Razor Pages unit tests
       uid: test/razor-pages-tests
     - name: Test controllers
       uid: mvc/controllers/testing
     - name: Remote debugging
-      href: /visualstudio/debugger/remote-debugging-azure
+      href: /visualstudio/debugger/remote-debugging-azure?toc=/aspnet/core/toc.json
     - name: Snapshot debugging
-      href: /azure/application-insights/app-insights-snapshot-debugger
+      href: /azure/application-insights/app-insights-snapshot-debugger?toc=/aspnet/core/toc.json
     - name: Snapshot debugging in Visual Studio
-      href: /visualstudio/debugger/debug-live-azure-applications
+      href: /visualstudio/debugger/debug-live-azure-applications?toc=/aspnet/core/toc.json
     - name: Integration tests
       uid: test/integration-tests
     - name: Load and stress testing
@@ -492,11 +493,11 @@
               uid: data/ef-rp/update-related-data
             - name: Handle concurrency conflicts
               uid: data/ef-rp/concurrency
-        - name: EF Core with MVC, new database
-          href: /ef/core/get-started/aspnetcore/new-db
-        - name: EF Core with MVC, existing database
-          href: /ef/core/get-started/aspnetcore/existing-db
-        - name: EF Core with MVC, 10 tutorials
+        - name: EF Core with MVC, new DB
+          href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json
+        - name: EF Core with MVC, existing DB
+          href: /ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json
+        - name: EF Core with MVC, long tutorial
           items: 
             - name: Overview
               uid: data/ef-mvc/index
@@ -525,13 +526,13 @@
     - name: Azure Storage with Visual Studio
       items: 
         - name: Connected Services
-          href: /azure/vs-azure-tools-connected-services-storage
+          href: /azure/vs-azure-tools-connected-services-storage?toc=/aspnet/core/toc.json
         - name: Blob storage
-          href: /azure/vs-storage-aspnet5-getting-started-blobs/
+          href: /azure/vs-storage-aspnet5-getting-started-blobs?toc=/aspnet/core/toc.json
         - name: Queue storage
-          href: /azure/vs-storage-aspnet5-getting-started-queues/
+          href: /azure/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json
         - name: Table storage
-          href: /azure/vs-storage-aspnet5-getting-started-tables/
+          href: /azure/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json
 - name: Client-side development
   items: 
     - name: Razor Components
@@ -641,16 +642,16 @@
           uid: tutorials/publish-to-azure-webapp-using-vs
         - name: Publish with Visual Studio for Mac
           displayName: azure, deploy, publish
-          href: /visualstudio/mac/publish-app-svc
+          href: /visualstudio/mac/publish-app-svc?toc=/aspnet/core/toc.json
         - name: Publish with CLI tools
           displayName: azure, deploy, publish
-          href: /azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
+          href: /azure/app-service/app-service-web-tutorial-dotnetcore-sqldb?toc=/aspnet/core/toc.json
         - name: Publish with Visual Studio and Git
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-apps/azure-continuous-deployment
         - name: Continuous deployment with Azure Pipelines
           displayName: azure, deploy, publish
-          href: /azure/devops/pipelines/get-started-yaml
+          href: /azure/devops/pipelines/get-started-yaml?toc=/aspnet/core/toc.json
         - name: ASP.NET Core Module
           displayName: azure, deploy, publish
           uid: host-and-deploy/aspnet-core-module
@@ -733,7 +734,7 @@
           uid: host-and-deploy/docker/visual-studio-tools-for-docker
         - name: Publish to a Docker image
           displayName: deploy, publish, docker
-          href: /azure/vs-azure-tools-docker-hosting-web-apps-in-docker
+          href: /azure/vs-azure-tools-docker-hosting-web-apps-in-docker?toc=/aspnet/core/toc.json
         - name: Sample Docker images
           displayName: deploy, publish, docker
           href: https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md
@@ -748,7 +749,7 @@
       uid: host-and-deploy/visual-studio-publish-profiles
     - name: Visual Studio for Mac publish to folder
       displayName: deploy, publish
-      href: /visualstudio/mac/publish-folder
+      href: /visualstudio/mac/publish-folder?toc=/aspnet/core/toc.json
     - name: Directory structure
       displayName: deploy, publish
       uid: host-and-deploy/directory-structure
@@ -833,7 +834,7 @@
         - name: Secure ASP.NET Core apps with IdentityServer4
           href: https://identityserver4.readthedocs.io/
         - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
-          href: /azure/app-service/app-service-authentication-overview
+          href: /azure/app-service/app-service-authentication-overview?toc=/aspnet/core/toc.json
         - name: Individual user accounts
           uid: security/authentication/individual
     - name: Authorization
