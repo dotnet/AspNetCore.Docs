@@ -81,7 +81,7 @@
               uid: tutorials/first-mvc-app/validation
             - name: Examine the Details and Delete methods
               uid: tutorials/first-mvc-app/details
-          - name: Real-time web apps
+    - name: Real-time web apps
       items: 
         - name: SignalR with JavaScript
           displayName: tutorial
