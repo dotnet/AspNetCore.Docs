@@ -210,9 +210,15 @@ Open a command shell, and execute the following command:
 
 ## Access a secret
 
-::: moniker range=">= aspnetcore-2.0"
+The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets.
 
-The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. If your project targets .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
+::: moniker range=">= aspnetcore-2.0 <= aspnetcore-2.2"
+
+If your project targets .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.0"
 
 In ASP.NET Core 2.0 or later, the user secrets configuration source is automatically added in development mode when the project calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> to initialize a new instance of the host with preconfigured defaults. `CreateDefaultBuilder` calls <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> when the <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> is <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>:
 
@@ -226,7 +232,7 @@ When `CreateDefaultBuilder` isn't called, add the user secrets configuration sou
 
 ::: moniker range="<= aspnetcore-1.1"
 
-The [ASP.NET Core Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets. Install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
+Install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
 
 Add the user secrets configuration source with a call to <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> in the `Startup` constructor:
 
