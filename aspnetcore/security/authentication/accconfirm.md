@@ -3,7 +3,7 @@ title: Account confirmation and password recovery in ASP.NET Core
 author: rick-anderson
 description: Learn how to build an ASP.NET Core app with email confirmation and password reset.
 ms.author: riande
-ms.date: 2/11/2019
+ms.date: 3/11/2019
 uid: security/authentication/accconfirm
 ---
 
@@ -29,45 +29,23 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/2.1-SDK.md)]
+[.NET Core 2.2 SDK or later](https://www.microsoft.com/net/download/all)
 
 ## Create a web  app and scaffold Identity
 
-# [Visual Studio](#tab/visual-studio) 
-
-* In Visual Studio, create a new **Web Application** project named **WebPWrecover**.
-* Select **ASP.NET Core 2.1**.
-* Keep the default **Authentication** set to **No Authentication**. Authentication is added in the next step.
-
-In the next step:
-
-* Set the layout page to *~/Pages/Shared/_Layout.cshtml*
-* Select *Account/Register*
-* Create a new **Data context class**
-
-# [.NET Core CLI](#tab/netcore-cli)
+Run the following commands to create a web app with authentication.
 
 ```console
-dotnet new webapp -o WebPWrecover
+dotnet new webapp -au Individual -uld -o WebPWrecover
 cd WebPWrecover
-dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
-dotnet aspnet-codegenerator identity -fi Account.Register -dc WebPWrecover.Models.WebPWrecoverContext
-dotnet ef migrations add CreateIdentitySchema
+dotnet aspnet-codegenerator identity -dc WebPWrecover.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout;Account.ConfirmEmail
 dotnet ef database drop -f
 dotnet ef database update
-dotnet build
+dotnet run
+
 ```
-
-Run `dotnet aspnet-codegenerator identity --help` to get help on the scaffolding tool.
-
-------
-
-Follow the instructions in [Enable authentication](xref:security/authentication/scaffold-identity#useauthentication):
-
-* Add `app.UseAuthentication();` to `Startup.Configure`
-* Add `<partial name="_LoginPartial" />` to the layout file.
 
 ## Test new user registration
 
@@ -86,9 +64,9 @@ It's a best practice to confirm the email of a new user registration. Email conf
 
 You generally want to prevent new users from posting any data to your web site before they have a confirmed email.
 
-Update *Areas/Identity/IdentityHostingStartup.cs*  to require a confirmed email:
+Update `Startup.ConfigureServices`  to require a confirmed email:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Areas/Identity/IdentityHostingStartup.cs?name=snippet1&highlight=10-13)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=10-13)]
 
 `config.SignIn.RequireConfirmedEmail = true;` prevents registered users from logging in until their email is confirmed.
 
