@@ -53,3 +53,9 @@
     - name: ASP.NET Core
       tocHref: /azure/signalr/
       topicHref: /aspnet/core/index
+    - name: ASP.NET Core
+      tocHref: /azure/azure-monitor/
+      topicHref: /aspnet/core/index
+    - name: ASP.NET Core
+      tocHref: /azure/azure-monitor/app/
+      topicHref: /aspnet/core/index
