@@ -33,8 +33,23 @@
   topicHref: /aspnet/index#pivot=core
   items:
     - name: ASP.NET Core
-      tocHref: /azure/applicationinsights/
+      tocHref: /azure/visual-studio/
       topicHref: /aspnet/core/index
     - name: ASP.NET Core
-      tocHref: /azure/visual-studio/
+      tocHref: /azure/devops/
+      topicHref: /aspnet/core/index
+    - name: ASP.NET Core
+      tocHref: /azure/devops/pipelines
+      topicHref: /aspnet/core/index
+    - name: ASP.NET Core
+      tocHref: /azure/app-service/
+      topicHref: /aspnet/core/index
+    - name: ASP.NET Core
+      tocHref: /azure/signalr/
+      topicHref: /aspnet/core/index
+    - name: ASP.NET Core
+      tocHref: /azure/azure-monitor/
+      topicHref: /aspnet/core/index
+    - name: ASP.NET Core
+      tocHref: /azure/azure-monitor/app/
       topicHref: /aspnet/core/index
