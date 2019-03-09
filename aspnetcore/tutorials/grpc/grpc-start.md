@@ -11,7 +11,7 @@ uid: tutorials/grpc/grpc-start
 
 By [John Luo](https://github.com/juntaoluo)
 
-This is the first tutorial of a series. [The series](xref:tutorials/grpc/index) teaches the basics of building a gRPC service on ASP.NET Core.
+This tutorial teaches the basics of building a gRPC service on ASP.NET Core.
 
 At the end, you'll have a gRPC service that echoes greetings.
 
@@ -23,8 +23,6 @@ In this tutorial, you:
 > * Create a gRPC service.
 > * Run the service.
 > * Examine the project files.
-
-At the end of this tutorial you'll have a working gRPC service that you'll build on in later tutorials.
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-3.0.md)]
 
@@ -108,11 +106,85 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-TODO
+* Run the Server project GrpcGreeter.Server from the command line using `dotnet run`. The logs shows that the service started listening on `http://localhost:50051`.
+
+```console
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://localhost:50051
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\example\GrpcGreeter\GrpcGreeter.Server
+```
+
+* Run the Client project GrpcGreeter.Client from the separate command line using `dotnet run`.
+
+The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response which is printed in the command prompt.
+
+```console
+Greeting: Hello GreeterClient
+Press any key to exit...
+```
+
+The service records the details of the successful call in the logs written to the command prompt.
+
+```console
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://localhost:50051
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\gh\tp\GrpcGreeter\GrpcGreeter.Server
+info: Microsoft.AspNetCore.Hosting.Internal.GenericWebHostService[1]
+      Request starting HTTP/2 POST http://localhost:50051/Greet.Greeter/SayHello application/grpc
+info: Microsoft.AspNetCore.Hosting.Internal.GenericWebHostService[2]
+      Request finished in 107.46730000000001ms 200 application/grpc
+```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-TODO
+* Run the Server project GrpcGreeter.Server from the command line using `dotnet run`. The logs shows that the service started listening on `http://localhost:50051`.
+
+```console
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://localhost:50051
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\example\GrpcGreeter\GrpcGreeter.Server
+```
+
+* Run the Client project GrpcGreeter.Client from the separate command line using `dotnet run`.
+
+The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response which is printed in the command prompt.
+
+```console
+Greeting: Hello GreeterClient
+Press any key to exit...
+```
+
+The service records the details of the successful call in the logs written to the command prompt.
+
+```console
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://localhost:50051
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\gh\tp\GrpcGreeter\GrpcGreeter.Server
+info: Microsoft.AspNetCore.Hosting.Internal.GenericWebHostService[1]
+      Request starting HTTP/2 POST http://localhost:50051/Greet.Greeter/SayHello application/grpc
+info: Microsoft.AspNetCore.Hosting.Internal.GenericWebHostService[2]
+      Request finished in 107.46730000000001ms 200 application/grpc
+```
 
 <!-- End of VS tabs -->
 
@@ -154,16 +226,9 @@ This file defines the `Greeter` gRPC and is used to generate the gRPC client ass
 
 Contains the entry point and logic for the gRPC client.
 
-## Next steps
-
 In this tutorial, you:
 
 > [!div class="checklist"]
 > * Created a gRPC service.
 > * Ran the service and a client to test the service.
 > * Examined the project files.
-
-Advance to the next tutorial in the series:
-
-> [!div class="step-by-step"]
-> [Next: Add a duplex streaming call](xref:tutorials/grpc/grpc-duplex-streaming)
