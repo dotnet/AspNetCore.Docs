@@ -19,43 +19,43 @@ In the ASP.NET Core stack, gRPC services, by default, will be created with a Sco
 
 A Scoped lifetime allows the service implementation to resolve other services with Scoped lifetimes, such as DBContext, from the DI container through constructor injection. Since a new instance of the service implementation is constructed for each request, it is no longer possible to share state between requests via instance members on the implementation type. Instead, the expectation is to store shared states in a Singleton service in the DI container and resolve it in the constructor of the gRPC service implementation.
 
-### Adding a singleton service
+### Add a singleton service
 
 To facilitate the transition from gRPC C Core implementation to ASP.NET Core, it is possible to change the service lifetime of the service implementation from Scoped to Singleton. This involves adding an instance of the service implementation to the DI container:
 
 ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddGrpc();
-        services.AddSingleton(new GreeterService());
-    }
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddGrpc();
+    services.AddSingleton(new GreeterService());
+}
 ```
 
 However, service implementation with Singleton lifetime will no longer be able to resolve Scoped services through constructor injection.
 
-## Configuring gRPC services options
+## Configure gRPC services options
 
 In C Core based apps, settings such as `grpc.max_receive_message_length` and `grpc.max_send_message_length` configured as `ChannelOption`s when [constructing the `Server` instance](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server__ctor_System_Collections_Generic_IEnumerable_Grpc_Core_ChannelOption__).
 
 In ASP.NET Core, `GrpcServiceOptions` provides a way to configure these settings. The settings can be applied globally to all gRPC services or to an individual service implementation type. Options specified for individual service implementation types will override global settings when configured.
 
 ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services
-            .AddGrpc(globalOptions =>
-            {
-                // Global settings
-                globalOptions.SendMaxMessageSize = 4096
-                globalOptions.ReceiveMaxMessageSize = 4096
-            })
-            .AddServiceOptions<GreeterService>(greeterOptions =>
-            {
-                // GreeterService settings. These will override global settings
-                globalOptions.SendMaxMessageSize = 2048
-                globalOptions.ReceiveMaxMessageSize = 2048
-            })
-    }
+public void ConfigureServices(IServiceCollection services)
+{
+    services
+        .AddGrpc(globalOptions =>
+        {
+            // Global settings
+            globalOptions.SendMaxMessageSize = 4096
+            globalOptions.ReceiveMaxMessageSize = 4096
+        })
+        .AddServiceOptions<GreeterService>(greeterOptions =>
+        {
+            // GreeterService settings. These will override global settings
+            globalOptions.SendMaxMessageSize = 2048
+            globalOptions.ReceiveMaxMessageSize = 2048
+        })
+}
 ```
 
 ## Logging

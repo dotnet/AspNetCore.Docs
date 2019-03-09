@@ -11,7 +11,7 @@ uid: grpc/index
 
 By [John Luo](https://github.com/juntaoluo)
 
-gRPC is a language agnostic, high-performance Remote Procedure Call (RPC) framework incubated by the Cloud Native Computing Foundation (CNCF). For more on gRPC fundamentals please see the [gRPC documentation page](https://grpc.io/docs/).
+gRPC is a language agnostic, high-performance Remote Procedure Call (RPC) framework incubated by the Cloud Native Computing Foundation (CNCF). For more on gRPC fundamentals, see the [gRPC documentation page](https://grpc.io/docs/).
 
 The main benefits of gRPC are:
 * Modern high-performance lightweight RPC framework.

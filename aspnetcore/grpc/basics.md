@@ -19,7 +19,7 @@ For example, the `greet.proto` file defines a `Greeter` service which defines a 
 
 [!code-proto[](~/tutorials/grpc/samples/GrpcStart/Protos/greet.proto)]
 
-## Adding a `.proto` files to your C# app
+## Add a `.proto` file to your C# app
 
 The `.proto` file is included in your project by adding it to the `<ProtoBuf>` item group:
 

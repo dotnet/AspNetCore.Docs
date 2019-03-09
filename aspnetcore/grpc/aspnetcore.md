@@ -33,21 +33,21 @@ Open the generated *.sln* file from Visual Studio for Mac.
 
 ---
 
-## Adding gRPC services to your ASP.NET Core app
+## Add gRPC services to your ASP.NET Core app
 
 ### Prerequisite packages
 
-To obtain the gRPC APIs for ASP.NET Core projects, the [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package must be added to the project. The [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) must also be added to ensure the APIs for protobuf messages are available.
+To obtain the gRPC APIs for ASP.NET Core projects, the [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package must be added to the project. The [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) package must also be added to ensure the APIs for protobuf messages are available.
 
 [!code-xml[](~/tutorials/grpc/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13-14)]
 
-### Configuring `Startup.cs`
+### Configure `Startup`
 
-gRPC is enabled in `Startup.cs` through the `AddGrpc` method in `ConfigureServices`:
+gRPC is enabled in the `Startup.ConfigureServices` method through the `AddGrpc` method:
 
 [!code-cs[](~/tutorials/grpc/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=18)]
 
-Each gRPC service is added to the ASP.NET Core routing pipeline through the `MapGrpcService` method in `Configure`:
+Each gRPC service is added to the ASP.NET Core routing pipeline through the `MapGrpcService` method in `Startup.Configure`:
 
 [!code-cs[](~/tutorials/grpc/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=29-32)]
 
@@ -68,7 +68,7 @@ public class GreeterService : Greeter.GreeterBase
 
 By default, the gRPC service implementation can resolve services with Singleton and Scoped lifetimes.
 
-### Resolving `HttpContext` in gRPC methods
+### Resolve HttpContext in gRPC methods
 
 The gRPC API provides access to some underlying data of the HTTP/2 message such as the method, host, header and trailers through the `ServerCallContext` argument passed to each gRPC method:
 
