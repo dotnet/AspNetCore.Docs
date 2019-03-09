@@ -39,17 +39,17 @@ Open the generated *.sln* file from Visual Studio for Mac.
 
 To obtain the gRPC APIs for ASP.NET Core projects, the [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package must be added to the project. The [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) package must also be added to ensure the APIs for protobuf messages are available.
 
-[!code-xml[](~/tutorials/grpc/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13-14)]
+[!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13-14)]
 
 ### Configure `Startup`
 
 gRPC is enabled in the `Startup.ConfigureServices` method through the `AddGrpc` method:
 
-[!code-cs[](~/tutorials/grpc/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=18)]
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=18)]
 
 Each gRPC service is added to the ASP.NET Core routing pipeline through the `MapGrpcService` method in `Startup.Configure`:
 
-[!code-cs[](~/tutorials/grpc/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=29-32)]
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=29-32)]
 
 Since ASP.NET Core middlewares and features share the routing pipeline, an application can be configured to serve additional request handlers such as MVC controllers in parallel with the configured gRPC services.
 
@@ -72,7 +72,7 @@ By default, the gRPC service implementation can resolve services with Singleton 
 
 The gRPC API provides access to some underlying data of the HTTP/2 message such as the method, host, header and trailers through the `ServerCallContext` argument passed to each gRPC method:
 
-[!code-cs[](~/tutorials/grpc/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?highlight=12)]
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?highlight=12)]
 
 While this may be sufficient for many purposes, to ensure full access to ASP.NET Core APIs, the `HttpContext` representing the underlying HTTP/2 message can be accessed through the `GetHttpContext` extension method:
 
