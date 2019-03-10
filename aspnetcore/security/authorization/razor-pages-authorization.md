@@ -5,7 +5,7 @@ description: Learn how to control access to pages with conventions that authoriz
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2019
+ms.date: 03/10/2019
 uid: security/authorization/razor-pages-authorization
 ---
 # Razor Pages authorization conventions in ASP.NET Core
@@ -16,7 +16,7 @@ One way to control access in your Razor Pages app is to use authorization conven
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-The sample app uses [cookie authentication without ASP.NET Core Identity](xref:security/authentication/cookie). The concepts and examples shown in this topic apply equally to apps that use ASP.NET Core Identity. To use ASP.NET Core Identity, follow the guidance in <xref:security/authentication/identity>.
+The sample app uses [cookie authentication without ASP.NET Core Identity](xref:security/authentication/cookie). The concepts and examples shown in this topic apply equally to apps that use ASP.NET Core Identity. To use ASP.NET Core Identity, follow the guidance in <xref:security/authentication/identity>. If pages normally configured for anonymous access should be restricted, see the [Authorize access to anonymous Identity pages](#authorize-access-to-anonymous-identity-pages) section.
 
 ## Require authorization to access a page
 
@@ -97,7 +97,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 
 The specified path is the View Engine path, which is the Razor Pages root relative path.
 
-## Note on combining authorized and anonymous access
+## Combined authorized and anonymous access
 
 It's valid to specify that a folder of pages that require authorization and than specify that a page within that folder allows anonymous access:
 
@@ -114,6 +114,17 @@ The reverse, however, isn't valid. You can't declare a folder of pages for anony
 ```
 
 Requiring authorization on the Private page fails. When both the <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> and <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> are applied to the page, the <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> takes precedence and controls access.
+
+## Authorize access to anonymous Identity pages
+
+[ASP.NET Core Identity](xref:security/authentication/identity) configures pages for anonymous access with the <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter>, which overrides authorization conventions established with <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*>. For example, the following authorization convention for the Register page fails:
+
+```csharp
+// This doesn't work without taking additional steps.
+options.Conventions.AuthorizeAreaPage("Identity", "/Register");
+```
+
+To enforce the authorization convention for the Register page, [scaffold Identity into the app](xref:security/authentication/scaffold-identity) and remove the <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> from the Register page model in *Register.cshtml.cs*.
 
 ## Additional resources
 
