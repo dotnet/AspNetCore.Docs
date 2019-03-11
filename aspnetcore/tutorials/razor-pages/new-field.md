@@ -110,15 +110,15 @@ Another option is to delete the database and use migrations to re-create the dat
 <!-- Code -------------------------->
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-<!-- copy/paste this tab to the next. Not worth an include  -->
+### Drop and re-create the database
+
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
 Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command: 
 
 ```console
 dotnet ef database update
 ```
-
-[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
 ---  
 <!-- End of VS tabs -->
