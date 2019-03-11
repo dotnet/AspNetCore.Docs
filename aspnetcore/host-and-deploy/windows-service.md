@@ -171,16 +171,31 @@ An alternative approach to managing users when using Active Directory is to use 
 
 ## Set permission: Log on as a service
 
-To grant the [Log on as a service](/windows/security/threat-protection/security-policy-settings/log-on-as-a-service) privilege to the user account:
+Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command:
 
-1. Open the [local security template (LOCAL_SECURITY_TEMPLATE.inf)](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/templates).
-1. Replace `DOMAIN\USER` with the domain and user account. If the machine isn't domain-joined, use the local machine name (for example, `Desktop-PC\ServiceUser`).
-1. Save the file and close it.
-1. Use the [secedit](/windows-server/administration/windows-commands/secedit) command to grant the *Log on as a service* privilege to the user account. From an administrative PowerShell 6 command prompt, execute the following command:
+```powershell
+icacls "{PATH}" /grant {USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS} /t
+```
 
-   ```powershell
-   secedit /configure /db secedit.sdb /cfg "c:\Users\guard\Desktop\LOCAL_SECURITY_TEMPLATE.inf"
-   ```
+* `{PATH}` &ndash; Path to the app's folder.
+* `{USER ACCOUNT}` &ndash; The user account (SID).
+* `(OI)` &ndash; The Object Inherit flag propagates permissions to subordinate files.
+* `(CI)` &ndash; The Container Inherit flag propagates permissions to subordinate folders.
+* `{PERMISSION FLAGS}` &ndash; Sets the app's access permissions.
+  * Write (`W`)
+  * Read (`R`)
+  * Execute (`X`)
+  * Full (`F`)
+  * Modify (`M`)
+* `/t` &ndash; Apply recursively to existing subordinate folders and files.
+
+For the sample app published to the *c:\\svc* folder and the `ServiceUser` account with write/read/execute permissions, use the following command:
+
+```powershell
+icacls "c:\svc" /grant ServiceUser:(OI)(CI)WRX /t
+```
+
+For more information, see [icacls](/windows-server/administration/windows-commands/icacls).
 
 ## Create the service
 
