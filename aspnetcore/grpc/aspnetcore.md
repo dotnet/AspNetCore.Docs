@@ -7,7 +7,7 @@ ms.author: johluo
 ms.date: 03/08/2019
 uid: grpc/aspnetcore
 ---
-#gRPC services with ASP.NET Core
+# gRPC services with ASP.NET Core
 
 This document shows how to get started with gRPC services using ASP.NET Core. The topics covered here only apply to ASP.NET Core based apps.
 
