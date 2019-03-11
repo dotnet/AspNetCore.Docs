@@ -15,9 +15,10 @@ gRPC is a language agnostic, high-performance Remote Procedure Call (RPC) framew
 
 The main benefits of gRPC are:
 * Modern high-performance lightweight RPC framework.
-* Design-first API development, using Protocol Buffers by default, allowing for language agnostic implementations.
+* Contract-first API development, using Protocol Buffers by default, allowing for language agnostic implementations.
 * Tooling available for many languages to generate strongly-typed servers and clients.
 * Supports client, server, and bi-directional streaming calls.
+* Reduced network usage with Protobuf binary serialization.
 
 These benefits make gRPC ideal for:
 * Lightweight microservices where efficiency is critical.

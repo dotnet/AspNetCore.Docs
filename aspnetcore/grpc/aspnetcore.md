@@ -55,7 +55,7 @@ Since ASP.NET Core middlewares and features share the routing pipeline, an appli
 
 ## Integration with ASP.NET Core APIs
 
-gRPC services have full access to the ASP.NET Core features such as Dependency Injection (DI) and Logging. For example, the service implementation can resolve a logger from the DI container via the constructor:
+gRPC services have full access to the ASP.NET Core features such as Dependency Injection (DI) and Logging. For example, the service implementation can resolve a logger service from the DI container via the constructor:
 
 ```csharp
 public class GreeterService : Greeter.GreeterBase
@@ -66,7 +66,7 @@ public class GreeterService : Greeter.GreeterBase
 }
 ```
 
-By default, the gRPC service implementation can resolve services with Singleton and Scoped lifetimes.
+By default, the gRPC service implementation can resolve other DI services with any lifetime (Singleton, Scoped, or Transient).
 
 ### Resolve HttpContext in gRPC methods
 
@@ -104,7 +104,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.UseStartup<Startup>();
             webBuilder.ConfigureKestrel((context, options) =>
             {
-                options.Limits.Http2.MaxFrameSize = 16384;
+                options.Limits.MinRequestBodyDataRate = null;
             });
         });
 ```

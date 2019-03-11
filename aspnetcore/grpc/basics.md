@@ -13,7 +13,7 @@ This document outlines the basic concepts needed to write gRPC apps in C#. The t
 
 ## `.proto` file
 
-gRPC uses a design-first approach to API development. Protocol buffers (protobuf) are used as the Interface Design Language (IDL) by default. As a result, `.proto` file serve as the definition of the gRPC service and messages sent between clients and servers. For more information on the syntax of protobuf files, visit the [official documentation (protobuf)](https://developers.google.com/protocol-buffers/docs/proto3)).
+gRPC uses a contract-first approach to API development. Protocol buffers (protobuf) are used as the Interface Design Language (IDL) by default. As a result, `.proto` file serve as the definition of the gRPC service and messages sent between clients and servers. For more information on the syntax of protobuf files, visit the [official documentation (protobuf)](https://developers.google.com/protocol-buffers/docs/proto3)).
 
 For example, the `greet.proto` file defines a `Greeter` service which defines a `SayHello` call that sends a `HelloRequest` message and receives a `HelloResponse` message:
 
@@ -21,7 +21,7 @@ For example, the `greet.proto` file defines a `Greeter` service which defines a 
 
 ## Add a `.proto` file to your C# app
 
-The `.proto` file is included in your project by adding it to the `<ProtoBuf>` item group:
+The `.proto` file is included in your project by adding it to the `<Protobuf>` item group:
 
 [!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=8)]
 
@@ -45,7 +45,7 @@ For client side assets, a concrete client type is generated. The gRPC calls in t
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Client/Program.cs?highlight=19,21)]
 
-By default, both server and client assets are generated for each `.proto` file included in the `<ProtoBuf>` item group. To ensure only the server assets are generated in a server project, the `GrpcServices` attribute is set to `Server`.
+By default, both server and client assets are generated for each `.proto` file included in the `<Protobuf>` item group. To ensure only the server assets are generated in a server project, the `GrpcServices` attribute is set to `Server`.
 
 [!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=8)]
 
