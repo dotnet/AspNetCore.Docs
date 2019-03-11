@@ -35,7 +35,7 @@ However, service implementation with Singleton lifetime will no longer be able t
 
 ## Configure gRPC services options
 
-In C Core based apps, settings such as `grpc.max_receive_message_length` and `grpc.max_send_message_length` configured as `ChannelOption`s when [constructing the `Server` instance](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server__ctor_System_Collections_Generic_IEnumerable_Grpc_Core_ChannelOption__).
+In C Core based apps, settings such as `grpc.max_receive_message_length` and `grpc.max_send_message_length` configured with `ChannelOption` when [constructing the `Server` instance](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server__ctor_System_Collections_Generic_IEnumerable_Grpc_Core_ChannelOption__).
 
 In ASP.NET Core, `GrpcServiceOptions` provides a way to configure these settings. The settings can be applied globally to all gRPC services or to an individual service implementation type. Options specified for individual service implementation types will override global settings when configured.
 
