@@ -147,7 +147,7 @@ dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
 
 Create a user account for the service using the `net user` command from an administrative PowerShell 6 command shell:
 
-```console
+```powershell
 net user {USER ACCOUNT} {PASSWORD} /add
 ```
 
@@ -155,13 +155,13 @@ The default password expiration is six weeks.
 
 For the sample app, create a user account with the name `ServiceUser` and a password. In the following command, replace `{PASSWORD}` with a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
 
-```console
+```powershell
 net user ServiceUser {PASSWORD} /add
 ```
 
 If you need to add the user to a group, use the `net localgroup` command, where `{GROUP}` is the name of the group:
 
-```console
+```powershell
 net localgroup {GROUP} {USER ACCOUNT} /add
 ```
 
@@ -178,7 +178,7 @@ To grant the [Log on as a service](/windows/security/threat-protection/security-
 1. Save the file and close it.
 1. Use the [secedit](/windows-server/administration/windows-commands/secedit) command to grant the *Log on as a service* privilege to the user account. From an administrative PowerShell 6 command prompt, execute the following command:
 
-   ```console
+   ```powershell
    secedit /configure /db secedit.sdb /cfg "c:\Users\guard\Desktop\LOCAL_SECURITY_TEMPLATE.inf"
    ```
 
@@ -186,7 +186,7 @@ To grant the [Log on as a service](/windows/security/threat-protection/security-
 
 Use the [RegisterService.ps1](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/scripts) PowerShell script to register the service. From an administrative PowerShell 6 command prompt, execute the following command:
 
-```console
+```powershell
 .\RegisterService.ps1 
     -Name {NAME} 
     -DisplayName "{DISPLAY NAME}" 
@@ -202,7 +202,7 @@ In the following example for the sample app:
 * The published service resides in the *c:\\svc* folder. The app executable is named *SampleApp.exe*.
 * The service runs under the `ServiceUser` account. In the following example, the local machine name is `Desktop-PC`.
 
-```console
+```powershell
 .\RegisterService.ps1 
     -Name MyService 
     -DisplayName "My Cool Service" 
@@ -220,7 +220,7 @@ Start the service with the `Start-Service -Name {NAME}` PowerShell 6 command.
 
 To start the sample app service, use the following command:
 
-```console
+```powershell
 Start-Service -Name MyService
 ```
 
@@ -237,7 +237,7 @@ To check the status of the service, use the `Get-Service -Name {NAME}` PowerShel
 
 Use the following command to check the status of the sample app service:
 
-```console
+```powershell
 Get-Service -Name MyService
 ```
 
@@ -253,7 +253,7 @@ Stop the service with the `Stop-Service -Name {NAME}` Powershell 6 command.
 
 The following command stops the sample app service:
 
-```console
+```powershell
 Stop-Service -Name MyService
 ```
 
@@ -263,7 +263,7 @@ After a short delay to stop a service, remove the service with the `Remove-Servi
 
 Check the status of the sample app service:
 
-```console
+```powershell
 Remove-Service -Name MyService
 ```
 
