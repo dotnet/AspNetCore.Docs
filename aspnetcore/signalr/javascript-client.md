@@ -58,6 +58,9 @@ JavaScript clients call public methods on hubs via the [invoke](/javascript/api/
 
   [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
 
+> [!NOTE]
+> If you are using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-serverless-development-config).
+
 ## Call client methods from hub
 
 To receive messages from the hub, define a method using the [on](/javascript/api/%40aspnet/signalr/hubconnection#on) method of the `HubConnection`.
@@ -113,3 +116,4 @@ A real-world implementation would use an exponential back-off or retry a specifi
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 * [Cross-Origin Requests (CORS)](xref:security/cors)
+* [Azure SignalR Service serverless documentation](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-serverless-development-config)

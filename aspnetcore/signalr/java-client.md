@@ -44,6 +44,9 @@ A call to `send` invokes a hub method. Pass the hub method name and any argument
 
 [!code-java[send method](java-client/sample/src/main/java/Chat.java?range=28)]
 
+> [!NOTE]
+> If you are using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-serverless-development-config).
+
 ## Call client methods from hub
 
 Use `hubConnection.on` to define methods on the client that the hub can call. Define the methods after building but before starting the connection.
@@ -99,3 +102,4 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
 * <xref:signalr/hubs>
 * <xref:signalr/javascript-client>
 * <xref:signalr/publish-to-azure-web-app>
+* [Azure SignalR Service serverless documentation](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-serverless-development-config)
