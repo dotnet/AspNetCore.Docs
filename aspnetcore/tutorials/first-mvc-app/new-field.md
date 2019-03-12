@@ -92,23 +92,22 @@ Update-Database
 
 The `Add-Migration` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model.
 
+The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
+
+If all the records in the DB are deleted, the initialize method will seed the DB and include the `Rating` field.
+
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Run the following command:
+Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command: 
 
-```cli
-dotnet ef migrations add Rating
+```console
 dotnet ef database update
 ```
 
 ---  
 <!-- End of VS tabs -->
-
-The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
-
-If all the records in the DB are deleted, the initialize method will seed the DB and include the `Rating` field.
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. You should add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 
