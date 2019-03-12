@@ -178,8 +178,21 @@ The manage page is displayed with the **Profile** tab selected. The **Email** sh
 * Enter the email you used to register the account.
 * An email with a link to reset your password is sent. Check your email and click the link to reset your password. After your password has been successfully reset, you can sign in with your email and new password.
 
-<a name="debug"></a>
+## Change email and activity timeout
 
+The default inactivity timeout is 14 days. The following code sets the inactivity timeout to 5 minutes:
+
+[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAppCookie.cs?name=snippet1)]
+
+### Change all data protection tokens
+
+The following code changes all data protection tokens timeout period to 3 hours:
+
+[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
+
+The built in Identity tokens, [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) file have a [one day timeout](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+
+<a name="debug"></a>
 ### Debug email
 
 If you can't get email working:
