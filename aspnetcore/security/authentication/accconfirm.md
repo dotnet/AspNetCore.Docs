@@ -17,7 +17,7 @@ See [this PDF file](https://webpifeed.blob.core.windows.net/webpifeed/Partners/a
 
 ::: moniker range=">= aspnetcore-2.1"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com/Ponant), and [Joe Audette](https://twitter.com/joeaudette)
 
 This tutorial shows how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning topic. You should be familiar with:
 
@@ -180,7 +180,7 @@ The manage page is displayed with the **Profile** tab selected. The **Email** sh
 
 ## Change email and activity timeout
 
-The default inactivity timeout is 14 days. The following code sets the inactivity timeout to 5 minutes:
+The default inactivity timeout is 14 days. The following code sets the inactivity timeout to 5 days:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAppCookie.cs?name=snippet1)]
 
@@ -190,7 +190,7 @@ The following code changes all data protection tokens timeout period to 3 hours:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
 
-The built in Identity user tokens, [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) file have a [one day timeout](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 ### Change the email token lifespan
 
