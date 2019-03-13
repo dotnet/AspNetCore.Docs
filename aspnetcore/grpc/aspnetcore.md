@@ -67,20 +67,18 @@ By default, the gRPC service implementation can resolve other DI services with a
 
 ### Resolve HttpContext in gRPC methods
 
-The gRPC API provides access to some underlying data of the HTTP/2 message, such as the method, host, header and trailers. Access is through the `ServerCallContext` argument passed to each gRPC method:
+The gRPC API provides access to some HTTP/2 message data, such as the method, host, header and trailers. Access is through the `ServerCallContext` argument passed to each gRPC method:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?highlight=3-4&name=snippet)]
 
-While this may be sufficient for many purposes, to ensure full access to ASP.NET Core APIs, the `HttpContext` representing the underlying HTTP/2 message can be accessed through the `GetHttpContext` extension method:
+`ServerCallContext` does not provide full access to `HttpContext` in all ASP.NET APIs. The `GetHttpContext` extension method provides full access to the `HttpContext` representing the underlying HTTP/2 message in ASP.NET APIs:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?highlight=5-10&name=snippet1)]
 
 ### Request body data rate limit
 
 By default, the Kestrel server imposes a [minimum request body data rate](
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>). For client streaming and duplex streaming calls, this rate may not be satisfied and the connection may be timed out. The minimum request body data rate limit must be disabled when the gRPC service include client streaming and duplex streaming calls:
-
-C:\GH\aspnet\docs\4\Docs\aspnetcore\tutorials\grpc\grpc-start\samples\GrpcStart\GrpcGreeter.Server\Program.cs
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>). For client streaming and duplex streaming calls, this rate may not be satisfied and the connection may be timed out. The minimum request body data rate limit must be disabled when the gRPC service includes client streaming and duplex streaming calls:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Program.cs?highlight=8-17&name=snippet)]
 
