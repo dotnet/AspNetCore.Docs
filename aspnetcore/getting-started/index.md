@@ -59,8 +59,8 @@ dotnet dev-certs https --trust
 
 The preceding command displays the following message:
 
-*Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`.
- 
+*Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
+
 This command command might prompt you for your password to install the certificate on the system keychain. Enter your password if you agree to trust the development certificate.
 
 # [Linux](#tab/linux)
