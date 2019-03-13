@@ -5,7 +5,7 @@ description: Learn how to create reusable layout components for Blazor and Razor
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2019
+ms.date: 03/13/2019
 uid: razor-components/layouts
 ---
 # Razor Components layouts
@@ -63,9 +63,9 @@ The following code sample demonstrates the concept. The content of this componen
 
 ## Centralized layout selection
 
-Every folder of a an app can optionally contain a template file named *_ViewImports.cshtml*. The compiler includes the directives specified in the view imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, a *_ViewImports.cshtml* file containing `@layout MainLayout` ensures that all of the components in a folder use the *MainLayout* layout. There's no need to repeatedly add `@layout` to all of the *\*.cshtml* files.
+Every folder of a an app can optionally contain a template file named *_ViewImports.cshtml*. The compiler includes the directives specified in the view imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, a *_ViewImports.cshtml* file containing `@layout MainLayout` ensures that all of the components in a folder use the *MainLayout* layout. There's no need to repeatedly add `@layout` to all of the *.razor* files.
 
-Note that the default template uses the *_ViewImports.cshtml* mechanism for layout selection. A newly created app contains the *_ViewImports.cshtml* file in the *Pages* folder.
+Note that the default template uses the *_ViewImports.cshtml* mechanism for layout selection. A newly created app contains the *_ViewImports.cshtml* file in the *Components/Pages* folder.
 
 ## Nested layouts
 
