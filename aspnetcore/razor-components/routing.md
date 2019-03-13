@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/01/2019
+ms.date: 03/13/2019
 uid: razor-components/routing
 ---
 # Razor Components routing
@@ -14,21 +14,29 @@ By [Luke Latham](https://github.com/guardrex)
 
 Learn how to route requests in apps and about the NavLink component.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-components/common/samples/) ([how to download](xref:index#how-to-download-a-sample)). See the [Get started](xref:razor-components/get-started) topic for prerequisites.
+## ASP.NET Core endpoint routing integration
+
+Razor Components are integrated into [ASP.NET Core routing](xref:fundamentals/routing). The app is configured to accept incoming connections for interactive Razor Components with `MapComponentHub<TComponent>` in `Startup.Configure`. `MapComponentHub` specifies that the root component `App` should be rendered within a DOM element matching the selector `app`:
+
+```csharp
+app.UseRouting(routes =>
+{
+    routes.MapRazorPages();
+    routes.MapComponentHub<App>("app");
+});
+```
 
 ## Route templates
 
-The `<Router>` component enables routing, and a route template is provided to each accessible component. The `<Router>` component appears in the *App.cshtml* file:
+The `<Router>` component enables routing, and a route template is provided to each accessible component. The `<Router>` component appears in the *Components/App.razor* file:
 
 ```cshtml
-<Router AppAssembly=typeof(Program).Assembly />
+<Router AppAssembly="typeof(Program).Assembly" />
 ```
 
-When a *\*.cshtml* file with an `@page` directive is compiled, the generated class is given a [RouteAttribute](/dotnet/api/microsoft.aspnetcore.mvc.routeattribute) specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders whichever component has a route template that matches the requested URL.
+When a *.razor* or *.cshtml* file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders whichever component has a route template that matches the requested URL.
 
-Multiple route templates can be applied to a component. In the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-components/common/samples/), the following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`.
-
-*Pages/BlazorRoute.cshtml*:
+Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.cshtml?start=1&end=4)]
 
@@ -45,9 +53,7 @@ The following example sets a component defined in *Pages/MyFallbackRazorComponen
 
 ## Route parameters
 
-The router uses route parameters to populate the corresponding component parameters with the same name (case insensitive).
-
-*Pages/RouteParameter.cshtml*:
+The router uses route parameters to populate the corresponding component parameters with the same name (case insensitive):
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.cshtml?start=1&end=8)]
 
@@ -93,7 +99,7 @@ The route constraints shown in the following table are available for use. For th
 
 Use a NavLink component in place of HTML **\<a>** elements when creating navigation links. A NavLink component behaves like an **\<a>** element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
 
-The NavMenu component in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-components/common/samples/) creates a [Bootstrap](https://getbootstrap.com/docs/) nav bar that demonstrates how to use NavLink components. The following markup shows the first two NavLinks in the *Shared/NavMenu.cshtml* file.
+The following NavMenu component creates a [Bootstrap](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use NavLink components:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Shared/NavMenu.cshtml?start=13&end=24&highlight=4-6,9-11)]
 
