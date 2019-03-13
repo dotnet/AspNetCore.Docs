@@ -440,7 +440,7 @@ To test CORS:
 
   * Using Microsoft Edge:
 
-    **SEC7120: [CORS] The origin 'https\://localhost:44375' did not find 'https\://localhost:44375' in the Access-Control-Allow-Origin response header for   resource at 'https\://webapi.azurewebsites.net/api/values/1'.**
+    **SEC7120: [CORS] The origin 'https\://localhost:44375' did not find 'https\://localhost:44375' in the Access-Control-Allow-Origin response header for cross-origin  resource at 'https\://webapi.azurewebsites.net/api/values/1'.**
 
   * Using Chrome:
 
