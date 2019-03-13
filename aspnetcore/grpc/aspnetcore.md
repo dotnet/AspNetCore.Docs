@@ -21,25 +21,22 @@ This document shows how to get started with gRPC services using ASP.NET Core. Th
 
 See [Get started with gRPC services](xref:tutorials/grpc/grpc-start) for detailed instructions on how to create a gRPC project.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Run `dotnet new grpc` from the command line.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Run `dotnet new grpc` from the command line.
-
-Open the generated *.sln* file from Visual Studio for Mac.
+Run `dotnet new grpc -o GrpcGreeter` from the command line.
 
 ---
 
-## Add gRPC services to your ASP.NET Core app
+## Add gRPC services to an ASP.NET Core app
 
-### Prerequisite packages
+gRPC requires the following packages:
 
-To obtain the gRPC APIs for ASP.NET Core projects, the [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package must be added to the project. The [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) package must also be added to ensure the APIs for protobuf messages are available.
+* [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server)
+* [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) for protobuf message APIs.
 
+<!-- recommend we don't show this. Dev's should know how to add these with the preceding instructions. The version number go stale very quickly. They're stale right now :)
 [!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13-14)]
+-->
 
 ### Configure `Startup`
 
