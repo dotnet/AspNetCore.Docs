@@ -38,21 +38,21 @@ gRPC requires the following packages:
 [!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13-14)]
 -->
 
-### Configure `Startup`
+### Configure gRPC
 
-gRPC is enabled in the `Startup.ConfigureServices` method through the `AddGrpc` method:
+gRPC is enabled with the `AddGrpc` method:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=18)]
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?name=snippet&highlight=5)]
 
-Each gRPC service is added to the ASP.NET Core routing pipeline through the `MapGrpcService` method in `Startup.Configure`:
+Each gRPC service is added to the routing pipeline through the `MapGrpcService` method:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?highlight=29-32)]
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Startup.cs?name=snippet&highlight=17-20)]
 
-Since ASP.NET Core middlewares and features share the routing pipeline, an application can be configured to serve additional request handlers such as MVC controllers in parallel with the configured gRPC services.
+ASP.NET Core middlewares and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
 
 ## Integration with ASP.NET Core APIs
 
-gRPC services have full access to the ASP.NET Core features such as Dependency Injection (DI) and Logging. For example, the service implementation can resolve a logger service from the DI container via the constructor:
+gRPC services have full access to the ASP.NET Core features such as [Dependency Injection](xref:fundamentals/dependency-injection) (DI) and [Logging](xref:fundamentals/logging). For example, the service implementation can resolve a logger service from the DI container via the constructor:
 
 ```csharp
 public class GreeterService : Greeter.GreeterBase
@@ -67,44 +67,22 @@ By default, the gRPC service implementation can resolve other DI services with a
 
 ### Resolve HttpContext in gRPC methods
 
-The gRPC API provides access to some underlying data of the HTTP/2 message such as the method, host, header and trailers through the `ServerCallContext` argument passed to each gRPC method:
+The gRPC API provides access to some underlying data of the HTTP/2 message, such as the method, host, header and trailers. Access is through the `ServerCallContext` argument passed to each gRPC method:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?highlight=12)]
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?highlight=3-4&name=snippet)]
 
 While this may be sufficient for many purposes, to ensure full access to ASP.NET Core APIs, the `HttpContext` representing the underlying HTTP/2 message can be accessed through the `GetHttpContext` extension method:
 
-```csharp
-public class GreeterService : Greeter.GreeterBase
-{
-    public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
-    {
-        HttpContext httpContext = context.GetHttpContext();
-
-        return Task.FromResult(new HelloReply
-        {
-            Message = "Using https: " + httpContext.Request.IsHttps
-        });
-    }
-}
-```
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?highlight=5-10&name=snippet1)]
 
 ### Request body data rate limit
 
 By default, the Kestrel server imposes a [minimum request body data rate](
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>). For client streaming and duplex streaming calls, this rate may not be satisfied and the connection may be timed out. The minimum request body data rate limit must be disabled when the gRPC service include client streaming and duplex streaming calls:
 
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-            webBuilder.ConfigureKestrel((context, options) =>
-            {
-                options.Limits.MinRequestBodyDataRate = null;
-            });
-        });
-```
+C:\GH\aspnet\docs\4\Docs\aspnetcore\tutorials\grpc\grpc-start\samples\GrpcStart\GrpcGreeter.Server\Program.cs
+
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Program.cs?highlight=8-17&name=snippet)]
 
 ## Additional resources
 
