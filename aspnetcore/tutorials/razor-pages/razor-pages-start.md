@@ -159,6 +159,10 @@ Contains the entry point for the program. For more information, see <xref:fundam
 
 Contains code that configures app behavior, such as whether it requires consent for cookies. For more information, see <xref:fundamentals/startup>.
 
+## Additional resources
+
+* [Youtube version of this tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+
 ## Next steps
 
 In this tutorial, you:

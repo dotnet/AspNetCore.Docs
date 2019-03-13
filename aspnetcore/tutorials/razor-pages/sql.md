@@ -88,11 +88,13 @@ Note the key icon next to `ID`. By default, EF creates a property named `ID` for
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
 ---  
 <!-- End of VS tabs -->
@@ -170,6 +172,10 @@ The app shows the seeded data:
 ![Movie application open in Chrome showing movie data](sql/_static/m55.png)
 
 The next tutorial will clean up the presentation of the data.
+
+## Additional resources
+
+* [YouTube version of this tutorial](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
 > [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)

@@ -721,6 +721,8 @@ The following releases of [Knockout](http://www.knockoutjs.com "Knockout") are h
 - https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.1.debug.js
 - https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js
 - https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.debug.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js
+- https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.debug.js
 
 <a id="Globalize_Releases_on_the_CDN_12"></a>
 

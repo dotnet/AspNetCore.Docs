@@ -80,7 +80,7 @@ By default, the new middleware:
 * Add WS-Federation to `Startup.ConfigureServices`:
 
     ```csharp
-    services.AddIdentity<ApplicationUser, IdentityRole>()
+    services.AddIdentity<IdentityUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 

@@ -136,7 +136,7 @@ If `UseUrls` is called in an ASP.NET Core 1.0 app, call it **before** calling `U
 
 ::: moniker-end
 
-For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/host/index).
+For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/index#host).
 
 ### IIS options
 
@@ -286,7 +286,7 @@ To obtain an earlier version of the installer:
 1. Download the installer using the **Runtime & Hosting Bundle** link.
 
 > [!WARNING]
-> Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://www.microsoft.com/net/download/dotnet-core/2.0).
+> Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 
 ### Install the Hosting Bundle
 
@@ -478,7 +478,7 @@ When hosting a non-ASP.NET Core sub-app underneath an ASP.NET Core app, explicit
 
 Static asset links within the sub-app should use tilde-slash (`~/`) notation. Tilde-slash notation triggers a [Tag Helper](xref:mvc/views/tag-helpers/intro) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's Static File Middleware doesn't process the static file request. The request is processed by the sub-app's Static File Middleware.
 
-If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's Static File Middleware attempts to serve the asset from the root app's [webroot](xref:fundamentals/index#web-root-webroot), which results in a *404 - Not Found* response unless the static asset is available from the root app.
+If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's Static File Middleware attempts to serve the asset from the root app's [web root](xref:fundamentals/index#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
 
 To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 

@@ -220,6 +220,11 @@ The preceding code makes the following changes:
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
+## Additional resources
+
+* [YouTube version of this tutorial (Part 1)](https://www.youtube.com/watch?v=Csh6gkmwc9E)
+* [YouTube version of this tutorial (Part 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)
+
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/read-related-data)
 > [Next](xref:data/ef-rp/concurrency)

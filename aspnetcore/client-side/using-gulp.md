@@ -331,7 +331,7 @@ A Gulp task is registered with a function name. You can specify dependencies if 
 |src   |`gulp.src(globs[, options]) { }`|The `src` function provides files that match the glob value(s). The `glob` parameter is a `string` or `array` that determines which files to read. The `options` parameter provides additional file options.|
 |dest  |`gulp.dest(path[, options]) { }`|The `dest` function defines a location to which files can be written. The `path` parameter is a string or function that determines the destination folder. The `options` parameter is an object that specifies output folder options.|
 
-For additional Gulp API reference information, see [Gulp Docs API](https://github.com/gulpjs/gulp/blob/master/docs/API.md).
+For additional Gulp API reference information, see [Gulp Docs API](https://gulpjs.org/API.html).
 
 ## Gulp recipes
 

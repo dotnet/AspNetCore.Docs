@@ -100,7 +100,7 @@ In this tutorial, you learned how to:
 > * Run the project.
 > * Make a change.
 
-To learn more about ASP.NET Core, see the introduction:
+To learn more about ASP.NET Core, see the recommended learning path in the introduction:
 
 > [!div class="nextstepaction"]
-> <xref:index>
+> <xref:index#recommended-learning-path>

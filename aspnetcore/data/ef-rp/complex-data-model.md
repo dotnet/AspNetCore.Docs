@@ -664,6 +664,11 @@ A production app would:
 
 The next tutorial covers related data.
 
+## Additional resources
+
+* [YouTube version of this tutorial(Part 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
+* [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
+
 ::: moniker-end
 
 > [!div class="step-by-step"]
