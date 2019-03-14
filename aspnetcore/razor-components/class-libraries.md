@@ -53,7 +53,9 @@ dotnet add WebApplication1 reference MyComponentLib1
 
 ## Consume a library component
 
-In order to consume components defined in a library in another project, the [@addTagHelper](/aspnet/core/mvc/views/tag-helpers/intro#add-helper-label) directive must be used. Individual components may be added by name. For example, the following directive adds `Component1` of `MyComponentLib1`:
+In order to consume components defined in a library in another project, the [@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) directive must be used. Individual components may be added by name.
+
+The general format of the directive is:
 
 ```cshtml
 @addTagHelper MyComponentLib1.Component1, MyComponentLib1
@@ -65,19 +67,19 @@ Welcome to your new app.
 <Component1 />
 ```
 
-The general format of the directive is:
+For example, the following directive adds `Component1` of `MyComponentLib1`:
 
 ```cshtml
-@addTagHelper <namespaced component name>, <assembly name>
+@addTagHelper MyComponentLib1.Component1, MyComponentLib1
 ```
 
-However, it's common to include all of the components from an assembly using a wildcard:
+However, it's common to include all of the components from an assembly using a wildcard (`*`):
 
 ```cshtml
 @addTagHelper *, MyComponentLib1
 ```
 
-The `@addTagHelper` directive can be included in *_ViewImport.cshtml* to make the components available for an entire project or applied to a single page or set of pages within a folder. With the `@addTagHelper` directive in place, the components of the component library can be consumed as if they were in the same assembly as the app. 
+The `@addTagHelper` directive can be included in *_ViewImport.cshtml* to make the components available for an entire project or applied to a single page or set of pages within a folder. With the `@addTagHelper` directive in place, the components of the component library can be consumed as if they were in the same assembly as the app.
 
 ## Build, pack, and ship to NuGet
 
