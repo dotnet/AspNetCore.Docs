@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2019
+ms.date: 03/14/2019
 uid: razor-components/routing
 ---
 # Razor Components routing
@@ -16,7 +16,7 @@ Learn how to route requests in apps and about the NavLink component.
 
 ## ASP.NET Core endpoint routing integration
 
-Razor Components are integrated into [ASP.NET Core routing](xref:fundamentals/routing). The app is configured to accept incoming connections for interactive Razor Components with `MapComponentHub<TComponent>` in `Startup.Configure`. `MapComponentHub` specifies that the root component `App` should be rendered within a DOM element matching the selector `app`:
+Razor Components are integrated into [ASP.NET Core routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive Razor Components with `MapComponentHub<TComponent>` in `Startup.Configure`. `MapComponentHub` specifies that the root component `App` should be rendered within a DOM element matching the selector `app`:
 
 ```csharp
 app.UseRouting(routes =>
