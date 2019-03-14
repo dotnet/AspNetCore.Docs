@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 
 namespace GrpcGreeter
 {
-    #region snippet
     public class Program
     {
         public static void Main(string[] args)
@@ -17,15 +16,10 @@ namespace GrpcGreeter
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-             Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-            webBuilder.ConfigureKestrel((context, options) =>
-            {
-                options.Limits.MinRequestBodyDataRate = null;
-            });
-        });
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
-    #endregion
 }

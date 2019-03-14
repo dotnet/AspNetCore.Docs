@@ -80,7 +80,26 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 By default, the Kestrel server imposes a [minimum request body data rate](
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>). For client streaming and duplex streaming calls, this rate may not be satisfied and the connection may be timed out. The minimum request body data rate limit must be disabled when the gRPC service includes client streaming and duplex streaming calls:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Program.cs?highlight=8-17&name=snippet)]
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+         Host.CreateDefaultBuilder(args)
+    .ConfigureWebHostDefaults(webBuilder =>
+    {
+        webBuilder.UseStartup<Startup>();
+        webBuilder.ConfigureKestrel((context, options) =>
+        {
+            options.Limits.MinRequestBodyDataRate = null;
+        });
+    });
+}
+```
 
 ## Additional resources
 
