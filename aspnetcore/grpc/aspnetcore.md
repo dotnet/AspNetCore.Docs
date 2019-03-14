@@ -52,7 +52,7 @@ ASP.NET Core middlewares and features share the routing pipeline, therefore an a
 
 ## Integration with ASP.NET Core APIs
 
-gRPC services have full access to the ASP.NET Core features such as [Dependency Injection](xref:fundamentals/dependency-injection) (DI) and [Logging](xref:fundamentals/logging). For example, the service implementation can resolve a logger service from the DI container via the constructor:
+gRPC services have full access to the ASP.NET Core features such as [Dependency Injection](xref:fundamentals/dependency-injection) (DI) and [Logging](xref:fundamentals/logging/index). For example, the service implementation can resolve a logger service from the DI container via the constructor:
 
 ```csharp
 public class GreeterService : Greeter.GreeterBase

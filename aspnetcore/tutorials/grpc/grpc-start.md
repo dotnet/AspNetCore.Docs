@@ -76,7 +76,7 @@ From a terminal, run the following commands:
 
 The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a gRPC service.
 
-## Open the project
+### Open the project
 
 From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln* file.
 
@@ -84,11 +84,11 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
 ---
 
-## Run and test the service
+### Test the service
 
 # [Visual Studio](#tab/visual-studio)
 
-* Ensure the **GrpcGreeter.Server** is set as the Startup Project and press Ctrl+F5 to run the gRPC service without the debugger.
+* Ensure the **GrpcGreeter.Server** is set as the Startup Project and press Ctrl+F5 to run the gRPC service without the debugger. Visual Studio launches a browser. Close the browser window.
 
   Visual Studio runs the service in a command prompt. The logs shows that the service started listening on `http://localhost:50051`.
 
@@ -104,7 +104,7 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
   ![new ASP.NET Core Web Application](grpc-start/_static/server_complete.png)
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Run the Server project GrpcGreeter.Server from the command line using `dotnet run`. The logs shows that the service started listening on `http://localhost:50051`.
 
@@ -145,86 +145,25 @@ info: Microsoft.AspNetCore.Hosting.Internal.GenericWebHostService[2]
       Request finished in 107.46730000000001ms 200 application/grpc
 ```
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Run the Server project GrpcGreeter.Server from the command line using `dotnet run`. The logs shows that the service started listening on `http://localhost:50051`.
-
-```console
-info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: http://localhost:50051
-info: Microsoft.Hosting.Lifetime[0]
-      Application started. Press Ctrl+C to shut down.
-info: Microsoft.Hosting.Lifetime[0]
-      Hosting environment: Development
-info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\example\GrpcGreeter\GrpcGreeter.Server
-```
-
-* Run the Client project GrpcGreeter.Client from the separate command line using `dotnet run`.
-
-The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response which is printed in the command prompt.
-
-```console
-Greeting: Hello GreeterClient
-Press any key to exit...
-```
-
-The service records the details of the successful call in the logs written to the command prompt.
-
-```console
-info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: http://localhost:50051
-info: Microsoft.Hosting.Lifetime[0]
-      Application started. Press Ctrl+C to shut down.
-info: Microsoft.Hosting.Lifetime[0]
-      Hosting environment: Development
-info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\gh\tp\GrpcGreeter\GrpcGreeter.Server
-info: Microsoft.AspNetCore.Hosting.Internal.GenericWebHostService[1]
-      Request starting HTTP/2 POST http://localhost:50051/Greet.Greeter/SayHello application/grpc
-info: Microsoft.AspNetCore.Hosting.Internal.GenericWebHostService[2]
-      Request finished in 107.46730000000001ms 200 application/grpc
-```
-
-<!-- End of VS tabs -->
+<!-- End of combined VS/Mac tabs -->
 
 ---
 
-## Examine the project files of the gRPC service GrpcGreeter.Server
+### Examine the project files of the gRPC project
 
-Here's an overview of the main project folders and files of the gRPC service that you'll work with in later tutorials.
+GrpcGreeter.Server files:
 
-### greet.proto
-
-This file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see <xref:grpc/index>. This file is stored as Protos/greet.proto on disk.
-
-### Services folder
-
-Contains the implementation of the `Greeter` service. For more information, see <xref:fundamentals/static-files>.
-
-### appSettings.json
-
-Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
-
-### Program.cs
-
-Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/web-host>.
-
-### Startup.cs
+* greet.proto: The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see <xref:grpc/index>.
+* *Services* folder: Contains the implementation of the `Greeter` service.
+* *appSettings.json*:Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
+* *Program.cs*: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/web-host>.
+* Startup.cs
 
 Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
 
-## Examine the project files of the gRPC client GrpcGreeter.Client
+gRPC client GrpcGreeter.Client file:
 
-Here's an overview of the main project file of the gRPC client that you'll work with in later tutorials.
-
-### greet.proto
-
-This file defines the `Greeter` gRPC and is used to generate the gRPC client assets. For more information, see <xref:grpc/index>. This file is stored as Protos/greet.proto on disk.
-
-### Program.cs
-
-Contains the entry point and logic for the gRPC client.
+*Program.cs* contains the entry point and logic for the gRPC client.
 
 In this tutorial, you:
 
