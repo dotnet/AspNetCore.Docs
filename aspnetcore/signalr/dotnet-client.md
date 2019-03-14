@@ -83,4 +83,4 @@ Handle errors with a try-catch statement. Inspect the `Exception` object to dete
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Azure SignalR Service serverless documentation](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-serverless-development-config)
+* [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
