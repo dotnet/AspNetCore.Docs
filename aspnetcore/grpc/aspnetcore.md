@@ -9,7 +9,7 @@ uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
 
-This document shows how to get started with gRPC services using ASP.NET Core. The topics covered here only apply to ASP.NET Core based apps.
+This document shows how to get started with gRPC services using ASP.NET Core.
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-3.0.md)]
 
