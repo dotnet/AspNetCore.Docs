@@ -5,7 +5,7 @@ description: Learn how to get started with Razor Components by creating and modi
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/03/2019
+ms.date: 03/13/2019
 uid: razor-components/get-started
 ---
 # Get started with Razor Components
@@ -23,9 +23,6 @@ To create your first Razor Components project in Visual Studio:
 1. Select **File** > **New Project** > **Web** > **ASP.NET Core Web Application**.
 1. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
 1. Choose the **Razor Components** template and select **OK**.
-
-   ![New app dialog](https://msdnshared.blob.core.windows.net/media/2019/01/razor-components-template.png)
-
 1. Press **F5** to run the app.
 
 Congratulations! You just ran your first Razor Components app!
@@ -107,12 +104,14 @@ Congratulations! You just ran your first Razor Components app!
 
 ## Razor Components project
 
-The solution created by the Razor Components template contains two projects:
+Razor Components are authored using Razor syntax but are compiled differently than Razor Pages and MVC views. The *.razor* file extension is used to specify a Razor Component. Razor Pages and MVC views continue to use the *.cshtml* file extension.
 
-* *WebApplication1.Server* &ndash; The server project is an ASP.NET Core project set up to host the Razor Components app.
-* *WebApplication1.App* &ndash; The client-side web UI project that uses Razor Components.
-
-The UI logic in the *WebApplication1.App* project is separated from the rest of the app due to a technical limitation in ASP.NET Core 3.0 Preview 2. The Razor file extension (*.cshtml*) used for Razor Components is also used for Razor Pages and MVC views. Currently, Razor Components and Razor Pages/MVC have different compilation models, so the Razor Components Razor files are kept separate. In a future preview, we plan to introduce a new file extension for Razor Components (*.razor*). Components, pages, and views will be hosted *in the same project*.
+> [!NOTE]
+> Razor Components can be authored using the *.cshtml* file extension as long as those files are identified as Razor Component files using the `_RazorComponentInclude` MSBuild property. For example, an app created using the Razor Component template specifies that all *.cshtml* files under the *Components* folder should be treated as Razor Components:
+>
+> ```xml
+> <_RazorComponentInclude>Components\**\*.cshtml</_RazorComponentInclude>
+> ```
 
 When the app is run, multiple pages are available from tabs in the sidebar:
 
@@ -122,9 +121,9 @@ When the app is run, multiple pages are available from tabs in the sidebar:
 
 On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Razor Components provides a better approach using C#.
 
-*WebApplication1.App/Pages/Counter.cshtml*:
+*WebApplication1/Components/Pages/Counter.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.cshtml)]
+[!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.razor)]
 
 A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the Counter component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
 
@@ -139,9 +138,9 @@ The runtime compares the new content to the previous content and only applies th
 
 Add a component to another component using an HTML-like syntax. Component parameters are specified using attributes or child content. For example, a Counter component can be added to the app's homepage by adding a `<Counter />` element to the Index component.
 
-*WebApplication1.App/Pages/Index.cshtml*:
+*WebApplication1/Components/Pages/Index.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Index1.cshtml?highlight=7)]
+[!code-cshtml[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
 Run the app. The homepage has its own counter.
 
@@ -150,15 +149,15 @@ To add a parameter to the Counter component, update the component's `@functions`
 * Add a property for `IncrementAmount` decorated with the `[Parameter]` attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
-*WebApplication1.App/Pages/Counter.cshtml*:
+*WebApplication1/Components/Pages/Counter.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.cshtml?highlight=4,8)]
+[!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=4,8)]
 
 Specify an `IncrementAmount` parameter in the Home component's `<Counter>` element using an attribute.
 
-*WebApplication1.App/Pages/Index.cshtml*:
+*WebApplication1/Components/Pages/Index.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Index2.cshtml)]
+[!code-cshtml[](get-started/samples_snapshot/3.x/Index2.razor)]
 
 Run the app. The homepage has its own counter that increments by ten each time the **Click me** button is selected.
 
