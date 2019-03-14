@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/14/2018
+ms.date: 03/14/2019
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -59,7 +59,7 @@ JavaScript clients call public methods on hubs via the [invoke](/javascript/api/
   [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
 
 > [!NOTE]
-> If you are using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-serverless-development-config).
+> If you're using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](/azure/azure-signalr/signalr-concept-serverless-development-config).
 
 ## Call client methods from hub
 
@@ -116,4 +116,4 @@ A real-world implementation would use an exponential back-off or retry a specifi
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 * [Cross-Origin Requests (CORS)](xref:security/cors)
-* [Azure SignalR Service serverless documentation](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-serverless-development-config)
+* [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
