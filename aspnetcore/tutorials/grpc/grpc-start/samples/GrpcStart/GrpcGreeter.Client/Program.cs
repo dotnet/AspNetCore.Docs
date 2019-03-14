@@ -8,6 +8,7 @@ using Grpc.Core;
 
 namespace GrpcGreeter
 {
+    #region snippet
     public class Program
     {
         static async Task Main(string[] args)
@@ -27,4 +28,5 @@ namespace GrpcGreeter
             Console.ReadKey();
         }
     }
+    #endregion
 }
