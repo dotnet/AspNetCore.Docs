@@ -277,6 +277,7 @@ If you run into problems you can't solve, download the [completed app for this s
 ## Additional resources
 
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=MDs7PFpoMqI)
 
 In the next tutorial, the app uses migrations to update the data model.
 

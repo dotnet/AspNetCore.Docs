@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with ASP.NET Core Azure App Service deployments.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/11/2019
+ms.date: 03/06/2019
 uid: host-and-deploy/azure-apps/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on Azure App Service
@@ -65,11 +65,56 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-1. Open the folders to the path **site** > **wwwroot**.
-1. In the console, run the app by executing the app's assembly.
-   * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), run the app's assembly with *dotnet.exe*. In the following command, substitute the name of the app's assembly for `<assembly_name>`: `dotnet .\<assembly_name>.dll`
-   * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), run the app's executable. In the following command, substitute the name of the app's assembly for `<assembly_name>`: `<assembly_name>.exe`
-1. The console output from the app, showing any errors, is piped to the Kudu console.
+
+#### Test a 32-bit (x86) app
+
+##### Current release
+
+1. `cd d:\home\site\wwwroot`
+1. Run the app:
+   * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
+
+     ```console
+     dotnet .\{ASSEMBLY NAME}.dll
+     ```
+   * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
+
+     ```console
+     {ASSEMBLY NAME}.exe
+     ```
+   
+The console output from the app, showing any errors, is piped to the Kudu console.
+   
+##### Framework-depdendent deployment running on a preview release
+
+*Requires installing the ASP.NET Core {VERSION} (x86) Runtime site extension.*
+
+1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` is the runtime version)
+1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
+
+The console output from the app, showing any errors, is piped to the Kudu console.
+
+#### Test a 64-bit (x64) app
+
+##### Current release
+
+* If the app is a 64-bit (x64) [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
+  1. `cd D:\Program Files\dotnet`
+  1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
+* If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
+  1. `cd D:\home\site\wwwroot`
+  1. Run the app: `{ASSEMBLY NAME}.exe`
+
+The console output from the app, showing any errors, is piped to the Kudu console.
+
+##### Framework-depdendent deployment running on a preview release
+
+*Requires installing the ASP.NET Core {VERSION} (x64) Runtime site extension.*
+
+1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` is the runtime version)
+1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
+
+The console output from the app, showing any errors, is piped to the Kudu console.
 
 ### ASP.NET Core Module stdout log
 
@@ -136,7 +181,10 @@ See <xref:host-and-deploy/azure-iis-errors-reference>. Most of the common proble
 
 ## Slow or hanging app
 
-When an app responds slowly or hangs on a request, see [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation) for debugging guidance.
+When an app responds slowly or hangs on a request, see the following articles:
+
+* [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
+* [Use Crash Diagnoser Site Extension to Capture Dump for Intermittent Exception issues or performance issues on Azure Web App](https://blogs.msdn.microsoft.com/asiatech/2015/12/28/use-crash-diagnoser-site-extension-to-capture-dump-for-intermittent-exception-issues-or-performance-issues-on-azure-web-app/)
 
 ## Remote debugging
 

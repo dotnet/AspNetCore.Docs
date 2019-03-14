@@ -14,12 +14,14 @@ Areas are an ASP.NET feature used to organize related functionality into a group
 
 Areas provide a way to partition an ASP.NET Core Web app into smaller functional groups, each  with its own set of Razor Pages, controllers, views, and models. An area is effectively a structure inside an app. In an ASP.NET Core web project, logical components like Pages, Model, Controller, and View are kept in different folders. The ASP.NET Core runtime uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search. Each of these units have their own area to contain views, controllers, Razor Pages, and models.
 
-Consider using Areas in an project when:
+Consider using Areas in a project when:
 
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+
+If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-pages) in this document.
 
 ## Areas for controllers with views
 
@@ -31,7 +33,7 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
 * The [area route added to startup](#add-area-route):
   [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
-## Area folder structure
+### Area folder structure
 Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
 
 * Project name
@@ -64,11 +66,6 @@ While the preceding layout is typical when using Areas, only the view files are 
 
 The location of non-view folders like *Controllers* and *Models* does **not** matter. For example, the *Controllers* and *Models* folder are not required. The content of *Controllers* and *Models* is code which gets compiled into a .dll. The content of the *Views* isn't compiled until a request to that view has been made.
 
-<!-- TODO review:
-The content of the *Views* isn't compiled until a request to that view has been made.
-
-What about precompiled views? 
- -->
 <a name="attribute"></a>
 
 ### Associate the controller with an Area
@@ -95,7 +92,7 @@ When using `MapAreaRoute` with ASP.NET Core 2.2, see [this GitHub issue](https:/
 
 For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
-### Link Generation with Areas
+### Link generation with MVC areas
 
 The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) shows link generation with the area specified:
 
@@ -103,7 +100,7 @@ The following code from the [sample download](https://github.com/aspnet/Docs/tre
 
 The links generated with the preceding code are valid anywhere in the app.
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
 When the area or controller is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
@@ -113,11 +110,6 @@ For more information, see [Routing to controller actions](xref:mvc/controllers/r
 
 To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
 
-<!-- This section will be completed after https://github.com/aspnet/Docs/pull/10978 is merged.
-<a name="arp"></a>
-
-## Areas for Razor Pages
--->
 <a name="rename"></a>
 
 ### Change default area folder where views are stored
@@ -126,7 +118,73 @@ The following code changes the default area folder from `"Areas"` to `"MyAreas"`
 
 [!code-csharp[](areas/samples/MVCareas/Startup2.cs?name=snippet)]
 
-<!-- TODO review - can we delete this. Areas doesn't change publishing - right? -->
+<a name="arp"></a>
+
+## Areas with Razor Pages
+
+Areas with Razor Pages require and *Areas/&lt;area name&gt;/Pages* folder in the root of the app. The following folder structure is used with the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples)
+
+* Project name
+  * Areas
+    * Products
+      * Pages
+        * _ViewImports
+        * About
+        * Index
+    * Services
+      * Pages
+        * Manage
+          * About
+          * Index
+
+### Link generation with Razor Pages and areas
+
+The following code from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
+
+[!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
+
+The links generated with the preceding code are valid anywhere in the app.
+
+The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
+
+When the area is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links. For example, consider the links generated from the following code:
+
+[!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
+
+For the preceding code:
+
+* The link generated from `<a asp-page="/Manage/About">` is correct only when the last request was for a page in `Services` area. For example, `/Services/Manage/`, `/Services/Manage/Index`, or `/Services/Manage/About`.
+* The link generated from `<a asp-page="/About">` is correct only when the last request was for a page in `/Home`.
+* The code is from the [sample download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas).
+
+### Import namespace and Tag Helpers with _ViewImports file
+
+A *_ViewImports* file can be added to each area *Pages* folder to import the namespace and Tag Helpers to each Razor Page in the folder.
+
+Consider the *Services* area of the sample code, which doesn't contain a *_ViewImports* file. The following markup shows the */Services/Manage/About* Razor Page:
+
+[!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
+
+In the preceding markup:
+
+* The fully qualified domain name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
+* [Tag Helpers]() are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+
+In the sample download, the Products area contains the following *_ViewImports* file:
+
+[!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
+
+The following markup shows the */Products/About* Razor Page:
+[!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/About.cshtml)]
+
+In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file:
+
+For more information, see [Managing Tag Helper scope](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
+
+### Shared layout for Razor Pages Areas
+
+To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
+
 ### Publishing Areas
 
-All `*.cshtml` and `wwwroot/**` files are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj* file.
+All `*.cshtml` and `wwwroot/**` files are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the.csproj* file.

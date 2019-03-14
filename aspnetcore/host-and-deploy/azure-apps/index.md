@@ -120,7 +120,7 @@ Use one of the following approaches:
 
 ### Install the preview site extension
 
-If a problem occurs using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
+If a problem occurs using the preview site extension, open an [aspnet/AspNetCore issue](https://github.com/aspnet/AspNetCore/issues).
 
 1. From the Azure Portal, navigate to the App Service.
 1. Select the web app.

@@ -1,4 +1,4 @@
-// .Net 4.5
+// .NET 4.5
 public class CustomHeaderHandler : DelegatingHandler
 {
     async protected override Task<HttpResponseMessage> SendAsync(

@@ -5,37 +5,51 @@ description: Discover how components can be included in Razor Components apps fr
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2019
+ms.date: 03/14/2019
 uid: razor-components/class-libraries
 ---
 # Razor Components Class Libraries
 
 By [Simon Timms](https://github.com/stimms)
 
-Components can be shared in component libraries across projects. Components can be included from:
+Components can be shared in Razor class libraries across projects. Components can be included from:
 
 * Another project in the solution.
 * A NuGet package.
 * A referenced .NET library.
 
-Just as components are regular .NET types, component libraries are normal .NET assemblies.
+Just as components are regular .NET types, components provided by Razor class libraries are normal .NET assemblies.
 
-> [!NOTE]
-> The .NET Core 3.0 Preview 2 SDK doesn't include a project template for Razor Components Class Libraries, but we expect to add a template in a future preview. In the meantime, use the Blazor Component Class Library template (`blazorlib`).
-
-To create a new component library, use the `blazorlib` template with the [dotnet new](/dotnet/core/tools/dotnet-new) command. The template is part of the templates installed when [setting up Blazor](xref:spa/blazor/get-started).
+Use the `razorclasslib` (Razor class library) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command:
 
 ```console
-dotnet new blazorlib -o MyComponentLib1
+dotnet new razorclasslib -o MyComponentLib1
 ```
 
+Add Razor Component files (*.razor*) to the Razor class library.
+
 To add the library to an existing project, use the [dotnet sln](/dotnet/core/tools/dotnet-sln) command:
+
+# [Visual Studio](#tab/visual-studio)
 
 ```console
 dotnet sln add .\MyComponentLib1
 ```
 
-Component libraries may contain static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (*.dll*). Files included in the *content* directory are marked as embedded resources.
+# [.NET Core CLI](#tab/netcore-cli)
+
+```console
+dotnet add WebApplication1 reference MyComponentLib1
+```
+
+---
+
+> [!NOTE]
+> Razor class libraries aren't compatible with Blazor apps in ASP.NET Core Preview 3.
+>
+> To create components in a library that can be shared with Blazor and Razor Components apps, use a Blazor class library created by the `blazorlib` template.
+>
+> Razor class libraries don't support static assets in ASP.NET Core Preview 3. Component libraries using the `blazorlib` template can include static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (*.dll*), which allows consumption of the components without having to worry about how to include their resources. Any files included in the `content` directory are marked as an embedded resource.
 
 ## Consume a library component
 
@@ -44,7 +58,13 @@ In order to consume components defined in a library in another project, the [@ad
 The general format of the directive is:
 
 ```cshtml
-@addTagHelper <namespaced component name>, <assembly name>
+@addTagHelper MyComponentLib1.Component1, MyComponentLib1
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<Component1 />
 ```
 
 For example, the following directive adds `Component1` of `MyComponentLib1`:
@@ -75,4 +95,4 @@ Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/
 dotnet nuget publish
 ```
 
-Static resources in the *content* directory are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.
+When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.

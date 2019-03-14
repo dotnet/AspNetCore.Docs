@@ -2,7 +2,7 @@ $TempPackagesFolder = Join-Path  $PSScriptRoot "obj\packages"
 $TempPublishFolder = Join-Path  $PSScriptRoot "obj\pub"
 $TargetFolder = Join-Path  $PSScriptRoot "deployment"
 $TargetStoreFolder = Join-Path  $TargetFolder "store"
-$TargetDepsFolder = Join-Path  $TargetFolder "additionalDeps\shared\Microsoft.AspNetCore.App\2.1.0\"
+$TargetDepsFolder = Join-Path  $TargetFolder "additionalDeps\shared\Microsoft.AspNetCore.App\2.2.0\"
 $MsbuildFlags = @("-v", "q", "/nologo");
 
 function RemoveManifestFromDeps ($depsLocation, $depsTarget) {

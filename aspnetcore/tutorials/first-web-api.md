@@ -345,7 +345,7 @@ Add the following `PutTodoItem` method:
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
-I you get an error calling `PutTodoItem`, call `GET` to ensure there is a an item in the database.
+If you get an error calling `PutTodoItem`, call `GET` to ensure there is a an item in the database.
 
 ### Test the PutTodoItem method
 
