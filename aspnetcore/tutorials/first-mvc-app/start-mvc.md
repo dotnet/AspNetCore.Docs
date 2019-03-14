@@ -44,7 +44,7 @@ Complete the **New Project** dialog:
 * Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
 * select **OK**
 
-![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2-21.png)
+![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2-21.png)
 
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
@@ -52,7 +52,7 @@ Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 * Select **Web Application (Model-View-Controller)**
 * select **OK**.
 
-![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
+![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
 
 Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
 
