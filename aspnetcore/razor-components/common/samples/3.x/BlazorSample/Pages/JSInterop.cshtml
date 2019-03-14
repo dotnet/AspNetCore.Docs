@@ -1,6 +1,6 @@
 @page "/JSInterop"
 @using BlazorSample.JsInteropClasses
-@using Microsoft.JSInterop;
+@inject IJSRuntime JSRuntime
 
 <h1>JavaScript Interop</h1>
 
@@ -15,8 +15,9 @@
 @functions {
     public async void TriggerJsPrompt()
     {
-        var name = await ExampleJsInterop.Prompt("What's your name?");
-        await ExampleJsInterop.Display($"Hello {name}! Welcome to Blazor!");
+        var exampleJsInterop = new ExampleJsInterop(JSRuntime);
+        var name = await exampleJsInterop.Prompt("What's your name?");
+        await exampleJsInterop.Display($"Hello {name}! Welcome to Blazor!");
     }
 }
 
@@ -64,6 +65,7 @@
 @functions {
     public async void TriggerNetInstanceMethod()
     {
-        await ExampleJsInterop.CallHelloHelperSayHello("Blazor");
+        var exampleJsInterop = new ExampleJsInterop(JSRuntime);
+        await exampleJsInterop.CallHelloHelperSayHello("Blazor");
     }
 }
