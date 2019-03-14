@@ -56,9 +56,9 @@ For client side assets, a concrete client type is generated. The gRPC calls in t
 
 By default, both server and client assets are generated for each *.proto* file included in the `<Protobuf>` item group. To ensure only the server assets are generated in a server project, the `GrpcServices` attribute is set to `Server`.
 
-[!code-proto[](~/tutorials/grpc/grpc-start/samples/GrpcStart/Protos/greet.proto)]
+[!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=2&range=7-10)]
 
-Similarly, the attribute is set to `Client` in client projects
+Similarly, the attribute is set to `Client` in client projects.
 
 ## Additional resources
 
