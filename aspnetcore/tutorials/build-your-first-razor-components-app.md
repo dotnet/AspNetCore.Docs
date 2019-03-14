@@ -5,7 +5,7 @@ description: Build a Razor Components app step-by-step and learn basic Razor Com
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2019
+ms.date: 03/14/2019
 uid: tutorials/first-razor-components-app
 ---
 # Build your first Razor Components app
@@ -25,7 +25,6 @@ For an experience using Blazor:
 
 * Follow the guidance in <xref:spa/blazor/get-started> to create a Blazor-based project.
 * Name the project `Blazor`.
-* Components continue to use the Razor class file extension (*.cshtml*) and are found in the *Pages* folder.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/build-your-first-razor-components-app/samples/) ([how to download](xref:index#how-to-download-a-sample)). See the following topics for prerequisites:
 
