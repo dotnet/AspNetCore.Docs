@@ -5,7 +5,7 @@ description: Learn how to get started with Blazor by creating and modifying a Bl
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2019
+ms.date: 03/14/2019
 uid: spa/blazor/get-started
 ---
 # Get started with Blazor
@@ -23,6 +23,7 @@ Prerequisites:
 To create your first Blazor project in Visual Studio:
 
 1. Install the latest [Blazor Language Services extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
+1. In Visual Studio, select **Tools** > **Options**. In the **Options** window, open **Projects and Solutions** > **.NET Core**. Select the check box for **Use previews of the .NET Core SDK**.
 1. Make the Blazor templates available for use with the .NET Core CLI by running the following command in a command shell:
 
    ```console
