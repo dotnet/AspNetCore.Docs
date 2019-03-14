@@ -12,8 +12,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
-https://docs.microsoft.com/en-us/visualstudio/ide/visual-studio-ide?view=vs-2017
-
 This tutorial teaches the basics of building an ASP.NET Core MVC web app.
 
 The app manages a database of movie titles. You learn how to:
@@ -27,9 +25,6 @@ The app manages a database of movie titles. You learn how to:
 At the end, you have an app that can manage and display movie data.
 
 [!INCLUDE[](~/includes/mvc-intro/download.md)]
-
-> [!NOTE]
-> We’re testing the usability of a proposed new structure for the ASP.NET Core table of contents.  If you have a few minutes to try an exercise of finding 7 different topics in the current or proposed table of contents, please [click here to participate in the study](https://dpk4xbh5.optimalworkshop.com/treejack/aa11wn82).
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
@@ -49,7 +44,7 @@ Complete the **New Project** dialog:
 * Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
 * select **OK**
 
-![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2-21.png)
+![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2-21.png)
 
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
@@ -57,21 +52,9 @@ Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 * Select **Web Application (Model-View-Controller)**
 * select **OK**.
 
-![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
+![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
 
 Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
-
-Select **Ctrl-F5** to run the app in non-debug mode.
-
-* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. The URL in the browser shows `localhost:5000`. When you run the app, you'll see a different port number.
-* Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
-* You can launch the app in debug or non-debug mode from the **Debug** menu item:
-
-![Debug menu](start-mvc/_static/debug_menu.png)
-
-* You can debug the app by selecting the **IIS Express** button
-
-![IIS Express](start-mvc/_static/iis_express.png)
 
 <!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -92,14 +75,6 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
   * `dotnet new mvc -o MvcMovie`: creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
 
-### Launch the app
-
-* Press **Ctrl-F5** to run without the debugger.
-
-  Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
-
-  Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
-
 <!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -115,15 +90,47 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
 * Name the project **MvcMovie**, and then select **Create**.
 
-### Launch the app
+---  
+<!-- End of VS tabs -->
+
+### Run the app
+
+# [Visual Studio](#tab/visual-studio) 
+
+Select **Ctrl-F5** to run the app in non-debug mode.
+
+[!INCLUDE[](~/includes/trustCertVS.md)]
+
+* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server.
+* Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
+* You can launch the app in debug or non-debug mode from the **Debug** menu item:
+
+  ![Debug menu](start-mvc/_static/debug_menu.png)
+
+* You can debug the app by selecting the **IIS Express** button
+
+  ![IIS Express](start-mvc/_static/iis_express.png)
+
+# [Visual Studio Code](#tab/visual-studio-code) 
+
+Press Ctrl+F5 to run without the debugger.
+
+[!INCLUDE[](~/includes/trustCertVSC.md)]
+
+  Visual Studio Code starts starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+
+  Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Run** > **Start Without Debugging** to launch the app. Visual Studio for Mac starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+
+[!INCLUDE[](~/includes/trustCertMac.md)]
 
 * The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
 * You can launch the app in debug or non-debug mode from the **Run** menu.
 
----  
-<!-- End of VS tabs -->
+------
 
 * Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 

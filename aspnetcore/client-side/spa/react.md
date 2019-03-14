@@ -5,7 +5,7 @@ description: Learn how to get started with the ASP.NET Core Single Page Applicat
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 03/07/2019
 uid: spa/react
 ---
 # Use the React project template with ASP.NET Core
@@ -96,3 +96,10 @@ There's a drawback to this default setup. Each time you modify your C# code and 
     ```
 
 When you start your ASP.NET Core app, it won't launch a CRA server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for your React app to rebuild each time.
+
+> [!IMPORTANT]
+> "Server-side rendering" is not a supported feature of this template. Our goal with this template is to meet parity with "create-react-app". As such, scenarios and features not included in a "create-react-app" project (such as SSR) are not supported and are left as an exercise for the user.
+
+## Additional resources
+
+* <xref:security/authentication/identity/spa>

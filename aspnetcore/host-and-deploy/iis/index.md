@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/19/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -136,7 +136,7 @@ If `UseUrls` is called in an ASP.NET Core 1.0 app, call it **before** calling `U
 
 ::: moniker-end
 
-For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/host/index).
+For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/index#host).
 
 ### IIS options
 
@@ -286,17 +286,18 @@ To obtain an earlier version of the installer:
 1. Download the installer using the **Runtime & Hosting Bundle** link.
 
 > [!WARNING]
-> Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://www.microsoft.com/net/download/dotnet-core/2.0).
+> Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 
 ### Install the Hosting Bundle
 
-1. Run the installer on the server. The following switches are available when running the installer from an administrator command prompt:
+1. Run the installer on the server. The following parameters are available when running the installer from an administrator command shell:
 
    * `OPT_NO_ANCM=1` &ndash; Skip installing the ASP.NET Core Module.
    * `OPT_NO_RUNTIME=1` &ndash; Skip installing the .NET Core runtime.
    * `OPT_NO_SHAREDFX=1` &ndash; Skip installing the ASP.NET Shared Framework (ASP.NET runtime).
-   * `OPT_NO_X86=1` &ndash; Skip installing x86 runtimes. Use this switch when you know that you won't be hosting 32-bit apps. If there's any chance that you will host both 32-bit and 64-bit apps in the future, don't use this switch and install both runtimes.
-1. Restart the system or execute **net stop was /y** followed by **net start w3svc** from a command prompt. Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer.
+   * `OPT_NO_X86=1` &ndash; Skip installing x86 runtimes. Use this parameter when you know that you won't be hosting 32-bit apps. If there's any chance that you will host both 32-bit and 64-bit apps in the future, don't use this parameter and install both runtimes.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Disable the check for using an IIS Shared Configuration when the shared configuration (*applicationHost.config*) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+1. Restart the system or execute **net stop was /y** followed by **net start w3svc** from a command shell. Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer.
 
 If the Windows Hosting Bundle installer detects that IIS requires a reset in order to complete installation, the installer resets IIS. If the installer triggers an IIS reset, all of the IIS app pools and websites are restarted.
 
@@ -477,7 +478,7 @@ When hosting a non-ASP.NET Core sub-app underneath an ASP.NET Core app, explicit
 
 Static asset links within the sub-app should use tilde-slash (`~/`) notation. Tilde-slash notation triggers a [Tag Helper](xref:mvc/views/tag-helpers/intro) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's Static File Middleware doesn't process the static file request. The request is processed by the sub-app's Static File Middleware.
 
-If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's Static File Middleware attempts to serve the asset from the root app's [webroot](xref:fundamentals/index#web-root-webroot), which results in a *404 - Not Found* response unless the static asset is available from the root app.
+If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's Static File Middleware attempts to serve the asset from the root app's [web root](xref:fundamentals/index#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
 
 To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 

@@ -4,7 +4,7 @@ author: guardrex
 description: Obtain troubleshooting advice for common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 02/28/2019
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 # Common errors reference for Azure App Service and IIS with ASP.NET Core
@@ -50,6 +50,39 @@ If the system doesn't have Internet access while [installing the .NET Core Hosti
 Troubleshooting:
 
 Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any app pool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Core Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Select **Repair** when the installer is run.
+
+## Missing site extension, 32-bit (x86) and 64-bit (x64) site extensions installed, or wrong process bitness set
+
+*Applies to apps hosted by Azure App Services.*
+
+* **Browser:** HTTP Error 500.0 - ANCM In-Process Handler Load Failure 
+
+* **Application Log:** Invoking hostfxr to find the inprocess request handler failed without finding any native dependencies. Could not find inprocess request handler. Captured output from invoking hostfxr: It was not possible to find any compatible framework version. The specified framework 'Microsoft.AspNetCore.App', version '{VERSION}-preview-\*' was not found. Failed to start application '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
+
+* **ASP.NET Core Module stdout Log:** It was not possible to find any compatible framework version. The specified framework 'Microsoft.AspNetCore.App', version '{VERSION}-preview-\*' was not found.
+
+::: moniker range=">= aspnetcore-2.2"
+
+* **ASP.NET Core Module Debug Log:** Invoking hostfxr to find the inprocess request handler failed without finding any native dependencies. This most likely means the app is misconfigured, please check the versions of Microsoft.NetCore.App and Microsoft.AspNetCore.App that are targeted by the application and are installed on the machine. Failed HRESULT returned: 0x8000ffff. Could not find inprocess request handler. It was not possible to find any compatible framework version. The specified framework 'Microsoft.AspNetCore.App', version '{VERSION}-preview-\*' was not found.
+
+::: moniker-end
+
+Troubleshooting:
+
+* If running the app on a preview runtime, install either the 32-bit (x86) **or** 64-bit (x64) site extension that matches the bitness of the app and the app's runtime version. **Don't install both extensions or multiple runtime versions of the extension.**
+
+  * ASP.NET Core {RUNTIME VERSION} (x86) Runtime
+  * ASP.NET Core {RUNTIME VERSION} (x64) Runtime
+
+  Restart the app. Wait several seconds for the app to restart. 
+
+* If running the app on a preview runtime and both the 32-bit (x86) and 64-bit (x64) [site extensions](xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension) are installed, uninstall the site extension that doesn't match the bitness of the app. After removing the site extension, restart the app. Wait several seconds for the app to restart.
+
+* If running the app on a preview runtime and the site extension's bitness matches that of the app, confirm that the preview site extension's *runtime version* matches the app's runtime version.
+
+* Confirm that the app's **Platform** in **Application Settings** matches the bitness of the app.
+
+For more information, see <xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension>.
 
 ## An x86 app is deployed but the app pool isn't enabled for 32-bit apps
 
@@ -156,6 +189,14 @@ Troubleshooting:
   For more information, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
 * Make sure that the **Application Pool** > **Process Model** > **Identity** is set to **ApplicationPoolIdentity** or the custom identity has the correct permissions to access the app's deployment folder.
+
+* If you uninstalled the ASP.NET Core Hosting Bundle and installed an earlier version of the hosting bundle, the *applicationHost.config* file doesn't include a section for the ASP.NET Core Module. Open *applicationHost.config* at *%windir%/System32/inetsrv/config* and find the `<configuration><configSections><sectionGroup name="system.webServer">` section group. If the section for the ASP.NET Core Module is missing from the section group, add the section element:
+
+  ```xml
+  <section name="aspNetCore" overrideModeDefault="Allow" />
+  ```
+  
+  Alternatively, install the lastest version of the ASP.NET Core Hosting Bundle. The latest version is backwards-compatible with supported ASP.NET Core apps.
 
 ## Incorrect processPath, missing PATH variable, Hosting Bundle not installed, system/IIS not restarted, VC++ Redistributable not installed, or dotnet.exe access violation
 

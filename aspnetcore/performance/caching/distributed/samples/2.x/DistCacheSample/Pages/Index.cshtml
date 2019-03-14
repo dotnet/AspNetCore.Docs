@@ -41,12 +41,8 @@
         <p>This sample can be changed to use a Distributed Redis Cache:</p>
         <ol>
             <li>
-                Swap the Distributed SQL Server Cache service registration (<code>AddDistributedSqlServerCache</code>) in <code>Startup.ConfigureServices</code> with Redis service registrations:
-                <pre><code>services.AddDistributedRedisCache(options =>
-{
-options.Configuration = "localhost";
-options.InstanceName = "SampleInstance";
-});</code></pre>
+                Change the preprocessor directive (<code>#define</code>) at the top of the <em>Startup.cs</em> file from <code>SQLServer</code> to <code>Redis</code>:
+                <pre><code>#define Redis // SQLServer</code></pre>
             </li>
             <li>Install Redis on your local machine: Install the <a href="https://chocolatey.org/packages/redis-64/">Redis Chocolatey package</a> and run <code>redis-server</code> from a command prompt.</li>
             <li>Set the <code>ASPNETCORE_ENVIRONMENT</code> environment variable to <code>Production</code>. In the Production environment, the app uses the Distributed Redis Cache when it starts.</li>

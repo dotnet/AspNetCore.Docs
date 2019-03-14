@@ -31,6 +31,8 @@ For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 **[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper)**
 
+**[Form Action Tag Helper](xref:mvc/views/working-with-forms#the-form-action-tag-helper)**
+
 **[Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)**
 
 **[Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper)**

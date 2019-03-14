@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 03/13/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -18,7 +18,7 @@ Razor Components apps are built using *components*. A component is a self-contai
 
 ## Component classes
 
-Components are typically implemented in *.cshtml* files using a combination of C# and HTML markup. The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When a Razor Components app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
+Components are typically implemented in Razor Component files (*.razor*) using a combination of C# and HTML markup. The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When a Razor Components app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
 Members of the component class are defined in a `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified along with methods for event handling or for defining other component logic.
 
@@ -99,6 +99,14 @@ Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue" />`) i
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `bind` handles a few cases where type conversions are performed. In principle, `bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
+In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what to bind to:
+
+```cshtml
+<input type="text" bind-value-oninput="@CurrentValue" />
+```
+
+Unlike `onchange`, `oninput` fires for every character that is input into the text box.
+
 **Format strings**
 
 Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
@@ -162,8 +170,6 @@ Child component:
 }
 ```
 
-The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
-
 Loading the `ParentComponent` produces the following markup:
 
 ```html
@@ -187,6 +193,16 @@ If the value of the `ParentYear` property is changed by selecting the button in 
 
 <p>Year: 1986</p>
 ```
+
+The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+
+By convention, `<ChildComponent bind-Year="@ParentYear" />` is essentially equivalent to writing,
+
+```cshtml
+    <ChildComponent bind-Year-YearChanged="@ParentYear" />
+```
+
+In general, a property can be bound to a corresponding event handler using `bind-property-event` attribute.
 
 ## Event handling
 
@@ -259,7 +275,7 @@ It's often convenient to close over additional values, such as when iterating ov
 {
     var buttonNumber = i;
 
-    <button class="btn btn-primary" 
+    <button class="btn btn-primary"
             onclick="@(e => UpdateHeading(e, buttonNumber))">
         Button #@i
     </button>
@@ -275,6 +291,9 @@ It's often convenient to close over additional values, such as when iterating ov
     }
 }
 ```
+
+> [!NOTE]
+> Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the preceding example) and then use it.
 
 ## Capture references to components
 
@@ -441,14 +460,14 @@ Razor directives are shown in the following table.
 
 | Directive | Description |
 | --------- | ----------- |
-| [@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. |
+| [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. |
 | `@implements` | Implements an interface for the generated component class. |
-| [@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |
-| [@inject](xref:mvc/views/razor#section-4) | Enables service injection from the [service container](xref:fundamentals/dependency-injection). For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection). |
+| [\@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |
+| [\@inject](xref:mvc/views/razor#section-4) | Enables service injection from the [service container](xref:fundamentals/dependency-injection). For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection). |
 | `@layout` | Specifies a layout component. Layout components are used to avoid code duplication and inconsistency. |
-| [@page](xref:razor-pages/index#razor-pages) | Specifies that the component should handle requests directly. The `@page` directive can be specified with a route and optional parameters. Unlike Razor Pages, the `@page` directive doesn't need to be the first directive at the top of the file. For more information, see [Routing](xref:razor-components/routing). |
-| [@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. |
-| [@addTagHelper](xref:mvc/views/razor#tag-helpers) | Use `@addTagHelper` to use a component in a different assembly than the app's assembly. |
+| [\@page](xref:razor-pages/index#razor-pages) | Specifies that the component should handle requests directly. The `@page` directive can be specified with a route and optional parameters. Unlike Razor Pages, the `@page` directive doesn't need to be the first directive at the top of the file. For more information, see [Routing](xref:razor-components/routing). |
+| [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. |
+| [\@addTagHelper](xref:mvc/views/razor#tag-helpers) | Use `@addTagHelper` to use a component in a different assembly than the app's assembly. |
 
 **Conditional attributes**
 
@@ -612,7 +631,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 *Shared/CascadingValuesParametersLayout.cshtml*:
 
 ```cshtml
-@inherits BlazorLayoutComponent
+@inherits LayoutComponentBase
 @using BlazorSample.UIThemeClasses
 
 <div class="container-fluid">

@@ -25,7 +25,7 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 [!code-csharp[](startup/sample_snapshot/Startup1.cs?highlight=4,10)]
 
-The `Startup` class is specified to the app when the app's [host](xref:fundamentals/host/index) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 [!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=10)]
 
@@ -34,14 +34,14 @@ The host provides services that are available to the `Startup` class constructor
 A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
 
 * <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> to configure services by environment.
-* <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> to read configuration.
+* <xref:Microsoft.Extensions.Configuration.IConfiguration> to read configuration.
 * <xref:Microsoft.Extensions.Logging.ILoggerFactory> to create a logger in `Startup.ConfigureServices`.
 
 [!code-csharp[](startup/sample_snapshot/Startup2.cs?highlight=7-8)]
 
 An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach. When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
-To learn more about the host, see <xref:fundamentals/host/index>. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
+To learn more about the host, see [The host](xref:fundamentals/index#host). For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
 
 ## The ConfigureServices method
 
@@ -53,7 +53,7 @@ The <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method is
 
 The typical pattern is to call all the `Add{Service}` methods and then call all of the `services.Configure{Service}` methods. For example, see [Configure Identity services](xref:security/authentication/identity#pw).
 
-The host may configure some services before `Startup` methods are called. For more information, see <xref:fundamentals/host/index>.
+The host may configure some services before `Startup` methods are called. For more information, see [The host](xref:fundamentals/index#host).
 
 For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC:
 
@@ -67,7 +67,7 @@ The <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method is used to
 
 The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeline with support for:
 
-* [Developer exception page](xref:fundamentals/error-handling#the-developer-exception-page)
+* [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page)
 * [Exception handler](xref:fundamentals/error-handling#configure-a-custom-exception-handling-page)
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [HTTPS redirection](xref:security/enforcing-ssl)
@@ -128,7 +128,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## Additional resources
 
-* <xref:fundamentals/host/index>
+* [The host](xref:fundamentals/index#host)
 * <xref:fundamentals/environments>
 * <xref:fundamentals/middleware/index>
 * <xref:fundamentals/logging/index>

@@ -127,7 +127,7 @@ Create a `UserStore` class that provides the methods for all data operations on 
 * [IUserPasswordStore](/dotnet/api/microsoft.aspnetcore.identity.iuserpasswordstore-1)
 * [IUserSecurityStampStore](/dotnet/api/microsoft.aspnetcore.identity.iusersecuritystampstore-1)
 * [IUserEmailStore](/dotnet/api/microsoft.aspnetcore.identity.iuseremailstore-1)
-* [IPhoneNumberStore](/dotnet/api/microsoft.aspnetcore.identity.iphonenumberstore-1)
+* [IUserPhoneNumberStore](/dotnet/api/microsoft.aspnetcore.identity.iuserphonenumberstore-1)
 * [IQueryableUserStore](/dotnet/api/microsoft.aspnetcore.identity.iqueryableuserstore-1)
 * [IUserLoginStore](/dotnet/api/microsoft.aspnetcore.identity.iuserloginstore-1)
 * [IUserTwoFactorStore](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactorstore-1)

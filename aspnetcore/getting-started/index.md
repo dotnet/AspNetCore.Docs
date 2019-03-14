@@ -47,7 +47,7 @@ dotnet dev-certs https --trust
 
 The preceding command displays the following dialog:
 
-![Security warning dialog](_static/cert.png)
+![Security warning dialog](~/getting-started/_static/cert.png)
 
 Select **Yes** if you agree to trust the development certificate.
 
@@ -59,18 +59,17 @@ dotnet dev-certs https --trust
 
 The preceding command displays the following message:
 
-*Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`.  
-*This command might prompt you for your password to install the certificate on the system keychain.
+*Trusting the HTTPS development certificate was requested. If the certificate is not already trusted we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
 
-Password:*
-
-Enter your password if you agree to trust the development certificate.
+This command command might prompt you for your password to install the certificate on the system keychain. Enter your password if you agree to trust the development certificate.
 
 # [Linux](#tab/linux)
 
 See the documentation for your Linux distribution on how to trust the HTTPS development certificate.
 
 ---
+
+For more information, see [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
 
 ## Run the app
 
@@ -101,7 +100,7 @@ In this tutorial, you learned how to:
 > * Run the project.
 > * Make a change.
 
-To learn more about ASP.NET Core, see the introduction:
+To learn more about ASP.NET Core, see the recommended learning path in the introduction:
 
 > [!div class="nextstepaction"]
-> <xref:index>
+> <xref:index#recommended-learning-path>

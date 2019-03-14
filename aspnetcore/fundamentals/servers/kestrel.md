@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 03/04/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -411,6 +411,17 @@ By default, ASP.NET Core binds to:
 * `http://localhost:5000`
 * `https://localhost:5001` (when a local development certificate is present)
 
+Specify URLs using the:
+
+* `ASPNETCORE_URLS` environment variable.
+* `--urls` command-line argument.
+* `urls` host configuration key.
+* `UseUrls` extension method.
+
+The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
+
+For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
+
 A development certificate is created:
 
 * When the [.NET Core SDK](/dotnet/core/sdk) is installed.
@@ -424,7 +435,7 @@ Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*
 
 `UseUrls`, the `--urls` command-line argument, `urls` host configuration key, and the `ASPNETCORE_URLS` environment variable also work but have the limitations noted later in this section (a default certificate must be available for HTTPS endpoint configuration).
 
-ASP.NET Core 2.1 `KestrelServerOptions` configuration:
+ASP.NET Core 2.1 or later `KestrelServerOptions` configuration:
 
 ### ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)
 
@@ -478,17 +489,6 @@ Supported configurations described next:
 *No configuration*
 
 Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a default cert is available).
-
-Specify URLs using the:
-
-* `ASPNETCORE_URLS` environment variable.
-* `--urls` command-line argument.
-* `urls` host configuration key.
-* `UseUrls` extension method.
-
-For more information, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
-
-The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
 *Replace the default certificate from configuration*
 

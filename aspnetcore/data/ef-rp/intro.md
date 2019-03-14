@@ -173,7 +173,7 @@ Run the following commands to scaffold the student model.
 ```console
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
 ```
 ------
 
@@ -310,6 +310,10 @@ For more information about asynchronous programming in .NET, see [Async Overview
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 
 ::: moniker-end
+
+## Additional resources
+
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=P7iTtQnkrNs)
 
 > [!div class="step-by-step"]
 > [Next](xref:data/ef-rp/crud)

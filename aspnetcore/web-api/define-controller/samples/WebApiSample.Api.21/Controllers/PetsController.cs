@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
@@ -25,7 +26,7 @@ namespace WebApiSample.Api._21.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Pet>> GetByIdAsync(int id)
         {
             var pet = await _repository.GetPetAsync(id);
@@ -39,8 +40,8 @@ namespace WebApiSample.Api._21.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Pet>> CreateAsync(Pet pet)
         {
             if (!ModelState.IsValid)

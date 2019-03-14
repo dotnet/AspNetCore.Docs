@@ -11,7 +11,7 @@ const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
-connection.on("ReceiveMessage", (user, message) => { 
+connection.on("ReceiveMessage", (user, message) => {
     const encodedMsg = user + " says " + message;
     const li = document.createElement("li");
     li.textContent = encodedMsg;
@@ -20,7 +20,7 @@ connection.on("ReceiveMessage", (user, message) => {
 
 document.getElementById("sendButton").addEventListener("click", event => {
     const user = document.getElementById("userInput").value;
-    const message = document.getElementById("messageInput").value;    
+    const message = document.getElementById("messageInput").value;
     connection.invoke("SendMessage", user, message).catch(err => console.error(err.toString()));
     event.preventDefault();
 });
@@ -28,7 +28,7 @@ document.getElementById("sendButton").addEventListener("click", event => {
 async function start() {
     try {
         await connection.start();
-        console.log('connected');
+        console.log("connected");
     } catch (err) {
         console.log(err);
         setTimeout(() => start(), 5000);
@@ -39,7 +39,13 @@ connection.onclose(async () => {
     await start();
 });
 
-/* this is here to show an alternative to start, including the catch
+/* this is here to show an alternative to start, with a then
+connection.start().then(function () {
+    console.log("connected");
+});
+*/
+
+/* this is here to show another alternative to start, with a catch
 connection.start().catch(function (err) {
     return console.error(err.toString());
 });
