@@ -88,7 +88,7 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
 # [Visual Studio](#tab/visual-studio)
 
-* Ensure the **GrpcGreeter.Server** is set as the Startup Project and press Ctrl+F5 to run the gRPC service without the debugger. Visual Studio launches a browser. Close the browser window.
+* Ensure the **GrpcGreeter.Server** is set as the Startup Project and press Ctrl+F5 to run the gRPC service without the debugger.
 
   Visual Studio runs the service in a command prompt. The logs shows that the service started listening on `http://localhost:50051`.
 
