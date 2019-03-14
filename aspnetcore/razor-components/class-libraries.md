@@ -5,7 +5,7 @@ description: Discover how components can be included in Razor Components apps fr
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2019
+ms.date: 03/14/2019
 uid: razor-components/class-libraries
 ---
 # Razor Components Class Libraries
@@ -93,4 +93,4 @@ Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/
 dotnet nuget publish
 ```
 
-When using the `blazorlib` template, any included static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.
+When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.
