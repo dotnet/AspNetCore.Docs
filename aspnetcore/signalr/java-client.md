@@ -5,7 +5,7 @@ description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: mimengis
 ms.custom: mvc
-ms.date: 11/07/2018
+ms.date: 03/14/2019
 uid: signalr/java-client
 ---
 # ASP.NET Core SignalR Java client
@@ -45,7 +45,7 @@ A call to `send` invokes a hub method. Pass the hub method name and any argument
 [!code-java[send method](java-client/sample/src/main/java/Chat.java?range=28)]
 
 > [!NOTE]
-> If you are using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-serverless-development-config).
+> If you're using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](/azure/azure-signalr/signalr-concept-serverless-development-config).
 
 ## Call client methods from hub
 
