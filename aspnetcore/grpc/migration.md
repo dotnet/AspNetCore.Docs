@@ -84,3 +84,4 @@ ASP.NET Core [middlewares](xref:fundamentals/middleware/index) offers similar fu
 * <xref:grpc/index>
 * <xref:grpc/basics>
 * <xref:grpc/aspnetcore>
+* <xref:tutorials/grpc/grpc-start>

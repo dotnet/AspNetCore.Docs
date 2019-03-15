@@ -63,5 +63,6 @@ Similarly, the attribute is set to `Client` in client projects.
 ## Additional resources
 
 * <xref:grpc/index>
+* <xref:tutorials/grpc/grpc-start>
 * <xref:grpc/aspnetcore>
 * <xref:grpc/migration>

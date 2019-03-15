@@ -30,5 +30,6 @@ While a C# implementation is currently available on the official [gRPC page](htt
 ## Additional resources
 
 * <xref:grpc/basics>
+* <xref:tutorials/grpc/grpc-start>
 * <xref:grpc/aspnetcore>
 * <xref:grpc/migration>

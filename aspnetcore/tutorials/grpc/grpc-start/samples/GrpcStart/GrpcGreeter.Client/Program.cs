@@ -19,7 +19,8 @@ namespace GrpcGreeter
             var channel = new Channel("localhost:" + port, ChannelCredentials.Insecure);
             var client = new Greeter.GreeterClient(channel);
 
-            var reply = await client.SayHelloAsync(new HelloRequest { Name = "GreeterClient" });
+            var reply = await client.SayHelloAsync(
+                                          new HelloRequest { Name = "GreeterClient" });
             Console.WriteLine("Greeting: " + reply.Message);
 
             await channel.ShutdownAsync();

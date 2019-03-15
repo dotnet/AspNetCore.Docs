@@ -99,7 +99,7 @@ public class Program
 
 ## Additional resources
 
-* <xref:index>
+* <xref:tutorials/grpc/grpc-start>
 * <xref:grpc/index>
 * <xref:grpc/basics>
 * <xref:grpc/migration>
