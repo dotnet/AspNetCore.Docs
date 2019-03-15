@@ -17,7 +17,7 @@ namespace ValidationSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(new ValidationSampleContext());
+            services.AddSingleton(new MovieContext());
             services.AddSingleton<IUserRepository>(new UserRepository());
 #if DisableValidation
             #region snippet_DisableValidation

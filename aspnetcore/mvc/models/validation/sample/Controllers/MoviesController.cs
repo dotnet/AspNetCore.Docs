@@ -7,9 +7,9 @@ namespace ValidationSample.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly ValidationSampleContext _context;
+        private readonly MovieContext _context;
 
-        public MoviesController(ValidationSampleContext context)
+        public MoviesController(MovieContext context)
         {
             _context = context;
         }

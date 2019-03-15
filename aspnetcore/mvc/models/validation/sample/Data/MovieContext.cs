@@ -3,7 +3,7 @@ using ValidationSample.Models;
 
 namespace ValidationSample.Data
 {
-    public class ValidationSampleContext
+    public class MovieContext
     {
         public IList<Movie> Movies { get; } = new List<Movie>();
 
