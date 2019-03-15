@@ -245,7 +245,7 @@ Each Razor Page must include the `@page` directive.
 
 ## Additional resources
 
-* [YouTube version of this tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&list=PLnVvOWNfuhGV45HnNgd0vuIIkoQ1UaVBf)
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=K4X1MT2jt6o)
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/intro)
