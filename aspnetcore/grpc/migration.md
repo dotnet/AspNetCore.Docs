@@ -11,13 +11,13 @@ uid: grpc/migration
 
 By [John Luo](https://github.com/juntaoluo)
 
-Due to implementation of the underlying stack, not all features work in the same way between C Core based gRPC apps and ASP.NET Core based apps. This document highlights the key differences to keep in mind when migrating between the two stacks.
+Due to implementation of the underlying stack, not all features work in the same way between [C Core based gRPC](https://grpc.io/blog/grpc-stacks) apps and ASP.NET Core based apps. This document highlights the key differences to note when migrating between the two stacks.
 
 ## gRPC service implementation lifetime
 
 In the ASP.NET Core stack, gRPC services, by default, will be created with a Scoped lifetime as defined in the [Dependency Injection (DI)](xref:fundamentals/dependency-injection) document. In contrast, gRPC C Core by default binds to a service with a Singleton lifetime.
 
-A Scoped lifetime allows the service implementation to resolve other services with Scoped lifetimes, such as DBContext, from the DI container through constructor injection. Since a new instance of the service implementation is constructed for each request, it is no longer possible to share state between requests via instance members on the implementation type. Instead, the expectation is to store shared states in a Singleton service in the DI container and resolve it in the constructor of the gRPC service implementation.
+A Scoped lifetime allows the service implementation to resolve other services with Scoped lifetimes, such as `DBContext`, from the DI container through constructor injection. Since a new instance of the service implementation is constructed for each request, it's not possible to share state between requests via instance members on the implementation type. Instead, the expectation is to store shared states in a Singleton service in the DI container and resolve it in the constructor of the gRPC service implementation.
 
 ### Add a singleton service
 
@@ -35,7 +35,7 @@ However, service implementation with Singleton lifetime will no longer be able t
 
 ## Configure gRPC services options
 
-In C Core based apps, settings such as `grpc.max_receive_message_length` and `grpc.max_send_message_length` configured with `ChannelOption` when [constructing the `Server` instance](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server__ctor_System_Collections_Generic_IEnumerable_Grpc_Core_ChannelOption__).
+In C Core based apps, settings such as `grpc.max_receive_message_length` and `grpc.max_send_message_length` are configured with `ChannelOption` when [constructing the `Server` instance](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server__ctor_System_Collections_Generic_IEnumerable_Grpc_Core_ChannelOption__).
 
 In ASP.NET Core, `GrpcServiceOptions` provides a way to configure these settings. The settings can be applied globally to all gRPC services or to an individual service implementation type. Options specified for individual service implementation types will override global settings when configured.
 

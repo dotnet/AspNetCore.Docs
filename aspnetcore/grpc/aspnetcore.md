@@ -34,10 +34,6 @@ gRPC requires the following packages:
 * [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server)
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) for protobuf message APIs.
 
-<!-- recommend we don't show this. Dev's should know how to add these with the preceding instructions. The version number go stale very quickly. They're stale right now :)
-[!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=13-14)]
--->
-
 ### Configure gRPC
 
 gRPC is enabled with the `AddGrpc` method:
