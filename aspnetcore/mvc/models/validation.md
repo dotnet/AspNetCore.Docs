@@ -340,9 +340,9 @@ This method of rendering `data-` attributes in HTML is used by the `ClassicMovie
 
   [!code-csharp[](validation/sample/Attributes/ClassicMovie2Attribute.cs?name=snippet_ClassicMovie2Attribute)]
 
-## Remote validation
+## [Remote] attribute
 
-*Remote validation* refers to client-side validation that requires calling a method on the server to determine whether field input is valid. For example, the app may need to verify whether a user name is already in use.
+The `[Remote]` attribute implements client-side validation that requires calling a method on the server to determine whether field input is valid. For example, the app may need to verify whether a user name is already in use.
 
 To implement remote validation:
 
@@ -360,7 +360,7 @@ To implement remote validation:
 
    [!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserEmailProperty)]
 
-### Remote validation for multiple fields
+### Additional fields
 
 The `AdditionalFields` property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
 
