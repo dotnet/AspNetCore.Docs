@@ -23,7 +23,6 @@ namespace ValidationSample.Models
         public string Description { get; set; }
 
         [Range(0, 999.99)]
-        [BindRequired]
         public decimal Price { get; set; }
 
         [Required]
