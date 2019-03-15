@@ -85,8 +85,8 @@ To find out which parameters are passed to `String.Format` for a particular attr
 
 If you need validation not provided by built-in attributes, you can:
 
-* [Create custom attributes](#create-custom-attributes).
-* [Implement IValidatableObject](#implement-ivalidatableobject).
+* [Create custom attributes](#custom-attributes).
+* [Implement IValidatableObject](#ivalidatableobject).
 
 ## [Required] attribute
 
@@ -124,7 +124,7 @@ Server-side validation is done after model binding. To catch missing input for a
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## Create custom attributes
+## Custom attributes
 
 For scenarios that the built-in validation attributes don't handle, you can create custom validation attributes. Create a class that inherits from <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>, and override the <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*> method.
 
@@ -136,7 +136,7 @@ The following example validates that the release date for a movie in the *Classi
 
 The `movie` variable in the preceding example represents a `Movie` object that contains the data from the form submission. The `IsValid` method checks the date and genre. Upon successful validation, `IsValid` returns a `ValidationResult.Success` code. When validation fails, a `ValidationResult` with an error message is returned.
 
-## Implement IValidatableObject
+## IValidatableObject
 
 The preceding example works only with `Movie` types. Another option for class-level validation is to implement `IValidatableObject` in the model class, as shown in the following example:
 
