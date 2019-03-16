@@ -9,7 +9,7 @@ uid: grpc/basics
 ---
 # gRPC services with C#
 
-This document outlines the basic concepts needed to write [gRPC](https://grpc.io/docs/guides/) apps in C#. The topics covered here apply to both [C-core](https://grpc.io/blog/grpc-stacks) based and ASP.NET Core based apps.
+This document outlines the basic concepts needed to write [gRPC](https://grpc.io/docs/guides/) apps in C#. The topics covered here apply to both [C-core](https://grpc.io/blog/grpc-stacks) based and ASP.NET Core based gRPC apps.
 
 ## proto file
 
