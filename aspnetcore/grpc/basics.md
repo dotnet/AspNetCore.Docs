@@ -50,7 +50,7 @@ For server side assets, an abstract service base type is generated. The base typ
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?name=snippet)]
 
-For client side assets, a concrete client type is generated. The gRPC calls in the *.proto* file are translated to methods on the concrete type which can be called. For the `greet.proto` example described previously, a concrete `GreeterClient` type is generated. The `GreeterClient` type contains a `SayHello` method that can be called to initiate a gRPC to the server.
+For client side assets, a concrete client type is generated. The gRPC calls in the *.proto* file are translated to methods on the concrete type which can be called. For the `greet.proto` example described previously, a concrete `GreeterClient` type is generated. The `GreeterClient` type contains a `SayHello` method that can be called to initiate a gRPC call to the server.
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Client/Program.cs?highlight=9-11&name=snippet)]
 
