@@ -1,5 +1,5 @@
 ---
-title: Migrating gRPC services from [C-core](https://grpc.io/blog/grpc-stacks) to ASP.NET Core
+title: Migrating gRPC services from C-core to ASP.NET Core
 author: juntaoluo
 description: Learn how to move an existing C-core based gRPC app to run on top of ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'

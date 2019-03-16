@@ -33,6 +33,8 @@ gRPC requires the following packages:
 
 * [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server)
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) for protobuf message APIs.
+* [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
+
 
 ### Configure gRPC
 
