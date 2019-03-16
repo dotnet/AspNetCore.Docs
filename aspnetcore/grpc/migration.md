@@ -15,9 +15,15 @@ Due to implementation of the underlying stack, not all features work in the same
 
 ## gRPC service implementation lifetime
 
-In the ASP.NET Core stack, gRPC services, by default, will be created with a Scoped lifetime as defined in the [Dependency Injection (DI)](xref:fundamentals/dependency-injection) document. In contrast, gRPC C-core by default binds to a service with a Singleton lifetime.
+In the ASP.NET Core stack, gRPC services, by default, will be created with a [Scoped lifetime](xref:fundamentals/dependency-injection). In contrast, gRPC C-core by default binds to a service with a Singleton lifetime.
 
-A Scoped lifetime allows the service implementation to resolve other services with Scoped lifetimes, such as `DBContext`, from the DI container through constructor injection. Since a new instance of the service implementation is constructed for each request, it's not possible to share state between requests via instance members on the implementation type. Instead, the expectation is to store shared states in a Singleton service in the DI container and resolve it in the constructor of the gRPC service implementation.
+A Scoped lifetime allows the service implementation to resolve other services with Scoped lifetimes. For example Scoped lifetime can also resolve `DBContext`, from the DI container through constructor injection. Using Scoped lifetime:
+
+* A new instance of the service implementation is constructed for each request.
+* It's not possible to share state between requests via instance members on the implementation type.
+* The expectation is to store shared states in a Singleton service in the DI container. The stored shared states are resolved it in the constructor of the gRPC service implementation. 
+
+For more information on Scoped and Singleton lifetime, see <xref:fundamentals/dependency-injection>.
 
 ### Add a singleton service
 

@@ -65,7 +65,7 @@ By default, the gRPC service implementation can resolve other DI services with a
 
 ### Resolve HttpContext in gRPC methods
 
-The gRPC API provides access to some HTTP/2 message data, such as the method, host, header and trailers. Access is through the `ServerCallContext` argument passed to each gRPC method:
+The gRPC API provides access to some HTTP/2 message data, such as the method, host, header, and trailers. Access is through the `ServerCallContext` argument passed to each gRPC method:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?highlight=3-4&name=snippet)]
 

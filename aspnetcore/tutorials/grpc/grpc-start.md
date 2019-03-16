@@ -83,13 +83,13 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
 * Ensure the **GrpcGreeter.Server** is set as the Startup Project and press Ctrl+F5 to run the gRPC service without the debugger.
 
-  Visual Studio runs the service in a command prompt. The logs shows that the service started listening on `http://localhost:50051`.
+  Visual Studio runs the service in a command prompt. The logs show that the service started listening on `http://localhost:50051`.
 
   ![new ASP.NET Core Web Application](grpc-start/_static/server_start.png)
 
 * Once the service is running, set the **GrpcGreeter.Client** is set as the Startup Project and press Ctrl+F5 to run the client without the debugger.
 
-  The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response which is printed in the command prompt.
+  The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response that is displayed in the command prompt.
 
   ![new ASP.NET Core Web Application](grpc-start/_static/client.png)
 
@@ -99,7 +99,7 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Run the Server project GrpcGreeter.Server from the command line using `dotnet run`. The logs shows that the service started listening on `http://localhost:50051`.
+* Run the Server project GrpcGreeter.Server from the command line using `dotnet run`. The logs show that the service started listening on `http://localhost:50051`.
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
@@ -114,7 +114,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 * Run the Client project GrpcGreeter.Client from the separate command line using `dotnet run`.
 
-The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response which is printed in the command prompt.
+The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response that is displayed in the command prompt.
 
 ```console
 Greeting: Hello GreeterClient

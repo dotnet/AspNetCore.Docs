@@ -1,7 +1,7 @@
 ---
 title: gRPC services with C#
 author: juntaoluo
-description: Learn the basic concepts when writing gRPC serices with C#.
+description: Learn the basic concepts when writing gRPC services with C#.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 03/08/2019
