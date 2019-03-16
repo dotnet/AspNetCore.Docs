@@ -31,14 +31,10 @@ In this tutorial, you:
 # [Visual Studio](#tab/visual-studio)
 
 * From the Visual Studio **File** menu, select **New** > **Project**.
-
 * Create a new ASP.NET Core Web Application.
   ![new ASP.NET Core Web Application](grpc-start/_static/np_3_0.1.png)
-
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces will match when you copy and paste code.
-
   ![new ASP.NET Core Web Application](grpc-start/_static/np_3_0.2.png)
-
 * Select **.NET Core** and **ASP.NET Core 3.0** in the dropdown. Choose the **gRPC Service** template.
 
   The following starter project is created:
@@ -48,9 +44,7 @@ In this tutorial, you:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-
 * Change directories (`cd`) to a folder which will contain the project.
-
 * Run the following commands:
 
   ```console
@@ -62,7 +56,6 @@ In this tutorial, you:
   * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
 
   A dialog box appears with **Required assets to build and debug are missing from 'GrpcGreeter'. Add them?**
-
 * Select **Yes**
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)

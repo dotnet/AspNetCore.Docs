@@ -9,7 +9,7 @@ uid: grpc/basics
 ---
 # gRPC services with C#
 
-This document outlines the basic concepts needed to write [gRPC](https://grpc.io/docs/guides/) apps in C#. The topics covered here apply to both C-core based and ASP.NET Core based apps.
+This document outlines the basic concepts needed to write [gRPC](https://grpc.io/docs/guides/) apps in C#. The topics covered here apply to both [C-core](https://grpc.io/blog/grpc-stacks) based and ASP.NET Core based apps.
 
 ## proto file
 
@@ -36,7 +36,7 @@ The *.proto* file is included in a project by adding it to the `<Protobuf>` item
 
 ## C# Tooling support for .proto files
 
-The tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) is required to generate the C# assets from *.proto* files. The assets are generated on a as-needed basis each time the project is built. This dependency is required by both the server and client projects. `Grpc.Tools` can be added by using the Package Manager in Visual Studio or adding a `<PackageReference>` to the project file
+The tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) is required to generate the C# assets from *.proto* files. The assets are generated on a as-needed basis each time the project is built. This dependency is required by both the server and client projects. `Grpc.Tools` can be added by using the Package Manager in Visual Studio or adding a `<PackageReference>` to the project file:
 
 [!code-xml[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/GrpcGreeter.Server.csproj?highlight=1&range=16)]
 
