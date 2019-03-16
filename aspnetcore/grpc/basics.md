@@ -18,7 +18,7 @@ gRPC uses a contract-first approach to API development. Protocol buffers (protob
 * The definition of the gRPC service.
 * The  messages sent between clients and servers.
 
-For more information on the syntax of protobuf files, see the [official documentation (protobuf)](https://developers.google.com/protocol-buffers/docs/proto3)).
+For more information on the syntax of protobuf files, see the [official documentation (protobuf)](https://developers.google.com/protocol-buffers/docs/proto3).
 
 For example, consider the *greet.proto* file used in [Get started with gRPC service](xref:tutorials/grpc/grpc-start):
 
