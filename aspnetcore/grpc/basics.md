@@ -46,7 +46,7 @@ The tooling package is not required at runtime, therefore, the dependency should
 
 The tooling package will generate the C# types representing the messages defined in the included *.proto* files.
 
-For server side assets, an abstract service base type is generated. The base type contains the definitions of all the gRPC calls contained in the *.proto* file. A concrete service implementation derives from this base type and implements the logic for the gRPC calls. For the `greet.proto` example described previously, an abstract `GreeterBase` type that contains a virtual `SayHello` method is generated. A concrete implementation `GreeterService` overrides the method and implements the logic handling the gRPC call.
+For server side assets, an abstract service base type is generated. The base type contains the definitions of all the gRPC calls contained in the *.proto* file. You then create a concrete service implementation derives from this base type and implements the logic for the gRPC calls. For the `greet.proto` example described previously, an abstract `GreeterBase` type that contains a virtual `SayHello` method is generated. A concrete implementation `GreeterService` overrides the method and implements the logic handling the gRPC call.
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcStart/GrpcGreeter.Server/Services/GreeterService.cs?name=snippet)]
 
