@@ -704,7 +704,7 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
     > 
     > Additionally, you can assign ClientValidationEnabled attribute into any controller to have a custom behavior.
 2. Open **Create.cshtml** at **Views\StoreManager**.
-3. Make sure the following script files, **jquery.validate** and **jquery.validate.unobtrusive**, are referenced in the view throught the &quot;**~/bundles/jqueryval**&quot; bundle.
+3. Make sure the following script files, **jquery.validate** and **jquery.validate.unobtrusive**, are referenced in the view through the &quot;**~/bundles/jqueryval**&quot; bundle.
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample22.cshtml)]
 
