@@ -35,7 +35,7 @@ A better approach is to "inject" an `ILogger` into the object—for example, by 
 
 [!code-csharp[Main](dependency-injection/samples/sample3.cs)]
 
-Now the object is not responsible for selecting which `ILogger` to use. You can swich `ILogger` implementations without changing the objects that depend on it.
+Now the object is not responsible for selecting which `ILogger` to use. You can switch `ILogger` implementations without changing the objects that depend on it.
 
 [!code-csharp[Main](dependency-injection/samples/sample4.cs)]
 
