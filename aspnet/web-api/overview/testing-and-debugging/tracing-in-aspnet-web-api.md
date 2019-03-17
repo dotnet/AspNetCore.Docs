@@ -83,7 +83,7 @@ To write a trace, you can call the **ITraceWriter.Trace** method directly, but t
 
 This section describes how to write a custom trace writer for Web API.
 
-The Microsoft.AspNet.WebApi.Tracing package is built on top of a more general tracing infrastructure in Web API. Instead of using Microsoft.AspNet.WebApi.Tracing, you can also plug in some other tracing/loggin library, such as [NLog](http://nlog-project.org/) or [log4net](http://logging.apache.org/log4net/).
+The Microsoft.AspNet.WebApi.Tracing package is built on top of a more general tracing infrastructure in Web API. Instead of using Microsoft.AspNet.WebApi.Tracing, you can also plug in some other tracing/logging library, such as [NLog](http://nlog-project.org/) or [log4net](http://logging.apache.org/log4net/).
 
 To collect traces, implement the **ITraceWriter** interface. Here is a simple example:
 
@@ -107,7 +107,7 @@ Only one trace writer can be active. By default, Web API sets a &quot;no-op&quot
 
 Tracing in Web API uses a *facade* pattern: When tracing is enabled, Web API wraps various parts of the request pipeline with classes that perform trace calls.
 
-For example, when selecting a controller, the pipeline uses the **IHttpControllerSelector** interface. With tracing enabled, the pipleline inserts a class that implements **IHttpControllerSelector** but calls through to the real implementation:
+For example, when selecting a controller, the pipeline uses the **IHttpControllerSelector** interface. With tracing enabled, the pipeline inserts a class that implements **IHttpControllerSelector** but calls through to the real implementation:
 
 ![Web API tracing uses the facade pattern.](tracing-in-aspnet-web-api/_static/image8.png)
 
