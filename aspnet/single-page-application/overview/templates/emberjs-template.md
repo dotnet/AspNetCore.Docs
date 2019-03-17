@@ -143,7 +143,7 @@ The "/todoList" template contains two loop expressions. The outside loop is `{{#
 
 [!code-html[Main](emberjs-template/samples/sample12.html)]
 
-The `HtmlHelperExtensions` class, defined in Controllers/HtmlHelperExensions.cs, defines a helper function to cache and insert template files when **debug** is set to **true** in the Web.config file. This function is called from the ASP.NET MVC view file defined in Views/Home/App.cshtml:
+The `HtmlHelperExtensions` class, defined in Controllers/HtmlHelperExtensions.cs, defines a helper function to cache and insert template files when **debug** is set to **true** in the Web.config file. This function is called from the ASP.NET MVC view file defined in Views/Home/App.cshtml:
 
 [!code-cshtml[Main](emberjs-template/samples/sample13.cshtml)]
 
