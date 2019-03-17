@@ -98,7 +98,7 @@ The [model binding tab](http://getglimpse.com/Docs/Model-Binding-Tab) provides a
 <a id="da"></a>
 ## Using Glimpse on Azure
 
-The Glimpse default security policy only allows Glimpse data to be displayed from local host. You can change this security policy so you can view this data on a remote server (such as a web app on Azure). For test environments on Azure, add the highlighted mark up to the bottom of the *web.confg* file to enable Glimpse:
+The Glimpse default security policy only allows Glimpse data to be displayed from local host. You can change this security policy so you can view this data on a remote server (such as a web app on Azure). For test environments on Azure, add the highlighted mark up to the bottom of the *web.config* file to enable Glimpse:
 
 [!code-xml[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample3.xml?highlight=2-6)]
 
