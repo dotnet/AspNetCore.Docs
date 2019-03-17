@@ -36,7 +36,7 @@ When a request is made to the */Dinners* URL, it retrieves a list of all upcomin
 
 ![](implement-efficient-data-paging/_static/image1.png)
 
-### Understanding IQuerable&lt;T&gt;
+### Understanding IQueryable&lt;T&gt;
 
 *IQueryable&lt;T&gt;* is an interface that was introduced with LINQ as part of .NET 3.5. It enables powerful "deferred execution" scenarios that we can take advantage of to implement paging support.
 
