@@ -157,7 +157,7 @@ To correct this problem, configure Visual Studio Express to work with the MSIL i
 ### ASP.NET Razor 3
 
 <a id="browseissue"></a>
-#### Viewing cshtml file withBrowse WithorF5causes a server error
+#### Viewing cshtml file with Browse With or F5 causes a server error
 
 When you create an MVC 5 project in Visual Studio 2012 (or open in Visual Studio 2012 an MVC 5 project that was created in Visual Studio 2013) and attempt to view a cshtml file by using Browse With or F5, you will receive an error that states - **Server Error in '/' Application**. The server attempts to navigate to `http://localhost:XXXX/Views/../XXXX.cshtml`
 
