@@ -45,7 +45,7 @@ In this hands-on lab, you will learn how to:
 - Use new model binding features in Web Forms
 - Use value providers for mapping page data to code-behind methods
 - Use Data Annotations for user input validation
-- Take advange of unobstrusive client-side validation with jQuery in Web Forms
+- Take advantage of unobtrusive client-side validation with jQuery in Web Forms
 - Implement granular request validation
 - Implement asynchronous page processing in Web Forms
 
@@ -401,13 +401,13 @@ ASP.NET 4.5 introduces data annotations validation for Web Forms. Instead of hav
     > [EmailAddress(ErrorMessage=&quot;Invalid Email&quot;), MaxLength(56)]: Two annotations in the same line.
     > 
     > You can also define your own error messages within each attribute.
-3. Open **CustomerDetails.aspx** and remove all the RequiredFieldvalidators for the first and last name fields in the in EditItemTemplate and InsertItemTemplate sections of the FormView control.
+3. Open **CustomerDetails.aspx** and remove all the RequiredFieldValidators for the first and last name fields in the in EditItemTemplate and InsertItemTemplate sections of the FormView control.
 
     [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample24.aspx)]
 
     > [!NOTE]
     > One advantage of using data annotations is that validation logic is not duplicated in your application pages. You define it once in the model, and use it across all the application pages that manipulate data.
-4. Open **CustomerDetails.aspx** code-behind and locate the SaveCustomer method. This method is called when inserting a new customer and receives the Customer parameter from the FormView control values. When the mapping between the page controls and the parameter object occurrs, ASP.NET will execute the model validation against all the data annotation attributes and fill the ModelState dictionary with the errors encountered, if any.
+4. Open **CustomerDetails.aspx** code-behind and locate the SaveCustomer method. This method is called when inserting a new customer and receives the Customer parameter from the FormView control values. When the mapping between the page controls and the parameter object occurs, ASP.NET will execute the model validation against all the data annotation attributes and fill the ModelState dictionary with the errors encountered, if any.
 
     The ModelState.IsValid will only return true if all the fields on your model are valid after performing the validation.
 
@@ -617,7 +617,7 @@ In this hands-on lab, the following concepts have been addressed and demonstrate
 - Use new model binding features in Web Forms
 - Use value providers for mapping page data to code-behind methods
 - Use Data Annotations for user input validation
-- Take advange of unobstrusive client-side validation with jQuery in Web Forms
+- Take advantage of unobtrusive client-side validation with jQuery in Web Forms
 - Implement granular request validation
 - Implement asynchronous page processing in Web Forms
 

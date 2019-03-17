@@ -106,7 +106,7 @@ Firefox uses its own certificate store, so it will display a warning.
 
     `<div data-bind="text: foo.bar.baz.etc" />`
 
-    The IntelilSense displayed is the full IntelliSense of the JavaScript Object.
+    The IntelliSense displayed is the full IntelliSense of the JavaScript Object.
 
     ![Intellisense showing full JavaScript object](aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes/_static/image15.png)
 - **New URL Picker in HTML, Razor, CSS, LESS and Sass documents**: VS 2013 shipped with no URL picker outside of Web Forms pages. The new URL picker for HTML, Razor, CSS, LESS and Sass editors is a dialog-free, fluent typing picker that understands '..' and filters file lists appropriately for img tags and links.
@@ -176,7 +176,7 @@ NuGet 2.8.1 RTM will be released in April 2014. Here are the salient points from
 - **DependencyVersion Attribute**: In addition to the -DependencyVersion switch detailed above, NuGet has also allowed for the ability to set a new attribute in the nuget.config file defining what the default value is, if the -DependencyVersion switch is not specified in an invocation of install-package. This value will also be respected by the NuGet Package Manager Dialog for any install package operations. To set this value, add the attribute below to your nuget.config file:
 
     `<config> <add key="dependencyversion" value="Highest" /> </config>`
-- **Preview NuGet Operations With -whatif**: Some NuGet packages can have deep dependency graphs, and as such, it can be helpful during an install, uninstall, or update operation to first see what will happen. NuGet 2.8 adds the standard PowerShell -what if switch to the install-package, uninstall-package, and update-package commands to enable visualizing the entire closure of packages to which the command will be applied.
+- **Preview NuGet Operations With -WhatIf**: Some NuGet packages can have deep dependency graphs, and as such, it can be helpful during an install, uninstall, or update operation to first see what will happen. NuGet 2.8 adds the standard PowerShell -what if switch to the install-package, uninstall-package, and update-package commands to enable visualizing the entire closure of packages to which the command will be applied.
 - **Downgrade Package**: It is not uncommon to install a prerelease version of a package in order to investigate new features and then decide to roll back to the last stable version. Prior to NuGet 2.8, this was a multi-step process of uninstalling the prerelease package and its dependencies, and then installing the earlier version. With NuGet 2.8, however, the update-package will now roll back the entire package closure (e.g. the package's dependency tree) to the previous version.
 - **Development Dependencies**: Many different types of capabilities can be delivered as NuGet packages - including tools that are used for optimizing the development process. These components, while they can be instrumental in developing a new package, should not be considered a dependency of the new package when it is later published. NuGet 2.8 enables a package to identify itself in the .nuspec file as a developmentDependency. When installed, this metadata will also be added to the packages.config file of the project into which the package was installed. When that packages.config file is later analyzed for NuGet dependencies during nuget.exe pack, it will exclude those dependences marked as development dependencies.
 - **Individual packages.config Files for Different Platforms**: When developing applications for multiple target platforms, it is common to have different project files for each of the respective build environments. It is also common to consume different NuGet packages in different project files, as packages have varying levels of support for different platforms. NuGet 2.8 provides improved support for this scenario by creating different packages.config files for different platform-specific project files.
@@ -199,7 +199,7 @@ NuGet 2.8.1 RTM will be released in April 2014. Here are the salient points from
 - [Attribute Routing Improvements](../../../mvc/overview/releases/mvc51-release-notes.md#AttributeRouting)
 - [Bootstrap support for editor templates](../../../mvc/overview/releases/mvc51-release-notes.md#Bootstrap)
 - [Enum support in views](../../../mvc/overview/releases/mvc51-release-notes.md#Enum)
-- [Unobstrusive support for MinLength/ MaxLength attributes](../../../mvc/overview/releases/mvc51-release-notes.md#Unobtrusive)
+- [Unobtrusive support for MinLength/ MaxLength attributes](../../../mvc/overview/releases/mvc51-release-notes.md#Unobtrusive)
 - [Supporting the 'this' context in Unobtrusive Ajax](../../../mvc/overview/releases/mvc51-release-notes.md#thisContext)
 - Various [bug fixes](https://aspnetwebstack.codeplex.com/workitem/list/advanced?keyword=&status=Closed&type=All&priority=All&release=v5.1%20Preview%7cv5.1%20RTM&assignedTo=All&component=MVC&sortField=AssignedTo&sortDirection=Ascending&page=0&reasonClosed=Fixed)
 
