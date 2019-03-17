@@ -88,7 +88,7 @@ We'll save it and give it the name "RSVP".
 
 We now have two tables within our database. Our last schema design step will be to setup a "one-to-many" relationship between these two tables – so that we can associate each Dinner row with zero or more RSVP rows that apply to it. We will do this by configuring the RSVP table's "DinnerID" column to have a foreign-key relationship to the "DinnerID" column in the "Dinners" table.
 
-To do this we'll open up the RSVP table within the table designer by double-clicking it in the server explorer. We'll then select the "DinnerID" column within it, right-click, and choose the "Relationshps…" context menu command:
+To do this we'll open up the RSVP table within the table designer by double-clicking it in the server explorer. We'll then select the "DinnerID" column within it, right-click, and choose the "Relationships…" context menu command:
 
 ![](create-a-database/_static/image12.png)
 
