@@ -89,7 +89,7 @@ Next, open Global.asax and add the following code to the **Application\_Start** 
 
 At this point, we haven't written any client code, but you can invoke the web API using a web browser or an HTTP debugging tool such as [Fiddler](http://www.fiddler2.com/fiddler2/). In Visual Studio, press F5 to start debugging. Your web browser will open to `http://localhost:*portnum*/`, where *portnum* is some port number.
 
-Send an HTTP request to "`http://localhost:*portnum*/api/admin`. The first request may be slow to complete, because Entify Framework needs to create and seed the database. The response should something similar to the following:
+Send an HTTP request to "`http://localhost:*portnum*/api/admin`. The first request may be slow to complete, because Entity Framework needs to create and seed the database. The response should something similar to the following:
 
 [!code-console[Main](using-web-api-with-entity-framework-part-3/samples/sample6.cmd)]
 
