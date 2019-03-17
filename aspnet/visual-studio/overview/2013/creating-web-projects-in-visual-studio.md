@@ -75,7 +75,7 @@ Visual Studio includes features that make it easy to work with Azure services fo
 - Create and manage web apps or virtual machines that make your application available over the Internet.
 - View logs created by the application as it runs in the cloud.
 - Run in debug mode remotely while the application runs in the cloud.
-- Viiew and manage other Azure services such as SQL databases.
+- View and manage other Azure services such as SQL databases.
 
 You can [create an Azure account](https://www.windowsazure.com/pricing/free-trial/) that includes basic services such as web apps for free, and if you are an MSDN subscriber you can [activate benefits](https://azure.microsoft.com/pricing/member-offers/visual-studio-subscriptions/) that give you monthly credits toward additional Azure services. 
 
