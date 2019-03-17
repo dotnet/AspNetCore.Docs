@@ -145,7 +145,7 @@ The following example shows how to specify in the Web.config file that Forms Aut
 
 Recommendation: Never set to false.
 
-By default, EnbableViewStateMac is set to true. Even if your application is not using view state, do not set EnableViewStateMac to false. Setting this value to false will make your application vulnerable to cross-site scripting.
+By default, EnableViewStateMac is set to true. Even if your application is not using view state, do not set EnableViewStateMac to false. Setting this value to false will make your application vulnerable to cross-site scripting.
 
 Starting with ASP.NET 4.5.2, the runtime enforces **EnableViewStateMac=true**. Even if you set it to false, the runtime ignores this value and proceeds with the value set to true. For more information, see [ASP.NET 4.5.2 and EnableViewStateMac](https://blogs.msdn.com/b/webdev/archive/2014/05/07/asp-net-4-5-2-and-enableviewstatemac.aspx).
 
