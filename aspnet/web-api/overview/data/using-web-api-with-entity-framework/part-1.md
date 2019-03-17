@@ -85,7 +85,7 @@ After you create the project, you can choose to deploy to Azure App Service Web 
 
    [![](part-1/_static/image16.png)](part-1/_static/image16.png)
 
-   Accept the defaults or enter different values. Enter an **Adminstrator Username** and **Administrator Password** for your new database. Select **OK** when you're done. The **Create App Service** page reappears.
+   Accept the defaults or enter different values. Enter an **Administrator Username** and **Administrator Password** for your new database. Select **OK** when you're done. The **Create App Service** page reappears.
 
 5. Select **Create** to create your profile. A message appears in the lower-right corner indicating that deployment is in progress. After a short while, the **Publish** window reappears.
 
