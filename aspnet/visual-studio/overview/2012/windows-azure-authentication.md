@@ -103,7 +103,7 @@ To publish an application using Windows Azure Authentication to an Azure Web Sit
 3. The **Connection** tab shows the **Destination URL** (the public facing URL for your application). Click **Validate Connection** to test your connection:
 
     ![](windows-azure-authentication/_static/image5.jpg)
-4. If you have published to this Azure Web Site previously consider checking the **Remove additional files at destination** setting to ensure your application publishes cleanly. Notice the **Enable Windows Azure Authentication** check box is slected.  
+4. If you have published to this Azure Web Site previously consider checking the **Remove additional files at destination** setting to ensure your application publishes cleanly. Notice the **Enable Windows Azure Authentication** check box is selected.  
 
     ![](windows-azure-authentication/_static/image10.png)
 5. Optional: On the **Preview** tab click **Start Preview** to see the files deployed.
