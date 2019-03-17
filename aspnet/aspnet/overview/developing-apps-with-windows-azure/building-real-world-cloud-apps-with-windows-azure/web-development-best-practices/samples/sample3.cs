@@ -12,7 +12,7 @@ public async Task<FixItTask> FindTaskByIdAsync(int id)
     }
     catch(Exception e)
     {
-        log.Error(e, "Error in FixItTaskRepository.FindTaskByIdAsynx(id={0})", id);
+        log.Error(e, "Error in FixItTaskRepository.FindTaskByIdAsync(id={0})", id);
     }
 
     return fixItTask;
