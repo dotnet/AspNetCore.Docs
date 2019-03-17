@@ -44,7 +44,7 @@ In this section, you add a birth date column to the `Person` base class for the 
 
     [!code-powershell[Main](deploying-a-database-update/samples/sample3.ps1)]
 
-    When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` class, and in the `Up` method you can see the code that creates the new column. The `Up` method creates the column when you are implementing the change, and the `Down` method deletes the column when you are rolling back the change.
+    When this command finishes, Visual Studio opens the class file that defines the new `DbMigration` class, and in the `Up` method you can see the code that creates the new column. The `Up` method creates the column when you are implementing the change, and the `Down` method deletes the column when you are rolling back the change.
 
     ![AddBirthDate_migration_code](deploying-a-database-update/_static/image1.png)
 4. Build the solution, and then enter the following command in the **Package Manager Console** window (make sure the ContosoUniversity.DAL project is still selected):

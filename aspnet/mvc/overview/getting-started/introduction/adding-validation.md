@@ -43,7 +43,7 @@ In the image above, you can see all the string fields are set to [NVARCHAR (MAX)
 
 [!code-console[Main](adding-validation/samples/sample2.cmd)]
 
-When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` derived class with the name specified (`DataAnnotations`), and in the `Up` method you can see the code that updates the schema constraints:
+When this command finishes, Visual Studio opens the class file that defines the new `DbMigration` derived class with the name specified (`DataAnnotations`), and in the `Up` method you can see the code that updates the schema constraints:
 
 [!code-csharp[Main](adding-validation/samples/sample3.cs)]
 
