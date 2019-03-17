@@ -116,7 +116,7 @@ Open the *\Views\Movies\Index.cshtml* file and add a `<th>Rating</th>` column he
 
 [!code-cshtml[Main](adding-a-new-field/samples/sample8.cshtml?highlight=31-33,52-54)]
 
-Next, open the *\Views\Movies\Create.cshtml* file and add the `Rating` field with the following highlighed markup. This renders a text box so that you can specify a rating when a new movie is created.
+Next, open the *\Views\Movies\Create.cshtml* file and add the `Rating` field with the following highlighted markup. This renders a text box so that you can specify a rating when a new movie is created.
 
 [!code-cshtml[Main](adding-a-new-field/samples/sample9.cshtml?highlight=9-15)]
 
