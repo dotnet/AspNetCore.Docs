@@ -286,7 +286,7 @@ In this task, you will add a new custom filter into the StoreController Class an
 <a id="Task_3_Managing_Filter_Ordering"></a>
 #### Task 3: Managing Filter Ordering
 
-In this task, you will learn how to manage the filters' execution order by using the Order propery.
+In this task, you will learn how to manage the filters' execution order by using the Order property.
 
 1. Open the **StoreController** class located at **MvcMusicStore\Controllers** and specify the **Order** property in both filters like shown below.
 
