@@ -319,7 +319,7 @@ In this task, you will learn how to manage the filters' execution order by using
 <a id="Task_4_Registering_Filters_Globally"></a>
 #### Task 4: Registering Filters Globally
 
-In this task, you will update the solution to register the new filter (**MyNewCustomActionFilter**) as a global filter. By doing this, it will be triggered by all the actions perfomed in the application and not only in the StoreController ones as in the previous task.
+In this task, you will update the solution to register the new filter (**MyNewCustomActionFilter**) as a global filter. By doing this, it will be triggered by all the actions performed in the application and not only in the StoreController ones as in the previous task.
 
 1. In **StoreController** class, remove **[MyNewCustomActionFilter]** attribute and the order property from **[CustomActionFilter]**. It should look like the following:
 
