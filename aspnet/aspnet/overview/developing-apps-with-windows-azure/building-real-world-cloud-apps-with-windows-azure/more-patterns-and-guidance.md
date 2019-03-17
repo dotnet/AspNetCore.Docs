@@ -55,7 +55,7 @@ Videos
 Code sample
 
 - [The Fix It application that accompanies this e-book](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4?cdn_id=2013-12-03-002).
-- [Cloud Service Fundamentals in Azure in C# for Visual Studio 2012](http://aka.ms/csf). Downloadable project in the Microsoft Code Gallery site, includes both code and documentation developed by the Microsoft Customer Advisory Team (CAT). Demonstrates many of the best practices advocated in the FailSafe and Building Big video series and the FailSafe white paper. The Code Gallery page also links to extensive documentation by the authors of the project -- see especially the [Cloud Service Fundamentals wiki collection](https://social.technet.microsoft.com/wiki/contents/articles/17987.cloud-service-fundamentals.aspx) link in the blue box near the top of the project description. This project and the documentation for it still actively being developed, making it a better choice for information on many topics than similar but older white papers.
+- [Cloud Service Fundamentals in Azure in C# for Visual Studio 2012](https://aka.ms/csf). Downloadable project in the Microsoft Code Gallery site, includes both code and documentation developed by the Microsoft Customer Advisory Team (CAT). Demonstrates many of the best practices advocated in the FailSafe and Building Big video series and the FailSafe white paper. The Code Gallery page also links to extensive documentation by the authors of the project -- see especially the [Cloud Service Fundamentals wiki collection](https://social.technet.microsoft.com/wiki/contents/articles/17987.cloud-service-fundamentals.aspx) link in the blue box near the top of the project description. This project and the documentation for it still actively being developed, making it a better choice for information on many topics than similar but older white papers.
 
 Hard copy books
 
@@ -95,7 +95,7 @@ Many other colleagues at Microsoft reviewed and commented on drafts and code:
 - Edward Wu - Provided sample code for the SSO chapter.
 - Guang Yang - Wrote the PowerShell automation scripts.
 
-Members of the [Microsoft Developer Guidance Advisory Council](http://aka.ms/DGAC) (DGAC) also reviewed and commented on drafts:
+Members of the [Microsoft Developer Guidance Advisory Council](https://aka.ms/DGAC) (DGAC) also reviewed and commented on drafts:
 
 - Jean-Luc Boucho
 - Catalin Gheorghiu

@@ -13,7 +13,7 @@ Hands On Lab: Visual Studio 2013 Web Tools
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)
 
-[Download Web Camps Training Kit](http://aka.ms/webcamps-training-kit)
+[Download Web Camps Training Kit](https://aka.ms/webcamps-training-kit)
 
 > Visual Studio is an excellent development environment for .NET-based Windows and web projects. It includes a powerful text editor that can easily be used to edit standalone files without a project.
 > 
@@ -21,7 +21,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > All of this power is also available for extensions, making it simple to extend the editors with powerful new features to suit your needs. Web Essentials is a collection of (mostly) web-related enhancements to Visual Studio. It includes lots of new IntelliSense completions (especially for CSS), new Browser Link features, automatic JSHint for JavaScript files, new warnings for HTML and CSS, and many other features that are essential to modern web development.
 > 
-> All sample code and snippets are included in the Web Camps Training Kit, available at [http://aka.ms/webcamps-training-kit](http://aka.ms/webcamps-training-kit).
+> All sample code and snippets are included in the Web Camps Training Kit, available at [https://aka.ms/webcamps-training-kit](https://aka.ms/webcamps-training-kit).
 
 
 <a id="Overview"></a>

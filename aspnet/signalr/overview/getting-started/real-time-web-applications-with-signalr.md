@@ -16,7 +16,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
-[Download Web Camps Training Kit](http://aka.ms/webcamps-training-kit)
+[Download Web Camps Training Kit](https://aka.ms/webcamps-training-kit)
 
 > Real-time Web applications feature the ability to push server-side content to the connected clients as it happens, in real-time. For ASP.NET developers, **ASP.NET SignalR** is a library to add real-time web functionality to their applications. It takes advantage of several transports, automatically selecting the best available transport given the client and server's best available transport. It takes advantage of **WebSocket**, an HTML5 API that enables bi-directional communication between the browser and server.
 > 
@@ -28,7 +28,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > ![SignalR Architecture](real-time-web-applications-with-signalr/_static/image1.png)
 > 
-> All sample code and snippets are included in the Web Camps Training Kit, available at [http://aka.ms/webcamps-training-kit](http://aka.ms/webcamps-training-kit).
+> All sample code and snippets are included in the Web Camps Training Kit, available at [https://aka.ms/webcamps-training-kit](https://aka.ms/webcamps-training-kit).
 
 
 <a id="Overview"></a>

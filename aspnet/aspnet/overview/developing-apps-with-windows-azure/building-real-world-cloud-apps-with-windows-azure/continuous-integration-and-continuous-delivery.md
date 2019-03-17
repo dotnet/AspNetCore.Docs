@@ -26,7 +26,7 @@ The cloud enables you to minimize the cost of maintaining a test environment bec
 
 Generally we recommend that you do continuous delivery to your development and staging environments. Most teams, even at Microsoft, require a manual review and approval process for production deployment. For a production deployment you might want to make sure it happens when key people on the development team are available for support, or during low-traffic periods. But there's nothing to prevent you from completely automating your development and test environments so that all a developer has to do is check in a change and an environment is set up for acceptance testing.
 
-The following diagram from [a Microsoft Patterns and Practices e-book about continuous delivery](http://aka.ms/ReleasePipeline) illustrates a typical workflow. Click the image to see it full size in its original context.
+The following diagram from [a Microsoft Patterns and Practices e-book about continuous delivery](https://aka.ms/ReleasePipeline) illustrates a typical workflow. Click the image to see it full size in its original context.
 
 [![Continuous delivery workflow](continuous-integration-and-continuous-delivery/_static/image1.png)](https://msdn.microsoft.com/library/dn449955.aspx)
 
@@ -60,7 +60,7 @@ For more information, see [Deploy a web app in Azure App Service](https://azure.
 
 See also the following resources:
 
-- [Building a Release Pipeline with Team Foundation Server 2012](http://aka.ms/ReleasePipeline). E-book, hands-on labs, and sample code by Microsoft Patterns and Practices, provides an in-depth introduction to continuous delivery. Covers use of Visual Studio Lab Management and Visual Studio Release Management.
+- [Building a Release Pipeline with Team Foundation Server 2012](https://aka.ms/ReleasePipeline). E-book, hands-on labs, and sample code by Microsoft Patterns and Practices, provides an in-depth introduction to continuous delivery. Covers use of Visual Studio Lab Management and Visual Studio Release Management.
 - [ALM Rangers DevOps Tooling and Guidance](https://aka.ms/vsarsolutions/). The ALM Rangers introduced the DevOps Workbench sample companion solution and practical guidance in collaboration with the Patterns &amp; Practices book *Building a Release Pipeline with TFS 2012*, as a great way to start learning the concepts of DevOps &amp; Release Management for TFS 2012 and to kick the tires. The guidance shows how to build once and deploy to multiple environments.
 - [Testing for Continuous Delivery with Visual Studio 2012](https://msdn.microsoft.com/library/jj159345.aspx). E-book by Microsoft Patterns and Practices, explains how to integrate automated testing with continuous delivery.
 - [WindowsAzureDeploymentTracker](https://github.com/RyanTBerry/WindowsAzureDeploymentTracker). Source code for a tool designed to capture a build from TFS (based on a label), build it, package it, allow someone in the DevOps role to configure specific aspects of it, and push it into Azure. The tool tracks the deployment process in order to enable operations to "roll back" to a previously deployed version. The tool has no external dependencies and can function stand-alone using TFS APIs and the Azure SDK.

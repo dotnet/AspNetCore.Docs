@@ -13,7 +13,7 @@ Hands On Lab: Build a Single Page Application (SPA) with ASP.NET Web API and Ang
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)
 
-[Download Web Camps Training Kit](http://aka.ms/webcamps-training-kit)
+[Download Web Camps Training Kit](https://aka.ms/webcamps-training-kit)
 
 > In traditional web applications, the client (browser) initiates the communication with the server by requesting a page. The server then processes the request and sends the HTML of the page to the client. In subsequent interactions with the page –e.g. the user navigates to a link or submits a form with data– a new request is sent to the server, and the flow starts again: the server processes the request and sends a new page to the browser in response to the new action requested by the client.
 > 
@@ -23,7 +23,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > In this hand-on lab, you will take advantage of those technologies to implement Geek Quiz, a trivia website based on the SPA concept. You will first implement the service layer with ASP.NET Web API to expose the required endpoints to retrieve the quiz questions and store the answers. Then, you will build a rich and responsive UI using AngularJS and CSS3 transformation effects.
 > 
-> All sample code and snippets are included in the Web Camps Training Kit, available at [http://aka.ms/webcamps-training-kit](http://aka.ms/webcamps-training-kit).
+> All sample code and snippets are included in the Web Camps Training Kit, available at [https://aka.ms/webcamps-training-kit](https://aka.ms/webcamps-training-kit).
 
 
 ## Overview

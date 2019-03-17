@@ -13,13 +13,13 @@ Hands On Lab: One ASP.NET: Integrating ASP.NET Web Forms, MVC and Web API
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)
 
-[Download Web Camps Training Kit](http://aka.ms/webcamps-training-kit)
+[Download Web Camps Training Kit](https://aka.ms/webcamps-training-kit)
 
 > ASP.NET is a framework for building Web sites, apps and services using specialized technologies such as MVC, Web API and others. With the expansion ASP.NET has seen since its creation and the expressed need to have these technologies integrated, there have been recent efforts in working towards **One ASP.NET**.
 > 
 > Visual Studio 2013 introduces a new unified project system which lets you build an application and use all the ASP.NET technologies in one project. This feature eliminates the need to pick one technology at the start of a project and stick with it, and instead encourages the use of multiple ASP.NET frameworks within one project.
 > 
-> All sample code and snippets are included in the Web Camps Training Kit, available at [http://aka.ms/webcamps-training-kit](http://aka.ms/webcamps-training-kit).
+> All sample code and snippets are included in the Web Camps Training Kit, available at [https://aka.ms/webcamps-training-kit](https://aka.ms/webcamps-training-kit).
 
 
 <a id="Overview"></a>

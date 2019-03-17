@@ -261,7 +261,7 @@ For more information, see the following resources.
 
 Choosing a database platform:
 
-- [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence](http://aka.ms/dag-doc). E-book by Microsoft Patterns and Practices that goes in depth into the different kinds of data stores available for cloud applications.
+- [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence](https://aka.ms/dag-doc). E-book by Microsoft Patterns and Practices that goes in depth into the different kinds of data stores available for cloud applications.
 - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/library/ff898430.aspx). See Data Consistency Primer, Data Replication and Synchronization Guidance, Index Table pattern, Materialized View pattern.
 - [BASE: An Acid Alternative](http://queue.acm.org/detail.cfm?id=1394128). Article about tradeoffs between data consistency and scalability.
 - [Seven Databases in Seven Weeks: A Guide to Modern Databases and the NoSQL Movement](https://www.amazon.com/Seven-Databases-Weeks-Modern-Movement/dp/1934356921). Book by Eric Redmond and Jim R. Wilson. Highly recommended for introducing yourself to the range of data storage platforms available today.

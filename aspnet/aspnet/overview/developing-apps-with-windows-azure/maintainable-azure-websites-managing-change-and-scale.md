@@ -13,7 +13,7 @@ Hands on Lab: Maintainable Azure Websites: Managing Change and Scale
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)
 
-[Download Web Camps Training Kit](http://aka.ms/webcamps-training-kit)
+[Download Web Camps Training Kit](https://aka.ms/webcamps-training-kit)
 
 > Microsoft Azure makes it easy to build and deploy websites to production. But you're not done when your application is live, you're just getting started! You'll need to handle changing requirements, database updates, scale, and more. Fortunately, Azure App Service has you covered, with plenty of features to help you keep your sites running smoothly.
 >
@@ -25,7 +25,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 >
 > With SQL Databases, it is important to keep your productive database up-to-date when deploying new versions of your application. Thanks to **Entity Framework Code First Migrations**, the development and deployment of your data model has been simplified to update your environments in minutes. This hands-on lab will show you the different topics you could encounter when deploying your web app to production environments in Microsoft Azure.
 >
-> All sample code and snippets are included in the Web Camps Training Kit, available at [http://aka.ms/webcamps-training-kit](http://aka.ms/webcamps-training-kit).
+> All sample code and snippets are included in the Web Camps Training Kit, available at [https://aka.ms/webcamps-training-kit](https://aka.ms/webcamps-training-kit).
 >
 > For more in-depth coverage of this topic, see the [Building Real-World Cloud Apps with Azure e-book](building-real-world-cloud-apps-with-windows-azure/introduction.md).
 
@@ -56,10 +56,10 @@ The following is required to complete this hands-on lab:
 - [GIT Version Control System](http://git-scm.com/download)
 - A Microsoft Azure subscription
 
-    - Sign up for a [Free Trial](http://aka.ms/watk-freetrial)
-    - If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](http://aka.ms/watk-msdn) now to start developing and testing on Azure
-    - [BizSpark](http://aka.ms/watk-bizspark) members automatically receive the Azure benefit through their Visual Studio Ultimate with MSDN subscriptions
-    - Members of the [Microsoft Partner Network](http://aka.ms/watk-mpn) Cloud Essentials program receive monthly Azure credits at no charge
+    - Sign up for a [Free Trial](https://aka.ms/watk-freetrial)
+    - If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your [MSDN benefit](https://aka.ms/watk-msdn) now to start developing and testing on Azure
+    - [BizSpark](https://aka.ms/watk-bizspark) members automatically receive the Azure benefit through their Visual Studio Ultimate with MSDN subscriptions
+    - Members of the [Microsoft Partner Network](https://aka.ms/watk-mpn) Cloud Essentials program receive monthly Azure credits at no charge
 
 <a id="Setup"></a>
 ### Setup
