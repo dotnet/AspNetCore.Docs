@@ -59,7 +59,7 @@ Click **Next**.
 
 If you have database connections defined within your development environment, you may see one of these connections pre-selected. However, you want to create a new connection to the database you created in the first part of this tutorial. Click the **New Connection** button.
 
-In the Connection Properties window, provide the name of the local server where your database was created (in this case **(localdb)\Projects13**). After providing the server name, select the ContosoUniversityData from the available databases.
+In the Connection Properties window, provide the name of the local server where your database was created (in this case **(localdb)\ProjectsV13**). After providing the server name, select the ContosoUniversityData from the available databases.
 
 ![set connection properties](creating-the-web-application/_static/image8.png)
 
