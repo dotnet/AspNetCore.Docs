@@ -52,7 +52,7 @@ Reasons for not hosting in IIS include:
 
 - Environments where IIS is not available or desirable, such as an existing server farm without IIS.
 - The performance overhead of IIS needs to be avoided.
-- SignalR functionality is to be added to an exising application that runs in a Windows Service, Azure worker role, or other process.
+- SignalR functionality is to be added to an existing application that runs in a Windows Service, Azure worker role, or other process.
 
 If a solution is being developed as self-host for performance reasons, it's recommended to also test the application hosted in IIS to determine the performance benefit.
 
