@@ -79,7 +79,7 @@ A *model* is an object that represents the data in your application. In ASP.NET 
 
 For the ProductStore API, our data consists of products, so we'll create a new class named `Product`.
 
-If Solution Explorer is not already visible, click the **View** menu and select **Solution Explorer**. In Solution Explorer, right-click the **Models** folder. From the context meny, select **Add**, then select **Class**. Name the class &quot;Product&quot;.
+If Solution Explorer is not already visible, click the **View** menu and select **Solution Explorer**. In Solution Explorer, right-click the **Models** folder. From the context menu, select **Add**, then select **Class**. Name the class &quot;Product&quot;.
 
 ![](creating-a-web-api-that-supports-crud-operations/_static/image3.png)
 
@@ -127,7 +127,7 @@ In the **Add Controller** wizard, name the controller &quot;ProductsController&q
 ![](creating-a-web-api-that-supports-crud-operations/_static/image7.png)
 
 > [!NOTE]
-> It is not necessary to put your contollers into a folder named Controllers. The folder name is not important; it is simply a convenient way to organize your source files.
+> It is not necessary to put your controllers into a folder named Controllers. The folder name is not important; it is simply a convenient way to organize your source files.
 
 
 The **Add Controller** wizard will create a file named ProductsController.cs in the Controllers folder. If this file is not open already, double-click the file to open it. Add the following **using** statement:
@@ -210,7 +210,7 @@ The method name starts with &quot;Put...&quot;, so Web API matches it to PUT req
 
 ## Deleting a Resource
 
-To delete a resourse, define a "Delete..." method.
+To delete a resource, define a "Delete..." method.
 
 [!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample12.cs)]
 
