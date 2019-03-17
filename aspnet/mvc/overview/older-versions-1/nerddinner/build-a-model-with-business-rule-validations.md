@@ -116,7 +116,7 @@ To implement this class we'll right-click on our "Models" folder and choose the 
 
 ![](build-a-model-with-business-rule-validations/_static/image10.png)
 
-We can then implement our DinnerRespository class using the code below:
+We can then implement our DinnerRepository class using the code below:
 
 [!code-csharp[Main](build-a-model-with-business-rule-validations/samples/sample3.cs)]
 

@@ -103,7 +103,7 @@ Add the following implementation:
 
 [!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample2.cs)]
 
-Now add another class to the Models folder, named &quot;ProductRepository.&quot; This class will implement the `IProductRespository` interface. Add the following implementation:
+Now add another class to the Models folder, named &quot;ProductRepository.&quot; This class will implement the `IProductRepository` interface. Add the following implementation:
 
 [!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample3.cs)]
 
