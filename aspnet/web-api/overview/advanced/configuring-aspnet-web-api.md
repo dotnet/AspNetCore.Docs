@@ -24,7 +24,7 @@ This topic describes how to configure ASP.NET Web API.
 <a id="settings"></a>
 ## Configuration Settings
 
-Web API configuration setttings are defined in the [HttpConfiguration](https://msdn.microsoft.com/library/system.web.http.httpconfiguration.aspx) class.
+Web API configuration settings are defined in the [HttpConfiguration](https://msdn.microsoft.com/library/system.web.http.httpconfiguration.aspx) class.
 
 | Member | Description |
 | --- | --- |
@@ -47,7 +47,7 @@ Web API configuration setttings are defined in the [HttpConfiguration](https://m
 <a id="webhost"></a>
 ## Configuring Web API with ASP.NET Hosting
 
-In an ASP.NET application, configure Web API by calling [GlobalConfiguration.Configure](https://msdn.microsoft.com/library/system.web.http.globalconfiguration.configure.aspx) in the **Application\_Start** method. The **Configure** method takes a delegate with a single parameter of type **HttpConfiguration**. Perform all of your configuation inside the delegate.
+In an ASP.NET application, configure Web API by calling [GlobalConfiguration.Configure](https://msdn.microsoft.com/library/system.web.http.globalconfiguration.configure.aspx) in the **Application\_Start** method. The **Configure** method takes a delegate with a single parameter of type **HttpConfiguration**. Perform all of your configuration inside the delegate.
 
 Here is an example using an anonymous delegate:
 
