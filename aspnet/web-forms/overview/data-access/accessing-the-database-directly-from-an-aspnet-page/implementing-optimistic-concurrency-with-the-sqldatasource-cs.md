@@ -183,7 +183,7 @@ When the second browser window updates the record, the original product name spe
 > Delete works in the same manner. With two browser windows open, start by editing a given product with one, and then saving its changes. After saving the changes in the one browser, click the Delete button for the same product in the other. Since the original values don t match up in the `DELETE` statement s `WHERE` clause, the delete silently fails.
 
 
-From the end user s perspective in the second browser window, after clicking the Update button the grid returns to the pre-editing mode, but their changes were lost. However, there s no visual feedback that their changes didn t stick. Ideally, if a user s changes are lost to a concurrency violation, we d notify them and, perhaps, keep the grid in edit mode. Let s look at how to accomplish this.
+From the end user s perspective in the second browser window, after clicking the Update button the grid returns to the pre-editing mode, but their changes were lost. However, there s no visual feedback that their changes didn't stick. Ideally, if a user s changes are lost to a concurrency violation, we d notify them and, perhaps, keep the grid in edit mode. Let s look at how to accomplish this.
 
 ## Step 3: Determining When a Concurrency Violation Has Occurred
 

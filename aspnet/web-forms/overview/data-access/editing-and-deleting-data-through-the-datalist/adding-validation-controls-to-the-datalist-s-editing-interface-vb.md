@@ -153,7 +153,7 @@ Add the following code to the start of the `UpdateCommand` event handler, immedi
 With this addition, the product will attempt to be updated only if the submitted data is valid. Most users won t be able to postback invalid data due to the validation controls client-side scripts, but users whose browsers don t support JavaScript or that have JavaScript support disabled, can bypass the client-side checks and submit invalid data.
 
 > [!NOTE]
-> The astute reader will recall that when updating data with the GridView, we didn t need to explicitly check the `Page.IsValid` property in our page s code-behind class. This is because the GridView consults the `Page.IsValid` property for us and only proceeds with the update only if it returns a value of `True`.
+> The astute reader will recall that when updating data with the GridView, we didn't need to explicitly check the `Page.IsValid` property in our page s code-behind class. This is because the GridView consults the `Page.IsValid` property for us and only proceeds with the update only if it returns a value of `True`.
 
 
 ## Step 3: Summarizing Data Entry Problems

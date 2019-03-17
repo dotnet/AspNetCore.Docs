@@ -55,7 +55,7 @@ Imagine, for example, that you decide to change how you implement your data acce
 
 When an application is loosely coupled, on the other hand, you can make changes to one part of an application without touching other parts of an application. For example, you can switch data access technologies without modifying your validation or controller logic.
 
-In this iteration, we take advantage of several software design patterns that enable us to refactor our Contact Manager application into a more loosely coupled application. When we are done, the Contact Manager won t do anything that it didn t do before. However, we'll be able to change the application more easily in the future.
+In this iteration, we take advantage of several software design patterns that enable us to refactor our Contact Manager application into a more loosely coupled application. When we are done, the Contact Manager won t do anything that it didn't do before. However, we'll be able to change the application more easily in the future.
 
 > [!NOTE] 
 > 

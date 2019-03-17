@@ -247,7 +247,7 @@ When binding an ObjectDataSource to the GridView through the drop-down list in t
 
 [!code-aspx[Main](paging-and-sorting-report-data-vb/samples/sample9.aspx)]
 
-A field can be configured so that it s not sortable by clearing out its `SortExpression` property (assigning it to an empty string). To illustrate this, imagine that we didn t want to let our customers sort our products by price. The `UnitPrice` BoundField s `SortExpression` property can be removed either from the declarative markup or through the Fields dialog box (which is accessible by clicking on the Edit Columns link in the GridView s smart tag).
+A field can be configured so that it s not sortable by clearing out its `SortExpression` property (assigning it to an empty string). To illustrate this, imagine that we didn't want to let our customers sort our products by price. The `UnitPrice` BoundField s `SortExpression` property can be removed either from the declarative markup or through the Fields dialog box (which is accessible by clicking on the Edit Columns link in the GridView s smart tag).
 
 
 ![The Results Have Been Sorted by the UnitPrice in Ascending Order](paging-and-sorting-report-data-vb/_static/image27.png)
