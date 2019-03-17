@@ -138,7 +138,7 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 Project
     *jQuery Validation*
 
     > [!NOTE]
-    > Notice the two log in sections, in the first section you can log in using a registerd account from the site and in the second section you can altenativelly log in using another authentication service like google (disabled by default).
+    > Notice the two log in sections, in the first section you can log in using a registered account from the site and in the second section you can alternatively log in using another authentication service like google (disabled by default).
 5. Close the browser to stop the debugger and return to Visual Studio.
 6. Open the file **AuthConfig.cs** located under the **App\_Start** folder.
 7. Remove the comment from the last line to register Google client for *OAuth* authentication.
@@ -423,7 +423,7 @@ One of the key updates in ASP.NET MVC 4 is the support for mobile development. I
 <a id="Task_2_-_Creating_Mobile_Views"></a>
 #### Task 2 - Creating Mobile Views
 
-In this task, you will create a mobile version of the index view with content adapted for better appareance in mobile devices.
+In this task, you will create a mobile version of the index view with content adapted for better appearance in mobile devices.
 
 1. Copy the **Views\Home\Index.cshtml** view and paste it to create a copy, rename the new file to **Index.Mobile.cshtml**.
 2. Open the new created **Index.Mobile.cshtml** view and replace the existing &lt;ul&gt; tag with this code. By doing this, you will be updating the &lt;ul&gt; tag with jQuery Mobile data annotations to use the mobile themes from jQuery.
@@ -506,15 +506,15 @@ In this task, you will explore the sample implementation of a view-switcher adde
 
     The partial view uses the new method **ViewContext.HttpContext.GetOverriddenBrowser()** to determine the origin of the web request and show the corresponding link to switch either to the Desktop or Mobile views.
 
-    The **GetOverridenBrowser** method returns an **HttpBrowserCapabilitiesBase** instance that corresponds to the user agent currently set for the request (actual or overridden). You can use this value to get properties such as **IsMobileDevice**.
+    The **GetOverriddenBrowser** method returns an **HttpBrowserCapabilitiesBase** instance that corresponds to the user agent currently set for the request (actual or overridden). You can use this value to get properties such as **IsMobileDevice**.
 
     ![ViewSwitcher partial view](whats-new-in-aspnet-mvc-4/_static/image30.png "ViewSwitcher partial view")
 
     *ViewSwitcher partial view*
 4. Open the **ViewSwitcherController.cs** class located in the **Controllers** folder. Check out that SwitchView action is called by the link in the ViewSwitcher component, and notice the new HttpContext methods.
 
-    - The **HttpContext.ClearOverridenBrowser()** method removes any overridden user agent for the current request.
-    - The **HttpContext.SetOverridenBrowser()** method overrides the request's actual user agent value using the specified user agent.  
+    - The **HttpContext.ClearOverriddenBrowser()** method removes any overridden user agent for the current request.
+    - The **HttpContext.SetOverriddenBrowser()** method overrides the request's actual user agent value using the specified user agent.  
         ![ViewSwitcher Controller](whats-new-in-aspnet-mvc-4/_static/image31.png "ViewSwitcher Controller")  
 *ViewSwitcher Controller*
 
@@ -574,8 +574,8 @@ After this code runs, when an iPhone browser generates a request, your applicati
 > [!NOTE]
 > This way of testing the request for iPhone has been simplified for demo purposes and might not work as expected for every iPhone user agent string (for example test is case sensitive).
 
-4. Create a copy of the **\_Layout.Mobile.cshtml** file in the **Views\Shared** folder and rename the copy to &quot;**\_Layout.iPhone.csthml**&quot;.
-5. Open **\_Layout.iPhone.csthml** you created in the previous step.
+4. Create a copy of the **\_Layout.Mobile.cshtml** file in the **Views\Shared** folder and rename the copy to &quot;**\_Layout.iPhone.cshtml**&quot;.
+5. Open **\_Layout.iPhone.cshtml** you created in the previous step.
 6. Find the div element with the data-role attribute set to **page** and change the **data-theme** attribute to &quot;**a**&quot;.
 
 
@@ -668,7 +668,7 @@ Asynchronous action methods that return Task instances can also support time-out
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex04 - Attributes*)
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample26.cs)]
-6. Open the **PhotoController** class and update the **Gallery** method to delay the execution 1000 miliseconds (1 second) to simulate a long running task.
+6. Open the **PhotoController** class and update the **Gallery** method to delay the execution 1000 milliseconds (1 second) to simulate a long running task.
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample27.cs)]
 7. Open the **Web.config** file and enable custom errors by adding the following element.
