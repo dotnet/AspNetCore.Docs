@@ -42,7 +42,7 @@ The Ember SPA template is a re-implementation of the Knockout SPA template, usin
 
 [Hot Towel SPA template](../templates/hottowel-template.md). This template brings in several JavaScript libraries, including Breeze, Knockout, RequireJS and Twitter Bootstrap.
 
-Compared with the other templates listed here, the Hot Towel teample provides a more complete application from which you can build your own. There are more concepts to be aware of, but once you understand them, this template might just be what you are looking for. If you want to build a SPA but can't decide where to start, use Hot Towel and in seconds you'll have a SPA and all the tools you need to build on it.
+Compared with the other templates listed here, the Hot Towel template provides a more complete application from which you can build your own. There are more concepts to be aware of, but once you understand them, this template might just be what you are looking for. If you want to build a SPA but can't decide where to start, use Hot Towel and in seconds you'll have a SPA and all the tools you need to build on it.
 
 ## Feature table
 
