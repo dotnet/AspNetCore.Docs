@@ -42,7 +42,7 @@ In response, the server might send:
 
 [!code-console[Main](content-negotiation/samples/sample3.cmd)]
 
-In this example, the client requested either JSON, Javascript, or "anything" (\*/\*). The server responsed with a JSON representation of the `Product` object. Notice that the Content-Type header in the response is set to &quot;application/json&quot;.
+In this example, the client requested either JSON, Javascript, or "anything" (\*/\*). The server responded with a JSON representation of the `Product` object. Notice that the Content-Type header in the response is set to &quot;application/json&quot;.
 
 A controller can also return an **HttpResponseMessage** object. To specify a CLR object for the response body, call the **CreateResponse** extension method:
 
@@ -56,7 +56,7 @@ The object that serializes the resource is called a *media formatter*. Media for
 
 First, the pipeline gets the **IContentNegotiator** service from the **HttpConfiguration** object. It also gets the list of media formatters from the **HttpConfiguration.Formatters** collection.
 
-Next, the pipeline calls **IContentNegotiatior.Negotiate**, passing in:
+Next, the pipeline calls **IContentNegotiator.Negotiate**, passing in:
 
 - The type of object to serialize
 - The collection of media formatters
@@ -67,7 +67,7 @@ The **Negotiate** method returns two pieces of information:
 - Which formatter to use
 - The media type for the response
 
-If no formatter is found, the **Negotiate** method returns **null**, and the client recevies HTTP error 406 (Not Acceptable).
+If no formatter is found, the **Negotiate** method returns **null**, and the client receives HTTP error 406 (Not Acceptable).
 
 The following code shows how a controller can directly invoke content negotiation:
 
