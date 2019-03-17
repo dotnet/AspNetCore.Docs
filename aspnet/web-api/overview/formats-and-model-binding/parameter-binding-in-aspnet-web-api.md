@@ -176,7 +176,7 @@ Here is a controller method that uses the `[IfNoneMatch]` attribute.
 
 [!code-csharp[Main](parameter-binding-in-aspnet-web-api/samples/sample23.cs)]
 
-Besides **ParameterBindingAttribute**, there is another hook for adding a custom **HttpParameterBinding**. On the **HttpConfiguration** object, the **ParameterBindingRules** property is a collection of anomymous functions of type (**HttpParameterDescriptor** -&gt; **HttpParameterBinding**). For example, you could add a rule that any ETag parameter on a GET method uses `ETagParameterBinding` with `if-none-match`:
+Besides **ParameterBindingAttribute**, there is another hook for adding a custom **HttpParameterBinding**. On the **HttpConfiguration** object, the **ParameterBindingRules** property is a collection of anonymous functions of type (**HttpParameterDescriptor** -&gt; **HttpParameterBinding**). For example, you could add a rule that any ETag parameter on a GET method uses `ETagParameterBinding` with `if-none-match`:
 
 [!code-csharp[Main](parameter-binding-in-aspnet-web-api/samples/sample24.cs)]
 
