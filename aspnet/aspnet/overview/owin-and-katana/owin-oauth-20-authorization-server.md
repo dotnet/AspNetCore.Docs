@@ -232,7 +232,7 @@ See *AuthorizationServer\ResourceServer\App\_Start\Startup.WebApi.cs* in the sam
 
 - `UseCors` method allows CORS for all domains.
 - `UseOAuthBearerAuthentication` method enables OAuth bearer token authentication middleware which will receive and validate bearer token from authorization header in the request.
-- `Config.SuppressDefaultHostAuthenticaiton` suppresses default host authenticated principal from the app, therefore all requests will be anonymous after this call.
+- `Config.SuppressDefaultHostAuthentication` suppresses default host authenticated principal from the app, therefore all requests will be anonymous after this call.
 - `HostAuthenticationFilter` enables authentication just for the specified authentication type. In this case, it's bearer authentication type.
 
 In order to demonstrate the authenticated identity, we create an ApiController to output current user's claims.
