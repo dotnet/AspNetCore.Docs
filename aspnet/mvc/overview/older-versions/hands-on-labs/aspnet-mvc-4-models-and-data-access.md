@@ -274,7 +274,7 @@ Once the model is generated, you will modify the StoreController to provide the 
 <a id="Task_1_-_Populating_Sample_Data"></a>
 #### Task 1 - Populating Sample Data
 
-In this task, you will populate the database with sample data when it is intially created using Code-First.
+In this task, you will populate the database with sample data when it is initially created using Code-First.
 
 1. Open the **Begin** solution located at **Source/Ex2-CreatingADatabaseCodeFirst/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
 
