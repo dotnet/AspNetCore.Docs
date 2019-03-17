@@ -173,7 +173,7 @@ Create a binding for **IHubConnectionContext** as follows:
 
 [!code-csharp[Main](dependency-injection/samples/sample18.cs)]
 
-This code creatres an anonymous function that returns an **IHubConnection**. The **WhenInjectedInto** method tells Ninject to use this function only when creating `IStockTicker` instances. The reason is that SignalR creates **IHubConnectionContext** instances internally, and we don't want to override how SignalR creates them. This function only applies to our `StockTicker` class.
+This code creates an anonymous function that returns an **IHubConnection**. The **WhenInjectedInto** method tells Ninject to use this function only when creating `IStockTicker` instances. The reason is that SignalR creates **IHubConnectionContext** instances internally, and we don't want to override how SignalR creates them. This function only applies to our `StockTicker` class.
 
 Pass the dependency resolver into the **MapSignalR** method by adding a hub configuration:
 
