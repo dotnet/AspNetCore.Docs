@@ -55,7 +55,7 @@ Also, notice the `total` property on the `OrderDetailsViewModel`. This property 
 Next, add these functions to `AppViewModel`:
 
 - `resetCart` removes all items from the cart.
-- `getDetails` gets the details for an order (by pusing a new `OrderDetailsViewModel` onto the `details` list).
+- `getDetails` gets the details for an order (by pushing a new `OrderDetailsViewModel` onto the `details` list).
 - `createOrder` creates a new order and empties the cart.
 
 
@@ -99,7 +99,7 @@ Here are the bindings for the order details:
 
 [!code-html[Main](using-web-api-with-entity-framework-part-7/samples/sample11.html)]
 
-This iterates over the items in the order and displays the product, price, and quanity. The surrounding div is visible only if the details array contains one or more items.
+This iterates over the items in the order and displays the product, price, and quantity. The surrounding div is visible only if the details array contains one or more items.
 
 ## Conclusion
 
