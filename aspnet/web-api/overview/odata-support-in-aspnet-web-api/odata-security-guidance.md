@@ -19,7 +19,7 @@ This topic describes some of the security issues that you should consider when e
 
 The query semantics are based on the entity data model (EDM), not the underlying model types. You can exclude a property from the EDM and it will not be visible to the query. For example, suppose your model includes an Employee type with a Salary property. You might want to exclude this property from the EDM to hide it from clients.
 
-There are two ways to exlude a property from the EDM. You can set the **[IgnoreDataMember]** attribute on the property in the model class:
+There are two ways to exclude a property from the EDM. You can set the **[IgnoreDataMember]** attribute on the property in the model class:
 
 [!code-csharp[Main](odata-security-guidance/samples/sample1.cs)]
 
