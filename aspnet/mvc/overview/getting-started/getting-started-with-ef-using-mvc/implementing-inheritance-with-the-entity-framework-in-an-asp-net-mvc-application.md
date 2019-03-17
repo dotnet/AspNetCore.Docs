@@ -68,7 +68,7 @@ In the *Models* folder, create *Person.cs* and replace the template code with th
 
 ## Update Instructor and Student
 
-Now update the *Instructor.cs* and *Sudent.cs* to inherit values from the *Person.sc*.
+Now update the *Instructor.cs* and *Student.cs* to inherit values from the *Person.sc*.
 
 In *Instructor.cs*, derive the `Instructor` class from the `Person` class and remove the key and name fields. The code will look like the following example:
 
