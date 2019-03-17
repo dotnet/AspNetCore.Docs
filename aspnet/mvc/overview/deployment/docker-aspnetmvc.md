@@ -76,7 +76,7 @@ Windows Server Core, IIS, and ASP.NET 4.7.2. When you run this image in your con
 
 The Dockerfile that creates your image looks like this:
 
-```console
+```Dockerfile
 # The `FROM` instruction specifies the base image. You are
 # extending the `microsoft/aspnet` image.
 
