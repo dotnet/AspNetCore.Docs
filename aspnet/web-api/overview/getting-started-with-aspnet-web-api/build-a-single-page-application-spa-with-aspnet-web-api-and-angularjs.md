@@ -92,7 +92,7 @@ The Web API framework is part of the ASP.NET Stack and is designed to make it ea
 <a id="Ex1Task1"></a>
 #### Task 1 – Creating the Initial Project for Geek Quiz
 
-In this task you will start creating a new ASP.NET MVC project with support for ASP.NET Web API based on the **One ASP.NET** project type that comes with Visual Studio. **One ASP.NET** unifies all ASP.NET technologies and gives you the option to mix and match them as desired. You will then add the Entity Framework's model classes and the database initializator to insert the quiz questions.
+In this task you will start creating a new ASP.NET MVC project with support for ASP.NET Web API based on the **One ASP.NET** project type that comes with Visual Studio. **One ASP.NET** unifies all ASP.NET technologies and gives you the option to mix and match them as desired. You will then add the Entity Framework's model classes and the database initializer to insert the quiz questions.
 
 1. Open **Visual Studio Express 2013 for Web** and select **File | New Project...** to start a new solution.
 
