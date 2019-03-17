@@ -153,7 +153,7 @@ The database creation script retrieves the dev machine's IP address and sets a f
 - Creates the application database and the membership database by using the `New-AzureSqlDatabase` cmdlet.
 
     [!code-powershell[Main](automate-everything/samples/sample11.ps1?highlight=2,5)]
-- Calls a locally defined function tocreates a connection string for each database. The application will use these connection strings to access the databases. 
+- Calls a locally defined function to create a connection string for each database. The application will use these connection strings to access the databases. 
 
     [!code-powershell[Main](automate-everything/samples/sample12.ps1?highlight=1-2)]
 
