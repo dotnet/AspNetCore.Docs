@@ -79,7 +79,7 @@ Under **Output**, check **XML documentation file**. In the edit box, type "App\_
 
 ![](creating-api-help-pages/_static/image7.png)
 
-Next, open the code for the `ValuesController` API controller, which is defined in /Controllers/ValuesControler.cs. Add some documentation comments to the controller methods. For example:
+Next, open the code for the `ValuesController` API controller, which is defined in /Controllers/ValuesController.cs. Add some documentation comments to the controller methods. For example:
 
 [!code-csharp[Main](creating-api-help-pages/samples/sample4.cs)]
 
