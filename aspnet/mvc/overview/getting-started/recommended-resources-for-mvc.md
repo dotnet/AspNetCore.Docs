@@ -359,7 +359,7 @@ by [Rick Anderson]((https://twitter.com/RickAndMSFT))
 - [Serving WebP images with ASP.NET MVC](http://friism.com/serving-webp-images-with-asp-net-mvc)
 - [Detailed ASP.NET MVC Pipeline](http://www.dotnet-tricks.com/Tutorial/mvc/LYHK270114-Detailed-ASP.NET-MVC-Pipeline.html)
 - [Nesting Layouts in MVC](http://astutelogic.com/nesting-layouts-in-mvc/) by Russell Waite
-- I[mplementing RichTextEditor or WYSIWYG (TinyMCE) in ASP.NET MVC](http://www.dotnetfunda.com/articles/show/2657/implementing-richtexteditor-or-wysiwyg-tinymce-in-aspnet-mvc) by Sheo Narayan
+- [Implementing RichTextEditor or WYSIWYG (TinyMCE) in ASP.NET MVC](http://www.dotnetfunda.com/articles/show/2657/implementing-richtexteditor-or-wysiwyg-tinymce-in-aspnet-mvc) by Sheo Narayan
 - [Binding views with Anonymous type collection in ASP.NET MVC](http://www.dotnetfunda.com/articles/show/2655/binding-views-with-anonymous-type-collection-in-aspnet-mvc) by Sheo Narayan
 - [Saving HTML 5 canvas as Image in ASP.NET MVC](http://www.dotnetfunda.com/articles/show/2665/saving-html-5-canvas-as-image-in-aspnet-mvc) by Sheo Narayan
 - [Maintaining image size and position on the page in database using ASP.NET MVC](http://www.dotnetfunda.com/articles/show/2783/maintaining-image-size-and-position-on-the-page-in-database-using-aspn) by Sheo Narayan
