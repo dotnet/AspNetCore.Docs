@@ -77,7 +77,7 @@ The **IHttpActionResult** interface was introduced in Web API 2. Essentially, it
 
 If a controller action returns an **IHttpActionResult**, Web API calls the **ExecuteAsync** method to create an **HttpResponseMessage**. Then it converts the **HttpResponseMessage** into an HTTP response message.
 
-Here is a simple implementaton of **IHttpActionResult** that creates a plain text response:
+Here is a simple implementation of **IHttpActionResult** that creates a plain text response:
 
 [!code-csharp[Main](action-results/samples/sample7.cs)]
 
