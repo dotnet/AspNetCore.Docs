@@ -218,7 +218,7 @@ In this task, you will use the Browser Link's **Inspect Mode** feature to detect
     ![Opening file Site.css](visual-studio-2013-web-tools/_static/image16.png "Opening file Site.css")
 
     *Opening file Site.css*
-5. Press **CTRL** + **F** and type **.flip-containter .front** to find the CSS selector.
+5. Press **CTRL** + **F** and type **.flip-container .front** to find the CSS selector.
 6. Click the light blue square in the border property of the class to open the Color Picker.
 
     ![Opening the Color Picker](visual-studio-2013-web-tools/_static/image17.png "Opening the Color Picker")
