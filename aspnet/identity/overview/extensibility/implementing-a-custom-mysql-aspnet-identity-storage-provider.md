@@ -117,7 +117,7 @@ If needed, install either [Visual Studio Express 2013 for Web](https://go.micros
     `using Microsoft.AspNet.Identity.EntityFramework;`  
    with  
      `using AspNet.Identity.MySQL;`
-7. In IdentityModels.cs, set **ApplicationDbContext** to derive from **MySqlDatabase** and include a contructor that take a single parameter with the connection name.  
+7. In IdentityModels.cs, set **ApplicationDbContext** to derive from **MySqlDatabase** and include a constructor that take a single parameter with the connection name.  
 
     [!code-csharp[Main](implementing-a-custom-mysql-aspnet-identity-storage-provider/samples/sample1.cs)]
 8. Open the IdentityConfig.cs file. In the **ApplicationUserManager.Create** method, replace instantiating UserManager with the following code:  

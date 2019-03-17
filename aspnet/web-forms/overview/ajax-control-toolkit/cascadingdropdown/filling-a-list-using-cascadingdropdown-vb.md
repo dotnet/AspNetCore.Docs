@@ -48,7 +48,7 @@ The JavaScript code coming from the `CascadingDropDown` extender calls a web ser
 
 [!code-vb[Main](filling-a-list-using-cascadingdropdown-vb/samples/sample4.vb)]
 
-So the important aspect is that the method needs to return an array of type `CascadingDropDownNameValue` (defined by the ASP.NET AJAX Control Toolkit). In the `CascadingDropDownNameValue` contructor, first the list entry's text and then its value must be provided, just as `<option value="VALUE">NAME</option>` would do in HTML. Here is some sample data:
+So the important aspect is that the method needs to return an array of type `CascadingDropDownNameValue` (defined by the ASP.NET AJAX Control Toolkit). In the `CascadingDropDownNameValue` constructor, first the list entry's text and then its value must be provided, just as `<option value="VALUE">NAME</option>` would do in HTML. Here is some sample data:
 
 [!code-aspx[Main](filling-a-list-using-cascadingdropdown-vb/samples/sample5.aspx)]
 

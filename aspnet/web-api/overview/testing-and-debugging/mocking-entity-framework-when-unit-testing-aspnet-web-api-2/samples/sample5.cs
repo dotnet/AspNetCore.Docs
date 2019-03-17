@@ -3,7 +3,7 @@ public class ProductController : ApiController
     // modify the type of the db field
     private IStoreAppContext db = new StoreAppContext();
 
-    // add these contructors
+    // add these constructors
     public ProductController() { }
 
     public ProductController(IStoreAppContext context)
