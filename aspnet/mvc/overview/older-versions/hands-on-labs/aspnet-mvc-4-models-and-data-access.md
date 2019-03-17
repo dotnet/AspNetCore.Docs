@@ -142,7 +142,7 @@ In this task, you will create a data model to interact with the database added i
     ![Adding the StoreDB ADO.NET Entity Data Model](aspnet-mvc-4-models-and-data-access/_static/image6.png "Adding the StoreDB ADO.NET Entity Data Model")
 
     *Adding the StoreDB ADO.NET Entity Data Model*
-2. The **Entity Data Model Wizard** will appear. This wizard will guide you through the creation of the model layer. Since the model should be created based on the existing database recentyl added, select **Generate from database** and click **Next**.
+2. The **Entity Data Model Wizard** will appear. This wizard will guide you through the creation of the model layer. Since the model should be created based on the existing database recently added, select **Generate from database** and click **Next**.
 
     ![Choosing the model content](aspnet-mvc-4-models-and-data-access/_static/image7.png "Choosing the model content")
 
