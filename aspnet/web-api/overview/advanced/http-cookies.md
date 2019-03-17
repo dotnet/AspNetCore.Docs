@@ -19,7 +19,7 @@ This topic describes how to send and receive HTTP cookies in Web API.
 
 This section gives a brief overview of how cookies are implemented at the HTTP level. For details, consult [RFC 6265](http://tools.ietf.org/html/rfc6265).
 
-A cookie is a piece of data that a server sends in the HTTP response. The client (optionally) stores the cookie and returns it on subsequet requests. This allows the client and server to share state. To set a cookie, the server includes a Set-Cookie header in the response. The format of a cookie is a name-value pair, with optional attributes. For example:
+A cookie is a piece of data that a server sends in the HTTP response. The client (optionally) stores the cookie and returns it on subsequent requests. This allows the client and server to share state. To set a cookie, the server includes a Set-Cookie header in the response. The format of a cookie is a name-value pair, with optional attributes. For example:
 
 [!code-powershell[Main](http-cookies/samples/sample1.ps1)]
 
