@@ -43,7 +43,7 @@ Notice that the controller class depends on `ProductRepository`, and we are lett
 
 - If you want to replace `ProductRepository` with a different implementation, you also need to modify the controller class.
 - If the `ProductRepository` has dependencies, you must configure these inside the controller. For a large project with multiple controllers, your configuration code becomes scattered across your project.
-- It is hard to unit test, because the controller is hard-coded to query the database. For a unit test, you should use a mock or stub repository, which is not possible with the currect design.
+- It is hard to unit test, because the controller is hard-coded to query the database. For a unit test, you should use a mock or stub repository, which is not possible with the current design.
 
 We can address these problems by *injecting* the repository into the controller. First, refactor the `ProductRepository` class into an interface:
 
