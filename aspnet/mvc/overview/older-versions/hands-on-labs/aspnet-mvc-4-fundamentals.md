@@ -383,7 +383,7 @@ The file **~/Views/Shared/\_layout.cshtml** allows you to setup a template for c
    (C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample7.cshtml)]
-5. Include a div to render the body section of each page. Replace <strong>@RenderBody()</strong> with the following higlighted code:
+5. Include a div to render the body section of each page. Replace <strong>@RenderBody()</strong> with the following highlighted code:
    (C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample8.cshtml)]
@@ -798,7 +798,7 @@ In this task, you will add a link in the Store View to have a link in every Genr
    > 
    > Although this approach works, it depends on a hardcoded string. If you later rename the Controller, you will have to change this instruction manually. A better alternative is to use an **HTML Helper** method. ASP.NET MVC includes an HTML Helper method which is available for such tasks. The **Html.ActionLink()** helper method makes it easy to build HTML **&lt;a&gt;** links, making sure URL paths are properly URL encoded.
    > 
-   > Htlm.ActionLink has several overloads. In this exercise you will use one that takes three parameters:
+   > Html.ActionLink has several overloads. In this exercise you will use one that takes three parameters:
    > 
    > 1. Link text, which will display the Genre name
    > 2. Controller action name (**Browse**)
