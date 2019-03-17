@@ -73,7 +73,7 @@ Implementing the Repository pattern requires us to complete the following two st
 
 First, we need to create an interface that describes all of the data access methods that we need to perform. The IContactManagerRepository interface is contained in Listing 1. This interface describes five methods: CreateContact(), DeleteContact(), EditContact(), GetContact, and ListContacts().
 
-**Listing 1 - Models\IContactManagerRepositiory.cs**
+**Listing 1 - Models\IContactManagerRepository.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample1.cs)]
 
