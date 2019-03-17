@@ -141,7 +141,7 @@ Initially, we want to test the CreateContact() method exposed by the ContactMana
 
 - CreateContact() - Tests that CreateContact() returns the value true when a valid Contact is passed to the method.
 - CreateContactRequiredFirstName() - Tests that an error message is added to model state when a Contact with a missing first name is passed to the CreateContact() method.
-- CreateContactRequredLastName() - Tests that an error message is added to model state when a Contact with a missing last name is passed to the CreateContact() method.
+- CreateContactRequiredLastName() - Tests that an error message is added to model state when a Contact with a missing last name is passed to the CreateContact() method.
 - CreateContactInvalidPhone() - Tests that an error message is added to model state when a Contact with an invalid phone number is passed to the CreateContact() method.
 - CreateContactInvalidEmail() - Tests that an error message is added to model state when a Contact with an invalid email address is passed to the CreateContact() method..
 
