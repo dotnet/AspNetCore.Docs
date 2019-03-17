@@ -54,7 +54,7 @@ Here are the features provided by each SPA template:
 |      ToDo sample       |  &#10003;   |          |    &#10003;    | &#10003;  | &#10003; |           |
 |     Bare template      |             | &#10003; |                |           |          | &#10003;  |
 | Navigation and history |             | &#10003; |    &#10003;    |           | &#10003; | &#10003;  |
-|        Libaries        |             |          |                |           |          |           |
+|        Libraries       |             |          |                |           |          |           |
 |        Angular         |             |          |    &#10003;    |           |          |           |
 |    &#8195;Backbone     |             | &#10003; |                |           |          |           |
 |         Breeze         |             |          |    &#10003;    | &#10003;  |          | &#10003;  |

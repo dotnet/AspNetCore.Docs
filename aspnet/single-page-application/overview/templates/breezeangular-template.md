@@ -24,7 +24,7 @@ The Breeze/Angular SPA template is a variation on the [KnockoutJS SPA template](
 
 ![](http://www.breezejs.com/sites/all/images/spa-template/NgRunningTodoPage.png)
 
-Outwardly, the application looks the very similar to the KnockoutJS SPA template. But it's quite different under the hood. The KnockoutJS template uses Knockout for data binding and raw AJAX for data access. The Breeze/Angular template uses Angular for data binding and Breeze for data access. These libaries enable additional capabilities, including page navigation and history.
+Outwardly, the application looks the very similar to the KnockoutJS SPA template. But it's quite different under the hood. The KnockoutJS template uses Knockout for data binding and raw AJAX for data access. The Breeze/Angular template uses Angular for data binding and Breeze for data access. These libraries enable additional capabilities, including page navigation and history.
 
 Here is the application's About page:
 
