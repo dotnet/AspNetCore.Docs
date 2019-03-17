@@ -91,7 +91,7 @@ Also include the Management Service (listed under "Management Tools").
 
 ![](scaleout-with-sql-server/_static/image5.png)
 
-**Install Web Deploy 3.0.** When you run IIS Manager, it will prompt you to install Microsoft Web Platform, or you can [download the intstaller](https://go.microsoft.com/fwlink/?LinkId=255386). In the Platform Installer, search for Web Deploy and install Web Deploy 3.0
+**Install Web Deploy 3.0.** When you run IIS Manager, it will prompt you to install Microsoft Web Platform, or you can [download the installer](https://go.microsoft.com/fwlink/?LinkId=255386). In the Platform Installer, search for Web Deploy and install Web Deploy 3.0
 
 ![](scaleout-with-sql-server/_static/image6.png)
 
