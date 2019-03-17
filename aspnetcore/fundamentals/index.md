@@ -69,7 +69,7 @@ For more information, see [Middleware](xref:fundamentals/middleware/index).
 
 ## The host
 
-An ASP.NET Core app builds a *host* on startup. The host is an object that encapsulates all of the the app's resources, such as:
+An ASP.NET Core app builds a *host* on startup. The host is an object that encapsulates all of the app's resources, such as:
 
 * An HTTP server implementation
 * Middleware components
