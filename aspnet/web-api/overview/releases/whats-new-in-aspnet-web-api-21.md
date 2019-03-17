@@ -76,7 +76,7 @@ Web API 2.1 includes the following enhancements to [API Help Pages](../getting-s
 - Documentation of individual properties of parameters or return types of actions.
 - Documentation of data model annotations.
 
-The UI design of the help pages was also updated, to accomodate these changes.
+The UI design of the help pages was also updated, to accommodate these changes.
 
 <a id="ignoreroute"></a>
 ### IgnoreRoute Support
