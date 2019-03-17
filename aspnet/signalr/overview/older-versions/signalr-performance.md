@@ -134,7 +134,7 @@ To remove SignalR performance counters, run SignalR.exe in an elevated command p
 
 ### SignalR Performance counters
 
-The utilites package installs the following performance counters. The "Total" counters measure the number of events since the last application pool or server restart.
+The utilities package installs the following performance counters. The "Total" counters measure the number of events since the last application pool or server restart.
 
 **Connection metrics**
 
