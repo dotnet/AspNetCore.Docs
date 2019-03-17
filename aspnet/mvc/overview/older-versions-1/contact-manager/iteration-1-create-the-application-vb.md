@@ -436,7 +436,7 @@ The content of the Delete view is contained in Listing 9. This view contains a f
 
 ## Changing the Name of the Default Controller
 
-It might bother you that the name of our controller class for working with contacts is named the HomeController class. Shouldn t the controller be named ContactController?
+It might bother you that the name of our controller class for working with contacts is named the HomeController class. Shouldn't the controller be named ContactController?
 
 This issue is easy enough to fix. First, we need to refactor the name of the Home controller. Open the HomeController class in the Visual Studio Code Editor, right click the name of the class and select the menu option **Rename**. Selecting this menu option opens the Rename dialog.
 
