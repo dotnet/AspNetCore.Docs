@@ -90,7 +90,7 @@ The last method to consider it `PostOrder`. Right now, this method takes an `Ord
 
 [!code-json[Main](using-web-api-with-entity-framework-part-6/samples/sample10.json)]
 
-This is a well-structured order, and Entity Framework will happily insert it into the database. But it contains a Product entity that did not exist previously. The client just created a new product in our database! This will be a surprise to the order fullfilment department, when they see an order for koala bears. The moral is, be really careful about the data you accept in a POST or PUT request.
+This is a well-structured order, and Entity Framework will happily insert it into the database. But it contains a Product entity that did not exist previously. The client just created a new product in our database! This will be a surprise to the order fulfillment department, when they see an order for koala bears. The moral is, be really careful about the data you accept in a POST or PUT request.
 
 To avoid this problem, change the `PostOrder` method to take an `OrderDTO` instance. Use the `OrderDTO` to create the `Order`.
 
