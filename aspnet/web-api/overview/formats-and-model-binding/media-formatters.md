@@ -40,7 +40,7 @@ The media type determines how Web API serializes and deserializes the HTTP messa
 To create a media formatter, derive from one of these classes:
 
 - [MediaTypeFormatter](https://msdn.microsoft.com/library/system.net.http.formatting.mediatypeformatter.aspx). This class uses asynchronous read and write methods.
-- [BufferedMediaTypeFormatter](https://msdn.microsoft.com/library/system.net.http.formatting.bufferedmediatypeformatter.aspx). This class derives from **MediaTypeFormatter** but uses sychronous read/write methods.
+- [BufferedMediaTypeFormatter](https://msdn.microsoft.com/library/system.net.http.formatting.bufferedmediatypeformatter.aspx). This class derives from **MediaTypeFormatter** but uses synchronous read/write methods.
 
 Deriving from **BufferedMediaTypeFormatter** is simpler, because there is no asynchronous code, but it also means the calling thread can block during I/O.
 
@@ -50,7 +50,7 @@ The following example shows a media type formatter that can serialize a Product 
 
 [!code-csharp[Main](media-formatters/samples/sample3.cs)]
 
-To implement a CSV formatter, define a class that derives from **BufferedMediaTypeFormater**:
+To implement a CSV formatter, define a class that derives from **BufferedMediaTypeFormatter**:
 
 [!code-csharp[Main](media-formatters/samples/sample4.cs)]
 
