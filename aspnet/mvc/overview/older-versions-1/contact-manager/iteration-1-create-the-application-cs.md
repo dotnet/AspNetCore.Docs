@@ -169,7 +169,7 @@ We need to create a table that contains the following columns:
 | Email | nvarchar(255) | false |
 
 
-The first column, the Id column, is special. You need to mark the Id column as an Identity column and a Primary Key column. You indicate that a column is an Identity column by expanding Column Properites (look at the bottom of Figure 6) and scrolling down to the Identity Specification property. Set the **(Is Identity)** property to the value **Yes**.
+The first column, the Id column, is special. You need to mark the Id column as an Identity column and a Primary Key column. You indicate that a column is an Identity column by expanding Column Properties (look at the bottom of Figure 6) and scrolling down to the Identity Specification property. Set the **(Is Identity)** property to the value **Yes**.
 
 You mark a column as a Primary Key column by selecting the column and clicking the button with the icon of a key. After a column is marked as a Primary Key column, an icon of a key appears next to the column (see Figure 6).
 
