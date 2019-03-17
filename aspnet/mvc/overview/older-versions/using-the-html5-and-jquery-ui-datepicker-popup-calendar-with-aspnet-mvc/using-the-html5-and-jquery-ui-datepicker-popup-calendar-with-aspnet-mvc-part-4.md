@@ -80,7 +80,7 @@ If you're using Visual Studio instead of Visual Web Developer, from the **Tools*
 
 ![](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/_static/image4.png)
 
-In the **MVCMovie - Manage NuGet Packages** dialog box, click the **Online** tab on the left and then enter &quot;jQuery.UI&quot; in the search box. Select j **Query UI WIdgets:Datepicker**, then select the **Install** button.
+In the **MVCMovie - Manage NuGet Packages** dialog box, click the **Online** tab on the left and then enter &quot;jQuery.UI&quot; in the search box. Select j **Query UI Widgets:Datepicker**, then select the **Install** button.
 
 ![](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/_static/image5.png)
 
