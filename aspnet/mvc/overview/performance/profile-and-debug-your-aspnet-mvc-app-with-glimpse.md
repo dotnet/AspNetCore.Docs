@@ -52,7 +52,7 @@ Navigate to http://localhost:&lt;port #&gt;/glimpse.axd and click the <strong>Tu
 
 If you have your favorites bar displayed, you can drag and drop the Glimpse buttons and add them as bookmarklets:
 
-![IE with Glimpse boookmarklets](profile-and-debug-your-aspnet-mvc-app-with-glimpse/_static/image5.png)
+![IE with Glimpse bookmarklets](profile-and-debug-your-aspnet-mvc-app-with-glimpse/_static/image5.png)
 
 You can now navigate your app, and the **Heads Up Display** (HUD) is shown at the bottom of the page.
 
