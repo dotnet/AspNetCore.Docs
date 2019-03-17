@@ -63,7 +63,7 @@ SignalR uses two communication models: Hubs and PersistentConnections. The synta
 
 [!code-csharp[Main](troubleshooting/samples/sample3.cs)]
 
-**C# server code that maps a route to a Hub, or to mulitple hubs if you have multiple applications**
+**C# server code that maps a route to a Hub, or to multiple hubs if you have multiple applications**
 
 [!code-csharp[Main](troubleshooting/samples/sample4.cs)]
 
