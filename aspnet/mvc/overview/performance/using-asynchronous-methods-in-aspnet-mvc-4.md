@@ -147,7 +147,7 @@ The following code shows the GetGizmosAsync overload, which takes a [Cancellatio
 
 [!code-csharp[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample10.cs)]
 
-In the sample application provided, selecting the *Cancellation Token Demo* link calls the `GizmosCancelAsync` method and demonstrates the cancelation of the asynchronous call.
+In the sample application provided, selecting the *Cancellation Token Demo* link calls the `GizmosCancelAsync` method and demonstrates the cancellation of the asynchronous call.
 
 ## <a id="ServerConfig"></a>  Server Configuration for High Concurrency/High Latency Web Service Calls
 
