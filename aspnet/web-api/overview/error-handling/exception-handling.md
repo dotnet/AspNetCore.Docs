@@ -67,7 +67,7 @@ To apply the filter to all of the actions on a controller, add the filter as an 
 
 [!code-csharp[Main](exception-handling/samples/sample5.cs)]
 
-To apply the filter globally to all Web API controllers, add an instance of the filter to the **GlobalConfiguration.Configuration.Filters** collection. Exeption filters in this collection apply to any Web API controller action.
+To apply the filter globally to all Web API controllers, add an instance of the filter to the **GlobalConfiguration.Configuration.Filters** collection. Exception filters in this collection apply to any Web API controller action.
 
 [!code-csharp[Main](exception-handling/samples/sample6.cs)]
 
