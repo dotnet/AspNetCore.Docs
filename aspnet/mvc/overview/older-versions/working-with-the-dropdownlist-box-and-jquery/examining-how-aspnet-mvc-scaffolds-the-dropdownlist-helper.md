@@ -191,7 +191,7 @@ Run the application and edit an album. Change the URL to use `EditVM`. Change a 
 
 ### Which Approach Should You Use?
 
-All three approaches shown are acceptible. Many developers prefer to explictily pass the `SelectList` to the `DropDownList` using the `ViewBag`. This approach has the added advantage of giving you the flexibility of using a more appropriate name for the collection. The one caveat is you cannot name the `ViewBag SelectList` object the same name as the model property.
+All three approaches shown are acceptable. Many developers prefer to explicitly pass the `SelectList` to the `DropDownList` using the `ViewBag`. This approach has the added advantage of giving you the flexibility of using a more appropriate name for the collection. The one caveat is you cannot name the `ViewBag SelectList` object the same name as the model property.
 
 Some developers prefer the ViewModel approach. Others consider the more verbose markup and generated HTML of the ViewModel approach a disadvantage.
 
