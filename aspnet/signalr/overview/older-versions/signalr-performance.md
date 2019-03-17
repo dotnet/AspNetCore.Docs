@@ -142,7 +142,7 @@ The following metrics measure the connection lifetime events that occur. For mor
 
 - **Connections Connected**
 - **Connections Reconnected**
-- **Connections Disonnected**
+- **Connections Disconnected**
 - **Connections Current**
 
 **Message metrics**
