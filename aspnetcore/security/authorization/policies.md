@@ -17,7 +17,7 @@ An authorization policy consists of one or more requirements. It's registered as
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
-## Applying policies
+## Applying policies to MVC controllers
 
 If you're using Razor Pages, see [Applying policies to Razor Pages](#applying-policies-to-razor-pages) in this document.
 
