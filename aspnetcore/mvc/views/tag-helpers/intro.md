@@ -4,14 +4,14 @@ author: rick-anderson
 description: Learn what Tag Helpers are and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 2/14/2018
+ms.date: 03/18/2019
 uid: mvc/views/tag-helpers/intro
 ---
 # Tag Helpers in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-## What are Tag Helpers?
+## What are Tag Helpers
 
 Tag Helpers enable server-side code to participate in creating and rendering HTML elements in Razor files. For example, the built-in `ImageTagHelper` can append a version number to the image name. Whenever the image changes, the server generates a new unique version for the image, so clients are guaranteed to get the current image (instead of a stale cached image). There are many built-in Tag Helpers for common tasks - such as creating forms, links, loading assets and more - and even more available in public GitHub repositories and as NuGet packages. Tag Helpers are authored in C#, and they target HTML elements based on element name, attribute name, or parent tag. For example, the built-in `LabelTagHelper` can target the HTML `<label>` element when the
 `LabelTagHelper` attributes are applied. If you're familiar with [HTML Helpers](http://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers), Tag Helpers reduce the explicit transitions between HTML and C# in Razor views. In many cases, HTML Helpers provide an alternative approach to a specific Tag Helper, but it's important to recognize that Tag Helpers don't replace HTML Helpers and there's not a Tag Helper for each HTML Helper. [Tag Helpers compared to HTML Helpers](#tag-helpers-compared-to-html-helpers) explains the differences in more detail.
@@ -184,37 +184,21 @@ The at (`@`) symbol tells Razor this is the start of code. The next two paramete
 new {@class="caption"}
 ```
 
-Is an anonymous object used to represent attributes. Because <strong>class</strong> is a reserved keyword in C#, you use the `@` symbol to force C# to interpret "@class=" as a symbol (property name). To a front-end designer (someone familiar with HTML/CSS/JavaScript and other client technologies but not familiar with C# and Razor), most of the line is foreign. The entire line must be authored with no help from IntelliSense.
+Is an anonymous object used to represent attributes. Because `class` is a reserved keyword in C#, you use the `@` symbol to force C# to interpret `@class=` as a symbol (property name). To a front-end designer (someone familiar with HTML/CSS/JavaScript and other client technologies but not familiar with C# and Razor), most of the line is foreign. The entire line must be authored with no help from IntelliSense.
 
 Using the `LabelTagHelper`, the same markup can be written as:
 
-![image](intro/_static/label2.png)
+```cshtml
+<label class="caption" asp-for="FirstName"></label>
+```
 
 With the Tag Helper version, as soon as you enter `<l` in the Visual Studio editor, IntelliSense displays matching elements:
 
 ![image](intro/_static/label.png)
 
-IntelliSense helps you write the entire line. The `LabelTagHelper` also defaults to setting the content of the `asp-for` attribute value ("FirstName") to "First Name"; It converts camel-cased properties to a sentence composed of the property name with a space where each new upper-case letter occurs. In the following markup:
+IntelliSense helps you write the entire line.
 
-![image](intro/_static/label2.png)
-
-generates:
-
-```cshtml
-<label class="caption" for="FirstName">First Name</label>
-```
-
-The camel-cased to sentence-cased content isn't used if you add content to the `<label>`. For example:
-
-![image](intro/_static/1stName.png)
-
-generates:
-
-```cshtml
-<label class="caption" for="FirstName">Name First</label>
-```
-
-The following code image shows the Form portion of the *Views/Account/Register.cshtml* Razor view generated from the legacy ASP.NET 4.5.x MVC template included with Visual Studio 2015.
+The following code image shows the Form portion of the *Views/Account/Register.cshtml* Razor view generated from the ASP.NET 4.5.x MVC template included with Visual Studio.
 
 ![image](intro/_static/regCS.png)
 
