@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApiSample.DataAccess.Repositories;
 
 #region snippet_ApiControllerAttributeOnAssembly
 [assembly: ApiController]
@@ -34,6 +35,10 @@ namespace WebApiSample.Api._22
                         "https://httpstatuses.com/404";
                 });
             #endregion
+            
+            //services.AddSingleton<PetsRepository>();
+            //services.AddSingleton<OrdersRepository>();
+            services.AddSingleton<ProductsRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
