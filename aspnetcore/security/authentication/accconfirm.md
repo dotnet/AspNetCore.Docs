@@ -202,7 +202,7 @@ Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetco
 
 Add the custom provider to the service container:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupEmail.cs?name=snippet1&highlight=10-13)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupEmail.cs?name=snippet1&highlight=10-13,18)]
 
 ### Resend email confirmation
 
