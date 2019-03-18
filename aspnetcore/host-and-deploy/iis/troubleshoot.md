@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/06/2019
+ms.date: 03/14/2019
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -239,7 +239,7 @@ A *dump* is a snapshot of the system's memory and can help determine the cause o
 Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/wer/windows-error-reporting):
 
 1. Create a folder to hold crash dump files at `c:\dumps`. The app pool must have write access to the folder.
-1. Run the [EnableDumps PowerShell script](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/troubleshoot/scripts/EnableDumps.ps1):
+1. Run the [EnableDumps PowerShell script](https://github.com/aspnet/Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/EnableDumps.ps1):
    * If the app uses the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
@@ -251,7 +251,7 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
      .\EnableDumps dotnet.exe c:\dumps
      ```
 1. Run the app under the conditions that cause the crash to occur.
-1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/troubleshoot/scripts/DisableDumps.ps1):
+1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/aspnet/Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/DisableDumps.ps1):
    * If the app uses the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
