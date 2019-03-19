@@ -1,5 +1,0 @@
-<configuration>
-  <!-- ... -->
-  <runtime>
-<performanceScenario value="HighDensityWebHosting"  />
-  <!-- ... -->

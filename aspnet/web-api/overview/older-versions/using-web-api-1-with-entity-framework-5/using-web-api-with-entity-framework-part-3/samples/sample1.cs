@@ -1,1 +1,0 @@
-public OrdersContext() : base("name=OrdersContext")

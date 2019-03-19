@@ -13,7 +13,7 @@ If you get the error:
 No executable found matching command "dotnet-aspnet-codegenerator"
   ```
 
-The preceeding error happens when you are in the wrong directory. Open a command shell to the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files), and then run the preceeding command.
+The preceding error happens when you are in the wrong directory. Open a command shell to the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files), and then run the preceding command.
 
 If you get the error:
   ```

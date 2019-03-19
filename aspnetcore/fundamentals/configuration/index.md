@@ -531,8 +531,6 @@ Overloads permit specifying:
 * Whether the configuration is reloaded if the file changes.
 * The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
 
-
-
 `AddJsonFile` is automatically called twice when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>. The method is called to load configuration from:
 
 * *appsettings.json* &ndash; This file is read first. The environment version of the file can override the values provided by the *appsettings.json* file.

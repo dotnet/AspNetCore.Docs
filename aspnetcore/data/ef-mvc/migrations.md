@@ -24,7 +24,6 @@ In this tutorial, you:
 > * Learn about the data model snapshot
 > * Apply the migration
 
-
 ## Prerequisites
 
 * [Add sorting, filtering, and paging with EF Core in an ASP.NET Core MVC app](sort-filter-page.md)

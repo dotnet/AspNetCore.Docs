@@ -267,7 +267,7 @@ To host Blazor in Docker using Nginx, setup the Dockerfile to use the Alpine-bas
 
 Add one line to the Dockerfile, as shown in the following example:
 
-```
+```Dockerfile
 FROM nginx:alpine
 COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf

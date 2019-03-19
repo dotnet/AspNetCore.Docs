@@ -63,9 +63,9 @@ Implicit expressions **cannot** contain C# generics, as the characters inside th
 
 The preceding code generates a compiler error similar to one of the following:
 
- * The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
- *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
- 
+* The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
+* Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?`
+
 Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks).
 
 ## Explicit Razor expressions
@@ -193,7 +193,7 @@ Use this approach to render HTML that isn't surrounded by an HTML tag. Without a
 
 The **\<text>** tag is useful to control whitespace when rendering content:
 
-* Only the content between the **\<text>** tag is rendered. 
+* Only the content between the **\<text>** tag is rendered.
 * No whitespace before or after the **\<text>** tag appears in the HTML output.
 
 ### Explicit Line Transition with @:
@@ -330,7 +330,6 @@ The following looping statements are supported:
 ### Compound @using
 
 In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a form tag with the `@using` statement:
-
 
 ```cshtml
 @using (Html.BeginForm())
@@ -573,7 +572,7 @@ You can also supply an inline Razor template as an argument to a method. In the 
 @using Microsoft.AspNetCore.Html
 
 @functions {
-    public static IHtmlContent Repeat(IEnumerable<dynamic> items, int times, 
+    public static IHtmlContent Repeat(IEnumerable<dynamic> items, int times,
         Func<dynamic, IHtmlContent> template)
     {
         var html = new HtmlContentBuilder();

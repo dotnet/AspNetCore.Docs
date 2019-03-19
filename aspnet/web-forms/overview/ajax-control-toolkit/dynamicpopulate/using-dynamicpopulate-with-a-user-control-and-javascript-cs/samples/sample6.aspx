@@ -1,1 +1,0 @@
-<%@ Register TagPrefix="uc1" TagName="myCustomDate" Src="~/DynamicPopulate2.cs.ascx"%>

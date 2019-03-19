@@ -76,7 +76,7 @@ Suppose Contoso University administrators want to perform global changes in the 
 
 ![Update Course Credits page](advanced/_static/update-credits.png)
 
-In *CoursesContoller.cs*, add UpdateCourseCredits methods for HttpGet and HttpPost:
+In *CoursesController.cs*, add UpdateCourseCredits methods for HttpGet and HttpPost:
 
 [!code-csharp[](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_UpdateGet)]
 

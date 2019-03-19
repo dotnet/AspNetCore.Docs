@@ -35,7 +35,6 @@ gRPC requires the following packages:
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) for protobuf message APIs.
 * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
 
-
 ### Configure gRPC
 
 gRPC is enabled with the `AddGrpc` method:

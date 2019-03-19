@@ -18,7 +18,7 @@ Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#inter
 
 Control assembly linking using either of the following approaches:
 
-* Disable linking globally with a [MSBuild property](#disable-linking-with-a-msBuild-property).
+* Disable linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).
 * Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).
 
 ## Disable linking with a MSBuild property

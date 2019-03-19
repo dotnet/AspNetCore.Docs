@@ -92,7 +92,7 @@ Applications typically share parts of their workflow. Examples include an app th
 Most filter attributes, such as `[Authorize]`, can be applied at the controller or action level depending upon the desired level of granularity.
 
 Error handling and response caching are often cross-cutting concerns:
-   * [Handle errors](xref:mvc/controllers/filters#exception-filters)
-   * [Response Caching](xref:performance/caching/response)
+* [Handle errors](xref:mvc/controllers/filters#exception-filters)
+* [Response Caching](xref:performance/caching/response)
 
 Many cross-cutting concerns can be handled using filters or custom [middleware](xref:fundamentals/middleware/index).

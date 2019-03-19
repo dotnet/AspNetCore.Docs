@@ -1,1 +1,0 @@
-contosoChatHubProxy.server.PascalCaseNewContosoChatMessage(userName, message);

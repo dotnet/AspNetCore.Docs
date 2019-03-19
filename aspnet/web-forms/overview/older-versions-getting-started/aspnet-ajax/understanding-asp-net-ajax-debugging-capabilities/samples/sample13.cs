@@ -1,1 +1,0 @@
-if (typeof(Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();

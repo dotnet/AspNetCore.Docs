@@ -1,1 +1,0 @@
-<asp:CommandField SelectText="View" ShowSelectButton="True"/>

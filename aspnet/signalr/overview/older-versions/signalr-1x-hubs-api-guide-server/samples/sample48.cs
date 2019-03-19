@@ -1,1 +1,0 @@
-string transportMethod = queryString["transport"];

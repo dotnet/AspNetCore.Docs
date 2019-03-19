@@ -1,1 +1,0 @@
-<%@ MasterType TypeName="BaseMasterPage" %>

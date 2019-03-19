@@ -1,5 +1,0 @@
-<system.webServer>
-    <modules>
-      <remove name="RoleManager" />
-    </modules>
-  </system.webServer>

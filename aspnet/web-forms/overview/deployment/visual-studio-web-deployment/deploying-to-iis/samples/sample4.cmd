@@ -1,1 +1,0 @@
-Data Source=.\SQLExpress;Initial Catalog=ContosoUniversity;Integrated Security=True

@@ -1,1 +1,0 @@
-config.Formatters.Add(new BsonMediaTypeFormatter());

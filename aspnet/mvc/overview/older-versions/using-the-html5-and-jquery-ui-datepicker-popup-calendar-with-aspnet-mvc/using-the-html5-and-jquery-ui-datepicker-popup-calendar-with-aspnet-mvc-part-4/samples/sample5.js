@@ -1,3 +1,0 @@
-$(function () {
-    $(".datefield").datepicker(); 
-});

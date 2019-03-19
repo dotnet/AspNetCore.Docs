@@ -636,8 +636,6 @@
       uid: client-side/using-grunt
     - name: Bower
       uid: client-side/bower
-    - name: LESS, Sass, and Font Awesome
-      uid: client-side/less-sass-fa
     - name: Bundle and minify
       uid: client-side/bundling-and-minification
     - name: Browser Link

@@ -85,7 +85,6 @@ Change the `<title>` element in the *Pages/Shared/_Layout.cshtml* file display *
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
-
 Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
 
 ```cshtml
@@ -171,7 +170,6 @@ The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movi
 ## Additional resources
 
 * [YouTube version of this tutorial](https://youtu.be/zxgKjPYnOMM)
-
 
 > [!div class="step-by-step"]
 > [Previous: Adding a model](xref:tutorials/razor-pages/model)

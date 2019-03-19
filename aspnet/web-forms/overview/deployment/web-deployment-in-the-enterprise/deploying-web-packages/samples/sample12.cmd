@@ -1,1 +1,0 @@
-https://[server name]:8172/MSDeploy.axd?site=[IIS website name]

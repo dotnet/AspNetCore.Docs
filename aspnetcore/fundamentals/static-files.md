@@ -88,7 +88,7 @@ Consider a directory hierarchy in which the static files to be served reside out
   * **js**
 * **MyStaticFiles**
   * **images**
-      * *banner1.svg*
+    * *banner1.svg*
 
 A request can access the *banner1.svg* file by configuring the Static File Middleware as follows:
 
@@ -187,7 +187,7 @@ Consider the following directory hierarchy:
   * **js**
 * **MyStaticFiles**
   * **images**
-      * *banner1.svg*
+    * *banner1.svg*
   * *default.html*
 
 The following code enables static files, default files, and directory browsing of `MyStaticFiles`:

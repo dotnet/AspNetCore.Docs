@@ -67,7 +67,6 @@ Congratulations! You just ran your first Razor Components app!
 
 Use the [.NET Core CLI version of this topic](xref:razor-components/get-started?tabs=netcore-cli) on macOS.
 
-
 [!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
 
 To create your first project Razor Components project in Visual Studio for Mac:

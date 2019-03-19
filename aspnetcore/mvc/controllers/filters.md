@@ -13,11 +13,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://githu
 
 *Filters* in ASP.NET Core MVC allow you to run code before or after specific stages in the request processing pipeline.
 
- Built-in filters handle tasks such as:
+Built-in filters handle tasks such as:
 
- * Authorization (preventing access to resources a user isn't authorized for).
- * Ensuring that all requests use HTTPS.
- * Response caching (short-circuiting the request pipeline to return a cached response). 
+* Authorization (preventing access to resources a user isn't authorized for).
+* Ensuring that all requests use HTTPS.
+* Response caching (short-circuiting the request pipeline to return a cached response). 
 
 Custom filters can be created to handle cross-cutting concerns. Filters can avoid duplicating code across actions. For example, an error handling exception filter could consolidate error handling.
 
@@ -368,7 +368,7 @@ When the `OnResultExecuted` method runs, the response has likely been sent to th
 
 `ResultExecutedContext.Exception` will be set to a non-null value if the action result or a subsequent result filter threw an exception. Setting `Exception` to null effectively 'handles' an exception and prevents the exception from being rethrown by MVC later in the pipeline. When you're handling an exception in a result filter, you might not be able to write any data to the response. If the action result throws partway through its execution, and the headers have already been flushed to the client, there's no reliable mechanism to send a failure code.
 
-For an `IAsyncResultFilter` a call to `await next` on the `ResultExecutionDelegate` executes any subsequent result filters and the action result. To short-circuit, set `ResultExecutingContext.Cancel` to true and don't call the `ResultExectionDelegate`.
+For an `IAsyncResultFilter` a call to `await next` on the `ResultExecutionDelegate` executes any subsequent result filters and the action result. To short-circuit, set `ResultExecutingContext.Cancel` to true and don't call the `ResultExecutionDelegate`.
 
 The framework provides an abstract `ResultFilterAttribute` that you can subclass. The [AddHeaderAttribute](#add-header-attribute) class shown earlier is an example of a result filter attribute.
 

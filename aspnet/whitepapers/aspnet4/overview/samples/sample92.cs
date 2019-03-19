@@ -1,1 +1,0 @@
-GridView1.EnableDynamicData(typeof(Product));

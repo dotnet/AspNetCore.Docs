@@ -1,1 +1,0 @@
-GET http://localhost/odata/Products()?$orderby=Price desc&$skip=40&$top=10

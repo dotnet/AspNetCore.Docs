@@ -1,1 +1,0 @@
-msbuild C:\ContosoUniversity\ContosoUniversity\ContosoUniversity.csproj /p:DeployOnBuild=true /p:PublishProfile=Test /p:VisualStudioVersion=11.0

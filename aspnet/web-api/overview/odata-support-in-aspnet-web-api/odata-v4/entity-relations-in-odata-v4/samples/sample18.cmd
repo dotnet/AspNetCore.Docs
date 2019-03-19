@@ -1,1 +1,0 @@
-DELETE http://host/Products(1)/Supplier/$ref

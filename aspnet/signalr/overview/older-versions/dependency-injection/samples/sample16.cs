@@ -1,1 +1,0 @@
-var resolver = new NinjectSignalRDependencyResolver(kernel);

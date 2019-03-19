@@ -83,7 +83,7 @@ C-core based apps configure HTTPS through the [`Server.Ports` property](https://
 
 ## Interceptors and Middlewares
 
-ASP.NET Core [middlewares](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core based gRPC apps. Middlewares and interceptors are conceptually the same as both are used to construct a pipleline that handles a gRPC request. They both allow work to be performed before or after the next component in the pipeline. However, ASP.NET Core middlewares operate on the underlying HTTP/2 messages whereas interceptors operate on the gRPC layer of abstraction using the [`ServerCallContext`](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).
+ASP.NET Core [middlewares](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core based gRPC apps. Middlewares and interceptors are conceptually the same as both are used to construct a pipeline that handles a gRPC request. They both allow work to be performed before or after the next component in the pipeline. However, ASP.NET Core middlewares operate on the underlying HTTP/2 messages whereas interceptors operate on the gRPC layer of abstraction using the [`ServerCallContext`](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).
 
 ## Additional resources
 

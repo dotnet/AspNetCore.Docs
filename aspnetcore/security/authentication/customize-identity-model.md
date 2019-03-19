@@ -296,7 +296,6 @@ When overriding `OnModelCreating`, `base.OnModelCreating` should be called first
 
 [Custom user data](xref:security/authentication/add-user-data) is supported by inheriting from `IdentityUser`. It's customary to name this type `ApplicationUser`:
 
-
 ```csharp
 public class ApplicationUser : IdentityUser
 {
