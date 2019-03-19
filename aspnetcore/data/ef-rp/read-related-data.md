@@ -60,7 +60,7 @@ To display the name of the assigned department in a list of courses:
 * Get the `Name` property from the `Department` entity.
 * The `Department` entity comes from the `Course.Department` navigation property.
 
-![ourse.Department](read-related-data/_static/dep-crs.png)
+![Course.Department](read-related-data/_static/dep-crs.png)
 
 <a name="scaffold"></a>
 ### Scaffold the Course model
