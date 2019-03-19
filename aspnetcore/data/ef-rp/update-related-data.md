@@ -131,9 +131,9 @@ Update the instructors Edit page model with the following code:
 
 The preceding code:
 
-- Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property.
-- Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
-- If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
+* Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property.
+* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
+* If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 
 ### Update the instructor Edit page
 

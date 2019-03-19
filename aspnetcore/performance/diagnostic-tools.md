@@ -37,9 +37,9 @@ Azure Application Insights provides multiple ways to give insights on monitored 
 
 Application Insights can be used in a variety environments:
 
-* Optimized to work in Azure.
-* Works in production, development, and staging.
-* Works locally from [Visual Studio](/azure/application-insights/app-insights-visual-studio) or in other hosting environments.
+- Optimized to work in Azure.
+- Works in production, development, and staging.
+- Works locally from [Visual Studio](/azure/application-insights/app-insights-visual-studio) or in other hosting environments.
 
 For more information, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core).
 
