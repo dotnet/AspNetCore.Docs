@@ -39,7 +39,7 @@ Load tests can be configured to run in on-premise or run in the cloud using Azur
 
 Load test runs can be started using the [Azure DevOps Test Plans](/azure/devops/test/load-test/index?view=vsts) service.
 
-![](./load-tests/_static/azure-devops-load-test.png)
+![Azure DevOps load testing landing page](./load-tests/_static/azure-devops-load-test.png)
 
 The service supports the following types of test format:
 
@@ -52,11 +52,11 @@ The service supports the following types of test format:
 
 [Azure portal allows setting up and running load testing of Web Apps,](/azure/devops/test/load-test/app-service-web-app-performance-test?view=vsts) directly from the Performance tab of the App Service in Azure portal.
 
-![](./load-tests/_static/azure-appservice-perf-test.png)
+![Azure App Service in Azure Portal](./load-tests/_static/azure-appservice-perf-test.png)
 
 The test can be a manual test with a specified URL, or a Visual Studio Web Test file, which can test multiple URLs.
 
-![](./load-tests/_static/azure-appservice-perf-test-config.png)
+![New Performance Test page on Azure Portal](./load-tests/_static/azure-appservice-perf-test-config.png)
 
 At end of the test, reports are generated to show the performance characteristics of the app. Example statistics include:
 
