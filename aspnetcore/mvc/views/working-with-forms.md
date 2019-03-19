@@ -209,9 +209,9 @@ The following table shows some common [data annotations](/dotnet/api/microsoft.a
 |[Url]|type="url"|
 |[HiddenInput]|type="hidden"|
 |[Phone]|type="tel"|
-|[DataType(DataType.Password)]|	type="password"|
-|[DataType(DataType.Date)]|	type="date"|
-|[DataType(DataType.Time)]|	type="time"|
+|[DataType(DataType.Password)]|type="password"|
+|[DataType(DataType.Date)]|type="date"|
+|[DataType(DataType.Time)]|type="time"|
 
 
 Sample:
