@@ -214,7 +214,7 @@ The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Loggi
 
 ## Log category
 
-When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that instance of `Ilogger`. The category may be any string, but the convention is to use the class name, such as "TodoApi.Controllers.TodoController".
+When an `ILogger` object is created, a *category* is specified for it. That category is included with each log message created by that instance of `ILogger`. The category may be any string, but the convention is to use the class name, such as "TodoApi.Controllers.TodoController".
 
 Use `ILogger<T>` to get an `ILogger` instance that uses the fully qualified type name of `T` as the category:
 
