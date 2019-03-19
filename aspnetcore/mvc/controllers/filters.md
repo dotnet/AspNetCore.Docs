@@ -13,11 +13,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://githu
 
 *Filters* in ASP.NET Core MVC allow you to run code before or after specific stages in the request processing pipeline.
 
- Built-in filters handle tasks such as:
+Built-in filters handle tasks such as:
 
- * Authorization (preventing access to resources a user isn't authorized for).
- * Ensuring that all requests use HTTPS.
- * Response caching (short-circuiting the request pipeline to return a cached response). 
+* Authorization (preventing access to resources a user isn't authorized for).
+* Ensuring that all requests use HTTPS.
+* Response caching (short-circuiting the request pipeline to return a cached response). 
 
 Custom filters can be created to handle cross-cutting concerns. Filters can avoid duplicating code across actions. For example, an error handling exception filter could consolidate error handling.
 

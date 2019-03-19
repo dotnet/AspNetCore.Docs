@@ -100,8 +100,8 @@ Similarly, [IHtmlHelper.BeginForm](/dotnet/api/microsoft.aspnetcore.mvc.renderin
 
 The automatic generation of antiforgery tokens for HTML form elements happens when the `<form>` tag contains the `method="post"` attribute and either of the following are true:
 
-  * The action attribute is empty (`action=""`).
-  * The action attribute isn't supplied (`<form method="post">`).
+* The action attribute is empty (`action=""`).
+* The action attribute isn't supplied (`<form method="post">`).
 
 Automatic generation of antiforgery tokens for HTML form elements can be disabled:
 
