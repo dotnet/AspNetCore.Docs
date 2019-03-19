@@ -196,7 +196,7 @@ Troubleshooting:
   <section name="aspNetCore" overrideModeDefault="Allow" />
   ```
   
-  Alternatively, install the lastest version of the ASP.NET Core Hosting Bundle. The latest version is backwards-compatible with supported ASP.NET Core apps.
+  Alternatively, install the latest version of the ASP.NET Core Hosting Bundle. The latest version is backwards-compatible with supported ASP.NET Core apps.
 
 ## Incorrect processPath, missing PATH variable, Hosting Bundle not installed, system/IIS not restarted, VC++ Redistributable not installed, or dotnet.exe access violation
 
