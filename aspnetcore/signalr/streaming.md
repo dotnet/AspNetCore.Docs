@@ -134,7 +134,9 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
+
 ## Java client
+
 The SignalR Java client uses the `stream` method to invoke streaming methods. It accepts three or more arguments:
 
 * The expected type of the stream items 

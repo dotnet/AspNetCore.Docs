@@ -34,6 +34,7 @@ if (context.Movie.Any())
 ```
 
 <a name="si"></a>
+
 ### Add the seed initializer
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
