@@ -219,8 +219,8 @@ If a navigation property holds multiple entities:
 Navigation property types include:
 
 * `ICollection<T>`
-*  `List<T>`
-*  `HashSet<T>`
+* `List<T>`
+* `HashSet<T>`
 
 If `ICollection<T>` is specified, EF Core creates a `HashSet<T>` collection by default.
 

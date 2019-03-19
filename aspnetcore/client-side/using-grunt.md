@@ -32,27 +32,27 @@ The finished example cleans the target deployment directory, combines JavaScript
 
 To begin, set up a new empty web application and add TypeScript example files. TypeScript files are automatically compiled into JavaScript using default Visual Studio settings and will be our raw material to process using Grunt.
 
-1.  In Visual Studio, create a new `ASP.NET Web Application`.
+1. In Visual Studio, create a new `ASP.NET Web Application`.
 
-2.  In the **New ASP.NET Project** dialog, select the ASP.NET Core **Empty** template and click the OK button.
+2. In the **New ASP.NET Project** dialog, select the ASP.NET Core **Empty** template and click the OK button.
 
-3.  In the Solution Explorer, review the project structure. The `\src` folder includes empty `wwwroot` and `Dependencies` nodes.
+3. In the Solution Explorer, review the project structure. The `\src` folder includes empty `wwwroot` and `Dependencies` nodes.
 
     ![empty web solution](using-grunt/_static/grunt-solution-explorer.png)
 
-4.  Add a new folder named `TypeScript` to your project directory.
+4. Add a new folder named `TypeScript` to your project directory.
 
-5.  Before adding any files, make sure that Visual Studio has the option 'compile on save' for TypeScript files checked. Navigate to **Tools** > **Options** > **Text Editor** > **Typescript** > **Project**:
+5. Before adding any files, make sure that Visual Studio has the option 'compile on save' for TypeScript files checked. Navigate to **Tools** > **Options** > **Text Editor** > **Typescript** > **Project**:
 
     ![options setting auto compilation of TypeScript files](using-grunt/_static/typescript-options.png)
 
-6.  Right-click the `TypeScript` directory and select **Add > New Item** from the context menu. Select the **JavaScript file** item and name the file *Tastes.ts* (note the \*.ts extension). Copy the line of TypeScript code below into the file (when you save, a new *Tastes.js* file will appear with the JavaScript source).
+6. Right-click the `TypeScript` directory and select **Add > New Item** from the context menu. Select the **JavaScript file** item and name the file *Tastes.ts* (note the \*.ts extension). Copy the line of TypeScript code below into the file (when you save, a new *Tastes.js* file will appear with the JavaScript source).
 
     ```typescript
     enum Tastes { Sweet, Sour, Salty, Bitter }
     ```
 
-7.  Add a second file to the **TypeScript** directory and name it `Food.ts`. Copy the code below into the file.
+7. Add a second file to the **TypeScript** directory and name it `Food.ts`. Copy the code below into the file.
 
     ```typescript
     class Food {
