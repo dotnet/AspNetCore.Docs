@@ -64,7 +64,7 @@ Implicit expressions **cannot** contain C# generics, as the characters inside th
 The preceding code generates a compiler error similar to one of the following:
 
 * The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
-*  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?`
+* Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?`
 
 Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks).
 
