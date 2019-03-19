@@ -105,10 +105,10 @@ The following code calls [Get](/dotnet/api/microsoft.extensions.caching.memory.c
 
 The following sample:
 
-- Sets the absolute expiration time. This is the maximum time the entry can be cached and prevents the item from becoming too stale when the sliding expiration is continuously renewed.
-- Sets a sliding expiration time. Requests that access this cached item will reset the sliding expiration clock.
-- Sets the cache priority to `CacheItemPriority.NeverRemove`.
-- Sets a [PostEvictionDelegate](/dotnet/api/microsoft.extensions.caching.memory.postevictiondelegate) that will be called after the entry is evicted from the cache. The callback is run on a different thread from the code that removes the item from the cache.
+* Sets the absolute expiration time. This is the maximum time the entry can be cached and prevents the item from becoming too stale when the sliding expiration is continuously renewed.
+* Sets a sliding expiration time. Requests that access this cached item will reset the sliding expiration clock.
+* Sets the cache priority to `CacheItemPriority.NeverRemove`.
+* Sets a [PostEvictionDelegate](/dotnet/api/microsoft.extensions.caching.memory.postevictiondelegate) that will be called after the entry is evicted from the cache. The callback is run on a different thread from the code that removes the item from the cache.
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_et&highlight=14-21)]
 
@@ -155,14 +155,14 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 ## Additional notes
 
-- When using a callback to repopulate a cache item:
+* When using a callback to repopulate a cache item:
 
-  - Multiple requests can find the cached key value empty because the callback hasn't completed.
-  - This can result in several threads repopulating the cached item.
+  * Multiple requests can find the cached key value empty because the callback hasn't completed.
+  * This can result in several threads repopulating the cached item.
 
-- When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
+* When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
 
-- Use [PostEvictionCallbacks](/dotnet/api/microsoft.extensions.caching.memory.icacheentry.postevictioncallbacks#Microsoft_Extensions_Caching_Memory_ICacheEntry_PostEvictionCallbacks) to set the callbacks that will be fired after the cache entry is evicted from the cache.
+* Use [PostEvictionCallbacks](/dotnet/api/microsoft.extensions.caching.memory.icacheentry.postevictioncallbacks#Microsoft_Extensions_Caching_Memory_ICacheEntry_PostEvictionCallbacks) to set the callbacks that will be fired after the cache entry is evicted from the cache.
 
 ## Additional resources
 

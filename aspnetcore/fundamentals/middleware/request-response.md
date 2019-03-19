@@ -74,5 +74,5 @@ Now that both `Body` and `BodyPipe` properties are available for `HttpRequest` a
 
 ## Additional resources
 
-* [Introducing System.IO.Pipelines](https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/)
-* <xref:fundamentals/middleware/write>
+- [Introducing System.IO.Pipelines](https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/)
+- <xref:fundamentals/middleware/write>
