@@ -409,7 +409,7 @@ description: Learn how to develop ASP.NET and ASP.NET web applications. Get docu
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Real-time</h3>
-                                                    <p>Lean how to build a chat application using ASP.NET SignalR 2 and Visual
+                                                    <p>Learn how to build a chat application using ASP.NET SignalR 2 and Visual
                                                         Studio.</p>
                                                 </div>
                                             </div>
