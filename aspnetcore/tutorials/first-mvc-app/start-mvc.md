@@ -130,7 +130,7 @@ Select **Run** > **Start Without Debugging** to launch the app. Visual Studio fo
 * The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
 * You can launch the app in debug or non-debug mode from the **Run** menu.
 
-------
+---
 
 * Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
