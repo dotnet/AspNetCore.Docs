@@ -4,6 +4,8 @@ This repository contains the conceptual ASP.NET Core documentation hosted at [do
 
 API documentation changes should be made in the [ApiDocs repository](https://github.com/aspnet/ApiDocs) against the triple slash `///` comments.
 
+ASP.NET 4.x documentation changes should be made in the [aspnet/AspNetDocs repository](https://github.com/aspnet/AspNetDocs).
+
 ## Microsoft Open Source Code of Conduct
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
