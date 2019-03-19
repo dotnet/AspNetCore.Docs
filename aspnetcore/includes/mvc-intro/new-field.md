@@ -5,7 +5,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial will add a new field to the `Movies` table. We'll drop the database and create a new one when we change the schema (add a new field). This workflow works well early in development when we don't have any production data to preserve.
 
-Once your app is deployed and you have data that you need to preserve, you can't drop your DB when you need to change the schema. Entity Framework [Code First Migrations](/ef/core/get-started/aspnetcore/new-db) allows you to update your schema and migrate the database without losing data. Migrations is a popular feature when using SQL Server, but SQLlite doesn't support many migration schema operations, so only very simply migrations are possible. See [SQLite Limitations](/ef/core/providers/sqlite/limitations) for more information.
+Once your app is deployed and you have data that you need to preserve, you can't drop your DB when you need to change the schema. Entity Framework [Code First Migrations](/ef/core/get-started/aspnetcore/new-db) allows you to update your schema and migrate the database without losing data. Migrations is a popular feature when using SQL Server, but SQLite doesn't support many migration schema operations, so only very simply migrations are possible. See [SQLite Limitations](/ef/core/providers/sqlite/limitations) for more information.
 
 ## Adding a Rating Property to the Movie Model
 
