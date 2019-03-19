@@ -108,10 +108,10 @@ Add the following `MovieGenreViewModel` class to the *Models* folder:
 
 The movie-genre view model will contain:
 
-   * A list of movies.
-   * A `SelectList` containing the list of genres. This allows the user to select a genre from the list.
-   * `MovieGenre`, which contains the selected genre.
-   * `SearchString`, which contains the text users enter in the search text box.
+* A list of movies.
+* A `SelectList` containing the list of genres. This allows the user to select a genre from the list.
+* `MovieGenre`, which contains the selected genre.
+* `SearchString`, which contains the text users enter in the search text box.
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 
@@ -143,4 +143,4 @@ Test the app by searching by genre, by movie title, and by both:
 
 > [!div class="step-by-step"]
 > [Previous](controller-methods-views.md)
-> [Next](new-field.md)  
+> [Next](new-field.md)

@@ -129,8 +129,8 @@ When deployment completes, select **Settings**:
 
 On the **Settings** page of the **Publish** dialog:
 
-  * Expand **Databases** and check **Use this connection string at runtime**.
-  * Expand **Entity Framework Migrations** and check **Apply this migration on publish**.
+* Expand **Databases** and check **Use this connection string at runtime**.
+* Expand **Entity Framework Migrations** and check **Apply this migration on publish**.
 
 * Select **Save**. Visual Studio returns to the **Publish** dialog. 
 
