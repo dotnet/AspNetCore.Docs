@@ -80,6 +80,7 @@ The following code overrides the synchronous Razor Page filters:
 ::: moniker-end
 
 <a name="ifa"></a>
+
 ## Implement a filter attribute
 
 The built-in attribute-based filter [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Filters_IAsyncResultFilter_OnResultExecutionAsync_Microsoft_AspNetCore_Mvc_Filters_ResultExecutingContext_Microsoft_AspNetCore_Mvc_Filters_ResultExecutionDelegate_) filter can be subclassed. The following filter adds a header to the response:
@@ -95,6 +96,7 @@ See [Overriding the default order](xref:mvc/controllers/filters#overriding-the-d
 See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellation-and-short-circuiting) for instructions to short-circuit the filter pipeline from a filter. 
 
 <a name="auth"></a>
+
 ## Authorize filter attribute
 
 The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-2.0) attribute can be applied to a `PageModel`:

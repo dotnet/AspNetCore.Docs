@@ -12,7 +12,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=13-99)]
@@ -21,7 +20,6 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
-<!-- Code -------------------------->
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
@@ -30,12 +28,10 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/appsettingsSQLite.json?highlight=2&range=8-10)]
 
----  
-<!-- End of VS tabs -->
+---
 
 When you deploy the app to a test or production server, you can use an environment variable or another approach to set the connection string to a real SQL Server. See [Configuration](xref:fundamentals/configuration/index) for more information.
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 ## SQL Server Express LocalDB
@@ -65,7 +61,7 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
----  
+---
 <!-- End of VS tabs -->
 
 ## Seed the database
@@ -84,6 +80,7 @@ if (context.Movie.Any())
 ```
 
 <a name="si"></a>
+
 ### Add the seed initializer
 
 Replace the contents of *Program.cs* with the following code:
@@ -92,7 +89,6 @@ Replace the contents of *Program.cs* with the following code:
 
 Test the app
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 * Delete all the records in the DB. You can do this with the delete links in the browser or from SSOX.
@@ -107,13 +103,11 @@ Test the app
     * If you were running VS in non-debug mode, press F5 to run in debug mode
     * If you were running VS in debug mode, stop the debugger and press F5
 
-<!-- Code -------------------------->
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
 
----  
-<!-- End of VS tabs -->
+---
 
 The app shows the seeded data.
 
@@ -121,4 +115,4 @@ The app shows the seeded data.
 
 > [!div class="step-by-step"]
 > [Previous](adding-model.md)
-> [Next](controller-methods-views.md)  
+> [Next](controller-methods-views.md)

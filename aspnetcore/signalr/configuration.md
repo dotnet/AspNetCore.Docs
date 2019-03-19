@@ -312,12 +312,14 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | `WebSocketConfiguration` | `null` | A delegate that can be used to configure additional WebSocket options. Receives an instance of [ClientWebSocketOptions](/dotnet/api/system.net.websockets.clientwebsocketoptions) that can be used to configure the options. |
 
 # [JavaScript](#tab/javascript)
+
 | JavaScript Option | Default Value | Description |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
 
 # [Java](#tab/java)
+
 | Java Option | Default Value | Description |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |

@@ -25,7 +25,6 @@ We cover these concepts in this tutorial series and show you how to use them to 
 
 ## Add a controller
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 * In **Solution Explorer**, right-click **Controllers > Add > Controller**
@@ -37,14 +36,12 @@ We cover these concepts in this tutorial series and show you how to use them to 
 
 * In the **Add Empty MVC Controller dialog**, enter **HelloWorldController** and select **ADD**.
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
 
   ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
-<!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
@@ -57,7 +54,6 @@ Name the controller **HelloWorldController**.
 ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
 
 ---
-<!-- End of VS tabs -->
 
 Replace the contents of *Controllers/HelloWorldController.cs* with the following:
 

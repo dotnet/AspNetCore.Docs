@@ -265,6 +265,7 @@ services.AddMvc()
 You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation are automatically included in Razor Pages.
 
 <a name="layout"></a>
+
 ## Using Layouts, partials, templates, and Tag Helpers with Razor Pages
 
 Pages work with all the capabilities of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views.
@@ -466,6 +467,7 @@ public string Message { get; set; }
 For more information, see [TempData](xref:fundamentals/app-state#tempdata) .
 
 <a name="mhpp"></a>
+
 ## Multiple handlers per page
 
 The following page generates markup for two page handlers using the `asp-page-handler` Tag Helper:
