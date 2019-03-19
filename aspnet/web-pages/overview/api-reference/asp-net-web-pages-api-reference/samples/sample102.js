@@ -1,1 +1,0 @@
-image.Save("test.png");

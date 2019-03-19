@@ -1,1 +1,0 @@
-aspnet_regsql –C "Data Source=.\SQLEXPRESS;Integrated Security=true" –A mr –d CMAppServices

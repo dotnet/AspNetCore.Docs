@@ -1,7 +1,0 @@
-<caching>
-    <sqlCacheDependency enabled = "true" pollTime = "60000" >
-        <databases>
-            <add name="Northwind" connectionStringName = "Northwind" pollTime = "9000000" />
-        </databases>
-    </sqlCacheDependency>
-</caching>

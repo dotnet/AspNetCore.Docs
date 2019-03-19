@@ -1,9 +1,0 @@
-<configuration>
-    <system.web>
-        ...
-
-        <authentication mode="Forms" />
-
-        ...
-    </system.web>
-</configuration>

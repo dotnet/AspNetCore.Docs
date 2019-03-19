@@ -1,3 +1,0 @@
-public async Task<ActionResult> Index()
-{
-    ...

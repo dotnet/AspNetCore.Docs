@@ -1,1 +1,0 @@
-<asp:ScriptManager ID="sm1" EnableCdn="true" runat="server" />

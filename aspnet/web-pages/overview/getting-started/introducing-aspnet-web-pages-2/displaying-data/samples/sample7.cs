@@ -1,1 +1,0 @@
-var grid = new WebGrid(source: selectedData, rowsPerPage: 3);

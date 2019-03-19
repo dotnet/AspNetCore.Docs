@@ -1,9 +1,0 @@
-.ProductPropertyLabel, .SupplierPropertyLabel
-{
-    font-weight: bold;
-    text-align: right;
-}
-.ProductPropertyValue, .SupplierPropertyValue
-{
-    padding-right: 35px;
-}

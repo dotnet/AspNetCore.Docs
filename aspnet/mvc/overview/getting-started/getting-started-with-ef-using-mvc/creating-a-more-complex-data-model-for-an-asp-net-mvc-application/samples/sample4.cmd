@@ -1,2 +1,0 @@
-add-migration MaxLengthOnNames
-update-database

@@ -1,1 +1,0 @@
-var isint = stringValue.IsInt();

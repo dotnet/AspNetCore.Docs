@@ -1,1 +1,0 @@
-System.Security.Principal.IPrincipal user = Context.User;

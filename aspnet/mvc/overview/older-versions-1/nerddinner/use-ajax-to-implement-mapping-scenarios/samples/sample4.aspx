@@ -1,1 +1,0 @@
-<% Html.RenderPartial("Map", Model.Dinner); %>
