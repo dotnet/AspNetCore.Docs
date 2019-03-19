@@ -334,7 +334,7 @@ In the sample app, `UseHealthChecks` adds the Health Check Middleware in `Startu
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_Configure)]
 
-To run the `DbContext` probe scenario using the sample app, confirm that the database specified by the the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
+To run the `DbContext` probe scenario using the sample app, confirm that the database specified by the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
 
 Execute the following command from the project's folder in a command shell:
 
