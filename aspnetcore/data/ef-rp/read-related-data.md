@@ -194,11 +194,11 @@ The preceding markup makes the following changes:
 
 * Updates the `page` directive from `@page` to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The route template changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
 
-	`http://localhost:1234/Instructors?id=2`
+  `http://localhost:1234/Instructors?id=2`
 
-	When the page directive is `@page "{id:int?}"`, the previous URL is:
+  When the page directive is `@page "{id:int?}"`, the previous URL is:
 
-	`http://localhost:1234/Instructors/2`
+  `http://localhost:1234/Instructors/2`
 
 * Page title is **Instructors**.
 * Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
