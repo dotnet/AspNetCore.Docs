@@ -88,7 +88,7 @@ Add `SMSoptions` to the service container in the `ConfigureServices` method in t
 
 ### Enable two-factor authentication
 
-Open the *Views/Manage/Index.cshtml* Razor view file and remove the comment characters (so no markup is commnted out).
+Open the *Views/Manage/Index.cshtml* Razor view file and remove the comment characters (so no markup is commented out).
 
 ## Log in with two-factor authentication
 
