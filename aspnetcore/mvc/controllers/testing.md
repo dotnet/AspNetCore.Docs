@@ -120,7 +120,7 @@ The third `Create` test, `Create_ReturnsNewlyCreatedIdeaForSession`, verifies th
 
 ## Test ActionResult&lt;T&gt;
 
-In ASP.NET Core 2.1 or later, [ActionResult&lt;T&gt;](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult`1>) enables you to return a type deriving from `ActionResult` or return a specific type.
+In ASP.NET Core 2.1 or later, [ActionResult&lt;T&gt;](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) enables you to return a type deriving from `ActionResult` or return a specific type.
 
 The sample app includes a method that returns a `List<IdeaDTO>` for a given session `id`. If the session `id` doesn't exist, the controller returns <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>:
 
@@ -138,7 +138,7 @@ The first test confirms that the controller returns an `ActionResult` but not a 
 For a valid session `id`, the second test confirms that the method returns:
 
 * An `ActionResult` with a `List<IdeaDTO>` type.
-* The [ActionResult&lt;T&gt;.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult`1.Value*) is a `List<IdeaDTO>` type.
+* The [ActionResult&lt;T&gt;.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) is a `List<IdeaDTO>` type.
 * The first item in the list is a valid idea matching the idea stored in the mock session (obtained by calling `GetTestSession`).
 
 [!code-csharp[](testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsIdeasForSession&highlight=7-8,15-18)]
@@ -164,8 +164,8 @@ The second test checks that a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotF
 For a valid session `id`, the final test confirms that:
 
 * The method returns an `ActionResult` with a `BrainstormSession` type.
-* The [ActionResult&lt;T&gt;.Result](xref:Microsoft.AspNetCore.Mvc.ActionResult`1.Result*) is a <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` is analogous to a *201 Created* response with a `Location` header.
-* The [ActionResult&lt;T&gt;.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult`1.Value*) is a `BrainstormSession` type.
+* The [ActionResult&lt;T&gt;.Result](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) is a <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` is analogous to a *201 Created* response with a `Location` header.
+* The [ActionResult&lt;T&gt;.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) is a `BrainstormSession` type.
 * The mock call to update the session, `UpdateAsync(testSession)`, was invoked. The `Verifiable` method call is checked by executing `mockRepo.Verify()` in the assertions.
 * Two `Idea` objects are returned for the session.
 * The last item (the `Idea` added by the mock call to `UpdateAsync`) matches the `newIdea` added to the session in the test.
