@@ -1,1 +1,0 @@
-RouteTable.Routes.MapHubs("/signalr", new HubConfiguration());

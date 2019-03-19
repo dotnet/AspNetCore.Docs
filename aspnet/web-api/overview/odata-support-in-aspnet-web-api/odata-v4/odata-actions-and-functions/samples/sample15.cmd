@@ -1,1 +1,0 @@
-GET http://localhost:38479/GetSalesTaxRate(PostalCode=10) HTTP/1.1

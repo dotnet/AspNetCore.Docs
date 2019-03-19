@@ -1,7 +1,0 @@
-<configuration>
-    ...
-    <connectionStrings 
-        configSource="ConfigSections\databaseConnectionStrings.config" 
-    />
-    ...
-</configuration>

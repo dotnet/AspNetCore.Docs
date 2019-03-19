@@ -1,1 +1,0 @@
-Dim movieToUpdate As Movie = _db.MovieSet.First(Function(m) m.Id = id)

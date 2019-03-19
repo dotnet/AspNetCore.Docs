@@ -1,1 +1,0 @@
-<%= Html.TextBox("Title", Model.Title, new { size=30, @class="myclass" } )%>

@@ -1,1 +1,0 @@
-HttpClient client = HttpClientFactory.Create(new Handler1(), new Handler2(), new Handler3());

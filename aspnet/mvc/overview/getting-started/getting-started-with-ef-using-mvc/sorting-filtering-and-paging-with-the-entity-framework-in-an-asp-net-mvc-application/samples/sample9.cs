@@ -1,1 +1,0 @@
-ViewBag.CurrentSort = sortOrder;

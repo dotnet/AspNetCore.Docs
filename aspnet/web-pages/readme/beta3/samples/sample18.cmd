@@ -1,2 +1,0 @@
-mklink Microsoft.Web.Administration.dll "c:\Program Files (x86)\Microsoft WebMatrix\Microsoft.Web.Administration.dll"
-mklink Microsoft.Web.dll "c:\Program Files (x86)\Microsoft WebMatrix\Microsoft.Web.dll"

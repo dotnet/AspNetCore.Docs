@@ -1,1 +1,0 @@
-_service.Expect(s => s.CreateContact(contact)).Returns(true);

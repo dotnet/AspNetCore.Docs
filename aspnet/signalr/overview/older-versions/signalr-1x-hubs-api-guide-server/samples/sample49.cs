@@ -1,1 +1,0 @@
-System.Collections.Generic.IDictionary<string, Cookie> cookies = Context.Request.Cookies;

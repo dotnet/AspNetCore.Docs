@@ -1,1 +1,0 @@
-config.Services.Add(typeof(IFilterProvider), new MyFilterProvider());

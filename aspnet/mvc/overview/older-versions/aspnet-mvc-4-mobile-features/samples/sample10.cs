@@ -1,1 +1,0 @@
-BundleMobileConfig.RegisterBundles(BundleTable.Bundles);

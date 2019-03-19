@@ -1,1 +1,0 @@
--dest:auto='[server name or service URL]'

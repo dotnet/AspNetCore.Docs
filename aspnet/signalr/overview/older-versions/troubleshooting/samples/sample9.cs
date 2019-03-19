@@ -1,1 +1,0 @@
-connection.Credentials = CredentialCache.DefaultCredentials;
