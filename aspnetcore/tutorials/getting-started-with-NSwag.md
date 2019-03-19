@@ -112,7 +112,6 @@ You can take advantage of NSwag's code generation capabilities by choosing one o
 * NSwag from the [command line](https://github.com/NSwag/NSwag/wiki/CommandLine).
 * The [NSwag.MSBuild](https://github.com/NSwag/NSwag/wiki/MSBuild) NuGet package.
 
-
 ### Generate code with NSwagStudio
 
 * Install NSwagStudio by following the instructions at the [NSwagStudio GitHub repository](https://github.com/RSuter/NSwag/wiki/NSwagStudio).

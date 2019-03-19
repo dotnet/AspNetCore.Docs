@@ -29,7 +29,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
----  
+---
 <!-- End of VS tabs -->
 
 For more information on the methods used in `ConfigureServices`, see:
@@ -56,7 +56,7 @@ The name value for the database (`Database={Database name}`) will be different f
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
----  
+---
 <!-- End of VS tabs -->
 
 When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a real database server. See [Configuration](xref:fundamentals/configuration/index) for more information.
@@ -96,7 +96,7 @@ Note the key icon next to `ID`. By default, EF creates a property named `ID` for
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
----  
+---
 <!-- End of VS tabs -->
 
 ## Seed the database
@@ -162,11 +162,9 @@ Delete all the records in the DB (So the seed method will run). Stop and start t
 
 The app shows the seeded data.
 
----  
+---
 <!-- End of VS tabs -->
 
-
-   
 The app shows the seeded data:
 
 ![Movie application open in Chrome showing movie data](sql/_static/m55.png)

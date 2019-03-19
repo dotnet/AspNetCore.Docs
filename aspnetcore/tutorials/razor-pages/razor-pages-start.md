@@ -142,7 +142,6 @@ Contains Razor pages and supporting files. Each Razor page is a pair of files:
 
 Supporting files have names that begin with an underscore. For example, the *_Layout.cshtml* file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
 
-
 ### wwwroot folder
 
 Contains static files, such as HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.

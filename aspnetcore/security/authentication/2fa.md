@@ -49,7 +49,6 @@ Within the Unlock Originators Menu, unlock one or more Originators or choose an 
 
 We will later store this value with the secret-manager tool within the key `SMSAccountFrom`.
 
-
 ### Provide credentials for the SMS service
 
 We'll use the [Options pattern](xref:fundamentals/configuration/options) to access the user account and key settings.
@@ -75,7 +74,6 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 `Install-Package ASPSMS`
 
 * Add code in the *Services/MessageServices.cs* file to enable SMS. Use either the Twilio or the ASPSMS section:
-
 
 **Twilio:**
 [!code-csharp[](2fa/sample/Web2FA/Services/MessageServices_twilio.cs)]

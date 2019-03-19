@@ -126,7 +126,6 @@ The following code sets `SignIn` settings (to default values):
 
 [IdentityOptions.Tokens](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.tokens) specifies the [TokenOptions](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions) with the properties shown in the table.
 
-
 |                                                        Property                                                         |                                                                                      Description                                                                                      |
 |-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |     [AuthenticatorTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.authenticatortokenprovider)     |                                       Gets or sets the `AuthenticatorTokenProvider` used to validate two-factor sign-ins with an authenticator.                                       |

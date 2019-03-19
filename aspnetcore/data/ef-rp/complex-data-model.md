@@ -264,7 +264,6 @@ The `OfficeAssignment` navigation property for the `Instructor` entity is nullab
 * Reference types (such as classes are nullable).
 * An instructor might not have an office assignment.
 
-
 The `OfficeAssignment` entity has a non-nullable `Instructor` navigation property because:
 
 * `InstructorID` is non-nullable.

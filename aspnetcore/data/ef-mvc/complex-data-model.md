@@ -282,7 +282,6 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 ![Department entity](complex-data-model/_static/department-entity.png)
 
-
 Create *Models/Department.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Begin)]
