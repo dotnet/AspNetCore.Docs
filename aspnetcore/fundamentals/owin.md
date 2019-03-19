@@ -254,14 +254,12 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | owin.ResponseHeaders | `IDictionary<string,string[]>`  | |
 | owin.ResponseBody | `Stream`  | |
 
-
 ### Other data (OWIN v1.0.0)
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
 | owin.CallCancelled | `CancellationToken` |  |
 | owin.Version  | `String` | |   
-
 
 ### Common keys
 
@@ -276,13 +274,11 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | server.IsLocal  | `bool` | |    
 | server.OnSendingHeaders  | `Action<Action<object>,object>` | |
 
-
 ### SendFiles v0.3.0
 
 | Key               | Value (type) | Description |
 | ----------------- | ------------ | ----------- |
 | sendfile.SendAsync | See [delegate signature](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) | Per Request |
-
 
 ### Opaque v0.3.0
 
@@ -292,7 +288,6 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | opaque.Upgrade | `OpaqueUpgrade` | See [delegate signature](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
 | opaque.Stream | `Stream` |  |
 | opaque.CallCancelled | `CancellationToken` |  |
-
 
 ### WebSocket v0.3.0
 

@@ -183,7 +183,6 @@ The query has two includes:
 * `OfficeAssignment`: Displayed in the [instructors view](#IP).
 * `CourseAssignments`: Which brings in the courses taught.
 
-
 ### Update the instructors Index page
 
 Update *Pages/Instructors/Index.cshtml* with the following markup:

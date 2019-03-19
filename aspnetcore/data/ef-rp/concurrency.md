@@ -267,7 +267,6 @@ Update *Pages/Departments/Delete.cshtml* with the following code:
 
 [!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
-
 The preceding markup makes the following changes:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.

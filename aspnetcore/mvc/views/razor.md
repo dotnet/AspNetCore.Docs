@@ -331,7 +331,6 @@ The following looping statements are supported:
 
 In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a form tag with the `@using` statement:
 
-
 ```cshtml
 @using (Html.BeginForm())
 {

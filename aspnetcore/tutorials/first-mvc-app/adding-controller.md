@@ -126,7 +126,6 @@ This time the third URL segment matched the route parameter `id`. The `Welcome` 
 
 In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work. The controller is returning HTML directly. Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain. Instead you typically use a separate Razor view template file to help generate the HTML response. You do that in the next tutorial.
 
-
 > [!div class="step-by-step"]
 > [Previous](start-mvc.md)
 > [Next](adding-view.md)
