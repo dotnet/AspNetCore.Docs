@@ -85,7 +85,7 @@ Many startup errors don't produce useful information in the Application Event Lo
    
 The console output from the app, showing any errors, is piped to the Kudu console.
    
-##### Framework-depdendent deployment running on a preview release
+##### Framework-dependent deployment running on a preview release
 
 *Requires installing the ASP.NET Core {VERSION} (x86) Runtime site extension.*
 
@@ -107,7 +107,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
-##### Framework-depdendent deployment running on a preview release
+##### Framework-dependent deployment running on a preview release
 
 *Requires installing the ASP.NET Core {VERSION} (x64) Runtime site extension.*
 
@@ -164,7 +164,7 @@ The ASP.NET Core Module debug log provides additional, deeper logging from the A
 
 Disable debug logging when troubleshooting is complete:
 
-1. To disable the enhanced debug log, peform either of the following:
+1. To disable the enhanced debug log, perform either of the following:
    * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
    * Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
 
