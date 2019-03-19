@@ -85,7 +85,7 @@ An `IViewLocalizer` instance is injected and used to translate the text "Hello w
 
 ### Creating a PO file
 
-Create a file named *<culture code>.po* in your application root folder. In this example, the file name is *fr.po* because the French language is used:
+Create a file named *\<culture code>.po* in your application root folder. In this example, the file name is *fr.po* because the French language is used:
 
 [!code-text[](localization/sample/POLocalization/fr.po)]
 

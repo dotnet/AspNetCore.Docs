@@ -284,7 +284,7 @@ For Linux distros, use the `export` command at a command prompt for session-base
 
 To load configuration by environment, we recommend:
 
-* *appsettings* files (*appsettings.&lt;<Environment>&gt;.json). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider).
+* *appsettings* files (*appsettings.\<Environment>.json). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider).
 * environment variables (set on each system where the app is hosted). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider) and [Safe storage of app secrets in development: Environment variables](xref:security/app-secrets#environment-variables).
 * Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
 
