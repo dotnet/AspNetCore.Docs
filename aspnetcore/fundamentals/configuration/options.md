@@ -120,7 +120,7 @@ Each call to <xref:Microsoft.Extensions.Options.IConfigureOptions`1.Configure*> 
 When more than one configuration service is enabled, the last configuration source specified *wins* and sets the configuration value. When the app is run, the page model's `OnGet` method returns a string showing the option class values:
 
 ```html
-delegate_option1 = value1_configured_by_delgate, delegate_option2 = 500
+delegate_option1 = value1_configured_by_delegate, delegate_option2 = 500
 ```
 
 ## Suboptions configuration
