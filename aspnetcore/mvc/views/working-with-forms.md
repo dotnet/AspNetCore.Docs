@@ -372,7 +372,7 @@ The following HTML is generated:
 
 ## The Label Tag Helper
 
-* Generates the label caption and `for` attribute on a [<label>](https://www.w3.org/wiki/HTML/Elements/label) element for an expression name
+* Generates the label caption and `for` attribute on a [\<label>](https://www.w3.org/wiki/HTML/Elements/label) element for an expression name
 
 * HTML Helper alternative: `Html.LabelFor`.
 
