@@ -85,7 +85,7 @@ In the project folder, run the Identity scaffolder:
 dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
 ```
 
--------------
+---
 
 Follow the instruction in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
 
@@ -150,7 +150,7 @@ dotnet ef migrations add CustomUserData
 dotnet ef database update
 ```
 
-------
+---
 
 ## Test create, view, download, delete custom user data
 
