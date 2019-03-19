@@ -79,7 +79,7 @@ There's a drawback to this default setup. Each time you modify your C# code and 
     ```
     BROWSER=none
     ```
-    
+
     This will prevent your web browser from opening when starting the CRA server externally.
 
 2. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:

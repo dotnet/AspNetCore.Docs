@@ -102,6 +102,7 @@ if (context.Movie.Any())
     return;   // DB has been seeded.
 }
 ```
+
 <a name="si"></a>
 
 ### Add the seed initializer

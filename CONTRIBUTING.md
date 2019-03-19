@@ -119,6 +119,7 @@ DocFX requires:
   ```console
   docfx --serve
   ```
+
 * In a browser, navigate to `http://localhost:8080/group1-dest/`.
 
 ### Mono instructions
@@ -128,6 +129,7 @@ DocFX requires:
   ```console
   brew install mono
   ```
+
 * Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases).
 * Extract the archive to *$HOME/bin/docfx*.
 * Create a pair of aliases for **docfx** in a bash shell. The first alias is used to build the documentation. The second alias is used to build and serve the documentation.
@@ -136,11 +138,13 @@ DocFX requires:
   alias docfx='mono $HOME/bin/docfx/docfx.exe'
   alias docfx-serve='mono $HOME/bin/docfx/docfx.exe --serve'
   ```
+
 * In a command shell, navigate to the folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command to build and serve the docs via its alias:
 
   ```console
   docfx-serve
   ```
+
 * In a browser, navigate to `http://localhost:8080/group1-dest/`.
 
 ## Voice and tone

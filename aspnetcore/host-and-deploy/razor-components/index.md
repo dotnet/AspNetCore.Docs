@@ -109,7 +109,7 @@ With the [client-side hosting model](xref:razor-components/hosting-models#client
 * The app is executed directly on the browser UI thread. Either of the following strategies is supported:
   * The Blazor app is served by an ASP.NET Core app. Covered in the [Client-side Blazor hosted deployment with ASP.NET Core](#client-side-blazor-hosted-deployment-with-aspnet-core) section.
   * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. Covered in the [Client-side Blazor standalone deployment](#client-side-blazor-standalone-deployment) section.
-  
+
 ### Configure the Linker
 
 Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. You can control assembly linking on build. For more information, see <xref:host-and-deploy/razor-components/configure-linker>.
@@ -191,7 +191,8 @@ For more information on ASP.NET Core app hosting and deployment, see <xref:host-
 
 For information on deploying to Azure App Service, see the following topics:
 
-<xref:tutorials/publish-to-azure-webapp-using-vs>  
+<xref:tutorials/publish-to-azure-webapp-using-vs>
+
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
 ### Client-side Blazor standalone deployment
@@ -299,5 +300,6 @@ When the ASP.NET Core app is published, the Razor Components app is included in 
 
 For information on deploying to Azure App Service, see the following topics:
 
-<xref:tutorials/publish-to-azure-webapp-using-vs>  
+<xref:tutorials/publish-to-azure-webapp-using-vs>
+
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.

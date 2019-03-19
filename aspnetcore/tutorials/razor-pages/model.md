@@ -118,6 +118,7 @@ The *appsettings.json* file is updated with the connection string used to connec
   ```console
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
+
 * Run the following command:
 
   ```console

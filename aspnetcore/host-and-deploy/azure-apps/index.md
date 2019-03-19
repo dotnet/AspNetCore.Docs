@@ -141,6 +141,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
    ```powershell
    Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.{PLATFORM}\
    ```
+
    The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]
@@ -194,11 +195,13 @@ When deploying a self-contained app:
      <RuntimeIdentifier>win-x86</RuntimeIdentifier>
    </PropertyGroup>
    ```
+
 1. From a command shell, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
 
    ```console
    dotnet publish --configuration Release --runtime win-x86
    ```
+
 1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* directory to the site in App Service.
 
 ### Use Docker with Web Apps for containers
