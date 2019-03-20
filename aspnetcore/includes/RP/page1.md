@@ -2,7 +2,7 @@
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial examines the Razor Pages created by scaffolding in the previous tutorial. 
+This tutorial examines the Razor Pages created by scaffolding in the previous tutorial.
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21) sample.
 
@@ -69,7 +69,7 @@ Consider the following code:
 
 The preceding highlighted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
-The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceding sample, the "Title" property is added to the `ViewData` dictionary. 
+The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceding sample, the "Title" property is added to the `ViewData` dictionary.
 
 ::: moniker range="= aspnetcore-2.0"
 
@@ -109,6 +109,7 @@ Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
 ```cshtml
 <a asp-page="/Index" class="navbar-brand">RazorPagesMovie</a>
 ```
+
 Replace the preceding element with the following markup.
 
 ```cshtml

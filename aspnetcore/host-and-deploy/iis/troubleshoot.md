@@ -27,16 +27,16 @@ In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensi
 
 Additional troubleshooting topics:
 
-<xref:host-and-deploy/azure-apps/troubleshoot>  
+<xref:host-and-deploy/azure-apps/troubleshoot>
 Although App Service uses the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) and IIS to host apps, see the dedicated topic for instructions specific to App Service.
 
-<xref:fundamentals/error-handling>  
+<xref:fundamentals/error-handling>
 Discover how to handle errors in ASP.NET Core apps during development on a local system.
 
-[Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)  
+[Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)
 This topic introduces the features of the Visual Studio debugger.
 
-[Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)  
+[Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 Learn about the debugging support built into Visual Studio Code.
 
 ## App startup errors
@@ -45,7 +45,7 @@ Learn about the debugging support built into Visual Studio Code.
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module attempts to start the backend dotnet process but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log). 
+The ASP.NET Core Module attempts to start the backend dotnet process but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
 
 A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
 
@@ -59,7 +59,7 @@ The *502.5 Process Failure* error page is returned when a hosting or app misconf
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log). 
+The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
 
 A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
 
@@ -76,7 +76,7 @@ The ASP.NET Core Module fails to find the .NET Core CLR and find the in-process 
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*. 
+The ASP.NET Core Module fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*.
 
 ::: moniker-end
 
@@ -166,7 +166,7 @@ To enable and view stdout logs:
 
 1. Navigate to the site's deployment folder on the hosting system.
 1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
-1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). `stdout` in the path is the log file name prefix. A timestamp, process id, and file extension are added automatically when the log is created. Using `stdout` as the file name prefix, a typical log file is named *stdout_20180205184032_5412.log*. 
+1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). `stdout` in the path is the log file name prefix. A timestamp, process id, and file extension are added automatically when the log is created. Using `stdout` as the file name prefix, a typical log file is named *stdout_20180205184032_5412.log*.
 1. Ensure your application pool's identity has write permissions to the *logs* folder.
 1. Save the updated *web.config* file.
 1. Make a request to the app.
@@ -245,11 +245,13 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
      ```console
      .\EnableDumps w3wp.exe c:\dumps
      ```
+
    * If the app uses the [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\EnableDumps dotnet.exe c:\dumps
      ```
+
 1. Run the app under the conditions that cause the crash to occur.
 1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/aspnet/Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/DisableDumps.ps1):
    * If the app uses the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model), run the script for *w3wp.exe*:
@@ -257,6 +259,7 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
      ```console
      .\DisableDumps w3wp.exe
      ```
+
    * If the app uses the [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console

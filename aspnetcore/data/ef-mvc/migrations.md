@@ -54,6 +54,7 @@ This change sets up the project so that the first migration will create a new da
 
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
+>
 > ```console
 > dotnet ef database drop
 > ```
