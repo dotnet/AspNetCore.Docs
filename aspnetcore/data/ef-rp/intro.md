@@ -175,6 +175,7 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
 ```
+
 ------
 
 The scaffold process created and changed the following files:

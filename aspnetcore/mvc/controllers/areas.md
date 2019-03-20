@@ -34,6 +34,7 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
   [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
 ### Area folder structure
+
 Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
 
 * Project name

@@ -30,7 +30,6 @@ At the end, you have an app that can manage and display movie data.
 
 ## Create a web app
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 From Visual Studio, select  **File > New > Project**.
@@ -56,7 +55,6 @@ Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
 Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 The tutorial assumes familarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information.
@@ -75,7 +73,6 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
   * `dotnet new mvc -o MvcMovie`: creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
 
-<!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Select **File** > **New Solution**.
@@ -90,12 +87,11 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
 * Name the project **MvcMovie**, and then select **Create**.
 
----  
-<!-- End of VS tabs -->
+---
 
 ### Run the app
 
-# [Visual Studio](#tab/visual-studio) 
+# [Visual Studio](#tab/visual-studio)
 
 Select **Ctrl-F5** to run the app in non-debug mode.
 
@@ -111,7 +107,7 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-# [Visual Studio Code](#tab/visual-studio-code) 
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Press Ctrl+F5 to run without the debugger.
 
@@ -145,4 +141,4 @@ Select **Run** > **Start Without Debugging** to launch the app. Visual Studio fo
 In the next part of this tutorial, you learn about MVC and start writing some code.
 
 > [!div class="step-by-step"]
-> [Next](adding-controller.md)  
+> [Next](adding-controller.md)

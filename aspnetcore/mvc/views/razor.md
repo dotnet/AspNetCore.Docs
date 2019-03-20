@@ -418,6 +418,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 Later in this article, the section [Inspect the Razor C# class generated for a view](#inspect-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
 
 <a name="using"></a>
+
 ### @using
 
 The `@using` directive adds the C# `using` directive to the generated view:

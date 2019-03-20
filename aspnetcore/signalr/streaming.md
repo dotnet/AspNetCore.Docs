@@ -134,12 +134,14 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
+
 ## Java client
+
 The SignalR Java client uses the `stream` method to invoke streaming methods. It accepts three or more arguments:
 
-* The expected type of the stream items 
+* The expected type of the stream items
 * The name of the hub method.
-* Arguments defined in the hub method. 
+* Arguments defined in the hub method.
 
 ```java
 hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
@@ -148,6 +150,7 @@ hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
         (error) -> {/* Define your onError handler here. */},
         () -> {/* Define your onCompleted handler here. */});
 ```
+
 The `stream` method on `HubConnection` returns an Observable of the stream item type. The Observable type's `subscribe` method is where you define your `onNext`,  `onError` and  `onCompleted` handlers.
 
 ::: moniker-end

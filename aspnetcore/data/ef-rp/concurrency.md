@@ -146,6 +146,7 @@ The preceding commands:
 * Runs migrations to update the DB.
 
 <a name="scaffold"></a>
+
 ## Scaffold the Departments model
 
 # [Visual Studio](#tab/visual-studio) 

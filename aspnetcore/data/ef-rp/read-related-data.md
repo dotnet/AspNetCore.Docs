@@ -63,6 +63,7 @@ To display the name of the assigned department in a list of courses:
 ![Course.Department](read-related-data/_static/dep-crs.png)
 
 <a name="scaffold"></a>
+
 ### Scaffold the Course model
 
 # [Visual Studio](#tab/visual-studio) 
@@ -110,6 +111,7 @@ Run the app and select the **Courses** tab to see the list with department names
 ![Courses Index page](read-related-data/_static/courses-index.png)
 
 <a name="select"></a>
+
 ### Loading related data with Select
 
 The `OnGetAsync` method loads related data with the `Include` method:

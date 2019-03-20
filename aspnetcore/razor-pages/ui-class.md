@@ -213,7 +213,7 @@ To reference RCL content as though it is part of the web app's *Pages* folder, c
 * *RazorUIClassLib/Pages/Shared*
 
 Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.cshtml* and *_Footer.cshtml*. The `<partial>` tags could be added to *_Layout.cshtml* file:
-  
+
 ```cshtml
 <body>
   <partial name="_Header">

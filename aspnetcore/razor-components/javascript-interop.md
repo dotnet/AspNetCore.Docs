@@ -109,13 +109,14 @@ To use the `IJSRuntime` abstraction, adopt any of the following approaches:
           StocksService.OnStockTickerUpdated += stockUpdate =>
           {
               JSRuntime.InvokeAsync<object>(
-                  "handleTickerChanged", 
-                  stockUpdate.symbol, 
+                  "handleTickerChanged",
+                  stockUpdate.symbol,
                   stockUpdate.price);
           };
       }
   }
   ```
+
 * Inject the `IJSRuntime` abstraction into a class (*.cs*):
 
   ```csharp
@@ -130,7 +131,7 @@ To use the `IJSRuntime` abstraction, adopt any of the following approaches:
 
       public Task<string> DoSomething(string data)
       {
-          // The doSomething JavaScript method is implemented 
+          // The doSomething JavaScript method is implemented
           // in a JavaScript file, such as 'wwwroot/MyJsInterop.js'.
           return _jsRuntime.InvokeAsync<string>(
               "myJsFunctions.doSomething",
@@ -138,6 +139,7 @@ To use the `IJSRuntime` abstraction, adopt any of the following approaches:
       }
   }
   ```
+
 * For dynamic content generation with `BuildRenderTree`, use the `[Inject]` attribute:
 
   ```csharp
