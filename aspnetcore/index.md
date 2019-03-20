@@ -136,7 +136,9 @@ WebHost.CreateDefaultBuilder(args)
 
 The preceding C# code snippet is referenced in the topic's markdown file with the following line:
 
+```md
 [!code-csharp[](sample/SampleApp/Program.cs?name=snippet_FilterInCode)]
+```
 
 You may safely ignore (or remove) the `#region` and `#endregion` statements that surround the code. Don't alter the code within these statements if you plan to run the sample scenarios described in the topic. Feel free to alter the code when experimenting with other scenarios.
 
