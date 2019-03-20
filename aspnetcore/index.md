@@ -18,7 +18,7 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 * Deploy to the cloud or on-premises.
 * Run on [.NET Core or .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
 
-## Why use ASP.NET Core?
+## Why to use ASP.NET Core
 
 Millions of developers have used (and continue to use) [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
@@ -136,9 +136,7 @@ WebHost.CreateDefaultBuilder(args)
 
 The preceding C# code snippet is referenced in the topic's markdown file with the following line:
 
-```
 [!code-csharp[](sample/SampleApp/Program.cs?name=snippet_FilterInCode)]
-```
 
 You may safely ignore (or remove) the `#region` and `#endregion` statements that surround the code. Don't alter the code within these statements if you plan to run the sample scenarios described in the topic. Feel free to alter the code when experimenting with other scenarios.
 
