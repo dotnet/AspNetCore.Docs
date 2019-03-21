@@ -90,7 +90,7 @@ The `GenericController` class:
 
 The result, when a matching route is requested:
 
-![Example output from the sample app reads, 'Hello from a generic Sproket controller.'](app-parts/_static/generic-controller.png)
+![Example output from the sample app reads, 'Hello from a generic Sprocket controller.'](app-parts/_static/generic-controller.png)
 
 ### Sample: Display available features
 

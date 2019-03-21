@@ -124,7 +124,7 @@ From the console, enter the following command:
 dotnet add package SendGrid
 ```
 
-------
+---
 
 See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
 
