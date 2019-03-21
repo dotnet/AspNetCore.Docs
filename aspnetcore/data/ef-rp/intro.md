@@ -32,7 +32,7 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [!INCLUDE [](~/includes/2.1-SDK.md)]
 
-------
+---
 
 Familiarity with [Razor Pages](xref:razor-pages/index). New programmers should complete [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) before starting this series.
 
@@ -71,7 +71,7 @@ cd ContosoUniversity
 dotnet run
 ```
 
-------
+---
 
 ## Set up the site style
 
@@ -176,7 +176,7 @@ dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
 ```
 
-------
+---
 
 The scaffold process created and changed the following files:
 

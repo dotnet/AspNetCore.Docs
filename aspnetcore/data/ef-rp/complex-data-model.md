@@ -138,7 +138,7 @@ dotnet ef migrations add ColumnFirstName
 dotnet ef database update
 ```
 
-------
+---
 
 The `migrations add ColumnFirstName` command generates the following warning message:
 
@@ -552,7 +552,7 @@ Add-Migration ComplexDataModel
 dotnet ef migrations add ComplexDataModel
 ```
 
-------
+---
 
 The preceding command displays a warning about possible data loss.
 
@@ -604,7 +604,7 @@ Enter the following in the command window:
 dotnet ef database update
  ```
 
-------
+---
 
 Run the app. Running the app runs the `DbInitializer.Initialize` method. The `DbInitializer.Initialize` populates the new DB.
 

@@ -161,7 +161,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 
-------
+---
 
 The preceding command scaffolds the `Department` model. Open the project in Visual Studio.
 
