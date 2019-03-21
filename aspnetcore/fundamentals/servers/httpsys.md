@@ -5,7 +5,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/21/2019
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -80,7 +80,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 1. A package reference in the project file isn't required when using the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) ([nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)) (ASP.NET Core 2.1 or later). When not using the `Microsoft.AspNetCore.App` metapackage, add a package reference to [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
 
-2. Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building the web host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>:
+2. Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building Web Host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>:
 
    [!code-csharp[](httpsys/sample/Program.cs?name=snippet1&highlight=4-12)]
 
@@ -129,7 +129,9 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 ### Configure Windows Server
 
-1. Determine the ports to open for the app and use Windows Firewall or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906) to open firewall ports to allow traffic to reach HTTP.sys. When deploying to an Azure VM, open the ports in the [Network Security Group](/azure/virtual-network/security-overview). In the following commands and app configuration, port 443 is used.
+1. Determine the ports to open for the app and use [Windows Firewall](/windows/security/threat-protection/windows-firewall/create-an-inbound-port-rule) or the [New-NetFirewallRule](/powershell/module/netsecurity/new-netfirewallrule) PowerShell cmdlet to open firewall ports to allow traffic to reach HTTP.sys. In the following commands and app configuration, port 443 is used.
+
+1. When deploying to an Azure VM, open the ports in the [Network Security Group](/azure/virtual-machines/windows/nsg-quickstart-portal). In the following commands and app configuration, port 443 is used.
 
 1. Obtain and install X.509 certificates, if required.
 
@@ -140,7 +142,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 1. If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), install .NET Core, .NET Framework, or both (if the app is a .NET Core app targeting the .NET Framework).
 
    * **.NET Core** &ndash; If the app requires .NET Core, obtain and run the **.NET Core Runtime** installer from [.NET Core Downloads](https://dotnet.microsoft.com/download). Don't install the full SDK on the server.
-   * **.NET Framework** &ndash; If the app requires .NET Framework, see the [.NET Framework installation guide](/dotnet/framework/install/). Install the required .NET Framework. The installer for the latest .NET Framework is available from from the [.NET Core Downloads](https://dotnet.microsoft.com/download) page.
+   * **.NET Framework** &ndash; If the app requires .NET Framework, see the [.NET Framework installation guide](/dotnet/framework/install/). Install the required .NET Framework. The installer for the latest .NET Framework is available from the [.NET Core Downloads](https://dotnet.microsoft.com/download) page.
 
    If the app is a [self-contained deployment](/dotnet/core/deploying/#framework-dependent-deployments-scd), the app includes the runtime in its deployment. No framework installation is required on the server.
 
@@ -266,5 +268,5 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 * [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#enable-windows-authentication-with-httpsys)
 * [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
-* <xref:fundamentals/host/index>
+* [The host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>

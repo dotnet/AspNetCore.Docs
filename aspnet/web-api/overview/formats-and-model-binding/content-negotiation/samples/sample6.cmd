@@ -1,1 +1,0 @@
-Accept: application/json, application/xml; q=0.9, */*; q=0.1

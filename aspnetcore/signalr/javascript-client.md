@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/14/2018
+ms.date: 03/14/2019
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -39,7 +39,7 @@ Reference the SignalR JavaScript client in the `<script>` element.
 
 The following code creates and starts a connection. The hub's name is case insensitive.
 
-[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
+[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-13,43-45)]
 
 ### Cross-origin connections
 
@@ -57,6 +57,9 @@ JavaScript clients call public methods on hubs via the [invoke](/javascript/api/
 * Any arguments defined in the hub method. In the following example, the argument name is `message`. The example code uses arrow function syntax that is supported in current versions of all major browsers except Internet Explorer.
 
   [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
+
+> [!NOTE]
+> If you're using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](/azure/azure-signalr/signalr-concept-serverless-development-config).
 
 ## Call client methods from hub
 
@@ -80,7 +83,7 @@ SignalR determines which client method to call by matching the method name and a
 
 Chain a `catch` method to the end of the `start` method to handle client-side errors. Use `console.error` to output errors to the browser's console.
 
-[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=43-45)]
+[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=49-51)]
 
 Setup client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
 
@@ -113,3 +116,4 @@ A real-world implementation would use an exponential back-off or retry a specifi
 * [.NET client](xref:signalr/dotnet-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 * [Cross-Origin Requests (CORS)](xref:security/cors)
+* [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)

@@ -1,1 +1,0 @@
-var connection = $.hubConnection('http://fabrikam.com/');

@@ -174,10 +174,8 @@ public class ProductsController
 
 This route would allow the requested format to be specified as an optional file extension. The `[FormatFilter]` attribute checks for the existence of the format value in the `RouteData` and will map the response format to the appropriate formatter when the response is created.
 
-
 |           Route            |             Formatter              |
 |----------------------------|------------------------------------|
 |   `/products/GetById/5`    |    The default output formatter    |
 | `/products/GetById/5.json` | The JSON formatter (if configured) |
 | `/products/GetById/5.xml`  | The XML formatter (if configured)  |
-

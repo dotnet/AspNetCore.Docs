@@ -5,7 +5,7 @@ description: Information about the ASP.NET Core SignalR .NET Client
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 09/10/2018
+ms.date: 03/14/2019
 uid: signalr/dotnet-client
 ---
 
@@ -59,6 +59,9 @@ In a `Closed` handler that restarts the connection, consider waiting for some ra
 
 [!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
 
+> [!NOTE]
+> If you're using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](/azure/azure-signalr/signalr-concept-serverless-development-config).
+
 ## Call client methods from hub
 
 Define methods the hub calls using `connection.On` after building, but before starting the connection.
@@ -80,3 +83,4 @@ Handle errors with a try-catch statement. Inspect the `Exception` object to dete
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)

@@ -30,9 +30,11 @@ Create an SMS account, for example, from [twilio](https://www.twilio.com/) or [A
 #### Figuring out SMS Provider credentials
 
 **Twilio:**
+
 From the Dashboard tab of your Twilio account, copy the **Account SID** and **Auth token**.
 
 **ASPSMS:**
+
 From your account settings, navigate to **Userkey** and copy it together with your **Password**.
 
 We will later store these values in with the secret-manager tool within the keys `SMSAccountIdentification` and `SMSAccountPassword`.
@@ -47,12 +49,11 @@ Within the Unlock Originators Menu, unlock one or more Originators or choose an 
 
 We will later store this value with the secret-manager tool within the key `SMSAccountFrom`.
 
-
 ### Provide credentials for the SMS service
 
 We'll use the [Options pattern](xref:fundamentals/configuration/options) to access the user account and key settings.
 
-   * Create a class to fetch the secure SMS key. For this sample, the `SMSoptions` class is created in the *Services/SMSoptions.cs* file.
+* Create a class to fetch the secure SMS key. For this sample, the `SMSoptions` class is created in the *Services/SMSoptions.cs* file.
 
 [!code-csharp[](2fa/sample/Web2FA/Services/SMSoptions.cs)]
 
@@ -62,17 +63,18 @@ Set the `SMSAccountIdentification`, `SMSAccountPassword` and `SMSAccountFrom` wi
 C:/Web2FA/src/WebApp1>dotnet user-secrets set SMSAccountIdentification 12345
 info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 ```
+
 * Add the NuGet package for the SMS provider. From the Package Manager Console (PMC) run:
 
 **Twilio:**
+
 `Install-Package Twilio`
 
 **ASPSMS:**
+
 `Install-Package ASPSMS`
 
-
 * Add code in the *Services/MessageServices.cs* file to enable SMS. Use either the Twilio or the ASPSMS section:
-
 
 **Twilio:**
 [!code-csharp[](2fa/sample/Web2FA/Services/MessageServices_twilio.cs)]
@@ -88,7 +90,7 @@ Add `SMSoptions` to the service container in the `ConfigureServices` method in t
 
 ### Enable two-factor authentication
 
-Open the *Views/Manage/Index.cshtml* Razor view file and remove the comment characters (so no markup is commnted out).
+Open the *Views/Manage/Index.cshtml* Razor view file and remove the comment characters (so no markup is commented out).
 
 ## Log in with two-factor authentication
 

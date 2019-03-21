@@ -4,7 +4,7 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/14/2019
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -18,7 +18,7 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 * Deploy to the cloud or on-premises.
 * Run on [.NET Core or .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
 
-## Why use ASP.NET Core?
+## Why to use ASP.NET Core
 
 Millions of developers have used (and continue to use) [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
@@ -62,6 +62,34 @@ There are several advantages to targeting .NET Core, and these advantages increa
 * Open source
 
 We're working hard to close the API gap from .NET Framework to .NET Core. The [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
+
+## Recommended learning path
+
+We recommend the following sequence of tutorials and articles for an introduction to developing ASP.NET Core apps:
+
+1. Follow a tutorial for the type of app you want to develop or maintain:
+
+   |App type  |Scenario  |Tutorial  |
+   |----------|----------|----------|
+   |Web app       | For new development        |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
+   |Web app       | For maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
+   |Web API       |                            |[Create a web API](xref:tutorials/first-web-api)\*  |
+   |Real-time app |                            |[Get started with SignalR](xref:tutorials/signalr) |
+
+1. Follow a tutorial that shows how to do basic data access:
+
+   |Scenario  |Tutorial  |
+   |----------|----------|
+   | For new development        |[Razor Pages with Entity Framework Core](xref:data/ef-rp/intro) |
+   | For maintaining an MVC app |[MVC with Entity Framework Core](xref:data/ef-mvc/intro)
+
+1. Read an overview of ASP.NET Core features that apply to all app types:
+
+   * [Fundamentals](xref:fundamentals/index)
+
+1. Browse the Table of Contents for other topics of interest.
+
+\* There is a new [web API tutorial that you follow entirely in the browser](https://docs.microsoft.com/learn/modules/build-web-api-net-core), no local IDE installation required.  The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
 
 ## How to download a sample
 
@@ -108,7 +136,7 @@ WebHost.CreateDefaultBuilder(args)
 
 The preceding C# code snippet is referenced in the topic's markdown file with the following line:
 
-```
+```md
 [!code-csharp[](sample/SampleApp/Program.cs?name=snippet_FilterInCode)]
 ```
 
@@ -120,7 +148,7 @@ For more information, see [Contribute to the ASP.NET documentation: Code snippet
 
 For more information, see the following resources:
 
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* <xref:getting-started>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.

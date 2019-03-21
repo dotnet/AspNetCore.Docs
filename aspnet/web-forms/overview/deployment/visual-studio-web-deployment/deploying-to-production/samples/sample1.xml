@@ -1,3 +1,0 @@
-<appSettings>
-    <add key="Environment" value="Prod" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
-</appSettings>

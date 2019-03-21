@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/25/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -173,7 +173,7 @@ In the sample app, the `IMyDependency` instance is requested and used to call th
 
 ## Framework-provided services
 
-The `Startup.ConfigureServices` method is responsible for defining the services the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](xref:fundamentals/host/index)):
+The `Startup.ConfigureServices` method is responsible for defining the services the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](xref:fundamentals/index#host)):
 
 | Service Type | Lifetime |
 | ------------ | -------- |
@@ -247,7 +247,7 @@ When services are resolved by `ActivatorUtilities`, constructor injection requir
 
 ## Entity Framework contexts
 
-Entity Framework contexts should be added to the service container using the scoped lifetime. This is handled automatically with a call to the [AddDbContext](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) method when registering the database context. Services that use the database context should also use the scoped lifetime.
+Entity Framework contexts are usually added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the request. The default lifetime is scoped if a lifetime isn't specified by an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> overload when registering the database context. Services of a given lifetime shouldn't use a database context with a shorter lifetime than the service.
 
 ## Lifetime and registration options
 
@@ -553,7 +553,6 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
-* [Container-Managed Application Design, Prelude: Where does the Container Belong?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)
 * [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
 * [Inversion of Control Containers and the Dependency Injection Pattern (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
 * [How to register a service with multiple interfaces in ASP.NET Core DI](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)

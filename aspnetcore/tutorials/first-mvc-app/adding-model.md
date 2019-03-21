@@ -3,7 +3,7 @@ title: Add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 ms.author: riande
-ms.date: 02/12/2019
+ms.date: 02/25/2019
 uid: tutorials/first-mvc-app/adding-model
 ---
 
@@ -21,14 +21,12 @@ In this tutorial, you write the model classes first, and EF Core creates the dat
 
 ## Add a data model class
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 
-<!-- Code -------------------------->
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Add a class to the *Models* folder named *Movie.cs*.
@@ -36,14 +34,12 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
----  
-<!-- End of VS tabs -->
+---
 
 ## Scaffold the movie model
 
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.
@@ -71,11 +67,10 @@ Visual Studio creates:
 
 * An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
 * A movies controller (*Controllers/MoviesController.cs*)
-* Razor view files for Create, Delete, Details, Edit, and Index pages (<em>Views/Movies/&ast;.cshtml</em>)
+* Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/\*.cshtml*)
 
 The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*.
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
@@ -168,15 +163,7 @@ The `ef migrations add InitialCreate` command generates code to create the initi
 
 The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration.
 
----  
-
-The preceding commands generate the following warning:
-
-```text
-No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
-```
-
-You can ignore that warning. It will be fixed in a later tutorial.
+---
 
 ## Examine the context registered with dependency injection
 
@@ -241,7 +228,7 @@ Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext `) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 <a name="strongly-typed-models-keyword-label"></a>
 <a name="strongly-typed-models-and-the--keyword"></a>
@@ -316,4 +303,4 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 
 > [!div class="step-by-step"]
 > [Previous Adding a View](adding-view.md)
-> [Next Working with SQL](working-with-sql.md)  
+> [Next Working with SQL](working-with-sql.md)

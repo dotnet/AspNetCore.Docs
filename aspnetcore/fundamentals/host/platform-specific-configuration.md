@@ -2,17 +2,17 @@
 title: Use hosting startup assemblies in ASP.NET Core
 author: guardrex
 description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 02/14/2019
+ms.date: 03/10/2019
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex) and [Pavel Krymets](https://github.com/pakrym)
 
-An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) (hosting startup) implementation adds enhancements to an app at startup from an external assembly. For example, an external library can use a hosting startup implementation to provide additional configuration providers or services to an app. `IHostingStartup` *is available in ASP.NET Core 2.0 or later.*
+An [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) (hosting startup) implementation adds enhancements to an app at startup from an external assembly. For example, an external library can use a hosting startup implementation to provide additional configuration providers or services to an app.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -34,8 +34,6 @@ To discover loaded hosting startup assemblies, enable logging and check the app'
 
 ## Disable automatic loading of hosting startup assemblies
 
-::: moniker range=">= aspnetcore-2.1"
-
 To disable automatic loading of hosting startup assemblies, use one of the following approaches:
 
 * To prevent all hosting startup assemblies from loading, set one of the following to `true` or `1`:
@@ -44,17 +42,6 @@ To disable automatic loading of hosting startup assemblies, use one of the follo
 * To prevent specific hosting startup assemblies from loading, set one of the following to a semicolon-delimited string of hosting startup assemblies to exclude at startup:
   * [Hosting Startup Exclude Assemblies](xref:fundamentals/host/web-host#hosting-startup-exclude-assemblies) host configuration setting.
   * `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES` environment variable.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-To disable automatic loading of hosting startup assemblies, set one of the following to `true` or `1`:
-
-* [Prevent Hosting Startup](xref:fundamentals/host/web-host#prevent-hosting-startup) host configuration setting.
-* `ASPNETCORE_PREVENTHOSTINGSTARTUP` environment variable.
-
-::: moniker-end
 
 If both the host configuration setting and the environment variable are set, the host setting controls the behavior.
 
@@ -358,6 +345,7 @@ To run the sample:
      <RestoreSources>$(RestoreSources);https://api.nuget.org/v3/index.json;../HostingStartupPackage/bin/Debug</RestoreSources>
    </PropertyGroup>
    ```
+
 1. Observe that the service configuration key values rendered by the Index page match the values set by the package's `ServiceKeyInjection.Configure` method.
 
 If you make changes to the *HostingStartupPackage* project and recompile it, clear the local NuGet package caches to ensure that the *HostingStartupApp* receives the updated package and not a stale package from the local cache. To clear the local NuGet caches, execute the following [dotnet nuget locals](/dotnet/core/tools/dotnet-nuget-locals) command:
@@ -381,6 +369,7 @@ dotnet nuget locals all --clear
      </Reference>
    </ItemGroup>
    ```
+
 1. Observe that the service configuration key values rendered by the Index page match the values set by the class library's `ServiceKeyInjection.Configure` method.
 
 **Activation from a runtime store-deployed assembly**
@@ -394,6 +383,7 @@ dotnet nuget locals all --clear
    ```console
    dotnet store --manifest StartupDiagnostics.csproj --runtime <RID>
    ```
+
    For Windows, the command uses the `win7-x64` [runtime identifier (RID)](/dotnet/core/rid-catalog). When providing the hosting startup for a different runtime, substitute the correct RID.
 1. Set the environment variables:
    * Add the assembly name of *StartupDiagnostics* to the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable.

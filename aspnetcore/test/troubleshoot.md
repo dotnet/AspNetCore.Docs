@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 02/26/2019
 uid: test/troubleshoot
 ---
 # Troubleshoot ASP.NET Core projects
@@ -47,7 +47,7 @@ In the **New Project** dialog for ASP.NET Core, you may see the following warnin
 
 You see this message when you have at least one installation of the .NET Core SDK in a directory outside of *C:\\Program Files\\dotnet\\sdk\\*. Usually this happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
 
-Uninstall the 32-bit .NET Core SDK to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and its implications, you can ignore the warning.
+Uninstall all 32-bit .NET Core SDKs and runtimes to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and its implications, you can ignore the warning.
 
 ### No .NET Core SDKs were detected
 
@@ -57,10 +57,10 @@ In the **New Project** dialog for ASP.NET Core, you may see the following warnin
 
 ![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/NoNetCore.png)
 
-This warning appears when the environment variable `PATH` doesn't point to any .NET Core SDKs on the machine. To resolve this problem:
+This warning appears when the environment variable `PATH` doesn't point to any .NET Core SDKs on the machine (for example, `C:\Program Files\dotnet\` and `C:\Program Files (x86)\dotnet\`). To resolve this problem:
 
-* Install or verify the .NET Core SDK is installed.
-* Verify that the `PATH` environment variable points to the location in which the SDK is installed. The installer normally sets the `PATH`.
+* Install or verify the .NET Core SDK is installed. Obtain the latest installer from [.NET Downloads](https://dotnet.microsoft.com/download). 
+* Verify that the `PATH` environment variable points to the location where the SDK is installed. The installer normally sets the `PATH`.
 
 ## Obtain data from an app
 

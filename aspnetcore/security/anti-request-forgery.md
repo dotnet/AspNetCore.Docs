@@ -96,12 +96,12 @@ In ASP.NET Core 2.0 or later, the [FormTagHelper](xref:mvc/views/working-with-fo
 </form>
 ```
 
-Similarily, [IHtmlHelper.BeginForm](/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper.beginform) generates antiforgery tokens by default if the form's method isn't GET.
+Similarly, [IHtmlHelper.BeginForm](/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper.beginform) generates antiforgery tokens by default if the form's method isn't GET.
 
 The automatic generation of antiforgery tokens for HTML form elements happens when the `<form>` tag contains the `method="post"` attribute and either of the following are true:
 
-  * The action attribute is empty (`action=""`).
-  * The action attribute isn't supplied (`<form method="post">`).
+* The action attribute is empty (`action=""`).
+* The action attribute isn't supplied (`<form method="post">`).
 
 Automatic generation of antiforgery tokens for HTML form elements can be disabled:
 

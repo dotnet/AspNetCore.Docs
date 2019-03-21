@@ -1,1 +1,0 @@
-[Queryable(AllowedLogicalOperators=AllowedLogicalOperators.Equal)]

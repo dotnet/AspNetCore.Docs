@@ -60,9 +60,10 @@ To display the name of the assigned department in a list of courses:
 * Get the `Name` property from the `Department` entity.
 * The `Department` entity comes from the `Course.Department` navigation property.
 
-![ourse.Department](read-related-data/_static/dep-crs.png)
+![Course.Department](read-related-data/_static/dep-crs.png)
 
 <a name="scaffold"></a>
+
 ### Scaffold the Course model
 
 # [Visual Studio](#tab/visual-studio) 
@@ -77,7 +78,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
 
-------
+---
 
 The preceding command scaffolds the `Course` model. Open the project in Visual Studio.
 
@@ -110,6 +111,7 @@ Run the app and select the **Courses** tab to see the list with department names
 ![Courses Index page](read-related-data/_static/courses-index.png)
 
 <a name="select"></a>
+
 ### Loading related data with Select
 
 The `OnGetAsync` method loads related data with the `Include` method:
@@ -163,7 +165,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
   ```
 
-------
+---
 
 The preceding command scaffolds the `Instructor` model. 
 Run the app and navigate to the instructors page.
@@ -183,7 +185,6 @@ The query has two includes:
 * `OfficeAssignment`: Displayed in the [instructors view](#IP).
 * `CourseAssignments`: Which brings in the courses taught.
 
-
 ### Update the instructors Index page
 
 Update *Pages/Instructors/Index.cshtml* with the following markup:
@@ -194,11 +195,11 @@ The preceding markup makes the following changes:
 
 * Updates the `page` directive from `@page` to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The route template changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
 
-	`http://localhost:1234/Instructors?id=2`
+  `http://localhost:1234/Instructors?id=2`
 
-	When the page directive is `@page "{id:int?}"`, the previous URL is:
+  When the page directive is `@page "{id:int?}"`, the previous URL is:
 
-	`http://localhost:1234/Instructors/2`
+  `http://localhost:1234/Instructors/2`
 
 * Page title is **Instructors**.
 * Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
@@ -326,6 +327,11 @@ Notice the preceding code comments out `.AsNoTracking()`. Navigation properties 
 Test the app. From a users perspective, the app behaves identically to the previous version.
 
 The next tutorial shows how to update related data.
+
+## Additional resources
+
+* [YouTube version of this tutorial (part1)](https://www.youtube.com/watch?v=PzKimUDmrvE)
+* [YouTube version of this tutorial (part2)](https://www.youtube.com/watch?v=xvDDrIHv5ko)
 
 >[!div class="step-by-step"]
 >[Previous](xref:data/ef-rp/complex-data-model)

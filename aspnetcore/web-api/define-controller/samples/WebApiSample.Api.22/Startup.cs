@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApiSample.DataAccess;
+using WebApiSample.DataAccess.Repositories;
 
 #region snippet_ApiControllerAttributeOnAssembly
 [assembly: ApiController]
@@ -20,6 +23,14 @@ namespace WebApiSample.Api._22
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ProductsRepository>();
+            services.AddScoped<PetsRepository>();
+
+            services.AddDbContext<ProductContext>(opt =>
+                opt.UseInMemoryDatabase("ProductInventory"));
+            services.AddDbContext<PetContext>(opt =>
+                opt.UseInMemoryDatabase("PetInventory"));
+
             #region snippet_ConfigureApiBehaviorOptions
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -30,7 +41,7 @@ namespace WebApiSample.Api._22
                     options.SuppressModelStateInvalidFilter = true;
                     options.SuppressMapClientErrors = true;
 
-                    options.ClientErrorMapping[404].Link = 
+                    options.ClientErrorMapping[404].Link =
                         "https://httpstatuses.com/404";
                 });
             #endregion

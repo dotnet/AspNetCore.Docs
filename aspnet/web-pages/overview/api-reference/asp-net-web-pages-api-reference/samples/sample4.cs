@@ -1,1 +1,0 @@
-decimal d = stringValue.AsDecimal();

@@ -1,6 +1,0 @@
-<sessionState
-  mode="SqlServer"
-  sqlConnectionString="data source=dbserver;Initial Catalog=aspnetstate"
-  allowCustomSqlDatabase="true"
-  compressionEnabled="true"
-/>

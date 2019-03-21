@@ -16,7 +16,6 @@ The authentication templates are available in .NET Core CLI with `-au Individual
 
 ```console
 dotnet new mvc -au Individual
-dotnet new webapi -au Individual
 dotnet new webapp -au Individual
 ```
 
@@ -26,13 +25,15 @@ dotnet new webapp -au Individual
 
 ```console
 dotnet new mvc -au Individual
-dotnet new webapi -au Individual
 dotnet new razor -au Individual
 ```
 
 ::: moniker-end
 
+See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5833) for web API authentication.
+
 <a name="no"></a>
+
 ## No Authentication
 
 Authentication is specified in the .NET Core CLI with the `-au` option. In Visual Studio, the **Change Authentication** dialog is available for new web applications. The default for new web apps in Visual Studio is **No Authentication**.
@@ -43,6 +44,7 @@ Projects created with no authentication:
 * Don't contain authentication code.
 
 <a name="win"></a>
+
 ## Windows Authentication
 
 Windows Authentication is specified for new web apps in the .NET Core CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.

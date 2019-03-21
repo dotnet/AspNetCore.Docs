@@ -1,1 +1,0 @@
-Install-Package Microsoft.AspNet.WebApi -Version 5.2.0

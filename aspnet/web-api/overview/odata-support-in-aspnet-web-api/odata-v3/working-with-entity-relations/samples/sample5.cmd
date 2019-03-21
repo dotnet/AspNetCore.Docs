@@ -1,1 +1,0 @@
-GET /Products(1)/Supplier

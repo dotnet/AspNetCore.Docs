@@ -19,9 +19,9 @@ The ASP.NET Core MVC application model include both abstract interfaces and conc
 The ASP.NET Core MVC Application Model has the following structure:
 
 * ApplicationModel
-	* Controllers (ControllerModel)
-		* Actions (ActionModel)
-			* Parameters (ParameterModel)
+  * Controllers (ControllerModel)
+    * Actions (ActionModel)
+      * Parameters (ParameterModel)
 
 Each level of the model has access to a common `Properties` collection, and lower levels can access and overwrite property values set by higher levels in the hierarchy. The properties are persisted to the `ActionDescriptor.Properties` when the actions are created. Then when a request is being handled, any properties a convention added or modified can be accessed through `ActionContext.ActionDescriptor.Properties`. Using properties is a great way to configure your filters, model binders, etc. on a per-action basis.
 

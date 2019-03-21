@@ -1,7 +1,7 @@
 ---
 title: .NET Generic Host
 author: guardrex
-description: Learn about the Generic Host in .NET, which is responsible for app startup and lifetime management.
+description: Learn about ASP.NET Core's Generic Host, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
@@ -12,11 +12,34 @@ uid: fundamentals/host/generic-host
 
 By [Luke Latham](https://github.com/guardrex)
 
-.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. This topic covers the ASP.NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>), which is useful for hosting apps that don't process HTTP requests. For coverage of the Web Host (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>), see <xref:fundamentals/host/web-host>.
+::: moniker range="<= aspnetcore-2.2"
 
-The goal of the Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on the Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
+ASP.NET Core apps configure and launch a host. The host is responsible for app startup and lifetime management.
 
-The Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For web hosting scenarios, use the [Web Host](xref:fundamentals/host/web-host). The Generic Host is under development to replace the Web Host in a future release and act as the primary host API in both HTTP and non-HTTP scenarios.
+This article covers the ASP.NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>), which is used for apps that don't process HTTP requests.
+
+The purpose of Generic Host is to decouple the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads based on Generic Host benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
+
+Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For web hosting scenarios, use the [Web Host](xref:fundamentals/host/web-host). Generic Host will replace Web Host in a future release and act as the primary host API in both HTTP and non-HTTP scenarios.
+
+::: moniker-end
+
+::: moniker range="> aspnetcore-2.2"
+
+ASP.NET Core apps configure and launch a host. The host is responsible for app startup and lifetime management.
+
+This article covers the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+
+Generic Host differs from Web Host in that it decouples the HTTP pipeline from the Web Host API to enable a wider array of host scenarios. Messaging, background tasks, and other non-HTTP workloads can use Generic Host and benefit from cross-cutting capabilities, such as configuration, dependency injection (DI), and logging.
+
+Starting in ASP.NET Core 3.0, Generic Host is recommended for both HTTP and non-HTTP workloads. An HTTP server implementation, if included, runs as an implementation of <xref:Microsoft.Extensions.Hosting.IHostedService>. `IHostedService` is an interface that can be used for other workloads as well.
+
+Web Host is no longer recommended for web apps but remains available for backward compatibility.
+
+> [!NOTE]
+> This remainder of this article has not yet been updated for 3.0.
+
+::: moniker-end
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -208,7 +231,7 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundament
 
 ## Container configuration
 
-To support plugging in other containers, the host can accept an <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderFactory`1>. Providing a factory isn't part of the DI container registration but is instead a host intrinsic used to create the concrete DI container. [UseServiceProviderFactory(IServiceProviderFactory&lt;TContainerBuilder&gt;)](xref:Microsoft.Extensions.Hosting.HostBuilder.UseServiceProviderFactory*) overrides the default factory used to create the app's service provider.
+To support plugging in other containers, the host can accept an <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderFactory%601>. Providing a factory isn't part of the DI container registration but is instead a host intrinsic used to create the concrete DI container. [UseServiceProviderFactory(IServiceProviderFactory&lt;TContainerBuilder&gt;)](xref:Microsoft.Extensions.Hosting.HostBuilder.UseServiceProviderFactory*) overrides the default factory used to create the app's service provider.
 
 Custom container configuration is managed by the <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureContainer*> method. `ConfigureContainer` provides a strongly-typed experience for configuring the container on top of the underlying host API. `ConfigureContainer` can be called multiple times with additive results.
 

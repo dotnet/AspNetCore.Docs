@@ -241,4 +241,3 @@ Use the `ClientErrorMapping` property to configure the contents of the `ProblemD
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
-****

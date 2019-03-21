@@ -23,7 +23,6 @@ The preceding code calls the controller's <xref:Microsoft.AspNetCore.Mvc.Control
 
 ## Add a view
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
@@ -42,7 +41,6 @@ The preceding code calls the controller's <xref:Microsoft.AspNetCore.Mvc.Control
 
 ![Add New Item dialog](adding-view/_static/add_view.png)
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Add an `Index` view for the `HelloWorldController`.
@@ -50,7 +48,6 @@ Add an `Index` view for the `HelloWorldController`.
 * Add a new folder named *Views/HelloWorld*.
 * Add a new file to the *Views/HelloWorld* folder name *Index.cshtml*.
 
-<!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
@@ -64,8 +61,7 @@ Add an `Index` view for the `HelloWorldController`.
 
 ![Add New Item dialog](adding-view/_static/add_view.png)
 
----  
-<!-- End of VS tabs -->
+---
 
 Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with the following:
 
@@ -147,7 +143,7 @@ In *HelloWorldController.cs*, change the `Welcome` method to add a `Message` and
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5)]
 
-The `ViewData` dictionary object contains data that will be passed to the view. 
+The `ViewData` dictionary object contains data that will be passed to the view.
 
 Create a Welcome view template named *Views/HelloWorld/Welcome.cshtml*.
 
@@ -163,7 +159,7 @@ Data is taken from the URL and passed to the controller using the [MVC model bin
 
 ![Privacy view showing a Welcome label and the phrase Hello Rick shown four times](~/tutorials/first-mvc-app/adding-view/_static/rick2.png)
 
-In the sample above, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the `ViewData` dictionary approach. See [When to use ViewBag, ViewData, or TempData ](http://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/) for more information.
+In the sample above, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the `ViewData` dictionary approach. See [When to use ViewBag, ViewData, or TempData](http://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/) for more information.
 
 In the next tutorial, a database of movies is created.
 

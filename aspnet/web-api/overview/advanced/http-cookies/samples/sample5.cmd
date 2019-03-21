@@ -1,1 +1,0 @@
-Cookie: session-id=1234567; session-token=abcdef;

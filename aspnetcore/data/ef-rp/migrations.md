@@ -56,7 +56,7 @@ Enter the following in the command window:
  dotnet ef database drop
  ```
 
-------
+---
 
 ## Create an initial migration and update the DB
 
@@ -76,7 +76,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-------
+---
 
 ### Examine the Up and Down methods
 
@@ -115,7 +115,7 @@ dotnet ef migrations remove
 
 For more information, see  [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
-------
+---
 
 The remove migrations command deletes the migration and ensures the snapshot is correctly reset.
 
@@ -170,6 +170,7 @@ Solution: Run `dotnet ef database update`
 
 ### Additional resources
 
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=OWSUuMLKTJo)
 * [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 

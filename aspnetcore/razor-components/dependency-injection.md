@@ -1,27 +1,27 @@
 ---
 title: Razor Components dependency injection
 author: guardrex
-description: See how Blazor and Razor Components apps can use built-in services by having them injected into components.
+description: See how Blazor and Razor Components apps can use services by injecting them into components.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2019
+ms.date: 02/19/2019
 uid: razor-components/dependency-injection
 ---
 # Razor Components dependency injection
 
 By [Rainer Stropek](https://www.timecockpit.com)
 
-[Dependency injection (DI)](/aspnet/core/fundamentals/dependency-injection) is built-in. Apps can use built-in services by having them injected into components. Apps can also define custom services and make them available via DI.
+Razor Components supports [dependency injection (DI)](xref:fundamentals/dependency-injection). Apps can use built-in services by injecting them into components. Apps can also define and register custom services and make them available throughout the app via DI.
 
 ## Dependency injection
 
-DI is a technique for accessing services configured in a central location. This can be useful to:
+DI is a technique for accessing services configured in a central location. This can be useful in Razor Components apps to:
 
-* Share a single instance of a service class across many components (known as a *singleton* service).
-* Decouple components from particular concrete service classes and only reference abstractions. For example, an interface `IDataAccess` is implemented by a concrete class `DataAccess`. When a component uses DI to receive an `IDataAccess` implementation, the component isn't coupled to the concrete type. The implementation can be swapped, perhaps to a mock implementation in unit tests.
+* Share a single instance of a service class across many components, known as a *singleton* service.
+* Decouple components from concrete service classes by using reference abstractions. For example, consider an interface `IDataAccess` for accessing data in the app. The interface is implemented by a concrete `DataAccess` class and registered as a service in the app's service container. When a component uses DI to receive an `IDataAccess` implementation, the component isn't coupled to the concrete type. The implementation can be swapped, perhaps to a mock implementation in unit tests.
 
-The DI system is responsible for supplying instances of services to components. DI also resolves dependencies recursively so that services themselves can depend on further services. DI is configured during startup of the app. An example is shown later in this topic.
+For more information, see <xref:fundamentals/dependency-injection>.
 
 ## Add services to DI
 
@@ -34,7 +34,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The `ConfigureServices` method is passed an [IServiceCollection](/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection), which is a list of service descriptor objects ([ServiceDescriptor](/dotnet/api/microsoft.extensions.dependencyinjection.servicedescriptor)). Services are added by providing service descriptors to the service collection. The following code sample demonstrates the concept:
+The `ConfigureServices` method is passed an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of service descriptor objects (<xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>). Services are added by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -43,71 +43,47 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Services can be configured with the following lifetimes:
+Services can be configured with the lifetimes shown in the following table.
 
-| Method      | Description |
-| ----------- | ----------- |
-| [Singleton](/dotnet/api/microsoft.extensions.dependencyinjection.servicedescriptor.singleton#Microsoft_Extensions_DependencyInjection_ServiceDescriptor_Singleton__1_System_Func_System_IServiceProvider___0__) | DI creates a *single instance* of the service. All components requiring this service receive a reference to this instance. |
-| [Transient](/dotnet/api/microsoft.extensions.dependencyinjection.servicedescriptor.transient) | Whenever a component requires this service, it receives a *new instance* of the service. |
-| [Scoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicedescriptor.scoped) | Client-side Blazor doesn't currently have the concept of DI scopes. `Scoped` behaves like `Singleton`. However, ASP.NET Core Razor Components support the `Scoped` lifetime. In a Razor Component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user (even if the current intent is to run client-side in the browser). |
+| Lifetime | Description |
+| -------- | ----------- |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI creates a *single instance* of the service. All components requiring this service receive a reference to this instance. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Whenever a component requires this service, it receives a *new instance* of the service. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Client-side Blazor doesn't currently have the concept of DI scopes. `Scoped` behaves like `Singleton`. However, ASP.NET Core Razor Components support the `Scoped` lifetime. In a Razor Component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user, even if the current intent is to run client-side in the browser. |
 
-The DI system is based on the DI system in ASP.NET Core. For more information, see [Dependency injection in ASP.NET Core](/aspnet/core/fundamentals/dependency-injection).
+The DI system is based on the DI system in ASP.NET Core. For more information, see <xref:fundamentals/dependency-injection>.
 
 ## Default services
 
-Default services are automatically added to the service collection of an app. The following table shows some of the useful default services provided.
+Default services are automatically added to the app's service collection.
 
-| Method       | Description |
-| ------------ | ----------- |
-| [HttpClient](/dotnet/api/system.net.http.httpclient) | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI (singleton). Note that this instance of `HttpClient` uses the browser for handling the HTTP traffic in the background. [HttpClient.BaseAddress](/dotnet/api/system.net.http.httpclient.baseaddress) is automatically set to the base URI prefix of the app. `HttpClient` is only provided to client-side Blazor apps. |
+| Service | Description |
+| ------- | ----------- |
+| <xref:System.Net.Http.HttpClient> | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI (singleton). Note that this instance of `HttpClient` uses the browser for handling the HTTP traffic in the background. [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress) is automatically set to the base URI prefix of the app. `HttpClient` is only provided to client-side Blazor apps. |
 | `IJSRuntime` | Represents an instance of a JavaScript runtime to which calls may be dispatched. For more information, see <xref:razor-components/javascript-interop>. |
-| `IUriHelper` | Helpers for working with URIs and navigation state (singleton). `IUriHelper` is provided to both client-side Blazor and ASP.NET Core Razor Components apps. |
+| `IUriHelper` | Contains helpers for working with URIs and navigation state (singleton). `IUriHelper` is provided to both Blazor and Razor Components apps. |
 
-Note that it is possible to use a custom services provider instead of the default service provider that's added by the default template. A custom service provider doesn't automatically provide the default services listed in the table. Those services must be added to the new service provider explicitly.
+It's possible to use a custom service provider instead of the default service provider added by the default template. A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
 ## Request a service in a component
 
-Once services are added to the service collection, they can be injected into the components' Razor templates using the `@inject` Razor directive. `@inject` has two parameters:
+After services are added to the service collection, inject the services into the components' Razor templates using the [@inject](xref:mvc/views/razor#section-4) Razor directive. `@inject` has two parameters:
 
 * Type name: The type of the service to inject.
 * Property name: The name of the property receiving the injected app service. Note that the property doesn't require manual creation. The compiler creates the property.
 
-Multiple `@inject` statements can be used to inject different services.
+For more information, see <xref:mvc/views/dependency-injection>.
+
+Use multiple `@inject` statements to inject different services.
 
 The following example shows how to use `@inject`. The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
 
-```csharp
-@page "/customer-list"
-@using Services
-@inject IDataAccess DataRepository
-
-<ul>
-    @if (Customers != null)
-    {
-        @foreach (var customer in Customers)
-        {
-            <li>@customer.FirstName @customer.LastName</li>
-        }
-    }
-</ul>
-
-@functions {
-    private IReadOnlyList<Customer> Customers;
-
-    protected override async Task OnInitAsync()
-    {
-        // The property DataRepository received an implementation
-        // of IDataAccess through dependency injection. Use 
-        // DataRepository to obtain data from the server.
-        Customers = await DataRepository.GetAllCustomersAsync();
-    }
-}
-```
+[!code-cshtml[](dependency-injection/samples_snapshot/3.x/CustomerList.cshtml?highlight=2-3,23)]
 
 Internally, the generated property (`DataRepository`) is decorated with the `InjectAttribute` attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, `InjectAttribute` can be manually added:
 
 ```csharp
-public class ComponentBase : BlazorComponent
+public class ComponentBase : IComponent
 {
     // Dependency injection works even if using the
     // InjectAttribute in a component's base class.
@@ -119,19 +95,16 @@ public class ComponentBase : BlazorComponent
 
 In components derived from the base class, the `@inject` directive isn't required. The `InjectAttribute` of the base class is sufficient:
 
-```csharp
+```cshtml
 @page "/demo"
 @inherits ComponentBase
 
-<h1>...</h1>
-...
+<h1>Demo Component</h1>
 ```
 
 ## Dependency injection in services
 
-Complex services might require additional services. In the prior example, `DataAccess` might require the `HttpClient` default service. `@inject` or the `InjectAttribute` can't be used in services. *Constructor injection* must be used instead. Required services are added by adding parameters to the service's constructor. When dependency injection creates the service, it recognizes the services it requires in the constructor and provides them accordingly.
-
-The following code sample demonstrates the concept:
+Complex services might require additional services. In the prior example, `DataAccess` might require the `HttpClient` default service. `@inject` (or the `InjectAttribute`) isn't available for use in services. *Constructor injection* must be used instead. Required services are added by adding parameters to the service's constructor. When dependency injection creates the service, it recognizes the services it requires in the constructor and provides them accordingly.
 
 ```csharp
 public class DataAccess : IDataAccess
@@ -142,16 +115,16 @@ public class DataAccess : IDataAccess
     {
         ...
     }
-    ...
 }
 ```
 
-Note the following prerequisites for constructor injection:
+Prerequisites for constructor injection:
 
-* There must be one constructor whose arguments can all be fulfilled by dependency injection. Note that additional parameters not covered by DI are allowed if default values are specified for them.
+* There must be one constructor whose arguments can all be fulfilled by dependency injection. Note that additional parameters not covered by DI are allowed if they specify default values.
 * The applicable constructor must be *public*.
 * There must only be one applicable constructor. In case of an ambiguity, DI throws an exception.
 
 ## Additional resources
 
-* [Dependency injection in ASP.NET Core](/aspnet/core/fundamentals/dependency-injection)
+* <xref:fundamentals/dependency-injection
+* <xref:mvc/views/dependency-injection>

@@ -20,29 +20,29 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 **Handlers are:**
 
-   * Classes that implement [IHttpHandler](/dotnet/api/system.web.ihttphandler)
+* Classes that implement [IHttpHandler](/dotnet/api/system.web.ihttphandler)
 
-   * Used to handle requests with a given file name or extension, such as *.report*
+* Used to handle requests with a given file name or extension, such as *.report*
 
-   * [Configured](/iis/configuration/system.webserver/handlers/) in *Web.config*
+* [Configured](/iis/configuration/system.webserver/handlers/) in *Web.config*
 
 **Modules are:**
 
-   * Classes that implement [IHttpModule](/dotnet/api/system.web.ihttpmodule)
+* Classes that implement [IHttpModule](/dotnet/api/system.web.ihttpmodule)
 
-   * Invoked for every request
+* Invoked for every request
 
-   * Able to short-circuit (stop further processing of a request)
+* Able to short-circuit (stop further processing of a request)
 
-   * Able to add to the HTTP response, or create their own
+* Able to add to the HTTP response, or create their own
 
-   * [Configured](/iis/configuration/system.webserver/modules/) in *Web.config*
+* [Configured](/iis/configuration/system.webserver/modules/) in *Web.config*
 
 **The order in which modules process incoming requests is determined by:**
 
-   1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
+1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
 
-   2. For the same event, the order in which they're configured in *Web.config*.
+2. For the same event, the order in which they're configured in *Web.config*.
 
 In addition to modules, you can add handlers for the life cycle events to your *Global.asax.cs* file. These handlers run after the handlers in the configured modules.
 
@@ -50,29 +50,29 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
 **Middleware are simpler than HTTP modules and handlers:**
 
-   * Modules, handlers, *Global.asax.cs*, *Web.config* (except for IIS configuration) and the application life cycle are gone
+* Modules, handlers, *Global.asax.cs*, *Web.config* (except for IIS configuration) and the application life cycle are gone
 
-   * The roles of both modules and handlers have been taken over by middleware
+* The roles of both modules and handlers have been taken over by middleware
 
-   * Middleware are configured using code rather than in *Web.config*
+* Middleware are configured using code rather than in *Web.config*
 
-   * [Pipeline branching](xref:fundamentals/middleware/index#use-run-and-map) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+* [Pipeline branching](xref:fundamentals/middleware/index#use-run-and-map) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 **Middleware are very similar to modules:**
 
-   * Invoked in principle for every request
+* Invoked in principle for every request
 
-   * Able to short-circuit a request, by [not passing the request to the next middleware](#http-modules-shortcircuiting-middleware)
+* Able to short-circuit a request, by [not passing the request to the next middleware](#http-modules-shortcircuiting-middleware)
 
-   * Able to create their own HTTP response
+* Able to create their own HTTP response
 
 **Middleware and modules are processed in a different order:**
 
-   * Order of middleware is based on the order in which they're inserted into the request pipeline, while order of modules is mainly based on [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx) events
+* Order of middleware is based on the order in which they're inserted into the request pipeline, while order of modules is mainly based on [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx) events
 
-   * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
+* Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
-   * See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder)
+* See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder)
 
 ![Middleware](http-modules/_static/middleware.png)
 
@@ -90,7 +90,7 @@ As shown in the [Middleware](xref:fundamentals/middleware/index) page, an ASP.NE
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
-The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/index#write-middleware).
+The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/write).
 
 The *MyMiddlewareExtensions* helper class makes it easier to configure your middleware in your `Startup` class. The `UseMyMiddleware` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 

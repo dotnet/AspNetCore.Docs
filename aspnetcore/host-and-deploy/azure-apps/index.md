@@ -5,7 +5,7 @@ description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 02/26/2019
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -16,10 +16,10 @@ uid: host-and-deploy/azure-apps/index
 
 The Azure [Web Apps Documentation](/azure/app-service/) is the home for Azure Apps documentation, tutorials, samples, how-to guides, and other resources. Two notable tutorials that pertain to hosting ASP.NET Core apps are:
 
-[Quickstart: Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet)  
+[Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet)  
 Use Visual Studio to create and deploy an ASP.NET Core web app to Azure App Service on Windows.
 
-[Quickstart: Create a .NET Core web app in App Service on Linux](/azure/app-service/containers/quickstart-dotnetcore)  
+[Create an ASP.NET Core app in App Service on Linux](/azure/app-service/containers/quickstart-dotnetcore)  
 Use the command line to create and deploy an ASP.NET Core web app to Azure App Service on Linux.
 
 The following articles are available in ASP.NET Core documentation:
@@ -120,7 +120,7 @@ Use one of the following approaches:
 
 ### Install the preview site extension
 
-If a problem occurs using the preview site extension, open an issue on [GitHub](https://github.com/aspnet/azureintegration/issues/new).
+If a problem occurs using the preview site extension, open an [aspnet/AspNetCore issue](https://github.com/aspnet/AspNetCore/issues).
 
 1. From the Azure Portal, navigate to the App Service.
 1. Select the web app.
@@ -141,6 +141,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
    ```powershell
    Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.{PLATFORM}\
    ```
+
    The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]
@@ -194,11 +195,13 @@ When deploying a self-contained app:
      <RuntimeIdentifier>win-x86</RuntimeIdentifier>
    </PropertyGroup>
    ```
+
 1. From a command shell, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
 
    ```console
    dotnet publish --configuration Release --runtime win-x86
    ```
+
 1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* directory to the site in App Service.
 
 ### Use Docker with Web Apps for containers

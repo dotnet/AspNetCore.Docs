@@ -32,7 +32,7 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [!INCLUDE [](~/includes/2.1-SDK.md)]
 
-------
+---
 
 Familiarity with [Razor Pages](xref:razor-pages/index). New programmers should complete [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) before starting this series.
 
@@ -71,7 +71,7 @@ cd ContosoUniversity
 dotnet run
 ```
 
-------
+---
 
 ## Set up the site style
 
@@ -173,9 +173,10 @@ Run the following commands to scaffold the student model.
 ```console
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
 ```
-------
+
+---
 
 The scaffold process created and changed the following files:
 
@@ -310,6 +311,10 @@ For more information about asynchronous programming in .NET, see [Async Overview
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 
 ::: moniker-end
+
+## Additional resources
+
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=P7iTtQnkrNs)
 
 > [!div class="step-by-step"]
 > [Next](xref:data/ef-rp/crud)

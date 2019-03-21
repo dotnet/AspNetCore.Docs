@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using BackgroundTasksSample.Services;
-using System.Threading;
 
 namespace BackgroundTasksSample
 {

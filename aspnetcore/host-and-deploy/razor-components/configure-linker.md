@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Linker when bui
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2019
+ms.date: 03/11/2019
 uid: host-and-deploy/razor-components/configure-linker
 ---
 # Configure the Linker for Blazor
@@ -14,14 +14,14 @@ By [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/razor-components-preview-notice.md)]
 
-Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during each Release mode build to remove unnecessary IL from the output assemblies.
+Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during each Release mode build to remove unnecessary IL from the app's output assemblies.
 
-You can control assembly linking with either of the following approaches:
+Control assembly linking using either of the following approaches:
 
-* Disable linking globally with an MSBuild property.
-* Control linking on a per-assembly basis with a configuration file.
+* Disable linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).
+* Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).
 
-## Disable linking with an MSBuild property
+## Disable linking with a MSBuild property
 
 Linking is enabled by default in Release mode when an app is built, which includes publishing. To disable linking for all assemblies, set the `<BlazorLinkOnBuild>` MSBuild property to `false` in the project file:
 
@@ -33,9 +33,15 @@ Linking is enabled by default in Release mode when an app is built, which includ
 
 ## Control linking with a configuration file
 
-Linking can be controlled on a per-assembly basis by providing an XML configuration file and specifying the file as an MSBuild item in the project file.
+Control linking on a per-assembly basis by providing an XML configuration file and specifying the file as a MSBuild item in the project file:
 
-The following is an example configuration file (*Linker.xml*):
+```xml
+<ItemGroup>
+  <BlazorLinkerDescriptor Include="Linker.xml" />
+</ItemGroup>
+```
+
+*Linker.xml*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -67,12 +73,4 @@ The following is an example configuration file (*Linker.xml*):
 </linker>
 ```
 
-To learn more about the file format for the configuration file, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/linker/README.md#syntax-of-xml-descriptor).
-
-Specify the configuration file in the project file with the `BlazorLinkerDescriptor` item:
-
-```xml
-<ItemGroup>
-  <BlazorLinkerDescriptor Include="Linker.xml" />
-</ItemGroup>
-```
+For more information, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).

@@ -178,14 +178,14 @@ BE 45
 
 The components break down as follows:
 
-   * the marker (00 01)
+* the marker (00 01)
 
-   * the block cipher key length (00 00 00 20)
+* the block cipher key length (00 00 00 20)
 
-   * the nonce size (00 00 00 0C)
+* the nonce size (00 00 00 0C)
 
-   * the block cipher block size (00 00 00 10)
+* the block cipher block size (00 00 00 10)
 
-   * the authentication tag size (00 00 00 10) and
+* the authentication tag size (00 00 00 10) and
 
-   * the authentication tag from running the block cipher (E7 DC - end).
+* the authentication tag from running the block cipher (E7 DC - end).

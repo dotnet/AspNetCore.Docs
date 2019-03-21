@@ -2,7 +2,7 @@
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial examines the Razor Pages created by scaffolding in the previous tutorial. 
+This tutorial examines the Razor Pages created by scaffolding in the previous tutorial.
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21) sample.
 
@@ -48,6 +48,7 @@ Examine the lambda expression used in the following HTML Helper:
 The `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. The lambda expression is inspected rather than evaluated. That means there is no access violation when `model`, `model.Movie`, or `model.Movie[0]` are `null` or empty. When the lambda expression is evaluated (for example, with `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
 
 <a name="md"></a>
+
 ### The @model directive
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
@@ -59,6 +60,7 @@ The `@model` directive specifies the type of the model passed to the Razor Page.
 -->
 
 <a name="vd"></a>
+
 ### ViewData and layout
 
 Consider the following code:
@@ -67,7 +69,7 @@ Consider the following code:
 
 The preceding highlighted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
-The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceding sample, the "Title" property is added to the `ViewData` dictionary. 
+The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceding sample, the "Title" property is added to the `ViewData` dictionary.
 
 ::: moniker range="= aspnetcore-2.0"
 
@@ -107,6 +109,7 @@ Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
 ```cshtml
 <a asp-page="/Index" class="navbar-brand">RazorPagesMovie</a>
 ```
+
 Replace the preceding element with the following markup.
 
 ```cshtml
@@ -133,7 +136,6 @@ Examine the *Pages/Movies/Create.cshtml.cs* page model:
 
 ::: moniker-end
 
-
 The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial you see `OnGet` method initialize state. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
 
 The `Movie` property uses the `[BindProperty]` attribute to opt-in to [model binding](xref:mvc/models/model-binding). When the Create form posts the form values, the ASP.NET Core runtime binds the posted values to the `Movie` model.
@@ -154,7 +156,6 @@ Examine the *Pages/Movies/Create.cshtml* Razor Page file:
 
 <!--
 Visual Studio displays the `<form method="post">` tag in a distinctive font used for Tag Helpers. The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](xref:security/anti-request-forgery).
-
 
 ![VS17 view of Create.cshtml page](page/_static/th.png)
 -->

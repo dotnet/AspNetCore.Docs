@@ -3,7 +3,7 @@ title: Use cookie authentication without ASP.NET Core Identity
 author: rick-anderson
 description: An explanation of using cookie authentication without ASP.NET Core Identity
 ms.author: riande
-ms.date: 10/11/2017
+ms.date: 02/25/2019
 uid: security/authentication/cookie
 ---
 # Use cookie authentication without ASP.NET Core Identity
@@ -33,6 +33,8 @@ In the `ConfigureServices` method, create the Authentication Middleware service 
 `AuthenticationScheme` passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and you want to [authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to `CookieAuthenticationDefaults.AuthenticationScheme` provides a value of "Cookies" for the scheme. You can supply any string value that distinguishes the scheme.
 
 The app's authentication scheme is different from the app's cookie authentication scheme. When a cookie authentication scheme isn't provided to <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, it uses [CookieAuthenticationDefaults.AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) ("Cookies").
+
+The authentication cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> property is set to `true` by default. Authentication cookies are allowed when a site visitor hasn't consented to data collection. For more information, see <xref:security/gdpr#essential-cookies>.
 
 In the `Configure` method, use the `UseAuthentication` method to invoke the Authentication Middleware that sets the `HttpContext.User` property. Call the `UseAuthentication` method before calling `UseMvcWithDefaultRoute` or `UseMvc`:
 
@@ -111,7 +113,7 @@ The [CookieAuthenticationOptions](/dotnet/api/Microsoft.AspNetCore.Builder.Cooki
 | [CookieSecure](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.cookiesecure?view=aspnetcore-1.1) | A flag indicating if the cookie created should be limited to HTTPS (`CookieSecurePolicy.Always`), HTTP or HTTPS (`CookieSecurePolicy.None`), or the same protocol as the request (`CookieSecurePolicy.SameAsRequest`). The default value is `CookieSecurePolicy.SameAsRequest`. |
 | [Description](/dotnet/api/microsoft.aspnetcore.builder.authenticationoptions.description?view=aspnetcore-1.1) | Additional information about the authentication type which is made available to the app. |
 | [ExpireTimeSpan](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.expiretimespan?view=aspnetcore-1.1) | The `TimeSpan` after which the authentication ticket expires. It's added to the current time to create the expiration time for the ticket. To use `ExpireTimeSpan`, you must set `IsPersistent` to `true` in the `AuthenticationProperties` passed to `SignInAsync`. The default value is 14 days. |
-| [SlidingExpiration](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.slidingexpiration?view=aspnetcore-1.1) | A flag indicating whether the cookie expiration date resets when more than half of the `ExpireTimeSpan` interval has passed. The new exipiration time is moved forward to be the current date plus the `ExpireTimespan`. An [absolute cookie expiration time](xref:security/authentication/cookie#absolute-cookie-expiration) can be set by using the `AuthenticationProperties` class when calling `SignInAsync`. An absolute expiration time can improve the security of your app by limiting the amount of time that the authentication cookie is valid. The default value is `true`. |
+| [SlidingExpiration](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.slidingexpiration?view=aspnetcore-1.1) | A flag indicating whether the cookie expiration date resets when more than half of the `ExpireTimeSpan` interval has passed. The new expiration time is moved forward to be the current date plus the `ExpireTimespan`. An [absolute cookie expiration time](xref:security/authentication/cookie#absolute-cookie-expiration) can be set by using the `AuthenticationProperties` class when calling `SignInAsync`. An absolute expiration time can improve the security of your app by limiting the amount of time that the authentication cookie is valid. The default value is `true`. |
 
 Set `CookieAuthenticationOptions` for the Cookie Authentication Middleware in the `Configure` method:
 
@@ -396,7 +398,7 @@ The [AuthenticationProperties](/dotnet/api/microsoft.aspnetcore.http.authenticat
 
 ## Absolute cookie expiration
 
-You can set an absolute expiration time with `ExpiresUtc`. You must also set `IsPersistent`; otherwise, `ExpiresUtc` is ignored and a single-session cookie is created. When `ExpiresUtc` is set on `SignInAsync`, it overrides the value of the `ExpireTimeSpan` option of `CookieAuthenticationOptions`, if set.
+You can set an absolute expiration time with `ExpiresUtc`. To create a persistent cookie, you must also set `IsPersistent`; otherwise, the cookie is created with a session-based lifetime and could expire either before or after the authentication ticket that it holds. When `ExpiresUtc` is set on `SignInAsync`, it overrides the value of the `ExpireTimeSpan` option of `CookieAuthenticationOptions`, if set.
 
 The following code snippet creates an identity and corresponding cookie that lasts for 20 minutes. This ignores any sliding expiration settings previously configured.
 

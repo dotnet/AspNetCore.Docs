@@ -99,7 +99,6 @@ The `DataType` Enumeration provides for many data types, such as Date, Time, Pho
 
 `DataType.Date` doesn't specify the format of the date that's displayed. By default, the data field is displayed according to the default formats based on the server's `CultureInfo`.
 
-
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
@@ -143,6 +142,7 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 * <xref:fundamentals/localization>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
+* [YouTube version of this tutorial](https://youtu.be/b63m66eu7us)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)

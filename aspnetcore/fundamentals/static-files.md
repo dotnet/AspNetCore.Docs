@@ -17,7 +17,7 @@ Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET C
 
 ## Serve static files
 
-Static files are stored within your project's web root directory. The default directory is *\<content_root>/wwwroot*, but it can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root-webroot) for more information.
+Static files are stored within your project's web root directory. The default directory is *\<content_root>/wwwroot*, but it can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
 
 The app's web host must be made aware of the content root directory.
 
@@ -76,7 +76,7 @@ The parameterless `UseStaticFiles` method overload marks the files in web root a
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
-In the preceding code, the tilde character `~/` points to webroot. For more information, see [Web root](xref:fundamentals/index#web-root-webroot).
+In the preceding code, the tilde character `~/` points to webroot. For more information, see [Web root](xref:fundamentals/index#web-root).
 
 ### Serve files outside of web root
 
@@ -88,7 +88,7 @@ Consider a directory hierarchy in which the static files to be served reside out
   * **js**
 * **MyStaticFiles**
   * **images**
-      * *banner1.svg*
+    * *banner1.svg*
 
 A request can access the *banner1.svg* file by configuring the Static File Middleware as follows:
 
@@ -187,7 +187,7 @@ Consider the following directory hierarchy:
   * **js**
 * **MyStaticFiles**
   * **images**
-      * *banner1.svg*
+    * *banner1.svg*
   * *default.html*
 
 The following code enables static files, default files, and directory browsing of `MyStaticFiles`:

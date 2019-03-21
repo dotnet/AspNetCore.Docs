@@ -25,7 +25,6 @@ We cover these concepts in this tutorial series and show you how to use them to 
 
 ## Add a controller
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 * In **Solution Explorer**, right-click **Controllers > Add > Controller**
@@ -37,14 +36,12 @@ We cover these concepts in this tutorial series and show you how to use them to 
 
 * In the **Add Empty MVC Controller dialog**, enter **HelloWorldController** and select **ADD**.
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
 
   ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
-<!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
@@ -57,7 +54,6 @@ Name the controller **HelloWorldController**.
 ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
 
 ---
-<!-- End of VS tabs -->
 
 Replace the contents of *Controllers/HelloWorldController.cs* with the following:
 
@@ -125,7 +121,6 @@ This time the third URL segment matched the route parameter `id`. The `Welcome` 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
 In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work. The controller is returning HTML directly. Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain. Instead you typically use a separate Razor view template file to help generate the HTML response. You do that in the next tutorial.
-
 
 > [!div class="step-by-step"]
 > [Previous](start-mvc.md)

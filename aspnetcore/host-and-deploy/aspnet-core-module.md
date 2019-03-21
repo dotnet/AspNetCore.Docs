@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/19/2019
+ms.date: 02/26/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -63,9 +63,24 @@ The following characteristics apply when hosting in-process:
 
 * Client disconnects are detected. The [HttpContext.RequestAborted](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
 
-* <xref:System.IO.Directory.GetCurrentDirectory*> returns the worker directory of the process started by IIS rather than the app's directory (for example, *C:\Windows\System32\inetsrv* for *w3wp.exe*).
+* In ASP.NET Core 2.2.1 or earlier, <xref:System.IO.Directory.GetCurrentDirectory*> returns the worker directory of the process started by IIS rather than the app's directory (for example, *C:\Windows\System32\inetsrv* for *w3wp.exe*).
 
   For sample code that sets the app's current directory, see the [CurrentDirectoryHelpers class](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/2.x/CurrentDirectoryHelpers.cs). Call the `SetCurrentDirectory` method. Subsequent calls to <xref:System.IO.Directory.GetCurrentDirectory*> provide the app's directory.
+
+* When hosting in-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
+
+  ```csharp
+  public void ConfigureServices(IServiceCollection services)
+  {
+      services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
+      services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
+  }
+
+  public void Configure(IApplicationBuilder app)
+  {
+      app.UseAuthentication();
+  }
+  ```
 
 ### Out-of-process hosting model
 
@@ -152,10 +167,10 @@ The following *web.config* file is published for a [framework-dependent deployme
       <handlers>
         <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
       </handlers>
-      <aspNetCore processPath="dotnet" 
-                  arguments=".\MyApp.dll" 
-                  stdoutLogEnabled="false" 
-                  stdoutLogFile=".\logs\stdout" 
+      <aspNetCore processPath="dotnet"
+                  arguments=".\MyApp.dll"
+                  stdoutLogEnabled="false"
+                  stdoutLogFile=".\logs\stdout"
                   hostingModel="InProcess" />
     </system.webServer>
   </location>
@@ -173,9 +188,9 @@ The following *web.config* file is published for a [framework-dependent deployme
     <handlers>
       <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
     </handlers>
-    <aspNetCore processPath="dotnet" 
-                arguments=".\MyApp.dll" 
-                stdoutLogEnabled="false" 
+    <aspNetCore processPath="dotnet"
+                arguments=".\MyApp.dll"
+                stdoutLogEnabled="false"
                 stdoutLogFile=".\logs\stdout" />
   </system.webServer>
 </configuration>
@@ -195,9 +210,9 @@ The following *web.config* is published for a [self-contained deployment](/dotne
       <handlers>
         <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
       </handlers>
-      <aspNetCore processPath=".\MyApp.exe" 
-                  stdoutLogEnabled="false" 
-                  stdoutLogFile=".\logs\stdout" 
+      <aspNetCore processPath=".\MyApp.exe"
+                  stdoutLogEnabled="false"
+                  stdoutLogFile=".\logs\stdout"
                   hostingModel="InProcess" />
     </system.webServer>
   </location>
@@ -217,8 +232,8 @@ The <xref:System.Configuration.SectionInformation.InheritInChildApplications*> p
     <handlers>
       <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
     </handlers>
-    <aspNetCore processPath=".\MyApp.exe" 
-                stdoutLogEnabled="false" 
+    <aspNetCore processPath=".\MyApp.exe"
+                stdoutLogEnabled="false"
                 stdoutLogFile=".\logs\stdout" />
   </system.webServer>
 </configuration>
@@ -240,7 +255,7 @@ For information on IIS sub-application configuration, see <xref:host-and-deploy/
 | `disableStartUpErrorPage` | <p>Optional Boolean attribute.</p><p>If true, the **502.5 - Process Failure** page is suppressed, and the 502 status code page configured in the *web.config* takes precedence.</p> | `false` |
 | `forwardWindowsAuthToken` | <p>Optional Boolean attribute.</p><p>If true, the token is forwarded to the child process listening on %ASPNETCORE_PORT% as a header 'MS-ASPNETCORE-WINAUTHTOKEN' per request. It's the responsibility of that process to call CloseHandle on this token per request.</p> | `true` |
 | `hostingModel` | <p>Optional string attribute.</p><p>Specifies the hosting model as in-process (`InProcess`) or out-of-process (`OutOfProcess`).</p> | `OutOfProcess` |
-| `processesPerApplication` | <p>Optional integer attribute.</p><p>Specifies the number of instances of the process specified in the **processPath** setting that can be spun up per app.</p><p>&dagger;For in-process hosting, the value is limited to `1`.</p> | Default: `1`<br>Min: `1`<br>Max: `100`&dagger; |
+| `processesPerApplication` | <p>Optional integer attribute.</p><p>Specifies the number of instances of the process specified in the **processPath** setting that can be spun up per app.</p><p>&dagger;For in-process hosting, the value is limited to `1`.</p><p>Setting `processesPerApplication` is discouraged. This attribute will be removed in a future release.</p> | Default: `1`<br>Min: `1`<br>Max: `100`&dagger; |
 | `processPath` | <p>Required string attribute.</p><p>Path to the executable that launches a process listening for HTTP requests. Relative paths are supported. If the path begins with `.`, the path is considered to be relative to the site root.</p> | |
 | `rapidFailsPerMinute` | <p>Optional integer attribute.</p><p>Specifies the number of times the process specified in **processPath** is allowed to crash per minute. If this limit is exceeded, the module stops launching the process for the remainder of the minute.</p><p>Not supported with in-process hosting.</p> | Default: `10`<br>Min: `0`<br>Max: `100` |
 | `requestTimeout` | <p>Optional timespan attribute.</p><p>Specifies the duration for which the ASP.NET Core Module waits for a response from the process listening on %ASPNETCORE_PORT%.</p><p>In versions of the ASP.NET Core Module that shipped with the release of ASP.NET Core 2.1 or later, the `requestTimeout` is specified in hours, minutes, and seconds.</p><p>Doesn't apply to in-process hosting. For in-process hosting, the module waits for the app to process the request.</p> | Default: `00:02:00`<br>Min: `00:00:00`<br>Max: `360:00:00` |
@@ -258,7 +273,7 @@ For information on IIS sub-application configuration, see <xref:host-and-deploy/
 | `arguments` | <p>Optional string attribute.</p><p>Arguments to the executable specified in **processPath**.</p>| |
 | `disableStartUpErrorPage` | <p>Optional Boolean attribute.</p><p>If true, the **502.5 - Process Failure** page is suppressed, and the 502 status code page configured in the *web.config* takes precedence.</p> | `false` |
 | `forwardWindowsAuthToken` | <p>Optional Boolean attribute.</p><p>If true, the token is forwarded to the child process listening on %ASPNETCORE_PORT% as a header 'MS-ASPNETCORE-WINAUTHTOKEN' per request. It's the responsibility of that process to call CloseHandle on this token per request.</p> | `true` |
-| `processesPerApplication` | <p>Optional integer attribute.</p><p>Specifies the number of instances of the process specified in the **processPath** setting that can be spun up per app.</p> | Default: `1`<br>Min: `1`<br>Max: `100` |
+| `processesPerApplication` | <p>Optional integer attribute.</p><p>Specifies the number of instances of the process specified in the **processPath** setting that can be spun up per app.</p><p>Setting `processesPerApplication` is discouraged. This attribute will be removed in a future release.</p> | Default: `1`<br>Min: `1`<br>Max: `100` |
 | `processPath` | <p>Required string attribute.</p><p>Path to the executable that launches a process listening for HTTP requests. Relative paths are supported. If the path begins with `.`, the path is considered to be relative to the site root.</p> | |
 | `rapidFailsPerMinute` | <p>Optional integer attribute.</p><p>Specifies the number of times the process specified in **processPath** is allowed to crash per minute. If this limit is exceeded, the module stops launching the process for the remainder of the minute.</p> | Default: `10`<br>Min: `0`<br>Max: `100` |
 | `requestTimeout` | <p>Optional timespan attribute.</p><p>Specifies the duration for which the ASP.NET Core Module waits for a response from the process listening on %ASPNETCORE_PORT%.</p><p>In versions of the ASP.NET Core Module that shipped with the release of ASP.NET Core 2.1 or later, the `requestTimeout` is specified in hours, minutes, and seconds.</p> | Default: `00:02:00`<br>Min: `00:00:00`<br>Max: `360:00:00` |
@@ -276,7 +291,7 @@ For information on IIS sub-application configuration, see <xref:host-and-deploy/
 | `arguments` | <p>Optional string attribute.</p><p>Arguments to the executable specified in **processPath**.</p>| |
 | `disableStartUpErrorPage` | <p>Optional Boolean attribute.</p><p>If true, the **502.5 - Process Failure** page is suppressed, and the 502 status code page configured in the *web.config* takes precedence.</p> | `false` |
 | `forwardWindowsAuthToken` | <p>Optional Boolean attribute.</p><p>If true, the token is forwarded to the child process listening on %ASPNETCORE_PORT% as a header 'MS-ASPNETCORE-WINAUTHTOKEN' per request. It's the responsibility of that process to call CloseHandle on this token per request.</p> | `true` |
-| `processesPerApplication` | <p>Optional integer attribute.</p><p>Specifies the number of instances of the process specified in the **processPath** setting that can be spun up per app.</p> | Default: `1`<br>Min: `1`<br>Max: `100` |
+| `processesPerApplication` | <p>Optional integer attribute.</p><p>Specifies the number of instances of the process specified in the **processPath** setting that can be spun up per app.</p><p>Setting `processesPerApplication` is discouraged. This attribute will be removed in a future release.</p> | Default: `1`<br>Min: `1`<br>Max: `100` |
 | `processPath` | <p>Required string attribute.</p><p>Path to the executable that launches a process listening for HTTP requests. Relative paths are supported. If the path begins with `.`, the path is considered to be relative to the site root.</p> | |
 | `rapidFailsPerMinute` | <p>Optional integer attribute.</p><p>Specifies the number of times the process specified in **processPath** is allowed to crash per minute. If this limit is exceeded, the module stops launching the process for the remainder of the minute.</p> | Default: `10`<br>Min: `0`<br>Max: `100` |
 | `requestTimeout` | <p>Optional timespan attribute.</p><p>Specifies the duration for which the ASP.NET Core Module waits for a response from the process listening on %ASPNETCORE_PORT%.</p><p>In versions of the ASP.NET Core Module that shipped with the release of ASP.NET Core 2.0 or earlier, the `requestTimeout` must be specified in whole minutes only, otherwise it defaults to 2 minutes.</p> | Default: `00:02:00`<br>Min: `00:00:00`<br>Max: `360:00:00` |
@@ -567,29 +582,29 @@ The Hosting Bundle installer logs for the module are found at *C:\\Users\\%UserN
 
 **IIS (x86/amd64):**
 
-   * %windir%\System32\inetsrv\aspnetcore.dll
+* %windir%\System32\inetsrv\aspnetcore.dll
 
-   * %windir%\SysWOW64\inetsrv\aspnetcore.dll
+* %windir%\SysWOW64\inetsrv\aspnetcore.dll
 
 ::: moniker range=">= aspnetcore-2.2"
 
-   * %ProgramFiles%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
+* %ProgramFiles%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
 
-   * %ProgramFiles(x86)%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
+* %ProgramFiles(x86)%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
 
 ::: moniker-end
 
 **IIS Express (x86/amd64):**
 
-   * %ProgramFiles%\IIS Express\aspnetcore.dll
+* %ProgramFiles%\IIS Express\aspnetcore.dll
 
-   * %ProgramFiles(x86)%\IIS Express\aspnetcore.dll
+* %ProgramFiles(x86)%\IIS Express\aspnetcore.dll
 
 ::: moniker range=">= aspnetcore-2.2"
 
-   * %ProgramFiles%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
+* %ProgramFiles%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
 
-   * %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
+* %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
 
 ::: moniker-end
 
@@ -597,20 +612,21 @@ The Hosting Bundle installer logs for the module are found at *C:\\Users\\%UserN
 
 **IIS**
 
-   * %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
+* %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
 
 ::: moniker range=">= aspnetcore-2.2"
 
-   * %windir%\System32\inetsrv\config\schema\aspnetcore_schema_v2.xml
+* %windir%\System32\inetsrv\config\schema\aspnetcore_schema_v2.xml
 
 ::: moniker-end
+
 **IIS Express**
 
-   * %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema.xml
+* %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema.xml
 
 ::: moniker range=">= aspnetcore-2.2"
 
-   * %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema_v2.xml
+* %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema_v2.xml
 
 ::: moniker-end
 
@@ -618,13 +634,13 @@ The Hosting Bundle installer logs for the module are found at *C:\\Users\\%UserN
 
 **IIS**
 
-   * %windir%\System32\inetsrv\config\applicationHost.config
+* %windir%\System32\inetsrv\config\applicationHost.config
 
 **IIS Express**
 
-   * Visual Studio: {APPLICATION ROOT}\\.vs\config\applicationHost.config
-   
-   * *iisexpress.exe* CLI: %USERPROFILE%\Documents\IISExpress\config\applicationhost.config
+* Visual Studio: {APPLICATION ROOT}\\.vs\config\applicationHost.config
+
+* *iisexpress.exe* CLI: %USERPROFILE%\Documents\IISExpress\config\applicationhost.config
 
 The files can be found by searching for *aspnetcore* in the *applicationHost.config* file.
 

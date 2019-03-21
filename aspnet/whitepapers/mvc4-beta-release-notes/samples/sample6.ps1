@@ -1,1 +1,0 @@
-Install-Package jQuery.Mobile.MVC

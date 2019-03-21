@@ -1,2 +1,0 @@
-add-migration InitialCreate
-update-database

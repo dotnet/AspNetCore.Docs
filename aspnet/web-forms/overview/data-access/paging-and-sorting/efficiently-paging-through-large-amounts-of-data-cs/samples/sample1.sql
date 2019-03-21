@@ -1,2 +1,0 @@
-SELECT COUNT(*)
-FROM Products
