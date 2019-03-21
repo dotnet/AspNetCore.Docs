@@ -47,6 +47,7 @@ You can specify a return type and parameters, including complex types and arrays
 
 > [!NOTE]
 > Hubs are transient:
+>
 > * Don't store state in a property on the hub class. Every hub method call is executed on a new hub instance.  
 > * Use `await` when calling asynchronous methods that depend on the hub staying alive. For example, a method such as `Clients.All.SendAsync(...)` can fail if it's called without `await` and the hub method completes before `SendAsync` finishes.
 
