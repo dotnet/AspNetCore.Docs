@@ -196,9 +196,9 @@ The Swagger UI displays the version's information:
 
 ### XML comments
 
- To enable XML comments, perform the following steps:
+To enable XML comments, perform the following steps:
 
-# [Visual Studio](#tab/visual-studio-xml/)
+# [Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -216,7 +216,7 @@ The Swagger UI displays the version's information:
 
 ::: moniker-end
 
-# [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -234,7 +234,7 @@ The Swagger UI displays the version's information:
 
 ::: moniker-end
 
-# [Visual Studio Code](#tab/visual-studio-code-xml/)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Manually add the highlighted lines to the *.csproj* file:
 
