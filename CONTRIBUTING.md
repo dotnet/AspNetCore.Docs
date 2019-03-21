@@ -30,7 +30,7 @@ Articles are written in [DocFx-flavored Markdown](https://dotnet.github.io/docfx
 
 For each Markdown file, a folder for images and a folder for sample code may exist. If the article is [fundamentals/configuration/index.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) and the sample app project files are in [fundamentals/configuration/index/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown:
 
-```
+```md
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
 ```
 
@@ -42,13 +42,13 @@ Use lowercase for Markdown file names and image file names.
 
 Internal links should use the `uid` of the target article with an xref link (link text is set to the linked content's title):
 
-```
+```md
 <xref:uid_of_the_topic>
 ```
 
 If the title of the article is unsuitable for link text (for example, a word or phrase in a sentence is the link text), specify the xref link and link text with the following:
 
-```
+```md
 [link text](xref:uid_of_the_topic)
 ```
 
@@ -73,13 +73,13 @@ The following examples illustrate [DFM code snippet syntax](https://dotnet.githu
 
 To render an entire code file as a snippet:
 
-```
+```md
 [!code-csharp[](configuration/index/sample/Program.cs)]
 ```
 
 To render a portion of a file as a snippet by using line numbers:
 
-```
+```md
 [!code-csharp[](configuration/index/sample/Program.cs?range=1-10,20,30,40-50]
 [!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
 ```
@@ -88,13 +88,13 @@ For C# snippets, reference a [C# region](https://docs.microsoft.com/dotnet/cshar
 
 To render a C# region named "snippet_Example":
 
-```
+```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example)]
 ```
 
 To highlight selected lines in a rendered snippet (usually renders as yellow background color):
 
-```
+```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
 [!code-csharp[](configuration/index/sample/Program.cs?range=10-20&highlight=1-3]
 [!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3]
