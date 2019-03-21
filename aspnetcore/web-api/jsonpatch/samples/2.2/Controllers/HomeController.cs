@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
+using System.Dynamic;
 using JsonPatchSample.Web.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -69,6 +70,16 @@ namespace JsonPatchSample.Web.Controllers
 
             return new ObjectResult(product);
         }
+
+        [HttpPatch]
+        public IActionResult JsonPatchForDynamic([FromBody]JsonPatchDocument patch)
+        {
+            dynamic obj = new ExpandoObject();
+            patch.ApplyTo(obj);
+
+            return Ok(obj);
+        }
+
 
         private Customer CreateCustomer()
         {

@@ -1,0 +1,12 @@
+[
+  {
+    "op": "move",
+    "path": "/customerName",
+    "from": "/orders/0/orderName"
+  },
+  {
+    "op": "move",
+    "path": "/orders/0",
+    "from": "/orders/1"
+  }
+]

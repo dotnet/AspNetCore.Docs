@@ -1,0 +1,12 @@
+[
+  {
+    "op": "copy",
+    "path": "/customerName",
+    "from": "/orders/0/orderName"
+  },
+  {
+    "op": "copy",
+    "path": "/orders/1",
+    "from": "/orders/0"
+  }
+]

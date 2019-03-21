@@ -1,7 +1,7 @@
 ---
 title: JsonPatch in ASP.NET Core Web API
 author: tdykstra
-description: Learn how to handle PATCH requests using JSON documents in an ASP.NET Core Web API.
+description: Learn how to handle JSON Patch requests in an ASP.NET Core Web API.
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/24/2019
@@ -14,40 +14,51 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2) ([how to download](xref:index#how-to-download-a-sample)).
 
-This article explains how to handle PATCH requests using JSON documents in an ASP.NET Core Web API.
+This article explains how to handle JSON Patch requests in an ASP.NET Core Web API.
 
 ## PATCH HTTP request method
 
-The PUT and PATCH methods are used to update an existing resource. The difference between them is that PUT provides the entire resource to replace the existing one, while PATCH specifies only the changes. Using the PATCH method can improve performance when resources to be updated are large and the changes are small.
+The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to update an existing resource. The difference between them is that PUT provides the entire resource to replace the existing one, while PATCH specifies only the changes. Using the PATCH method can improve performance when resources to be updated are large and the changes are small.
 
 ## JSON Patch
 
-JSON Patch is a specification for a JSON document that identifies changes to be made in a resource. A JSON Patch document has an array of one or more *operations*. Each operation identifies a particular type of change, such as add or remove an array element.
+[JSON Patch](https://tools.ietf.org/html/rfc6902) is a JSON schema for identifying changes to be made in a resource. Its HTML media type is “application/json-patch+json”.
 
-### Example
+A JSON Patch document has an array of one or more objects that are referred to as *operations*. Each operation identifies a particular type of change, such as add or remove an array element. The changes made by applying a JSON Patch document are atomic: if any operation in the list fails, none are applied.
 
-Suppose the resource is a customer object:
+## Example
+
+Suppose the resource is an array of contact names:
 
 ```json
 {
-     "firstName": "Nancy",
-     "lastName": "Davolio",
+  "contacts": [
+    {
+      "firstName": "Barry",
+      "lastName": "McCarty",
+    }
+  ]
 }
 ```
 
-In the following JSON PATCH document, the `op` property indicates the operation, such as `add`, `remove`, or `replace`. The `path` property indicates which element in the target object should be updated. The `value` property provides the new value. 
+In the following JSON Patch document:
+
+* The `op` property indicates the operation.
+* The `path` property indicates which element in the target object should be updated.
+* The `from` property indicates the source element.
+* The `value` property provides the new value.
 
 ```json
 [
     {
-         "op": "replace",
-         "path": "/lastName",
-         "value": "Smith"
-    },
+         "op": "copy",
+         "from": "/contacts/0",
+         "path": "/contacts/-",
+    }
     {
-         "op": "add",
-         "path": "/suffix",
-         "value": "Ph.D."
+         "op": "replace",
+         "path": "contacts/1/lastname",
+         "value": "McCarty"
     }
 ]
 ```
@@ -56,87 +67,132 @@ After applying the preceding JSON Patch document, the original document is chang
 
 ```json
 {
-     "firstName": "Nancy",
-     "lastName": "Smith",
-     "suffix": "Ph.D."
+  "contacts": [
+    {
+      "firstName": "Barry",
+      "lastName": "Durand",
+    }
+    {
+      "firstName": "Barry",
+      "lastName": "McCarty",
+    }
+  ]
 }
+
 ```
 
-### Operations and paths
+## Path syntax
 
-The following table shows how JSON Patch operations work according to the specification.
+The [path](http://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels. For example, `"/address/zipCode"`.
 
-|Operation  | Target of Path                 | Notes |
+Zero-based indexes are used to specify arrays elements. The first element of the `addresses` array would be at `"/addresses/0"`. To `add` to the end of an array, use a hyphen (-) rather than an index number: `"/addresses/-"`.
+
+### Operations
+
+The following table shows supported operations according to [the JSON Patch specification](https://tools.ietf.org/html/rfc6902):
+
+|Operation  | Notes |
 |-----------|--------------------------------|-------|
-| `add`     | Array element                  | Add an element to the array. |
-| `add`     | Nonexistent property           | Add the property to the object. |
-| `add`     | Property                       | Set the property value. |
-| `remove`  | Property or array element      | Remove the property or element. |
-| `replace` | Property or array element      | Same as `remove` followed by `add`. |
-| `move`    | Properties or array elements   | Move from `from` path to `path`. |
-| `copy`    | Properties or array elements   | Copy from `from` path to `path`. |
-| `test`    | Property or array element      | Return success status code if value at `path` = `value`.|
-
-The `path` property of a patch document uses slashes between levels. For example, `"/address/zipCode"`. Use zero-based indexes in arrays: the first element of the addresses array would be at `"/addresses/0"`. To add to the end of an array, use a hyphen (-) rather than an index number: `"/addresses/-"`.
+| `add` (`path` points to array element)         | Add an element to the array. |
+| `add` (`path` points to property)              | Set the property value. |
+| `add` (`path` points to nonexistent property)  | Add the property to the object. |
+| `remove`  | Remove the property or array element.   |
+| `replace` | Same as `remove` followed by `add` at same location. |
+| `move`    | Same as `remove` from source followed by `add` to destination using value from source. |
+| `copy`    | Same as `add` to destination using value from source. |
+| `test`    | Return success status code if value at `path` = `value`.|
 
 ## JsonPatch in ASP.NET Core
 
-The ASP.NET Core implementation of JSON Patch works with C# objects rather than JavaScript objects, which requires some changes in the way operations work.  Array elements can be added and removed, but properties can't. The following table lists the differences:
+The ASP.NET Core implementation of JSON Patch in provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package and is included in the [Microsoft.AspnetCore.App](../fundamentals/metapackage-app.md) metapackage.
 
-|Operation  | Target of Path                 | Notes |
-|-----------|--------------------------------|-------|
-| `add`     | Nonexistent property           | Request fails. |
-| `add`     | Property                       | Set the property value. |
-| `remove`  | Property                       | Set the property value to null or `default<T>`. |
-| `move`    | Properties                     | Request fails. |
-| `copy`    | Properties                     | Request fails. |
-| `test`    | Property or array element      | Return success status code if value at `path` = `value`.|
+Static vs. dynamic objects
 
-## Use AspnetCore.JsonPatch in an app
+When you use JSON Patch with dynamic objects, properties can be removed or created at runtime and JSON Patch can work according to the specification. But it's relatively rare to use dynamic objects in C# apps, and some operations have to be handled differently by ASP.NET Core JSON Patch when it woks with static objects. The following sections explain the ASP.NET Core JSON Patch operations that are supported.
 
-### Package
+## Action method syntax
 
-Install-Package Microsoft.AspNetCore.JsonPatch
+In the API controller, the action method for JSON Patch:
 
-### Controller
+* Is annotated with the HttpPatch attribute.
+* Accepts a `JsonPatchDocument<T>`, typically with [FromBody].
+* Calls `ApplyTo` on the patch document to apply the changes. Can pass in ModelState to have patch errors entered into model state.
 
-The main point to note is that the HTTP Verb we use is “Patch”, we accept a type of “JsonPatchDocument<T>” and that to “apply” the changes we simply call “ApplyTo” on the patch and pass in the object we want to update.
-[FromBody]}
+<!-- todo code snippet static -->
 
-## Set a property value
+<!-- todo code snippet dynamic-->
 
-replace
+dynamic object example
+[HttpPatch("dynamic")]
+public IActionResult Patch([FromBody]JsonPatchDocument patch)
+{
+    dynamic obj = new ExpandoObject();
+    patch.ApplyTo(obj);
 
-## Set a property to null or default
 
-remove
+
+## Add a property
+
+On a dynamic object, add a property.
+On a static object, set a property to a value.
 
 ## Add an array element
 
-add
+Inserts an array element.
 
-## Copy a property or array element
+## Remove an array element
 
-copy (=add on copy to)
+Removes an array element
 
-## Move a property or array element
+## Remove a property value
 
-move (=remove + add)
+On a dynamic object, removes the property.
+On a static object, sets it to null if it's nullable, or `default<T>` if it isn't nullable.
 
-## Check for concurrency errors
+## Replace
 
-test
+Replaces an array element or the value of a property.
 
-test & replace example
+## Move an array element
 
+If `path` is an array element: copies value of `from` property to `path` property, then calls `remove` on `from` property.
+
+## Move a property value
+
+If `path` is a property: copies value of `from` property to `path` property, then calls `remove` on `from` property.
+
+## Copy an array element
+
+If `path` is an array element: copies value of `from` property to `path` property.
+
+## Copy a property value
+
+If `path` is a property: copies value of `from` property to `path` property.
+
+## Check for concurrency conflicts
+
+For example, array element location changes before you send the patch.  Send a Test, and if it fails, the whole patch document is not applied.
+
+## Create JSON Patch documents
+
+## Sample app
+
+To try out the sample app, run the project and send HTTP requests with the following settings:
+
+* URL: `http://localhost:53594/jsonpatch/jsonpatchwithmodelstate`
+* HTTP method: `PATCH`
+* `Content-Type` header: `application/json-patch+json`
+* Body: Find sample JSON Patch documents in the *JSON* project folder.
 
 
 ## Get the code
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Additional resources
 
 * [IETF RFC 5789 PATCH method specification](https://tools.ietf.org/html/rfc5789)
-* [IETF RFC 6902 JSON PATCH specification](https://tools.ietf.org/html/rfc6902)
+* [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
 * [IETF RFC 6901 JSON Patch path format spec](http://tools.ietf.org/html/rfc6901)
-* [Official documentation for JSON Patch](http://jsonpatch.com/)
+* [JSON Patch documentation](http://jsonpatch.com/), including resources for creating JSON Patch documents.
+* [ASP.NET Core JSON Patch source code](https://github.com/aspnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
