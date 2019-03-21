@@ -196,9 +196,9 @@ The Swagger UI displays the version's information:
 
 ### XML comments
 
- To enable XML comments, perform the following steps:
+To enable XML comments, perform the following steps:
 
-# [Visual Studio](#tab/visual-studio-xml/)
+# [Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -216,7 +216,7 @@ The Swagger UI displays the version's information:
 
 ::: moniker-end
 
-# [Visual Studio for Mac](#tab/visual-studio-mac-xml/)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -234,7 +234,7 @@ The Swagger UI displays the version's information:
 
 ::: moniker-end
 
-# [Visual Studio Code](#tab/visual-studio-code-xml/)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Manually add the highlighted lines to the *.csproj* file:
 
@@ -270,7 +270,7 @@ The preceding action returns `IActionResult`, but inside the action it's returni
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Because NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1), it can only infer the return type defined by `T`. You can't automatically infer other possible return types.
+ Because NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601), it can only infer the return type defined by `T`. You can't automatically infer other possible return types. 
 
 Consider the following example:
 

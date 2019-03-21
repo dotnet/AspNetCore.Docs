@@ -528,7 +528,7 @@ Razor templates allow you to define a UI snippet with the following format:
 @<tag>...</tag>
 ```
 
-The following example illustrates how to specify a templated Razor delegate as a <xref:System.Func`2>. The [dynamic type](/dotnet/csharp/programming-guide/types/using-type-dynamic) is specified for the parameter of the method that the delegate encapsulates. An [object type](/dotnet/csharp/language-reference/keywords/object) is specified as the return value of the delegate. The template is used with a <xref:System.Collections.Generic.List`1> of `Pet` that has a `Name` property.
+The following example illustrates how to specify a templated Razor delegate as a <xref:System.Func%602>. The [dynamic type](/dotnet/csharp/programming-guide/types/using-type-dynamic) is specified for the parameter of the method that the delegate encapsulates. An [object type](/dotnet/csharp/language-reference/keywords/object) is specified as the return value of the delegate. The template is used with a <xref:System.Collections.Generic.List%601> of `Pet` that has a `Name` property.
 
 ```csharp
 public class Pet
@@ -593,7 +593,7 @@ You can also supply an inline Razor template as an argument to a method. In the 
 
 Using the list of pets from the prior example, the `Repeat` method is called with:
 
-* <xref:System.Collections.Generic.List`1> of `Pet`.
+* <xref:System.Collections.Generic.List%601> of `Pet`.
 * Number of times to repeat each pet.
 * Inline template to use for the list items of an unordered list.
 

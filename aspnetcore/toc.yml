@@ -22,17 +22,6 @@
       uid: aspnetcore-1.1
 - name: Tutorials
   items:
-    - name: Web API apps
-      items:
-        - name: Create a web API
-          displayName: tutorial
-          uid: tutorials/first-web-api
-        - name: Web API with MongoDB
-          displayName: tutorial
-          uid: tutorials/first-mongo-app
-        - name: Backend for mobile
-          displayName: tutorial
-          uid: mobile/native-mobile-backend
     - name: Web apps
       items:
         - name: Razor Pages
@@ -81,6 +70,17 @@
               uid: tutorials/first-mvc-app/validation
             - name: Examine the Details and Delete methods
               uid: tutorials/first-mvc-app/details
+    - name: Web API apps
+      items:
+        - name: Create a web API
+          displayName: tutorial
+          uid: tutorials/first-web-api
+        - name: Web API with MongoDB
+          displayName: tutorial
+          uid: tutorials/first-mongo-app
+        - name: Backend for mobile
+          displayName: tutorial
+          uid: mobile/native-mobile-backend              
     - name: Real-time web apps
       items:
         - name: SignalR with JavaScript
@@ -89,7 +89,7 @@
         - name: SignalR with TypeScript
           displayName: tutorial
           uid: tutorials/signalr-typescript-webpack
-    - name: Remote procedure call apps
+    - name: Remote Procedure Call apps
       items:
         - name: Get started with gRPC service in ASP.NET Core
           uid: tutorials/grpc/grpc-start

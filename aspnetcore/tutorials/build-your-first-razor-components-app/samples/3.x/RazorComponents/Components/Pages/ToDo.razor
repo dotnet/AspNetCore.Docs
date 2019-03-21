@@ -1,6 +1,6 @@
 @page "/todo"
 
-<h1>Todo (@todos.Where(todo => !todo.IsDone).Count())</h1>
+<h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
 
 <ul>
     @foreach (var todo in todos)

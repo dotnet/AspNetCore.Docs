@@ -56,7 +56,7 @@ Learn more about [built-in logging providers](#built-in-logging-providers) and [
 
 ## Create logs
 
-Get an <xref:Microsoft.Extensions.Logging.ILogger`1> object from DI.
+Get an <xref:Microsoft.Extensions.Logging.ILogger%601> object from DI.
 
 ::: moniker range=">= aspnetcore-2.0"
 
