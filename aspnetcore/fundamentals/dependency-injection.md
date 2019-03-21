@@ -122,7 +122,7 @@ This interface is implemented by a concrete type, `MyDependency`:
 
 `IMyDependency` and `ILogger<TCategoryName>` must be registered in the service container. `IMyDependency` is registered in `Startup.ConfigureServices`. `ILogger<TCategoryName>` is registered by the logging abstractions infrastructure, so it's a [framework-provided service](#framework-provided-services) registered by default by the framework.
 
-The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic) open types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types "Open and closed types") avoiding to have to register every [(generic) constructed type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#constructed-types "Constructed types"):
+The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic) open types](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminating the need to register every [(generic) constructed type](/dotnet/csharp/language-reference/language-specification/types#constructed-types):
 
 ```csharp
 services.AddSingleton(typeof(ILogger<T>), typeof(Logger<T>));
