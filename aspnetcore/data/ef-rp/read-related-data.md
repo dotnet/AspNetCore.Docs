@@ -78,7 +78,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
 
-------
+---
 
 The preceding command scaffolds the `Course` model. Open the project in Visual Studio.
 
@@ -165,7 +165,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
   ```
 
-------
+---
 
 The preceding command scaffolds the `Instructor` model. 
 Run the app and navigate to the instructors page.

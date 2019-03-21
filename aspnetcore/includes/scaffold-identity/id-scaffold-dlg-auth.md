@@ -54,4 +54,4 @@ dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files
 
 If you run the Identity scaffolder without specifying the `--files` flag or the `--useDefaultUI` flag, all the available Identity UI pages will be created in your project.
 
--------------
+---
