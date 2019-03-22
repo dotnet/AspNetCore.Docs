@@ -22,7 +22,7 @@ The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to upd
 
 [JSON Patch](https://tools.ietf.org/html/rfc6902) is a format for specifying updates to be applied to a resource. A JSON Patch document has an array of *operations*. Each operation identifies a particular type of change, such as add an array element or replace a property value.
 
-For example, the following JSON documents represent a resource, a JSON patch document for the resource, and the result of applying the operations in the JSON patch document.
+For example, the following JSON documents represent a resource, a JSON patch document for the resource, and the result of applying the patch operations.
 
 ### Resource example
 
