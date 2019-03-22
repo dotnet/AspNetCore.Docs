@@ -126,5 +126,5 @@ Prerequisites for constructor injection:
 
 ## Additional resources
 
-* <xref:fundamentals/dependency-injection
+* <xref:fundamentals/dependency-injection>
 * <xref:mvc/views/dependency-injection>
