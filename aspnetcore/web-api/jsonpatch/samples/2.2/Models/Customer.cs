@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace JsonPatchSample.Web.Models
+namespace JsonPatchSample.Models
 {
     public class Customer
     {

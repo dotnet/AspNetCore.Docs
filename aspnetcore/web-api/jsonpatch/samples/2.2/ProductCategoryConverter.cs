@@ -3,11 +3,11 @@
 
 using System;
 using System.Reflection;
-using JsonPatchSample.Web.Models;
+using JsonPatchSample.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace JsonPatchSample.Web
+namespace JsonPatchSample
 {
     public class ProductCategoryConverter : JsonConverter
     {

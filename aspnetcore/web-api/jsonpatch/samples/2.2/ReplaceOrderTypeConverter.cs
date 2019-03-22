@@ -4,7 +4,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace JsonPatchSample.Web
+namespace JsonPatchSample
 {
     public class ReplaceOrderTypeConverter : JsonConverter
     {

@@ -3,7 +3,7 @@
 
 using Newtonsoft.Json;
 
-namespace JsonPatchSample.Web.Models
+namespace JsonPatchSample.Models
 {
     public class Order
     {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JsonPatchSample.Web
+namespace JsonPatchSample
 {
     public class Startup
     {
@@ -21,18 +21,6 @@ namespace JsonPatchSample.Web
         {
             // Add MVC to the request pipeline
             app.UseMvc();
-        }
-
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseKestrel()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
         }
     }
 }

@@ -3,17 +3,19 @@
 
 using System.Collections.Generic;
 using System.Dynamic;
-using JsonPatchSample.Web.Models;
+using JsonPatchSample.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JsonPatchSample.Web.Controllers
+namespace JsonPatchSample.Controllers
 {
     [Route("jsonpatch/[action]")]
     public class HomeController : Controller
     {
+        #region snippet_PatchAction
         [HttpPatch]
-        public IActionResult JsonPatchWithModelState([FromBody] JsonPatchDocument<Customer> patchDoc)
+        public IActionResult JsonPatchWithModelState(
+            [FromBody] JsonPatchDocument<Customer> patchDoc)
         {
             if (patchDoc != null)
             {
@@ -33,6 +35,7 @@ namespace JsonPatchSample.Web.Controllers
                 return BadRequest(ModelState);
             }
         }
+        #endregion
 
         [HttpPatch]
         public IActionResult JsonPatchWithModelStateAndPrefix(
@@ -71,6 +74,7 @@ namespace JsonPatchSample.Web.Controllers
             return new ObjectResult(product);
         }
 
+        #region snippet_Dynamic
         [HttpPatch]
         public IActionResult JsonPatchForDynamic([FromBody]JsonPatchDocument patch)
         {
@@ -79,7 +83,7 @@ namespace JsonPatchSample.Web.Controllers
 
             return Ok(obj);
         }
-
+        #endregion
 
         private Customer CreateCustomer()
         {

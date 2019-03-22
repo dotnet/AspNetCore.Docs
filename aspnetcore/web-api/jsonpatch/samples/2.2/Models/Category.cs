@@ -3,7 +3,7 @@
 
 using Newtonsoft.Json;
 
-namespace JsonPatchSample.Web.Models
+namespace JsonPatchSample.Models
 {
     [JsonConverter(typeof(ProductCategoryConverter))]
     public class Category
