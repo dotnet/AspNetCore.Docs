@@ -128,7 +128,7 @@ For early development, `EnsureCreated` was used. In this tutorial, migrations ar
 * Can *not* be used with migrations.
 * Is designed for testing or rapid prototyping where the DB is dropped and re-created frequently.
 
-Remove the following line from `DbInitializer`:
+Remove `EnsureCreated`:
 
 ```csharp
 context.Database.EnsureCreated();
