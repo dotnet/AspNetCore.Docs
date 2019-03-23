@@ -47,6 +47,13 @@ _**Hint:** In the case of `CookieRequestCultureProvider` be sure there's no sing
 
 ## Resources & Class Libraries issues
 
+ASP.NET Core by default provides away to allow the class libraries to find their resource files via [ResourceLocationAttribute](/dotnet/api/microsoft.extensions.localization.resourcelocationattribute?view=aspnetcore-2.1).
+
+Common issues with class libraries include:
+- Missing the `ResourceLocationAttribute` in a class library will prevent `ResourceManagerStringLocalizerFactory` from discovering the resources.
+- Resource file naming. For more information please refer to [Resource file naming issues](#resource-file-naming-issues) section.
+- Changing the root namespace of the class library. For more information please refer to [Root Nameaspace issues](#root-namespace-issues) section.
+
 ## CustomRequestCultureProvider doesn't work as expected
 
 The `RequestLocalizationOptions` class come up with three default providers:
