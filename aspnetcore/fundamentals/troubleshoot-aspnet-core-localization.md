@@ -71,3 +71,7 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
 ## Root Namespace issues
 
 When the root namespace of an assembly is different than the assembly name, the Localization does not work by default. To avoid this issue use the [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) which is described in detail [here](xref:fundamentals/localization?view=aspnetcore-2.2#resource-file-naming)
+
+## Resources & Build Action
+
+If you use resource files for localization, it's very important that they have an appropriate build action. They should be **Embedded Resource**, otherwise the `ResourceStringLocalizer` not being able to find these resources.
