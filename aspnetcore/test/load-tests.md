@@ -9,7 +9,7 @@ uid: test/loadtests
 ---
 # Load and stress testing ASP.NET Core
 
-Load testing and stress testing are important to ensure a web app is performant and scalable. Their goals are different even they often share similar tests.
+Load testing and stress testing are important to ensure a web app is performant and scalable. Their goals are different even though they often share similar tests.
 
 **Load tests**: Tests whether the app can handle a specified load of users for a certain scenario while still satisfying the response goal. The app is run under normal conditions.
 
