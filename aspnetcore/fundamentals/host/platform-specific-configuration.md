@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 03/22/2019
+ms.date: 03/23/2019
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
@@ -376,6 +376,6 @@ dotnet nuget locals all --clear
 
 1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing Windows PowerShell](/powershell/scripting/setup/installing-powershell#powershell-core).
 1. Execute the *build.ps1* script in the *RuntimeStore* folder. For Windows, the `dotnet store` command in the script uses the `win7-x64` [runtime identifier (RID)](/dotnet/core/rid-catalog). When providing the hosting startup for a different runtime, substitute the correct RID.
-1. Run the *deploy.ps1* script in the *deployment* folder. The script is configured for Windows and sets the `DOTNET_ADDITIONAL_DEPS` environment variable to `%UserProfile%\.dotnet\x64\additionalDeps\StartupDiagnostics\`. On macOS/Linux, set the `DOTNET_ADDITIONAL_DEPS` environment variable in the script to `/Users/<USER>/.dotnet/x64/additionalDeps/StartupDiagnostics/`, where `<USER>` is the user profile that contains the hosting startup.
+1. Run the *deploy.ps1* script in the *deployment* folder.
 1. Run the sample app.
 1. Request the `/services` endpoint to see the app's registered services. Request the `/diag` endpoint to see the diagnostic information.
