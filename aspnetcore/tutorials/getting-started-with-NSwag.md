@@ -41,7 +41,7 @@ To use the [NSwag](https://github.com/RSuter/NSwag) ASP.NET Core middleware, ins
 
 Use one of the following approaches to install the NSwag NuGet package:
 
-### [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 * From the **Package Manager Console** window:
   * Go to **View** > **Other Windows** > **Package Manager Console**
@@ -58,14 +58,14 @@ Use one of the following approaches to install the NSwag NuGet package:
   * Enter "NSwag.AspNetCore" in the search box
   * Select the "NSwag.AspNetCore" package from the **Browse** tab and click **Install**
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
 * Set the **Add Packages** window's **Source** drop-down to "nuget.org"
 * Enter "NSwag.AspNetCore" in the search box
 * Select the "NSwag.AspNetCore" package from the results pane and click **Add Package**
 
-### [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following command from the **Integrated Terminal**:
 
@@ -73,7 +73,7 @@ Run the following command from the **Integrated Terminal**:
 dotnet add TodoApi.csproj package NSwag.AspNetCore
 ```
 
-### [.NET Core CLI](#tab/netcore-cli)
+# [.NET Core CLI](#tab/netcore-cli)
 
 Run the following command:
 
@@ -234,7 +234,7 @@ To enable XML comments, perform the following steps:
 
 ::: moniker-end
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code+netcore-cli)
 
 Manually add the highlighted lines to the *.csproj* file:
 
