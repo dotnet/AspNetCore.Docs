@@ -771,6 +771,8 @@ Dynamic components can be used to dynamically generate content. `Microsoft.AspNe
 >
 > When creating components dynamically, **always** hardcode the sequence number. Do **not** generate the sequence number using any sort of calculation or counter.
 
+Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtml* in Blazor):
+
 ```cshtml
 <p>Pet Details Component<p>
 
@@ -782,6 +784,8 @@ Dynamic components can be used to dynamically generate content. `Microsoft.AspNe
     string PetDetails { get; set; }
 }
 ```
+
+Dynamic Content component (*DynamicContent.razor* in Razor Components; *DynamicContent.cshtml* in Blazor):
 
 ```cshtml
 <h1>Generate dynamic content</h1>
@@ -799,7 +803,7 @@ Dynamic components can be used to dynamically generate content. `Microsoft.AspNe
     
     RenderFragment CreateDynamicComponent() => builder =>
     {
-        builder.OpenComponent(0, typeof(PetDetailComponent));
+        builder.OpenComponent(0, typeof(PetDetails));
         builder.AddAttribute(1, "PetDetails", "Someone's best friend");              
         builder.CloseComponent();
     };    
