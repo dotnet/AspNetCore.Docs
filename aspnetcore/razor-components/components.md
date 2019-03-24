@@ -790,7 +790,7 @@ Dynamic components can be used to dynamically generate content. `Microsoft.AspNe
 
 @CustomRender
 
-<button type="button" onclick=@RenderStuff>
+<button type="button" onclick="@RenderStuff">
     Dynamic
 </button>
 
