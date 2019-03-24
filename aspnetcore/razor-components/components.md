@@ -790,8 +790,6 @@ Dynamic Content component (*DynamicContent.razor* in Razor Components; *DynamicC
 ```cshtml
 <h1>Generate dynamic content</h1>
 
-<p>@PetName</p>
-
 @CustomRender
 
 <button type="button" onclick="@RenderStuff">
