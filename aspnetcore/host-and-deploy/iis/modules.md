@@ -117,7 +117,7 @@ If opting to remove a module with a setting in *web.config*, unlock the module a
     </system.webServer>
    </configuration>
    ```
-   
+
 In order to add or remove modules for IIS Express using *web.config*, modify *applicationHost.config* to unlock the `<modules>` section:
 
 1. Open *{APPLICATION ROOT}\\.vs\config\applicationhost.config*.
@@ -125,17 +125,17 @@ In order to add or remove modules for IIS Express using *web.config*, modify *ap
 1. Locate the `<section>` element for IIS modules and change `overrideModeDefault` from `Deny` to `Allow`:
 
    ```xml
-   <section name="modules" 
-            allowDefinition="MachineToApplication" 
+   <section name="modules"
+            allowDefinition="MachineToApplication"
             overrideModeDefault="Allow" />
    ```
-   
+
 1. Locate the `<location path="" overrideMode="Allow"><system.webServer><modules>` section. For any modules that you wish to remove, set `lockItem` from `true` to `false`. In the following example, the CGI Module is unlocked:
 
    ```xml
    <add name="CgiModule" lockItem="false" />
    ```
-   
+
 1. After the `<modules>` section and individual modules are unlocked, you're free to add or remove IIS modules using the app's *web.config* file for running the app on IIS Express.
 
 An IIS module can also be removed with *Appcmd.exe*. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command:

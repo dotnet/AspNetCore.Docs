@@ -1,5 +1,3 @@
-
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 ## Visual Studio help
@@ -7,7 +5,6 @@
 * [Learn to debug C# code using Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/getting-started-with-the-debugger?view=vs-2017)
 * [Introduction to the Visual Studio IDE](https://docs.microsoft.com/en-us/visualstudio/ide/visual-studio-ide?view=vs-2017)
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 ## Visual Studio Code help
@@ -21,7 +18,6 @@
   * [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
   * [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 
-<!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ## Visual Studio for Mac help
@@ -29,5 +25,4 @@
 * [Visual Studio for Mac Tour](https://docs.microsoft.com/en-us/visualstudio/mac/ide-tour)
 * [Introducing Visual Studio for Mac](https://docs.microsoft.com/en-us/visualstudio/mac/)
 
----  
-<!-- End of VS tabs -->
+---

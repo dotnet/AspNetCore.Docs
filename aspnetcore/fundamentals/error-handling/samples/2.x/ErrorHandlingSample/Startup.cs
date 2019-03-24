@@ -47,7 +47,7 @@ namespace ErrorHandlingSample
             }
             else
             {
-#if ErrorPageHandler
+#if PageErrorHandler
                 #region snippet_UseExceptionHandler1
                 app.UseExceptionHandler("/Error");
                 #endregion

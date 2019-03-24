@@ -1,1 +1,0 @@
-System.Collections.Specialized.NameValueCollection headers = Context.Request.Headers;

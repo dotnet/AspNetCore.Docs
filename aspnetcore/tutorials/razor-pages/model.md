@@ -20,8 +20,6 @@ The model classes are known as POCO classes (from "plain-old CLR objects") becau
 
 ## Add a data model
 
-<!-- VS -------------------------->
-
 # [Visual Studio](#tab/visual-studio)
 
 Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
@@ -29,8 +27,6 @@ Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the
 Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
-
-<!-- Code -------------------------->
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -41,7 +37,6 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 [!INCLUDE [model 2](~/includes/RP/model2.md)]
 
-<!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In Solution Explorer, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
@@ -56,8 +51,6 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 [!INCLUDE [model 2](~/includes/RP/model2.md)]
 
-<!-- End of VS tabs -->
-
 ---
 
 Build the project to verify there are no compilation errors.
@@ -65,8 +58,6 @@ Build the project to verify there are no compilation errors.
 ## Scaffold the movie model
 
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
-
-<!-- VS -------------------------->
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -92,8 +83,6 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 ![Image from the previous instructions.](model/_static/arp.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
-
-<!-- Code -------------------------->
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -121,8 +110,6 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
 
-<!-- Mac -------------------------->
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
@@ -131,6 +118,7 @@ The *appsettings.json* file is updated with the connection string used to connec
   ```console
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
+
 * Run the following command:
 
   ```console
@@ -158,11 +146,7 @@ The created and updated files are explained in the next section.
 
 ## Initial migration
 
-<!-- VS -------------------------->
-
 # [Visual Studio](#tab/visual-studio)
-
-<!-- VS -------------------------->
 
 In this section, the Package Manager Console (PMC) is used to:
 
@@ -180,11 +164,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-<!-- Code -------------------------->
-
 # [Visual Studio Code](#tab/visual-studio-code)
-
-<!-- Mac -------------------------->
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
 
@@ -192,8 +172,7 @@ Update-Database
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
 
----  
-<!-- End of VS tabs -->
+---
 
 The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
@@ -202,8 +181,6 @@ You can ignore that warning, it will be fixed in a later tutorial.
 The `ef migrations add InitialCreate` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *RazorPagesMovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
 The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
-
-<!-- VS -------------------------->
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -224,15 +201,10 @@ The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Up
 The preceding code creates a [`DbSet<Movie>`](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
-<!-- Code -------------------------->
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-<!-- Mac -------------------------->
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-
-<!-- End of VS tabs -->
 
 ---
 
@@ -258,7 +230,7 @@ You missed the [migrations step](#pmc).
 * Test the **Create** link.
 
   ![Create page](model/_static/conan.png)
-  
+
   > [!NOTE]
   > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420).
 

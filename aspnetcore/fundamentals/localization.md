@@ -70,7 +70,7 @@ A French resource file could contain the following:
 
 | Key | Value |
 | ----- | ------ |
-| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b> ` |
+| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 The rendered view would contain the HTML markup from the resource file.
 
@@ -92,6 +92,7 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 In ASP.NET Core MVC 1.1.0 and higher, non-validation attributes are localized. ASP.NET Core MVC 1.0 does **not** look up localized strings for non-validation attributes.
 
 <a name="one-resource-string-multiple-classes"></a>
+
 ### Using one resource string for multiple classes
 
 The following code shows how to use one resource string for validation attributes with multiple classes:
@@ -107,7 +108,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the preceeding code, `SharedResource` is the class corresponding to the resx where your validation messages are stored. With this approach, DataAnnotations will only use `SharedResource`, rather than the resource for each class.
+In the preceding code, `SharedResource` is the class corresponding to the resx where your validation messages are stored. With this approach, DataAnnotations will only use `SharedResource`, rather than the resource for each class.
 
 ## Provide localized resources for the languages and cultures you support
 
@@ -167,7 +168,7 @@ If the root namespace of an assembly is different than the assembly name:
 
 If the `RootNamespace` is different from the `AssemblyName`, include the following in *AssemblyInfo.cs* (with parameter values replaced with the actual values):
 
-```Csharp
+```csharp
 using System.Reflection;
 using Microsoft.Extensions.Localization;
 
@@ -299,7 +300,6 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
 ### Set the culture programmatically
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
-
 
 [!code-cshtml[](localization/sample/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 

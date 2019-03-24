@@ -20,7 +20,7 @@ if (!(Test-Path $applicationHive))
 }
 
 New-ItemProperty $applicationHive -Name "DumpFolder" -Value $location -PropertyType "ExpandString" -Force;
-# Allow maxinum 5 dumps
+# Allow maximum 5 dumps
 New-ItemProperty $applicationHive -Name "DumpCount" -Value 5 -PropertyType "DWORD" -Force;
 # 2 - Full Dump
 New-ItemProperty $applicationHive -Name "DumpType" -Value 2 -PropertyType "DWORD" -Force;

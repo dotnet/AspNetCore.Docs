@@ -67,7 +67,6 @@ See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/
 
 Build the solution.
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 <a name="pmc"></a>
@@ -107,21 +106,19 @@ Another option is to delete the database and use migrations to re-create the dat
   Update-Database
   ```
 
-<!-- Code -------------------------->
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 ### Drop and re-create the database
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command: 
+Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
 
 ```console
 dotnet ef database update
 ```
 
----  
-<!-- End of VS tabs -->
+---
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
 

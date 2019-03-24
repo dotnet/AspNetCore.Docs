@@ -1,1 +1,0 @@
-app.MapSignalR("/signalr", new HubConfiguration());

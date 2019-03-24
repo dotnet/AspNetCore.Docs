@@ -1,1 +1,0 @@
-var hubConnection = new HubConnection("http://contoso.com/signalr", useDefaultUrl: false);

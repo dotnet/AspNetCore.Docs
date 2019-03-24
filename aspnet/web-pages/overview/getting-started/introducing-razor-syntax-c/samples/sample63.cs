@@ -1,1 +1,0 @@
-var testScoreThree = myScores["test3"];

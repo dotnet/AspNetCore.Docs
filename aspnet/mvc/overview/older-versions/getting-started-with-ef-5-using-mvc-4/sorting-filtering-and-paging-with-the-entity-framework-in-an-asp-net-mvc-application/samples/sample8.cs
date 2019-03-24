@@ -1,1 +1,0 @@
-public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)

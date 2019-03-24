@@ -89,9 +89,9 @@ To detect concurrency conflicts, a [rowversion](/sql/t-sql/data-types/rowversion
 
 The DB generates a sequential `rowversion` number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of `rowversion`. If the row being updated has changed:
 
- * `rowversion` doesn't match the fetched value.
- * The `Update` or `Delete` commands don't find a row because the `Where` clause includes the fetched `rowversion`.
- * A `DbUpdateConcurrencyException` is thrown.
+* `rowversion` doesn't match the fetched value.
+* The `Update` or `Delete` commands don't find a row because the `Where` clause includes the fetched `rowversion`.
+* A `DbUpdateConcurrencyException` is thrown.
 
 In EF Core, when no rows have been updated by an `Update` or `Delete` command, a concurrency exception is thrown.
 
@@ -146,6 +146,7 @@ The preceding commands:
 * Runs migrations to update the DB.
 
 <a name="scaffold"></a>
+
 ## Scaffold the Departments model
 
 # [Visual Studio](#tab/visual-studio) 
@@ -160,7 +161,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 
-------
+---
 
 The preceding command scaffolds the `Department` model. Open the project in Visual Studio.
 
@@ -266,7 +267,6 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
 [!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
-
 
 The preceding markup makes the following changes:
 

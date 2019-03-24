@@ -56,7 +56,7 @@ Enter the following in the command window:
  dotnet ef database drop
  ```
 
-------
+---
 
 ## Create an initial migration and update the DB
 
@@ -76,7 +76,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-------
+---
 
 ### Examine the Up and Down methods
 
@@ -115,7 +115,7 @@ dotnet ef migrations remove
 
 For more information, see  [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
-------
+---
 
 The remove migrations command deletes the migration and ensures the snapshot is correctly reset.
 
@@ -128,7 +128,7 @@ For early development, `EnsureCreated` was used. In this tutorial, migrations ar
 * Can *not* be used with migrations.
 * Is designed for testing or rapid prototyping where the DB is dropped and re-created frequently.
 
-Remove the following line from `DbInitializer`:
+Remove `EnsureCreated`:
 
 ```csharp
 context.Database.EnsureCreated();

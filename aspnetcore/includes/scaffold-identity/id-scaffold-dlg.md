@@ -38,4 +38,4 @@ In the project folder, run the Identity scaffolder with the options you want. Fo
 dotnet aspnet-codegenerator identity --useDefaultUI
 ```
 
--------------
+---

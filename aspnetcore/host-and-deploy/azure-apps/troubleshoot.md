@@ -17,7 +17,7 @@ This article provides instructions on how to diagnose an ASP.NET Core app startu
 
 ## App startup errors
 
-**502.5 Process Failure**  
+**502.5 Process Failure**
 The worker process fails. The app doesn't start.
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the worker process but it fails to start. Examining the Application Event Log often helps troubleshoot this type of problem. Accessing the log is explained in the [Application Event Log](#application-event-log) section.
@@ -26,7 +26,8 @@ The *502.5 Process Failure* error page is returned when a misconfigured app caus
 
 ![Browser window showing the 502.5 Process Failure page](troubleshoot/_static/process-failure-page.png)
 
-**500 Internal Server Error**  
+**500 Internal Server Error**
+
 The app starts, but an error prevents the server from fulfilling the request.
 
 This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. [Run the app in the Kudu console](#run-the-app-in-the-kudu-console) or [enable the ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) to troubleshoot the problem.
@@ -77,15 +78,16 @@ Many startup errors don't produce useful information in the Application Event Lo
      ```console
      dotnet .\{ASSEMBLY NAME}.dll
      ```
+
    * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
 
      ```console
      {ASSEMBLY NAME}.exe
      ```
-   
+
 The console output from the app, showing any errors, is piped to the Kudu console.
-   
-##### Framework-depdendent deployment running on a preview release
+
+##### Framework-dependent deployment running on a preview release
 
 *Requires installing the ASP.NET Core {VERSION} (x86) Runtime site extension.*
 
@@ -107,7 +109,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
-##### Framework-depdendent deployment running on a preview release
+##### Framework-dependent deployment running on a preview release
 
 *Requires installing the ASP.NET Core {VERSION} (x64) Runtime site extension.*
 
@@ -164,7 +166,7 @@ The ASP.NET Core Module debug log provides additional, deeper logging from the A
 
 Disable debug logging when troubleshooting is complete:
 
-1. To disable the enhanced debug log, peform either of the following:
+1. To disable the enhanced debug log, perform either of the following:
    * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
    * Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
 
@@ -224,7 +226,7 @@ Proceed to activate diagnostic logging:
 
 1. In the Azure portal, select the **Diagnostics logs** blade.
 1. Select the **On** switch for **Application Logging (Filesystem)** and **Detailed error messages**. Select the **Save** button at the top of the blade.
-1. To include failed request tracing, also known as Failed Request Event Buffering (FREB) logging, select the **On** switch for **Failed request tracing**. 
+1. To include failed request tracing, also known as Failed Request Event Buffering (FREB) logging, select the **On** switch for **Failed request tracing**.
 1. Select the **Log stream** blade, which is listed immediately under the **Diagnostics logs** blade in the portal.
 1. Make a request to the app.
 1. Within the log stream data, the cause of the error is indicated.

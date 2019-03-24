@@ -103,7 +103,6 @@ public class UpdateModel : PageModel
 > Filter attributes, including `AuthorizeAttribute`, can only be applied to PageModel and cannot be applied to specific page handler methods.
 ::: moniker-end
 
-
 <a name="security-authorization-role-policy"></a>
 
 ## Policy based role checks

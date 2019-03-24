@@ -138,7 +138,7 @@ dotnet ef migrations add ColumnFirstName
 dotnet ef database update
 ```
 
-------
+---
 
 The `migrations add ColumnFirstName` command generates the following warning message:
 
@@ -219,8 +219,8 @@ If a navigation property holds multiple entities:
 Navigation property types include:
 
 * `ICollection<T>`
-*  `List<T>`
-*  `HashSet<T>`
+* `List<T>`
+* `HashSet<T>`
 
 If `ICollection<T>` is specified, EF Core creates a `HashSet<T>` collection by default.
 
@@ -263,7 +263,6 @@ The `OfficeAssignment` navigation property for the `Instructor` entity is nullab
 
 * Reference types (such as classes are nullable).
 * An instructor might not have an office assignment.
-
 
 The `OfficeAssignment` entity has a non-nullable `Instructor` navigation property because:
 
@@ -553,7 +552,7 @@ Add-Migration ComplexDataModel
 dotnet ef migrations add ComplexDataModel
 ```
 
-------
+---
 
 The preceding command displays a warning about possible data loss.
 
@@ -605,7 +604,7 @@ Enter the following in the command window:
 dotnet ef database update
  ```
 
-------
+---
 
 Run the app. Running the app runs the `DbInitializer.Initialize` method. The `DbInitializer.Initialize` populates the new DB.
 

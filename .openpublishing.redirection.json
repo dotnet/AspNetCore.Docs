@@ -754,6 +754,11 @@
             "source_path": "aspnetcore/client-side/index.md",
             "redirect_url": "/aspnet/core/client-side/razor-components/index",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/client-side/less-sass-fa.md",
+            "redirect_url": "https://fontawesome.com/",
+            "redirect_document_id": false
         }
     ]
 }

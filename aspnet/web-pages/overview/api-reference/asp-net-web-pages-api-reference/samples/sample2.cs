@@ -1,1 +1,0 @@
-bool b = stringValue.AsBool();

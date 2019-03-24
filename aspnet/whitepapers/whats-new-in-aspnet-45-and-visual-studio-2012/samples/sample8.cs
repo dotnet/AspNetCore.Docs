@@ -1,1 +1,0 @@
-socket = new WebSocket("ws://contoso.com/MyWebSocketApplication.ashx");

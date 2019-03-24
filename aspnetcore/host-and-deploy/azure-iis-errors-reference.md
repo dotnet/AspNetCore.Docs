@@ -55,7 +55,7 @@ Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved d
 
 *Applies to apps hosted by Azure App Services.*
 
-* **Browser:** HTTP Error 500.0 - ANCM In-Process Handler Load Failure 
+* **Browser:** HTTP Error 500.0 - ANCM In-Process Handler Load Failure
 
 * **Application Log:** Invoking hostfxr to find the inprocess request handler failed without finding any native dependencies. Could not find inprocess request handler. Captured output from invoking hostfxr: It was not possible to find any compatible framework version. The specified framework 'Microsoft.AspNetCore.App', version '{VERSION}-preview-\*' was not found. Failed to start application '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
 
@@ -74,7 +74,7 @@ Troubleshooting:
   * ASP.NET Core {RUNTIME VERSION} (x86) Runtime
   * ASP.NET Core {RUNTIME VERSION} (x64) Runtime
 
-  Restart the app. Wait several seconds for the app to restart. 
+  Restart the app. Wait several seconds for the app to restart.
 
 * If running the app on a preview runtime and both the 32-bit (x86) and 64-bit (x64) [site extensions](xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension) are installed, uninstall the site extension that doesn't match the bitness of the app. After removing the site extension, restart the app. Wait several seconds for the app to restart.
 
@@ -195,8 +195,8 @@ Troubleshooting:
   ```xml
   <section name="aspNetCore" overrideModeDefault="Allow" />
   ```
-  
-  Alternatively, install the lastest version of the ASP.NET Core Hosting Bundle. The latest version is backwards-compatible with supported ASP.NET Core apps.
+
+  Alternatively, install the latest version of the ASP.NET Core Hosting Bundle. The latest version is backwards-compatible with supported ASP.NET Core apps.
 
 ## Incorrect processPath, missing PATH variable, Hosting Bundle not installed, system/IIS not restarted, VC++ Redistributable not installed, or dotnet.exe access violation
 

@@ -141,8 +141,8 @@ The basic flow of `OnPostAsync`:
 
 Check for validation errors.
 
-*  If there are no errors, save the data and redirect.
-*  If there are errors, show the page again with validation messages. Client-side validation is identical to traditional ASP.NET Core MVC applications. In many cases, validation errors would be detected on the client, and never submitted to the server.
+* If there are no errors, save the data and redirect.
+* If there are errors, show the page again with validation messages. Client-side validation is identical to traditional ASP.NET Core MVC applications. In many cases, validation errors would be detected on the client, and never submitted to the server.
 
 When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. `RedirectToPage` is a new action result, similar to `RedirectToAction` or `RedirectToRoute`, but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
 
@@ -265,6 +265,7 @@ services.AddMvc()
 You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation are automatically included in Razor Pages.
 
 <a name="layout"></a>
+
 ## Using Layouts, partials, templates, and Tag Helpers with Razor Pages
 
 Pages work with all the capabilities of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views.
@@ -390,7 +391,7 @@ URL generation for pages supports relative names. The following table shows whic
 | RedirectToPage("../Index") | *Pages/Index* |
 | RedirectToPage("Index")  | *Pages/Customers/Index* |
 
-`RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")`  are <em>relative names</em>. The `RedirectToPage` parameter is <em>combined</em> with the path of the current page to compute the name of the destination page.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page.  page name, not page path -->
+`RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")`  are *relative names*. The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page.  page name, not page path -->
 
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
@@ -466,6 +467,7 @@ public string Message { get; set; }
 For more information, see [TempData](xref:fundamentals/app-state#tempdata) .
 
 <a name="mhpp"></a>
+
 ## Multiple handlers per page
 
 The following page generates markup for two page handlers using the `asp-page-handler` Tag Helper:

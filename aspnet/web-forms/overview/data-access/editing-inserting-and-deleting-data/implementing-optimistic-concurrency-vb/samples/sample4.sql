@@ -1,1 +1,0 @@
-DELETE FROM [Products] WHERE (([ProductID] = @Original_ProductID))

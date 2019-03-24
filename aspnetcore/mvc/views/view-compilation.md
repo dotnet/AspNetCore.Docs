@@ -124,7 +124,7 @@ Runtime compilation is enabled using the `Microsoft.AspNetCore.Mvc.Razor.Runtime
   ```csharp
   services
       .AddMvc()
-      .AddMvcRazorRuntimeCompilation()
+      .AddRazorRuntimeCompilation()
   ```
 
 For runtime compilation to work when deployed, apps must additionally modify their project files to set the `PreserveCompilationReferences` to `true`.

@@ -34,6 +34,7 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
   [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
 ### Area folder structure
+
 Consider an app that has two logical groups, *Products* and *Services*. Using areas, the folder structure would be similar to the following:
 
 * Project name
@@ -168,7 +169,7 @@ Consider the *Services* area of the sample code, which doesn't contain a *_ViewI
 In the preceding markup:
 
 * The fully qualified domain name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
-* [Tag Helpers]() are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+* [Tag Helpers](xref:mvc/views/tag-helpers/intro) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 In the sample download, the Products area contains the following *_ViewImports* file:
 

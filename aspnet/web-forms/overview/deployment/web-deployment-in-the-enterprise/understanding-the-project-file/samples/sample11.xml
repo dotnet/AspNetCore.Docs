@@ -1,6 +1,0 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" 
-         DefaultTargets="FullPublish">
-   <Target Name="LogMessage">
-      <Message Text="Hello world!" />
-   </Target>
-</Project>

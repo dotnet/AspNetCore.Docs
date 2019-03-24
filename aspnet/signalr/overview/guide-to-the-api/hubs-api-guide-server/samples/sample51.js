@@ -1,1 +1,0 @@
-$.connection.hub.qs = { "version" : "1.0" };

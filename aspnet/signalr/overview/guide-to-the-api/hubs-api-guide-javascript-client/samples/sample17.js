@@ -1,1 +1,0 @@
-$.connection.hub.start( { transport: ['webSockets', 'longPolling'] });

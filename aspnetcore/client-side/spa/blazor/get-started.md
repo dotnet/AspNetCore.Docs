@@ -22,7 +22,7 @@ Prerequisites:
 
 To create your first Blazor project in Visual Studio:
 
-1. Install the latest [Blazor Language Services extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
+1. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
 1. Make the Blazor templates available for use with the .NET Core CLI by running the following command in a command shell:
 
    ```console

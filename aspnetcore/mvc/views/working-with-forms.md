@@ -199,9 +199,7 @@ The `Input` Tag Helper sets the HTML `type` attribute based on the .NET type. Th
 |Int|type="number"|
 |Single, Double|type="number"|
 
-
 The following table shows some common [data annotations](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) attributes that the input tag helper will map to specific input types (not every validation attribute is listed):
-
 
 |Attribute|Input Type|
 |---|---|
@@ -209,10 +207,9 @@ The following table shows some common [data annotations](/dotnet/api/microsoft.a
 |[Url]|type="url"|
 |[HiddenInput]|type="hidden"|
 |[Phone]|type="tel"|
-|[DataType(DataType.Password)]|	type="password"|
-|[DataType(DataType.Date)]|	type="date"|
-|[DataType(DataType.Time)]|	type="time"|
-
+|[DataType(DataType.Password)]|type="password"|
+|[DataType(DataType.Date)]|type="date"|
+|[DataType(DataType.Time)]|type="time"|
 
 Sample:
 
@@ -372,7 +369,7 @@ The following HTML is generated:
 
 ## The Label Tag Helper
 
-* Generates the label caption and `for` attribute on a [<label>](https://www.w3.org/wiki/HTML/Elements/label) element for an expression name
+* Generates the label caption and `for` attribute on a [\<label>](https://www.w3.org/wiki/HTML/Elements/label) element for an expression name
 
 * HTML Helper alternative: `Html.LabelFor`.
 

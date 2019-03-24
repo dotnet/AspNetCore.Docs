@@ -105,7 +105,6 @@ See the *CookieAuth.Core* project in the [sample code](https://github.com/aspnet
 
 ::: moniker range="< aspnetcore-2.0"
 
-
 ```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions
 {

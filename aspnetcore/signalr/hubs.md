@@ -47,6 +47,7 @@ You can specify a return type and parameters, including complex types and arrays
 
 > [!NOTE]
 > Hubs are transient:
+>
 > * Don't store state in a property on the hub class. Every hub method call is executed on a new hub instance.  
 > * Use `await` when calling asynchronous methods that depend on the hub staying alive. For example, a method such as `Clients.All.SendAsync(...)` can fail if it's called without `await` and the hub method completes before `SendAsync` finishes.
 
@@ -110,7 +111,7 @@ To make calls to specific clients, use the properties of the `Clients` object. I
 
 A drawback of using `SendAsync` is that it relies on a magic string to specify the client method to be called. This leaves code open to runtime errors if the method name is misspelled or missing from the client.
 
-An alternative to using `SendAsync` is to strongly type the `Hub` with <xref:Microsoft.AspNetCore.SignalR.Hub`1>. In the following example, the `ChatHub` client methods have been extracted out into an interface called `IChatClient`.  
+An alternative to using `SendAsync` is to strongly type the `Hub` with <xref:Microsoft.AspNetCore.SignalR.Hub%601>. In the following example, the `ChatHub` client methods have been extracted out into an interface called `IChatClient`.  
 
 [!code-csharp[Interface for IChatClient](hubs/sample/hubs/ichatclient.cs?name=snippet_IChatClient)]
 

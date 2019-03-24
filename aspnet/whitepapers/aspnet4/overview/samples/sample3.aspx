@@ -1,1 +1,0 @@
-<%@ OutputCache Duration="60" VaryByParam="None" providerName="DiskCache" %>

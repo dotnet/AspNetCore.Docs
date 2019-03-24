@@ -1,0 +1,59 @@
+{
+    "default": true,
+
+    "blanks-around-fences": true,
+    "blanks-around-headers": true,
+    "fenced-code-language": true,
+    "first-header-h1": {
+        "level": 1
+    },
+    "header-increment": true,
+    "header-start-left": true,
+    "header-style": {
+        "style": "atx"
+    },
+    "hr-style": {
+        "style": "---"
+    },
+    "line-length": false,
+    "list-indent": true,
+    "list-marker-space": true,
+    "no-alt-text": true,
+    "no-bare-urls": true,
+    "no-blanks-blockquote": true,
+    "no-duplicate-header": true,
+    "no-empty-links": true,
+    "no-hard-tabs": true,
+    "no-inline-html": {
+        "allowed_elements": [
+            "a",
+            "br",
+            "p"
+        ]
+    },
+    "no-missing-space-atx": true,
+    "no-multiple-blanks": true,
+    "no-multiple-space-atx": true,
+    "no-multiple-space-blockquote": true,
+    "no-reversed-links": true,
+    "no-space-in-code": true,
+    "no-space-in-emphasis": true,
+    "no-space-in-links": true,
+    "no-trailing-punctuation": true,
+    "no-trailing-spaces": false,
+    "ol-prefix": {
+        "style": "one_or_ordered"
+    },
+    "proper-names": {
+        "code_blocks": false,
+        "names": [
+            ".NET",
+            "ASP.NET",
+            "JavaScript",
+            "NuGet",
+            "PowerShell"
+        ]
+    },
+    "single-h1": true,
+    "ul-start-left": true
+}

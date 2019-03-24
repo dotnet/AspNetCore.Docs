@@ -1,1 +1,0 @@
-msbuild.exe Publish.proj
