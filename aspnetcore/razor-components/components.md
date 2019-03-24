@@ -767,9 +767,9 @@ Your pet's name is Rex.
 Dynamic components can be used to dynamically generate content. `Microsoft.AspNetCore.Components.RenderTree` provides methods for manipulating components and elements.
 
 > [!WARNING]
-> Dynamic components are an advanced scenario and not recommended for general development. Components generated dynamically can bypass normal safety checks on tag structure. Inadvertently creating a faulty tag that becomes rendered in the browser can result in a security vulnerability.
+> Dynamic components are an advanced scenario and not recommended for general development. Dynamically generated components can bypass safety checks on tag structure. Inadvertently creating a faulty tag that becomes rendered in the browser can result in a security vulnerability.
 >
-> When creating components dynamically, **always** hardcode the sequence number. Do **not** generate the number using any sort of calculation or counter.
+> When creating components dynamically, **always** hardcode the sequence number. Do **not** generate the sequence number using any sort of calculation or counter.
 
 ```cshtml
 <p>Pet Details Component<p>
