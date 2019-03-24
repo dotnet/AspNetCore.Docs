@@ -1,1 +1,0 @@
-Data Source=|DataDirectory|School-Prod.sdf

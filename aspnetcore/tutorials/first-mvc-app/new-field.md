@@ -43,18 +43,17 @@ Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
 Update the */Views/Movies/Create.cshtml* with a `Rating` field.
 
-<!-- VS -------------------------->
 # [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
 
 You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
 ![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](new-field/_static/cr.png)
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
+
 <!-- This tab intentionally left blank. -->
----  
-<!-- End of VS tabs -->
+
+---
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
@@ -76,7 +75,6 @@ There are a few approaches to resolving the error:
 
 For this tutorial, Code First Migrations is used.
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
@@ -92,26 +90,25 @@ Update-Database
 
 The `Add-Migration` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model.
 
+The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
+
+If all the records in the DB are deleted, the initialize method will seed the DB and include the `Rating` field.
+
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Run the following command:
+Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
 
-```cli
-dotnet ef migrations add Rating
+```console
 dotnet ef database update
 ```
 
----  
+---
 <!-- End of VS tabs -->
-
-The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
-
-If all the records in the DB are deleted, the initialize method will seed the DB and include the `Rating` field.
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. You should add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 
 > [!div class="step-by-step"]
 > [Previous](search.md)
-> [Next](validation.md)  
+> [Next](validation.md)

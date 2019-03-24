@@ -138,7 +138,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Go to **File** > **New** > **Project**.
 1. Select **ASP.NET Core Web Application**, name the project *BooksApi*, and click **OK**.
-1. Select the **.NET Core** target framework and **ASP.NET Core 2.1**. Select the **API** project template, and click **OK**:
+1. Select the **.NET Core** target framework and **ASP.NET Core 2.2**. Select the **API** project template, and click **OK**:
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```powershell

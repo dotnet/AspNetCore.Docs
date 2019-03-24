@@ -42,7 +42,8 @@ dotnet new razorclasslib -o RazorUIClassLib
 
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 
-------
+---
+
 Add Razor files to the RCL.
 
 The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#afs) to create a RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
@@ -80,7 +81,7 @@ Move to the *WebApp1* directory and run the app:
 dotnet run
 ```
 
-------
+---
 
 Follow the instructions in [Test WebApp1](#test)
 
@@ -117,7 +118,7 @@ The preceding commands:
 
 The *_ViewStart.cshtml* file is required to use the layout of the Razor Pages project (which is added in the next section).
 
-------
+---
 
 ### Add Razor files and folders to the project
 
@@ -212,7 +213,7 @@ To reference RCL content as though it is part of the web app's *Pages* folder, c
 * *RazorUIClassLib/Pages/Shared*
 
 Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.cshtml* and *_Footer.cshtml*. The `<partial>` tags could be added to *_Layout.cshtml* file:
-  
+
 ```cshtml
 <body>
   <partial name="_Header">

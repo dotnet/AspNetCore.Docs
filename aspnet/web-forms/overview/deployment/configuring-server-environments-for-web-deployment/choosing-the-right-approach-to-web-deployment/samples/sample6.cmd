@@ -1,1 +1,0 @@
-https://[server]:8172/MSDeploy.axd?site=DemoSite

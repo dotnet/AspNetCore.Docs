@@ -1,1 +1,0 @@
-var kernel = new StandardKernel();

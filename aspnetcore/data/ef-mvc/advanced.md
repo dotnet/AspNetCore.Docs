@@ -76,7 +76,7 @@ Suppose Contoso University administrators want to perform global changes in the 
 
 ![Update Course Credits page](advanced/_static/update-credits.png)
 
-In *CoursesContoller.cs*, add UpdateCourseCredits methods for HttpGet and HttpPost:
+In *CoursesController.cs*, add UpdateCourseCredits methods for HttpGet and HttpPost:
 
 [!code-csharp[](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_UpdateGet)]
 
@@ -197,6 +197,7 @@ The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ
 Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan Miller, Diego Vega, and other members of the Entity Framework team assisted with code reviews and helped debug issues that arose while we were writing code for the tutorials. John Parente and Paul Goldman worked on updating the tutorial for ASP.NET Core 2.2.
 
 <a id="common-errors"></a>
+
 ## Troubleshoot common errors
 
 ### ContosoUniversity.dll used by another process

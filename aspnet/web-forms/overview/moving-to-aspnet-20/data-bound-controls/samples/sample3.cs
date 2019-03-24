@@ -1,1 +1,0 @@
-protected void AdRotator1_AdCreated(object sender, System.Web.UI.WebControls.AdCreatedEventArgs e) { e.ImageUrl = "images/contoso_ad.gif"; e.NavigateUrl = "http://www.contoso-ltd.com/"; e.AlternateText = "Ad for Contoso, Ltd Web site"; }

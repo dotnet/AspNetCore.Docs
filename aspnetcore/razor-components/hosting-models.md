@@ -22,7 +22,7 @@ The principal hosting model for Blazor is running client-side in the browser. In
 
 ![Blazor client-side: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/client-side.png)
 
-To create a Blazor app using the client-side hosting model, use the **Blazor** or **Blazor (ASP.NET Core Hosted)** project templates (`blazor` or `blazorhosted` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command at a command prompt). The included *blazor.webassembly.js* script handles:
+To create a Blazor app using the client-side hosting model, use the **Blazor** or **Blazor (ASP.NET Core Hosted)** project templates (`blazor` or `blazorhosted` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command at a command prompt). The included *components.webassembly.js* script handles:
 
 * Downloading the .NET runtime, the app, and its dependencies.
 * Initialization of the runtime to run the app.
@@ -55,14 +55,14 @@ In the ASP.NET Core Razor Components server-side hosting model, the app is execu
 
 ![ASP.NET Core Razor Components server-side: The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/server-side.png)
 
-To create a Razor Components app using the server-side hosting model, use the **Blazor (Server-side in ASP.NET Core)** template (`blazorserver` when using [dotnet new](/dotnet/core/tools/dotnet-new) at a command prompt). An ASP.NET Core app hosts the Razor Components server-side app and sets up the SignalR endpoint where clients connect. The ASP.NET Core app references the app's `Startup` class to add:
+To create a Razor Components app using the server-side hosting model, use the ASP.NET Core **Razor Components** template (`razorcomponents` when using [dotnet new](/dotnet/core/tools/dotnet-new) at a command prompt). An ASP.NET Core app hosts the Razor Components server-side app and sets up the SignalR endpoint where clients connect. The ASP.NET Core app references the app's `Startup` class to add:
 
 * Server-side Razor Components services.
 * The app to the request handling pipeline.
 
 [!code-csharp[](hosting-models/samples_snapshot/Startup.cs?highlight=5,27)]
 
-The *blazor.server.js* script&dagger; establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection).
+The *components.server.js* script&dagger; establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection).
 
 The server-side hosting model offers several benefits:
 
@@ -80,4 +80,4 @@ There are downsides to server-side hosting:
 * Has reduced scalability: The server must manage multiple client connections and handle client state.
 * Requires an ASP.NET Core server to serve the app. Deployment without a server (for example, from a CDN) isn't possible.
 
-&dagger;The *blazor.server.js* script is published to the following path: *bin/{Debug|Release}/{TARGET FRAMEWORK}/publish/{APPLICATION NAME}.App/dist/_framework*.
+&dagger;The *components.server.js* script is published to the following path: *bin/{Debug|Release}/{TARGET FRAMEWORK}/publish/{APPLICATION NAME}.App/dist/_framework*.

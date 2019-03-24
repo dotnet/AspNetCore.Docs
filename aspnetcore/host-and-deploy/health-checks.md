@@ -86,7 +86,7 @@ public class ExampleHealthCheck : IHealthCheck
     }
 
     public Task<HealthCheckResult> CheckHealthAsync(
-        HealthCheckContext context, 
+        HealthCheckContext context,
         CancellationToken cancellationToken = default(CancellationToken))
     {
         // Execute health check logic here. This example sets a dummy
@@ -124,8 +124,8 @@ The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckEx
 ```csharp
 services.AddHealthChecks()
     .AddCheck<ExampleHealthCheck>(
-        "example_health_check", 
-        failureStatus: HealthStatus.Degraded, 
+        "example_health_check",
+        failureStatus: HealthStatus.Degraded,
         tags: new[] { "example" });
 ```
 
@@ -135,7 +135,7 @@ services.AddHealthChecks()
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecks()
-        .AddCheck("Example", () => 
+        .AddCheck("Example", () =>
             HealthCheckResult.Healthy("Example is OK!"), tags: new[] { "example" })
 }
 ```
@@ -180,11 +180,11 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecks()
-        .AddCheck("Foo", () => 
+        .AddCheck("Foo", () =>
             HealthCheckResult.Healthy("Foo is OK!"), tags: new[] { "foo_tag" })
-        .AddCheck("Bar", () => 
+        .AddCheck("Bar", () =>
             HealthCheckResult.Unhealthy("Bar is unhealthy!"), tags: new[] { "bar_tag" })
-        .AddCheck("Baz", () => 
+        .AddCheck("Baz", () =>
             HealthCheckResult.Healthy("Baz is OK!"), tags: new[] { "baz_tag" });
 }
 
@@ -193,7 +193,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     app.UseHealthChecks("/health", new HealthCheckOptions()
     {
         // Filter out the 'Bar' health check. Only Foo and Baz execute.
-        Predicate = (check) => check.Tags.Contains("foo_tag") || 
+        Predicate = (check) => check.Tags.Contains("foo_tag") ||
             check.Tags.Contains("baz_tag")
     });
 }
@@ -258,7 +258,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     });
 }
 
-private static Task WriteResponse(HttpContext httpContext, 
+private static Task WriteResponse(HttpContext httpContext,
     HealthReport result)
 {
     httpContext.Response.ContentType = "application/json";
@@ -334,7 +334,7 @@ In the sample app, `UseHealthChecks` adds the Health Check Middleware in `Startu
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_Configure)]
 
-To run the `DbContext` probe scenario using the sample app, confirm that the database specified by the the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
+To run the `DbContext` probe scenario using the sample app, confirm that the database specified by the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
 
 Execute the following command from the project's folder in a command shell:
 
@@ -609,11 +609,11 @@ To distribute a health check as a library:
        const string NAME = "example_health_check";
 
        public static IHealthChecksBuilder AddExampleHealthCheck(
-           this IHealthChecksBuilder builder, 
-           string name = default, 
-           string data1, 
-           int data2 = 1, 
-           HealthStatus? failureStatus = default, 
+           this IHealthChecksBuilder builder,
+           string name = default,
+           string data1,
+           int data2 = 1,
+           HealthStatus? failureStatus = default,
            IEnumerable<string> tags = default)
        {
            return builder.Add(new HealthCheckRegistration(
@@ -663,11 +663,11 @@ In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` r
 > The following workaround permits adding an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> instance to the service container when one or more other hosted services have already been added to the app. This workaround won't be required with the release of ASP.NET Core 3.0. For more information, see: https://github.com/aspnet/Extensions/issues/639.
 >
 > ```csharp
-> private const string HealthCheckServiceAssembly = 
+> private const string HealthCheckServiceAssembly =
 >     "Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherHostedService";
 >
 > services.TryAddEnumerable(
->     ServiceDescriptor.Singleton(typeof(IHostedService), 
+>     ServiceDescriptor.Singleton(typeof(IHostedService),
 >         typeof(HealthCheckPublisherOptions).Assembly
 >             .GetType(HealthCheckServiceAssembly)));
 > ```

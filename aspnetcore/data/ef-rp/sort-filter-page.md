@@ -123,7 +123,7 @@ For example, the .NET Framework implementation of `Contains` performs a case-sen
 
 `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
-The preceding code would ensure that results are case-insensitive if the code changes to use `IEnumerable`. When `Contains` is called on an `IEnumerable` collection, the .NET Core implementation is used. When `Contains` is called on an `IQueryable` object, the database implementation is used. Returning an `IEnumerable` from a repository can have a significant performance penality:
+The preceding code would ensure that results are case-insensitive if the code changes to use `IEnumerable`. When `Contains` is called on an `IEnumerable` collection, the .NET Core implementation is used. When `Contains` is called on an `IQueryable` object, the database implementation is used. Returning an `IEnumerable` from a repository can have a significant performance penalty:
 
 1. All the rows are returned from the DB server.
 1. The filter is applied to all the returned rows in the application.
@@ -277,6 +277,7 @@ If you run into problems you can't solve, download the [completed app for this s
 ## Additional resources
 
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=MDs7PFpoMqI)
 
 In the next tutorial, the app uses migrations to update the data model.
 

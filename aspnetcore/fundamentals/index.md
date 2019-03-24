@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn the foundational concepts for building ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/14/2019
+ms.date: 03/02/2019
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -69,7 +69,7 @@ For more information, see [Middleware](xref:fundamentals/middleware/index).
 
 ## The host
 
-An ASP.NET Core app builds a *host* on startup. The host is an object that encapsulates all of the the app's resources, such as:
+An ASP.NET Core app builds a *host* on startup. The host is an object that encapsulates all of the app's resources, such as:
 
 * An HTTP server implementation
 * Middleware components
@@ -83,7 +83,7 @@ The code to create a host is in `Program.Main` and follows the [builder pattern]
 
 ::: moniker range="<= aspnetcore-2.2"
 
-ASP.NET Core 2.x uses Web Host (the `WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` extension methods that set up a host with commonly used options, such as the following:
+ASP.NET Core 2.x uses Web Host (the `WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` to set up a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, environment variables, command line arguments, and other sources.
@@ -105,13 +105,13 @@ For more information, see [Web Host](xref:fundamentals/host/web-host).
 
 In ASP.NET Core 3.0, Web Host (`WebHost` class) or Generic Host (`Host` class) can be used in a web app. Generic Host is recommended, and Web Host is available for backwards compatibility.
 
-The framework provides `CreateDefaultBuilder` and `ConfigureWebHostDefaults` extension methods that set up a host with commonly used options, such as the following:
+The framework provides the `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods to set up a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, *appsettings.[EnvironmentName].json*, environment variables, and command line arguments.
 * Send logging output to the console and debug providers.
 
-Here's sample code that builds a host. The extension methods that set up the host with commonly used options are highlighted.
+Here's sample code that builds a host. The methods that set up the host with commonly used options are highlighted.
 
 [!code-csharp[](index/snapshots/3.x/Program1.cs?highlight=9-10)]
 

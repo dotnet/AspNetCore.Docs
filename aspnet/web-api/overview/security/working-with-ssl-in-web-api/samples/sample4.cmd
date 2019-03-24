@@ -1,1 +1,0 @@
-makecert.exe -n "CN=Development CA" -r -sv TempCA.pvk TempCA.cer

@@ -1,1 +1,0 @@
-Clients.User(userid).addContosoChatMessageToPage(name, message);

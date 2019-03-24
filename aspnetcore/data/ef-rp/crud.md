@@ -243,6 +243,10 @@ Each Razor Page must include the `@page` directive.
 
 ::: moniker-end
 
+## Additional resources
+
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=K4X1MT2jt6o)
+
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/intro)
 > [Next](xref:data/ef-rp/sort-filter-page)

@@ -1,1 +1,0 @@
-@Facebook.LikeButton("www.asp.net")

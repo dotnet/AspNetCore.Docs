@@ -1,4 +1,4 @@
-# Contribute to the ASP.NET documentation
+# Contribute to the ASP.NET Core documentation
 
 This document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET documentation site](https://docs.microsoft.com/aspnet/). Typo corrections and new articles are welcome contributions.
 
@@ -18,7 +18,7 @@ You need a basic understanding of [Git and GitHub.com](https://guides.github.com
 
 For an example where this process led to publication of a new article, see [Issue &num;67](https://github.com/dotnet/docs/issues/67) and [Pull Request &num;798](https://github.com/dotnet/docs/pull/798) in the .NET Docs repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
 
-## Docs Authoring Pack extension in Visual Studio Code 
+## Docs Authoring Pack extension in Visual Studio Code
 
 If you use Visual Studio Code to contribute to the ASP.NET documentation, you can boost your productivity by installing the [Docs Authoring Pack](https://marketplace.visualstudio.com/items?itemName=docsmsft.docs-authoring-pack) extension. The extension provides a variety of tools that helps with Markdown linting, code spell checking, and article templates.
 
@@ -30,7 +30,7 @@ Articles are written in [DocFx-flavored Markdown](https://dotnet.github.io/docfx
 
 For each Markdown file, a folder for images and a folder for sample code may exist. If the article is [fundamentals/configuration/index.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) and the sample app project files are in [fundamentals/configuration/index/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown:
 
-```
+```md
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
 ```
 
@@ -42,13 +42,13 @@ Use lowercase for Markdown file names and image file names.
 
 Internal links should use the `uid` of the target article with an xref link (link text is set to the linked content's title):
 
-```
+```md
 <xref:uid_of_the_topic>
 ```
 
 If the title of the article is unsuitable for link text (for example, a word or phrase in a sentence is the link text), specify the xref link and link text with the following:
 
-```
+```md
 [link text](xref:uid_of_the_topic)
 ```
 
@@ -73,13 +73,13 @@ The following examples illustrate [DFM code snippet syntax](https://dotnet.githu
 
 To render an entire code file as a snippet:
 
-```
+```md
 [!code-csharp[](configuration/index/sample/Program.cs)]
 ```
 
 To render a portion of a file as a snippet by using line numbers:
 
-```
+```md
 [!code-csharp[](configuration/index/sample/Program.cs?range=1-10,20,30,40-50]
 [!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
 ```
@@ -88,13 +88,13 @@ For C# snippets, reference a [C# region](https://docs.microsoft.com/dotnet/cshar
 
 To render a C# region named "snippet_Example":
 
-```
+```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example)]
 ```
 
 To highlight selected lines in a rendered snippet (usually renders as yellow background color):
 
-```
+```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
 [!code-csharp[](configuration/index/sample/Program.cs?range=10-20&highlight=1-3]
 [!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3]
@@ -119,6 +119,7 @@ DocFX requires:
   ```console
   docfx --serve
   ```
+
 * In a browser, navigate to `http://localhost:8080/group1-dest/`.
 
 ### Mono instructions
@@ -128,6 +129,7 @@ DocFX requires:
   ```console
   brew install mono
   ```
+
 * Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases).
 * Extract the archive to *$HOME/bin/docfx*.
 * Create a pair of aliases for **docfx** in a bash shell. The first alias is used to build the documentation. The second alias is used to build and serve the documentation.
@@ -136,11 +138,13 @@ DocFX requires:
   alias docfx='mono $HOME/bin/docfx/docfx.exe'
   alias docfx-serve='mono $HOME/bin/docfx/docfx.exe --serve'
   ```
+
 * In a command shell, navigate to the folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command to build and serve the docs via its alias:
 
   ```console
   docfx-serve
   ```
+
 * In a browser, navigate to `http://localhost:8080/group1-dest/`.
 
 ## Voice and tone

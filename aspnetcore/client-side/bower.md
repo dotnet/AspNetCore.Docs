@@ -9,7 +9,7 @@ uid: client-side/bower
 ---
 # Manage client-side packages with Bower in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/), and [Scott Addie](https://scottaddie.com)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](https://twitter.com/noelrice1), and [Scott Addie](https://scottaddie.com)
 
 > [!IMPORTANT]
 > While Bower is maintained, its maintainers recommend using a different solution. [Library Manager](https://blogs.msdn.microsoft.com/webdev/2018/04/18/what-happened-to-bower/) (LibMan for short) is Visual Studio's new client-side library acquisition tool (Visual Studio 15.8 or later). For more information, see <xref:client-side/libman/index>. Bower is supported in Visual Studio through version 15.5.

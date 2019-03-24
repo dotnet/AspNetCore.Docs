@@ -41,6 +41,13 @@ namespace RPCC
             });
             #endregion
 
+            #region snippet2
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true;
+            });
+            #endregion
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

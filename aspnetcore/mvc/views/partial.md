@@ -130,7 +130,7 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/partial-tag-hel
 
 ### Asynchronous HTML Helper
 
-When using an HTML Helper, the best practice is to use <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync*>. `PartialAsync` returns an <xref:Microsoft.AspNetCore.Html.IHtmlContent> type wrapped in a <xref:System.Threading.Tasks.Task`1>. The method is referenced by prefixing the awaited call with an `@` character:
+When using an HTML Helper, the best practice is to use <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync*>. `PartialAsync` returns an <xref:Microsoft.AspNetCore.Html.IHtmlContent> type wrapped in a <xref:System.Threading.Tasks.Task%601>. The method is referenced by prefixing the awaited call with an `@` character:
 
 ```cshtml
 @await Html.PartialAsync("_PartialName")

@@ -1,1 +1,0 @@
-Site myMasterPage = Page.Master as Site;

@@ -1,3 +1,0 @@
-<ItemGroup>
-   <ProjectsToBuild Include="$(SourceRoot)ContactManager-WCF.sln"/>
-</ItemGroup>

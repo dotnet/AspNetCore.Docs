@@ -21,6 +21,7 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 ::: moniker range=">= aspnetcore-2.1"
 
 <a name="adi"></a>
+
 ## AddDefaultIdentity and AddIdentity
 
 [AddDefaultIdentity](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionuiextensions.adddefaultidentity?view=aspnetcore-2.1#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionUIExtensions_AddDefaultIdentity__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Identity_IdentityOptions__) was introduced in ASP.NET Core 2.1. Calling `AddDefaultIdentity` is similar to calling the following:
@@ -65,6 +66,7 @@ Run the app and register a user. Depending on your screen size, you might need t
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
 <a name="pw"></a>
+
 ### Configure Identity services
 
 Services are added in `ConfigureServices`. The typical pattern is to call all the `Add{Service}` methods, and then call all the `services.Configure{Service}` methods.
@@ -109,7 +111,7 @@ For more information, see the [IdentityOptions Class](/dotnet/api/microsoft.aspn
 
 ## Scaffold Register, Login, and LogOut
 
-Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) instructions to generate the the code shown in this section.
+Follow the [Scaffold identity into a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) instructions to generate the code shown in this section.
 
 # [Visual Studio](#tab/visual-studio)
 

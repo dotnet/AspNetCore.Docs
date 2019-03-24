@@ -25,9 +25,9 @@ The preceding code:
 * Calls [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
 * Calls [UseExceptionHandler](/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler) when the value of `ASPNETCORE_ENVIRONMENT` is set one of the following:
 
-    * `Staging`
-    * `Production`
-    * `Staging_2`
+  * `Staging`
+  * `Production`
+  * `Staging_2`
 
 The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
 
@@ -37,7 +37,7 @@ On Windows and macOS, environment variables and values aren't case sensitive. Li
 
 ### Development
 
-The development environment can enable features that shouldn't be exposed in production. For example, the ASP.NET Core templates enable the [developer exception page](xref:fundamentals/error-handling#the-developer-exception-page) in the development environment.
+The development environment can enable features that shouldn't be exposed in production. For example, the ASP.NET Core templates enable the [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) in the development environment.
 
 The environment for local machine development can be set in the *Properties\launchSettings.json* file of the project. Environment values set in *launchSettings.json* override values set in the system environment.
 
@@ -284,7 +284,7 @@ For Linux distros, use the `export` command at a command prompt for session-base
 
 To load configuration by environment, we recommend:
 
-* *appsettings* files (*appsettings.&lt;<Environment>&gt;.json). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider).
+* *appsettings* files (*appsettings.\<Environment>.json*). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider).
 * environment variables (set on each system where the app is hosted). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider) and [Safe storage of app secrets in development: Environment variables](xref:security/app-secrets#environment-variables).
 * Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
 

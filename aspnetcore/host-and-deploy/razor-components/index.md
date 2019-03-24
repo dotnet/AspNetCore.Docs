@@ -5,7 +5,7 @@ description: Discover how to host and deploy Razor Components and Blazor apps us
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2019
+ms.date: 03/22/2019
 uid: host-and-deploy/razor-components/index
 ---
 # Host and deploy Razor Components
@@ -109,7 +109,7 @@ With the [client-side hosting model](xref:razor-components/hosting-models#client
 * The app is executed directly on the browser UI thread. Either of the following strategies is supported:
   * The Blazor app is served by an ASP.NET Core app. Covered in the [Client-side Blazor hosted deployment with ASP.NET Core](#client-side-blazor-hosted-deployment-with-aspnet-core) section.
   * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. Covered in the [Client-side Blazor standalone deployment](#client-side-blazor-standalone-deployment) section.
-  
+
 ### Configure the Linker
 
 Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. You can control assembly linking on build. For more information, see <xref:host-and-deploy/razor-components/configure-linker>.
@@ -191,7 +191,8 @@ For more information on ASP.NET Core app hosting and deployment, see <xref:host-
 
 For information on deploying to Azure App Service, see the following topics:
 
-<xref:tutorials/publish-to-azure-webapp-using-vs>  
+<xref:tutorials/publish-to-azure-webapp-using-vs>
+
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
 ### Client-side Blazor standalone deployment
@@ -267,7 +268,7 @@ To host Blazor in Docker using Nginx, setup the Dockerfile to use the Alpine-bas
 
 Add one line to the Dockerfile, as shown in the following example:
 
-```
+```Dockerfile
 FROM nginx:alpine
 COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf
@@ -283,7 +284,7 @@ When using a project site instead of an organization site, add or update the `<b
 
 With the [server-side hosting model](xref:razor-components/hosting-models#server-side-hosting-model), Razor Components is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a SignalR connection.
 
-The app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a server-side deployment, Visual Studio includes the **Blazor (Server-side in ASP.NET Core)** project template (`blazorserver` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
+The app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a server-side deployment, Visual Studio includes the **Razor Components** project template (`razorcomponents` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
 
 <!--
 
@@ -299,5 +300,6 @@ When the ASP.NET Core app is published, the Razor Components app is included in 
 
 For information on deploying to Azure App Service, see the following topics:
 
-<xref:tutorials/publish-to-azure-webapp-using-vs>  
+<xref:tutorials/publish-to-azure-webapp-using-vs>
+
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.

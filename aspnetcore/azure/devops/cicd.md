@@ -33,17 +33,23 @@ In this section, you'll complete the following tasks:
 1. Click the **Create repository** button.
 1. Open your local machine's command shell. Navigate to the directory in which the *simple-feed-reader* Git repository is stored.
 1. Rename the existing *origin* remote to *upstream*. Execute the following command:
+
     ```console
     git remote rename origin upstream
     ```
+
 1. Add a new *origin* remote pointing to your copy of the repository on GitHub. Execute the following command:
+
     ```console
     git remote add origin https://github.com/<GitHub_username>/simple-feed-reader/
     ```
+
 1. Publish your local Git repository to the newly created GitHub repository. Execute the following command:
+
     ```console
     git push -u origin master
     ```
+
 1. Open a browser window, and navigate to `https://github.com/<GitHub_username>/simple-feed-reader/`. Validate that your code appears in the GitHub repository.
 
 ## Disconnect local Git deployment
@@ -54,9 +60,9 @@ Remove the local Git deployment with the following steps. Azure Pipelines (an Az
 
     ![staging Web App search term](media/cicd/portal-search-box.png)
 
-1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
+1. Click **Deployment Center**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 1. Navigate to the *mywebapp<unique_number>* App Service. As a reminder, the portal's search box can be used to quickly locate the App Service.
-1. Click **Deployment options**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
+1. Click **Deployment Center**. A new panel appears. Click **Disconnect** to remove the local Git source control configuration that was added in the previous chapter. Confirm the removal operation by clicking the **Yes** button.
 
 ## Create an Azure DevOps organization
 
@@ -186,6 +192,7 @@ There are three distinct steps to complete. Completing the steps in the followin
     ```console
     git commit -a -m "upgraded to V4"
     ```
+
 1. Push the change in the *master* branch to the *origin* remote of your GitHub repository:
 
     ```console

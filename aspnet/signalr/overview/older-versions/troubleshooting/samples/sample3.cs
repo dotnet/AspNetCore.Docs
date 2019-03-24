@@ -1,1 +1,0 @@
-RouteTable.Routes.MapConnection<MyConnection>("my", "/echo");

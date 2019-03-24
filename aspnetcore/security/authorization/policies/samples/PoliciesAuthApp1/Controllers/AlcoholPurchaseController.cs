@@ -7,9 +7,7 @@ namespace PoliciesAuthApp1.Controllers
     [Authorize(Policy = "AtLeast21")]
     public class AlcoholPurchaseController : Controller
     {
-        public IActionResult Login() => View();
-
-        public IActionResult Logout() => View();
+        public IActionResult Index() => View();
     }
     #endregion
 }

@@ -1,1 +1,0 @@
-aspnet_regsql.exe -S ScottsServer -E -d pubs -ed

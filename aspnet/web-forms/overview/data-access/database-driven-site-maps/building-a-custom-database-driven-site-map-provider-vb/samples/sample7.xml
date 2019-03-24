@@ -1,5 +1,0 @@
-<siteMap defaultProvider="AspNetXmlSiteMapProvider">
-  <providers>
-    <add name="Northwind" type="NorthwindSiteMapProvider" />
-  </providers>
-</siteMap>

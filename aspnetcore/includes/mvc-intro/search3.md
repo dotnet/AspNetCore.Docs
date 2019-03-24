@@ -1,13 +1,11 @@
 <!--
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/_Layout.cshtml?highlight=7,31)]
 
-
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchNull)]
 
 ![Index view](~/tutorials/first-mvc-app/search/_static/ghost.png)
-
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?highlight=5&name=snippet_1)]
 
@@ -31,10 +29,10 @@ Add the following `MovieGenreViewModel` class to the *Models* folder:
 
 The movie-genre view model will contain:
 
-   * A list of movies.
-   * A `SelectList` containing the list of genres. This allows the user to select a genre from the list.
-   * `MovieGenre`, which contains the selected genre.
-   * `SearchString`, which contains the text users enter in the search text box.
+* A list of movies.
+* A `SelectList` containing the list of genres. This allows the user to select a genre from the list.
+* `MovieGenre`, which contains the selected genre.
+* `SearchString`, which contains the text users enter in the search text box.
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 

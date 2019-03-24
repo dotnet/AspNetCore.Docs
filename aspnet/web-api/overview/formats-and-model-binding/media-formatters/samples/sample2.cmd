@@ -1,1 +1,0 @@
-Accept: text/html,application/xhtml+xml,application/xml

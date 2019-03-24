@@ -80,7 +80,7 @@ gulp.task("min:css", () => {
 });
 
 gulp.task("min", gulp.series(["min:js", "min:css"]));
-	
+
 // A 'default' task is required by Gulp v4
 gulp.task("default", gulp.series(["min"]));
 ```
@@ -102,7 +102,7 @@ The following table provides an explanation of the tasks specified in the code a
 
 If you haven't already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
 
-1.  Open the *package.json* file (add if not there) and add the following.
+1. Open the *package.json* file (add if not there) and add the following.
 
     ```json
     {
@@ -116,71 +116,71 @@ If you haven't already created a new Web app, create a new ASP.NET Web Applicati
     }
     ```
 
-2.  Add a new JavaScript file to your project and name it *gulpfile.js*, then copy the following code.
+2. Add a new JavaScript file to your project and name it *gulpfile.js*, then copy the following code.
 
     ```javascript
     /// <binding Clean='clean' />
     "use strict";
-    
+
     const gulp = require("gulp"),
           rimraf = require("rimraf"),
           concat = require("gulp-concat"),
           cssmin = require("gulp-cssmin"),
           uglify = require("gulp-uglify");
-    
+
     const paths = {
       webroot: "./wwwroot/"
     };
-    
+
     paths.js = paths.webroot + "js/**/*.js";
     paths.minJs = paths.webroot + "js/**/*.min.js";
     paths.css = paths.webroot + "css/**/*.css";
     paths.minCss = paths.webroot + "css/**/*.min.css";
     paths.concatJsDest = paths.webroot + "js/site.min.js";
     paths.concatCssDest = paths.webroot + "css/site.min.css";
-    
+
     gulp.task("clean:js", done => rimraf(paths.concatJsDest, done));
     gulp.task("clean:css", done => rimraf(paths.concatCssDest, done));
     gulp.task("clean", gulp.series(["clean:js", "clean:css"]));
 
-	gulp.task("min:js", () => {
-	  return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
-		.pipe(concat(paths.concatJsDest))
-		.pipe(uglify())
-		.pipe(gulp.dest("."));
-	});
+    gulp.task("min:js", () => {
+      return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
+      .pipe(concat(paths.concatJsDest))
+      .pipe(uglify())
+      .pipe(gulp.dest("."));
+    });
 
-	gulp.task("min:css", () => {
-	  return gulp.src([paths.css, "!" + paths.minCss])
-		.pipe(concat(paths.concatCssDest))
-		.pipe(cssmin())
-		.pipe(gulp.dest("."));
-	});
+    gulp.task("min:css", () => {
+      return gulp.src([paths.css, "!" + paths.minCss])
+      .pipe(concat(paths.concatCssDest))
+      .pipe(cssmin())
+      .pipe(gulp.dest("."));
+    });
 
-	gulp.task("min", gulp.series(["min:js", "min:css"]));
-	
-	// A 'default' task is required by Gulp v4
-	gulp.task("default", gulp.series(["min"]));
+    gulp.task("min", gulp.series(["min:js", "min:css"]));
+
+    // A 'default' task is required by Gulp v4
+    gulp.task("default", gulp.series(["min"]));
     ```
 
-3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
-    
+3. In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
+
     ![Open Task Runner Explorer from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
-    
+
     **Task Runner Explorer** shows the list of Gulp tasks. (You might have to click the **Refresh** button that appears to the left of the project name.)
-    
+
     ![Task Runner Explorer](using-gulp/_static/03-TaskRunnerExplorer.png)
-    
+
     > [!IMPORTANT]
     > The **Task Runner Explorer** context menu item appears only if *gulpfile.js* is in the root project directory.
 
-4.  Underneath **Tasks** in **Task Runner Explorer**, right-click **clean**, and select **Run** from the pop-up menu.
+4. Underneath **Tasks** in **Task Runner Explorer**, right-click **clean**, and select **Run** from the pop-up menu.
 
     ![Task Runner Explorer clean task](using-gulp/_static/04-TaskRunner-clean.png)
 
     **Task Runner Explorer** will create a new tab named **clean** and execute the clean task as it's defined in *gulpfile.js*.
 
-5.  Right-click the **clean** task, then select **Bindings** > **Before Build**.
+5. Right-click the **clean** task, then select **Bindings** > **Before Build**.
 
     ![Task Runner Explorer binding BeforeBuild](using-gulp/_static/05-TaskRunner-BeforeBuild.png)
 
@@ -200,9 +200,9 @@ Now the clean task is executed when you run the project in Visual Studio or from
 
 To define a new Gulp task, modify *gulpfile.js*.
 
-1.  Add the following JavaScript to the end of *gulpfile.js*:
+1. Add the following JavaScript to the end of *gulpfile.js*:
 
-	```javascript
+    ```javascript
     gulp.task('first', done => {
       console.log('first task! <-----');
       done(); // signal completion
@@ -211,11 +211,11 @@ To define a new Gulp task, modify *gulpfile.js*.
 
     This task is named `first`, and it simply displays a string.
 
-2.  Save *gulpfile.js*.
+2. Save *gulpfile.js*.
 
-3.  In **Solution Explorer**, right-click *gulpfile.js*, and select *Task Runner Explorer*.
+3. In **Solution Explorer**, right-click *gulpfile.js*, and select *Task Runner Explorer*.
 
-4.  In **Task Runner Explorer**, right-click **first**, and select **Run**.
+4. In **Task Runner Explorer**, right-click **first**, and select **Run**.
 
     ![Task Runner Explorer run first task](using-gulp/_static/06-TaskRunner-First.png)
 
@@ -225,31 +225,31 @@ To define a new Gulp task, modify *gulpfile.js*.
 
 When you run multiple tasks, the tasks run concurrently by default. However, if you need to run tasks in a specific order, you must specify when each task is complete, as well as which tasks depend on the completion of another task.
 
-1.  To define a series of tasks to run in order, replace the `first` task that you added above in *gulpfile.js* with the following:
+1. To define a series of tasks to run in order, replace the `first` task that you added above in *gulpfile.js* with the following:
 
-	```javascript
-	gulp.task('series:first', done => {
-	  console.log('first task! <-----');
-	  done(); // signal completion
-	});
-	gulp.task('series:second', done => {
-	  console.log('second task! <-----');
+    ```javascript
+    gulp.task('series:first', done => {
+      console.log('first task! <-----');
       done(); // signal completion
-	});
+    });
+    gulp.task('series:second', done => {
+      console.log('second task! <-----');
+        done(); // signal completion
+    });
 
-	gulp.task('series', gulp.series(['series:first', 'series:second']), () => { });
+    gulp.task('series', gulp.series(['series:first', 'series:second']), () => { });
 
-	// A 'default' task is required by Gulp v4
-	gulp.task('default', gulp.series('series'));
+    // A 'default' task is required by Gulp v4
+      gulp.task('default', gulp.series('series'));
     ```
- 
+
     You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run. As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
 
-2.  Save *gulpfile.js*.
+2. Save *gulpfile.js*.
 
-3.  In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer** if it isn't already open.
+3. In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer** if it isn't already open.
 
-4.  In **Task Runner Explorer**, right-click **series** and select **Run**.
+4. In **Task Runner Explorer**, right-click **series** and select **Run**.
 
     ![Task Runner Explorer run series task](using-gulp/_static/07-TaskRunner-Series.png)
 
@@ -292,27 +292,27 @@ When Gulp is used to optimize client-side files for staging and production, the 
 
 To switch between compiling for different environments, modify the **ASPNETCORE_ENVIRONMENT** environment variable's value.
 
-1.  In **Task Runner Explorer**, verify that the **min** task has been set to run **Before Build**.
+1. In **Task Runner Explorer**, verify that the **min** task has been set to run **Before Build**.
 
-2.  In **Solution Explorer**, right-click the project name and select **Properties**.
+2. In **Solution Explorer**, right-click the project name and select **Properties**.
 
     The property sheet for the Web app is displayed.
 
-3.  Click the **Debug** tab.
+3. Click the **Debug** tab.
 
-4.  Set the value of the **Hosting:Environment** environment variable to `Production`.
+4. Set the value of the **Hosting:Environment** environment variable to `Production`.
 
-5.  Press **F5** to run the application in a browser.
+5. Press **F5** to run the application in a browser.
 
-6.  In the browser window, right-click the page and select **View Source** to view the HTML for the page.
+6. In the browser window, right-click the page and select **View Source** to view the HTML for the page.
 
     Notice that the stylesheet links point to the minified CSS files.
 
-7.  Close the browser to stop the Web app.
+7. Close the browser to stop the Web app.
 
-8.  In Visual Studio, return to the property sheet for the Web app and change the **Hosting:Environment** environment variable back to `Development`.
+8. In Visual Studio, return to the property sheet for the Web app and change the **Hosting:Environment** environment variable back to `Development`.
 
-9.  Press **F5** to run the application in a browser again.
+9. Press **F5** to run the application in a browser again.
 
 10. In the browser window, right-click the page and select **View Source** to see the HTML for the page.
 
@@ -331,7 +331,7 @@ A Gulp task is registered with a function name. You can specify dependencies if 
 |src   |`gulp.src(globs[, options]) { }`|The `src` function provides files that match the glob value(s). The `glob` parameter is a `string` or `array` that determines which files to read. The `options` parameter provides additional file options.|
 |dest  |`gulp.dest(path[, options]) { }`|The `dest` function defines a location to which files can be written. The `path` parameter is a string or function that determines the destination folder. The `options` parameter is an object that specifies output folder options.|
 
-For additional Gulp API reference information, see [Gulp Docs API](https://github.com/gulpjs/gulp/blob/master/docs/API.md).
+For additional Gulp API reference information, see [Gulp Docs API](https://gulpjs.org/API.html).
 
 ## Gulp recipes
 

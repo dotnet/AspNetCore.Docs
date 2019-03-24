@@ -77,9 +77,9 @@ Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.j
 
 The Kestrel web server has new features that make it more suitable as an Internet-facing server. A number of server constraint configuration options are added in the `KestrelServerOptions` class's new `Limits` property. Add limits for the following:
 
-- Maximum client connections
-- Maximum request body size
-- Minimum request body data rate
+* Maximum client connections
+* Maximum request body size
+* Minimum request body data rate
 
 For more information, see [Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel).
 

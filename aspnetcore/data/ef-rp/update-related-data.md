@@ -131,9 +131,9 @@ Update the instructors Edit page model with the following code:
 
 The preceding code:
 
-- Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property.
-- Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
-- If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
+* Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property.
+* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
+* If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 
 ### Update the instructor Edit page
 
@@ -219,6 +219,11 @@ The preceding code makes the following changes:
 * Uses eager loading for the `CourseAssignments` navigation property. `CourseAssignments` must be included or they aren't deleted when the instructor is deleted. To avoid needing to read them, configure cascade delete in the database.
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
+
+## Additional resources
+
+* [YouTube version of this tutorial (Part 1)](https://www.youtube.com/watch?v=Csh6gkmwc9E)
+* [YouTube version of this tutorial (Part 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/read-related-data)

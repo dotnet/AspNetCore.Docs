@@ -1,1 +1,0 @@
-var db = Database.OpenConnectionString("Data Source=|DataDirectory|\SmallBakery.sdf");

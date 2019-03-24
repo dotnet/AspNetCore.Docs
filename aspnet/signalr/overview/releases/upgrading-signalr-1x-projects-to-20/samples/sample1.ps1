@@ -1,1 +1,0 @@
-Uninstall-Package Microsoft.AspNet.SignalR -RemoveDependencies

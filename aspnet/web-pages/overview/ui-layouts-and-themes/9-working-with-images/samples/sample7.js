@@ -1,1 +1,0 @@
-WebImage photo = new WebImage(@"~\Images\Photo2.jpg");

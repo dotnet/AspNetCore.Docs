@@ -76,7 +76,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 
 * In **Solution Explorer**, right-click the project, and select **Add** > **Client-Side Library**.
 
-* In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**. 
+* In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.
 
 * For **Library**, enter `@aspnet/signalr@1`, and select the latest version that isn't preview.
 
@@ -207,7 +207,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
   ```console
   dotnet run -p SignalRChat.csproj
   ```
-  
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the menu, select **Run > Start Without Debugging**.

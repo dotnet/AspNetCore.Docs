@@ -1,4 +1,5 @@
 <a name="cli"></a>
+
 ## Perform initial migration
 
 From the command line, run the following .NET Core CLI commands:

@@ -246,7 +246,7 @@ namespace MyApp.Middleware
                 // Many more properties available 
             };
 
-            // If you use .Net 4.6+, Task.CompletedTask will be a bit faster
+            // If you use .NET Framework 4.6+, Task.CompletedTask will be a bit faster
             return Task.FromResult(0);
         }
         #endregion
@@ -262,7 +262,7 @@ namespace MyApp.Middleware
             responseCookies.Append("cookie2name", "cookie2value",
                 new CookieOptions { Expires = System.DateTime.Now.AddDays(5), HttpOnly = true });
 
-            // If you use .Net 4.6+, Task.CompletedTask will be a bit faster
+            // If you use .NET Framework 4.6+, Task.CompletedTask will be a bit faster
             return Task.FromResult(0); 
         }
         #endregion
