@@ -792,7 +792,7 @@ Dynamic Content component (*DynamicContent.razor* in Razor Components; *DynamicC
 
 @CustomRender
 
-<button type="button" onclick="@RenderStuff">
+<button type="button" onclick="@RenderDynamicComponent">
     Dynamic
 </button>
 
@@ -806,7 +806,7 @@ Dynamic Content component (*DynamicContent.razor* in Razor Components; *DynamicC
         builder.CloseComponent();
     };    
     
-    void RenderStuff()
+    void RenderDynamicComponent()
     {
         CustomRender = CreateDynamicComponent();
     }
