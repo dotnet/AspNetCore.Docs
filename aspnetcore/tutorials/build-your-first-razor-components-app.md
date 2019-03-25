@@ -5,7 +5,7 @@ description: Build a Razor Components app step-by-step and learn basic Razor Com
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/14/2019
+ms.date: 03/24/2019
 uid: tutorials/first-razor-components-app
 ---
 # Build your first Razor Components app
@@ -61,7 +61,7 @@ For an experience using Blazor:
 
 Include a component into another component using an HTML-like syntax.
 
-1. Add the Counter component to the app's Index (home page) component by adding a `<Counter />` element to the Index component.
+1. Add the Counter component to the app's Index (Home) component by adding a `<Counter />` element to the Index component.
 
    If you're using Blazor for this experience, a Survey Prompt component (`<SurveyPrompt>` element) is in the Index component. Replace the `<SurveyPrompt>` element with the `<Counter>` element.
 
@@ -69,7 +69,7 @@ Include a component into another component using an HTML-like syntax.
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/Index.razor?highlight=7)]
 
-1. Rebuild and run the app. The home page has its own counter.
+1. Rebuild and run the app. The Home page has its own counter.
 
 ## Component parameters
 
@@ -95,7 +95,7 @@ Components can also have parameters. Component parameters are defined using non-
 
    [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/RazorComponents/Components/Pages/Index.razor?highlight=7)]
 
-1. Reload the page. The home page counter increments by ten each time the **Click me** button is selected. The counter on the *Counter* page increments by one.
+1. Reload the Home page. The counter increments by ten each time the **Click me** button is selected. The counter on the Counter page increments by one.
 
 ## Route to components
 
@@ -105,29 +105,38 @@ The `@page` directive at the top of the *Counter.razor* file specifies that this
 
 Services registered in the app's service container are available to components via [dependency injection (DI)](xref:fundamentals/dependency-injection). Inject services into a component using the `@inject` directive.
 
-Examine the directives of the FetchData component. The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component:
+Examine the directives of the FetchData component in the sample app.
 
-*Components/Pages/FetchData.razor* (*Pages/FetchData.cshtml* in Blazor):
+In the Razor Components sample app, the `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes), so one instance of the service is available throughout the app. The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component.
+
+*Components/Pages/FetchData.razor*:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData1.razor?highlight=3)]
-
-The `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes), so one instance of the service is available throughout the app.
 
 The FetchData component uses the injected service, as `ForecastService`, to retrieve an array of `WeatherForecast` objects:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-A [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
+In the Blazor version of the sample app, `HttpClient` is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder:
+
+*Pages/FetchData.cshtml*:
+
+[!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData1.cshtml?highlight=7)]
+
+In both sample apps, a [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
 
 ## Build a todo list
 
-Add a new page to the app that implements a simple todo list.
+Add a new component to the app that implements a simple todo list.
 
-1. Add an empty file to the *Components/Pages* folder (*Pages* folder in Blazor) named *Todo.razor*.
+1. Add an empty file to the sample app:
 
-1. Provide the initial markup for the page:
+   * For the Razor Components experience, add a *Todo.razor* file to the *Components/Pages* folder.
+   * For the Blazor experience, add a *Todo.cshtml* file to the *Pages* folder.
+
+1. Provide the initial markup for the component:
 
    ```cshtml
    @page "/todo"
@@ -135,11 +144,11 @@ Add a new page to the app that implements a simple todo list.
    <h1>Todo</h1>
    ```
 
-1. Add the Todo page to the navigation bar.
+1. Add the Todo component to the navigation bar.
 
    The NavMenu component (*Components/Shared/NavMenu.razor* or *Shared/NavMenu.cshtml* in Blazor) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app. For more information, see <xref:razor-components/layouts>.
 
-   Add a `<NavLink>` for the Todo page by adding the following list item markup below the existing list items in the *Components/Shared/NavMenu.razor* (*Shared/NavMenu.cshtml* in Blazor) file:
+   Add a `<NavLink>` for the Todo component by adding the following list item markup below the existing list items in the *Components/Shared/NavMenu.razor* (*Shared/NavMenu.cshtml* in Blazor) file:
 
    ```cshtml
    <li class="nav-item px-3">
@@ -149,7 +158,7 @@ Add a new page to the app that implements a simple todo list.
    </li>
    ```
 
-1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the Todo page works.
+1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the Todo component works.
 
 1. Add a *TodoItem.cs* file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
