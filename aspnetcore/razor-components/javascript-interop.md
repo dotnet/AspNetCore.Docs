@@ -210,57 +210,88 @@ As far as .NET code is concerned, an `ElementRef` is an opaque handle. The *only
 
 For example, the following code defines a .NET extension method that enables setting the focus on an element:
 
-*mylib.js*:
+*exampleJsInterop.js*:
 
 ```javascript
-window.myLib = {
+window.exampleJsFunctions = {
   focusElement : function (element) {
     element.focus();
   }
 }
 ```
 
-*ElementRefExtensions.cs*:
+*ExampleJsInterop.cs*:
 
 ```csharp
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Threading.Tasks;
 
-namespace MyLib
+namespace JsInteropClasses
 {
-    public static class MyLibElementRefExtensions
+    public class ExampleJsInterop
     {
         private readonly IJSRuntime _jsRuntime;
 
-        public MyJsInterop(IJSRuntime jsRuntime)
+        public ExampleJsInterop(IJSRuntime jsRuntime)
         {
             _jsRuntime = jsRuntime;
         }
 
-        public static Task Focus(this ElementRef elementRef)
+        public Task Focus(ElementRef elementRef)
         {
             return _jsRuntime.InvokeAsync<object>(
-                "myLib.focusElement", elementRef);
+                "exampleJsFunctions.focusElement", elementRef);
         }
     }
 }
 ```
 
-Use `MyLib` and call `Focus` on an `ElementRef` to focus inputs in any component:
+Use `JsInteropClasses` and call `Focus` with an `ElementRef` to focus an element:
 
 ```cshtml
-@using MyLib
+@inject IJSRuntime JSRuntime
+@using JsInteropClasses
 
 <input ref="username" />
-<button onclick="@SetFocus">Set focus</button>
+<button onclick="@SetFocus">Set focus on username</button>
 
 @functions {
     ElementRef username;
 
-    void SetFocus()
+    public async void SetFocus()
     {
-        username.Focus();
+        var exampleJsInterop = new ExampleJsInterop(JSRuntime);
+        await exampleJsInterop.Focus(username);
+    }
+}
+```
+
+To use an extension method to focus an element, create a static extension method that receives the `IJSRuntime` instance:
+
+```csharp
+public static Task Focus(this ElementRef elementRef, IJSRuntime jsRuntime)
+{
+    return jsRuntime.InvokeAsync<object>(
+        "exampleJsFunctions.focusElement", elementRef);
+}
+```
+
+The method is called directly on the object:
+
+```cshtml
+@inject IJSRuntime JSRuntime
+@using JsInteropClasses
+
+<input ref="username" />
+<button onclick="@SetFocus">Set focus on username</button>
+
+@functions {
+    ElementRef username;
+
+    public async void SetFocus()
+    {
+        await username.Focus(JSRuntime);
     }
 }
 ```
