@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/26/2019
+ms.date: 03/13/2019
 uid: test/troubleshoot
 ---
 # Troubleshoot ASP.NET Core projects
@@ -27,8 +27,6 @@ In the **New Project** dialog for ASP.NET Core, you may see the following warnin
 
 > Both 32 and 64 bit versions of the .NET Core SDK are installed. Only templates from the 64 bit version(s) installed at 'C:\\Program Files\\dotnet\\sdk\\' will be displayed.
 
-![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/both32and64bit.png)
-
 This warning appears when both 32-bit (x86) and 64-bit (x64) versions of the [.NET Core SDK](https://www.microsoft.com/net/download/all) are installed. Common reasons both versions may be installed include:
 
 * You originally downloaded the .NET Core SDK installer using a 32-bit machine but then copied it across and installed it on a 64-bit machine.
@@ -43,24 +41,28 @@ In the **New Project** dialog for ASP.NET Core, you may see the following warnin
 
 > The .NET Core SDK is installed in multiple locations. Only templates from the SDK(s) installed at 'C:\\Program Files\\dotnet\\sdk\\' will be displayed.
 
-![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/multiplelocations.png)
-
 You see this message when you have at least one installation of the .NET Core SDK in a directory outside of *C:\\Program Files\\dotnet\\sdk\\*. Usually this happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
 
 Uninstall all 32-bit .NET Core SDKs and runtimes to prevent this warning. Uninstall from **Control Panel** > **Programs and Features** > **Uninstall or change a program**. If you understand why the warning occurs and its implications, you can ignore the warning.
 
 ### No .NET Core SDKs were detected
 
-In the **New Project** dialog for ASP.NET Core, you may see the following warning:
+* In the Visual Studio **New Project** dialog for ASP.NET Core, you may see the following warning:
 
-> No .NET Core SDKs were detected, ensure they are included in the environment variable 'PATH'.
+  > No .NET Core SDKs were detected, ensure they are included in the environment variable `PATH`.
 
-![A screenshot of the OneASP.NET dialog showing the warning message](troubleshoot/_static/NoNetCore.png)
+* When executing a `dotnet` command, the warning appears as:
 
-This warning appears when the environment variable `PATH` doesn't point to any .NET Core SDKs on the machine (for example, `C:\Program Files\dotnet\` and `C:\Program Files (x86)\dotnet\`). To resolve this problem:
+  > It was not possible to find any installed dotnet SDKs.
 
-* Install or verify the .NET Core SDK is installed. Obtain the latest installer from [.NET Downloads](https://dotnet.microsoft.com/download). 
-* Verify that the `PATH` environment variable points to the location where the SDK is installed. The installer normally sets the `PATH`.
+These warnings appear when the environment variable `PATH` doesn't point to any .NET Core SDKs on the machine. To resolve this problem:
+
+* Install the .NET Core SDK. Obtain the latest installer from [.NET Downloads](https://dotnet.microsoft.com/download).
+* Verify that the `PATH` environment variable points to the location where the SDK is installed (`C:\Program Files\dotnet\` for 64-bit/x64 or `C:\Program Files (x86)\dotnet\` for 32-bit/x86). The SDK installer normally sets the `PATH`. Always install the same bitness SDKs and runtimes on the same machine.
+
+### Missing SDK after installing the .NET Core Hosting Bundle
+
+Installing the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) modifies the `PATH` when it installs the .NET Core runtime to point to the 32-bit (x86) version of .NET Core (`C:\Program Files (x86)\dotnet\`). This can result in missing SDKs when the 32-bit (x86) .NET Core `dotnet` command is used ([No .NET Core SDKs were detected](#no-net-core-sdks-were-detected)). To resolve this problem, move `C:\Program Files\dotnet\` to a position before `C:\Program Files (x86)\dotnet\` on the `PATH`.
 
 ## Obtain data from an app
 
