@@ -59,6 +59,19 @@ The generated project provides [ASP.NET Core Identity](xref:security/authenticat
 * /Identity/Account/Logout
 * /Identity/Account/Manage
 
+## Configure database
+
+Apply the migration steps to initialise the database.
+
+In Visual Studio, you can use the Package Manager Console to apply pending migrations to the database:
+
+```PM> Update-Database```
+    
+Alternatively, you can apply pending migrations from a command prompt at your project directory:
+
+```dotnet ef database update```
+
+
 ### Test Register and Login
 
 Run the app and register a user. Depending on your screen size, you might need to select the navigation toggle button to see the **Register** and **Login** links.
