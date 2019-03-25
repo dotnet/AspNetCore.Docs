@@ -234,7 +234,7 @@ To enable XML comments, perform the following steps:
 
 ::: moniker-end
 
-# [Visual Studio Code](#tab/visual-studio-code+netcore-cli)
+# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
 Manually add the highlighted lines to the *.csproj* file:
 
