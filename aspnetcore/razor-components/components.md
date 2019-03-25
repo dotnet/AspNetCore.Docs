@@ -805,7 +805,7 @@ Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml*
     
     RenderFragment CreateComponent() => builder =>
     {
-        for (int i = 0; i < 3; i++) 
+        for (var i = 0; i < 3; i++) 
         {
             builder.OpenComponent(0, typeof(PetDetails));
             builder.AddAttribute(1, "PetDetailsQuote", "Someone's best friend!");
