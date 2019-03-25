@@ -769,9 +769,7 @@ Your pet's name is Rex.
 > [!NOTE]
 > Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can result in undefined behavior.
 
-When calling `RenderTreeBuilder` methods, sequence numbers are source code line numbers. The Razor Components difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder`, hardcode the sequence number. Using a calculation or counter to generate the sequence number can lead to poor performance.
-
-Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtml* in Blazor):
+Consider the following Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtml* in Blazor), which can be manually created for another component:
 
 ```cshtml
 <h2>Pet Details Component</h2>
@@ -785,8 +783,8 @@ Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtm
 }
 ```
 
-In the following example, the loop in the `CreateComponent` method generates three Pet Details components. The sequence numbers for `RenderTreeBuilder` method calls (`OpenComponent` and `AddAttribute`) are hardcoded arguments and not calculated or produced by a counter.
-        
+In the following example, the loop in the `CreateComponent` method generates three Pet Details components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Razor Components difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. Using a calculation or counter to generate the sequence number can lead to poor performance.
+
 Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml* in Blazor):
 
 ```cshtml
