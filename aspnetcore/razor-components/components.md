@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2019
+ms.date: 03/25/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -762,14 +762,14 @@ The time is 10/04/2018 01:26:52.
 Your pet's name is Rex.
 ```
 
-## Dynamic components
+## Manual RenderTreeBuilder logic
 
-Dynamic components can be used to dynamically generate content. `Microsoft.AspNetCore.Components.RenderTree` provides methods for manipulating components and elements.
+`Microsoft.AspNetCore.Components.RenderTree` provides methods for manipulating components and elements, including building components manually in C# code.
 
-> [!WARNING]
-> Dynamic components are an advanced scenario and aren't recommended for general use. Dynamically generated components can bypass tag structure safety checks. Inadvertently rendering a faulty tag in the browser can result in a security vulnerability.
+> [!NOTE]
+> Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can cause undefined behavior.
 >
-> When creating components dynamically, **always** hardcode the sequence number. Do **not** generate the sequence number using a calculation or counter.
+> When creating a component with `RenderTreeBuilder`, hardcode the sequence number. Using a calculation or counter to generate the sequence number can lead to poor performance.
 
 Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtml* in Blazor):
 
@@ -785,30 +785,30 @@ Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtm
 }
 ```
 
-Dynamic Content component (*DynamicContent.razor* in Razor Components; *DynamicContent.cshtml* in Blazor):
+Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml* in Blazor):
 
 ```cshtml
-<h1>Generate dynamic content</h1>
+<h1>Build a component</h1>
 
 @CustomRender
 
-<button type="button" onclick="@RenderDynamicComponent">
+<button type="button" onclick="@RenderComponent">
     Dynamic
 </button>
 
 @functions {
     RenderFragment CustomRender { get; set; }
     
-    RenderFragment CreateDynamicComponent() => builder =>
+    RenderFragment CreateComponent() => builder =>
     {
         builder.OpenComponent(0, typeof(PetDetails));
         builder.AddAttribute(1, "PetDetails", "Someone's best friend");              
         builder.CloseComponent();
     };    
     
-    void RenderDynamicComponent()
+    void RenderComponent()
     {
-        CustomRender = CreateDynamicComponent();
+        CustomRender = CreateComponent();
     }
 }
 ```
