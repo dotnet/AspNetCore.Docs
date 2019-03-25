@@ -767,33 +767,37 @@ Your pet's name is Rex.
 `Microsoft.AspNetCore.Components.RenderTree` provides methods for manipulating components and elements, including building components manually in C# code.
 
 > [!NOTE]
-> Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can cause undefined behavior.
->
-> When creating a component with `RenderTreeBuilder`, hardcode the sequence number. Using a calculation or counter to generate the sequence number can lead to poor performance.
+> Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can result in undefined behavior.
+
+When calling `RenderTreeBuilder` methods, sequence numbers are source code line numbers. The Razor Components difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder`, hardcode the sequence number. Using a calculation or counter to generate the sequence number can lead to poor performance.
 
 Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtml* in Blazor):
 
 ```cshtml
-<p>Pet Details Component<p>
+<h2>Pet Details Component</h2>
 
-<p>@PetDetails<p>
+<p>@PetDetailsQuote<p>
 
-@function
+@functions
 {
     [Parameter]
-    string PetDetails { get; set; }
+    string PetDetailsQuote { get; set; }
 }
 ```
 
+In the following example, the loop in the `CreateComponent` method generates three Pet Details components. The sequence numbers for `RenderTreeBuilder` method calls (`OpenComponent` and `AddAttribute`) are hardcoded arguments and not calculated or produced by a counter.
+        
 Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml* in Blazor):
 
 ```cshtml
+@page "/BuiltContent"
+
 <h1>Build a component</h1>
 
 @CustomRender
 
 <button type="button" onclick="@RenderComponent">
-    Dynamic
+    Create three Pet Details components
 </button>
 
 @functions {
@@ -801,9 +805,12 @@ Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml*
     
     RenderFragment CreateComponent() => builder =>
     {
-        builder.OpenComponent(0, typeof(PetDetails));
-        builder.AddAttribute(1, "PetDetails", "Someone's best friend");              
-        builder.CloseComponent();
+        for (int i = 0; i < 3; i++) 
+        {
+            builder.OpenComponent(0, typeof(PetDetails));
+            builder.AddAttribute(1, "PetDetailsQuote", "Someone's best friend!");
+            builder.CloseComponent();
+        }
     };    
     
     void RenderComponent()
