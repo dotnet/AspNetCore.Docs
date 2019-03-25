@@ -64,7 +64,7 @@ The `RequestLocalizationOptions` class has three default providers:
 
 The [CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.customrequestcultureprovider?view=aspnetcore-2.1) allows you to customize how the localization culture is provided in your app. The `CustomRequestCultureProvider` is used when the default providers don't meet your requirements.
 
-A common reason custom provider don't work properly is that it isn't the first provider in the `RequestCultureProviders` list. To resolve this issue:
+- A common reason custom provider don't work properly is that it isn't the first provider in the `RequestCultureProviders` list. To resolve this issue:
 
 - Insert the custom provider at the position 0 in the `RequestCultureProviders` list as the following:
 
