@@ -3,7 +3,7 @@ title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 ms.author: riande
-ms.date: 08/08/2018
+ms.date: 03/26/2019
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -74,6 +74,8 @@ Run the following command in the Package Manager Console (PMC):
 ```cli
 dotnet ef database update
 ```
+
+---
 
 ### Test Register and Login
 
