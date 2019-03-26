@@ -10,7 +10,7 @@ uid: mobile/native-mobile-backend
 
 By [Steve Smith](https://ardalis.com/)
 
-Mobile apps can easily communicate with ASP.NET Core backend services.
+Mobile apps can communicate with ASP.NET Core backend services. For instructions on connecting local web services from iOS simulators and Android emulators, see [Connect to Local Web Services from iOS Simulators and Android Emulators](/xamarin/cross-platform/deploy-test/connect-to-local-web-services).
 
 [View or download sample backend services code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
 
