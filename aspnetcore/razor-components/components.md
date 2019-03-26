@@ -18,7 +18,7 @@ Razor Components apps are built using *components*. A component is a self-contai
 
 ## Component classes
 
-Components are typically implemented in Razor Component files (*.razor*) using a combination of C# and HTML markup (*.cshtml* is used for Blazor apps).
+Components are typically implemented in Razor Component files (*.razor*) using a combination of C# and HTML markup (*.cshtml* files are used in Blazor apps).
 
 Components can be authored in Razor Components apps using the *.cshtml* file extension as long as the files are identified as Razor Component files using the `_RazorComponentInclude` MSBuild property. For example, an app created using the Razor Component template specifies that all *.cshtml* files under the *Components* folder should be treated as Razor Components files:
 
