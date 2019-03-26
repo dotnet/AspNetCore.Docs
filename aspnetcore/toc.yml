@@ -996,6 +996,8 @@
       uid: fundamentals/localization
     - name: Portable Object localization
       uid: fundamentals/portable-object-localization
+    - name: Troubleshoot
+      uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Advanced
   items:
     - name: Write middleware
