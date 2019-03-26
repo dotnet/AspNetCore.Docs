@@ -107,7 +107,7 @@ This code from the sample app works with the following `Customer` model.
 
 The sample action method:
 
-* Constructs a `Customer` ("John" with orders "Order0" and "Order1").
+* Constructs a `Customer`.
 * Applies the patch.
 * Returns the result in the body of the response.
 
@@ -143,7 +143,7 @@ The following sample patch document specifies two `add` operations:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/add.json)]
 
-When applied to the [sample app's Customer resource](#get-the-code), this patch file setsthe value of `CustomerName` and add an `Order` object to the end of the `Orders` array.
+When applied to the sample app's `Customer` object, this patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.
 
 ## The remove operation
 
@@ -158,7 +158,7 @@ The following sample patch document specifies two `remove` operations:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/remove.json)]
 
-When applied to the [sample app's Customer resource](#get-the-code), this patch document sets `CustomerName` to null and deletes `Orders[0]`.
+When applied to the sample app's `Customer` object, this patch document sets `CustomerName` to null and deletes `Orders[0]`.
 
 ## The replace operation
 
@@ -168,7 +168,7 @@ The following sample patch document specifies two `replace` operations:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/replace.json)]
 
-When applied to the [sample app's Customer resource](#get-the-code), this patch file sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object.
+When applied to the sample app's `Customer` object, this patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object.
 
 ## The move operation
 
@@ -182,7 +182,7 @@ The following sample patch document specifies two `move` operations:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/move.json)]
 
-When applied to the [sample app's Customer resource](#get-the-code), this patch document:
+When applied to the sample app's `Customer` object, this patch document:
 
 * Copies the value of `Orders[0].OrderName` to `CustomerName`.
 * Sets `Orders[0].OrderName` to null.
@@ -196,7 +196,7 @@ The following sample patch document specifies two `copy` operations:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/copy.json)]
 
-When applied to the [sample app's Customer resource](#get-the-code), this patch document:
+When applied to the sample app's `Customer` object, this patch document:
 
 * Copies the value of `Orders[0].OrderName` to `CustomerName`.
 * Inserts a copy of `Orders[1]` before `Orders[0]`.
@@ -211,11 +211,11 @@ The following sample patch document specifies a `test` operation followed by an 
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-When applied to the [sample app's Customer resource](#get-the-code), this patch document has no effect because the test fails (the initial value of `CustomerName` is "John").
+When applied to the sample app's `Customer` object, this patch document has no effect because the test fails (the initial value of `CustomerName` is "John").
 
 ## Get the code
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
 
 To try out the sample app, run the project, and then send HTTP requests with the following settings:
 
@@ -229,5 +229,5 @@ To try out the sample app, run the project, and then send HTTP requests with the
 * [IETF RFC 5789 PATCH method specification](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
 * [IETF RFC 6901 JSON Patch path format spec](http://tools.ietf.org/html/rfc6901)
-* [JSON Patch documentation](http://jsonpatch.com/), including resources for creating JSON Patch documents.
+* [JSON Patch documentation](http://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
 * [ASP.NET Core JSON Patch source code](https://github.com/aspnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
