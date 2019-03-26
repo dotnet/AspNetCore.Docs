@@ -460,6 +460,8 @@
       uid: grpc/aspnetcore
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
+    - name: Comparing gRPC services with HTTP APIs
+      uid: grpc/comparison
     - name: Tutorials
       items:
         - name: Get started with gRPC service in ASP.NET Core
