@@ -4,7 +4,7 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 03/26/2019
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -25,6 +25,8 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
 ## Publish and copy over the app
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
+
+If the app is run locally and the CentOS reverse proxy isn't configured for [secure connections (HTTPS)](#https-configuration), remove `https://localhost:5001` (if present) from `applicationUrl` in *Properties/launchSettings.json*.
 
 Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, *bin/Release/&lt;target_framework_moniker&gt;/publish*) that can run on the server:
 

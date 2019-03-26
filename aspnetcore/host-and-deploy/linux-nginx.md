@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 03/26/2019
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -37,6 +37,8 @@ This guide:
 ## Publish and copy over the app
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
+
+If the app is run locally and the Nginx reverse proxy isn't configured for [secure connections (HTTPS)](#https-configuration), remove `https://localhost:5001` (if present) from `applicationUrl` in *Properties/launchSettings.json*.
 
 Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, *bin/Release/&lt;target_framework_moniker&gt;/publish*) that can run on the server:
 
