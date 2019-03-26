@@ -26,7 +26,7 @@ For example, the following JSON documents represent a resource, a JSON patch doc
 
 ### Resource example
 
-[!code-json[](jsonpatch/samples/2.2/JSON/customer.json)]
+[!code-csharp[](jsonpatch/samples/2.2/JSON/customer.json)]
 
 ### JSON patch example
 
@@ -97,11 +97,25 @@ In an API controller, an action method for JSON Patch:
 
 Here's an example:
 
-[!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction)]
+[!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
+
+This code from the sample app works with the following `Customer` model.
+
+[!code-csharp[](jsonpatch/samples/2.2/Models/Customer.cs?name=snippet_Customer)]
+
+[!code-csharp[](jsonpatch/samples/2.2/Models/Order.cs?name=snippet_Order)]
+
+The sample action method:
+
+* Constructs a `Customer` ("John" with orders "Order0" and "Order1").
+* Applies the patch.
+* Returns the result in the body of the response.
+
+ In a real app, the code would retrieve the data from a store such as a database and update the database after applying the patch.
 
 ### Model state
 
-The preceding example calls an overload of `ApplyTo` that lets you pass in model state. With this option, you can get error messages in responses. The following example shows the body of a 400 Bad Request response for a `test` operation:
+The preceding action method example calls an overload of `ApplyTo` that takes model state as one of its parameters. With this option, you can get error messages in responses. The following example shows the body of a 400 Bad Request response for a `test` operation:
 
 ```json
 {
@@ -113,7 +127,7 @@ The preceding example calls an overload of `ApplyTo` that lets you pass in model
 
 ### Dynamic objects
 
-The following action method example applies a patch to a dynamic object.
+The following action method example shows how to apply a patch to a dynamic object.
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_Dynamic)]
 
@@ -125,6 +139,12 @@ The following action method example applies a patch to a dynamic object.
   * If the resource to patch is a dynamic object: adds a property.
   * If the resource to patch is a static object: the request fails.
 
+The following sample patch document specifies two `add` operations:
+
+[!code-json[](jsonpatch/samples/2.2/JSON/add.json)]
+
+When applied to the [sample app's Customer resource](#get-the-code), this patch file setsthe value of `CustomerName` and add an `Order` object to the end of the `Orders` array.
+
 ## The remove operation
 
 * If `path` points to an array element: removes the element.
@@ -134,9 +154,21 @@ The following action method example applies a patch to a dynamic object.
     * If the property is nullable: sets it to null.
     * If the property is non-nullable, sets it to `default<T>`.
 
+The following sample patch document specifies two `remove` operations:
+
+[!code-json[](jsonpatch/samples/2.2/JSON/remove.json)]
+
+When applied to the [sample app's Customer resource](#get-the-code), this patch document sets `CustomerName` to null and deletes `Orders[0]`.
+
 ## The replace operation
 
-Functionally the same as a `remove` followed by an `add`.
+This operation is functionally the same as a `remove` followed by an `add`.
+
+The following sample patch document specifies two `replace` operations:
+
+[!code-json[](jsonpatch/samples/2.2/JSON/replace.json)]
+
+When applied to the [sample app's Customer resource](#get-the-code), this patch file sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object.
 
 ## The move operation
 
@@ -146,15 +178,40 @@ Functionally the same as a `remove` followed by an `add`.
   * If the resource to patch is a static object: the request fails.
   * If the resource to patch is a dynamic object: copies `from` property to location indicated by `path`, then runs a `remove` operation on the `from` property.
 
+The following sample patch document specifies two `move` operations:
+
+[!code-json[](jsonpatch/samples/2.2/JSON/move.json)]
+
+When applied to the [sample app's Customer resource](#get-the-code), this patch document:
+
+* Copies the value of `Orders[0].OrderName` to `CustomerName`.
+* Sets `Orders[0].OrderName` to null.
+* Moves `Orders[1]` to before `Orders[0]`.
+
 ## The copy operation
 
-Functionally the same as a `move` operation without the final `remove` step.
+This operation is functionally the same as a `move` operation without the final `remove` step.
+
+The following sample patch document specifies two `copy` operations:
+
+[!code-json[](jsonpatch/samples/2.2/JSON/copy.json)]
+
+When applied to the [sample app's Customer resource](#get-the-code), this patch document:
+
+* Copies the value of `Orders[0].OrderName` to `CustomerName`.
+* Inserts a copy of `Orders[1]` before `Orders[0]`.
 
 ## The test operation
 
-If the value at the location indicated by `path` is different from the value provided in `value`, the request fails. In that case, the whole PATCH request fails even if all other operations in the patch document would succeed.
+If the value at the location indicated by `path` is different from the value provided in `value`, the request fails. In that case, the whole PATCH request fails even if all other operations in the patch document would otherwise succeed.
 
 The `test` operation is commonly used to prevent an update when there's a concurrency conflict.
+
+The following sample patch document specifies a `test` operation followed by an `add`:
+
+[!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
+
+When applied to the [sample app's Customer resource](#get-the-code), this patch document has no effect because the test fails (the initial value of `CustomerName` is "John").
 
 ## Get the code
 

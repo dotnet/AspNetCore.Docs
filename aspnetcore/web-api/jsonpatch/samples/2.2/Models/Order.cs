@@ -5,11 +5,11 @@ using Newtonsoft.Json;
 
 namespace JsonPatchSample.Models
 {
+    #region snippet_order
     public class Order
     {
         public string OrderName { get; set; }
-
-        [JsonConverter(typeof(ReplaceOrderTypeConverter))]
         public string OrderType { get; set; }
     }
+    #endregion
 }

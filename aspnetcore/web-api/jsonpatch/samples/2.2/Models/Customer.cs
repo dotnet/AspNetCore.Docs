@@ -5,10 +5,11 @@ using System.Collections.Generic;
 
 namespace JsonPatchSample.Models
 {
+    #region snippet_Customer
     public class Customer
     {
         public string CustomerName { get; set; }
-
         public List<Order> Orders { get; set; }
     }
+    #endregion
 }
