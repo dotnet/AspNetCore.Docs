@@ -13,6 +13,8 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 This article provides a comparison between gRPC and HTTP APIs, and recommends scenarios for using gRPC over other technologies.
 
+### Overview
+
 |                        |    gRPC                                                 |    HTTP APIs with JSON                       |
 |------------------------|---------------------------------------------------------|----------------------------------------------|
 |    Contract            |    Required (`*.proto`)                                 |    Optional (OpenAPI)                        |
