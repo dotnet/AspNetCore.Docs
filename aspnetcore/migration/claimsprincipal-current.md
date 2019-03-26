@@ -4,7 +4,7 @@ author: mjrousos
 description: Learn how to migrate away from ClaimsPrincipal.Current to retrieve the current authenticated user's identity and claims in ASP.NET Core.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/04/2018
+ms.date: 03/26/2019
 uid: migration/claimsprincipal-current
 ---
 # Migrate from ClaimsPrincipal.Current
@@ -50,4 +50,4 @@ There are several options for retrieving the current authenticated user's `Claim
   * Get an instance of `IHttpContextAccessor` during startup and store it in a static variable. The instance is made available to code that was previously retrieving the current user from a static property.
   * Retrieve the current user's `ClaimsPrincipal` using `HttpContextAccessor.HttpContext?.User`. If this code is used outside of the context of an HTTP request, the `HttpContext` is null.
 
-The final option, using an `IHttpContextAccessor` instance stored in a static variable, is contrary to ASP.NET Core principles (preferring injected dependencies to static dependencies). Plan to eventually retrieve `IHttpContextAccessor` or `HttpContext` instances from dependency injection, instead. A static helper can be a useful bridge, though, when migrating large existing ASP.NET apps that were previously using `ClaimsPrincipal.Current`.
+The final option, using an `IHttpContextAccessor` instance stored in a static variable, is contrary to ASP.NET Core principles (preferring injected dependencies to static dependencies). Plan to eventually retrieve `IHttpContextAccessor` or `HttpContext` instances from dependency injection instead. A static helper can be a useful bridge, though, when migrating large existing ASP.NET apps that were previously using `ClaimsPrincipal.Current`.
