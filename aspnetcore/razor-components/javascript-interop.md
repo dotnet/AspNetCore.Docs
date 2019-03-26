@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2019
+ms.date: 03/26/2019
 uid: razor-components/javascript-interop
 ---
 # Razor Components JavaScript interop
@@ -98,7 +98,7 @@ The following component:
 
 To use the `IJSRuntime` abstraction, adopt any of the following approaches:
 
-* Inject the `IJSRuntime` abstraction into the Razor file (*.cshtml*):
+* Inject the `IJSRuntime` abstraction into the Razor file (*.razor*, *.cshtml*):
 
   ```cshtml
   @inject IJSRuntime JSRuntime
@@ -120,22 +120,23 @@ To use the `IJSRuntime` abstraction, adopt any of the following approaches:
 * Inject the `IJSRuntime` abstraction into a class (*.cs*):
 
   ```csharp
-  public class MyJsInterop
+  public class JsInteropClasses
   {
       private readonly IJSRuntime _jsRuntime;
 
-      public MyJsInterop(IJSRuntime jsRuntime)
+      public JsInteropClasses(IJSRuntime jsRuntime)
       {
           _jsRuntime = jsRuntime;
       }
 
-      public Task<string> DoSomething(string data)
+      public Task<string> TickerChanged(string data)
       {
-          // The doSomething JavaScript method is implemented
-          // in a JavaScript file, such as 'wwwroot/MyJsInterop.js'.
-          return _jsRuntime.InvokeAsync<string>(
-              "myJsFunctions.doSomething",
-              data);
+          // The handleTickerChanged JavaScript method is implemented
+          // in a JavaScript file, such as 'wwwroot/tickerJsInterop.js'.
+          return _jsRuntime.InvokeAsync<object>(
+              "handleTickerChanged",
+              stockUpdate.symbol,
+              stockUpdate.price);
       }
   }
   ```
@@ -163,12 +164,6 @@ Don't place a `<script>` tag in a component file because the `<script>` tag can'
 
 .NET methods interop with the JavaScript functions in the *exampleJsInterop.js* file by calling `IJSRuntime.InvokeAsync<T>`.
 
-The sample app uses a pair of C# methods, `Prompt` and `Display`, to invoke the `showPrompt` and `displayWelcome` JavaScript functions:
-
-*JsInteropClasses/ExampleJsInterop.cs*:
-
-[!code-csharp[](./common/samples/3.x/BlazorSample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=13-15,21-23)]
-
 The `IJSRuntime` abstraction is asynchronous to allow for server-side scenarios. If the app runs client-side and you want to invoke a JavaScript function synchronously, downcast to `IJSInProcessRuntime` and call `Invoke<T>` instead. We recommend that most JavaScript interop libraries use the async APIs to ensure that the libraries are available in all scenarios, client-side or server-side.
 
 The sample app includes a component to demonstrate JavaScript interop. The component:
@@ -179,13 +174,11 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 
 *Pages/JSInterop.cshtml*:
 
-[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.cshtml?start=1&end=21)]
+[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.cshtml?name=snippet_JSInterop1&highlight=3,19-21,23-25)]
 
-1. When `TriggerJsPrompt` is executed by selecting the component's **Trigger JavaScript Prompt** button, the `ExampleJsInterop.Prompt` method in C# code is called.
-1. The `Prompt` method executes the JavaScript `showPrompt` function provided in the *wwwroot/exampleJsInterop.js* file.
-1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the `Prompt` method and ultimately back to the component. The component stores the user's name in a local variable, `name`.
-1. The string stored in `name` is incorporated into a welcome message, which is passed to a second C# method, `ExampleJsInterop.Display`.
-1. `Display` calls a JavaScript function, `displayWelcome`, which renders the welcome message into a heading tag.
+1. When `TriggerJsPrompt` is executed by selecting the component's **Trigger JavaScript Prompt** button, the JavaScript `showPrompt` function provided in the *wwwroot/exampleJsInterop.js* file is called.
+1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the component. The component stores the user's name in a local variable, `name`.
+1. The string stored in `name` is incorporated into a welcome message, which is passed to a JavaScript function, `displayWelcome`, which renders the welcome message into a heading tag.
 
 ## Capture references to elements
 
@@ -220,52 +213,9 @@ window.exampleJsFunctions = {
 }
 ```
 
-*ExampleJsInterop.cs*:
+Use `IJSRuntime.InvokeAsync<T>` and call `exampleJsFunctions.focusElement` with an `ElementRef` to focus an element:
 
-```csharp
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
-namespace JsInteropClasses
-{
-    public class ExampleJsInterop
-    {
-        private readonly IJSRuntime _jsRuntime;
-
-        public ExampleJsInterop(IJSRuntime jsRuntime)
-        {
-            _jsRuntime = jsRuntime;
-        }
-
-        public Task Focus(ElementRef elementRef)
-        {
-            return _jsRuntime.InvokeAsync<object>(
-                "exampleJsFunctions.focusElement", elementRef);
-        }
-    }
-}
-```
-
-Use `JsInteropClasses` and call `Focus` with an `ElementRef` to focus an element:
-
-```cshtml
-@inject IJSRuntime JSRuntime
-@using JsInteropClasses
-
-<input ref="username" />
-<button onclick="@SetFocus">Set focus on username</button>
-
-@functions {
-    ElementRef username;
-
-    public async void SetFocus()
-    {
-        var exampleJsInterop = new ExampleJsInterop(JSRuntime);
-        await exampleJsInterop.Focus(username);
-    }
-}
-```
+[!code-cshtml[](javascript-interop/samples_snapshot/component1.cshtml?highlight=1,3,7,11-12)]
 
 To use an extension method to focus an element, create a static extension method that receives the `IJSRuntime` instance:
 
@@ -277,24 +227,9 @@ public static Task Focus(this ElementRef elementRef, IJSRuntime jsRuntime)
 }
 ```
 
-The method is called directly on the object:
+The method is called directly on the object. The following example assumes that the static `Focus` method is available from the `JsInteropClasses` namespace:
 
-```cshtml
-@inject IJSRuntime JSRuntime
-@using JsInteropClasses
-
-<input ref="username" />
-<button onclick="@SetFocus">Set focus on username</button>
-
-@functions {
-    ElementRef username;
-
-    public async void SetFocus()
-    {
-        await username.Focus(JSRuntime);
-    }
-}
-```
+[!code-cshtml[](javascript-interop/samples_snapshot/component2.cshtml?highlight=1,4,8,12)]
 
 > [!IMPORTANT]
 > The `username` variable is only populated after the component renders and its output includes the `<input>` element. If you try to pass an unpopulated `ElementRef` to JavaScript code, the JavaScript code receives `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:razor-components/components#lifecycle-methods).
@@ -309,13 +244,13 @@ The sample app includes a C# method to return an array of `int`s. The method is 
 
 *Pages/JsInterop.cshtml*:
 
-[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.cshtml?start=48&end=59&highlight=7-11)]
+[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.cshtml?name=snippet_JSInterop2&highlight=7-11)]
 
 JavaScript served to the client invokes the C# .NET method.
 
 *wwwroot/exampleJsInterop.js*:
 
-[!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=8-12)]
+[!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
 When the **Trigger .NET static method ReturnArrayAsync** button is selected, examine the console output in the browser's web developer tools.
 
@@ -338,17 +273,17 @@ When the **Trigger .NET instance method HelloHelper.SayHello** button is selecte
 
 *Pages/JsInterop.cshtml*:
 
-[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.cshtml?start=61&end=71&highlight=8-9)]
+[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.cshtml?name=snippet_JSInterop3&highlight=8-9)]
 
 `CallHelloHelperSayHello` invokes the JavaScript function `sayHello` with a new instance of `HelloHelper`.
 
 *JsInteropClasses/ExampleJsInterop.cs*:
 
-[!code-csharp[](./common/samples/3.x/BlazorSample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=26-32)]
+[!code-csharp[](./common/samples/3.x/BlazorSample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=10-16)]
 
 *wwwroot/exampleJsInterop.js*:
 
-[!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=15-17)]
+[!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 The name is passed to `HelloHelper`'s constructor, which sets the `HelloHelper.Name` property. When the JavaScript function `sayHello` is executed, `HelloHelper.SayHello` returns the `Hello, {Name}!` message, which is written to the console by the JavaScript function.
 
