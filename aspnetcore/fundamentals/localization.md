@@ -338,6 +338,7 @@ Terms:
 
 ## Additional resources
 
+* <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2019
+ms.date: 03/26/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -18,7 +18,15 @@ Razor Components apps are built using *components*. A component is a self-contai
 
 ## Component classes
 
-Components are typically implemented in Razor Component files (*.razor*) using a combination of C# and HTML markup. The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When a Razor Components app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
+Components are typically implemented in Razor Component files (*.razor*) using a combination of C# and HTML markup (*.cshtml* files are used in Blazor apps).
+
+Components can be authored in Razor Components apps using the *.cshtml* file extension as long as the files are identified as Razor Component files using the `_RazorComponentInclude` MSBuild property. For example, an app created using the Razor Component template specifies that all *.cshtml* files under the *Components* folder should be treated as Razor Components files:
+
+```xml
+<_RazorComponentInclude>Components\**\*.cshtml</_RazorComponentInclude>
+```
+
+The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When a Razor Components app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
 Members of the component class are defined in a `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified along with methods for event handling or for defining other component logic.
 
@@ -760,4 +768,60 @@ Rendered output:
 The time is 10/04/2018 01:26:52.
 
 Your pet's name is Rex.
+```
+
+## Manual RenderTreeBuilder logic
+
+`Microsoft.AspNetCore.Components.RenderTree` provides methods for manipulating components and elements, including building components manually in C# code.
+
+> [!NOTE]
+> Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can result in undefined behavior.
+
+Consider the following Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtml* in Blazor), which can be manually built into another component:
+
+```cshtml
+<h2>Pet Details Component</h2>
+
+<p>@PetDetailsQuote<p>
+
+@functions
+{
+    [Parameter]
+    string PetDetailsQuote { get; set; }
+}
+```
+
+In the following example, the loop in the `CreateComponent` method generates three Pet Details components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Razor Components difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.**
+
+Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml* in Blazor):
+
+```cshtml
+@page "/BuiltContent"
+
+<h1>Build a component</h1>
+
+@CustomRender
+
+<button type="button" onclick="@RenderComponent">
+    Create three Pet Details components
+</button>
+
+@functions {
+    RenderFragment CustomRender { get; set; }
+    
+    RenderFragment CreateComponent() => builder =>
+    {
+        for (var i = 0; i < 3; i++) 
+        {
+            builder.OpenComponent(0, typeof(PetDetails));
+            builder.AddAttribute(1, "PetDetailsQuote", "Someone's best friend!");
+            builder.CloseComponent();
+        }
+    };    
+    
+    void RenderComponent()
+    {
+        CustomRender = CreateComponent();
+    }
+}
 ```

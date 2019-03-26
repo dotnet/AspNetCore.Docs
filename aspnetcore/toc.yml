@@ -460,6 +460,8 @@
       uid: grpc/aspnetcore
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
+    - name: Comparing gRPC services with HTTP APIs
+      uid: grpc/comparison
     - name: Tutorials
       items:
         - name: Get started with gRPC service in ASP.NET Core
@@ -993,9 +995,12 @@
 - name: Globalization and localization
   items:
     - name: Overview
+      displayName: globalization, localization
       uid: fundamentals/localization
     - name: Portable Object localization
       uid: fundamentals/portable-object-localization
+    - name: Troubleshoot
+      uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Advanced
   items:
     - name: Write middleware
