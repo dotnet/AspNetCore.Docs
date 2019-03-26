@@ -993,6 +993,7 @@
 - name: Globalization and localization
   items:
     - name: Overview
+      displayName: globalization, localization
       uid: fundamentals/localization
     - name: Portable Object localization
       uid: fundamentals/portable-object-localization
