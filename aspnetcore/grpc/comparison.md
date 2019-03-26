@@ -13,9 +13,9 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 This article provides a comparison between [gRPC](https://grpc.io/docs/guides/) and HTTP APIs, and recommends scenarios for using gRPC over other technologies.
 
-### Overview
+#### Overview
 
-|                        |    gRPC                                                 |    HTTP APIs with JSON                       |
+|    Feature             |    gRPC                                                 |    HTTP APIs with JSON                       |
 |------------------------|---------------------------------------------------------|----------------------------------------------|
 |    Contract            |    Required (`*.proto`)                                 |    Optional (OpenAPI)                        |
 |    Transport           |    HTTP/2                                               |    HTTP                                      |
@@ -95,7 +95,7 @@ Other frameworks are recommended over gRPC in the following scenarios:
 
 * **Browser accessible APIs** - gRPC is not fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
 * **Broadcast real-time communication** - gRPC supports real-time communication via streaming, but it does not have the concept broadcasting a message out to registered connections. For example, in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call would need to individually stream new chat messages to the client. [SignalR](xref:signalr/introduction) is a good framework for this scenario. It has the concept of persistent connections and built-in support for broadcasting messages.
-* **Inter-process communication** - A process would need to host a HTTP/2 gRPC server to accept incoming calls. For Windows inter-process communication [named pipes with WCF](https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/choosing-a-transport#when-to-use-the-named-pipe-transport) is a fast, lightweight method of communication.
+* **Inter-process communication** - A process would need to host a HTTP/2 gRPC server to accept incoming calls. For Windows inter-process communication [named pipes with WCF](/dotnet/framework/wcf/feature-details/choosing-a-transport#when-to-use-the-named-pipe-transport) is a fast, lightweight method of communication.
 
 ## Additional resources
 
