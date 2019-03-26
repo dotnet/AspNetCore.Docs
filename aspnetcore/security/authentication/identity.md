@@ -59,7 +59,7 @@ The generated project provides [ASP.NET Core Identity](xref:security/authenticat
 * /Identity/Account/Logout
 * /Identity/Account/Manage
 
-### Apply migrations to the datbase
+### Apply migrations
 
 Apply the migrations to initialise the database.
 
