@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2019
+ms.date: 03/27/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -222,11 +222,11 @@ Choose an appropriate lifetime for each registered service. ASP.NET Core service
 
 **Transient**
 
-Transient lifetime services are created each time they're requested. This lifetime works best for lightweight, stateless services.
+Transient lifetime services are created each time they're requested from the service container. This lifetime works best for lightweight, stateless services.
 
 **Scoped**
 
-Scoped lifetime services are created once per request.
+Scoped lifetime services are created once per client request (connection).
 
 > [!WARNING]
 > When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/index>.
@@ -253,7 +253,7 @@ When services are resolved by `ActivatorUtilities`, constructor injection requir
 
 ## Entity Framework contexts
 
-Entity Framework contexts are usually added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the request. The default lifetime is scoped if a lifetime isn't specified by an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> overload when registering the database context. Services of a given lifetime shouldn't use a database context with a shorter lifetime than the service.
+Entity Framework contexts are usually added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the client request. The default lifetime is scoped if a lifetime isn't specified by an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> overload when registering the database context. Services of a given lifetime shouldn't use a database context with a shorter lifetime than the service.
 
 ## Lifetime and registration options
 
@@ -287,9 +287,9 @@ The interfaces are implemented in the `Operation` class. The `Operation` constru
 
 An `OperationService` is registered that depends on each of the other `Operation` types. When `OperationService` is requested via dependency injection, it receives either a new instance of each service or an existing instance based on the lifetime of the dependent service.
 
-* If transient services are created when requested, the `OperationId` of the `IOperationTransient` service is different than the `OperationId` of the `OperationService`. `OperationService` receives a new instance of the `IOperationTransient` class. The new instance yields a different `OperationId`.
-* If scoped services are created per request, the `OperationId` of the `IOperationScoped` service is the same as that of `OperationService` within a request. Across requests, both services share a different `OperationId` value.
-* If singleton and singleton-instance services are created once and used across all requests and all services, the `OperationId` is constant across all service requests.
+* When transient services are created when requested from the container, the `OperationId` of the `IOperationTransient` service is different than the `OperationId` of the `OperationService`. `OperationService` receives a new instance of the `IOperationTransient` class. The new instance yields a different `OperationId`.
+* When scoped services are created per client request, the `OperationId` of the `IOperationScoped` service is the same as that of `OperationService` within a client request. Across client requests, both services share a different `OperationId` value.
+* When singleton and singleton-instance services are created once and used across all client requests and all services, the `OperationId` is constant across all service requests.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -371,8 +371,8 @@ Instance: 00000000-0000-0000-0000-000000000000
 
 Observe which of the `OperationId` values vary within a request and between requests:
 
-* *Transient* objects are always different. Note that the transient `OperationId` value for both the first and second requests are different for both `OperationService` operations and across requests. A new instance is provided to each service and request.
-* *Scoped* objects are the same within a request but different across requests.
+* *Transient* objects are always different. The transient `OperationId` value for both the first and second client requests are different for both `OperationService` operations and across client requests. A new instance is provided to each service request and client request.
+* *Scoped* objects are the same within a client request but different across client requests.
 * *Singleton* objects are the same for every object and every request regardless of whether an `Operation` instance is provided in `ConfigureServices`.
 
 ## Call services from main
@@ -531,7 +531,7 @@ At runtime, Autofac is used to resolve types and inject dependencies. To learn m
 
 ### Thread safety
 
-Singleton services need to be thread safe. If a singleton service has a dependency on a transient service, the transient service may also need to be thread safe depending how it's used by the singleton.
+Create thread-safe singleton services. If a singleton service has a dependency on a transient service, the transient service may also require thread safety depending how it's used by the singleton.
 
 The factory method of single service, such as the second argument to [AddSingleton&lt;TService&gt;(IServiceCollection, Func&lt;IServiceProvider,TService&gt;)](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions.addsingleton#Microsoft_Extensions_DependencyInjection_ServiceCollectionServiceExtensions_AddSingleton__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Func_System_IServiceProvider___0__), doesn't need to be thread-safe. Like a type (`static`) constructor, it's guaranteed to be called once by a single thread.
 
