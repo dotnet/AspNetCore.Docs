@@ -143,7 +143,7 @@ This changes the heading to "Departments", deletes the RowVersion column, and sh
 
 In both the HttpGet `Edit` method and the `Details` method, add `AsNoTracking`. In the HttpGet `Edit` method, add eager loading for the Administrator.
 
-[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EagerLoading&highlight=2,3)]
+[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EagerLoading)]
 
 Replace the existing code for the HttpPost `Edit` method with the following code:
 

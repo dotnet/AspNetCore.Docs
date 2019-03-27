@@ -4,12 +4,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h1>Edit</h1>
 
 <h4>Instructor</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
@@ -45,25 +45,25 @@
                                 {
                                     if (cnt++ % 3 == 0)
                                     {
-                                        @:</tr><tr>
+                                    @:</tr><tr>
                                     }
                                     @:<td>
                                         <input type="checkbox"
                                                name="selectedCourses"
                                                value="@course.CourseID"
                                                @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
-                                               @course.CourseID @:  @course.Title
+                                        @course.CourseID @:  @course.Title
                                     @:</td>
                                 }
-                                @:</tr>
+                            @:</tr>
                             }
-                    </table>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
     </div>
 </div>
 

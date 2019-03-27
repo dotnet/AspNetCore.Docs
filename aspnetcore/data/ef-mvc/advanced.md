@@ -48,7 +48,7 @@ The `DbSet<TEntity>` class provides a method that you can use to execute a query
 
 In *DepartmentsController.cs*, in the `Details` method, replace the code that retrieves a department with a `FromSql` method call, as shown in the following highlighted code:
 
-[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_RawSQL&highlight=8,9,10,13)]
+[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_RawSQL&highlight=8,9,10)]
 
 To verify that the new code works correctly, select the **Departments** tab and then **Details** for one of the departments.
 
