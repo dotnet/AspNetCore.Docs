@@ -4,7 +4,7 @@ namespace WebApiSample.Api._21.Controllers
 {
     #region snippet_ControllerSignature
     [ApiController]
-    public abstract class MyBaseApiController: ControllerBase
+    public abstract class MyApiControllerBase : ControllerBase
     {
     }
     #endregion
