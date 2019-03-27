@@ -301,6 +301,7 @@ In this tutorial, you:
 > * Updated the Delete page
 > * Closed database connections
 
-Advance to the next article to learn how to expand the functionality of the **Index** page by adding sorting, filtering, and paging.
+Advance to the next tutorial to learn how to expand the functionality of the **Index** page by adding sorting, filtering, and paging.
+
 > [!div class="nextstepaction"]
 > [Sorting, filtering, and paging](sort-filter-page.md)

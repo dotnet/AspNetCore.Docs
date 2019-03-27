@@ -99,7 +99,7 @@ namespace ContosoUniversity.Controllers
             string sortOrder,
             string currentFilter,
             string searchString,
-            int? page)
+            int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -107,7 +107,7 @@ namespace ContosoUniversity.Controllers
 
             if (searchString != null)
             {
-                page = 1;
+                pageNumber = 1;
             }
             else
             {
@@ -140,7 +140,7 @@ namespace ContosoUniversity.Controllers
             }
 
             int pageSize = 3;
-            return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
+            return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 #endregion
 #elif (DynamicLinq)
