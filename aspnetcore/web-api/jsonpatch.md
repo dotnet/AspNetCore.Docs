@@ -139,11 +139,9 @@ The following action method example shows how to apply a patch to a dynamic obje
   * If the resource to patch is a dynamic object: adds a property.
   * If the resource to patch is a static object: the request fails.
 
-The following sample patch document specifies two `add` operations:
+The following sample patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.
 
 [!code-json[](jsonpatch/samples/2.2/JSON/add.json)]
-
-When applied to the sample app's `Customer` object, this patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.
 
 ## The remove operation
 
@@ -154,21 +152,17 @@ When applied to the sample app's `Customer` object, this patch document sets the
     * If the property is nullable: sets it to null.
     * If the property is non-nullable, sets it to `default<T>`.
 
-The following sample patch document specifies two `remove` operations:
+The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`.
 
 [!code-json[](jsonpatch/samples/2.2/JSON/remove.json)]
-
-When applied to the sample app's `Customer` object, this patch document sets `CustomerName` to null and deletes `Orders[0]`.
 
 ## The replace operation
 
 This operation is functionally the same as a `remove` followed by an `add`.
 
-The following sample patch document specifies two `replace` operations:
+The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object.
 
 [!code-json[](jsonpatch/samples/2.2/JSON/replace.json)]
-
-When applied to the sample app's `Customer` object, this patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object.
 
 ## The move operation
 
@@ -178,28 +172,24 @@ When applied to the sample app's `Customer` object, this patch document sets the
   * If the resource to patch is a static object: the request fails.
   * If the resource to patch is a dynamic object: copies `from` property to location indicated by `path`, then runs a `remove` operation on the `from` property.
 
-The following sample patch document specifies two `move` operations:
-
-[!code-json[](jsonpatch/samples/2.2/JSON/move.json)]
-
-When applied to the sample app's `Customer` object, this patch document:
+The following sample patch document:
 
 * Copies the value of `Orders[0].OrderName` to `CustomerName`.
 * Sets `Orders[0].OrderName` to null.
 * Moves `Orders[1]` to before `Orders[0]`.
 
+[!code-json[](jsonpatch/samples/2.2/JSON/move.json)]
+
 ## The copy operation
 
 This operation is functionally the same as a `move` operation without the final `remove` step.
 
-The following sample patch document specifies two `copy` operations:
-
-[!code-json[](jsonpatch/samples/2.2/JSON/copy.json)]
-
-When applied to the sample app's `Customer` object, this patch document:
+The following sample patch document:
 
 * Copies the value of `Orders[0].OrderName` to `CustomerName`.
 * Inserts a copy of `Orders[1]` before `Orders[0]`.
+
+[!code-json[](jsonpatch/samples/2.2/JSON/copy.json)]
 
 ## The test operation
 
@@ -207,11 +197,9 @@ If the value at the location indicated by `path` is different from the value pro
 
 The `test` operation is commonly used to prevent an update when there's a concurrency conflict.
 
-The following sample patch document specifies a `test` operation followed by an `add`:
+The following sample patch document has no effect if the initial value of `CustomerName` is "John", because the test fails:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
-
-When applied to the sample app's `Customer` object, this patch document has no effect because the test fails (the initial value of `CustomerName` is "John").
 
 ## Get the code
 
