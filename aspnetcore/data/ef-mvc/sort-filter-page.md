@@ -3,7 +3,7 @@ title: "Tutorial: Add sorting, filtering, and paging - ASP.NET MVC with EF Core"
 description: "In this tutorial you'll add sorting, filtering, and paging functionality to the Students Index page. You'll also create a page that does simple grouping."
 author: rick-anderson
 ms.author: tdykstra
-ms.date: 02/04/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/sort-filter-page
 ---
@@ -28,7 +28,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Implement CRUD Functionality with EF Core in an ASP.NET Core MVC web app](crud.md)
+* [Implement CRUD Functionality](crud.md)
 
 ## Add column sort links
 
@@ -264,4 +264,4 @@ In this tutorial, you:
 Advance to the next tutorial to learn how to handle data model changes by using migrations.
 
 > [!div class="nextstepaction"]
-> [Handle data model changes](migrations.md)
+> [Next: Handle data model changes](migrations.md)

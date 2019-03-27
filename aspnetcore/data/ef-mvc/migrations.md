@@ -4,7 +4,7 @@ description: "In this tutorial, you start using the EF Core migrations feature f
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/04/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/migrations
 ---
@@ -25,7 +25,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Add sorting, filtering, and paging with EF Core in an ASP.NET Core MVC app](sort-filter-page.md)
+* [Sorting, filtering, and paging](sort-filter-page.md)
 
 ## About migrations
 
@@ -178,6 +178,7 @@ In this tutorial, you:
 > * Learned about the data model snapshot
 > * Applied the migration
 
-Advance to the next article to begin looking at more advanced topics about expanding the data model. Along the way you'll create and apply additional migrations.
+Advance to the next tutorial to begin looking at more advanced topics about expanding the data model. Along the way you'll create and apply additional migrations.
+
 > [!div class="nextstepaction"]
 > [Create and apply additional migrations](complex-data-model.md)

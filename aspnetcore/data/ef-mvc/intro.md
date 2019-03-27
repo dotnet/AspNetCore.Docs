@@ -13,14 +13,9 @@ uid: data/ef-mvc/intro
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.0 and Visual Studio 2017.
+The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.2 and Visual Studio 2017 or 2019.
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
-
-EF Core 2.0 is the latest version of EF but doesn't yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core, see [EF Core vs. EF6.x](/ef/efcore-and-ef6/). If you choose EF 6.x, see [the previous version of this tutorial series](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
-
-> [!NOTE]
-> For the ASP.NET Core 1.1 version of this tutorial, see the [VS 2017 Update 2 version of this tutorial in PDF format](https://webpifeed.blob.core.windows.net/webpifeed/Partners/efmvc1.1.pdf).
 
 In this tutorial, you:
 
@@ -38,11 +33,10 @@ In this tutorial, you:
 ## Prerequisites
 
 * [.NET Core SDK 2.2](https://www.microsoft.com/net/download)
-* Integrated Development Environment (IDE)
-  * Windows: [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the following workloads:
+* For Windows: [Visual Studio 2017 or 2019](https://visualstudio.microsoft.com/downloads/) with the following workloads:
     * **ASP.NET and web development** workload
     * **.NET Core cross-platform development** workload
-  * macOS: [Visual Studio for Mac](https://www.microsoft.com/net/download/macos) (Some screens and menus differ from what's in the tutorial.)
+* For macOS: [Visual Studio for Mac](https://www.microsoft.com/net/download/macos) 
 
 ## Troubleshooting
 
@@ -65,19 +59,25 @@ Users can view and update student, course, and instructor information. Here are 
 
 * Open Visual Studio.
 
-* Select **Create a new project**.
+* From the **File** menu, select **New > Project**.
 
-* Select **ASP.NET Core Web Application**, and then select **Next**.
+* From the left pane, select **Installed > Visual C# > Web**.
 
-* Enter **ContosoUniversity** as the name and then select **Create**.
+* Select the **ASP.NET Core Web Application** project template.
 
-* Wait for the **Create a new ASP.NET Core Web Application** dialog to appear.
+* Enter **ContosoUniversity** as the name and click **OK**.
+
+  ![New Project dialog](intro/_static/new-project2.png)
+
+* Wait for the **New ASP.NET Core Web Application** dialog to appear.
 
 * Select **.NET Core**, **ASP.NET Core 2.2** and the **Web Application (Model-View-Controller)** template.
 
 * Make sure **Authentication** is set to **No Authentication**.
 
-* Select **Create**
+* Select **OK**
+
+  ![New ASP.NET Core Project dialog](intro/_static/new-aspnet2.png)
 
 ## Set up the site style
 
@@ -370,6 +370,7 @@ In this tutorial, you:
 
 In the following tutorial, you'll learn how to perform basic CRUD (create, read, update, delete) operations.
 
-Advance to the next article to learn how to perform basic CRUD (create, read, update, delete) operations.
+Advance to the next tutorial to learn how to perform basic CRUD (create, read, update, delete) operations.
+
 > [!div class="nextstepaction"]
 > [Implement basic CRUD functionality](crud.md)

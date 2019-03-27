@@ -4,7 +4,7 @@ description: "This tutorial introduces useful topics for going beyond the basics
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/advanced
 ---
@@ -28,7 +28,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Implement Inheritance with EF Core in an ASP.NET Core MVC web app](inheritance.md)
+* [Implement Inheritance](inheritance.md)
 
 ## Perform raw SQL queries
 
@@ -271,6 +271,7 @@ In this tutorial, you:
 > * Learned about EF Core source code and development plans
 > * Learned how to use dynamic LINQ to simplify code
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application. If you want to learn about using EF 6 with ASP.NET Core, see the next article.
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application. This series worked with a new database; an alternative is to  reverse engineer a model from an existing database.
+
 > [!div class="nextstepaction"]
-> [EF 6 with ASP.NET Core](../entity-framework-6.md)
+> [Tutorial: EF Core with MVC, existing database](/ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)

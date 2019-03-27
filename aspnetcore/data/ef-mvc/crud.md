@@ -27,7 +27,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Get started with EF Core in an ASP.NET Core MVC web app](intro.md)
+* [Get started with EF Core and ASP.NET Core MVC](intro.md)
 
 ## Customize the Details page
 
@@ -304,4 +304,4 @@ In this tutorial, you:
 Advance to the next tutorial to learn how to expand the functionality of the **Index** page by adding sorting, filtering, and paging.
 
 > [!div class="nextstepaction"]
-> [Sorting, filtering, and paging](sort-filter-page.md)
+> [Next: Sorting, filtering, and paging](sort-filter-page.md)

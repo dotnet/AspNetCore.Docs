@@ -4,7 +4,7 @@ description: "In this tutorial you'll update related data by updating foreign ke
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
 ---
@@ -30,7 +30,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Read related data with EF Core for an ASP.NET Core MVC web app](read-related-data.md)
+* [Read related data](read-related-data.md)
 
 ## Customize Courses pages
 
@@ -309,6 +309,7 @@ In this tutorial, you:
 > * Updated Delete page
 > * Added office location and courses to Create page
 
-Advance to the next article to learn how to handle concurrency conflicts.
+Advance to the next tutorial to learn how to handle concurrency conflicts.
+
 > [!div class="nextstepaction"]
 > [Handle concurrency conflicts](concurrency.md)
