@@ -4,7 +4,7 @@ description: "This tutorial shows how to handle conflicts when multiple users up
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/concurrency
 ---
@@ -34,7 +34,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Update related data with EF Core in an ASP.NET Core MVC web app](update-related-data.md)
+* [Update related data](update-related-data.md)
 
 ## Concurrency conflicts
 
@@ -143,7 +143,7 @@ This changes the heading to "Departments", deletes the RowVersion column, and sh
 
 In both the HttpGet `Edit` method and the `Details` method, add `AsNoTracking`. In the HttpGet `Edit` method, add eager loading for the Administrator.
 
-[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EagerLoading&highlight=2,3)]
+[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EagerLoading)]
 
 Replace the existing code for the HttpPost `Edit` method with the following code:
 
@@ -304,6 +304,7 @@ In this tutorial, you:
 > * Updated the Delete page
 > * Updated Details and Create views
 
-Advance to the next article to learn how to implement table-per-hierarchy inheritance for the Instructor and Student entities.
+Advance to the next tutorial to learn how to implement table-per-hierarchy inheritance for the Instructor and Student entities.
+
 > [!div class="nextstepaction"]
-> [Implement table-per-hierarchy inheritance](inheritance.md)
+> [Next: Implement table-per-hierarchy inheritance](inheritance.md)

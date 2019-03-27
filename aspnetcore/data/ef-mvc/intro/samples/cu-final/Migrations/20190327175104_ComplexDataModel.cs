@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace ContosoUniversity.Migrations
 {
@@ -12,7 +11,6 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "LastName",
                 table: "Student",
-                type: "nvarchar(50)",
                 maxLength: 50,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -22,7 +20,6 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "FirstName",
                 table: "Student",
-                type: "nvarchar(50)",
                 maxLength: 50,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -32,7 +29,6 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Title",
                 table: "Course",
-                type: "nvarchar(50)",
                 maxLength: 50,
                 nullable: true,
                 oldClrType: typeof(string),
@@ -41,7 +37,6 @@ namespace ContosoUniversity.Migrations
             //migrationBuilder.AddColumn<int>(
             //    name: "DepartmentID",
             //    table: "Course",
-            //    type: "int",
             //    nullable: false,
             //    defaultValue: 0);
 
@@ -49,11 +44,11 @@ namespace ContosoUniversity.Migrations
                 name: "Instructor",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    HireDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,8 +59,8 @@ namespace ContosoUniversity.Migrations
                 name: "CourseAssignment",
                 columns: table => new
                 {
-                    CourseID = table.Column<int>(type: "int", nullable: false),
-                    InstructorID = table.Column<int>(type: "int", nullable: false)
+                    InstructorID = table.Column<int>(nullable: false),
+                    CourseID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,12 +83,12 @@ namespace ContosoUniversity.Migrations
                 name: "Department",
                 columns: table => new
                 {
-                    DepartmentID = table.Column<int>(type: "int", nullable: false)
+                    DepartmentID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 50, nullable: true),
                     Budget = table.Column<decimal>(type: "money", nullable: false),
-                    InstructorID = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    InstructorID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,8 +115,8 @@ namespace ContosoUniversity.Migrations
                 name: "OfficeAssignment",
                 columns: table => new
                 {
-                    InstructorID = table.Column<int>(type: "int", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    InstructorID = table.Column<int>(nullable: false),
+                    Location = table.Column<string>(maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -190,7 +185,6 @@ namespace ContosoUniversity.Migrations
                 maxLength: 50,
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
                 oldMaxLength: 50);
 
             migrationBuilder.AlterColumn<string>(
@@ -199,7 +193,6 @@ namespace ContosoUniversity.Migrations
                 maxLength: 50,
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
                 oldMaxLength: 50);
 
             migrationBuilder.AlterColumn<string>(
@@ -207,7 +200,6 @@ namespace ContosoUniversity.Migrations
                 table: "Course",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
                 oldMaxLength: 50,
                 oldNullable: true);
         }

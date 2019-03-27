@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace ContosoUniversity.Migrations
 {
@@ -45,6 +44,7 @@ namespace ContosoUniversity.Migrations
                 principalColumn: "ID",
                 onDelete: ReferentialAction.Cascade);
         }
+
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -84,7 +84,6 @@ namespace ContosoUniversity.Migrations
                 table: "Student",
                 nullable: false,
                 oldClrType: typeof(DateTime),
-                oldType: "datetime2",
                 oldNullable: true);
 
             migrationBuilder.AddPrimaryKey(

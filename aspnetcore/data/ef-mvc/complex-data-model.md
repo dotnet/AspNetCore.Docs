@@ -4,7 +4,7 @@ description: "In this tutorial, add more entities and relationships and customiz
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
 ---
@@ -35,7 +35,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Using the EF Core migrations feature for ASP.NET Core in an MVC web app](migrations.md)
+* [Using EF Core migrations](migrations.md)
 
 ## Customize the Data model
 
@@ -524,6 +524,7 @@ In this tutorial, you:
 > * Changed the connection string
 > * Updated the database
 
-Advance to the next article to learn more about how to access related data.
+Advance to the next tutorial to learn more about how to access related data.
+
 > [!div class="nextstepaction"]
-> [Access related data](read-related-data.md)
+> [Next: Access related data](read-related-data.md)

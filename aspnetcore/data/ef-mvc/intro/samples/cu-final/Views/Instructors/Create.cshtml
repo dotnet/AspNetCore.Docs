@@ -4,12 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h1>Create</h1>
 
 <h4>Instructor</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -27,7 +27,6 @@
                 <input asp-for="HireDate" class="form-control" />
                 <span asp-validation-for="HireDate" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="OfficeAssignment.Location" class="control-label"></label>
                 <input asp-for="OfficeAssignment.Location" class="form-control" />
@@ -46,25 +45,25 @@
                                 {
                                     if (cnt++ % 3 == 0)
                                     {
-                                        @:</tr><tr>
+                                    @:</tr><tr>
                                     }
                                     @:<td>
                                         <input type="checkbox"
                                                name="selectedCourses"
                                                value="@course.CourseID"
                                                @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
-                                               @course.CourseID @:  @course.Title
-                                        @:</td>
+                                        @course.CourseID @:  @course.Title
+                                    @:</td>
                                 }
-                                @:</tr>
+                            @:</tr>
                             }
-                    </table>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
     </div>
 </div>
 
