@@ -89,7 +89,7 @@ HTTP API requests are sent as text and can be read and created by humans.
 
 gRPC messages are encoded with Protobuf by default. While Protobuf is efficient to send and receive, its binary format is not human readable. Protobuf requires the message's interface description specified in the `*.proto` file to properly deserialize. Additional tooling needs to be used to analyze Protobuf payloads on the wire and to compose requests by hand.
 Features like [server reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) and [gRPC command line tool](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md) exist to get around this limitation.
-Also, Protobuf messages support [conversion to and from JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). The built-in JSON conversion provides a good way to convert the protobuf messages to/from human readable form when e.g. debugging.
+Also, Protobuf messages support [conversion to and from JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). The built-in JSON conversion provides a good way to convert the protobuf messages to/from human readable form when debugging.
 
 ## Alternative Framework Scenarios
 
