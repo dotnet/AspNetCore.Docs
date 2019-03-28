@@ -60,6 +60,8 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 Link sensitive settings like Microsoft `Application ID` and `Password` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Microsoft:ApplicationId` and `Authentication:Microsoft:Password`.
 
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
+
 ## Configure Microsoft Account Authentication
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package is already installed.

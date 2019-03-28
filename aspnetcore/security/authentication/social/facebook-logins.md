@@ -54,6 +54,8 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
 
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
+
 Execute the following commands to securely store `App ID` and `App Secret` using Secret Manager:
 
 ```console
