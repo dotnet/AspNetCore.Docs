@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Razor Components, a way to build interactive c
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2019
+ms.date: 03/27/2019
 uid: razor-components/index
 ---
 # Introduction to Razor Components
@@ -42,7 +42,7 @@ The connection used by Razor Components to communicate with the browser is also 
 
 For more information, see <xref:razor-components/hosting-models#server-side-hosting-model>.
 
-*Blazor* is the experimental client-side hosting model of Razor Components. Blazor runs on .NET in the browser using open web standards without plugins or code transpilation. For more information, see <xref:razor-components/hosting-models#client-side-hosting-model>.
+*Blazor* is the experimental client-side hosting model of Razor Components. Blazor runs on .NET in the browser using open web standards without plugins or code transpilation. For more information, see <xref:spa/blazor/index> and <xref:razor-components/hosting-models#client-side-hosting-model>.
 
 ## Components
 
