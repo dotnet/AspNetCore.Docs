@@ -40,6 +40,7 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
 
   * `Microsoft.AspNetCore.Razor.Design` 
   * `Microsoft.AspNetCore.Mvc.Razor.Extensions`
+  * `Microsoft.AspNetCore.Mvc.Razor`
     
   The `Microsoft.AspNetCore.Razor.Design` package provides the Razor compilation tasks and targets for the project.
 
