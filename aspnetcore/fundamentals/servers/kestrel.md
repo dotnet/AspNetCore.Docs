@@ -564,6 +564,8 @@ Supported configurations described next:
 
 Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a default cert is available).
 
+<a name="configuration"></a>
+
 *Replace the default certificate from configuration*
 
 <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
