@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/14/2019
+ms.date: 03/28/2019
 uid: razor-components/routing
 ---
 # Razor Components routing
@@ -49,7 +49,7 @@ The following example sets a component defined in *Pages/MyFallbackRazorComponen
 ```
 
 > [!IMPORTANT]
-> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file with the app base path specified in the `href` attribute (`<base href="/" />`). For more information, see <xref:host-and-deploy/razor-components/index#app-base-path>.
+> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file with the app base path specified in the `href` attribute (`<base href="/" />`). For more information, see <xref:host-and-deploy/razor-components-blazor/blazor#app-base-path>.
 
 ## Route parameters
 

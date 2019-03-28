@@ -581,9 +581,9 @@
         - name: Host and deploy
           items:
             - name: Overview
-              uid: host-and-deploy/razor-components/index
-            - name: Configure the Linker
-              uid: host-and-deploy/razor-components/configure-linker
+              uid: host-and-deploy/razor-components-blazor/index
+            - name: Razor Components
+              uid: host-and-deploy/razor-components-blazor/razor-components
     - name: Single Page Apps
       items:
         - name: Blazor
@@ -613,9 +613,11 @@
             - name: Host and deploy
               items:
                 - name: Overview
-                  uid: host-and-deploy/razor-components/index
+                  uid: host-and-deploy/razor-components-blazor/index
+                - name: Blazor
+                  uid: host-and-deploy/razor-components-blazor/blazor
                 - name: Configure the Linker
-                  uid: host-and-deploy/razor-components/configure-linker
+                  uid: host-and-deploy/razor-components-blazor/configure-linker
         - name: Angular
           uid: spa/angular
         - name: React
@@ -773,12 +775,16 @@
     - name: Health checks
       uid: host-and-deploy/health-checks
       displayName: deploy, publish
-    - name: Razor Components
+    - name: Razor Components/Blazor
       items:
         - name: Overview
-          uid: host-and-deploy/razor-components/index
+          uid: host-and-deploy/razor-components-blazor/index
+        - name: Blazor
+          uid: host-and-deploy/razor-components-blazor/blazor
+        - name: Razor Components
+          uid: host-and-deploy/razor-components-blazor/razor-components
         - name: Configure the Linker
-          uid: host-and-deploy/razor-components/configure-linker
+          uid: host-and-deploy/razor-components-blazor/configure-linker
 - name: Security and Identity
   displayName: authentication, authorization
   items: 
