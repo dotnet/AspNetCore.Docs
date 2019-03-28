@@ -32,6 +32,8 @@ dotnet user-secrets set "Authentication:Google:ClientId" "X.apps.googleuserconte
 dotnet user-secrets set "Authentication:Google:ClientSecret" "<client secret>"
 ```
 
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
+
 You can manage your API credentials and usage in the [API Console](https://console.developers.google.com/apis/dashboard).
 
 ## Configure Google authentication

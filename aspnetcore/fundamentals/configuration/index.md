@@ -319,7 +319,7 @@ The <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVar
 
 To activate environment variables configuration, call the <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
-When working with hierarchical keys in environment variables, a colon separator (`:`) may not work on all platforms. A double underscore (`__`) is supported by all platforms and is replaced by a colon.
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
 
 [Azure App Service](https://azure.microsoft.com/services/app-service/) permits you to set environment variables in the Azure Portal that can override app configuration using the Environment Variables Configuration Provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
