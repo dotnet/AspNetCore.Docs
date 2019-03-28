@@ -272,9 +272,9 @@ In *Program.cs*, modify the `Main` method to call `Initialize`:
 Delete any student records and restart the app. If the DB is not initialized, set a break point in `Initialize` to diagnose the problem.
 
 ## View the DB
-The database name is generated from the context name we provided earlier plus a dash and a GUID. Thus, the database name will be "SchoolContext-Unique GUID". The GUID will be different for each user.
+The database name is generated from the context name you provided earlier plus a dash and a GUID. Thus, the database name will be "SchoolContext-{GUID}". The GUID will be different for each user.
 Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
-In SSOX, click **(localdb)\MSSQLLocalDB > Databases > ContosoUniversity1**.
+In SSOX, click **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}**.
 
 Expand the **Tables** node.
 
