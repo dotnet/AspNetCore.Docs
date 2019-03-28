@@ -31,7 +31,6 @@ namespace TodoApi
             app.UseStaticFiles();
 
             // Register the Swagger generator and the Swagger UI middlewares
-            app.UseSwagger();
             app.UseSwaggerUi3();
 
             app.UseMvc();
