@@ -5,7 +5,7 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 monikerRange: '>= aspnetcore-2.1'
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 03/27/2019
+ms.date: 03/28/2019
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -29,10 +29,8 @@ Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/
 
 If the app is run locally and isn't configured to make secure connections (HTTPS), adopt either of the following approaches:
 
-* Configure the app to handle secure local connections.
+* Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
 * Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the *Properties/launchSettings.json* file.
-
-For more information, see the [HTTPS configuration](#https-configuration) section.
 
 Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, *bin/Release/&lt;target_framework_moniker&gt;/publish*) that can run on the server:
 
@@ -308,45 +306,7 @@ rich rules:
 
 The [dotnet run](/dotnet/core/tools/dotnet-run) command uses the app's *Properties/launchSettings.json* file, which configures the app to listen on the URLs provided by the `applicationUrl` property (for example, `https://localhost:5001;http://localhost:5000`).
 
-Configure the app to use a certificate in development for the `dotnet run` command or development environment (F5 or Ctrl+F5 in Visual Studio Code):
-
-::: moniker range=">= aspnetcore-3.0"
-
-```csharp
-Host.CreateDefaultBuilder(args)
-    .ConfigureWebHostDefaults(webBuilder =>
-    {
-        webBuilder.ConfigureKestrel(serverOptions =>
-        {
-            serverOptions.ConfigureHttpsDefaults(options =>
-            {
-                // certificate is an X509Certificate2 
-                options.ServerCertificate = certificate;
-            });
-        });
-        webBuilder.UseStartup<Startup>();
-    });
-```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-```csharp
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
-        {
-            options.ConfigureHttpsDefaults(httpsOptions =>
-            {
-                // certificate is an X509Certificate2 
-                httpsOptions.ServerCertificate = certificate;
-            });
-        });
-```
-
-::: moniker-end
+Configure the app to use a certificate in development for the `dotnet run` command or development environment (F5 or Ctrl+F5 in Visual Studio Code) using [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions).
 
 **Configure the reverse proxy for secure (HTTPS) client connections**
 

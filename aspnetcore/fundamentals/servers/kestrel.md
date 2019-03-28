@@ -441,9 +441,83 @@ ASP.NET Core 2.1 or later `KestrelServerOptions` configuration:
 
 Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .ConfigureWebHostDefaults(webBuilder =>
+    {
+        webBuilder.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.ConfigureEndpointDefaults(configureOptions =>
+            {
+                configureOptions.NoDelay = true;
+            });
+        });
+        webBuilder.UseStartup<Startup>();
+    });
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .ConfigureKestrel((context, options) =>
+        {
+            options.ConfigureEndpointDefaults(configureOptions =>
+            {
+                configureOptions.NoDelay = true;
+            });
+        });
+```
+
+::: moniker-end
+
 ### ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)
 
 Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
+
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .ConfigureWebHostDefaults(webBuilder =>
+    {
+        webBuilder.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.ConfigureHttpsDefaults(options =>
+            {
+                // certificate is an X509Certificate2
+                options.ServerCertificate = certificate;
+            });
+        });
+        webBuilder.UseStartup<Startup>();
+    });
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .ConfigureKestrel((context, options) =>
+        {
+            options.ConfigureHttpsDefaults(httpsOptions =>
+            {
+                // certificate is an X509Certificate2
+                httpsOptions.ServerCertificate = certificate;
+            });
+        });
+```
+
+::: moniker-end
 
 ### Configure(IConfiguration)
 
