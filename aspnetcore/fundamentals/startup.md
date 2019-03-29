@@ -89,7 +89,7 @@ For more information on how to use `IApplicationBuilder` and the order of middle
 
 To configure services and the request processing pipeline without using a `Startup` class, call `ConfigureServices` and `Configure` convenience methods on the host builder. Multiple calls to `ConfigureServices` append to one another. If multiple `Configure` method calls exist, the last `Configure` call is used.
 
-[!code-csharp[](startup/sample_snapshot/Program1.cs?highlight=18,22)]
+[!code-csharp[](startup/sample_snapshot/Program1.cs?highlight=16,20)]
 
 ## Extend Startup with startup filters
 
