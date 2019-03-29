@@ -972,6 +972,8 @@
       uid: security/cookie-sharing
     - name: IP safelist
       uid: security/ip-safelist
+    - name: Application security - OWASP
+      href: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DotNet_Security_Cheat_Sheet.md
 - name: Performance
   items:
     - name: Overview
