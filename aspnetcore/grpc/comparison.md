@@ -45,7 +45,9 @@ By sharing the `*.proto` file between the server and client, messages and client
 
 ### Strict specification
 
-gRPC saves developer time through its simplicity. The [gRPC specification](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) is prescriptive about what a gRPC service method looks like. There is no a formal agreement of what an HTTP API with JSON should look like. The lack of an agreement creates debate over the format of URLs, HTTP verbs, and response codes. gRPC eliminates debate with a specification that states what a gRPC method must look like.
+There is no a formal agreement of what an HTTP API with JSON should look like. The lack of an agreement creates debate over the format of URLs, HTTP verbs, and response codes.
+
+The [gRPC specification](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) is prescriptive about the format a gRPC service must follow. gRPC eliminates debate and saves developer time through its simplicity.
 
 ### Streaming
 
