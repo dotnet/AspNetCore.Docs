@@ -98,7 +98,7 @@ Other frameworks are recommended over gRPC in the following scenarios:
 
 * **Browser accessible APIs** - gRPC is not fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
 * **Broadcast real-time communication** - gRPC supports real-time communication via streaming, but it does not have the concept broadcasting a message out to registered connections. For example, in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call would need to individually stream new chat messages to the client. [SignalR](xref:signalr/introduction) is a good framework for this scenario. It has the concept of persistent connections and built-in support for broadcasting messages.
-* **Inter-process communication** - A process would need to host a HTTP/2 server to accept incoming gRPC calls. For Windows inter-process communication [pipes](/dotnet/standard/io/pipe-operations) is a fast, lightweight method of communication.
+* **Inter-process communication** &ndash; A process must host an HTTP/2 server to accept incoming gRPC calls. For Windows, inter-process communication [pipes](/dotnet/standard/io/pipe-operations) is a fast, lightweight method of communication.
 
 ## Additional resources
 
