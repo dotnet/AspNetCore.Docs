@@ -2,9 +2,10 @@
 title: File Providers in ASP.NET Core
 author: guardrex
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/01/2018
+ms.date: 03/30/2019
 uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
@@ -44,25 +45,11 @@ The sample app demonstrates how to configure a File Provider in `Startup.Configu
 
 Three implementations of `IFileProvider` are available.
 
-::: moniker range=">= aspnetcore-2.0"
-
 | Implementation | Description |
 | -------------- | ----------- |
 | [PhysicalFileProvider](#physicalfileprovider) | The physical provider is used to access the system's physical files. |
 | [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | The manifest embedded provider is used to access files embedded in assemblies. |
 | [CompositeFileProvider](#compositefileprovider) | The composite provider is used to provide combined access to files and directories from one or more other providers. |
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-| Implementation | Description |
-| -------------- | ----------- |
-| [PhysicalFileProvider](#physicalfileprovider) | The physical provider is used to access the system's physical files. |
-| [EmbeddedFileProvider](#embeddedfileprovider) | The embedded provider is used to access files embedded in assemblies. |
-| [CompositeFileProvider](#compositefileprovider) | The composite provider is used to provide combined access to files and directories from one or more other providers. |
-
-::: moniker-end
 
 ### PhysicalFileProvider
 
@@ -96,8 +83,6 @@ var physicalProvider = _env.ContentRootFileProvider;
 
 Inject the provider into any class constructor and assign it to a local field. Use the field throughout the class's methods to access files.
 
-::: moniker range=">= aspnetcore-2.0"
-
 In the sample app, the `IndexModel` class receives an `IFileProvider` instance to obtain directory contents for the app's base path.
 
 *Pages/Index.cshtml.cs*:
@@ -110,32 +95,9 @@ The `IDirectoryContents` are iterated in the page.
 
 [!code-cshtml[](file-providers/samples/2.x/FileProviderSample/Pages/Index.cshtml?name=snippet1)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-In the sample app, the `HomeController` class receives an `IFileProvider` instance to obtain directory contents for the app's base path.
-
-*Controllers/HomeController.cs*:
-
-[!code-csharp[](file-providers/samples/1.x/FileProviderSample/Controllers/HomeController.cs?name=snippet1)]
-
-The `IDirectoryContents` are iterated in the view.
-
-*Views/Home/Index.cshtml*:
-
-[!code-cshtml[](file-providers/samples/1.x/FileProviderSample/Views/Home/Index.cshtml?name=snippet1)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.0"
-
 ### ManifestEmbeddedFileProvider
 
 The [ManifestEmbeddedFileProvider](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider) is used to access files embedded within assemblies. The `ManifestEmbeddedFileProvider` uses a manifest compiled into the assembly to reconstruct the original paths of the embedded files.
-
-> [!NOTE]
-> The `ManifestEmbeddedFileProvider` is available in ASP.NET Core 2.1 or later. To access files embedded in assemblies in ASP.NET Core 2.0 or earlier, see the [ASP.NET Core 1.x version of this topic](/aspnet/core/fundamentals/file-providers?view=aspnetcore-1.1).
 
 To generate a manifest of the embedded files, set the `<GenerateEmbeddedFilesManifest>` property to `true`. Specify the files to embed with [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
 
@@ -164,55 +126,13 @@ Additional overloads allow you to:
 | [ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_DateTimeOffset_) | Accepts an optional `root` relative path parameter and a `lastModified` date ([DateTimeOffset](/dotnet/api/system.datetimeoffset)) parameter. The `lastModified` date scopes the last modification date for the [IFileInfo](/dotnet/api/microsoft.extensions.fileproviders.ifileinfo) instances returned by the [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider). |
 | [ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_String_System_DateTimeOffset_) | Accepts an optional `root` relative path, `lastModified` date, and `manifestName` parameters. The `manifestName` represents the name of the embedded resource containing the manifest. |
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-### EmbeddedFileProvider
-
-The [EmbeddedFileProvider](/dotnet/api/microsoft.extensions.fileproviders.embeddedfileprovider) is used to access files embedded within assemblies. Specify the files to embed with the [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects) property in the project file:
-
-```xml
-<ItemGroup>
-  <EmbeddedResource Include="Resource.txt" />
-</ItemGroup>
-```
-
-Use [glob patterns](#glob-patterns) to specify one or more files to embed into the assembly.
-
-The sample app creates an `EmbeddedFileProvider` and passes the currently executing assembly to its constructor.
-
-*Startup.cs*:
-
-```csharp
-var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
-```
-
-Embedded resources don't expose directories. Rather, the path to the resource (via its namespace) is embedded in its filename using `.` separators. In the sample app, the `baseNamespace` is `FileProviderSample.`.
-
-The [EmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.embeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_EmbeddedFileProvider__ctor_System_Reflection_Assembly_) constructor accepts an optional `baseNamespace` parameter. Specify the base namespace to scope calls to [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) to those resources under the provided namespace.
-
-::: moniker-end
-
 ### CompositeFileProvider
 
 The [CompositeFileProvider](/dotnet/api/microsoft.extensions.fileproviders.compositefileprovider) combines `IFileProvider` instances, exposing a single interface for working with files from multiple providers. When creating the `CompositeFileProvider`, pass one or more `IFileProvider` instances to its constructor.
 
-::: moniker range=">= aspnetcore-2.0"
-
 In the sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider` provide files to a `CompositeFileProvider` registered in the app's service container:
 
 [!code-csharp[](file-providers/samples/2.x/FileProviderSample/Startup.cs?name=snippet1)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-In the sample app, a `PhysicalFileProvider` and an `EmbeddedFileProvider` provide files to a `CompositeFileProvider` registered in the app's service container:
-
-[!code-csharp[](file-providers/samples/1.x/FileProviderSample/Startup.cs?name=snippet1)]
-
-::: moniker-end
 
 ## Watch for changes
 
@@ -223,17 +143,7 @@ The [IFileProvider.Watch](/dotnet/api/microsoft.extensions.fileproviders.ifilepr
 
 In the sample app, the *WatchConsole* console app is configured to display a message whenever a text file is modified:
 
-::: moniker range=">= aspnetcore-2.0"
-
 [!code-csharp[](file-providers/samples/2.x/WatchConsole/Program.cs?name=snippet1&highlight=1-2,16,19-20)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-[!code-csharp[](file-providers/samples/1.x/WatchConsole/Program.cs?name=snippet1&highlight=1-2,16,19-20)]
-
-::: moniker-end
 
 Some file systems, such as Docker containers and network shares, may not reliably send change notifications. Set the `DOTNET_USE_POLLING_FILE_WATCHER` environment variable to `1` or `true` to poll the file system for changes every four seconds (not configurable).
 
