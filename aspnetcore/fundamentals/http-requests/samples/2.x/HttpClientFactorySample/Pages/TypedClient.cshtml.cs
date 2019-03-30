@@ -34,7 +34,7 @@ namespace HttpClientFactorySample.Pages
             {
                 GetIssuesError = true;
                 LatestIssues = Array.Empty<GitHubIssue>();
-            }            
+            }
         }
     }
     #endregion

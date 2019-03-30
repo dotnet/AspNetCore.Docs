@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 01/25/2019
+ms.date: 03/30/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -193,7 +193,7 @@ Use one of the following approaches to share per-request state with message hand
 
 Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions are available in the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package. This package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). To use the extensions, an explicit `<PackageReference />` should be included in the project.
 
-[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/HttpClientFactorySample.csproj?highlight=9)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/HttpClientFactorySample.csproj?highlight=10)]
 
 After restoring this package, extension methods are available to support adding Polly-based handlers to clients.
 

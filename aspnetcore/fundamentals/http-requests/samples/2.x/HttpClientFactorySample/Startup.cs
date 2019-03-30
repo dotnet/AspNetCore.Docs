@@ -24,12 +24,6 @@ namespace HttpClientFactorySample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             // basic usage
             #region snippet1
             services.AddHttpClient();
@@ -138,7 +132,7 @@ namespace HttpClientFactorySample
                 });
             #endregion
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         
         // This method gets called by the runtime. Use this method to configure 
@@ -152,12 +146,9 @@ namespace HttpClientFactorySample
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
             app.UseMvc();
         }
     }
