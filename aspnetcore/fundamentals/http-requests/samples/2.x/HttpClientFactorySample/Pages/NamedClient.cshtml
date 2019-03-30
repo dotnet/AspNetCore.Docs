@@ -12,10 +12,12 @@
 }
 else if (Model.HasPullRequests)
 {
-    @foreach (var pr in Model.PullRequests)
-    {
-        <li>@pr.Title</li>
-    }
+    <ul>
+        @foreach (var pr in Model.PullRequests)
+        {
+            <li>@pr.Title</li>
+        }
+    </ul>
 }
 else
 {
