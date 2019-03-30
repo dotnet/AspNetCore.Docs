@@ -4,14 +4,14 @@ author: jamesnk
 description: Learn how gRPC compares with HTTP APIs and what it's recommend scenarios are.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 03/26/2019
+ms.date: 03/31/2019
 uid: grpc/comparison
 ---
 # Comparing gRPC services with HTTP APIs
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article provides a comparison between [gRPC services](https://grpc.io/docs/guides/) and HTTP APIs, and recommends scenarios for using gRPC over other technologies.
+This article helps you understand how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs. The technology used to provide an API for your application is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC, and recommends scenarios for using gRPC over other technologies.
 
 #### Overview
 
@@ -45,7 +45,7 @@ By sharing the `*.proto` file between the server and client, messages and client
 
 ### Strict specification
 
-There is no a formal agreement of what an HTTP API with JSON should look like. The lack of an agreement creates debate over the format of URLs, HTTP verbs, and response codes.
+A formal specification for HTTP API with JSON doesn't exist. Developers debate the best format of URLs, HTTP verbs, and response codes.
 
 The [gRPC specification](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) is prescriptive about the format a gRPC service must follow. gRPC eliminates debate and saves developer time through its simplicity.
 
@@ -70,10 +70,10 @@ Propagating the deadline and cancellation through child gRPC calls helps enforce
 
 gRPC is well suited to the following scenarios:
 
-* **Microservices** - gRPC is designed low latency and high throughput communication. gRPC is great for lightweight microservices where efficiency is critical.
-* **Point-to-point real-time communication** - gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
-* **Polygot environments** - gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
-* **Network constrained environments** - gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message will always be smaller than an equivalent JSON message.
+* **Microservices** &ndash; gRPC is designed low latency and high throughput communication. gRPC is great for lightweight microservices where efficiency is critical.
+* **Point-to-point real-time communication** &ndash; gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
+* **Polygot environments** &ndash; gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
+* **Network constrained environments** &ndash; gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message will always be smaller than an equivalent JSON message.
 
 ## gRPC weaknesses
 
@@ -89,15 +89,16 @@ Not all of gRPC's features are supported by gRPC-Web. Client and bi-directional 
 
 HTTP API requests are sent as text and can be read and created by humans.
 
-gRPC messages are encoded with Protobuf by default. While Protobuf is efficient to send and receive, its binary format is not human readable. Protobuf requires the message's interface description specified in the `*.proto` file to properly deserialize. Additional tooling needs to be used to analyze Protobuf payloads on the wire and to compose requests by hand.
-Features like [server reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) and [gRPC command line tool](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md) exist to get around this limitation. Also, Protobuf messages support [conversion to and from JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). The built-in JSON conversion provides a good way to convert the protobuf messages to/from human readable form when debugging.
+gRPC messages are encoded with Protobuf by default. While Protobuf is efficient to send and receive, its binary format isn't human readable. Protobuf requires the message's interface description specified in the `*.proto` file to properly deserialize. Additional tooling is required to analyze Protobuf payloads on the wire and to compose requests by hand.
+
+Features such as [server reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) and the [gRPC command line tool](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md) exist to assist with binary Protobuf messages. Also, Protobuf messages support [conversion to and from JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). The built-in JSON conversion provides an efficient way to convert Protobuf messages to and from human readable form when debugging.
 
 ## Alternative framework scenarios
 
 Other frameworks are recommended over gRPC in the following scenarios:
 
-* **Browser accessible APIs** - gRPC is not fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
-* **Broadcast real-time communication** - gRPC supports real-time communication via streaming, but it does not have the concept broadcasting a message out to registered connections. For example, in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call would need to individually stream new chat messages to the client. [SignalR](xref:signalr/introduction) is a good framework for this scenario. It has the concept of persistent connections and built-in support for broadcasting messages.
+* **Browser accessible APIs** &ndash; gRPC is not fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
+* **Broadcast real-time communication** &ndash; gRPC supports real-time communication via streaming, but it does not have the concept broadcasting a message out to registered connections. For example, in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call would need to individually stream new chat messages to the client. [SignalR](xref:signalr/introduction) is a good framework for this scenario. It has the concept of persistent connections and built-in support for broadcasting messages.
 * **Inter-process communication** &ndash; A process must host an HTTP/2 server to accept incoming gRPC calls. For Windows, inter-process communication [pipes](/dotnet/standard/io/pipe-operations) is a fast, lightweight method of communication.
 
 ## Additional resources
