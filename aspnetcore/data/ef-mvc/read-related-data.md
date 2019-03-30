@@ -3,7 +3,7 @@ title: "Tutorial: Read related data - ASP.NET MVC with EF Core"
 description: "In this tutorial you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties."
 author: rick-anderson
 ms.author: tdykstra
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/read-related-data
 ---
@@ -28,7 +28,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Create a more complex data model with EF Core for an ASP.NET Core MVC web app](complex-data-model.md)
+* [Create a complex data model](complex-data-model.md)
 
 ## Learn how to load related data
 
@@ -252,6 +252,7 @@ In this tutorial, you:
 > * Created an Instructors page
 > * Learned about explicit loading
 
-Advance to the next article to learn how to update related data.
+Advance to the next tutorial to learn how to update related data.
+
 > [!div class="nextstepaction"]
 > [Update related data](update-related-data.md)

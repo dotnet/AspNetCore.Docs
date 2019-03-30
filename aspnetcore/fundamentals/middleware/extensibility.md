@@ -5,7 +5,7 @@ description: Learn how to use strongly-typed middleware with a factory-based act
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2018
+ms.date: 03/27/2019
 uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core
@@ -18,10 +18,10 @@ By [Luke Latham](https://github.com/guardrex)
 
 Benefits:
 
-* Activation per request (injection of scoped services)
+* Activation per client request (injection of scoped services)
 * Strong typing of middleware
 
-`IMiddleware` is activated per request, so scoped services can be injected into the middleware's constructor.
+`IMiddleware` is activated per client request (connection), so scoped services can be injected into the middleware's constructor.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/extensibility/sample) ([how to download](xref:index#how-to-download-a-sample))
 

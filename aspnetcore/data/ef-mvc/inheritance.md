@@ -4,7 +4,7 @@ description: "This tutorial will show you how to implement inheritance in the da
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/inheritance
 ---
@@ -27,7 +27,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Handle Concurrency with EF Core in an ASP.NET Core MVC web app](concurrency.md)
+* [Handle Concurrency](concurrency.md)
 
 ## Map inheritance to database
 
@@ -163,6 +163,7 @@ In this tutorial, you:
 > * Created and update migrations
 > * Tested the implementation
 
-Advance to the next article to learn how to handle a variety of relatively advanced Entity Framework scenarios.
+Advance to the next tutorial to learn how to handle a variety of relatively advanced Entity Framework scenarios.
+
 > [!div class="nextstepaction"]
-> [Advanced topics](advanced.md)
+> [Next: Advanced topics](advanced.md)

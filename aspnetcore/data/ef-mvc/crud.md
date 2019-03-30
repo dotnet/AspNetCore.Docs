@@ -27,7 +27,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Get started with EF Core in an ASP.NET Core MVC web app](intro.md)
+* [Get started with EF Core and ASP.NET Core MVC](intro.md)
 
 ## Customize the Details page
 
@@ -238,7 +238,7 @@ This code accepts an optional parameter that indicates whether the method was ca
 
 Replace the HttpPost `Delete` action method (named `DeleteConfirmed`) with the following code, which performs the actual delete operation and catches any database update errors.
 
-[!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DeleteWithReadFirst&highlight=6,8-11,13-14,18-23)]
+[!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DeleteWithReadFirst&highlight=6-9,11-12,16-21)]
 
 This code retrieves the selected entity, then calls the `Remove` method to set the entity's status to `Deleted`. When `SaveChanges` is called, a SQL DELETE command is generated.
 
@@ -301,6 +301,7 @@ In this tutorial, you:
 > * Updated the Delete page
 > * Closed database connections
 
-Advance to the next article to learn how to expand the functionality of the **Index** page by adding sorting, filtering, and paging.
+Advance to the next tutorial to learn how to expand the functionality of the **Index** page by adding sorting, filtering, and paging.
+
 > [!div class="nextstepaction"]
-> [Sorting, filtering, and paging](sort-filter-page.md)
+> [Next: Sorting, filtering, and paging](sort-filter-page.md)

@@ -32,6 +32,8 @@ Consider an ASP.NET Core web app in which **Individual User Accounts** security 
 > [!WARNING]
 > Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, environment variables can be accessed by untrusted parties. Additional measures to prevent disclosure of user secrets may be required.
 
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
+
 ## Secret Manager
 
 The Secret Manager tool stores sensitive data during the development of an ASP.NET Core project. In this context, a piece of sensitive data is an app secret. App secrets are stored in a separate location from the project tree. The app secrets are associated with a specific project or shared across several projects. The app secrets aren't checked into source control.

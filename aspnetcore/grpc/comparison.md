@@ -34,7 +34,7 @@ gRPC messages are serialized using [Protobuf](https://developers.google.com/prot
 
 gRPC is designed for HTTP/2, a major revision of HTTP that provides significant performance benefits over HTTP 1.x:
 
-* Binary framing and compression. HTTP/2 protocol is compact and efficient sending and receiving.
+* Binary framing and compression. HTTP/2 protocol is compact and efficient both in sending and receiving.
 * Multiplexing of multiple HTTP/2 calls over a single TCP connection. Multiplexing eliminates [head-of-line blocking](https://en.wikipedia.org/wiki/Head-of-line_blocking).
 
 ### Code Generation
@@ -87,7 +87,9 @@ Not all of gRPC's features are supported by gRPC-Web. Client and bi-directional 
 
 HTTP API requests are sent as text and can be read and created by humans.
 
-gRPC messages are encoded with Protobuf by default. While Protobuf is efficient to send and receive, its binary format is not human readable. Protobuf requires the message's interface description specified in the `*.proto` file to properly deserialize. To work around this issue Protobuf messages [support conversion to and from JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). This feature allows sending of human-readable messages during development then switching to efficient binary messages in production environments.
+gRPC messages are encoded with Protobuf by default. While Protobuf is efficient to send and receive, its binary format is not human readable. Protobuf requires the message's interface description specified in the `*.proto` file to properly deserialize. Additional tooling needs to be used to analyze Protobuf payloads on the wire and to compose requests by hand.
+Features like [server reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) and [gRPC command line tool](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md) exist to get around this limitation.
+Also, Protobuf messages support [conversion to and from JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). The built-in JSON conversion provides a good way to convert the protobuf messages to/from human readable form when debugging.
 
 ## Alternative Framework Scenarios
 

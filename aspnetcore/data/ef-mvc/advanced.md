@@ -4,7 +4,7 @@ description: "This tutorial introduces useful topics for going beyond the basics
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/advanced
 ---
@@ -28,7 +28,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [Implement Inheritance with EF Core in an ASP.NET Core MVC web app](inheritance.md)
+* [Implement Inheritance](inheritance.md)
 
 ## Perform raw SQL queries
 
@@ -48,7 +48,7 @@ The `DbSet<TEntity>` class provides a method that you can use to execute a query
 
 In *DepartmentsController.cs*, in the `Details` method, replace the code that retrieves a department with a `FromSql` method call, as shown in the following highlighted code:
 
-[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_RawSQL&highlight=8,9,10,13)]
+[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_RawSQL&highlight=8,9,10)]
 
 To verify that the new code works correctly, select the **Departments** tab and then **Details** for one of the departments.
 
@@ -271,6 +271,7 @@ In this tutorial, you:
 > * Learned about EF Core source code and development plans
 > * Learned how to use dynamic LINQ to simplify code
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application. If you want to learn about using EF 6 with ASP.NET Core, see the next article.
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application. This series worked with a new database; an alternative is to  reverse engineer a model from an existing database.
+
 > [!div class="nextstepaction"]
-> [EF 6 with ASP.NET Core](../entity-framework-6.md)
+> [Tutorial: EF Core with MVC, existing database](/ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)
