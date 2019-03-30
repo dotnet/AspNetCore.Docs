@@ -7,11 +7,11 @@ ms.author: jamesnk
 ms.date: 03/26/2019
 uid: grpc/comparison
 ---
-# Comparing gRPC and HTTP APIs
+# Comparing gRPC services with HTTP APIs
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article provides a comparison between [gRPC](https://grpc.io/docs/guides/) and HTTP APIs, and recommends scenarios for using gRPC over other technologies.
+This article provides a comparison between [gRPC services](https://grpc.io/docs/guides/) and HTTP APIs, and recommends scenarios for using gRPC over other technologies.
 
 #### Overview
 
@@ -37,13 +37,13 @@ gRPC is designed for HTTP/2, a major revision of HTTP that provides significant 
 * Binary framing and compression. HTTP/2 protocol is compact and efficient both in sending and receiving.
 * Multiplexing of multiple HTTP/2 calls over a single TCP connection. Multiplexing eliminates [head-of-line blocking](https://en.wikipedia.org/wiki/Head-of-line_blocking).
 
-### Code Generation
+### Code generation
 
 All gRPC frameworks provide first-class support for code generation. A core file to gRPC development is the [`*.proto` file](https://developers.google.com/protocol-buffers/docs/proto3), which defines the contact of gRPC services and messages. From this file gRPC frameworks will code generate a service base class, messages, and a complete client.
 
 By sharing the `*.proto` file between the server and client, messages and client code can be generated from end to end. Code generation of the client eliminates duplication of messages on the client and server, and creates a strongly-typed client for you. Not having to write a client saves significant development time in applications with many services.
 
-### Strict Specification
+### Strict specification
 
 gRPC saves developer time through its simplicity. The [gRPC specification](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) is prescriptive about what a gRPC service method looks like. There is no a formal agreement of what an HTTP API with JSON should look like. The lack of an agreement creates debate over the format of URLs, HTTP verbs, and response codes. gRPC eliminates debate with a specification that states what a gRPC method must look like.
 
@@ -64,7 +64,7 @@ gRPC allows clients to specify how long they are willing to wait for an RPC to c
 
 Propagating the deadline and cancellation through child gRPC calls helps enforce resource usage limits.
 
-## gRPC Recommended Scenarios
+## gRPC recommended scenarios
 
 gRPC is well suited to the following scenarios:
 
@@ -75,7 +75,7 @@ gRPC is well suited to the following scenarios:
 
 ## gRPC weaknesses
 
-### Limited Browser Support
+### Limited browser support
 
 It's impossible to directly call a gRPC service from a browser today. gRPC heavily uses HTTP/2 features and no browser provides the level of control required over web requests to support a gRPC client. For example, browsers do not allow a caller to require that HTTP/2 be used, or provide access to underlying HTTP/2 frames.
 
@@ -83,21 +83,20 @@ It's impossible to directly call a gRPC service from a browser today. gRPC heavi
 
 Not all of gRPC's features are supported by gRPC-Web. Client and bi-directional streaming isn't supported, and there is limited support for server streaming.
 
-### Not Human Readable
+### Not human readable
 
 HTTP API requests are sent as text and can be read and created by humans.
 
 gRPC messages are encoded with Protobuf by default. While Protobuf is efficient to send and receive, its binary format is not human readable. Protobuf requires the message's interface description specified in the `*.proto` file to properly deserialize. Additional tooling needs to be used to analyze Protobuf payloads on the wire and to compose requests by hand.
-Features like [server reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) and [gRPC command line tool](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md) exist to get around this limitation.
-Also, Protobuf messages support [conversion to and from JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). The built-in JSON conversion provides a good way to convert the protobuf messages to/from human readable form when debugging.
+Features like [server reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) and [gRPC command line tool](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md) exist to get around this limitation. Also, Protobuf messages support [conversion to and from JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). The built-in JSON conversion provides a good way to convert the protobuf messages to/from human readable form when debugging.
 
-## Alternative Framework Scenarios
+## Alternative framework scenarios
 
 Other frameworks are recommended over gRPC in the following scenarios:
 
 * **Browser accessible APIs** - gRPC is not fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
 * **Broadcast real-time communication** - gRPC supports real-time communication via streaming, but it does not have the concept broadcasting a message out to registered connections. For example, in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call would need to individually stream new chat messages to the client. [SignalR](xref:signalr/introduction) is a good framework for this scenario. It has the concept of persistent connections and built-in support for broadcasting messages.
-* **Inter-process communication** - A process would need to host a HTTP/2 gRPC server to accept incoming calls. For Windows inter-process communication [named pipes with WCF](/dotnet/framework/wcf/feature-details/choosing-a-transport#when-to-use-the-named-pipe-transport) is a fast, lightweight method of communication.
+* **Inter-process communication** - A process would need to host a HTTP/2 server to accept incoming gRPC calls. For Windows inter-process communication [pipes](/dotnet/standard/io/pipe-operations) is a fast, lightweight method of communication.
 
 ## Additional resources
 
