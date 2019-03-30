@@ -5,7 +5,7 @@ description: Learn how to use an ASP.NET Core distributed cache to improve app p
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/02/2019
+ms.date: 03/30/2019
 uid: performance/caching/distributed
 ---
 # Distributed caching in ASP.NET Core
@@ -110,7 +110,7 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 
 ::: moniker range=">= aspnetcore-2.2"
 
-An app configures the cache implementation using a `RedisCache` instance (`AddStackExchangeRedisCache`) in a non-Development environment in `Startup.ConfigureServices`:
+An app configures the cache implementation using a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance (<xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*>) in a non-Development environment in `Startup.ConfigureServices`:
 
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddStackExchangeRedisCache)]
 
