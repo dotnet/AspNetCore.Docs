@@ -11,13 +11,13 @@ uid: grpc/migration
 
 By [John Luo](https://github.com/juntaoluo)
 
-Due to implementation of the underlying stack, not all features work in the same way between [C-core based gRPC](https://grpc.io/blog/grpc-stacks) apps and ASP.NET Core based apps. This document highlights the key differences to note when migrating between the two stacks.
+Due to the implementation of the underlying stack, not all features work in the same way between [C-core based gRPC](https://grpc.io/blog/grpc-stacks) apps and ASP.NET Core based apps. This document highlights the key differences to note when migrating between the two stacks.
 
 ## gRPC service implementation lifetime
 
 In the ASP.NET Core stack, gRPC services, by default, will be created with a [Scoped lifetime](xref:fundamentals/dependency-injection). In contrast, gRPC C-core by default binds to a service with a Singleton lifetime.
 
-A Scoped lifetime allows the service implementation to resolve other services with Scoped lifetimes. For example Scoped lifetime can also resolve `DBContext`, from the DI container through constructor injection. Using Scoped lifetime:
+A Scoped lifetime allows the service implementation to resolve other services with Scoped lifetimes. For example, a Scoped lifetime can also resolve `DBContext`, from the DI container through constructor injection. Using Scoped lifetime:
 
 * A new instance of the service implementation is constructed for each request.
 * It's not possible to share state between requests via instance members on the implementation type.
@@ -66,7 +66,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Logging
 
-C-core based apps rely on the `GrpcEnvironment` to [configure the logger](https://grpc.io/grpc/csharp/api/Grpc.Core.GrpcEnvironment.html?q=size#Grpc_Core_GrpcEnvironment_SetLogger_Grpc_Core_Logging_ILogger_) for debugging purposes. The ASP.NET Core stack provides this functionality through the [logging API](xref:fundamentals/logging/index). For example a logger can be added to the gRPC service via constructor injection:
+C-core based apps rely on the `GrpcEnvironment` to [configure the logger](https://grpc.io/grpc/csharp/api/Grpc.Core.GrpcEnvironment.html?q=size#Grpc_Core_GrpcEnvironment_SetLogger_Grpc_Core_Logging_ILogger_) for debugging purposes. The ASP.NET Core stack provides this functionality through the [logging API](xref:fundamentals/logging/index). For example, a logger can be added to the gRPC service via constructor injection:
 
 ```csharp
 public class GreeterService : Greeter.GreeterBase
