@@ -11,7 +11,7 @@ uid: grpc/comparison
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article helps you understand how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs. The technology used to provide an API for your application is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC, and recommends scenarios for using gRPC over other technologies.
+This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs. The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
 
 #### Overview
 
