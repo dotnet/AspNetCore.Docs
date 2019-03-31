@@ -53,7 +53,8 @@ namespace LoggerMessageSample.Internal
             #endregion
 
             #region snippet8
-            _allQuotesDeletedScope = LoggerMessage.DefineScope<int>("All quotes deleted (Count = {Count})");
+            _allQuotesDeletedScope = 
+                LoggerMessage.DefineScope<int>("All quotes deleted (Count = {Count})");
             #endregion
         }
 
@@ -89,7 +90,8 @@ namespace LoggerMessageSample.Internal
         #endregion
 
         #region snippet12
-        public static IDisposable AllQuotesDeletedScope(this ILogger logger, int count)
+        public static IDisposable AllQuotesDeletedScope(
+            this ILogger logger, int count)
         {
             return _allQuotesDeletedScope(logger, count);
         }
