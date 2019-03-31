@@ -213,6 +213,12 @@ Some values (for example, SQL connection strings) must be escaped for the config
 systemd-escape "<value-to-escape>"
 ```
 
+Environment variables with colon (`:`) separators must be replaced with a double underscore (`__`). See below for sample DefaultConnection
+
+```
+Environment=ConnectionStrings__DefaultConnection=(connection string here)
+```
+
 Save the file and enable the service.
 
 ```bash
