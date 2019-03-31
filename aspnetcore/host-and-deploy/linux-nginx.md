@@ -1,11 +1,11 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
-author: rick-anderson
+author: guardrex
 description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/28/2019
+ms.date: 03/31/2019
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -213,10 +213,10 @@ Some values (for example, SQL connection strings) must be escaped for the config
 systemd-escape "<value-to-escape>"
 ```
 
-Environment variables with colon (`:`) separators must be replaced with a double underscore (`__`). See below for sample DefaultConnection
+Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
 
 ```
-Environment=ConnectionStrings__DefaultConnection=(connection string here)
+Environment=ConnectionStrings__DefaultConnection={Connection String}
 ```
 
 Save the file and enable the service.
