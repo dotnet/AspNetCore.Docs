@@ -325,7 +325,7 @@ $.get({
 
 Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `ClassicMovie` and `ClassicMovie2` attributes that were introduced earlier in this article:
 
-[!code-javascript[](validation/sample/wwwroot/js/classicMovieValidators.js?name=snippet_UnobtrusiveValidation)]
+[!code-javascript[](validation/sample/wwwroot/js/classicMovieValidator.js?name=snippet_UnobtrusiveValidation)]
 
 For information about how to write adapters, see the [jQuery Validate documentation](http://jqueryvalidation.org/documentation/).
 
