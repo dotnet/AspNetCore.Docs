@@ -99,7 +99,7 @@ The middleware is made available by the [Microsoft.AspNetCore.Diagnostics](https
 
 ### UseStatusCodePages
 
-Add a line to the `Startup.Configure` method:
+To enable default text-only handlers for common error status codes, add the following code to the `Startup.Configure` method:
 
 ```csharp
 app.UseStatusCodePages();
@@ -107,7 +107,7 @@ app.UseStatusCodePages();
 
 Call the <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> method before request handling middleware (for example, Static File Middleware and MVC Middleware).
 
-By default, Status Code Pages Middleware adds text-only handlers for common status codes, such as *404 - Not Found*:
+Here's an example of text displayed by the default handlers:
 
 ```
 Status Code: 404; Not Found
@@ -115,9 +115,13 @@ Status Code: 404; Not Found
 
 The middleware supports several extension methods that allow you to customize its behavior.
 
+### UseStatusCodePages with lambda
+
 An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> takes a lambda expression, which you can use to process custom error-handling logic and manually write the response:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePages)]
+
+### UseStatusCodePages with format string
 
 An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> takes a content type and format string, which you can use to customize the content type and response text:
 
