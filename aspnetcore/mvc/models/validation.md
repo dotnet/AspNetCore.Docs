@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/14/2019
+ms.date: 04/01/2019
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -17,13 +17,21 @@ This article explains how to validate user input in an ASP.NET Core MVC or Razor
 
 Model state represents errors that come from two subsystems: model binding and model validation. Errors that originate from [model binding](model-binding.md) are generally data conversion errors (for example, an "x" is entered in a field that expects an integer). Model validation occurs after model binding and reports errors where the data doesn't conform to business rules (for example, a 0 is entered in a field that expects a rating between 1 and 5).
 
-Both model binding and validation occur before the execution of a controller action or a Razor Pages `OnPost` method. It's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message:
+::: moniker range=">= aspnetcore-2.1"
+
+Both model binding and validation occur before the execution of a controller action or a Razor Pages handler method. It's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message:
 
 [!code-csharp[](validation/sample_snapshot/Create.cshtml.cs?name=snippet&highlight=3-6)]
 
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
 
-When `ModelState.IsValid` evaluates to `false` in web API controllers that have the `[ApiController]` attribute, an automatic HTTP 400 response containing issue details is returned. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+Both model binding and validation occur before the execution of a controller action or a Razor Pages handler method. For web apps, it's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message:
+
+[!code-csharp[](validation/sample_snapshot/Create.cshtml.cs?name=snippet&highlight=3-6)]
+
+Web API controllers don't have to check `ModelState.IsValid` if they have the `[ApiController]` attribute. In that case, an automatic HTTP 400 response containing issue details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
 ::: moniker-end
 
@@ -35,11 +43,11 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 ## Validation attributes
 
-Validation attributes let you specify validation rules for model properties. The following example shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in.
+Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.)
 
 [!code-csharp[](validation/sample/Models/Movie.cs?name=snippet_ModelClass)]
 
-### Built-in attributes
+## Built-in attributes
 
 Here are some of the built-in validation attributes:
 
@@ -49,9 +57,10 @@ Here are some of the built-in validation attributes:
 * `[Phone]`: Validates that the property has a telephone number format.
 * `[Range]`: Validates that the property value falls within a specified range.
 * `[RegularExpression]`: Validates that the property value matches a specified regular expression.
-* `[Required]`: Validates that input is entered for the field. See the following section for details about this attribute's behavior.
+* `[Required]`: Validates that the field is not null. See [[Required] attribute](#required-attribute) for details about this attribute's behavior.
 * `[StringLength]`: Validates that a string property value doesn't exceed a specified length limit.
 * `[Url]`: Validates that the property has a URL format.
+* `[Remote]`: Validates input on the client by calling an action method on the server. See [[Remote] attribute](#remote-attribute) for details about this attribute's behavior.
 
 A complete list of validation attributes can be found in the [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) namespace.
 
@@ -73,18 +82,7 @@ When applied to a `Name` property, the error message created by the preceding co
 
 To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/corefx/tree/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
-### Alternatives to built-in attributes
-
-If you need validation not provided by built-in attributes, you can:
-
-* [Create custom attributes](#custom-attributes).
-* [Implement IValidatableObject](#ivalidatableobject).
-
 ## [Required] attribute
-
-`[Required]` validation differs for nullable versus non-nullable types, and server-side validation differs from client-side.
-
-### Non-nullable types
 
 By default, the validation system treats non-nullable parameters or properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable.
 
@@ -110,11 +108,54 @@ Non-nullable types and strings are handled differently on the client compared to
 
 As noted earlier, non-nullable types are treated as though they had a `[Required]` attribute. That means you get client-side validation even if you don't apply the `[Required]` attribute. But if you don't use the attribute, you get a default error message. To specify a custom error message, use the attribute.
 
-### [BindRequired] attribute
+## [Remote] attribute
 
-Server-side validation is done after model binding. To catch missing input for a non-nullable type during model binding, use the [BindRequired](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute) attribute. This attribute requires that data be submitted for model binding. When applied to a type, values for all of that type's properties are required. For more information, see <xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes>.
+The `[Remote]` attribute implements client-side validation that requires calling a method on the server to determine whether field input is valid. For example, the app may need to verify whether a user name is already in use.
 
-::: moniker range=">= aspnetcore-2.1"
+To implement remote validation:
+
+1. Create an action method for JavaScript to call.  The jQuery Validate [remote](https://jqueryvalidation.org/remote-method/) method expects a JSON response:
+
+   * `"true"` means the input data is valid.
+   * `"false"`, `undefined`, or `null` means the input is invalid.  Display the default error message.
+   * Any other string means the input is invalid. Display the string as a custom error message.
+
+   Here's an example of an action method that returns a custom error message:
+
+   [!code-csharp[](validation/sample/Controllers/UsersController.cs?name=snippet_VerifyEmail)]
+
+1. In the model class, annotate the property with a `[Remote]` attribute that points to the validation action method, as shown in the following example:
+
+   [!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserEmailProperty)]
+
+### Additional fields
+
+The `AdditionalFields` property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
+
+[!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserNameProperties)]
+
+`AdditionalFields` could be set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both first name and last name arguments:
+
+[!code-csharp[](validation/sample/Controllers/UsersController.cs?name=snippet_VerifyName)]
+
+When the user enters a first or last name, JavaScript makes a remote call to see if that pair of names has been taken.
+
+To validate two or more additional fields, provide them as a comma-delimited list. For example, to add a `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following example:
+
+```cs
+[Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
+public string MiddleName { get; set; }
+```
+
+`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, don't use an [interpolated string](/dotnet/csharp/language-reference/keywords/interpolated-strings) or call <xref:System.String.Join*> to initialize `AdditionalFields`.
+
+## Alternatives to built-in attributes
+
+If you need validation not provided by built-in attributes, you can:
+
+* [Create custom attributes](#custom-attributes).
+* [Implement IValidatableObject](#ivalidatableobject).
+
 
 ## Custom attributes
 
@@ -133,6 +174,8 @@ The `movie` variable in the preceding example represents a `Movie` object that c
 The preceding example works only with `Movie` types. Another option for class-level validation is to implement `IValidatableObject` in the model class, as shown in the following example:
 
 [!code-csharp[](validation/sample/Models/MovieIValidatable.cs?name=snippet&highlight=1,26-34)]
+
+::: moniker range=">= aspnetcore-2.1"
 
 ## Top-level node validation
 
@@ -189,7 +232,7 @@ To disable validation:
 
    [!code-csharp[](validation/sample/Attributes/NullObjectModelValidator.cs?name=snippet_DisableValidation)]
 
-1. Add the following code to `Startup.ConfigureServices` to replace the default implementation in the dependency injection container.
+1. Add the following code to `Startup.ConfigureServices` to replace the default `IObjectModelValidator` implementation in the dependency injection container.
 
    [!code-csharp[](validation/sample/Startup.cs?name=snippet_DisableValidation)]
 
@@ -280,7 +323,7 @@ $.get({
 
 ## Custom client-side validation
 
-Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `ClassicMovie` attribute that was introduced earlier in this article:
+Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `ClassicMovie` and `ClassicMovie2` attributes that were introduced earlier in this article:
 
 [!code-javascript[](validation/sample/wwwroot/js/classicMovieValidators.js?name=snippet_UnobtrusiveValidation)]
 
@@ -331,47 +374,6 @@ This method of rendering `data-` attributes in HTML is used by the `ClassicMovie
 * In the custom validation attribute, implement the `IClientModelValidator` interface and create an `AddValidation` method. In the `AddValidation` method, add `data-` attributes for validation, as shown in the following example:
 
   [!code-csharp[](validation/sample/Attributes/ClassicMovie2Attribute.cs?name=snippet_ClassicMovie2Attribute)]
-
-## [Remote] attribute
-
-The `[Remote]` attribute implements client-side validation that requires calling a method on the server to determine whether field input is valid. For example, the app may need to verify whether a user name is already in use.
-
-To implement remote validation:
-
-1. Create an action method for JavaScript to call.  The jQuery Validate [remote](https://jqueryvalidation.org/remote-method/) method expects a JSON response:
-
-   * `"true"` means the input data is valid.
-   * `"false"`, `undefined`, or `null` means the input is invalid.  Display the default error message.
-   * Any other string means the input is invalid. Display the string as a custom error message.
-
-   Here's an example of an action method that returns a custom error message:
-
-   [!code-csharp[](validation/sample/Controllers/UsersController.cs?name=snippet_VerifyEmail)]
-
-1. In the model class, annotate the property with a `[Remote]` attribute that points to the validation action method, as shown in the following example:
-
-   [!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserEmailProperty)]
-
-### Additional fields
-
-The `AdditionalFields` property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
-
-[!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserNameProperties)]
-
-`AdditionalFields` could be set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both first name and last name arguments:
-
-[!code-csharp[](validation/sample/Controllers/UsersController.cs?name=snippet_VerifyName)]
-
-When the user enters a first or last name, JavaScript makes a remote call to see if that pair of names has been taken.
-
-To validate two or more additional fields, provide them as a comma-delimited list. For example, to add a `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following example:
-
-```cs
-[Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
-public string MiddleName { get; set; }
-```
-
-`AdditionalFields`, like all attribute arguments, must be a constant expression. Therefore, don't use an [interpolated string](/dotnet/csharp/language-reference/keywords/interpolated-strings) or call <xref:System.String.Join*> to initialize `AdditionalFields`.
 
 ## Disable client-side validation
 
