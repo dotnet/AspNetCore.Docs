@@ -134,11 +134,12 @@ namespace ErrorHandlingSample
                     }
 
 #if StatusCodePagesWithReExecute
+                    #region snippet_StatusCodePagesWithReExecuteGetURL
                     var feature = context.Features.Get<IStatusCodeReExecuteFeature>();
                     var originalURL = feature?.OriginalPathBase
-                        + feature?.OriginalPath
+                        + feature?.OriginalPath 
                         + feature?.OriginalQueryString;
-
+                    #endregion
 #endif
                     var referrer = context.Request.Headers["referer"];
 
