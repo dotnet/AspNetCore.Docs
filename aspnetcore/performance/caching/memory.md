@@ -142,11 +142,11 @@ The following code registers `MyMemoryCache` with the [dependency injection](xre
 
 The following code uses `MyMemoryCache`:
 
-[!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet)]
+[!code-csharp[](memory/sample/RPcache/Pages/TestCache.cshtml.cs?name=snippet)]
 
 The size of the cache entry can be set by [Size](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryoptions.size?view=aspnetcore-2.1#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_Size) or the [SetSize](/dotnet/api/microsoft.extensions.caching.memory.memorycacheentryextensions.setsize?view=aspnetcore-2.0#Microsoft_Extensions_Caching_Memory_MemoryCacheEntryExtensions_SetSize_Microsoft_Extensions_Caching_Memory_MemoryCacheEntryOptions_System_Int64_) extension method:
 
-[!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet2&highlight=9,10,14,15)]
+[!code-csharp[](memory/sample/RPcache/Pages/TestCache.cshtml.cs?name=snippet2&highlight=9,10,14,15)]
 
 ::: moniker-end
 
