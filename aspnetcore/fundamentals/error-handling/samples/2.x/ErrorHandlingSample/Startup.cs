@@ -4,7 +4,7 @@
 //
 // StatusCodePagesWithRedirect - Executes a redirect to an endpoint for status code pages.
 //
-#define StatusCodePages  // or StatusCodePagesWithRedirect
+#define StatusCodePagesWithReExecute  // or StatusCodePagesWithRedirect or StatusCodePagesWithReExecute
 
 // Set the preprocessor directive to enable either of the following scenarios:
 //
@@ -39,7 +39,7 @@ namespace ErrorHandlingSample
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (false)
             {
                 #region snippet_UseDeveloperExceptionPage
                 app.UseDeveloperExceptionPage();
@@ -108,6 +108,12 @@ namespace ErrorHandlingSample
             #endregion
 #endif
 
+#if StatusCodePagesWithReExecute
+            #region snippet_StatusCodePagesWithReExecute
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            #endregion
+#endif
+
             app.MapWhen(context => context.Request.Path == "/missingpage", builder => { });
 
             app.Map("/error", error =>
@@ -127,6 +133,13 @@ namespace ErrorHandlingSample
                             HtmlEncoder.Default.Encode(path.Substring(1)) + "<br>");
                     }
 
+#if StatusCodePagesWithReExecute
+                    var feature = context.Features.Get<IStatusCodeReExecuteFeature>();
+                    var originalURL = feature?.OriginalPathBase
+                        + feature?.OriginalPath
+                        + feature?.OriginalQueryString;
+
+#endif
                     var referrer = context.Request.Headers["referer"];
 
                     if (!string.IsNullOrEmpty(referrer))
@@ -134,6 +147,10 @@ namespace ErrorHandlingSample
                         builder.AppendLine("Return to <a href=\"" + 
                             HtmlEncoder.Default.Encode(referrer) + "\">" +
                             WebUtility.HtmlEncode(referrer) + "</a><br>");
+#if StatusCodePagesWithReExecute
+                        builder.AppendLine("Original URL: " +
+                            WebUtility.HtmlEncode(originalURL) + "<br>");
+#endif
                     }
 
                     builder.AppendLine("</body></html>");

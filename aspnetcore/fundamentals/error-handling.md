@@ -123,7 +123,7 @@ An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseS
 app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 ```
 
-### Redirect and re-execute extension methods
+### UseStatusCodePagesWithRedirects
 
 <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*>:
 
@@ -136,6 +136,8 @@ app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 
 * Should redirect the client to a different endpoint, usually in cases where a different app processes the error. For web apps, the client's browser address bar reflects the redirected endpoint.
 * Shouldn't preserve and return the original status code with the initial redirect response.
+
+### UseStatusCodePagesWithReExecute
 
 <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>:
 
@@ -157,6 +159,12 @@ Templates may include a placeholder (`{0}`) for the status code. The template mu
 @page "{code?}"
 ```
 
+The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
+
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithReExecuteGetURL)]
+
+### Disable status code pages
+
 Status code pages can be disabled for specific requests in a Razor Pages handler method or in an MVC controller. To disable status code pages, attempt to retrieve the <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature> from the request's [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features) collection and disable the feature if it's available:
 
 ```csharp
@@ -167,6 +175,8 @@ if (statusCodePagesFeature != null)
     statusCodePagesFeature.Enabled = false;
 }
 ```
+
+### Status code page endpoints
 
 To use a <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> overload that points to an endpoint within the app, create an MVC view or Razor Page for the endpoint. For example, the Razor Pages app template produces the following page and page model class:
 
