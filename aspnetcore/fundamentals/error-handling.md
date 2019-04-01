@@ -167,7 +167,12 @@ Templates may include a placeholder (`{0}`) for the status code. The template mu
 
 The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
 
-[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithReExecuteGetURL)]
+```csharp
+var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+var originalURL = feature?.OriginalPathBase
+    + feature?.OriginalPath 
+    + feature?.OriginalQueryString;
+```
 
 ### Disable status code pages
 
