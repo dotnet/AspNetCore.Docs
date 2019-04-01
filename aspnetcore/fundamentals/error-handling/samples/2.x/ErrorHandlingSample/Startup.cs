@@ -148,11 +148,11 @@ namespace ErrorHandlingSample
                         builder.AppendLine("Return to <a href=\"" + 
                             HtmlEncoder.Default.Encode(referrer) + "\">" +
                             WebUtility.HtmlEncode(referrer) + "</a><br>");
-#if StatusCodePagesWithReExecute
-                        builder.AppendLine("Original URL: " +
-                            WebUtility.HtmlEncode(originalURL) + "<br>");
-#endif
                     }
+#if StatusCodePagesWithReExecute
+                    builder.AppendLine("Original URL: " +
+                        WebUtility.HtmlEncode(originalURL) + "<br>");
+#endif
 
                     builder.AppendLine("</body></html>");
 
