@@ -19,9 +19,14 @@ namespace ValidationSample.Attributes
             IStringLocalizer stringLocalizer)
         {
             if (attribute is ClassicMovieAttribute)
+            {
                 return new ClassicMovieAttributeAdapter(
                     attribute as ClassicMovieAttribute, stringLocalizer);
-            else return baseProvider.GetAttributeAdapter(attribute, stringLocalizer);
+            }
+            else
+            {
+                return baseProvider.GetAttributeAdapter(attribute, stringLocalizer);
+            }
         }
     }
     #endregion

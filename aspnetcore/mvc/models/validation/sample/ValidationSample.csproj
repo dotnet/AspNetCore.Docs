@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\classicMovieValidators.js" />
+    <None Include="wwwroot\js\classicMovieValidator.js" />
   </ItemGroup>
 
 </Project>

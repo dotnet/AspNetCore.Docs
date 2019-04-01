@@ -21,6 +21,8 @@ namespace ValidationSample
             services.AddSingleton<IUserRepository>(new UserRepository());
 #if DisableValidation
             #region snippet_DisableValidation
+            // There is only one `IObjectModelValidator` object,
+            // so AddSingleton replaces the default one.
             services.AddSingleton<IObjectModelValidator>(new NullObjectModelValidator());
             #endregion
 #endif
@@ -37,7 +39,6 @@ namespace ValidationSample
                  CustomValidationAttributeAdapterProvider>();
             #endregion
         }
-
 
         public void Configure(IApplicationBuilder app)
         {

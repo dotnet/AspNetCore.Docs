@@ -7,7 +7,7 @@ using ValidationSample.Models;
 
 namespace ValidationSample.Attributes
 {
-    // The ClassicMovie attribute is an
+    // The ClassicMovie2 attribute is an
     // example that doesn't use an AttributeAdapter to
     // provide client-side validation.
 
@@ -44,10 +44,10 @@ namespace ValidationSample.Attributes
             }
 
             MergeAttribute(context.Attributes, "data-val", "true");
-            MergeAttribute(context.Attributes, "data-val-classicmovie2", GetErrorMessage());
+            MergeAttribute(context.Attributes, "data-val-classicmovie", GetErrorMessage());
 
             var year = _year.ToString(CultureInfo.InvariantCulture);
-            MergeAttribute(context.Attributes, "data-val-classicmovie2-year", year);
+            MergeAttribute(context.Attributes, "data-val-classicmovie-year", year);
         }
         private bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
         {
