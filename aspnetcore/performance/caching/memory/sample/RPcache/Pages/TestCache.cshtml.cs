@@ -3,16 +3,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Caching.Memory;
 using RPcache.Services;
 using System;
+using System.Threading.Tasks;
 
 namespace RPcache.Pages
 {
     #region snippet
-    public class AboutModel : PageModel
+    public class TestCacheModel : PageModel
     {
         private MemoryCache _cache;
         public static readonly string MyKey = "_MyKey";
 
-        public AboutModel(MyMemoryCache memoryCache)
+        public TestCacheModel(MyMemoryCache memoryCache)
         {
             _cache = memoryCache.Cache;
         }
@@ -28,9 +29,9 @@ namespace RPcache.Pages
                 // Key not in cache, so get data.
                 cacheEntry = DateTime.Now.TimeOfDay.ToString();
 
-                var cacheEntryOptions = new MemoryCacheEntryOptions() 
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
                     // Set cache entry size by extension method.
-                    .SetSize(1) 
+                    .SetSize(1)
                     // Keep in cache for this time, reset time if accessed.
                     .SetSlidingExpiration(TimeSpan.FromSeconds(3));
 
@@ -43,9 +44,19 @@ namespace RPcache.Pages
 
             DateTime_Now = cacheEntry;
 
-            return RedirectToPage("./Index");
+            //return RedirectToPage("./Index");
+            return Page();
         }
         #endregion
+
+        public IActionResult OnPost()
+        {
+            var cacheCount = _cache.Count;
+            _cache.Compact(60);
+            _cache.Remove(MyKey);
+            cacheCount = _cache.Count;
+            return Page();
+        }
     }
     #endregion
 }

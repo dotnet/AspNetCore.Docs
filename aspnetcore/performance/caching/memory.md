@@ -87,7 +87,7 @@ The current time and the cached time are displayed:
 
 [!code-cshtml[](memory/sample/WebCache/Views/Home/Cache.cshtml)]
 
-The cached `DateTime` value remains in the cache while there are requests within the timeout period (and no eviction due to memory pressure). The following image shows the current time and an older time retrieved from the cache:
+The cached `DateTime` value remains in the cache while there are requests within the timeout period. The following image shows the current time and an older time retrieved from the cache:
 
 ![Index view with two different times displayed](memory/_static/time.png)
 
@@ -122,6 +122,11 @@ For example:
 
 * If the web app was primarily caching strings, each cache entry size could be the string length.
 * The app could specify the size of all entries as 1, and the size limit is the count of entries.
+
+If <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit> is not set, the cache grows without bound. The ASP.NET Core runtime does not trim the cache when sytem memory is low. Apps much be architected to:
+
+* Limit cache growth.
+* Call <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Compact*> when available memory is limited.
 
 The following code creates a unitless fixed size [MemoryCache](/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=aspnetcore-2.1) accessible by [dependency injection](xref:fundamentals/dependency-injection):
 
