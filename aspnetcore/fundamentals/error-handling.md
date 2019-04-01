@@ -97,6 +97,8 @@ By default, an ASP.NET Core app doesn't provide a status code page for HTTP stat
 
 The middleware is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is available in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
+### UseStatusCodePages
+
 Add a line to the `Startup.Configure` method:
 
 ```csharp
