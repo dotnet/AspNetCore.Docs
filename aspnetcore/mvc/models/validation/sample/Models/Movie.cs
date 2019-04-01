@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.ComponentModel.DataAnnotations;
+using ValidationSample.Attributes;
 
-namespace MVCMovie.Models
+namespace ValidationSample.Models
 {
+    #region snippet_ModelClass
     public class Movie
     {
         public int Id { get; set; }
@@ -27,4 +30,5 @@ namespace MVCMovie.Models
 
         public bool Preorder { get; set; }
     }
+    #endregion
 }

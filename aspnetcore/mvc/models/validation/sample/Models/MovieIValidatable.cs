@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MVCMovie.Models
+namespace ValidationSample.Models
 {
     #region snippet
     public class MovieIValidatable : IValidatableObject

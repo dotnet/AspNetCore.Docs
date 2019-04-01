@@ -1,14 +1,15 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using MVCMovie.Models;
+using ValidationSample.Models;
+using ValidationSample.Data;
 
-namespace MVCMovie.Controllers
+namespace ValidationSample.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly MVCMovieContext _context;
+        private readonly MovieContext _context;
 
-        public MoviesController(MVCMovieContext context)
+        public MoviesController(MovieContext context)
         {
             _context = context;
         }
@@ -39,6 +40,7 @@ namespace MVCMovie.Controllers
                 modifiedReleaseDate = DateTime.Today;
             }
 
+            #region snippet_TryValidateModel
             var movie = new Movie
             {
                 Title = title,
@@ -49,9 +51,7 @@ namespace MVCMovie.Controllers
                 Preorder = preorder,
             };
 
-            #region snippet_TryValidateModel
             TryValidateModel(movie);
-            #endregion
 
             if (ModelState.IsValid)
             {
@@ -62,6 +62,7 @@ namespace MVCMovie.Controllers
             }
 
             return View(movie);
+            #endregion
         }
     }
 }

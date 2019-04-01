@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using MVCMovie.Models;
+using ValidationSample.Models;
+using ValidationSample.Data;
 
-namespace MVCMovie.Controllers
+namespace ValidationSample.Controllers
 {
     public class UsersController : Controller
     {

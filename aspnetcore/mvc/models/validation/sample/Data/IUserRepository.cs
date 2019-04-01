@@ -1,4 +1,4 @@
-﻿namespace MVCMovie.Controllers
+﻿namespace ValidationSample.Data
 {
     public interface IUserRepository
     {

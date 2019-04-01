@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using MVCMovie.Models;
+using ValidationSample.Models;
 
-namespace MVCMovie.Controllers
+namespace ValidationSample.Data
 {
-    public class MVCMovieContext
+    public class MovieContext
     {
         public IList<Movie> Movies { get; } = new List<Movie>();
 
