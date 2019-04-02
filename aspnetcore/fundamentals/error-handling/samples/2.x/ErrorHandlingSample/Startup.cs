@@ -1,10 +1,10 @@
-﻿// Set the preprocessor directive to enable either of the following scenarios:
+﻿// Set the preprocessor directive to enable one of the following scenarios:
 //
 // StatusCodePages - Status code pages with UseStatusCodePages and a lambda.
-//
 // StatusCodePagesWithRedirect - Executes a redirect to an endpoint for status code pages.
+// StatusCodePagesWithReExecute - Executes an endpoint for status code pages without redirecting.
 //
-#define StatusCodePagesWithReExecute  // or StatusCodePagesWithRedirect or StatusCodePagesWithReExecute
+#define StatusCodePages  // or StatusCodePagesWithRedirect or StatusCodePagesWithReExecute
 
 // Set the preprocessor directive to enable either of the following scenarios:
 //
@@ -129,29 +129,30 @@ namespace ErrorHandlingSample
 
                     if (path.Length > 1)
                     {
-                        builder.AppendLine("Status Code: " + 
+                        builder.AppendLine("Status Code: " +
                             HtmlEncoder.Default.Encode(path.Substring(1)) + "<br>");
                     }
 
-#if StatusCodePagesWithReExecute
-                    #region snippet_StatusCodePagesWithReExecuteGetURL
-                    var feature = context.Features.Get<IStatusCodeReExecuteFeature>();
-                    var originalURL = feature?.OriginalPathBase
-                        + feature?.OriginalPath 
-                        + feature?.OriginalQueryString;
-                    #endregion
-#endif
                     var referrer = context.Request.Headers["referer"];
 
                     if (!string.IsNullOrEmpty(referrer))
                     {
-                        builder.AppendLine("Return to <a href=\"" + 
+                        builder.AppendLine("Return to <a href=\"" +
                             HtmlEncoder.Default.Encode(referrer) + "\">" +
                             WebUtility.HtmlEncode(referrer) + "</a><br>");
                     }
+
 #if StatusCodePagesWithReExecute
-                    builder.AppendLine("Original URL: " +
-                        WebUtility.HtmlEncode(originalURL) + "<br>");
+                    var feature = context.Features.Get<IStatusCodeReExecuteFeature>();
+                    if (feature != null)
+                    {
+                        builder.AppendLine("OriginalPathBase: "
+                            + WebUtility.HtmlEncode(feature.OriginalPathBase) + "<br>");
+                        builder.AppendLine("OriginalPath: "
+                            + WebUtility.HtmlEncode(feature.OriginalPath) + "<br>");
+                        builder.AppendLine("OriginalQueryString: "
+                            + WebUtility.HtmlEncode(feature.OriginalQueryString) + "<br>");
+                    }
 #endif
 
                     builder.AppendLine("</body></html>");
