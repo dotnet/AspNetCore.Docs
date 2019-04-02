@@ -39,7 +39,7 @@ namespace ErrorHandlingSample
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (false)
+            if (env.IsDevelopment())
             {
                 #region snippet_UseDeveloperExceptionPage
                 app.UseDeveloperExceptionPage();

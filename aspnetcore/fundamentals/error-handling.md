@@ -168,10 +168,10 @@ Templates may include a placeholder (`{0}`) for the status code. The template mu
 The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
 
 ```csharp
-var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
-var originalPathBase = feature?.OriginalPathBase;
-var originalPath = feature?.OriginalPath;
-var originalQueryString = feature?.OriginalQueryString;
+var statusCodeReExecuteFeature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+var originalPathBase = statusCodeReExecuteFeature?.OriginalPathBase;
+var originalPath = statusCodeReExecuteFeature?.OriginalPath;
+var originalQueryString = statusCodeReExecuteFeature?.OriginalQueryString;
 ```
 
 ### Disable status code pages
