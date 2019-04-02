@@ -169,9 +169,9 @@ The endpoint that processes the error can get the original URL that generated th
 
 ```csharp
 var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
-var originalURL = feature?.OriginalPathBase
-    + feature?.OriginalPath 
-    + feature?.OriginalQueryString;
+var originalPathBase = feature?.OriginalPathBase;
+var originalPath = feature?.OriginalPath;
+var originalQueryString = feature?.OriginalQueryString;
 ```
 
 ### Disable status code pages
