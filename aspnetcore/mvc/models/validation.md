@@ -156,7 +156,6 @@ If you need validation not provided by built-in attributes, you can:
 * [Create custom attributes](#custom-attributes).
 * [Implement IValidatableObject](#ivalidatableobject).
 
-
 ## Custom attributes
 
 For scenarios that the built-in validation attributes don't handle, you can create custom validation attributes. Create a class that inherits from <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>, and override the <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*> method.
