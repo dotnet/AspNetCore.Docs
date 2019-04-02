@@ -49,12 +49,15 @@ namespace RPcache.Pages
         }
         #endregion
 
+
         public IActionResult OnPost()
         {
+            #region snippet3
             var cacheCount = _cache.Count;
             _cache.Compact(60);
             _cache.Remove(MyKey);
             cacheCount = _cache.Count;
+            #endregion
             return Page();
         }
     }

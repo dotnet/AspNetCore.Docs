@@ -19,7 +19,6 @@ namespace RPcache
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddSingleton<MyMemoryCache>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

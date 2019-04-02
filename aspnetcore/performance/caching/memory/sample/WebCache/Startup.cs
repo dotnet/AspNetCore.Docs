@@ -8,7 +8,7 @@ public class Startup
     {
         services.AddMemoryCache();
 
-        services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
     }
 
     public void Configure(IApplicationBuilder app)

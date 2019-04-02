@@ -126,7 +126,9 @@ For example:
 If <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit> is not set, the cache grows without bound. The ASP.NET Core runtime does not trim the cache when sytem memory is low. Apps much be architected to:
 
 * Limit cache growth.
-* Call <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Compact*> when available memory is limited.
+* Call <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Compact*> or <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Remove*> when available memory is limited:
+
+[!code-csharp[](memory/sample/RPcache/Pages/TestCache.cshtml.cs?name=snippet3)]
 
 The following code creates a unitless fixed size [MemoryCache](/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=aspnetcore-2.1) accessible by [dependency injection](xref:fundamentals/dependency-injection):
 
