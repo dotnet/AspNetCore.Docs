@@ -14,6 +14,7 @@ By [John Luo](https://github.com/juntaoluo)
 [gRPC](https://grpc.io/docs/guides/) is a language agnostic, high-performance Remote Procedure Call (RPC) framework. For more on gRPC fundamentals, see the [gRPC documentation page](https://grpc.io/docs/).
 
 The main benefits of gRPC are:
+
 * Modern high-performance lightweight RPC framework.
 * Contract-first API development, using Protocol Buffers by default, allowing for language agnostic implementations.
 * Tooling available for many languages to generate strongly-typed servers and clients.
@@ -21,6 +22,7 @@ The main benefits of gRPC are:
 * Reduced network usage with Protobuf binary serialization.
 
 These benefits make gRPC ideal for:
+
 * Lightweight microservices where efficiency is critical.
 * Polyglot systems where multiple languages are required for development.
 * Point-to-point real-time services that need to handle streaming requests or responses.

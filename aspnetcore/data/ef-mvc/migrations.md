@@ -16,6 +16,7 @@ In this tutorial, you start using the EF Core migrations feature for managing da
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Learn about migrations
 > * Change the connection string
 > * Create an initial migration
@@ -170,6 +171,7 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Learned about migrations
 > * Learned about NuGet migration packages
 > * Changed the connection string

@@ -17,10 +17,12 @@ Controllers, actions, and action results are a fundamental part of how developer
 A controller is used to define and group a set of actions. An action (or *action method*) is a method on a controller which handles requests. Controllers logically group similar actions together. This aggregation of actions allows common sets of rules, such as routing, caching, and authorization, to be applied collectively. Requests are mapped to actions through [routing](xref:mvc/controllers/routing).
 
 By convention, controller classes:
+
 * Reside in the project's root-level *Controllers* folder
 * Inherit from `Microsoft.AspNetCore.Mvc.Controller`
 
 A controller is an instantiable class in which at least one of the following conditions is true:
+
 * The class name is suffixed with "Controller"
 * The class inherits from a class whose name is suffixed with "Controller"
 * The class is decorated with the `[Controller]` attribute
@@ -92,6 +94,7 @@ Applications typically share parts of their workflow. Examples include an app th
 Most filter attributes, such as `[Authorize]`, can be applied at the controller or action level depending upon the desired level of granularity.
 
 Error handling and response caching are often cross-cutting concerns:
+
 * [Handle errors](xref:mvc/controllers/filters#exception-filters)
 * [Response Caching](xref:performance/caching/response)
 

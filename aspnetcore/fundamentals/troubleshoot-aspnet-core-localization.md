@@ -33,55 +33,56 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Resource file naming issues
 
-ASP.NET Core has predefined rules and guidelines for localization resources file naming, which are described in detail [here](xref:fundamentals/localization?view=aspnetcore-2.2#resource-file-naming).
+ASP.NET Core has predefined rules and guidelines for localization resources file naming, which are described in detail in <xref:fundamentals/localization#resource-file-naming>.
 
 ## Missing resources
 
 Common causes of resources not being found include:
 
-- Resource names are misspelled in either the `resx` file or the localizer request.
-- The resource is missing from the `resx` for some languages, but exists in others.
-- If you're still having trouble, check the localization log messages (which are at `Debug` log level) for more details about the missing resources.
+* Resource names are misspelled in either the `resx` file or the localizer request.
+* The resource is missing from the `resx` for some languages, but exists in others.
+* If you're still having trouble, check the localization log messages (which are at `Debug` log level) for more details about the missing resources.
 
 _**Hint:** When using `CookieRequestCultureProvider`, verify single quotes are not used with the cultures inside the localization cookie value. For example, `c='en-UK'|uic='en-US'` is an invalid cookie value, while `c=en-UK|uic=en-US` is a valid._
 
 ## Resources & Class Libraries issues
 
-ASP.NET Core by default provides a way to allow the class libraries to find their resource files via [ResourceLocationAttribute](/dotnet/api/microsoft.extensions.localization.resourcelocationattribute?view=aspnetcore-2.1).
+ASP.NET Core by default provides a way to allow the class libraries to find their resource files via [ResourceLocationAttribute](/dotnet/api/microsoft.extensions.localization.resourcelocationattribute).
 
 Common issues with class libraries include:
-- Missing the `ResourceLocationAttribute` in a class library will prevent `ResourceManagerStringLocalizerFactory` from discovering the resources.
-- Resource file naming. For more information, see [Resource file naming issues](#resource-file-naming-issues) section.
-- Changing the root namespace of the class library. For more information, see [Root Namespace issues](#root-namespace-issues) section.
+
+* Missing the `ResourceLocationAttribute` in a class library will prevent `ResourceManagerStringLocalizerFactory` from discovering the resources.
+* Resource file naming. For more information, see [Resource file naming issues](#resource-file-naming-issues) section.
+* Changing the root namespace of the class library. For more information, see [Root Namespace issues](#root-namespace-issues) section.
 
 ## CustomRequestCultureProvider doesn't work as expected
 
 The `RequestLocalizationOptions` class has three default providers:
 
 1. `QueryStringRequestCultureProvider`
-2. `CookieRequestCultureProvider`
-3. `AcceptLanguageHeaderRequestCultureProvider`
+1. `CookieRequestCultureProvider`
+1. `AcceptLanguageHeaderRequestCultureProvider`
 
-The [CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.customrequestcultureprovider?view=aspnetcore-2.1) allows you to customize how the localization culture is provided in your app. The `CustomRequestCultureProvider` is used when the default providers don't meet your requirements.
+The [CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.customrequestcultureprovider) allows you to customize how the localization culture is provided in your app. The `CustomRequestCultureProvider` is used when the default providers don't meet your requirements.
 
-- A common reason custom provider don't work properly is that it isn't the first provider in the `RequestCultureProviders` list. To resolve this issue:
+A common reason custom provider don't work properly is that it isn't the first provider in the `RequestCultureProviders` list. To resolve this issue:
 
-- Insert the custom provider at the position 0 in the `RequestCultureProviders` list as the following:
+* Insert the custom provider at the position 0 in the `RequestCultureProviders` list as the following:
 
-```csharp
-options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
-    {
-        // My custom request culture logic
-        return new ProviderCultureResult("en");
-    }));
-```
+  ```csharp
+  options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
+      {
+          // My custom request culture logic
+          return new ProviderCultureResult("en");
+      }));
+  ```
 
-- Use `AddInitialRequestCultureProvider` extension method to set the custom provider as initial provider.
+* Use `AddInitialRequestCultureProvider` extension method to set the custom provider as initial provider.
 
 ## Root Namespace issues
 
-When the root namespace of an assembly is different than the assembly name, localization doesn't work by default. To avoid this issue use [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1), which is described in detail [here](xref:fundamentals/localization?view=aspnetcore-2.2#resource-file-naming)
+When the root namespace of an assembly is different than the assembly name, localization doesn't work by default. To avoid this issue, use [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute), which is described in <xref:fundamentals/localization#resource-file-naming>.
 
 ## Resources & Build Action
 
-If you use resource files for localization, it's important that they have an appropriate build action. They should be **Embedded Resource**, otherwise the `ResourceStringLocalizer` is not able to find these resources.
+If you use resource files for localization, it's important that they have an appropriate build action. Their build action must be **Embedded Resource**; otherwise, the `ResourceStringLocalizer` isn't able to find these resources.

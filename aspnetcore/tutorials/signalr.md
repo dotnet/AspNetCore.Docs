@@ -15,6 +15,7 @@ uid: tutorials/signalr
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
 > [!div class="checklist"]
+>
 > * Create a web project.
 > * Add the SignalR client library.
 > * Create a SignalR hub.
@@ -231,6 +232,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
+>
 > * Create a web app project.
 > * Add the SignalR client library.
 > * Create a SignalR hub.

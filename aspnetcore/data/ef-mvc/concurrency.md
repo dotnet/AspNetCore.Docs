@@ -22,6 +22,7 @@ You'll create web pages that work with the Department entity and handle concurre
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Learn about concurrency conflicts
 > * Add a tracking property
 > * Create Departments controller and views
@@ -294,6 +295,7 @@ Replace the code in *Views/Departments/Create.cshtml* to add a Select option to 
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Learned about concurrency conflicts
 > * Added a tracking property
 > * Created Departments controller and views

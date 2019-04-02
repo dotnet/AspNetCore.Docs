@@ -22,6 +22,7 @@ The following illustrations show some of the pages that you'll work with.
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Customize Courses pages
 > * Add Instructors Edit page
 > * Add courses to Edit page
@@ -303,6 +304,7 @@ As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly im
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Customized Courses pages
 > * Added Instructors Edit page
 > * Added courses to Edit page
