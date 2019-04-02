@@ -111,6 +111,7 @@ Select one of the two options below, and make the necessary changes in *Startup.
 ### JWT Bearer Authentication
 
 Make the following changes in *Startup.cs*:
+
 - Replace the `UseJwtBearerAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -159,6 +160,7 @@ Make the following changes in *Startup.cs*:
 ### Facebook authentication
 
 Make the following changes in *Startup.cs*:
+
 - Replace the `UseFacebookAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -179,6 +181,7 @@ Make the following changes in *Startup.cs*:
 ### Google authentication
 
 Make the following changes in *Startup.cs*:
+
 - Replace the `UseGoogleAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -199,6 +202,7 @@ Make the following changes in *Startup.cs*:
 ### Microsoft Account authentication
 
 Make the following changes in *Startup.cs*:
+
 - Replace the `UseMicrosoftAccountAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -219,6 +223,7 @@ Make the following changes in *Startup.cs*:
 ### Twitter authentication
 
 Make the following changes in *Startup.cs*:
+
 - Replace the `UseTwitterAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -259,6 +264,7 @@ services.AddAuthentication(options =>
 ```
 
 Define a default scheme in 2.0 if one of the following conditions is true:
+
 - You want the user to be automatically signed in
 - You use the `[Authorize]` attribute or authorization policies without specifying schemes
 
@@ -283,6 +289,7 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 ## Windows Authentication (HTTP.sys / IISIntegration)
 
 There are two variations of Windows authentication:
+
 1. The host only allows authenticated users
 2. The host allows both anonymous and authenticated users
 

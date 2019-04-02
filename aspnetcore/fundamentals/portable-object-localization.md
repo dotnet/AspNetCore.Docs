@@ -19,6 +19,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 ## What is a PO file?
 
 PO files are distributed as text files containing the translated strings for a given language. Some advantages of using PO files instead *.resx* files include:
+
 - PO files support pluralization; *.resx* files don't support pluralization.
 - PO files aren't compiled like *.resx* files. As such, specialized tooling and build steps aren't required.
 - PO files work well with collaborative online editing tools.

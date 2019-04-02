@@ -50,6 +50,7 @@ _**Hint:** When using `CookieRequestCultureProvider`, verify single quotes are n
 ASP.NET Core by default provides a way to allow the class libraries to find their resource files via [ResourceLocationAttribute](/dotnet/api/microsoft.extensions.localization.resourcelocationattribute?view=aspnetcore-2.1).
 
 Common issues with class libraries include:
+
 - Missing the `ResourceLocationAttribute` in a class library will prevent `ResourceManagerStringLocalizerFactory` from discovering the resources.
 - Resource file naming. For more information, see [Resource file naming issues](#resource-file-naming-issues) section.
 - Changing the root namespace of the class library. For more information, see [Root Namespace issues](#root-namespace-issues) section.
