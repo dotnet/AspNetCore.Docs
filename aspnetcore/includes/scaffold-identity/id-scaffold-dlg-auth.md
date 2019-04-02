@@ -5,11 +5,7 @@ Run the Identity scaffolder:
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
 * In the **ADD Identity** dialog, select the options you want.
-  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing *\_Layout.cshtml* file is selected, it is **not** overwritten.
-
-    For example
-      `~/Pages/Shared/_Layout.cshtml` for Razor Pages
-      `~/Views/Shared/_Layout.cshtml` for MVC projects
+  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing *\_Layout.cshtml* file is selected, it is **not** overwritten. For example, `~/Pages/Shared/_Layout.cshtml` for Razor Pages, and `~/Views/Shared/_Layout.cshtml` for MVC projects.
 * To use your existing data context, select at least one file to override. You must select at least one file to add your data context.
   * Select your data context class.
   * Select **ADD**.
