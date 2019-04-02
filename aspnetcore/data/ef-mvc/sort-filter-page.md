@@ -19,6 +19,7 @@ The following illustration shows what the page will look like when you're done. 
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Add column sort links
 > * Add a Search box
 > * Add paging to Students Index
@@ -254,6 +255,7 @@ Run the app and go to the About page. The count of students for each enrollment 
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Added column sort links
 > * Added a Search box
 > * Added paging to Students Index

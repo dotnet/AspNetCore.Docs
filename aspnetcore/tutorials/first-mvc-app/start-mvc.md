@@ -17,6 +17,7 @@ This tutorial teaches the basics of building an ASP.NET Core MVC web app.
 The app manages a database of movie titles. You learn how to:
 
 > [!div class="checklist"]
+>
 > * Create a web app.
 > * Add and scaffold a model.
 > * Work with a database.

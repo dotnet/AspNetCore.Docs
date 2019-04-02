@@ -19,6 +19,7 @@ In the previous tutorial, you created an MVC application that stores and display
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Customize the Details page
 > * Update the Create page
 > * Update the Edit page
@@ -295,6 +296,7 @@ For more information, see [Tracking vs. No-Tracking](/ef/core/querying/tracking)
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Customized the Details page
 > * Updated the Create page
 > * Updated the Edit page

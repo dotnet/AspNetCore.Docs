@@ -20,6 +20,7 @@ When you're finished, the entity classes will make up the completed data model t
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Customize the Data model
 > * Make changes to Student entity
 > * Create Instructor entity
@@ -511,6 +512,7 @@ Right-click the **CourseAssignment** table and select **View Data** to verify th
 In this tutorial, you:
 
 > [!div class="checklist"]
+>
 > * Customized the Data model
 > * Made changes to Student entity
 > * Created Instructor entity

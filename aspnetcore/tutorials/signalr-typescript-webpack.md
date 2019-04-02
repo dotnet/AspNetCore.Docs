@@ -16,6 +16,7 @@ By [Sébastien Sougnez](https://twitter.com/ssougnez) and [Scott Addie](https://
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
+>
 > * Scaffold a starter ASP.NET Core SignalR app
 > * Configure the SignalR TypeScript client
 > * Configure a build pipeline using Webpack
