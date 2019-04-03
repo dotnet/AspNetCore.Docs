@@ -25,8 +25,8 @@ To create your first Blazor project in Visual Studio:
 1. Install the latest [.NET Core 3.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
 1. Enable Visual Studio to use preview SDKs:
    1. Open **Tools** > **Options** in the menu bar.
-   1. Open the **.NET Core** tab.
-   1. Check the box for **Use previews of the .NET Core SDK**.
+   1. Open the **Projects and Solutions** node. Open the **.NET Core** tab.
+   1. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
 1. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
 1. Make the Blazor templates available for use with the .NET Core CLI by running the following command in a command shell:
 
