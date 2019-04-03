@@ -16,7 +16,6 @@ This tutorial creates a web API that performs Create, Read, Update, and Delete (
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
->
 > * Configure MongoDB
 > * Create a MongoDB database
 > * Define a MongoDB collection and schema

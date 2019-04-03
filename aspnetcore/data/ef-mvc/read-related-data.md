@@ -21,7 +21,6 @@ The following illustrations show the pages that you'll work with.
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Learn how to load related data
 > * Create a Courses page
 > * Create an Instructors page
@@ -248,7 +247,6 @@ Run the app, go to the Instructors Index page now and you'll see no difference i
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Learned how to load related data
 > * Created a Courses page
 > * Created an Instructors page

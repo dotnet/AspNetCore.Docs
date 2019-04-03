@@ -14,7 +14,6 @@ This tutorial shows how to use the .NET Core command-line interface to create an
 You'll learn how to:
 
 > [!div class="checklist"]
->
 > * Create a web app project.
 > * Enable local HTTPS.
 > * Run the app.
@@ -96,7 +95,6 @@ Browse to [https://localhost:5001](https://localhost:5001), and verify the chang
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
->
 > * Create a web app project.
 > * Enable local HTTPS.
 > * Run the project.
