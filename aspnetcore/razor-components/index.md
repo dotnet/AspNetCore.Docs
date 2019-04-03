@@ -1,10 +1,10 @@
 ---
-title: Introduction to Razor Components
+title: Introduction to Razor Components in ASP.NET Core 3.0
 author: guardrex
 description: Explore ASP.NET Core Razor Components, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
-ms.custom: mvc
+ms.custom: seoapril2019
 ms.date: 03/27/2019
 uid: razor-components/index
 ---
