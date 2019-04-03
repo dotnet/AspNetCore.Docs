@@ -196,7 +196,7 @@ In addition to strongly typed views, views have access to a *weakly typed* (also
 | View and a [layout view](xref:mvc/views/layout)   | Setting the **\<title>** element content in the layout view from a view file.  |
 | [Partial view](xref:mvc/views/partial) and a view | A widget that displays data based on the webpage that the user requested.      |
 
-This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection.
+This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection. Note: keys are case-insensitive for both `ViewData` and `ViewBag`
 
 `ViewData` and `ViewBag` are dynamically resolved at runtime. Since they don't offer compile-time type checking, both are generally more error-prone than using a viewmodel. For that reason, some developers prefer to minimally or never use `ViewData` and `ViewBag`.
 
