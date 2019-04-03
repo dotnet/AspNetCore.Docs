@@ -20,7 +20,6 @@ Since web APIs have no user interface, they're unable to redirect the user to a 
 In this tutorial, learn how to:
 
 > [!div class="checklist"]
->
 > * Create an Azure Active Directory B2C tenant.
 > * Register a Web API in Azure AD B2C.
 > * Use Visual Studio to create a Web API configured to use the Azure AD B2C tenant for authentication.
@@ -197,7 +196,6 @@ Select the **Send** button to send the request again. This time, the response st
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
->
 > * Create an Azure Active Directory B2C tenant.
 > * Register a Web API in Azure AD B2C.
 > * Use Visual Studio to create a Web API configured to use the Azure AD B2C tenant for authentication.

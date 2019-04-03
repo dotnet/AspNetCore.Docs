@@ -18,7 +18,6 @@ In object-oriented programming, you can use inheritance to facilitate code reuse
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Map inheritance to database
 > * Create the Person class
 > * Update Instructor and Student
@@ -157,7 +156,6 @@ For more information about inheritance in Entity Framework Core, see [Inheritanc
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Mapped inheritance to database
 > * Created the Person class
 > * Updated Instructor and Student

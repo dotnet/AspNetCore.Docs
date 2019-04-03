@@ -20,7 +20,6 @@ The sample application is a web site for a fictional Contoso University. It incl
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Create an ASP.NET Core MVC web app
 > * Set up the site style
 > * Learn about EF Core NuGet packages
@@ -358,7 +357,6 @@ For more information about asynchronous programming in .NET, see [Async Overview
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Created ASP.NET Core MVC web app
 > * Set up the site style
 > * Learned about EF Core NuGet packages
