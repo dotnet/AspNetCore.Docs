@@ -59,6 +59,8 @@ Request the `IMemoryCache` instance in the constructor:
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ctor)]
 
+`IMemoryCache` has a *Singleton* lifetime.
+
 ::: moniker range="< aspnetcore-2.0"
 
 `IMemoryCache` requires NuGet package [Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/).
