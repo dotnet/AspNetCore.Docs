@@ -152,24 +152,18 @@ dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
 
 ## Create a user account
 
-Create a user account for the service from an administrative PowerShell 6 command shell.
-
-Execute the [Read-Host](/powershell/module/Microsoft.PowerShell.Utility/Read-Host) cmdlet to obtain a password and store it in `$Password`. Follow the guidance on creating a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
+Create a user account for the service using the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet from an administrative PowerShell 6 command shell:
 
 ```powershell
-$Password = Read-Host -AsSecureString
+New-LocalUser -Name {NAME}
 ```
 
-Use `$Password` to create a user account for the service using the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet:
-
-```powershell
-New-LocalUser -Name {NAME} -Password $Password
-```
+Provide a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements) when prompted.
 
 For the sample app, create a user account with the name `ServiceUser`.
 
 ```powershell
-New-LocalUser -Name ServiceUser -Password $Password
+New-LocalUser -Name ServiceUser
 ```
 
 Unless the `-AccountExpires` parameter is supplied to the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet with an expiration <xref:System.DateTime>, the account doesn't expire.
