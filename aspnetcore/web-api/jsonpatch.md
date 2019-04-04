@@ -205,7 +205,7 @@ The following sample patch document has no effect if the initial value of `Custo
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
 
-To try out the sample app, run the project, and then send HTTP requests with the following settings:
+To test the sample, run the app and send HTTP requests with the following settings:
 
 * URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`
 * HTTP method: `PATCH`
