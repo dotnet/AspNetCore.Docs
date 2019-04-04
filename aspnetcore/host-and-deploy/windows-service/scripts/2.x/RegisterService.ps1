@@ -23,7 +23,7 @@ param(
 )
 
 $acl = Get-Acl $Path
-$aclRuleArgs = $cred.UserName, "Read,Write,ReadAndExecute", "ContainerInherit, ObjectInherit", "None", "Allow"
+$aclRuleArgs = $cred.UserName, "Read, Write, ReadAndExecute", "ContainerInherit, ObjectInherit", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $aclRuleArgs
 $acl.SetAccessRule($accessRule)
 $acl | Set-Acl $Path
