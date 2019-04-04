@@ -19,7 +19,14 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 ## Prerequisites
 
 * [PowerShell 6.2 or later](https://github.com/PowerShell/PowerShell)
-* Windows 10 October 2018 Update (version 1809) or later
+
+> [!NOTE]
+> For Windows OS earlier than the Windows 10 October 2018 Update (version 1809/build 10.0.17763), the [Microsoft.PowerShell.LocalAccounts](/powershell/module/microsoft.powershell.localaccounts) module must be imported with the [WindowsCompatibility module](https://github.com/PowerShell/WindowsCompatibility) to gain access to the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet used in the [Create a user account](#create-a-user-account) section:
+>
+> ```powershell
+> Install-Module WindowsCompatibility -Scope CurrentUser
+> Import-WinModule Microsoft.PowerShell.LocalAccounts
+> ```
 
 ## Deployment type
 
