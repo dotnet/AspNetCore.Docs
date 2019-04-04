@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/08/2019
+ms.date: 04/04/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -14,11 +14,11 @@ By [Luke Latham](https://github.com/guardrex) and [Tom Dykstra](https://github.c
 
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after reboots.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
-* [PowerShell 6](https://github.com/PowerShell/PowerShell)
+* [PowerShell 6.2 or later](https://github.com/PowerShell/PowerShell)
 
 ## Deployment type
 
@@ -123,7 +123,7 @@ Make the following changes in `Program.Main`:
 
 Publish the app using [dotnet publish](/dotnet/articles/core/tools/dotnet-publish), a [Visual Studio publish profile](xref:host-and-deploy/visual-studio-publish-profiles), or Visual Studio Code. When using Visual Studio, select the **FolderProfile** and configure the **Target Location** before selecting the **Publish** button.
 
-To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command at a command prompt from the project folder with a Release configuration passed to the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option. Use the [-o|--output](/dotnet/core/tools/dotnet-publish#options) option with a path to publish to a folder outside of the app.
+To publish the sample app using command-line interface (CLI) tools, run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command in a Windows command shell from the project folder with a Release configuration passed to the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option. Use the [-o|--output](/dotnet/core/tools/dotnet-publish#options) option with a path to publish to a folder outside of the app.
 
 ### Publish a Framework-dependent Deployment (FDD)
 
@@ -145,36 +145,38 @@ dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
 
 ## Create a user account
 
-Create a user account for the service using the `net user` command from an administrative PowerShell 6 command shell:
+Create a user account for the service from an administrative PowerShell 6 command shell.
+
+Execute the [Read-Host](/powershell/module/Microsoft.PowerShell.Utility/Read-Host) cmdlet to obtain a password and store it in `$Password`. Follow the guidance on creating a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
 
 ```powershell
-net user {USER ACCOUNT} {PASSWORD} /add
+$Password = Read-Host -AsSecureString
 ```
 
-The default password expiration is six weeks.
-
-For the sample app, create a user account with the name `ServiceUser` and a password. In the following command, replace `{PASSWORD}` with a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements).
+Use `$Password` to create a user account for the service using the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet:
 
 ```powershell
-net user ServiceUser {PASSWORD} /add
+New-LocalUser -Name {NAME} -Password $Password
 ```
 
-If you need to add the user to a group, use the `net localgroup` command, where `{GROUP}` is the name of the group:
+For the sample app, create a user account with the name `ServiceUser`.
 
 ```powershell
-net localgroup {GROUP} {USER ACCOUNT} /add
+New-LocalUser -Name ServiceUser -Password $Password
 ```
 
-For more information, see [Service User Accounts](/windows/desktop/services/service-user-accounts).
+Unless the `-AccountExpires` parameter is supplied to the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet with an expiration <xref:System.DateTime>, the account doesn't expire.
+
+For more information, see [Microsoft.PowerShell.LocalAccounts](/powershell/module/microsoft.powershell.localaccounts/) and [Service User Accounts](/windows/desktop/services/service-user-accounts).
 
 An alternative approach to managing users when using Active Directory is to use Managed Service Accounts. For more information, see [Group Managed Service Accounts Overview](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
 
 ## Set permission: Log on as a service
 
-Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command:
+Grant write/read/execute access to the app's folder using the [icacls](/windows-server/administration/windows-commands/icacls) command an administrative PowerShell 6 command shell.
 
 ```powershell
-icacls "{PATH}" /grant {USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS} /t
+icacls "{PATH}" /grant "{USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS}" /t
 ```
 
 * `{PATH}` &ndash; Path to the app's folder.
@@ -189,17 +191,17 @@ icacls "{PATH}" /grant {USER ACCOUNT}:(OI)(CI){PERMISSION FLAGS} /t
   * Modify (`M`)
 * `/t` &ndash; Apply recursively to existing subordinate folders and files.
 
-For the sample app published to the *c:\\svc* folder and the `ServiceUser` account with write/read/execute permissions, use the following command:
+For the sample app published to the *c:\\svc* folder and the `ServiceUser` account with write/read/execute permissions, use the following command an administrative PowerShell 6 command shell.
 
 ```powershell
-icacls "c:\svc" /grant ServiceUser:(OI)(CI)WRX /t
+icacls "c:\svc" /grant "ServiceUser:(OI)(CI)WRX" /t
 ```
 
 For more information, see [icacls](/windows-server/administration/windows-commands/icacls).
 
 ## Create the service
 
-Use the [RegisterService.ps1](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/scripts) PowerShell script to register the service. From an administrative PowerShell 6 command prompt, execute the following command:
+Use the [RegisterService.ps1](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/scripts) PowerShell script to register the service. From an administrative PowerShell 6 command shell, execute the script with the following command:
 
 ```powershell
 .\RegisterService.ps1 
@@ -215,7 +217,7 @@ In the following example for the sample app:
 
 * The service is named **MyService**.
 * The published service resides in the *c:\\svc* folder. The app executable is named *SampleApp.exe*.
-* The service runs under the `ServiceUser` account. In the following example, the local machine name is `Desktop-PC`.
+* The service runs under the `ServiceUser` account. In the following example command, the local machine name is `Desktop-PC`. Replace `Desktop-PC` with the computer name or domain for your system.
 
 ```powershell
 .\RegisterService.ps1 
