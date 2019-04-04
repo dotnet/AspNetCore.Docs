@@ -3,16 +3,22 @@
 
 param(
     [Parameter(mandatory=$true)]
+    [string]
     $Name,
     [Parameter(mandatory=$true)]
+    [string]
     $DisplayName,
     [Parameter(mandatory=$true)]
+    [string]
     $Description,
     [Parameter(mandatory=$true)]
+    [string]
     $Path,
     [Parameter(mandatory=$true)]
+    [string]
     $Exe,
     [Parameter(mandatory=$true)]
+    [string]
     $User
 )
 
