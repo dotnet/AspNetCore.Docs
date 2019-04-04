@@ -12,20 +12,17 @@ param(
     [string]
     $Description,
     [Parameter(mandatory=$true)]
-    [string]
-    $Path,
-    [Parameter(mandatory=$true)]
-    [string]
+    [System.IO.FileInfo]
     $Exe,
     [Parameter(mandatory=$true)]
     [string]
     $User
 )
 
-$acl = Get-Acl $Path
+$acl = Get-Acl $($Exe.DirectoryName)
 $aclRuleArgs = $cred.UserName, "Read, Write, ReadAndExecute", "ContainerInherit, ObjectInherit", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $aclRuleArgs
 $acl.SetAccessRule($accessRule)
-$acl | Set-Acl $Path
+$acl | Set-Acl $($Exe.DirectoryName)
 
-New-Service -Name $Name -BinaryPathName "$Path\$Exe" -Credential $User -Description $Description -DisplayName $DisplayName -StartupType Automatic
+New-Service -Name $Name -BinaryPathName $($Exe.FullName) -Credential $User -Description $Description -DisplayName $DisplayName -StartupType Automatic

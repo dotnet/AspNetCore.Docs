@@ -19,13 +19,7 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 ## Prerequisites
 
 * [PowerShell 6.2 or later](https://github.com/PowerShell/PowerShell)
-
-> [!NOTE]
-> For Windows OS earlier than the Windows 10 April 2018 Update (version 1803/build 10.0.17134), the [Microsoft.PowerShell.LocalAccounts](/powershell/module/microsoft.powershell.localaccounts) module must be imported to gain access to the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet used in the [Create a user account](#create-a-user-account) section:
->
-> ```powershell
-> Import-Module Microsoft.PowerShell.LocalAccounts
-> ```
+* Windows 10 October 2018 Update (version 1809) or later
 
 ## Deployment type
 
@@ -209,8 +203,7 @@ Use the [RegisterService.ps1](https://github.com/aspnet/Docs/tree/master/aspnetc
     -Name {NAME} 
     -DisplayName "{DISPLAY NAME}" 
     -Description "{DESCRIPTION}" 
-    -Path "{PATH}" 
-    -Exe {ASSEMBLY}.exe 
+    -Exe "{PATH TO EXE}\{ASSEMBLY NAME}.exe" 
     -User {DOMAIN\USER}
 ```
 
@@ -225,8 +218,7 @@ In the following example for the sample app:
     -Name MyService 
     -DisplayName "My Cool Service" 
     -Description "This is the Sample App service." 
-    -Path "c:\svc" 
-    -Exe SampleApp.exe 
+    -Exe "c:\svc\SampleApp.exe" 
     -User Desktop-PC\ServiceUser
 ```
 
