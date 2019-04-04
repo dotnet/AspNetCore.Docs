@@ -252,7 +252,7 @@ Configure Swagger to use the generated XML file. For Linux or non-Windows operat
 
 ::: moniker-end
 
-In the preceding code, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) is used to build an XML file name matching that of the web API project. The [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory*) property is used to construct a path to the XML file.
+In the preceding code, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) is used to build an XML file name matching that of the web API project. The [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory*) property is used to construct a path to the XML file. Note that some Swagger features (e.g. schemata of input parameters or HTTP methods and response codes from the respective attributes) do work without the use of a XML documentation file but for most features, namely method summaries and the descriptions of parameters and response codes, the use of a XML file is mandatory.
 
 Adding triple-slash comments to an action enhances the Swagger UI by adding the description to the section header. Add a [\<summary>](/dotnet/csharp/programming-guide/xmldoc/summary) element above the `Delete` action:
 
