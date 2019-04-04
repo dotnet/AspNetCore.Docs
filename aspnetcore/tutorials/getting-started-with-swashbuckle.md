@@ -4,7 +4,7 @@ author: zuckerthoben
 description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/06/2019
+ms.date: 04/04/2019
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
@@ -232,7 +232,7 @@ namespace TodoApi
 }
 ```
 
-Configure Swagger to use the XML file that is generated if you tick the checkbox "XML documentation file" in the projects' build properties. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
+Configure Swagger to use the XML file that's generated when you select the **XML documentation file** check box in the project's build properties. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
 
 ::: moniker range=">= aspnetcore-2.1"
 
