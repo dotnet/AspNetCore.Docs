@@ -23,10 +23,6 @@ Both model binding and validation occur before the execution of a controller act
 
 [!code-csharp[](validation/sample_snapshot/Create.cshtml.cs?name=snippet&highlight=3-6)]
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 Web API controllers don't have to check `ModelState.IsValid` if they have the `[ApiController]` attribute. In that case, an automatic HTTP 400 response containing issue details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
 ::: moniker-end
