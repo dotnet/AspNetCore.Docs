@@ -35,7 +35,6 @@ Web API controllers don't have to check `ModelState.IsValid` if they have the `[
 
 ::: moniker-end
 
-
 ## Rerun validation
 
 Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call the `TryValidateModel` method, as shown here:
