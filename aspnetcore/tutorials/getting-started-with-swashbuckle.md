@@ -4,7 +4,7 @@ author: zuckerthoben
 description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/06/2019
+ms.date: 04/04/2019
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
@@ -252,7 +252,7 @@ Configure Swagger to use the generated XML file. For Linux or non-Windows operat
 
 ::: moniker-end
 
-In the preceding code, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) is used to build an XML file name matching that of the web API project. The [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory*) property is used to construct a path to the XML file.
+In the preceding code, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) is used to build an XML file name matching that of the web API project. The [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory*) property is used to construct a path to the XML file. Some Swagger features (for example, schemata of input parameters or HTTP methods and response codes from the respective attributes) work without the use of an XML documentation file. For most features, namely method summaries and the descriptions of parameters and response codes, the use of an XML file is mandatory.
 
 Adding triple-slash comments to an action enhances the Swagger UI by adding the description to the section header. Add a [\<summary>](/dotnet/csharp/programming-guide/xmldoc/summary) element above the `Delete` action:
 
