@@ -232,7 +232,7 @@ namespace TodoApi
 }
 ```
 
-Configure Swagger to use the XML file that's generated when you select the **XML documentation file** check box in the project's build properties. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
+Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
 
 ::: moniker range=">= aspnetcore-2.1"
 
