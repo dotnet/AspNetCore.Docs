@@ -61,7 +61,7 @@ To render a component from a page or view, use the `RenderComponentAsync<TCompon
 </div>
 ```
 
-Components rendered from pages and views aren't yet interactive in the Preview 3 release. For example, selecting a button doesn't trigger a method call. A future preview will address this limitation along with adding support for rendering components using the normal element and attribute syntax.
+Components rendered from pages and views aren't yet interactive in the Preview 3 release. For example, selecting a button doesn't trigger a method call. A future preview will address this limitation and add support for rendering components using the normal element and attribute syntax.
 
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
