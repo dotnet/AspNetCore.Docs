@@ -17,22 +17,6 @@ namespace BlazorSample.JsInteropClasses
             _jsRuntime = jsRuntime;
         }
 
-        public Task<string> Prompt(string text)
-        {
-            // showPrompt is implemented in wwwroot/exampleJsInterop.js
-            return _jsRuntime.InvokeAsync<string>(
-                "exampleJsFunctions.showPrompt",
-                text);
-        }
-
-        public Task<string> Display(string welcomeMessage)
-        {
-            // displayWelcome is implemented in wwwroot/exampleJsInterop.js
-            return _jsRuntime.InvokeAsync<string>(
-                "exampleJsFunctions.displayWelcome",
-                welcomeMessage);
-        }
-        
         public Task CallHelloHelperSayHello(string name)
         {
             // sayHello is implemented in wwwroot/exampleJsInterop.js

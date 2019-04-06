@@ -33,10 +33,9 @@ In this tutorial, you:
 ## Prerequisites
 
 * [.NET Core SDK 2.2](https://www.microsoft.com/net/download)
-* For Windows: [Visual Studio 2017 or 2019](https://visualstudio.microsoft.com/downloads/) with the following workloads:
-    * **ASP.NET and web development** workload
-    * **.NET Core cross-platform development** workload
-* For macOS: [Visual Studio for Mac](https://www.microsoft.com/net/download/macos) 
+* [Visual Studio 2017 or 2019](https://visualstudio.microsoft.com/downloads/) with the following workloads:
+  * **ASP.NET and web development** workload
+  * **.NET Core cross-platform development** workload
 
 ## Troubleshooting
 

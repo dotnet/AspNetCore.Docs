@@ -1,0 +1,15 @@
+[
+  {
+    "op": "add",
+    "path": "/customerName",
+    "value": "Barry"
+  },
+  {
+    "op": "add",
+    "path": "/orders/-",
+    "value": {
+      "orderName": "Order2",
+      "orderType": null
+    }
+  }
+]

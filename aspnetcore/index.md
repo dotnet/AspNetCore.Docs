@@ -4,7 +4,7 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/14/2019
+ms.date: 04/06/2019
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -44,9 +44,9 @@ ASP.NET Core integrates seamlessly with popular client-side frameworks and libra
 
 ## ASP.NET Core targeting .NET Framework
 
-ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is supported.
+ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targeting .NET Framework aren't cross-platform&mdash;they run on Windows only. Generally, ASP.NET Core 2.x is made up of [.NET Standard](/dotnet/standard/net-standard) libraries. Apps written with .NET Standard 2.0 run anywhere that .NET Standard 2.0 is implemented.
 
-ASP.NET Core 2.x is supported on .NET Framework versions compatible with .NET Standard 2.0:
+ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Standard 2.0:
 
 * .NET Framework 4.7.1 and later is strongly recommended.
 * .NET Framework 4.6.1 and later.

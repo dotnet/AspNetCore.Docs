@@ -1,0 +1,14 @@
+@inject IJSRuntime JSRuntime
+
+<input ref="username" />
+<button onclick="@SetFocus">Set focus on username</button>
+
+@functions {
+    ElementRef username;
+
+    public async void SetFocus()
+    {
+        await JSRuntime.InvokeAsync<object>(
+                "exampleJsFunctions.focusElement", username);
+    }
+}

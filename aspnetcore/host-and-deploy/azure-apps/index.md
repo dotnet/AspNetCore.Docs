@@ -5,7 +5,7 @@ description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2019
+ms.date: 03/30/2019
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -14,7 +14,7 @@ uid: host-and-deploy/azure-apps/index
 
 ## Useful resources
 
-The Azure [Web Apps Documentation](/azure/app-service/) is the home for Azure Apps documentation, tutorials, samples, how-to guides, and other resources. Two notable tutorials that pertain to hosting ASP.NET Core apps are:
+[App Service Documentation](/azure/app-service/) is the home for Azure Apps documentation, tutorials, samples, how-to guides, and other resources. Two notable tutorials that pertain to hosting ASP.NET Core apps are:
 
 [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet)  
 Use Visual Studio to create and deploy an ASP.NET Core web app to Azure App Service on Windows.
@@ -30,7 +30,7 @@ Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studi
 <xref:host-and-deploy/azure-apps/azure-continuous-deployment>  
 Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
 
-[Create your first pipeline with Azure Pipelines](/azure/devops/pipelines/get-started-yaml)  
+[Create your first pipeline](/azure/devops/pipelines/get-started-yaml)  
 Set up a CI build for an ASP.NET Core app, then create a continuous deployment release to Azure App Service.
 
 [Azure Web App sandbox](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
@@ -92,10 +92,10 @@ ASP.NET Core apps deployed to App Service automatically receive an App Service e
 
 For monitoring, logging, and troubleshooting information, see the following articles:
 
-[How to: Monitor Apps in Azure App Service](/azure/app-service/web-sites-monitor)  
+[Monitor apps in Azure App Service](/azure/app-service/web-sites-monitor)  
 Learn how to review quotas and metrics for apps and App Service plans.
 
-[Enable diagnostics logging for web apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)  
+[Enable diagnostics logging for apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)  
 Discover how to enable and access diagnostic logging for HTTP status codes, failed requests, and web server activity.
 
 <xref:fundamentals/error-handling>  
@@ -162,6 +162,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 > ```powershell
 > Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
 > ```
+>
 > The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]
@@ -220,7 +221,7 @@ The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the la
 
 ## Protocol settings (HTTPS)
 
-Secure protocol bindings allow you specify a certificate to use when responding to requests over HTTPS. Binding requires a valid private certificate (*.pfx*) issued for the specific hostname. For more information, see [Tutorial: Bind an existing custom SSL certificate to Azure Web Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
+Secure protocol bindings allow you specify a certificate to use when responding to requests over HTTPS. Binding requires a valid private certificate (*.pfx*) issued for the specific hostname. For more information, see [Tutorial: Bind an existing custom SSL certificate to Azure App Service](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
 ## Transform web.config
 
@@ -228,7 +229,7 @@ If you need to transform *web.config* on publish (for example, set environment v
 
 ## Additional resources
 
-* [Web Apps overview (5-minute overview video)](/azure/app-service/app-service-web-overview)
+* [App Service overview](/azure/app-service/app-service-web-overview)
 * [Azure App Service: The Best Place to Host your .NET Apps (55-minute overview video)](https://channel9.msdn.com/events/dotnetConf/2017/T222)
 * [Azure Friday: Azure App Service Diagnostic and Troubleshooting Experience (12-minute video)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 * [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)
@@ -239,4 +240,4 @@ Azure App Service on Windows Server uses [Internet Information Services (IIS)](h
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
-* [Microsoft TechNet Library: Windows Server](/windows-server/windows-server-versions)
+* [Windows Server - IT administrator content for current and previous releases](/windows-server/windows-server-versions)

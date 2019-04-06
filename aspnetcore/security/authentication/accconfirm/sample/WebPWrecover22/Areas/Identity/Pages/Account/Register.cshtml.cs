@@ -61,6 +61,7 @@ namespace WebPWrecover.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        #region snippet_Register
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -94,5 +95,6 @@ namespace WebPWrecover.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+        #endregion
     }
 }

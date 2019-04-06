@@ -236,6 +236,7 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
     * Uses the `BookService` class to perform CRUD operations.
     * Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
+    * The <xref:System.Web.Http.ApiController.CreatedAtRoute*> method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 1. Build and run the app.
 1. Navigate to `http://localhost:<port>/api/books` in your browser. The following JSON response is displayed:
 
@@ -262,5 +263,6 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
 For more information on building ASP.NET Core web APIs, see the following resources:
 
+* [Youtube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
