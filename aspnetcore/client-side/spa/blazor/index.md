@@ -48,7 +48,7 @@ Blazor supports core facilities required by most apps, including:
 * Templating
 * Cascading values
 
-To reduce the size of the downloaded app unused code stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/razor-components-blazor/configure-linker).
+To reduce the size of the downloaded app, unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/razor-components-blazor/configure-linker).
 
 Blazor is the client-side hosting model for Razor Components. Because Razor Components decouple a component's rendering logic from how UI updates are applied, there's flexibility in how Razor Components can be hosted. Use ASP.NET Core Razor Components to host Razor Components on the server in an ASP.NET Core app where UI updates are handled over a SignalR connection. For more information, see <xref:razor-components/index> and <xref:razor-components/hosting-models#server-side-hosting-model>. 
 
