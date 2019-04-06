@@ -5,7 +5,7 @@ description: Learn how to get started with Blazor by creating and modifying a Bl
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2019
+ms.date: 04/03/2019
 uid: spa/blazor/get-started
 ---
 # Get started with Blazor
@@ -22,16 +22,22 @@ Prerequisites:
 
 To create your first Blazor project in Visual Studio:
 
+1. Install the latest [.NET Core 3.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
+1. Enable Visual Studio to use preview SDKs:
+   1. Open **Tools** > **Options** in the menu bar.
+   1. Open the **Projects and Solutions** node. Open the **.NET Core** tab.
+   1. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
 1. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
 1. Make the Blazor templates available for use with the .NET Core CLI by running the following command in a command shell:
 
    ```console
    dotnet new -i Microsoft.AspNetCore.Blazor.Templates::0.9.0-preview3-19154-02
    ```
-
-1. Select **File** > **New Project** > **Web** > **ASP.NET Core Web Application**.
-1. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
-1. Choose the **Blazor** template and select **OK**.
+1. Create a new project.
+1. Select **ASP.NET Core Web Application**. Select **Next**.
+1. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+1. Select the **Blazor** template.
+1. Select **Create**.
 1. Press **F5** to run the app.
 
 Congratulations! You just ran your first Blazor app!
