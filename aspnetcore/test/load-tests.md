@@ -20,11 +20,11 @@ Load testing and stress testing are important to ensure a web app is performant 
 
 Under stress, can the app recover from failure and gracefully return to expected behavior? Under stress, the app is *not* run under normal conditions.
 
-Visual Studio 2019 will be the last version of Visual Studio with load test features. For customers requiring load testing tools, we recommend using alternate load testing tools such as Apache JMeter, Akamai CloudTest, Blazemeter. For more information, see the [Visual Studio 2019 Preview Release Notes](/visualstudio/releases/2019/release-notes-preview#test-tools).
+Visual Studio 2019 will be the last version of Visual Studio with load test features. For customers requiring load testing tools, we recommend using alternate load testing tools such as Apache JMeter, Akamai CloudTest, and BlazeMeter. For more information, see the [Visual Studio 2019 Preview Release Notes](/visualstudio/releases/2019/release-notes-preview#test-tools).
 
-The load testing service in Azure DevOps is ending in 2020. For more information see [Cloud-based load testing service end of life](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/).
+The load testing service in Azure DevOps is ending in 2020. For more information, see [Cloud-based load testing service end of life](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/).
 
-## Visual Studio Tools
+## Visual Studio tools
 
 Visual Studio allows users to create, develop, and debug web performance and load tests. An option is available to create tests by recording actions in web browser.
 
@@ -52,11 +52,11 @@ The service supports the following types of test format:
 
 [Azure portal allows setting up and running load testing of Web Apps,](/azure/devops/test/load-test/app-service-web-app-performance-test?view=vsts) directly from the Performance tab of the App Service in Azure portal.
 
-![Azure App Service in Azure Portal](./load-tests/_static/azure-appservice-perf-test.png)
+![Azure App Service in Azure portal](./load-tests/_static/azure-appservice-perf-test.png)
 
 The test can be a manual test with a specified URL, or a Visual Studio Web Test file, which can test multiple URLs.
 
-![New Performance Test page on Azure Portal](./load-tests/_static/azure-appservice-perf-test-config.png)
+![New Performance Test page on Azure portal](./load-tests/_static/azure-appservice-perf-test-config.png)
 
 At end of the test, reports are generated to show the performance characteristics of the app. Example statistics include:
 
@@ -64,18 +64,20 @@ At end of the test, reports are generated to show the performance characteristic
 * Max throughput: requests per second
 * Failure percentage
 
-## Third-party Tools
+## Third-party tools
 
 The following list contains third-party web performance tools with various feature sets:
 
-* [Apache JMeter](https://jmeter.apache.org/) : Full featured suite of load testing tools. Thread-bound: need one thread per user.
-* [ab - Apache HTTP server benchmarking tool](https://httpd.apache.org/docs/2.4/programs/ab.html)
-* [Gatling](https://gatling.io/) : Desktop tool with a GUI and test recorders. More performant than JMeter.
-* [Locust.io](https://locust.io/) : Not bounded by threads.
+* [Apache JMeter](https://jmeter.apache.org/): Full-featured suite of load testing tools. Thread-bound; need one thread per user.
+* [ApacheBench (ab)](https://httpd.apache.org/docs/2.4/programs/ab.html): Apache HTTP server benchmarking tool.
+* [Gatling](https://gatling.io/): Desktop tool with a GUI and test recorders. More performant than JMeter.
+* [Locust](https://locust.io/): Not bounded by threads.
+* [West Wind WebSurge](http://websurge.west-wind.com/)
+* [Netling](https://github.com/hallatore/Netling)
 
 <a name="add"></a>
 
-## Additional Resources
+## Additional resources
 
 [Load Test blog series](https://blogs.msdn.microsoft.com/charles_sterling/2015/06/01/load-test-series-part-i-creating-web-performance-tests-for-a-load-test/)
 by Charles Sterling. Dated but most of the topics are still relevant.
