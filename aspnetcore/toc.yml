@@ -566,6 +566,8 @@
           uid: tutorials/first-razor-components-app
         - name: Components
           uid: razor-components/components
+        - name: Forms and validation
+          uid: razor-components/forms-validation
         - name: Component libraries
           uid: razor-components/class-libraries
         - name: Layouts
@@ -598,6 +600,8 @@
               uid: tutorials/first-razor-components-app
             - name: Components
               uid: razor-components/components
+            - name: Forms and validation
+              uid: razor-components/forms-validation
             - name: Component libraries
               uid: razor-components/class-libraries
             - name: Layouts
