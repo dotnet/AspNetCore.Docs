@@ -22,7 +22,6 @@ At the end of the series you'll have an app that manages a database of movies.
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Create a Razor Pages web app.
 > * Run the app.
 > * Examine the project files.
@@ -168,7 +167,6 @@ Contains code that configures app behavior, such as whether it requires consent 
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Created a Razor Pages web app.
 > * Ran the app.
 > * Examined the project files.

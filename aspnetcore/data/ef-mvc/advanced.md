@@ -16,7 +16,6 @@ In the previous tutorial, you implemented table-per-hierarchy inheritance. This 
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Perform raw SQL queries
 > * Call a query to return entities
 > * Call a query to return other types
@@ -262,7 +261,6 @@ For information about other topics related to ASP.NET Core MVC, such as authenti
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Performed raw SQL queries
 > * Called a query to return entities
 > * Called a query to return other types

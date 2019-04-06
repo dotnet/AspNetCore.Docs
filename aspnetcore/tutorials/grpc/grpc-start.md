@@ -21,7 +21,6 @@ At the end, you'll have a gRPC service that echoes greetings.
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Create a gRPC service.
 > * Run the service.
 > * Examine the project files.
@@ -163,7 +162,6 @@ gRPC client GrpcGreeter.Client file:
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Created a gRPC service.
 > * Ran the service and a client to test the service.
 > * Examined the project files.

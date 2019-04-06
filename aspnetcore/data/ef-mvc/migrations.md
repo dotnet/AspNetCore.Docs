@@ -16,7 +16,6 @@ In this tutorial, you start using the EF Core migrations feature for managing da
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Learn about migrations
 > * Change the connection string
 > * Create an initial migration
@@ -50,6 +49,7 @@ This change sets up the project so that the first migration will create a new da
 > ```console
 > dotnet ef database drop
 > ```
+>
 > The following section explains how to run CLI commands.
 
 ## Create an initial migration
@@ -171,7 +171,6 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 In this tutorial, you:
 
 > [!div class="checklist"]
->
 > * Learned about migrations
 > * Learned about NuGet migration packages
 > * Changed the connection string

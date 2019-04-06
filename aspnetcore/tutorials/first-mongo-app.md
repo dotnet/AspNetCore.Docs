@@ -16,7 +16,6 @@ This tutorial creates a web API that performs Create, Read, Update, and Delete (
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
->
 > * Configure MongoDB
 > * Create a MongoDB database
 > * Define a MongoDB collection and schema
@@ -264,5 +263,6 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
 For more information on building ASP.NET Core web APIs, see the following resources:
 
+* [Youtube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>

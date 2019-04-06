@@ -162,6 +162,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 > ```powershell
 > Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
 > ```
+>
 > The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]

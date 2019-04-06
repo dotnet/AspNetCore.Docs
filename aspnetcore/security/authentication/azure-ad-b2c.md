@@ -18,7 +18,6 @@ By [Cam Soper](https://twitter.com/camsoper)
 In this tutorial, learn how to:
 
 > [!div class="checklist"]
->
 > * Create an Azure Active Directory B2C tenant
 > * Register an app in Azure AD B2C
 > * Use Visual Studio to create an ASP.NET Core web app configured to use the Azure AD B2C tenant for authentication
@@ -143,7 +142,6 @@ After successfully signing in, the browser redirects to the web app.
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
->
 > * Create an Azure Active Directory B2C tenant
 > * Register an app in Azure AD B2C
 > * Use Visual Studio to create an ASP.NET Core Web Application configured to use the Azure AD B2C tenant for authentication

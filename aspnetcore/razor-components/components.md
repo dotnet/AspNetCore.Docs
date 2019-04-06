@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/02/2019
+ms.date: 04/05/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -477,7 +477,7 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-com
 
 [!code-csharp[](common/samples/3.x/BlazorSample/Pages/BlazorRocksBase.cs)]
 
-The base class should derive from `BlazorComponent`.
+The base class should derive from `ComponentBase`.
 
 ## Razor support
 

@@ -33,7 +33,6 @@ Caution must be taken when providing users with the ability to upload files to a
 
 > [!WARNING]
 > Uploading malicious code to a system is frequently the first step to executing code that can:
->
 > * Completely takeover a system.
 > * Overload a system with the result that the system completely fails.
 > * Compromise user or system data.
