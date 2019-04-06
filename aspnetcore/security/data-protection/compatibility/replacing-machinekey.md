@@ -3,7 +3,7 @@ title: Replace the ASP.NET machineKey in ASP.NET Core
 author: rick-anderson
 description: Discover how to replace machineKey in ASP.NET to allow the use of a new and more secure data protection system.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 04/06/2019
 uid: security/data-protection/compatibility/replacing-machinekey
 ---
 # Replace the ASP.NET machineKey in ASP.NET Core
@@ -15,7 +15,7 @@ The implementation of the `<machineKey>` element in ASP.NET [is replaceable](htt
 ## Package installation
 
 > [!NOTE]
-> The new data protection system can only be installed into an existing ASP.NET application targeting .NET 4.5.1 or higher. Installation will fail if the application targets .NET 4.5 or lower.
+> The new data protection system can only be installed into an existing ASP.NET application targeting .NET 4.5.1 or later. Installation will fail if the application targets .NET 4.5 or lower.
 
 To install the new data protection system into an existing ASP.NET 4.5.1+ project, install the package Microsoft.AspNetCore.DataProtection.SystemWeb. This will instantiate the data protection system using the [default configuration](xref:security/data-protection/configuration/default-settings) settings.
 
