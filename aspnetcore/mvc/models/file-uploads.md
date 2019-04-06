@@ -4,7 +4,7 @@ author: ardalis
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 04/06/2019
 uid: mvc/models/file-uploads
 ---
 # File uploads in ASP.NET Core
@@ -24,12 +24,12 @@ To upload small files, you can use a multi-part HTML form or construct a POST re
     <div class="form-group">
         <div class="col-md-10">
             <p>Upload one or more files using this form:</p>
-            <input type="file" name="files" multiple />
+            <input type="file" name="files" multiple>
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-10">
-            <input type="submit" value="Upload" />
+            <input type="submit" value="Upload">
         </div>
     </div>
 </form>
