@@ -102,7 +102,7 @@ public class Starship
 }
 ```
 
-The following Starship Database form validates user input using the validation defined in the `Starship` model:
+The following form validates user input using the validation defined in the `Starship` model:
 
 ```cshtml
 @page "/FormsValidation"
@@ -165,7 +165,7 @@ The following Starship Database form validates user input using the validation d
 }
 ```
 
-The `<EditForm>` creates an `EditContext` as a [cascading value](xref:razor-components/components#cascading-values-and-parameters) that tracks metadata about the edit process, including what fields have been modified and the current validation messages. The `<EditForm>` also provides convenient events for valid and invalid submits (`OnValidSubmit`, `OnInvalidSubmit`). Alternatively, you can use `OnSubmit` directly if you want to trigger the validation and check field values yourself.
+The `<EditForm>` creates an `EditContext` as a [cascading value](xref:razor-components/components#cascading-values-and-parameters) that tracks metadata about the edit process, including what fields have been modified and the current validation messages. The `<EditForm>` also provides convenient events for valid and invalid submits (`OnValidSubmit`, `OnInvalidSubmit`). Alternatively, use `OnSubmit` to trigger the validation and check field values with custom validation code.
 
 The Data Annotations Validator component (`<DataAnnotationsValidator>`) attaches validation support using data annotations to the cascaded `EditContext`. Enabling support for validation using data annotations currently requires this explicit gesture, but we're considering making this the default behavior that you can then override. To use a different validation system than data annotations, replace the Data Annotations Validator with a custom implementation. The ASP.NET Core implementation is available for inspection in the reference source: [DataAnnotationsValidator](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/Forms/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/Forms/EditContextDataAnnotationsExtensions.cs). *The ASP.NET Core implementation is subject to rapid updates during the preview release period.*
 
