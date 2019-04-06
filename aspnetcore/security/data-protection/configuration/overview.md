@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/08/2019
+ms.date: 04/06/2019
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -148,7 +148,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## DisableAutomaticKeyGeneration
 
-You may have a scenario where you don't want an app to automatically roll keys (create new keys) as they approach expiration. One example of this might be apps set up in a primary/secondary relationship, where only the primary app is responsible for key management concerns and secondary apps simply have a read-only view of the key ring. The secondary apps can be configured to treat the key ring as read-only by configuring the system with [DisableAutomaticKeyGeneration](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.disableautomatickeygeneration):
+You may have a scenario where you don't want an app to automatically roll keys (create new keys) as they approach expiration. One example of this might be apps set up in a primary/secondary relationship, where only the primary app is responsible for key management concerns and secondary apps simply have a read-only view of the key ring. The secondary apps can be configured to treat the key ring as read-only by configuring the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration*>:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -160,15 +160,14 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Per-application isolation
 
-When the Data Protection system is provided by an ASP.NET Core host, it automatically isolates apps from one another, even if those apps are running under the same worker process account and are using the same master keying material. This is somewhat similar to the IsolateApps modifier from System.Web's **\<machineKey>** element.
+When the Data Protection system is provided by an ASP.NET Core host, it automatically isolates apps from one another, even if those apps are running under the same worker process account and are using the same master keying material. This is somewhat similar to the IsolateApps modifier from System.Web's `<machineKey>` element.
 
-The isolation mechanism works by considering each app on the local machine as a unique tenant, thus the [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector) rooted for any given app automatically includes the app ID as a discriminator. The app's unique ID comes from one of two places:
+The isolation mechanism works by considering each app on the local machine as a unique tenant, thus the <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> rooted for any given app automatically includes the app ID as a discriminator. The app's unique ID is the app's physical path:
 
-1. If the app is hosted in IIS, the unique identifier is the app's configuration path. If an app is deployed in a web farm environment, this value should be stable assuming that the IIS environments are configured similarly across all machines in the web farm.
+* For apps hosted in IIS, the unique ID is the IIS physical path of the app. If an app is deployed in a web farm environment, this value should be stable assuming that the IIS environments are configured similarly across all machines in the web farm.
+* For self-hosted apps (Kestrel), the unique ID is the physical path to the app on disk.
 
-2. If the app isn't hosted in IIS, the unique identifier is the physical path of the app.
-
-The unique identifier is designed to survive resets &mdash; both of the individual app and of the machine itself.
+The unique identifier is designed to survive resets&mdash;both of the individual app and of the machine itself.
 
 This isolation mechanism assumes that the apps are not malicious. A malicious app can always impact any other app running under the same worker process account. In a shared hosting environment where apps are mutually untrusted, the hosting provider should take steps to ensure OS-level isolation between apps, including separating the apps' underlying key repositories.
 
