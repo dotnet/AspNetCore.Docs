@@ -22,6 +22,9 @@ In a command shell, navigate to the *WebApp* folder. Run the following command:
 dotnet run
 ```
 
+> [!NOTE]
+> You can use `dotnet run --project <PROJECT>` to specify a project to run. For example, running `dotnet run --project WebApp` from the root of the sample app will also run the *WebApp* project.
+
 The console output shows messages similar to the following (indicating that the app is running and awaiting requests):
 
 ```console
@@ -71,6 +74,9 @@ Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `do
 
 Run `dotnet watch run` in the *WebApp* folder. The console output indicates `watch` has started.
 
+> [!NOTE]
+> You can use `dotnet watch --project <PROJECT>` to specify a project to watch. For example, running `dotnet watch --project WebApp run` from the root of the sample app will also run and watch the *WebApp* project.
+
 ## Make changes with `dotnet watch`
 
 Make sure `dotnet watch` is running.
@@ -80,7 +86,7 @@ Fix the bug in the `Product` method of *MathController.cs* so it returns the pro
 ```csharp
 public static int Product(int a, int b)
 {
-  return a * b;
+    return a * b;
 }
 ```
 

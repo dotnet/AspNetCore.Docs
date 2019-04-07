@@ -5,7 +5,7 @@ description: Learn how to create reusable layout components for Razor Components
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2019
+ms.date: 04/07/2019
 uid: razor-components/layouts
 ---
 # Razor Components layouts
@@ -23,7 +23,7 @@ Two additional aspects turn a *component* into a *layout*
 
 The following code sample shows the Razor template of a layout component. Note the use of `LayoutComponentBase` and `@Body`:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.cshtml?highlight=1,13)]
+[!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.cshtml)]
 
 ## Use a layout in a component
 
