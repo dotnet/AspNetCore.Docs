@@ -5,7 +5,7 @@ description: Build a Razor Components app step-by-step and learn basic Razor Com
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2019
+ms.date: 03/28/2019
 uid: tutorials/first-razor-components-app
 ---
 # Build your first Razor Components app
@@ -215,4 +215,4 @@ Add a new component to the app that implements a simple todo list.
 
 ## Publish and deploy the app
 
-To publish the app, see <xref:host-and-deploy/razor-components/index#publish-the-app>.
+To publish the app, see <xref:host-and-deploy/razor-components-blazor/index>.

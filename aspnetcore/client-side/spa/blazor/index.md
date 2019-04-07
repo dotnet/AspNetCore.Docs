@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, a new way to build interactive client-
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/27/2019
+ms.date: 03/28/2019
 uid: spa/blazor/index
 ---
 # Introduction to Blazor
@@ -48,7 +48,7 @@ Blazor supports core facilities required by most apps, including:
 * Templating
 * Cascading values
 
-To reduce the size of the downloaded app unused code stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/razor-components/configure-linker).
+To reduce the size of the downloaded app, unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/razor-components-blazor/configure-linker).
 
 Blazor is the client-side hosting model for Razor Components. Because Razor Components decouple a component's rendering logic from how UI updates are applied, there's flexibility in how Razor Components can be hosted. Use ASP.NET Core Razor Components to host Razor Components on the server in an ASP.NET Core app where UI updates are handled over a SignalR connection. For more information, see <xref:razor-components/index> and <xref:razor-components/hosting-models#server-side-hosting-model>. 
 
@@ -86,7 +86,7 @@ For apps that require third-party JavaScript libraries and browser APIs, Blazor 
 
 ## Code sharing and .NET Standard
 
-Apps can reference and use existing [.NET Standard](/dotnet/standard/net-standard) libraries. .NET Standard is a formal specification of .NET APIs that are common across .NET implementations. .NET Standard 2.0 or higher is supported. APIs that aren't applicable inside a web browser (for example, accessing the file system, opening a socket, threading, and other features) throw <xref:System.PlatformNotSupportedException>. .NET Standard class libraries can be shared across server code and in browser-based apps.
+Apps can reference and use existing [.NET Standard](/dotnet/standard/net-standard) libraries. .NET Standard is a formal specification of .NET APIs that are common across .NET implementations. Blazor implements .NET Standard 2.0. APIs that aren't applicable inside a web browser (for example, accessing the file system, opening a socket, threading, and other features) throw <xref:System.PlatformNotSupportedException>. .NET Standard class libraries can be shared across different .NET platforms, like Blazor, .NET Framework, .NET Core, Xamarin, Mono, and Unity.
 
 ## Optimization
 

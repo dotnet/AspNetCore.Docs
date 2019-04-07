@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2019
+ms.date: 04/05/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -28,7 +28,7 @@ Components can be authored in Razor Components apps using the *.cshtml* file ext
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When a Razor Components app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
-Members of the component class are defined in a `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified along with methods for event handling or for defining other component logic.
+Members of the component class are defined in a `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.
 
 Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
@@ -45,6 +45,25 @@ Component members can then be used as part of the component's rendering logic us
 ```
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Razor Components then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
+
+## Integrate components into Razor Pages and MVC apps
+
+Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor Components. When the page or view is rendered, components are prerendered&dagger; at the same time. 
+
+> [!NOTE]
+> &dagger;Server-side prerendering is enabled for Razor Components apps by default. Client-side Blazor apps will support prerendering in the upcoming Preview 4 release. For more information, see [Update templates/middleware to use MapFallbackToPage/File](https://github.com/aspnet/AspNetCore/issues/8852).
+
+To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
+
+```cshtml
+<div id="Counter">
+    @(await Html.RenderComponentAsync<Counter>(new { IncrementAmount = 10 }))
+</div>
+```
+
+Components rendered from pages and views aren't yet interactive in the Preview 3 release. For example, selecting a button doesn't trigger a method call. A future preview will address this limitation and add support for rendering components using the normal element and attribute syntax.
+
+While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
 ## Using components
 
@@ -458,7 +477,7 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-com
 
 [!code-csharp[](common/samples/3.x/BlazorSample/Pages/BlazorRocksBase.cs)]
 
-The base class should derive from `BlazorComponent`.
+The base class should derive from `ComponentBase`.
 
 ## Razor support
 
