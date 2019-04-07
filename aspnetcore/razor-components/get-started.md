@@ -5,7 +5,7 @@ description: Learn how to get started with Razor Components by creating and modi
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2019
+ms.date: 04/07/2019
 uid: razor-components/get-started
 ---
 # Get started with Razor Components
@@ -20,9 +20,16 @@ Prerequisites:
 
 To create your first Razor Components project in Visual Studio:
 
-1. Select **File** > **New Project** > **Web** > **ASP.NET Core Web Application**.
+1. Install the latest [.NET Core 3.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
+1. Enable Visual Studio to use preview SDKs:
+   1. Open **Tools** > **Options** in the menu bar.
+   1. Open the **Projects and Solutions** node. Open the **.NET Core** tab.
+   1. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
+1. Create a new project.
+1. Select **ASP.NET Core Web Application**. Select **Next**.
+1. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 1. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
-1. Choose the **Razor Components** template and select **OK**.
+1. Choose the **Razor Components** template and select **Create**.
 1. Press **F5** to run the app.
 
 Congratulations! You just ran your first Razor Components app!
