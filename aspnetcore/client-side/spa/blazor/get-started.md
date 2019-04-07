@@ -5,7 +5,7 @@ description: Learn how to get started with Blazor by creating and modifying a Bl
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/03/2019
+ms.date: 04/07/2019
 uid: spa/blazor/get-started
 ---
 # Get started with Blazor
@@ -36,8 +36,8 @@ To create your first Blazor project in Visual Studio:
 1. Create a new project.
 1. Select **ASP.NET Core Web Application**. Select **Next**.
 1. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
-1. Select the **Blazor** template.
-1. Select **Create**.
+1. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
+1. Select the **Blazor** template and select **Create**.
 1. Press **F5** to run the app.
 
 Congratulations! You just ran your first Blazor app!
