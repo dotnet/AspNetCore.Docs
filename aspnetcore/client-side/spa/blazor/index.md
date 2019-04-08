@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, a new way to build interactive client-
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/28/2019
+ms.date: 04/08/2019
 uid: spa/blazor/index
 ---
 # Introduction to Blazor
@@ -66,7 +66,7 @@ The following markup is an example of a custom dialog component in a Razor file 
 <div>
     <h2>@Title</h2>
     @BodyContent
-    <button onclick=@OnOK>OK</button>
+    <button onclick="@OnOK">OK</button>
 </div>
 
 @functions {

@@ -16,10 +16,10 @@
 <button onclick="@AddTodo">Add todo</button>
 
 @functions {
-    IList<TodoItem> todos = new List<TodoItem>();
-    string newTodo;
+    private IList<TodoItem> todos = new List<TodoItem>();
+    private string newTodo;
 
-    void AddTodo()
+    private void AddTodo()
     {
         if (!string.IsNullOrWhiteSpace(newTodo))
         {
