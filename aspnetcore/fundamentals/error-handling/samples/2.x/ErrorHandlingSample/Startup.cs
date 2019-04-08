@@ -131,7 +131,6 @@ namespace ErrorHandlingSample
 #endif
 #if StatusCodePagesWithLambda
             #region snippet_StatusCodePagesLambda
-            // using Microsoft.AspNetCore.Http;
 
             app.UseStatusCodePages(async context =>
             {
