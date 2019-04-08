@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 04/08/2019
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -210,7 +210,7 @@ If no default-named file exists in the *MyStaticFiles* directory, *http://\<serv
 ![Static files list](static-files/_static/db2.png)
 
 > [!NOTE]
-> `UseDefaultFiles` and `UseDirectoryBrowser` will do a client-side redirect from *http://\<server_address>/StaticFiles* (without a trailing slash) to *http://\<server_address>/StaticFiles/* (with a trailing slash). Relative URLs within the StaticFiles directory would be invalid without a trailing slash.
+> <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> performs a client-side redirect from `http://{SERVER ADDRESS}/StaticFiles` (without a trailing slash) to `http://{SERVER ADDRESS}/StaticFiles/` (with a trailing slash). Relative URLs within the *StaticFiles* directory are invalid without a trailing slash.
 
 ## FileExtensionContentTypeProvider
 
