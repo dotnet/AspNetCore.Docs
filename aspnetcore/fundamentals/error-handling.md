@@ -73,7 +73,7 @@ To see the exception handling page in the sample app, use the `ProdEnvironment` 
 
 ## Exception handler lambda
 
-An alternative to a [custom exception handling page](#custom-exception-handling-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda allows access to the error before returning the response.
+An alternative to a [custom exception handling page](#exception-handling-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda allows access to the error before returning the response.
 
 Here's an example of using a lambda for exception handling:
 

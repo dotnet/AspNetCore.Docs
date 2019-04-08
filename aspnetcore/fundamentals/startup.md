@@ -68,7 +68,7 @@ The <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method is used to
 The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeline with support for:
 
 * [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page)
-* [Exception handler](xref:fundamentals/error-handling#custom-exception-handler-page)
+* [Exception handler](xref:fundamentals/error-handling#exception-handler-page)
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [HTTPS redirection](xref:security/enforcing-ssl)
 * [Static files](xref:fundamentals/static-files)
