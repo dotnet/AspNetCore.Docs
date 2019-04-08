@@ -19,12 +19,12 @@ By [依乐祝](https://www.cnblogs.com/yilezhu/)
 |------------------------|---------------------------------------------------------|----------------------------------------------|
 |    约定                |    需要 (`*.proto`)                                      |    可选 (OpenAPI)                        |
 |    传输协议             |    HTTP/2                                               |    HTTP                                      |
-|    负载                |    [Protobuf (small, binary)](#performance)             |    JSON (large, human readable)              |
-|    规约性              |    [严格的规范(#strict-specification)                     |    Loose. Any HTTP is valid                  |
-|    流                  |    [Client, server, bi-directional](#streaming)         |    Client, server                            |
-|    浏览器支持           |    [No (requires grpc-web)](#limited-browser-support)   |    Yes                                       |
+|    负载                |    [Protobuf (small, binary)](#性能)                     |    JSON (large, human readable)              |
+|    规约性              |    [严格的规范](#严格的规范)                               |    Loose. Any HTTP is valid                  |
+|    流                  |    [Client, server, bi-directional](#流)         |    Client, server                            |
+|    浏览器支持           |    [No (requires grpc-web)](#浏览器支持有限)   |    Yes                                       |
 |    安全                |    Transport (HTTPS)                                    |    Transport (HTTPS)                         |
-|    客户端代码生成       |    [Yes](#code-generation)                              |    OpenAPI + third-party tooling             |
+|    客户端代码生成       |    [Yes](#代码生成)                              |    OpenAPI + third-party tooling             |
 
 ## gRPC 优势
 
