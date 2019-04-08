@@ -36,7 +36,7 @@ The page includes the following information about the exception and the request:
 
 To see the Developer Exception Page in the sample app, use the `DevEnvironment` commpiler directive and select **Trigger an exception** on the home page.
 
-## Custom exception handling page
+## Exception handler page
 
 To configure a custom error handling page for the Production environment, use the Exception Handling Middleware. The middleware:
 
@@ -75,7 +75,7 @@ Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to acce
 
 To see the exception handling page in the sample app, use the `ProdEnvironment` and `ErrorHandlerPage` compiler directives, and select **Trigger an exception** on the home page.
 
-## Custom exception handling lambda
+## Exception handler lambda
 
 An alternative to a [custom exception handling page](#custom-exception-handling-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda allows access to the error before returning the response.
 
@@ -88,13 +88,11 @@ Here's an example of using a lambda for exception handling:
 
 To see the exception handling lambda in action in the sample app, use the `ProdEnvironment` and `ErrorHandlerLambda` compiler directives, and select **Trigger an exception** on the home page.
 
-## Configure status code pages
+## UseStatusCodePages
 
-By default, an ASP.NET Core app doesn't provide a status code page for HTTP status codes, such as *404 - Not Found*. The app returns a status code and an empty response body. To provide status code pages, use Status Code Pages Middleware.
+By default, an ASP.NET Core app doesn't provide a status code page for HTTP status codes, such as *404 - Not Found*. The app returns a status code and an empty response body. To provide status code pages, use Status Code Pages middleware.
 
 The middleware is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
-
-## UseStatusCodePages
 
 To enable default text-only handlers for common error status codes, add the following code to the `Startup.Configure` method:
 
@@ -108,21 +106,21 @@ Here's an example of text displayed by the default handlers:
 Status Code: 404; Not Found
 ```
 
-The middleware supports several extension methods that allow you to customize its behavior.
-
-## UseStatusCodePages with lambda
-
-An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> takes a lambda expression, which you can use to process custom error-handling logic and manually write the response:
-
-[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesLambda)]
-
 ## UseStatusCodePages with format string
 
 An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> takes a content type and format string, which you can use to customize the content type and response text:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesFormatString)]
 
-### UseStatusCodePages with redirect
+The middleware supports several extension methods that allow you to customize its behavior.
+
+## UseStatusCodePages with lambda
+
+An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> takes a lambda expression, which you can use to specify custom error-handling logic and manually write the response:
+
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesLambda)]
+
+## UseStatusCodePagesWithRedirect
 
 <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*>:
 
@@ -131,12 +129,12 @@ An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseS
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
-<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*> is commonly used when the app:
+This method is commonly used when the app:
 
 * Should redirect the client to a different endpoint, usually in cases where a different app processes the error. For web apps, the client's browser address bar reflects the redirected endpoint.
 * Shouldn't preserve and return the original status code with the initial redirect response.
 
-### UseStatusCodePages with reexecute
+## UseStatusCodePagesWithReExecute
 
 <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>:
 
@@ -145,7 +143,9 @@ An overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseS
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithReExecute)]
 
-<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> is commonly used when the app should:
+If you point to an endpoint within the app, create an MVC view or Razor page for the endpoint. For a Razor Pages example, see the [StatusCode.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/samples/2.x/Pages/StatusCode.cshtml) page in the sample app.
+
+This method is commonly used when the app should:
 
 * Process the request without redirecting to a different endpoint. For web apps, the client's browser address bar reflects the originally requested endpoint.
 * Preserve and return the original status code with the response.
@@ -172,10 +172,6 @@ if (statusCodePagesFeature != null)
     statusCodePagesFeature.Enabled = false;
 }
 ```
-
-### Status code page endpoints
-
-To use a <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*> overload that points to an endpoint within the app, create an MVC view or Razor Page for the endpoint. For an example, see the [StatusCode.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/samples/2.x/Pages/StatusCode.cshtml) page in the sample app.
 
 ## Exception-handling code
 
@@ -213,14 +209,14 @@ The [Database Error Page](<xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageEx
 }
 ```
 
-### Exception filters
+## Exception filters
 
 Exception filters can be configured globally or on a per-controller or per-action basis in an MVC app. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter. These filters aren't called otherwise. For more information, see <xref:mvc/controllers/filters#exception-filters>.
 
 > [!TIP]
 > Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the Exception Handling Middleware. We recommend using the middleware. Use filters only where you need to perform error handling differently based on which MVC action is chosen.
 
-### Model state errors
+## Model state errors
 
 For information about how to handle model state errors, see [model binding](xref:mvc/models/model-binding) and [model validation](xref:mvc/models/validation).
 
