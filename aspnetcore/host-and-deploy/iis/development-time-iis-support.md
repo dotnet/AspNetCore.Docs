@@ -5,7 +5,7 @@ description: Discover support for debugging ASP.NET Core apps when running with 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2019
+ms.date: 04/08/2019
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
@@ -35,7 +35,7 @@ IIS must have a website configured with the following:
 * **Host name** &ndash; Typically, the **Default Web Site** is used with a **Host name** of `localhost`. However, any valid IIS website with a unique host name works.
 * **Site Binding**
   * For apps that require HTTPS, create a binding to port 443 with a certificate. Typically, the **IIS Express Development Certificate** is used, but any valid certificate works.
-  * For apps that use HTTP, create a binding to port 80.
+  * For apps that use HTTP, confirm the existence of a binding to post 80 or create a binding to port 80 for a new site.
   * Use a single binding for either HTTP or HTTPS. **Binding to both HTTP and HTTPS ports simultaneously isn't supported.**
 
 ## Enable development-time IIS support in Visual Studio
@@ -67,7 +67,7 @@ Create a new launch profile to add development-time IIS support:
 1. For the **Launch** setting, select **IIS** from the list.
 1. Select the check box for **Launch browser** and provide the endpoint URL.
 
-   When the app requires HTTPS, use an endpoint with the HTTPS protocol (`https://`). When the app uses HTTP, use an endpoint with the HTTP protocol (`http://`).
+   When the app requires HTTPS, use an HTTPS endpoint (`https://`). For HTTP, use an HTTP (`http://`) endpoint.
 
    Provide the same host name and port as the [IIS configuration specified earlier uses](#configure-iis), typically `localhost`.
 
@@ -88,7 +88,7 @@ Create a new launch profile to add development-time IIS support:
 1. For the **Launch** setting, select **IIS** from the list.
 1. Select the check box for **Launch browser** and provide the endpoint URL.
 
-   When the app requires HTTPS, use an endpoint with the HTTPS protocol (`https://`). When the app uses HTTP, use an endpoint with the HTTP protocol (`http://`).
+   When the app requires HTTPS, use an HTTPS endpoint (`https://`). For HTTP, use an HTTP (`http://`) endpoint.
 
    Provide the same host name and port as the [IIS configuration specified earlier uses](#configure-iis), typically `localhost`.
 
@@ -145,6 +145,7 @@ If an untrusted development certificate is used, the browser may require you to 
 
 ## Additional resources
 
+* [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
 * [Introduction to ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module)
 * [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
