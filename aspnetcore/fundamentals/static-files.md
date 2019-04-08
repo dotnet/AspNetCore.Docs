@@ -210,7 +210,7 @@ If no default-named file exists in the *MyStaticFiles* directory, *http://\<serv
 ![Static files list](static-files/_static/db2.png)
 
 > [!NOTE]
-> `UseDefaultFiles` and `UseDirectoryBrowser` use the URL *http://\<server_address>/StaticFiles* without the trailing slash to trigger a client-side redirect to *http://\<server_address>/StaticFiles/*. Notice the addition of the trailing slash. Relative URLs within the documents are deemed invalid without a trailing slash.
+> `UseDefaultFiles` and `UseDirectoryBrowser` will do a client-side redirect from *http://\<server_address>/StaticFiles* (without a trailing slash) to *http://\<server_address>/StaticFiles/* (with a trailing slash). Relative URLs within the StaticFiles directory would be invalid without a trailing slash.
 
 ## FileExtensionContentTypeProvider
 
