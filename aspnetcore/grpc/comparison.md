@@ -35,7 +35,7 @@ gRPC 消息使用一种有效的二进制消息格式 [Protobuf](https://develop
 gRPC 是为HTTP/2而设计的，它是HTTP的一个主要版本，与HTTP 1.x相比具有显著的性能优势:
 
 * 二进制框架和压缩。HTTP/2协议在发送和接收方面都很紧凑和高效。.
-* 通过单个TCP连接复用多个HTTP/2调用。多路复用消除了[线头阻塞(https://en.wikipedia.org/wiki/Head-of-line_blocking).
+* 通过单个TCP连接复用多个HTTP/2调用。多路复用消除了[线头阻塞](https://en.wikipedia.org/wiki/Head-of-line_blocking).
 
 ### 代码生成
 
