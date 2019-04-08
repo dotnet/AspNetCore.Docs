@@ -114,12 +114,32 @@ internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
 
 ## Multiple authorization policy providers
 
-When using custom `IAuthorizationPolicyProvider` implementations, keep in mind that ASP.NET Core only uses one instance of `IAuthorizationPolicyProvider`. If a custom provider isn't able to provide authorization policies for all policy names, it should fall back to a backup provider. Policy names might include those that come from a default policy for `[Authorize]` attributes without a name.
+When using custom `IAuthorizationPolicyProvider` implementations, keep in mind that ASP.NET Core only uses one instance of `IAuthorizationPolicyProvider`. If a custom provider isn't able to provide authorization policies for all policy names that will be used, it should fall back to a backup provider. 
 
-For example, consider an application needed both custom age policies and more traditional role-based policy retrieval. Such an app could use a custom authorization policy provider that:
+For example, consider an application that needs both custom age policies and more traditional role-based policy retrieval. Such an app could use a custom authorization policy provider that:
 
 * Attempts to parse policy names. 
 * Calls into a different policy provider (like `DefaultAuthorizationPolicyProvider`) if the policy name doesn't contain an age.
+
+The example `IAuthorizationPolicyProvider` implementation shown above can be updated to use the `DefaultAuthorizationPolicyProvider` by creating a fallback policy provider in its constructor (to be used in case the policy name doesn't match its expected pattern of 'MinimumAge' + age).
+
+```CSharp
+private DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; }
+
+public MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
+{
+    // ASP.NET Core only uses one authorization policy provider, so if the custom implementation
+    // doesn't handle all policies it should fall back to an alternate provider.
+    FallbackPolicyProvider = new DefaultAuthorizationPolicyProvider(options);
+}
+```
+
+Then, the `GetPolicyAsync` method can be updated to use the `FallbackProlicyProvider` instead of returning null:
+
+```CSharp
+...
+return FallbackPolicyProvider.GetPolicyAsync(policyName);
+```
 
 ## Default policy
 
@@ -132,10 +152,18 @@ public Task<AuthorizationPolicy> GetDefaultPolicyAsync() =>
     Task.FromResult(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 ```
 
-As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customize this, as needed. In some cases:
+As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customize this, as needed. In some cases it may be desirable to retrieve the default policy from a fallback `IAuthorizationPolicyProvider`.
 
-* Default authorization policies might not be used.
-* Retrieving the default policy can be delegated to a fallback `IAuthorizationPolicyProvider`.
+## Required Policy
+
+Finally, a custom `IAuthorizationPolicyProvider` needs to implement `GetRequiredPolicyAsync` to, optionally, provide a policy that is always required. If `GetRequiredPolicyAsync` returns a non-null policy, that policy will be combined with any other (named or default) policy that is requested.
+
+If no required policy is needed, the provider can just return null or defer to the fallback provider:
+
+```CSharp
+public Task<AuthorizationPolicy> GetRequiredPolicyAsync() => 
+    Task.FromResult<AuthorizationPolicy>(null);
+```
 
 ## Use a custom IAuthorizationPolicyProvider
 
