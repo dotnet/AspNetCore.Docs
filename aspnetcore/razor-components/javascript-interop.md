@@ -189,7 +189,7 @@ You can capture references to HTML elements in a component by adding a `ref` att
 The following example shows capturing a reference to the username input element:
 
 ```cshtml
-<input ref="username" ... />
+<input ref="username" ...>
 
 @functions {
     ElementRef username;
@@ -232,7 +232,7 @@ The method is called directly on the object. The following example assumes that 
 [!code-cshtml[](javascript-interop/samples_snapshot/component2.cshtml?highlight=1,4,8,12)]
 
 > [!IMPORTANT]
-> The `username` variable is only populated after the component renders and its output includes the `<input>` element. If you try to pass an unpopulated `ElementRef` to JavaScript code, the JavaScript code receives `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:razor-components/components#lifecycle-methods).
+> The `username` variable is only populated after the component renders and its output includes the `>` element. If you try to pass an unpopulated `ElementRef` to JavaScript code, the JavaScript code receives `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:razor-components/components#lifecycle-methods).
 
 ## Invoke .NET methods from JavaScript functions
 

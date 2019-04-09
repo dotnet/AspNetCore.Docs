@@ -19,13 +19,12 @@
             <td>for</td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" for=""Product"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" for=""Product"">"))
                 </code>
             </td>
             <td>
                 <!-- <snippet_For> -->
-                <partial name="_ProductPartial"
-                         for="Product" />
+                <partial name="_ProductPartial" for="Product">
                 <!-- </snippet_For> -->
             </td>
         </tr>
@@ -33,13 +32,13 @@
             <td>model</td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" model='new Product { Number = 1, Name = ""Test product"", Description=""This is a test"" }' />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" model='new Product { Number = 1, Name = ""Test product"", Description=""This is a test"" }'>"))
                 </code>
             </td>
             <td>
                 <!-- <snippet_Model> -->
                 <partial name="_ProductPartial"
-                         model='new Product { Number = 1, Name = "Test product", Description = "This is a test" }' />
+                         model='new Product { Number = 1, Name = "Test product", Description = "This is a test" }'>
                 <!-- </snippet_Model> -->
             </td>
         </tr>
@@ -47,13 +46,12 @@
             <td>name</td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""Shared/_ProductPartial.cshtml"" for=""Product"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""Shared/_ProductPartial.cshtml"" for=""Product"">"))
                 </code>
             </td>
             <td>
                 <!-- <snippet_Name> -->
-                <partial name="Shared/_ProductPartial.cshtml"
-                         for="Product" />
+                <partial name="Shared/_ProductPartial.cshtml" for="Product">
                 <!-- </snippet_Name> -->
             </td>
         </tr>
@@ -61,7 +59,7 @@
             <td>view-data</td>
             <td>
                 <code>
-                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" for=""Product"" view-data=""ViewData"" />"))
+                    @Html.Raw(Html.Encode(@"<partial name=""_ProductPartial"" for=""Product"" view-data=""ViewData"">"))
                 </code>
             </td>
             <td>
@@ -70,9 +68,7 @@
                     ViewData["IsNumberReadOnly"] = true;
                 }
 
-                <partial name="_ProductViewDataPartial"
-                         for="Product"
-                         view-data="ViewData" />
+                <partial name="_ProductViewDataPartial" for="Product" view-data="ViewData">
                 <!-- </snippet_ViewData> -->
             </td>
         </tr>
