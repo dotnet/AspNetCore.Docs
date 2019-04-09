@@ -72,13 +72,12 @@ At the end of this tutorial you'll have a working Razor Pages web app that you'l
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From a terminal, run the following commands:
+From a terminal, run the following command:
 
 <!-- TODO: update these instruction once mac support 2.2 projects -->
 
 ```console
 dotnet new webapp -o RazorPagesMovie
-cd RazorPagesMovie
 ```
 
 The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a Razor Pages project.
@@ -100,24 +99,6 @@ From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie
   [!INCLUDE[](~/includes/trustCertVS.md)]
 
   Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for the local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server.
-  
-# [Visual Studio Code](#tab/visual-studio-code)
-
-* Press **Ctrl-F5** to run without the debugger.
-
-  [!INCLUDE[](~/includes/trustCertVSC.md)]
-
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
-  
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Select **Run > Start Without Debugging** to launch the app. Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
-
-[!INCLUDE[](~/includes/trustCertMac.md)]
-
-<!-- End of VS tabs -->
-
----
 
 * On the app's home page, select **Accept** to consent to tracking.
 
@@ -128,6 +109,46 @@ Select **Run > Start Without Debugging** to launch the app. Visual Studio starts
   The following image shows the app after you give consent to tracking:
 
   ![Home or Index page](razor-pages-start/_static/home2.2.png)
+  
+# [Visual Studio Code](#tab/visual-studio-code)
+
+  [!INCLUDE[](~/includes/trustCertVSC.md)]
+
+* Press **Ctrl-F5** to run without the debugger.
+
+  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+
+* On the app's home page, select **Accept** to consent to tracking.
+
+  This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the European Union's [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+
+  ![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
+
+  The following image shows the app after you give consent to tracking:
+
+  ![Home or Index page](razor-pages-start/_static/home2.2.png)
+  
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+  [!INCLUDE[](~/includes/trustCertMac.md)]
+
+* Press **Cmd-Opt-F5** to run without the debugger.
+
+  Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
+
+* On the app's home page, select **Accept** to consent to tracking.
+
+  This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the European Union's [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+
+  ![Home or Index page](razor-pages-start/_static/homeGDPR2.2_safari.png)
+
+  The following image shows the app after you give consent to tracking:
+
+  ![Home or Index page](razor-pages-start/_static/home2.2_safari.png)
+
+<!-- End of VS tabs -->
+
+---
 
 ## Examine the project files
 
