@@ -20,8 +20,8 @@ param(
 )
 
 $acl = Get-Acl $($Exe.DirectoryName)
-$aclRuleArgs = $cred.UserName, "Read, Write, ReadAndExecute", "ContainerInherit, ObjectInherit", "None", "Allow"
-$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $aclRuleArgs
+$aclRuleArgs = $User, "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
 $acl.SetAccessRule($accessRule)
 $acl | Set-Acl $($Exe.DirectoryName)
 
