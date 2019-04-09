@@ -38,7 +38,7 @@ Use object pooling only after collecting performance data using realistic scenar
 So does `Microsoft.Extensions.ObjectPool.ObjectPool<T>.Return(T)`
 <xref:Microsoft.Extensions.ObjectPool.ObjectPool%601>
 -->
-`ObjectPool<T>` - the basic object pool abstraction. Used to get and return objects.
+<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - the basic object pool abstraction. Used to get and return objects.
 
 <xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> - implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly.... OR
 
