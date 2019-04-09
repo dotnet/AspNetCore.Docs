@@ -123,7 +123,7 @@ For example, consider an application that needs both custom age policies and mor
 
 The example `IAuthorizationPolicyProvider` implementation shown above can be updated to use the `DefaultAuthorizationPolicyProvider` by creating a fallback policy provider in its constructor (to be used in case the policy name doesn't match its expected pattern of 'MinimumAge' + age).
 
-```CSharp
+```csharp
 private DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; }
 
 public MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
@@ -136,7 +136,7 @@ public MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
 
 Then, the `GetPolicyAsync` method can be updated to use the `FallbackProlicyProvider` instead of returning null:
 
-```CSharp
+```csharp
 ...
 return FallbackPolicyProvider.GetPolicyAsync(policyName);
 ```
@@ -152,7 +152,7 @@ public Task<AuthorizationPolicy> GetDefaultPolicyAsync() =>
     Task.FromResult(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 ```
 
-As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customize this, as needed. In some cases it may be desirable to retrieve the default policy from a fallback `IAuthorizationPolicyProvider`.
+As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customize this, as needed. In some cases, it may be desirable to retrieve the default policy from a fallback `IAuthorizationPolicyProvider`.
 
 ## Required Policy
 
@@ -160,7 +160,7 @@ Finally, a custom `IAuthorizationPolicyProvider` needs to implement `GetRequired
 
 If no required policy is needed, the provider can just return null or defer to the fallback provider:
 
-```CSharp
+```csharp
 public Task<AuthorizationPolicy> GetRequiredPolicyAsync() => 
     Task.FromResult<AuthorizationPolicy>(null);
 ```
