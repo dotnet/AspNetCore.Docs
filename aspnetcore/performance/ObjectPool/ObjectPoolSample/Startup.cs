@@ -7,6 +7,7 @@ using Microsoft.Extensions.ObjectPool;
 
 namespace ObjectPoolSample
 {
+    #region snippet
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
@@ -28,8 +29,9 @@ namespace ObjectPoolSample
                 app.UseDeveloperExceptionPage();
             }
             
-            // test using /?firstname=Steve&lastName=Gordon&day=28&month=9
+            // Test using /?firstname=Steve&lastName=Gordon&day=28&month=9
             app.UseMiddleware<BirthdayMiddleware>(); 
         }
     }
+    #endregion
 }

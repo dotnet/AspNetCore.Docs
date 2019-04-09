@@ -55,7 +55,7 @@ The ObjectPool can be used in an app in multiple ways:
 
 ## How to use ObjectPool
 
-Call `ObjectPool<T>` to get an object and `ObjectPool<T>.Return(T)` to return the object.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> to return the object.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
 
 ## ObjectPool sample
 
