@@ -44,7 +44,7 @@ services.AddGrpc().AddServiceOptions<MyService>(options =>
 });
 ```
 
-## Kestrel options
+## Configure Kestrel options
 
 Kestrel server has configuration options that effect the behavior of gRPC for ASP.NET.
 
