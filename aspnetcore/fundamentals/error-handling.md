@@ -83,7 +83,7 @@ Here's an example of using a lambda for exception handling:
 > [!WARNING]
 > Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving errors is a security risk.
 
-To see the exception handling lambda in action in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/samples), use the `ProdEnvironment` and `ErrorHandlerLambda` preprocessor directives, and select **Trigger an exception** on the home page.
+To see the result of the exception handling lambda in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/samples), use the `ProdEnvironment` and `ErrorHandlerLambda` preprocessor directives, and select **Trigger an exception** on the home page.
 
 ## UseStatusCodePages
 
@@ -102,6 +102,8 @@ Here's an example of text displayed by the default handlers:
 ```
 Status Code: 404; Not Found
 ```
+
+To see one of the various status code page formats in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/samples), use one of the preprocessor directives that begin with `StatusCodePages`, and select **Trigger a 404** on the home page.
 
 ## UseStatusCodePages with format string
 
@@ -224,3 +226,4 @@ For information about how to handle model state errors, see [Model binding](xref
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:host-and-deploy/iis/troubleshoot>
 * <xref:host-and-deploy/azure-apps/troubleshoot>
+s
