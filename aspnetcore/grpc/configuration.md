@@ -17,11 +17,11 @@ The following table describes options for configuring gRPC services:
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `SendMaxMessageSize` | Unset | The maximum message size in bytes that can be sent from the server. Attempting to send a message that exceeds the configured maximum message size will result in an exception. |
-| `ReceiveMaxMessageSize` | 4 megabytes | The maximum message size in bytes that can be recived by the server. If the server receives a message that exceeds this limit then it will throw an exception. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
+| `ReceiveMaxMessageSize` | 4 mb | The maximum message size in bytes that can be recived by the server. If the server receives a message that exceeds this limit then it will throw an exception. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a service method. The default is `false`, as these exception messages can contain sensitive information. |
+| `CompressionProviders` | gzip | A collection of compression providers used to compress and decompress messages. Custom compression providers can be created and added to the collection. The default configured provider supports **gzip** compression. |
 | `ResponseCompressionAlgorithm` | Unset | The compression algorithm used to compress messages sent from the server. The algorithm must match a compression provider in `CompressionProviders`. For the algorthm to compress a response the client must indicate it supports the algorithm by sending it in the **grpc-accept-encoding** header. |
 | `ResponseCompressionLevel` | Unset | The compress level used to compress messages sent from the server. |
-| `CompressionProviders` | gzip | A collection of compression providers used to compress and decompress messages. Custom compression providers can be created and added to the collection. The default configured provider supports **gzip** compression. |
 
 Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`.
 
@@ -35,7 +35,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Options for a single service override the global options provided in `AddGrpc` and can be configured using <xref:Microsoft.Extensions.DependencyInjection.GrpcServicesExtensions.AddServiceOptions*>:
+Options for a single service override the global options provided in `AddGrpc` and can be configured using `AddServiceOptions<TService>`:
 
 ```csharp
 services.AddGrpc().AddServiceOptions<MyService>(options =>
