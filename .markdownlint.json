@@ -1,6 +1,7 @@
 {
     "default": true,
 
+    "blanks-around-lists": false,
     "blanks-around-fences": true,
     "blanks-around-headers": true,
     "fenced-code-language": true,

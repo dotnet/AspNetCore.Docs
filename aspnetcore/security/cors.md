@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 04/07/2019
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -51,7 +51,7 @@ CORS Middleware handles cross-origin requests. The following code enables CORS f
 The preceding code:
 
 * Sets the policy name to "\_myAllowSpecificOrigins". The policy name is arbitrary.
-* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method, which enables cores.
+* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method, which enables CORS.
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> method call adds CORS services to the app's service container:

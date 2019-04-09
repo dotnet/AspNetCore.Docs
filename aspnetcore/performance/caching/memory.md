@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn how to cache data in memory in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/2/2019
+ms.date: 04/11/2019
+
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
@@ -17,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.c
 
 Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently. Caching makes a copy of data that can be returned much faster than from the original source. Code should be written and tested to never depend on cached data.
 
-ASP.NET Core supports several different caches. The simplest cache is based on the [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache), which represents a cache stored in the memory of the web server. Apps which run on a server farm of multiple servers should ensure that sessions are sticky when using the in-memory cache. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) to route all subsequent requests to the same server.
+ASP.NET Core supports several different caches. The simplest cache is based on the [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache), which represents a cache stored in the memory of the web server. Apps that run on a server farm of multiple servers should ensure that sessions are sticky when using the in-memory cache. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) to route all subsequent requests to the same server.
 
 Non-sticky sessions in a web farm require a [distributed cache](distributed.md) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
 
@@ -47,7 +48,7 @@ Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when portin
 * The cache uses a scarce resource, memory. Limit cache growth:
   * Do **not** use external input as cache keys.
   * Use expirations to limit cache growth.
-  * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size)
+  * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size). The ASP.NET Core runtime does not limit cache size based on memory pressure. It's up to the developer to limit cache size.
 
 ## Using IMemoryCache
 
@@ -116,7 +117,7 @@ The following sample:
 
 ## Use SetSize, Size, and SizeLimit to limit cache size
 
-A `MemoryCache` instance may optionally specify and enforce a size limit. The memory size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache memory size limit is set, all entries must specify size. The size specified is in units the developer chooses.
+A `MemoryCache` instance may optionally specify and enforce a size limit. The memory size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache memory size limit is set, all entries must specify size. The ASP.NET Core runtime does not limit cache size based on memory pressure. It's up to the developer to limit cache size. The size specified is in units the developer chooses.
 
 For example:
 

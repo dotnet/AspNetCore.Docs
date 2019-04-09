@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 05/12/2018
+ms.date: 04/06/2019
 uid: razor-pages/index
 ---
 # Introduction to Razor Pages in ASP.NET Core
@@ -72,7 +72,7 @@ Consider a basic page:
 
 [!code-cshtml[](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
 
-The preceding code looks a lot like a Razor view file. What makes it different is the `@page` directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs.
+The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views. What makes it different is the `@page` directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs.
 
 A similar page, using a `PageModel` class, is shown in the following two files. The *Pages/Index2.cshtml* file:
 
@@ -152,7 +152,7 @@ The `Customer` property uses `[BindProperty]` attribute to opt in to model bindi
 
 [!code-cs[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
 
-Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
+Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
 [!INCLUDE[](~/includes/bind-get.md)]
 

@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2019
+ms.date: 04/07/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -28,7 +28,7 @@ Components can be authored in Razor Components apps using the *.cshtml* file ext
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When a Razor Components app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
-Members of the component class are defined in a `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified along with methods for event handling or for defining other component logic.
+Members of the component class are defined in a `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.
 
 Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
@@ -45,6 +45,25 @@ Component members can then be used as part of the component's rendering logic us
 ```
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Razor Components then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
+
+## Integrate components into Razor Pages and MVC apps
+
+Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor Components. When the page or view is rendered, components are prerendered&dagger; at the same time. 
+
+> [!NOTE]
+> &dagger;Server-side prerendering is enabled for Razor Components apps by default. Client-side Blazor apps will support prerendering in the upcoming Preview 4 release. For more information, see [Update templates/middleware to use MapFallbackToPage/File](https://github.com/aspnet/AspNetCore/issues/8852).
+
+To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
+
+```cshtml
+<div id="Counter">
+    @(await Html.RenderComponentAsync<Counter>(new { IncrementAmount = 10 }))
+</div>
+```
+
+Components rendered from pages and views aren't yet interactive in the Preview 3 release. For example, selecting a button doesn't trigger a method call. A future preview will address this limitation and add support for rendering components using the normal element and attribute syntax.
+
+While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
 ## Using components
 
@@ -91,18 +110,18 @@ Data binding to both components and DOM elements is accomplished with the `bind`
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    bind="@_italicsCheck" />
+    bind="@_italicsCheck">
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
 
 The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
 
-Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue" />`) is essentially equivalent to the following:
+Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue">`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue" 
-    onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
+    onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)">
 ```
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `bind` handles a few cases where type conversions are performed. In principle, `bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
@@ -110,7 +129,7 @@ When the component is rendered, the `value` of the input element comes from the 
 In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what to bind to:
 
 ```cshtml
-<input type="text" bind-value-oninput="@CurrentValue" />
+<input type="text" bind-value-oninput="@CurrentValue">
 ```
 
 Unlike `onchange`, `oninput` fires for every character that is input into the text box.
@@ -120,7 +139,7 @@ Unlike `onchange`, `oninput` fires for every character that is input into the te
 Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
-<input bind="@StartDate" format-value="yyyy-MM-dd" />
+<input bind="@StartDate" format-value="yyyy-MM-dd">
 
 @functions {
     [Parameter]
@@ -234,7 +253,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 The following code calls the `CheckboxChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" onchange="@CheckboxChanged" />
+<input type="checkbox" class="form-check-input" onchange="@CheckboxChanged">
 
 @functions {
     void CheckboxChanged()
@@ -458,7 +477,7 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-com
 
 [!code-csharp[](common/samples/3.x/BlazorSample/Pages/BlazorRocksBase.cs)]
 
-The base class should derive from `BlazorComponent`.
+The base class should derive from `ComponentBase`.
 
 ## Razor support
 
@@ -484,7 +503,7 @@ Attributes are conditionally rendered based on the .NET value. If the value is `
 In the following example, `IsCompleted` determines if `checked` is rendered in the control's markup:
 
 ```cshtml
-<input type="checkbox" checked="@IsCompleted" />
+<input type="checkbox" checked="@IsCompleted">
 
 @functions {
     [Parameter]
@@ -495,13 +514,13 @@ In the following example, `IsCompleted` determines if `checked` is rendered in t
 If `IsCompleted` is `true`, the check box is rendered as:
 
 ```html
-<input type="checkbox" checked />
+<input type="checkbox" checked>
 ```
 
 If `IsCompleted` is `false`, the check box is rendered as:
 
 ```html
-<input type="checkbox" />
+<input type="checkbox">
 ```
 
 **Additional information on Razor**
@@ -593,7 +612,7 @@ Templated components are often generically typed. For example, a generic List Vi
 
 *Components/ListViewTemplate.cshtml*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.cshtml?highlight=1)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.cshtml)]
 
 When using generic-typed components, the type parameter is inferred if possible:
 

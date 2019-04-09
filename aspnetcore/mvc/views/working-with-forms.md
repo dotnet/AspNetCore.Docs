@@ -4,7 +4,7 @@ author: rick-anderson
 description: Describes the built-in Tag Helpers used with Forms.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 04/06/2019
 uid: mvc/views/working-with-forms
 ---
 # Tag Helpers in forms in ASP.NET Core
@@ -38,7 +38,7 @@ The Form Tag Helper above generates the following HTML:
 ```HTML
 <form method="post" action="/Demo/Register">
     <!-- Input and Submit elements -->
-    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
 </form>
 ```
 
@@ -87,7 +87,7 @@ The following markup submits the form to the `Index` action of `HomeController` 
 <form method="post">
     <button asp-controller="Home" asp-action="Index">Click Me</button>
     <input type="image" src="..." alt="Or Click Me" asp-controller="Home" 
-                                asp-action="Index" />
+                                asp-action="Index">
 </form>
 ```
 
@@ -96,7 +96,7 @@ The previous markup generates following HTML:
 ```html
 <form method="post">
     <button formaction="/Home">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" formaction="/Home" />
+    <input type="image" src="..." alt="Or Click Me" formaction="/Home">
 </form>
 ```
 
@@ -107,7 +107,7 @@ The following markup submits the form to the `About` Razor Page:
 ```cshtml
 <form method="post">
     <button asp-page="About">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" asp-page="About" />
+    <input type="image" src="..." alt="Or Click Me" asp-page="About">
 </form>
 ```
 
@@ -116,7 +116,7 @@ The previous markup generates following HTML:
 ```html
 <form method="post">
     <button formaction="/About">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" formaction="/About" />
+    <input type="image" src="..." alt="Or Click Me" formaction="/About">
 </form>
 ```
 
@@ -140,7 +140,7 @@ The following markup submits the form to the `/Home/Test` endpoint.
 ```cshtml
 <form method="post">
     <button asp-route="Custom">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" asp-route="Custom" />
+    <input type="image" src="..." alt="Or Click Me" asp-route="Custom">
 </form>
 ```
 
@@ -149,7 +149,7 @@ The previous markup generates following HTML:
 ```html
 <form method="post">
     <button formaction="/Home/Test">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" formaction="/Home/Test" />
+    <input type="image" src="..." alt="Or Click Me" formaction="/Home/Test">
 </form>
 ```
 
@@ -160,7 +160,7 @@ The Input Tag Helper binds an HTML [\<input>](https://www.w3.org/wiki/HTML/Eleme
 Syntax:
 
 ```HTML
-<input asp-for="<Expression Name>" />
+<input asp-for="<Expression Name>">
 ```
 
 The Input Tag Helper:
@@ -221,17 +221,17 @@ The code above generates the following HTML:
 
 ```HTML
   <form method="post" action="/Demo/RegisterInput">
-       Email:
-       <input type="email" data-val="true"
-              data-val-email="The Email Address field is not a valid email address."
-              data-val-required="The Email Address field is required."
-              id="Email" name="Email" value="" /> <br>
-       Password:
-       <input type="password" data-val="true"
-              data-val-required="The Password field is required."
-              id="Password" name="Password" /><br>
-       <button type="submit">Register</button>
-     <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+      Email:
+      <input type="email" data-val="true"
+             data-val-email="The Email Address field is not a valid email address."
+             data-val-required="The Email Address field is required."
+             id="Email" name="Email" value=""><br>
+      Password:
+      <input type="password" data-val="true"
+             data-val-required="The Password field is required."
+             id="Password" name="Password"><br>
+      <button type="submit">Register</button>
+      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
    </form>
 ```
 
@@ -258,18 +258,18 @@ The `asp-for` attribute value is a `ModelExpression` and the right hand side of 
 @{
        var joe = "Joe";
    }
-   <input asp-for="@joe" />
+   <input asp-for="@joe">
 ```
 
 Generates the following:
 
 ```HTML
-<input type="text" id="joe" name="joe" value="Joe" />
+<input type="text" id="joe" name="joe" value="Joe">
 ```
 
 With collection properties, `asp-for="CollectionProperty[23].Member"` generates the same name as `asp-for="CollectionProperty[i].Member"` when `i` has the value `23`.
 
-When ASP.NET Core MVC calculates the value of `ModelExpression`, it inspects several sources, including `ModelState`. Consider `<input type="text" asp-for="@Name" />`. The calculated `value` attribute is the first non-null value from:
+When ASP.NET Core MVC calculates the value of `ModelExpression`, it inspects several sources, including `ModelState`. Consider `<input type="text" asp-for="@Name">`. The calculated `value` attribute is the first non-null value from:
 
 * `ModelState` entry with key "Name".
 * Result of the expression `Model.Name`.
@@ -289,7 +289,7 @@ In the view, we bind to `Address.AddressLine1`:
 The following HTML is generated for `Address.AddressLine1`:
 
 ```HTML
-<input type="text" id="Address_AddressLine1" name="Address.AddressLine1" value="" />
+<input type="text" id="Address_AddressLine1" name="Address.AddressLine1" value="">
 ```
 
 ### Expression names and Collections
@@ -363,7 +363,7 @@ The following HTML is generated:
    id="Description" name="Description">
   </textarea>
   <button type="submit">Test</button>
-  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
 </form>
 ```
 
@@ -466,7 +466,7 @@ The generated HTML (when the model is valid):
   Email:  <input name="Email" id="Email" type="email" value=""
    data-val-required="The Email field is required."
    data-val-email="The Email field is not a valid email address."
-   data-val="true"> <br>
+   data-val="true"><br>
   <span class="field-validation-valid" data-valmsg-replace="true"
    data-valmsg-for="Email"></span><br>
   Password: <input name="Password" id="Password" type="password"
@@ -474,7 +474,7 @@ The generated HTML (when the model is valid):
   <span class="field-validation-valid" data-valmsg-replace="true"
    data-valmsg-for="Password"></span><br>
   <button type="submit">Register</button>
-  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
 </form>
 ```
 
@@ -514,7 +514,7 @@ Which generates the following HTML (with "CA" selected):
        <option value="US">USA</option>
      </select>
        <br /><button type="submit">Register</button>
-     <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+     <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
    </form>
 ```
 
@@ -557,7 +557,7 @@ The following HTML is generated:
              <option selected="selected" value="5">Spain</option>
          </select>
          <br /><button type="submit">Register</button>
-         <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+         <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
     </form>
 ```
 
@@ -590,7 +590,7 @@ The generated HTML:
           </optgroup>
       </select>
       <br /><button type="submit">Register</button>
-      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
  </form>
 ```
 
@@ -618,7 +618,7 @@ Generates the following HTML:
 <option value="DE">Germany</option>
 </select>
     <br /><button type="submit">Register</button>
-  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
 </form>
 ```
 
@@ -649,7 +649,7 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
           <option value="US">USA</option>
       </select>
       <br /><button type="submit">Register</button>
-   <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+   <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
  </form>
  ```
 

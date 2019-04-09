@@ -26,7 +26,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
   * <xref:signalr/scale>
   * [Redis documentation](https://redis.io/)
-  * [Azure Redis Cache documentation](https://docs.microsoft.com/en-us/azure/redis-cache/)
+  * [Azure Redis Cache documentation](https://docs.microsoft.com/azure/redis-cache/)
 
 ::: moniker range="= aspnetcore-2.1"
 
@@ -190,4 +190,4 @@ For more information, see the following resources:
 * <xref:signalr/scale>
 * [Redis documentation](https://redis.io/documentation)
 * [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/)
-* [Azure Redis Cache documentation](https://docs.microsoft.com/en-us/azure/redis-cache/)
+* [Azure Redis Cache documentation](https://docs.microsoft.com/azure/redis-cache/)

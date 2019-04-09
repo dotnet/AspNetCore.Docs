@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/11/2019
-uid: host-and-deploy/razor-components/configure-linker
+uid: host-and-deploy/razor-components-blazor/configure-linker
 ---
 # Configure the Linker for Blazor
 
