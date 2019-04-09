@@ -34,10 +34,6 @@ Use object pooling only after collecting performance data using realistic scenar
 
 ## Concepts
 
-<!-- `ObjectPool<T>` AKA <xref:Microsoft.Extensions.ObjectPool.ObjectPool%601> has build error 	1 invalid cross reference(s) "<xref:Microsoft.Extensions.ObjectPool.ObjectPool*>".   
-So does `Microsoft.Extensions.ObjectPool.ObjectPool<T>.Return(T)`
-<xref:Microsoft.Extensions.ObjectPool.ObjectPool%601>
--->
 <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - the basic object pool abstraction. Used to get and return objects.
 
 <xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> - implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly.... OR
@@ -50,8 +46,6 @@ The ObjectPool can be used in an app in multiple ways:
 * Instantiating a pool.
 * Registering a pool in [Dependency injection](xref:fundamentals/dependency-injection) (DI) as an instance.
 * Registering the `ObjectPoolProvider<>` in DI and using it as a factory.
-
-<!-- REview, there is no ObjectPoolProvider<T> -->
 
 ## How to use ObjectPool
 

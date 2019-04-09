@@ -16,7 +16,8 @@ namespace ObjectPoolSample
             _next = next;
         }
 
-        public async Task InvokeAsync(HttpContext context, ObjectPool<StringBuilder> builderPool)
+        public async Task InvokeAsync(HttpContext context, 
+                                      ObjectPool<StringBuilder> builderPool)
         {
             if (context.Request.Query.TryGetValue("firstName", out var firstName) &&
                 context.Request.Query.TryGetValue("lastName", out var lastName) && 
@@ -25,9 +26,10 @@ namespace ObjectPoolSample
                 int.TryParse(month, out var monthOfYear) &&
                 int.TryParse(day, out var dayOfMonth))
             {                
-                var now = DateTime.UtcNow; // ignoring timezones for this sample
+                var now = DateTime.UtcNow; // Ignoring timezones.
 
-                var stringBuilder = builderPool.Get(); // request a StringBuilder from the pool
+                // Request a StringBuilder from the pool.
+                var stringBuilder = builderPool.Get();
 
                 try
                 {
@@ -42,7 +44,8 @@ namespace ObjectPoolSample
                     }
                     else
                     {
-                        var thisYearsBirthday = new DateTime(now.Year, monthOfYear, dayOfMonth);
+                        var thisYearsBirthday = new DateTime(now.Year, monthOfYear, 
+                                                                        dayOfMonth);
 
                         int daysUntilBirthday = thisYearsBirthday > now 
                             ? (thisYearsBirthday - now).Days 
@@ -54,9 +57,10 @@ namespace ObjectPoolSample
                         await context.Response.WriteAsync(stringBuilder.ToString());
                     }
                 }
-                finally // ensure this happens even if the main code blows up!
+                finally // Ensure this runs even if the main code throws.
                 {
-                    builderPool.Return(stringBuilder); // return the StringBuilder to the pool
+                    // Return the StringBuilder to the pool.
+                    builderPool.Return(stringBuilder); 
                 }
 
                 return;
