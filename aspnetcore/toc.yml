@@ -998,6 +998,8 @@
           uid: performance/caching/distributed
         - name: Response caching middleware
           uid: performance/caching/middleware
+        - name: Object reuse with ObjectPool
+          uid: performance/ObjectPool
     - name: Response compression
       uid: performance/response-compression
     - name: Diagnostic tools

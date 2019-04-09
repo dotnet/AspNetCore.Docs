@@ -30,6 +30,7 @@ Using `ObjectPool` has performance tradeoffs. You should only use a technique li
 ## Concepts
 
 <!-- `ObjectPool<T>` AKA <xref:Microsoft.Extensions.ObjectPool.ObjectPool%601> has build error 	1 invalid cross reference(s) "<xref:Microsoft.Extensions.ObjectPool.ObjectPool*>".   
+So does `Microsoft.Extensions.ObjectPool.ObjectPool<T>.Return(T)`
 <xref:Microsoft.Extensions.ObjectPool.ObjectPool%601>
 -->
 `ObjectPool<T>` - the basic object pool abstraction. Used to get and return objects.
@@ -49,7 +50,7 @@ The ObjectPool can be used in an app in multiple ways:
 
 ## How to use ObjectPool
 
-Call `ObjectPool<T>` to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool*> to return the object.  There's no requirement that you return every object - if you don't return an object, then it will be garbage collected.
+Call `ObjectPool<T>` to get an object and `ObjectPool<T>.Return(T)` to return the object.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
 
 ## ObjectPool sample
 
