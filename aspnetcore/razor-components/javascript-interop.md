@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2019
+ms.date: 04/08/2019
 uid: razor-components/javascript-interop
 ---
 # Razor Components JavaScript interop
@@ -84,7 +84,7 @@ The following component:
             105, 118, 101, 114, 115, 101, 10, 10,
         };
 
-    async void ConvertArray()
+    private async void ConvertArray()
     {
         var text =
             await JsRuntime.InvokeAsync<string>("ConvertArray", QuoteArray);

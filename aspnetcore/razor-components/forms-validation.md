@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Razor Comp
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/01/2019
+ms.date: 04/08/2019
 uid: razor-components/forms-validation
 ---
 # Razor Components forms and validation
@@ -45,7 +45,7 @@ A form is defined using the `<EditForm>` component. The following form demonstra
 @functions {
     private ExampleModel exampleModel = new ExampleModel();
 
-    void HandleValidSubmit()
+    private void HandleValidSubmit()
     {
         Console.WriteLine("OnValidSubmit");
     }
@@ -158,7 +158,7 @@ The following form validates user input using the validation defined in the `Sta
 @functions {
     private Starship starship = new Starship();
 
-    void HandleValidSubmit()
+    private void HandleValidSubmit()
     {
         Console.WriteLine("OnValidSubmit");
     }

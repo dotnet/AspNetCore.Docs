@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Razor Components, a way to build interactive c
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: seoapril2019
-ms.date: 03/27/2019
+ms.date: 04/08/2019
 uid: razor-components/index
 ---
 # Introduction to Razor Components
@@ -58,7 +58,7 @@ The following markup is an example of a custom dialog component in a Razor file 
 <div>
     <h2>@Title</h2>
     @BodyContent
-    <button onclick=@OnOK>OK</button>
+    <button onclick="@OnOK">OK</button>
 </div>
 
 @functions {

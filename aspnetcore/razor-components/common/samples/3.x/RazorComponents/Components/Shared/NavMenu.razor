@@ -5,6 +5,7 @@
     </button>
 </div>
 
+<!-- <snippet_NavLinks> -->
 <div class="@NavMenuCssClass" onclick="@ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
@@ -67,11 +68,11 @@
 </div>
 
 @functions {
-    bool collapseNavMenu = true;
+    private bool collapseNavMenu = true;
 
-    string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    void ToggleNavMenu()
+    private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }

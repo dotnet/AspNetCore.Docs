@@ -8,7 +8,7 @@
         <h4>Greetings from the first tab!</h4>
 
         <label>
-            <input type="checkbox" bind=@showThirdTab />
+            <input type="checkbox" bind="@showThirdTab" />
             Toggle third tab
         </label>
     </Tab>
@@ -49,7 +49,7 @@ namespace BlazorSample.UIInterfaces
         &lt;h4&gt;Greetings from the first tab!&lt;/h4&gt;
 
         &lt;label&gt;
-            &lt;input type="checkbox" bind=@@showThirdTab /&gt;
+            &lt;input type="checkbox" bind="@@showThirdTab" /&gt;
             Toggle third tab
         &lt;/label&gt;
     &lt;/Tab&gt;
@@ -68,7 +68,7 @@ namespace BlazorSample.UIInterfaces
     
 @@functions
 {
-    bool showThirdTab;
+    private bool showThirdTab;
 }</code></pre>
 
 <h2>TabSet.csthml</h2>
@@ -90,7 +90,7 @@ namespace BlazorSample.UIInterfaces
 &lt;/div&gt;
 
 @@functions {
-    [Parameter] RenderFragment ChildContent { get; set; }
+    [Parameter] private RenderFragment ChildContent { get; set; }
 
     public ITab ActiveTab { get; private set; }
 
@@ -129,17 +129,17 @@ namespace BlazorSample.UIInterfaces
 @@implements ITab
 
 &lt;li&gt;
-    &lt;a onclick=@@Activate class="nav-link @@TitleCssClass" role="button"&gt;
+    &lt;a onclick="@@Activate" class="nav-link @@TitleCssClass" role="button"&gt;
         @@Title
     &lt;/a&gt;
 &lt;/li&gt;
 
 @@functions {
-    [CascadingParameter] TabSet ContainerTabSet { get; set; }
-    [Parameter] string Title { get; set; }
+    [CascadingParameter] private TabSet ContainerTabSet { get; set; }
+    [Parameter] private string Title { get; set; }
     [Parameter] public RenderFragment ChildContent { get; private set; }
 
-    string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
+    private string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
 
     protected override void OnInit()
     {
@@ -151,7 +151,7 @@ namespace BlazorSample.UIInterfaces
         ContainerTabSet.RemoveTab(this);
     }
 
-    void Activate()
+    private void Activate()
     {
         ContainerTabSet.SetActivateTab(this);
     }
@@ -159,5 +159,5 @@ namespace BlazorSample.UIInterfaces
 
 @functions
 {
-bool showThirdTab;
+    private bool showThirdTab;
 }

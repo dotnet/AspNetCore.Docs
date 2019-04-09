@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2019
+ms.date: 04/08/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -174,7 +174,7 @@ Parent component:
     [Parameter]
     private int ParentYear { get; set; } = 1978;
 
-    void ChangeTheYear()
+    private void ChangeTheYear()
     {
         ParentYear = 1986;
     }
@@ -243,7 +243,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 </button>
 
 @functions {
-    void UpdateHeading(UIMouseEventArgs e)
+    private void UpdateHeading(UIMouseEventArgs e)
     {
         ...
     }
@@ -256,7 +256,7 @@ The following code calls the `CheckboxChanged` method when the check box is chan
 <input type="checkbox" class="form-check-input" onchange="@CheckboxChanged">
 
 @functions {
-    void CheckboxChanged()
+    private void CheckboxChanged()
     {
         ...
     }
@@ -271,7 +271,7 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
 </button>
 
 @functions {
-    async Task UpdateHeading(UIMouseEventArgs e)
+    private async Task UpdateHeading(UIMouseEventArgs e)
     {
         ...
     }
@@ -309,9 +309,9 @@ It's often convenient to close over additional values, such as when iterating ov
 }
 
 @functions {
-    string message = "Select a button to learn its position.";
+    private string message = "Select a button to learn its position.";
 
-    void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
+    private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
     {
         message = $"You selected Button #{buttonNumber} at " +
             "mouse position: {e.ClientX} X {e.ClientY}.";
@@ -330,9 +330,9 @@ Component references provide a way get a reference to a component instance so th
 <MyLoginDialog ref="loginDialog" ... />
 
 @functions {
-    MyLoginDialog loginDialog;
+    private MyLoginDialog loginDialog;
 
-    void OnSomething()
+    private void OnSomething()
     {
         loginDialog.Show();
     }
@@ -540,7 +540,8 @@ The following example shows using the `MarkupString` type to add a block of stat
 @((MarkupString)myMarkup)
 
 @functions {
-    string myMarkup = "<p class='markup'>This is a <em>markup string</em>.</p>";
+    private string myMarkup = 
+        "<p class='markup'>This is a <em>markup string</em>.</p>";
 }
 ```
 
@@ -677,7 +678,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 </div>
 
 @functions {
-    ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
+    private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }
 ```
 
@@ -686,7 +687,8 @@ To make use of cascading values, components declare cascading parameters using t
 ```cshtml
 <CascadingValue Value=@PermInfo Name="UserPermissions">...</CascadingValue>
 
-[CascadingParameter(Name = "UserPermissions")] PermInfo Permissions { get; set; }
+[CascadingParameter(Name = "UserPermissions")]
+private PermInfo Permissions { get; set; }
 ```
 
 Binding with a string name value is relevant if you have multiple cascading values of the same type and need to differentiate them within the same subtree.
@@ -719,11 +721,11 @@ In the sample app, the Cascading Values Parameters Theme component binds to the 
 </p>
 
 @functions {
-    int currentCount = 0;
+    private int currentCount = 0;
 
     [CascadingParameter] protected ThemeInfo ThemeInfo { get; set; }
 
-    void IncrementCount()
+    private void IncrementCount()
     {
         currentCount++;
     }
@@ -826,9 +828,9 @@ Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml*
 </button>
 
 @functions {
-    RenderFragment CustomRender { get; set; }
+    private RenderFragment CustomRender { get; set; }
     
-    RenderFragment CreateComponent() => builder =>
+    private RenderFragment CreateComponent() => builder =>
     {
         for (var i = 0; i < 3; i++) 
         {
@@ -838,7 +840,7 @@ Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml*
         }
     };    
     
-    void RenderComponent()
+    private void RenderComponent()
     {
         CustomRender = CreateComponent();
     }
