@@ -21,7 +21,7 @@ You might want to use the object pool if the objects that are being managed are:
 
 For example, the ASP.NET Core framework uses the object pool in some places to reuse <xref:System.Text.StringBuilder> instances. `StringBuilder` allocates and manages its own buffers to hold character data. ASP.NET Core regularly uses `StringBuilder` to implement features, and reusing them provides a performance benefit.
 
-Using `ObjectPool` has performance tradeoffs. You should only use a technique like pooling after collecting performance data about realistic scenarios for your app or library. In particular, getting an object from the pool will usually be slower then allocating an object unless the initialization or allocation cost of that type of object is high. Additionally, by using the pool, you will prevent objects managed by the pool from being de-allocated until you de-allocate the pool.
+Using `ObjectPool` has performance tradeoffs. You should only use a technique like pooling after collecting performance data using realistic scenarios for your app or library. In particular, getting an object from the pool will usually be slower then allocating an object unless the initialization or allocation cost of that type of object is high. Additionally, by using the pool, you will prevent objects managed by the pool from being de-allocated until you de-allocate the pool.
 
 **WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.**
 
@@ -49,7 +49,7 @@ The ObjectPool can be used in an app in multiple ways:
 
 ## How to use ObjectPool
 
-Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool*> to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool*> to return the object.  There's no requirement that you return every object - if you don't return an object, then it will be garbage collected.
+Call `ObjectPool<T>` to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool*> to return the object.  There's no requirement that you return every object - if you don't return an object, then it will be garbage collected.
 
 ## ObjectPool sample
 
