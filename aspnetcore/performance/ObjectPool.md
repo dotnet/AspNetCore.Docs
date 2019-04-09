@@ -21,11 +21,16 @@ You might want to use the object pool if the objects that are being managed are:
 
 For example, the ASP.NET Core framework uses the object pool in some places to reuse <xref:System.Text.StringBuilder> instances. `StringBuilder` allocates and manages its own buffers to hold character data. ASP.NET Core regularly uses `StringBuilder` to implement features, and reusing them provides a performance benefit.
 
-Using `ObjectPool` has performance tradeoffs. You should only use a technique like pooling after collecting performance data using realistic scenarios for your app or library. In particular, getting an object from the pool will usually be slower then allocating an object unless the initialization or allocation cost of that type of object is high. Additionally, by using the pool, you will prevent objects managed by the pool from being de-allocated until you de-allocate the pool.
+Object pooling doesn't always improve performance:
+
+- Unless the initialization cost of an object is hight, it's usually slower to get the object from the pool.
+- Objects managed by the pool aren't de-allocated until the pool is de-allocated.
+
+Use object pooling only after collecting performance data using realistic scenarios for your app or library.
 
 **WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.**
 
-**NOTE: The ObjectPool doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of object it will retain.**
+**NOTE: The ObjectPool doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of objects it will retain.**
 
 ## Concepts
 
@@ -56,7 +61,7 @@ Call `ObjectPool<T>` to get an object and `ObjectPool<T>.Return(T)` to return th
 
 The following code:
 
-* Adds `ObjectPoolProvider` to the DI container.
+* Adds `ObjectPoolProvider` to the [Dependency injection](xref:fundamentals/dependency-injection) (DI) container.
 * Adds and configures `ObjectPool<StringBuilder>` to the DI container.
 * Adds the `BirthdayMiddleware`.
 
