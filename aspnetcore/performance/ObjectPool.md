@@ -9,7 +9,7 @@ uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 <xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected.
 
@@ -29,7 +29,10 @@ Using `ObjectPool` has performance tradeoffs. You should only use a technique li
 
 ## Concepts
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPool%601> - the basic object pool abstraction. This is what your code should use to get and return objects.
+<!-- `ObjectPool<T>` AKA <xref:Microsoft.Extensions.ObjectPool.ObjectPool%601> has build error 	1 invalid cross reference(s) "<xref:Microsoft.Extensions.ObjectPool.ObjectPool*>".   
+<xref:Microsoft.Extensions.ObjectPool.ObjectPool%601>
+-->
+`ObjectPool<T>` - the basic object pool abstraction. Used to get and return objects.
 
 <xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> - implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly.... OR
 
