@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2019
+ms.date: 04/07/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -612,7 +612,7 @@ Templated components are often generically typed. For example, a generic List Vi
 
 *Components/ListViewTemplate.cshtml*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.cshtml?highlight=1)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.cshtml)]
 
 When using generic-typed components, the type parameter is inferred if possible:
 
