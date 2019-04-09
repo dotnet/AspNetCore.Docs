@@ -59,7 +59,8 @@ The following code:
 * Adds and configures `ObjectPool<StringBuilder>` to the DI container.
 * Adds the `BirthdayMiddleware`.
 
-[!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
+[!code-csharp[](ObjectPool/ObjectPoolSample/Startup.cs?name=snippet)]
 
 The following code implements `BirthdayMiddleware`
 
+[!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
