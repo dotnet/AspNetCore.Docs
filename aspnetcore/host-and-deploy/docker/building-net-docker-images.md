@@ -70,7 +70,7 @@ For this tutorial, you download an ASP.NET Core sample application and run it in
 
 * Press Ctrl+C at the command prompt to stop the app.
 
-## Build and run with Docker for Linux containers
+## Run with Docker for Linux containers
 
 * In the Docker client, switch to Linux containers.
 
@@ -99,7 +99,7 @@ For this tutorial, you download an ASP.NET Core sample application and run it in
   * `-p 5000:80`  - Map port 5000 on the local machine to port 80 in the container.
   * `--name aspnetcore_sample` - Name the container.
 
-## Build and run the sample with Docker for Windows containers
+## Run with Docker for Windows containers
 
 * In the Docker client, switch to Windows containers.
 
@@ -135,7 +135,7 @@ In some scenarios, you might want to deploy an app to a container by copying to 
 
 * Navigate to the project folder at `dotnet-docker/samples/aspnetapp/aspnetapp`.
 
-* Run the [dotnet publish](../tools/dotnet-publish.md) command:
+* Run the [dotnet publish](https://docs.microsoft.com/dotnet/core/tools/dotnet-publish.md) command:
 
   ```console
   dotnet publish -c Release -o published
@@ -207,4 +207,4 @@ In this tutorial, you:
 Next, learn about the tools Visual Studio has for working with Docker.
 
 > [!div class="nextstepaction"]
-> <xref:host-and-deploy/docker/visual-studio=tools-for-docker>
+> <xref:host-and-deploy/docker/visual-studio-tools-for-docker>
