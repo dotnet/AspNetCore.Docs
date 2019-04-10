@@ -4,7 +4,7 @@ author: pkellner
 description: Shows how to work with Image Tag Helper.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2018
+ms.date: 04/06/2019
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
 ---
 # Image Tag Helper in ASP.NET Core
@@ -37,13 +37,13 @@ When `asp-append-version` is specified with a `true` value along with a `src` at
 The following example uses an Image Tag Helper:
 
 ```cshtml
-<img src="~/images/asplogo.png" asp-append-version="true" />
+<img src="~/images/asplogo.png" asp-append-version="true">
 ```
 
 If the static file exists in the directory */wwwroot/images/*, the generated HTML is similar to the following (the hash will be different):
 
 ```html
-<img src="/images/asplogo.png?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM" />
+<img src="/images/asplogo.png?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM">
 ```
 
 The value assigned to the parameter `v` is the hash value of the *asplogo.png* file on disk. If the web server is unable to obtain read access to the static file, no `v` parameter is added to the `src` attribute in the rendered markup.

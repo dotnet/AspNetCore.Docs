@@ -3,17 +3,17 @@
 @implements ITab
 
 <li>
-    <a onclick=@Activate class="nav-link @TitleCssClass" role="button">
+    <a onclick="@Activate" class="nav-link @TitleCssClass" role="button">
         @Title
     </a>
 </li>
 
 @functions {
-    [CascadingParameter] TabSet ContainerTabSet { get; set; }
-    [Parameter] string Title { get; set; }
+    [CascadingParameter] private TabSet ContainerTabSet { get; set; }
+    [Parameter] private string Title { get; set; }
     [Parameter] public RenderFragment ChildContent { get; private set; }
 
-    string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
+    private string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
 
     protected override void OnInit()
     {
@@ -25,7 +25,7 @@
         ContainerTabSet.RemoveTab(this);
     }
 
-    void Activate()
+    private void Activate()
     {
         ContainerTabSet.SetActivateTab(this);
     }

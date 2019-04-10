@@ -49,7 +49,7 @@ The following example sets a component defined in *Pages/MyFallbackRazorComponen
 ```
 
 > [!IMPORTANT]
-> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file with the app base path specified in the `href` attribute (`<base href="/" />`). For more information, see <xref:host-and-deploy/razor-components-blazor/blazor#app-base-path>.
+> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/razor-components-blazor/blazor#app-base-path>.
 
 ## Route parameters
 

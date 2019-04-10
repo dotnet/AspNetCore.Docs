@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2019
+ms.date: 04/08/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -110,18 +110,18 @@ Data binding to both components and DOM elements is accomplished with the `bind`
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    bind="@_italicsCheck" />
+    bind="@_italicsCheck">
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
 
 The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
 
-Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue" />`) is essentially equivalent to the following:
+Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue">`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue" 
-    onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
+    onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)">
 ```
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `bind` handles a few cases where type conversions are performed. In principle, `bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
@@ -129,7 +129,7 @@ When the component is rendered, the `value` of the input element comes from the 
 In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what to bind to:
 
 ```cshtml
-<input type="text" bind-value-oninput="@CurrentValue" />
+<input type="text" bind-value-oninput="@CurrentValue">
 ```
 
 Unlike `onchange`, `oninput` fires for every character that is input into the text box.
@@ -139,7 +139,7 @@ Unlike `onchange`, `oninput` fires for every character that is input into the te
 Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
-<input bind="@StartDate" format-value="yyyy-MM-dd" />
+<input bind="@StartDate" format-value="yyyy-MM-dd">
 
 @functions {
     [Parameter]
@@ -174,7 +174,7 @@ Parent component:
     [Parameter]
     private int ParentYear { get; set; } = 1978;
 
-    void ChangeTheYear()
+    private void ChangeTheYear()
     {
         ParentYear = 1986;
     }
@@ -243,7 +243,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 </button>
 
 @functions {
-    void UpdateHeading(UIMouseEventArgs e)
+    private void UpdateHeading(UIMouseEventArgs e)
     {
         ...
     }
@@ -253,10 +253,10 @@ The following code calls the `UpdateHeading` method when the button is selected 
 The following code calls the `CheckboxChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" onchange="@CheckboxChanged" />
+<input type="checkbox" class="form-check-input" onchange="@CheckboxChanged">
 
 @functions {
-    void CheckboxChanged()
+    private void CheckboxChanged()
     {
         ...
     }
@@ -271,7 +271,7 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
 </button>
 
 @functions {
-    async Task UpdateHeading(UIMouseEventArgs e)
+    private async Task UpdateHeading(UIMouseEventArgs e)
     {
         ...
     }
@@ -309,9 +309,9 @@ It's often convenient to close over additional values, such as when iterating ov
 }
 
 @functions {
-    string message = "Select a button to learn its position.";
+    private string message = "Select a button to learn its position.";
 
-    void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
+    private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
     {
         message = $"You selected Button #{buttonNumber} at " +
             "mouse position: {e.ClientX} X {e.ClientY}.";
@@ -330,9 +330,9 @@ Component references provide a way get a reference to a component instance so th
 <MyLoginDialog ref="loginDialog" ... />
 
 @functions {
-    MyLoginDialog loginDialog;
+    private MyLoginDialog loginDialog;
 
-    void OnSomething()
+    private void OnSomething()
     {
         loginDialog.Show();
     }
@@ -503,7 +503,7 @@ Attributes are conditionally rendered based on the .NET value. If the value is `
 In the following example, `IsCompleted` determines if `checked` is rendered in the control's markup:
 
 ```cshtml
-<input type="checkbox" checked="@IsCompleted" />
+<input type="checkbox" checked="@IsCompleted">
 
 @functions {
     [Parameter]
@@ -514,13 +514,13 @@ In the following example, `IsCompleted` determines if `checked` is rendered in t
 If `IsCompleted` is `true`, the check box is rendered as:
 
 ```html
-<input type="checkbox" checked />
+<input type="checkbox" checked>
 ```
 
 If `IsCompleted` is `false`, the check box is rendered as:
 
 ```html
-<input type="checkbox" />
+<input type="checkbox">
 ```
 
 **Additional information on Razor**
@@ -540,7 +540,8 @@ The following example shows using the `MarkupString` type to add a block of stat
 @((MarkupString)myMarkup)
 
 @functions {
-    string myMarkup = "<p class='markup'>This is a <em>markup string</em>.</p>";
+    private string myMarkup = 
+        "<p class='markup'>This is a <em>markup string</em>.</p>";
 }
 ```
 
@@ -677,7 +678,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 </div>
 
 @functions {
-    ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
+    private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }
 ```
 
@@ -686,7 +687,8 @@ To make use of cascading values, components declare cascading parameters using t
 ```cshtml
 <CascadingValue Value=@PermInfo Name="UserPermissions">...</CascadingValue>
 
-[CascadingParameter(Name = "UserPermissions")] PermInfo Permissions { get; set; }
+[CascadingParameter(Name = "UserPermissions")]
+private PermInfo Permissions { get; set; }
 ```
 
 Binding with a string name value is relevant if you have multiple cascading values of the same type and need to differentiate them within the same subtree.
@@ -719,11 +721,11 @@ In the sample app, the Cascading Values Parameters Theme component binds to the 
 </p>
 
 @functions {
-    int currentCount = 0;
+    private int currentCount = 0;
 
     [CascadingParameter] protected ThemeInfo ThemeInfo { get; set; }
 
-    void IncrementCount()
+    private void IncrementCount()
     {
         currentCount++;
     }
@@ -826,9 +828,9 @@ Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml*
 </button>
 
 @functions {
-    RenderFragment CustomRender { get; set; }
+    private RenderFragment CustomRender { get; set; }
     
-    RenderFragment CreateComponent() => builder =>
+    private RenderFragment CreateComponent() => builder =>
     {
         for (var i = 0; i < 3; i++) 
         {
@@ -838,7 +840,7 @@ Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml*
         }
     };    
     
-    void RenderComponent()
+    private void RenderComponent()
     {
         CustomRender = CreateComponent();
     }

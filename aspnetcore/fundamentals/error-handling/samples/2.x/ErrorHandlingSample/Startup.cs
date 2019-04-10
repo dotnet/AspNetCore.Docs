@@ -1,63 +1,93 @@
-﻿// Set the preprocessor directive to enable one of the following scenarios:
-//
-// StatusCodePages - Status code pages with UseStatusCodePages and a lambda.
-// StatusCodePagesWithRedirect - Executes a redirect to an endpoint for status code pages.
-// StatusCodePagesWithReExecute - Executes an endpoint for status code pages without redirecting.
-//
-#define StatusCodePages  // or StatusCodePagesWithRedirect or StatusCodePagesWithReExecute
-
-// Set the preprocessor directive to enable either of the following scenarios:
-//
-// PageErrorHandler - Executes an endpoint with UseExceptionHandler.
-//                    Run the app in the Production environment for this scenario.
-//
-// LambdaErrorHandler - Passes a lambda to UseExceptionHandler.
-//                      Run the app in the Production environment for this scenario.
-//
-#define PageErrorHandler // or LambdaErrorHandler
-
+// Set preprocessor directive(s) to enable the scenarios you want to test.
 // For more information on preprocessor directives and sample apps, see:
 //  https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+//
+// StatusCodePages
+// StatusCodePagesWithLambda
+// StatusCodePagesWithFormatString
+// StatusCodePagesWithRedirect
+// StatusCodePagesWithReExecute
+// ErrorHandlerPage
+// ErrorHandlerLambda
+// ProdEnvironment or DevEnvironment
+//
+// The ErrorHandler directives must be used along with the ProdEnvironment directive.
+// The DeveloperExceptionPage is seen only when the DevEnvironment directive is used.
 
+#define StatusCodePages // or StatusCodePagesWithLambda or // StatusCodePagesWithFormatString or StatusCodePagesWithRedirect or StatusCodePagesWithReExecute
+#define ErrorHandlerPage // or ErrorHandlerLambda
+#define ProdEnvironment // or DevEnvironment
+
+using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Text;
-using System.Text.Encodings.Web;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ErrorHandlingSample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
+        public Startup(IConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+#if ProdEnvironment
+            env.EnvironmentName = "Production";
+#endif            
+#if DevEnvironment
+            env.EnvironmentName = "Development";
+#endif
+#if ErrorHandlerPage
+            #region snippet_DevPageAndHandlerPage
             if (env.IsDevelopment())
             {
-                #region snippet_UseDeveloperExceptionPage
                 app.UseDeveloperExceptionPage();
-                #endregion
             }
             else
             {
-#if PageErrorHandler
-                #region snippet_UseExceptionHandler1
                 app.UseExceptionHandler("/Error");
-                #endregion
+                app.UseHsts();
+            }
+            #endregion
 #endif
-#if LambdaErrorHandler
-                #region snippet_UseExceptionHandler2
-                // using Microsoft.AspNetCore.Diagnostics;
-
-                app.UseExceptionHandler(errorApp =>
-                {
+#if ErrorHandlerLambda
+            #region snippet_HandlerPageLambda
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+               app.UseExceptionHandler(errorApp =>
+               {
                     errorApp.Run(async context =>
                     {
                         context.Response.StatusCode = 500;
@@ -83,13 +113,24 @@ namespace ErrorHandlingSample
                         await context.Response.WriteAsync(new string(' ', 512)); // IE padding
                     });
                 });
-                #endregion
-#endif
+            app.UseHsts();
             }
+            #endregion
+#endif
 
 #if StatusCodePages
             #region snippet_StatusCodePages
-            // using Microsoft.AspNetCore.Http;
+            app.UseStatusCodePages();
+            #endregion
+#endif
+#if StatusCodePagesWithFormatString
+            #region snippet_StatusCodePagesFormatString
+            app.UseStatusCodePages(
+                "text/plain", "Status code page, status code: {0}");            
+            #endregion
+#endif
+#if StatusCodePagesWithLambda
+            #region snippet_StatusCodePagesLambda
 
             app.UseStatusCodePages(async context =>
             {
@@ -101,88 +142,23 @@ namespace ErrorHandlingSample
             });
             #endregion
 #endif
-
 #if StatusCodePagesWithRedirect
             #region snippet_StatusCodePagesWithRedirect
-            app.UseStatusCodePagesWithRedirects("/Error/{0}");
+            app.UseStatusCodePagesWithRedirects("/StatusCode?code={0}");
             #endregion
 #endif
 
 #if StatusCodePagesWithReExecute
             #region snippet_StatusCodePagesWithReExecute
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            app.UseStatusCodePagesWithReExecute("/StatusCode","?code={0}");
             #endregion
 #endif
 
-            app.MapWhen(context => context.Request.Path == "/missingpage", builder => { });
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
 
-            app.Map("/error", error =>
-            {
-                error.Run(async context =>
-                {
-                    var builder = new StringBuilder();
-
-                    builder.AppendLine("<html lang=\"en\"><body>");
-                    builder.AppendLine("An error occurred.<br>");
-
-                    var path = context.Request.Path.ToString();
-
-                    if (path.Length > 1)
-                    {
-                        builder.AppendLine("Status Code: " +
-                            HtmlEncoder.Default.Encode(path.Substring(1)) + "<br>");
-                    }
-
-                    var referrer = context.Request.Headers["referer"];
-
-                    if (!string.IsNullOrEmpty(referrer))
-                    {
-                        builder.AppendLine("Return to <a href=\"" +
-                            HtmlEncoder.Default.Encode(referrer) + "\">" +
-                            WebUtility.HtmlEncode(referrer) + "</a><br>");
-                    }
-
-#if StatusCodePagesWithReExecute
-                    var feature = context.Features.Get<IStatusCodeReExecuteFeature>();
-                    if (feature != null)
-                    {
-                        builder.AppendLine("OriginalPathBase: "
-                            + WebUtility.HtmlEncode(feature.OriginalPathBase) + "<br>");
-                        builder.AppendLine("OriginalPath: "
-                            + WebUtility.HtmlEncode(feature.OriginalPath) + "<br>");
-                        builder.AppendLine("OriginalQueryString: "
-                            + WebUtility.HtmlEncode(feature.OriginalQueryString) + "<br>");
-                    }
-#endif
-
-                    builder.AppendLine("</body></html>");
-
-                    context.Response.ContentType = "text/html";
-
-                    await context.Response.WriteAsync(builder.ToString());
-                });
-            });
-
-            app.Run(async (context) =>
-            {
-                if (context.Request.Query.ContainsKey("throw"))
-                {
-                    throw new FileNotFoundException("File Not Found Exception triggered!");
-                }
-
-                var builder = new StringBuilder();
-
-                builder.AppendLine("<html><body>Hello World!");
-                builder.AppendLine("<ul>");
-                builder.AppendLine("<li><a href=\"/?throw=true\">Throw Exception</a></li>");
-                builder.AppendLine("<li><a href=\"/missingpage\">Missing Page</a></li>");
-                builder.AppendLine("</ul>");
-                builder.AppendLine("</body></html>");
-
-                context.Response.ContentType = "text/html";
-
-                await context.Response.WriteAsync(builder.ToString());
-            });
+            app.UseMvc();
         }
     }
 }

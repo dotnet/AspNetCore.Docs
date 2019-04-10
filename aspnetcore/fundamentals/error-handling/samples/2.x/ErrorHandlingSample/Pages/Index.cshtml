@@ -1,0 +1,10 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+    <div>
+        <p><a href="/missingpage">Trigger a 404</a>.</p>
+        <p><a href="/index?throw=true">Trigger an exception</a>.</p>
+    </div>

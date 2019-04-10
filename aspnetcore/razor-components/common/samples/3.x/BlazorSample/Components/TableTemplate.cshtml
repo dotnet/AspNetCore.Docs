@@ -16,8 +16,8 @@
 </table>
 
 @functions {
-    [Parameter] RenderFragment TableHeader { get; set; }
-    [Parameter] RenderFragment<TItem> RowTemplate { get; set; }
-    [Parameter] RenderFragment TableFooter { get; set; }
-    [Parameter] IReadOnlyList<TItem> Items { get; set; }
+    [Parameter] private RenderFragment TableHeader { get; set; }
+    [Parameter] private RenderFragment<TItem> RowTemplate { get; set; }
+    [Parameter] private RenderFragment TableFooter { get; set; }
+    [Parameter] private IReadOnlyList<TItem> Items { get; set; }
 }

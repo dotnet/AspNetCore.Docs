@@ -94,7 +94,7 @@
 </ListViewTemplate>
 
 @functions {
-    List<Pet> pets = new List<Pet>
+    private List<Pet> pets = new List<Pet>
     {
         new Pet { PetId = 1, Name = "Rin Tin Tin" },
         new Pet { PetId = 2, Name = "Mr. Bigglesworth" },
@@ -105,7 +105,7 @@
         new Pet { PetId = 7, Name = "K-9" }
     };
 
-    class Pet
+    private class Pet
     {
         public int PetId { get; set; }
         public string Name { get; set; }

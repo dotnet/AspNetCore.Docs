@@ -57,9 +57,11 @@ The host may configure some services before `Startup` methods are called. For mo
 
 For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC:
 
-[!code-csharp[](startup/sample_snapshot/Startup3.cs?highlight=4,7,11)]
+[!code-csharp[](startup/sample_snapshot/Startup3.cs)]
 
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
+
+See [SetCompatibilityVersion](xref:mvc/compatibility-version) for more information on `SetCompatibilityVersion`.
 
 ## The Configure method
 
@@ -68,7 +70,7 @@ The <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method is used to
 The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeline with support for:
 
 * [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page)
-* [Exception handler](xref:fundamentals/error-handling#configure-a-custom-exception-handling-page)
+* [Exception handler](xref:fundamentals/error-handling#exception-handler-page)
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [HTTPS redirection](xref:security/enforcing-ssl)
 * [Static files](xref:fundamentals/static-files)
