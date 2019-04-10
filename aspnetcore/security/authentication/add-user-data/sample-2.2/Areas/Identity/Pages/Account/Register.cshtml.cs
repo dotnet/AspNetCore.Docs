@@ -13,6 +13,7 @@ using WebApp1.Areas.Identity.Data;
 
 namespace WebApp1.Areas.Identity.Pages.Account
 {
+    #region snippet
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -111,4 +112,5 @@ namespace WebApp1.Areas.Identity.Pages.Account
             return Page();
         }
     }
+    #endregion
 }
