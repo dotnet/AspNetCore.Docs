@@ -23,9 +23,6 @@ Learn terms and definitions for Docker technology.
 [Docker containers, images, and registries](/dotnet/standard/microservices-architecture/container-docker-introduction/docker-containers-images-registries)  
 Find out how Docker container images are stored in an image registry for consistent deployment across environments.
 
-[Build Docker Images for .NET Core Applications](/dotnet/articles/core/docker/building-net-docker-images)  
-Learn how to build and dockerize an ASP.NET Core app. Explore Docker images maintained by Microsoft and examine use cases.
-
 [Visual Studio Tools for Docker](xref:host-and-deploy/docker/visual-studio-tools-for-docker)  
 Discover how Visual Studio 2017 supports building, debugging, and running ASP.NET Core apps targeting either .NET Framework or .NET Core on Docker for Windows. Both Windows and Linux containers are supported.
 
