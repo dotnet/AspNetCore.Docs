@@ -88,7 +88,7 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
   ![new ASP.NET Core Web Application](grpc-start/_static/server_start.png)
 
-* Once the service is running, set the **GrpcGreeter.Client** is set as the Startup Project and press Ctrl+F5 to run the client without the debugger.
+* Once the service is running, set the **GrpcGreeter.Client** as the Startup Project and press Ctrl+F5 to run the client without the debugger.
 
   The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response that is displayed in the command prompt.
 
