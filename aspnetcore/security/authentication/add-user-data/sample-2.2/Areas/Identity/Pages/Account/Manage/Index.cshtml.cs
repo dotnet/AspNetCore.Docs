@@ -30,7 +30,6 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
         }
 
         public string Username { get; set; }
-
         public bool IsEmailConfirmed { get; set; }
 
         [TempData]

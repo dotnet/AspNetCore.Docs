@@ -113,7 +113,7 @@ Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.id
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,87-95,120)]
+[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
@@ -123,7 +123,7 @@ Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=8-16,43,44)]
+[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67=68)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
