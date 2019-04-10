@@ -117,13 +117,13 @@ Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs*
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
-[!code-html[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=34-41)]
+[!code-html[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-41)]
 
 ### Update the Account/Register.cshtml page
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67=68)]
+[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67-68)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
