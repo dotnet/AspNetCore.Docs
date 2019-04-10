@@ -3,35 +3,60 @@
 
 <h1>Parent-child example</h1>
 
-<ChildComponent Title="Panel Title from Parent">
-    Child content of the child component is supplied 
+<ChildComponent Title="Panel Title from Parent"
+                OnClick="@ShowMessageTriggeredByChild">
+    Content of the child component is supplied
     by the parent component.
 </ChildComponent>
+
+<p><b>@messageText</b></p>
+
+@functions {
+    private string messageText;
+
+    void ShowMessageTriggeredByChild(UIMouseEventArgs e)
+    {
+        messageText = "Blaze a new trail with Blazor!";
+    }
+}
 <!-- </snippet_ParentComponent> -->
 
 <p>
-    <code>ParentComponent</code> (<em>ParentComponent.cshtml</em>; this page) 
-    embeds a child component into the page using the <code>&lt;ChildComponent&gt;</code> 
-    tag. The child component (<em>ChildComponent.cshtml</em>) contains a 
+    <code>ParentComponent</code> (<em>ParentComponent</em>; this page)
+    embeds a child component into the page using the <code>&lt;ChildComponent&gt;</code>
+    tag. The child component (<em>ChildComponent</em>) contains a
     Bootstrap-styled panel.
 </p>
 <p>
-    The <code>Title</code> attribute and panel content are specified by the 
-    <code>&lt;ChildComponent&gt;</code> element. The <code>Title</code> attribute 
+    The <code>Title</code> attribute and panel content are specified by the
+    <code>&lt;ChildComponent&gt;</code> element. The <code>Title</code> attribute
     is a <i>component parameter</i>.
 </p>
 
-<h2>ParentComponent.cshtml</h2>
+<h2>Parent component</h2>
 
-<pre><code>&lt;ChildComponent Title="Panel Title from Parent"&gt;
-    Child content of the child component is supplied by the parent component.
-&lt;/ChildComponent&gt;</code></pre>
+<pre><code>&lt;ChildComponent Title="Panel Title from Parent" OnClick="@@ShowMessageTriggeredByChild"&gt;
+    Content of the child component is supplied by the parent component.
+&lt;/ChildComponent&gt;
 
-<h2>ChildComponent.cshtml</h2>
+&lt;p&gt;&lt;b&gt;@@messageText&lt;/b&gt;&lt;/p&gt;
+    
+@@functions {
+    private string messageText;
+
+    void ShowMessageTriggeredByChild(UIMouseEventArgs e)
+    {
+        messageText = "Blaze a new trail with Blazor!";
+    }
+}</code></pre>
+
+<h2>Child component</h2>
 
 <pre><code>&lt;div class="panel panel-success"&gt;
     &lt;div class="panel-heading"&gt;@@Title&lt;/div&gt;
     &lt;div class="panel-body"&gt;@@ChildContent&lt;/div&gt;
+
+    &lt;button class="btn btn-primary" onclick="@@OnClick"&gt;Trigger a Parent component method&lt;/button&gt;
 &lt;/div&gt;
 
 @@functions {
@@ -40,4 +65,7 @@
 
     [Parameter]
     private RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    EventCallback&lt;UIMouseEventArgs&gt; OnClick { get; set; }
 }</code></pre>
