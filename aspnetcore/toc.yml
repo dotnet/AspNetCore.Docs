@@ -749,6 +749,9 @@
         - name: Overview
           displayName: deploy, publish, docker
           uid: host-and-deploy/docker/index
+        - name: Build Docker images
+          displayName: deploy, publish, docker
+          href: /dotnet/core/docker/building-net-docker-images
         - name: Visual Studio Tools
           displayName: deploy, publish, docker
           uid: host-and-deploy/docker/visual-studio-tools-for-docker
