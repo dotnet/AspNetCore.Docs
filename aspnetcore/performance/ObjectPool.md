@@ -23,7 +23,7 @@ For example, the ASP.NET Core framework uses the object pool in some places to r
 
 Object pooling doesn't always improve performance:
 
-- Unless the initialization cost of an object is hight, it's usually slower to get the object from the pool.
+- Unless the initialization cost of an object is high, it's usually slower to get the object from the pool.
 - Objects managed by the pool aren't de-allocated until the pool is de-allocated.
 
 Use object pooling only after collecting performance data using realistic scenarios for your app or library.
