@@ -90,10 +90,6 @@ GrpcGreeter.Server files:
 
 Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
 
-gRPC client GrpcGreeter.Client file:
-
-*Program.cs* contains the entry point and logic for the gRPC client.
-
 In this tutorial, you:
 
 > [!div class="checklist"]
