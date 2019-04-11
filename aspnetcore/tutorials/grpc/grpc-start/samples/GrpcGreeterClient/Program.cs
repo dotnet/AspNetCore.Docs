@@ -1,22 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
 using Greet;
 using Grpc.Core;
 
-namespace GrpcGreeter
+namespace GrpcGreeterClient
 {
-    #region snippet
-    public class Program
+    class Program
     {
+        #region snippet
         static async Task Main(string[] args)
         {
-            // Include port of the gRPC server as an application argument
-            var port = args.Length > 0 ? args[0] : "50051";
-
-            var channel = new Channel("localhost:" + port, ChannelCredentials.Insecure);
+            // The port number here must match the port of the gRPC server
+            var channel = new Channel("localhost:50051", ChannelCredentials.Insecure);
             var client = new Greeter.GreeterClient(channel);
 
             var reply = await client.SayHelloAsync(
@@ -28,6 +23,6 @@ namespace GrpcGreeter
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
+        #endregion
     }
-    #endregion
 }

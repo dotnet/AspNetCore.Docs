@@ -26,7 +26,7 @@
       items:
         - name: Razor Pages
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: tutorials/razor-pages/index
             - name: Get started
@@ -47,7 +47,7 @@
               uid: tutorials/razor-pages/validation
         - name: MVC
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: tutorials/first-mvc-app/index
             - name: Get started
@@ -80,7 +80,7 @@
           uid: tutorials/first-mongo-app
         - name: Backend for mobile
           displayName: tutorial
-          uid: mobile/native-mobile-backend              
+          uid: mobile/native-mobile-backend
     - name: Real-time web apps
       items:
         - name: SignalR with JavaScript
@@ -97,7 +97,7 @@
       items:
         - name: EF Core with Razor Pages
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: data/ef-rp/index
             - name: Get started
@@ -123,7 +123,7 @@
           displayName: tutorial
           href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: EF Core with MVC, 10 tutorials
-          items: 
+          items:
             - name: Overview
               uid: data/ef-mvc/index
             - name: Get started
@@ -358,7 +358,7 @@
       uid: web-api/advanced/conventions
 - name: Real-time apps
   displayName: signalr
-  items: 
+  items:
     - name: SignalR overview
       uid: signalr/introduction
     - name: Supported platforms
@@ -375,7 +375,7 @@
       displayName: signalr
     - name: Server concepts
       displayName: signalr
-      items: 
+      items:
         - name: Hubs
           uid: signalr/hubs
           displayName: signalr
@@ -393,7 +393,7 @@
           displayName: signalr
     - name: Clients
       displayName: signalr
-      items: 
+      items:
         - name: .NET client
           uid: signalr/dotnet-client
           displayName: signalr
@@ -414,7 +414,7 @@
           displayName: signalr
     - name: Hosting and scaling
       displayName: signalr
-      items: 
+      items:
         - name: Overview
           displayName: signalr
           uid: signalr/scale
@@ -465,7 +465,11 @@
     - name: Tutorials
       items:
         - name: Get started with gRPC service in ASP.NET Core
+          uid: tutorials/grpc/index
+        - name: Create a ASP.NET Core gRPC Greeter Service
           uid: tutorials/grpc/grpc-start
+        - name: Create a .NET Core gRPC client
+          uid: tutorials/grpc/grpc-client
 - name: Test, debug, and troubleshoot
   items:
     - name: Unit testing
@@ -650,13 +654,13 @@
       uid: client-side/using-browserlink
 - name: Hosting and deployment
   displayName: publish
-  items: 
+  items:
     - name: Overview
       displayName: azure, deploy, publish
       uid: host-and-deploy/index
     - name: Host on Azure App Service
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-apps/index
@@ -706,7 +710,7 @@
           uid: azure/devops/next-steps
     - name: Host on Windows with IIS
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: deploy, publish
           uid: host-and-deploy/iis/index
@@ -745,7 +749,7 @@
       uid: host-and-deploy/linux-apache
     - name: Host in Docker
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: deploy, publish, docker
           uid: host-and-deploy/docker/index
@@ -788,7 +792,7 @@
           uid: host-and-deploy/razor-components-blazor/configure-linker
 - name: Security and Identity
   displayName: authentication, authorization
-  items: 
+  items:
     - name: Overview
       uid: security/index
     - name: Authentication
@@ -889,7 +893,7 @@
           uid: security/authorization/limitingidentitybyscheme
     - name: Data protection
       displayName: encryption
-      items: 
+      items:
         - name: Overview
           uid: security/data-protection/introduction
         - name: Data protection APIs
@@ -1058,14 +1062,14 @@
       uid: migration/20_21
     - name: 1.x to 2.0
       displayName: migrate, migration
-      items: 
+      items:
         - name: Overview
           uid: migration/1x-to-2x/index
         - name: Authentication and Identity
           uid: migration/1x-to-2x/identity-2x
     - name: ASP.NET to ASP.NET Core
       displayName: migrate, migration
-      items: 
+      items:
         - name: Overview
           uid: migration/proper-to-2x/index
         - name: MVC
