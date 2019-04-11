@@ -57,10 +57,10 @@ The following packages need to be added the gRPC client project:
 Copy the **Protos\greet.proto** file from the gRPC Greeter service to the gRPC client project. Add the **greet.proto** file to the `<Protobuf>` item group:
 
 ```XML
-<Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+<Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
 ```
 
-The `GrpcServices="Server"` attribute is added so that only the C# client assets are generated for the included protobuf file. Build the client project to trigger the generation of the C# client assets.
+The `GrpcServices="Client"` attribute is added so that only the C# client assets are generated for the included protobuf file. Build the client project to trigger the generation of the C# client assets.
 
 ## Create a GreeterClient and invoke the SayHello unary call
 
