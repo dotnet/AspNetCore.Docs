@@ -26,13 +26,15 @@ namespace Microsoft.AspNetCore.Authorization
         /// <param name="requirements">The requirements to evaluate.</param>
         /// <returns>
         /// A flag indicating whether authorization has succeeded.
-        /// This value is <value>true</value> when the user fulfills the policy; otherwise <value>false</value>.
+        /// This value is <value>true</value> when the user fulfills the policy; 
+        /// otherwise <value>false</value>.
         /// </returns>
         /// <remarks>
-        /// Resource is an optional parameter and may be null. Please ensure that you check it is not 
-        /// null before acting upon it.
+        /// Resource is an optional parameter and may be null. Please ensure that you check 
+        /// it is not null before acting upon it.
         /// </remarks>
-        Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, object resource, IEnumerable<IAuthorizationRequirement> requirements);
+        Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, object resource, 
+                                        IEnumerable<IAuthorizationRequirement> requirements);
 
         /// <summary>
         /// Checks if a user meets a specific authorization policy
@@ -42,17 +44,21 @@ namespace Microsoft.AspNetCore.Authorization
         /// An optional resource the policy should be checked with.
         /// If a resource is not required for policy evaluation you may pass null as the value.
         /// </param>
-        /// <param name="policyName">The name of the policy to check against a specific context.</param>
+        /// <param name="policyName">The name of the policy to check against a specific 
+        /// context.</param>
         /// <returns>
         /// A flag indicating whether authorization has succeeded.
-        /// Returns a flag indicating whether the user, and optional resource has fulfilled the policy.    
-        /// <value>true</value> when the policy has been fulfilled; otherwise <value>false</value>.
+        /// Returns a flag indicating whether the user, and optional resource has fulfilled 
+        /// the policy.    
+        /// <value>true</value> when the policy has been fulfilled; 
+        /// otherwise <value>false</value>.
         /// </returns>
         /// <remarks>
-        /// Resource is an optional parameter and may be null. Please ensure that you check it is not 
-        /// null before acting upon it.
+        /// Resource is an optional parameter and may be null. Please ensure that you check it 
+        /// is not null before acting upon it.
         /// </remarks>
-        Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, object resource, string policyName);
+        Task<AuthorizationResult> AuthorizeAsync(
+                                        ClaimsPrincipal user, object resource, string policyName);
     }
     #endregion
 }
