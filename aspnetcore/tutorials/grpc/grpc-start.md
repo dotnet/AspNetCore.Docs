@@ -22,7 +22,6 @@ In this tutorial, you:
 
 > [!div class="checklist"]
 > * Create a gRPC service.
-> * Run the service.
 > * Examine the project files.
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-3.0.md)]
@@ -80,7 +79,7 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
 ### Examine the project files of the gRPC project
 
-GrpcGreeter.Server files:
+GrpcGreeter files:
 
 * greet.proto: The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see <xref:grpc/index>.
 * *Services* folder: Contains the implementation of the `Greeter` service.
@@ -90,9 +89,13 @@ GrpcGreeter.Server files:
 
 Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
 
+## Additional resources
+
 In this tutorial, you:
 
 > [!div class="checklist"]
 > * Created a gRPC service.
-> * Ran the service and a client to test the service.
 > * Examined the project files.
+
+> [!div class="step-by-step"]
+> [Next: Create a .NET Core gRPC client](xref:tutorials/grpc/grpc-client)
