@@ -162,6 +162,31 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
+Instead of a `LogLevel` value, you can also provide a `string` value representing a log level name (see below for a list). This is useful when configuring SignalR logging in environments where you don't have access to the `LogLevel` constants.
+
+```javascript
+let connection = new signalR.HubConnectionBuilder()
+    .withUrl("/myhub")
+    .configureLogging("warn")
+    .build();
+```
+
+The below table lists the available log levels. The value you provide to `configureLogging` sets the **minimum** log level that will be logged. Messages logged at this level, **or lower levels on the table**, will be logged.
+
+| `string` Name | `LogLevel` value |
+| - | - |
+| `"trace"` | `LogLevel.Trace` |
+| `"debug"` | `LogLevel.Debug` |
+| `"info"` **or** `"information"` | `LogLevel.Information` |
+| `"warn"` **or** `"warning"` | `LogLevel.Warning` |
+| `"error"` | `LogLevel.Error` |
+| `"critical"` | `LogLevel.Critical` |
+| `"none"` | `LogLevel.None` |
+
+:: moniker-end
+
 > [!NOTE]
 > To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
 
