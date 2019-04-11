@@ -2,10 +2,10 @@
 title: Persist additional claims and tokens from external providers in ASP.NET Core
 author: guardrex
 description: Learn how to establish additional claims and tokens from external providers.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2018
+ms.date: 04/11/2019
 uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
@@ -18,7 +18,7 @@ An ASP.NET Core app can establish additional claims and tokens from external aut
 
 ## Prerequisites
 
-Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see <xref:security/authentication/social/index>. The [sample app](#sample-app-instructions) uses the [Google authentication provider](xref:security/authentication/google-logins).
+Decide which external authentication providers to support in the app. For each provider, register the app and obtain a client ID and client secret. For more information, see <xref:security/authentication/social/index>. The sample app uses the [Google authentication provider](xref:security/authentication/google-logins).
 
 ## Set the client ID and client secret
 
@@ -33,7 +33,7 @@ The OAuth authentication provider establishes a trust relationship with an app u
 
 The sample app configures the Google authentication provider with a client ID and client secret provided by Google:
 
-[!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=4,6)]
+[!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=4,9)]
 
 ## Establish the authentication scope
 
@@ -48,21 +48,21 @@ Specify the list of permissions to retrieve from the provider by specifying the 
 
 The sample app adds the Google `plus.login` scope to request Google+ sign in permissions:
 
-[!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=7)]
+[!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13)]
 
 ## Map user data keys and create claims
 
 In the provider's options, specify a <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonKey*> for each key in the external provider's JSON user data for the app identity to read on sign in. For more information on claim types, see <xref:System.Security.Claims.ClaimTypes>.
 
-The sample app creates a <xref:System.Security.Claims.ClaimTypes.Gender> claim from the `gender` key in Google user data:
+The sample app creates <xref:System.Security.Claims.ClaimTypes.GivenName> and <xref:System.Security.Claims.ClaimTypes.Surname> claims from the `givenname` and `surname` keys in Google user data:
 
-[!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=8)]
+[!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=14-15)]
 
 In <xref:Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync*>, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager%601> can store an `ApplicationUser` claim for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
 
-In the sample app, `OnPostConfirmationAsync` (*Account/ExternalLogin.cshtml.cs*) establishes a <xref:System.Security.Claims.ClaimTypes.Gender> claim for the signed in `ApplicationUser`:
+In the sample app, `OnPostConfirmationAsync` (*Account/ExternalLogin.cshtml.cs*) establishes the <xref:System.Security.Claims.ClaimTypes.GivenName> and <xref:System.Security.Claims.ClaimTypes.Surname> claims for the signed in `ApplicationUser`:
 
-[!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=30-31)]
+[!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-36,41-42)]
 
 ## Save the access token
 
@@ -70,70 +70,69 @@ In the sample app, `OnPostConfirmationAsync` (*Account/ExternalLogin.cshtml.cs*)
 
 The sample app sets the value of `SaveTokens` to `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>:
 
-[!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=9)]
+[!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=16)]
 
 When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
 
-The sample app saves the access token in:
+The sample app saves the access token in `OnPostConfirmationAsync` (new user registration) and `OnGetCallbackAsync` (previously registered user) in *Account/ExternalLogin.cshtml.cs*:
 
-* `OnPostConfirmationAsync` &ndash; Executes for new user registration.
-* `OnGetCallbackAsync` &ndash; Executes when a previously registered user signs into the app.
-
-*Account/ExternalLogin.cshtml.cs*:
-
-[!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=34-35)]
-
-[!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnGetCallbackAsync&highlight=31-32)]
+```csharp
+var props = new AuthenticationProperties();
+props.StoreTokens(info.AuthenticationTokens);
+```
 
 ## How to add additional custom tokens
 
 To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) of `TicketCreated`:
 
-[!code-csharp[](additional-claims/samples/2.x/AdditionalClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=10-21)]
+[!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=17-28)]
 
-## Sample app instructions
+## Creating and adding claims
 
-The sample app demonstrates how to:
+The framework provides common actions and extension methods for creating and adding claims to the collection.
 
-* Obtain the user's gender from Google and store a gender claim with the value.
-* Store the Google access token in the user's `AuthenticationProperties`.
+Users can define custom actions by deriving from <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction> and implementing the abstract <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.Run*> method.
 
-To use the sample app:
+For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims>.
 
-1. Register the app and obtain a valid client ID and client secret for Google authentication. For more information, see <xref:security/authentication/google-logins>.
-1. Provide the client ID and client secret to the app in the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> of `Startup.ConfigureServices`.
-1. Run the app and request the My Claims page. When the user isn't signed in, the app redirects to Google. Sign in with Google. Google redirects the user back to the app (`/Home/MyClaims`). The user is authenticated, and the My Claims page is loaded. The gender claim is present under **User Claims** with the value obtained from Google. The access token appears in the **Authentication Properties**.
+## Removal of claim actions and claims
+
+[ClaimActionCollection.Remove(String)](xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimActionCollection.Remove*) removes all claim actions for the given <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> from the collection. [ClaimActionCollectionMapExtensions.DeleteClaim(ClaimActionCollection, String)](xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*) deletes a claim of the given <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> from the identity. <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*> is primarily used with OIDC to remove protocol-generated claims.
+
+## Sample app output
 
 ```
 User Claims
 
 http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
-    b36a7b09-9135-4810-b7a5-78697ff23e99
+    9b342344f-7aab-43c2-1ac1-ba75912ca999
 http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name
-    username@gmail.com
+    someone@gmail.com
 AspNet.Identity.SecurityStamp
-    29G2TB881ATCUQFJSRFG1S0QJ0OOAWVT
-http://schemas.xmlsoap.org/ws/2005/05/identity/claims/gender
-    female
-http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod
-    Google
+    7D4312MOWRYYBFI1KXRPHGOSTBVWSFDE
+http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname
+    Judy
+http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname
+    Woo
 
 Authentication Properties
 
 .Token.access_token
-    bv42.Dgw...GQMv9ArLPs
+    yc23.AlvoZqz56...1lxltXV7D-ZWP9
 .Token.token_type
     Bearer
 .Token.expires_at
-    2018-08-27T19:08:00.0000000+00:00
+    2019-04-11T22:14:51.0000000+00:00
 .Token.TicketCreated
-    8/27/2018 6:08:00 PM
+    4/11/2019 9:14:52 PM
 .TokenNames
     access_token;token_type;expires_at;TicketCreated
+.persistent
 .issued
-    Mon, 27 Aug 2018 18:08:05 GMT
+    Thu, 11 Apr 2019 20:51:06 GMT
 .expires
-    Mon, 10 Sep 2018 18:08:05 GMT
+    Thu, 25 Apr 2019 20:51:06 GMT
+
 ```
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
