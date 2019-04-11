@@ -21,7 +21,7 @@ namespace Microsoft.AspNetCore.Authorization
         /// <param name="user">The user to evaluate the requirements against.</param>
         /// <param name="resource">
         /// An optional resource the policy should be checked with.
-        /// If a resource is not required for policy evaluation you may pass null as the value.
+        /// If a resource is not required for policy evaluation you may pass null as the value
         /// </param>
         /// <param name="requirements">The requirements to evaluate.</param>
         /// <returns>
@@ -42,7 +42,7 @@ namespace Microsoft.AspNetCore.Authorization
         /// <param name="user">The user to check the policy against.</param>
         /// <param name="resource">
         /// An optional resource the policy should be checked with.
-        /// If a resource is not required for policy evaluation you may pass null as the value.
+        /// If a resource is not required for policy evaluation you may pass null as the value
         /// </param>
         /// <param name="policyName">The name of the policy to check against a specific 
         /// context.</param>
@@ -54,8 +54,8 @@ namespace Microsoft.AspNetCore.Authorization
         /// otherwise <value>false</value>.
         /// </returns>
         /// <remarks>
-        /// Resource is an optional parameter and may be null. Please ensure that you check it 
-        /// is not null before acting upon it.
+        /// Resource is an optional parameter and may be null. Please ensure that you check
+        /// it is not null before acting upon it.
         /// </remarks>
         Task<AuthorizationResult> AuthorizeAsync(
                                     ClaimsPrincipal user, object resource, string policyName);
