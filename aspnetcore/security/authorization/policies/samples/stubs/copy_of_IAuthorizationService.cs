@@ -1,5 +1,5 @@
 ﻿// THIS IS A COPY OF https://github.com/aspnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs
-// USED FOR DOCUMENTATION.
+// USED FOR DOCUMENTAION
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
