@@ -34,7 +34,7 @@ namespace Microsoft.AspNetCore.Authorization
         /// it is not null before acting upon it.
         /// </remarks>
         Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, object resource, 
-                                        IEnumerable<IAuthorizationRequirement> requirements);
+                                         IEnumerable<IAuthorizationRequirement> requirements);
 
         /// <summary>
         /// Checks if a user meets a specific authorization policy
@@ -58,7 +58,7 @@ namespace Microsoft.AspNetCore.Authorization
         /// is not null before acting upon it.
         /// </remarks>
         Task<AuthorizationResult> AuthorizeAsync(
-                                        ClaimsPrincipal user, object resource, string policyName);
+                                    ClaimsPrincipal user, object resource, string policyName);
     }
     #endregion
 }
