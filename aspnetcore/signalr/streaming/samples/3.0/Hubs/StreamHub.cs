@@ -32,14 +32,12 @@ namespace SignalRChat.Hubs
             int delay,
             CancellationToken cancellationToken)
         {
+            Exception localException = null;
             try
             {
                 for (var i = 0; i < count; i++)
                 {
-                    // Check the cancellation token regularly so that the server will stop
-                    // producing items if the client disconnects.
-                    cancellationToken.ThrowIfCancellationRequested();
-                    await writer.WriteAsync(i);
+                    await writer.WriteAsync(i, cancellationToken);
 
                     // Use the cancellationToken in other APIs that accept cancellation
                     // tokens so the cancellation can flow down to them.
@@ -48,10 +46,10 @@ namespace SignalRChat.Hubs
             }
             catch (Exception ex)
             {
-                writer.TryComplete(ex);
+                localException = ex;
             }
 
-            writer.TryComplete();
+            writer.Complete(localException);
         }
         #endregion
 

@@ -58,7 +58,7 @@ document.getElementById("streamButton").addEventListener("click", function (even
                     var li = document.createElement("li");
                     li.textContent = err;
                     document.getElementById("messagesList").appendChild(li);
-                }
+                },
             });
         }
         catch (e) {
@@ -71,19 +71,24 @@ document.getElementById("streamButton").addEventListener("click", function (even
 document.getElementById("uploadButton").addEventListener("click", function (event) { return __awaiter(_this, void 0, void 0, function () {
     var subject, iteration, intervalHandle;
     return __generator(this, function (_a) {
-        subject = new signalR.Subject();
-        connection.send("UploadStream", subject);
-        iteration = 0;
-        intervalHandle = setInterval(function () {
-            iteration++;
-            subject.next(iteration.toString());
-            if (iteration === 10) {
-                clearInterval(intervalHandle);
-                subject.complete();
-            }
-        }, 500);
-        event.preventDefault();
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                subject = new signalR.Subject();
+                return [4 /*yield*/, connection.send("UploadStream", subject)];
+            case 1:
+                _a.sent();
+                iteration = 0;
+                intervalHandle = setInterval(function () {
+                    iteration++;
+                    subject.next(iteration.toString());
+                    if (iteration === 10) {
+                        clearInterval(intervalHandle);
+                        subject.complete();
+                    }
+                }, 500);
+                event.preventDefault();
+                return [2 /*return*/];
+        }
     });
 }); });
 // We need an async function in order to use await, but we want this code to run immediately,

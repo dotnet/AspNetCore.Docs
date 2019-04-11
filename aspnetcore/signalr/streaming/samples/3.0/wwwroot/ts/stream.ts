@@ -33,7 +33,7 @@ document.getElementById("streamButton").addEventListener("click", async (event) 
 
 document.getElementById("uploadButton").addEventListener("click", async (event) => {
     const subject = new signalR.Subject();
-    connection.send("UploadStream", subject);
+    await connection.send("UploadStream", subject);
     var iteration = 0;
     const intervalHandle = setInterval(() => {
         iteration++;
