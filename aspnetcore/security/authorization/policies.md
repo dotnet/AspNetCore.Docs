@@ -17,6 +17,84 @@ An authorization policy consists of one or more requirements. It's registered as
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
+## IAuthorizationService 
+
+The primary service that determines if authorization is successful is [IAuthorizationService](https://github.com/aspnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs):
+
+[!code-csharp[](policies/samples/stubs/copy_of_IAuthorizationService.cs?highlight=24,44)]
+
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> is a marker service with no methods, and the mechanism for tracking whether authorization is successful.
+
+Each <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> is responsible for checking if requirements are met:
+<!--The following code is a copy/paste from 
+https://github.com/aspnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationHandler.cs -->
+
+```csharp
+/// <summary>
+/// Classes implementing this interface are able to make a decision if authorization is allowed.
+/// </summary>
+public interface IAuthorizationHandler
+{
+    /// <summary>
+    /// Makes a decision if authorization is allowed.
+    /// </summary>
+    /// <param name="context">The authorization information.</param>
+    Task HandleAsync(AuthorizationHandlerContext context);
+}
+```
+
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> class is what the handler uses to mark whether requirements have been met:
+
+```csharp
+ context.Succeed(requirement)
+```
+
+The following code shows the simplified (and annotated with comments) default implementation of the authorization service:
+
+```csharp
+public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, 
+             object resource, IEnumerable<IAuthorizationRequirement> requirements)
+{
+    // Create a tracking context from the authorization inputs.
+    var authContext = _contextFactory.CreateContext(requirements, user, resource);
+
+    // By default this returns an IEnumerable<IAuthorizationHandlers> from DI.
+    var handlers = await _handlers.GetHandlersAsync(authContext);
+
+    // Invoke all handlers.
+    foreach (var handler in handlers)
+    {
+        await handler.HandleAsync(authContext);
+    }
+
+    // Check the context, by default success is when all requirements have been met.
+    return _evaluator.Evaluate(authContext);
+}
+```
+
+The following code shows a typical `ConfigureServices`:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // Add all of your handlers to DI.
+    services.AddSingleton<IAuthorizationHandler, MyHandler1>();
+    // MyHandler2, ...
+
+    services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
+
+    // Configure your policies
+    services.AddAuthorization(options =>
+          options.AddPolicy("Something",
+          policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
+
+
+    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+}
+```
+
+Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something"]` for authorization.
+
 ## Applying policies to MVC controllers
 
 If you're using Razor Pages, see [Applying policies to Razor Pages](#applying-policies-to-razor-pages) in this document.
