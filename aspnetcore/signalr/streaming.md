@@ -197,7 +197,7 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 
 JavaScript clients call client-to-server streaming methods on hubs by passing in a `Subject` as an argument to `send`, `invoke`, or `stream`, depending on the hub method invoked. The `Subject` is a class that looks like a `Subject`. For example in RxJS, you can use the [Subject](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) class from that library.
 
-[!code-javascript[Upload javascript](streaming/samples/3.0/wwwroot/js/stream.js?range=74-84)]
+[!code-javascript[Upload javascript](streaming/samples/3.0/wwwroot/js/stream.js?range=41-51)]
 
 Calling `subject.next(item)` with an item writes the item to the stream, and the hub method receives the item on the server.
 
