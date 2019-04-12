@@ -86,14 +86,15 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   ```
 
   The `build` command arguments:
-  * Name the app aspnetapp.
+  * Name the image aspnetapp.
   * Look for the Dockerfile in the current folder (the period at the end).
 
   The run command arguments:
   * Allocate a pseudo-TTY and keep it open even if not attached. (Same effect as `--interactive --tty`.)
   * Automatically remove the container when it exits.
   * Map port 5000 on the local machine to port 80 in the container.
-  * Name the container.
+  * Name the container aspnetcore_sample.
+  * Specify the aspnetapp image.
 
 * After the application starts, see the home page at `http://localhost:5000` in your web browser.
 
