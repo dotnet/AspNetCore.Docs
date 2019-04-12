@@ -1,7 +1,7 @@
 ---
 title: Build web APIs with ASP.NET Core
 author: scottaddie
-description: Learn about the features available for building a web API in ASP.NET Core and when to use each feature.
+description: Learn the basics of writing web API code in ASP.NET Core.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/11/2019
@@ -10,27 +10,49 @@ uid: web-api/index
 
 # Build web APIs with ASP.NET Core
 
-By [Scott Addie](https://github.com/scottaddie)
+By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github.com/tdykstra)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/define-controller/samples). ([How to download](xref:index#how-to-download-a-sample)).
-;
-This article explains how to build a web API in ASP.NET Core and when to use each feature.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
 
-## Derive class from ControllerBase
+This article teaches the basics of building a web API in ASP.NET Core.
 
-Inherit from the <xref:Microsoft.AspNetCore.Mvc.ControllerBase> class in a controller that's intended to serve as a web API. For example:
+## What is a web API app
+
+The main purpose of an ASP.NET Core web app is to respond to HTTP requests from browsers by returning HTML ready to be displayed. To handle the requests and responses, the app may use MVC controllers and views or Razor Pages. A Web API app also responds to HTTP requests, but from many kinds of clients and by returning data in a format such as JSON, not HTML. To handle requests and responses, a web API app uses MVC controllers without views.
+
+Any given ASP.NET core app can use one or more of these modes of responding to HTTP requests. A single app can include MVC controllers and views, Razor Pages, and web API controllers.
+
+## Derive from ControllerBase
+
+Action methods in a web API controller class are responsible for handling HTTP requests. A web API controller class derives from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. For example:
 
 [!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/PetsController.cs?name=snippet_PetsControllerInherit&highlight=3)]
 
-The `ControllerBase` class provides access to several properties and methods. Examples include <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String,System.Object,System.Object)>. These methods return HTTP 400 and 201 status codes, respectively. 
+(There is also a <xref:Microsoft.AspNetCore.Mvc.Controller> base class. That one derives from `ControllerBase` and adds support for views, so it's not needed if the intent is to handle web API requests.
+
+The `ControllerBase` class provides a number of properties and methods that are useful for handling HTTP requests. For example, it provides methods that:
+
+* Return specified status codes, such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)> for status code 400 and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String,System.Object,System.Object)> for status code 201.
+* Invoke model validation TryValidateModel
+* Invoke model binding TryUpdateModel
+* Get the result of model validation - <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState>.
+* Redirect the request to a different endpoint RedirectToAction
+* Return a file PhysicalFile and File
+
+MVC namespace provides a number of attributes you can use to:
+
+* Control model binding - FromBody, Bind, ModelBinder
+* Select a specified HTTP method for an action method - HttpGet
+* Specify an action name different than the C# method name - ActionName
+* Specify API conventions - APIConventionMethod, ApiConventionType
+* Specify data type accepted - Consumes
+* Specify possible responses - Produces, ProducesDefaultResponseType, ProducesErrorResponseType
+* Set request limits - RequestFormLimits, RequestSizeLimit
+* Specify routing - Route 
 
 [!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/PetsController.cs?name=snippet_400And201&highlight=8,13)]
 
-The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState> property, also provided by `ControllerBase`, provides access to request model validation results.
-
-::: moniker range=">= aspnetcore-2.1"
-
-## Annotation with ApiController attribute
+## ApiController attribute
 
 ASP.NET Core 2.1 introduces the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute to denote a web API controller class. For example:
 
@@ -42,9 +64,18 @@ A compatibility version of 2.1 or later, set via <xref:Microsoft.Extensions.Depe
 
 For more information, see <xref:mvc/compatibility-version>.
 
-::: moniker-end
+The ApiController attribute provides the following behaviors:
+* Automatic HTTP 400 responses
+* binding source parameter inference
+* Multipart/form-data request inference
+* Attribute routing requirement
+* Problem details for error status codes
 
-::: moniker range=">= aspnetcore-2.2"
+Controllers intended for use as web API controllers should have the ApiController applied to them unless one or more of these behaviors won't work in a particular scenario.
+
+
+
+## Apply ApiController to all controllers
 
 In ASP.NET Core 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. Beware that there's no way to opt out for individual controllers. As a recommendation, assembly-level attributes should be applied to the `Startup` class:
 
@@ -52,19 +83,13 @@ In ASP.NET Core 2.2 or later, the `[ApiController]` attribute can be applied to 
 
 A compatibility version of 2.2 or later, set via <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*>, is required to use this attribute at the assembly level.
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-The `[ApiController]` attribute is commonly coupled with `ControllerBase` to enable REST-specific behavior for controllers. `ControllerBase` provides access to methods such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.File*>.
-
 Another approach is to create a custom base controller class annotated with the `[ApiController]` attribute:
 
 [!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/MyBaseController.cs?name=snippet_ControllerSignature)]
 
 The following sections describe convenience features added by the attribute.
 
-### Automatic HTTP 400 responses
+## ApiController - Automatic HTTP 400 responses
 
 Model validation errors automatically trigger an HTTP 400 response. Consequently, the following code becomes unnecessary in your actions:
 
@@ -74,21 +99,7 @@ Use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseF
 
 Disabling the default behavior is useful when your action can recover from a model validation error. The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property is set to `true`. Add the following code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_<version_number>);`:
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.2"
-
 [!code-csharp[](define-controller/samples/WebApiSample.Api.22/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=7)]
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.1"
-
-[!code-csharp[](define-controller/samples/WebApiSample.Api.21/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=5)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.2"
 
 With a compatibility flag of 2.2 or later, the default response type for HTTP 400 responses is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The `ValidationProblemDetails` type complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). Set the `SuppressUseValidationProblemDetailsForInvalidModelStateResponses` property to `true` to instead return the ASP.NET Core 2.1 error format of <xref:Microsoft.AspNetCore.Mvc.SerializableError>. Add the following code in `Startup.ConfigureServices`:
 
@@ -102,11 +113,7 @@ services.AddMvc()
     });
 ```
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-### Binding source parameter inference
+## ApiController - binding source parameter inference
 
 A binding source attribute defines the location at which an action parameter's value is found. The following binding source attributes exist:
 
@@ -143,49 +150,18 @@ Inference rules are applied for the default data sources of action parameters. T
 
 The default inference rules are disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> property is set to `true`. Add the following code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_<version_number>);`:
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.2"
-
 [!code-csharp[](define-controller/samples/WebApiSample.Api.22/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=6)]
 
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.1"
-
-[!code-csharp[](define-controller/samples/WebApiSample.Api.21/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=4)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-### Multipart/form-data request inference
+## ApiController - Multipart/form-data request inference
 
 When an action parameter is annotated with the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute, the `multipart/form-data` request content type is inferred.
 
 The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property is set to `true`.
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.2"
-
 Add the following code in `Startup.ConfigureServices`:
 
 [!code-csharp[](define-controller/samples/WebApiSample.Api.22/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=5)]
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.1"
-
-Add the following code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);`:
-
-[!code-csharp[](define-controller/samples/WebApiSample.Api.21/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-### Attribute routing requirement
+### ApiController - Attribute routing requirement
 
 Attribute routing becomes a requirement. For example:
 
@@ -193,11 +169,7 @@ Attribute routing becomes a requirement. For example:
 
 Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined in <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> or by <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> in `Startup.Configure`.
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.2"
-
-### Problem details responses for error status codes
+### ApiController - Problem details for error status codes
 
 In ASP.NET Core 2.2 or later, MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. `ProblemDetails` is:
 
@@ -226,8 +198,6 @@ The problem details feature requires a compatibility flag of 2.2 or later. The d
 Use the `ClientErrorMapping` property to configure the contents of the `ProblemDetails` response. For example, the following code updates the `type` property for 404 responses:
 
 [!code-csharp[](define-controller/samples/WebApiSample.Api.22/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=10-11)]
-
-::: moniker-end
 
 ## Additional resources
 
