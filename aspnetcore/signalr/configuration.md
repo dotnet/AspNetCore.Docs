@@ -173,7 +173,7 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-The below table lists the available log levels. The value you provide to `configureLogging` sets the **minimum** log level that will be logged. Messages logged at this level, **or lower levels on the table**, will be logged.
+The below table lists the available log levels. The value you provide to `configureLogging` sets the **minimum** log level that will be logged. Messages logged at this level, **or the levels listed below it on the table**, will be logged.
 
 | `string` Name | `LogLevel` value |
 | - | - |
