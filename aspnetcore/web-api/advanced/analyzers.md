@@ -72,4 +72,4 @@ The preceding action documents the HTTP 200 success return type but doesn't docu
 
 * <xref:web-api/advanced/conventions>
 * <xref:tutorials/web-api-help-pages-using-swagger>
-* [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute)
+* <xref:web-api/index>
