@@ -27,12 +27,12 @@ namespace SignalRChat
 
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
-            builder =>
-            {
-                builder.AllowAnyMethod().AllowAnyHeader()
-                       .WithOrigins("http://localhost:44317")
-                       .AllowCredentials();
-            }));
+                builder =>
+                {
+                    builder.AllowAnyMethod().AllowAnyHeader()
+                           .WithOrigins("http://localhost:44317")
+                           .AllowCredentials();
+                }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSignalR();

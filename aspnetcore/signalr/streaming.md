@@ -48,7 +48,7 @@ Streaming hub methods can return `IAsyncEnumerable<T>` in addition to `ChannelRe
 
 [!INCLUDE[](~/includes/csharp-8-required.md)]
 
-[!code-csharp[Streaming hub async iterator method](streaming/sample.netcoreapp3.0/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
+[!code-csharp[Streaming hub async iterator method](streaming/samples/3.0/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
 
 ::: moniker-end
 
@@ -61,19 +61,19 @@ The following sample shows the basics of streaming data to the client using Chan
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[Streaming hub method](streaming/sample.netcoreapp3.0/Hubs/StreamHub.cs?name=snippet1)]
+[!code-csharp[Streaming hub method](streaming/samples/3.0/Hubs/StreamHub.cs?name=snippet1)]
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
 
-[!code-csharp[Streaming hub method](streaming/sample.netcoreapp2.2/Hubs/StreamHub.cs?name=snippet1)]
+[!code-csharp[Streaming hub method](streaming/samples/2.2/Hubs/StreamHub.cs?name=snippet1)]
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
 
-[!code-csharp[Streaming hub method](streaming/sample.netcoreapp2.1/Hubs/StreamHub.cs?name=snippet1)]
+[!code-csharp[Streaming hub method](streaming/samples/2.1/Hubs/StreamHub.cs?name=snippet1)]
 
 ::: moniker-end
 
@@ -89,7 +89,7 @@ Server-to-client streaming hub methods can accept a `CancellationToken` paramete
 
 A hub method automatically becomes a client-to-server streaming hub method when it accepts one or more <xref:System.Threading.Channels.ChannelReader`1>s. The following sample shows the basics of reading streaming data sent from the client. Whenever the client writes to the <xref:System.Threading.Channels.ChannelWriter`1>, the data is written into the `ChannelReader` on the server that the hub method is reading from.
 
-[!code-csharp[Streaming upload hub method](streaming/sample.netcoreapp3.0/Hubs/StreamHub.cs?name=snippet2)]
+[!code-csharp[Streaming upload hub method](streaming/samples/3.0/Hubs/StreamHub.cs?name=snippet2)]
 
 ::: moniker-end
 
@@ -177,7 +177,7 @@ JavaScript clients call server-to-client streaming methods on hubs with `connect
 
 ::: moniker range=">= aspnetcore-2.2"
 
-[!code-javascript[Streaming javascript](streaming/sample.netcoreapp2.2/wwwroot/js/stream.js?range=19-36)]
+[!code-javascript[Streaming javascript](streaming/samples/2.2/wwwroot/js/stream.js?range=19-36)]
 
 To end the stream from the client, call the `dispose` method on the `ISubscription` that's returned from the `subscribe` method. Calling this method causes cancellation of the `CancellationToken` parameter of the Hub method, if you provided one.
 
@@ -185,7 +185,7 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 
 ::: moniker range="= aspnetcore-2.1"
 
-[!code-javascript[Streaming javascript](streaming/sample.netcoreapp2.1/wwwroot/js/stream.js?range=19-36)]
+[!code-javascript[Streaming javascript](streaming/samples/2.1/wwwroot/js/stream.js?range=19-36)]
 
 To end the stream from the client, call the `dispose` method on the `ISubscription` that's returned from the `subscribe` method.
 
@@ -197,7 +197,7 @@ To end the stream from the client, call the `dispose` method on the `ISubscripti
 
 JavaScript clients call client-to-server streaming methods on hubs by passing in a `Subject` as an argument to `send`, `invoke`, or `stream`, depending on the hub method invoked. The `Subject` is a class that looks like a `Subject`. For example in RxJS, you can use the [Subject](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) class from that library.
 
-[!code-javascript[Upload javascript](streaming/sample.netcoreapp3.0/wwwroot/js/stream.js?range=74-84)]
+[!code-javascript[Upload javascript](streaming/samples/3.0/wwwroot/js/stream.js?range=74-84)]
 
 Calling `subject.next(item)` with an item writes the item to the stream, and the hub method receives the item on the server.
 
