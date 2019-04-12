@@ -1,37 +1,32 @@
 ---
 title: Build web APIs with ASP.NET Core
 author: scottaddie
-description: Learn about the features available for building a web API in ASP.NET Core and when it's appropriate to use each feature.
+description: Learn about the features available for building a web API in ASP.NET Core and when to use each feature.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 01/11/2019
+ms.date: 04/11/2019
 uid: web-api/index
 ---
+
 # Build web APIs with ASP.NET Core
 
 By [Scott Addie](https://github.com/scottaddie)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/define-controller/samples) ([how to download](xref:index#how-to-download-a-sample))
-
-This document explains how to build a web API in ASP.NET Core and when it's most appropriate to use each feature.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/define-controller/samples). ([How to download](xref:index#how-to-download-a-sample)).
+;
+This article explains how to build a web API in ASP.NET Core and when to use each feature.
 
 ## Derive class from ControllerBase
 
 Inherit from the <xref:Microsoft.AspNetCore.Mvc.ControllerBase> class in a controller that's intended to serve as a web API. For example:
 
-::: moniker range=">= aspnetcore-2.1"
+[!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/PetsController.cs?name=snippet_PetsControllerInherit&highlight=3)]
 
-[!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
+The `ControllerBase` class provides access to several properties and methods. Examples include <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String,System.Object,System.Object)>. These methods return HTTP 400 and 201 status codes, respectively. 
 
-::: moniker-end
+[!code-csharp[](define-controller/samples/WebApiSample.Api.21/Controllers/PetsController.cs?name=snippet_400And201&highlight=8,13)]
 
-::: moniker range="<= aspnetcore-2.0"
-
-[!code-csharp[](define-controller/samples/WebApiSample.Api.Pre21/Controllers/PetsController.cs?name=snippet_PetsController&highlight=3)]
-
-::: moniker-end
-
-The `ControllerBase` class provides access to several properties and methods. In the preceding code, examples include <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String,System.Object,System.Object)>. These methods are called within action methods to return HTTP 400 and 201 status codes, respectively. The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState> property, also provided by `ControllerBase`, is accessed to handle request model validation.
+The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState> property, also provided by `ControllerBase`, provides access to request model validation results.
 
 ::: moniker range=">= aspnetcore-2.1"
 

@@ -8,9 +8,11 @@ using WebApiSample.DataAccess.Repositories;
 namespace WebApiSample.Api._21.Controllers
 {
     #region snippet_PetsController
+    #region snippet_PetsControllerInherit
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class PetsController : ControllerBase
+    #endregion
     {
         private readonly PetsRepository _repository;
 
@@ -39,6 +41,7 @@ namespace WebApiSample.Api._21.Controllers
             return pet;
         }
 
+        #region snippet_400And201
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -54,6 +57,7 @@ namespace WebApiSample.Api._21.Controllers
             return CreatedAtAction(nameof(GetByIdAsync),
                 new { id = pet.Id }, pet);
         }
+        #endregion
     }
     #endregion
 }
