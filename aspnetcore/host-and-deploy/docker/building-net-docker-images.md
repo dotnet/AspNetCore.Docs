@@ -23,7 +23,7 @@ In this tutorial, you:
 
 ## ASP.NET Core Docker images
 
-For this tutorial, you download an ASP.NET Core sample application and run it in Docker containers. The sample works with both Linux and Windows containers.
+For this tutorial, you download an ASP.NET Core sample app and run it in Docker containers. The sample works with both Linux and Windows containers.
 
 The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) to build and run in different containers. The build and run containers are created from images that are provided in Docker Hub by Microsoft:
 
@@ -51,7 +51,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * [git](https://git-scm.com/download)
 
-## Download the sample application
+## Download the sample app
 
 * Download the sample by cloning the [.NET Core Docker repository](https://github.com/dotnet/dotnet-docker): 
 
@@ -69,7 +69,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   dotnet run
   ```
 
-* After the application starts, visit `http://localhost:5000` in a browser to verify that the app is working.
+* Go to `http://localhost:5000` in a browser to test the app.
 
 * Press Ctrl+C at the command prompt to stop the app.
 
@@ -97,7 +97,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   * Name the container aspnetcore_sample.
   * Specify the aspnetapp image.
 
-* After the application starts, see the home page at `http://localhost:5000` in your web browser.
+* Go to `http://localhost:5000` in a browser to test the app.
 
 ## Run in a Windows container
 
@@ -127,7 +127,7 @@ Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
        Default Gateway . . . . . . . . . : 172.29.240.1
     ```
 
-* Copy the container IPv4 address (for example, 172.29.245.43) and paste into the browser address bar to see the sample app's home page.
+* Copy the container IPv4 address (for example, 172.29.245.43) and paste into the browser address bar to test the app.
 
 ## Build and deploy manually
 
