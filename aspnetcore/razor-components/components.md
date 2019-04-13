@@ -324,24 +324,20 @@ It's often convenient to close over additional values, such as when iterating ov
 
 ### EventCallback
 
-A common scenario with nested components is the need to run a parent component's method when a child component event occurs&mdash;for example, when an `onclick` event occurs in the child. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
+A common scenario with nested components is the desire to run a parent component's method when a child component event occurs&mdash;for example, when an `onclick` event occurs in the child. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
 
-The Child component in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's Parent component. In the following example, the `EventCallback` is typed with `UIMouseEventArgs` as `EventCallback<UIMouseEventArgs>`, which is appropriate for an `onclick` event from a peripheral device.
-
-*Child component*:
+The Child component in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's Parent component. The `EventCallback` is typed with `UIMouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=5-7,17-18)]
 
-The Parent component that consumes the child sets the child's `EventCallback<T>` to its `ShowMessage` method.
-
-*Parent component*:
+The Parent component sets the child's `EventCallback<T>` to its `ShowMessage` method:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=6,16-19)]
 
 When the button is selected in the Child component:
 
 * The Parent component's `ShowMessage` method is called. `messageText` is updated and displayed in the Parent component.
-* A call to `StateHasChanged` isn't required in the callback's method (`ShowMessage`). `StateHasChanged` is called automatically to rerender the Parent component, just as other events trigger component rerendering in event handlers that execute within a component.
+* A call to `StateHasChanged` isn't required in the callback's method (`ShowMessage`). `StateHasChanged` is called automatically to rerender the Parent component, just as child events trigger component rerendering in event handlers that execute within the child.
 
 `EventCallback` and `EventCallback<T>` permit asynchronous delegates. `EventCallback<T>` is strongly typed and requires a specific argument type. `EventCallback` is weakly typed and allows any argument type.
 
