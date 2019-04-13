@@ -67,7 +67,7 @@ Recommendations:
 * **Do** call all data access APIs asynchronously.
 * **Do not** retrieve more data than is necessary. Write queries to return just the data that is necessary for the current HTTP request.
 * **Do** consider caching frequently accessed data retrieved from a database or remote service if it is acceptable for the data to be slightly out-of-date. Depending on the scenario, you might use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see <xref:performance/caching/response>.
-* Minimize network round trips. The goal is to retrieve all the data that will be needed in a single call rather than several calls.
+* **Do** minimize network round trips. The goal is to retrieve all the data that will be needed in a single call rather than several calls.
 * **Do** use [no-tracking queries](/ef/core/querying/tracking#no-tracking-queries) in Entity Framework Core when accessing data for read-only purposes. EF Core can return the results of no-tracking queries more efficiently.
 * **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is done by the database.
 * **Do** consider that EF Core resolves some query operators on the client, which may lead to inefficient query execution. For more information, see [Client evaluation performance issues](/ef/core/querying/client-eval#client-evaluation-performance-issues)
@@ -118,12 +118,12 @@ Recommendations:
 ASP.NET Core apps with complex front-ends frequently serve many JavaScript, CSS, or image files. Performance of initial load requests can be improved by:
 
 * Bundling, which combines multiple files into one.
-* Minifying, which reduces the size of files by.
+* Minifying, which reduces the size of files by removing whitespace, comments, etc.
 
 Recommendations:
 
 * **Do** use ASP.NET Core's [built-in support](xref:client-side/bundling-and-minification) for bundling and minifying client assets.
-* **Do** consider other third-party tools like [Gulp](uid:client-side/bundling-and-minification#consume-bundleconfigjson-from-gulp) or [Webpack](https://webpack.js.org/) for more complex client asset management.
+* **Do** consider other third-party tools like [Gulp](xref:client-side/using-gulp) or [Webpack](https://webpack.js.org/) for more complex client asset management.
 
 ## Compress responses
 
