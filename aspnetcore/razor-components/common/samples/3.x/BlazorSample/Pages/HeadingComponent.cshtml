@@ -15,13 +15,13 @@
 <h1 style="font-style:@_headingFontStyle">@_headingText</h1>
 
 <form>
-    <div class="form-check" style="margin-left:1.5rem">
+    <div>
         @*
             A check box sets the font style and is bound to the 
             _italicsCheck field.
         *@
-        <input type="checkbox" class="form-check-input" 
-            id="italicsCheck" bind="@_italicsCheck" />
+        <input type="checkbox" id="italicsCheck" 
+               bind="@_italicsCheck" />
         <label class="form-check-label" 
             for="italicsCheck">Use italics</label>
     </div>

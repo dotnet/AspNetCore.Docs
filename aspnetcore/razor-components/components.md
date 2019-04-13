@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/08/2019
+ms.date: 04/10/2019
 uid: razor-components/components
 ---
 # Create and use Razor Components
@@ -69,7 +69,7 @@ While pages and views can use components, the converse isn't true. Components ca
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
 
-The following markup renders a `HeadingComponent` (*HeadingComponent.cshtml*) instance:
+The following markup renders a `HeadingComponent` instance:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.cshtml?name=snippet_HeadingComponent)]
 
@@ -79,27 +79,27 @@ Components can have *component parameters*, which are defined using *non-public*
 
 In the following example, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`:
 
-*ParentComponent.cshtml*:
+*Parent component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=5)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=5-6)]
 
-*ChildComponent.cshtml*:
+*Child component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=7-8)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=11-12)]
 
 ## Child content
 
 Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component. For example, a `ParentComponent` can provide content for rendering by a Child component by placing the content inside `<ChildComponent>` tags.
 
-*ParentComponent.cshtml*:
+*Parent component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=6-7)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=7-8)]
 
 The Child component has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the child component's markup where the content should be rendered. In the following example, the value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
-*ChildComponent.cshtml*:
+*Child component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=3,10-11)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=3,14-15)]
 
 > [!NOTE]
 > The property receiving the `RenderFragment` content must be named `ChildContent` by convention.
@@ -322,6 +322,48 @@ It's often convenient to close over additional values, such as when iterating ov
 > [!NOTE]
 > Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the preceding example) and then use it.
 
+### EventCallback
+
+A common scenario with nested components is the desire to run a parent component's method when a child component event occurs&mdash;for example, when an `onclick` event occurs in the child. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
+
+The Child component in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's Parent component. The `EventCallback` is typed with `UIMouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
+
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=5-7,17-18)]
+
+The Parent component sets the child's `EventCallback<T>` to its `ShowMessage` method:
+
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=6,16-19)]
+
+When the button is selected in the Child component:
+
+* The Parent component's `ShowMessage` method is called. `messageText` is updated and displayed in the Parent component.
+* A call to `StateHasChanged` isn't required in the callback's method (`ShowMessage`). `StateHasChanged` is called automatically to rerender the Parent component, just as child events trigger component rerendering in event handlers that execute within the child.
+
+`EventCallback` and `EventCallback<T>` permit asynchronous delegates. `EventCallback<T>` is strongly typed and requires a specific argument type. `EventCallback` is weakly typed and allows any argument type.
+
+```chstml
+<p><b>@messageText</b></p>
+
+@{ var message = "Default Text"; }
+
+<ChildComponent 
+    OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; }" />
+
+@function {
+    string messageText;
+}
+```
+
+Invoke an `EventCallback` or `EventCallback<T>` with `InvokeAsync` and await the <xref:System.Threading.Tasks.Task>:
+
+```csharp
+await callback.InvokeAsync(arg);
+```
+
+Use `EventCallback` and `EventCallback<T>` for event handling and binding component parameters. Don't use `EventCallback` and `EventCallback<T>` for child content&mdash;continue to use `RenderFragment` and `RenderFragment<T>` for child content.
+
+Prefer the strongly typed `EventCallback<T>`, which provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
+
 ## Capture references to components
 
 Component references provide a way get a reference to a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `ref` attribute to the child component and then define a field with the same name and the same type as the child component.
@@ -447,7 +489,7 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 
 Routing in Razor Components is achieved by providing a route template to each accessible component in the app.
 
-When a *.cshtml* file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders whichever component has a route template that matches the requested URL.
+When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders whichever component has a route template that matches the requested URL.
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
@@ -457,7 +499,7 @@ Multiple route templates can be applied to a component. The following component 
 
 Components can receive route parameters from the route template provided in the `@page` directive. The router uses route parameters to populate the corresponding component parameters.
 
-*RouteParameter.cshtml*:
+*Route Parameter component*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.cshtml?name=snippet_RouteParameter)]
 
@@ -465,11 +507,11 @@ Optional parameters aren't supported, so two `@page` directives are applied in t
 
 ## Base class inheritance for a "code-behind" experience
 
-Component files (*.cshtml*) mix HTML markup and C# processing code in the same file. The `@inherits` directive can be used to provide Razor Components apps with a "code-behind" experience that separates component markup from processing code.
+Component files mix HTML markup and C# processing code in the same file. The `@inherits` directive can be used to provide Razor Components apps with a "code-behind" experience that separates component markup from processing code.
 
 The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-components/common/samples/) shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods.
 
-*BlazorRocks.cshtml*:
+*Blazor Rocks component*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRocks.cshtml?name=snippet_BlazorRocks)]
 
@@ -556,7 +598,7 @@ Templated components are components that accept one or more UI templates as para
 
 A templated component is defined by specifying one or more component parameters of type `RenderFragment` or `RenderFragment<T>`. A render fragment represents a segment of UI that is rendered by the component. A render fragment optionally takes a parameter that can be specified when the render fragment is invoked.
 
-*Components/TableTemplate.cshtml*:
+*Table Template component*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/TableTemplate.cshtml)]
 
@@ -611,7 +653,7 @@ Alternatively, you can specify the `Context` attribute on the component element.
 
 Templated components are often generically typed. For example, a generic List View Template component can be used to render `IEnumerable<T>` values. To define a generic component, use the `@typeparam` directive to specify type parameters.
 
-*Components/ListViewTemplate.cshtml*:
+*ListView Template component*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.cshtml)]
 
@@ -656,7 +698,7 @@ An ancestor component can provide a cascading value using the Cascading Value co
 
 For example, the sample app specifies theme information (`ThemeInfo`) in one of the app's layouts as a cascading parameter for all components that make up the layout body of the `@Body` property. `ButtonClass` is assigned a value of `btn-success` in the layout component. Any descendent component can consume this property through the `ThemeInfo` cascading object.
 
-*Shared/CascadingValuesParametersLayout.cshtml*:
+*Cascading Values Parameters Layout component*:
 
 ```cshtml
 @inherits LayoutComponentBase
@@ -697,7 +739,7 @@ Cascading values are bound to cascading parameters by type.
 
 In the sample app, the Cascading Values Parameters Theme component binds to the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
 
-*Pages/CascadingValuesParametersTheme.cshtml*:
+*Cascading Values Parameters Theme component*:
 
 ```cshtml
 @page "/cascadingvaluesparameterstheme"
@@ -746,13 +788,13 @@ The Cascading Values Parameters TabSet component uses the Tab Set component, whi
 
 The child Tab components aren't explicitly passed as parameters to the Tab Set. Instead, the child Tab components are part of the child content of the Tab Set. However, the Tab Set still needs to know about each Tab component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the Tab Set component *can provide itself as a cascading value* that is then picked up by the descendent Tab components.
 
-*Components/TabSet.cshtml*:
+*TabSet component*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/TabSet.cshtml)]
 
 The descendent Tab components capture the containing Tab Set as a cascading parameter, so the Tab components add themselves to the Tab Set and coordinate on which tab is active.
 
-*Components/Tab.cshtml*:
+*Tab component*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/Tab.cshtml)]
 
@@ -766,7 +808,7 @@ Render fragments can be defined using Razor template syntax. Razor templates are
 
 The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values.
 
-*RazorTemplates.cshtml*:
+*Razor Templates component*:
 
 ```cshtml
 @{
@@ -798,7 +840,7 @@ Your pet's name is Rex.
 > [!NOTE]
 > Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can result in undefined behavior.
 
-Consider the following Pet Details component (*PetDetails.razor* in Razor Components; *PetDetails.cshtml* in Blazor), which can be manually built into another component:
+Consider the following Pet Details component, which can be manually built into another component:
 
 ```cshtml
 <h2>Pet Details Component</h2>
@@ -814,7 +856,7 @@ Consider the following Pet Details component (*PetDetails.razor* in Razor Compon
 
 In the following example, the loop in the `CreateComponent` method generates three Pet Details components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Razor Components difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.**
 
-Built component (*BuiltContent.razor* in Razor Components; *BuiltContent.cshtml* in Blazor):
+*Built Content component*:
 
 ```cshtml
 @page "/BuiltContent"
