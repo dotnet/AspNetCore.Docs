@@ -4,7 +4,7 @@
 <h1>Parent-child example</h1>
 
 <ChildComponent Title="Panel Title from Parent"
-                OnClick="@ShowMessageTriggeredByChild">
+                OnClick="@ShowMessage">
     Content of the child component is supplied
     by the parent component.
 </ChildComponent>
@@ -14,7 +14,7 @@
 @functions {
     private string messageText;
 
-    void ShowMessageTriggeredByChild(UIMouseEventArgs e)
+    void ShowMessage(UIMouseEventArgs e)
     {
         messageText = "Blaze a new trail with Blazor!";
     }
@@ -35,7 +35,7 @@
 
 <h2>Parent component</h2>
 
-<pre><code>&lt;ChildComponent Title="Panel Title from Parent" OnClick="@@ShowMessageTriggeredByChild"&gt;
+<pre><code>&lt;ChildComponent Title="Panel Title from Parent" OnClick="@@ShowMessage"&gt;
     Content of the child component is supplied by the parent component.
 &lt;/ChildComponent&gt;
 
@@ -44,7 +44,7 @@
 @@functions {
     private string messageText;
 
-    void ShowMessageTriggeredByChild(UIMouseEventArgs e)
+    void ShowMessage(UIMouseEventArgs e)
     {
         messageText = "Blaze a new trail with Blazor!";
     }
