@@ -168,7 +168,7 @@ The code renders the following HTML:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In code blocks, declare local functions (introduced in C# 7.0) with markup to serve as templating methods:
+In code blocks, declare [local functions](/dotnet/csharp/programming-guide/classes-and-structs/local-functions) with markup to serve as templating methods:
 
 ```cshtml
 @{
