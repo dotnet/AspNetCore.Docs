@@ -5,6 +5,7 @@ description: Learn how to use the published .NET Core Docker images from the Doc
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 04/09/2019
+uid: host-and-deploy/docker/building-net-docker-images
 ---
 
 # Docker images for ASP.NET Core
