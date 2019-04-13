@@ -479,6 +479,32 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-com
 
 The base class should derive from `ComponentBase`.
 
+## Importing components
+
+Components infer their namespace based on the file path and the file name.
+Example,
+`ComponentsSample/Pages/Index.razor` will be in the namespace `ComponentsSample.Pages`. So, all components in the same folder `Pages` and the parent folder `ComponentsSample` are already in scope.
+
+Components that are defined in a different namespace can be brought in scope using the Razor [\@using](xref:mvc/views/razor#using) directive.
+So if another component, `NavMenu.razor`, exists in the folder `ComponentsSample/Shared/`, it can be used in `Index.razor` as follows,
+```cshtml
+@using ComponentsSample.Shared
+
+This is the index page.
+<NavMenu></NavMenu>
+```
+
+Alternatively, components can also be referenced using their fully qualified names which removes the need for the [\@using](xref:mvc/views/razor#using) directive,
+```cshtml
+This is the index page
+<ComponentsSample.Shared.NavMenu></ComponentsSample.Shared.NavMenu>
+```
+
+> [!NOTE]
+> There is no support for `global::` qualification.
+> Importing components with aliased usings `@using Foo = Bar` is not supported.
+> Partially qualified names are not supported. So, adding `@using ComponentsSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` is not supported.
+
 ## Razor support
 
 **Razor directives**
@@ -493,8 +519,7 @@ Razor directives are shown in the following table.
 | [\@inject](xref:mvc/views/razor#section-4) | Enables service injection from the [service container](xref:fundamentals/dependency-injection). For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection). |
 | `@layout` | Specifies a layout component. Layout components are used to avoid code duplication and inconsistency. |
 | [\@page](xref:razor-pages/index#razor-pages) | Specifies that the component should handle requests directly. The `@page` directive can be specified with a route and optional parameters. Unlike Razor Pages, the `@page` directive doesn't need to be the first directive at the top of the file. For more information, see [Routing](xref:razor-components/routing). |
-| [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. |
-| [\@addTagHelper](xref:mvc/views/razor#tag-helpers) | Use `@addTagHelper` to use a component in a different assembly than the app's assembly. |
+| [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. This also brings all the components defined in that namespace into scope. |
 
 **Conditional attributes**
 
