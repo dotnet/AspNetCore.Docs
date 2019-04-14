@@ -8,6 +8,9 @@
 </ul>
 
 @functions {
-    [Parameter] private RenderFragment<TItem> ItemTemplate { get; set; }
-    [Parameter] private IReadOnlyList<TItem> Items { get; set; }
+    [Parameter]
+    private RenderFragment<TItem> ItemTemplate { get; set; }
+
+    [Parameter]
+    private IReadOnlyList<TItem> Items { get; set; }
 }
