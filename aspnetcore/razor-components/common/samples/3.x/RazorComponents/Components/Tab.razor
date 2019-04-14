@@ -10,8 +10,12 @@
 
 @functions {
     [CascadingParameter] private TabSet ContainerTabSet { get; set; }
-    [Parameter] private string Title { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; private set; }
+
+    [Parameter]
+    private string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; private set; }
 
     private string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
 

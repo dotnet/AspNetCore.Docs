@@ -5,7 +5,7 @@ description: Learn how to get started with Razor Components by creating and modi
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2019
+ms.date: 04/14/2019
 uid: razor-components/get-started
 ---
 # Get started with Razor Components
@@ -157,7 +157,7 @@ To add a parameter to the Counter component, update the component's `@functions`
 
 *WebApplication1/Components/Pages/Counter.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=4,8)]
+[!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=4-5,9)]
 
 Specify an `IncrementAmount` parameter in the Home component's `<Counter>` element using an attribute.
 
