@@ -38,7 +38,7 @@ For this tutorial we use [to-do Web API](xref:first-web-api) as an existing Web 
 
 1. Go to **File** > **Open** > **Project/Solution**.
 1. Find and select **TodoApi.csproj**, and click **Open**.
-1. Visit the [NuGet Gallery: Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) to determine the latest stable version of the .NET Core OData package. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
+1. Visit the [NuGet Gallery: Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) to determine the latest stable version of the .NET Core OData package. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET Core OData package:
 
     ```powershell
     Install-Package Microsoft.AspNetCore.OData -Version {VERSION}
@@ -57,7 +57,7 @@ For this tutorial we use [to-do Web API](xref:first-web-api) as an existing Web 
     TodoApi is opened in Visual Studio Code.
 
 1. Click **Yes** when the *Required assets to build and debug are missing from 'TodoApi'. Add them?* notification appears.
-1. Visit the [NuGet Gallery: Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) to determine the latest stable version of the .NET Core OData package. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
+1. Visit the [NuGet Gallery: Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) to determine the latest stable version of the .NET Core OData package. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET Core OData package:
 
     ```console
     dotnet add TodoApi.csproj package Microsoft.AspNetCore.OData -Version {VERSION}
