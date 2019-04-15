@@ -102,7 +102,7 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 
 ### Automatically reconnect
 
-The JavaScript client for SignalR can be configured to automatically reconnect using the [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder). It will not automatically reconnect by default.
+The JavaScript client for SignalR can be configured to automatically reconnect using the [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder). It won't automatically reconnect by default.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -111,9 +111,9 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-Without any parameters, `withAutomaticReconnect()` configures the client to wait 0, 2, 10 and 30 seconds respectively before trying up to 4 reconnect attempts.
+Without any parameters, `withAutomaticReconnect()` configures the client to wait 0, 2, 10, and 30 seconds respectively before trying up to four reconnect attempts.
 
-Before starting any reconnect attempts, the `HubConnection` will transition to the [Reconnecting](javascript/api/%40aspnet/signalr/hubconnectionstate#reconnecting) state and fire its [onreconnecting](/javascript/api/%40aspnet/signalr/hubconnection#onreconnecting) callbacks instead of transitioning to the [Disconnected](javascript/api/%40aspnet/signalr/hubconnectionstate#disconnected) state and triggering its [onclosed](/javascript/api/%40aspnet/signalr/hubconnection#onclosed) callbacks like a `HubConnection` without automatic reconnect configured. This provides an opportunity to to warn users that the connection has been lost and disable UI elements.
+Before starting any reconnect attempts, the `HubConnection` will transition to the [Reconnecting](javascript/api/%40aspnet/signalr/hubconnectionstate#reconnecting) state and fire its [onreconnecting](/javascript/api/%40aspnet/signalr/hubconnection#onreconnecting) callbacks instead of transitioning to the [Disconnected](javascript/api/%40aspnet/signalr/hubconnectionstate#disconnected) state and triggering its [onclosed](/javascript/api/%40aspnet/signalr/hubconnection#onclosed) callbacks like a `HubConnection` without automatic reconnect configured. This provides an opportunity to warn users that the connection has been lost and to disable UI elements.
 
 ```javascript
 connection.onreconnecting((error) => {
@@ -127,12 +127,12 @@ connection.onreconnecting((error) => {
 });
 ```
 
-If the client successfully reconnect within its first four attempts, the `HubConnection` will transition back to the [Connected](javascript/api/%40aspnet/signalr/hubconnectionstate#reconnecting) state and fire its [onreconnected](/javascript/api/%40aspnet/signalr/hubconnection#onreconnected) callbacks. This provides an opportunity to inform users the connection has been reestablished.
+If the client successfully reconnects within its first four attempts, the `HubConnection` will transition back to the [Connected](javascript/api/%40aspnet/signalr/hubconnectionstate#reconnecting) state and fire its [onreconnected](/javascript/api/%40aspnet/signalr/hubconnection#onreconnected) callbacks. This provides an opportunity to inform users the connection has been reestablished.
 
-Since the connection looks entirely new to the server, a new connectionId will be provided to the onreconnected callback.
+Since the connection looks entirely new to the server, a new `connectionId` will be provided to the `onreconnected` callback.
 
 > [!WARNING]
-> The onreconnected callbacks connectionId parameter will not be undefined if the `HubConnection` was configured to [skip negotiation.](xref:signalr/configuration#configure-client-options)
+> The `onreconnected` callback's `connectionId` parameter won't be undefined if the `HubConnection` was configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
 
 ```javascript
 connection.onreconnected((connectionId) => {
@@ -146,7 +146,7 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-`withAutomaticReconnect()` will not configure the HubConnection to retry initial start failures, so start failures need to be handled manually:
+`withAutomaticReconnect()` won't configure the `HubConnection` to retry initial start failures, so start failures need to be handled manually:
 
 ```javascript
 async function start() {
@@ -187,7 +187,7 @@ const connection = new signalR.HubConnectionBuilder()
     // .withAutomaticReconnect([0, 2000, 10000, 30000]) yields the default behavior
 ```
 
-The above example configures the `HubConnection` to start attempting reconnects immediately after the connection is lost. This is also true for the default configuration.
+The preceding example configures the `HubConnection` to start attempting reconnects immediately after the connection is lost. This is also true for the default configuration.
 
 If the first reconnect attempt fails, the second reconnect attempt will also start immediately instead of waiting 2 seconds like it would in the default configuration.
 
@@ -195,7 +195,7 @@ If the second reconnect attempt fails, the third reconnect attempt will start in
 
 The custom behavior then diverges again from the default behavior by stopping after the third reconnect attempt failure instead of trying one more reconnect attempt in another 30 seconds like it would in the default configuration.
 
-If you want even more control over the timing and number of automatic reconnect attempts, [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) accepts an object implementing the [IReconnectPolicy](/javascript/api/%40aspnet/signalr/ireconnectpolicy) interface which has a single method [nextRetryDelayInMilliseconds](/javascript/api/%40aspnet/signalr/ireconnectpolicy#nextRetryDelayInMilliseconds).
+If you want more control over the timing and number of automatic reconnect attempts, [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) accepts an object implementing the [IReconnectPolicy](/javascript/api/%40aspnet/signalr/ireconnectpolicy) interface, which has a single method named [nextRetryDelayInMilliseconds](/javascript/api/%40aspnet/signalr/ireconnectpolicy#nextRetryDelayInMilliseconds).
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
