@@ -2,12 +2,11 @@
     "default": true,
 
     "blanks-around-lists": false,
-    "blanks-around-fences": true,
+    "blanks-around-fences": false,
     "blanks-around-headers": true,
     "fenced-code-language": true,
-    "first-header-h1": {
-        "level": 1
-    },
+    "first-header-h1": false,
+    "first-line-h1": false,
     "header-increment": true,
     "header-start-left": true,
     "header-style": {
@@ -33,7 +32,7 @@
         ]
     },
     "no-missing-space-atx": true,
-    "no-multiple-blanks": true,
+    "no-multiple-blanks": false,
     "no-multiple-space-atx": true,
     "no-multiple-space-blockquote": true,
     "no-reversed-links": true,
@@ -55,6 +54,7 @@
             "PowerShell"
         ]
     },
+    "required-headers": false,
     "single-h1": true,
-    "ul-start-left": true
+    "ul-start-left": false
 }
