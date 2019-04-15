@@ -111,7 +111,7 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-Without any parameters, `withAutomaticReconnect()` configures the client to wait 0, 2, 10, and 30 seconds respectively before trying up to four reconnect attempts.
+Without any parameters, `withAutomaticReconnect()` configures the client to wait 0, 2, 10, and 30 seconds respectively before trying each reconnect attempt, stopping after four failed attempts.
 
 Before starting any reconnect attempts, the `HubConnection` will transition to the [Reconnecting](javascript/api/%40aspnet/signalr/hubconnectionstate#reconnecting) state and fire its [onreconnecting](/javascript/api/%40aspnet/signalr/hubconnection#onreconnecting) callbacks instead of transitioning to the [Disconnected](javascript/api/%40aspnet/signalr/hubconnectionstate#disconnected) state and triggering its [onclosed](/javascript/api/%40aspnet/signalr/hubconnection#onclosed) callbacks like a `HubConnection` without automatic reconnect configured. This provides an opportunity to warn users that the connection has been lost and to disable UI elements.
 
@@ -176,7 +176,7 @@ connection.onclose((error) => {
 })
 ```
 
-In order to configure a non-default number of reconnect attempts before failure, or to change the reconnect timing, [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt.
+In order to configure a custom number of reconnect attempts before disconnecting or change the reconnect timing, [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -195,7 +195,11 @@ If the second reconnect attempt fails, the third reconnect attempt will start in
 
 The custom behavior then diverges again from the default behavior by stopping after the third reconnect attempt failure instead of trying one more reconnect attempt in another 30 seconds like it would in the default configuration.
 
-If you want more control over the timing and number of automatic reconnect attempts, [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) accepts an object implementing the [IReconnectPolicy](/javascript/api/%40aspnet/signalr/ireconnectpolicy) interface, which has a single method named [nextRetryDelayInMilliseconds](/javascript/api/%40aspnet/signalr/ireconnectpolicy#nextRetryDelayInMilliseconds).
+If you want even more control over the timing and number of automatic reconnect attempts, [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) accepts an object implementing the [IReconnectPolicy](/javascript/api/%40aspnet/signalr/ireconnectpolicy) interface, which has a single method named [nextRetryDelayInMilliseconds](/javascript/api/%40aspnet/signalr/ireconnectpolicy#nextRetryDelayInMilliseconds).
+
+`nextRetryDelayInMilliseconds` takes two arguments, `previousRetryCount` and `elapsedMilliseconds`, which are both numbers. Before the first reconnect attempt, both `previousRetryCount` and `elapsedMilliseconds` will be zero. After each failed retry attempt, `previousRetryCount` will be incremented by one and `elapsedMilliseconds` will be updated to reflect the amount of time spent reconnecting so far in milliseconds.
+
+`nextRetryDelayInMilliseconds` must return either a number representing the number of milliseconds to wait before the next reconnect attempt or `null` if the `HubConnection` should stop reconnecting.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -213,10 +217,6 @@ const connection = new signalR.HubConnectionBuilder()
         })
     .build();
 ```
-
-`nextRetryDelayInMilliseconds` takes two arguments, `previousRetryCount` and `elapsedMilliseconds`, which are both numbers. Before the first reconnect attempt, both `previousRetryCount` and `elapsedMilliseconds` will be zero. After each failed retry attempt, `previousRetryCount` will be incremented by one and `elapsedMilliseconds` will be updated to reflect the amount of time spent reconnecting so far in milliseconds.
-
-`nextRetryDelayInMilliseconds` must return either a number representing the number of milliseconds to wait before the next reconnect attempt or `null` if the `HubConnection` should stop reconnecting.
 
 Alternatively, you can write code that will reconnect your client manually as demonstrated in the section below.
 
