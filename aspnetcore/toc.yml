@@ -260,8 +260,72 @@
           uid: mvc/views/dependency-injection
         - name: Unit test
           uid: mvc/controllers/testing
-    - name: Razor Components
-      uid: razor-components/index
+    - name: Blazor
+      items:
+        - name: Overview
+          uid: blazor/index
+        - name: Get started
+          uid: blazor/get-started
+        - name: Hosting models
+          uid: blazor/hosting-models
+        - name: Build your first app
+          uid: tutorials/first-blazor-app
+        - name: Components
+          uid: blazor/components
+        - name: Forms and validation
+          uid: blazor/forms-validation
+        - name: Component libraries
+          uid: blazor/class-libraries
+        - name: Layouts
+          uid: blazor/layouts
+        - name: Dependency injection
+          uid: blazor/dependency-injection
+        - name: Routing
+          uid: blazor/routing
+        - name: JavaScript interop
+          uid: blazor/javascript-interop
+        - name: Debug
+          uid: blazor/debug
+        - name: Host and deploy
+          items:
+            - name: Overview
+              uid: host-and-deploy/blazor/index
+            - name: Client-side
+              uid: host-and-deploy/blazor/client-side
+            - name: Server-side
+              uid: host-and-deploy/blazor/server-side
+            - name: Configure the Linker
+              uid: host-and-deploy/blazor/configure-linker
+    - name: Client-side development
+      items:
+        - name: Single Page Apps
+          items:
+            - name: Angular
+              uid: spa/angular
+            - name: React
+              uid: spa/react
+            - name: React with Redux
+              uid: spa/react-with-redux
+            - name: JavaScriptServices
+              uid: client-side/spa-services
+        - name: LibMan
+          items:
+            - name: Overview
+              uid: client-side/libman/index
+            - name: CLI
+              uid: client-side/libman/libman-cli
+            - name: Visual Studio
+              uid: client-side/libman/libman-vs
+        - name: Gulp
+          uid: client-side/using-gulp
+        - name: Grunt
+          uid: client-side/using-grunt
+        - name: Bower
+          uid: client-side/bower
+        - name: Bundle and minify
+          uid: client-side/bundling-and-minification
+        - name: Browser Link
+          uid: client-side/using-browserlink
     - name: Session and app state
       uid: fundamentals/app-state
     - name: Layout
@@ -552,102 +616,6 @@
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Table storage
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-- name: Client-side development
-  items:
-    - name: Razor Components
-      items:
-        - name: Overview
-          uid: razor-components/index
-        - name: Get started
-          uid: razor-components/get-started
-        - name: Hosting models
-          uid: razor-components/hosting-models
-        - name: Build your first app
-          uid: tutorials/first-razor-components-app
-        - name: Components
-          uid: razor-components/components
-        - name: Forms and validation
-          uid: razor-components/forms-validation
-        - name: Component libraries
-          uid: razor-components/class-libraries
-        - name: Layouts
-          uid: razor-components/layouts
-        - name: Dependency injection
-          uid: razor-components/dependency-injection
-        - name: Routing
-          uid: razor-components/routing
-        - name: JavaScript interop
-          uid: razor-components/javascript-interop
-        - name: Debug
-          uid: razor-components/debug
-        - name: Host and deploy
-          items:
-            - name: Overview
-              uid: host-and-deploy/razor-components-blazor/index
-            - name: Razor Components
-              uid: host-and-deploy/razor-components-blazor/razor-components
-    - name: Single Page Apps
-      items:
-        - name: Blazor
-          items:
-            - name: Overview
-              uid: spa/blazor/index
-            - name: Get started
-              uid: spa/blazor/get-started
-            - name: Hosting models
-              uid: razor-components/hosting-models
-            - name: Build your first app
-              uid: tutorials/first-razor-components-app
-            - name: Components
-              uid: razor-components/components
-            - name: Forms and validation
-              uid: razor-components/forms-validation
-            - name: Component libraries
-              uid: razor-components/class-libraries
-            - name: Layouts
-              uid: razor-components/layouts
-            - name: Dependency injection
-              uid: razor-components/dependency-injection
-            - name: Routing
-              uid: razor-components/routing
-            - name: JavaScript interop
-              uid: razor-components/javascript-interop
-            - name: Debug
-              uid: razor-components/debug
-            - name: Host and deploy
-              items:
-                - name: Overview
-                  uid: host-and-deploy/razor-components-blazor/index
-                - name: Blazor
-                  uid: host-and-deploy/razor-components-blazor/blazor
-                - name: Configure the Linker
-                  uid: host-and-deploy/razor-components-blazor/configure-linker
-        - name: Angular
-          uid: spa/angular
-        - name: React
-          uid: spa/react
-        - name: React with Redux
-          uid: spa/react-with-redux
-        - name: JavaScriptServices
-          uid: client-side/spa-services
-    - name: LibMan
-      items:
-        - name: Overview
-          uid: client-side/libman/index
-        - name: CLI
-          uid: client-side/libman/libman-cli
-        - name: Visual Studio
-          uid: client-side/libman/libman-vs
-    - name: Gulp
-      uid: client-side/using-gulp
-    - name: Grunt
-      uid: client-side/using-grunt
-    - name: Bower
-      uid: client-side/bower
-    - name: Bundle and minify
-      uid: client-side/bundling-and-minification
-    - name: Browser Link
-      uid: client-side/using-browserlink
 - name: Hosting and deployment
   displayName: publish
   items: 
@@ -776,16 +744,16 @@
     - name: Health checks
       uid: host-and-deploy/health-checks
       displayName: deploy, publish
-    - name: Razor Components/Blazor
+    - name: Blazor
       items:
         - name: Overview
-          uid: host-and-deploy/razor-components-blazor/index
-        - name: Blazor
-          uid: host-and-deploy/razor-components-blazor/blazor
-        - name: Razor Components
-          uid: host-and-deploy/razor-components-blazor/razor-components
+          uid: host-and-deploy/blazor/index
+        - name: Client-side
+          uid: host-and-deploy/blazor/client-side
+        - name: Server-side
+          uid: host-and-deploy/blazor/server-side
         - name: Configure the Linker
-          uid: host-and-deploy/razor-components-blazor/configure-linker
+          uid: host-and-deploy/blazor/configure-linker
 - name: Security and Identity
   displayName: authentication, authorization
   items: 
