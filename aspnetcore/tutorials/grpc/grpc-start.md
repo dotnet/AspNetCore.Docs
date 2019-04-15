@@ -22,6 +22,7 @@ In this tutorial, you:
 
 > [!div class="checklist"]
 > * Create a gRPC service.
+> * Run the gRPC service.
 > * Examine the project files.
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-3.0.md)]
@@ -77,6 +78,39 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
 ---
 
+### Run the service
+
+# [Visual Studio](#tab/visual-studio)
+
+* Press Ctrl+F5 to run the gRPC service without the debugger.
+
+  Visual Studio runs the service in a command prompt. The logs show that the service started listening on `http://localhost:50051`.
+
+  ![new ASP.NET Core Web Application](grpc-start/_static/server_start.png)
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+* Run the gRPC Greeter project GrpcGreeter from the command line using `dotnet run`. The logs show that the service started listening on `http://localhost:50051`.
+
+```console
+dbug: Grpc.AspNetCore.Server.Internal.GrpcServiceBinder[1]
+      Added gRPC method 'SayHello' to service 'Greet.Greeter'. Method type: 'Unary', route pattern: '/Greet.Greeter/SayHello'.
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://localhost:50051
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\gh\Docs\aspnetcore\tutorials\grpc\grpc-start\samples\GrpcGreeter
+```
+
+<!-- End of combined VS/Mac tabs -->
+
+---
+
+The next tutorial will demonstrate how to build a gRPC client, which is required to test the Greeter service.
+
 ### Examine the project files of the gRPC project
 
 GrpcGreeter files:
@@ -85,9 +119,9 @@ GrpcGreeter files:
 * *Services* folder: Contains the implementation of the `Greeter` service.
 * *appSettings.json*:Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
 * *Program.cs*: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/web-host>.
-* Startup.cs
+* Startup.cs: Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
 
-Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
+### Test the service
 
 ## Additional resources
 
@@ -95,6 +129,7 @@ In this tutorial, you:
 
 > [!div class="checklist"]
 > * Created a gRPC service.
+> * Ran the gRPC service.
 > * Examined the project files.
 
 > [!div class="step-by-step"]
