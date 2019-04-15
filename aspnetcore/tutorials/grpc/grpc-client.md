@@ -52,6 +52,59 @@ The following packages need to be added the gRPC client project:
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) which contains protobuf message APIs for C#.
 * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 
+Packages can be added with the following approaches:
+
+### [Visual Studio](#tab/visual-studio)
+
+* From the **Package Manager Console** window:
+  * Go to **View** > **Other Windows** > **Package Manager Console**
+  * Navigate to the directory in which the *GrpcGreeterClient.csproj* file exists
+  * Execute the following command:
+
+    ```powershell
+    Install-Package Grpc.Core
+    ```
+
+  * Repeat for Google.Protobuf and Grpc.Tools
+
+
+* From the **Manage NuGet Packages** dialog:
+  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
+  * Set the **Package source** to "nuget.org"
+  * Enter "Grpc.Core" in the search box
+  * Select the "Grpc.Core" package from the **Browse** tab and click **Install**
+  * Repeat for Google.Protobuf and Grpc.Tools
+
+### [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
+* Set the **Add Packages** window's **Source** drop-down to "nuget.org"
+* Enter "Grpc.Core" in the search box
+* Select the "Grpc.Core" package from the results pane and click **Add Package**
+* Repeat for Google.Protobuf and Grpc.Tools
+
+### [Visual Studio Code](#tab/visual-studio-code)
+
+Run the following command from the **Integrated Terminal**:
+
+```console
+dotnet add TodoApi.csproj package Grpc.Core
+```
+
+Repeat for Google.Protobuf and Grpc.Tools
+
+### [.NET Core CLI](#tab/netcore-cli)
+
+Run the following command:
+
+```console
+dotnet add TodoApi.csproj package Grpc.Core
+```
+
+Repeat for Google.Protobuf and Grpc.Tools
+
+---
+
 ## Add the greet.proto file
 
 Copy the **Protos\greet.proto** file from the gRPC Greeter service to the gRPC client project. Add the **greet.proto** file to the `<Protobuf>` item group of the GrpcGreeterClient project file:
