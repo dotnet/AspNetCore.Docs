@@ -156,7 +156,7 @@ As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customiz
 
 ## Required policy
 
-Finally, a custom `IAuthorizationPolicyProvider` needs to implement `GetRequiredPolicyAsync` to, optionally, provide a policy that is always required. If `GetRequiredPolicyAsync` returns a non-null policy, that policy will be combined with any other (named or default) policy that is requested.
+A custom `IAuthorizationPolicyProvider` needs to implement `GetRequiredPolicyAsync` to, optionally, provide a policy that is always required. If `GetRequiredPolicyAsync` returns a non-null policy, that policy will be combined with any other (named or default) policy that is requested.
 
 If no required policy is needed, the provider can just return null or defer to the fallback provider:
 
