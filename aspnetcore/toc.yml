@@ -264,6 +264,14 @@
       uid: razor-components/index
     - name: Session and app state
       uid: fundamentals/app-state
+    - name: Layout
+      uid: mvc/views/layout
+    - name: Model binding
+      uid: mvc/models/model-binding
+    - name: Model validation
+      uid: mvc/models/validation
+    - name: Razor syntax
+      uid: mvc/views/razor
     - name: Tag Helpers
       items:
         - name: Overview
@@ -302,14 +310,6 @@
               href: mvc/views/working-with-forms.md#the-validation-message-tag-helper
             - name: Validation Summary
               href: mvc/views/working-with-forms.md#the-validation-summary-tag-helper
-    - name: Layout
-      uid: mvc/views/layout
-    - name: Model binding
-      uid: mvc/models/model-binding
-    - name: Model validation
-      uid: mvc/models/validation
-    - name: Razor syntax
-      uid: mvc/views/razor
     - name: Advanced
       items:
         - name: View components
