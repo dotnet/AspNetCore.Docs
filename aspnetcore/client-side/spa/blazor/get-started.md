@@ -33,6 +33,7 @@ To create your first Blazor project in Visual Studio:
    ```console
    dotnet new -i Microsoft.AspNetCore.Blazor.Templates::0.9.0-preview3-19154-02
    ```
+
 1. Create a new project.
 1. Select **ASP.NET Core Web Application**. Select **Next**.
 1. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
