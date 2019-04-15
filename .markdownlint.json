@@ -29,7 +29,9 @@
         "allowed_elements": [
             "a",
             "br",
-            "p"
+            "li",
+            "p",
+            "ul"
         ]
     },
     "no-missing-space-atx": true,
