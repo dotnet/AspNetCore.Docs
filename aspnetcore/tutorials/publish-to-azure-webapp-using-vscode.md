@@ -108,7 +108,7 @@ To keep the debugging session, click `Advanced` and then `Continue to localhost 
 ## Generate the deployment package locally
 
 - Open Visual Studio Code terminal
-- Use the following command to generate a package to a subfolder called `publish`:
+- Use the following command to generate a `Release` package to a sub folder called `publish`:
   - `dotnet publish -c Release -o ./publish`
 - A new `publish` folder will be created under the project structure
 
@@ -116,7 +116,7 @@ To keep the debugging session, click `Advanced` and then `Continue to localhost 
 
 ## Publish to Azure App Service
 
-Leveraging the Azure App Service extension for Visual Studio code, follow the
+Leveraging the Azure App Service extension for Visual Studio Code, follow the
 steps below to publish the website directly to the Azure App Service.
 
 ### If you're creating a new Web App
@@ -129,6 +129,10 @@ steps below to publish the website directly to the Azure App Service.
 The extension will create the new Web App and will automatically start
 deploying the package to it. Once the deployment is finished, click
 `Browse Website` to validate the deployment.
+
+![Deployment succeeded message](publish-to-azure-webapp-using-vscode/_static/deployment-succeeded-message.jpg)
+
+Once you click `Browse Website`, you'll navigate to it using your default browser:
 
 ![New Web App successfully deployed](publish-to-azure-webapp-using-vscode/_static/new-webapp-deployed.jpg)
 
