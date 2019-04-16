@@ -491,7 +491,8 @@ Each provider defines an *alias* that can be used in configuration in place of t
 * Console
 * Debug
 * EventLog
-* AzureAppServices
+* AzureAppServicesFile
+* AzureAppServicesBlob
 * TraceSource
 * EventSource
 
