@@ -102,7 +102,7 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 
 ### Automatically reconnect
 
-The JavaScript client for SignalR can be configured to automatically reconnect using the [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder). It won't automatically reconnect by default.
+The JavaScript client for SignalR can be configured to automatically reconnect using the `withAutomaticReconnect` method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder). It won't automatically reconnect by default.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -113,7 +113,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 Without any parameters, `withAutomaticReconnect()` configures the client to wait 0, 2, 10, and 30 seconds respectively before trying each reconnect attempt, stopping after four failed attempts.
 
-Before starting any reconnect attempts, the `HubConnection` will transition to the [Reconnecting](javascript/api/%40aspnet/signalr/hubconnectionstate#reconnecting) state and fire its [onreconnecting](/javascript/api/%40aspnet/signalr/hubconnection#onreconnecting) callbacks instead of transitioning to the [Disconnected](javascript/api/%40aspnet/signalr/hubconnectionstate#disconnected) state and triggering its [onclosed](/javascript/api/%40aspnet/signalr/hubconnection#onclosed) callbacks like a `HubConnection` without automatic reconnect configured. This provides an opportunity to warn users that the connection has been lost and to disable UI elements.
+Before starting any reconnect attempts, the `HubConnection` will transition to the `Reconnecting` [HubConnectionState](javascript/api/%40aspnet/signalr/hubconnectionstate) state and fire its `onreconnecting` callbacks instead of transitioning to the `Disconnected` state and triggering its `onclose` callbacks like a `HubConnection` without automatic reconnect configured. This provides an opportunity to warn users that the connection has been lost and to disable UI elements.
 
 ```javascript
 connection.onreconnecting((error) => {
@@ -127,7 +127,7 @@ connection.onreconnecting((error) => {
 });
 ```
 
-If the client successfully reconnects within its first four attempts, the `HubConnection` will transition back to the [Connected](javascript/api/%40aspnet/signalr/hubconnectionstate#reconnecting) state and fire its [onreconnected](/javascript/api/%40aspnet/signalr/hubconnection#onreconnected) callbacks. This provides an opportunity to inform users the connection has been reestablished.
+If the client successfully reconnects within its first four attempts, the `HubConnection` will transition back to the `Connected` state and fire its `onreconnected` callbacks. This provides an opportunity to inform users the connection has been reestablished.
 
 Since the connection looks entirely new to the server, a new `connectionId` will be provided to the `onreconnected` callback.
 
@@ -162,7 +162,7 @@ async function start() {
 };
 ```
 
-If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` will transition to the [Disconnected](javascript/api/%40aspnet/signalr/hubconnectionstate#reconnecting) state and fire its [onclosed](/javascript/api/%40aspnet/signalr/hubconnection#onreconnected) callbacks. This provides an opportunity to inform users the connection has been permanently lost and recommend refreshing the page:
+If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` will transition to the `Disconnected` state and fire its [onclose](/javascript/api/%40aspnet/signalr/hubconnection#onclose) callbacks. This provides an opportunity to inform users the connection has been permanently lost and recommend refreshing the page:
 
 ```javascript
 connection.onclose((error) => {
@@ -176,7 +176,7 @@ connection.onclose((error) => {
 })
 ```
 
-In order to configure a custom number of reconnect attempts before disconnecting or change the reconnect timing, [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt.
+In order to configure a custom number of reconnect attempts before disconnecting or change the reconnect timing, `withAutomaticReconnect` accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -195,7 +195,7 @@ If the second reconnect attempt fails, the third reconnect attempt will start in
 
 The custom behavior then diverges again from the default behavior by stopping after the third reconnect attempt failure instead of trying one more reconnect attempt in another 30 seconds like it would in the default configuration.
 
-If you want even more control over the timing and number of automatic reconnect attempts, [withAutomaticReconnect](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#withautomaticreconnect) accepts an object implementing the [IReconnectPolicy](/javascript/api/%40aspnet/signalr/ireconnectpolicy) interface, which has a single method named [nextRetryDelayInMilliseconds](/javascript/api/%40aspnet/signalr/ireconnectpolicy#nextRetryDelayInMilliseconds).
+If you want even more control over the timing and number of automatic reconnect attempts, `withAutomaticReconnect` accepts an object implementing the `IReconnectPolicy` interface, which has a single method named `nextRetryDelayInMilliseconds`.
 
 `nextRetryDelayInMilliseconds` takes two arguments, `previousRetryCount` and `elapsedMilliseconds`, which are both numbers. Before the first reconnect attempt, both `previousRetryCount` and `elapsedMilliseconds` will be zero. After each failed retry attempt, `previousRetryCount` will be incremented by one and `elapsedMilliseconds` will be updated to reflect the amount of time spent reconnecting so far in milliseconds.
 
