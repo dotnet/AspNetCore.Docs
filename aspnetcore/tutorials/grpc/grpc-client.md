@@ -75,14 +75,6 @@ Packages can be added with the following approaches:
   * Select the "Grpc.Core" package from the **Browse** tab and click **Install**
   * Repeat for Google.Protobuf and Grpc.Tools
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
-* Set the **Add Packages** window's **Source** drop-down to "nuget.org"
-* Enter "Grpc.Core" in the search box
-* Select the "Grpc.Core" package from the results pane and click **Add Package**
-* Repeat for Google.Protobuf and Grpc.Tools
-
 ### [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following command from the **Integrated Terminal**:
@@ -93,15 +85,13 @@ dotnet add TodoApi.csproj package Grpc.Core
 
 Repeat for Google.Protobuf and Grpc.Tools
 
-### [.NET Core CLI](#tab/netcore-cli)
+### [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Run the following command:
-
-```console
-dotnet add TodoApi.csproj package Grpc.Core
-```
-
-Repeat for Google.Protobuf and Grpc.Tools
+* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
+* Set the **Add Packages** window's **Source** drop-down to "nuget.org"
+* Enter "Grpc.Core" in the search box
+* Select the "Grpc.Core" package from the results pane and click **Add Package**
+* Repeat for Google.Protobuf and Grpc.Tools
 
 ---
 
@@ -115,7 +105,9 @@ Copy the **Protos\greet.proto** file from the gRPC Greeter service to the gRPC c
 
 > [!NOTE]
 > You can open the project file of GrpcGreeterClient by right-clicking the project and selecting the **Edit GrpcGreeterClient.csproj** option from the dropdown menu.
+>
 > ![new ASP.NET Core Web Application](grpc-start/_static/edit_csproj.png)
+>
 > You can also navigate to the GrpcGreeterClient directory and edit the `GrpcGreeterClient.csproj` with your favorite editor.
 
 The `GrpcServices="Client"` attribute is added so that only the C# client assets are generated for the included protobuf file. Build the client project to trigger the generation of the C# client assets.
@@ -128,7 +120,7 @@ Add the following code to `Main` method of the `Program.cs` file of the gRPC cli
 
 To access the required types the following using statements also need to be added:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcGreeterClient/Program.cs?highlight=3-4)]
+[!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcGreeterClient/Program.cs?name=using)]
 
 The GreeterClient is created by instantiating a `Channel` containing the information for creating the connection to the gRPC service and using it to construct the `GreeterClient`:
 

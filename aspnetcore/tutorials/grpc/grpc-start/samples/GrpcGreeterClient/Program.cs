@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+#region using
 using Greet;
 using Grpc.Core;
+#endregion
 
 namespace GrpcGreeterClient
 {
