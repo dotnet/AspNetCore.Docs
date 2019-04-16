@@ -929,12 +929,12 @@
     - name: Protect secrets in development
       displayName: password
       uid: security/app-secrets
+    - name: Azure Key Vault Configuration Provider
+      uid: security/key-vault-configuration
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
     - name: EU General Data Protection Regulation (GDPR) support
       uid: security/gdpr
-    - name: Azure Key Vault Configuration Provider
-      uid: security/key-vault-configuration
     - name: Anti-request forgery
       uid: security/anti-request-forgery
     - name: Prevent open redirect attacks
