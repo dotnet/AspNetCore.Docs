@@ -526,9 +526,7 @@ The base class should derive from `ComponentBase`.
 The namespace of a component authored with Razor is based on:
 
 * The project's `RootNamespace`.
-* The path from the project root to the component.
-
-For example, `ComponentsSample/Pages/Index.razor` is in the namespace `ComponentsSample.Pages`. All components in the same folder, `Pages`, and the parent folder, `ComponentsSample`, are in scope.
+* The path from the project root to the component. For example, `ComponentsSample/Pages/Index.razor` is in the namespace `ComponentsSample.Pages`. All components in the same folder, `Pages`, and the parent folder, `ComponentsSample`, are in scope.
 
 Components defined in a different namespace can be brought into scope using Razor's [\@using](xref:mvc/views/razor#using) directive.
 
