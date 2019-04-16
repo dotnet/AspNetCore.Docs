@@ -134,7 +134,7 @@ public MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
 }
 ```
 
-Then, the `GetPolicyAsync` method can be updated to use the `FallbackProlicyProvider` instead of returning null:
+Then, the `GetPolicyAsync` method can be updated to use the `FallbackPolicyProvider` instead of returning null:
 
 ```csharp
 ...
