@@ -28,6 +28,8 @@ At the end, you have a web API that can Query, filter and sort data.
 
 ## Overview
 
+The Open Data Protocol (OData) is a data access protocol for the web. OData provides a uniform way to query and manipulate data sets through CRUD operations (create, read, update, and delete).
+
 For this tutorial we use [to-do Web API](xref:first-web-api) as an existing Web API.
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
@@ -72,8 +74,27 @@ For this tutorial we use [to-do Web API](xref:first-web-api) as an existing Web 
 1. Click the **Accept** button in the **License Acceptance** dialog.
 
 ---
+
 ## Update the model class
 
-Open the model class 
+Open the model class *TodoItem.cs* under *Models* directory.
+
+The model class contains these properties:
+
+ [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=OldProps)]
+
+However for better demonstration of OData capabilities, you should add below properties as well:
+
+ [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=NewProps)]
+
+Finally your *TodoItem.cs* class looks like:
+
+ [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs)]
+
+> [!TIP]
+> Since this tutorial uses **InMemoryDatabase**  you dont need to add migrations, however if you want to use other type of database providers such as **SqlServer** you must migrate your database. for more information about migrations visit: @data/ef-mvc/migrations
+
+
+
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
