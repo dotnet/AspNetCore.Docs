@@ -148,3 +148,12 @@ The extension will deploy the updated content to the Web App. Once it's done,
 click `Browse Website` to validate the deployment.
 
 ![Existing Web App successfully deployed](publish-to-azure-webapp-using-vscode/_static/existing-webapp-deployed.jpg)
+
+## Next steps
+
+- [Create your first Azure DevOps pipeline](/azure/devops/pipelines/create-first-pipeline)
+
+## Additional resources
+
+- [Azure App Service](/azure/app-service/app-service-web-overview)
+- [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
