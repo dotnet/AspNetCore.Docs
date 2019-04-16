@@ -21,7 +21,7 @@ A scoped lifetime allows the service implementation to resolve other services wi
 
 * A new instance of the service implementation is constructed for each request.
 * It isn't possible to share state between requests via instance members on the implementation type.
-* The expectation is to store shared states in a singleton service in the DI container. The stored shared states are resolved in the constructor of the gRPC service implementation. 
+* The expectation is to store shared states in a singleton service in the DI container. The stored shared states are resolved in the constructor of the gRPC service implementation.
 
 For more information on service lifetimes, see <xref:fundamentals/dependency-injection#service-lifetimes>.
 
