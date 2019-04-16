@@ -747,12 +747,12 @@
         },
         {
             "source_path": "aspnetcore/client-side/spa/index.md",
-            "redirect_url": "/aspnet/core/client-side/spa/blazor/index",
+            "redirect_url": "/aspnet/core/blazor/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/index.md",
-            "redirect_url": "/aspnet/core/client-side/razor-components/index",
+            "redirect_url": "/aspnet/core/blazor/",
             "redirect_document_id": false
         },
         {

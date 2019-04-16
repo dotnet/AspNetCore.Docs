@@ -1,8 +1,11 @@
 //#define ServerCallContext_ONLY
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Greet;
 using Grpc.Core;
-using System.Threading.Tasks;
 
 namespace GrpcGreeter
 {
@@ -10,7 +13,7 @@ namespace GrpcGreeter
     #region snippet
     public class GreeterService : Greeter.GreeterBase
     {
-        public override Task<HelloReply> 
+        public override Task<HelloReply>
             SayHello(HelloRequest request, ServerCallContext context)
         {
             return Task.FromResult(new HelloReply
@@ -24,8 +27,8 @@ namespace GrpcGreeter
     #region snippet1
     public class GreeterService : Greeter.GreeterBase
     {
-        public override Task<HelloReply> SayHello(HelloRequest request, 
-            ServerCallContext context)
+        public override Task<HelloReply>
+            SayHello(HelloRequest request, ServerCallContext context)
         {
             var httpContext = context.GetHttpContext();
 
