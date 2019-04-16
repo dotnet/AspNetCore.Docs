@@ -218,7 +218,7 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-Alternatively, you can write code that will reconnect your client manually as demonstrated in the section below.
+Alternatively, you can write code that will reconnect your client manually as demonstrated in [Manually reconnect](#manually-reconnect).
 
 ::: moniker-end
 
@@ -227,7 +227,7 @@ Alternatively, you can write code that will reconnect your client manually as de
 ::: moniker range="< aspnetcore-3.0"
 
 > [!WARNING]
-> Prior to 3.0, client for SignalR doesn't automatically reconnect. You must write code that will reconnect your client manually.
+> Prior to 3.0, the JavaScript client for SignalR doesn't automatically reconnect. You must write code that will reconnect your client manually.
 
 ::: moniker-end
 
