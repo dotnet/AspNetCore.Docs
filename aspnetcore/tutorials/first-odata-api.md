@@ -87,14 +87,26 @@ However for better demonstration of OData capabilities, you should add below pro
 
  [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=NewProps)]
 
-Finally your *TodoItem.cs* class looks like:
+Finally your *TodoItem.cs* class should look like:
 
  [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs)]
 
 > [!TIP]
 > Since this tutorial uses **InMemoryDatabase**  you dont need to add migrations, however if you want to use other type of database providers such as **SqlServer** you must migrate your database. for more information about migrations visit: @data/ef-mvc/migrations
 
+## Register the required services
 
+In ASP.NET Core you should register OData service inside [dependency injection (DI)](xref:fundamentals/dependency-injection) container.
+
+Update the `ConfigureServices` method in *Startup.cs* with the following highlighted code:
+
+ [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=6&name=snippet_dic)]
+
+You should also add the *Microsoft.AspNet.OData.Extensions* Directive to your *Startup.cs*:
+
+```csharp
+using Microsoft.AspNet.OData.Extensions;
+```
 
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
