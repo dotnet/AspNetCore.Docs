@@ -18,10 +18,10 @@ In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Opening an existing project or solution.
-> * Update a model class.
+> * Update the model class.
 > * Register the required services.
-> * Configuring middleware.
-> * Update a controller.
+> * Configure middleware.
+> * Update the controller.
 > * Query resources using OData.
 
 At the end, you have a web API that can Query, filter and sort data.
@@ -72,6 +72,8 @@ For this tutorial we use [to-do Web API](xref:first-web-api) as an existing Web 
 1. Click the **Accept** button in the **License Acceptance** dialog.
 
 ---
+## Update the model class
 
+Open the model class 
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
