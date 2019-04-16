@@ -49,7 +49,11 @@ namespace TodoApi
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routeBuilder =>
+            {
+                routeBuilder.EnableDependencyInjection();
+                routeBuilder.Select().OrderBy().Filter();
+            });
         }
         #endregion
     }

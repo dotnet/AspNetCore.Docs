@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TodoApi.Models;
+using Microsoft.AspNet.OData;
 
 #region TodoController
 namespace TodoApi.Controllers
@@ -33,9 +34,10 @@ namespace TodoApi.Controllers
         #region snippet_GetAll
         // GET: api/Todo
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
+        [EnableQuery()]
+        public ActionResult<IQueryable<TodoItem>> GetTodoItems()
         {
-            return await _context.TodoItems.ToListAsync();
+            return _context.TodoItems;
         }
 
         #region snippet_GetByID

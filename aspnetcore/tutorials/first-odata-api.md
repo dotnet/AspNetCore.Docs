@@ -108,5 +108,28 @@ You should also add the *Microsoft.AspNet.OData.Extensions* Directive to your *S
 using Microsoft.AspNet.OData.Extensions;
 ```
 
+## Configure middleware
+
+OData can preform sorting, filtering, querying related data and ect. You can enable/disable each of these capabilities using a middleware.
+
+Update the `Configure` method in *Startup.cs* with the following highlighted code:
+
+ [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=17-21&name=snippet_configure)]
+
+Finally your *Startup.cs* class should look like:
+
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=9,30,52-56)]
+
+## Update the controller
+
+Update *TodoController.cs* under *Controllers* directory, add `[EnableQuery()]` attribute:
+
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=9,37-41)]
+
+> [!TIP]
+> Returning `IQueryable` or `ActionResult<IQueryable>` enables **OData** to translate your queries to **SQL** queries using *ef core* capabilities, you may also return other types such as `IEnumerable` which makes **OData** to preform queries inside your app.
+
+
+
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
