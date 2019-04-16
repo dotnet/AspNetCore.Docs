@@ -132,7 +132,7 @@ If the client successfully reconnects within its first four attempts, the `HubCo
 Since the connection looks entirely new to the server, a new `connectionId` will be provided to the `onreconnected` callback.
 
 > [!WARNING]
-> The `onreconnected` callback's `connectionId` parameter won't be undefined if the `HubConnection` was configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
+> The `onreconnected` callback's `connectionId` parameter will be undefined if the `HubConnection` was configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
 
 ```javascript
 connection.onreconnected((connectionId) => {
