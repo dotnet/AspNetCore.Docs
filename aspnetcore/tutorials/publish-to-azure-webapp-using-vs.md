@@ -180,7 +180,7 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 ## Additional resources
 
-* For Visual Studio Code, see [Folder publish](https://github.com/aspnet/websdk#folder-publish)
+* For Visual Studio Code, see [Publish profiles](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).
 * [Azure App Service](/azure/app-service/app-service-web-overview)
 * [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Azure SQL Database](/azure/sql-database/)
