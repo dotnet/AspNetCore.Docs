@@ -20,6 +20,13 @@
       uid: aspnetcore-2.0
     - name: What's new in 1.1
       uid: aspnetcore-1.1
+- name: Tutorials (interactive)
+  items:
+    - name: Web API apps
+      items:
+        - name: Create a web API
+          displayName: tutorial
+          href: /learn/modules/build-web-api-net-core/
 - name: Tutorials
   items:
     - name: Web apps
