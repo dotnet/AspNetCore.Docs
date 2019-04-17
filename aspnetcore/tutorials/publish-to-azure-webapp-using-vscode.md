@@ -24,9 +24,11 @@ and deploy it within Visual Studio Code.
 ## Set up
 
 - Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
-- Install [.NET Core](https://dotnet.microsoft.com/download)
+- Install [.NET Core SDK](https://dotnet.microsoft.com/download)
 - Install [Visual Studio Code](https://code.visualstudio.com/Download)
-  - Instal the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) to Visual Studio Code and configure it before proceeding
+  - Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) to Visual Studio Code
+  - Instal the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
+  to Visual Studio Code and configure it before proceeding
 
 ## Create an ASP.Net Core MVC project
 
