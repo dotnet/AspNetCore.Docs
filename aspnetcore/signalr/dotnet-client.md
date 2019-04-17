@@ -59,6 +59,10 @@ In a `Closed` handler that restarts the connection, consider waiting for some ra
 
 [!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
 
+The `InvokeAsync` method returns a Task which completes when the server method returns. The return value, if any, is provided as the result of the task. Any exceptions thrown by the method on the server produce a faulted Task. Use `await` syntax to wait for the server method to complete and `try...catch` syntax to handle errors.
+
+The `SendAsync` method returns a Task which completes when the message has been sent to the server. No return value is provided since this Task doesn't wait until the server method completes. Any exceptions thrown on the client while sending the message produce a faulted Task. Use `await` and `try...catch` syntax to handle send errors.
+
 > [!NOTE]
 > If you're using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](/azure/azure-signalr/signalr-concept-serverless-development-config).
 
