@@ -54,17 +54,17 @@ Here are some more examples of attributes that are available.
 
 |Attribute|Notes|
 |---------|-----|
-|<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>   |Specifies URL pattern for an action method.|
-|<xref:Microsoft.AspNetCore.Mvc.BindAttribute>    |Specifies prefix and properties to include for model binding.|
-|<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute> |Selects HTTP method for an action method.|
-|<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>|Specifies data type accepted.|
-|<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>|Specifies data type returned.|
+|[[Route]](<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>)      |Specifies URL pattern for an action method.|
+|[[Bind]](<xref:Microsoft.AspNetCore.Mvc.BindAttribute>)        |Specifies prefix and properties to include for model binding.|
+|[[HttpGet]](<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute>)  |Selects HTTP method for an action method.|
+|[[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>)|Specifies data type accepted.|
+|[[Produces]](<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>)|Specifies data type returned.|
 
 For a list of all available attributes, see the <xref:Microsoft.AspNetCore.Mvc> namespace.
 
 ## ApiController attribute
 
-The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute on enables the following behaviors:
+The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute enables the following behaviors:
 
 * Attribute routing requirement
 * Automatic HTTP 400 responses
@@ -177,7 +177,7 @@ The `ApiController` attribute applies inference rules for the default data sourc
 * `[FromRoute]` is inferred for any action parameter name matching a parameter in the route template. When more than one route matches an action parameter, any route value is considered `[FromRoute]`.
 * `[FromQuery]` is inferred for any other action parameters.
 
-## FromBody inference notes
+### FromBody inference notes
 
 `[FromBody]` isn't inferred for simple types such as `string` or `int`. Therefore, the `[FromBody]` attribute should be used for simple types when that functionality is needed. When an action has more than one parameter explicitly specified (via `[FromBody]`) or inferred as bound from the request body, an exception is thrown. For example, the following action method signatures will cause an exception:
 
@@ -219,7 +219,7 @@ This behavior is triggered by the `ApiController` attribute. To disable the defa
 
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,5)]
 
-### Problem details for error status codes
+## Problem details for error status codes
 
 When the compatibility version is 2.2 or later, MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The `ProblemDetails` type is based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807) for providing machine-readable error details in an HTTP response.
 
