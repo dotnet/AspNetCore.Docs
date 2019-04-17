@@ -12,13 +12,19 @@
   uid: getting-started
 - name: What's new
   items:
-    - name: What's new in 2.2
+    - name: ASP.NET Core 3.0
+      items:
+        - name: New features
+          uid: aspnetcore-3.0-features
+        - name: Breaking changes
+          uid: aspnetcore-3.0-breaking-changes
+    - name: ASP.NET Core 2.2
       uid: aspnetcore-2.2
-    - name: What's new in 2.1
+    - name: ASP.NET Core 2.1
       uid: aspnetcore-2.1
-    - name: What's new in 2.0
+    - name: ASP.NET Core 2.0
       uid: aspnetcore-2.0
-    - name: What's new in 1.1
+    - name: ASP.NET Core 1.1
       uid: aspnetcore-1.1
 - name: Tutorials
   items:
