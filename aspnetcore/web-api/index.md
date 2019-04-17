@@ -18,7 +18,7 @@ This article shows how to use web API features in ASP.NET Core MVC controllers.
 
 ## What is a web API app
 
-ASP.NET Core can be used to build web apps an web API apps. A web app responds to HTTP requests from browsers by returning HTML ready to be displayed. To handle the requests and responses, the app may use MVC controllers and views or Razor Pages. A web API app also responds to HTTP requests, but from many kinds of clients and by returning data in a format such as JSON, not HTML. To handle requests and responses, a web API app uses MVC controllers without views.
+ASP.NET Core can be used to build web apps and web API apps. A web app responds to HTTP requests from browsers by returning HTML ready to be displayed. To handle the requests and responses, the app may use MVC controllers and views or Razor Pages. A web API app also responds to HTTP requests, but from many kinds of clients and by returning data in a format such as JSON, not HTML. To handle requests and responses, a web API app uses MVC controllers without views.
 
 Any given ASP.NET core app can use one or more of these modes of responding to HTTP requests. A single app can include MVC controllers and views, Razor Pages, and web API controllers.
 
@@ -30,39 +30,47 @@ A web API app has one or more controller classes that derive from <xref:Microsof
 
 (The <xref:Microsoft.AspNetCore.Mvc.Controller> base class is not used for web API controllers.  `Controller` derives from `ControllerBase` and adds support for views, so it's not needed for handling web API requests.)
 
-The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. The following table shows some examples.
-
-|Task  |Sample methods  |
-|---------|---------|
-|Return specified status codes | <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)> (400)<br> <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String,System.Object,System.Object)> (201)|
-|Return a file|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*><br><xref:Microsoft.AspNetCore.Mvc.ControllerBase.File*>|
-|Invoke model binding|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>|
-|Invoke model validation|<xref:System.Web.Mvc.ControllerBase.TryValidateModel*>|
-
-The following code example uses a `ControllerBase` method to return a 201 status code:
+The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, `ControllerBase.CreatedAtAction` returns a 201 status code:
 
 [!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=8-9)]
 
-For the list of all available methods and properties, see <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
+ Here are some more examples of methods that `ControllerBase` provides.
+
+|Method  |Notes  |
+|---------|---------|
+| <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>| Returns 400 status code
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> |Returns 404 status code|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*>|Returns a file|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>||
+|<xref:System.Web.Mvc.ControllerBase.TryValidateModel*>||
+
+For a list of all available methods and properties, see <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 
 ## Attributes
 
-The MVC namespace provides attributes that can be used on web API controllers and action methods. The following table shows some examples.
-
-|Task |Example attribute|
-|-----|-------------|
-|Control model binding|<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute><br><xref:System.Web.Mvc.BindAttribute><br> <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>|
-|Select HTTP method for an action method|<xref:System.Web.Mvc.HttpGetAttribute><br>|<xref:System.Web.Mvc.HttpPostAttribute>
-|Specify an action name not the C# method name|<xref:System.Web.Mvc.ActionNameAttribute>|
-|Specify API conventions|<xref:Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute><br><xref:Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute>|
-|Specify data type accepted|<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>|
-|Specify possible responses|<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute><br><xref:Microsoft.AspNetCore.Mvc.ProducesDefaultResponseTypeAttribute><br><xref:Microsoft.AspNetCore.Mvc.ProducesErrorResponseTypeAttribute>
-|Set request limits |<xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute><br><xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute>|
-|Specify routing|<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>| 
-
-The following code example uses attributes to specify the HTTP method accepted and the status codes returned:
+The MVC namespace provides attributes that can be used on web API controllers and action methods. The following example action method uses attributes to specify the HTTP method accepted and the status codes returned:
 
 [!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=1-3)]
+
+Here are some more examples of attributes that are available.
+
+|Attribute |Notes|
+|-----|-------------|
+|<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>||
+|<xref:System.Web.Mvc.BindAttribute>||
+|<xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>||
+|<xref:System.Web.Mvc.HttpGetAttribute>|Select HTTP method for an action method|
+|<xref:System.Web.Mvc.HttpPostAttribute>||
+|<xref:System.Web.Mvc.ActionNameAttribute>|Specify an action name not the C# method name|
+|<xref:Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute>||
+|<xref:Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute>||
+|<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>|Specify data type accepted|
+|<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>||
+|<xref:Microsoft.AspNetCore.Mvc.ProducesDefaultResponseTypeAttribute>||
+|<xref:Microsoft.AspNetCore.Mvc.ProducesErrorResponseTypeAttribute>||
+|<xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute>||
+|<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute>||
+|<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>||
 
 ## ApiController attribute
 
