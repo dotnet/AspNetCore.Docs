@@ -61,6 +61,13 @@ JavaScript clients call public methods on hubs via the [invoke](/javascript/api/
 > [!NOTE]
 > If you're using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](/azure/azure-signalr/signalr-concept-serverless-development-config).
 
+The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). The Promise is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the Promise is rejected with the error message. Use the `.then` and `.catch` APIs on the Promise itself to handle these cases (or `await` syntax).
+
+The `send` method returns a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). The Promise is resolved when the message has been sent to the server. If there is an error sending the message, the Promise is rejected with the error message. Use the `.then` and `.catch` APIs on the Promise itself to handle these cases (or `await` syntax).
+
+> [!NOTE]
+> Using `send` does not wait until the server has received the message, so it is not possible to return data or errors from the server.
+
 ## Call client methods from hub
 
 To receive messages from the hub, define a method using the [on](/javascript/api/%40aspnet/signalr/hubconnection#on) method of the `HubConnection`.
