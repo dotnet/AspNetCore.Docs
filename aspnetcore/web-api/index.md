@@ -16,7 +16,7 @@ By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github
 
 This article shows how to use web API features in ASP.NET Core MVC controllers.
 
-ASP.NET Core can be used to build web apps and web API apps. A web app responds to HTTP requests from browsers by returning HTML ready to be displayed. To handle the requests and responses, the app may use MVC controllers and views or Razor Pages. A web API app also responds to HTTP requests, but from many kinds of clients and by returning data in a format such as JSON rather than HTML. To handle requests, a web API app uses MVC controllers without views.
+ASP.NET Core can be used to build web apps and web API apps. A web app responds to HTTP requests from browsers by returning HTML ready to be displayed. To handle the requests, the app may use MVC controllers and views or Razor Pages. A web API app also responds to HTTP requests, but from many kinds of clients and by returning data in a format such as JSON rather than HTML. To handle requests, a web API app uses MVC controllers without views.
 
 Any given ASP.NET core app can use one or more of these modes of responding to HTTP requests. A single app can include MVC controllers and views, Razor Pages, and web API controllers.
 
@@ -138,7 +138,7 @@ services.AddMvc()
 
 ### Customize BadRequest response
 
-To customize the output of the resulting response, use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory>. Add the following highlighted code after `services.AddMvc().SetCompatibilityVersion`:
+To customize the response that results from a validation error, use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory>. Add the following highlighted code after `services.AddMvc().SetCompatibilityVersion`:
 
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureBadRequestResponse)]
 
