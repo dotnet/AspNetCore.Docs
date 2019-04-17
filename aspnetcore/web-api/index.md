@@ -22,7 +22,7 @@ ASP.NET Core can be used to build web apps and web API apps. A web app responds 
 
 Any given ASP.NET core app can use one or more of these modes of responding to HTTP requests. A single app can include MVC controllers and views, Razor Pages, and web API controllers.
 
-## ControllerBase
+## ControllerBase class
 
 A web API app has one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. For example, the web API project template creates a Values controller:
 
@@ -38,11 +38,11 @@ The `ControllerBase` class provides many properties and methods that are useful 
 
 |Method  |Notes  |
 |---------|---------|
-| <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>| Returns 400 status code
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> |Returns 404 status code|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*>|Returns a file|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>||
-|<xref:System.Web.Mvc.ControllerBase.TryValidateModel*>||
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>| Returns 400 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> |Returns 404 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*>|Returns a file.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>|Invokes model binding.|
+|<xref:System.Web.Mvc.ControllerBase.TryValidateModel*>|Invokes model validation.|
 
 For a list of all available methods and properties, see <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 
@@ -54,64 +54,68 @@ The MVC namespace provides attributes that can be used on web API controllers an
 
 Here are some more examples of attributes that are available.
 
-|Attribute |Notes|
-|-----|-------------|
-|<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute>||
-|<xref:System.Web.Mvc.BindAttribute>||
-|<xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>||
-|<xref:System.Web.Mvc.HttpGetAttribute>|Select HTTP method for an action method|
-|<xref:System.Web.Mvc.HttpPostAttribute>||
-|<xref:System.Web.Mvc.ActionNameAttribute>|Specify an action name not the C# method name|
-|<xref:Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute>||
-|<xref:Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute>||
-|<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>|Specify data type accepted|
-|<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>||
-|<xref:Microsoft.AspNetCore.Mvc.ProducesDefaultResponseTypeAttribute>||
-|<xref:Microsoft.AspNetCore.Mvc.ProducesErrorResponseTypeAttribute>||
-|<xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute>||
-|<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute>||
-|<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>||
+|Attribute|Notes|
+|---------|-----|
+|<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>   |Specifies URL pattern for an action method.|
+|<xref:Microsoft.AspNetCore.Mvc.BindAttribute>    |Specifies prefix and properties to include for model binding.|
+|<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute> |Selects HTTP method for an action method.|
+|<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>|Specifies data type accepted.|
+|<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>|Specifies data type returned.|
+
+For a list of all available attributes, see the <xref:Microsoft.AspNetCore.Mvc> namespace.
 
 ## ApiController attribute
 
-The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute denotes a web API controller class. For example:
+The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute on enables the following behaviors:
+
+* Attribute routing requirement
+* Automatic HTTP 400 responses
+* Binding source parameter inference
+* Multipart/form-data request inference
+* Problem details for error status codes
+
+These features require a [compatibility version](<xref:mvc/compatibility-version>) of 2.1 or later.
+
+### ApiController on specific controllers
+
+The `ApiController` attribute can be applied to specific controllers, as in the following example from the project template:
 
 [!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=2)]
 
-A compatibility version of 2.1 or later, set via <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*>, is required to use this attribute. For example, the highlighted code in `Startup.ConfigureServices` sets the compatibility flag:
+## ApiController on multiple controllers
 
-[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_Compat)]
-
-For more information, see <xref:mvc/compatibility-version>.
-
-The ApiController attribute provides the following behaviors:
-* Automatic HTTP 400 responses
-* binding source parameter inference
-* Multipart/form-data request inference
-* Attribute routing requirement
-* Problem details for error status codes
-
-Controllers intended for use as web API controllers should have the ApiController applied to them unless one or more of these behaviors won't work in a particular scenario.
-
-
-
-## Apply ApiController to all controllers
-
-In ASP.NET Core 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. Beware that there's no way to opt out for individual controllers. As a recommendation, assembly-level attributes should be applied to the `Startup` class:
-
-[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_Assembly&highlight=1)]
-
-A compatibility version of 2.2 or later, set via <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*>, is required to use this attribute at the assembly level.
-
-Another approach is to create a custom base controller class annotated with the `[ApiController]` attribute:
+One approach to using the attribute on more than one controller is is to create a custom base controller class annotated with the `[ApiController]` attribute. Here's an example showing a custom base class and a controller that derives from it:
 
 [!code-csharp[](index/samples/2.x/Controllers/MyControllerBase.cs?name=snippet_MyControllerBase)]
 
-The following sections describe convenience features added by the attribute.
+[!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_Inherit)]
 
-## ApiController - Automatic HTTP 400 responses
+## ApiController on an assembly
 
-Model validation errors automatically trigger an HTTP 400 response. Consequently, the following code is unnecessary:
+If [compatibility version](<xref:mvc/compatibility-version>) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply assembly-level attributes to the `Startup` class as shown in this example:
+
+```csharp
+[assembly: ApiController]
+namespace WebApiSample
+{
+    public class Startup
+    {
+        ...
+    }
+}
+```
+
+## Attribute routing requirement
+
+The `ApiController` attribute makes attribute routing a requirement. For example:
+
+[!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=1)]
+
+Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined by <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> in `Startup.Configure`.
+
+## Automatic HTTP 400 responses
+
+The `ApiController` attribute makes model validation errors automatically trigger an HTTP 400 response. Consequently, the following code is unnecessary in an action method:
 
 ```csharp
 if (!ModelState.IsValid)
@@ -120,13 +124,9 @@ if (!ModelState.IsValid)
 }
 ```
 
-Use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to customize the output of the resulting response.
+### Response type 
 
-Disabling the default behavior is useful when your action can recover from a model validation error. The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property is set to `true`. Add the following code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_<version_number>);`:
-
-[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=7)]
-
-With a compatibility flag of 2.2 or later, the default response type for HTTP 400 responses is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The `ValidationProblemDetails` type complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). Set the `SuppressUseValidationProblemDetailsForInvalidModelStateResponses` property to `true` to instead return the ASP.NET Core 2.1 error format of <xref:Microsoft.AspNetCore.Mvc.SerializableError>. Add the following code in `Startup.ConfigureServices`:
+With a compatibility flag of 2.2 or later, the default response type for HTTP 400 responses is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The `ValidationProblemDetails` type complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807). To change the default response to <xref:Microsoft.AspNetCore.Mvc.SerializableError>, set the `SuppressUseValidationProblemDetailsForInvalidModelStateResponses` property to `true` in `Startup.ConfigureServices`, as shown in the following example:
 
 ```csharp
 services.AddMvc()
@@ -138,7 +138,19 @@ services.AddMvc()
     });
 ```
 
-## ApiController - binding source parameter inference
+### Customize BadRequest response
+
+To customize the output of the resulting response, use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory>. Add the following highlighted code after `services.AddMvc().SetCompatibilityVersion`:
+
+[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureBadRequestResponse)]
+
+### Disable automatic 400
+
+To disable the automatic 400 behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property to `true`. Add the following highlighted code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion`:
+
+[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,7)]
+
+## Binding source parameter inference
 
 A binding source attribute defines the location at which an action parameter's value is found. The following binding source attributes exist:
 
@@ -154,56 +166,68 @@ A binding source attribute defines the location at which an action parameter's v
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
 
-Without the `[ApiController]` attribute, binding source attributes are explicitly defined. Without `[ApiController]` or other binding source attributes like `[FromQuery]`, the ASP.NET Core runtime attempts to use the complex object model binder. The complex object model binder pulls data from value providers (which have a defined order). For instance, the 'body model binder' is always opt in.
+Without the `[ApiController]` attribute or binding source attributes like `[FromQuery]`, the ASP.NET Core runtime attempts to use the complex object model binder. The complex object model binder pulls data from value providers (which have a defined order). For instance, the 'body model binder' is always opt in.
 
 In the following example, the `[FromQuery]` attribute indicates that the `discontinuedOnly` parameter value is provided in the request URL's query string:
 
 [!code-csharp[](index/samples/2.x/Controllers/ProductsController.cs?name=snippet_BindingSourceAttributes&highlight=3)]
 
-Inference rules are applied for the default data sources of action parameters. These rules configure the binding sources you're otherwise likely to manually apply to the action parameters. The binding source attributes behave as follows:
+The `ApiController` attribute applies inference rules for the default data sources of action parameters. These rules configure the binding sources you're otherwise likely to manually apply to the action parameters. The binding source inference rules behave as follows:
 
-* `[FromBody]` is inferred for complex type parameters. An exception to this rule is any complex, built-in type with a special meaning, such as <xref:Microsoft.AspNetCore.Http.IFormCollection> and <xref:System.Threading.CancellationToken>. The binding source inference code ignores those special types. `[FromBody]` isn't inferred for simple types such as `string` or `int`. Therefore, the `[FromBody]` attribute should be used for simple types when that functionality is needed. When an action has more than one parameter explicitly specified (via `[FromBody]`) or inferred as bound from the request body, an exception is thrown. For example, the following action signatures cause an exception:
-
-    [!code-csharp[](index/samples/2.x/Controllers/TestController.cs?name=snippet_ActionsCausingExceptions)]
-
-    > [!NOTE]
-    > In ASP.NET Core 2.1, collection type parameters such as lists and arrays are incorrectly inferred as [[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute). [[FromBody]](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) should be used for these parameters if they are to be bound from the request body. This behavior is fixed in ASP.NET Core 2.2 or later, where collection type parameters are inferred to be bound from the body by default.
-
+* `[FromBody]` is inferred for complex type parameters. An exception to the `[FromBody]` inference rule is any complex, built-in type with a special meaning, such as <xref:Microsoft.AspNetCore.Http.IFormCollection> and <xref:System.Threading.CancellationToken>. The binding source inference code ignores those special types. 
 * `[FromForm]` is inferred for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. It's not inferred for any simple or user-defined types.
 * `[FromRoute]` is inferred for any action parameter name matching a parameter in the route template. When more than one route matches an action parameter, any route value is considered `[FromRoute]`.
 * `[FromQuery]` is inferred for any other action parameters.
 
-The default inference rules are disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> property is set to `true`. Add the following code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_<version_number>);`:
+## FromBody inference notes
 
-[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=6)]
+`[FromBody]` isn't inferred for simple types such as `string` or `int`. Therefore, the `[FromBody]` attribute should be used for simple types when that functionality is needed. When an action has more than one parameter explicitly specified (via `[FromBody]`) or inferred as bound from the request body, an exception is thrown. For example, the following action method signatures will cause an exception:
 
-## ApiController - Multipart/form-data request inference
+* Multiple complex type parameters, `[FromBody]` inferred on both.
+
+  ```csharp
+  [HttpPost]
+  public IActionResult Action1(Product product, Order order)
+  ```
+
+* Multiple complex type parameters, `[FromBody]` inferred on one, attribute on the other.
+
+  ```csharp
+  [HttpPost]
+  public IActionResult Action2(Product product, [FromBody] Order order)
+  ```
+
+* Multiple complex type parameters, `[FromBody]` attribute on both.
+
+  ```csharp
+  [HttpPost]
+  public IActionResult Action3([FromBody] Product product, [FromBody] Order order)
+  ```
+
+> [!NOTE]
+> In ASP.NET Core 2.1, collection type parameters such as lists and arrays are incorrectly inferred as `[FromQuery]`. The `[FromBody]` attribute should be used for these parameters if they are to be bound from the request body. This behavior is corrected in ASP.NET Core 2.2 or later, where collection type parameters are inferred to be bound from the body by default.
+
+### Disable inference rules
+
+To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> to `true`. Add the following code in `Startup.ConfigureServices` after `services.AddMvc().SetCompatibilityVersion`:
+
+[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,6)]
+
+## Multipart/form-data request inference
 
 When an action parameter is annotated with the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute, the `multipart/form-data` request content type is inferred.
 
-The default behavior is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property is set to `true`.
+This behavior is triggered by the `ApiController` attribute. To disable the default behavior, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters>  to `true` in `Startup.ConfigureServices`, as shown in the following example:
 
-Add the following code in `Startup.ConfigureServices`:
+[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,5)]
 
-[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=7)]
-### ApiController - Attribute routing requirement
+### Problem details for error status codes
 
-Attribute routing becomes a requirement. For example:
-
-[!code-csharp[](index/samples/2.x/Controllers/ProductsController.cs?name=snippet_ControllerSignature&highlight=1)]
-
-Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined in <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> or by <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> in `Startup.Configure`.
-
-### ApiController - Problem details for error status codes
-
-In ASP.NET Core 2.2 or later, MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. `ProblemDetails` is:
-
-* A type based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807).
-* A standardized format for specifying machine-readable error details in an HTTP response.
+When the compatibility version is 2.2 or later, MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The `ProblemDetails` type is based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807) for providing machine-readable error details in an HTTP response.
 
 Consider the following code in a controller action:
 
-[!code-csharp[](index/samples/2.x/Controllers/ProductsController.cs?name=snippet_ProblemDetailsStatusCode)]
+[!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_ProblemDetailsStatusCode)]
 
 The HTTP response for `NotFound` has a 404 status code with a `ProblemDetails` body. For example:
 
@@ -216,13 +240,17 @@ The HTTP response for `NotFound` has a 404 status code with a `ProblemDetails` b
 }
 ```
 
-The problem details feature requires a compatibility flag of 2.2 or later. The default behavior is disabled when the `SuppressMapClientErrors` property is set to `true`. Add the following code in `Startup.ConfigureServices`:
-
-[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=8)]
+### Customize ProblemDetails response
 
 Use the `ClientErrorMapping` property to configure the contents of the `ProblemDetails` response. For example, the following code updates the `type` property for 404 responses:
 
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=10-11)]
+
+### Disable ProblemDetails response
+
+The automatic creation of `ProblemDetails` is disabled when the `SuppressMapClientErrors` property is set to `true`. Add the following code in `Startup.ConfigureServices`:
+
+[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,8)]
 
 ## Additional resources 
 

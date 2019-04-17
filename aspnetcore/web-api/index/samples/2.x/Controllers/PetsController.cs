@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api._21.Controllers
+namespace WebApiSample.Controllers
 {
     #region snippet_PetsController
-    #region snippet_PetsControllerInherit
+    #region snippet_Inherit
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class PetsController : ControllerBase
+    public class PetsController : MyControllerBase
     #endregion
     {
         private readonly PetsRepository _repository;
@@ -47,11 +47,6 @@ namespace WebApiSample.Api._21.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Pet>> CreateAsync(Pet pet)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             await _repository.AddPetAsync(pet);
 
             return CreatedAtAction(nameof(GetByIdAsync),

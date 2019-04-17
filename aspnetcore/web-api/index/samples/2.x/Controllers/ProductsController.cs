@@ -2,16 +2,14 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApiSample.DataAccess;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api._21.Controllers
+namespace WebApiSample.Controllers
 {
-    #region snippet_ControllerSignature
     [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
-    #endregion
+    public class ProductsController : MyControllerBase
     {
         private readonly ProductsRepository _repository;
 
