@@ -33,10 +33,12 @@ namespace WebApiSample.Controllers
         {
             var pet = await _repository.GetPetAsync(id);
 
+            #region snippet_ProblemDetailsStatusCode
             if (pet == null)
             {
                 return NotFound();
             }
+            #endregion
 
             return pet;
         }
