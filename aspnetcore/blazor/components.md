@@ -5,7 +5,7 @@ description: Learn how to create and use Razor Components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2019
+ms.date: 04/17/2019
 uid: blazor/components
 ---
 # Create and use Razor Components
@@ -535,7 +535,7 @@ If another component, `NavMenu.razor`, exists in the folder `ComponentsSample/Sh
 ```cshtml
 @using ComponentsSample.Shared
 
-This is the index page.
+This is the Index page.
 
 <NavMenu></NavMenu>
 ```
@@ -543,7 +543,7 @@ This is the index page.
 Components can also be referenced using their fully qualified names, which removes the need for the [\@using](xref:mvc/views/razor#using) directive:
 
 ```cshtml
-This is the index page.
+This is the Index page.
 
 <ComponentsSample.Shared.NavMenu></ComponentsSample.Shared.NavMenu>
 ```
