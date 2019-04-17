@@ -551,7 +551,7 @@ This is the Index page.
 > [!NOTE]
 > The `global::` qualification isn't supported.
 >
-> Importing components with aliased usings (for example, `@using Foo = Bar`) isn't supported.
+> Importing components with aliased `using` statements (for example, `@using Foo = Bar`) isn't supported.
 >
 > Partially qualified names aren't supported. For example, adding `@using ComponentsSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
