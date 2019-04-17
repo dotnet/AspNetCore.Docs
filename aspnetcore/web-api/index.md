@@ -16,9 +16,7 @@ By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github
 
 This article shows how to use web API features in ASP.NET Core MVC controllers.
 
-## What is a web API app
-
-ASP.NET Core can be used to build web apps and web API apps. A web app responds to HTTP requests from browsers by returning HTML ready to be displayed. To handle the requests and responses, the app may use MVC controllers and views or Razor Pages. A web API app also responds to HTTP requests, but from many kinds of clients and by returning data in a format such as JSON, not HTML. To handle requests and responses, a web API app uses MVC controllers without views.
+ASP.NET Core can be used to build web apps and web API apps. A web app responds to HTTP requests from browsers by returning HTML ready to be displayed. To handle the requests and responses, the app may use MVC controllers and views or Razor Pages. A web API app also responds to HTTP requests, but from many kinds of clients and by returning data in a format such as JSON rather than HTML. To handle requests, a web API app uses MVC controllers without views.
 
 Any given ASP.NET core app can use one or more of these modes of responding to HTTP requests. A single app can include MVC controllers and views, Razor Pages, and web API controllers.
 
@@ -82,7 +80,7 @@ The `ApiController` attribute can be applied to specific controllers, as in the 
 
 [!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=2)]
 
-## ApiController on multiple controllers
+### ApiController on multiple controllers
 
 One approach to using the attribute on more than one controller is is to create a custom base controller class annotated with the `[ApiController]` attribute. Here's an example showing a custom base class and a controller that derives from it:
 
@@ -90,7 +88,7 @@ One approach to using the attribute on more than one controller is is to create 
 
 [!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_Inherit)]
 
-## ApiController on an assembly
+### ApiController on an assembly
 
 If [compatibility version](<xref:mvc/compatibility-version>) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply assembly-level attributes to the `Startup` class as shown in this example:
 
