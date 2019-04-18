@@ -146,6 +146,10 @@
               uid: data/ef-mvc/inheritance
             - name: Advanced topics
               uid: data/ef-mvc/advanced
+- name: Tutorials (Microsoft Learn)
+  items:
+    - name: Web API apps
+      href: /learn/modules/build-web-api-net-core/
 - name: Fundamentals
   items:
     - name: Overview
