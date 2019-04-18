@@ -1,4 +1,4 @@
-﻿#define InvalidModelStateResponseFactory //DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior
+﻿#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior
 
 using System;
 using System.Collections.Generic;
@@ -52,7 +52,7 @@ namespace WebApiSample
                     options.SuppressInferBindingSourcesForParameters = true;
                     options.SuppressModelStateInvalidFilter = true;
                     options.SuppressMapClientErrors = true;
-
+                    options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
                     options.ClientErrorMapping[404].Link =
                         "https://httpstatuses.com/404";
                 });
