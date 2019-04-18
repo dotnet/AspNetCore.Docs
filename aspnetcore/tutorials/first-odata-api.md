@@ -229,6 +229,7 @@ The **$skip** skips some of your data records. For example, to skip first two it
 
 Finally you can mix OData queries together to make a complex query:
 
+![Postman with Get request and complex query](first-odata-api/_static/complex.png)
 
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
