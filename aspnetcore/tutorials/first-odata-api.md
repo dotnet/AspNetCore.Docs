@@ -138,7 +138,7 @@ First send some data to your web API:
 
 ![Postman with Post request](first-odata-api/_static/SendData.png)
 
-Post the entire data set below using Postman, each at a time
+Open your Postman and send a Post request to `https://localhost:5001/api/todo` and include each of the items below in your request body.
 
 ```json
 {
@@ -178,6 +178,17 @@ Post the entire data set below using Postman, each at a time
 }
 ```
 
+Now you can use OData to query data, but let's test our API without OData query.
+
+Open your Postman and send a Get request to `https://localhost:5001/api/todo`:
+
+![Postman with Get request](first-odata-api/_static/getData.png)
+
+### $select
+
+The **$select** option specifies a subset of properties to include in the response body. For example, to get only the name and isComplete of each product, add `?$select=name,isComplete` at the end of your request path:
+
+![Postman with Get request and $select query](first-odata-api/_static/selectQuery.png)
 
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
