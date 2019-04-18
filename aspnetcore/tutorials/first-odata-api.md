@@ -134,7 +134,7 @@ Update *TodoController.cs* under *Controllers* directory, add `[EnableQuery()]` 
 First send some data to your web API:
 
 > [!TIP]
-> You can use Postman to send data, for more information visit: [How to use Postman](xref:tutorials/first-web-api#test-the-getTodoItems-method)
+> You can use Postman to send data, for more information visit: [How to use Postman](xref:tutorials/first-web-api#test-the-gettodoitems-method)
 
 ![Postman with Post request](first-odata-api/_static/SendData.png)
 
@@ -230,6 +230,14 @@ The **$skip** skips some of your data records. For example, to skip first two it
 Finally you can mix OData queries together to make a complex query:
 
 ![Postman with Get request and complex query](first-odata-api/_static/complex.png)
+
+## Additional resources
+
+[View or download sample code for this tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-odata-api/samples). See [how to download](xref:index#how-to-download-a-sample).
+
+For more information, see the following resources:
+
+* [OData official website](https://www.odata.org/)
 
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
