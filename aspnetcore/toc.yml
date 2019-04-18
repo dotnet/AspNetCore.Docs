@@ -945,7 +945,7 @@
           displayName: password, connection string, API key
           uid: security/app-secrets
         - name: Azure Key Vault Configuration Provider
-          displayName: password, connection string, API key
+          displayName: password, connection string, API key, secrets
           uid: security/key-vault-configuration
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
