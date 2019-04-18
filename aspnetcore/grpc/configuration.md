@@ -46,7 +46,7 @@ services.AddGrpc().AddServiceOptions<MyService>(options =>
 
 ## Configure Kestrel options
 
-Kestrel server has configuration options that effect the behavior of gRPC for ASP.NET.
+Kestrel server has configuration options that affect the behavior of gRPC for ASP.NET.
 
 ### Request body data rate limit
 
