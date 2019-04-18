@@ -1,4 +1,12 @@
-﻿#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior
+﻿// Set preprocessor directive(s) to enable the scenarios you want to test.
+// For more information on preprocessor directives and sample apps, see:
+//  https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+//
+// DefaultBehavior - default ControllerBase and ApiController behavior.
+// InvalidModelStateResponseFactory - customize response for automatic 400 on validation error.
+// SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
+
+#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior
 
 using System;
 using System.Collections.Generic;
@@ -68,7 +76,7 @@ namespace WebApiSample
                     {
                         var problemDetails = new ValidationProblemDetails(context.ModelState)
                         {
-                            Type = "",
+                            Type = "https://contoso.com/probs/modelvalidation",
                             Title = "One or more model validation errors occurred.",
                             Status = StatusCodes.Status400BadRequest,
                             Detail = "See the errors property for details.",
