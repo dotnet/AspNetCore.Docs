@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using ApiConventions.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 
 namespace ApiConventions.Controllers
 {
@@ -71,9 +70,6 @@ namespace ApiConventions.Controllers
 
         // DELETE api/contactsconvention/{guid}
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesDefaultResponseType]
         public IActionResult Delete(string id)
         {
             var contact = _contacts.Get(id);
