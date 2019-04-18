@@ -201,7 +201,25 @@ The **$orderBy** option sorts your data based on one or more properties. For exa
 
 ### $filter
 
-The **$filter** option sorts your data based on one or more properties. For example, to order your data based on *priority* of each item, add `?$orderBy=priority` at the end of your request path:
+The **$filter** filters your data, based on a Boolean condition. For example, to get only the items with *priority* greater than 1, add `?$filter=priority gt 1` at the end of your request path:
+
+![Postman with Get request and $filter greater than query](first-odata-api/_static/filtergt.png)
+
+You can use the following Boolean conditions with OData $filter:
+
+|Condition | Description | Example |
+|--- | ---- | ---- |
+| eq | Equals to | $filter=priority et 1 |
+| ne | Not equals to | $filter=priority ne 1 |
+| gt | Greater than  | $filter=priority gt 1 |
+| ge | Greater than or equal | $filter=priority ge 1 |
+| lt | Less than | $filter=priority lt 1 |
+| le | Less than or equal | $filter=priority le 1 |
+| and | Logical and | $filter=priority gt 1 and priority lt 10 |
+| or | Logical or | $filter=priority gt 1 or priority lt 10|
+| not | Logical negation | $filter=not endswith(name,'task') |
+
+You can also use string functions with OData $filter, for more information visit [OData URI Conventions'](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/) *$filter* section.
 
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
