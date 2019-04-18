@@ -7,7 +7,6 @@ using WebApiSample.DataAccess.Repositories;
 
 namespace WebApiSample.Controllers
 {
-    #region snippet_PetsController
     #region snippet_Inherit
     [Produces("application/json")]
     [Route("api/[controller]")]
@@ -56,5 +55,4 @@ namespace WebApiSample.Controllers
         }
         #endregion
     }
-    #endregion
 }

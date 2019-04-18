@@ -18,7 +18,6 @@ namespace WebApiSample.Controllers
             _repository = repository;
         }
 
-        #region snippet_GetById
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Product>> GetByIdAsync(int id)
@@ -32,7 +31,6 @@ namespace WebApiSample.Controllers
 
             return product;
         }
-        #endregion
 
         #region snippet_BindingSourceAttributes
         [HttpGet]
