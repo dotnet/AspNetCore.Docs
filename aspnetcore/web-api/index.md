@@ -78,7 +78,7 @@ The `ApiController` attribute can be applied to specific controllers, as in the 
 
 ### ApiController on multiple controllers
 
-One approach to using the attribute on more than one controller is is to create a custom base controller class annotated with the `[ApiController]` attribute. Here's an example showing a custom base class and a controller that derives from it:
+One approach to using the attribute on more than one controller is to create a custom base controller class annotated with the `[ApiController]` attribute. Here's an example showing a custom base class and a controller that derives from it:
 
 [!code-csharp[](index/samples/2.x/Controllers/MyControllerBase.cs?name=snippet_MyControllerBase)]
 
@@ -169,23 +169,25 @@ The `ApiController` attribute applies inference rules for the default data sourc
 
 ### FromBody inference notes
 
-`[FromBody]` isn't inferred for simple types such as `string` or `int`. Therefore, the `[FromBody]` attribute should be used for simple types when that functionality is needed. When an action has more than one parameter explicitly specified (via `[FromBody]`) or inferred as bound from the request body, an exception is thrown. For example, the following action method signatures will cause an exception:
+`[FromBody]` isn't inferred for simple types such as `string` or `int`. Therefore, the `[FromBody]` attribute should be used for simple types when that functionality is needed.
 
-* Multiple complex type parameters, `[FromBody]` inferred on both.
+When an action has more than one parameter bound from the request body, an exception is thrown. For example, all of the following action method signatures cause an exception:
+
+* `[FromBody]` inferred on both because they're complex types.
 
   ```csharp
   [HttpPost]
   public IActionResult Action1(Product product, Order order)
   ```
 
-* Multiple complex type parameters, `[FromBody]` inferred on one, attribute on the other.
+* `[FromBody]` attribute on one, inferred on the other because it's a complex type.
 
   ```csharp
   [HttpPost]
   public IActionResult Action2(Product product, [FromBody] Order order)
   ```
 
-* Multiple complex type parameters, `[FromBody]` attribute on both.
+* `[FromBody]` attribute on both.
 
   ```csharp
   [HttpPost]
