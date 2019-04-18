@@ -534,7 +534,9 @@ If another component, `NavMenu.razor`, exists in the folder `ComponentsSample/Sh
 
 ```cshtml
 @using ComponentsSample.Shared
+
 This is the Index page.
+
 <NavMenu></NavMenu>
 ```
 
@@ -542,6 +544,7 @@ Components can also be referenced using their fully qualified names, which remov
 
 ```cshtml
 This is the Index page.
+
 <ComponentsSample.Shared.NavMenu></ComponentsSample.Shared.NavMenu>
 ```
 

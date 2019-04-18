@@ -26,7 +26,7 @@
       items:
         - name: Razor Pages
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: tutorials/razor-pages/index
             - name: Get started
@@ -47,7 +47,7 @@
               uid: tutorials/razor-pages/validation
         - name: MVC
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: tutorials/first-mvc-app/index
             - name: Get started
@@ -80,7 +80,7 @@
           uid: tutorials/first-mongo-app
         - name: Backend for mobile
           displayName: tutorial
-          uid: mobile/native-mobile-backend              
+          uid: mobile/native-mobile-backend
     - name: Real-time web apps
       items:
         - name: SignalR with JavaScript
@@ -97,7 +97,7 @@
       items:
         - name: EF Core with Razor Pages
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: data/ef-rp/index
             - name: Get started
@@ -123,7 +123,7 @@
           displayName: tutorial
           href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: EF Core with MVC, 10 tutorials
-          items: 
+          items:
             - name: Overview
               uid: data/ef-mvc/index
             - name: Get started
@@ -146,6 +146,10 @@
               uid: data/ef-mvc/inheritance
             - name: Advanced topics
               uid: data/ef-mvc/advanced
+- name: Tutorials (Microsoft Learn)
+  items:
+    - name: Web API apps
+      href: /learn/modules/build-web-api-net-core/
 - name: Fundamentals
   items:
     - name: Overview
@@ -422,7 +426,7 @@
       uid: web-api/advanced/conventions
 - name: Real-time apps
   displayName: signalr
-  items: 
+  items:
     - name: SignalR overview
       uid: signalr/introduction
     - name: Supported platforms
@@ -439,7 +443,7 @@
       displayName: signalr
     - name: Server concepts
       displayName: signalr
-      items: 
+      items:
         - name: Hubs
           uid: signalr/hubs
           displayName: signalr
@@ -457,7 +461,7 @@
           displayName: signalr
     - name: Clients
       displayName: signalr
-      items: 
+      items:
         - name: .NET client
           uid: signalr/dotnet-client
           displayName: signalr
@@ -478,7 +482,7 @@
           displayName: signalr
     - name: Hosting and scaling
       displayName: signalr
-      items: 
+      items:
         - name: Overview
           displayName: signalr
           uid: signalr/scale
@@ -522,6 +526,8 @@
       uid: grpc/basics
     - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
+    - name: Configuration
+      uid: grpc/configuration
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
@@ -529,7 +535,11 @@
     - name: Tutorials
       items:
         - name: Get started with gRPC service in ASP.NET Core
+          uid: tutorials/grpc/index
+        - name: Create a ASP.NET Core gRPC Greeter Service
           uid: tutorials/grpc/grpc-start
+        - name: Create a .NET Core gRPC client
+          uid: tutorials/grpc/grpc-client
 - name: Test, debug, and troubleshoot
   items:
     - name: Unit testing
@@ -618,13 +628,13 @@
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Hosting and deployment
   displayName: publish
-  items: 
+  items:
     - name: Overview
       displayName: azure, deploy, publish
       uid: host-and-deploy/index
     - name: Host on Azure App Service
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-apps/index
@@ -674,7 +684,7 @@
           uid: azure/devops/next-steps
     - name: Host on Windows with IIS
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: deploy, publish
           uid: host-and-deploy/iis/index
@@ -713,10 +723,13 @@
       uid: host-and-deploy/linux-apache
     - name: Host in Docker
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: deploy, publish, docker
           uid: host-and-deploy/docker/index
+        - name: Build Docker images
+          displayName: deploy, publish, docker
+          uid: host-and-deploy/docker/building-net-docker-images
         - name: Visual Studio Tools
           displayName: deploy, publish, docker
           uid: host-and-deploy/docker/visual-studio-tools-for-docker
@@ -756,7 +769,7 @@
           uid: host-and-deploy/blazor/configure-linker
 - name: Security and Identity
   displayName: authentication, authorization
-  items: 
+  items:
     - name: Overview
       uid: security/index
     - name: Authentication
@@ -857,7 +870,7 @@
           uid: security/authorization/limitingidentitybyscheme
     - name: Data protection
       displayName: encryption
-      items: 
+      items:
         - name: Overview
           uid: security/data-protection/introduction
         - name: Data protection APIs
@@ -926,15 +939,18 @@
               uid: security/data-protection/compatibility/index
             - name: Replace machineKey in ASP.NET
               uid: security/data-protection/compatibility/replacing-machinekey
-    - name: Protect secrets in development
-      displayName: password
-      uid: security/app-secrets
+    - name: Secrets management
+      items:
+        - name: Protect secrets in development
+          displayName: password, connection string, API key
+          uid: security/app-secrets
+        - name: Azure Key Vault Configuration Provider
+          displayName: password, connection string, API key, secrets
+          uid: security/key-vault-configuration
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
     - name: EU General Data Protection Regulation (GDPR) support
       uid: security/gdpr
-    - name: Azure Key Vault Configuration Provider
-      uid: security/key-vault-configuration
     - name: Anti-request forgery
       uid: security/anti-request-forgery
     - name: Prevent open redirect attacks
@@ -1026,14 +1042,14 @@
       uid: migration/20_21
     - name: 1.x to 2.0
       displayName: migrate, migration
-      items: 
+      items:
         - name: Overview
           uid: migration/1x-to-2x/index
         - name: Authentication and Identity
           uid: migration/1x-to-2x/identity-2x
     - name: ASP.NET to ASP.NET Core
       displayName: migrate, migration
-      items: 
+      items:
         - name: Overview
           uid: migration/proper-to-2x/index
         - name: MVC
