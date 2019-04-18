@@ -186,9 +186,22 @@ Open your Postman and send a Get request to `https://localhost:5001/api/todo`:
 
 ### $select
 
-The **$select** option specifies a subset of properties to include in the response body. For example, to get only the name and isComplete of each product, add `?$select=name,isComplete` at the end of your request path:
+The **$select** option specifies a subset of properties to include in the response body. For example, to get only the *name* and *isComplete* of each item, add `?$select=name,isComplete` at the end of your request path:
 
 ![Postman with Get request and $select query](first-odata-api/_static/selectQuery.png)
+
+### $orderBy
+
+The **$orderBy** option sorts your data based on one or more properties. For example, to order your data based on *priority* of each item, add `?$orderBy=priority` at the end of your request path:
+
+![Postman with Get request and $orderBy query](first-odata-api/_static/orderby.png)
+
+> [!TIP]
+> You can sort your data based on multiple properties, for example `?$orderBy=type,priority desc` first sorts items based on their *type* and then based on their *priority* in **descending** order.
+
+### $filter
+
+The **$filter** option sorts your data based on one or more properties. For example, to order your data based on *priority* of each item, add `?$orderBy=priority` at the end of your request path:
 
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
