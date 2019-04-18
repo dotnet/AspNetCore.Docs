@@ -936,11 +936,14 @@
               uid: security/data-protection/compatibility/index
             - name: Replace machineKey in ASP.NET
               uid: security/data-protection/compatibility/replacing-machinekey
-    - name: Protect secrets in development
-      displayName: password
-      uid: security/app-secrets
-    - name: Azure Key Vault Configuration Provider
-      uid: security/key-vault-configuration
+    - name: Secrets management
+      items:
+        - name: Protect secrets in development
+          displayName: password, connection string, API key
+          uid: security/app-secrets
+        - name: Azure Key Vault Configuration Provider
+          displayName: password, connection string, API key
+          uid: security/key-vault-configuration
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
     - name: EU General Data Protection Regulation (GDPR) support
