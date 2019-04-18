@@ -12,8 +12,6 @@ uid: blazor/debug
 
 [Daniel Roth](https://github.com/danroth27)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 *Early* support exists for debugging client-side Blazor apps running on WebAssembly in Chrome.
 
 Debugger capabilities are limited. Available scenarios include:
@@ -50,7 +48,7 @@ If remote debugging is disabled, an **Unable to find debuggable browser tab** er
 
 ## Debug the app
 
-Once Chrome is running with remote debugging enabled, the debugging keyboard shortcut opens a new debugger tab. After a moment, the **Sources** tab shows a list of the .NET assemblies in the app. Expand each assembly and find the *.cs*/*.cshtml* source files available for debugging. Set breakpoints, switch back to the app's tab, and the breakpoints are hit when the code executes. After a breakpoint is hit, single-step (`F10`) through the code or resume (`F8`) code execution normally.
+Once Chrome is running with remote debugging enabled, the debugging keyboard shortcut opens a new debugger tab. After a moment, the **Sources** tab shows a list of the .NET assemblies in the app. Expand each assembly and find the *.cs*/*.razor* source files available for debugging. Set breakpoints, switch back to the app's tab, and the breakpoints are hit when the code executes. After a breakpoint is hit, single-step (`F10`) through the code or resume (`F8`) code execution normally.
 
 Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) and augments the protocol with .NET-specific information. When debugging keyboard shortcut is pressed, Blazor points the Chrome DevTools at the proxy. The proxy connects to the browser window you're seeking to debug (hence the need to enable remote debugging).
 

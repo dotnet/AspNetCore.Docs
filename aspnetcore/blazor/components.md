@@ -1,34 +1,34 @@
 ---
-title: Create and use Razor Components
+title: Create and use Razor components
 author: guardrex
-description: Learn how to create and use Razor Components, including how to bind to data, handle events, and manage component life cycles.
+description: Learn how to create and use Razor components, including how to bind to data, handle events, and manage component life cycles.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 04/18/2019
 uid: blazor/components
 ---
-# Create and use Razor Components
+# Create and use Razor components
 
 By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Morné Zaayman](https://github.com/MorneZaayman)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample)). See the [Get started](xref:blazor/get-started) topic for prerequisites.
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 Blazor apps are built using *components*. A component is a self-contained chunk of user interface (UI), such as a page, dialog, or form. A component includes HTML markup and the processing logic required to inject data or respond to UI events. Components are flexible and lightweight. They can be nested, reused, and shared among projects.
 
 ## Component classes
 
-Components are typically implemented in Razor Component files (*.razor*) using a combination of C# and HTML markup (*.cshtml* files are used in Blazor apps).
+Components are implemented in Razor component files (*.razor*) using a combination of C# and HTML markup.
 
-Components can be authored in Blazor apps using the *.cshtml* file extension as long as the files are identified as Razor Component files using the `_RazorComponentInclude` MSBuild property. For example, an app created using the Razor Component template specifies that all *.cshtml* files under the *Components* folder should be treated as Razor Components files:
+Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app created using the Razor component template specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
 
 ```xml
-<_RazorComponentInclude>Components\**\*.cshtml</_RazorComponentInclude>
+<_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
 ```
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
-Members of the component class are defined in a `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.
+Members of the component class are defined in an `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.
 
 Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
@@ -48,10 +48,10 @@ After the component is initially rendered, the component regenerates its render 
 
 ## Integrate components into Razor Pages and MVC apps
 
-Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor Components. When the page or view is rendered, components are prerendered&dagger; at the same time. 
+Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered&dagger; at the same time. 
 
 > [!NOTE]
-> &dagger;Server-side prerendering is enabled for Blazor server-side apps by default. Client-side Blazor apps will support prerendering in the upcoming Preview 4 release. For more information, see [Update templates/middleware to use MapFallbackToPage/File](https://github.com/aspnet/AspNetCore/issues/8852).
+> &dagger;Server-side prerendering is enabled for Blazor server-side apps by default. Client-side Blazor apps will support prerendering in the upcoming Preview 5 release. For more information, see [Update templates/middleware to use MapFallbackToPage/File](https://github.com/aspnet/AspNetCore/issues/8852).
 
 To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
 
@@ -61,9 +61,9 @@ To render a component from a page or view, use the `RenderComponentAsync<TCompon
 </div>
 ```
 
-Components rendered from pages and views aren't yet interactive in the Preview 3 release. For example, selecting a button doesn't trigger a method call. A future preview will address this limitation and add support for rendering components using the normal element and attribute syntax.
-
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
+
+For more information on how components are rendered and component state is managed in Blazor server-side apps, see the <xref:blazor/hosting-models> article.
 
 ## Using components
 
@@ -71,7 +71,7 @@ Components can include other components by declaring them using HTML element syn
 
 The following markup renders a `HeadingComponent` instance:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.cshtml?name=snippet_HeadingComponent)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.razor?name=snippet_HeadingComponent)]
 
 ## Component parameters
 
@@ -81,11 +81,11 @@ In the following example, the `ParentComponent` sets the value of the `Title` pr
 
 *Parent component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=5-6)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=5-6)]
 
 *Child component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=11-12)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=11-12)]
 
 ## Child content
 
@@ -93,13 +93,13 @@ Components can set the content of another component. The assigning component pro
 
 *Parent component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=7-8)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
 
 The Child component has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the child component's markup where the content should be rendered. In the following example, the value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
 *Child component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=3,14-15)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
 > The property receiving the `RenderFragment` content must be named `ChildContent` by convention.
@@ -233,7 +233,7 @@ In general, a property can be bound to a corresponding event handler using `bind
 
 ## Event handling
 
-Razor Components provide event handling features. For an HTML element attribute named `on<event>` (for example, `onclick`, `onsubmit`) with a delegate-typed value, Razor Components treats the attribute's value as an event handler. The attribute's name always starts with `on`.
+Razor components provide event handling features. For an HTML element attribute named `on<event>` (for example, `onclick`, `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name always starts with `on`.
 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
@@ -328,11 +328,11 @@ A common scenario with nested components is the desire to run a parent component
 
 The Child component in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's Parent component. The `EventCallback` is typed with `UIMouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.cshtml?highlight=5-7,17-18)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=5-7,17-18)]
 
 The Parent component sets the child's `EventCallback<T>` to its `ShowMessage` method:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.cshtml?name=snippet_ParentComponent&highlight=6,16-19)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=6,16-19)]
 
 When the button is selected in the Child component:
 
@@ -493,7 +493,7 @@ When a Razor file with an `@page` directive is compiled, the generated class is 
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.cshtml?name=snippet_BlazorRoute)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 ## Route parameters
 
@@ -501,7 +501,7 @@ Components can receive route parameters from the route template provided in the 
 
 *Route Parameter component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.cshtml?name=snippet_RouteParameter)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.razor?name=snippet_RouteParameter)]
 
 Optional parameters aren't supported, so two `@page` directives are applied in the example above. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
@@ -513,13 +513,44 @@ The [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/blazor/co
 
 *Blazor Rocks component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRocks.cshtml?name=snippet_BlazorRocks)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRocks.razor?name=snippet_BlazorRocks)]
 
 *BlazorRocksBase.cs*:
 
 [!code-csharp[](common/samples/3.x/BlazorSample/Pages/BlazorRocksBase.cs)]
 
 The base class should derive from `ComponentBase`.
+
+## Import components
+
+The namespace of a component authored with Razor is based on:
+
+* The project's `RootNamespace`.
+* The path from the project root to the component. For example, `ComponentsSample/Pages/Index.razor` is in the namespace `ComponentsSample.Pages`. Components follow C# name binding rules. In the case of *Index.razor*, all components in the same folder, *Pages*, and the parent folder, *ComponentsSample*, are in scope.
+
+Components defined in a different namespace can be brought into scope using Razor's [\@using](xref:mvc/views/razor#using) directive.
+
+If another component, `NavMenu.razor`, exists in the folder `ComponentsSample/Shared/`, the component can be used in `Index.razor` with the following `@using` statement:
+
+```cshtml
+@using ComponentsSample.Shared
+This is the Index page.
+<NavMenu></NavMenu>
+```
+
+Components can also be referenced using their fully qualified names, which removes the need for the [\@using](xref:mvc/views/razor#using) directive:
+
+```cshtml
+This is the Index page.
+<ComponentsSample.Shared.NavMenu></ComponentsSample.Shared.NavMenu>
+```
+
+> [!NOTE]
+> The `global::` qualification isn't supported.
+>
+> Importing components with aliased `using` statements (for example, `@using Foo = Bar`) isn't supported.
+>
+> Partially qualified names aren't supported. For example, adding `@using ComponentsSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
 ## Razor support
 
@@ -535,8 +566,7 @@ Razor directives are shown in the following table.
 | [\@inject](xref:mvc/views/razor#section-4) | Enables service injection from the [service container](xref:fundamentals/dependency-injection). For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection). |
 | `@layout` | Specifies a layout component. Layout components are used to avoid code duplication and inconsistency. |
 | [\@page](xref:razor-pages/index#razor-pages) | Specifies that the component should handle requests directly. The `@page` directive can be specified with a route and optional parameters. Unlike Razor Pages, the `@page` directive doesn't need to be the first directive at the top of the file. For more information, see [Routing](xref:blazor/routing). |
-| [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. |
-| [\@addTagHelper](xref:mvc/views/razor#tag-helpers) | Use `@addTagHelper` to use a component in a different assembly than the app's assembly. |
+| [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. This also brings all the components defined in that namespace into scope. |
 
 **Conditional attributes**
 
@@ -600,7 +630,7 @@ A templated component is defined by specifying one or more component parameters 
 
 *Table Template component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TableTemplate.cshtml)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TableTemplate.razor)]
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters (`TableHeader` and `RowTemplate` in the following example):
 
@@ -655,7 +685,7 @@ Templated components are often generically typed. For example, a generic List Vi
 
 *ListView Template component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.cshtml)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.razor)]
 
 When using generic-typed components, the type parameter is inferred if possible:
 
@@ -784,19 +814,19 @@ The sample app has an `ITab` interface that tabs implement:
 
 The Cascading Values Parameters TabSet component uses the Tab Set component, which contains several Tab components:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/CascadingValuesParametersTabSet.cshtml?name=snippet_TabSet)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/CascadingValuesParametersTabSet.razor?name=snippet_TabSet)]
 
 The child Tab components aren't explicitly passed as parameters to the Tab Set. Instead, the child Tab components are part of the child content of the Tab Set. However, the Tab Set still needs to know about each Tab component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the Tab Set component *can provide itself as a cascading value* that is then picked up by the descendent Tab components.
 
 *TabSet component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TabSet.cshtml)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TabSet.razor)]
 
 The descendent Tab components capture the containing Tab Set as a cascading parameter, so the Tab components add themselves to the Tab Set and coordinate on which tab is active.
 
 *Tab component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/Tab.cshtml)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/Tab.razor)]
 
 ## Razor templates
 

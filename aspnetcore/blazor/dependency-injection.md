@@ -49,7 +49,7 @@ Services can be configured with the lifetimes shown in the following table.
 | -------- | ----------- |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive an instance of the same service. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Client-side Blazor doesn't currently have the concept of DI scopes. `Scoped` behaves like `Singleton`. However, the server-side hosting model supports the `Scoped` lifetime. In a Razor Component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user, even if the current intent is to run client-side in the browser. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Client-side Blazor doesn't currently have the concept of DI scopes. `Scoped` behaves like `Singleton`. However, the server-side hosting model supports the `Scoped` lifetime. In a Razor component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user, even if the current intent is to run client-side in the browser. |
 
 The DI system is based on the DI system in ASP.NET Core. For more information, see <xref:fundamentals/dependency-injection>.
 
@@ -67,7 +67,7 @@ It's possible to use a custom service provider instead of the default service pr
 
 ## Request a service in a component
 
-After services are added to the service collection, inject the services into the components' Razor templates using the [@inject](xref:mvc/views/razor#section-4) Razor directive. `@inject` has two parameters:
+After services are added to the service collection, inject the services into the components' Razor templates using the [\@inject](xref:mvc/views/razor#section-4) Razor directive. `@inject` has two parameters:
 
 * Type name: The type of the service to inject.
 * Property name: The name of the property receiving the injected app service. Note that the property doesn't require manual creation. The compiler creates the property.
@@ -78,7 +78,7 @@ Use multiple `@inject` statements to inject different services.
 
 The following example shows how to use `@inject`. The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
 
-[!code-cshtml[](dependency-injection/samples_snapshot/3.x/CustomerList.cshtml?highlight=2-3,23)]
+[!code-cshtml[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
 
 Internally, the generated property (`DataRepository`) is decorated with the `InjectAttribute` attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, `InjectAttribute` can be manually added:
 
