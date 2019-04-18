@@ -146,6 +146,10 @@
               uid: data/ef-mvc/inheritance
             - name: Advanced topics
               uid: data/ef-mvc/advanced
+- name: Tutorials (Microsoft Learn)
+  items:
+    - name: Web API apps
+      href: /learn/modules/build-web-api-net-core/
 - name: Fundamentals
   items:
     - name: Overview
@@ -522,6 +526,8 @@
       uid: grpc/basics
     - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
+    - name: Configuration
+      uid: grpc/configuration
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
