@@ -939,9 +939,10 @@
     - name: Secrets management
       items:
         - name: Protect secrets in development
-          displayName: password
+          displayName: password, connection string, API key
           uid: security/app-secrets
         - name: Azure Key Vault Configuration Provider
+          displayName: password, connection string, API key
           uid: security/key-vault-configuration
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
