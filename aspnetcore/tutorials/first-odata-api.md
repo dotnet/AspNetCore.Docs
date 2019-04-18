@@ -221,5 +221,14 @@ You can use the following Boolean conditions with OData $filter:
 
 You can also use string functions with OData $filter, for more information visit [OData URI Conventions'](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/) *$filter* section.
 
+### $skip
+
+The **$skip** skips some of your data records. For example, to skip first two items, add `$skip=2` at the end of your request path:
+
+![Postman with Get request and $skip query](first-odata-api/_static/skip.png)
+
+Finally you can mix OData queries together to make a complex query:
+
+
 >[!div class="step-by-step"]
 >[Previous](./first-web-api.md)
