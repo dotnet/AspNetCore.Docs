@@ -2,6 +2,7 @@
 title: Build web APIs with ASP.NET Core
 author: scottaddie
 description: Learn the basics of writing web API code in ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/11/2019
