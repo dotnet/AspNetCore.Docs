@@ -129,6 +129,54 @@ Update *TodoController.cs* under *Controllers* directory, add `[EnableQuery()]` 
 > [!TIP]
 > Returning `IQueryable` or `ActionResult<IQueryable>` enables **OData** to translate your queries to **SQL** queries using *ef core* capabilities, you may also return other types such as `IEnumerable` which makes **OData** to preform queries inside your app.
 
+## Query resources using OData
+
+First send some data to your web API:
+
+> [!TIP]
+> You can use Postman to send data, for more information visit: [How to use Postman](xref:tutorials/first-web-api#test-the-getTodoItems-method)
+
+![Postman with Post request](first-odata-api/_static/SendData.png)
+
+Post the entire data set below using Postman, each at a time
+
+```json
+{
+    "name": "test OData",
+    "isComplete": false,
+    "Type": "work",
+    "priority": 1,
+    "DueDate": "2019-04-18 00:00:01"
+},
+{
+    "name": "test 2",
+    "isComplete": true,
+    "Type": "shopping",
+    "priority": 2,
+    "DueDate": "2019-04-18 08:00:01"
+},
+{
+    "name": "test 3",
+    "isComplete": true,
+    "Type": "work",
+    "priority": 1,
+    "DueDate": "2019-04-18 09:00:01"
+},
+{
+    "name": "test 4",
+    "isComplete": false,
+    "Type": "shopping",
+    "priority": 3,
+    "DueDate": "2019-04-18 12:00:01"
+},
+{
+    "name": "test 5",
+    "isComplete": false,
+    "Type": "work",
+    "priority": 2,
+    "DueDate": "2019-04-18 15:00:01"
+}
+```
 
 
 >[!div class="step-by-step"]
