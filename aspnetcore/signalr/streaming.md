@@ -30,13 +30,13 @@ ASP.NET Core SignalR supports streaming return values of server methods. This is
 
 ::: moniker range=">= aspnetcore-3.0"
 
-A hub method automatically becomes a streaming hub method when it returns a <xref:System.Threading.Channels.ChannelReader`1>, `IAsyncEnumerable<T>`, `Task<ChannelReader<T>>`, or `Task<IAsyncEnumerable<T>>`.
+A hub method automatically becomes a streaming hub method when it returns a <xref:System.Threading.Channels.ChannelReader%601>, `IAsyncEnumerable<T>`, `Task<ChannelReader<T>>`, or `Task<IAsyncEnumerable<T>>`.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-A hub method automatically becomes a streaming hub method when it returns a <xref:System.Threading.Channels.ChannelReader`1> or a `Task<ChannelReader<T>>`.
+A hub method automatically becomes a streaming hub method when it returns a <xref:System.Threading.Channels.ChannelReader%601> or a `Task<ChannelReader<T>>`.
 
 ::: moniker-end
 
@@ -52,7 +52,7 @@ Streaming hub methods can return `IAsyncEnumerable<T>` in addition to `ChannelRe
 
 ::: moniker-end
 
-The following sample shows the basics of streaming data to the client using Channels. Whenever an object is written to the <xref:System.Threading.Channels.ChannelWriter`1>, the object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
+The following sample shows the basics of streaming data to the client using Channels. Whenever an object is written to the <xref:System.Threading.Channels.ChannelWriter%601>, the object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
 
 > [!NOTE]
 > Write to the `ChannelWriter<T>` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations are blocked until a `ChannelReader` is returned.
