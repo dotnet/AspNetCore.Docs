@@ -24,7 +24,7 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Client Certification Mapping Authentication**<br>`CertificateMappingAuthenticationModule`      | Yes | |
 | **CGI**<br>`CgiModule`                                                                           | No  | |
 | **Configuration Validation**<br>`ConfigurationValidationModule`                                  | Yes | |
-| **HTTP Errors**<br>`CustomErrorModule`                                                           | No  | [Status Code Pages Middleware](xref:fundamentals/error-handling#configure-status-code-pages) |
+| **HTTP Errors**<br>`CustomErrorModule`                                                           | No  | [Status Code Pages Middleware](xref:fundamentals/error-handling#usestatuscodepages) |
 | **Custom Logging**<br>`CustomLoggingModule`                                                      | Yes | |
 | **Default Document**<br>`DefaultDocumentModule`                                                  | No  | [Default Files Middleware](xref:fundamentals/static-files#serve-a-default-document) |
 | **Digest Authentication**<br>`DigestAuthenticationModule`                                        | Yes | |

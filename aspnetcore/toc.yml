@@ -26,7 +26,7 @@
       items:
         - name: Razor Pages
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: tutorials/razor-pages/index
             - name: Get started
@@ -47,7 +47,7 @@
               uid: tutorials/razor-pages/validation
         - name: MVC
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: tutorials/first-mvc-app/index
             - name: Get started
@@ -80,7 +80,7 @@
           uid: tutorials/first-mongo-app
         - name: Backend for mobile
           displayName: tutorial
-          uid: mobile/native-mobile-backend              
+          uid: mobile/native-mobile-backend
     - name: Real-time web apps
       items:
         - name: SignalR with JavaScript
@@ -97,7 +97,7 @@
       items:
         - name: EF Core with Razor Pages
           displayName: tutorial
-          items: 
+          items:
             - name: Overview
               uid: data/ef-rp/index
             - name: Get started
@@ -123,7 +123,7 @@
           displayName: tutorial
           href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: EF Core with MVC, 10 tutorials
-          items: 
+          items:
             - name: Overview
               uid: data/ef-mvc/index
             - name: Get started
@@ -146,6 +146,14 @@
               uid: data/ef-mvc/inheritance
             - name: Advanced topics
               uid: data/ef-mvc/advanced
+- name: Tutorials (Microsoft Learn)
+  displayName: tutorial
+  items:
+    - name: Web API apps
+      href: /learn/modules/build-web-api-net-core/
+    - name: Data access
+      displayName: tutorial, ef, entity framework
+      href: /learn/modules/persist-data-ef-core/
 - name: Fundamentals
   items:
     - name: Overview
@@ -260,10 +268,82 @@
           uid: mvc/views/dependency-injection
         - name: Unit test
           uid: mvc/controllers/testing
-    - name: Razor Components
-      uid: razor-components/index
+    - name: Blazor
+      items:
+        - name: Overview
+          uid: blazor/index
+        - name: Get started
+          uid: blazor/get-started
+        - name: Hosting models
+          uid: blazor/hosting-models
+        - name: Build your first app
+          uid: tutorials/first-blazor-app
+        - name: Components
+          uid: blazor/components
+        - name: Forms and validation
+          uid: blazor/forms-validation
+        - name: Component libraries
+          uid: blazor/class-libraries
+        - name: Layouts
+          uid: blazor/layouts
+        - name: Dependency injection
+          uid: blazor/dependency-injection
+        - name: Routing
+          uid: blazor/routing
+        - name: JavaScript interop
+          uid: blazor/javascript-interop
+        - name: Debug
+          uid: blazor/debug
+        - name: Host and deploy
+          items:
+            - name: Overview
+              uid: host-and-deploy/blazor/index
+            - name: Client-side
+              uid: host-and-deploy/blazor/client-side
+            - name: Server-side
+              uid: host-and-deploy/blazor/server-side
+            - name: Configure the Linker
+              uid: host-and-deploy/blazor/configure-linker
+    - name: Client-side development
+      items:
+        - name: Single Page Apps
+          items:
+            - name: Angular
+              uid: spa/angular
+            - name: React
+              uid: spa/react
+            - name: React with Redux
+              uid: spa/react-with-redux
+            - name: JavaScriptServices
+              uid: client-side/spa-services
+        - name: LibMan
+          items:
+            - name: Overview
+              uid: client-side/libman/index
+            - name: CLI
+              uid: client-side/libman/libman-cli
+            - name: Visual Studio
+              uid: client-side/libman/libman-vs
+        - name: Gulp
+          uid: client-side/using-gulp
+        - name: Grunt
+          uid: client-side/using-grunt
+        - name: Bower
+          uid: client-side/bower
+        - name: Bundle and minify
+          uid: client-side/bundling-and-minification
+        - name: Browser Link
+          uid: client-side/using-browserlink
     - name: Session and app state
       uid: fundamentals/app-state
+    - name: Layout
+      uid: mvc/views/layout
+    - name: Model binding
+      uid: mvc/models/model-binding
+    - name: Model validation
+      uid: mvc/models/validation
+    - name: Razor syntax
+      uid: mvc/views/razor
     - name: Tag Helpers
       items:
         - name: Overview
@@ -302,14 +382,6 @@
               href: mvc/views/working-with-forms.md#the-validation-message-tag-helper
             - name: Validation Summary
               href: mvc/views/working-with-forms.md#the-validation-summary-tag-helper
-    - name: Layout
-      uid: mvc/views/layout
-    - name: Model binding
-      uid: mvc/models/model-binding
-    - name: Model validation
-      uid: mvc/models/validation
-    - name: Razor syntax
-      uid: mvc/views/razor
     - name: Advanced
       items:
         - name: View components
@@ -358,7 +430,7 @@
       uid: web-api/advanced/conventions
 - name: Real-time apps
   displayName: signalr
-  items: 
+  items:
     - name: SignalR overview
       uid: signalr/introduction
     - name: Supported platforms
@@ -375,7 +447,7 @@
       displayName: signalr
     - name: Server concepts
       displayName: signalr
-      items: 
+      items:
         - name: Hubs
           uid: signalr/hubs
           displayName: signalr
@@ -393,7 +465,7 @@
           displayName: signalr
     - name: Clients
       displayName: signalr
-      items: 
+      items:
         - name: .NET client
           uid: signalr/dotnet-client
           displayName: signalr
@@ -414,7 +486,7 @@
           displayName: signalr
     - name: Hosting and scaling
       displayName: signalr
-      items: 
+      items:
         - name: Overview
           displayName: signalr
           uid: signalr/scale
@@ -458,6 +530,8 @@
       uid: grpc/basics
     - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
+    - name: Configuration
+      uid: grpc/configuration
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
@@ -465,7 +539,11 @@
     - name: Tutorials
       items:
         - name: Get started with gRPC service in ASP.NET Core
+          uid: tutorials/grpc/index
+        - name: Create a ASP.NET Core gRPC Greeter Service
           uid: tutorials/grpc/grpc-start
+        - name: Create a .NET Core gRPC client
+          uid: tutorials/grpc/grpc-client
 - name: Test, debug, and troubleshoot
   items:
     - name: Unit testing
@@ -552,111 +630,15 @@
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Table storage
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-- name: Client-side development
-  items:
-    - name: Razor Components
-      items:
-        - name: Overview
-          uid: razor-components/index
-        - name: Get started
-          uid: razor-components/get-started
-        - name: Hosting models
-          uid: razor-components/hosting-models
-        - name: Build your first app
-          uid: tutorials/first-razor-components-app
-        - name: Components
-          uid: razor-components/components
-        - name: Forms and validation
-          uid: razor-components/forms-validation
-        - name: Component libraries
-          uid: razor-components/class-libraries
-        - name: Layouts
-          uid: razor-components/layouts
-        - name: Dependency injection
-          uid: razor-components/dependency-injection
-        - name: Routing
-          uid: razor-components/routing
-        - name: JavaScript interop
-          uid: razor-components/javascript-interop
-        - name: Debug
-          uid: razor-components/debug
-        - name: Host and deploy
-          items:
-            - name: Overview
-              uid: host-and-deploy/razor-components-blazor/index
-            - name: Razor Components
-              uid: host-and-deploy/razor-components-blazor/razor-components
-    - name: Single Page Apps
-      items:
-        - name: Blazor
-          items:
-            - name: Overview
-              uid: spa/blazor/index
-            - name: Get started
-              uid: spa/blazor/get-started
-            - name: Hosting models
-              uid: razor-components/hosting-models
-            - name: Build your first app
-              uid: tutorials/first-razor-components-app
-            - name: Components
-              uid: razor-components/components
-            - name: Forms and validation
-              uid: razor-components/forms-validation
-            - name: Component libraries
-              uid: razor-components/class-libraries
-            - name: Layouts
-              uid: razor-components/layouts
-            - name: Dependency injection
-              uid: razor-components/dependency-injection
-            - name: Routing
-              uid: razor-components/routing
-            - name: JavaScript interop
-              uid: razor-components/javascript-interop
-            - name: Debug
-              uid: razor-components/debug
-            - name: Host and deploy
-              items:
-                - name: Overview
-                  uid: host-and-deploy/razor-components-blazor/index
-                - name: Blazor
-                  uid: host-and-deploy/razor-components-blazor/blazor
-                - name: Configure the Linker
-                  uid: host-and-deploy/razor-components-blazor/configure-linker
-        - name: Angular
-          uid: spa/angular
-        - name: React
-          uid: spa/react
-        - name: React with Redux
-          uid: spa/react-with-redux
-        - name: JavaScriptServices
-          uid: client-side/spa-services
-    - name: LibMan
-      items:
-        - name: Overview
-          uid: client-side/libman/index
-        - name: CLI
-          uid: client-side/libman/libman-cli
-        - name: Visual Studio
-          uid: client-side/libman/libman-vs
-    - name: Gulp
-      uid: client-side/using-gulp
-    - name: Grunt
-      uid: client-side/using-grunt
-    - name: Bower
-      uid: client-side/bower
-    - name: Bundle and minify
-      uid: client-side/bundling-and-minification
-    - name: Browser Link
-      uid: client-side/using-browserlink
 - name: Hosting and deployment
   displayName: publish
-  items: 
+  items:
     - name: Overview
       displayName: azure, deploy, publish
       uid: host-and-deploy/index
     - name: Host on Azure App Service
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-apps/index
@@ -706,7 +688,7 @@
           uid: azure/devops/next-steps
     - name: Host on Windows with IIS
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: deploy, publish
           uid: host-and-deploy/iis/index
@@ -745,13 +727,13 @@
       uid: host-and-deploy/linux-apache
     - name: Host in Docker
       displayName: deploy, publish
-      items: 
+      items:
         - name: Overview
           displayName: deploy, publish, docker
           uid: host-and-deploy/docker/index
         - name: Build Docker images
           displayName: deploy, publish, docker
-          href: /dotnet/core/docker/building-net-docker-images
+          uid: host-and-deploy/docker/building-net-docker-images
         - name: Visual Studio Tools
           displayName: deploy, publish, docker
           uid: host-and-deploy/docker/visual-studio-tools-for-docker
@@ -779,19 +761,19 @@
     - name: Health checks
       uid: host-and-deploy/health-checks
       displayName: deploy, publish
-    - name: Razor Components/Blazor
+    - name: Blazor
       items:
         - name: Overview
-          uid: host-and-deploy/razor-components-blazor/index
-        - name: Blazor
-          uid: host-and-deploy/razor-components-blazor/blazor
-        - name: Razor Components
-          uid: host-and-deploy/razor-components-blazor/razor-components
+          uid: host-and-deploy/blazor/index
+        - name: Client-side
+          uid: host-and-deploy/blazor/client-side
+        - name: Server-side
+          uid: host-and-deploy/blazor/server-side
         - name: Configure the Linker
-          uid: host-and-deploy/razor-components-blazor/configure-linker
+          uid: host-and-deploy/blazor/configure-linker
 - name: Security and Identity
   displayName: authentication, authorization
-  items: 
+  items:
     - name: Overview
       uid: security/index
     - name: Authentication
@@ -892,7 +874,7 @@
           uid: security/authorization/limitingidentitybyscheme
     - name: Data protection
       displayName: encryption
-      items: 
+      items:
         - name: Overview
           uid: security/data-protection/introduction
         - name: Data protection APIs
@@ -961,15 +943,18 @@
               uid: security/data-protection/compatibility/index
             - name: Replace machineKey in ASP.NET
               uid: security/data-protection/compatibility/replacing-machinekey
-    - name: Protect secrets in development
-      displayName: password
-      uid: security/app-secrets
+    - name: Secrets management
+      items:
+        - name: Protect secrets in development
+          displayName: password, connection string, API key
+          uid: security/app-secrets
+        - name: Azure Key Vault Configuration Provider
+          displayName: password, connection string, API key, secrets
+          uid: security/key-vault-configuration
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
     - name: EU General Data Protection Regulation (GDPR) support
       uid: security/gdpr
-    - name: Azure Key Vault Configuration Provider
-      uid: security/key-vault-configuration
     - name: Anti-request forgery
       uid: security/anti-request-forgery
     - name: Prevent open redirect attacks
@@ -1061,14 +1046,14 @@
       uid: migration/20_21
     - name: 1.x to 2.0
       displayName: migrate, migration
-      items: 
+      items:
         - name: Overview
           uid: migration/1x-to-2x/index
         - name: Authentication and Identity
           uid: migration/1x-to-2x/identity-2x
     - name: ASP.NET to ASP.NET Core
       displayName: migrate, migration
-      items: 
+      items:
         - name: Overview
           uid: migration/proper-to-2x/index
         - name: MVC

@@ -4,27 +4,73 @@ author: rick-anderson
 description: This tutorial demonstrates how to build an ASP.NET Core 2.x app using OAuth 2.0 with external authentication providers.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/19/2019
+ms.date: 4/19/2019
 uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial demonstrates how to build an ASP.NET Core 2.2 app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
+This tutorial demonstrates how to build an ASP.NET Core 2.2 app that enables users to sign in using OAuth 2.0 with credentials from external authentication providers.
 
 [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), and [Microsoft](xref:security/authentication/microsoft-logins) providers are covered in the following sections. Other providers are available in third-party packages such as [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
 ![Social media icons for Facebook, Twitter, Google plus, and Windows](index/_static/social.png)
 
-Enabling users to sign in with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://www.facebook.com/unsupportedbrowser) and [Twitter](https://dev.twitter.com/resources/case-studies).
+Enabling users to sign in with their existing credentials:
+* Is convenient for the users.
+* Shifts many of the complexities of managing the sign-in process onto a third party. 
+
+For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://www.facebook.com/unsupportedbrowser) and [Twitter](https://dev.twitter.com/resources/case-studies).
 
 ## Create a New ASP.NET Core Project
 
-* In Visual Studio 2017, create a new project from the Start Page, or via **File** > **New** > **Project**.
+# [Visual Studio](#tab/visual-studio)
 
-* Select the **ASP.NET Core Web Application** template available in the **Visual C#** > **.NET Core** category:
+* From the Visual Studio **File** menu, select **New** > **Project**.
+* Create a new ASP.NET Core Web Application.
+* Select **ASP.NET Core 2.2** in the dropdown, and then select **Web Application**.
 * Select **Change Authentication** and set authentication to **Individual User Accounts**.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+
+* Change directories (`cd`) to a folder which will contain the project.
+
+* Run the following commands:
+
+  ```console
+  dotnet new webapp -o WebApp1
+  code -r WebApp1
+  ```
+
+  * The `dotnet new` command creates a new Razor Pages project in the *WebApp1* folder.
+  * The `code` command opens the *WebApp1* folder in a new instance of Visual Studio Code.
+
+  A dialog box appears with **Required assets to build and debug are missing from 'WebApp1'. Add them?**
+
+* Select **Yes**
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+From a terminal, run the following command:
+
+<!-- TODO: update these instruction once mac support 2.2 projects -->
+
+```console
+dotnet new webapp -o WebApp1
+```
+
+The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a Razor Pages project.
+
+## Open the project
+
+From Visual Studio, select **File > Open**, and then select the *WebApp1.csproj* file.
+
+<!-- End of VS tabs -->
+
+---
 
 ## Apply migrations
 
@@ -57,11 +103,11 @@ Use the following topics to configure your application to use the respective pro
 
 ## Optionally set password
 
-When you register with an external login provider, you don't have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
+When you register with an external login provider, you don't have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to sign in to the web site.
 
 To create a password and sign in using your email that you set during the sign in process with external providers:
 
-* Select the **Hello &lt;email alias&gt;** link at the top right corner to navigate to the **Manage** view.
+* Select the **Hello &lt;email alias&gt;** link at the top-right corner to navigate to the **Manage** view.
 
 ![Web application Manage view](index/_static/pass1a.png)
 

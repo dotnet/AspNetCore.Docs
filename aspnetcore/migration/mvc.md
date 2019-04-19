@@ -3,7 +3,7 @@ title: Migrate from ASP.NET MVC to ASP.NET Core MVC
 author: ardalis
 description: Learn how to get started migrating an ASP.NET MVC project to ASP.NET Core MVC.
 ms.author: riande
-ms.date: 02/13/2019
+ms.date: 04/06/2019
 uid: migration/mvc
 ---
 # Migrate from ASP.NET MVC to ASP.NET Core MVC
@@ -198,5 +198,5 @@ ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error resp
 
 ## Additional resources
 
-* <xref:razor-components/index>
+* <xref:blazor/index>
 * <xref:mvc/views/tag-helpers/intro>

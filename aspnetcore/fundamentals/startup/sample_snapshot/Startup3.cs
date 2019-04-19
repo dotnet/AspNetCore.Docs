@@ -1,14 +1,14 @@
 public void ConfigureServices(IServiceCollection services)
 {
-    // Add framework services.
     services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlServer(
+            Configuration.GetConnectionString("DefaultConnection")));
+    services.AddDefaultIdentity<IdentityUser>()
+        .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
-    services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
 
-    services.AddMvc();
+    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
     // Add application services.
     services.AddTransient<IEmailSender, AuthMessageSender>();
