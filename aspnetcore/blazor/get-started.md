@@ -51,14 +51,14 @@ In a few steps, get started with Blazor:
       dotnet new blazor -o WebApplication1
       ```
 
-      > [!NOTE]
-      > Only Blazor client-side is supported on macOS in ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
-
       For an experience with Blazor server-side, execute the following command from a command shell:
 
       ```console
       dotnet new blazorserverside -o WebApplication1
       ```
+
+      > [!NOTE]
+      > Only Blazor client-side is supported on macOS in ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
 
    4. Open the *WebApplication1* folder in Visual Studio Code.
    5. When prompted by Visual Studio Code for a Blazor server-side project, add assets to build the project:
@@ -93,9 +93,6 @@ In a few steps, get started with Blazor:
    dotnet run
    ```
 
-   > [!NOTE]
-   > On macOS, use a Blazor client-side app. Blazor server-side isn't supported for macOS on ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
-
    For an experience with Blazor server-side, execute the following commands from a command shell:
 
    ```console
@@ -103,6 +100,9 @@ In a few steps, get started with Blazor:
    cd WebApplication1
    dotnet run
    ```
+
+   > [!NOTE]
+   > On macOS, use a Blazor client-side app. Blazor server-side isn't supported for macOS on ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
 
    ---
 
