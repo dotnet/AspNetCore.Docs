@@ -41,7 +41,7 @@ Add the following highlighted calls to the `Startup` class:
 
 <!--
 set projNam=RPnoAuth
-set projType=razor
+set projType=webapp
 set version=2.1.0
 
 dotnet new %projType% -o %projNam%

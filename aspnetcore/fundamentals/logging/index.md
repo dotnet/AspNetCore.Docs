@@ -798,8 +798,6 @@ If targeting .NET Core, note the following points:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Don't explicitly call <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*>. The provider is automatically made available to the app when the app is deployed to Azure App Service.
-
 If targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. Invoke `AddAzureWebAppDiagnostics`:
 
 ```csharp
