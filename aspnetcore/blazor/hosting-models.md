@@ -5,7 +5,7 @@ description: Understand client-side and server-side Blazor hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 04/19/2019
 uid: blazor/hosting-models
 ---
 # Blazor hosting models
