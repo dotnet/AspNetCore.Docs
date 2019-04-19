@@ -297,11 +297,11 @@ Console output in the browser's web developer tools:
 Hello, Blazor!
 ```
 
-## Share interop code in a Razor component class library
+## Share interop code in a Blazor class library
 
-JavaScript interop code can be included in a Razor component class library (`dotnet new razorclasslib`), which allows you to share the code in a NuGet package.
+JavaScript interop code can be included in a Blazor class library (`dotnet new blazorlib`), which allows you to share the code in a NuGet package.
 
-The Razor component class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the *wwwroot* folder. The tooling takes care of embedding the resources when the library is built.
+The Blazor class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the *wwwroot* folder. The tooling takes care of embedding the resources when the library is built.
 
 The built NuGet package is referenced in the project file of the app just as any normal NuGet package is referenced. After the app is restored, app code can call into JavaScript as if it were C#.
 
