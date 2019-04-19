@@ -147,9 +147,13 @@
             - name: Advanced topics
               uid: data/ef-mvc/advanced
 - name: Tutorials (Microsoft Learn)
+  displayName: tutorial
   items:
     - name: Web API apps
       href: /learn/modules/build-web-api-net-core/
+    - name: Data access
+      displayName: tutorial, ef, entity framework
+      href: /learn/modules/persist-data-ef-core/
 - name: Fundamentals
   items:
     - name: Overview
