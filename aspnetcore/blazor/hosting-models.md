@@ -5,7 +5,7 @@ description: Understand client-side and server-side Blazor hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 04/19/2019
 uid: blazor/hosting-models
 ---
 # Blazor hosting models
@@ -13,6 +13,36 @@ uid: blazor/hosting-models
 By [Daniel Roth](https://github.com/danroth27)
 
 Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](http://webassembly.org/)-based .NET runtime (*Blazor client-side*) or server-side in ASP.NET Core (*Blazor server-side*). Regardless of the hosting model, the app and component models *remain the same*.
+
+## Client-side
+
+The principal hosting model for Blazor is running client-side in the browser on WebAssembly. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
+
+![Blazor client-side: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/client-side.png)
+
+To create a Blazor app using the client-side hosting model, use either of the following templates:
+
+* **Blazor** ([dotnet new blazor](/dotnet/core/tools/dotnet-new)) &ndash; Deployed as a set of static files.
+* **Blazor (ASP.NET Core Hosted)** ([dotnet new blazorhosted](/dotnet/core/tools/dotnet-new)) &ndash; Hosted by an ASP.NET Core server. The ASP.NET Core app serves the Blazor app to clients. The client-side Blazor app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction).
+
+The templates include the *blazor.webassembly.js* script that handles:
+
+* Downloading the .NET runtime, the app, and the app's dependencies.
+* Initialization of the runtime to run the app.
+
+The client-side hosting model offers several benefits. Client-side Blazor:
+
+* Has no .NET server-side dependency.
+* Fully leverages client resources and capabilities.
+* Offloads work from the server to the client.
+* Supports offline scenarios.
+
+There are downsides to client-side hosting. Client-side Blazor:
+
+* Restricts the app to the capabilities of the browser.
+* Requires capable client hardware and software (for example, WebAssembly support).
+* Has a larger download size and longer app load time.
+* Has less mature .NET runtime and tooling support (for example, limitations in [.NET Standard](/dotnet/standard/net-standard) support and debugging).
 
 ## Server-side
 
@@ -96,11 +126,7 @@ For example, the following Razor page renders a Counter component with an initia
 
 ### Detect when the app is prerendering
  
-While a Blazor app is prerendering, certain actions, such as calling into JavaScript, aren't possible because a connection with the browser hasn't been established. Components may need to render differently when prerendered.
- 
-To delay JavaScript interop calls until after the connection with the browser is established, you can use the `OnAfterRenderAsync` component lifecycle event. This event is only called after the app is fully rendered and the client connection is established.
- 
-To conditionally render different content based on whether the app is currently being prerendered or not, use the `IsConnected` property on the `IComponentContext` service. `IComponentContext` only returns `true` if there's an active connection to the client.
+[!INCLUDE[](~/includes/blazor-prerendering.md)]
 
 ### Configure the SignalR client for Blazor server-side apps
  
@@ -188,32 +214,6 @@ connection.onclose((error) => {
 })
 ```
 
-## Client-side
+## Additional resources
 
-The principal hosting model for Blazor is running client-side in the browser on WebAssembly. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
-
-![Blazor client-side: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/client-side.png)
-
-To create a Blazor app using the client-side hosting model, use either of the following templates:
-
-* **Blazor** ([dotnet new blazor](/dotnet/core/tools/dotnet-new)) &ndash; Deployed as a set of static files.
-* **Blazor (ASP.NET Core Hosted)** ([dotnet new blazorhosted](/dotnet/core/tools/dotnet-new)) &ndash; Hosted by an ASP.NET Core server. The ASP.NET Core app serves the Blazor app to clients. The client-side Blazor app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction).
-
-The templates include the *blazor.webassembly.js* script that handles:
-
-* Downloading the .NET runtime, the app, and the app's dependencies.
-* Initialization of the runtime to run the app.
-
-The client-side hosting model offers several benefits. Client-side Blazor:
-
-* Has no .NET server-side dependency.
-* Fully leverages client resources and capabilities.
-* Offloads work from the server to the client.
-* Supports offline scenarios.
-
-There are downsides to client-side hosting. Client-side Blazor:
-
-* Restricts the app to the capabilities of the browser.
-* Requires capable client hardware and software (for example, WebAssembly support).
-* Has a larger download size and longer app load time.
-* Has less mature .NET runtime and tooling support (for example, limitations in [.NET Standard](/dotnet/standard/net-standard) support and debugging).
+* <xref:signalr/introduction>
