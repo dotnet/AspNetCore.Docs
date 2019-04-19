@@ -25,7 +25,7 @@ In a few steps, get started with Blazor:
 1. Follow the guidance for your choice of tooling:
 
    # [Visual Studio](#tab/visual-studio)
-   
+
    1. Install the latest preview of [Visual Studio 2019](https://visualstudio.com/preview) with the **ASP.NET and web development** workload.
    2. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
    3. Enable Visual Studio to use preview SDKs:
@@ -33,46 +33,46 @@ In a few steps, get started with Blazor:
       a. Open **Tools** > **Options** in the menu bar.
       b. Open the **Projects and Solutions** node. Open the **.NET Core** tab.
       c. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
-   
+
    4. Create a new project.
    5. Select **ASP.NET Core Web Application**. Select **Next**.
    6. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
    7. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
    8. For an experience with Blazor client-side, choose the **Blazor (client-side)** template. For an experience with Blazor server-side, choose the **Blazor (server-side)** template. Select **Create**.
    9. Press **F5** to run the app.
-   
+
    # [Visual Studio Code](#tab/visual-studio-code)
    
    1. Install [Visual Studio Code](https://code.visualstudio.com/).
    2. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
    3. For an experience with Blazor client-side, execute the following command from a command shell:
-   
+
       ```console
       dotnet new blazor -o WebApplication1
       ```
-   
+
       > [!NOTE]
       > Only Blazor client-side is supported on macOS in ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
-   
+
       For an experience with Blazor server-side, execute the following command from a command shell:
-   
+
       ```console
       dotnet new blazorserverside -o WebApplication1
       ```
-   
+
    4. Open the *WebApplication1* folder in Visual Studio Code.
    5. When prompted by Visual Studio Code for a Blazor server-side project, add assets to build the project:
-   
+
       **Required assets to build and debug are missing from 'WebApplication1'. Add them?**
-   
+
       Select **Yes**.
-   
+
    6. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
-   
+
    <!--
-   
+
    # [Visual Studio for Mac](#tab/visual-studio-mac)
-   
+
    1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
    2. Select **File** > **New Solution** or **New Project**.
    3. In the sidebar, select **.NET Core** > **App**.
@@ -80,13 +80,13 @@ In a few steps, get started with Blazor:
    5. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
    6. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
    7. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
-   
+
    -->
-   
+
    # [.NET Core CLI](#tab/netcore-cli/)
-   
+
    For an experience with Blazor client-side, execute the following commands from a command shell:
-   
+
    ```console
    dotnet new blazor -o WebApplication1
    cd WebApplication1
@@ -95,15 +95,15 @@ In a few steps, get started with Blazor:
 
    > [!NOTE]
    > On macOS, use a Blazor client-side app. Blazor server-side isn't supported for macOS on ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
-   
+
    For an experience with Blazor server-side, execute the following commands from a command shell:
-   
+
    ```console
    dotnet new blazorserverside -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
-   
+
    ---
 
 In a browser, navigate to `https://localhost:5001`.
