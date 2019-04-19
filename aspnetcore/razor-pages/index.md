@@ -11,7 +11,7 @@ uid: razor-pages/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak)
 
-Razor Pages is a new aspect of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
+Razor Pages are a new aspect of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
