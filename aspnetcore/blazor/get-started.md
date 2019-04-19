@@ -26,26 +26,26 @@ In a few steps, get started with Blazor:
 
    # [Visual Studio](#tab/visual-studio)
 
-   1. Install the latest preview of [Visual Studio 2019](https://visualstudio.com/preview) with the **ASP.NET and web development** workload.
-   2. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
-   3. Enable Visual Studio to use preview SDKs:
+   1.&nbsp;Install the latest preview of [Visual Studio 2019](https://visualstudio.com/preview) with the **ASP.NET and web development** workload.
+   2.&nbsp;Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
+   3.&nbsp;Enable Visual Studio to use preview SDKs:
    
-      a. Open **Tools** > **Options** in the menu bar.
-      b. Open the **Projects and Solutions** node. Open the **.NET Core** tab.
-      c. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
+      a.&nbsp;Open **Tools** > **Options** in the menu bar.
+      b.&nbsp;Open the **Projects and Solutions** node. Open the **.NET Core** tab.
+      c.&nbsp;Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
 
-   4. Create a new project.
-   5. Select **ASP.NET Core Web Application**. Select **Next**.
-   6. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
-   7. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
-   8. For an experience with Blazor client-side, choose the **Blazor (client-side)** template. For an experience with Blazor server-side, choose the **Blazor (server-side)** template. Select **Create**.
-   9. Press **F5** to run the app.
+   4.&nbsp;Create a new project.
+   5.&nbsp;Select **ASP.NET Core Web Application**. Select **Next**.
+   6.&nbsp;Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+   7.&nbsp;Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
+   8.&nbsp;For an experience with Blazor client-side, choose the **Blazor (client-side)** template. For an experience with Blazor server-side, choose the **Blazor (server-side)** template. Select **Create**.
+   9.&nbsp;Press **F5** to run the app.
 
    # [Visual Studio Code](#tab/visual-studio-code)
    
-   1. Install [Visual Studio Code](https://code.visualstudio.com/).
-   2. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
-   3. For an experience with Blazor client-side, execute the following command from a command shell:
+   1.&nbsp;Install [Visual Studio Code](https://code.visualstudio.com/).
+   2.&nbsp;Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
+   3.&nbsp;For an experience with Blazor client-side, execute the following command from a command shell:
 
       ```console
       dotnet new blazor -o WebApplication1
@@ -60,26 +60,26 @@ In a few steps, get started with Blazor:
       > [!NOTE]
       > Only Blazor client-side is supported on macOS in ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
 
-   4. Open the *WebApplication1* folder in Visual Studio Code.
-   5. When prompted by Visual Studio Code for a Blazor server-side project, add assets to build the project:
+   4.&nbsp;Open the *WebApplication1* folder in Visual Studio Code.
+   5.&nbsp;When prompted by Visual Studio Code for a Blazor server-side project, add assets to build the project:
 
       **Required assets to build and debug are missing from 'WebApplication1'. Add them?**
 
       Select **Yes**.
 
-   6. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
+   6.&nbsp;If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
 
    <!--
 
    # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-   1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
-   2. Select **File** > **New Solution** or **New Project**.
-   3. In the sidebar, select **.NET Core** > **App**.
-   4. For an experience with Blazor server-side, select the **ASP.NET Core Blazor (server-side)** template. For an experience with Blazor server-side, select the **ASP.NET Core Blazor (client-side)** template. Select **Next**.
-   5. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
-   6. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
-   7. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
+   1.&nbsp;Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
+   2.&nbsp;Select **File** > **New Solution** or **New Project**.
+   3.&nbsp;In the sidebar, select **.NET Core** > **App**.
+   4.&nbsp;For an experience with Blazor server-side, select the **ASP.NET Core Blazor (server-side)** template. For an experience with Blazor server-side, select the **ASP.NET Core Blazor (client-side)** template. Select **Next**.
+   5.&nbsp;The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
+   6.&nbsp;In the **Project Name** field, enter `WebApplication1`. Select **Create**.
+   7.&nbsp;Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
 
    -->
 
