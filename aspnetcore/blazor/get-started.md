@@ -38,7 +38,7 @@ In a few steps, get started with Blazor:
    5. Select **ASP.NET Core Web Application**. Select **Next**.
    6. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
    7. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
-   8. For an experience with Blazor server-side, choose the **Blazor (server-side)** template. For an experience with Blazor client-side, choose the **Blazor (client-side)** template. Select **Create**.
+   8. For an experience with Blazor client-side, choose the **Blazor (client-side)** template. For an experience with Blazor server-side, choose the **Blazor (server-side)** template. Select **Create**.
    9. Press **F5** to run the app.
    
    # [Visual Studio Code](#tab/visual-studio-code)
@@ -61,7 +61,7 @@ In a few steps, get started with Blazor:
    
       Select **Yes**.
    
-   6. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
+   6. Execute `dotnet run` from the app's project folder.
    
    <!--
    
@@ -79,18 +79,18 @@ In a few steps, get started with Blazor:
    
    # [.NET Core CLI](#tab/netcore-cli/)
    
-   For an experience with Blazor server-side, execute the following commands from a command shell:
-   
-   ```console
-   dotnet new blazorserverside -o WebApplication1
-   cd WebApplication1
-   dotnet run
-   ```
-   
    For an experience with Blazor client-side, execute the following commands from a command shell:
    
    ```console
    dotnet new blazor -o WebApplication1
+   cd WebApplication1
+   dotnet run
+   ```
+   
+   For an experience with Blazor server-side, execute the following commands from a command shell:
+   
+   ```console
+   dotnet new blazorserverside -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
