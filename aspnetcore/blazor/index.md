@@ -33,9 +33,9 @@ Blazor supports core scenarios required by most apps:
 
 ## Components
 
-A *Razor component* in Blazor is an element of UI, such as a page, dialog, or data entry form. Components handle user events and define flexible UI rendering logic. Components can be nested and reused.
+A *component* in Blazor is an element of UI, such as a page, dialog, or data entry form. Components handle user events and define flexible UI rendering logic. Components can be nested and reused.
 
-Components are .NET classes built into .NET assemblies that can be shared and distributed as NuGet packages. The component class is usually written in the form of a Razor markup page with a *.razor* file extension.
+Components are .NET classes built into .NET assemblies that can be shared and distributed as NuGet packages. The component class is usually written in the form of a Razor markup page with a *.razor* file extension. Components in Blazor are sometimes referred to as Razor components.
 
 [Razor](xref:mvc/views/razor) is a syntax for combining HTML markup with C# code. Razor is designed for developer productivity, allowing the developer to switch between markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) support. Razor Pages and MVC views also use Razor. Unlike Razor Pages and MVC views, which are built around a request/response model, components are used specifically for handling UI composition. Razor components can be used specifically for client-side UI logic and composition.
 

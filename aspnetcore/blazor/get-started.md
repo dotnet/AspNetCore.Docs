@@ -62,7 +62,7 @@ In a few steps, get started with Blazor:
    
       Select **Yes**.
    
-   1. Run the app using the Visual Studio Code debugger.
+   1. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
    
    <!--
    
