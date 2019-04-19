@@ -24,7 +24,7 @@ For server-side apps:
 
 * Multiple user requests are processed by the server-side app. Don't call `JSRuntime.Current` in a component to invoke JavaScript functions.
 * Inject the `IJSRuntime` abstraction and use the injected object to issue JavaScript interop calls.
-* While a Blazor server-side app is prerendering, calling into JavaScript isn't possible because a connection with the browser hasn't been established. For more information, see the [Detect when a Blazor server-side app is prerendering](#detect-when-a-blazor-server-side-app-is-prerendering) section.
+* While a Blazor app is prerendering, calling into JavaScript isn't possible because a connection with the browser hasn't been established. For more information, see the [Detect when a Blazor app is prerendering](#detect-when-a-blazor-app-is-prerendering) section.
 
 The following example is based on [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), an experimental JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
@@ -181,7 +181,7 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the component. The component stores the user's name in a local variable, `name`.
 1. The string stored in `name` is incorporated into a welcome message, which is passed to a JavaScript function, `displayWelcome`, which renders the welcome message into a heading tag.
 
-## Detect when a Blazor server-side app is prerendering
+## Detect when a Blazor app is prerendering
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
 
