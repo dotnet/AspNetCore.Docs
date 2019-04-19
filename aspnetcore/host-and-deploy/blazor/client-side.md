@@ -5,18 +5,16 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 04/18/2019
 uid: host-and-deploy/blazor/client-side
 ---
 # Host and deploy Blazor client-side
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 ## Host configuration values
 
-Blazor apps that use the [client-side hosting model](xref:blazor/hosting-models#client-side-hosting-model) can accept the following host configuration values as command-line arguments at runtime in the development environment.
+Blazor apps that use the [client-side hosting model](xref:blazor/hosting-models#client-side) can accept the following host configuration values as command-line arguments at runtime in the development environment.
 
 ### Content Root
 
@@ -89,7 +87,7 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 
 ## Deployment
 
-With the [client-side hosting model](xref:blazor/hosting-models#client-side-hosting-model):
+With the [client-side hosting model](xref:blazor/hosting-models#client-side):
 
 * The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser.
 * The app is executed directly on the browser UI thread. Either of the following strategies is supported:
@@ -104,15 +102,15 @@ Blazor performs Intermediate Language (IL) linking on each build to remove unnec
 
 Routing requests for page components in a client-side app isn't as simple as routing requests to a server-side, hosted app. Consider a client-side app with two pages:
 
-* **_Main.cshtml_** &ndash; Loads at the root of the app and contains a link to the About page (`href="About"`).
-* **_About.cshtml_** &ndash; About page.
+* **_Main.razor** &ndash; Loads at the root of the app and contains a link to the About page (`href="About"`).
+* **_About.razor** &ndash; About page.
 
 When the app's default document is requested using the browser's address bar (for example, `https://www.contoso.com/`):
 
 1. The browser makes a request.
 1. The default page is returned, which is usually *index.html*.
 1. *index.html* bootstraps the app.
-1. Blazor's router loads, and the Razor Main page (*Main.cshtml*) is displayed.
+1. Blazor's router loads, and the Razor Main page (*Main.razor*) is displayed.
 
 On the Main page, selecting the link to the About page loads the About page. Selecting the link to the About page works on the client because the Blazor router stops the browser from making a request on the Internet to `www.contoso.com` for `About` and serves the About page itself. All of the requests for internal pages *within the client-side app* work the same way: Requests don't trigger browser-based requests to server-hosted resources on the Internet. The router handles the requests internally.
 
@@ -138,7 +136,7 @@ The app responds locally at `http://localhost:port/CoolApp`.
 
 For more information, see the section on the [path base host configuration value](#path-base).
 
-If an app uses the [client-side hosting model](xref:blazor/hosting-models#client-side-hosting-model) (based on the **Blazor** project template) and is hosted as an IIS sub-application in an ASP.NET Core app, it's important to disable the inherited ASP.NET Core Module handler or make sure the root (parent) app's `<handlers>` section in the *web.config* file isn't inherited by the sub-app.
+If an app uses the [client-side hosting model](xref:blazor/hosting-models#client-side) (based on the **Blazor** project template; the `blazor` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) and is hosted as an IIS sub-application in an ASP.NET Core app, it's important to disable the inherited ASP.NET Core Module handler or make sure the root (parent) app's `<handlers>` section in the *web.config* file isn't inherited by the sub-app.
 
 Remove the handler in the app's published *web.config* file by adding a `<handlers>` section to the file:
 

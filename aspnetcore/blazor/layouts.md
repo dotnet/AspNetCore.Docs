@@ -5,7 +5,7 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 04/18/2019
 uid: blazor/layouts
 ---
 # Blazor layouts
@@ -23,7 +23,7 @@ Two additional aspects turn a *component* into a *layout*
 
 The following code sample shows the Razor template of a layout component. Note the use of `LayoutComponentBase` and `@Body`:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.cshtml)]
+[!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.razor)]
 
 ## Use a layout in a component
 
@@ -40,17 +40,31 @@ The following code sample demonstrates the concept. The content of this componen
 
 ## Centralized layout selection
 
-Every folder of a an app can optionally contain a template file named *_ViewImports.cshtml*. The compiler includes the directives specified in the view imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, a *_ViewImports.cshtml* file containing `@layout MainLayout` ensures that all of the components in a folder use the *MainLayout* layout. There's no need to repeatedly add `@layout` to all of the *.razor* files.
+Every folder of a an app can optionally contain a template file named *_Imports.razor*. The compiler includes the directives specified in the view imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, a *_Imports.razor* file containing `@layout MainLayout` ensures that all of the components in a folder use the *MainLayout* layout. There's no need to repeatedly add `@layout` to all of the *.razor* files. `@using` directives are also applied to components in the same folder or any sub folders.
 
-Note that the default template uses the *_ViewImports.cshtml* mechanism for layout selection. A newly created app contains the *_ViewImports.cshtml* file in the *Components/Pages* folder.
+For example, the following *_Imports.razor* file imports:
+
+* `MainLayout`.
+* All Razor components in a the same folder and any sub folders.
+* The `BlazorApp1.Data` namespace.
+ 
+```cshtml
+@layout MainLayout
+@using Microsoft.AspNetCore.Components.
+@using BlazorApp1.Data
+```
+
+Use of the *_Imports.razor* file is similar to how you can use *_ViewImports.cshtml* with Razor views and pages, but applied specifically to Razor component files.
+
+Note that the default template uses the *_Imports.razor* mechanism for layout selection. A newly created app contains the *_Imports.razor* file in the *Pages* folder.
 
 ## Nested layouts
 
 Apps can consist of nested layouts. A component can reference a layout which in turn references another layout. For example, nesting layouts can be used to reflect a multi-level menu structure.
 
-The following code samples show how to use nested layouts. The *EpisodesComponent.cshtml* file is the component to display. Note that the component references the layout `MasterListLayout`.
+The following code samples show how to use nested layouts. The *EpisodesComponent.razor* file is the component to display. Note that the component references the layout `MasterListLayout`.
 
-*EpisodesComponent.cshtml*:
+*EpisodesComponent.razor*:
 
 ```cshtml
 @layout MasterListLayout
@@ -59,9 +73,9 @@ The following code samples show how to use nested layouts. The *EpisodesComponen
 <h1>Episodes</h1>
 ```
 
-The *MasterListLayout.cshtml* file provides the `MasterListLayout`. The layout references another layout, `MasterLayout`, where it's going to be embedded.
+The *MasterListLayout.razor* file provides the `MasterListLayout`. The layout references another layout, `MasterLayout`, where it's going to be embedded.
 
-*MasterListLayout.cshtml*:
+*MasterListLayout.razor*:
 
 ```cshtml
 @layout MasterLayout
@@ -77,7 +91,7 @@ The *MasterListLayout.cshtml* file provides the `MasterListLayout`. The layout r
 
 Finally, `MasterLayout` contains the top-level layout elements, such as the header, footer, and main menu.
 
-*MasterLayout.cshtml*:
+*MasterLayout.razor*:
 
 ```cshtml
 @inherits LayoutComponentBase

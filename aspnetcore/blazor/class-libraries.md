@@ -1,5 +1,5 @@
 ---
-title: Razor Components Class Libraries
+title: Razor components class libraries
 author: guardrex
 description: Discover how components can be included in Blazor apps from an external component library.
 monikerRange: '>= aspnetcore-3.0'
@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 04/15/2019
 uid: blazor/class-libraries
 ---
-# Razor Components Class Libraries
+# Razor components class libraries
 
 By [Simon Timms](https://github.com/stimms)
 
@@ -26,7 +26,7 @@ Use the `razorclasslib` (Razor class library) template with the [dotnet new](/do
 dotnet new razorclasslib -o MyComponentLib1
 ```
 
-Add Razor Component files (*.razor*) to the Razor class library.
+Add Razor component files (*.razor*) to the Razor class library.
 
 To add the library to an existing project, use the [dotnet sln](/dotnet/core/tools/dotnet-sln) command:
 
@@ -45,41 +45,44 @@ dotnet add WebApplication1 reference MyComponentLib1
 ---
 
 > [!NOTE]
-> Razor class libraries aren't compatible with Blazor apps in ASP.NET Core Preview 3.
+> Razor class libraries aren't compatible with Blazor apps in ASP.NET Core Preview 4.
 >
-> To create components in a library that can be shared with Blazor client-side and Razor Components server-side apps, use a Blazor class library created by the `blazorlib` template.
+> To create components in a library that can be shared with Blazor client-side and Razor components server-side apps, use a Blazor class library created by the `blazorlib` template.
 >
-> Razor class libraries don't support static assets in ASP.NET Core Preview 3. Component libraries using the `blazorlib` template can include static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (*.dll*), which allows consumption of the components without having to worry about how to include their resources. Any files included in the `content` directory are marked as an embedded resource.
+> Razor class libraries don't support static assets in ASP.NET Core Preview 4. Component libraries using the `blazorlib` template can include static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (*.dll*), which allows consumption of the components without having to worry about how to include their resources. Any files included in the `content` directory are marked as an embedded resource.
 
 ## Consume a library component
 
-In order to consume components defined in a library in another project, the [@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) directive must be used. Individual components may be added by name.
+In order to consume components defined in a library in another project, use either of the following approaches:
 
-The general format of the directive is:
+* Full type name with the namespace.
+* Razor's [\@using](xref:mvc/views/razor#using) directive. Individual components may be added by name.
+
+In the following examples, `MyComponentLibrary` is a component library containing the Sales Report (`SalesReport`) component.
+
+The Sales Report component can be referenced using its full type name with namespace:
 
 ```cshtml
-@addTagHelper MyComponentLib1.Component1, MyComponentLib1
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<MyComponentLibrary.SalesReport />
+```
+
+The component can also be referenced if the library is brought into scope with an `@using` directive:
+
+```cshtml
+@using MyComponentLibrary
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<Component1 />
+<SalesReport />
 ```
 
-For example, the following directive adds `Component1` of `MyComponentLib1`:
-
-```cshtml
-@addTagHelper MyComponentLib1.Component1, MyComponentLib1
-```
-
-However, it's common to include all of the components from an assembly using a wildcard (`*`):
-
-```cshtml
-@addTagHelper *, MyComponentLib1
-```
-
-The `@addTagHelper` directive can be included in *_ViewImport.cshtml* to make the components available for an entire project or applied to a single page or set of pages within a folder. With the `@addTagHelper` directive in place, the components of the component library can be consumed as if they were in the same assembly as the app.
+The `@using` directive can be included in *_Import.razor* to make the components available for an entire project or applied to a single page or set of pages within a folder.
 
 ## Build, pack, and ship to NuGet
 
