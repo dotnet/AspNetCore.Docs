@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+
 namespace BlazorSample
 {
     public class BlazorRocksBase : ComponentBase
