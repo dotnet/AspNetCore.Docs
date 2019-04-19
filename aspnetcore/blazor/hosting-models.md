@@ -213,3 +213,7 @@ There are downsides to client-side hosting. Client-side Blazor:
 * Requires capable client hardware and software (for example, WebAssembly support).
 * Has a larger download size and longer app load time.
 * Has less mature .NET runtime and tooling support (for example, limitations in [.NET Standard](/dotnet/standard/net-standard) support and debugging).
+
+## Additional resources
+
+* <xref:signalr/introduction>

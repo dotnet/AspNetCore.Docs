@@ -159,3 +159,7 @@ Run the app. The homepage has its own counter that increments by ten each time t
 ## Next steps
 
 <xref:tutorials/first-blazor-app>
+
+## Additional resources
+
+* <xref:signalr/introduction>
