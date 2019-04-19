@@ -633,7 +633,7 @@ A templated component is defined by specifying one or more component parameters 
 
 *Table Template component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/TableTemplate.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TableTemplate.razor)]
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters (`TableHeader` and `RowTemplate` in the following example):
 
@@ -688,7 +688,7 @@ Templated components are often generically typed. For example, a generic List Vi
 
 *ListView Template component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ListViewTemplate.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.razor)]
 
 When using generic-typed components, the type parameter is inferred if possible:
 
@@ -823,13 +823,13 @@ The child Tab components aren't explicitly passed as parameters to the Tab Set. 
 
 *TabSet component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/TabSet.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TabSet.razor)]
 
 The descendent Tab components capture the containing Tab Set as a cascading parameter, so the Tab components add themselves to the Tab Set and coordinate on which tab is active.
 
 *Tab component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Tab.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/Tab.razor)]
 
 ## Razor templates
 
