@@ -45,20 +45,14 @@ In a few steps, get started with Blazor:
    
    1. Install [Visual Studio Code](https://code.visualstudio.com/).
    2. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
-   3. For an experience with Blazor server-side, execute the following command from a command shell:
-   
-      ```console
-      dotnet new blazorserverside -o WebApplication1
-      ```
-   
-      For an experience with Blazor client-side, execute the following command from a command shell:
+   3. For an experience with Blazor client-side, execute the following command from a command shell:
    
       ```console
       dotnet new blazor -o WebApplication1
       ```
 
       > [!NOTE]
-      > On macOS, use a Blazor client-side app. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
+      > Only Blazor client-side is supported on macOS in ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
    
    4. Open the *WebApplication1* folder in Visual Studio Code.
    5. When prompted by Visual Studio Code for a Blazor server-side project, add assets to build and debug the project:
