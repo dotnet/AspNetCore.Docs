@@ -1,5 +1,5 @@
 <!-- <snippet_BlazorRocks> -->
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 @page "/BlazorRocks"
 @*
     The inherit directive provides the properties and methods
@@ -8,9 +8,9 @@
 @inherits BlazorRocksBase
 
 <h1>@BlazorRocksText</h1> 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
 <!-- </snippet_BlazorRocks> -->
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 <h2>BlazorRocks.razor</h2>
 
 <p>
@@ -30,9 +30,11 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 
 <pre><code>using Microsoft.AspNetCore.Components;
 
-public class BlazorRocksBase : ComponentBase
+namespace BlazorSample
 {
-    public string BlazorRocksText { get; set; } = 
-        "Blazor rocks the browser!";
+    public class BlazorRocksBase : ComponentBase
+    {
+        public string BlazorRocksText { get; set; } = 
+            "Blazor rocks the browser!";
+    }
 }</code></pre> 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
