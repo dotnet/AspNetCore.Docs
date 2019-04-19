@@ -92,6 +92,9 @@ In a few steps, get started with Blazor:
    cd WebApplication1
    dotnet run
    ```
+
+   > [!NOTE]
+   > On macOS, use a Blazor client-side app. Blazor server-side isn't supported for macOS on ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
    
    For an experience with Blazor server-side, execute the following commands from a command shell:
    
@@ -100,9 +103,6 @@ In a few steps, get started with Blazor:
    cd WebApplication1
    dotnet run
    ```
-   
-   > [!NOTE]
-   > On macOS, use a Blazor client-side app. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
    
    ---
 
