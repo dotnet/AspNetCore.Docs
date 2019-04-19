@@ -1,9 +1,9 @@
-/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 using Microsoft.AspNetCore.Components;
-
-public class BlazorRocksBase : ComponentBase
+namespace BlazorSample
 {
-    public string BlazorRocksText { get; set; } = 
-        "Blazor rocks the browser!";
+    public class BlazorRocksBase : ComponentBase
+    {
+        public string BlazorRocksText { get; set; } = 
+            "Blazor rocks the browser!";
+    }
 }
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
