@@ -361,7 +361,11 @@ The following code disables client validation in MVC views:
 
 [!code-csharp[](validation/sample_snapshot/Startup2.cs?name=snippet_DisableClientValidation)]
 
-This works only in MVC views, not in Razor Pages. Another option for disabling client validation is to comment out the reference to `_ValidationScriptsPartial` in your *.cshtml* file.
+And in Razor Pages:
+
+[!code-csharp[](validation/sample_snapshot/Startup3.cs?name=snippet_DisableClientValidation)]
+
+Another option for disabling client validation is to comment out the reference to `_ValidationScriptsPartial` in your *.cshtml* file.
 
 ## Additional resources
 
