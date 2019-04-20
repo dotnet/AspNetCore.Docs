@@ -87,7 +87,7 @@ One approach to using the attribute on more than one controller is to create a c
 
 ### ApiController on an assembly
 
-If [compatibility version](<xref:mvc/compatibility-version>) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the `Startup` class as shown in this example:
+If [compatibility version](<xref:mvc/compatibility-version>) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the `Startup` class as shown in the following example:
 
 ```csharp
 [assembly: ApiController]
