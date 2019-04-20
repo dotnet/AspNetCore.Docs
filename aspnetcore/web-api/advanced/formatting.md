@@ -19,16 +19,14 @@ ASP.NET Core MVC has built-in support for formatting response data, using fixed 
 
 Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return specific results that are always formatted in a particular manner. For example, returning a `JsonResult` will return JSON-formatted data, regardless of client preferences. Returning a `ContentResult` will return plain-text-formatted string data. Returning a string returns plain-text-formatted string data.
 
-An action isn't required to return any particular type. ASP.NET Core supports any object return value.  Results from actions that return objects that are not `IActionResult` types will be serialized using the appropriate `IOutputFormatter` implementation. See <xref:web-api/action-return-types> for more information.
+An action isn't required to return any particular type. ASP.NET Core supports any object return value.  Results from actions that return objects that are not <xref:Microsoft.AspNetCore.Mvc.IActionResult> types will be serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. See <xref:web-api/action-return-types> for more information.
 
-The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> to returns JSON. The built-in helper method `Content` returns plain text.
-
-`Ok` returns JSON-formatted data:
+The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> to returns JSON-formatted data:
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
-The sample download returns the list of authors. The F12 browser developer tools or [Postman](https://www.getpostman.com/tools) displays the response header contains **content-type: application/json; charset=utf-8**.
+The sample download returns the list of authors. The F12 browser developer tools or [Postman](https://www.getpostman.com/tools) displays the response header containing **content-type: application/json; charset=utf-8**.
 
-The F12 browser developer tools displays the request headers, such as the `Accept` header. The `Accept` header is ignored by the preceding code.
+The F12 browser developer tool displays the request headers, such as the `Accept` header. The `Accept` header is ignored by the preceding code.
 
 To return plain text formatted data, use `ContentResult` and the `Content` helper:
 
@@ -38,11 +36,11 @@ In the preceding code, the `Content-Type` returned is `text/plain`. Returning a 
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_string)]
 
-For non-trivial actions with multiple return types or options (for example, different HTTP status codes based on the result of operations performed), prefer `IActionResult` as the return type.
+For actions with multiple return types (for example, different HTTP status codes based on the result of operations performed), prefer `IActionResult` as the return type.
 
 ## Content Negotiation
 
-Content negotiation (*conneg* for short) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](http://json.org/). Content negotiation is implemented by `ObjectResult`. It's also built into the status code specific action results returned from the helper methods (which are all based on `ObjectResult`). You can also return a model type (a class you've defined as your data transfer type) and the framework will automatically wrap it in an `ObjectResult`.
+Content negotiation (*conneg*) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](http://json.org/). Content negotiation is implemented by `ObjectResult`. It's also built into the status code-specific action results returned from the helper methods (which are all based on `ObjectResult`). A model type can be returned and ASP.NET Core will wrap it in an `ObjectResult`.
 
 The following action method uses the `Ok` and `NotFound` helper methods:
 
@@ -80,7 +78,7 @@ If the Accept header contains `*/*`, the Header will be ignored unless `RespectB
 
 Unlike typical API clients, web browsers tend to supply `Accept` headers that include a wide array of formats, including wildcards. By default, when the framework detects that the request is coming from a browser, it will ignore the `Accept` header and instead return the content in JSON (unless otherwise configured). This provides a more consistent experience across browsers when consuming APIs.
 
-If you would prefer your application honor browser accept headers, you can configure this as part of MVC's configuration by setting `RespectBrowserAcceptHeader` to `true` in the `ConfigureServices` method in *Startup.cs*.
+If you would prefer your app honor browser accept headers, you can configure this as part of MVC's configuration by setting <xref:Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader> to `true` in `ConfigureServices`.
 
 [!code-csharp[](./formatting/sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
 
@@ -124,7 +122,7 @@ Some special cases are implemented using built-in formatters. By default, `strin
 
 [!code-csharp[](./formatting/sample/StartupTextOutputFormatter.cs?name=snippet)]
 
-Without the `TextOutputFormatter`, `string` return types return `406 Not Acceptable`. Note that if an XML formatter exists, it formats `string` return types if the `TextOutputFormatter` is removed.
+Without the `TextOutputFormatter`, `string` return types return `406 Not Acceptable`. If an XML formatter exists, it formats `string` return types if the `TextOutputFormatter` is removed.
 
 Without the `HttpNoContentOutputFormatter`, null objects are formatted using the configured formatter. For example:
 
