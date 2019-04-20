@@ -92,41 +92,17 @@ If your app needs to support additional formats beyond the default of JSON, you 
 
 To add support for XML formatting, install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
 
-Add the XmlSerializerFormatters to MVC's configuration in *Startup.cs*:
+Add the XmlSerializerFormatters to MVC's configuration in `Startup`:
 
-[!code-csharp[](./formatting/sample/Startup.cs?name=snippet1&highlight=2)]
+[!code-csharp[](./formatting/sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
 
-Alternately, you can add just the output formatter:
+The preceding code serializes results using `System.Xml.Serialization.XmlSerializer`. The `System.Runtime.Serialization.DataContractSerializer` can be added by adding its associated formatter:
 
-```csharp
-services.AddMvc(options =>
-{
-    options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
-});
-```
+[!code-csharp[](./formatting/sample/StartUpDataContractSerializer.cs?name=snippet)]
 
-These two approaches will serialize results using `System.Xml.Serialization.XmlSerializer`. If you prefer, you can use the `System.Runtime.Serialization.DataContractSerializer` by adding its associated formatter:
+When using the preceding code, controller methods should return the appropriate format based on the request's `Accept` header.
 
-```csharp
-services.AddMvc(options =>
-{
-    options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
-});
-```
-
-Once you've added support for XML formatting, your controller methods should return the appropriate format based on the request's `Accept` header, as this Fiddler example demonstrates:
-
-![Fiddler console: The Raw tab for the request shows the Accept header value is application/xml. The Raw tab for the response shows the Content-Type header value of application/xml.](formatting/_static/xml-response.png)
-
-You can see in the Inspectors tab that the Raw GET request was made with an `Accept: application/xml` header set. The response pane shows the `Content-Type: application/xml` header, and the `Author` object has been serialized to XML.
-
-Use the Composer tab to modify the request to specify `application/json` in the `Accept` header. Execute the request, and the response will be formatted as JSON:
-
-![Fiddler console: The Raw tab for the request shows the Accept header value is application/json. The Raw tab for the response shows the Content-Type header value of application/json.](formatting/_static/json-response-fiddler.png)
-
-In this screenshot, you can see the request sets a header of `Accept: application/json` and the response specifies the same as its `Content-Type`. The `Author` object is shown in the body of the response, in JSON format.
-
-### Forcing a Particular Format
+### Forcing a format
 
 If you would like to restrict the response formats for a specific action you can, you can apply the `[Produces]` filter. The `[Produces]` filter specifies the response formats for a specific action (or controller). Like most [Filters](xref:mvc/controllers/filters), this can be applied at the action, controller, or global scope.
 
@@ -135,37 +111,38 @@ If you would like to restrict the response formats for a specific action you can
 public class AuthorsController
 ```
 
-The `[Produces]` filter will force all actions within the `AuthorsController` to return JSON-formatted responses, even if other formatters were configured for the application and the client provided an `Accept` header requesting a different, available format. See [Filters](xref:mvc/controllers/filters) to learn more, including how to apply filters globally.
+The [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter:
+
+* Forces all actions within the controller to return JSON-formatted responses.
+* If other formatters are configured for the app and the client provided an `Accept` header requesting a different format, JSON is returned.
+
+For more information, see [Filters](xref:mvc/controllers/filters).
 
 ### Special Case Formatters
 
-Some special cases are implemented using built-in formatters. By default, `string` return types will be formatted as *text/plain* (*text/html* if requested via `Accept` header). This behavior can be removed by removing the `TextOutputFormatter`. You remove formatters in the `Configure` method in *Startup.cs* (shown below). Actions that have a model object return type will return a 204 No Content response when returning `null`. This behavior can be removed by removing the `HttpNoContentOutputFormatter`. The following code removes the `TextOutputFormatter` and `HttpNoContentOutputFormatter`.
+Some special cases are implemented using built-in formatters. By default, `string` return types are formatted as *text/plain* (*text/html* if requested via the `Accept` header). This behavior can be deleted by removing the `TextOutputFormatter`. Formatters are removed in the `Configure` method. Actions that have a model object return type return a `204 No Content` response when returning `null`. This behavior can be deleted by removing the `HttpNoContentOutputFormatter`. The following code removes the `TextOutputFormatter` and `HttpNoContentOutputFormatter`.
 
-```csharp
-services.AddMvc(options =>
-{
-    options.OutputFormatters.RemoveType<TextOutputFormatter>();
-    options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
-});
-```
+[!code-csharp[](./formatting/sample/StartupTextOutputFormatter.cs?name=snippet)]
 
-Without the `TextOutputFormatter`, `string` return types return 406 Not Acceptable, for example. Note that if an XML formatter exists, it will format `string` return types if the `TextOutputFormatter` is removed.
+Without the `TextOutputFormatter`, `string` return types return `406 Not Acceptable`. Note that if an XML formatter exists, it formats `string` return types if the `TextOutputFormatter` is removed.
 
-Without the `HttpNoContentOutputFormatter`, null objects are formatted using the configured formatter. For example, the JSON formatter will simply return a response with a body of `null`, while the XML formatter will return an empty XML element with the attribute `xsi:nil="true"` set.
+Without the `HttpNoContentOutputFormatter`, null objects are formatted using the configured formatter. For example:
 
-## Response Format URL Mappings
+* The JSON formatter returns a response with a body of `null`.
+* The XML formatter returns an empty XML element with the attribute `xsi:nil="true"` set.
 
-Clients can request a particular format as part of the URL, such as in the query string or part of the path, or by using a format-specific file extension such as .xml or .json. The mapping from request path should be specified in the route the API is using. For example:
+## Response format URL mappings
 
-```csharp
-[FormatFilter]
-public class ProductsController
-{
-    [Route("[controller]/[action]/{id}.{format?}")]
-    public Product GetById(int id)
-```
+Clients can request a particular format as part of the URL, for example:
 
-This route would allow the requested format to be specified as an optional file extension. The `[FormatFilter]` attribute checks for the existence of the format value in the `RouteData` and will map the response format to the appropriate formatter when the response is created.
+* In the query string or part of the path.
+* By using a format-specific file extension such as .xml or .json. 
+
+The mapping from request path should be specified in the route the API is using. For example:
+
+[!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
+
+The preceding route allows the requested format to be specified as an optional file extension. The [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) attribute checks for the existence of the format value in the `RouteData` and maps the response format to the appropriate formatter when the response is created.
 
 |           Route            |             Formatter              |
 |----------------------------|------------------------------------|
