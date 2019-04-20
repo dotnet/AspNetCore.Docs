@@ -28,7 +28,7 @@ namespace ResponseFormattingSample.Controllers
         }
         #endregion
 
-
+        #region snippet_search
         // GET: api/authors/search?namelike=th
         [HttpGet("Search")]
         public IActionResult Search(string namelike)
@@ -40,13 +40,16 @@ namespace ResponseFormattingSample.Controllers
             }
             return Ok(result);
         }
+        #endregion
 
+        #region snippet_alias
         // GET api/authors/ardalis
         [HttpGet("{alias}")]
         public Author Get(string alias)
         {
             return _authors.GetByAlias(alias);
         }
+        #endregion
 
         #region snippet_about
         // GET api/authors/about
@@ -57,12 +60,14 @@ namespace ResponseFormattingSample.Controllers
         }
         #endregion
 
+        #region snippet_string
         // GET api/authors/version
         [HttpGet("version")]
         public string Version()
         {
             return "Version 1.0.0";
         }
+        #endregion
 
     }
 
