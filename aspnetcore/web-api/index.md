@@ -23,7 +23,7 @@ A web API app has one or more controller classes that derive from <xref:Microsof
 
 [!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=3)]
 
-Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class.  `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests.
+Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests.
 
 The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, `ControllerBase.CreatedAtAction` returns a 201 status code:
 
