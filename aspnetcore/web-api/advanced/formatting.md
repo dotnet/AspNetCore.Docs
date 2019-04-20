@@ -4,12 +4,12 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 10/14/2016
+ms.date: 4/22/2019
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
 
-By [Steve Smith](https://ardalis.com/)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
 
@@ -17,26 +17,22 @@ ASP.NET Core MVC has built-in support for formatting response data, using fixed 
 
 ## Format-Specific Action Results
 
-Some action result types are specific to a particular format, such as `JsonResult` and `ContentResult`. Actions can return specific results that are always formatted in a particular manner. For example, returning a `JsonResult` will return JSON-formatted data, regardless of client preferences. Likewise, returning a `ContentResult` will return plain-text-formatted string data (as will simply returning a string).
+Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return specific results that are always formatted in a particular manner. For example, returning a `JsonResult` will return JSON-formatted data, regardless of client preferences. Returning a `ContentResult` will return plain-text-formatted string data. Returning a string returns plain-text-formatted string data.
 
-> [!NOTE]
-> An action isn't required to return any particular type; MVC supports any object return value. If an action returns an `IActionResult` implementation and the controller inherits from `Controller`, developers have many helper methods corresponding to many of the choices. Results from actions that return objects that are not `IActionResult` types will be serialized using the appropriate `IOutputFormatter` implementation.
+An action isn't required to return any particular type. ASP.NET Core supports any object return value.  Results from actions that return objects that are not `IActionResult` types will be serialized using the appropriate `IOutputFormatter` implementation. See <xref:web-api/action-return-types> for more information.
 
-To return data in a specific format from a controller that inherits from the `Controller` base class, use the built-in helper method `Json` to return JSON and `Content` for plain text. Your action method should return either the specific result type (for instance, `JsonResult`) or `IActionResult`.
+The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> to returns JSON. The built-in helper method `Content` returns plain text.
 
-Returning JSON-formatted data:
+`Ok` returns JSON-formatted data:
+[!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
-[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=21-26)]
+The sample download returns the list of authors. The F12 browser developer tools or [Postman](https://www.getpostman.com/tools) displays the response header contains **content-type: application/json; charset=utf-8**.
 
-Sample response from this action:
-
-![Network tab of Developer Tools in Microsoft Edge showing the Content type of the response is application/json](formatting/_static/json-response.png)
-
-Note that the content type of the response is `application/json`, shown both in the list of network requests and in the Response Headers section. Also note the list of options presented by the browser (in this case, Microsoft Edge) in the Accept header in the Request Headers section. The current technique is ignoring this header; obeying it is discussed below.
+The F12 browser developer tools displays the request headers, such as the Accept header. The Accept header is ignored by the preceding code.
 
 To return plain text formatted data, use `ContentResult` and the `Content` helper:
 
-[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=47-52)]
+[!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_about)]
 
 A response from this action:
 
@@ -44,7 +40,7 @@ A response from this action:
 
 Note in this case the `Content-Type` returned is `text/plain`. You can also achieve this same behavior using just a string response type:
 
-[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=54-59)]
+[!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?highlight=3,5&range=54-59)]
 
 >[!TIP]
 > For non-trivial actions with multiple return types or options (for example, different HTTP status codes based on the result of operations performed), prefer `IActionResult` as the return type.
@@ -55,7 +51,7 @@ Content negotiation (*conneg* for short) occurs when the client specifies an [Ac
 
 The following action method uses the `Ok` and `NotFound` helper methods:
 
-[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=8,10&range=28-38)]
+[!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?highlight=8,10&range=28-38)]
 
 A JSON-formatted response will be returned unless another format was requested and the server can return the requested format. You can use a tool like [Fiddler](http://www.telerik.com/fiddler) to create a request that includes an Accept header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result will be returned in the client-preferred format.
 
@@ -67,7 +63,7 @@ Controller actions can return POCOs (Plain Old CLR Objects), in which case ASP.N
 
 Returning an object type:
 
-[!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3&range=40-45)]
+[!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?highlight=3&range=40-45)]
 
 In the sample, a request for a valid author alias will receive a 200 OK response with the author's data. A request for an invalid alias will receive a 204 No Content response. Screenshots showing the response in XML and JSON formats are shown below.
 
