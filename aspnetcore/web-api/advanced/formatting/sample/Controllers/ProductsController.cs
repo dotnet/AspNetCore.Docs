@@ -11,8 +11,9 @@ namespace ResponseFormattingSample.Controllers
         [Route("[controller]/[action]/{id}.{format?}")]
         public Product GetById(int id)
         {
-            return new Product;
+            #endregion
+
+            return new Product();
         }
     }
-    #endregion
 }
