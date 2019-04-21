@@ -1,5 +1,6 @@
 ﻿#define Primary
 #if Primary
+#region all
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -106,4 +107,5 @@ namespace TodoApi.Controllers
         #endregion
     }
 }
+#endregion
 #endif

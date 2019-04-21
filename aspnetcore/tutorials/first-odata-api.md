@@ -118,13 +118,13 @@ Update the `Configure` method in *Startup.cs* with the following highlighted cod
 
 Finally your *Startup.cs* class should look like:
 
-[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=9,30,52-56)]
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=8,28,48-52&name=snippet_all)]
 
 ## Update the controller
 
 Update *TodoController.cs* under *Controllers* directory, add `[EnableQuery()]` attribute:
 
-[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=9,37-41)]
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=7,32-36&name=all)]
 
 > [!TIP]
 > Returning `IQueryable` or `ActionResult<IQueryable>` enables **OData** to translate your queries to **SQL** queries using *ef core* capabilities, you may also return other types such as `IEnumerable` which makes **OData** to preform queries inside your app.
