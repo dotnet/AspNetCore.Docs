@@ -53,7 +53,7 @@ namespace ClaimsSample
                 // Register with User Secrets using:
                 // dotnet user-secrets set "Authentication:Google:ClientSecret" "{Client Secret}"
 
-                options.Scope.Add("https://www.googleapis.com/auth/plus.login");
+                options.Scope.Add("https://www.googleapis.com/auth/userinfo.profile");
                 options.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "givenname");
                 options.ClaimActions.MapJsonKey(ClaimTypes.Surname, "surname");
                 options.SaveTokens = true;

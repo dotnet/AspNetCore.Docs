@@ -5,7 +5,7 @@ description: Learn how to establish additional claims and tokens from external p
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/14/2019
+ms.date: 04/21/2019
 uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
@@ -42,11 +42,11 @@ Specify the list of permissions to retrieve from the provider by specifying the 
 | Provider  | Scope                                                            |
 | --------- | ---------------------------------------------------------------- |
 | Facebook  | `https://www.facebook.com/dialog/oauth`                          |
-| Google    | `https://www.googleapis.com/auth/plus.login`                     |
+| Google    | `https://www.googleapis.com/auth/userinfo.profile`               |
 | Microsoft | `https://login.microsoftonline.com/common/oauth2/v2.0/authorize` |
 | Twitter   | `https://api.twitter.com/oauth/authenticate`                     |
 
-The sample app adds the Google `plus.login` scope to request Google+ sign in permissions:
+The sample app adds the Google `userinfo.profile` scope to request Google Sign-in sign in permissions:
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13)]
 
