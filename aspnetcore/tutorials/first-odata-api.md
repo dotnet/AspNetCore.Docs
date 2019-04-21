@@ -30,11 +30,11 @@ At the end, you have a web API that can Query, filter and sort data.
 
 The Open Data Protocol (OData) is a data access protocol for the web. OData provides a uniform way to query and manipulate data sets through CRUD operations (create, read, update, and delete).
 
-For this tutorial we use [to-do Web API](xref:first-web-api) as an existing Web API.
+For this tutorial we use [to-do Web API](xref:tutorials/first-web-api) as an existing Web API.
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
-## Create the ASP.NET Core web API project
+## Opening an existing ASP.NET Core project
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -79,7 +79,7 @@ For this tutorial we use [to-do Web API](xref:first-web-api) as an existing Web 
 
 Open the model class *TodoItem.cs* under *Models* directory.
 
-The model class contains these properties:
+The model class contains three properties:
 
  [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=OldProps)]
 
@@ -110,7 +110,7 @@ using Microsoft.AspNet.OData.Extensions;
 
 ## Configure middleware
 
-OData can preform sorting, filtering, querying related data and ect. You can enable/disable each of these capabilities using a middleware.
+OData can preform sorting, filtering, querying related data and etc. You can enable/disable each of these capabilities using a middleware.
 
 Update the `Configure` method in *Startup.cs* with the following highlighted code:
 
@@ -131,14 +131,14 @@ Update *TodoController.cs* under *Controllers* directory, add `[EnableQuery()]` 
 
 ## Query resources using OData
 
-First send some data to your web API:
+First post some data to your web API:
 
 > [!TIP]
-> You can use Postman to send data, for more information visit: [How to use Postman](xref:tutorials/first-web-api#test-the-gettodoitems-method)
+> You can use Postman to post data, for more information visit: [How to use Postman](xref:tutorials/first-web-api#test-the-gettodoitems-method)
 
 ![Postman with Post request](first-odata-api/_static/SendData.png)
 
-Open your Postman and send a Post request to `https://localhost:5001/api/todo` and include each of the items below in your request body.
+Open your Postman and send a Post request to `https://localhost:5001/api/todo` and include each of the items below **separately** in your request body.
 
 ```json
 {
