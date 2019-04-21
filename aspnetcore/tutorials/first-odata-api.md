@@ -231,6 +231,28 @@ Finally you can mix OData queries together to make a complex query:
 
 ![Postman with Get request and complex query](first-odata-api/_static/complex.png)
 
+## Security concerns
+
+A malicious or naive client may be able to construct a query that takes a very long time to execute. In the worst case this can disrupt access to your service.
+
+The `[Queryable]` attribute is an action filter that parses, validates, and applies the query. The filter converts the query options into a LINQ expression. When the OData controller returns an **IQueryable** type, the **IQueryable** LINQ provider converts the LINQ expression into a query. Therefore, performance depends on the LINQ provider that is used, and also on the particular characteristics of your dataset or database schema.
+
+If you know that all clients are trusted (for example, in an enterprise environment), or if your dataset is small, query performance might not be an issue. Otherwise, you should consider the following recommendations.
+
+* Enable server-driven paging, to avoid returning a large data set in one query.
+
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=PageSizeOption)]
+
+With server-driven paging enabled, your endpoint returns only a limited number of records (for example 3), you can get more records using `$Skip` option.
+
+* Consider restricting $orderby to properties in a clustered index. Sorting large data without a clustered index is slow.
+
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=orderOption)]
+
+* Test your service with various queries and profile the DB.
+
+* You can prevent or allow more options using `[Queryable]` attribute filters, be sure to disallow all unnecessary demanding functionalities.
+
 ## Additional resources
 
 [View or download sample code for this tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-odata-api/samples). See [how to download](xref:index#how-to-download-a-sample).

@@ -8,8 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TodoApi.Models;
+using Microsoft.AspNet.OData;
 
-#region TodoController
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
@@ -17,7 +17,6 @@ namespace TodoApi.Controllers
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
-        #endregion
 
         public TodoController(TodoContext context)
         {
@@ -31,6 +30,25 @@ namespace TodoApi.Controllers
                 _context.SaveChanges();
             }
         }
+
+
+#region orderOption
+        [HttpGet]
+        [EnableQuery(AllowedOrderByProperties=nameof(TodoItem.Name))]
+        public ActionResult<IQueryable<TodoItem>> GetTodoItemsOrderBy()
+        {
+            return _context.TodoItems;
+        }
+#endregion
+
+#region PageSizeOption
+        [HttpGet]
+        [EnableQuery(PageSize = 3)]
+        public ActionResult<IQueryable<TodoItem>> GetTodoItemsPageSize()
+        {
+            return _context.TodoItems;
+        }
+#endregion
     }
 }
 #endregion
