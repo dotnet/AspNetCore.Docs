@@ -73,7 +73,7 @@ These features require a [compatibility version](<xref:mvc/compatibility-version
 
 ### ApiController on specific controllers
 
-The `ApiController` attribute can be applied to specific controllers, as in the following example from the project template:
+The `[ApiController]` attribute can be applied to specific controllers, as in the following example from the project template:
 
 [!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=2)]
 
