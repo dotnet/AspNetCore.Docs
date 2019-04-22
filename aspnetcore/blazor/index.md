@@ -14,26 +14,24 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 *Welcome to Blazor!*
 
-Build interactive client-side web UI with .NET:
+Blazor is a framework for building interactive client-side web UI with .NET:
 
 * Create rich interactive UIs using C# instead of JavaScript.
 * Share server-side and client-side app logic written with .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
 
-Blazor supports app development scenarios required by most apps:
+Using .NET for client-side web development offers the following advantages:
 
-* Event handling
-* Data binding
-* Routing
-* Dependency injection
-* Layouts
-* Templates
-* Cascading values
-* Parameters
+* Write code in C# instead of JavaScript.
+* Leverage the existing .NET ecosystem of .NET libraries.
+* Share app logic across the server and client.
+* Benefit from .NET's performance, reliability, and security.
+* Stay productive with Visual Studio on Windows, Linux, and macOS.
+* Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 
 ## Components
 
-A *component* in Blazor is an element of UI, such as a page, dialog, or data entry form. Components handle user events and define flexible UI rendering logic. Components can be nested and reused.
+Blazor apps are based on *components*. A component in Blazor is an element of UI, such as a page, dialog, or data entry form. Components handle user events and define flexible UI rendering logic. Components can be nested and reused.
 
 Components are .NET classes built into .NET assemblies that can be shared and distributed as [NuGet packages](/nuget/what-is-nuget). The component class is usually written in the form of a Razor markup page with a *.razor* file extension.
 
@@ -84,22 +82,13 @@ The dialog is rendered when the parent (*Index.razor*) is accessed in a browser:
 
 ![Dialog component rendered in the browser](index/_static/dialog.png)
 
-When this component is used in the app, [Visual Studio](https://visualstudio.microsoft.com/vs/) IntelliSense speeds development with syntax and parameter completion.
+When this component is used in the app, IntelliSense in [Visual Studio](/visualstudio/ide/using-intellisense) and [Visual Studio Code](https://code.visualstudio.com/docs/editor/intellisense) speeds development with syntax and parameter completion.
 
 Components render into an in-memory representation of the browser DOM called a *render tree* that's used to update the UI in a flexible and efficient way.
 
 ## Blazor client-side
 
 Blazor client-side is a single-page app framework for building interactive client-side web apps with .NET. Blazor client-side uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers.
-
-Using .NET in the browser for client-side web development offers the following advantages:
-
-* Write code in C# instead of JavaScript.
-* Leverage the existing .NET ecosystem of .NET libraries.
-* Share app logic across the server and client.
-* Benefit from .NET's performance, reliability, and security.
-* Stay productive with Visual Studio on Windows, Linux, and macOS.
-* Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 
 Running .NET code inside web browsers is made possible by [WebAssembly](http://webassembly.org) (abbreviated *wasm*). WebAssembly is an open web standard and supported in web browsers without plugins. WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed.
 
