@@ -8,137 +8,71 @@ ms.date: 04/13/2019
 uid: tutorials/first-odata-api
 ---
 
+replace 57662 with         5001
+
+
 # Tutorial: Build web APIs with OData support using ASP.NET Core
 
 By [FIVIL](https://github.com/fivil)
 
-This tutorial demonstrates how you can add OData Query Options support on top of your existing ASP.NET Core Web API.
-
-In this tutorial, you learn how to:
-
-> [!div class="checklist"]
-> * Opening an existing project or solution.
-> * Update the model class.
-> * Register the required services.
-> * Configure middleware.
-> * Update the controller.
-> * Query resources using OData.
-
-At the end, you have a web API that can Query, filter and sort data.
+This tutorial demonstrates how to add OData Query Options support in an ASP.NET Core Web API app.
 
 ## Overview
 
 The Open Data Protocol (OData) is a data access protocol for the web. OData provides a uniform way to query and manipulate data sets through CRUD operations (create, read, update, and delete).
 
-For this tutorial we use [to-do Web API](xref:tutorials/first-web-api) as an existing Web API.
+This tutorial uses the completed [to-do Web API](xref:tutorials/first-web-api).
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
-## Opening an existing ASP.NET Core project
-
-# [Visual Studio](#tab/visual-studio)
-
-1. Go to **File** > **Open** > **Project/Solution**.
-1. Find and select **TodoApi.csproj**, and click **Open**.
-1. Visit the [NuGet Gallery: Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) to determine the latest stable version of the .NET Core OData package. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET Core OData package:
-
-    ```powershell
-    Install-Package Microsoft.AspNetCore.OData -Version {VERSION}
-    ```
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-1. Open a command shell
-1. Navigate to **TodoApi** root Directory inside your command shell
-1. Run the following command:
-
-    ```console
-    code .
-    ```
-
-    TodoApi is opened in Visual Studio Code.
-
-1. Click **Yes** when the *Required assets to build and debug are missing from 'TodoApi'. Add them?* notification appears.
-1. Visit the [NuGet Gallery: Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) to determine the latest stable version of the .NET Core OData package. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET Core OData package:
-
-    ```console
-    dotnet add TodoApi.csproj package Microsoft.AspNetCore.OData -Version {VERSION}
-    ```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. Go to **File** > **Open**.
-1. Find and select **TodoApi.csproj**, and click **Open**.
-1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Add Packages**.
-1. Enter *Microsoft.AspNetCore.OData* in the search box, select the *Microsoft.AspNetCore.OData* package, and click **Add Package**.
-1. Click the **Accept** button in the **License Acceptance** dialog.
-
----
-
 ## Update the model class
 
-Open the model class *TodoItem.cs* under *Models* directory.
+[Download Web API sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples) ([How to download](xref:index#how-to-download-a-sample)).
 
-The model class contains three properties:
+Add the [Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData) NuGet package to the project.
 
- [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=OldProps)]
+Add the following highlighted properties to *Models\TodoItem.cs*:
 
-However for better demonstration of OData capabilities, you should add below properties as well:
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=snippet)]
 
- [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=NewProps)]
+## Register OData
 
-Finally your *TodoItem.cs* class should look like:
-
- [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs)]
-
-> [!TIP]
-> Since this tutorial uses **InMemoryDatabase**  you dont need to add migrations, however if you want to use other type of database providers such as **SqlServer** you must migrate your database. for more information about migrations visit: @data/ef-mvc/migrations
-
-## Register the required services
-
-In ASP.NET Core you should register OData service inside [dependency injection (DI)](xref:fundamentals/dependency-injection) container.
+In ASP.NET Core you should 
 
 Update the `ConfigureServices` method in *Startup.cs* with the following highlighted code:
 
- [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=6&name=snippet_dic)]
+ [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=6-7&name=snippet_dic)]
 
-You should also add the *Microsoft.AspNet.OData.Extensions* Directive to your *Startup.cs*:
-
-```csharp
-using Microsoft.AspNet.OData.Extensions;
-```
+The preceding code registers the OData service in the [dependency injection (DI)](xref:fundamentals/dependency-injection) container.
 
 ## Configure middleware
 
-OData can preform sorting, filtering, querying related data and etc. You can enable/disable each of these capabilities using a middleware.
+OData can preform sorting, filtering, querying related data, and more.  Each of these capabilities can be enabled or disabled with middleware.
 
-Update the `Configure` method in *Startup.cs* with the following highlighted code:
+Update `Configure` with the following highlighted code:
 
  [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=17-21&name=snippet_configure)]
 
-Finally your *Startup.cs* class should look like:
+The preceding code:
 
-[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=8,28,48-52&name=snippet_all)]
+* Enables DI for the route builder.
+* Enables select, order by, and filtering to the route builder.
 
 ## Update the controller
+
+Add `[EnableQuery()]` to the `public ActionResult<IQueryable<TodoItem>> GetTodoItems()` method in the `TodoController`
 
 Update *TodoController.cs* under *Controllers* directory, add `[EnableQuery()]` attribute:
 
 [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=7,32-36&name=all)]
 
-> [!TIP]
-> Returning `IQueryable` or `ActionResult<IQueryable>` enables **OData** to translate your queries to **SQL** queries using *ef core* capabilities, you may also return other types such as `IEnumerable` which makes **OData** to preform queries inside your app.
+Returning <xref:System.Linq.IQueryable> or [`ActionResult<IQueryable>`](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) enables **OData** to translate queries to **SQL** queries using *ef core* capabilities.  Returning other types such as `IEnumerable` causes **OData** to preform queries in the app.
 
 ## Query resources using OData
 
-First post some data to your web API:
+Post some data to the web API app, using a tool such as [Postman](https://www.getpostman.com/tools). See [How to use Postman](xref:tutorials/first-web-api#test-the-gettodoitems-method),
 
-> [!TIP]
-> You can use Postman to post data, for more information visit: [How to use Postman](xref:tutorials/first-web-api#test-the-gettodoitems-method)
-
-![Postman with Post request](first-odata-api/_static/SendData.png)
-
-Open your Postman and send a Post request to `https://localhost:5001/api/todo` and include each of the items below **separately** in your request body.
+Send a Post request to `https://localhost:5001/api/todo` and include each of the items below **separately** in the request body.
 
 ```json
 {
@@ -147,28 +81,32 @@ Open your Postman and send a Post request to `https://localhost:5001/api/todo` a
     "Type": "work",
     "priority": 1,
     "DueDate": "2019-04-18 00:00:01"
-},
+}
+
 {
     "name": "test 2",
     "isComplete": true,
     "Type": "shopping",
     "priority": 2,
     "DueDate": "2019-04-18 08:00:01"
-},
+}
+
 {
     "name": "test 3",
     "isComplete": true,
     "Type": "work",
     "priority": 1,
     "DueDate": "2019-04-18 09:00:01"
-},
+}
+
 {
     "name": "test 4",
     "isComplete": false,
     "Type": "shopping",
     "priority": 3,
     "DueDate": "2019-04-18 12:00:01"
-},
+}
+
 {
     "name": "test 5",
     "isComplete": false,
@@ -178,34 +116,140 @@ Open your Postman and send a Post request to `https://localhost:5001/api/todo` a
 }
 ```
 
-Now you can use OData to query data, but let's test our API without OData query.
-
-Open your Postman and send a Get request to `https://localhost:5001/api/todo`:
-
-![Postman with Get request](first-odata-api/_static/getData.png)
+Send a Get request to verify the previous data has been saved. For example,  `http://localhost:57662/api/todo?$select=name,isComplete`.
 
 ### $select
 
-The **$select** option specifies a subset of properties to include in the response body. For example, to get only the *name* and *isComplete* of each item, add `?$select=name,isComplete` at the end of your request path:
+The **$select** option specifies a subset of properties to include in the response body. For example, to get only the *name* and *isComplete* of each item, add `?$select=name,isComplete` at the end the request path.
 
-![Postman with Get request and $select query](first-odata-api/_static/selectQuery.png)
+The preceding request returns the following data:
+
+```JSON
+[
+    {
+        "Name": "Item1",
+        "IsComplete": false
+    },
+    {
+        "Name": "test 5",
+        "IsComplete": false
+    },
+    {
+        "Name": "test OData",
+        "IsComplete": false
+    },
+    {
+        "Name": "test 2",
+        "IsComplete": true
+    },
+    {
+        "Name": "test 3",
+        "IsComplete": true
+    },
+    {
+        "Name": "test 4",
+        "IsComplete": false
+    }
+]
+```
 
 ### $orderBy
 
-The **$orderBy** option sorts your data based on one or more properties. For example, to order your data based on *priority* of each item, add `?$orderBy=priority` at the end of your request path:
+The **$orderBy** option sorts data based on one or more properties. For example, to order the data based on *priority* of each item, append `?$orderBy=priority` to the request. For example, `http://localhost:57662/api/todo?$orderBy=priority`.
 
-![Postman with Get request and $orderBy query](first-odata-api/_static/orderby.png)
+The preceding request returns the following data:
 
-> [!TIP]
-> You can sort your data based on multiple properties, for example `?$orderBy=type,priority desc` first sorts items based on their *type* and then based on their *priority* in **descending** order.
+```JSON
+[
+    {
+        "id": 1,
+        "name": "Item1",
+        "isComplete": false,
+        "type": null,
+        "priority": 0,
+        "dueDate": "0001-01-01T00:00:00"
+    },
+    {
+        "id": 3,
+        "name": "test OData",
+        "isComplete": false,
+        "type": "work",
+        "priority": 1,
+        "dueDate": "2019-04-18T00:00:01"
+    },
+    {
+        "id": 5,
+        "name": "test 3",
+        "isComplete": true,
+        "type": "work",
+        "priority": 1,
+        "dueDate": "2019-04-18T09:00:01"
+    },
+    {
+        "id": 2,
+        "name": "test 5",
+        "isComplete": false,
+        "type": "work",
+        "priority": 2,
+        "dueDate": "2019-04-18T15:00:01"
+    },
+    {
+        "id": 4,
+        "name": "test 2",
+        "isComplete": true,
+        "type": "shopping",
+        "priority": 2,
+        "dueDate": "2019-04-18T08:00:01"
+    },
+    {
+        "id": 6,
+        "name": "test 4",
+        "isComplete": false,
+        "type": "shopping",
+        "priority": 3,
+        "dueDate": "2019-04-18T12:00:01"
+    }
+]
+```
+
+Data can be sorted data based on multiple properties. For example `?$orderBy=type,priority desc`" sorts items based on *type* and then on *priority* in **descending** order.
 
 ### $filter
 
-The **$filter** filters your data, based on a Boolean condition. For example, to get only the items with *priority* greater than 1, add `?$filter=priority gt 1` at the end of your request path:
+`$filter` filters data based on a boolean condition. For example, to get only the items with `priority` greater than 1, append `?$filter=priority gt 1` to the  request path.
 
-![Postman with Get request and $filter greater than query](first-odata-api/_static/filtergt.png)
+The preceding request returns the following data:
 
-You can use the following Boolean conditions with OData $filter:
+```JSON
+[
+    {
+        "id": 2,
+        "name": "test 5",
+        "isComplete": false,
+        "type": "work",
+        "priority": 2,
+        "dueDate": "2019-04-18T15:00:01"
+    },
+    {
+        "id": 4,
+        "name": "test 2",
+        "isComplete": true,
+        "type": "shopping",
+        "priority": 2,
+        "dueDate": "2019-04-18T08:00:01"
+    },
+    {
+        "id": 6,
+        "name": "test 4",
+        "isComplete": false,
+        "type": "shopping",
+        "priority": 3,
+        "dueDate": "2019-04-18T12:00:01"
+    }
+]
+```
+
+The following Boolean conditions can be used with the OData `$filter`:
 
 |Condition | Description | Example |
 |--- | ---- | ---- |
@@ -219,47 +263,83 @@ You can use the following Boolean conditions with OData $filter:
 | or | Logical or | $filter=priority gt 1 or priority lt 10|
 | not | Logical negation | $filter=not endswith(name,'task') |
 
-You can also use string functions with OData $filter, for more information visit [OData URI Conventions'](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/) *$filter* section.
+String functions can be used with OData $filter. For more information see the [OData URI Conventions'](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/) `$filter` section.
 
 ### $skip
 
-The **$skip** skips some of your data records. For example, to skip first two items, add `$skip=2` at the end of your request path:
+`$skip` skips the specified records. For example, to skip first 4 items, append `?$skip=4` to the request.
 
-![Postman with Get request and $skip query](first-odata-api/_static/skip.png)
+The preceding request returns the following data:
 
-Finally you can mix OData queries together to make a complex query:
+```JSON
+[
+    {
+        "id": 5,
+        "name": "test 3",
+        "isComplete": true,
+        "type": "work",
+        "priority": 1,
+        "dueDate": "2019-04-18T09:00:01"
+    },
+    {
+        "id": 6,
+        "name": "test 4",
+        "isComplete": false,
+        "type": "shopping",
+        "priority": 3,
+        "dueDate": "2019-04-18T12:00:01"
+    }
+]
+```
 
-![Postman with Get request and complex query](first-odata-api/_static/complex.png)
+OData queries can be chained to make a complex query. For example, appending `?$skip=2&$select=name,priority&$orderBy=priority desc&filter=priority gt 1` returns the following data:
+
+```JSON
+[
+    {
+        "Name": "test 2",
+        "priority": 2
+    },
+    {
+        "Name": "test OData",
+        "priority": 1
+    },
+    {
+        "Name": "test 3",
+        "priority": 1
+    },
+    {
+        "Name": "Item1",
+        "priority": 0
+    }
+]
+```
 
 ## Security concerns
 
-A malicious or naive client may be able to construct a query that takes a very long time to execute. In the worst case this can disrupt access to your service.
+A malicious or naive client can construct a query that takes significant system resources. Such a query can disrupt your service.
 
-The `[Queryable]` attribute is an action filter that parses, validates, and applies the query. The filter converts the query options into a LINQ expression. When the OData controller returns an **IQueryable** type, the **IQueryable** LINQ provider converts the LINQ expression into a query. Therefore, performance depends on the LINQ provider that is used, and also on the particular characteristics of your dataset or database schema.
+The `[Queryable]` attribute is an action filter that parses, validates, and applies the query. The filter converts the query options into a LINQ expression. When the OData controller returns an `IQueryable` type, the `IQueryable` LINQ provider converts the LINQ expression into a query. Therefore, performance depends on the LINQ provider that is used, and on the particular characteristics of the dataset or database schema.
 
-If you know that all clients are trusted (for example, in an enterprise environment), or if your dataset is small, query performance might not be an issue. Otherwise, you should consider the following recommendations.
+If you know that all clients are trusted (for example, in an enterprise environment), or if your dataset is small, query performance might not be an issue. Otherwise, consider the following recommendations:
 
 * Enable server-driven paging, to avoid returning a large data set in one query.
 
-[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=PageSizeOption)]
+  [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=PageSizeOption)]
 
-With server-driven paging enabled, your endpoint returns only a limited number of records (for example 3), you can get more records using `$Skip` option.
+  With server-driven paging enabled:
 
-* Consider restricting $orderby to properties in a clustered index. Sorting large data without a clustered index is slow.
+  * The endpoint returns only a limited number of records (for example 3).
+  * More records can be returned using the `$Skip` option.
 
-[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=orderOption)]
+* Consider restricting `$orderby` to properties in a clustered index. Sorting a  large data without a clustered index is slow.
 
-* Test your service with various queries and profile the DB.
+  [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=orderOption)]
 
-* You can prevent or allow more options using `[Queryable]` attribute filters, be sure to disallow all unnecessary demanding functionalities.
+* Test the service with various queries and profile the DB.
+* Use the `[Queryable]` attribute filters to prevent or allow options. Disallow all unnecessary demanding functionalities.
 
 ## Additional resources
 
-[View or download sample code for this tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-odata-api/samples). See [how to download](xref:index#how-to-download-a-sample).
-
-For more information, see the following resources:
-
+* [View or download sample code for this tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-odata-api/samples). See [how to download](xref:index#how-to-download-a-sample).
 * [OData official website](https://www.odata.org/)
-
->[!div class="step-by-step"]
->[Previous](./first-web-api.md)
