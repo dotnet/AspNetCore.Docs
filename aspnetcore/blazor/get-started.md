@@ -153,7 +153,7 @@ Run the app. The homepage has its own counter provided by the Counter component.
 
 To add a parameter to the Counter component, update the component's `@functions` block:
 
-* Add a property for `IncrementAmount` with an `[Parameter]` attribute.
+* Add a property for `IncrementAmount` with a `[Parameter]` attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
 *Pages/Counter.razor*:
