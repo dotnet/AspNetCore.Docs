@@ -1,5 +1,5 @@
 ---
-title: Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1 and later
+title: Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1 or later
 author: Rick-Anderson
 description: The Microsoft.AspNetCore.App metapackage includes all supported ASP.NET Core and Entity Framework Core packages.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,9 +7,9 @@ ms.author: riande
 ms.date: 04/21/2019
 uid: fundamentals/metapackage-app
 ---
-# Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1
+# Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1 or later
 
-This feature requires ASP.NET Core 2.1 and later targeting .NET Core 2.1 and later.
+This feature requires ASP.NET Core 2.1 or later targeting .NET Core 2.1 or later.
 
 The [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App) [metapackage](/dotnet/core/packages#metapackages) for ASP.NET Core:
 
