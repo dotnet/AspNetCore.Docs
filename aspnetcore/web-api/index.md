@@ -9,7 +9,7 @@ ms.date: 04/11/2019
 uid: web-api/index
 ---
 
-# Build web APIs with ASP.NET Core
+# Create web APIs with ASP.NET Core
 
 By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github.com/tdykstra)
 
