@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApiSample.DataAccess;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api._22.Controllers
+namespace WebApiSample.Controllers
 {
     [Route("api/[controller]")]
-    public class ProductsController : Controller
+    public class ProductsController : MyControllerBase
     {
         private readonly ProductsRepository _repository;
 
@@ -23,16 +24,15 @@ namespace WebApiSample.Api._22.Controllers
         {
             var product = await _repository.GetProductAsync(id);
 
-            #region snippet_ProblemDetailsStatusCode
             if (product == null)
             {
                 return NotFound();
             }
-            #endregion
 
             return product;
         }
 
+        #region snippet_BindingSourceAttributes
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetAsync(
             [FromQuery] bool discontinuedOnly = false)
@@ -50,6 +50,7 @@ namespace WebApiSample.Api._22.Controllers
 
             return products;
         }
+        #endregion
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -58,7 +59,7 @@ namespace WebApiSample.Api._22.Controllers
         {
             await _repository.AddProductAsync(product);
 
-            return CreatedAtAction(nameof(GetByIdAsync),
+            return CreatedAtAction(nameof(GetByIdAsync), 
                 new { id = product.Id }, product);
         }
     }
