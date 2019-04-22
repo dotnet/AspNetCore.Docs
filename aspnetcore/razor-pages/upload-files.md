@@ -5,7 +5,7 @@ description: Learn how to upload files to a Razor Page in ASP.NET Core using the
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 11/10/2018
-ms.custom: seodec18
+ms.custom: "mvc, seodec18"
 uid: razor-pages/upload-files
 ---
 # Upload files to a Razor Page in ASP.NET Core

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: riande
 ms.date: 6/16/2018
-ms.custom: seodec18
+ms.custom: "mvc, seodec18"
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project

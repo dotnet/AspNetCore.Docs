@@ -50,7 +50,7 @@ For example, the following *_Imports.razor* file imports:
  
 ```cshtml
 @layout MainLayout
-@using Microsoft.AspNetCore.Components.
+@using Microsoft.AspNetCore.Components
 @using BlazorApp1.Data
 ```
 

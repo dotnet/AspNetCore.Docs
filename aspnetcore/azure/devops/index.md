@@ -4,7 +4,7 @@ author: CamSoper
 description: A guide that provides end-to-end guidance on building a DevOps pipeline for an ASP.NET Core app hosted in Azure.
 ms.author: casoper
 ms.date: 08/07/2018
-ms.custom: seodec18
+ms.custom: "mvc, seodec18"
 uid: azure/devops/index
 ---
 # DevOps with ASP.NET Core and Azure

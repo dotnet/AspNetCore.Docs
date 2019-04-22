@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api.Controllers
+namespace WebApiSample.Controllers
 {
-    #region snippet_PetsController
+    #region snippet_Inherit
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class PetsController : ControllerBase
+    public class PetsController : MyControllerBase
+    #endregion
     {
         private readonly PetsRepository _repository;
 
@@ -20,46 +21,38 @@ namespace WebApiSample.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Pet>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<ActionResult<List<Pet>>> GetAllAsync()
         {
-            var pets = await _repository.GetPetsAsync();
-
-            return Ok(pets);
+            return await _repository.GetPetsAsync();
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Pet), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByIdAsync(int id)
+        public async Task<ActionResult<Pet>> GetByIdAsync(int id)
         {
             var pet = await _repository.GetPetAsync(id);
 
+            #region snippet_ProblemDetailsStatusCode
             if (pet == null)
             {
                 return NotFound();
             }
-
-            return Ok(pet);
-        }
-
-        [HttpPost]
-        [ProducesResponseType(typeof(Pet), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateAsync([FromBody] Pet pet)
-        {
-            #region snippet_ModelStateIsValidCheck
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             #endregion
 
+            return pet;
+        }
+
+        #region snippet_400And201
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Pet>> CreateAsync(Pet pet)
+        {
             await _repository.AddPetAsync(pet);
 
             return CreatedAtAction(nameof(GetByIdAsync),
                 new { id = pet.Id }, pet);
         }
+        #endregion
     }
-    #endregion
 }
