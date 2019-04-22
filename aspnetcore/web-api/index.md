@@ -131,7 +131,7 @@ To change the default response to <xref:Microsoft.AspNetCore.Mvc.SerializableErr
 
 To customize the response that results from a validation error, use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory>. Add the following highlighted code after `services.AddMvc().SetCompatibilityVersion`:
 
-[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureBadRequestResponse)]
+[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureBadRequestResponse&highlight=3-20)]
 
 ### Disable automatic 400
 
