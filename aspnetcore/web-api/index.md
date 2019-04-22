@@ -1,5 +1,5 @@
 ---
-title: Build web APIs with ASP.NET Core
+title: Create web APIs with ASP.NET Core
 author: scottaddie
 description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
