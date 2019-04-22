@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 04/21/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -314,7 +314,7 @@ It's often convenient to close over additional values, such as when iterating ov
     private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
     {
         message = $"You selected Button #{buttonNumber} at " +
-            "mouse position: {e.ClientX} X {e.ClientY}.";
+            $"mouse position: {e.ClientX} X {e.ClientY}.";
     }
 }
 ```
