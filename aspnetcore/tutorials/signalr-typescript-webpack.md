@@ -4,7 +4,7 @@ author: ssougnez
 description: In this tutorial, you configure Webpack to bundle and build an ASP.NET Core SignalR web app whose client is written in TypeScript.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 02/11/2019
+ms.date: 04/23/2019
 uid: tutorials/signalr-typescript-webpack
 ---
 # Use ASP.NET Core SignalR with TypeScript and Webpack
@@ -24,7 +24,22 @@ In this tutorial, you learn how to:
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-[!INCLUDE [Prerequisites](~/includes/net-core-prereqs-vs-vsc-2.2.md)]
+## Prerequisites
+
+# [Visual Studio](#tab/visual-studio)
+
+* [Visual Studio 2017 version 15.9 or later](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload
+* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [C# for Visual Studio Code version 1.17.1 or later](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
+
+---
 
 ## Create the ASP.NET Core web app
 
