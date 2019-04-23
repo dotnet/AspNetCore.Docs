@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2019
+ms.date: 04/23/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -193,9 +193,11 @@ Child component:
     private int Year { get; set; }
 
     [Parameter]
-    private Action<int> YearChanged { get; set; }
+    private EventCallback<int> YearChanged { get; set; }
 }
 ```
+
+`EventCallback<T>` is explained in the [EventCallback](#eventcallback) section.
 
 Loading the `ParentComponent` produces the following markup:
 
