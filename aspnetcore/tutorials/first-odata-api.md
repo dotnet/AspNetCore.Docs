@@ -2,15 +2,14 @@
 title: "Tutorial: Build web APIs with OData support using ASP.NET Core"
 author: FIVIL
 description: This tutorial demonstrates how to add OData support to your existing ASP.NET Core web API.
-#ms.author: riande
-ms.custom: mvc
-ms.date: 04/13/2019
+ms.author: riande
+ms.date: 05/13/2019
 uid: tutorials/first-odata-api
 ---
 
 # Tutorial: Build web APIs with OData support using ASP.NET Core
 
-By [FIVIL](https://github.com/fivil)
+By [FIVIL](https://github.com/fivil) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial demonstrates how to add [OData](https://www.odata.org/) query options support in an ASP.NET Core Web API app.
 
@@ -48,7 +47,7 @@ Update `Configure` with the following highlighted code:
 
 The preceding code:
 
-* Enables DI for the route builder.
+* Enables an override to the existing endpoints through DI to route builder, instead of exposing a traditional OData endpoint.
 * Enables select, order by, and filtering to the route builder.
 
 ## Update the controller
@@ -310,7 +309,10 @@ OData queries can be chained to make a complex query. For example, appending `?$
 
 ## Security concerns
 
-A malicious or naive client can construct a query that takes significant system resources. Such a query can disrupt your service.
+A malicious or naive client can construct a query that:
+
+* Takes significant system resources. Such a query can disrupt your service.
+* Leaks sensitive information by a clear join.
 
 The `[Queryable]` attribute is an action filter that parses, validates, and applies the query. The filter converts the query options into a LINQ expression. When the OData controller returns an `IQueryable` type, the `IQueryable` LINQ provider converts the LINQ expression into a query. Therefore, performance depends on the LINQ provider that is used, and on the particular characteristics of the dataset or database schema.
 

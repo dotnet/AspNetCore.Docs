@@ -1,4 +1,6 @@
-﻿namespace TodoApi.Models
+﻿using System.Runtime.Serialization;
+
+namespace TodoApi.Models
 {
     public class TodoItem
     {
@@ -10,6 +12,9 @@
         public string Type { get; set; }
         public int priority { get; set; }
         public System.DateTime DueDate { get; set; }
+
+        //[IgnoreDataMember]
+        public string MySecret { get; set; }  // Not visible in the EDM
         #endregion
     }
 }

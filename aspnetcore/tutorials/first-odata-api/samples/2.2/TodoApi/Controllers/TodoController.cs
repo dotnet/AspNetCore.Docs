@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TodoApi.Models;
 using Microsoft.AspNet.OData;
+using System;
 
 #region TodoController
 namespace TodoApi.Controllers
@@ -27,7 +28,12 @@ namespace TodoApi.Controllers
             {
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all TodoItems.
-                _context.TodoItems.Add(new TodoItem { Name = "Item1" });
+                _context.TodoItems.Add(new TodoItem {
+                    Name = "Item1",
+                    Type ="from constructor",
+                    DueDate = DateTime.Now,
+                    priority =2                
+                });
                 _context.SaveChanges();
             }
         }
