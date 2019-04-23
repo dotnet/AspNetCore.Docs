@@ -40,7 +40,7 @@ For actions with multiple return types (for example, different HTTP status codes
 
 ## Content Negotiation
 
-Content negotiation (*conneg*) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](http://json.org/). Content negotiation is implemented by `ObjectResult`. It's also built into the status code-specific action results returned from the helper methods (which are all based on `ObjectResult`). A model type can be returned and ASP.NET Core will wrap it in an `ObjectResult`.
+Content negotiation (*conneg*) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](http://json.org/). Content negotiation is implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>. It's also built into the status code-specific action results returned from the helper methods (which are all based on `ObjectResult`). A model type can be returned and ASP.NET Core will wrap it in an `ObjectResult`.
 
 The following action method uses the `Ok` and `NotFound` helper methods:
 
@@ -48,7 +48,7 @@ The following action method uses the `Ok` and `NotFound` helper methods:
 
 A JSON-formatted response will be returned unless another format was requested and the server can return the requested format. You can use a tool like [Fiddler](http://www.telerik.com/fiddler) or  [Postman](https://www.getpostman.com/tools) to create a request that includes an `Accept` header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result will be returned in the client-preferred format.
 
-By default, ASP.NET Core only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. You'll see how to add additional formatters in the next section.
+By default, ASP.NET Core only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects), in which case ASP.NET Core automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
@@ -67,12 +67,12 @@ Content *negotiation* takes place when an `Accept` header appears in the request
 
 If no formatter is found that can satisfy the client's request, ASP.NET Core:
 
-* Returns `406 Not Acceptable` if `MvcOptions` has been set, or -
+* Returns `406 Not Acceptable` if <xref:Microsoft.AspNetCore.Mvc.MvcOptions> has been set, or -
 * Tries to find the first formatter that can produce a response.
 
 If the request specifies XML, but the XML formatter has not been configured, the JSON formatter is used. More generally, if no formatter is configured that can provide the requested format, the first formatter that can format the object is used. If no header is given, the first formatter that can handle the object is used to serialize the response. In the no header case, there isn't any negotiation taking place - the server is determining what format it will use.
 
-If the Accept header contains `*/*`, the Header will be ignored unless `RespectBrowserAcceptHeader` is set to true on `MvcOptions`.
+If the Accept header contains `*/*`, the Header will be ignored unless `RespectBrowserAcceptHeader` is set to true on <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
 ### Browsers and Content Negotiation
 
@@ -84,7 +84,7 @@ If you would prefer your app honor browser accept headers, you can configure thi
 
 ## Configuring Formatters
 
-If your app needs to support additional formats beyond the default of JSON, you can add NuGet packages and configure ASP.NET Core to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding); output formatters are used to format responses. You can also configure [Custom Formatters](xref:web-api/advanced/custom-formatters).
+Apps that need to support additional formats beyond the default of JSON can add NuGet packages and configure ASP.NET Core to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding); output formatters are used to format responses. Custom Formatters](xref:web-api/advanced/custom-formatters) can also be configured.
 
 ### Adding XML Format Support
 
@@ -102,7 +102,7 @@ When using the preceding code, controller methods should return the appropriate 
 
 ### Forcing a format
 
-If you would like to restrict the response formats for a specific action you can, you can apply the `[Produces]` filter. The `[Produces]` filter specifies the response formats for a specific action (or controller). Like most [Filters](xref:mvc/controllers/filters), this can be applied at the action, controller, or global scope.
+To restrict the response formats for a specific action, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. The `[Produces]` filter specifies the response formats for a specific action (or controller). Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope.
 
 ```csharp
 [Produces("application/json")]
