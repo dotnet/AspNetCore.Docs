@@ -8,20 +8,13 @@ ms.date: 04/13/2019
 uid: tutorials/first-odata-api
 ---
 
-replace 57662 with         5001
-
-
 # Tutorial: Build web APIs with OData support using ASP.NET Core
 
 By [FIVIL](https://github.com/fivil)
 
-This tutorial demonstrates how to add OData Query Options support in an ASP.NET Core Web API app.
+This tutorial demonstrates how to add [OData](https://www.odata.org/) query options support in an ASP.NET Core Web API app.
 
-## Overview
-
-The Open Data Protocol (OData) is a data access protocol for the web. OData provides a uniform way to query and manipulate data sets through CRUD operations (create, read, update, and delete).
-
-This tutorial uses the completed [to-do Web API](xref:tutorials/first-web-api).
+This tutorial uses the completed [to-do Web API](xref:tutorials/first-web-api) as a starting point.
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
@@ -47,7 +40,7 @@ The preceding code registers the OData service in the [dependency injection (DI)
 
 ## Configure middleware
 
-OData can preform sorting, filtering, querying related data, and more.  Each of these capabilities can be enabled or disabled with middleware.
+OData can perform sorting, filtering, querying related data, and more.  Each of these capabilities can be enabled or disabled with middleware.
 
 Update `Configure` with the following highlighted code:
 
@@ -66,7 +59,7 @@ Update *TodoController.cs* under *Controllers* directory, add `[EnableQuery()]` 
 
 [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=7,32-36&name=all)]
 
-Returning <xref:System.Linq.IQueryable> or [`ActionResult<IQueryable>`](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) enables **OData** to translate queries to **SQL** queries using *ef core* capabilities.  Returning other types such as `IEnumerable` causes **OData** to preform queries in the app.
+Returning <xref:System.Linq.IQueryable> or [`ActionResult<IQueryable>`](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) enables **OData** to translate queries to **SQL** queries using *ef core* capabilities.  Returning other types such as `IEnumerable` causes **OData** to perform queries in the app.
 
 ## Query resources using OData
 
@@ -116,7 +109,7 @@ Send a Post request to `https://localhost:5001/api/todo` and include each of the
 }
 ```
 
-Send a Get request to verify the previous data has been saved. For example,  `http://localhost:57662/api/todo?$select=name,isComplete`.
+Send a Get request to verify the previous data has been saved. For example,  `http://localhost:5001/api/todo?$select=name,isComplete`.
 
 ### $select
 
@@ -155,7 +148,7 @@ The preceding request returns the following data:
 
 ### $orderBy
 
-The **$orderBy** option sorts data based on one or more properties. For example, to order the data based on *priority* of each item, append `?$orderBy=priority` to the request. For example, `http://localhost:57662/api/todo?$orderBy=priority`.
+The **$orderBy** option sorts data based on one or more properties. For example, to order the data based on *priority* of each item, append `?$orderBy=priority` to the request. For example, `http://localhost:5001/api/todo?$orderBy=priority`.
 
 The preceding request returns the following data:
 
@@ -212,7 +205,7 @@ The preceding request returns the following data:
 ]
 ```
 
-Data can be sorted data based on multiple properties. For example `?$orderBy=type,priority desc`" sorts items based on *type* and then on *priority* in **descending** order.
+Data can be sorted data based on multiple properties. For example, `?$orderBy=type,priority desc`" sorts items based on *type* and then on *priority* in **descending** order.
 
 ### $filter
 
@@ -263,7 +256,7 @@ The following Boolean conditions can be used with the OData `$filter`:
 | or | Logical or | $filter=priority gt 1 or priority lt 10|
 | not | Logical negation | $filter=not endswith(name,'task') |
 
-String functions can be used with OData $filter. For more information see the [OData URI Conventions'](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/) `$filter` section.
+String functions can be used with OData $filter. For more information, see the [OData URI Conventions'](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/) `$filter` section.
 
 ### $skip
 
