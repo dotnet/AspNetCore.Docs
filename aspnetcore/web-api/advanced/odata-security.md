@@ -20,11 +20,11 @@ The query semantics are based on the [Entity Data Model](https://www.odata.org/d
 Properties can be excluded from the EDM with `[IgnoreDataMember]` or programmatically:
 There are two ways to exclude a property from the EDM. You can set the `[IgnoreDataMember]` attribute on the property in the model class:
 
-[!code-csharp[Main](first-odata-api/samples/2.2/TodoApi/Models/Employee.cs?name=snippet)]
+[!code-csharp[Main](odata-security/sample/ODataAPI/Models/Employee.cs?name=snippet)]
 
 The following code removes the `Salary` property from the EDM programmatically:
 
-[!code-csharp[Main](first-odata-api/samples/2.2/TodoApi/StartupEDM.cs?name=snippet)]
+[!code-csharp[Main](odata-security/sample/ODataAPI/StartupEDM.cs?name=snippet)]
 
 ## Query Security
 
