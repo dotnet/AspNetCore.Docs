@@ -228,7 +228,7 @@ The `Year` parameter is bindable because it has a companion `YearChanged` event 
 By convention, `<ChildComponent bind-Year="@ParentYear" />` is essentially equivalent to writing,
 
 ```cshtml
-    <ChildComponent bind-Year-YearChanged="@ParentYear" />
+<ChildComponent bind-Year-YearChanged="@ParentYear" />
 ```
 
 In general, a property can be bound to a corresponding event handler using `bind-property-event` attribute.
