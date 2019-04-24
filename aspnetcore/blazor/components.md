@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/21/2019
+ms.date: 04/23/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -18,9 +18,9 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 
 ## Component classes
 
-Components are implemented in Razor component files (*.razor*) using a combination of C# and HTML markup.
+Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup.
 
-Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app created using the Razor component template specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
+Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
 
 ```xml
 <_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
@@ -69,13 +69,13 @@ For more information on how components are rendered and component state is manag
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
 
-The following markup renders a `HeadingComponent` instance:
+The following markup in *Index.razor* renders a `HeadingComponent` instance, which exists in another file, *HeadingComponent.razor*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.razor?name=snippet_HeadingComponent)]
 
 ## Component parameters
 
-Components can have *component parameters*, which are defined using *non-public* properties on the component class decorated with `[Parameter]`. Use attributes to specify arguments for a component in markup.
+Components can have *component parameters*, which are defined using *non-public* properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
 
 In the following example, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`:
 
@@ -193,9 +193,11 @@ Child component:
     private int Year { get; set; }
 
     [Parameter]
-    private Action<int> YearChanged { get; set; }
+    private EventCallback<int> YearChanged { get; set; }
 }
 ```
+
+`EventCallback<T>` is explained in the [EventCallback](#eventcallback) section.
 
 Loading the `ParentComponent` produces the following markup:
 
@@ -226,7 +228,7 @@ The `Year` parameter is bindable because it has a companion `YearChanged` event 
 By convention, `<ChildComponent bind-Year="@ParentYear" />` is essentially equivalent to writing,
 
 ```cshtml
-    <ChildComponent bind-Year-YearChanged="@ParentYear" />
+<ChildComponent bind-Year-YearChanged="@ParentYear" />
 ```
 
 In general, a property can be bound to a corresponding event handler using `bind-property-event` attribute.
@@ -350,7 +352,7 @@ When the button is selected in the Child component:
     OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; }" />
 
 @function {
-    string messageText;
+    private string messageText;
 }
 ```
 
@@ -366,7 +368,7 @@ Prefer the strongly typed `EventCallback<T>`, which provides better error feedba
 
 ## Capture references to components
 
-Component references provide a way get a reference to a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `ref` attribute to the child component and then define a field with the same name and the same type as the child component.
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `ref` attribute to the child component and then define a field with the same name and the same type as the child component.
 
 ```cshtml
 <MyLoginDialog ref="loginDialog" ... />
@@ -386,7 +388,7 @@ When the component is rendered, the `loginDialog` field is populated with the `M
 > [!IMPORTANT]
 > The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
 
-While capturing component references uses a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code; they're only used in .NET code.
+While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
 > [!NOTE]
 > Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. This causes child components to rerender at the correct times automatically.
@@ -411,7 +413,7 @@ protected override void OnInit()
 }
 ```
 
-`OnParametersSetAsync` and `OnParametersSet` are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after component initialization and then each time the component is rendered:
+`OnParametersSetAsync` and `OnParametersSet` are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after component initialization and each time the component is rendered:
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -770,7 +772,7 @@ Binding with a string name value is relevant if you have multiple cascading valu
 
 Cascading values are bound to cascading parameters by type.
 
-In the sample app, the Cascading Values Parameters Theme component binds to the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
+In the sample app, the Cascading Values Parameters Theme component binds the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
 
 *Cascading Values Parameters Theme component*:
 

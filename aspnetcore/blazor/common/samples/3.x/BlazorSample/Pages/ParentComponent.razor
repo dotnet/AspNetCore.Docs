@@ -14,7 +14,7 @@
 @functions {
     private string messageText;
 
-    void ShowMessage(UIMouseEventArgs e)
+    private void ShowMessage(UIMouseEventArgs e)
     {
         messageText = "Blaze a new trail with Blazor!";
     }
@@ -44,7 +44,7 @@
 @@functions {
     private string messageText;
 
-    void ShowMessage(UIMouseEventArgs e)
+    private void ShowMessage(UIMouseEventArgs e)
     {
         messageText = "Blaze a new trail with Blazor!";
     }
@@ -67,5 +67,5 @@
     private RenderFragment ChildContent { get; set; }
 
     [Parameter]
-    EventCallback&lt;UIMouseEventArgs&gt; OnClick { get; set; }
+    private EventCallback&lt;UIMouseEventArgs&gt; OnClick { get; set; }
 }</code></pre>
