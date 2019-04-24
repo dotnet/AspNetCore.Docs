@@ -14,7 +14,7 @@ By [Rachel Appel](http://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Install the SignalR client package
 

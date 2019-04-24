@@ -24,7 +24,7 @@ ASP.NET Core SignalR supports streaming return values of server methods. This is
 
 ::: moniker-end
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/signalr/streaming/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/streaming/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Set up a hub for streaming
 
