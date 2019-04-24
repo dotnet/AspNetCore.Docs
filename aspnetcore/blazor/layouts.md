@@ -5,99 +5,66 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 04/24/2019
 uid: blazor/layouts
 ---
 # Blazor layouts
 
 By [Rainer Stropek](https://www.timecockpit.com)
 
-Apps typically contain more than one component. Layout elements, such as menus, copyright messages, and logos, must be present on all components. Copying the code of these layout elements into all of the components of an app isn't an efficient approach. Such duplication is hard to maintain and probably leads to inconsistent content over time. *Layouts* solve this problem.
+Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall layout and used by every component in the app. Copying the code of these elements into all of the components of an app isn't an efficient approach&mdash;every time one of the elements requires an update, every component must be updated. Such duplication is difficult to maintain and can lead to inconsistent content over time. *Layouts* solve this problem.
 
-Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can contain [data binding](xref:blazor/components#data-binding), [dependency injection](xref:blazor/dependency-injection), and other ordinary features of components.
+Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/components#data-binding), [dependency injection](xref:blazor/dependency-injection), and other component scenarios.
 
-Two additional aspects turn a *component* into a *layout*
+To turn a *component* into a *layout*, the component:
 
-* The layout component must inherit from `LayoutComponentBase`. `LayoutComponentBase` defines a `Body` property that contains the content to be rendered inside the layout.
-* The layout component uses the `Body` property to specify where the body content should be rendered using the Razor syntax `@Body`. During rendering, `@Body` is replaced by the content of the layout.
+* Inherits from `LayoutComponentBase`, which defines a `Body` property that contains the content to be rendered inside the layout.
+* Uses the Razor syntax `@Body` to specify the location in the markup where the content should be rendered.
 
-The following code sample shows the Razor template of a layout component. Note the use of `LayoutComponentBase` and `@Body`:
+The following code sample shows the Razor template of a layout component, *MainLayout.razor*. The layout inherits `LayoutComponentBase` and sets the `@Body` between the navigation bar and the footer:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.razor)]
+[!code-cshtml[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
-## Use a layout in a component
+## Specify a layout in a component
 
-Use the Razor directive `@layout` to apply a layout to a component. The compiler converts this directive into a `LayoutAttribute`, which is applied to the component class.
+Use the Razor directive `@layout` to apply a layout to a component. The compiler converts `@layout` into a `LayoutAttribute`, which is applied to the component class.
 
-The following code sample demonstrates the concept. The content of this component is inserted into the *MasterLayout* at the position of `@Body`:
+The content of the following component, *MasterList.razor*, is inserted into the *MainLayout* at the position of `@Body`.
 
-```cshtml
-@layout MasterLayout
-@page "/master-list"
-
-<h2>Master Episode List</h2>
-```
+[!code-cshtml[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
 ## Centralized layout selection
 
-Every folder of a an app can optionally contain a template file named *_Imports.razor*. The compiler includes the directives specified in the view imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, a *_Imports.razor* file containing `@layout MainLayout` ensures that all of the components in a folder use the *MainLayout* layout. There's no need to repeatedly add `@layout` to all of the *.razor* files. `@using` directives are also applied to components in the same folder or any sub folders.
+Every folder of an app can optionally contain a template file named *_Imports.razor*. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, a *_Imports.razor* file containing `@layout MainLayout` ensures that all of the components in a folder use *MainLayout*. There's no need to repeatedly add `@layout MainLayout` to all of the *.razor* files within the folder and subfolders. `@using` directives are also applied to components in the same way.
 
-For example, the following *_Imports.razor* file imports:
+The following *_Imports.razor* file imports:
 
 * `MainLayout`.
-* All Razor components in a the same folder and any sub folders.
+* All Razor components in a the same folder and any subfolders.
 * The `BlazorApp1.Data` namespace.
  
-```cshtml
-@layout MainLayout
-@using Microsoft.AspNetCore.Components
-@using BlazorApp1.Data
-```
+[!code-cshtml[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
-Use of the *_Imports.razor* file is similar to how you can use *_ViewImports.cshtml* with Razor views and pages, but applied specifically to Razor component files.
+The *_Imports.razor* file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
 
-Note that the default template uses the *_Imports.razor* mechanism for layout selection. A newly created app contains the *_Imports.razor* file in the *Pages* folder.
+The Blazor templates use *_Imports.razor* files for layout selection. An app created from a Blazor template contains the *_Imports.razor* file in the root of the project and in the *Pages* folder.
 
 ## Nested layouts
 
-Apps can consist of nested layouts. A component can reference a layout which in turn references another layout. For example, nesting layouts can be used to reflect a multi-level menu structure.
+Apps can consist of nested layouts. A component can reference a layout which in turn references another layout. For example, nesting layouts can be used to create a multi-level menu structure.
 
-The following code samples show how to use nested layouts. The *EpisodesComponent.razor* file is the component to display. Note that the component references the layout `MasterListLayout`.
+The following example shows how to use nested layouts. The *EpisodesComponent.razor* file is the component to display. The component references the `MasterListLayout`:
 
-*EpisodesComponent.razor*:
+[!code-cshtml[](layouts/sample_snapshot/3.x/EpisodesComponent.razor?highlight=1)]
 
-```cshtml
-@layout MasterListLayout
-@page "/master-list/episodes"
+The *MasterListLayout.razor* file provides the `MasterListLayout`. The layout references another layout, `MasterLayout`, where it's rendered. `EpisodesComponent` is rendered where `@Body` appears:
 
-<h1>Episodes</h1>
-```
+[!code-cshtml[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
 
-The *MasterListLayout.razor* file provides the `MasterListLayout`. The layout references another layout, `MasterLayout`, where it's going to be embedded.
+Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout elements, such as the header, main menu, and footer. *MasterListLayout* with *EpisodesComponent* are rendered where `@Body` appears:
 
-*MasterListLayout.razor*:
+[!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 
-```cshtml
-@layout MasterLayout
-@inherits LayoutComponentBase
+## Additional resources
 
-<nav>
-    <!-- Menu structure of master list -->
-    ...
-</nav>
-
-@Body
-```
-
-Finally, `MasterLayout` contains the top-level layout elements, such as the header, footer, and main menu.
-
-*MasterLayout.razor*:
-
-```cshtml
-@inherits LayoutComponentBase
-
-<header>...</header>
-<nav>...</nav>
-
-@Body
-```
+* <xref:mvc/views/layout>
