@@ -15,7 +15,7 @@ uid: fundamentals/metapackage
 
 This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 
-[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) is a metapackage that refers to a shared framework. A *shared framework* is a set of assemblies (*.dll* files) that are not in the app's folders. The shared framework is installed on the machine, not downloaded from NuGet like other packages. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) is a metapackage that refers to a shared framework. A *shared framework* is a set of assemblies (*.dll* files) that are not in the app's folders. The shared framework must be installed on the machine to run the app. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
 The shared framework that `Microsoft.AspNetCore.All` refers to includes:
 
