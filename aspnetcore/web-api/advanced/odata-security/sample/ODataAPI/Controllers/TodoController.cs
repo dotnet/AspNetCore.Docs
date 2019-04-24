@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.OData;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ODataAPI.Models;
 using ODataAPI.ODataAttribute;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ODataAPI.Controllers
 {
@@ -20,12 +16,14 @@ namespace ODataAPI.Controllers
             this.context = context;
         }
 
+        #region snippet_eq
         [HttpGet]
         [MyEnableQuery()]
         public ActionResult<IQueryable<TodoItem>> GetTodoItems()
         {
             return this.context.TodoItems;
         }
+        #endregion
 
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
