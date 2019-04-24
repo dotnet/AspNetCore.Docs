@@ -28,7 +28,7 @@ In this tutorial, you learn how to:
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2017 version 15.9 or later](https://www.visualstudio.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) with the **ASP.NET and web development** workload
+* [Visual Studio 2017 version 15.9 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) with the **ASP.NET and web development** workload
 * [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
