@@ -5,7 +5,7 @@ description: Learn how to configure Windows Authentication in ASP.NET Core, usin
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 02/25/2019
+ms.date: 04/03/2019
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
@@ -26,9 +26,13 @@ The **Web Application** template available via Visual Studio or the .NET Core CL
 
 In Visual Studio:
 
-1. Create a new **ASP.NET Core Web Application**.
-1. Select **Web Application** from the list of templates.
-1. Select the **Change Authentication** button and select **Windows Authentication**.
+1. Create a new project.
+1. Select **ASP.NET Core Web Application**. Select **Next**.
+1. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+1. Select **Change** under **Authentication**.
+1. In the **Change Authentication** window, select **Windows Authentication**. Select **OK**.
+1. Select **Web Application**.
+1. Select **Create**.
 
 Run the app. The username appears in the rendered app's user interface.
 
@@ -157,7 +161,7 @@ When both Windows Authentication and anonymous access are enabled, use the `[Aut
 In ASP.NET Core 2.x, the `[Authorize]` attribute requires additional configuration in *Startup.cs* to challenge anonymous requests for Windows Authentication. The recommended configuration varies slightly based on the web server being used.
 
 > [!NOTE]
-> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages middleware](xref:fundamentals/error-handling#configure-status-code-pages) can be configured to provide users with a better "Access Denied" experience.
+> By default, users who lack authorization to access a page are presented with an empty HTTP 403 response. The [StatusCodePages middleware](xref:fundamentals/error-handling#usestatuscodepages) can be configured to provide users with a better "Access Denied" experience.
 
 #### IIS
 

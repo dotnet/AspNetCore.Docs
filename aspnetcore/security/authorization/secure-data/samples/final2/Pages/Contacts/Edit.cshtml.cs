@@ -54,7 +54,7 @@ namespace ContactManager.Pages.Contacts
             }
 
             // Fetch Contact from DB to get OwnerID.
-            var contact = await Context
+            var contact = await Context.Contact
                 .FirstOrDefaultAsync(m => m.ContactId == id);
 
             if (contact == null)

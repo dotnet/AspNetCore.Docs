@@ -1,27 +1,28 @@
-﻿#Requires -Version 6.1.3
+﻿#Requires -Version 6.2
 #Requires -RunAsAdministrator
 
 param(
     [Parameter(mandatory=$true)]
+    [string]
     $Name,
     [Parameter(mandatory=$true)]
+    [string]
     $DisplayName,
     [Parameter(mandatory=$true)]
+    [string]
     $Description,
     [Parameter(mandatory=$true)]
-    $Path,
-    [Parameter(mandatory=$true)]
+    [System.IO.FileInfo]
     $Exe,
     [Parameter(mandatory=$true)]
+    [string]
     $User
 )
 
-$cred = Get-Credential -Credential $User
-
-$acl = Get-Acl $Path
-$aclRuleArgs = $cred.UserName, "Read,Write,ReadAndExecute", "ContainerInherit, ObjectInherit", "None", "Allow"
-$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $aclRuleArgs
+$acl = Get-Acl $($Exe.DirectoryName)
+$aclRuleArgs = $User, "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
 $acl.SetAccessRule($accessRule)
-$acl | Set-Acl $Path
+$acl | Set-Acl $($Exe.DirectoryName)
 
-New-Service -Name $Name -BinaryPathName "$Path\$Exe" -Credential $cred -Description $Description -DisplayName $DisplayName -StartupType Automatic
+New-Service -Name $Name -BinaryPathName $($Exe.FullName) -Credential $User -Description $Description -DisplayName $DisplayName -StartupType Automatic

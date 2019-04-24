@@ -5,7 +5,7 @@ description: Explains how to create reusable Razor UI using partial views in a c
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/07/2018
-ms.custom: seodec18
+ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
 # Create reusable UI using the Razor Class Library project in ASP.NET Core

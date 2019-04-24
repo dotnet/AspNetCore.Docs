@@ -160,8 +160,7 @@ Your app can also use [dependency injection in view files](views/dependency-inje
 
 ```csharp
 [Authorize]
-   public class AccountController : Controller
-   {
+public class AccountController : Controller
 ```
 
 ### Areas
