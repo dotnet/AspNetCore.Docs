@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/19/2019
+ms.date: 04/25/2019
 uid: blazor/javascript-interop
 ---
 # Blazor JavaScript interop
@@ -30,17 +30,7 @@ The following example is based on [TextDecoder](https://developer.mozilla.org/do
 
 Inside the `<head>` element of *wwwroot/index.html*, provide a function that uses `TextDecoder` to decode a passed array:
 
-```html
-<script>
-  window.ConvertArray = (win1251Array) => {
-    var win1251decoder = new TextDecoder('windows-1251');
-    var bytes = new Uint8Array(win1251Array);
-    var decodedArray = win1251decoder.decode(bytes);
-    console.log(decodedArray);
-    return decodedArray;
-  };
-</script>
-```
+[!code-html[](javascript-interop/samples_snapshot/index-script.html)]
 
 JavaScript code, such as the code shown in the preceding example, can also be loaded from a JavaScript file (*.js*) with a reference to the script file in the *wwwroot/index.html* file:
 
@@ -53,99 +43,23 @@ The following component:
 * Invokes the `ConvertArray` JavaScript function using `JsRuntime` when a component button (**Convert Array**) is selected.
 * After the JavaScript function is called, the passed array is converted into a string. The string is returned to the component for display.
 
-```cshtml
-@page "/"
-@inject IJSRuntime JsRuntime;
-
-<h1>Call JavaScript Function Example</h1>
-
-<button type="button" class="btn btn-primary" onclick="@ConvertArray">
-    Convert Array
-</button>
-
-<p class="mt-2" style="font-size:1.6em">
-    <span class="badge badge-success">
-        @ConvertedText
-    </span>
-</p>
-
-@functions {
-    // Quote (c)2005 Universal Pictures: Serenity
-    // https://www.uphe.com/movies/serenity
-    // David Krumholtz on IMDB: https://www.imdb.com/name/nm0472710/
-
-    private MarkupString ConvertedText =
-        new MarkupString("Select the <b>Convert Array</b> button.");
-
-    private uint[] QuoteArray = new uint[]
-        {
-            60, 101, 109, 62, 67, 97, 110, 39, 116, 32, 115, 116, 111, 112, 32,
-            116, 104, 101, 32, 115, 105, 103, 110, 97, 108, 44, 32, 77, 97,
-            108, 46, 60, 47, 101, 109, 62, 32, 45, 32, 77, 114, 46, 32, 85, 110,
-            105, 118, 101, 114, 115, 101, 10, 10,
-        };
-
-    private async void ConvertArray()
-    {
-        var text =
-            await JsRuntime.InvokeAsync<string>("ConvertArray", QuoteArray);
-
-        ConvertedText = new MarkupString(text);
-
-        StateHasChanged();
-    }
-}
-```
+[!code-cshtml[](javascript-interop/samples_snapshot/call-js-example.razor?highlight=2,34-35)]
 
 To use the `IJSRuntime` abstraction, adopt any of the following approaches:
 
-* Inject the `IJSRuntime` abstraction into the Razor file (*.razor*):
+* Inject the `IJSRuntime` abstraction into the Razor component (*.razor*):
 
-  ```cshtml
-  @inject IJSRuntime JSRuntime
-
-  @functions {
-      public override void OnInit()
-      {
-          StocksService.OnStockTickerUpdated += stockUpdate =>
-          {
-              JSRuntime.InvokeAsync<object>(
-                  "handleTickerChanged",
-                  stockUpdate.symbol,
-                  stockUpdate.price);
-          };
-      }
-  }
-  ```
+  [!code-cshtml[](javascript-interop/samples_snapshot/inject-abstraction.razor?highlight=1)]
 
 * Inject the `IJSRuntime` abstraction into a class (*.cs*):
 
-  ```csharp
-  public class JsInteropClasses
-  {
-      private readonly IJSRuntime _jsRuntime;
+  [!code-csharp[](javascript-interop/samples_snapshot/inject-abstraction-class.cs?highlight=5)]
 
-      public JsInteropClasses(IJSRuntime jsRuntime)
-      {
-          _jsRuntime = jsRuntime;
-      }
-
-      public Task<string> TickerChanged(string data)
-      {
-          // The handleTickerChanged JavaScript method is implemented
-          // in a JavaScript file, such as 'wwwroot/tickerJsInterop.js'.
-          return _jsRuntime.InvokeAsync<object>(
-              "handleTickerChanged",
-              stockUpdate.symbol,
-              stockUpdate.price);
-      }
-  }
-  ```
-
-* For dynamic content generation with `BuildRenderTree`, use the `[Inject]` attribute:
+* For dynamic content generation with [BuildRenderTree](xref:blazor/components#manual-rendertreebuilder-logic), use the `[Inject]` attribute:
 
   ```csharp
-  [Inject] IJSRuntime JSRuntime { get; set; }
+  [Inject]
+  IJSRuntime JSRuntime { get; set; }
   ```
 
 In the client-side sample app that accompanies this topic, two JavaScript functions are available to the client-side app that interact with the DOM to receive user input and display a welcome message:
@@ -189,9 +103,12 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 
 Some [JavaScript interop](xref:blazor/javascript-interop) scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `focus` or `play`.
 
-You can capture references to HTML elements in a component by adding a `ref` attribute to the HTML element and then defining a field of type `ElementRef` whose name matches the value of the `ref` attribute.
+You can capture references to HTML elements in a component using the following approach:
 
-The following example shows capturing a reference to the username input element:
+* Add a `ref` attribute to the HTML element.
+* Define a field of type `ElementRef` whose name matches the value of the `ref` attribute.
+
+The following example shows capturing a reference to the `username` `<input>` element:
 
 ```cshtml
 <input ref="username" ...>
@@ -243,9 +160,9 @@ The method is called directly on the object. The following example assumes that 
 
 ### Static .NET method call
 
-To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support server-side scenarios. To be invokable from JavaScript, the .NET method must be public, static, and decorated with `[JSInvokable]`. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
+To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support server-side scenarios. To invoke a .NET method from JavaScript, the .NET method must be public, static, and have the the `[JSInvokable]` attribute. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
 
-The sample app includes a C# method to return an array of `int`s. The method is decorated with the `JSInvokable` attribute.
+The sample app includes a C# method to return an array of `int`s. The `JSInvokable` attribute is applied to the method.
 
 *Pages/JsInterop.razor*:
 
@@ -269,7 +186,10 @@ The fourth array value is pushed to the array (`data.push(4);`) returned by `Ret
 
 ### Instance method call
 
-You can also call .NET instance methods from JavaScript. To invoke a .NET instance method from JavaScript, first pass the .NET instance to JavaScript by wrapping it in a `DotNetObjectRef` instance. The .NET instance is passed by reference to JavaScript, and you can invoke .NET instance methods on the instance using the `invokeMethod` or `invokeMethodAsync` functions. The .NET instance can also be passed as an argument when invoking other .NET methods from JavaScript.
+You can also call .NET instance methods from JavaScript. To invoke a .NET instance method from JavaScript:
+
+* Pass the .NET instance to JavaScript by wrapping it in a `DotNetObjectRef` instance. The .NET instance is passed by reference to JavaScript.
+* Invoke .NET instance methods on the instance using the `invokeMethod` or `invokeMethodAsync` functions. The .NET instance can also be passed as an argument when invoking other .NET methods from JavaScript.
 
 > [!NOTE]
 > The sample app logs messages to the client-side console. For the following examples demonstrated by the sample app, examine the browser's console output in the browser's developer tools.
@@ -302,11 +222,11 @@ Console output in the browser's web developer tools:
 Hello, Blazor!
 ```
 
-## Share interop code in a Blazor class library
+## Share interop code in a class library
 
-JavaScript interop code can be included in a Blazor class library (`dotnet new blazorlib`), which allows you to share the code in a NuGet package.
+JavaScript interop code can be included in a class library, which allows you to share the code in a NuGet package.
 
-The Blazor class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the *wwwroot* folder. The tooling takes care of embedding the resources when the library is built.
+The class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the *wwwroot* folder. The tooling takes care of embedding the resources when the library is built.
 
 The built NuGet package is referenced in the project file of the app just as any normal NuGet package is referenced. After the app is restored, app code can call into JavaScript as if it were C#.
 
