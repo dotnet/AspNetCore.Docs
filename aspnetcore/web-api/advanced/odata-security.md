@@ -9,7 +9,7 @@ uid: web-api/advanced/odata-security
 
 # Security Guidance for ASP.NET Core Web API OData
 
-By [Mike Wasson](https://github.com/MikeWasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Mike Wasson](https://github.com/MikeWasson), [FIVIL](https://github.com/fivil)  and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This page describes some of the security issues that you should consider when exposing a dataset through OData for ASP.NET Core Web API.
 
@@ -49,7 +49,7 @@ If all clients are trusted (for example, in an enterprise environment), or if th
 
     [!code-csharp[Main](odata-security/sample/ODataAPI/Controllers/ValuesController.cs?name=snippet_any)]
 
-- If any string properties contain large strings&#8212;for example, a product description or a blog entry&#8212;consider disabling the string functions. 
+- If any string properties contain large strings&#8212;for example, a product description or a blog entry&#8212;consider disabling the string functions.
 
     [!code-csharp[Main](odata-security/sample/ODataAPI/Controllers/ValuesController.cs?name=snippet_large)]
 
