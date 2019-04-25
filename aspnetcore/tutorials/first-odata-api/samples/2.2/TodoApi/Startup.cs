@@ -1,5 +1,4 @@
-﻿#region snippet_all
-// Unused usings removed
+﻿// Unused usings removed
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -59,4 +58,3 @@ namespace TodoApi
         #endregion
     }
 }
-#endregion

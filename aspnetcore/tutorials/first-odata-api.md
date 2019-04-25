@@ -11,9 +11,11 @@ uid: tutorials/first-odata-api
 
 By [FIVIL](https://github.com/fivil) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial demonstrates how to add [OData](https://www.odata.org/) query options support in an ASP.NET Core Web API app.
+This tutorial:
 
-This tutorial uses the completed [to-do Web API](xref:tutorials/first-web-api) as a starting point.
+* Demonstrates how to add [OData](https://www.odata.org/) query options support in an ASP.NET Core Web API app.
+* Uses the completed [to-do Web API](xref:tutorials/first-web-api) as a starting point.
+* Does not use an [Entity Data Model](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752491) (EDM).
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
@@ -28,9 +30,7 @@ Add the following highlighted properties to *Models\TodoItem.cs*:
 [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=snippet)]
 
 ## Register OData
-
-In ASP.NET Core you should 
-
+git 
 Update the `ConfigureServices` method in *Startup.cs* with the following highlighted code:
 
  [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=6-7&name=snippet_dic)]
@@ -52,13 +52,11 @@ The preceding code:
 
 ## Update the controller
 
-Add `[EnableQuery()]` to the `public ActionResult<IQueryable<TodoItem>> GetTodoItems()` method in the `TodoController`
+Add `[EnableQuery()]` to the `public ActionResult<IQueryable<TodoItem>> GetTodoItems()` method in the `TodoController`:
 
-Update *TodoController.cs* under *Controllers* directory, add `[EnableQuery()]` attribute:
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=3&name=snippet_eq)]
 
-[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=7,32-36&name=all)]
-
-Returning <xref:System.Linq.IQueryable> or [`ActionResult<IQueryable>`](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) enables **OData** to translate queries to **SQL** queries using *ef core* capabilities.  Returning other types such as `IEnumerable` causes **OData** to perform queries in the app.
+Returning <xref:System.Linq.IQueryable> or [`ActionResult<IQueryable>`](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) enables **OData** to translate queries to **SQL** queries using *ef core* capabilities. Returning other types such as `IEnumerable` causes **OData** to perform queries in the app.
 
 ## Query resources using OData
 

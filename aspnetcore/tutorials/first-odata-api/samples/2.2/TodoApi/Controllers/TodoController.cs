@@ -1,16 +1,15 @@
 ﻿#define Primary
 #if Primary
-#region all
+
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TodoApi.Models;
-using Microsoft.AspNet.OData;
-using System;
 
-#region TodoController
+
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
@@ -18,7 +17,6 @@ namespace TodoApi.Controllers
     public class TodoController : ControllerBase
     {
         private readonly TodoContext _context;
-        #endregion
 
         public TodoController(TodoContext context)
         {
@@ -28,26 +26,24 @@ namespace TodoApi.Controllers
             {
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all TodoItems.
-                _context.TodoItems.Add(new TodoItem {
+                _context.TodoItems.Add(new TodoItem
+                {
                     Name = "Item1",
-                    Type ="from constructor",
+                    Type = "from constructor",
                     DueDate = DateTime.Now,
-                    priority =2                
+                    priority = 2
                 });
                 _context.SaveChanges();
             }
         }
 
-        #region snippet_GetAll
         // GET: api/Todo
         [HttpGet]
-        [EnableQuery()]
         public ActionResult<IQueryable<TodoItem>> GetTodoItems()
         {
             return _context.TodoItems;
         }
 
-        #region snippet_GetByID
         // GET: api/Todo/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
@@ -61,10 +57,7 @@ namespace TodoApi.Controllers
 
             return todoItem;
         }
-        #endregion
-        #endregion
 
-        #region snippet_Create
         // POST: api/Todo
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem item)
@@ -74,9 +67,7 @@ namespace TodoApi.Controllers
 
             return CreatedAtAction(nameof(GetTodoItem), new { id = item.Id }, item);
         }
-        #endregion
 
-        #region snippet_Update
         // PUT: api/Todo/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem item)
@@ -91,9 +82,7 @@ namespace TodoApi.Controllers
 
             return NoContent();
         }
-        #endregion
 
-        #region snippet_Delete
         // DELETE: api/Todo/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoItem(long id)
@@ -110,8 +99,7 @@ namespace TodoApi.Controllers
 
             return NoContent();
         }
-        #endregion
     }
 }
-#endregion
+
 #endif
