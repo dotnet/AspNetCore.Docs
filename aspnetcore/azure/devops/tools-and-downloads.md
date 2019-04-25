@@ -32,7 +32,7 @@ The following tools are required:
 
 ## Recommended tools (Windows only)
 
-* [Visual Studio](https://www.visualstudio.com/)'s robust Azure tools provide a GUI for most of the functionality described in this guide. Any edition of Visual Studio will work, including the free Visual Studio Community Edition. The tutorials are written to demonstrate development, deployment, and DevOps both with and without Visual Studio.
+* [Visual Studio](https://visualstudio.microsoft.com)'s robust Azure tools provide a GUI for most of the functionality described in this guide. Any edition of Visual Studio will work, including the free Visual Studio Community Edition. The tutorials are written to demonstrate development, deployment, and DevOps both with and without Visual Studio.
 
   Confirm that Visual Studio has the following [workloads](/visualstudio/install/modify-visual-studio) installed:
 

@@ -33,7 +33,7 @@ The sample project is composed of two apps:
 | Message app | *src/RazorPagesTestSample*            | Allows a user to add, delete one, delete all, and analyze messages. |
 | Test app    | *tests/RazorPagesTestSample.Tests*    | Used to unit test the message app: Data access layer (DAL) and Index page model. |
 
-The tests can be run using the built-in test features of an IDE, such as [Visual Studio](https://www.visualstudio.com/vs/). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestSample.Tests* folder:
+The tests can be run using the built-in test features of an IDE, such as [Visual Studio](https://visualstudio.microsoft.com). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestSample.Tests* folder:
 
 ```console
 dotnet test
