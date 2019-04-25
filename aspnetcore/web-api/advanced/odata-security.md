@@ -53,7 +53,7 @@ If all clients are trusted (for example, in an enterprise environment), or if th
 
     [!code-csharp[Main](odata-security/sample/ODataAPI/Controllers/ValuesController.cs?name=snippet_large)]
 
-- Consider disallowing filtering on navigation properties. Filtering on navigation properties can result in a join, which might be slow, depending on your database schema. The following code shows a query validator that prevents filtering on navigation properties. <!-- For more information about query validators, see [Query Validation](supporting-odata-query-options.md#query-validation). -->
+- Consider disallowing filtering on navigation properties. Filtering on navigation properties can result in a join. Joins can be slow, depending on the database schema. The following code shows a query validator that prevents filtering on navigation properties. <!-- For more information about query validators, see [Query Validation](supporting-odata-query-options.md#query-validation). -->
 
     [!code-csharp[Main](odata-security/sample/ODataAPI/ODataAttribute/MyFilterNavPropQueryValidator.cs?name=snippet)]
 

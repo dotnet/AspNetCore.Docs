@@ -24,7 +24,7 @@ namespace ODataAPI.Controllers
         #region snippet_large
         // Disable string functions.
         [EnableQuery(AllowedFunctions = AllowedFunctions.AllFunctions &
-            ~AllowedFunctions.AllStringFunctions)]
+                                  ~AllowedFunctions.AllStringFunctions)]
         #endregion
         [HttpGet]
         [Route("NewRoute")]
@@ -38,7 +38,7 @@ namespace ODataAPI.Controllers
         // Allow client paging but no other query options.
         // Requires using Microsoft.AspNet.OData.Query;
         [EnableQuery(AllowedQueryOptions = AllowedQueryOptions.Skip |
-                                       AllowedQueryOptions.Top)]
+                                           AllowedQueryOptions.Top)]
         #endregion
         // Set the allowed $orderby properties.
         [HttpGet("{id}")]
@@ -70,7 +70,7 @@ namespace ODataAPI.Controllers
         #region snippet_any
         // Disable any() and all() functions.
         [EnableQuery(AllowedFunctions = AllowedFunctions.AllFunctions &
-            ~AllowedFunctions.All & ~AllowedFunctions.Any)]
+                    ~AllowedFunctions.All & ~AllowedFunctions.Any)]
         #endregion
         [HttpDelete("{id}")]
         public void Delete(int id)
