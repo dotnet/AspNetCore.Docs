@@ -19,7 +19,8 @@ namespace ODataAPI.ODataAttribute
             throw new ODataException("Filtering on navigation properties prohibited");
         }
 
-        public MyFilterNavPropQueryValidator(DefaultQuerySettings defaultQuerySettings) : base(defaultQuerySettings)
+        public MyFilterNavPropQueryValidator(DefaultQuerySettings defaultQuerySettings) 
+                                                           : base(defaultQuerySettings)
         {
 
         }

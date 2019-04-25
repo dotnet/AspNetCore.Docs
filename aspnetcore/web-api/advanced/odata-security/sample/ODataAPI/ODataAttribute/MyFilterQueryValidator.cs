@@ -31,7 +31,8 @@ namespace ODataAPI.ODataAttribute
             base.ValidateSingleValuePropertyAccessNode(propertyAccessNode, settings);
         }
 
-        public MyFilterQueryValidator(DefaultQuerySettings defaultQuerySettings) : base(defaultQuerySettings)
+        public MyFilterQueryValidator(DefaultQuerySettings defaultQuerySettings)
+                                                    : base(defaultQuerySettings)
         {
 
         }

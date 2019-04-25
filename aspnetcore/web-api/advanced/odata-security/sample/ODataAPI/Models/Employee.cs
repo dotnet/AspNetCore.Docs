@@ -11,7 +11,7 @@ namespace TodoApi.Models
 
         // Requires using System.Runtime.Serialization;
         [IgnoreDataMember]
-        public decimal Salary { get; set; } // Not visible in the EDM
+        public decimal Salary { get; set; }
     }
     #endregion
 }

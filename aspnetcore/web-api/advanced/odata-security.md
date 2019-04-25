@@ -11,13 +11,11 @@ uid: web-api/advanced/odata-security
 
 By [Mike Wasson](https://github.com/MikeWasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This topic describes some of the security issues that you should consider when exposing a dataset through OData for ASP.NET Core Web API.
+This page describes some of the security issues that you should consider when exposing a dataset through OData for ASP.NET Core Web API.
 
 ## Query Security
 
-Suppose your model includes an `Employee` type with a `Salary` property. You might want to exclude this property to hide it from clients.
-
-Properties can be excluded with `[IgnoreDataMember]`:
+Suppose your model includes an `Employee` type with a `Salary` property. You might want to exclude this property to hide it from clients. Properties can be excluded with `[IgnoreDataMember]`:
 
 [!code-csharp[Main](odata-security/sample/ODataAPI/Models/Employee.cs?name=snippet)]
 
@@ -40,14 +38,14 @@ If all clients are trusted (for example, in an enterprise environment), or if th
 
     [!code-csharp[Main](odata-security/sample/ODataAPI/Controllers/ValuesController.cs?name=snippet_AllowedQueryOptions)]
 
-- Consider restricting `$orderby` to properties in a clustered index. Sorting large data without a clustered index is resource intensive.
+- Consider restricting `$orderby` to properties in a clustered index. Sorting large data without a clustered index is resource-intensive.
 
     [!code-csharp[Main](odata-security/sample/ODataAPI/Controllers/ValuesController.cs?name=snippet_AllowedOrderByProperties)]
 
-- Maximum node count: The **MaxNodeCount** property on **[EnableQuery]** sets the maximum number nodes allowed in the $filter syntax tree. The default value is 100, but you may want to set a lower value, because a large number of nodes can be slow to compile. This is particularly true if you are using LINQ to Objects (i.e., LINQ queries on a collection in memory, without the use of an intermediate LINQ provider). 
+- Maximum node count: The **MaxNodeCount** property on **[EnableQuery]** sets the maximum number nodes allowed in the `$filter` syntax tree. The default value is 100, but you may want to set a lower value. A large number of nodes can be slow to compile. This is important when using [LINQ to Objects](/dotnet/csharp/programming-guide/concepts/linq/linq-to-objects).
 
     [!code-csharp[Main](odata-security/sample/ODataAPI/Controllers/ValuesController.cs?name=snippet_MaxNodeCount)]
-- Consider disabling the `any` and `all` functions, as these can be resource intensive: 
+- Consider disabling the `any` and `all` functions, as these can be resource-intensive: 
 
     [!code-csharp[Main](odata-security/sample/ODataAPI/Controllers/ValuesController.cs?name=snippet_any)]
 
