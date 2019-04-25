@@ -207,6 +207,7 @@ To move settings files to the output directory, specify the settings files as [M
       CopyToOutputDirectory="PreserveNewest" />
 </ItemGroup>
 ```
+[!NOTE] The app configuration extension methods like AddJsonFile, AddEnvironmentVariables etc. require additional nuget packages like Microsoft.Extensions.Configuration.Json & Microsoft.Extensions.EnvironmentVariables which are not bundled with the core Microsoft.Extensions.Configuration package.
 
 ## ConfigureServices
 
