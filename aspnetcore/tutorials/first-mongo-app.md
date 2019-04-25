@@ -21,7 +21,7 @@ In this tutorial, you learn how to:
 > * Define a MongoDB collection and schema
 > * Perform MongoDB CRUD operations from a web API
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-mongo-app/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mongo-app/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 

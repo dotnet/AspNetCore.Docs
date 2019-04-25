@@ -21,7 +21,7 @@ Built-in filters handle tasks such as:
 
 Custom filters can be created to handle cross-cutting concerns. Filters can avoid duplicating code across actions. For example, an error handling exception filter could consolidate error handling.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+[View or download sample from GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
 
 ## How filters work
 
@@ -420,4 +420,4 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 ## Next actions
 
 * See [Filter methods for Razor Pages](xref:razor-pages/filter)
-* To experiment with filters, [download, test and modify the Github sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+* To experiment with filters, [download, test and modify the Github sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
