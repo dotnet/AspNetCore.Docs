@@ -19,7 +19,7 @@ Suppose your model includes an `Employee` type with a `Salary` property. You mig
 
 [!code-csharp[Main](odata-security/sample/ODataAPI/Models/Employee.cs?name=snippet)]
 
-A malicious or naive client may construct a query that takes excessive resources. Such a query can disrupt access to your service.
+A malicious or naive client may construct a query that consumes excessive resources. Such a query can disrupt access to your service.
 
 The `[EnableQuery]` attribute is an action filter that parses, validates, and applies the query. The filter converts the query options into a [LINQ](/dotnet/csharp/linq/) expression. When the controller returns an <xref:System.Linq.IQueryable> type, the `IQueryable` LINQ provider converts the LINQ expression into a query. Therefore, performance depends on the LINQ provider that is used, and on the particular characteristics of the dataset or database schema.
 
