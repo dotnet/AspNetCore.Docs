@@ -19,7 +19,7 @@ This document explains how to use the [Microsoft Azure Key Vault](https://azure.
 
 This scenario is available for apps that target ASP.NET Core 2.1 or later.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/key-vault-configuration/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Packages
 

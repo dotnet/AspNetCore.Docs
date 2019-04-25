@@ -20,7 +20,7 @@ To specify a page route, add route segments, or add parameters to a route, use t
 
 There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:fundamentals/routing#reserved-routing-names).
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 | Scenario | The sample demonstrates ... |
 | -------- | --------------------------- |
@@ -88,7 +88,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*>
 
 Wherever possible, don't set the `Order`, which results in `Order = 0`. Rely on routing to select the correct route.
 
-Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when MVC is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
+Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when MVC is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet1)]
 

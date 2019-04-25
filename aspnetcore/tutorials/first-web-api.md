@@ -438,7 +438,7 @@ Deleting a to-do item is accomplished by setting the `type` on the AJAX call to 
 
 ## Additional resources
 
-[View or download sample code for this tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
+[View or download sample code for this tutorial](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
 
 For more information, see the following resources:
 

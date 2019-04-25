@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 04/24/2019
 uid: blazor/routing
 ---
 # Blazor routing
@@ -18,39 +18,31 @@ Learn how to route requests in apps and about the NavLink component.
 
 Blazor server-side is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapBlazorHub` in `Startup.Configure`:
 
-```csharp
-app.UseRouting();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapBlazorHub();
-    endpoints.MapFallbackToPage("/_Host");
-});
-```
+[!code-cshtml[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
 ## Route templates
 
 The `<Router>` component enables routing, and a route template is provided to each accessible component. The `<Router>` component appears in the *App.razor* file:
 
-For a Blazor server-side app:
+In a Blazor server-side app:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly" />
 ```
 
-For a Blazor client-side app:
+In a Blazor client-side app:
 
 ```cshtml
 <Router AppAssembly="typeof(Program).Assembly" />
 ```
 
-When a *.razor* file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders whichever component has a route template that matches the requested URL.
+When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders the component with a route template that matches the requested URL.
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
-`<Router>` supports setting a fallback component for rendering when a requested route isn't resolved. Enable this opt-in scenario by setting the `FallbackComponent` parameter to the type of the fallback component class.
+`<Router>` supports setting a fallback component to render when a requested route isn't resolved. Enable this opt-in scenario by setting the `FallbackComponent` parameter to the type of the fallback component class.
 
 The following example sets a component defined in *Pages/MyFallbackRazorComponent.razor* as the fallback component for a `<Router>`:
 
@@ -67,7 +59,7 @@ The router uses route parameters to populate the corresponding component paramet
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.razor?name=snippet_RouteParameter&highlight=2,7-8)]
 
-Optional parameters aren't supported yet, so two `@page` directives are applied in the example above. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
+As of Preview 4, optional parameters aren't supported. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
 ## Route constraints
 

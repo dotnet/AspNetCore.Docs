@@ -5,7 +5,7 @@ description: See how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 04/24/2019
 uid: blazor/dependency-injection
 ---
 # Blazor dependency injection
@@ -49,7 +49,7 @@ Services can be configured with the lifetimes shown in the following table.
 | -------- | ----------- |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive an instance of the same service. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Client-side Blazor doesn't currently have the concept of DI scopes. `Scoped` behaves like `Singleton`. However, the server-side hosting model supports the `Scoped` lifetime. In a Razor component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user, even if the current intent is to run client-side in the browser. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Blazor client-side doesn't currently have the concept of DI scopes. `Scoped` behaves like `Singleton`. However, the server-side hosting model supports the `Scoped` lifetime. In a Razor component, a scoped service registration is scoped to the connection. For this reason, using scoped services is preferred for services that should be scoped to the current user, even if the current intent is to run client-side in the browser. |
 
 The DI system is based on the DI system in ASP.NET Core. For more information, see <xref:fundamentals/dependency-injection>.
 
@@ -57,20 +57,20 @@ The DI system is based on the DI system in ASP.NET Core. For more information, s
 
 Default services are automatically added to the app's service collection.
 
-| Service | Description |
-| ------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI (singleton). Note that this instance of `HttpClient` uses the browser for handling the HTTP traffic in the background. [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress) is automatically set to the base URI prefix of the app. `HttpClient` is only provided to client-side Blazor apps. |
-| `IJSRuntime` | Represents an instance of a JavaScript runtime to which calls may be dispatched. For more information, see <xref:blazor/javascript-interop>. |
-| `IUriHelper` | Contains helpers for working with URIs and navigation state (singleton). |
+| Service | Lifetime | Description |
+| ------- | -------- | ----------- |
+| <xref:System.Net.Http.HttpClient> | Singleton | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI. Note that this instance of `HttpClient` uses the browser for handling the HTTP traffic in the background. [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress) is automatically set to the base URI prefix of the app. `HttpClient` is only provided to Blazor client-side apps. |
+| `IJSRuntime` | Singleton | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/javascript-interop>. |
+| `IUriHelper` | Singleton | Contains helpers for working with URIs and navigation state. |
 
-It's possible to use a custom service provider instead of the default service provider added by the default template. A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
+A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
 ## Request a service in a component
 
 After services are added to the service collection, inject the services into the components' Razor templates using the [\@inject](xref:mvc/views/razor#section-4) Razor directive. `@inject` has two parameters:
 
-* Type name: The type of the service to inject.
-* Property name: The name of the property receiving the injected app service. Note that the property doesn't require manual creation. The compiler creates the property.
+* Type: The type of the service to inject.
+* Property: The name of the property receiving the injected app service. The property doesn't require manual creation. The compiler creates the property.
 
 For more information, see <xref:mvc/views/dependency-injection>.
 
@@ -80,7 +80,7 @@ The following example shows how to use `@inject`. The service implementing `Serv
 
 [!code-cshtml[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
 
-Internally, the generated property (`DataRepository`) is decorated with the `InjectAttribute` attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, `InjectAttribute` can be manually added:
+Internally, the generated property (`DataRepository`) is decorated with the `InjectAttribute` attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the `InjectAttribute`:
 
 ```csharp
 public class ComponentBase : IComponent
@@ -120,9 +120,9 @@ public class DataAccess : IDataAccess
 
 Prerequisites for constructor injection:
 
-* There must be one constructor whose arguments can all be fulfilled by dependency injection. Note that additional parameters not covered by DI are allowed if they specify default values.
+* One constructor must exist whose arguments can all be fulfilled by dependency injection. Additional parameters not covered by DI are allowed if they specify default values.
 * The applicable constructor must be *public*.
-* There must only be one applicable constructor. In case of an ambiguity, DI throws an exception.
+* One applicable constructor must exist. In case of an ambiguity, DI throws an exception.
 
 ## Additional resources
 

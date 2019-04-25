@@ -11,12 +11,12 @@ uid: host-and-deploy/docker/visual-studio-tools-for-docker
 
 Visual Studio 2017 supports building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
 * [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
-* [Visual Studio 2017](https://www.visualstudio.com/) with the **.NET Core cross-platform development** workload
+* [Visual Studio 2017](https://visualstudio.microsoft.com) with the **.NET Core cross-platform development** workload
 
 ## Installation and setup
 

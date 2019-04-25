@@ -1076,4 +1076,4 @@
 - name: API reference
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
-  href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
+  href: https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md

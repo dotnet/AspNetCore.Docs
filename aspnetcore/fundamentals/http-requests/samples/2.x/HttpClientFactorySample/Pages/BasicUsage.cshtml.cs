@@ -24,7 +24,7 @@ namespace HttpClientFactorySample.Pages
         public async Task OnGet()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, 
-                "https://api.github.com/repos/aspnet/docs/branches");
+                "https://api.github.com/repos/aspnet/AspNetCore.Docs/branches");
             request.Headers.Add("Accept", "application/vnd.github.v3+json");
             request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
 

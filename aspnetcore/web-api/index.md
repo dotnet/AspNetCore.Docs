@@ -15,7 +15,7 @@ By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling API requests.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
 
 ## ControllerBase class
 

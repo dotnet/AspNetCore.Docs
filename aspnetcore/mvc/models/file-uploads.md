@@ -13,7 +13,7 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET MVC actions support uploading of one or more files using simple model binding for smaller files or streaming for larger files.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/file-uploads/sample/FileUploadSample)
+[View or download sample from GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/sample/FileUploadSample)
 
 ## Uploading small files with model binding
 

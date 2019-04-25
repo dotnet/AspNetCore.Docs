@@ -12,7 +12,7 @@ uid: mvc/models/validation
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Model state
 
@@ -32,7 +32,7 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 ## Validation attributes
 
-Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.)
+Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.)
 
 [!code-csharp[](validation/sample/Models/Movie.cs?name=snippet_ModelClass)]
 
