@@ -147,7 +147,7 @@ The preceding request returns the following data:
 
 ### $orderBy
 
-The `$orderBy` option can consume excessive resources. Consider using `[Queryable(AllowedQueryOptions=AllowedQueryOptions.{Option})]` to disable `$orderBy`.  See `<xref:web-api/advanced/odata-security#query-security>` for more information. 
+The `$orderBy` option can consume excessive resources. Consider using `[Queryable(AllowedQueryOptions=AllowedQueryOptions.{Option})]` to disable `$orderBy`.  See `<xref:web-api/advanced/odata-security#query-security>` for more information.
 
 `$orderBy` sorts data based on one or more properties. For example, to order the data based on *priority* of each item, append `?$orderBy=priority` to the request. For example, `http://localhost:5001/api/todo?$orderBy=priority`.
 
@@ -209,6 +209,8 @@ The preceding request returns the following data:
 Data can be sorted data based on multiple properties. For example, `?$orderBy=type,priority desc`" sorts items based on `type` and then on `priority` in **descending** order.
 
 ### $filter
+
+The `$filter` option can consume excessive resources. Consider using `[Queryable(AllowedQueryOptions=AllowedQueryOptions.{Option})]` to disable `$filter`.  See `<xref:web-api/advanced/odata-security#query-security>` for more information.
 
 `$filter` filters data based on a boolean condition. For example, to get only the items with `priority` greater than 1, append `?$filter=priority gt 1` to the  request path.
 
@@ -286,6 +288,10 @@ The preceding request returns the following data:
 ]
 ```
 
+### Chained queries
+
+Chained queries can consume excessive resources. Consider using `[Queryable(AllowedQueryOptions=AllowedQueryOptions.{Option})]` to disable expensive operations. Consider restricting `$orderby` to properties in a clustered index.  See `<xref:web-api/advanced/odata-security#query-security>` for more information.
+
 OData queries can be chained to make a complex query. For example, appending `?$skip=2&$select=name,priority&$orderBy=priority desc&filter=priority gt 1` returns the following data:
 
 ```JSON
@@ -315,7 +321,7 @@ OData queries can be chained to make a complex query. For example, appending `?$
 A malicious or naive client can construct a query that:
 
 * Takes significant system resources. Such a query can disrupt your service.
-* Leaks sensitive information from a cleaver join.
+* Leaks sensitive information from a clever join.
 
 The `[Queryable]` attribute is an action filter that parses, validates, and applies the query. The filter converts the query options into a LINQ expression. When the OData controller returns an `IQueryable` type, the `IQueryable` LINQ provider converts the LINQ expression into a query. Therefore, performance depends on the LINQ provider that is used, and on the particular characteristics of the dataset or database schema.
 
