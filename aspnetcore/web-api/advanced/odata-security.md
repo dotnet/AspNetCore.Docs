@@ -7,19 +7,22 @@ ms.date: 05/05/2019
 uid: web-api/advanced/odata-security
 ---
 
-# Security Guidance for ASP.NET Core Web API OData
+# Security guidance for ASP.NET Core Web API OData
 
 By [Mike Wasson](https://github.com/MikeWasson), [FIVIL](https://github.com/fivil)  and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This page describes some of the security issues that you should consider when exposing a dataset through OData for ASP.NET Core Web API.
 
-## Query Security
+## Query security
 
 Suppose your model includes an `Employee` type with a `Salary` property. You might want to exclude this property to hide it from clients. Properties can be excluded with `[IgnoreDataMember]`:
 
 [!code-csharp[Main](odata-security/sample/ODataAPI/Models/Employee.cs?name=snippet)]
 
-A malicious or naive client may construct a query that consumes excessive resources. Such a query can disrupt access to your service.
+A malicious or naive client can construct a query that:
+
+* Takes significant system resources. Such a query can disrupt your service.
+* Leaks sensitive information from a clever join.
 
 The `[EnableQuery]` attribute is an action filter that parses, validates, and applies the query. The filter converts the query options into a [LINQ](/dotnet/csharp/linq/) expression. When the controller returns an <xref:System.Linq.IQueryable> type, the `IQueryable` LINQ provider converts the LINQ expression into a query. Therefore, performance depends on the LINQ provider that is used, and on the particular characteristics of the dataset or database schema.
 
@@ -70,7 +73,7 @@ If all clients are trusted (for example, in an enterprise environment), or if th
 
 - In general, consider which $filter functions are required. If clients don't need the full expressiveness of `$filter`, limit the allowed functions.
 
-## EDM Security
+## EDM security
 
 The query semantics are based on the [Entity Data Model](https://www.odata.org/documentation/odata-version-2-0/overview/) (EDM), not the underlying model types. You can exclude a property from the EDM and it will not be visible to the query. For example, suppose your model includes an `Employee` type with a `Salary` property. You might want to exclude this property from the EDM to hide it from clients.
 
