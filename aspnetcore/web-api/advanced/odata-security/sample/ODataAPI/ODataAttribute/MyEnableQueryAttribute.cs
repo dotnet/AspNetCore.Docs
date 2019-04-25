@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ODataAPI.ODataAttribute
 {
+    #region snippet
     public class MyEnableQueryAttribute : EnableQueryAttribute
     {
         private readonly DefaultQuerySettings defaultQuerySettings;
@@ -25,4 +26,5 @@ namespace ODataAPI.ODataAttribute
             base.ValidateQuery(request, queryOptions);
         }
     }
+    #endregion
 }
