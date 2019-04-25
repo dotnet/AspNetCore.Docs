@@ -17,6 +17,8 @@ This tutorial:
 * Uses the completed [to-do Web API](xref:tutorials/first-web-api) as a starting point.
 * Does not use an [Entity Data Model](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752491) (EDM).
 
+A malicious or naive client may construct a query that consumes excessive resources. Such a query can disrupt access to your service. Review `<xref:web-api/advanced/odata-security>` before starting this tutorial.
+
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
 ## Update the model class
@@ -30,7 +32,7 @@ Add the following highlighted properties to *Models\TodoItem.cs*:
 [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=snippet)]
 
 ## Register OData
-git 
+
 Update the `ConfigureServices` method in *Startup.cs* with the following highlighted code:
 
  [!code-csharp[](first-odata-api/samples/2.2/TodoApi/Startup.cs?highlight=6-7&name=snippet_dic)]
@@ -62,7 +64,7 @@ Returning <xref:System.Linq.IQueryable> or [`ActionResult<IQueryable>`](xref:Mic
 
 Post some data to the web API app, using a tool such as [Postman](https://www.getpostman.com/tools). See [How to use Postman](xref:tutorials/first-web-api#test-the-gettodoitems-method),
 
-Send a Post request to `https://localhost:5001/api/todo` and include each of the items below **separately** in the request body.
+Send 5 Post requests to `https://localhost:5001/api/todo` with the 5 items below **separately** in the request body.
 
 ```json
 {
@@ -110,7 +112,7 @@ Send a Get request to verify the previous data has been saved. For example,  `ht
 
 ### $select
 
-The **$select** option specifies a subset of properties to include in the response body. For example, to get only the *name* and *isComplete* of each item, add `?$select=name,isComplete` at the end the request path.
+The `$select` option specifies a subset of properties to include in the response body. For example, to get only the *name* and *isComplete* of each item, add `?$select=name,isComplete` at the end the request path.
 
 The preceding request returns the following data:
 
@@ -145,7 +147,9 @@ The preceding request returns the following data:
 
 ### $orderBy
 
-The **$orderBy** option sorts data based on one or more properties. For example, to order the data based on *priority* of each item, append `?$orderBy=priority` to the request. For example, `http://localhost:5001/api/todo?$orderBy=priority`.
+The `$orderBy` option can consume excessive resources. Consider using `[Queryable(AllowedQueryOptions=AllowedQueryOptions.{Option})]` to disable `$orderBy`.  See `<xref:web-api/advanced/odata-security#query-security>` for more information. 
+
+`$orderBy` sorts data based on one or more properties. For example, to order the data based on *priority* of each item, append `?$orderBy=priority` to the request. For example, `http://localhost:5001/api/todo?$orderBy=priority`.
 
 The preceding request returns the following data:
 
@@ -202,7 +206,7 @@ The preceding request returns the following data:
 ]
 ```
 
-Data can be sorted data based on multiple properties. For example, `?$orderBy=type,priority desc`" sorts items based on *type* and then on *priority* in **descending** order.
+Data can be sorted data based on multiple properties. For example, `?$orderBy=type,priority desc`" sorts items based on `type` and then on `priority` in **descending** order.
 
 ### $filter
 
@@ -305,12 +309,13 @@ OData queries can be chained to make a complex query. For example, appending `?$
 ]
 ```
 
+<!--TODO move this to security doc -->
 ## Security concerns
 
 A malicious or naive client can construct a query that:
 
 * Takes significant system resources. Such a query can disrupt your service.
-* Leaks sensitive information by a clear join.
+* Leaks sensitive information from a cleaver join.
 
 The `[Queryable]` attribute is an action filter that parses, validates, and applies the query. The filter converts the query options into a LINQ expression. When the OData controller returns an `IQueryable` type, the `IQueryable` LINQ provider converts the LINQ expression into a query. Therefore, performance depends on the LINQ provider that is used, and on the particular characteristics of the dataset or database schema.
 
