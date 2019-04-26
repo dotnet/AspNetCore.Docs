@@ -5,14 +5,16 @@ description: Understand client-side and server-side Blazor hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/19/2019
+ms.date: 04/25/2019
 uid: blazor/hosting-models
 ---
 # Blazor hosting models
 
 By [Daniel Roth](https://github.com/danroth27)
 
-Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](http://webassembly.org/)-based .NET runtime (*Blazor client-side*) or server-side in ASP.NET Core (*Blazor server-side*). Regardless of the hosting model, the app and component models *remain the same*.
+Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](http://webassembly.org/)-based .NET runtime (*Blazor client-side*) or server-side in ASP.NET Core (*Blazor server-side*). Regardless of the hosting model, the app and component models *are the same*.
+
+To create a project for the hosting models described in this article, see <xref:blazor/get-started>.
 
 ## Client-side
 
@@ -22,7 +24,7 @@ The principal hosting model for Blazor is running client-side in the browser on 
 
 To create a Blazor app using the client-side hosting model, use either of the following templates:
 
-* **Blazor** ([dotnet new blazor](/dotnet/core/tools/dotnet-new)) &ndash; Deployed as a set of static files.
+* **Blazor (client-side)** ([dotnet new blazor](/dotnet/core/tools/dotnet-new)) &ndash; Deployed as a set of static files.
 * **Blazor (ASP.NET Core Hosted)** ([dotnet new blazorhosted](/dotnet/core/tools/dotnet-new)) &ndash; Hosted by an ASP.NET Core server. The ASP.NET Core app serves the Blazor app to clients. The client-side Blazor app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction).
 
 The templates include the *blazor.webassembly.js* script that handles:
@@ -63,11 +65,11 @@ The *blazor.server.js* script&dagger; establishes the client connection. It's th
 
 The server-side hosting model offers several benefits:
 
-* Significantly smaller app size than a client-side app and load much faster.
-* Take full advantage of server capabilities, including using any .NET Core compatible APIs.
-* Run on .NET Core on the server, so existing .NET tooling, such as debugging, works as expected.
-* Works with thin clients (for example, browsers that don't support WebAssembly and resource constrained devices).
-* .NET/C# code base, including the app's component code, isn't served to clients.
+* Has a significantly smaller app size than a client-side app and loads much faster.
+* Takes full advantage of server capabilities, including using any .NET Core compatible APIs.
+* Runs on .NET Core on the server, so existing .NET tooling, such as debugging, works as expected.
+* Works with thin clients. For example, works with browsers that don't support WebAssembly and resource constrained devices.
+* The .NET/C# code base, including the app's component code, isn't served to clients.
 
 There are downsides to server-side hosting:
 
@@ -80,7 +82,7 @@ There are downsides to server-side hosting:
 
 ### Reconnection to the same server
 
-Blazor server-side apps require an active SignalR connection to the server. If a connection is lost, the app attempts to reconnect to the server. As long as the client's state is still in memory, the client session resumes without losing any state.
+Blazor server-side apps require an active SignalR connection to the server. If a connection is lost, the app attempts to reconnect to the server. As long as the client's state is still in memory, the client session resumes without losing state.
  
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry. To customize the UI, define an element with `components-reconnect-modal` as its `id`. The client updates this element with one of the following CSS classes based on the state of the connection:
  
@@ -100,7 +102,7 @@ Blazor server-side apps are set up by default to prerender the UI on the server 
 </body>
 ```
  
-The client reconnects to the server with the same state that was used to prerender the app. If the app's state is still in memory, the component state doesn't need to be rerendered once the SignalR connection is established.
+The client reconnects to the server with the same state that was used to prerender the app. If the app's state is still in memory, the component state isn't rerendered after the SignalR connection is established.
 
 ### Render stateful interactive components from Razor pages and views
  
@@ -135,7 +137,7 @@ Sometimes, you need to configure the SignalR client used by Blazor server-side a
 To configure the SignalR client in the *wwwroot/index.htm* file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the *blazor.server.js* script.
-* Call `Blazor.start` and pass in a configuration object that specifies the SignalR builder:
+* Call `Blazor.start` and pass in a configuration object that specifies the SignalR builder.
  
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>
@@ -161,7 +163,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 Without specifying parameters, `withAutomaticReconnect` configures the client to try to reconnect, waiting 0, 2, 10, and 30 seconds between each attempt.
 
-To configure a non-default number of reconnect attempts before failure or to change the reconnect timing, `withAutomaticReconnect` accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt.
+To configure a non-default number of reconnect attempts before failure or to change the reconnect timing, `withAutomaticReconnect` accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt:
 
 ```csharp
 const connection = new signalR.HubConnectionBuilder()
@@ -172,7 +174,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 ### Improved disconnect and reconnect handling
 
-Before starting any reconnect attempts, the HubConnection transitions to the `Reconnecting` state and fires its `onreconnecting` callback. This provides an opportunity to warn users that the connection was lost, disable UI elements, and mitigate confusing user scenarios that might occur due to the disconnected state.
+Before starting any reconnect attempts, the `HubConnection` transitions to the `Reconnecting` state and fires its `onreconnecting` callback. This provides an opportunity to warn users that the connection was lost, disable UI elements, and mitigate confusing user scenarios that might occur due to the disconnected state:
 
 ```javascript
 connection.onreconnecting((error) => {
@@ -186,7 +188,7 @@ connection.onreconnecting((error) => {
 });
 ```
 
-If the client successfully reconnects within its first four attempts, the `HubConnection`transitions back to the `Connected` state and fires `onreconnected` callbacks. This gives developers an opportunity to inform users that the connection is re-established.
+If the client successfully reconnects within its first four attempts, the `HubConnection` transitions back to the `Connected` state and fires `onreconnected` callback. This provides an opportunity to inform users that the connection is re-established:
 
 ```javascript
 connection.onreconnected((connectionId) => {
@@ -200,7 +202,7 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` transitions to the `Disconnected` state and fires its `onclosed` callbacks. This is a good opportunity to inform users that the connection is permanently lost and recommend refreshing the page.
+If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` transitions to the `Disconnected` state and fires its `onclosed` callback. This is an opportunity to inform users that the connection is permanently lost and to recommend refreshing the page.
 
 ```javascript
 connection.onclose((error) => {
@@ -216,4 +218,5 @@ connection.onclose((error) => {
 
 ## Additional resources
 
+* <xref:blazor/get-started>
 * <xref:signalr/introduction>

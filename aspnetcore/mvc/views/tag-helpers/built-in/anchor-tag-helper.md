@@ -4,7 +4,7 @@ author: pkellner
 description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role each attribute plays in extending behavior of the HTML anchor tag.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 4/18/2019
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper in ASP.NET Core
@@ -21,9 +21,9 @@ For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Controllers/SpeakerController.cs?name=snippet_SpeakerController)]
 
-An inventory of the `asp-` attributes follows.
+## Anchor Tag Helper attributes
 
-## asp-controller
+### asp-controller
 
 The [asp-controller](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Controller*) attribute assigns the controller used for generating the URL. The following markup lists all speakers:
 
@@ -57,7 +57,7 @@ If no `asp-controller` attribute is specified, the default controller calling th
 
 If the `asp-action` attribute value is `Index`, then no action is appended to the URL, leading to the invocation of the default `Index` action. The action specified (or defaulted), must exist in the controller referenced in `asp-controller`.
 
-## asp-route-{value}
+### asp-route-{value}
 
 The [asp-route-{value}](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) attribute enables a wildcard route prefix. Any value occupying the `{value}` placeholder is interpreted as a potential route parameter. If a default route isn't found, this route prefix is appended to the generated `href` attribute as a request parameter and value. Otherwise, it's substituted in the route template.
 
@@ -111,7 +111,7 @@ The following HTML is generated because `speakerid` wasn't found in the matching
 
 If either `asp-controller` or `asp-action` aren't specified, then the same default processing is followed as is in the `asp-route` attribute.
 
-## asp-route
+### asp-route
 
 The [asp-route](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route*) attribute is used for creating a URL linking directly to a named route. Using [routing attributes](xref:mvc/controllers/routing#attribute-routing), a route can be named as shown in the `SpeakerController` and used in its `Evaluations` action:
 
@@ -149,7 +149,7 @@ The `asp-all-route-data` dictionary is flattened to produce a querystring meetin
 
 If any keys in the dictionary match route parameters, those values are substituted in the route as appropriate. The other non-matching values are generated as request parameters.
 
-## asp-fragment
+### asp-fragment
 
 The [asp-fragment](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Fragment*) attribute defines a URL fragment to append to the URL. The Anchor Tag Helper adds the hash character (#). Consider the following markup:
 
@@ -163,7 +163,7 @@ The generated HTML:
 
 Hash tags are useful when building client-side apps. They can be used for easy marking and searching in JavaScript, for example.
 
-## asp-area
+### asp-area
 
 The [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) attribute sets the area name used to set the appropriate route. The following examples depict how the `asp-area` attribute causes a remapping of routes.
 
@@ -233,7 +233,7 @@ The generated HTML:
 >
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 
-## asp-protocol
+### asp-protocol
 
 The [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) attribute is for specifying a protocol (such as `https`) in your URL. For example:
 
@@ -247,7 +247,7 @@ The generated HTML:
 
 The host name in the example is localhost. The Anchor Tag Helper uses the website's public domain when generating the URL.
 
-## asp-host
+### asp-host
 
 The [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) attribute is for specifying a host name in your URL. For example:
 
@@ -259,7 +259,7 @@ The generated HTML:
 <a href="https://microsoft.com/Home/About">About</a>
 ```
 
-## asp-page
+### asp-page
 
 The [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) attribute is used with Razor Pages. Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name with a forward slash ("/") creates the URL.
 
@@ -283,7 +283,7 @@ The generated HTML:
 <a href="/Attendee?attendeeid=10">View Attendee</a>
 ```
 
-## asp-page-handler
+### asp-page-handler
 
 The [asp-page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) attribute is used with Razor Pages. It's intended for linking to specific page handlers.
 

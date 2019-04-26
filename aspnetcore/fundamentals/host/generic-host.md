@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core's Generic Host, which is responsible for a
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 04/25/2019
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
@@ -207,6 +207,9 @@ To move settings files to the output directory, specify the settings files as [M
       CopyToOutputDirectory="PreserveNewest" />
 </ItemGroup>
 ```
+
+> [!NOTE]
+> Configuration extension methods, such as <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> and <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> require additional NuGet packages, such as [Microsoft.Extensions.Configuration.Json](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json) and [Microsoft.Extensions.Configuration.EnvironmentVariables](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.EnvironmentVariables). Unless the app uses the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), these packages must be added to the project in addition to the core [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration) package. For more information, see <xref:fundamentals/configuration/index>.
 
 ## ConfigureServices
 
