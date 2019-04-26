@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2019
+ms.date: 04/26/2019
 uid: blazor/class-libraries
 ---
 # Razor components class libraries
@@ -24,11 +24,9 @@ Just as components are regular .NET types, components provided by Razor class li
 
 # [Visual Studio](#tab/visual-studio)
 
-To create a Razor class library in Visual Studio:
-
 1. Create a new project.
 1. Select **ASP.NET Core Web Application**. Select **Next**.
-1. Provide a project name in the **Project name** field or accept the default project name. The examples in this topic use the project name `MyComponentLib1`. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+1. Provide a project name in the **Project name** field or accept the default project name. The examples in this topic use the project name `MyComponentLib1`. Select **Create**.
 1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
 1. Select the **Razor Class Library** template. Select **Create**.
 1. Add the Razor class library to a solution:
