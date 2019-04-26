@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor server-side app using ASP.NET
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2019
+ms.date: 04/26/2019
 uid: host-and-deploy/blazor/server-side
 ---
 # Host and deploy Blazor server-side
@@ -37,3 +37,4 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 * <xref:signalr/introduction>
 * <xref:host-and-deploy/index>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
+* [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service)
