@@ -247,6 +247,8 @@ You can customize the font and colorization from **Tools** > **Options** > **Env
 
 ![image](intro/_static/fontoptions2.png)
 
+[!INCLUDE[](~/includes/built-in-TH.md)]
+
 ## Additional resources
 
 * [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)

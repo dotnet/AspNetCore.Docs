@@ -345,6 +345,7 @@
     - name: Razor syntax
       uid: mvc/views/razor
     - name: Tag Helpers
+      uid: mvc/views/tag-helpers/builtin-th/Index
       items:
         - name: Overview
           uid: mvc/views/tag-helpers/intro
