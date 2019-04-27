@@ -1,14 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -53,10 +48,10 @@ namespace ClaimsSample
                 // Register with User Secrets using:
                 // dotnet user-secrets set "Authentication:Google:ClientSecret" "{Client Secret}"
 
-                options.Scope.Add("https://www.googleapis.com/auth/userinfo.profile");
-                options.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "givenname");
-                options.ClaimActions.MapJsonKey(ClaimTypes.Surname, "surname");
+                options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+                options.ClaimActions.MapJsonKey("urn:google:locale", "locale", "string");
                 options.SaveTokens = true;
+
                 options.Events.OnCreatingTicket = ctx =>
                 {
                     List<AuthenticationToken> tokens = ctx.Properties.GetTokens() 

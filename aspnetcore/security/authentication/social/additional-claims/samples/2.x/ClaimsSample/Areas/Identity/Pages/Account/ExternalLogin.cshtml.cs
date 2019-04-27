@@ -158,18 +158,26 @@ namespace ClaimsSample.Areas.Identity.Pages.Account
 
                     if (result.Succeeded)
                     {
-                        // Copy over the given (first) name and surname (last) name 
-                        // claims if they exist
+                        // If they exist, add claims to the user for:
+                        //    Given (first) name
+                        //    Locale
+                        //    Picture
                         if (info.Principal.HasClaim(c => c.Type == ClaimTypes.GivenName))
                         {
                             await _userManager.AddClaimAsync(user, 
                                 info.Principal.FindFirst(ClaimTypes.GivenName));
                         }
 
-                        if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Surname))
+                        if (info.Principal.HasClaim(c => c.Type == "urn:google:locale"))
                         {
                             await _userManager.AddClaimAsync(user, 
-                                info.Principal.FindFirst(ClaimTypes.Surname));
+                                info.Principal.FindFirst("urn:google:locale"));
+                        }
+
+                        if (info.Principal.HasClaim(c => c.Type == "urn:google:picture"))
+                        {
+                            await _userManager.AddClaimAsync(user, 
+                                info.Principal.FindFirst("urn:google:picture"));
                         }
 
                         // Include the access token in the properties
