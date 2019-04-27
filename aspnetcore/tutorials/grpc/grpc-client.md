@@ -30,15 +30,15 @@ In this tutorial, you:
 
 # [Visual Studio](#tab/visual-studio)
 
-Follow the instructions [here](https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio) to create a console app with the name *GrpcGreeterClient*.
+Follow the instructions [here](https://docs.microsoft.com/dotnet/core/tutorials/with-visual-studio) to create a console app with the name *GrpcGreeterClient*.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Follow the instructions [here](https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code) to create a console app with the name *GrpcGreeterClient*.
+Follow the instructions [here](https://docs.microsoft.com/dotnet/core/tutorials/with-visual-studio-code) to create a console app with the name *GrpcGreeterClient*.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Follow the instructions [here](https://docs.microsoft.com/en-us/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
+Follow the instructions [here](https://docs.microsoft.com/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
 
 <!-- End of VS tabs -->
 

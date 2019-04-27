@@ -14,7 +14,7 @@ uid: signalr/publish-to-azure-web-app
 [Azure Web App](/azure/app-service/app-service-web-overview) is a [Microsoft cloud computing](https://azure.microsoft.com/) platform service for hosting web apps, including ASP.NET Core.
 
 > [!NOTE]
-> This article refers to publishing an ASP.NET Core SignalR app from Visual Studio. Visit [SignalR service for Azure](https://azure.microsoft.com/en-gb/services/signalr-service?) for more information about using SignalR on Azure.
+> This article refers to publishing an ASP.NET Core SignalR app from Visual Studio. Visit [SignalR service for Azure](https://azure.microsoft.com/services/signalr-service?) for more information about using SignalR on Azure.
 
 ## Publish the app
 
