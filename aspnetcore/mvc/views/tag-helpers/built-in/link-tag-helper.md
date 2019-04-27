@@ -13,10 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [Link Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper) generates a link to a primary or fall back CSS file. Typically the primary CSS file is on a [Content Delivery Network](/office365/enterprise/content-delivery-networks#what-exactly-is-a-cdn) (CDN).
 
-A CDN:
-
-* Provides several [performance advantages](/office365/enterprise/content-delivery-networks#how-do-cdns-make-services-work-faster) vs hosting the asset with the web app.
-* Should not be relied on as the only source. CDNs are not always available, therefore a reliable fallback should be used. Typically the fallback is the site hosting the web app.
+[!INCLUDE[](~/includes/cdn.md)]
 
 The Link Tag Helper allows you to specify a CDN for the CSS file and a fallback when the CDN is not available. The Link Tag Helper provides the performance advantage of a CDN with the robustness of local hosting.
 
