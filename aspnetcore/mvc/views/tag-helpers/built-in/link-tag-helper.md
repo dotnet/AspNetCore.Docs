@@ -22,11 +22,11 @@ The Link Tag Helper allows you to specify a CDN for the CSS file and a fallback 
 
 The following Razor markup shows the `head` element of a layout file created with the ASP.NET Core web app template:
 
-[!code-csharp[](tag-helpers\built-in\link-tag-helper\sample\_Layout.cshtml?name=snippet)]
+[!code-csharp[](tag-helpers/built-in/link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 
 The following code shows the rendered HTML from the preceding code (in a non-Development environment):
 
-[!code-csharp[](tag-helpers\built-in\link-tag-helper\sample\HtmlPage1.html)]
+[!code-csharp[](tag-helpers/built-in/link-tag-helper/sample/HtmlPage1.html)]
 
 In the preceding code, the Link Tag Helper generated the `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` element and the following JavaScript which is used to verify the requested *bootstrap.min.css* file is available on the CDN. In this case, the CSS file was available so the Tag Helper generated the `<link />` element with the CDN CSS file.
 
