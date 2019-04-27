@@ -22,8 +22,7 @@ The Link Tag Helper allows you to specify a CDN for the CSS file and a fallback 
 
 The following Razor markup shows the `head` element of a layout file created with the ASP.NET Core web app template:
 
-[!code-csharp[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
-[!code-csharp[](link-tag-helper/sample/_Layout.cshtml)]
+[!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 
 The following code shows the rendered HTML from the preceding code (in a non-Development environment):
 
