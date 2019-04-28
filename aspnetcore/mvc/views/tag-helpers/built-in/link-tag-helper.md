@@ -1,10 +1,10 @@
 ---
 title: Link Tag Helper in ASP.NET Core
-author: pkellner
+author: rick-anderson
+ms.author: riande
 description: Discover the ASP.NET Core Link Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Link tag.
-ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 4/
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
 ---
 # Link Tag Helper in ASP.NET Core
@@ -21,13 +21,15 @@ The following Razor markup shows the `head` element of a layout file created wit
 
 [!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 
-The following code shows the rendered HTML from the preceding code (in a non-Development environment):
+The following is rendered HTML from the preceding code (in a non-Development environment):
 
-[!code-csharp[](link-tag-helper/sample/HtmlPage1.html)]
+[!code-csharp[](link-tag-helper/sample/HtmlPage.html)]
 
 In the preceding code, the Link Tag Helper generated the `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` element and the following JavaScript which is used to verify the requested *bootstrap.min.css* file is available on the CDN. In this case, the CSS file was available so the Tag Helper generated the `<link />` element with the CDN CSS file.
 
 ## Commonly used Link Tag Helper attributes
+
+See [Link Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper)  for all the Link Tag Helper attributes, properties, and methods.
 
 ### href
 
