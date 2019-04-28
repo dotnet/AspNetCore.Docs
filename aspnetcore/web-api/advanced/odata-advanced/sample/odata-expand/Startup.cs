@@ -57,7 +57,7 @@ namespace ContosoUniversity
             app.UseMvc(routeBuilder =>
             {
                 routeBuilder.EnableDependencyInjection();
-                routeBuilder.Expand();
+                routeBuilder.Expand().Select();
             });
         }
     }
