@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContosoUniversity.Models;
+using ContosoUniversity.ODataValidators;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,7 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpGet]
-        [EnableQuery(MaxExpansionDepth = 2)]
+        [MyEnableQuery]
         public IQueryable<Enrollment> Get() => context.Enrollment;
     }
 }

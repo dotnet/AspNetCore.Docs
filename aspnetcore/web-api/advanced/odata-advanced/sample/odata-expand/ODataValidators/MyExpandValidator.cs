@@ -16,7 +16,7 @@ namespace ContosoUniversity.ODataValidators
 
         }
         public override void Validate(SelectExpandQueryOption selectExpandQueryOption, ODataValidationSettings validationSettings)
-        {
+        {           
             if (selectExpandQueryOption.RawExpand.Contains(nameof(Course.CourseAssignments)))
                 throw new ODataException($"You can't query {nameof(Course.CourseAssignments)}!!!");
             base.Validate(selectExpandQueryOption, validationSettings);
