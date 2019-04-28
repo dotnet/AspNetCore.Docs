@@ -66,6 +66,12 @@ In the sample app, `OnPostConfirmationAsync` (*Account/ExternalLogin.cshtml.cs*)
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
+> [!NOTE]
+> By default, claims are stored in the authentication cookie. Unless the app assigns a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> to the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to mitigate issues with serializing large identities into cookies, limit the number of user claims held by the app to only those required for request processing. The cookie can grow in size to a point where:
+>
+> * Performance of the app is degraded on slow devices or devices with restricted bandwidth.
+> * The app fails to process requests properly because the browser detects one or more cookie headers that are too long or the overall size of the request is too large.
+
 ## Save the access token
 
 <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
@@ -137,3 +143,7 @@ Authentication Properties
 ```
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
+
+## Additional resources
+
+* [aspnet/AspNetCore engineering SocialSample app](https://github.com/aspnet/AspNetCore/tree/master/src/Security/Authentication/samples/SocialSample) &ndash; The linked sample app is on the [aspnet/AspNetCore GitHub repo's](https://github.com/aspnet/AspNetCore) `master` engineering branch. The `master` branch contains code under active development for the next release of ASP.NET Core. To see a version of the sample app for a released version of ASP.NET Core, use the **Branch** drop down list to select a release branch (for example `release/2.2`).
