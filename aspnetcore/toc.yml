@@ -345,6 +345,7 @@
     - name: Razor syntax
       uid: mvc/views/razor
     - name: Tag Helpers
+      uid: mvc/views/tag-helpers/builtin-th/Index
       items:
         - name: Overview
           uid: mvc/views/tag-helpers/intro
@@ -1076,4 +1077,4 @@
 - name: API reference
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
-  href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
+  href: https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md

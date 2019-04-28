@@ -50,10 +50,10 @@ The following Razor markup demonstrates a component (*Dialog.razor*), which can 
 
 @functions {
     [Parameter]
-    public string Title { get; set; }
+    private string Title { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    private RenderFragment ChildContent { get; set; }
 
     private void OnYes()
     {

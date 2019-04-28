@@ -16,7 +16,7 @@ The ASP.NET Core SignalR .NET client library lets you communicate with SignalR h
 > [!NOTE]
 > Xamarin has special requirements for Visual Studio version. For more information, see [SignalR Client 2.1.1 in Xamarin](https://github.com/aspnet/Announcements/issues/305).
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/dotnet-client/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/dotnet-client/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 The code sample in this article is a WPF app that uses the ASP.NET Core SignalR .NET client.
 
