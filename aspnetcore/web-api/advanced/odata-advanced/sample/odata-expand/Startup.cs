@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Models;
+using Microsoft.AspNet.OData.Extensions;
 
 namespace ContosoUniversity
 {
@@ -32,6 +33,8 @@ namespace ContosoUniversity
 
             services.AddDbContext<SchoolContext>(options =>
                options.UseInMemoryDatabase("OData-expand"));
+
+            services.AddOData();
         }
         #endregion
 
@@ -51,7 +54,11 @@ namespace ContosoUniversity
 
             app.UseHttpsRedirection();
 
-            app.UseMvc();
+            app.UseMvc(routeBuilder =>
+            {
+                routeBuilder.EnableDependencyInjection();
+                routeBuilder.Expand();
+            });
         }
     }
 }

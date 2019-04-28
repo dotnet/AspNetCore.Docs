@@ -12,3 +12,5 @@ uid: web-api/advanced/odata-expand
 
 By [FIVIL](https://twitter.com/F_IVI_L) 
 
+This tutorial demonstrates how you can query related entities using OData.
+
