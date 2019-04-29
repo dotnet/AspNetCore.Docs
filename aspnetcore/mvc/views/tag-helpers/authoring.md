@@ -102,7 +102,7 @@ Update the `EmailTagHelper` class with the following:
 
 That approach works for the attribute "href" as long as it doesn't currently exist in the attributes collection. You can also use the `output.Attributes.Add` method to add a tag helper attribute to the end of the collection of tag attributes.
 
-1. Update the markup in the *Views/Home/Contact.cshtml* file with these changes:
+1. Update the markup in the *Views/Home/Contact.cshtml* file with these changes:  
    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
 1. Run the app and verify that it generates the correct links.
