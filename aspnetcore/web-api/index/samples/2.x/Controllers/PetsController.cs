@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
-using WebApiSample.DataAccess.Repositories;
 
 namespace WebApiSample.Controllers
 {
@@ -13,24 +13,27 @@ namespace WebApiSample.Controllers
     public class PetsController : MyControllerBase
     #endregion
     {
-        private readonly PetsRepository _repository;
+        private static List<Pet> _petsInMemoryStore = new List<Pet>();
 
-        public PetsController(PetsRepository repository)
+        public PetsController()
         {
-            _repository = repository;
+            if (_petsInMemoryStore.Count == 0)
+            {
+                _petsInMemoryStore.Add(new Pet { Breed = "Collie", Id = 1, Name = "Fido", PetType = PetType.Dog });
+            }
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Pet>>> GetAllAsync()
+        public ActionResult<List<Pet>> GetAll()
         {
-            return await _repository.GetPetsAsync();
+            return _petsInMemoryStore;
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Pet>> GetByIdAsync(int id)
+        public ActionResult<Pet> GetById(int id)
         {
-            var pet = await _repository.GetPetAsync(id);
+            var pet = _petsInMemoryStore.FirstOrDefault(p => p.Id == id);
 
             #region snippet_ProblemDetailsStatusCode
             if (pet == null)
@@ -46,11 +49,13 @@ namespace WebApiSample.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Pet>> CreateAsync(Pet pet)
+        public ActionResult<Pet> Create(Pet pet)
         {
-            await _repository.AddPetAsync(pet);
+            Pet petwithLastId = _petsInMemoryStore.OrderBy(p => p.Id).LastOrDefault();
+            pet.Id = petwithLastId == null ? 1 : petwithLastId.Id + 1;
+            _petsInMemoryStore.Add(pet);
 
-            return CreatedAtAction(nameof(GetByIdAsync),
+            return CreatedAtAction(nameof(GetById),
                 new { id = pet.Id }, pet);
         }
         #endregion
