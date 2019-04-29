@@ -72,8 +72,7 @@ namespace WebApiSample.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Product> Create(Product product)
         {
-            Product productWithLastId = _productsInMemoryStore.OrderBy(p => p.Id).LastOrDefault();
-            product.Id = productWithLastId == null ? 1 : productWithLastId.Id + 1;
+            product.Id = _productsInMemoryStore.Any() ? _productsInMemoryStore.Max(p => p.Id) + 1 : 1;
             _productsInMemoryStore.Add(product);
 
             return CreatedAtAction(nameof(GetById), 
