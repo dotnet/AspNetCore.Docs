@@ -4,7 +4,7 @@ author: isaac2004
 description: Learn about the new features in ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 04/30/2019
 uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
@@ -22,7 +22,7 @@ SignalR has been rewritten for ASP.NET Core 2.1. ASP.NET Core SignalR includes a
 * A new streaming response model.
 * Support for clients based on bare WebSockets.
 
-For more information, see [ASP.NET Core SignalR](xref:signalr/index).
+For more information, see [ASP.NET Core SignalR](xref:signalr/introduction).
 
 ## Razor class libraries
 
