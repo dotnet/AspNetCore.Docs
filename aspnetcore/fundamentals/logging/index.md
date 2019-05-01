@@ -874,7 +874,7 @@ For more information, see the following resources:
 ::: moniker-end
 
 > [!NOTE]
-> As of 5/1/2019, the article titled [Application Insights for ASP.NET Core](azure/azure-monitor/app/asp-net-core) is out of date, and the tutorial steps don't work. Refer to [Application Insights for ASP.NET Core applications](/azure/azure-monitor/app/asp-net-core-no-visualstudio) instead. We are aware of the issue and are working to correct it.
+> As of 5/1/2019, the article titled [Application Insights for ASP.NET Core](/azure/azure-monitor/app/asp-net-core) is out of date, and the tutorial steps don't work. Refer to [Application Insights for ASP.NET Core applications](/azure/azure-monitor/app/asp-net-core-no-visualstudio) instead. We are aware of the issue and are working to correct it.
 
 ## Third-party logging providers
 
