@@ -29,7 +29,7 @@ namespace ContosoUniversity
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<SchoolContext>(options =>
                options.UseInMemoryDatabase("OData-expand"));

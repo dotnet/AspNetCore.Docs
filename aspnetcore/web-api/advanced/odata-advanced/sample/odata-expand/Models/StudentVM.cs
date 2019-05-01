@@ -10,3 +10,4 @@ namespace ContosoUniversity.Models
         public DateTime EnrollmentDate { get; set; }
     }
 }
+
