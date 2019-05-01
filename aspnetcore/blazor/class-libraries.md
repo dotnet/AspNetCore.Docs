@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/26/2019
+ms.date: 05/01/2019
 uid: blazor/class-libraries
 ---
 # Razor components class libraries
@@ -21,6 +21,8 @@ Components can be shared in Razor class libraries across projects. Components ca
 Just as components are regular .NET types, components provided by Razor class libraries are normal .NET assemblies.
 
 ## Create a Razor class library
+
+Follow the guidance in the <xref:blazor/get-started> article to configure your environment to use Blazor.
 
 # [Visual Studio](#tab/visual-studio)
 
