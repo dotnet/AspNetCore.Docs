@@ -343,7 +343,7 @@ When the button is selected in the Child component:
 
 `EventCallback` and `EventCallback<T>` permit asynchronous delegates. `EventCallback<T>` is strongly typed and requires a specific argument type. `EventCallback` is weakly typed and allows any argument type.
 
-```chstml
+```cshtml
 <p><b>@messageText</b></p>
 
 @{ var message = "Default Text"; }
