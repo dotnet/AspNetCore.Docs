@@ -206,10 +206,9 @@ Click the paging links in different sort orders to make sure paging works. Then 
 For the Contoso University website's **About** page, you'll display how many students have enrolled for each enrollment date. This requires grouping and simple calculations on the groups. To accomplish this, you'll do the following:
 
 * Create a view model class for the data that you need to pass to the view.
-
-* Modify the About method in the Home controller.
-
-* Modify the About view.
+* Create the About method in the Home controller.
+* Create the About view.
+* Add the About page to the *_Layout.cshtml* to create an About link.
 
 ### Create the view model
 
