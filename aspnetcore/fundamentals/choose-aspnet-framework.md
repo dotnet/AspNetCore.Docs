@@ -4,7 +4,7 @@ author: rick-anderson
 description: Explains ASP.NET Core vs. ASP.NET 4.x and how to choose between them.
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 09/11/2018
+ms.date: 05/02/2019
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET 4.x and ASP.NET Core
@@ -38,7 +38,6 @@ See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for inf
 
 ## ASP.NET Core scenarios
 
-* [Razor Pages](xref:razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x.
 * [Websites](xref:tutorials/first-mvc-app/index)
 * [APIs](xref:tutorials/first-web-api)
 * [Real-time](xref:signalr/index)
