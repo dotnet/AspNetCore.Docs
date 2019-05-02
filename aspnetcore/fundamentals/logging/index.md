@@ -490,11 +490,12 @@ Each provider defines an *alias* that can be used in configuration in place of t
 
 * Console
 * Debug
+* EventSource
 * EventLog
+* TraceSource
 * AzureAppServicesFile
 * AzureAppServicesBlob
-* TraceSource
-* EventSource
+* ApplicationInsights
 
 ### Default minimum level
 
@@ -610,8 +611,9 @@ ASP.NET Core ships the following providers:
 * [EventSource](#eventsource-provider)
 * [EventLog](#windows-eventlog-provider)
 * [TraceSource](#tracesource-provider)
-
-Options for [Logging in Azure](#logging-in-azure) are covered later in this article.
+* [AzureAppServicesFile](#azure-app-service-provider)
+* [AzureAppServicesBlob](#azure-app-service-provider)
+* [ApplicationInsights](#azure-application-insights-trace-logging)
 
 For information about stdout logging, see <xref:host-and-deploy/iis/troubleshoot#aspnet-core-module-stdout-log> and <xref:host-and-deploy/azure-apps/troubleshoot#aspnet-core-module-stdout-log>.
 
@@ -761,19 +763,6 @@ The following example configures a `TraceSource` provider that logs `Warning` an
 
 ::: moniker-end
 
-## Logging in Azure
-
-For information about logging in Azure, see the following sections:
-
-* [Azure App Service provider](#azure-app-service-provider)
-* [Azure log streaming](#azure-log-streaming)
-
-::: moniker range=">= aspnetcore-1.1"
-
-* [Azure Application Insights trace logging](#azure-application-insights-trace-logging)
-
-::: moniker-end
-
 ### Azure App Service provider
 
 The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider package is available for apps targeting .NET Core 1.1 or later.
@@ -836,7 +825,7 @@ The default location for log files is in the *D:\\home\\LogFiles\\Application* f
 
 The provider only works when the project runs in the Azure environment. It has no effect when the project is run locally&mdash;it doesn't write to local files or local development storage for blobs.
 
-### Azure log streaming
+#### Azure log streaming
 
 Azure log streaming lets you view log activity in real time from:
 
