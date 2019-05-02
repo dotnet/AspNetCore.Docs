@@ -110,7 +110,7 @@ Data binding to both components and DOM elements is accomplished with the `bind`
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    bind="@_italicsCheck">
+    bind="@ItalicsCheck">
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
