@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2019
+ms.date: 05/02/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -106,11 +106,11 @@ The Child component has a `ChildContent` property that represents a `RenderFragm
 
 ## Data binding
 
-Data binding to both components and DOM elements is accomplished with the `bind` attribute. The following example binds the `ItalicsCheck` property to the check box's checked state:
+Data binding to both components and DOM elements is accomplished with the `bind` attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    bind="@ItalicsCheck">
+    bind="@_italicsCheck">
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
