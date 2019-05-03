@@ -142,7 +142,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithReExecute)]
 
-If you point to an endpoint within the app, create an MVC view or Razor page for the endpoint. For a Razor Pages example, see [StatusCode.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples/2.x/Pages/StatusCode.cshtml) in the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
+If you point to an endpoint within the app, create an MVC view or Razor page for the endpoint. For a Razor Pages example, see [StatusCode.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Pages/StatusCode.cshtml) in the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
 
 This method is commonly used when the app should:
 
