@@ -278,7 +278,7 @@ Stop-Service -Name MyService
 
 After a short delay to stop a service, remove the service with the `Remove-Service -Name {NAME}` Powershell 6 command.
 
-Check the status of the sample app service:
+The following command will remove the sample app service:
 
 ```powershell
 Remove-Service -Name MyService
