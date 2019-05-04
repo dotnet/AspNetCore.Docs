@@ -39,7 +39,7 @@ To debug a client-side Blazor app in Chrome:
 * Build a Blazor app in `Debug` configuration (the default for unpublished apps).
 * Run the Blazor app in Chrome (version 70 or later).
 * With the keyboard focus on the app (not in the developer tools panel, which you should probably close for a less confusing debugging experience), select the following Blazor-specific keyboard shortcut:
-  * `Shift+Alt+D` on Windows/Linux
+  * `Shift+Windows key+D` on Windows/Linux
   * `Shift+Cmd+D` on macOS
 
 ## Enable remote debugging
