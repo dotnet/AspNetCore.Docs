@@ -22,7 +22,7 @@ Update the `Configure` method in *Startup.cs* with the following highlighted cod
 
 [!code-csharp[](odata-advanced/sample/odata-expand/Startup.cs?highlight=57-61,37)]
 
-Using **expand** you can query related entities in OData.
+Using **Expand()** you can query related entities in OData.
 
 ## Adding a controller
 
@@ -528,4 +528,22 @@ By default, Web API limits the maximum expansion depth to 2.To override the defa
 
 ## Security concerns
 
+Consider disallowing expand to your sensitive or complicated data for security or performance reasons, you can override *SelectExpandQueryValidator* to control expand behaviour.
+
+* Create a new class named `MyExpandValidator`.
+
+* Replace the template code with the following code:
  
+[!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyExpandValidator.cs)]
+
+* Create a new class named `MyEnableQueryAttribute`.
+
+* Replace the template code with the following code:
+
+[!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyEnableQueryAttribute.cs)]
+
+* Update `EnrollmentController`, replace *EnableQuery* attribute with *MyEnableQuery* attribute:
+
+[!code-csharp[](odata-advanced/sample/odata-expand/Controllers/EnrollmentController.cs?name=snippet_MyEnableQuery)]
+
+* Open Postman and send a **Get** request to `http://localhost:<post>/api/Enrollment?$expand=course($expand=CourseAssignments)`, you can see an exception pops up. 
