@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/04/2019
+ms.date: 05/04/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -278,7 +278,7 @@ Stop-Service -Name MyService
 
 After a short delay to stop a service, remove the service with the `Remove-Service -Name {NAME}` Powershell 6 command.
 
-The following command will remove the sample app service:
+The following command removes the sample app service:
 
 ```powershell
 Remove-Service -Name MyService
