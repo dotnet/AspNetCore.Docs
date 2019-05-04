@@ -306,4 +306,226 @@ You can customize and use other OData functionalities over your related data usi
     }
 ]
 ```
+## Expand depth
+
+You can expand more than one level of navigation property. For example, to get the *Department* data of each *Course* for each *Enrollment* entity, include `?$expand=course($expand=Department)` at the end of your request path:
+
+```json
+[
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 3,
+                "Name": "Engineering",
+                "Budget": 350000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 3
+            },
+            "CourseID": 1050,
+            "Title": "Chemistry",
+            "Credits": 3,
+            "DepartmentID": 3
+        },
+        "EnrollmentID": 1,
+        "CourseID": 1050,
+        "StudentID": 1,
+        "Grade": 0
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 4,
+                "Name": "Economics",
+                "Budget": 100000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 4
+            },
+            "CourseID": 4022,
+            "Title": "Microeconomics",
+            "Credits": 3,
+            "DepartmentID": 4
+        },
+        "EnrollmentID": 2,
+        "CourseID": 4022,
+        "StudentID": 1,
+        "Grade": 2
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 4,
+                "Name": "Economics",
+                "Budget": 100000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 4
+            },
+            "CourseID": 4041,
+            "Title": "Macroeconomics",
+            "Credits": 3,
+            "DepartmentID": 4
+        },
+        "EnrollmentID": 3,
+        "CourseID": 4041,
+        "StudentID": 1,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 2,
+                "Name": "Mathematics",
+                "Budget": 100000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 2
+            },
+            "CourseID": 1045,
+            "Title": "Calculus",
+            "Credits": 4,
+            "DepartmentID": 2
+        },
+        "EnrollmentID": 4,
+        "CourseID": 1045,
+        "StudentID": 2,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 2,
+                "Name": "Mathematics",
+                "Budget": 100000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 2
+            },
+            "CourseID": 3141,
+            "Title": "Trigonometry",
+            "Credits": 4,
+            "DepartmentID": 2
+        },
+        "EnrollmentID": 5,
+        "CourseID": 3141,
+        "StudentID": 2,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 1,
+                "Name": "English",
+                "Budget": 350000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 1
+            },
+            "CourseID": 2021,
+            "Title": "Composition",
+            "Credits": 3,
+            "DepartmentID": 1
+        },
+        "EnrollmentID": 6,
+        "CourseID": 2021,
+        "StudentID": 2,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 3,
+                "Name": "Engineering",
+                "Budget": 350000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 3
+            },
+            "CourseID": 1050,
+            "Title": "Chemistry",
+            "Credits": 3,
+            "DepartmentID": 3
+        },
+        "EnrollmentID": 7,
+        "CourseID": 1050,
+        "StudentID": 3,
+        "Grade": null
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 4,
+                "Name": "Economics",
+                "Budget": 100000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 4
+            },
+            "CourseID": 4022,
+            "Title": "Microeconomics",
+            "Credits": 3,
+            "DepartmentID": 4
+        },
+        "EnrollmentID": 8,
+        "CourseID": 4022,
+        "StudentID": 3,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 3,
+                "Name": "Engineering",
+                "Budget": 350000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 3
+            },
+            "CourseID": 1050,
+            "Title": "Chemistry",
+            "Credits": 3,
+            "DepartmentID": 3
+        },
+        "EnrollmentID": 9,
+        "CourseID": 1050,
+        "StudentID": 4,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 1,
+                "Name": "English",
+                "Budget": 350000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 1
+            },
+            "CourseID": 2021,
+            "Title": "Composition",
+            "Credits": 3,
+            "DepartmentID": 1
+        },
+        "EnrollmentID": 10,
+        "CourseID": 2021,
+        "StudentID": 5,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Department": {
+                "DepartmentID": 1,
+                "Name": "English",
+                "Budget": 350000,
+                "StartDate": "2007-09-01T00:00:00",
+                "InstructorID": 1
+            },
+            "CourseID": 2042,
+            "Title": "Literature",
+            "Credits": 4,
+            "DepartmentID": 1
+        },
+        "EnrollmentID": 11,
+        "CourseID": 2042,
+        "StudentID": 6,
+        "Grade": 1
+    }
+]
+```
+
+By default, Web API limits the maximum expansion depth to 2.To override the default, set the **MaxExpansionDepth** property on the **[EnableQuery]** attribute.
+
+## Security concerns
+
  
