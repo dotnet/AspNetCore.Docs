@@ -30,7 +30,9 @@ Create new Controller named `EnrollmentController` and add new action like:
 
 [!code-csharp[](odata-advanced/sample/odata-expand/Controllers/EnrollmentController.cs?name=snippet_EnableQuery)]
 
-## Test $Expand
+## $expand
+
+You can use OData **expand** functionality to query related data. For example, to get the *Course* data for each *Enrollment* entity, include `?$expand=course` at the end of your request path:
 
 This tutorial uses Postman to test the web API.
 
@@ -47,7 +49,7 @@ This tutorial uses Postman to test the web API.
   * Set the HTTP method to **GET**.
   * Set the request URL to `https://localhost:<port>/api/Enrollment/GetEnrollments?$expand=course`.
 * Select **Send**.
-* You can now see that the `Course` data for each `Enrollment` entity is now included int the response.
+* You can now see that the *Course* data for each *Enrollment* entity is now included int the response.
 
 ```json
 [
@@ -185,3 +187,123 @@ This tutorial uses Postman to test the web API.
     }
 ]
 ```
+
+## Customizing related data
+
+You can customize and use other OData functionalities over your related data using **Parentheses** in your *expand* clause. For example, to get only the *Title* and *Credits* of each *Course*, add `?$expand=course($select=Title,Credits)` at the end of your request path:
+
+```json
+[
+    {
+        "Course": {
+            "Title": "Chemistry",
+            "Credits": 3
+        },
+        "EnrollmentID": 1,
+        "CourseID": 1050,
+        "StudentID": 1,
+        "Grade": 0
+    },
+    {
+        "Course": {
+            "Title": "Microeconomics",
+            "Credits": 3
+        },
+        "EnrollmentID": 2,
+        "CourseID": 4022,
+        "StudentID": 1,
+        "Grade": 2
+    },
+    {
+        "Course": {
+            "Title": "Macroeconomics",
+            "Credits": 3
+        },
+        "EnrollmentID": 3,
+        "CourseID": 4041,
+        "StudentID": 1,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Title": "Calculus",
+            "Credits": 4
+        },
+        "EnrollmentID": 4,
+        "CourseID": 1045,
+        "StudentID": 2,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Title": "Trigonometry",
+            "Credits": 4
+        },
+        "EnrollmentID": 5,
+        "CourseID": 3141,
+        "StudentID": 2,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Title": "Composition",
+            "Credits": 3
+        },
+        "EnrollmentID": 6,
+        "CourseID": 2021,
+        "StudentID": 2,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Title": "Chemistry",
+            "Credits": 3
+        },
+        "EnrollmentID": 7,
+        "CourseID": 1050,
+        "StudentID": 3,
+        "Grade": null
+    },
+    {
+        "Course": {
+            "Title": "Microeconomics",
+            "Credits": 3
+        },
+        "EnrollmentID": 8,
+        "CourseID": 4022,
+        "StudentID": 3,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Title": "Chemistry",
+            "Credits": 3
+        },
+        "EnrollmentID": 9,
+        "CourseID": 1050,
+        "StudentID": 4,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Title": "Composition",
+            "Credits": 3
+        },
+        "EnrollmentID": 10,
+        "CourseID": 2021,
+        "StudentID": 5,
+        "Grade": 1
+    },
+    {
+        "Course": {
+            "Title": "Literature",
+            "Credits": 4
+        },
+        "EnrollmentID": 11,
+        "CourseID": 2042,
+        "StudentID": 6,
+        "Grade": 1
+    }
+]
+```
+ 
