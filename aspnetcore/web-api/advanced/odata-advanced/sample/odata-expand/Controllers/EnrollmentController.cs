@@ -11,18 +11,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class EnrollmentController : ControllerBase
     {
-        private readonly SchoolContext context;
-        public EnrollmentController(SchoolContext context)
-        {
-            this.context = context;
-        }
 
-        [HttpGet]
-        [MyEnableQuery]
-        public IQueryable<Enrollment> Get() => context.Enrollment;
+        #region snippet_MyEnableQuery
+
+        [HttpGet, MyEnableQuery]
+        public IQueryable<Enrollment> Get([FromServices]SchoolContext context) => context.Enrollment;
+
+        #endregion
+
+        #region snippet_EnableQuery
+
+        [HttpGet, EnableQuery]
+        public IQueryable<Enrollment> GetEnrollments([FromServices]SchoolContext context) => context.Enrollment;
+
+        #endregion
     }
 }
