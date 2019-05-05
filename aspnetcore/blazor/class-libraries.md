@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/26/2019
+ms.date: 05/06/2019
 uid: blazor/class-libraries
 ---
 # Razor components class libraries
@@ -57,7 +57,7 @@ Add Razor component files (*.razor*) to the Razor class library.
 
 ## Razor class libraries not supported for client-side apps
 
-In Preview 4, Razor class libraries aren't compatible with Blazor client-side apps.
+In ASP.NET Core 3.0 Preview, Razor class libraries aren't compatible with Blazor client-side apps.
 
 For Blazor client-side apps, use a Blazor component library created by the `blazorlib` template from a command shell:
 
@@ -69,7 +69,7 @@ Component libraries using the `blazorlib` template can include static files, suc
 
 ## Static assets not supported for server-side apps
 
-In Preview 4, Blazor server-side apps can't consume static assets from either a Razor class library (`razorclasslib`) or a Blazor library (`blazorlib`).
+In ASP.NET Core 3.0 Preview, Blazor server-side apps can't consume static assets from either a Razor class library (`razorclasslib`) or a Blazor library (`blazorlib`).
 
 As a temporary workaround, you can try [BlazorEmbedLibrary](https://www.nuget.org/packages/BlazorEmbedLibrary/).
 

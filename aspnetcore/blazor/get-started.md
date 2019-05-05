@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2019
+ms.date: 05/06/2019
 uid: blazor/get-started
 ---
 # Get started with Blazor
@@ -64,9 +64,6 @@ Get started with Blazor:
 
       For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-      > [!NOTE]
-      > Only Blazor client-side is supported on macOS in ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
-
    4.&nbsp;Open the *WebApplication1* folder in Visual Studio Code.
 
    5.&nbsp;For a Blazor server-side project, the IDE requests that you add assets to build and debug the project. Select **Yes**.
@@ -112,9 +109,6 @@ Get started with Blazor:
    ```
 
    For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
-
-   > [!NOTE]
-   > On macOS, use a Blazor client-side app. Blazor server-side isn't supported for macOS on ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
 
    ---
 
