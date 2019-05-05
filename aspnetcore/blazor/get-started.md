@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2019
+ms.date: 05/06/2019
 uid: blazor/get-started
 ---
 # Get started with Blazor
