@@ -12,7 +12,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://gi
 
 As you've seen in the earlier authentication topics, [ASP.NET Core Identity](xref:security/authentication/identity) is a complete, full-featured authentication provider for creating and maintaining logins. However, you may want to use your own custom authentication logic with cookie-based authentication at times. You can use cookie-based authentication as a standalone authentication provider without ASP.NET Core Identity.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 For demonstration purposes in the sample app, the user account for the hypothetical user, Maria Rodriguez, is hardcoded into the app. Use the Email username "maria.rodriguez@contoso.com" and any password to sign in the user. The user is authenticated in the `AuthenticateUser` method in the *Pages/Account/Login.cshtml.cs* file. In a real-world example, the user would be authenticated against a database.
 

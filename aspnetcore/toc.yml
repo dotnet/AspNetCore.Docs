@@ -92,7 +92,11 @@
     - name: Remote Procedure Call apps
       items:
         - name: Get started with gRPC service in ASP.NET Core
+          uid: tutorials/grpc/index
+        - name: Create an ASP.NET Core gRPC Greeter Service
           uid: tutorials/grpc/grpc-start
+        - name: Create a .NET Core gRPC client
+          uid: tutorials/grpc/grpc-client 
     - name: Data access
       items:
         - name: EF Core with Razor Pages
@@ -345,6 +349,7 @@
     - name: Razor syntax
       uid: mvc/views/razor
     - name: Tag Helpers
+      uid: mvc/views/tag-helpers/builtin-th/Index
       items:
         - name: Overview
           uid: mvc/views/tag-helpers/intro
@@ -1076,4 +1081,4 @@
 - name: API reference
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
-  href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
+  href: https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md

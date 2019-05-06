@@ -24,7 +24,7 @@ See also [Create your first pipeline with Azure Pipelines](/azure/devops/pipelin
 
 This tutorial assumes the following software is installed:
 
-* [Visual Studio](https://www.visualstudio.com)
+* [Visual Studio](https://visualstudio.microsoft.com)
 * [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 * [Git](https://git-scm.com/downloads) for Windows
 

@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/04/2019
+ms.date: 05/04/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -14,7 +14,7 @@ By [Luke Latham](https://github.com/guardrex) and [Tom Dykstra](https://github.c
 
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after reboots.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -203,7 +203,7 @@ For more information, see [icacls](/windows-server/administration/windows-comman
 
 ## Create the service
 
-Use the [RegisterService.ps1](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/windows-service/scripts) PowerShell script to register the service. From an administrative PowerShell 6 command shell, execute the script with the following command:
+Use the [RegisterService.ps1](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/scripts) PowerShell script to register the service. From an administrative PowerShell 6 command shell, execute the script with the following command:
 
 ```powershell
 .\RegisterService.ps1 
@@ -278,7 +278,7 @@ Stop-Service -Name MyService
 
 After a short delay to stop a service, remove the service with the `Remove-Service -Name {NAME}` Powershell 6 command.
 
-Check the status of the sample app service:
+The following command removes the sample app service:
 
 ```powershell
 Remove-Service -Name MyService
