@@ -1,28 +1,43 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess;
 using WebApiSample.DataAccess.Models;
-using WebApiSample.DataAccess.Repositories;
 
 namespace WebApiSample.Controllers
 {
     [Route("api/[controller]")]
     public class ProductsController : MyControllerBase
     {
-        private readonly ProductsRepository _repository;
+        private static List<Product> _productsInMemoryStore = new List<Product>();
 
-        public ProductsController(ProductsRepository repository)
+        public ProductsController()
         {
-            _repository = repository;
+            if (_productsInMemoryStore.Count == 0)
+            {
+                _productsInMemoryStore.Add(new Product
+                {
+                    Id = 1,
+                    Name = "Learning EF Core 2nd edition",
+                    Description = "The fundamentals of Entity Framework Core"
+                });
+                _productsInMemoryStore.Add(new Product
+                {
+                    Id = 2,
+                    Name = "Learning EF Core 1st edition",
+                    Description = "The fundamentals of Entity Framework Core",
+                    IsDiscontinued = true
+                });
+            }
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Product>> GetByIdAsync(int id)
+        public ActionResult<Product> GetById(int id)
         {
-            var product = await _repository.GetProductAsync(id);
+            var product = _productsInMemoryStore.FirstOrDefault(p => p.Id == id);
 
             if (product == null)
             {
@@ -34,18 +49,18 @@ namespace WebApiSample.Controllers
 
         #region snippet_BindingSourceAttributes
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetAsync(
+        public ActionResult<List<Product>> Get(
             [FromQuery] bool discontinuedOnly = false)
         {
             List<Product> products = null;
 
             if (discontinuedOnly)
             {
-                products = await _repository.GetDiscontinuedProductsAsync();
+                products = _productsInMemoryStore.Where(p => p.IsDiscontinued).ToList();
             }
             else
             {
-                products = await _repository.GetProductsAsync();
+                products = _productsInMemoryStore;
             }
 
             return products;
@@ -55,11 +70,12 @@ namespace WebApiSample.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Product>> CreateAsync(Product product)
+        public ActionResult<Product> Create(Product product)
         {
-            await _repository.AddProductAsync(product);
+            product.Id = _productsInMemoryStore.Any() ? _productsInMemoryStore.Max(p => p.Id) + 1 : 1;
+            _productsInMemoryStore.Add(product);
 
-            return CreatedAtAction(nameof(GetByIdAsync), 
+            return CreatedAtAction(nameof(GetById), 
                 new { id = product.Id }, product);
         }
     }
