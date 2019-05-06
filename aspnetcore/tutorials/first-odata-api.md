@@ -21,17 +21,13 @@ A malicious or naive client may construct a query that consumes excessive resour
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
-## Update the model class
+## Download the starter app
 
-[Download Web API sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples) ([How to download](xref:index#how-to-download-a-sample)).
-
-Add the [Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData) NuGet package to the project.
-
-Add the following highlighted properties to *Models\TodoItem.cs*:
-
-[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Models/TodoItem.cs?name=snippet)]
+[Download Web API starter app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-odata-api/samples/2.2/StarterApp) ([How to download](xref:index#how-to-download-a-sample)).
 
 ## Register OData
+
+Add the [Microsoft.AspNetCore.OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData) NuGet package to the project.
 
 Update the `ConfigureServices` method in *Startup.cs* with the following highlighted code:
 

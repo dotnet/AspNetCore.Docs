@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNet.OData;
+﻿#define Primary
+#if Primary
+
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -35,15 +38,12 @@ namespace TodoApi.Controllers
             }
         }
 
-        #region snippet_eq
         // GET: api/Todo
-        [EnableQuery()]  // requires using Microsoft.AspNet.OData;
         [HttpGet]
         public ActionResult<IQueryable<TodoItem>> GetTodoItems()
         {
             return _context.TodoItems;
         }
-        #endregion
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
@@ -102,3 +102,5 @@ namespace TodoApi.Controllers
         }
     }
 }
+
+#endif
