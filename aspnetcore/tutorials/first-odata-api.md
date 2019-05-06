@@ -56,7 +56,7 @@ The preceding code:
 
 Add `[EnableQuery()]` to the `public ActionResult<IQueryable<TodoItem>> GetTodoItems()` method in the `TodoController`:
 
-[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=3&name=snippet_eq)]
+[!code-csharp[](first-odata-api/samples/2.2/TodoApi/Controllers/TodoController.cs?highlight=2&name=snippet_eq)]
 
 Returning <xref:System.Linq.IQueryable> or [`ActionResult<IQueryable>`](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) enables **OData** to translate queries to **SQL** queries using *ef core* capabilities. Returning other types such as `IEnumerable` causes **OData** to perform queries in the app.
 

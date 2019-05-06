@@ -31,18 +31,22 @@ namespace TodoApi.Controllers
                     Name = "Item1",
                     Type = "from constructor",
                     DueDate = DateTime.Now,
+                    IsComplete = false,
                     priority = 2
                 });
                 _context.SaveChanges();
             }
         }
 
+        #region snippet_eq
         // GET: api/Todo
+        [EnableQuery()]
         [HttpGet]
         public ActionResult<IQueryable<TodoItem>> GetTodoItems()
         {
             return _context.TodoItems;
         }
+        #endregion
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
