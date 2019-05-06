@@ -83,7 +83,7 @@ Packages can be added with the following approaches:
 Run the following command from the **Integrated Terminal**:
 
 ```console
-dotnet add TodoApi.csproj package Grpc.Core
+dotnet add GrpcGreeterClient.csproj package Grpc.Core
 ```
 
 Repeat for Google.Protobuf and Grpc.Tools
