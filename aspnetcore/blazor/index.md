@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, a way to build interactive client-side
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 04/22/2019
+ms.date: 05/01/2019
 uid: blazor/index
 ---
 # Introduction to Blazor
@@ -128,7 +128,9 @@ For apps that require third-party JavaScript libraries and browser APIs, compone
 
 ## Code sharing and .NET Standard
 
-Apps can use [.NET Standard](/dotnet/standard/net-standard) libraries. .NET Standard is a formal specification of .NET APIs that are common across .NET implementations. Blazor implements .NET Standard 2.0. APIs that aren't applicable inside a web browser (for example, accessing the file system, opening a socket, and threading) throw a <xref:System.PlatformNotSupportedException>. .NET Standard class libraries can be shared across different .NET platforms, such as Blazor, .NET Framework, .NET Core, Xamarin, Mono, and Unity.
+Blazor implements [.NET Standard 2.0](/dotnet/standard/net-standard). .NET Standard is a formal specification of .NET APIs that are common across .NET implementations. .NET Standard class libraries can be shared across different .NET platforms, such as Blazor, .NET Framework, .NET Core, Xamarin, Mono, and Unity.
+
+APIs that aren't applicable inside a web browser (for example, accessing the file system, opening a socket, and threading) throw a <xref:System.PlatformNotSupportedException>.
 
 ## Additional resources
 

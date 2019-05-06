@@ -69,6 +69,10 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore
 
 ## Add and configure Swagger middleware
 
+Import the following namespace to use the `Info` class:
+
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_InfoClassNamespace)]
+
 Add the Swagger generator to the services collection in the `Startup.ConfigureServices` method:
 
 ::: moniker range="<= aspnetcore-2.0"
@@ -82,10 +86,6 @@ Add the Swagger generator to the services collection in the `Startup.ConfigureSe
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Startup2.cs?name=snippet_ConfigureServices&highlight=9-12)]
 
 ::: moniker-end
-
-Import the following namespace to use the `Info` class:
-
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_InfoClassNamespace)]
 
 In the `Startup.Configure` method, enable the middleware for serving the generated JSON document and the Swagger UI:
 
