@@ -132,9 +132,9 @@ Add a new component to the app that implements a simple todo list.
 
 1. Add the Todo component to the navigation bar.
 
-   The NavMenu component (*Pages/Shared/NavMenu.razor*) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app. For more information, see <xref:blazor/layouts>.
+   The NavMenu component (*Shared/NavMenu.razor*) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app. For more information, see <xref:blazor/layouts>.
 
-   Add a `<NavLink>` for the Todo component by adding the following list item markup below the existing list items in the *Pages/Shared/NavMenu.razor* file:
+   Add a `<NavLink>` for the Todo component by adding the following list item markup below the existing list items in the *Shared/NavMenu.razor* file:
 
    ```cshtml
    <li class="nav-item px-3">
