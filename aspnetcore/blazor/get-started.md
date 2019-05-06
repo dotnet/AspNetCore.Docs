@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/03/2019
+ms.date: 05/06/2019
 uid: blazor/get-started
 ---
 # Get started with Blazor
@@ -19,7 +19,7 @@ Get started with Blazor:
 1. Install the Blazor templates by running the following command in a command shell:
 
    ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview4-19216-03
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview5-19227-01
    ```
 
 1. Follow the guidance for your choice of tooling:
