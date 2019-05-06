@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2019
+ms.date: 05/06/2019
 uid: blazor/get-started
 ---
 # Get started with Blazor
@@ -19,7 +19,7 @@ Get started with Blazor:
 1. Install the Blazor templates by running the following command in a command shell:
 
    ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview4-19216-03
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview5-19227-01
    ```
 
 1. Follow the guidance for your choice of tooling:
@@ -30,7 +30,7 @@ Get started with Blazor:
 
    2.&nbsp;Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
 
-   3.&nbsp;Enable Visual Studio to use preview SDKs: Open **Tools** > **Options** in the menu bar. Open the **Projects and Solutions** node. Open the **.NET Core** tab. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
+   3.&nbsp;If using the latest stable release of Visual Studio (not a preview release), enable Visual Studio to use preview SDKs: Open **Tools** > **Options** in the menu bar. Open the **Projects and Solutions** node. Open the **.NET Core** tab. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
 
    4.&nbsp;Create a new project.
 
@@ -63,9 +63,6 @@ Get started with Blazor:
       ```
 
       For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
-
-      > [!NOTE]
-      > Only Blazor client-side is supported on macOS in ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
 
    4.&nbsp;Open the *WebApplication1* folder in Visual Studio Code.
 
@@ -112,9 +109,6 @@ Get started with Blazor:
    ```
 
    For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
-
-   > [!NOTE]
-   > On macOS, use a Blazor client-side app. Blazor server-side isn't supported for macOS on ASP.NET Core 3.0 Preview 4. For more information, see [Blazor server side: dotnet run fails with InvalidOperationException on MacOS](https://github.com/aspnet/AspNetCore/issues/9402).
 
    ---
 

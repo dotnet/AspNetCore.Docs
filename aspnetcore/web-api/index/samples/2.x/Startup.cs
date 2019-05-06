@@ -23,7 +23,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebApiSample.DataAccess;
-using WebApiSample.DataAccess.Repositories;
 
 #region snippet_Assembly
 [assembly: ApiController]
@@ -42,13 +41,6 @@ namespace WebApiSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ProductsRepository>();
-            services.AddScoped<PetsRepository>();
-
-            services.AddDbContext<ProductContext>(opt =>
-                opt.UseInMemoryDatabase("ProductInventory"));
-            services.AddDbContext<PetContext>(opt =>
-                opt.UseInMemoryDatabase("PetInventory"));
 
 #if SuppressApiControllerBehavior
             #region snippet_ConfigureApiBehaviorOptions
