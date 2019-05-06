@@ -28,9 +28,9 @@ If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-page
 A typical ASP.NET Core web app using areas, controllers, and views contains the following:
 
 * An [Area folder structure](#area-folder-structure).
-* Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area:
-  [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
-* The [area route added to startup](#add-area-route):
+* Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area:  
+  [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]  
+* The [area route added to startup](#add-area-route):  
   [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
 ### Area folder structure
