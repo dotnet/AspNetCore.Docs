@@ -3,7 +3,7 @@ title: Areas in ASP.NET Core
 author: rick-anderson
 description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 ms.author: riande
-ms.date: 02/14/2019
+ms.date: 05/06/2019
 uid: mvc/controllers/areas
 ---
 # Areas in ASP.NET Core
@@ -28,9 +28,12 @@ If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-page
 A typical ASP.NET Core web app using areas, controllers, and views contains the following:
 
 * An [Area folder structure](#area-folder-structure).
-* Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area:  
-  [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]  
-* The [area route added to startup](#add-area-route):  
+* Controllers decorated with the [&lbrack;Area&rbrack;](#attribute) attribute to associate the controller with the area:
+
+  [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
+
+* The [area route added to startup](#add-area-route):
+
   [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
 ### Area folder structure
@@ -176,9 +179,10 @@ In the sample download, the Products area contains the following *_ViewImports* 
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
 The following markup shows the */Products/About* Razor Page:
+
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/About.cshtml)]
 
-In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file:
+In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file.
 
 For more information, see [Managing Tag Helper scope](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
 
