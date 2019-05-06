@@ -149,7 +149,7 @@ namespace ContosoUniversity.Controllers
             string sortOrder,
             string currentFilter,
             string searchString,
-            int? page)
+            int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = 
@@ -159,7 +159,7 @@ namespace ContosoUniversity.Controllers
 
             if (searchString != null)
             {
-                page = 1;
+                pageNumber = 1;
             }
             else
             {
@@ -200,7 +200,7 @@ namespace ContosoUniversity.Controllers
        
             int pageSize = 3;
             return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), 
-                page ?? 1, pageSize));
+                pageNumber ?? 1, pageSize));
         }
 #endregion
 #endif
