@@ -78,6 +78,9 @@
         - name: Web API with MongoDB
           displayName: tutorial
           uid: tutorials/first-mongo-app
+          - name: Web API with OData
+          displayName: tutorial
+          uid: tutorials/first-odata-api
         - name: Backend for mobile
           displayName: tutorial
           uid: mobile/native-mobile-backend

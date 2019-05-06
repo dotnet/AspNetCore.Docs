@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Build web APIs with OData support using ASP.NET Core"
+title: "Sample: Build web APIs with OData support using ASP.NET Core"
 author: FIVIL
 description: This tutorial demonstrates how to add OData support to your existing ASP.NET Core web API.
 ms.author: riande
@@ -7,11 +7,11 @@ ms.date: 05/13/2019
 uid: tutorials/first-odata-api
 ---
 
-# Tutorial: Build web APIs with OData support using ASP.NET Core
+# Sample: Build web APIs with OData support using ASP.NET Core
 
 By [FIVIL](https://github.com/fivil) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial:
+This sample:
 
 * Demonstrates how to add [OData](https://www.odata.org/) query options support in an ASP.NET Core Web API app.
 * Uses the completed [to-do Web API](xref:tutorials/first-web-api) as a starting point.
