@@ -11,7 +11,7 @@ uid: web-api/advanced/odata-security
 
 By [Mike Wasson](https://github.com/MikeWasson), [FIVIL](https://github.com/fivil)  and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This page describes some of the security issues that you should consider when exposing a dataset through OData for ASP.NET Core Web API.
+This page describes some of the security issues that you should consider when exposing a dataset through [OData](https://www.odata.org/) for ASP.NET Core Web API.
 
 ## Query security
 

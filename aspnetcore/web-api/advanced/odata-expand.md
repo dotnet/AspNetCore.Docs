@@ -1,38 +1,45 @@
 ---
 title: "OData Expand"
-#author: 
+author: FIVIL
 description: Using OData expand to query related data
-#ms.author: riande
+ms.author: riande
 ms.custom: mvc
 ms.date: 4/5/2019
 uid: web-api/advanced/odata-expand
 ---
 
+TODO replace 51996 with 5001
+
 # OData Expand
 
-By [FIVIL](https://twitter.com/F_IVI_L) 
+By [FIVIL](https://twitter.com/F_IVI_L) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial demonstrates how you can query related entities using OData.
+This article demonstrates querying related entities using [OData](https://www.odata.org/).
 
-For this tutorial we use [ContosoUniversity sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21) as a base project model.
+The [ContosoUniversity sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21) is used for the starter project.
 
-## Configure middleware
+A malicious or naive client may construct a query that consumes excessive resources. Such a query can disrupt access to your service. Review `<xref:web-api/advanced/odata-security>` before starting this tutorial.
 
-Update the `Configure` method in *Startup.cs* with the following highlighted code:
+## Enable OData
 
-[!code-csharp[](odata-advanced/sample/odata-expand/Startup.cs?highlight=57-61,37)]
+Update *Startup.cs* with the following highlighted code:
 
-Using **Expand()** you can query related entities in OData.
+[!code-csharp[](odata-advanced/sample/odata-expand/Startup.cs?highlight=19,36-40?name=snippet)]
 
-## Adding a controller
+The preceding  code:
 
-Create new Controller named `EnrollmentController` and add new action like:
+* Calls `services.AddOData();` to enable OData middleware.
+* Calls `routeBuilder.Expand().Select()` to enable querying related entities with OData.
+
+## Add a controller
+
+Create new Controller named `EnrollmentController` and with the following action:
 
 [!code-csharp[](odata-advanced/sample/odata-expand/Controllers/EnrollmentController.cs?name=snippet_EnableQuery)]
 
 ## $expand
 
-You can use OData **expand** functionality to query related data. For example, to get the *Course* data for each *Enrollment* entity, include `?$expand=course` at the end of your request path:
+OData **expand** functionality can be used to query related data. For example, to get the *Course* data for each *Enrollment* entity, include `?$expand=course` at the end of the request path:
 
 This tutorial uses Postman to test the web API.
 
@@ -47,268 +54,13 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
   * Set the HTTP method to **GET**.
-  * Set the request URL to `https://localhost:<port>/api/Enrollment/GetEnrollments?$expand=course`.
+  * Set the request URL to `http://localhost:51996/api/Enrollment/?$expand=course($expand=Department)`.
 * Select **Send**.
-* You can now see that the *Course* data for each *Enrollment* entity is now included int the response.
+* The *Course* data for each *Enrollment* entity is included in the response.
 
-```json
-[
-    {
-        "Course": {
-            "CourseID": 1050,
-            "Title": "Chemistry",
-            "Credits": 3,
-            "DepartmentID": 3
-        },
-        "EnrollmentID": 1,
-        "CourseID": 1050,
-        "StudentID": 1,
-        "Grade": 0
-    },
-    {
-        "Course": {
-            "CourseID": 4022,
-            "Title": "Microeconomics",
-            "Credits": 3,
-            "DepartmentID": 4
-        },
-        "EnrollmentID": 2,
-        "CourseID": 4022,
-        "StudentID": 1,
-        "Grade": 2
-    },
-    {
-        "Course": {
-            "CourseID": 4041,
-            "Title": "Macroeconomics",
-            "Credits": 3,
-            "DepartmentID": 4
-        },
-        "EnrollmentID": 3,
-        "CourseID": 4041,
-        "StudentID": 1,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "CourseID": 1045,
-            "Title": "Calculus",
-            "Credits": 4,
-            "DepartmentID": 2
-        },
-        "EnrollmentID": 4,
-        "CourseID": 1045,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "CourseID": 3141,
-            "Title": "Trigonometry",
-            "Credits": 4,
-            "DepartmentID": 2
-        },
-        "EnrollmentID": 5,
-        "CourseID": 3141,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "CourseID": 2021,
-            "Title": "Composition",
-            "Credits": 3,
-            "DepartmentID": 1
-        },
-        "EnrollmentID": 6,
-        "CourseID": 2021,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "CourseID": 1050,
-            "Title": "Chemistry",
-            "Credits": 3,
-            "DepartmentID": 3
-        },
-        "EnrollmentID": 7,
-        "CourseID": 1050,
-        "StudentID": 3,
-        "Grade": null
-    },
-    {
-        "Course": {
-            "CourseID": 4022,
-            "Title": "Microeconomics",
-            "Credits": 3,
-            "DepartmentID": 4
-        },
-        "EnrollmentID": 8,
-        "CourseID": 4022,
-        "StudentID": 3,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "CourseID": 1050,
-            "Title": "Chemistry",
-            "Credits": 3,
-            "DepartmentID": 3
-        },
-        "EnrollmentID": 9,
-        "CourseID": 1050,
-        "StudentID": 4,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "CourseID": 2021,
-            "Title": "Composition",
-            "Credits": 3,
-            "DepartmentID": 1
-        },
-        "EnrollmentID": 10,
-        "CourseID": 2021,
-        "StudentID": 5,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "CourseID": 2042,
-            "Title": "Literature",
-            "Credits": 4,
-            "DepartmentID": 1
-        },
-        "EnrollmentID": 11,
-        "CourseID": 2042,
-        "StudentID": 6,
-        "Grade": 1
-    }
-]
-```
-
-## Customizing related data
-
-You can customize and use other OData functionalities over your related data using **Parentheses** in your *expand* clause. For example, to get only the *Title* and *Credits* of each *Course*, add `?$expand=course($select=Title,Credits)` at the end of your request path:
-
-```json
-[
-    {
-        "Course": {
-            "Title": "Chemistry",
-            "Credits": 3
-        },
-        "EnrollmentID": 1,
-        "CourseID": 1050,
-        "StudentID": 1,
-        "Grade": 0
-    },
-    {
-        "Course": {
-            "Title": "Microeconomics",
-            "Credits": 3
-        },
-        "EnrollmentID": 2,
-        "CourseID": 4022,
-        "StudentID": 1,
-        "Grade": 2
-    },
-    {
-        "Course": {
-            "Title": "Macroeconomics",
-            "Credits": 3
-        },
-        "EnrollmentID": 3,
-        "CourseID": 4041,
-        "StudentID": 1,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Title": "Calculus",
-            "Credits": 4
-        },
-        "EnrollmentID": 4,
-        "CourseID": 1045,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Title": "Trigonometry",
-            "Credits": 4
-        },
-        "EnrollmentID": 5,
-        "CourseID": 3141,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Title": "Composition",
-            "Credits": 3
-        },
-        "EnrollmentID": 6,
-        "CourseID": 2021,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Title": "Chemistry",
-            "Credits": 3
-        },
-        "EnrollmentID": 7,
-        "CourseID": 1050,
-        "StudentID": 3,
-        "Grade": null
-    },
-    {
-        "Course": {
-            "Title": "Microeconomics",
-            "Credits": 3
-        },
-        "EnrollmentID": 8,
-        "CourseID": 4022,
-        "StudentID": 3,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Title": "Chemistry",
-            "Credits": 3
-        },
-        "EnrollmentID": 9,
-        "CourseID": 1050,
-        "StudentID": 4,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Title": "Composition",
-            "Credits": 3
-        },
-        "EnrollmentID": 10,
-        "CourseID": 2021,
-        "StudentID": 5,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Title": "Literature",
-            "Credits": 4
-        },
-        "EnrollmentID": 11,
-        "CourseID": 2042,
-        "StudentID": 6,
-        "Grade": 1
-    }
-]
-```
 ## Expand depth
 
-You can expand more than one level of navigation property. For example, to get the *Department* data of each *Course* for each *Enrollment* entity, include `?$expand=course($expand=Department)` at the end of your request path:
+You can expand more than one level of navigation property. For example, to get the *Department* data of each *Course* for each *Enrollment* entity, include `?$expand=course($expand=Department)` at the end of the request path. The following JSON shows a portion of the output:
 
 ```json
 [
@@ -333,217 +85,38 @@ You can expand more than one level of navigation property. For example, to get t
     },
     {
         "Course": {
-            "Department": {
-                "DepartmentID": 4,
-                "Name": "Economics",
-                "Budget": 100000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 4
-            },
-            "CourseID": 4022,
-            "Title": "Microeconomics",
-            "Credits": 3,
-            "DepartmentID": 4
-        },
-        "EnrollmentID": 2,
-        "CourseID": 4022,
-        "StudentID": 1,
-        "Grade": 2
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 4,
-                "Name": "Economics",
-                "Budget": 100000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 4
-            },
-            "CourseID": 4041,
-            "Title": "Macroeconomics",
-            "Credits": 3,
-            "DepartmentID": 4
-        },
-        "EnrollmentID": 3,
-        "CourseID": 4041,
-        "StudentID": 1,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 2,
-                "Name": "Mathematics",
-                "Budget": 100000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 2
-            },
-            "CourseID": 1045,
-            "Title": "Calculus",
-            "Credits": 4,
-            "DepartmentID": 2
-        },
-        "EnrollmentID": 4,
-        "CourseID": 1045,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 2,
-                "Name": "Mathematics",
-                "Budget": 100000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 2
-            },
-            "CourseID": 3141,
-            "Title": "Trigonometry",
-            "Credits": 4,
-            "DepartmentID": 2
-        },
-        "EnrollmentID": 5,
-        "CourseID": 3141,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 1,
-                "Name": "English",
-                "Budget": 350000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 1
-            },
-            "CourseID": 2021,
-            "Title": "Composition",
-            "Credits": 3,
-            "DepartmentID": 1
-        },
-        "EnrollmentID": 6,
-        "CourseID": 2021,
-        "StudentID": 2,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 3,
-                "Name": "Engineering",
-                "Budget": 350000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 3
-            },
-            "CourseID": 1050,
-            "Title": "Chemistry",
-            "Credits": 3,
-            "DepartmentID": 3
-        },
-        "EnrollmentID": 7,
-        "CourseID": 1050,
-        "StudentID": 3,
-        "Grade": null
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 4,
-                "Name": "Economics",
-                "Budget": 100000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 4
-            },
-            "CourseID": 4022,
-            "Title": "Microeconomics",
-            "Credits": 3,
-            "DepartmentID": 4
-        },
-        "EnrollmentID": 8,
-        "CourseID": 4022,
-        "StudentID": 3,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 3,
-                "Name": "Engineering",
-                "Budget": 350000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 3
-            },
-            "CourseID": 1050,
-            "Title": "Chemistry",
-            "Credits": 3,
-            "DepartmentID": 3
-        },
-        "EnrollmentID": 9,
-        "CourseID": 1050,
-        "StudentID": 4,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 1,
-                "Name": "English",
-                "Budget": 350000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 1
-            },
-            "CourseID": 2021,
-            "Title": "Composition",
-            "Credits": 3,
-            "DepartmentID": 1
-        },
-        "EnrollmentID": 10,
-        "CourseID": 2021,
-        "StudentID": 5,
-        "Grade": 1
-    },
-    {
-        "Course": {
-            "Department": {
-                "DepartmentID": 1,
-                "Name": "English",
-                "Budget": 350000,
-                "StartDate": "2007-09-01T00:00:00",
-                "InstructorID": 1
-            },
-            "CourseID": 2042,
-            "Title": "Literature",
-            "Credits": 4,
-            "DepartmentID": 1
-        },
-        "EnrollmentID": 11,
-        "CourseID": 2042,
-        "StudentID": 6,
-        "Grade": 1
-    }
+            <!-- Deleted for brevity -->
 ]
 ```
 
-By default, Web API limits the maximum expansion depth to 2.To override the default, set the **MaxExpansionDepth** property on the **[EnableQuery]** attribute.
+By default, Web API allows the maximum expansion depth of two. To override the default, set the **MaxExpansionDepth** property on the **[EnableQuery]** attribute.
 
 ## Security concerns
 
-Consider disallowing expand to your sensitive or complicated data for security or performance reasons, you can override *SelectExpandQueryValidator* to control expand behaviour.
+Consider disallowing expand:
 
-* Create a new class named `MyExpandValidator`.
+* On sensitive data for security reasons.
+* On non-trivial data sets for performance reasons.
 
-* Replace the template code with the following code:
- 
-[!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyExpandValidator.cs)]
+Override `SelectExpandQueryValidator` to prevent `$expand=CourseAssignments`. Create a new class named `MyExpandValidator` with the following code:
 
-* Create a new class named `MyEnableQueryAttribute`.
+[!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyExpandValidator.cs&name=snippet)]
 
-* Replace the template code with the following code:
+The preceding code throws an exception if `$expand` is used with `CourseAssignments`.
+
+Create a new class named `MyEnableQueryAttribute` with the following code:
 
 [!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyEnableQueryAttribute.cs)]
 
-* Update `EnrollmentController`, replace *EnableQuery* attribute with *MyEnableQuery* attribute:
+The preceding code creates the `MyEnableQuery` attribute. The `MyEnableQuery` attribute adds the `MyExpandValidator`, which prevents `$expand=CourseAssignments`
+
+Replace the *EnableQuery* attribute with *MyEnableQuery* attribute in the `EnrollmentController`:
 
 [!code-csharp[](odata-advanced/sample/odata-expand/Controllers/EnrollmentController.cs?name=snippet_MyEnableQuery)]
 
-* Open Postman and send a **Get** request to `http://localhost:<post>/api/Enrollment?$expand=course($expand=CourseAssignments)`, you can see an exception pops up. 
+In Postman:
+
+* Send the previous `Get` request `http://localhost:51996/api/Enrollment/?$expand=course($expand=Department)`. The request returns data because `($expand=Department)` is not prohibited.
+* Send a `Get` request for with `($expand=CourseAssignments)`. For example, `http://localhost:51996/api/Enrollment/?$expand=course($expand=CourseAssignments)`
+
+ The preceding query returns `400 Bad Request`.

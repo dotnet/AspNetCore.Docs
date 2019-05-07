@@ -1,33 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//#define First
 using ContosoUniversity.Models;
 using ContosoUniversity.ODataValidators;
 using Microsoft.AspNet.OData;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace ContosoUniversity.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class EnrollmentController : ControllerBase
     {
-
-        #region snippet_MyEnableQuery
-
-        [HttpGet, MyEnableQuery]
-        public IQueryable<Enrollment> Get([FromServices]SchoolContext context) => context.Enrollment;
-
-        #endregion
-
+#if First
         #region snippet_EnableQuery
-
         [HttpGet, EnableQuery]
-        public IQueryable<Enrollment> GetEnrollments([FromServices]SchoolContext context) => context.Enrollment;
-
+        public IQueryable<Enrollment> Get([FromServices]SchoolContext context) 
+            => context.Enrollment;
         #endregion
+
+#else
+
+#region snippet_MyEnableQuery
+        [HttpGet, MyEnableQuery]
+        public IQueryable<Enrollment> Get([FromServices]SchoolContext context) 
+                                                       => context.Enrollment;
+#endregion
+#endif
     }
 }

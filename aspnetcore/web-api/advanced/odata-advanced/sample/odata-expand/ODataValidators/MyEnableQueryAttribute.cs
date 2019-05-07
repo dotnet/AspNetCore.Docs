@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ContosoUniversity.ODataValidators
 {
+    #region snippet
     public class MyEnableQueryAttribute : EnableQueryAttribute
     {
         private readonly DefaultQuerySettings defaultQuerySettings;
@@ -23,5 +20,5 @@ namespace ContosoUniversity.ODataValidators
             base.ValidateQuery(request, queryOptions);
         }
     }
+    #endregion
 }
-
