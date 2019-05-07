@@ -135,7 +135,7 @@ To customize the response that results from a validation error, use <xref:Micros
 
 ### Log automatic 400 responses
 
-For information about how to log automatic HTTP 400 responses, see [issue #12157 in the AspNetCore.Docs repo](https://github.com/aspnet/AspNetCore.Docs/issues/12157).
+See [How to log automatic 400 responses on model validation errors (aspnet/AspNetCore.Docs #12157)](https://github.com/aspnet/AspNetCore.Docs/issues/12157).
 
 ### Disable automatic 400
 
