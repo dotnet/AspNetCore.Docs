@@ -234,8 +234,9 @@
         - name: Overview
           uid: mvc/overview
         - name: Tutorial
-          uid: tutorials/first-mvc-app/index
           items:
+            - name: Overview
+              uid: tutorials/first-mvc-app/index
             - name: Get started
               uid: tutorials/first-mvc-app/start-mvc
             - name: Add a controller
@@ -342,10 +343,6 @@
       uid: fundamentals/app-state
     - name: Layout
       uid: mvc/views/layout
-    - name: Model binding
-      uid: mvc/models/model-binding
-    - name: Model validation
-      uid: mvc/models/validation
     - name: Razor syntax
       uid: mvc/views/razor
     - name: Tag Helpers
@@ -401,10 +398,6 @@
           uid: mvc/controllers/areas
         - name: App parts
           uid: mvc/extensibility/app-parts
-        - name: Custom model binding
-          uid: mvc/advanced/custom-model-binding
-        - name: Compatibility version
-          uid: mvc/compatibility-version
 - name: Web API apps
   items:
     - name: Overview
@@ -1005,6 +998,14 @@
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Advanced
   items:
+    - name: Model binding
+      uid: mvc/models/model-binding
+    - name: Custom model binding
+      uid: mvc/advanced/custom-model-binding
+    - name: Model validation
+      uid: mvc/models/validation
+    - name: Compatibility version
+      uid: mvc/compatibility-version
     - name: Write middleware
       uid: fundamentals/middleware/write
     - name: Request and response operations
