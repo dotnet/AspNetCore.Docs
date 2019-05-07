@@ -41,7 +41,7 @@ For examples of how social logins can drive traffic and customer conversions, se
 * Run the following commands:
 
   ```console
-  dotnet new webapp -o WebApp1
+  dotnet new webapp -o WebApp1 -au Individual
   code -r WebApp1
   ```
 
@@ -59,7 +59,7 @@ From a terminal, run the following command:
 <!-- TODO: update these instruction once mac support 2.2 projects -->
 
 ```console
-dotnet new webapp -o WebApp1
+dotnet new webapp -o WebApp1 -au Individual
 ```
 
 The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a Razor Pages project.
