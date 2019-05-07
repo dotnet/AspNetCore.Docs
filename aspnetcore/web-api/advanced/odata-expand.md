@@ -35,7 +35,7 @@ Create new Controller named `EnrollmentController` and with the following action
 
 [!code-csharp[](odata-advanced/sample/odata-expand/Controllers/EnrollmentController.cs?name=snippet_EnableQuery)]
 
-The preceding code returns enrollment entities for the `SchoolContext`.
+The preceding code enables OData queries and returns enrollment entities `SchoolContext`.
 
 ## $expand
 

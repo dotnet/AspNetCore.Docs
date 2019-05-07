@@ -409,7 +409,13 @@
         - name: Create a web API
           uid: tutorials/first-web-api
         - name: Web API with MongoDB
-          uid: tutorials/first-mongo-app
+          uid: tutorials/first-mongo-app          
+    - name: OData
+      items:
+        - name: OData security
+          uid: web-api/advanced/odata-security          
+        - name: OData expand
+          uid: web-api/advanced/odata-expand
     - name: Swagger / OpenAPI
       items:
         - name: Overview

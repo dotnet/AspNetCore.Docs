@@ -14,11 +14,11 @@ namespace ContosoUniversity.ODataValidators
             this.defaultQuerySettings.EnableExpand = true;
             this.defaultQuerySettings.EnableSelect = true;
         }
-        public override void ValidateQuery(HttpRequest request, ODataQueryOptions queryOptions)
+        public override void ValidateQuery(HttpRequest request, ODataQueryOptions queryOpts)
         {
-            queryOptions.SelectExpand.Validator = 
-                                              new MyExpandValidator(this.defaultQuerySettings);
-            base.ValidateQuery(request, queryOptions);
+            queryOpts.SelectExpand.Validator = 
+                                           new MyExpandValidator(this.defaultQuerySettings);
+            base.ValidateQuery(request, queryOpts);
         }
     }
     #endregion
