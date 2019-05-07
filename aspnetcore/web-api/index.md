@@ -5,7 +5,7 @@ description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/11/2019
+ms.date: 05/07/2019
 uid: web-api/index
 ---
 
@@ -132,6 +132,10 @@ To change the default response to <xref:Microsoft.AspNetCore.Mvc.SerializableErr
 To customize the response that results from a validation error, use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory>. Add the following highlighted code after `services.AddMvc().SetCompatibilityVersion`:
 
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureBadRequestResponse&highlight=3-20)]
+
+### Log automatic 400 responses
+
+For information about how to log automatic HTTP 400 responses, see [issue #12157 in the AspNetCore.Docs repo](https://github.com/aspnet/AspNetCore.Docs/issues/12157).
 
 ### Disable automatic 400
 
