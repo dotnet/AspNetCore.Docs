@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2019
+ms.date: 05/07/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -160,7 +160,7 @@ services.Configure<IISServerOptions>(options =>
 | `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `AllowSynchronousIO`           | `false` | Whether synchronous IO is allowed for the `HttpContext.Request` and the `HttpContext.Response`. |
-| `MaxRequestBodySize`           | `30000000`  | Gets or sets the the max request body size for the `HttpRequest`. Note that IIS itself has the limit `maxAllowedContentLength` which will be processed before the `MaxRequestBodySize` set in the `IISServerOptions`. Changing the `MaxRequestBodySize` won't affect the `maxAllowedContentLength`. To increase `maxAllowedContentLength`, add an entry in the *web.config* to set `maxAllowedContentLength` to a higher value. For more details, see [Configuration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration).|
+| `MaxRequestBodySize`           | `30000000`  | Gets or sets the the max request body size for the `HttpRequest`. Note that IIS itself has the limit `maxAllowedContentLength` which will be processed before the `MaxRequestBodySize` set in the `IISServerOptions`. Changing the `MaxRequestBodySize` won't affect the `maxAllowedContentLength`. To increase `maxAllowedContentLength`, add an entry in the *web.config* to set `maxAllowedContentLength` to a higher value. For more details, see [Configuration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
 
 ::: moniker-end
 
