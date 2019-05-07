@@ -18,7 +18,7 @@ This article demonstrates querying related entities using [OData](https://www.od
 
 The [ContosoUniversity sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21) is used for the starter project.
 
-A malicious or naive client may construct a query that consumes excessive resources. Such a query can disrupt access to your service. Review `<xref:web-api/advanced/odata-security>` before starting this tutorial.
+A malicious or naive client may construct a query that consumes excessive resources. Such a query can disrupt access to your service. Review <xref:web-api/advanced/odata-security> before starting this tutorial.
 
 ## Enable OData
 
@@ -54,7 +54,7 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
   * Set the HTTP method to **GET**.
-  * Set the request URL to `http://localhost:51996/api/Enrollment/?$expand=course($expand=Department)`.
+  * Set the request URL to `https://localhost:5001/api/Enrollment/?$expand=course($expand=Department)`.
 * Select **Send**.
 * The *Course* data for each *Enrollment* entity is included in the response.
 
@@ -100,7 +100,7 @@ Consider disallowing expand:
 
 Override `SelectExpandQueryValidator` to prevent `$expand=CourseAssignments`. Create a new class named `MyExpandValidator` with the following code:
 
-[!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyExpandValidator.cs&name=snippet)]
+[!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyExpandValidator.cs?name=snippet)]
 
 The preceding code throws an exception if `$expand` is used with `CourseAssignments`.
 
@@ -116,7 +116,7 @@ Replace the *EnableQuery* attribute with *MyEnableQuery* attribute in the `Enrol
 
 In Postman:
 
-* Send the previous `Get` request `http://localhost:51996/api/Enrollment/?$expand=course($expand=Department)`. The request returns data because `($expand=Department)` is not prohibited.
-* Send a `Get` request for with `($expand=CourseAssignments)`. For example, `http://localhost:51996/api/Enrollment/?$expand=course($expand=CourseAssignments)`
+* Send the previous `Get` request `https://localhost:5001/api/Enrollment/?$expand=course($expand=Department)`. The request returns data because `($expand=Department)` is not prohibited.
+* Send a `Get` request for with `($expand=CourseAssignments)`. For example, `https://localhost:5001/api/Enrollment/?$expand=course($expand=CourseAssignments)`
 
  The preceding query returns `400 Bad Request`.
