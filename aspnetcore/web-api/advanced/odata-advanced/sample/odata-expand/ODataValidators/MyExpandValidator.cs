@@ -22,7 +22,8 @@ namespace ContosoUniversity.ODataValidators
         {           
             if (selectExpandQueryOption.RawExpand.Contains(nameof(Course.CourseAssignments)))
             {
-                throw new ODataException($"Query on {nameof(Course.CourseAssignments)} not allowed");
+                throw new ODataException(
+                    $"Query on {nameof(Course.CourseAssignments)} not allowed");
             }
 
             base.Validate(selectExpandQueryOption, validationSettings);

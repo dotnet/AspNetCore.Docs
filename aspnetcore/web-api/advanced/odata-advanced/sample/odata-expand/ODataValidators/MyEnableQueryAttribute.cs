@@ -16,7 +16,8 @@ namespace ContosoUniversity.ODataValidators
         }
         public override void ValidateQuery(HttpRequest request, ODataQueryOptions queryOptions)
         {
-            queryOptions.SelectExpand.Validator = new MyExpandValidator(this.defaultQuerySettings);
+            queryOptions.SelectExpand.Validator = 
+                                              new MyExpandValidator(this.defaultQuerySettings);
             base.ValidateQuery(request, queryOptions);
         }
     }

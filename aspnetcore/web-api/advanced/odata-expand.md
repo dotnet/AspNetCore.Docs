@@ -8,8 +8,6 @@ ms.date: 4/5/2019
 uid: web-api/advanced/odata-expand
 ---
 
-TODO replace 51996 with 5001
-
 # OData Expand
 
 By [FIVIL](https://twitter.com/F_IVI_L) and [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -24,7 +22,7 @@ A malicious or naive client may construct a query that consumes excessive resour
 
 Update *Startup.cs* with the following highlighted code:
 
-[!code-csharp[](odata-advanced/sample/odata-expand/Startup.cs?highlight=19,36-40?name=snippet)]
+[!code-csharp[](odata-advanced/sample/odata-expand/Startup.cs?highlight=19,36-40&name=snippet)]
 
 The preceding  code:
 
@@ -37,9 +35,11 @@ Create new Controller named `EnrollmentController` and with the following action
 
 [!code-csharp[](odata-advanced/sample/odata-expand/Controllers/EnrollmentController.cs?name=snippet_EnableQuery)]
 
+The preceding code returns enrollment entities for the `SchoolContext`.
+
 ## $expand
 
-OData **expand** functionality can be used to query related data. For example, to get the *Course* data for each *Enrollment* entity, include `?$expand=course` at the end of the request path:
+OData `expand` functionality can be used to query related data. For example, to get the *Course* data for each *Enrollment* entity, include `?$expand=course` at the end of the request path:
 
 This tutorial uses Postman to test the web API.
 
@@ -53,14 +53,14 @@ This tutorial uses Postman to test the web API.
     > Re-enable SSL certificate verification after testing the controller.
 
 * Create a new request.
-  * Set the HTTP method to **GET**.
-  * Set the request URL to `https://localhost:5001/api/Enrollment/?$expand=course($expand=Department)`.
+  * Set the HTTP method to `GET`.
+  * Set the request URL to `https://localhost:5001/api/Enrollment/?$expand=course($expand=Department)`. Change the port as necessary.
 * Select **Send**.
 * The *Course* data for each *Enrollment* entity is included in the response.
 
 ## Expand depth
 
-You can expand more than one level of navigation property. For example, to get the *Department* data of each *Course* for each *Enrollment* entity, include `?$expand=course($expand=Department)` at the end of the request path. The following JSON shows a portion of the output:
+Expand can be applied to more than one level of navigation property. For example, to get the *Department* data of each *Course* for each *Enrollment* entity, include `?$expand=course($expand=Department)` at the end of the request path. The following JSON shows a portion of the output:
 
 ```json
 [
@@ -89,7 +89,7 @@ You can expand more than one level of navigation property. For example, to get t
 ]
 ```
 
-By default, Web API allows the maximum expansion depth of two. To override the default, set the **MaxExpansionDepth** property on the **[EnableQuery]** attribute.
+By default, Web API allows the maximum expansion depth of two. To override the default, set the `MaxExpansionDepth` property on the `[EnableQuery]` attribute.
 
 ## Security concerns
 
@@ -97,6 +97,8 @@ Consider disallowing expand:
 
 * On sensitive data for security reasons.
 * On non-trivial data sets for performance reasons.
+
+In this section, code is added to prevent querying `CourseAssignments` related data.
 
 Override `SelectExpandQueryValidator` to prevent `$expand=CourseAssignments`. Create a new class named `MyExpandValidator` with the following code:
 
@@ -106,11 +108,11 @@ The preceding code throws an exception if `$expand` is used with `CourseAssignme
 
 Create a new class named `MyEnableQueryAttribute` with the following code:
 
-[!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyEnableQueryAttribute.cs)]
+[!code-csharp[](odata-advanced/sample/odata-expand/ODataValidators/MyEnableQueryAttribute.cs?name=snippet)]
 
 The preceding code creates the `MyEnableQuery` attribute. The `MyEnableQuery` attribute adds the `MyExpandValidator`, which prevents `$expand=CourseAssignments`
 
-Replace the *EnableQuery* attribute with *MyEnableQuery* attribute in the `EnrollmentController`:
+Replace the `EnableQuery` attribute with `MyEnableQuery` attribute in the `EnrollmentController`:
 
 [!code-csharp[](odata-advanced/sample/odata-expand/Controllers/EnrollmentController.cs?name=snippet_MyEnableQuery)]
 
