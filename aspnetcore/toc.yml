@@ -1000,10 +1000,10 @@
   items:
     - name: Model binding
       uid: mvc/models/model-binding
-    - name: Model validation
-      uid: mvc/models/validation
     - name: Custom model binding
       uid: mvc/advanced/custom-model-binding
+    - name: Model validation
+      uid: mvc/models/validation
     - name: Compatibility version
       uid: mvc/compatibility-version
     - name: Write middleware
