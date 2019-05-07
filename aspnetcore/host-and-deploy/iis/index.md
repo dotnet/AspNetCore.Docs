@@ -164,7 +164,7 @@ services.Configure<IISServerOptions>(options =>
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.2"
+::: moniker range="< aspnetcore-3.0"
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
