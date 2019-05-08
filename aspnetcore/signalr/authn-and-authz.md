@@ -42,6 +42,9 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
+> [!NOTE]
+> The order in which you register the SignalR and ASP.NET Core authentication middleware matters. Always put `UseAuthentication()` before `UseSignalR()` so that SignalR has a user on the `HttpContext`.
+
 ### Cookie authentication
 
 In a browser-based app, cookie authentication allows your existing user credentials to automatically flow to SignalR connections. When using the browser client, no additional configuration is needed. If the user is logged in to your app, the SignalR connection automatically inherits this authentication.
