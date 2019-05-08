@@ -49,7 +49,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   * [macOS](https://docs.docker.com/docker-for-mac/install/)
   * [Windows](https://docs.docker.com/docker-for-windows/install/)
 
-* [git](https://git-scm.com/download)
+* [Git](https://git-scm.com/download)
 
 ## Download the sample app
 
@@ -206,7 +206,7 @@ In this tutorial, you:
 > * Run the sample with in Windows containers
 > * Built and deployed manually
 
-Next, learn about the tools Visual Studio has for working with Docker.
+The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md). In particular, learn how to implement HTTPS:
 
 > [!div class="nextstepaction"]
-> <xref:host-and-deploy/docker/visual-studio-tools-for-docker>
+> [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-https-development.md)
