@@ -12,7 +12,7 @@ uid: data/ef-rp/complex-data-model
 
 [!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
 
-::: moniker range=">= aspnetcore-2.1"
+
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -667,7 +667,7 @@ The next tutorial covers related data.
 * [YouTube version of this tutorial(Part 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
 
-::: moniker-end
+
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/migrations)

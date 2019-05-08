@@ -10,7 +10,7 @@ uid: data/ef-rp/crud
 
 [!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
 
-::: moniker range=">= aspnetcore-2.1"
+
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -241,7 +241,7 @@ Verify the Razor Page contains the correct `@page` directive. For example, The S
 
 Each Razor Page must include the `@page` directive.
 
-::: moniker-end
+
 
 ## Additional resources
 

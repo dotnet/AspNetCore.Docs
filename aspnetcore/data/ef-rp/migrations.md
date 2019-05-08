@@ -11,7 +11,7 @@ uid: data/ef-rp/migrations
 
 [!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
 
-::: moniker range=">= aspnetcore-2.1"
+
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -174,7 +174,7 @@ Solution: Run `dotnet ef database update`
 * [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
-::: moniker-end
+
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/sort-filter-page)

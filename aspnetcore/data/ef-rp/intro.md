@@ -12,7 +12,7 @@ uid: data/ef-rp/intro
 
 [!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
 
-::: moniker range=">= aspnetcore-2.1"
+
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -311,7 +311,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 
-::: moniker-end
+
 
 ## Additional resources
 
