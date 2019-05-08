@@ -46,7 +46,7 @@ An example using `@inject`:
 
 ## Service injection
 
-A service can be injected into a view using the `@inject` directive. You can think of `@inject` as adding a property to your view, and populating the property using DI.
+A service can be injected into a view using the `@inject` directive. You can think of `@inject` as adding a property to the view, and populating the property using DI.
 
 [!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
 
