@@ -12,8 +12,6 @@ uid: data/ef-rp/complex-data-model
 
 [!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
 
-
-
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
