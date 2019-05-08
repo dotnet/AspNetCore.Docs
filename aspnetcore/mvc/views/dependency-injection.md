@@ -16,9 +16,9 @@ ASP.NET Core supports [dependency injection](xref:fundamentals/dependency-inject
 
 ## Configuration injection
 
-You can inject values from `appsettings.json` directly into a view.
+You can inject values from *appsettings.json* directly into a view.
 
-Example of an `appsettings.json` file:
+Example of an *appsettings.json* file:
 
 ```json
 {
