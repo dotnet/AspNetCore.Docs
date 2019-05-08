@@ -1,131 +1,75 @@
 ---
 title: Microsoft Account external login setup with ASP.NET Core
 author: rick-anderson
-description: This tutorial demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
+description: This sample demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2018
+ms.date: 5/11/2019
 uid: security/authentication/microsoft-logins
 ---
 # Microsoft Account external login setup with ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core 2.0 project created on the [previous page](xref:security/authentication/social/index).
+This sample shows you how to enable users to sign in with their Microsoft account using the ASP.NET Core 2.2 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the app in Microsoft Developer Portal
 
-* Navigate to [https://apps.dev.microsoft.com](https://apps.dev.microsoft.com) and create or sign into a Microsoft account:
+* Navigate to the [Azure portal - App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page and create or sign into a Microsoft account:
 
-![Sign in dialog](index/_static/MicrosoftDevLogin.png)
+If you don't have a Microsoft account, select **Create one**. After signing in you are redirected to the **App registrations** page:
 
-If you don't already have a Microsoft account, tap **[Create one!](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=13&ct=1478151035&rver=6.7.6643.0&wp=SAPI_LONG&wreply=https%3a%2f%2fapps.dev.microsoft.com%2fLoginPostBack&id=293053&aadredir=1&contextid=D70D4F21246BAB50&bk=1478151036&uiflavor=web&uaid=f0c3de863a914c358b8dc01b1ff49e85&mkt=EN-US&lc=1033&lic=1)** After signing in you are redirected to **My applications** page:
+* Select **New registration**
+* Enter a **Name**.
+* Select an option for **Supported account types**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts -->
+* Under **Redirect URI**, enter your development URL with `/signin-microsoft` appended. For example, `https://localhost:44389/signin-microsoft`. The Microsoft authentication scheme configured later in this sample will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow:
+* Select **Register**
 
-![Microsoft Developer Portal open in Microsoft Edge](index/_static/MicrosoftDev.png)
+### Create client secret
 
-* Tap **Add an app** in the upper right corner and enter your **Application Name** and **Contact Email**:
+* In the left pane, select **Certificates & secrets**.
+* Under **Client secrets**, select **New client secret**
 
-![New Application Registration dialog](index/_static/MicrosoftDevAppCreate.png)
+  * Add a description for the client secret.
+  * Select the **Add** button.
 
-* For the purposes of this tutorial, clear the **Guided Setup** check box.
-
-* Tap **Create** to continue to the **Registration** page. Provide a **Name** and note the value of the **Application Id**, which you use as `ClientId` later in the tutorial:
-
-![Registration page](index/_static/MicrosoftDevAppReg.png)
-
-* Tap **Add Platform** in the **Platforms** section and select the **Web** platform:
-
-![Add Platform dialog](index/_static/MicrosoftDevAppPlatform.png)
-
-* In the new **Web** platform section, enter your development URL with `/signin-microsoft` appended into the **Redirect URLs** field (for example: `https://localhost:44320/signin-microsoft`). The Microsoft authentication scheme configured later in this tutorial will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow:
-
-![Web Platform section](index/_static/MicrosoftRedirectUri.png)
+* Under **Client secrets**, copy the value of the client secret.
 
 > [!NOTE]
 > The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) class.
 
-* Tap **Add URL** to ensure the URL was added.
+## Store the Microsoft client ID and client secret
 
-* Fill out any other application settings if necessary and tap **Save** at the bottom of the page to save changes to app configuration.
+Run the following commands to securely store `ClientId` and `ClientSecret` using [Secret Manager](xref:security/app-secrets):
 
-* When deploying the site you'll need to revisit the **Registration** page and set a new public URL.
+```console
+dotnet user-secrets set Authentication:Microsoft:ClientId <Client-Id>
+dotnet user-secrets set Authentication:Microsoft:ClientSecret <Client-Secret>
+```
 
-## Store Microsoft Application Id and Password
-
-* Note the `Application Id` displayed on the **Registration** page.
-
-* Tap **Generate New Password** in the **Application Secrets** section. This displays a box where you can copy the application password:
-
-![New password generated dialog](index/_static/MicrosoftDevPassword.png)
-
-Link sensitive settings like Microsoft `Application ID` and `Password` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Microsoft:ApplicationId` and `Authentication:Microsoft:Password`.
+Link sensitive settings like Microsoft `ClientId` and `ClientSecret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this sample, name the tokens `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret`.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
 ## Configure Microsoft Account Authentication
 
-The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package is already installed.
-
-* To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-* To install with .NET Core CLI, execute the following in your project directory:
-
-   `dotnet add package Microsoft.AspNetCore.Authentication.MicrosoftAccount`
-
-::: moniker range=">= aspnetcore-2.0"
-
 Add the Microsoft Account service in the `ConfigureServices` method in *Startup.cs* file:
 
-```csharp
-services.AddDefaultIdentity<IdentityUser>()
-        .AddDefaultUI(UIFramework.Bootstrap4)
-        .AddEntityFrameworkStores<ApplicationDbContext>();
-
-services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
-{
-    microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
-    microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
-});
-```
+[!code-csharp[](~/aspnetcore/security/authentication/social/social-code/StartupMS.cs?name=snippet&highlight=10-14)]
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-Add the Microsoft Account middleware in the `Configure` method in *Startup.cs* file:
-
-```csharp
-app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
-{
-    ClientId = Configuration["Authentication:Microsoft:ApplicationId"],
-    ClientSecret = Configuration["Authentication:Microsoft:Password"]
-});
-```
-
-::: moniker-end
-
-Although the terminology used on Microsoft Developer Portal names these tokens `ApplicationId` and `Password`, they're exposed as `ClientId` and `ClientSecret` to the configuration API.
-
 See the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.builder.microsoftaccountoptions) API reference for more information on configuration options supported by Microsoft Account authentication. This can be used to request different information about the user.
 
 ## Sign in with Microsoft Account
 
-Run your application and click **Log in**. An option to sign in with Microsoft appears:
-
-![Web application Log in page: User not authenticated](index/_static/DoneMicrosoft.png)
-
-When you click on Microsoft, you are redirected to Microsoft for authentication. After signing in with your Microsoft Account (if not already signed in) you will be prompted to let the app access your info:
-
-![Microsoft authentication dialog](index/_static/MicrosoftLogin.png)
+Run the and click **Log in**. An option to sign in with Microsoft appears. When you click on Microsoft, you are redirected to Microsoft for authentication. After signing in with your Microsoft Account (if not already signed in) you will be prompted to let the app access your info:
 
 Tap **Yes** and you will be redirected back to the web site where you can set your email.
 
 You are now logged in using your Microsoft credentials:
-
-![Web application: User authenticated](index/_static/Done.png)
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
@@ -134,13 +78,13 @@ You are now logged in using your Microsoft credentials:
 * If the Microsoft Account provider redirects you to a sign in error page, note the error title and description query string parameters directly following the `#` (hashtag) in the Uri.
 
   Although the error message seems to indicate a problem with Microsoft authentication, the most common cause is your application Uri not matching any of the **Redirect URIs** specified for the **Web** platform.
-* **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this sample ensures that this is done.
 * If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
 
 * This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 
-* Once you publish your web site to Azure web app, you should create a new `Password` in the Microsoft Developer Portal.
+* Once you publish your web site to Azure web app, create a new client secrets in the Microsoft Developer Portal.
 
-* Set the `Authentication:Microsoft:ApplicationId` and `Authentication:Microsoft:Password` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
