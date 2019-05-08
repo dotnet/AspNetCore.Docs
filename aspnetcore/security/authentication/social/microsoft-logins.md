@@ -22,7 +22,7 @@ If you don't have a Microsoft account, select **Create one**. After signing in y
 * Select **New registration**
 * Enter a **Name**.
 * Select an option for **Supported account types**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts -->
-* Under **Redirect URI**, enter your development URL with `/signin-microsoft` appended. For example, `https://localhost:44389/signin-microsoft`. The Microsoft authentication scheme configured later in this sample will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow:
+* Under **Redirect URI**, enter your development URL with `/signin-microsoft` appended. For example, `https://localhost:44389/signin-microsoft`. The Microsoft authentication scheme configured later in this sample will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow.
 * Select **Register**
 
 ### Create client secret
