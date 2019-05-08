@@ -1126,5 +1126,5 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
+* [Kestrel source code](https://github.com/aspnet/AspNetCore/tree/master/src/Servers/Kestrel)
 * [RFC 7230: Message Syntax and Routing (Section 5.4: Host)](https://tools.ietf.org/html/rfc7230#section-5.4)

@@ -1,2 +1,5 @@
-* [Visual Studio 2017 version 15.9 or later](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload
 * [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+
+> [!WARNING]
+> If you use Visual Studio 2017, see [dotnet/sdk issue #3124](https://github.com/dotnet/sdk/issues/3124) for information about .NET Core SDK versions that don't work with Visual Studio.
