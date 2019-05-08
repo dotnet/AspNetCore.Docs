@@ -41,11 +41,13 @@ For examples of how social logins can drive traffic and customer conversions, se
 * Run the following commands:
 
   ```console
-  dotnet new webapp -o WebApp1 -au Individual
+  dotnet new webapp -o WebApp1 -au Individual -uld
   code -r WebApp1
   ```
 
   * The `dotnet new` command creates a new Razor Pages project in the *WebApp1* folder.
+  * `-uld` uses LocalDB instead of SQLite. Omit `-uld` to use SQLite.
+  *  `-au Individual` creates the code for Individual authentication.
   * The `code` command opens the *WebApp1* folder in a new instance of Visual Studio Code.
 
   A dialog box appears with **Required assets to build and debug are missing from 'WebApp1'. Add them?**
