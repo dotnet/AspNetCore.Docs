@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about configuration for apps hosted behind proxy servers and load balancers, which often obscure important request information.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2018
+ms.date: 05/08/2019
 uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
@@ -243,9 +243,9 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers. Place either of the following code examples immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`.
+When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers. 
 
-To write the headers to the app's response, use the following terminal inline middleware:
+To write the headers to the app's response, place the following terminal inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`:
 
 ```csharp
 app.Run(async (context) =>
@@ -277,10 +277,12 @@ app.Run(async (context) =>
 });
 ```
 
-You can write to logs instead of the response body. Writing to logs allows the site to function normally while debugging. To write logs rather than the response body:
+You can write to logs instead of the response body. Writing to logs allows the site to function normally while debugging.
 
-* *Inject `ILogger<Startup>` into the `Startup` class as described in [Create logs in Startup](xref:fundamentals/logging/index#create-logs-in-startup).
-* Place this middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
+To write logs rather than to the response body:
+
+* Inject `ILogger<Startup>` into the `Startup` class as described in [Create logs in Startup](xref:fundamentals/logging/index#create-logs-in-startup).
+* Place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`.
 
 ```csharp
 app.Use(async (context, next) =>
