@@ -279,7 +279,7 @@ app.Run(async (context) =>
 
 You can also write to logs instead of the response body. This allows the site to function normally while debugging.
 
-First, inject an `ILogger<Startup>` into the `Startup` class as described in [Create logs in Startup](xref:/fundamentals/logging/index#create-logs-in-startup). Then, place this middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
+First, inject an `ILogger<Startup>` into the `Startup` class as described in [Create logs in Startup](xref:fundamentals/logging/index#create-logs-in-startup). Then, place this middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
 
 ```csharp
 app.Use(async (context, next) =>
