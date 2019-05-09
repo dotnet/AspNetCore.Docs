@@ -43,7 +43,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> The order in which you register the SignalR and ASP.NET Core authentication middleware matters. Always put `UseAuthentication()` before `UseSignalR()` so that SignalR has a user on the `HttpContext`.
+> The order in which you register the SignalR and ASP.NET Core authentication middleware matters. Always call `UseAuthentication` before `UseSignalR` so that SignalR has a user on the `HttpContext`.
 
 ### Cookie authentication
 
