@@ -92,7 +92,7 @@ When the file is read into configuration, unique keys are created to maintain th
 
 At app startup, configuration sources are read in the order that their configuration providers are specified.
 
-File Configuration Providers have the ability to reload configuration when an underlying settings file is changed after app startup. The File Configuration Provider is described later in this topic.
+Configuration providers that implement change detection have the ability to reload configuration when an underlying setting is changed. For example, the File Configuration Provider (described later in this topic) and the [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) implement change detection.
 
 <xref:Microsoft.Extensions.Configuration.IConfiguration> is available in the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) container. <xref:Microsoft.Extensions.Configuration.IConfiguration> can be injected into a Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> to obtain configuration for the class:
 
