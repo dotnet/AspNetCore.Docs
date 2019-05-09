@@ -1,5 +1,5 @@
 ---
-title: Twitter external login setup with ASP.NET Core
+title: Twitter external sign-in setup with ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Twitter account user authentication into an existing ASP.NET Core app.
 ms.author: riande
@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 5/11/2019
 uid: security/authentication/twitter-logins
 ---
-# Twitter external login setup with ASP.NET Core
+# Twitter external sign-in setup with ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -38,8 +38,6 @@ dotnet user-secrets set Authentication:Twitter:ConsumerAPISecret <Secret>
 Link sensitive settings like Twitter `Consumer Key` and `Consumer Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this sample, name the tokens `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret`.
 
 These tokens can be found on the **Keys and Access Tokens** tab after creating a new Twitter application:
-
-![Keys and Access Tokens tab](index/_static/TwitterKeys.png)
 
 ## Configure Twitter Authentication
 
