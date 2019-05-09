@@ -1,0 +1,145 @@
+@page
+@model ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2>Edit</h2>
+<h4>Instructor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Instructor.ID" />
+            <div class="form-group">
+                <label asp-for="Instructor.LastName" class="control-label"></label>
+                <input asp-for="Instructor.LastName" class="form-control" />
+                <span asp-validation-for="Instructor.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructor.FirstMidName" class="control-label"></label>
+                <input asp-for="Instructor.FirstMidName" class="form-control" />
+                <span asp-validation-for="Instructor.FirstMidName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructor.HireDate" class="control-label"></label>
+                <input asp-for="Instructor.HireDate" class="form-control" />
+                <span asp-validation-for="Instructor.HireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructor.Courses" class="control-label"></label>
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        @{
+                            int cnt = 0;
+
+                            foreach (var course in Model.Instructor.Courses)
+                            {
+                                <tr>
+                                    @{
+                                        int format = 11;  // Only 1, 2, and 4 work
+                                        if (format == 1)
+                                        {
+                                            <!-- parameter_name[key]=value-->
+                                            <td>
+                                                @course.Key
+                                            </td>
+                                            <td>
+                                                <input name="instructor.Courses[@course.Key]" type="text" value="@course.Value" />
+                                            </td>
+                                        }
+                                        else if (format == 2)
+                                        {
+                                            <!-- parameter_name[0].Key=key&parameter_name[0].Value=value -->
+                                            <td>
+                                                <input name="instructor.Courses[@cnt].Key" type="text" value="@course.Key" />
+                                            </td>
+                                            <td>
+                                                <input name="instructor.Courses[@cnt].Value" type="text" value="@course.Value" />
+                                            </td>
+                                        }
+                                        else if (format == 3)
+                                        {
+                                            <!-- parameter_name[].Key=key&parameter_name[].Value=value -->
+                                            <td>
+                                                <input name="instructor.Courses[].Key" type="text" value="@course.Key" />
+                                            </td>
+                                            <td>
+                                                <input name="instructor.Courses[].Value" type="text" value="@course.Value" />
+                                            </td>
+                                        }
+                                        else if (format == 4)
+                                        {
+                                            <!-- parameter_name.index=32&parameter_name[32].Key=key&parameter_name[32].Value=value -->
+                                            <td>
+                                                <input name="instructor.index" type="hidden" value="@cnt" />
+                                                <input name="instructor.Courses[@cnt].Key" type="text" value="@course.Key" />
+                                            </td>
+                                            <td>
+                                                <input name="instructor.Courses[@cnt].Value" type="text" value="@course.Value" />
+                                            </td>
+                                        }
+                                        else if (format == 11)
+                                        {
+                                            <!-- parameter_name[key]=value-->
+                                            <td>
+                                                @course.Key
+                                            </td>
+                                            <td>
+                                                <input name="Courses[@course.Key]" type="text" value="@course.Value" />
+                                            </td>
+                                        }
+                                        else if (format == 12)
+                                        {
+                                            <!-- parameter_name[0].Key=key&parameter_name[0].Value=value -->
+                                            <td>
+                                                <input name="Courses[@cnt].Key" type="text" value="@course.Key" />
+                                            </td>
+                                            <td>
+                                                <input name="Courses[@cnt].Value" type="text" value="@course.Value" />
+                                            </td>
+                                        }
+                                        else if (format == 13)
+                                        {
+                                            <!-- parameter_name[].Key=key&parameter_name[].Value=value -->
+                                            <td>
+                                                <input name="Courses[].Key" type="text" value="@course.Key" />
+                                            </td>
+                                            <td>
+                                                <input name="Courses[].Value" type="text" value="@course.Value" />
+                                            </td>
+                                        }
+                                        else if (format == 14)
+                                        {
+                                            <!-- parameter_name.index=32&parameter_name[32].Key=key&parameter_name[32].Value=value -->
+                                            <td>
+                                                <input name="index" type="hidden" value="@cnt" />
+                                                <input name="Courses[@cnt].Key" type="text" value="@course.Key" />
+                                            </td>
+                                            <td>
+                                                <input name="Courses[@cnt].Value" type="text" value="@course.Value" />
+                                            </td>
+                                        }
+
+                                        cnt++;
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
