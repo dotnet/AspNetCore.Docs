@@ -10,8 +10,6 @@ uid: data/ef-rp/sort-filter-page
 
 # Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging - 3 of 8
 
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]

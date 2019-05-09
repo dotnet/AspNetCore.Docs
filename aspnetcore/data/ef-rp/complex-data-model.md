@@ -10,8 +10,6 @@ uid: data/ef-rp/complex-data-model
 
 # Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
 
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
