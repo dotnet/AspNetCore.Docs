@@ -10,10 +10,6 @@ uid: data/ef-rp/intro
 
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
-
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web app demonstrates how to create an ASP.NET Core Razor Pages app using Entity Framework (EF) Core.
@@ -311,7 +307,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 
-::: moniker-end
+
 
 ## Additional resources
 
