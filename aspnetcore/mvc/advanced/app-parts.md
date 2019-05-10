@@ -20,13 +20,13 @@ ASP.NET Core apps load features from [ApplicationPart](/dotnet/api/microsoft.asp
 
 Use the `ApplicationPart` and `AssemblyPart` classes to discover and load ASP.NET Core features (controllers, view components, etc). The [ApplicationPartManager](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager) tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
 
-[!code-csharp[](./app-parts/sample/WebAppParts/Startup.cs?name=snippet]
+[!code-csharp[](./app-parts/sample/WebAppParts/Startup.cs?name=snippet)]
 
 The following code provides an alternative approach to configuring `ApplicationPartManager` using `AssemblyPart`:
 
-[!code-csharp[](./app-parts/sample/WebAppParts/Startup2.cs?name=snippet]
+[!code-csharp[](./app-parts/sample/WebAppParts/Startup2.cs?name=snippet)]
 
-By default MVC will search the dependency tree and find controllers (even in other assemblies). To load an arbitrary assembly (for instance, from a plugin that isn't referenced at compile time), you can use an application part.
+The preceding code loads the `SharedController` from an assembly. The `SharedController` is not in the project. See the [WebAppParts solution](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample)
 
 You can use application parts to *avoid* looking for controllers in a particular assembly or location. You can control which parts (or assemblies) are available to the app by modifying the `ApplicationParts` collection of the `ApplicationPartManager`. The order of the entries in the `ApplicationParts` collection isn't important. It's important to fully configure the `ApplicationPartManager` before using it to configure services in the container. For example, you should fully configure the `ApplicationPartManager` before invoking `AddControllersAsServices`. Failing to do so, will mean that controllers in application parts added after that method call won't be affected (won't get registered as services) which might result in incorrect behavior of your application.
 
