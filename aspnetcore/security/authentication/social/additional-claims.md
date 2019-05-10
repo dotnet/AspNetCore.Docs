@@ -5,7 +5,7 @@ description: Learn how to establish additional claims and tokens from external p
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/21/2019
+ms.date: 05/10/2019
 uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
@@ -67,10 +67,7 @@ In the sample app, `OnPostConfirmationAsync` (*Account/ExternalLogin.cshtml.cs*)
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
 > [!NOTE]
-> By default, claims are stored in the authentication cookie. Unless the app assigns a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> to the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to mitigate issues with serializing large identities into cookies, limit the number of user claims held by the app to only those required for request processing. The cookie can grow in size to a point where:
->
-> * Performance of the app is degraded on slow devices or devices with restricted bandwidth.
-> * The app fails to process requests properly because the browser detects one or more cookie headers that are too long or the overall size of the request is too large.
+> By default, claims are stored in the authentication cookie. Unless the app assigns a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> to the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to mitigate issues with serializing large identities into cookies, limit the number of user claims held by the app to only those required for request processing. The cookie can grow in size to a point where the app fails to process requests properly because the browser detects one or more cookie headers that are too long or the overall size of the request is too large.
 
 ## Save the access token
 
