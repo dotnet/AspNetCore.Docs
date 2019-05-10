@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ClaimsSample.Data;
 using Microsoft.AspNetCore.Authentication;
+using System.Linq;
 
 namespace ClaimsSample
 {
@@ -54,14 +55,16 @@ namespace ClaimsSample
 
                 options.Events.OnCreatingTicket = ctx =>
                 {
-                    List<AuthenticationToken> tokens = ctx.Properties.GetTokens() 
-                        as List<AuthenticationToken>;
+                    List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList(); 
+
                     tokens.Add(new AuthenticationToken()
                     {
                         Name = "TicketCreated", 
                         Value = DateTime.UtcNow.ToString()
                     });
+
                     ctx.Properties.StoreTokens(tokens);
+
                     return Task.CompletedTask;
                 };
             });
