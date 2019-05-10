@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2019
+ms.date: 05/10/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -889,7 +889,7 @@ Consider the following Pet Details component, which can be manually built into a
 }
 ```
 
-In the following example, the loop in the `CreateComponent` method generates three Pet Details components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.**
+In the following example, the loop in the `CreateComponent` method generates three Pet Details components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.** For more information, see [Why sequence numbers should relate to code line numbers, not execution order (SteveSandersonMS/sequence-number.md Gist)](https://gist.github.com/SteveSandersonMS/ec232992c2446ab9a0059dd0fbc5d0c3).
 
 *Built Content component*:
 
