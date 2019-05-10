@@ -124,7 +124,7 @@ System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed t
 Object name: 'HttpResponseStream'.
 ```
 
-If you are using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. You can do this by using a <xref:System.Threading.Tasks.TaskCompletionSource%601>. Pass the TaskCompletionSource to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult%2A> when you finish with the WebSocket, then `await` the <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> property during the request.
+If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource%601>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult%2A> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> property during the request.
 
 ### Send and receive messages
 
