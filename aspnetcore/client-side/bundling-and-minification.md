@@ -57,7 +57,7 @@ Browsers are fairly verbose with regard to HTTP request headers. The total bytes
 
 ## Choose a bundling and minification strategy
 
-The MVC and Razor Pages project templates provide an out-of-the-box solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Gulp](https://gulpjs.com/) and [Grunt](xref:client-side/using-grunt) task runners, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+The MVC and Razor Pages project templates provide an out-of-the-box solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
 ## Configure bundling and minification
 
@@ -319,11 +319,9 @@ In this example, any tasks defined within the `MyPreCompileTarget` target run be
 ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
 ```
 
-Alternatively, Visual Studio's Task Runner Explorer may be used to bind Gulp tasks to specific Visual Studio events.
 
 ## Additional resources
 
-* [Gulp](https://gulpjs.com/)
 * [Use Grunt](xref:client-side/using-grunt)
 * [Use multiple environments](xref:fundamentals/environments)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)

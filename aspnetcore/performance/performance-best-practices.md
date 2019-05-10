@@ -124,7 +124,7 @@ ASP.NET Core apps with complex front-ends frequently serve many JavaScript, CSS,
 Recommendations:
 
 * **Do** use ASP.NET Core's [built-in support](xref:client-side/bundling-and-minification) for bundling and minifying client assets.
-* **Do** consider other third-party tools, such as [Gulp](https://gulpjs.com/) or [Webpack](https://webpack.js.org/) for complex client asset management.
+* **Do** consider other third-party tools, such as [Webpack](https://webpack.js.org/), for complex client asset management.
 
 ## Compress responses
 
