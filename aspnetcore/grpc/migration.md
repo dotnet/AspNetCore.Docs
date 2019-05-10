@@ -21,7 +21,7 @@ A scoped lifetime allows the service implementation to resolve other services wi
 
 * A new instance of the service implementation is constructed for each request.
 * It isn't possible to share state between requests via instance members on the implementation type.
-* The expectation is to store shared states in a singleton service in the DI container. The stored shared states are resolved in the constructor of the gRPC service implementation. 
+* The expectation is to store shared states in a singleton service in the DI container. The stored shared states are resolved in the constructor of the gRPC service implementation.
 
 For more information on service lifetimes, see <xref:fundamentals/dependency-injection#service-lifetimes>.
 
@@ -43,26 +43,19 @@ However, a service implementation with a singleton lifetime is no longer able to
 
 In C-core-based apps, settings such as `grpc.max_receive_message_length` and `grpc.max_send_message_length` are configured with `ChannelOption` when [constructing the Server instance](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server__ctor_System_Collections_Generic_IEnumerable_Grpc_Core_ChannelOption__).
 
-In ASP.NET Core, `GrpcServiceOptions` provides a way to configure these settings. The settings can be applied globally to all gRPC services or to an individual service implementation type. Options specified for individual service implementation types override global settings when configured.
+In ASP.NET Core, gRPC provides configuration through the `GrpcServiceOptions` type. For example, a gRPC service's the maximum incoming message size can be configured via `AddGrpc`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services
-        .AddGrpc(globalOptions =>
-        {
-            // Global settings
-            globalOptions.SendMaxMessageSize = 4096
-            globalOptions.ReceiveMaxMessageSize = 4096
-        })
-        .AddServiceOptions<GreeterService>(greeterOptions =>
-        {
-            // GreeterService settings. These will override global settings
-            globalOptions.SendMaxMessageSize = 2048
-            globalOptions.ReceiveMaxMessageSize = 2048
-        })
+    services.AddGrpc(options =>
+    {
+        options.ReceiveMaxMessageSize = 16384; // 16 MB
+    });
 }
 ```
+
+For more information on configuration, see <xref:grpc/configuration>.
 
 ## Logging
 

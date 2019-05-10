@@ -8,10 +8,6 @@ uid: data/ef-rp/crud
 ---
 # Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
 
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
-
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
@@ -156,7 +152,7 @@ The following code uses the `StudentVM` view model to create a new student:
 
 The [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) method sets the values of this object by reading values from another [PropertyValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues) object. `SetValues` uses property name matching. The view model type doesn't need to be related to the model type, it just needs to have properties that match.
 
-Using `StudentVM` requires [CreateVM.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
+Using `StudentVM` requires [CreateVM.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
 In Razor Pages, the `PageModel` derived class is the view model.
 
@@ -241,7 +237,7 @@ Verify the Razor Page contains the correct `@page` directive. For example, The S
 
 Each Razor Page must include the `@page` directive.
 
-::: moniker-end
+
 
 ## Additional resources
 

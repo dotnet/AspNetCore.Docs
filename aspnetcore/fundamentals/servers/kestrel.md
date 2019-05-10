@@ -42,7 +42,7 @@ Kestrel supports the following scenarios:
 
 Kestrel is supported on all platforms and versions that .NET Core supports.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -1126,5 +1126,5 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
+* [Kestrel source code](https://github.com/aspnet/AspNetCore/tree/master/src/Servers/Kestrel)
 * [RFC 7230: Message Syntax and Routing (Section 5.4: Host)](https://tools.ietf.org/html/rfc7230#section-5.4)

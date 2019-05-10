@@ -10,7 +10,7 @@ uid: mvc/views/view-components
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## View components
 
@@ -138,7 +138,7 @@ In this example, the view component is called directly from the controller:
 
 ## Walkthrough: Creating a simple view component
 
-[Download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `ToDo` controller that displays a list of *ToDo* items.
+[Download](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `ToDo` controller that displays a list of *ToDo* items.
 
 ![List of ToDos](view-components/_static/2dos.png)
 
@@ -171,6 +171,8 @@ Notes on the code:
 * Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name). If you used the `ViewComponent` attribute, the class name would need to match the attribute designation.
 
 * Create a *Views/Shared/Components/PriorityList/Default.cshtml* Razor view:
+
+
   [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
    The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, I'll show you how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)*.

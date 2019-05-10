@@ -23,7 +23,7 @@ ASP.NET Core MVC 2.2 and later includes a set of default conventions in <xref:Mi
 
 At runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> understands conventions. `ApiExplorer` is MVC's abstraction to communicate with [OpenAPI](https://www.openapis.org/) (also known as Swagger) document generators. Attributes from the applied convention are associated with an action and are included in the action's OpenAPI documentation. [API analyzers](xref:web-api/advanced/analyzers) also understand conventions. If your action is unconventional (for example, it returns a status code that isn't documented by the applied convention), a warning encourages you to document the status code.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/conventions/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/conventions/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Apply web API conventions
 
@@ -39,9 +39,9 @@ Conventions don't compose; each action may be associated with exactly one conven
 
     ```csharp
     [ProducesDefaultResponseType]
-    [ProducesResponseType(204)]
-    [ProducesResponseType(404)]
-    [ProducesResponseType(400)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     ```
 
 For more information on `[ProducesDefaultResponseType]`, see [Default Response](https://swagger.io/docs/specification/describing-responses/#default).
@@ -72,8 +72,8 @@ These methods are annotated with `[ProducesResponseType]` or `[ProducesDefaultRe
 ```csharp
 public static class MyAppConventions
 {
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public static void Find(int id)
     {
     }
@@ -90,8 +90,8 @@ If more specific metadata attributes are absent, applying this convention to an 
 The `[ApiConventionNameMatch]` and `[ApiConventionTypeMatch]` attributes can be applied to the convention method that determines the actions to which they apply. For example:
 
 ```csharp
-[ProducesResponseType(200)]
-[ProducesResponseType(404)]
+[ProducesResponseType(StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
 [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
 public static void Find(
     [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]

@@ -16,7 +16,7 @@ The Java client enables connecting to an ASP.NET Core SignalR server from Java c
 
 The sample Java console app referenced in this article uses the SignalR Java client.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/java-client/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/java-client/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Install the SignalR Java client package
 

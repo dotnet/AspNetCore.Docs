@@ -42,7 +42,7 @@ The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because i
 
 An `IConfiguration` instance is added to the services container by default in ASP.NET Core 2.0. `IConfiguration` in the services container makes it easier for applications to retrieve configuration values from the container.
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3387).
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/3387).
 
 ## Logging update
 
@@ -57,7 +57,7 @@ A new authentication model makes it easier to configure authentication for an ap
 New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C]
 (https://azure.microsoft.com/services/active-directory-b2c/).
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3054).
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/3054).
 
 ## Identity update
 
@@ -109,7 +109,7 @@ Hosting environments can now inject extra package dependencies and execute code 
 
 In ASP.NET Core 2.0, this feature is used to automatically enable Application Insights diagnostics when debugging in Visual Studio and (after opting in) when running in Azure App Services. As a result, the project templates no longer add Application Insights packages and code by default.
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3389).
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/3389).
 
 ## Automatic use of anti-forgery tokens
 

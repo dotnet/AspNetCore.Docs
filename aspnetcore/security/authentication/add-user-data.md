@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: riande
 ms.date: 6/16/2018
-ms.custom: seodec18
+ms.custom: "mvc, seodec18"
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
@@ -18,7 +18,7 @@ This article shows how to:
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for a ASP.NET Core MVC web app.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/authentication/add-user-data) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/authentication/add-user-data/sample) code.
+* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data/sample) code.
 * Select **ASP.NET Core Web Application** > **OK**
 * Select **ASP.NET Core 2.2** in the dropdown
 * Select **Web Application**  > **OK**

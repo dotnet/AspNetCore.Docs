@@ -4,14 +4,14 @@ author: rick-anderson
 description: Learn how to author Tag Helpers in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 04/29/2019
 uid: mvc/views/tag-helpers/authoring
 ---
 # Author Tag Helpers in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Get started with Tag Helpers
 
@@ -60,6 +60,7 @@ That is, an anchor tag that makes this an email link. You might want to do this 
    ```
 
 1. To make the `EmailTagHelper` class available to all our Razor views, add the `addTagHelper` directive to the *Views/_ViewImports.cshtml* file:
+
    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
 
    The code above uses the wildcard syntax to specify all the tag helpers in our assembly will be available. The first string after `@addTagHelper` specifies the tag helper to load (Use "*" for all tag helpers), and the second string "AuthoringTagHelpers" specifies the assembly the tag helper is in. Also, note that the second line brings in the ASP.NET Core MVC tag helpers using the wildcard syntax (those helpers are discussed in [Introduction to Tag Helpers](intro.md).) It's the `@addTagHelper` directive that makes the tag helper available to the Razor view. Alternatively, you can provide the fully qualified name (FQN) of a tag helper as shown below:
@@ -102,6 +103,7 @@ Update the `EmailTagHelper` class with the following:
 That approach works for the attribute "href" as long as it doesn't currently exist in the attributes collection. You can also use the `output.Attributes.Add` method to add a tag helper attribute to the end of the collection of tag attributes.
 
 1. Update the markup in the *Views/Home/Contact.cshtml* file with these changes:
+
    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
 1. Run the app and verify that it generates the correct links.

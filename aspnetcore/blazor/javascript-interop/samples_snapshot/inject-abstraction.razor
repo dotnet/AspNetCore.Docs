@@ -1,0 +1,14 @@
+@inject IJSRuntime JSRuntime
+
+@functions {
+    public override void OnInit()
+    {
+        StocksService.OnStockTickerUpdated += stockUpdate =>
+        {
+            JSRuntime.InvokeAsync<object>(
+                "handleTickerChanged",
+                stockUpdate.symbol,
+                stockUpdate.price);
+        };
+    }
+}

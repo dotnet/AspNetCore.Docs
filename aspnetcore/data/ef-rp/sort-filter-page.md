@@ -10,10 +10,6 @@ uid: data/ef-rp/sort-filter-page
 
 # Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging - 3 of 8
 
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
-
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
@@ -24,7 +20,7 @@ The following illustration shows a completed page. The column headings are click
 
 ![Students index page](sort-filter-page/_static/paging.png)
 
-If you run into problems you can't solve, download the [completed app](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+If you run into problems you can't solve, download the [completed app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 ## Add sorting to the Index page
 
@@ -270,18 +266,18 @@ Replace the code in the *Pages/About.cshtml* file with the following code:
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
 
 ![About page](sort-filter-page/_static/about.png)
 
 ## Additional resources
 
-* [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
+* [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/AspNetCore.Docs/issues/4155)
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=MDs7PFpoMqI)
 
 In the next tutorial, the app uses migrations to update the data model.
 
-::: moniker-end
+
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/crud)
