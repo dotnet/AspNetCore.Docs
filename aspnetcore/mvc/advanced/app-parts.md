@@ -1,33 +1,30 @@
 ---
 title: Application Parts in ASP.NET Core
-author: ardalis
-description: Learn how to use application parts, which are abstractions over the resources of an app, to discover or avoid loading features from an assembly.
+author: rick-anderson
+description: Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 ms.author: riande
-ms.date: 01/04/2017
+ms.date: 05/14/2019
 uid: mvc/extensibility/app-parts
 ---
-# Application Parts in ASP.NET Core
+# Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-An *Application Part* is an abstraction over the resources of an application, from which MVC features like controllers, view components, or tag helpers may be discovered. One example of an application part is an AssemblyPart, which encapsulates an assembly reference and exposes types and compilation references. *Feature providers* work with application parts to populate the features of an ASP.NET Core MVC app. The main use case for application parts is to allow you to configure your app to discover (or avoid loading) MVC features from an assembly.
+An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references. 
 
-## Introducing Application Parts
+*Feature providers* work with application parts to populate the features of an ASP.NET Core app. The main use case for application parts is to configure an app to discover (or avoid loading) ASP.NET Core features from an assembly. For example, you might want to share common functionality between multiple apps. Using Application Parts, you can share an assembly (DLL) containing controllers, views, Razor Pages, razor compilation sources, Tag Helpers, and more with multiple apps. Sharing an assembly is preferred to duplicating the code in multiple projects.
 
-MVC apps load their features from [application parts](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpart). In particular, the [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) class represents an application part that's backed by an assembly. You can use these classes to discover and load MVC features, such as controllers, view components, tag helpers, and razor compilation sources. The [ApplicationPartManager](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager) is responsible for tracking the application parts and feature providers available to the MVC app. You can interact with the `ApplicationPartManager` in `Startup` when you configure MVC:
+ASP.NET Core apps load features from [ApplicationPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpart). The [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) class represents an application part that's backed by an assembly.
 
-```csharp
-// create an assembly part from a class's assembly
-var assembly = typeof(Startup).GetTypeInfo().Assembly;
-services.AddMvc()
-    .AddApplicationPart(assembly);
+Use the `ApplicationPart` and `AssemblyPart` classes to discover and load ASP.NET Core features (controllers, view components, etc). The [ApplicationPartManager](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager) tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
 
-// OR
-var assembly = typeof(Startup).GetTypeInfo().Assembly;
-var part = new AssemblyPart(assembly);
-services.AddMvc()
-    .ConfigureApplicationPartManager(apm => apm.ApplicationParts.Add(part));
-```
+[!code-csharp[](./app-parts/sample/WebAppParts/Startup.cs?name=snippet]
+
+The following code provides an alternative approach to configuring `ApplicationPartManager` using `AssemblyPart`:
+
+[!code-csharp[](./app-parts/sample/WebAppParts/Startup2.cs?name=snippet]
 
 By default MVC will search the dependency tree and find controllers (even in other assemblies). To load an arbitrary assembly (for instance, from a plugin that isn't referenced at compile time), you can use an application part.
 
