@@ -846,6 +846,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/client-side/using-gulp.md",
+            "redirect_url": "/aspnet/core/client-side/using-grunt",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/tutorials/build-your-first-razor-components-app.md",
             "redirect_url": "/aspnet/core/tutorials/build-your-first-blazor-app",
             "redirect_document_id": false

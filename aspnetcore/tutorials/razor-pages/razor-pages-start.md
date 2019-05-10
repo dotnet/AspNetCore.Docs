@@ -3,7 +3,7 @@ title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
 description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages, use Entity Framework Core and SQL Server for data access, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
-ms.date: 12/5/2018
+ms.date: 05/09/2019
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -54,7 +54,7 @@ At the end of this tutorial you'll have a working Razor Pages web app that you'l
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
-* Change directories (`cd`) to a folder which will contain the project.
+* Change to the directory (`cd`) which will contain the project.
 
 * Run the following commands:
 
@@ -64,7 +64,7 @@ At the end of this tutorial you'll have a working Razor Pages web app that you'l
   ```
 
   * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
-  * The `code` command opens the *RazorPagesMovie* folder in a new instance of Visual Studio Code.
+  * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
   A dialog box appears with **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?**
 
