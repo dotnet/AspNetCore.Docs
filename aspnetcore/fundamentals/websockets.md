@@ -117,6 +117,15 @@ The following example is from later in the `Configure` method:
 
 A WebSocket request could come in on any URL, but this sample code only accepts requests for `/ws`.
 
+When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
+
+```
+System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed the WebSocket connection without completing the close handshake. ---> System.ObjectDisposedException: Cannot write to the response body, the response has completed.
+Object name: 'HttpResponseStream'.
+```
+
+If you are using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. You can do this by using a <xref:System.Threading.Tasks.TaskCompletionSource%601>. Pass the TaskCompletionSource to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult> when you finish with the WebSocket, then `await` the <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> property during the request.
+
 ### Send and receive messages
 
 The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and provides a [WebSocket](/dotnet/core/api/system.net.websockets.websocket) object. Use the `WebSocket` object to send and receive messages.
