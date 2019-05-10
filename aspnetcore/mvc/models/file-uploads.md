@@ -612,6 +612,8 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
+Limitations in the ASP.NET Core Module or presence of the IIS Request Filtering Module may limit uploads to either 2 or 4 GB. For more information, see [Unable to upload file greater than 2GB in size (aspnet/AspNetCore #2711)](https://github.com/aspnet/AspNetCore/issues/2711).
+
 ## Troubleshoot
 
 Below are some common problems encountered when working with uploading files and their possible solutions.
