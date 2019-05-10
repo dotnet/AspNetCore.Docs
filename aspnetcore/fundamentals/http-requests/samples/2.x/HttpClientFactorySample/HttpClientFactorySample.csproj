@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <ProjectUiSubcaption>.NET Core 2.x</ProjectUiSubcaption>
   </PropertyGroup>
   
   <ItemGroup>

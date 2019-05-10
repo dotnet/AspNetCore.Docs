@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/30/2019
+ms.date: 05/10/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -23,7 +23,17 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 
 ## Prerequisites
 
+::: moniker range=">= aspnetcore-3.0"
+
+<!-- TODO -->
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
 Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects that target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) already include the `Microsoft.Extensions.Http` package.
+
+::: moniker-end
 
 ## Consumption patterns
 
