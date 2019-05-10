@@ -926,7 +926,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 ### Sequence numbers relate to code line numbers and not execution order
 
-Unlike `.jsx` files, `.razor` files are always compiled. This is potentially a great advantage for `.razor` because the compile step can be used to inject information that improve app performance at runtime.
+Blazor `.razor` files are always compiled. This is potentially a great advantage for `.razor` because the compile step can be used to inject information that improve app performance at runtime.
 
 A key example of these improvements involve *sequence numbers*. Sequence numbers indicate to the runtime which outputs came from which distinct and ordered lines of code. The runtime uses this information to generate efficient tree diffs in linear time, which is far faster than is normally possible for a general tree diff algorithm.
 
