@@ -476,7 +476,54 @@ Use a matching name for the parameter of the C# method (`battlePlans`):
   public async Task<IActionResult> Post(List<IFormFile> battlePlans)
   ```
 
-## Server configuration
+## Server and app configuration
+
+### Multipart body length limit
+
+<xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> sets the limit for the length of each multipart body. Form sections that exceed this limit throw an <xref:System.IO.InvalidDataException> when parsed. The default is 134,217,728 (128 MB). Customize the limit using the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> setting in `Startup.ConfigureServices`:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    services.Configure<FormOptions>(options =>
+    {
+        // Set the limit to 256 MB
+        options.MultipartBodyLengthLimit = 268435456;
+    });
+}
+```
+
+<xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> is used to set the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> for a single page or action.
+
+In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+
+```csharp
+services.AddMvc()
+    .AddRazorPagesOptions(options =>
+        {
+            options.Conventions
+                .AddPageApplicationModelConvention("/FileUploadPage",
+                    model.Filters.Add(
+                        new RequestFormLimitsAttribute()
+                        {
+                            // Set the limit to 256 MB
+                            MultipartBodyLengthLimit = 268435456
+                        });
+        })
+    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+```
+
+In a Razor pages app or an MVC app, apply the filter to the page handler class or action method:
+
+```csharp
+// Set the limit to 256 MB
+[RequestFormLimits(MultipartBodyLengthLimit = 268435456)]
+public class BufferedSingleFileUploadPhysicalModel : PageModel
+{
+    ...
+}
+```
 
 ### Kestrel maximum request body size
 
@@ -493,7 +540,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         })
         .ConfigureKestrel((context, options) =>
         {
-            // Handle requests up to 50MB
+            // Handle requests up to 50 MB
             options.Limits.MaxRequestBodySize = 52428800;
         });
 ```
@@ -508,7 +555,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         .UseStartup<Startup>()
         .ConfigureKestrel((context, options) =>
         {
-            // Handle requests up to 50MB
+            // Handle requests up to 50 MB
             options.Limits.MaxRequestBodySize = 52428800;
         });
 ```
@@ -516,6 +563,37 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ::: moniker-end
 
 The Kestrel limits for [maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections) may also apply.
+
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
+
+In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+
+```csharp
+services.AddMvc()
+    .AddRazorPagesOptions(options =>
+        {
+            options.Conventions
+                .AddPageApplicationModelConvention("/FileUploadPage",
+                    model =>
+                    {
+                        // Handle requests up to 50 MB
+                        model.Filters.Add(
+                            new RequestSizeLimitAttribute(52428800));
+                    });
+        })
+    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+```
+
+In a Razor pages app or an MVC app, apply the filter to the page handler class or action method:
+
+```csharp
+// Handle requests up to 50 MB
+[RequestSizeLimit(52428800)]
+public class BufferedSingleFileUploadPhysicalModel : PageModel
+{
+    ...
+}
+```
 
 ### IIS content length limit
 
@@ -525,7 +603,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 <system.webServer>
   <security>
     <requestFiltering>
-      <!-- Handle requests up to 50MB -->
+      <!-- Handle requests up to 50 MB -->
       <requestLimits maxAllowedContentLength="52428800" />
     </requestFiltering>
   </security>
