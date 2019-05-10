@@ -78,7 +78,7 @@ There are downsides to server-side hosting:
 * Reduced scalability: The server must manage multiple client connections and handle client state.
 * An ASP.NET Core server is required to serve the app. Deployment without a server (for example, from a CDN) isn't possible.
 
-&dagger;The *blazor.server.js* script is served directly from an embedded resource in `.Components.Server` middleware.
+&dagger;The *blazor.server.js* script is served from an embedded resource in the ASP.NET Core shared framework.
 
 ### Reconnection to the same server
 
