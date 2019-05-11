@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/30/2019
+ms.date: 05/10/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -21,9 +21,13 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
 
+::: moniker range="<= aspnetcore-2.2"
+
 ## Prerequisites
 
 Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects that target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) already include the `Microsoft.Extensions.Http` package.
+
+::: moniker-end
 
 ## Consumption patterns
 
@@ -191,11 +195,10 @@ Use one of the following approaches to share per-request state with message hand
 
 `IHttpClientFactory` integrates with a popular third-party library called [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
-Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions are available in the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package. This package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). To use the extensions, an explicit `<PackageReference />` should be included in the project.
+Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions:
 
-[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/HttpClientFactorySample.csproj?highlight=10)]
-
-After restoring this package, extension methods are available to support adding Polly-based handlers to clients.
+* Support adding Polly-based handlers to clients.
+* Can be used after installing the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package. The package isn't included in the ASP.NET Core shared framework.
 
 ### Handle transient faults
 
@@ -213,11 +216,11 @@ Additional extension methods exist which can be used to add Polly-based handlers
 
 [!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
 
-In the preceding code, if the outgoing request is a GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
+In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
 
 ### Add multiple Polly handlers
 
-It is common to nest Polly policies to provide enhanced functionality:
+It's common to nest Polly policies to provide enhanced functionality:
 
 [!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet9)]
 

@@ -334,7 +334,7 @@ There's no need to override `OnModelCreating` in the `ApplicationDbContext` clas
 
 Update *Pages/Shared/_LoginPartial.cshtml* and replace `IdentityUser` with `ApplicationUser`:
 
-```
+```cshtml
 @using Microsoft.AspNetCore.Identity
 @using WebApp1.Areas.Identity.Data
 @inject SignInManager<ApplicationUser> SignInManager
