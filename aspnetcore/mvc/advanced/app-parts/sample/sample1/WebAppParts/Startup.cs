@@ -22,7 +22,7 @@ namespace WebAppParts
         {
             // Create an assembly part from a class's assembly.
             // Requires using System.Reflection;
-            var assembly = typeof(SharedController).GetTypeInfo().Assembly;
+            var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
             services.AddMvc()
                 .AddApplicationPart(assembly)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

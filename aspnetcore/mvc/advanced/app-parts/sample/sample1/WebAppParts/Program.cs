@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace MySharedApp
+namespace WebAppParts
 {
     public class Program
     {
@@ -19,6 +19,8 @@ namespace MySharedApp
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+              //  .UseStartup<Startup>();
+              //  .UseStartup<Startup2>();
+              .UseStartup<StartupViews>();
     }
 }

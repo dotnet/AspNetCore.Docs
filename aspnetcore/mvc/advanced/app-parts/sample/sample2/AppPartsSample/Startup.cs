@@ -1,36 +1,46 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MySharedApp.Controllers;
-using System.Reflection;
 
-namespace WebAppParts
+namespace AppPartsSample
 {
-    public class Startup2
+    public class Startup
     {
-        public Startup2(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Create an assembly part from a class's assembly.
-            // Requires using System.Reflection;
-            // Requires using Microsoft.AspNetCore.Mvc.ApplicationParts;
-            var assembly = typeof(SharedController).GetTypeInfo().Assembly;
-            var part = new AssemblyPart(assembly);
+            var pluginAssembly = Assembly.Load(new AssemblyName("Plugin"));
             services.AddMvc()
-                .ConfigureApplicationPartManager(apm => apm.ApplicationParts.Add(part))
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddApplicationPart(pluginAssembly)
+                .ConfigureApplicationPartManager(p =>
+                {
+                    var dependentLibrary = p.ApplicationParts
+                                .FirstOrDefault(part => part.Name == "DependentLibrary");
+                    if (dependentLibrary != null)
+                    {
+                        p.ApplicationParts.Remove(dependentLibrary);
+                    }
+                })
+                .ConfigureApplicationPartManager(p => 
+                   p.FeatureProviders.Add(new GenericControllerFeatureProvider())); 
         }
-        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
