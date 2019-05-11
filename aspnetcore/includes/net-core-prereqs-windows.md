@@ -1,4 +1,4 @@
-[Visual Studio 2017 version 15.7.3 or later](https://visualstudio.microsoft.com/vs/older-downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=vs+2017+download) with the following workloads:
+[Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the following workloads:
 
 * **ASP.NET and web development**
 * **.NET Core cross-platform development**

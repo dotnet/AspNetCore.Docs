@@ -9,14 +9,14 @@ uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Tools for Docker with ASP.NET Core
 
-Visual Studio 2017 supports building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
+Visual Studio 2017 and later versions support building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
 * [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
-* [Visual Studio 2017](https://visualstudio.microsoft.com/vs/older-downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=vs+2017+download) with the **.NET Core cross-platform development** workload
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **.NET Core cross-platform development** workload
 
 ## Installation and setup
 
@@ -106,7 +106,7 @@ Using the configuration-specific override files, you can specify different confi
 In addition to the base [Prerequisites](#prerequisites), the [Service Fabric](/azure/service-fabric/) orchestration solution demands the following prerequisites:
 
 * [Microsoft Azure Service Fabric SDK](https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK) version 2.6 or later
-* Visual Studio 2017's **Azure Development** workload
+* Visual Studio's **Azure Development** workload
 
 Service Fabric doesn't support running Linux containers in the local development cluster on Windows. If the project is already using a Linux container, Visual Studio prompts to switch to Windows containers.
 
