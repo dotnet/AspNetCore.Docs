@@ -5,7 +5,7 @@ description: Learn how to get started with WebSockets in ASP.NET Core.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/17/2019
+ms.date: 05/10/2019
 uid: fundamentals/websockets
 ---
 # WebSockets support in ASP.NET Core
