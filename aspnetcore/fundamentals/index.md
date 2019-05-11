@@ -5,7 +5,7 @@ description: Learn the foundational concepts for building ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 05/11/2019
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -72,6 +72,8 @@ The code to create a host is in `Program.Main` and follows the [builder pattern]
 
 ::: moniker range=">= aspnetcore-3.0"
 
+`CreateHostBuilder` is special name that identifies the builder method to external components, such as [Entity Framework](/ef/core/).
+
 In ASP.NET Core 3.0 or later, Generic Host (`Host` class) or Web Host (`WebHost` class) can be used in a web app. Generic Host is recommended, and Web Host is available for backwards compatibility.
 
 The framework provides the `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods to set up a host with commonly used options, such as the following:
@@ -89,6 +91,8 @@ For more information, see <xref:fundamentals/host/generic-host> and <xref:fundam
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
+
+`CreateWebHostBuilder` is special name that identifies the builder method to external components, such as [Entity Framework](/ef/core/).
 
 ASP.NET Core 2.x uses Web Host (`WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` to set up a host with commonly used options, such as the following:
 
