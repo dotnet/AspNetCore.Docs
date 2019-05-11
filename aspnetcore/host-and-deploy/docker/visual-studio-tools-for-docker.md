@@ -16,7 +16,7 @@ Visual Studio 2017 supports building, debugging, and running containerized ASP.N
 ## Prerequisites
 
 * [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
-* [Visual Studio 2017](https://visualstudio.microsoft.com) with the **.NET Core cross-platform development** workload
+* [Visual Studio 2017](https://visualstudio.microsoft.com/vs/older-downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=vs+2017+download) with the **.NET Core cross-platform development** workload
 
 ## Installation and setup
 

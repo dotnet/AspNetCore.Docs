@@ -22,7 +22,7 @@ Visual Studio has built-in support for [LibMan](xref:client-side/libman/index) i
 
 ## Prerequisites
 
-* Visual Studio 2017 version 15.8 or later with the **ASP.NET and web development** workload
+* [Visual Studio 2017](https://visualstudio.microsoft.com/vs/older-downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=vs+2017+download) version 15.8 or later with the **ASP.NET and web development** workload
 
 ## Add library files
 
