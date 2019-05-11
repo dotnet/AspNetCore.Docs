@@ -46,7 +46,7 @@ To include views in the assembly:
 
 * Add the <xref:Microsoft.Extensions.FileProviders.EmbeddedFileProvider> to the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine>:
 
-    [!code-csharp[](./app-parts/sample/sample1/WebAppParts/Startup2Views.cs?name=snippet&highlight=3-7)]
+    [!code-csharp[](./app-parts/sample/sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
 
 ### Prevent loading resources
 
