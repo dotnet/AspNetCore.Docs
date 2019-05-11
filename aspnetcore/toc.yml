@@ -822,6 +822,8 @@
           uid: security/authentication/2fa
         - name: Use Cookie Authentication without Identity
           uid: security/authentication/cookie
+        - name: Use Google, Facebook ... without Identity
+          uid: security/authentication/social-without-identity
         - name: Azure Active Directory
           items:
             - name: Overview
