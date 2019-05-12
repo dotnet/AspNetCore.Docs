@@ -2,20 +2,15 @@
 title: Visual Studio publish profiles for ASP.NET Core app deployment
 author: rick-anderson
 description: Learn how to create publish profiles in Visual Studio and use them for managing ASP.NET Core app deployments to various targets.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/22/2019
+ms.date: 05/12/2019
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles for ASP.NET Core app deployment
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-::: moniker range="<= aspnetcore-1.1"
-
-For the 1.1 version of this topic, download [Visual Studio publish profiles for ASP.NET Core app deployment (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/VS_Publish_Profiles_1.1.pdf).
-
-::: moniker-end
 
 This document focuses on using Visual Studio 2017 or later to create and use publish profiles. The publish profiles created with Visual Studio can be run from MSBuild and Visual Studio. See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on publishing to Azure.
 
@@ -122,11 +117,11 @@ C:\Webs\Web1>dotnet publish
 Microsoft (R) Build Engine version 15.3.409.57025 for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-  Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp2.0\Web1.dll
-  Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp2.0\publish\
+  Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp{X.Y}\Web1.dll
+  Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp{X.Y}\publish\
 ```
 
-The default publish folder is `bin\$(Configuration)\netcoreapp<version>\publish`. The default for `$(Configuration)` is *Debug*. In the preceding sample, the `<TargetFramework>` is `netcoreapp2.0`.
+The default publish folder is `bin\$(Configuration)\netcoreapp<version>\publish`. The default for `$(Configuration)` is *Debug*. In the preceding sample, the `<TargetFramework>` is `netcoreapp{X.Y}`.
 
 `dotnet publish -h` displays help information for publish.
 
