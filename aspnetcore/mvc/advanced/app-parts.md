@@ -8,8 +8,6 @@ uid: mvc/extensibility/app-parts
 ---
 # Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 
-https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-classes
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample) ([how to download](xref:index#how-to-download-a-sample))
@@ -75,7 +73,7 @@ Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.I
 
 ### Generic controller feature
 
-ASP.NET Core ignores [generic controllers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-classes). A generic controller has a type parameter (for example, `MyController<T>`). The following sample adds generic controller instances for a specified list of types.
+ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/generics/generic-classes). A generic controller has a type parameter (for example, `MyController<T>`). The following sample adds generic controller instances for a specified list of types.
 
 [!code-csharp[](./app-parts/sample/sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
 
