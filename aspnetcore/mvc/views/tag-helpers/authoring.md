@@ -315,5 +315,4 @@ The following code:
 * Inherits from the <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>
 * Loads the minified version when the app is not in the development environment.
 
-C:\GH\aspnet\docs\9\AspNetCore.Docs\aspnetcore\mvc\views\tag-helpers\authoring\sample\AuthoringTagHelpers\src\MinifiedVersionTagHelper.cs
-[!code-csharp[](authoring/sample/AuthoringTagHelpers/src/MinifiedVersionTagHelper.cs?name-snippet)]
+[!code-csharp[](authoring/sample/AuthoringTagHelpers/src/MinifiedVersionTagHelper.cs?name=snippet)]
