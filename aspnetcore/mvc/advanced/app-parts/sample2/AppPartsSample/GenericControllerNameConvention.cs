@@ -4,7 +4,7 @@ using System;
 namespace AppPartsSample
 {
     // Used to set the controller name for routing purposes. Without this convention the
-    // names would be 'GenericController`1[Widget]' rather than 'Widget'.
+    // names is 'GenericController`1[Widget]' rather than 'Widget'.
     //
     // Conventions can be applied as attributes or added to MvcOptions.Conventions.
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]

@@ -10,7 +10,7 @@ uid: mvc/extensibility/app-parts
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([how to download](xref:index#how-to-download-a-sample))
 
 An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 
@@ -77,15 +77,11 @@ ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/gene
 
 The types are defined in `EntityTypes.Types`:
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/Models/EntityTypes.cs?range=6-16)]
+[!code-csharp[](./app-parts/sample2/AppPartsSample/Models/EntityTypes.cs?name=snippet)]
 
 The feature provider is added in `Startup`:
 
-```csharp
-services.AddMvc()
-    .ConfigureApplicationPartManager(apm => 
-        apm.FeatureProviders.Add(new GenericControllerFeatureProvider()));
-```
+[!code-csharp[](./app-parts/sample2/AppPartsSample/Startup.cs?name=snippet)]
 
 Generic controller names used for routing are of the form *GenericController`1[Widget]* rather than *Widget*. The following attribute modifies the name to correspond to the generic type used by the controller:
 
@@ -97,6 +93,8 @@ The `GenericController` class:
 
 ### Display available features
 
-You can iterate through the populated features available to your app by requesting an `ApplicationPartManager` through [dependency injection](../../fundamentals/dependency-injection.md) and using it to populate instances of the appropriate features:
+The features available to an app can be enumerated by by requesting an `ApplicationPartManager` through [dependency injection](../../fundamentals/dependency-injection.md):
 
 [!code-csharp[](./app-parts/sample2/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
+
+The [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample2) uses the preceding code to display the app features.
