@@ -25,7 +25,7 @@ namespace AuthoringTagHelpers.TagHelpers
 
             public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
             {
-                // Tack on a .min exension to load the minified partial view
+                // Append ".min" to load the minified partial view.
                 if (!IsDevelopment())
                 {
                     Name += ".min";

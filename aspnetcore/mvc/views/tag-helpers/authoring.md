@@ -308,7 +308,7 @@ The tag helpers provide several properties to retrieve content.
 
 * Multiple calls to `GetChildContentAsync` returns the same value and doesn't re-execute the `TagHelper` body unless you pass in a false parameter indicating not to use the cached result.
 
-## Load minified version TagHelper
+## Load minified partial view TagHelper
 
 The following code:
 
