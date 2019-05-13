@@ -307,3 +307,13 @@ The tag helpers provide several properties to retrieve content.
 [!code-csharp[](../../views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinkerCopy.cs?highlight=5,6,10&range=8-21)]
 
 * Multiple calls to `GetChildContentAsync` returns the same value and doesn't re-execute the `TagHelper` body unless you pass in a false parameter indicating not to use the cached result.
+
+## Load minified version TagHelper
+
+The following code:
+
+* Inherits from the <xref:mvc/views/tag-helpers/built-in/partial-tag-helper>
+* Loads the minified version when the app is not in the development environment.
+
+C:\GH\aspnet\docs\9\AspNetCore.Docs\aspnetcore\mvc\views\tag-helpers\authoring\sample\AuthoringTagHelpers\src\MinifiedVersionTagHelper.cs
+[!code-csharp[](authoring/sample/AuthoringTagHelpers/src/MinifiedVersionTagHelper.cs?name-snippet)]
