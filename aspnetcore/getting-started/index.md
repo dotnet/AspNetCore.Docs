@@ -65,6 +65,8 @@ This command might prompt you for your password to install the certificate on th
 
 # [Linux](#tab/linux)
 
+For Windows Subsystem for Linux, see [Trust HTTPS certificate from Windows Subsystem for Linux](xref:security/enforcing-ssl#wsl).
+
 See the documentation for your Linux distribution on how to trust the HTTPS development certificate.
 
 ---
