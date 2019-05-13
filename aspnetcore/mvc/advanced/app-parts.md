@@ -79,7 +79,7 @@ ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/gene
 
 The types are defined in `EntityTypes.Types`:
 
-[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/Model/EntityTypes.cs?range=6-16)]
+[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/Models/EntityTypes.cs?range=6-16)]
 
 The feature provider is added in `Startup`:
 
