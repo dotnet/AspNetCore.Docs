@@ -312,7 +312,7 @@ The tag helpers provide several properties to retrieve content.
 
 The following code:
 
-* Inherits from the <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>
+* Inherits from the [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)
 * Loads the minified version when the app is not in the development environment.
 
 [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/MinifiedVersionTagHelper.cs?name=snippet)]
