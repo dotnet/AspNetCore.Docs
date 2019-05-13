@@ -14,13 +14,13 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 
-*Feature providers* work with application parts to populate the features of an ASP.NET Core app. The main use case for application parts is to configure an app to discover (or avoid loading) ASP.NET Core features from an assembly. For example, you might want to share common functionality between multiple apps. Using Application Parts, you can share an assembly (DLL) containing controllers, views, Razor Pages, razor compilation sources, Tag Helpers, and more with multiple apps. Sharing an assembly is preferred to duplicating the code in multiple projects.
+*Feature providers* work with application parts to populate the features of an ASP.NET Core app. The main use case for application parts is to configure an app to discover (or avoid loading) ASP.NET Core features from an assembly. For example, you might want to share common functionality between multiple apps. Using Application Parts, you can share an assembly (DLL) containing controllers, views, Razor Pages, razor compilation sources, Tag Helpers, and more with multiple apps. Sharing an assembly is preferred to duplicating code in multiple projects.
 
-ASP.NET Core apps load features from [ApplicationPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpart). The [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) class represents an application part that's backed by an assembly.
+ASP.NET Core apps load features from <xref:System.Web.WebPages.ApplicationPart>. The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> class represents an application part that's backed by an assembly.
 
 ## Load ASP.NET Core features
 
-Use the `ApplicationPart` and `AssemblyPart` classes to discover and load ASP.NET Core features (controllers, view components, etc). The [ApplicationPartManager](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager) tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
+Use the `ApplicationPart` and `AssemblyPart` classes to discover and load ASP.NET Core features (controllers, view components, etc.). The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
 
 [!code-csharp[](./app-parts/sample/sample1/WebAppParts/Startup.cs?name=snippet)]
 
@@ -44,13 +44,11 @@ To include views in the assembly:
 
 * Add the <xref:Microsoft.Extensions.FileProviders.EmbeddedFileProvider> to the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine>:
 
-    [!code-csharp[](./app-parts/sample/sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
+[!code-csharp[](./app-parts/sample/sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
 
 ### Prevent loading resources
 
-Application parts can be used to *avoid* loading controllers in a particular assembly or location. Add or remove members of the  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> collection to hide or make available resources. The order of the entries in the `ApplicationParts` collection isn't important. Configure the `ApplicationPartManager` before using it to configure services in the container. For example, configure the `ApplicationPartManager` before invoking `AddControllersAsServices`.
-
-If you have an assembly that contains controllers you don't want to be used, remove it from the `ApplicationPartManager`:
+Application parts can be used to *avoid* loading resources in a particular assembly or location. Add or remove members of the  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> collection to hide or make available resources. The order of the entries in the `ApplicationParts` collection isn't important. Configure the `ApplicationPartManager` before using it to configure services in the container. For example, configure the `ApplicationPartManager` before invoking `AddControllersAsServices`. Call `Remove` on the `ApplicationParts` collection to remove a resource.
 
 The following code uses <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> to remove `MyDependentLibrary` from the app:
 [!code-csharp[](./app-parts/sample/sample1/WebAppParts/StartupRm.cs?name=snippet)]
@@ -59,7 +57,7 @@ The `ApplicationPartManager` includes parts for:
 
 * The apps assembly and dependent assemblies.
 * `Microsoft.AspNetCore.Mvc.TagHelpers`
-* `Microsoft.AspNetCore.Mvc.Razor` by default.
+* `Microsoft.AspNetCore.Mvc.Razor`.
 
 ## Application feature providers
 

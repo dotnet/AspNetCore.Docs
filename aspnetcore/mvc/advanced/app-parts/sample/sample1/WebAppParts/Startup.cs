@@ -20,7 +20,6 @@ namespace WebAppParts
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            // Create an assembly part from a class's assembly.
             // Requires using System.Reflection;
             var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
             services.AddMvc()

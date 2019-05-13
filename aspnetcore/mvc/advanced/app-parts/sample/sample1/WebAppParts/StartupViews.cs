@@ -27,7 +27,6 @@ namespace WebAppParts
                 options.FileProviders.Add(
                  new EmbeddedFileProvider(typeof(MySharedController).GetTypeInfo().Assembly));
             });
-            // Create an assembly part from a class's assembly.
             // Requires using System.Reflection;
             var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
             services.AddMvc()
