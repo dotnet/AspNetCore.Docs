@@ -22,11 +22,11 @@ ASP.NET Core apps load features from <xref:System.Web.WebPages.ApplicationPart>.
 
 Use the `ApplicationPart` and `AssemblyPart` classes to discover and load ASP.NET Core features (controllers, view components, etc.). The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
 
-[!code-csharp[](./app-parts/sample/sample1/WebAppParts/Startup.cs?name=snippet)]
+[!code-csharp[](./app-parts/sample1/WebAppParts/Startup.cs?name=snippet)]
 
 The following code provides an alternative approach to configuring `ApplicationPartManager` using `AssemblyPart`:
 
-[!code-csharp[](./app-parts/sample/sample1/WebAppParts/Startup2.cs?name=snippet)]
+[!code-csharp[](./app-parts/sample1/WebAppParts/Startup2.cs?name=snippet)]
 
 The preceding two code samples load the `SharedController` from an assembly. The `SharedController` is not in the applications project. See the [WebAppParts solution](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample1/WebAppParts) sample download.
 
@@ -44,14 +44,14 @@ To include views in the assembly:
 
 * Add the <xref:Microsoft.Extensions.FileProviders.EmbeddedFileProvider> to the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine>:
 
-[!code-csharp[](./app-parts/sample/sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
+[!code-csharp[](./app-parts/sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
 
 ### Prevent loading resources
 
 Application parts can be used to *avoid* loading resources in a particular assembly or location. Add or remove members of the  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> collection to hide or make available resources. The order of the entries in the `ApplicationParts` collection isn't important. Configure the `ApplicationPartManager` before using it to configure services in the container. For example, configure the `ApplicationPartManager` before invoking `AddControllersAsServices`. Call `Remove` on the `ApplicationParts` collection to remove a resource.
 
 The following code uses <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> to remove `MyDependentLibrary` from the app:
-[!code-csharp[](./app-parts/sample/sample1/WebAppParts/StartupRm.cs?name=snippet)]
+[!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
 
 The `ApplicationPartManager` includes parts for:
 
@@ -73,11 +73,11 @@ Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.I
 
 ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/generics/generic-classes). A generic controller has a type parameter (for example, `MyController<T>`). The following sample adds generic controller instances for a specified list of types.
 
-[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
+[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
 
 The types are defined in `EntityTypes.Types`:
 
-[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/Models/EntityTypes.cs?range=6-16)]
+[!code-csharp[](./app-parts/sample2/AppPartsSample/Models/EntityTypes.cs?range=6-16)]
 
 The feature provider is added in `Startup`:
 
@@ -89,14 +89,14 @@ services.AddMvc()
 
 Generic controller names used for routing are of the form *GenericController`1[Widget]* rather than *Widget*. The following attribute modifies the name to correspond to the generic type used by the controller:
 
-[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/GenericControllerNameConvention.cs)]
+[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericControllerNameConvention.cs)]
 
 The `GenericController` class:
 
-[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/GenericController.cs)]
+[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericController.cs)]
 
 ### Display available features
 
 You can iterate through the populated features available to your app by requesting an `ApplicationPartManager` through [dependency injection](../../fundamentals/dependency-injection.md) and using it to populate instances of the appropriate features:
 
-[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
+[!code-csharp[](./app-parts/sample2/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
