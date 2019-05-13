@@ -3,6 +3,7 @@ using System.Reflection;
 
 namespace AppPartsSample.Model
 {
+    #region snippet
     public static class EntityTypes
     {
         public static IReadOnlyList<TypeInfo> Types => new List<TypeInfo>()
@@ -14,4 +15,5 @@ namespace AppPartsSample.Model
         public class Sprocket { }
         public class Widget { }
     }
+    #endregion
 }

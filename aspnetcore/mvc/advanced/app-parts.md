@@ -50,14 +50,14 @@ To include views in the assembly:
 
 ### Prevent loading resources
 
-You can use application parts to *avoid* looking for controllers in a particular assembly or location. You can control which parts (or assemblies) are available to the app by modifying the <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> collection of the `ApplicationPartManager`. The order of the entries in the `ApplicationParts` collection isn't important. It's important to fully configure the `ApplicationPartManager` before using it to configure services in the container. For example, you should fully configure the `ApplicationPartManager` before invoking `AddControllersAsServices`. Failing to do so, will mean that controllers in application parts added after that method call won't be affected (won't get registered as services) which might result in incorrect behavior of your application.
+Application parts can be used to *avoid* loading controllers in a particular assembly or location. Add or remove members of the  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> collection to hide or make available resources. The order of the entries in the `ApplicationParts` collection isn't important. Configure the `ApplicationPartManager` before using it to configure services in the container. For example, configure the `ApplicationPartManager` before invoking `AddControllersAsServices`.
 
 If you have an assembly that contains controllers you don't want to be used, remove it from the `ApplicationPartManager`:
 
 The following code uses <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> to remove `MyDependentLibrary` from the app:
 [!code-csharp[](./app-parts/sample/sample1/WebAppParts/StartupRm.cs?name=snippet)]
 
-In addition to your project's assembly and its dependent assemblies, the `ApplicationPartManager` includes parts for:
+The `ApplicationPartManager` includes parts for:
 
 * The apps assembly and dependent assemblies.
 * `Microsoft.AspNetCore.Mvc.TagHelpers`
@@ -73,17 +73,15 @@ Application feature providers examine application parts and provide features for
 
 Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, where `T` is the type of the feature. Feature providers can be implemented for any of the previously listed feature types. The order of feature providers in the `ApplicationPartManager.FeatureProviders` can impact run time behavior. Later added providers can react to actions taken by earlier added providers.
 
-### Sample: Generic controller feature
+### Generic controller feature
 
-By default, ASP.NET Core MVC ignores [generic controllers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-classes). A generic controller has a type parameter (for example, `MyController<T>`). The following sample adds generic controller instances:
+ASP.NET Core ignores [generic controllers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-classes). A generic controller has a type parameter (for example, `MyController<T>`). The following sample adds generic controller instances for a specified list of types.
 
-This sample uses a controller feature provider that runs after the default provider and adds generic controller instances for a specified list of types (defined in `EntityTypes.Types`):
+[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
 
-[!code-csharp[](./app-parts/sample/AppPartsSample/GenericControllerFeatureProvider.cs?highlight=13&range=18-36)]
+The types are defined in `EntityTypes.Types`:
 
-The entity types:
-
-[!code-csharp[](./app-parts/sample/AppPartsSample/Model/EntityTypes.cs?range=6-16)]
+[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/Model/EntityTypes.cs?range=6-16)]
 
 The feature provider is added in `Startup`:
 
@@ -93,24 +91,16 @@ services.AddMvc()
         apm.FeatureProviders.Add(new GenericControllerFeatureProvider()));
 ```
 
-By default, the generic controller names used for routing would be of the form *GenericController`1[Widget]* instead of *Widget*. The following attribute is used to modify the name to correspond to the generic type used by the controller:
+Generic controller names used for routing are of the form *GenericController`1[Widget]* rather than *Widget*. The following attribute modifies the name to correspond to the generic type used by the controller:
 
-[!code-csharp[](./app-parts/sample/AppPartsSample/GenericControllerNameConvention.cs)]
+[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/GenericControllerNameConvention.cs)]
 
 The `GenericController` class:
 
-[!code-csharp[](./app-parts/sample/AppPartsSample/GenericController.cs?highlight=5-6)]
+[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/GenericController.cs)]
 
-The result, when a matching route is requested:
-
-![Example output from the sample app reads, 'Hello from a generic Sprocket controller.'](app-parts/_static/generic-controller.png)
-
-### Sample: Display available features
+### Display available features
 
 You can iterate through the populated features available to your app by requesting an `ApplicationPartManager` through [dependency injection](../../fundamentals/dependency-injection.md) and using it to populate instances of the appropriate features:
 
-[!code-csharp[](./app-parts/sample/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
-
-Example output:
-
-![Example output from the sample app](app-parts/_static/available-features.png)
+[!code-csharp[](./app-parts/sample/sample2/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
