@@ -5,7 +5,7 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 05/13/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -581,8 +581,8 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 
 When hosted in IIS by the ASP.NET Core Module version 2:
 
-* App's hosted [in-process](xref:fundamentals/servers/index#in-process-hosting-model) or [out-of-process](xref:fundamentals/servers/index#out-of-process-hosting-model), can be configured to start automatically on a worker process restart or server restart.
-* App's hosted [in-process](xref:fundamentals/servers/index#in-process-hosting-model) can be configured not to timeout during periods of inactivity.
+* [Application Initialization Module](#application-initialization-module) &ndash; App's hosted [in-process](xref:fundamentals/servers/index#in-process-hosting-model) or [out-of-process](xref:fundamentals/servers/index#out-of-process-hosting-model), can be configured to start automatically on a worker process restart or server restart.
+* [Idle Timeout](#idle-timeout) &ndash; App's hosted [in-process](xref:fundamentals/servers/index#in-process-hosting-model) can be configured not to timeout during periods of inactivity.
 
 ### Application Initialization Module
 
@@ -610,10 +610,10 @@ Use either of the following approaches to enable the Application Initialization 
 
   1. Select **Application Pools** in the **Connections** panel.
   1. Right-click the app's app pool in the list and select **Advanced Settings**.
-  1. Set **Start Mode** to **AlwaysRunning**. Select **OK**.
+  1. The default **Start Mode** is **OnDemand**. Set the **Start Mode** to **AlwaysRunning**. Select **OK**.
   1. Open the **Sites** node in the **Connections** panel.
   1. Right-click the app and select **Manage Website** > **Advanced Settings**.
-  1. Set **Preload Enabled** to **True**.
+  1. The default **Preload Enabled** setting is **False**. Set **Preload Enabled** to **True**. Select **OK**.
 
 * Using *web.config*, add the `<applicationInitialization>` element with `doAppInitAfterRestart` set to `true` to the `<system.webServer>` elements in the app's *web.config* file:
 
@@ -636,7 +636,7 @@ To prevent the app from idling, set the app pool's idle timeout using IIS Manage
 
 1. Select **Application Pools** in the **Connections** panel.
 1. Right-click the app's app pool in the list and select **Advanced Settings**.
-1. Set the **Idle Time-out (minutes)** to **0** (zero). Select **OK**.
+1. The default **Idle Time-out (minutes)** is **20** minutes. Set the **Idle Time-out (minutes)** to **0** (zero). Select **OK**.
 1. Recycle the worker process.
 
 To prevent apps hosted [out-of-process](xref:fundamentals/servers/index#out-of-process-hosting-model) from timing out, use either of the following approaches:
