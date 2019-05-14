@@ -3,7 +3,7 @@
 // For details, see the Azure Key Vault Configuration Provider topic:
 // https://docs.microsoft.com/aspnet/core/security/key-vault-configuration
 
-
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -23,9 +23,9 @@ namespace SampleApp
 
 #if Certificate
         #region snippet1
+        // using System.Linq;
         // using System.Security.Cryptography.X509Certificates;
         // using Microsoft.Extensions.Configuration;
-
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((context, config) =>
@@ -34,10 +34,21 @@ namespace SampleApp
                     {
                         var builtConfig = config.Build();
 
-                        config.AddAzureKeyVault(
-                            $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
-                            builtConfig["AzureADApplicationId"],
-                            new X509Certificate2("TestCert.pfx"));
+                        using (var store = new X509Store(StoreName.My,
+                            StoreLocation.CurrentUser))
+                        {
+                            store.Open(OpenFlags.ReadOnly);
+                            var certs = store.Certificates
+                                .Find(X509FindType.FindByThumbprint,
+                                    builtConfig["AzureADCertThumbprint"], false);
+
+                            config.AddAzureKeyVault(
+                                $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
+                                builtConfig["AzureADApplicationId"],
+                                certs.OfType<X509Certificate2>().Single());
+
+                            store.Close();
+                        }
                     }
                 })
                 .UseStartup<Startup>();
