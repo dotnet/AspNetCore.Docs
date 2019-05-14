@@ -5,7 +5,7 @@ description: Learn how to establish additional claims and tokens from external p
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/10/2019
+ms.date: 05/14/2019
 uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
@@ -66,8 +66,15 @@ In the sample app, `OnPostConfirmationAsync` (*Account/ExternalLogin.cshtml.cs*)
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
-> [!NOTE]
-> By default, claims are stored in the authentication cookie. Unless the app assigns a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> to the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to mitigate issues with serializing large identities into cookies, limit the number of user claims held by the app to only those required for request processing. The cookie can grow in size to a point where the app fails to process requests properly because the browser detects one or more cookie headers that are too long or the overall size of the request is too large.
+By default, a user's claims are stored in the authentication cookie. If the authentication cookie is too large, it can cause the app to fail because:
+
+* The browser detects that the cookie header is too long.
+* The overall size of the request is too large.
+
+If a large amount of user data is required for processing user requests:
+
+* Limit the number and size of user claims for request processing to only what the app requires.
+* Use a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> for the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to store identity across requests. Preserve large quantities of identity information on the server while only sending a small session identifier key to the client.
 
 ## Save the access token
 
