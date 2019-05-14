@@ -8,7 +8,7 @@ Update the `Movie` class to take advantage of the built-in `Required`, `StringLe
 
 The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
 
-* The `Required` and `MinimumLength` attributes indicates that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation.
+* The `Required` and `MinimumLength` attributes indicate that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation.
 * The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, "Genre":
 
   * Must only use letters.
