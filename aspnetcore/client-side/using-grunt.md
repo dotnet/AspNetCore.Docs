@@ -3,7 +3,7 @@ title: Use Grunt in ASP.NET Core
 author: rick-anderson
 description: Use Grunt in ASP.NET Core
 ms.author: riande
-ms.date: 05/10/2019
+ms.date: 05/14/2019
 uid: client-side/using-grunt
 ---
 # Use Grunt in ASP.NET Core
@@ -107,12 +107,12 @@ Next, configure NPM to download grunt and grunt-tasks.
 
 4. Save the *package.json* file.
 
-The packages for each devDependencies item will download, along with any files that each package requires. You can find the package files in the `node_modules` directory by enabling the **Show All Files** button in the Solution Explorer.
+The packages for each `devDependencies` item will download, along with any files that each package requires. You can find the package files in the *node_modules* directory by enabling the **Show All Files** button in **Solution Explorer**.
 
 ![grunt node_modules](using-grunt/_static/node-modules.png)
 
 > [!NOTE]
-> If you need to, you can manually restore dependencies in Solution Explorer by right-clicking on `Dependencies\NPM` and selecting the **Restore Packages** menu option.
+> If you need to, you can manually restore dependencies in **Solution Explorer** by right-clicking on `Dependencies\NPM` and selecting the **Restore Packages** menu option.
 
 ![restore packages](using-grunt/_static/restore-packages.png)
 
@@ -122,9 +122,7 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
 
 1. Right-click the project and select **Add** > **New Item**. Select the **JavaScript File** item template, change the name to *Gruntfile.js*, and click the **Add** button.
 
-(this is no longer correct, as you get an empty javascript file.  assuming the code is still correct, it should probably say:)
-
-   Add the following code to *Gruntfile.js*. The `initConfig` function sets options for each package, and the remainder of the module loads and register tasks.
+1. Add the following code to *Gruntfile.js*. The `initConfig` function sets options for each package, and the remainder of the module loads and register tasks.
 
    ```javascript
    module.exports = function (grunt) {
@@ -133,7 +131,7 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
    };
    ```
 
-2. Inside the `initConfig()` method, add options for the `clean` task as shown in the example *Gruntfile.js* below. The clean task accepts an array of directory strings. This task removes files from wwwroot/lib and removes the entire /temp directory.
+1. Inside the `initConfig` function, add options for the `clean` task as shown in the example *Gruntfile.js* below. The `clean` task accepts an array of directory strings. This task removes files from *wwwroot/lib* and removes the entire */temp* directory.
 
     ```javascript
     module.exports = function (grunt) {
@@ -143,32 +141,32 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
     };
     ```
 
-3. Below the initConfig() method, add a call to `grunt.loadNpmTasks()`. This will make the task runnable from Visual Studio.
+1. Below the `initConfig` function, add a call to `grunt.loadNpmTasks`. This will make the task runnable from Visual Studio.
 
     ```javascript
     grunt.loadNpmTasks("grunt-contrib-clean");
     ```
 
-4. Save *Gruntfile.js*. The file should look something like the screenshot below.
+1. Save *Gruntfile.js*. The file should look something like the screenshot below.
 
     ![initial gruntfile](using-grunt/_static/gruntfile-js-initial.png)
 
-5. Right-click *Gruntfile.js* and select **Task Runner Explorer** from the context menu. The Task Runner Explorer window will open.
+1. Right-click *Gruntfile.js* and select **Task Runner Explorer** from the context menu. The **Task Runner Explorer** window will open.
 
     ![task runner explorer menu](using-grunt/_static/task-runner-explorer-menu.png)
 
-6. Verify that `clean` shows under **Tasks** in the Task Runner Explorer.
+1. Verify that `clean` shows under **Tasks** in the **Task Runner Explorer**.
 
     ![task runner explorer tasks list](using-grunt/_static/task-runner-explorer-tasks.png)
 
-7. Right-click the clean task and select **Run** from the context menu. A command window displays progress of the task.
+1. Right-click the clean task and select **Run** from the context menu. A command window displays progress of the task.
 
     ![task runner explorer run clean task](using-grunt/_static/task-runner-explorer-run-clean.png)
 
     > [!NOTE]
     > There are no files or directories to clean yet. If you like, you can manually create them in the Solution Explorer and then run the clean task as a test.
 
-8. In the initConfig() method, add an entry for `concat` using the code below.
+1. In the `initConfig` function, add an entry for `concat` using the code below.
 
     The `src` property array lists files to combine, in the order that they should be combined. The `dest` property assigns the path to the combined file that's produced.
 
@@ -182,11 +180,11 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
     ```
 
     > [!NOTE]
-    > The `all` property in the code above is the name of a target. Targets are used in some Grunt tasks to allow multiple build environments. You can view the built-in targets using Intellisense or assign your own.
+    > The `all` property in the code above is the name of a target. Targets are used in some Grunt tasks to allow multiple build environments. You can view the built-in targets using IntelliSense or assign your own.
 
-9. Add the `jshint` task using the code below.
+1. Add the `jshint` task using the code below.
 
-    The jshint code-quality utility is run against every JavaScript file found in the temp directory.
+    The jshint `code-quality` utility is run against every JavaScript file found in the *temp* directory.
 
     ```javascript
     jshint: {
@@ -200,7 +198,7 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
     > [!NOTE]
     > The option "-W069" is an error produced by jshint when JavaScript uses bracket syntax to assign a property instead of dot notation, i.e. `Tastes["Sweet"]` instead of `Tastes.Sweet`. The option turns off the warning to allow the rest of the process to continue.
 
-10. Add the `uglify` task using the code below.
+1. Add the `uglify` task using the code below.
 
     The task minifies the *combined.js* file found in the temp directory and creates the result file in wwwroot/lib following the standard naming convention *\<file name\>.min.js*.
 
@@ -213,7 +211,7 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
     },
     ```
 
-11. Under the call grunt.loadNpmTasks() that loads grunt-contrib-clean, include the same call for jshint, concat and uglify using the code below.
+1. Under the call to `grunt.loadNpmTasks` that loads `grunt-contrib-clean`, include the same call for jshint, concat, and uglify using the code below.
 
     ```javascript
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -221,15 +219,15 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
     grunt.loadNpmTasks('grunt-contrib-uglify');
     ```
 
-12. Save *Gruntfile.js*. The file should look something like the example below.
+1. Save *Gruntfile.js*. The file should look something like the example below.
 
     ![complete grunt file example](using-grunt/_static/gruntfile-js-complete.png)
 
-13. Notice that the Task Runner Explorer Tasks list includes `clean`, `concat`, `jshint` and `uglify` tasks. Run each task in order and observe the results in Solution Explorer. Each task should run without errors.
+1. Notice that the **Task Runner Explorer** Tasks list includes `clean`, `concat`, `jshint` and `uglify` tasks. Run each task in order and observe the results in **Solution Explorer**. Each task should run without errors.
 
     ![task runner explorer run each task](using-grunt/_static/task-runner-explorer-run-each-task.png)
 
-    The concat task creates a new *combined.js* file and places it into the temp directory. The jshint task simply runs and doesn't produce output. The uglify task creates a new *combined.min.js* file and places it into wwwroot/lib. On completion, the solution should look something like the screenshot below:
+    The concat task creates a new *combined.js* file and places it into the temp directory. The `jshint` task simply runs and doesn't produce output. The `uglify` task creates a new *combined.min.js* file and places it into *wwwroot/lib*. On completion, the solution should look something like the screenshot below:
 
     ![solution explorer after all tasks](using-grunt/_static/solution-explorer-after-all-tasks.png)
 
