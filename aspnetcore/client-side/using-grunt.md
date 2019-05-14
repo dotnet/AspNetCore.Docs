@@ -120,9 +120,11 @@ The packages for each devDependencies item will download, along with any files t
 
 Grunt is configured using a manifest named *Gruntfile.js* that defines, loads and registers tasks that can be run manually or configured to run automatically based on events in Visual Studio.
 
-1. Right-click the project and select **Add > New Item**. Select the **Grunt Configuration file** option, leave the default name, *Gruntfile.js*, and click the **Add** button.
+1. Right-click the project and select **Add > New Item**. Select the **Javascript file** option, change the name to *Gruntfile.js*, and click the **Add** button.
 
-   The initial code includes a module definition and the `grunt.initConfig()` method. The `initConfig()` is used to set options for each package, and the remainder of the module will load and register tasks.
+(this is no longer correct, as you get an empty javascript file.  assuming the code is still correct, it should probably say:)
+
+   Add the following code to the Javascript file. The `initConfig()` is used to set options for each package, and the remainder of the module will load and register tasks.
 
    ```javascript
    module.exports = function (grunt) {
