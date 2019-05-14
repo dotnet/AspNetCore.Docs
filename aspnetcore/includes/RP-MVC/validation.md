@@ -18,7 +18,7 @@ The validation attributes specify behavior that you want to enforce on the model
 * The `RegularExpression` "Rating":
 
   * Requires that the first character be an uppercase letter.
-  * Allows special characters and numbers in  subsequent spaces. "PG-13" is a valid rating, but fails for a "Genre".
+  * Allows special characters and numbers in  subsequent spaces. "PG-13" is valid for a rating, but fails for a "Genre".
 
 * The `Range` attribute constrains a value to within a specified range.
 * The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length.
