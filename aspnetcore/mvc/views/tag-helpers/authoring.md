@@ -310,9 +310,9 @@ The tag helpers provide several properties to retrieve content.
 
 ## Load minified partial view TagHelper
 
-The following code:
+In production environments, performance can be improved by loading minified partial views. To take advantage of minified partial view in production:
 
-* Inherits from the [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper).
-* Loads the minified partial view when the app isn't in the Development environment.
+* Create/set up a pre-build process that minifies partial views.
+* Use the following code to load  minified partial views in non-development environments.
 
 [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/MinifiedVersionTagHelper.cs?name=snippet)]
