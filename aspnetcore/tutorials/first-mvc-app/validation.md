@@ -33,9 +33,19 @@ Update the `Movie` class to take advantage of the built-in `Required`, `StringLe
 The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
 
 * The `Required` and `MinimumLength` attributes indicates that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation. 
-* The `RegularExpression` attribute is used to limit what characters can be input. In the code above, `Genre` and `Rating` must use only letters (First letter uppercase, white space, numbers and special characters are not allowed).
-* The `Range` attribute constrains a value to within a specified range. 
-* The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length. 
+* The `RegularExpression` attribute is used to limit what characters can be input.In the preceding code, "Genre":
+
+  * Must only use letters.
+  * The first letter is required to be uppercase. White space, numbers and special
+   characters are not allowed. 
+
+* The `RegularExpression` "Rating":
+
+  * Requires that the first character be an uppercase letter.
+  * Allows special characters and numbers in  subsequent spaces. "PG-13" is a valid rating, but fails for a "Genre".
+
+* The `Range` attribute constrains a value to within a specified range.
+* The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length.
 * Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
 
 Having validation rules automatically enforced by ASP.NET Core helps make your app more robust. It also ensures that you can't forget to validate something and inadvertently let bad data into the database.
