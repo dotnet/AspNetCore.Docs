@@ -1,7 +1,7 @@
 ---
 title: Use Grunt in ASP.NET Core
 author: rick-anderson
-description:
+description: Use Grunt in ASP.NET Core
 ms.author: riande
 ms.date: 05/10/2019
 uid: client-side/using-grunt
