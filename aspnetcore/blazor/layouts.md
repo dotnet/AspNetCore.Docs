@@ -65,6 +65,10 @@ Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout el
 
 [!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 
+## Share data between a component its layout
+
+For more information, see <xref:blazor/components#share-data-among-components>.
+
 ## Additional resources
 
 * <xref:mvc/views/layout>

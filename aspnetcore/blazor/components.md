@@ -507,6 +507,116 @@ Components can receive route parameters from the route template provided in the 
 
 Optional parameters aren't supported, so two `@page` directives are applied in the example above. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
+## Share data among components
+
+Inject services into any component, including [layouts](xref:blazor/layouts). Common injectable framework-provided services include [configuration](xref:fundamentals/configuration/index), [options](xref:fundamentals/configuration/options), and [logging](xref:fundamentals/logging/index). Inject a *custom service* to share data among components.
+
+Create a class that implements <xref:System.ComponentModel.INotifyPropertyChanged>:
+
+```csharp
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace SampleApp.Services
+{
+    public class ComponentDataService : INotifyPropertyChanged
+    {
+        private string _data;
+
+        public string Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(
+            [CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, 
+                new PropertyChangedEventArgs(propertyName));
+        }
+    }
+}
+```
+
+Register the class as a [singleton service](xref:fundamentals/dependency-injection#service-lifetimes) in `Startup.ConfigureServices`:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSingleton<ComponentDataService>();
+}
+```
+
+Inject the service into a component or layout. Assign a method (for example, named `OnPropertyChanged`) to the service's <xref:System.ComponentModel.PropertyChangedEventHandler>. The method triggers `StateHasChanged`, which rerenders the component. The component or layout has access to any public property that the service offers. In the following *Shared/MainLayout.razor* example, the `Data` property of the `ComponentDataService` is displayed to the user:
+
+```cshtml
+@inherits LayoutComponentBase
+@using SampleApp.Services
+@inject ComponentDataService ComponentDataService
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="content px-4">
+        @Body
+    </div>
+
+    <div class="content px-4">
+        @ComponentDataService.Data
+    </div>
+</div>
+
+@functions {
+    protected override void OnInit()
+    {
+        base.OnInit();
+        ComponentDataService.PropertyChanged += OnPropertyChanged;
+    }
+
+    private void OnPropertyChanged(object sender, 
+        System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        base.StateHasChanged();
+    }
+}
+```
+
+The following component sets the value of `ComponentDataService`'s `Data` property on component initialization ([OnInit or OnInitAsync](#lifecycle-methods)) and when a method is triggered by a button:
+
+```cshtml
+@page "/sharedcomponentdata"
+@using  SampleApp.Services
+@inject ComponentDataService ComponentDataService
+
+<h1>Shared Component Data</h1>
+
+<button class="btn btn-primary" onclick="@UpdateData">Update Data</button>
+
+@functions {
+    protected override void OnInit()
+    {
+        base.OnInit();
+        ComponentDataService.Data = 
+            "Service's 'Data' property initialized by component.";
+    }
+
+    private void UpdateData()
+    {
+        ComponentDataService.Data = 
+            "Service's 'Data' property changed by component.";
+    }
+}
+```
+
 ## Base class inheritance for a "code-behind" experience
 
 Component files mix HTML markup and C# processing code in the same file. The `@inherits` directive can be used to provide Blazor apps with a "code-behind" experience that separates component markup from processing code.
