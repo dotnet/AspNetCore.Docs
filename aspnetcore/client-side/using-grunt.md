@@ -124,7 +124,7 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
 
 (this is no longer correct, as you get an empty javascript file.  assuming the code is still correct, it should probably say:)
 
-   Add the following code to the Javascript file. The `initConfig()` is used to set options for each package, and the remainder of the module will load and register tasks.
+   Add the following code to *Gruntfile.js*. The `initConfig` function sets options for each package, and the remainder of the module loads and register tasks.
 
    ```javascript
    module.exports = function (grunt) {
