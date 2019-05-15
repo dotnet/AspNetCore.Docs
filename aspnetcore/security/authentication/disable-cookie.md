@@ -10,7 +10,7 @@ uid: security/authentication/disable-cookie
 
 By [John King](https://github.com/John0King)
 
-In multiple authentication scheme scenario(for example as `[Authorize(AuthenticationSchemes ="Cookies,JwtBeare")]`) or an partial page that allow both browser  and `ajax` visit , you may want to disable automatic challenge of `Cookies` authentication scheme and return HTTP StatusCode `401` instead.
+The `[Authorize]` Attribute will automatic challenge the current authentication scheme, and it's great for browser to direct visit, but it doesn't work well with `ajax`, you need to know the server is not authenticated or not authorized and show login or error message use javascript, in this scenario  you may want to disable automatic challenge of `Cookies` authentication scheme and return HTTP StatusCode `401` instead when it's an `ajax` call.
 
 Use one of the following approaches to disable automatic cookie authentication:
 
@@ -23,7 +23,7 @@ Use one of the following approaches to disable automatic cookie authentication:
 // using header
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/your-api-url", true);
-xhr.setRequestHeader("X-Request-With", "XMLHttpRequest");
+xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
         if (xhr.status == 301) {
@@ -39,7 +39,7 @@ xhr.onreadystatechange = function () {
 };
 // using querystring
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "/your-api-url?X-Request-With=XMLHttpRequest", true);
+xhr.open("GET", "/your-api-url?X-Requested-With=XMLHttpRequest", true);
 xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
         if (xhr.status == 301) {
@@ -59,7 +59,7 @@ xhr.onreadystatechange = function () {
 $.ajax("your-api-url",{
     type:"GET",
     headers:{
-        "X-Request-With":"XMLHttpRequest"
+        "X-Requested-With":"XMLHttpRequest"
     }
 })
     .done(function(result){
@@ -75,5 +75,30 @@ $.ajax("your-api-url",{
 ### Configure  `CookieAuthenticationEvents` to do a custom check
 
 ```C#
-
+services.AddAuthentication()
+    .AddCookie(op=>
+    {
+        op.Events.OnRedirectToLogin = context=>{
+            var headers = new Microsoft.AspNetCore.Http.Headers.RequestHeaders(context.Request.Headers);
+            // when most browser direct access a url, it's request header will contains  {Accept:text/html;}
+            // but ajax call only have {Accept:*/* } by default
+            if(!headers.Accept.ToString().Contains("html",StringComparison.OrdinalIgnoreCase))
+            {
+                // ajax call or some non-browser call
+                context.Response.Headers["Location"] = context.RedirectUri;
+                context.Response.StatusCode = 401;
+            }
+            else
+            {
+                // browse
+                context.Response.Redirect(context.RedirectUri);
+            }
+            return Task.CompletedTask;
+        };
+});
 ```
+
+note:  the default check on `CookieAuthenticationEvents.OnRedirectToLogin`, `CookieAuthenticationEvents.OnRedirectToAccessDenied`,
+`CookieAuthenticationEvents.OnRedirectToLogout`, `OnRedirectToReturnUrl` is to check the `X-Requested-With` from `Request.Header` or `Request.Query`, that why the first way work.
+
+
