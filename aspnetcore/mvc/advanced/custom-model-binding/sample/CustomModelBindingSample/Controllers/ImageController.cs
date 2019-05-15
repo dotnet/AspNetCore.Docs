@@ -25,13 +25,12 @@ namespace CustomModelBindingSample.Controllers
         [HttpPost]
         public void Post(byte[] file, string filename)
         {
-            // Don't trust the file name sent by the client. Use Linq to
-            // remove invalid characters. Another option is to use
+            // Don't trust the file name sent by the client. Use
             // Path.GetRandomFileName to generate a safe random
-            // file name.
-            var invalidFileNameChars = Path.GetInvalidFileNameChars();
-            var trustedFileName = invalidFileNameChars.Aggregate(
-                filename, (current, c) => current.Replace(c, '_'));
+            // file name. _targetFilePath receives a value
+            // from configuration (the appsettings.json file in
+            // the sample app).
+            var trustedFileName = Path.GetRandomFileName();
             var filePath = Path.Combine(_targetFilePath, trustedFileName);
 
             if (System.IO.File.Exists(filePath))
@@ -47,13 +46,12 @@ namespace CustomModelBindingSample.Controllers
         [HttpPost("Profile")]
         public void SaveProfile(ProfileViewModel model)
         {
-            // Don't trust the file name sent by the client. Use Linq to
-            // remove invalid characters. Another option is to use
+            // Don't trust the file name sent by the client. Use
             // Path.GetRandomFileName to generate a safe random
-            // file name.
-            var invalidFileNameChars = Path.GetInvalidFileNameChars();
-            var trustedFileName = invalidFileNameChars.Aggregate(
-                model.FileName, (current, c) => current.Replace(c, '_'));
+            // file name. _targetFilePath receives a value
+            // from configuration (the appsettings.json file in
+            // the sample app).
+            var trustedFileName = Path.GetRandomFileName();
             var filePath = Path.Combine(_targetFilePath, trustedFileName);
             
             if (System.IO.File.Exists(filePath))
