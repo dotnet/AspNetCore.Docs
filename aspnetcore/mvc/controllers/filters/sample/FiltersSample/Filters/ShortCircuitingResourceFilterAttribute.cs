@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
-    public class ShortCircuitingResourceFilterAttribute : Attribute,
-            IResourceFilter
+    #region snippet
+    public class ShortCircuitingResourceFilterAttribute : Attribute, IResourceFilter
     {
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
@@ -19,4 +19,5 @@ namespace FiltersSample.Filters
         {
         }
     }
+    #endregion
 }
