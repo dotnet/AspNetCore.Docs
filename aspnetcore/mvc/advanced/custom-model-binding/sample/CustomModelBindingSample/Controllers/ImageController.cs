@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Linq;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace CustomModelBindingSample.Controllers
 {
@@ -12,9 +12,12 @@ namespace CustomModelBindingSample.Controllers
     public class ImageController : Controller
     {
         private readonly IHostingEnvironment _env;
-        public ImageController(IHostingEnvironment env)
+        private readonly string _targetFilePath;
+
+        public ImageController(IHostingEnvironment env, IConfiguration config)
         {
             _env = env;
+            _targetFilePath = config.GetValue<string>("StoredFilesPath");
         }
 
         #region post1
@@ -22,8 +25,20 @@ namespace CustomModelBindingSample.Controllers
         [HttpPost]
         public void Post(byte[] file, string filename)
         {
-            string filePath = Path.Combine(_env.ContentRootPath, "wwwroot/images/upload", filename);
-            if (System.IO.File.Exists(filePath)) return;
+            // Don't trust the file name sent by the client. Use Linq to
+            // remove invalid characters. Another option is to use
+            // Path.GetRandomFileName to generate a safe random
+            // file name.
+            var invalidFileNameChars = Path.GetInvalidFileNameChars();
+            var trustedFileName = invalidFileNameChars.Aggregate(
+                filename, (current, c) => current.Replace(c, '_'));
+            var filePath = Path.Combine(_targetFilePath, trustedFileName);
+
+            if (System.IO.File.Exists(filePath))
+            {
+                return;
+            }
+
             System.IO.File.WriteAllBytes(filePath, file);
         }
         #endregion
@@ -32,8 +47,20 @@ namespace CustomModelBindingSample.Controllers
         [HttpPost("Profile")]
         public void SaveProfile(ProfileViewModel model)
         {
-            string filePath = Path.Combine(_env.ContentRootPath, "wwwroot/images/upload", model.FileName);
-            if (System.IO.File.Exists(model.FileName)) return;
+            // Don't trust the file name sent by the client. Use Linq to
+            // remove invalid characters. Another option is to use
+            // Path.GetRandomFileName to generate a safe random
+            // file name.
+            var invalidFileNameChars = Path.GetInvalidFileNameChars();
+            var trustedFileName = invalidFileNameChars.Aggregate(
+                model.FileName, (current, c) => current.Replace(c, '_'));
+            var filePath = Path.Combine(_targetFilePath, trustedFileName);
+            
+            if (System.IO.File.Exists(filePath))
+            {
+                return;
+            }
+
             System.IO.File.WriteAllBytes(filePath, model.File);
         }
 
