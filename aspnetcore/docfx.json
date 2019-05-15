@@ -85,6 +85,7 @@
       "ms.topic": {
         "azure/**/**.md": "conceptual",
         "blazor/**/**.md": "conceptual",
+         "breadcrumb/TOC.yml":"conceptual",
         "client-side/**/**.md": "conceptual",
         "data/**/**.md": "conceptual",
         "fundamentals/**/**.md": "conceptual",
