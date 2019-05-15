@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FiltersSample.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,11 +22,20 @@ namespace FiltersSample
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new AddHeaderAttribute("GlobalAddHeader",
+                    "Result filter added to MvcOptions.Filters"));         // An instance
+                options.Filters.Add(typeof(SampleActionFilter));           // By type
+                options.Filters.Add(new SampleGlobalActionFilter());       // An instance
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<AddHeaderFilterWithDi>();
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

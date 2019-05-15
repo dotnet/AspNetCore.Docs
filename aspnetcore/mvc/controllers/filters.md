@@ -68,38 +68,34 @@ Implement **either** the synchronous or the async version of a filter interface,
 
 ### IFilterFactory
 
-[IFilterFactory](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory) implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the framework prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the [CreateInstance](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory.createinstance) method is called to create the `IFilterMetadata` instance that will be invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
+[IFilterFactory](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory) implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the runtime prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the [CreateInstance](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory.createinstance) method is called to create the `IFilterMetadata` instance that will be invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
 
-You can implement `IFilterFactory` on your own attribute implementations as another approach to creating filters:
+`IFilterFactory` can be implemented using custom attribute implementations as another approach to creating filters:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/AddHeaderWithFactoryAttribute.cs?name=snippet_IFilterFactory&highlight=1,4,5,6,7)]
 
 ### Built-in filter attributes
 
-The framework includes built-in attribute-based filters that you can subclass and customize. For example, the following Result filter adds a header to the response.
+ASP.NET Core includes built-in attribute-based filters that can be subclassed and customized. For example, the following Result filter adds a header to the response.
 
 <a name="add-header-attribute"></a>
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/AddHeaderAttribute.cs?highlight=5,16)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/AddHeaderAttribute.cs?name=snippet)]
 
-Attributes allow filters to accept arguments, as shown in the example above. You would add this attribute to a controller or action method and specify the name and value of the HTTP header:
+Attributes allow filters to accept arguments, as shown in the preceding example. Add this attribute to a controller or action method and specify the name and value of the HTTP header:
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
-
-The result of the `Index` action is shown below - the response headers are displayed on the bottom right.
-
-![Developer Tools of Microsoft Edge showing response headers, including Author Steve Smith @ardalis](filters/_static/add-header.png)
 
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
 
 Filter attributes:
 
-* `ActionFilterAttribute`
-* `ExceptionFilterAttribute`
-* `ResultFilterAttribute`
-* `FormatFilterAttribute`
-* `ServiceFilterAttribute`
-* `TypeFilterAttribute`
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute>
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionFilterAttribute>
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute>
+* <xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute>
+* <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute>
+* <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute>
 
 `TypeFilterAttribute` and `ServiceFilterAttribute` are explained [later in this article](#dependency-injection).
 
@@ -111,9 +107,9 @@ A filter can be added to the pipeline at one of three *scopes*. You can add a fi
 
 ### Default order of execution
 
-When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution.  Global filters surround class filters, which in turn surround method filters. This is sometimes referred to as "Russian doll" nesting, as each increase in scope is wrapped around the previous scope, like a [nesting doll](https://wikipedia.org/wiki/Matryoshka_doll). You generally get the desired overriding behavior without having to explicitly determine ordering.
+When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution.  Global filters surround class filters, which in turn surround method filters. Generally the desired overriding behavior is achieved without having to explicitly determine ordering.
 
-As a result of this nesting, the *after* code of filters runs in the reverse order of the *before* code. The sequence looks like this:
+As a result of this nesting, the *after* code of filters runs in the reverse order of the *before* code. The filter sequence:
 
 * The *before* code of filters applied globally
   * The *before* code of filters applied to controllers
@@ -138,21 +134,18 @@ This sequence shows:
 * The method filter is nested within the controller filter.
 * The controller filter is nested within the global filter. 
 
-To put it another way, if you're inside an async filter's On*Stage*ExecutionAsync method, all of the filters with a tighter scope run while your code is on the stack.
-
-> [!NOTE]
-> Every controller that inherits from the `Controller` base class includes `OnActionExecuting` and `OnActionExecuted` methods. These methods wrap the filters that run for a given action:  `OnActionExecuting` is called before any of the filters, and `OnActionExecuted` is called after all of the filters.
+Every controller that inherits from the `Controller` base class includes `OnActionExecuting` and `OnActionExecuted` methods. These methods wrap the filters that run for a given action:  `OnActionExecuting` is called before any of the filters, and `OnActionExecuted` is called after all of the filters.
 
 ### Overriding the default order
 
-You can override the default sequence of execution by implementing `IOrderedFilter`. This interface exposes an `Order` property that takes precedence over scope to determine the order of execution. A filter with a lower `Order` value will have its *before* code executed before that of a filter with a higher value of `Order`. A filter with a lower `Order` value will have its *after* code executed after that of a filter with a higher `Order` value. 
+The default sequence of execution can be overridden by implementing <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>. `IOrderedFilter` exposes an <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter.Order> property that takes precedence over scope to determine the order of execution. A filter with a lower `Order` value will have its *before* code executed before that of a filter with a higher value of `Order`. A filter with a lower `Order` value will have its *after* code executed after that of a filter with a higher `Order` value. 
 You can set the `Order` property by using a constructor parameter:
 
 ```csharp
 [MyFilter(Name = "Controller Level Attribute", Order=1)]
 ```
 
-If you have the same 3 Action filters shown in the preceding example but set the `Order` property of the controller and global filters to 1 and 2 respectively, the order of execution would be reversed.
+Consider the same 3 Action filters shown in the preceding example but set the `Order` property of the controller and global filters to 1 and 2 respectively, the order of execution would be reversed.
 
 | Sequence | Filter scope | `Order` property | Filter method |
 |:--------:|:------------:|:-----------------:|:-------------:|
@@ -163,7 +156,7 @@ If you have the same 3 Action filters shown in the preceding example but set the
 | 5 | Controller | 1  | `OnActionExecuted` |
 | 6 | Method | 0  | `OnActionExecuted` |
 
-The `Order` property trumps scope when determining the order in which filters will run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. For built-in filters, scope determines order unless you set `Order` to a non-zero value.
+The `Order` property overrides scope when determining the order in which filters will run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. For built-in filters, scope determines order unless `Order` is set to a non-zero value.
 
 ## Cancellation and short circuiting
 

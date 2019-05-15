@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
+    #region snippet
     public class AddHeaderAttribute : ResultFilterAttribute
     {
         private readonly string _name;
@@ -15,9 +16,9 @@ namespace FiltersSample.Filters
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            context.HttpContext.Response.Headers.Add(
-                _name, new string[] { _value });
+            context.HttpContext.Response.Headers.Add( _name, new string[] { _value });
             base.OnResultExecuting(context);
         }
     }
+    #endregion
 }
