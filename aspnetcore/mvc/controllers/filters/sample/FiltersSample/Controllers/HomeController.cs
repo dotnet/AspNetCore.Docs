@@ -1,29 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FiltersSample.Filters;
 using Microsoft.AspNetCore.Mvc;
-using FiltersSample.Models;
+using System.Globalization;
 
 namespace FiltersSample.Controllers
 {
     public class HomeController : Controller
     {
+        #region snippet_ServiceFilter
+        [ServiceFilter(typeof(AddHeaderFilterWithDi))]
         public IActionResult Index()
         {
             return View();
         }
+        #endregion
 
-        public IActionResult Privacy()
+        [AddHeader("Author", "Steve Smith @ardalis")]
+        public IActionResult Hello(string name)
         {
-            return View();
+            return Content($"Hello {name}");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        #region snippet_TypeFilter
+        [TypeFilter(typeof(LogConstantFilter),
+            Arguments = new object[] { "Method 'Hi' called" })]
+        public IActionResult Hi(string name)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return Content($"Hi {name}");
         }
+        #endregion
+
+        #region snippet_MiddlewareFilter
+        [Route("{culture}/[controller]/[action]")]
+        [MiddlewareFilter(typeof(LocalizationPipeline))]
+        public IActionResult CultureFromRouteData()
+        {
+            return Content($"CurrentCulture:{CultureInfo.CurrentCulture.Name},"
+                + $"CurrentUICulture:{CultureInfo.CurrentUICulture.Name}");
+        }
+        #endregion
     }
 }

@@ -82,7 +82,7 @@ ASP.NET Core includes built-in attribute-based filters that can be subclassed an
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/AddHeaderAttribute.cs?name=snippet)]
 
-Attributes allow filters to accept arguments, as shown in the preceding example. Add this attribute to a controller or action method and specify the name and value of the HTTP header:
+Attributes allow filters to accept arguments, as shown in the preceding example. Apply the `AddHeaderAttribute` to a controller or action method and specify the name and value of the HTTP header:
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
@@ -138,14 +138,13 @@ Every controller that inherits from the `Controller` base class includes `OnActi
 
 ### Overriding the default order
 
-The default sequence of execution can be overridden by implementing <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>. `IOrderedFilter` exposes an <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter.Order> property that takes precedence over scope to determine the order of execution. A filter with a lower `Order` value will have its *before* code executed before that of a filter with a higher value of `Order`. A filter with a lower `Order` value will have its *after* code executed after that of a filter with a higher `Order` value. 
-You can set the `Order` property by using a constructor parameter:
+The default sequence of execution can be overridden by implementing <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>. `IOrderedFilter` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter.Order> property that takes precedence over scope to determine the order of execution. A filter with a lower `Order` value will have its *before* code executed before that of a filter with a higher value of `Order`. A filter with a lower `Order` value will have its *after* code executed after that of a filter with a higher `Order` value. The `Order` property can be set with constructor parameter:
 
 ```csharp
 [MyFilter(Name = "Controller Level Attribute", Order=1)]
 ```
 
-Consider the same 3 Action filters shown in the preceding example but set the `Order` property of the controller and global filters to 1 and 2 respectively, the order of execution would be reversed.
+Consider the same 3 action filters shown in the preceding example but set the `Order` property of the controller and global filters to 1 and 2 respectively, the order of execution would be reversed.
 
 | Sequence | Filter scope | `Order` property | Filter method |
 |:--------:|:------------:|:-----------------:|:-------------:|
@@ -177,28 +176,44 @@ Therefore the `AddHeader` filter never runs for the `SomeResource` action. This 
 
 ## Dependency injection
 
-Filters can be added by type or by instance. If you add an instance, that instance will be used for every request. If you add a type, it will be type-activated, meaning an instance will be created for each request and any constructor dependencies will be populated by [dependency injection](../../fundamentals/dependency-injection.md) (DI). Adding a filter by type is equivalent to `filters.Add(new TypeFilterAttribute(typeof(MyFilter)))`.
+Filters can be added by type or by instance. If an instance is added, that instance will be used for every request. If a type is added, it will be type-activated. A type-activated filter means:
 
-Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by [dependency injection](../../fundamentals/dependency-injection.md) (DI). This is because attributes must have their constructor parameters supplied where they're applied. This is a limitation of how attributes work.
+* An instance will be created for each request.
+* Any constructor dependencies will be populated by [dependency injection](xref:fundamentals/dependency-injection) (DI).
 
-If your filters have dependencies that you need to access from DI, there are several supported approaches. You can apply your filter to a class or action method using one of the following:
+Adding a filter by type is equivalent to `filters.Add(new TypeFilterAttribute(typeof(MyFilter)))`.
+<!--
+ What's the alternative? 
+options.Filters.Add(typeof(SampleActionFilter)); 
+-->
+
+Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by [dependency injection](xref:fundamentals/dependency-injection) (DI). Constructor dependencies cannot be provided by DI because:
+
+* Attributes must have their constructor parameters supplied where they're applied. 
+* This is a limitation of how attributes work.
+
+For filters that have dependencies that need access from DI, there are several supported approaches. Apply the filter to a class or action method using one of the following:
 
 * `ServiceFilterAttribute`
 * `TypeFilterAttribute`
-* `IFilterFactory` implemented on your attribute
+* `IFilterFactory` implemented on the attribute.
 
-> [!NOTE]
-> One dependency you might want to get from DI is a logger. However, avoid creating and using filters purely for logging purposes, since the [built-in framework logging features](xref:fundamentals/logging/index) may already provide what you need. If you're going to add logging to your filters, it should focus on business domain concerns or behavior specific to your filter, rather than MVC actions or other framework events.
+One dependency you might want to get from DI is a logger. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging features](xref:fundamentals/logging/index) typically provide what's needed for logging. Logging added to filters:
+
+* Should focus on business domain concerns or behavior specific to the filter.
+* Should **not** log MVC actions or other framework events.
 
 ### ServiceFilterAttribute
 
-Service filter implementation types are registered in DI. A `ServiceFilterAttribute` retrieves an instance of the filter from DI. Add the `ServiceFilterAttribute` to the container in `Startup.ConfigureServices`, and reference it in a `[ServiceFilter]` attribute:
+Service filter implementation types are registered in DI. A <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> retrieves an instance of the filter from DI. Add the `ServiceFilterAttribute` to the container in `Startup.ConfigureServices`, and reference it in a `[ServiceFilter]` attribute:
 
-[!code-csharp[](./filters/sample/FiltersSample/Startup.cs?name=snippet_ConfigureServices&highlight=11)]
+[!code-csharp[](./filters/sample/FiltersSample/Startup.cs?name=snippet_ConfigureServices)]
 
 [!code-csharp[](../../mvc/controllers/filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
 
-When using `ServiceFilterAttribute`, setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created or the filter will not be re-requested from the DI container at some later point. Avoid using `IsReusable` when using a filter that depends on services with a lifetime other than singleton.
+[!code-csharp[](./filters/sample/FiltersSample/Filters/LoggingAddHeaderFilter.cs?name=snippet_ResultFilter)]
+
+When using `ServiceFilterAttribute`, setting <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable> is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created or the filter will not be re-requested from the DI container at some later point. `IsReusable` should not be used when with a filter that depends on services with a lifetime other than singleton.
 
 Using `ServiceFilterAttribute` without registering the filter type results in an exception:
 
@@ -207,32 +222,37 @@ System.InvalidOperationException: No service for type
 'FiltersSample.Filters.AddHeaderFilterWithDI' has been registered.
 ```
 
-`ServiceFilterAttribute` implements `IFilterFactory`. `IFilterFactory` exposes the `CreateInstance` method for creating an `IFilterMetadata` instance. The `CreateInstance` method loads the specified type from the services container (DI).
+`ServiceFilterAttribute` implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. The `CreateInstance` method loads the specified type from the services container (DI).
 
 ### TypeFilterAttribute
 
-`TypeFilterAttribute` is similar to `ServiceFilterAttribute`, but its type isn't resolved directly from the DI container. It instantiates the type by using `Microsoft.Extensions.DependencyInjection.ObjectFactory`.
+<xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> is similar to <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute>, but its type isn't resolved directly from the DI container. It instantiates the type by using <xref:Microsoft.Extensions.DependencyInjection.ObjectFactory?displayProperty=fullName>.
 
-Because of this difference:
+Because `TypeFilterAttribute` types aren't resolved directly from the DI container:
 
-* Types that are referenced using the `TypeFilterAttribute` don't need to be registered with the container first.  They do have their dependencies fulfilled by the container. 
+* Types that are referenced using the `TypeFilterAttribute` don't need to be registered with the container first.  They do have their dependencies fulfilled by the container.
 * `TypeFilterAttribute` can optionally accept constructor arguments for the type.
 
-When using `TypeFilterAttribute`, setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created. Avoid using `IsReusable` when using a filter that depends on services with a lifetime other than singleton.
+When using `TypeFilterAttribute`, setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created. `IsReusable` should not be used when with a filter that depends on services with a lifetime other than singleton.
 
-The following example demonstrates how to pass arguments to a type using `TypeFilterAttribute`:
+The following example shows how to pass arguments to a type using `TypeFilterAttribute`:
 
 [!code-csharp[](../../mvc/controllers/filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_TypeFilter&highlight=1,2)]
 [!code-csharp[](../../mvc/controllers/filters/sample/FiltersSample/Filters/LogConstantFilter.cs?name=snippet_TypeFilter_Implementation&highlight=6)]
 
+<!-- 
+https://localhost:44358/home/hi?name=joe
+VS debug window shows 
+FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
+-->
 ### IFilterFactory implemented on your attribute
 
-If you have a filter that:
+Fof filters that:
 
-* Doesn't require any arguments.
-* Has constructor dependencies that need to be filled by DI.
+* Don't require any arguments.
+* Have constructor dependencies that need to be filled by DI.
 
-You can use your own named attribute on classes and methods instead of `[TypeFilter(typeof(FilterType))]`). The following filter shows how this can be implemented:
+Create named attribute on classes and methods instead of using `[TypeFilter(typeof(FilterType))]`). The following filter shows how this can be implemented:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/SampleActionFilterAttribute.cs?name=snippet_TypeFilterAttribute&highlight=1,3,7)]
 
