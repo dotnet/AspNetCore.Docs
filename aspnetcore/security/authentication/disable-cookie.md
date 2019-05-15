@@ -99,6 +99,6 @@ services.AddAuthentication()
 ```
 
 note:  the default check on `CookieAuthenticationEvents.OnRedirectToLogin`, `CookieAuthenticationEvents.OnRedirectToAccessDenied`,
-`CookieAuthenticationEvents.OnRedirectToLogout`, `OnRedirectToReturnUrl` is to check the `X-Requested-With` from `Request.Header` or `Request.Query`, that why the first way work.
+`CookieAuthenticationEvents.OnRedirectToLogout`, `CookieAuthenticationEvents.OnRedirectToReturnUrl` is to check the `X-Requested-With` from `Request.Header` or `Request.Query`, that why the first way work.
 
 
