@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
+    #region snippet
     public class ValidateModelAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -13,4 +14,5 @@ namespace FiltersSample.Filters
             }
         }
     }
+    #endregion
 }

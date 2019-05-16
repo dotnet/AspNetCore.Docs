@@ -245,11 +245,11 @@ https://localhost:44358/home/hi?name=joe
 VS debug window shows 
 FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 -->
-### IFilterFactory implemented on your attribute
+### IFilterFactory implemented on an attribute
 
-Fof filters that:
+For filters that:
 
-* Don't require any arguments.
+* Don't require passing parameters.
 * Have constructor dependencies that need to be filled by DI.
 
 Create named attribute on classes and methods instead of using `[TypeFilter(typeof(FilterType))]`). The following filter shows how this can be implemented:
@@ -262,28 +262,36 @@ This filter can be applied to classes or methods using the `[SampleActionFilter]
 
 *Authorization filters*:
 
+* Are the first filters run in the filter pipeline.
 * Control access to action methods.
-* Are the first filters to be executed within the filter pipeline. 
-* Have a before method, but no after method. 
+* Have a before method, but no after method.
 
-You should only write a custom authorization filter if you are writing your own authorization framework. Prefer configuring your authorization policies or writing a custom authorization policy over writing a custom filter. The built-in filter implementation is just responsible for calling the authorization system.
+Custom authorization filters require a custom authorization framework. Prefer configuring the authorization policies or writing a custom authorization policy over writing a custom filter. The built-in filter implementation is only responsible for calling the authorization system.
 
-You shouldn't throw exceptions within authorization filters, since nothing will handle the exception (exception filters won't handle them). Consider issuing a challenge when an exception occurs.
+Do **not** throw exceptions within authorization filters:
+
+* The exception will not be handled.
+* Exception filters will not handle the exception.
+
+Consider issuing a challenge when an exception occurs in an authorization filters.
 
 Learn more about [Authorization](xref:security/authorization/introduction).
 
 ## Resource filters
 
-* Implement either the `IResourceFilter` or `IAsyncResourceFilter` interface,
-* Their execution wraps most of the filter pipeline. 
-* Only [Authorization filters](#authorization-filters) run before Resource filters.
+* Implement either the <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResourceFilter> interface.
+* Their execution wraps most of the filter pipeline.
+* Only [Authorization filters](#authorization-filters) run before resource filters.
 
-Resource filters are useful to short-circuit most of the work a request is doing. For example, a caching filter can avoid the rest of the pipeline if the response is in the cache.
+Resource filters are useful to short-circuit most of the pipeline. For example, a caching filter can avoid the rest of the pipeline on a cache hit.
 
-The [short circuiting resource filter](#short-circuiting-resource-filter) shown earlier is one example of a resource filter. Another example is [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/rel/1.1.1/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
+Resource filter examples:
 
-* It prevents model binding from accessing the form data. 
-* It's useful for large file uploads and want to prevent the form from being read into memory.
+* [The short circuiting resource filter](#short-circuiting-resource-filter) shown previously. 
+* [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/rel/2.0.0-preview2/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
+
+  * Prevents model binding from accessing the form data.
+  * Used for large file uploads to prevent the form data from being read into memory.
 
 ## Action filters
 
@@ -292,45 +300,60 @@ The [short circuiting resource filter](#short-circuiting-resource-filter) shown 
 
 *Action filters*:
 
-* Implement either the `IActionFilter` or `IAsyncActionFilter` interface.
+* Implement either the <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter> interface.
 * Their execution surrounds the execution of action methods.
 
-Here's a sample action filter:
+The following code shows a sample action filter:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/SampleActionFilter.cs?name=snippet_ActionFilter)]
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the following properties:
 
-* `ActionArguments` - lets you manipulate the inputs to the action.
-* `Controller` - lets you manipulate the controller instance. 
-* `Result` - setting this short-circuits execution of the action method and subsequent action filters. Throwing an exception also prevents execution of the action method and subsequent filters, but is treated as a failure instead of a successful result.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments> - enables the inputs to an action method be read or modified.
+* <xref:Microsoft.AspNetCore.Mvc.Controller> - enables manipulating the controller instance.
+* <xref:System.Web.Mvc.ActionExecutingContext.Result> - setting `Result` short-circuits execution of the action method and subsequent action filters.
+
+Throwing an exception in an action method:
+
+* Prevents execution of the action method and subsequent filters.
+* Unlike setting `Result`, is treated as a failure instead of a successful result.
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Controller` and `Result` plus the following properties:
 
-* `Canceled` - will be true if the action execution was short-circuited by another filter.
-* `Exception` - will be non-null if the action or a subsequent action filter threw an exception. Setting this property to null effectively 'handles' an exception, and `Result` will be executed as if it were returned from the action method normally.
+* <xref:System.Web.Mvc.ActionExecutedContext.Canceled> - True if the action execution was short-circuited by another filter.
+* <xref:System.Web.Mvc.ActionExecutedContext.Exception> - Non-null if the action or a subsequent action filter threw an exception. Setting this property to null:
+
+  * Effectively 'handles' an exception.
+  * `Result` is executed as if it were returned from the action method.
 
 For an `IAsyncActionFilter`, a call to the `ActionExecutionDelegate`:
 
 * Executes any subsequent action filters and the action method.
-* returns `ActionExecutedContext`. 
+* returns `ActionExecutedContext`.
 
 To short-circuit, assign `ActionExecutingContext.Result` to some result instance and don't call the `ActionExecutionDelegate`.
 
-The framework provides an abstract `ActionFilterAttribute` that you can subclass. 
+The framework provides an abstract `ActionFilterAttribute` that can be subclassed.
 
-You can use an action filter to validate model state and return any errors if the state is invalid:
+Action filters can be used:
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs)]
+* To validate model state.
+* Return  errors if the state is invalid:
 
-The `OnActionExecuted` method runs after the action method and can see and manipulate the results of the action through the `ActionExecutedContext.Result` property. `ActionExecutedContext.Canceled` will be set to true if the action execution was short-circuited by another filter. `ActionExecutedContext.Exception` will be set to a non-null value if the action or a subsequent action filter threw an exception. Setting `ActionExecutedContext.Exception` to null:
+[!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet)]
 
-* Effectively 'handles' an exception.
-* `ActionExecutedContext.Result` is executed as if it were returned normally from the action method.
+The `OnActionExecuted` method runs after the action method:
+
+* And can see and manipulate the results of the action through the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Result> property.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled> is set to true if the action execution was short-circuited by another filter.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> is set to a non-null value if the action or a subsequent action filter threw an exception. Setting `ActionExecutedContext.Exception` to null:
+
+  * Effectively 'handles' an exception.
+  * `ActionExecutedContext.Result` is executed as if it were returned normally from the action method.
 
 ## Exception filters
 
-*Exception filters* implement either the `IExceptionFilter` or `IAsyncExceptionFilter` interface. They can be used to implement common error handling policies for an app. 
+*Exception filters* implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter>. They can be used to implement common error handling policies for an app.
 
 The following sample exception filter uses a custom developer error view to display details about exceptions that occur when the app is in development:
 
@@ -345,32 +368,27 @@ Exception filters:
 
 To handle an exception, set the `ExceptionContext.ExceptionHandled` property to true or write a response. This stops propagation of the exception. An Exception filter can't turn an exception into a "success". Only an Action filter can do that.
 
-> [!NOTE]
-> In ASP.NET Core 1.1, the response isn't sent if you set `ExceptionHandled` to true **and** write a response. In that scenario, ASP.NET Core 1.0 does send the response, and ASP.NET Core 1.1.2 will return to the 1.0 behavior. For more information, see [issue #5594](https://github.com/aspnet/Mvc/issues/5594) in the GitHub repository. 
-
 Exception filters:
 
-* Are good for trapping exceptions that occur within MVC actions.
-* Are not as flexible as error handling middleware. 
+* Are good for trapping exceptions that occur within actions.
+* Are not as flexible as error handling middleware.
 
-Prefer middleware for exception handling. Use exception filters only where you need to do error handling *differently* based on which MVC action was chosen. For example, your app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
-
-The `ExceptionFilterAttribute` can be subclassed. 
+Prefer middleware for exception handling. Use exception filters only where error handling *different* based on which action method is called. For example, an app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
 
 ## Result filters
 
 * Implement an interface:
-  * `IResultFilter` or `IAsyncResultFilter`.
-  * `IAlwaysRunResultFilter` or `IAsyncAlwaysRunResultFilter`
-* Their execution surrounds the execution of action results. 
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter>
+* Their execution surrounds the execution of action results.
 
 ### IResultFilter and IAsyncResultFilter
 
-Here's an example of a Result filter that adds an HTTP header.
+The follow code shows a result filter that adds an HTTP header:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/LoggingAddHeaderFilter.cs?name=snippet_ResultFilter)]
 
-The kind of result being executed depends on the action in question. An MVC action returning a view would include all razor processing as part of the `ViewResult` being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](actions.md)
+The kind of result being executed depends on the action. An action returning a view would include all razor processing as part of the <xref:Microsoft.AspNetCore.Mvc.ViewResult> being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](xref:mvc/controllers/actions)
 
 Result filters are only executed for successful results - when the action or action filters produce an action result. Result filters are not executed when exception filters handle an exception.
 
