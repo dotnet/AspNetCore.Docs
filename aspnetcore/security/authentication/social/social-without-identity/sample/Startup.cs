@@ -23,17 +23,10 @@ namespace WebApp1
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
 
-            #region snippet1
             services
                 .AddAuthentication(options =>
                 {
@@ -43,17 +36,15 @@ namespace WebApp1
                 .AddCookie()
                 .AddGoogle(options =>
                 {
-                    // Provide the Google Client ID
-                    options.ClientId = "XXXXXXXXXXX.apps.googleusercontent.com";
-                    // Provide the Google Secret
-                    options.ClientSecret = "g4GZ2#...GD5Gg1x";
+                    options.ClientId = Configuration["Authentication:Google:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 });
-            #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
+        #endregion
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         #region snippet2
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -74,7 +65,7 @@ namespace WebApp1
             app.UseAuthentication();
 
             app.UseMvc();
-        }
-        #endregion
+        }       
     }
+    #endregion
 }
