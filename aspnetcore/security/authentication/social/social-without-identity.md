@@ -8,7 +8,7 @@ uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
 
-This sample provides the minimum code required to use [social authentication](xref:security/authentication/social) with an ASP.NET Core web app. This is not a complete sample, it doesn't contain:
+This sample provides the minimum code required to use [social authentication](xref:security/authentication/social/index) with an ASP.NET Core web app. This is not a complete sample, it doesn't contain:
 
 * Sign-in and sign-out UI
 * Other UI expected in an an authenticated web app.
