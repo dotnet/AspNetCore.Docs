@@ -25,7 +25,7 @@ namespace FiltersSample.Filters
 
         public void OnResultExecuted(ResultExecutedContext context)
         {
-            // Can't add to headers here because response has already begun.
+            // Can't add to headers here because response has started.
         }
     }
     #endregion

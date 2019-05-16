@@ -353,27 +353,27 @@ The `OnActionExecuted` method runs after the action method:
 
 ## Exception filters
 
-*Exception filters* implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter>. They can be used to implement common error handling policies for an app.
+*Exception filters* implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter>. Exception filters can be used to implement common error handling policies.
 
-The following sample exception filter uses a custom developer error view to display details about exceptions that occur when the app is in development:
+The following sample exception filter uses a custom error view to display details about exceptions that occur when the app is in development:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/CustomExceptionFilterAttribute.cs?name=snippet_ExceptionFilter&highlight=1,14)]
 
 Exception filters:
 
-* Don't have before and after events. 
-* Implement `OnException` or `OnExceptionAsync`. 
-* Handle unhandled exceptions that occur in controller creation, [model binding](../models/model-binding.md), action filters, or action methods. 
-* Do not catch exceptions that occur in Resource filters, Result filters, or MVC Result execution.
+* Don't have before and after events.
+* Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException*> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync*>.
+* Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](xref:mvc/models/model-binding), action filters, or action methods.
+* Do **not** catch exceptions that occur in resource filters, result filters, or MVC result execution.
 
-To handle an exception, set the `ExceptionContext.ExceptionHandled` property to true or write a response. This stops propagation of the exception. An Exception filter can't turn an exception into a "success". Only an Action filter can do that.
+To handle an exception, set the <xref:System.Web.Mvc.ExceptionContext.ExceptionHandled> property to `true` or write a response. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
 
 Exception filters:
 
 * Are good for trapping exceptions that occur within actions.
 * Are not as flexible as error handling middleware.
 
-Prefer middleware for exception handling. Use exception filters only where error handling *different* based on which action method is called. For example, an app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
+Prefer middleware for exception handling. Use exception filters only where error handling *differs* based on which action method is called. For example, an app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
 
 ## Result filters
 
@@ -392,16 +392,29 @@ The kind of result being executed depends on the action. An action returning a v
 
 Result filters are only executed for successful results - when the action or action filters produce an action result. Result filters are not executed when exception filters handle an exception.
 
-The `OnResultExecuting` method can short-circuit execution of the action result and subsequent result filters by setting `ResultExecutingContext.Cancel` to true. You should generally write to the response object when short-circuiting to avoid generating an empty response. Throwing an exception will:
+The <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting*?displayProperty=fullName> method can short-circuit execution of the action result and subsequent result filters by setting <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=fullName> to `true`. When short-circuiting, write to the response object when short-circuiting to avoid generating an empty response. Throwing an exception in `IResultFilter.OnResultExecuting` will:
 
 * Prevent execution of the action result and subsequent filters.
 * Be treated as a failure instead of a successful result.
 
-When the `OnResultExecuted` method runs, the response has likely been sent to the client and cannot be changed further (unless an exception was thrown). `ResultExecutedContext.Canceled` will be set to true if the action result execution was short-circuited by another filter.
+When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted*?displayProperty=fullName> method runs:
+
+* The response has likely been sent to the client and cannot be changed.
+* If an exception was thrown, the response body is not sent.
+
+<!-- Review preceding "If an exception was thrown: Original 
+When the OnResultExecuted method runs, the response has likely been sent to the client and cannot be changed further (unless an exception was thrown).
+
+SHould that be , 
+If an exception was thrown **IN THE RESULT FILTER**, the response body is not sent.
+
+ -->
+
+`ResultExecutedContext.Canceled` will be set to `true` if the action result execution was short-circuited by another filter.
 
 `ResultExecutedContext.Exception` will be set to a non-null value if the action result or a subsequent result filter threw an exception. Setting `Exception` to null effectively 'handles' an exception and prevents the exception from being rethrown by MVC later in the pipeline. When you're handling an exception in a result filter, you might not be able to write any data to the response. If the action result throws partway through its execution, and the headers have already been flushed to the client, there's no reliable mechanism to send a failure code.
 
-For an `IAsyncResultFilter` a call to `await next` on the `ResultExecutionDelegate` executes any subsequent result filters and the action result. To short-circuit, set `ResultExecutingContext.Cancel` to true and don't call the `ResultExecutionDelegate`.
+For an `IAsyncResultFilter` a call to `await next` on the `ResultExecutionDelegate` executes any subsequent result filters and the action result. To short-circuit, set `ResultExecutingContext.Cancel` to `true` and don't call the `ResultExecutionDelegate`.
 
 The framework provides an abstract `ResultFilterAttribute` that you can subclass. The [AddHeaderAttribute](#add-header-attribute) class shown earlier is an example of a result filter attribute.
 
