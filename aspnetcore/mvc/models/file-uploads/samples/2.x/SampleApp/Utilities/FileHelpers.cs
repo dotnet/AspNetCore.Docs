@@ -37,18 +37,18 @@ namespace SampleApp.Utilities
 
         // **WARNING!**
         // In the following file processing methods, the file's content isn't scanned.
-        // In most production scenarios, an anti-virus/anti-malware scanner API is 
-        // used on the file before making the file available to users or other 
-        // systems. For more information, see the topic that accompanies this sample 
+        // In most production scenarios, an anti-virus/anti-malware scanner API is
+        // used on the file before making the file available to users or other
+        // systems. For more information, see the topic that accompanies this sample
         // app.
 
-        public static async Task<byte[]> ProcessFormFile<T>(IFormFile formFile,
-            ModelStateDictionary modelState, string[] permittedExtensions,
+        public static async Task<byte[]> ProcessFormFile<T>(IFormFile formFile, 
+            ModelStateDictionary modelState, string[] permittedExtensions, 
             long sizeLimit)
         {
             var fieldDisplayName = string.Empty;
 
-            // Use reflection to obtain the display name for the model 
+            // Use reflection to obtain the display name for the model
             // property associated with this IFormFile. If a display
             // name isn't found, error messages simply won't show
             // a display name.
@@ -66,33 +66,31 @@ namespace SampleApp.Utilities
                 }
             }
 
-            // Don't trust the file name sent by the client. Use Linq to
-            // remove invalid characters. Since the file name is displayed
-            // in error messages on the webform, the file name is also
-            // HTML encoded. Another option is to use
-            // Path.GetRandomFileName to generate a safe random
-            // file name.
+            // Don't trust the file name sent by the client. To display
+            // the file name in a UI, use Path.GetInvalidFileNameChars
+            // and Linq to remove invalid characters, then HTML-encode the
+            // result.
             var invalidFileNameChars = Path.GetInvalidFileNameChars();
-            var trustedFileName = WebUtility.HtmlEncode(
+            var trustedFileNameForDisplay = WebUtility.HtmlEncode(
                     invalidFileNameChars.Aggregate(
-                        formFile.FileName, (current, c) =>
+                        formFile.FileName, (current, c) => 
                             current.Replace(c, '_')));
 
             // Check the file length. This check doesn't catch files that only have 
             // a BOM as their content.
             if (formFile.Length == 0)
             {
-                modelState.AddModelError(formFile.Name,
-                    $"{fieldDisplayName}({trustedFileName}) is empty.");
+                modelState.AddModelError(formFile.Name, 
+                    $"{fieldDisplayName}({trustedFileNameForDisplay}) is empty.");
 
                 return new byte[0];
             }
-
+            
             if (formFile.Length > sizeLimit)
             {
                 var megabyteSizeLimit = sizeLimit / 1048576;
                 modelState.AddModelError(formFile.Name,
-                    $"{fieldDisplayName}({trustedFileName}) exceeds " +
+                    $"{fieldDisplayName}({trustedFileNameForDisplay}) exceeds " +
                     $"{megabyteSizeLimit:N1} MB.");
 
                 return new byte[0];
@@ -110,14 +108,14 @@ namespace SampleApp.Utilities
                     if (memoryStream.Length == 0)
                     {
                         modelState.AddModelError(formFile.Name,
-                            $"{fieldDisplayName}({trustedFileName}) is empty.");
+                            $"{fieldDisplayName}({trustedFileNameForDisplay}) is empty.");
                     }
 
                     if (!IsValidFileExtensionAndSignature(
-                        trustedFileName, memoryStream, permittedExtensions))
+                        formFile.FileName, memoryStream, permittedExtensions))
                     {
                         modelState.AddModelError(formFile.Name,
-                            $"{fieldDisplayName}({trustedFileName}) file " +
+                            $"{fieldDisplayName}({trustedFileNameForDisplay}) file " +
                             "type isn't permitted or the file's signature " +
                             "doesn't match the file's extension.");
                     }
@@ -130,7 +128,7 @@ namespace SampleApp.Utilities
             catch (Exception ex)
             {
                 modelState.AddModelError(formFile.Name,
-                    $"{fieldDisplayName}({trustedFileName}) upload failed. " +
+                    $"{fieldDisplayName}({trustedFileNameForDisplay}) upload failed. " +
                     $"Please contact the Help Desk for support. Error: {ex.HResult}");
                 // Log the exception
             }
@@ -139,7 +137,7 @@ namespace SampleApp.Utilities
         }
 
         public static async Task<byte[]> ProcessStreamedFile(
-            MultipartSection section, ContentDispositionHeaderValue contentDisposition,
+            MultipartSection section, ContentDispositionHeaderValue contentDisposition, 
             ModelStateDictionary modelState, string[] permittedExtensions, long sizeLimit)
         {
             try
@@ -160,7 +158,7 @@ namespace SampleApp.Utilities
                         $"The file exceeds {megabyteSizeLimit:N1} MB.");
                     }
                     else if (!IsValidFileExtensionAndSignature(
-                        contentDisposition.FileName.Value, memoryStream,
+                        contentDisposition.FileName.Value, memoryStream, 
                         permittedExtensions))
                     {
                         modelState.AddModelError("File",
@@ -251,7 +249,7 @@ namespace SampleApp.Utilities
                 // --------------------
                 // With the file signatures provided in the _fileSignature
                 // dictionary, the following code tests the input content's
-                // file signature for DOC, DOCX, PDF, ZIP, PNG, JPG, JPEG, 
+                // file signature for DOC, DOCX, PDF, ZIP, PNG, JPG, JPEG,
                 // XLS, XLSX, and GIF.
                 var signature = _fileSignature[ext];
                 reader.BaseStream.Position = 0;

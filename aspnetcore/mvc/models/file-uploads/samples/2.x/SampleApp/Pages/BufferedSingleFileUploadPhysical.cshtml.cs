@@ -1,12 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
-using SampleApp.Data;
 using SampleApp.Utilities;
 
 namespace SampleApp.Pages
@@ -58,14 +56,12 @@ namespace SampleApp.Pages
                 return Page();
             }
 
-            // Don't trust the file name sent by the client. Use Linq to
-            // remove invalid characters. Another option is to use
-            // Path.GetRandomFileName to generate a safe random
-            // file name.
-            var invalidFileNameChars = Path.GetInvalidFileNameChars();
-            var fileName = invalidFileNameChars.Aggregate(
-                FileUpload.FormFile.FileName, (current, c) => current.Replace(c, '_'));
-            var filePath = Path.Combine(_targetFilePath, fileName);
+            // For the file name of the uploaded file stored
+            // server-side, use Path.GetRandomFileName to generate a safe
+            // random file name.
+            var trustedFileNameForFileStorage = Path.GetRandomFileName();
+            var filePath = Path.Combine(
+                _targetFilePath, trustedFileNameForFileStorage);
 
             // **WARNING!**
             // In the following example, the file is saved without

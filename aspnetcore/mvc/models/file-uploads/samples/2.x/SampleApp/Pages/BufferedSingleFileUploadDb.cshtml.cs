@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -61,13 +62,15 @@ namespace SampleApp.Pages
                 return Page();
             }
 
-            // Don't trust the file name sent by the client. Use Linq to
-            // remove invalid characters. Another option is to use
-            // Path.GetRandomFileName to generate a safe random
-            // file name.
+            // Don't trust the file name sent by the client. To display
+            // the file name in a UI, use Path.GetInvalidFileNameChars
+            // and Linq to remove invalid characters, then HTML-encode the
+            // result.
             var invalidFileNameChars = Path.GetInvalidFileNameChars();
-            var fileName = invalidFileNameChars.Aggregate(
-                FileUpload.FormFile.FileName, (current, c) => current.Replace(c, '_'));
+            var trustedFileNameForDisplay = WebUtility.HtmlEncode(
+                    invalidFileNameChars.Aggregate(
+                        FileUpload.FormFile.FileName, (current, c) => 
+                            current.Replace(c, '_')));
 
             // **WARNING!**
             // In the following example, the file is saved without
@@ -81,7 +84,7 @@ namespace SampleApp.Pages
             var file = new AppFile
             {
                 Content = formFileContent, 
-                Name = fileName, 
+                Name = trustedFileNameForDisplay, 
                 Note = FileUpload.Note,
                 Size = FileUpload.FormFile.Length, 
                 UploadDT = DateTime.UtcNow
