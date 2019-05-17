@@ -1,6 +1,6 @@
 # ASP.NET Core Windows Service Sample (Framework-dependent Deployment)
 
-This sample shows how to host an ASP.NET Core app as a Windows Service without using IIS. This sample demonstrates the scenario described in [Host an ASP.NET Core app in a Windows Service](https://docs.microsoft.com/aspnet/core/host-and-deploy/windows-service).
+This sample shows how to host an ASP.NET Core app as a Windows Service without using IIS. This sample demonstrates the scenario described in [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/aspnet/core/host-and-deploy/windows-service).
 
 ## Logging level
 
@@ -55,6 +55,8 @@ Use the [RegisterService.ps1](https://github.com/aspnet/AspNetCore.Docs/tree/mas
 * The service runs under the `ServiceUser` account. Replace `{DOMAIN OR COMPUTER NAME}` with the domain or computer name of the user account.
 
 ## Manage the service
+
+Execute PowerShell commands from an administrative PowerShell 6 command shell.
 
 ### Start the service
 
