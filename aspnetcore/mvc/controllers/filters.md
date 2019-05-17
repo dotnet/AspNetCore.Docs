@@ -55,7 +55,7 @@ Synchronous filters that run code both before and after their pipeline stage def
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/SampleActionFilter.cs?name=snippet_ActionFilter)]
 
-Asynchronous filters define a single On*Stage*ExecutionAsync method. This method takes a *FilterType*ExecutionDelegate which executes the filter's pipeline stage. For example, `ActionExecutionDelegate`:
+Asynchronous filters define a single On*Stage*ExecutionAsync method. This method takes a *FilterTypeExecutionDelegate that executes the filter's pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate>:
 
 * Calls the action method or next action filter.
 * Code can be run before and after `ActionExecutionDelegate` is called.
@@ -68,7 +68,7 @@ Implement **either** the synchronous or the async version of a filter interface,
 
 ### IFilterFactory
 
-[IFilterFactory](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory) implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the runtime prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the [CreateInstance](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory.createinstance) method is called to create the `IFilterMetadata` instance that will be invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
+<xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the runtime prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method is called to create the `IFilterMetadata` instance that is invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
 
 `IFilterFactory` can be implemented using custom attribute implementations as another approach to creating filters:
 
@@ -176,10 +176,10 @@ Therefore the `AddHeader` filter never runs for the `SomeResource` action. This 
 
 ## Dependency injection
 
-Filters can be added by type or by instance. If an instance is added, that instance will be used for every request. If a type is added, it will be type-activated. A type-activated filter means:
+Filters can be added by type or by instance. If an instance is added, that instance is used for every request. If a type is added, it's type-activated. A type-activated filter means:
 
-* An instance will be created for each request.
-* Any constructor dependencies will be populated by [dependency injection](xref:fundamentals/dependency-injection) (DI).
+* An instance is created for each request.
+* Any constructor dependencies are populated by [dependency injection](xref:fundamentals/dependency-injection) (DI).
 
 Adding a filter by type is equivalent to `filters.Add(new TypeFilterAttribute(typeof(MyFilter)))`.
 <!--
@@ -273,7 +273,7 @@ Do **not** throw exceptions within authorization filters:
 * The exception will not be handled.
 * Exception filters will not handle the exception.
 
-Consider issuing a challenge when an exception occurs in an authorization filters.
+Consider issuing a challenge when an exception occurs in an authorization filter.
 
 Learn more about [Authorization](xref:security/authorization/introduction).
 
@@ -324,16 +324,16 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Cont
 * <xref:System.Web.Mvc.ActionExecutedContext.Exception> - Non-null if the action or a subsequent action filter threw an exception. Setting this property to null:
 
   * Effectively 'handles' an exception.
-  * `Result` is executed as if it were returned from the action method.
+  * `Result` is executed as if it was returned from the action method.
 
-For an `IAsyncActionFilter`, a call to the `ActionExecutionDelegate`:
+For an `IAsyncActionFilter`, a call to the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate>:
 
 * Executes any subsequent action filters and the action method.
-* returns `ActionExecutedContext`.
+* Returns `ActionExecutedContext`.
 
-To short-circuit, assign `ActionExecutingContext.Result` to some result instance and don't call the `ActionExecutionDelegate`.
+To short-circuit, assign <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> to a result instance and don't call the `ActionExecutionDelegate`.
 
-The framework provides an abstract `ActionFilterAttribute` that can be subclassed.
+The framework provides an abstract <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> that can be subclassed.
 
 Action filters can be used:
 
@@ -410,9 +410,9 @@ If an exception was thrown **IN THE RESULT FILTER**, the response body is not se
 
  -->
 
-`ResultExecutedContext.Canceled` will be set to `true` if the action result execution was short-circuited by another filter.
+`ResultExecutedContext.Canceled` is set to `true` if the action result execution was short-circuited by another filter.
 
-`ResultExecutedContext.Exception` will be set to a non-null value if the action result or a subsequent result filter threw an exception. Setting `Exception` to null effectively 'handles' an exception and prevents the exception from being rethrown by MVC later in the pipeline. When you're handling an exception in a result filter, you might not be able to write any data to the response. If the action result throws partway through its execution, and the headers have already been flushed to the client, there's no reliable mechanism to send a failure code.
+`ResultExecutedContext.Exception` is set to a non-null value if the action result or a subsequent result filter threw an exception. Setting `Exception` to null effectively 'handles' an exception and prevents the exception from being rethrown by MVC later in the pipeline. When you're handling an exception in a result filter, you might not be able to write any data to the response. If the action result throws partway through its execution, and the headers have already been flushed to the client, there's no reliable mechanism to send a failure code.
 
 For an `IAsyncResultFilter` a call to `await next` on the `ResultExecutionDelegate` executes any subsequent result filters and the action result. To short-circuit, set `ResultExecutingContext.Cancel` to `true` and don't call the `ResultExecutionDelegate`.
 
@@ -422,42 +422,21 @@ The framework provides an abstract `ResultFilterAttribute` that you can subclass
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter> interfaces declare an <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> implementation that runs for action results. The filter is applied to an action result unless an <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter> applies and short-circuits the response.
 
-In other words, these "always run" filters, always run, except when an exception or authorization filter short-circuits them. Filters other than `IExceptionFilter` and `IAuthorizationFilter` don't short circuit them.
+In other words, these filters always run, except when an exception or authorization filter short-circuits them. Filters other than `IExceptionFilter` and `IAuthorizationFilter` don't short circuit them.
 
 For example, the following filter always runs and sets an action result (<xref:Microsoft.AspNetCore.Mvc.ObjectResult>) with a *422 Unprocessable Entity* status code when content negotiation fails:
 
-```csharp
-public class UnprocessableResultFilter : Attribute, IAlwaysRunResultFilter
-{
-    public void OnResultExecuting(ResultExecutingContext context)
-    {
-        if (context.Result is StatusCodeResult statusCodeResult &&
-            statusCodeResult.StatusCode == 415)
-        {
-            context.Result = new ObjectResult("Can't process this!")
-            {
-                StatusCode = 422,
-            };
-        }
-    }
-
-    public void OnResultExecuted(ResultExecutedContext context)
-    {
-    }
-}
-```
+[!code-csharp[](./filters/sample/FiltersSample/Filters/UnprocessableResultFilter.cs?name=snippet)]
 
 ## Using middleware in the filter pipeline
 
-Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of MVC, which means that they have access to MVC context and constructs.
+Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the ASP.NET Core runtime, which means that they have access to ASP.NET Core context and constructs.
 
-In ASP.NET Core 1.1, you can use middleware in the filter pipeline. You might want to do that if you have a middleware component that needs access to MVC route data, or one that should run only for certain controllers or actions.
-
-To use middleware as a filter, create a type with a `Configure` method that specifies the middleware that you want to inject into the filter pipeline. Here's an example that uses the localization middleware to establish the current culture for a request:
+To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example that uses the localization middleware to establish the current culture for a request:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/LocalizationPipeline.cs?name=snippet_MiddlewareFilter&highlight=3,21)]
 
-You can then use the `MiddlewareFilterAttribute` to run the middleware for a selected controller or action or globally:
+Use the <xref:Microsoft.AspNetCore.Mvc.MiddlewareFilterAttribute> to run the middleware:
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_MiddlewareFilter&highlight=2)]
 
@@ -466,4 +445,4 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 ## Next actions
 
 * See [Filter methods for Razor Pages](xref:razor-pages/filter)
-* To experiment with filters, [download, test and modify the Github sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+* To experiment with filters, [download, test, and modify the GitHub sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
