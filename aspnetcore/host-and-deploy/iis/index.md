@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/07/2019
+ms.date: 05/17/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -26,11 +26,13 @@ For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>
 
 ## Supported platforms
 
-Apps published for 32-bit (x86) and 64-bit (x64) deployment are supported. Deploy a 32-bit app unless the app:
+Apps published for 32-bit (x86) or 64-bit (x64) deployment are supported. Deploy a 32-bit app with a 32-bit (x86) .NET Core SDK unless the app:
 
 * Requires the larger virtual memory address space available to a 64-bit app.
 * Requires the larger IIS stack size.
 * Has 64-bit native dependencies.
+
+Use a 64-bit (x64) .NET Core SDK to publish a 64-bit app. A 64-bit runtime must be present on the host system.
 
 ## Application configuration
 
