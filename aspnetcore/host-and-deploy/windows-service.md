@@ -21,14 +21,6 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 * [ASP.NET Core SDK 2.1 or later](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 or later](https://github.com/PowerShell/PowerShell)
 
-> [!NOTE]
-> For Windows OS earlier than the Windows 10 October 2018 Update (version 1809/build 10.0.17763), the [Microsoft.PowerShell.LocalAccounts](/powershell/module/microsoft.powershell.localaccounts) module must be imported with the [WindowsCompatibility module](https://github.com/PowerShell/WindowsCompatibility) to gain access to the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet used in the [Create a user account](#create-a-user-account) section:
->
-> ```powershell
-> Install-Module WindowsCompatibility -Scope CurrentUser
-> Import-WinModule Microsoft.PowerShell.LocalAccounts
-> ```
-
 ## Deployment type
 
 Create either a framework-dependent or self-contained Windows Service deployment. For information and advice on deployment scenarios, see [.NET Core application deployment](/dotnet/core/deploying/).
@@ -212,10 +204,18 @@ dotnet publish --configuration Release --runtime win7-x64 --output c:\svc
 
 ## Create a user account
 
-Create a user account for the service using the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet from an administrative PowerShell 6 command shell:
+Create a user account for the service using the [New-LocalUser](/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet from an administrative PowerShell 6 command shell.
 
-```powershell
+On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
+
+```PowerShell
 New-LocalUser -Name {NAME}
+```
+
+On Windows OS earlier than the Windows 10 October 2018 Update (version 1809/build 10.0.17763):
+
+```console
+powershell -Command "New-LocalUser -Name {NAME}"
 ```
 
 Provide a [strong password](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements) when prompted.

@@ -16,10 +16,18 @@ Execute PowerShell commands from an administrative PowerShell 6 command shell.
 
 ## Create a user account
 
-Create a user account with the name `ServiceUser`:
+Create a user account with the name `ServiceUser`.
 
-```powershell
+On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
+
+```PowerShell
 New-LocalUser -Name ServiceUser
+```
+
+On Windows OS earlier than the Windows 10 October 2018 Update (version 1809/build 10.0.17763):
+
+```console
+powershell -Command "New-LocalUser -Name ServiceUser"
 ```
 
 Provide a [strong password](https://docs.microsoft.com/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements) when prompted.
