@@ -11,7 +11,7 @@ namespace FiltersSample.Filters
         {
             context.Result = new ContentResult()
             {
-                Content = "Resource unavailable - header should not be set"
+                Content = "Resource unavailable - header not set."
             };
         }
 

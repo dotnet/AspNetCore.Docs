@@ -215,37 +215,47 @@ Filters that are implemented as attributes and added directly to controller clas
 * Attributes must have their constructor parameters supplied where they're applied. 
 * This is a limitation of how attributes work.
 
-For filters that have dependencies that need access from DI, there are several supported approaches. Apply the filter to a class or action method using one of the following:
+The following filters support dependencies from DI. Apply the filter to a class or action method:
 
-* `ServiceFilterAttribute`
-* `TypeFilterAttribute`
-* `IFilterFactory` implemented on the attribute.
+* <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute>
+* <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute>
+* <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implemented on the attribute.
 
-One dependency you might want to get from DI is a logger. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging features](xref:fundamentals/logging/index) typically provide what's needed for logging. Logging added to filters:
+Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](xref:fundamentals/logging/index) typically provides what's needed for logging. Logging added to filters:
 
 * Should focus on business domain concerns or behavior specific to the filter.
-* Should **not** log MVC actions or other framework events.
+* Should **not** log actions or other framework events. The built in filters log actions and framework events.
 
 ### ServiceFilterAttribute
 
-Service filter implementation types are registered in DI. A <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> retrieves an instance of the filter from DI. Add the `ServiceFilterAttribute` to the container in `Startup.ConfigureServices`, and reference it in a `[ServiceFilter]` attribute:
+Service filter implementation types are registered in `ConfigureServices`. A <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> retrieves an instance of the filter from DI.
 
-[!code-csharp[](./filters/sample/FiltersSample/Startup.cs?name=snippet_ConfigureServices)]
-
-[!code-csharp[](../../mvc/controllers/filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
+The following code shows the `AddHeaderFilterWithDi` filter:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/LoggingAddHeaderFilter.cs?name=snippet_ResultFilter)]
 
-When using `ServiceFilterAttribute`, setting <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable> is a hint that the filter instance *may* be reused outside of the request scope it was created within. The framework provides no guarantees that a single instance of the filter will be created or the filter will not be re-requested from the DI container at some later point. `IsReusable` should not be used when with a filter that depends on services with a lifetime other than singleton.
+In the following code, `AddHeaderFilterWithDi` is added to the DI container:
+
+[!code-csharp[](./filters/sample/FiltersSample/Startup.cs?name=snippet_ConfigureServices&highlight=11)]
+
+In the following code, the `ServiceFilter` attribute retrieves an instance of the `AddHeaderFilterWithDi` filter from DI:
+
+[!code-csharp[](./filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
+
+[ServiceFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable):
+
+* Provides a hint that the filter instance *may* be reused outside of the request scope it was created within. The ASP.NET Core runtime doesn't guarantee:
+
+  * That a single instance of the filter will be created.
+  * The filter will not be re-requested from the DI container at some later point.
+
+* Should not be used with a filter that depends on services with a lifetime other than singleton.
 
 Using `ServiceFilterAttribute` without registering the filter type results in an exception:
 
-```
-System.InvalidOperationException: No service for type
-'FiltersSample.Filters.AddHeaderFilterWithDI' has been registered.
-```
+`System.InvalidOperationException: No service for type '<filter>' has been registered.`
 
-`ServiceFilterAttribute` implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. The `CreateInstance` method loads the specified type from the services container (DI).
+`ServiceFilterAttribute` implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
 
 ### TypeFilterAttribute
 
