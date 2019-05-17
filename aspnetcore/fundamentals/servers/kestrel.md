@@ -2,6 +2,7 @@
 title: Kestrel web server implementation in ASP.NET Core
 author: guardrex
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/17/2019
@@ -10,12 +11,6 @@ uid: fundamentals/servers/kestrel
 # Kestrel web server implementation in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
-
-::: moniker range="<= aspnetcore-1.1"
-
-For the 1.1 version of this topic, download [Kestrel web server implementation in ASP.NET Core (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Kestrel_1.1.pdf).
-
-::: moniker-end
 
 Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included by default in ASP.NET Core project templates.
 
