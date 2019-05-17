@@ -67,14 +67,9 @@ namespace SampleApp.Utilities
             }
 
             // Don't trust the file name sent by the client. To display
-            // the file name in a UI, use Path.GetInvalidFileNameChars
-            // and Linq to remove invalid characters, then HTML-encode the
-            // result.
-            var invalidFileNameChars = Path.GetInvalidFileNameChars();
+            // the file name, HTML-encode the value.
             var trustedFileNameForDisplay = WebUtility.HtmlEncode(
-                    invalidFileNameChars.Aggregate(
-                        formFile.FileName, (current, c) => 
-                            current.Replace(c, '_')));
+                formFile.FileName);
 
             // Check the file length. This check doesn't catch files that only have 
             // a BOM as their content.

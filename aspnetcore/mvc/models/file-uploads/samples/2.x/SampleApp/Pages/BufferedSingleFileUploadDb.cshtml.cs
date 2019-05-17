@@ -62,16 +62,6 @@ namespace SampleApp.Pages
                 return Page();
             }
 
-            // Don't trust the file name sent by the client. To display
-            // the file name in a UI, use Path.GetInvalidFileNameChars
-            // and Linq to remove invalid characters, then HTML-encode the
-            // result.
-            var invalidFileNameChars = Path.GetInvalidFileNameChars();
-            var trustedFileNameForDisplay = WebUtility.HtmlEncode(
-                    invalidFileNameChars.Aggregate(
-                        FileUpload.FormFile.FileName, (current, c) => 
-                            current.Replace(c, '_')));
-
             // **WARNING!**
             // In the following example, the file is saved without
             // scanning the file's contents. In most production
@@ -84,7 +74,7 @@ namespace SampleApp.Pages
             var file = new AppFile
             {
                 Content = formFileContent, 
-                Name = trustedFileNameForDisplay, 
+                UntrustedName = FileUpload.FormFile.FileName, 
                 Note = FileUpload.Note,
                 Size = FileUpload.FormFile.Length, 
                 UploadDT = DateTime.UtcNow

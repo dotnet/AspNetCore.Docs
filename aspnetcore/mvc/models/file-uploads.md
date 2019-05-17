@@ -5,7 +5,7 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/15/2019
+ms.date: 05/17/2019
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -24,7 +24,7 @@ Security steps that reduce the likelihood of a successful attack are:
 
 * Upload files to a dedicated file upload area on the system, preferably to a non-system drive. Use of a dedicated location makes it easier to impose security measures on uploaded files. Disable execute permissions on the file upload location.&dagger;
 * Never persist uploaded files in the same directory tree as the app.&dagger;
-* Use a safe file name determined by the app. Don't use a file name provided by user input or the untrusted file name of the uploaded file.&dagger;
+* Use a safe file name determined by the app. Don't use a file name provided by the user or the untrusted file name of the uploaded file. To display an untrusted file name in a UI or in a logging message, HTML-encode the value.&dagger;
 * Only allow a specific set of approved file extensions.&dagger;
 * Check the file format signature to prevent a user from uploading a masqueraded file (for example, uploading an *.exe* file with a *.txt* extension).&dagger;
 * Verify that client-side checks are also performed on the server. Client-side checks are easy to circumvent.&dagger;
@@ -397,17 +397,24 @@ using (var reader = new BinaryReader(uploadedFileData))
 
 ### Name validation
 
-Only use file name data from the client for display purposes and only after removing invalid characters and HTML-encoding the value. Remove invalid characters from file names with [Path.GetInvalidFileNameChars](xref:System.IO.Path.GetInvalidFileNameChars*) and [Linq](/dotnet/csharp/programming-guide/concepts/linq/). [WebUtility.HtmlEncode](xref:System.Net.WebUtility.HtmlEncode*) encodes text for display in a UI.
 
-Never use a client-supplied file name for saving a file to physical storage. Create a safe file name for the file using [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*).
 
-```csharp
-var invalidFileNameChars = Path.GetInvalidFileNameChars();
-var trustedFileNameForDisplay = WebUtility.HtmlEncode(
-        invalidFileNameChars.Aggregate(
-            formFile.FileName, (current, c) => 
-                current.Replace(c, '_')));
-var trustedFileNameForFileStorage = Path.GetRandomFileName();
+Never use a client-supplied file name for saving a file to physical storage. Create a safe file name for the file using [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) or [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) to create a full path (including the file name) for temporary storage.
+
+Only use file name data from the client for display purposes and only after HTML-encoding the value. [WebUtility.HtmlEncode](xref:System.Net.WebUtility.HtmlEncode*) encodes text for display in a UI:
+
+```cshtml
+@using System.Net
+
+@foreach (var file in Model.DatabaseFiles) {
+    // Don't display the untrusted file name in the UI. HTML-encode the value.
+    var fileName = WebUtility.HtmlEncode(file.UntrustedName);
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => fileName)
+        </td>
+    </tr>
+}
 ```
 
 Many implementations must include a check that the file exists; otherwise, the file is overwritten by a file of the same name. Supply additional logic to meet your app's specifications.

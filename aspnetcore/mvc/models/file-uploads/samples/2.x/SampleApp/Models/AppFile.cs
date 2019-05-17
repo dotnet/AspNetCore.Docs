@@ -10,7 +10,7 @@ namespace SampleApp.Models
         public byte[] Content { get; set; }
 
         [Display(Name = "File Name")]
-        public string Name { get; set; }
+        public string UntrustedName { get; set; }
 
         [Display(Name = "Note")]
         public string Note { get; set; }

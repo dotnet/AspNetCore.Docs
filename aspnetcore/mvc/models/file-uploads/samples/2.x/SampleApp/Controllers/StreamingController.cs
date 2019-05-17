@@ -74,6 +74,7 @@ namespace SampleApp.Controllers
             // Accumulate the form data key-value pairs in the request (formAccumulator).
             var formAccumulator = new KeyValueAccumulator();
             var trustedFileNameForDisplay = string.Empty;
+            var untrustedFileNameForStorage = string.Empty;
             var streamedFileContent = new byte[0];
 
             var boundary = MultipartRequestHelper.GetBoundary(
@@ -94,15 +95,11 @@ namespace SampleApp.Controllers
                     if (MultipartRequestHelper
                         .HasFileContentDisposition(contentDisposition))
                     {
+                        untrustedFileNameForStorage = contentDisposition.FileName.Value;
                         // Don't trust the file name sent by the client. To display
-                        // the file name in a UI, use Path.GetInvalidFileNameChars
-                        // and Linq to remove invalid characters, then HTML-encode the
-                        // result.
-                        var invalidFileNameChars = Path.GetInvalidFileNameChars();
+                        // the file name, HTML-encode the value.
                         trustedFileNameForDisplay = WebUtility.HtmlEncode(
-                                invalidFileNameChars.Aggregate(
-                                    contentDisposition.FileName.Value, (current, c) => 
-                                        current.Replace(c, '_')));
+                                contentDisposition.FileName.Value);
 
                         streamedFileContent = 
                             await FileHelpers.ProcessStreamedFile(section, contentDisposition, 
@@ -201,7 +198,7 @@ namespace SampleApp.Controllers
             var file = new AppFile()
             {
                 Content = streamedFileContent,
-                Name = trustedFileNameForDisplay,
+                UntrustedName = untrustedFileNameForStorage,
                 Note = formData.Note,
                 Size = streamedFileContent.Length, 
                 UploadDT = DateTime.UtcNow
@@ -259,16 +256,9 @@ namespace SampleApp.Controllers
                     else
                     {
                         // Don't trust the file name sent by the client. To display
-                        // the file name in a UI, use Path.GetInvalidFileNameChars
-                        // and Linq to remove invalid characters, then HTML-encode the
-                        // result. For the file name of the uploaded file stored
-                        // server-side, use Path.GetRandomFileName to generate a safe
-                        // random file name.
-                        var invalidFileNameChars = Path.GetInvalidFileNameChars();
+                        // the file name, HTML-encode the value.
                         var trustedFileNameForDisplay = WebUtility.HtmlEncode(
-                                invalidFileNameChars.Aggregate(
-                                    contentDisposition.FileName.Value, (current, c) => 
-                                        current.Replace(c, '_')));
+                                contentDisposition.FileName.Value);
                         var trustedFileNameForFileStorage = Path.GetRandomFileName();
 
                         // **WARNING!**

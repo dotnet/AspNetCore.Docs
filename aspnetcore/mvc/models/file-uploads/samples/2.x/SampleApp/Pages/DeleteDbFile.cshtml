@@ -1,5 +1,6 @@
 @page "{id:int}"
 @model DeleteDbFileModel
+@using System.Net
 @{
     ViewData["Title"] = "Delete File";
 }
@@ -8,12 +9,17 @@
 
 <p>Are you sure you want to delete this file?</p>
 
+@{
+    // Don't display the untrusted file name in the UI. HTML-encode the value.
+    var fileName = WebUtility.HtmlEncode(Model.RemoveFile.UntrustedName);
+}
+
 <dl>
     <dt>
-        @Html.DisplayNameFor(model => model.RemoveFile.Name)
+        @Html.DisplayNameFor(model => model.RemoveFile.UntrustedName)
     </dt>
     <dd>
-        @Html.DisplayFor(model => model.RemoveFile.Name)
+        @Html.DisplayFor(model => fileName)
     </dd>
     <dt>
         @Html.DisplayNameFor(model => model.RemoveFile.Note)

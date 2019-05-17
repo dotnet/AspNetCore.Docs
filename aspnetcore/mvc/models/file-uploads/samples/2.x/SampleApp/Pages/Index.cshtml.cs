@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -47,7 +48,8 @@ namespace SampleApp.Pages
 
             var stream = new MemoryStream(requestFile.Content);
 
-            return File(stream, MediaTypeNames.Application.Octet, requestFile.Name);
+            // Don't display the untrusted file name in the UI. HTML-encode the value.
+            return File(stream, MediaTypeNames.Application.Octet, WebUtility.HtmlEncode(requestFile.UntrustedName));
         }
 
         public IActionResult OnGetDownloadPhysical(string fileName)
