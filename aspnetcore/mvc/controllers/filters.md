@@ -91,6 +91,28 @@ The F12 developer tools display the following response headers added by the samp
 
 The preceding code creates the **internal:** `My header` response header.
 
+### IFilterFactory implemented on an attribute
+
+<!-- Review 
+This section needs to be rewritten.
+What's a non-named attribute?
+-->
+
+Filters that implement `IFilterFactory` are useful for filters that:
+
+* Don't require passing parameters.
+* Have constructor dependencies that need to be filled by DI.
+
+<xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
+
+[!code-csharp[](./filters/sample/FiltersSample/Filters/SampleActionFilterAttribute.cs?name=snippet_TypeFilterAttribute&highlight=1,3,7)]
+
+The following code shows three approaches to applying the `[SampleActionFilter]`:
+
+[!code-csharp[](./filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet&highlight=1)]
+
+In the preceding code, decorating the method with `[SampleActionFilter]` is the preferred approach to applying the `SampleActionFilter`.
+
 ### Built-in filter attributes
 
 ASP.NET Core includes built-in attribute-based filters that can be subclassed and customized. For example, the following result filter adds a header to the response:
@@ -230,15 +252,15 @@ Loggers are available from DI. However, avoid creating and using filters purely 
 
 Service filter implementation types are registered in `ConfigureServices`. A <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> retrieves an instance of the filter from DI.
 
-The following code shows the `AddHeaderFilterWithDi` filter:
+The following code shows the `AddHeaderServiceFilter`:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/LoggingAddHeaderFilter.cs?name=snippet_ResultFilter)]
 
-In the following code, `AddHeaderFilterWithDi` is added to the DI container:
+In the following code, `AddHeaderServiceFilter` is added to the DI container:
 
 [!code-csharp[](./filters/sample/FiltersSample/Startup.cs?name=snippet_ConfigureServices&highlight=11)]
 
-In the following code, the `ServiceFilter` attribute retrieves an instance of the `AddHeaderFilterWithDi` filter from DI:
+In the following code, the `ServiceFilter` attribute retrieves an instance of the `AddHeaderServiceFilter` filter from DI:
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
 
@@ -251,11 +273,7 @@ In the following code, the `ServiceFilter` attribute retrieves an instance of th
 
 * Should not be used with a filter that depends on services with a lifetime other than singleton.
 
-Using `ServiceFilterAttribute` without registering the filter type results in an exception:
-
-`System.InvalidOperationException: No service for type '<filter>' has been registered.`
-
-`ServiceFilterAttribute` implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
+ <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
 
 ### TypeFilterAttribute
 
@@ -278,18 +296,6 @@ https://localhost:44358/home/hi?name=joe
 VS debug window shows 
 FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 -->
-### IFilterFactory implemented on an attribute
-
-For filters that:
-
-* Don't require passing parameters.
-* Have constructor dependencies that need to be filled by DI.
-
-Create named attribute on classes and methods instead of using `[TypeFilter(typeof(FilterType))]`). The following filter shows how this can be implemented:
-
-[!code-csharp[](./filters/sample/FiltersSample/Filters/SampleActionFilterAttribute.cs?name=snippet_TypeFilterAttribute&highlight=1,3,7)]
-
-This filter can be applied to classes or methods using the `[SampleActionFilter]` syntax, instead of having to use `[TypeFilter]` or `[ServiceFilter]`.
 
 ## Authorization filters
 
@@ -299,7 +305,10 @@ This filter can be applied to classes or methods using the `[SampleActionFilter]
 * Control access to action methods.
 * Have a before method, but no after method.
 
-Custom authorization filters require a custom authorization framework. Prefer configuring the authorization policies or writing a custom authorization policy over writing a custom filter. The built-in filter implementation is only responsible for calling the authorization system.
+Custom authorization filters require a custom authorization framework. Prefer configuring the authorization policies or writing a custom authorization policy over writing a custom filter. The built-in authorization filter:
+
+* Calls the authorization system.
+* Does not authorize requests.
 
 Do **not** throw exceptions within authorization filters:
 
@@ -313,14 +322,14 @@ Learn more about [Authorization](xref:security/authorization/introduction).
 ## Resource filters
 
 * Implement either the <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResourceFilter> interface.
-* Their execution wraps most of the filter pipeline.
+* Execution wraps most of the filter pipeline.
 * Only [Authorization filters](#authorization-filters) run before resource filters.
 
 Resource filters are useful to short-circuit most of the pipeline. For example, a caching filter can avoid the rest of the pipeline on a cache hit.
 
 Resource filter examples:
 
-* [The short circuiting resource filter](#short-circuiting-resource-filter) shown previously. 
+* [The short circuiting resource filter](#short-circuiting-resource-filter) shown previously.
 * [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/rel/2.0.0-preview2/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
 
   * Prevents model binding from accessing the form data.
@@ -356,7 +365,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Cont
 * <xref:System.Web.Mvc.ActionExecutedContext.Canceled> - True if the action execution was short-circuited by another filter.
 * <xref:System.Web.Mvc.ActionExecutedContext.Exception> - Non-null if the action or a subsequent action filter threw an exception. Setting this property to null:
 
-  * Effectively 'handles' an exception.
+  * Effectively handles the exception.
   * `Result` is executed as if it was returned from the action method.
 
 For an `IAsyncActionFilter`, a call to the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate>:

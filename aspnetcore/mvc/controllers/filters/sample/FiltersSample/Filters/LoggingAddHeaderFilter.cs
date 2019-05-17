@@ -7,12 +7,12 @@ namespace FiltersSample.Filters
     /// https://github.com/aspnet/Mvc/blob/master/test/WebSites/FiltersWebSite/Filters/AddHeaderAttribute.cs
     /// </summary>
     #region snippet_ResultFilter
-    public class AddHeaderFilterWithDi : IResultFilter
+    public class AddHeaderServiceFilter : IResultFilter
     {
         private ILogger _logger;
-        public AddHeaderFilterWithDi(ILoggerFactory loggerFactory)
+        public AddHeaderServiceFilter(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<AddHeaderFilterWithDi>();
+            _logger = loggerFactory.CreateLogger<AddHeaderServiceFilter>();
         }
 
         public void OnResultExecuting(ResultExecutingContext context)

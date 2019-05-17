@@ -29,11 +29,11 @@ namespace FiltersSample
             {
                 options.Filters.Add(new AddHeaderAttribute("GlobalAddHeader",
                     "Result filter added to MvcOptions.Filters"));         // An instance
-                options.Filters.Add(typeof(SampleActionFilter));           // By type
+                options.Filters.Add(typeof(MySampleActionFilter));         // By type
                 options.Filters.Add(new SampleGlobalActionFilter());       // An instance
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddScoped<AddHeaderFilterWithDi>();
+            services.AddScoped<AddHeaderServiceFilter>();
         }
         #endregion
 

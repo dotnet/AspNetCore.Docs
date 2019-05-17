@@ -3,7 +3,7 @@
 namespace FiltersSample.Filters
 {
     #region snippet_ActionFilter
-    public class SampleActionFilter : IActionFilter
+    public class MySampleActionFilter : IActionFilter
     {
         public void OnActionExecuting(ActionExecutingContext context)
         {
