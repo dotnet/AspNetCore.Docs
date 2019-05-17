@@ -2,9 +2,11 @@
 
 This sample shows how to host an ASP.NET Core app as a Windows Service without using IIS. This sample demonstrates the scenario described in [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/aspnet/core/host-and-deploy/windows-service).
 
-## Logging level
+## Logging level and event sources
 
 For demonstration and testing purposes, the sample app's Production environment settings file sets the logging level to `Information`. In production app, the value is typically set to `Error`. For more information, see [Windows Eventlog Provider](https://docs.microsoft.com/aspnet/core/fundamentals/logging/index#windows-eventlog-provider).
+
+Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
 ## Publish the sample app
 
@@ -34,33 +36,32 @@ Provide a [strong password](https://docs.microsoft.com/windows/security/threat-p
 
 Unless the `-AccountExpires` parameter is supplied to the [New-LocalUser](https://docs.microsoft.com/powershell/module/microsoft.powershell.localaccounts/new-localuser) cmdlet with an expiration <xref:System.DateTime>, the account doesn't expire.
 
-## Provide the service user account with Log on as a service rights
+## Provide Log on as a service rights to the ServiceUser account
 
-1. Open the Local Security Policy editor by running *secpool.msc*.
-1. Expand the **Local Policies** node and select **User Rights Assignment**.
-1. Open the **Log on as a service** policy.
-1. Select **Add User or Group**.
-1. Provide the object name (user account) using either of the following approaches:
-   1. Type the user account (`{DOMAIN OR COMPUTER NAME\USER}`) in the object name field and select **OK** to add the user to the policy.
-   1. Select **Advanced**. Select **Find Now**. Select the user account from the list. Select **OK**. Select **OK** again to add the user to the policy.
-1. Select **OK** or **Apply** to accept the changes.
+For more information, see [Provide Log on as a service rights](https://docs.microsoft.com/aspnet/core/host-and-deploy/windows-service#provide-log-on-as-a-service-rights) section of the topic.
 
 ## Create the service
 
-Use the [RegisterService.ps1](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/scripts) PowerShell script to register the service. From an administrative PowerShell 6 command shell, execute the script with the following command:
+For more information, see [Create the service](https://docs.microsoft.com/aspnet/core/host-and-deploy/windows-service#provide-log-on-as-a-service-rights) section of the topic.
+
+In the following sequence of PowerShell commands, 
 
 ```powershell
-.\RegisterService.ps1 
-    -Name AspNetCoreService 
-    -DisplayName "ASP.NET Core Service" 
-    -Description "This is the ASP.NET Core Sample App service." 
-    -Exe "c:\svc\SampleApp.exe" 
-    -User {DOMAIN OR COMPUTER NAME}\ServiceUser
+$acl = Get-Acl "c:\svc"
+$aclRuleArgs = DESKTOP-PC\ServiceUser, "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
+$acl.SetAccessRule($accessRule)
+$acl | Set-Acl "c:\svc"
+
+New-Service -Name AspNetCoreService -BinaryPathName "c:\svc\AspNetCoreService.exe" -Credential DESKTOP-PC\ServiceUser -Description "Sample App Service using ASP.NET Core" -DisplayName "AspNetCore Service" -StartupType Automatic
 ```
 
 * The service is named **AspNetCoreService**.
-* The published service resides in the *c:\\svc* folder. The app executable is named *SampleApp.exe*.
-* The service runs under the `ServiceUser` account. Replace `{DOMAIN OR COMPUTER NAME}` with the domain or computer name of the user account.
+* The published service resides in the *c:\\svc* folder.
+* The app executable is named *AspNetCoreService.exe*.
+* The service runs under the `ServiceUser` account on a computer named `DESKTOP-PC`.
+* The description is `Sample App Service using ASP.NET Core`.
+* The display name is `AspNetCore Service`.
 
 ## Manage the service
 

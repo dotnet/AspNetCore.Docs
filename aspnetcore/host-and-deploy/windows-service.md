@@ -41,7 +41,7 @@ Make the following changes to an existing ASP.NET Core project to run the app as
 
 Based on your choice of [deployment type](#deployment-type), update the project file according to the following guidance.
 
-#### Package references
+#### Package dependencies
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -141,17 +141,17 @@ Set the `<SelfContained>` property to `true`:
 
 ::: moniker-end
 
-### Program.Main updates
+### Program.cs updates
 
 Make the following changes in `Program.Main`:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-`IHostBuilder.UseWindowsService` is called when building the host and performs the following functions:
+`IHostBuilder.UseWindowsService` is called when building the host. If the app is running as a Windows Service, the method:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
 * Sets the content root.
-* Enables logging to the event log with the application name as the default source name. Set the logging level with the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file.
+* Enables logging to the event log with the application name as the default source name. Set the logging level with the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file. Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
 [IHost.RunAsync](xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync*) runs the app.
 
@@ -226,7 +226,7 @@ For more information, see [Microsoft.PowerShell.LocalAccounts](/powershell/modul
 
 An alternative approach to managing users when using Active Directory is to use Managed Service Accounts. For more information, see [Group Managed Service Accounts Overview](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
 
-## Provide the service user account with Log on as a service rights
+## Provide Log on as a service rights
 
 1. Open the Local Security Policy editor by running *secpool.msc*.
 1. Expand the **Local Policies** node and select **User Rights Assignment**.
@@ -239,16 +239,24 @@ An alternative approach to managing users when using Active Directory is to use 
 
 ## Create the service
 
-Use the [RegisterService.ps1](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/scripts) PowerShell script to register the service. From an administrative PowerShell 6 command shell, execute the script with the following command:
+Use PowerShell commands to register the service. From an administrative PowerShell 6 command shell, execute the following commands:
 
 ```powershell
-.\RegisterService.ps1 
-    -Name {NAME} 
-    -DisplayName "{DISPLAY NAME}" 
-    -Description "{DESCRIPTION}" 
-    -Exe "{PATH TO EXE}\{ASSEMBLY NAME}.exe" 
-    -User {DOMAIN OR COMPUTER NAME\USER}
+$acl = Get-Acl "{EXE PATH}"
+$aclRuleArgs = {DOMAIN OR COMPUTER NAME\USER}, "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
+$acl.SetAccessRule($accessRule)
+$acl | Set-Acl "{EXE PATH}"
+
+New-Service -Name {NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
+
+* `{EXE PATH}` &ndash; Path to the app's folder on the host. Don't include the app's executable in the path. A trailing slash isn't required
+* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; The service user account.
+* `{NAME}` &ndash; Name of the service.
+* `{EXE FILE PATH}` &ndash; The app's executable path. Include the executable's file name with extension.
+* `{DESCRIPTION}` &ndash; Description of the service.
+* `{DISPLAY NAME}` &ndash; Service display name.
 
 ## Manage the service
 
@@ -334,6 +342,14 @@ Use of the ASP.NET Core HTTPS development certificate to secure a service endpoi
 ## Current directory and content root
 
 The current working directory returned by calling <xref:System.IO.Directory.GetCurrentDirectory*> for a Windows Service is the *C:\\WINDOWS\\system32* folder. The *system32* folder isn't a suitable location to store a service's files (for example, settings files). Use one of the following approaches to maintain and access a service's assets and settings files.
+
+::: moniker range=">= aspnetcore-3.0"
+
+### Use ContentRootPath or ContentRootFileProvider
+
+Use [IHostEnvironment.ContentRootPath](xref:xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath) or <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootFileProvider> to locate the app's resources.
+
+::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
