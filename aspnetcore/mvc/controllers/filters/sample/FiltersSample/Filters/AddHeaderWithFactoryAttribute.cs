@@ -17,7 +17,7 @@ namespace FiltersSample.Filters
             public void OnResultExecuting(ResultExecutingContext context)
             {
                 context.HttpContext.Response.Headers.Add(
-                    "Internal", new string[] { "Header Added" });
+                    "Internal", new string[] { "My header" });
             }
 
             public void OnResultExecuted(ResultExecutedContext context)

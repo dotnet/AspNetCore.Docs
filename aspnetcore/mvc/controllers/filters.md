@@ -9,6 +9,8 @@ uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
 
+https://localhost:44358/Sample/HeaderWithFactory
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
 
 *Filters* in ASP.NET Core allow code to be run before or after specific stages in the request processing pipeline.
@@ -21,6 +23,8 @@ Built-in filters handle tasks such as:
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging.  Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
 
+This document applies to Razor Pages, API controllers, and controllers with views.
+
 [View or download sample from GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
 
 ## How filters work
@@ -31,9 +35,9 @@ Filters run within the *ASP.NET Core action invocation pipeline*, sometimes refe
 
 ### Filter types
 
-Each filter type is executed at a different stage in the filter pipeline.
+Each filter type is executed at a different stage in the filter pipeline:
 
-* [Authorization filters](#authorization-filters) run first and are used to determine whether the current user is authorized for the current request. They can short-circuit the pipeline if a request is unauthorized.
+* [Authorization filters](#authorization-filters) run first and are used to determine whether the user is authorized for the request. Authorization filters short-circuits the pipeline if the request is unauthorized.
 
 * [Resource filters](#resource-filters) run after authorization.  They can run code before the rest of the filter pipeline, and after the rest of the pipeline has completed. They're useful to implement caching or otherwise short-circuit the filter pipeline for performance reasons. They run before (and after) model binding, so they can influence model binding.
 
@@ -43,7 +47,7 @@ Each filter type is executed at a different stage in the filter pipeline.
 
 * [Result filters](#result-filters) can run code immediately before and after the execution of individual action results. They run only when the action method has executed successfully. They are useful for logic that must surround view or formatter execution.
 
-The following diagram shows how these filter types interact in the filter pipeline.
+The following diagram shows how filter types interact in the filter pipeline.
 
 ![The request is processed through Authorization Filters, Resource Filters, Model Binding, Action Filters, Action Execution and Action Result Conversion, Exception Filters, Result Filters, and Result Execution. On the way out, the request is only processed by Result Filters and Resource Filters before becoming a response sent to the client.](filters/_static/filter-pipeline-2.png)
 
@@ -55,7 +59,7 @@ Synchronous filters that run code both before and after their pipeline stage def
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/SampleActionFilter.cs?name=snippet_ActionFilter)]
 
-Asynchronous filters define a single On*Stage*ExecutionAsync method. This method takes a *FilterTypeExecutionDelegate that executes the filter's pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate>:
+Asynchronous filters define a single On*Stage*ExecutionAsync method. This method takes a **FilterType-ExecutionDelegate** that executes the filter's pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate>:
 
 * Calls the action method or next action filter.
 * Code can be run before and after `ActionExecutionDelegate` is called.
@@ -74,6 +78,19 @@ Implement **either** the synchronous or the async version of a filter interface,
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/AddHeaderWithFactoryAttribute.cs?name=snippet_IFilterFactory&highlight=1,4,5,6,7)]
 
+The preceding code can be tested by running the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample):
+
+* Invoke the F12 developer tools.
+* Navigate to `https://localhost:44358/Sample/HeaderWithFactory`
+
+The F12 developer tools display the following response headers added by the sample code:
+
+* **author:** `Joe Smith`
+* **globaladdheader:** `Result filter added to MvcOptions.Filters`
+* **internal:** `My header`
+
+The preceding code is creates the **internal:** `My header` response header.
+
 ### Built-in filter attributes
 
 ASP.NET Core includes built-in attribute-based filters that can be subclassed and customized. For example, the following Result filter adds a header to the response.
@@ -86,6 +103,8 @@ Attributes allow filters to accept arguments, as shown in the preceding example.
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
+<!-- `https://localhost:44358/Sample` -->
+
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
 
 Filter attributes:
@@ -97,13 +116,17 @@ Filter attributes:
 * <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute>
 * <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute>
 
-`TypeFilterAttribute` and `ServiceFilterAttribute` are explained [later in this article](#dependency-injection).
-
 ## Filter scopes and order of execution
 
-A filter can be added to the pipeline at one of three *scopes*. You can add a filter to a particular action method or to a controller class by using an attribute. Or you can register a filter globally for all controllers and actions. Filters are added globally by adding it to the `MvcOptions.Filters` collection in `ConfigureServices`:
+A filter can be added to the pipeline at one of three *scopes*:
+
+* Using an attribute on an action.
+* Using an attribute on an controller.
+* Globally for all controllers and actions as shown in the following code:
 
 [!code-csharp[](./filters/sample/FiltersSample/Startup.cs?name=snippet_ConfigureServices&highlight=5-8)]
+
+The preceding code adds three filters globally using the [MvcOptions.Filters]((xref:Microsoft.AspNetCore.Mvc.MvcOptions.Filters) collection.
 
 ### Default order of execution
 
@@ -412,7 +435,7 @@ If an exception was thrown **IN THE RESULT FILTER**, the response body is not se
 
 `ResultExecutedContext.Canceled` is set to `true` if the action result execution was short-circuited by another filter.
 
-`ResultExecutedContext.Exception` is set to a non-null value if the action result or a subsequent result filter threw an exception. Setting `Exception` to null effectively 'handles' an exception and prevents the exception from being rethrown by MVC later in the pipeline. When you're handling an exception in a result filter, you might not be able to write any data to the response. If the action result throws partway through its execution, and the headers have already been flushed to the client, there's no reliable mechanism to send a failure code.
+`ResultExecutedContext.Exception` is set to a non-null value if the action result or a subsequent result filter threw an exception. Setting `Exception` to null effectively 'handles' an exception and prevents the exception from being rethrown by MVC later in the pipeline. When handling an exception in a result filter, you might not be able to write any data to the response. If the action result throws partway through its execution, and the headers have already been flushed to the client, there's no reliable mechanism to send a failure code.
 
 For an `IAsyncResultFilter` a call to `await next` on the `ResultExecutionDelegate` executes any subsequent result filters and the action result. To short-circuit, set `ResultExecutingContext.Cancel` to `true` and don't call the `ResultExecutionDelegate`.
 

@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Localization.Routing;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace FiltersSample.Filters
@@ -24,7 +20,8 @@ namespace FiltersSample.Filters
             var options = new RequestLocalizationOptions
             {
 
-                DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US"),
+                DefaultRequestCulture = new RequestCulture(culture: "en-US", 
+                                                         uiCulture: "en-US"),
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             };
