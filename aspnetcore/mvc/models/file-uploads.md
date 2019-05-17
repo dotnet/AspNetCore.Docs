@@ -395,9 +395,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-### Name validation
-
-
+### File name security
 
 Never use a client-supplied file name for saving a file to physical storage. Create a safe file name for the file using [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) or [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) to create a full path (including the file name) for temporary storage.
 
