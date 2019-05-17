@@ -89,11 +89,11 @@ The F12 developer tools display the following response headers added by the samp
 * **globaladdheader:** `Result filter added to MvcOptions.Filters`
 * **internal:** `My header`
 
-The preceding code is creates the **internal:** `My header` response header.
+The preceding code creates the **internal:** `My header` response header.
 
 ### Built-in filter attributes
 
-ASP.NET Core includes built-in attribute-based filters that can be subclassed and customized. For example, the following Result filter adds a header to the response.
+ASP.NET Core includes built-in attribute-based filters that can be subclassed and customized. For example, the following result filter adds a header to the response:
 
 <a name="add-header-attribute"></a>
 
@@ -126,20 +126,20 @@ A filter can be added to the pipeline at one of three *scopes*:
 
 [!code-csharp[](./filters/sample/FiltersSample/Startup.cs?name=snippet_ConfigureServices&highlight=5-8)]
 
-The preceding code adds three filters globally using the [MvcOptions.Filters]((xref:Microsoft.AspNetCore.Mvc.MvcOptions.Filters) collection.
+The preceding code adds three filters globally using the [MvcOptions.Filters](xref:Microsoft.AspNetCore.Mvc.MvcOptions.Filters) collection.
 
 ### Default order of execution
 
-When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution.  Global filters surround class filters, which in turn surround method filters. Generally the desired overriding behavior is achieved without having to explicitly determine ordering.
+When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution.  Global filters surround class filters, which in turn surround method filters.
 
-As a result of this nesting, the *after* code of filters runs in the reverse order of the *before* code. The filter sequence:
+As a result of filter nesting, the *after* code of filters runs in the reverse order of the *before* code. The filter sequence:
 
-* The *before* code of filters applied globally
-  * The *before* code of filters applied to controllers
-    * The *before* code of filters applied to action methods
-    * The *after* code of filters applied to action methods
-  * The *after* code of filters applied to controllers
-* The *after* code of filters applied globally
+* The *before* code of filters applied globally.
+  * The *before* code of filters applied to controllers.
+    * The *before* code of filters applied to action methods.
+    * The *after* code of filters applied to action methods.
+  * The *after* code of filters applied to controllers.
+* The *after* code of filters applied globally.
   
 Here's an example that illustrates the order in which filter methods are called for synchronous Action filters.
 
