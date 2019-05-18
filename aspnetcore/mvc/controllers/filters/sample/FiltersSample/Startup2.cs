@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// Use Startup2 to test MyAsyncResponseFilter
+//
 using FiltersSample.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FiltersSample
 {
-    public class Startup
+    public class Startup2
     {
-        public Startup(IConfiguration configuration)
+        public Startup2(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -25,20 +21,18 @@ namespace FiltersSample
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add service filters.
-            services.AddScoped<AddHeaderResultServiceFilter>();
-            services.AddScoped<SampleActionFilterAttribute>();
 
-            services.AddMvc(options =>
+            services.AddScoped<AddHeaderResultServiceFilter>();
+            services.AddScoped<MyAsyncResponseFilter>();
+            services.AddMvc(c =>
             {
-                options.Filters.Add(new AddHeaderAttribute("GlobalAddHeader",
-                    "Result filter added to MvcOptions.Filters"));         // An instance
-                options.Filters.Add(typeof(MySampleActionFilter));         // By type
-                options.Filters.Add(new SampleGlobalActionFilter());       // An instance
+                c.Filters.Add(typeof(MyAsyncResponseFilter));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
         #endregion
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -48,6 +42,7 @@ namespace FiltersSample
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

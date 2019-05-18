@@ -7,7 +7,7 @@ namespace FiltersSample.Controllers
     public class HomeController : Controller
     {
         #region snippet_ServiceFilter
-        [ServiceFilter(typeof(AddHeaderServiceFilter))]
+        [ServiceFilter(typeof(AddHeaderResultServiceFilter))]
         public IActionResult Index()
         {
             return View();

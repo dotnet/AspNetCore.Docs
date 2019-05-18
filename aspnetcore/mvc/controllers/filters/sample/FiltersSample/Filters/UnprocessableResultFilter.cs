@@ -22,6 +22,6 @@ namespace FiltersSample.Filters
         public void OnResultExecuted(ResultExecutedContext context)
         {
         }
-        #endregion
     }
+    #endregion
 }
