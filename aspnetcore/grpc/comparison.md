@@ -70,7 +70,7 @@ Propagating the deadline and cancellation through child gRPC calls helps enforce
 
 gRPC is well suited to the following scenarios:
 
-* **Microservices** &ndash; gRPC is designed low latency and high throughput communication. gRPC is great for lightweight microservices where efficiency is critical.
+* **Microservices** &ndash; gRPC is designed for low latency and high throughput communication. gRPC is great for lightweight microservices where efficiency is critical.
 * **Point-to-point real-time communication** &ndash; gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
 * **Polygot environments** &ndash; gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
 * **Network constrained environments** &ndash; gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message is always smaller than an equivalent JSON message.
