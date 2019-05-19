@@ -2,9 +2,10 @@
 title: Common errors reference for Azure App Service and IIS with ASP.NET Core
 author: guardrex
 description: Obtain troubleshooting advice for common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/28/2019
+ms.date: 05/12/2019
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 # Common errors reference for Azure App Service and IIS with ASP.NET Core
