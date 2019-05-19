@@ -172,6 +172,8 @@ And here is the registration code in `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=3)]
 
+The code shown puts the custom value provider after all the built-in value providers.  To make it the first in the list, call `Insert(0, new CustomValueProviderFactory())` instead of `Add`.
+
 ## No source for a target
 
 By default, `ModelState.IsValid` is not set to `true` if no value is found for a target. The target is set to null or a default value:
