@@ -5,7 +5,7 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/13/2019
+ms.date: 05/19/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -588,7 +588,7 @@ When hosted in IIS by the ASP.NET Core Module version 2:
 
 *Applies to apps hosted in-process and out-of-process.*
 
-[IIS Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) is an IIS feature that sends an HTTP request to the app when the app pool starts or is recycled. The request triggers the app to start. By default, IIS issues a request to the app's root URL (`/`) to initialize the app (see the [additional resources](#application-initialization-module-and-idle-timeout-additional-resources) for details on further configuration).
+[IIS Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) is an IIS feature that sends an HTTP request to the app when the app pool starts or is recycled. The request triggers the app to start. By default, IIS issues a request to the app's root URL (`/`) to initialize the app (see the [additional resources](#application-initialization-module-and-idle-timeout-additional-resources) for more details on configuration).
 
 Confirm that the IIS Application Initialization role feature in enabled:
 
@@ -601,7 +601,7 @@ On Windows 7 or later desktop systems when using IIS locally:
 On Windows Server 2008 R2 or later:
 
 1. Open the **Add Roles and Features Wizard**.
-1. When you reach the **Select role services** panel, open the **Application Development** node.
+1. In the **Select role services** panel, open the **Application Development** node.
 1. Select the check box for **Application Initialization**.
 
 Use either of the following approaches to enable the Application Initialization Module for the site:
