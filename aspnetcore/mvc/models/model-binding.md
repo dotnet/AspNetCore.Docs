@@ -193,7 +193,7 @@ In an API controller that is decorated with the `[ApiController]` attribute, inv
 
 In a Razor page, redisplay the page with an error message:
 
-[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Create.cshtml.cs&name=snippet_HandleMBError&highlight=3-6)]
+[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
 In production, client-side validation catches most bad data that would otherwise be submitted to a Razor page form. This validation makes it hard to trigger the preceding highlighted code even deliberately. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form to show how this code for redisplaying the page works.
 
@@ -209,10 +209,10 @@ The simple types that the model binder can convert source strings into include t
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
 * [Guid](xref:System.ComponentModel.GuidConverter)
-* [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int132Converter), [Int64](xref:System.ComponentModel.Int64Converter)
+* [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan]](xref:System.ComponentModel.TimeSpanConverter)
-* [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt132Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
+* [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.ComponentModel.UriConverter)
 * [Version](xref:System.ComponentModel.VersionConverter)
 
