@@ -299,6 +299,8 @@
           uid: blazor/javascript-interop
         - name: Debug
           uid: blazor/debug
+        - name: Call a web API
+          uid: blazor/call-web-api
         - name: Host and deploy
           items:
             - name: Overview
