@@ -168,7 +168,7 @@ Here's the factory class:
 
 [!code-csharp[](model-binding/samples/2.x/MyValueProviderFactory.cs)]
 
-And here is the registration code in `Startup.ConfigureServices`:
+And here's the registration code in `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=3)]
 
@@ -193,7 +193,7 @@ In an API controller that is decorated with the `[ApiController]` attribute, inv
 
 In a Razor page, redisplay the page with an error message:
 
-[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Create.cshtml.cs&name=snippet_HandleMBError&highlight=3-6]
+[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Create.cshtml.cs&name=snippet_HandleMBError&highlight=3-6)]
 
 In production, client-side validation catches most bad data that would otherwise be submitted to a Razor page form. This validation makes it hard to trigger the preceding highlighted code even deliberately. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form to show how this code for redisplaying the page works.
 
@@ -201,20 +201,20 @@ In production, client-side validation catches most bad data that would otherwise
 
 The simple types that the model binder can convert source strings into include the following:
 
-* <xref:System.ComponentModel.BooleanConverter>
-* <xref:System.ComponentModel.CharConverter>
-* <xref:System.ComponentModel.DateTimeConverter>
-* <xref:System.ComponentModel.DateTimeOffsetConverter>
-* <xref:System.ComponentModel.DecimalConverter>
-* <xref:System.ComponentModel.DoubleConverter>
-* <xref:System.ComponentModel.EnumConverter>
-* <xref:System.ComponentModel.GuidConverter>
-* <xref:System.ComponentModel.Int16Converter>, <xref:System.ComponentModel.Int132Converter>, <xref:System.ComponentModel.Int64Converter>
-* <xref:System.ComponentModel.SingleConverter>
-* <xref:System.ComponentModel.TimeSpanConverter>
-* <xref:System.ComponentModel.UInt16Converter>, <xref:System.ComponentModel.UInt132Converter>, <xref:System.ComponentModel.UInt64Converter>
-* <xref:System.ComponentModel.UriConverter>
-* <xref:System.ComponentModel.VersionConverter>
+* [Boolean](xref:System.ComponentModel.BooleanConverter)
+* [Char](xref:System.ComponentModel.CharConverter)
+* [DateTime](xref:System.ComponentModel.DateTimeConverter)
+* [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
+* [Decimal](xref:System.ComponentModel.DecimalConverter)
+* [Double](xref:System.ComponentModel.DoubleConverter)
+* [Enum](xref:System.ComponentModel.EnumConverter)
+* [Guid](xref:System.ComponentModel.GuidConverter)
+* [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int132Converter), [Int64](xref:System.ComponentModel.Int64Converter)
+* [Single](xref:System.ComponentModel.SingleConverter)
+* [TimeSpan]](xref:System.ComponentModel.TimeSpanConverter)
+* [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt132Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
+* [Uri](xref:System.ComponentModel.UriConverter)
+* [Version](xref:System.ComponentModel.VersionConverter)
 
 ## Complex types
 
