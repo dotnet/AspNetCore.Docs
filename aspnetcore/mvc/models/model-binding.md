@@ -8,7 +8,7 @@ ms.date: 11/13/2018
 uid: mvc/models/model-binding
 ---
 
-# Model Binding in ASP.NET Corem
+# Model Binding in ASP.NET Core
 
 This article explains what model binding is, how it works, and how to customize its behavior.
 
