@@ -19,86 +19,27 @@ Use one of the following approaches to disable automatic cookie authentication:
 
 ### Send an HTTP header or query string called `X-Requested-With`
 
-```js
-// using header
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "/your-api-url", true);
-xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-        if (xhr.status == 301) {
-            // handle authentication here
-        }
-        else if (xhr.status >= 200 && xhr.status < 300) {
-            // do you business logic here
-        }
-        else {
-            console.error("request fail");
-        }
-    }
-};
-// using querystring
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "/your-api-url?X-Requested-With=XMLHttpRequest", true);
-xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-        if (xhr.status == 301) {
-            // handle authentication here
-        }
-        else if (xhr.status >= 200 && xhr.status < 300) {
-            // do you business logic here
-        }
-        else {
-            console.error("request fail");
-        }
-    }
-};
+#### [using raw ajax](#tab/tabid-1)
 
-// using jquery
+[!code-javascript[ajax-raw.js](disable-cookie/samples/CookieAjax/wwwroot/js/ajax-raw.js)]
 
-$.ajax("your-api-url",{
-    type:"GET",
-    headers:{
-        "X-Requested-With":"XMLHttpRequest"
-    }
-})
-    .done(function(result){
-    // do your business logic here
-    })
-    .fail(function(xhr){
-       if(xhr.states == 301){
-        //handle authentication here
-       }
-    })
-```
+#### [using jquery ajax](#tab/tabid-2)
+
+[!code-javascript[ajax-jquery.js](disable-cookie/samples/CookieAjax/wwwroot/js/ajax-jquery.js)]
+
+> [!NOTE]
+> jquery's `$.ajax()` will automatic add `X-Requested-With:XMLHttpRequest` header
+
+***
 
 ### Configure  `CookieAuthenticationEvents` to do a custom check
 
-```C#
-services.AddAuthentication()
-    .AddCookie(op=>
-    {
-        op.Events.OnRedirectToLogin = context=>{
-            var headers = new Microsoft.AspNetCore.Http.Headers.RequestHeaders(context.Request.Headers);
-            // when most browser direct access a url, it's request header will contains  {Accept:text/html;}
-            // but ajax call only have {Accept:*/* } by default
-            if(!headers.Accept.ToString().Contains("html",StringComparison.OrdinalIgnoreCase))
-            {
-                // ajax call or some non-browser call
-                context.Response.Headers["Location"] = context.RedirectUri;
-                context.Response.StatusCode = 401;
-            }
-            else
-            {
-                // browse
-                context.Response.Redirect(context.RedirectUri);
-            }
-            return Task.CompletedTask;
-        };
-});
-```
+#### [configure cookie](#tab/tabid-cs1)
 
-note:  the default check on `CookieAuthenticationEvents.OnRedirectToLogin`, `CookieAuthenticationEvents.OnRedirectToAccessDenied`,
-`CookieAuthenticationEvents.OnRedirectToLogout`, `CookieAuthenticationEvents.OnRedirectToReturnUrl` is to check the `X-Requested-With` from `Request.Header` or `Request.Query`, that why the first way work.
+[!code-csharp[Startup.cs](disable-cookie/samples/CookieAjax/Startup.cs?name=DisableCookie)]
 
+> [!NOTE]
+> the default check on `CookieAuthenticationEvents.OnRedirectToLogin`, `CookieAuthenticationEvents.OnRedirectToAccessDenied`,
+> `CookieAuthenticationEvents.OnRedirectToLogout`, `CookieAuthenticationEvents.OnRedirectToReturnUrl` is to check the `X-Requested-With` from `Request.Header` or `Request.Query`, that why the first way work.
 
+***
