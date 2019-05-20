@@ -213,7 +213,7 @@ The simple types that the model binder can convert source strings into include t
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan]](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
-* [Uri](xref:System.ComponentModel.UriConverter)
+* [Uri](xref:System.UriTypeConverter)
 * [Version](xref:System.ComponentModel.VersionConverter)
 
 ## Complex types
@@ -399,7 +399,7 @@ services.AddMvc().AddMvcOptions(options =>
 
 ## Custom model binders
 
-You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](xref:advanced/custom-model-binding).
+You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](xref:mvc/advanced/custom-model-binding).
 
 ## Manual model binding
 
