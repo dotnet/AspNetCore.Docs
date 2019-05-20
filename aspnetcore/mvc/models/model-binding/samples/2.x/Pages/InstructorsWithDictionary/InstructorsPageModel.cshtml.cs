@@ -21,10 +21,10 @@ namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
 
         private void InitializeInstructors()
         {
-            var courseList = new Dictionary<int, string>();
-            courseList[1050] = "Chemistry";
-            courseList[4022] = "Microeconomics";
-            courseList[4041] = "Macroeconomics";
+            var courseList = new Dictionary<string, string>();
+            courseList["1050"] = "Chemistry";
+            courseList["4022"] = "Microeconomics";
+            courseList["4041"] = "Macroeconomics";
 
             _instructorsInMemoryStore.Add(new InstructorWithDictionary
             {
@@ -41,13 +41,13 @@ namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
                 FirstMidName = "Fadi",
                 LastName = "Fakhouri",
                 HireDate = DateTime.Parse("2002-07-06"),
-                Courses = new Dictionary<int, string>()
+                Courses = new Dictionary<string, string>()
             });
 
-            courseList = new Dictionary<int, string>();
-            courseList[3141] = "Trigonometry";
-            courseList[2021] = "Composition";
-            courseList[2042] = "Literature";
+            courseList = new Dictionary<string, string>();
+            courseList["3141"] = "Trigonometry";
+            courseList["2021"] = "Composition";
+            courseList["2042"] = "Literature";
 
             _instructorsInMemoryStore.Add(new InstructorWithDictionary
             {

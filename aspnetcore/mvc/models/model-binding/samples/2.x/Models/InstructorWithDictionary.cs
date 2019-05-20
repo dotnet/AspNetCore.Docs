@@ -23,6 +23,6 @@ namespace ModelBindingSample.Models
         [Display(Name = "Hire Date")]
         public DateTime? HireDate { get; set; }
 
-        public Dictionary<int, string> Courses { get; set; }
+        public Dictionary<string, string> Courses { get; set; }
     }
 }

@@ -23,12 +23,7 @@
     <tbody>
         @foreach (var item in Model.Instructors)
         {
-            string selectedRow = "";
-            if (item.ID == Model.InstructorID)
-            {
-                selectedRow = "success";
-            }
-            <tr class="@selectedRow">
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>

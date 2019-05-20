@@ -15,10 +15,10 @@ namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
         public IActionResult OnGet()
         {
             Instructor = new InstructorWithDictionary();
-            Instructor.Courses = new Dictionary<int, string>();
-            Instructor.Courses[0] = "New course";
-            Instructor.Courses[1] = "New course";
-            Instructor.Courses[2] = "New course";
+            Instructor.Courses = new Dictionary<string, string>();
+            Instructor.Courses["0"] = "New course";
+            Instructor.Courses["1"] = "New course";
+            Instructor.Courses["2"] = "New course";
 
             return Page();
         }
@@ -34,7 +34,7 @@ namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
             }
 
             var newInstructor = new InstructorWithDictionary();
-            newInstructor.Courses = new Dictionary<int, string>();
+            newInstructor.Courses = new Dictionary<string, string>();
 
             if (await TryUpdateModelAsync<InstructorWithDictionary>(
                 newInstructor,

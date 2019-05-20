@@ -17,10 +17,8 @@ namespace ModelBindingSample.Pages.Instructors
         public List<Course> SelectedInstructorCourses;
 
         public List<Instructor> Instructors { get; set; }
-        public int InstructorID { get; set; }
-        public int CourseID { get; set; }
 
-        public void OnGet(int? id, string cvpkey1)
+        public void OnGet(string cvpkey1)
         {
             Instructors = _instructorsInMemoryStore;
             ViewData["CVP"] = cvpkey1; 

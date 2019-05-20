@@ -14,11 +14,9 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
         {
         }
 
-        public List<Course> SelectedInstructorCourses;
-
         public List<InstructorWithCollection> Instructors { get; set; }
 
-        public void OnGet(int? id, int? courseID)
+        public void OnGet()
         {
             Instructors = _instructorsInMemoryStore;
         }

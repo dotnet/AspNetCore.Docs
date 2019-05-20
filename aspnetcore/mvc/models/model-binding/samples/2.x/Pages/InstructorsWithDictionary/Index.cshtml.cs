@@ -14,21 +14,13 @@ namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
         {
         }
 
-        public Dictionary<int, string> SelectedInstructorCourses;
+        public Dictionary<string, string> SelectedInstructorCourses;
 
         public List<InstructorWithDictionary> Instructors { get; set; }
-        public int InstructorID { get; set; }
-        public int CourseID { get; set; }
 
-        public void OnGet(int? id, int? courseID)
+        public void OnGet()
         {
             Instructors = _instructorsInMemoryStore;
-
-            if (id != null)
-            {
-                InstructorID = id.Value;
-                SelectedInstructorCourses = _instructorsInMemoryStore.Single(i => i.ID == InstructorID).Courses;
-            }
         }
     }
 }
