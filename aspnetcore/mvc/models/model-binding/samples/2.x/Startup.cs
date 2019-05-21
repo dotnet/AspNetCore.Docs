@@ -34,7 +34,7 @@ namespace ModelBindingSample
             #region snippet_ValueProvider
             services.AddMvc(options =>
             {
-                options.ValueProviderFactories.Add(new MyValueProviderFactory());
+                options.ValueProviderFactories.Add(new CookieValueProviderFactory());
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             #endregion

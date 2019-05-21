@@ -14,8 +14,7 @@ namespace WebApiSample.Controllers
     {
         private static List<Pet> _petsInMemoryStore = new List<Pet>();
 
-        [BindProperty]
-        public string TestMB { get; set; }
+        public string cvpkey2 { get; set; }
 
         public PetsController()
         {

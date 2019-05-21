@@ -39,10 +39,11 @@
                             {
                                 <tr>
                                     @{
-                                        int format = 1; // Only 1, 2, and 4 work
+                                        int format = 11;  // Only 1, 2, and 4 work
                                         if (format == 1)
                                         {
                                             <!-- parameter_name[key]=value-->
+                                            <!-- instructor.Courses[1050]=Chemistry&instructor.Courses[4022]=Microeconomics&instructor.Courses[4041]=Macroeconomics -->
                                             <td>
                                                 @course.Key
                                             </td>
@@ -53,6 +54,7 @@
                                         else if (format == 2)
                                         {
                                             <!-- parameter_name[0].Key=key&parameter_name[0].Value=value -->
+                                            <!-- instructor.Courses[0].Key=1050&instructor.Courses[0].Value=Chemistry&instructor.Courses[1].Key=4022&instructor.Courses[1].Value=Microeconomics&instructor.Courses[2].Key=4041&instructor.Courses[2].Value=Macroeconomics -->
                                             <td>
                                                 <input name="instructor.Courses[@cnt].Key" type="text" value="@course.Key" />
                                             </td>
@@ -63,6 +65,8 @@
                                         else if (format == 3)
                                         {
                                             <!-- parameter_name[].Key=key&parameter_name[].Value=value -->
+                                            <!-- Model binder doesn't find these values -->
+                                            <!-- instructor.Courses[].Key=1050&instructor.Courses[].Value=Chemistry&instructor.Courses[].Key=4022&instructor.Courses[].Value=Microeconomics&instructor.Courses[].Key=4041&instructor.Courses[].Value=Macroeconomics -->
                                             <td>
                                                 <input name="instructor.Courses[].Key" type="text" value="@course.Key" />
                                             </td>
@@ -73,6 +77,7 @@
                                         else if (format == 4)
                                         {
                                             <!-- parameter_name.index=32&parameter_name[32].Key=key&parameter_name[32].Value=value -->
+                                            <!-- instructor.index=0&instructor.Courses[0].Key=1050&instructor.Courses[0].Value=Chemistry&instructor.index=1&instructor.Courses[1].Key=4022&instructor.Courses[1].Value=Microeconomics&instructor.index=2&instructor.Courses[2].Key=4041&instructor.Courses[2].Value=Macroeconomics -->
                                             <td>
                                                 <input name="instructor.index" type="hidden" value="@cnt" />
                                                 <input name="instructor.Courses[@cnt].Key" type="text" value="@course.Key" />
@@ -84,6 +89,9 @@
                                         else if (format == 11)
                                         {
                                             <!-- [key]=value-->
+                                            <!-- Model binder doesn't find these values -->
+                                            <!-- Results in FormatException if dictionary is int,string: Input string was not in a correct format.-->
+                                            <!-- Courses[1050]=Chemistry&Courses[4022]=Microeconomics&Courses[4041]=Macroeconomics -->
                                             <td>
                                                 @course.Key
                                             </td>
@@ -93,7 +101,10 @@
                                         }
                                         else if (format == 12)
                                         {
-                                            <!-- [0].Key=key&[0].Value=value -->
+                                            <!-- parameter_name[0].Key=key&parameter_name[0].Value=value -->
+                                            <!-- Model binder doesn't find these values -->
+                                            <!-- Results in FormatException if dictionary is int,string: Input string was not in a correct format.-->
+                                            <!-- Courses[0].Key=1050&Courses[0].Value=Chemistry&Courses[1].Key=4022&Courses[1].Value=Microeconomics&Courses[2].Key=4041&Courses[2].Value=Macroeconomics -->
                                             <td>
                                                 <input name="Courses[@cnt].Key" type="text" value="@course.Key" />
                                             </td>
@@ -103,7 +114,10 @@
                                         }
                                         else if (format == 13)
                                         {
-                                            <!-- [].Key=key&[].Value=value -->
+                                            <!-- parameter_name[].Key=key&parameter_name[].Value=value -->
+                                            <!-- Model binder doesn't find these values -->
+                                            <!-- Results in FormatException if dictionary is int,string: Input string was not in a correct format.-->
+                                            <!-- Courses[].Key=1050&Courses[].Value=Chemistry&Courses[].Key=4022&Courses[].Value=Microeconomics&Courses[].Key=4041&Courses[].Value=Macroeconomics -->
                                             <td>
                                                 <input name="Courses[].Key" type="text" value="@course.Key" />
                                             </td>
@@ -113,7 +127,10 @@
                                         }
                                         else if (format == 14)
                                         {
-                                            <!-- index=32&parameter_name[32].Key=key&[32].Value=value -->
+                                            <!-- parameter_name.index=32&parameter_name[32].Key=key&parameter_name[32].Value=value -->
+                                            <!-- Model binder doesn't find these values -->
+                                            <!-- Results in FormatException if dictionary is int,string: Input string was not in a correct format.-->
+                                            <!-- index=0&Courses[0].Key=1050&Courses[0].Value=Chemistry&index=1&Courses[1].Key=4022&Courses[1].Value=Microeconomics&index=2&Courses[2].Key=4041&Courses[2].Value=Macroeconomics -->
                                             <td>
                                                 <input name="index" type="hidden" value="@cnt" />
                                                 <input name="Courses[@cnt].Key" type="text" value="@course.Key" />

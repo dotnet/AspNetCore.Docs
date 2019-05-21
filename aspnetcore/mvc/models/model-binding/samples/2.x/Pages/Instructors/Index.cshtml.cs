@@ -18,10 +18,10 @@ namespace ModelBindingSample.Pages.Instructors
 
         public List<Instructor> Instructors { get; set; }
 
-        public void OnGet(string cvpkey1)
+        public void OnGet(string ai_user)
         {
             Instructors = _instructorsInMemoryStore;
-            ViewData["CVP"] = cvpkey1; 
+            ViewData["CustomValueProvider"] = ai_user; 
         }
     }
 }

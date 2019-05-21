@@ -26,7 +26,7 @@ Controllers and Razor pages work with data that comes from HTTP requests. For ex
 
 ## Example
 
-Suppose the following action meethod handles the following URL:
+Suppose you have the following action method:
 
 ```csharp
 [HttpGet("{id}")]
@@ -35,6 +35,8 @@ public ActionResult<Pet> GetById(int id, bool dogsOnly)
     ...
 }
 ```
+
+And the app receives a request with this URL:
 
 ```
 http://contoso.com/api/pets/2?DogsOnly=true
@@ -59,11 +61,11 @@ The targets that model binding tries to find values for include the following:
 
 * Parameters of the controller action method that a request is routed to.
 * Parameters of the Razor Pages handler method that a request is routed to. 
-* Public properties of a Razor Pages `PageModel` class.
+* Public properties of a controller or `PageModel` class, if specified by attributes.
 
-### Binding to Razor page properties
+### [BindProperty] attribute
 
-The `[BindProperty]` attribute tells model binding to target a property of a Razor Pages `PageModel` class:
+Apply to a public property of a controller or `PageModel` class to tell model binding to target that property:
 
 ```csharp
 public class EditModel : PageModel
@@ -75,19 +77,24 @@ public class EditModel : PageModel
 }
 ```
 
-In ASP.NET Core 2.1 and later, the `[BindProperties]` attribute on a `PageModel` class tells model binding to target all public properties of that class:
+### [BindProperties] attribute
+
+Available in ASP.NET Core 2.1 and later.  Apply to a controller or `PageModel` class to tell model binding to target all public properties of the class:
 
 ```csharp
 [BindProperties]
 public class EditModel : PageModel
 {
     ...
+    // Model binding will target this property.
     public Instructor Instructor { get; set; }
     ...
 }
 ```
 
-By default, model binding doesn't update `PageModel` properties for HTTP GET requests, even when these attributes are used. To change this behavior, set the `SupportsGet` property to `true`:
+### Model binding for HTTP GET requests
+
+By default, the `[BindProperty]` and `[BindProperties]` attributes have no effect for HTTP GET requests. Typically, all an action or handler method needs for a GET request is a record ID parameter. The record ID is used to look up the item in the database, and there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
 
 ```csharp
 [BindProperty(SupportsGet = true)]
@@ -158,17 +165,13 @@ Gets an instance of a type from the [dependency injection](xref:fundamentals/dep
 
 ### Additional sources
 
-You can write and register custom value providers that get data for model binding from other sources. For example, you might want data from cookies or session state. To get data from a new source, create classes that implement `IValueProvider` and `IValueProviderFactory`, and register the factory class in `Startup.ConfigureServices`.
+You can write and register custom value providers that get data for model binding from other sources. For example, you might want data from cookies or session state. To get data from a new source:
 
-Here's a sample value provider that provides two hard-coded key-value pairs:
+* Create a class that implements `IValueProvider`.
+* Create a class that implements `IValueProviderFactory`.
+* Register the factory class in `Startup.ConfigureServices`.
 
-[!code-csharp[](model-binding/samples/2.x/MyValueProvider.cs)]
-
-Here's the factory class:
-
-[!code-csharp[](model-binding/samples/2.x/MyValueProviderFactory.cs)]
-
-And here's the registration code in `Startup.ConfigureServices`:
+The sample app includes a [value provider](model-binding/samples/2.x/MyValueProvider.cs) and [factory](model-binding/samples/2.x/MyValueProviderFactory.cs) example that gets values from cookies. Here's the registration code in `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=3)]
 
@@ -202,6 +205,7 @@ In production, client-side validation catches most bad data that would otherwise
 The simple types that the model binder can convert source strings into include the following:
 
 * [Boolean](xref:System.ComponentModel.BooleanConverter)
+* [Byte](xref:System.ComponentModel.ByteConverter)
 * [Char](xref:System.ComponentModel.CharConverter)
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
@@ -211,7 +215,7 @@ The simple types that the model binder can convert source strings into include t
 * [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
-* [TimeSpan]](xref:System.ComponentModel.TimeSpanConverter)
+* [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
 * [Version](xref:System.ComponentModel.VersionConverter)
@@ -236,19 +240,15 @@ For example, suppose the complex type is the following `Instructor` class:
   }
   ```
 
-### Binding to a method parameter
+If the model to be bound is a parameter named `instructorToUpdate` in a method signature:
 
-If the action or handler method signature is this:
-
-  ```csharp
-  public IActionResult OnPost(int? id, Instructor instructorToUpdate)
-  ```
+```csharp
+public IActionResult OnPost(int? id, Instructor instructorToUpdate)
+```
 
 Model binding looks through the sources for the key `instructorToUpdate.ID`. If that isn't found, it looks for `ID` without a prefix. The process is repeated for each `Instructor` property.
 
-### Binding to a PageModel public property
-
-If the `PageModel` class has this:
+If the model is a property named `Instructor` of the controller or `PageModel` class:
 
 ```csharp
 [BindProperty]
@@ -256,6 +256,49 @@ public Instructor Instructor { get; set; }
 ```
 
 Model binding looks through the sources for the key `Instructor.ID`. If that isn't found, it looks for `ID` without a prefix. The process is repeated for each `Instructor` property.
+
+Several built-in attributes are available for controlling model binding of complex types:
+
+* `[BindRequired]`
+* `[BindNever]`
+* `[Bind]`
+
+> [!NOTE]
+> These attributes affect model binding when posted form data is the source of values. They do not affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters). See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
+
+### [BindRequired] attribute
+
+Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property.
+
+### [BindNever] attribute
+
+Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property.
+
+### [Bind] attribute
+
+Can be applied to a class or a method. Specifies which properties of a model should be included in model binding.
+
+In the following example, only the specified properties of the `Instructor` model are bound when any handler or action method is called:
+
+```csharp
+[Bind("LastName,FirstMidName,HireDate")]
+public class Instructor
+{
+    ...
+}
+```
+
+In the following example, only the specified properties of the `Instructor` model are bound when the `OnPost` method is called:
+
+```csharp
+[HttpPost]
+public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
+{
+    ...
+}
+```
+
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work so well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For defense against overposting, view models are recommended rather than this attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
 ## Collections
 
@@ -318,39 +361,11 @@ Used to cancel activity in asynchronous controllers.
 
 Used to retrieve all the values from posted form data.
 
-## [BindRequired] attribute
-
-Can only be applied to model properties, not to method parameters. It causes model binding to add a model state error if binding cannot occur. However, the attribute has no effect if you're posting a JSON body, since the input formatter will provide a default value before binding occurs.
-
-For more information, see the discussion of the [Required] attribute in [Model validation](xref:mvc/models/validation#required-attribute).
-
-## [BindNever] attribute
-
-Can only be applied to model properties, not to method parameters. It prevents model binding from setting a property.
-
-## [Bind] attribute
-
-Specifies which properties of a model should be included in model binding. For example:
-
-```csharp
-[HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Create(
-    [Bind("EnrollmentDate,FirstMidName,LastName")] Student student)
-{
-    ...
-}
-```
-
-The attribute lets you specify fields to be included or fields to be excluded. In the preceding example, model binding would ignore the `Student.ID` property.
-
-The `[Bind]` attribute is one way to protect against overposting in *create* scenarios. It doesn't work so well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
-
 ## Input formatters
 
 Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes a `JsonInputFormatter` class for handling JSON data. You can add other formatters for other content types.
 
-ASP.NET Core selects input formatters based on the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html) and the type of the target parameter, unless there's an attribute applied to the target specifying otherwise.
+ASP.NET Core selects input formatters based on the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html) and the type of the target parameter, unless there's a `[Consumes]` attribute applied to the target specifying otherwise.
 
 To use the built-in XML input formatter:
 
