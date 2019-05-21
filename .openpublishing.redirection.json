@@ -2,207 +2,207 @@
     "redirections": [
         {
             "source_path": "aspnetcore/fundamentals/host/index.md",
-            "redirect_url": "/aspnet/core/fundamentals/index#host",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/index#host",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/index.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/start-mvc.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/adding-controller.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-controller",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/adding-controller",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/adding-view.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-view",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/adding-view",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/adding-model.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-model",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/adding-model",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/working-with-sql.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/working-with-sql",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/working-with-sql",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/controller-methods-views.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/controller-methods-views",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/controller-methods-views",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/search.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/search",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/search",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/new-field.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/new-field",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/new-field",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/validation.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/validation",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/validation",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/start-mvc.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/index.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/adding-controller.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-controller",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/adding-controller",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/adding-view.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-view",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/adding-view",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/adding-model.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/adding-model",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/adding-model",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/working-with-sql.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/working-with-sql",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/working-with-sql",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/controller-methods-views.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/controller-methods-views",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/controller-methods-views",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/search.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/search",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/search",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/new-field.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/new-field",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/new-field",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/validation.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/validation",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/validation",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/razor-pages-mac/index.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-mac/razor-pages-start.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/razor-pages-start",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/razor-pages-start",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-mac/model.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/model",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/model",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-mac/page.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/page",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/page",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-mac/search.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/search",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/search",  
             "redirect_document_id": false 
         },
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-mac/sql.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/sql",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/sql",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-mac/da1.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/da1",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/da1",  
             "redirect_document_id": false 
         },
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-vsc/index.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-vsc/razor-pages-start.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/razor-pages-start",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/razor-pages-start",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-vsc/model.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/model",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/model",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-vsc/page.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/page",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/page",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-vsc/search.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/search",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/search",  
             "redirect_document_id": false 
         },
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-vsc/sql.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/sql",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/sql",  
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/tutorials/razor-pages-vsc/da1.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/da1",  
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/da1",  
             "redirect_document_id": false 
         },
         {   
             "source_path": "aspnetcore/tutorials/xplat.md", 
-            "redirect_url": "/aspnet/core/tutorials/razor-pages-vsc", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages-vsc", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/mvc/advanced/index.md", 
-            "redirect_url": "/aspnet/core/mvc", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/signalr/index.md", 
-            "redirect_url": "/aspnet/core/signalr/introduction", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/signalr/introduction", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/signalr/clients.md", 
-            "redirect_url": "/aspnet/core/signalr/supported-platforms", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/signalr/supported-platforms", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/test/index.md", 
-            "redirect_url": "/aspnet/core/test/razor-pages-tests", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/test/razor-pages-tests", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/data/index.md", 
-            "redirect_url": "/aspnet/core/data/ef-rp", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/data/ef-rp", 
             "redirect_document_id": false 
         }, 
         {   
@@ -212,27 +212,27 @@
         }, 
         {   
             "source_path": "aspnetcore/azure/index.md", 
-            "redirect_url": "/aspnet/core/azure/devops", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/azure/devops", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/security/authentication/index.md", 
-            "redirect_url": "/aspnet/core/security/authentication/identity", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/identity", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/security/authorization/index.md", 
-            "redirect_url": "/aspnet/core/security/authorization/introduction", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authorization/introduction", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/security/data-protection/index.md", 
-            "redirect_url": "/aspnet/core/security/data-protection/introduction", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/data-protection/introduction", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/security/data-protection/consumer-apis/index.md", 
-            "redirect_url": "/aspnet/core/security/data-protection/consumer-apis/introduction", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/data-protection/consumer-apis/introduction", 
             "redirect_document_id": false 
         }, 
         {   
@@ -242,12 +242,12 @@
         }, 
         {   
             "source_path": "aspnetcore/fundamentals/primitives/index.md", 
-            "redirect_url": "/aspnet/core/fundamentals/change-tokens", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/change-tokens", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/fundamentals/primitives/change-tokens.md", 
-            "redirect_url": "/aspnet/core/fundamentals/change-tokens", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/change-tokens", 
             "redirect_document_id": false 
         }, 
         {   
@@ -262,42 +262,42 @@
         }, 
         {   
             "source_path": "aspnetcore/client-side/cdn.md", 
-            "redirect_url": "/aspnet/core/client-side/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/client-side/", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/performance/measuring.md", 
-            "redirect_url": "/aspnet/core/performance/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/performance/", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/security/authentication/oauth2.md", 
-            "redirect_url": "/aspnet/core/security/authentication/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/security/open-redirect.md", 
-            "redirect_url": "/aspnet/core/security/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/mvc/views/html-helpers.md", 
-            "redirect_url": "/aspnet/core/mvc/views/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/mvc/web-api/json-patch.md", 
-            "redirect_url": "/aspnet/core/mvc/web-api/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/web-api/", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/mvc/views/custom-view-engine.md", 
-            "redirect_url": "/aspnet/core/mvc/views/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/hosting/dataprotection.md", 
-            "redirect_url": "/aspnet/core/host-and-deploy/iis/index", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/iis/index", 
             "redirect_document_id": false 
         }, 
         {   
@@ -307,67 +307,67 @@
         }, 
         {   
             "source_path": "aspnetcore/hosting/index.md", 
-            "redirect_url": "/aspnet/core/host-and-deploy/index", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/index", 
             "redirect_document_id": false 
         }, 
         {   
             "source_path": "aspnetcore/fundamentals/servers/overview.md", 
-            "redirect_url": "/aspnet/core/fundamentals/servers/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/servers/", 
             "redirect_document_id": false 
         }, 
         { 
             "source_path": "aspnetcore/intro.md",
-            "redirect_url": "/aspnet/core", 
+            "redirect_url": "/aspnet-core-conceptual-ppe", 
             "redirect_document_id": false 
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/AnchorTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/anchor-tag-helper/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/tag-helpers/builtin-th/anchor-tag-helper/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/CacheTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/cache-tag-helper/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/tag-helpers/builtin-th/cache-tag-helper/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/environment-tag-helper/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/tag-helpers/builtin-th/environment-tag-helper/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/ImageTagHelper.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/image-tag-helper/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/tag-helpers/builtin-th/image-tag-helper/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/https.md",
-            "redirect_url": "/aspnet/core/security/enforcing-ssl",
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/enforcing-ssl",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/fundamentals/logging.md",
-            "redirect_url": "/aspnet/core/fundamentals/logging/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/logging/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/fundamentals/configuration.md",
-            "redirect_url": "/aspnet/core/fundamentals/configuration/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/configuration/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/angular.md",
-            "redirect_url": "/aspnet/core/client-side/spa/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/client-side/spa/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/knockout.md",
-            "redirect_url": "/aspnet/core/client-side/spa/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/client-side/spa/",
             "redirect_document_id": false
         },
         {
@@ -377,82 +377,82 @@
         },
         {
             "source_path": "aspnetcore/publishing/apache-proxy.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/linux-apache",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/linux-apache",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/azure-continuous-deployment.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/azure-apps/azure-continuous-deployment",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/azure-apps/azure-continuous-deployment",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/development-time-iis-support.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/iis/development-time-iis-support",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/iis/development-time-iis-support",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/docker.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/docker/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/docker/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/iis.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/iis/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/iis/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/index.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/linuxproduction.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/linux-nginx",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/linux-nginx",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/visual-studio-tools-for-docker.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/docker/visual-studio-tools-for-docker",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/docker/visual-studio-tools-for-docker",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/web-publishing-vs.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/visual-studio-publish-profiles",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/visual-studio-publish-profiles",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/hosting/aspnet-core-module.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/aspnet-core-module",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/aspnet-core-module",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/hosting/directory-structure.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/directory-structure",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/directory-structure",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/hosting/ihostingstartup.md",
-            "redirect_url": "/aspnet/core/fundamentals/host/platform-specific-configuration",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/host/platform-specific-configuration",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/hosting/iis-modules.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/iis/modules",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/iis/modules",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/hosting/windows-service.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/windows-service",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/windows-service",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/conceptual-overview/aspnet.md",
-            "redirect_url": "/aspnet/core",
+            "redirect_url": "/aspnet-core-conceptual-ppe",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/conceptual-overview/index.md",
-            "redirect_url": "/aspnet/core",
+            "redirect_url": "/aspnet-core-conceptual-ppe",
             "redirect_document_id": false
         },
         {
@@ -467,102 +467,102 @@
         },
         {
             "source_path": "aspnetcore/getting-started/installing-on-linux.md",
-            "redirect_url": "/aspnet/core/getting-started",
+            "redirect_url": "/aspnet-core-conceptual-ppe/getting-started",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/getting-started/installing-on-mac.md",
-            "redirect_url": "/aspnet/core/getting-started",
+            "redirect_url": "/aspnet-core-conceptual-ppe/getting-started",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/getting-started/installing-on-windows.md",
-            "redirect_url": "/aspnet/core/getting-started",
+            "redirect_url": "/aspnet-core-conceptual-ppe/getting-started",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/intro/index.md",
-            "redirect_url": "/aspnet/core",
+            "redirect_url": "/aspnet-core-conceptual-ppe",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/rc1-to-rtm.md",
-            "redirect_url": "/aspnet/core/migration/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/migration/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/rc2-to-rtm.md",
-            "redirect_url": "/aspnet/core/migration/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/migration/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/controllers/index.md",
-            "redirect_url": "/aspnet/core/mvc/controllers/actions",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/controllers/actions",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/index.md",
-            "redirect_url": "/aspnet/core/mvc/overview",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/overview",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/models/index.md",
-            "redirect_url": "/aspnet/core/mvc/models/model-binding",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/models/model-binding",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/index.md",
-            "redirect_url": "/aspnet/core/mvc/views/overview",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/overview",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/index.md",
-            "redirect_url": "/aspnet/core/mvc/views/tag-helpers/intro",
+            "redirect_url": "/aspnet-core-conceptual-ppe/mvc/views/tag-helpers/intro",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/authentication/facebook-logins.md",
-            "redirect_url": "/aspnet/core/security/authentication/social/facebook-logins",
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/social/facebook-logins",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/authentication/google-logins.md",
-            "redirect_url": "/aspnet/core/security/authentication/social/google-logins",
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/social/google-logins",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/authentication/microsoft-logins.md",
-            "redirect_url": "/aspnet/core/security/authentication/social/microsoft-logins",
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/social/microsoft-logins",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/authentication/other-logins.md",
-            "redirect_url": "/aspnet/core/security/authentication/social/other-logins",
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/social/other-logins",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/authentication/sociallogins.md",
-            "redirect_url": "/aspnet/core/security/authentication/social/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/social/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/authentication/twitter-logins.md",
-            "redirect_url": "/aspnet/core/security/authentication/social/twitter-logins",
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/social/twitter-logins",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/your-first-aspnet-application.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/first-mvc-app/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/fundamentals/middleware.md",
-            "redirect_url": "/aspnet/core/fundamentals/middleware/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/middleware/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/ihostingstartup.md",
-            "redirect_url": "/aspnet/core/fundamentals/host/platform-specific-configuration",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/host/platform-specific-configuration",
             "redirect_document_id": false
         },
         {
@@ -572,7 +572,7 @@
         },
         {
             "source_path": "aspnetcore/security/data-protection/compatibility/cookie-sharing.md", 
-            "redirect_url": "/aspnet/core/security/cookie-sharing/", 
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/cookie-sharing/", 
             "redirect_document_id": false 
         },
         {
@@ -582,127 +582,127 @@
         },
         {
             "source_path": "aspnetcore/mvc/models/formatting.md",
-            "redirect_url": "/aspnet/core/web-api/advanced/formatting",
+            "redirect_url": "/aspnet-core-conceptual-ppe/web-api/advanced/formatting",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/advanced/custom-formatters.md",
-            "redirect_url": "/aspnet/core/web-api/advanced/custom-formatters",
+            "redirect_url": "/aspnet-core-conceptual-ppe/web-api/advanced/custom-formatters",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/platform-specific-configuration.md",
-            "redirect_url": "/aspnet/core/fundamentals/host/platform-specific-configuration",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/host/platform-specific-configuration",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/fundamentals/hosting.md",
-            "redirect_url": "/aspnet/core/fundamentals/host/index",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/host/index",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/fundamentals/hosted-services.md",
-            "redirect_url": "/aspnet/core/fundamentals/host/hosted-services",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/host/hosted-services",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/testing/integration-testing.md",
-            "redirect_url": "/aspnet/core/test/integration-tests",
+            "redirect_url": "/aspnet-core-conceptual-ppe/test/integration-tests",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/testing/razor-pages-testing.md",
-            "redirect_url": "/aspnet/core/test/razor-pages-tests",
+            "redirect_url": "/aspnet-core-conceptual-ppe/test/razor-pages-tests",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/testing/index.md",
-            "redirect_url": "/aspnet/core/test",
+            "redirect_url": "/aspnet-core-conceptual-ppe/test",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/testing/troubleshoot.md",
-            "redirect_url": "/aspnet/core/test/troubleshoot",
+            "redirect_url": "/aspnet-core-conceptual-ppe/test/troubleshoot",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/signalr/get-started.md",
-            "redirect_url": "/aspnet/core/tutorials/signalr",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/signalr",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/razor-pages/filter.md",
-            "redirect_url": "/aspnet/core/razor-pages/filter",
+            "redirect_url": "/aspnet-core-conceptual-ppe/razor-pages/filter",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/razor-pages/index.md",
-            "redirect_url": "/aspnet/core/razor-pages/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/razor-pages/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/razor-pages/razor-pages-conventions.md",
-            "redirect_url": "/aspnet/core/razor-pages/razor-pages-conventions",
+            "redirect_url": "/aspnet-core-conceptual-ppe/razor-pages/razor-pages-conventions",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/razor-pages/sdk.md",
-            "redirect_url": "/aspnet/core/razor-pages/sdk",
+            "redirect_url": "/aspnet-core-conceptual-ppe/razor-pages/sdk",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/mvc/razor-pages/ui-class.md",
-            "redirect_url": "/aspnet/core/razor-pages/ui-class",
+            "redirect_url": "/aspnet-core-conceptual-ppe/razor-pages/ui-class",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/aspnetcore-1.1.md",
-            "redirect_url": "/aspnet/core/release-notes/aspnetcore-1.1",
+            "redirect_url": "/aspnet-core-conceptual-ppe/release-notes/aspnetcore-1.1",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/aspnetcore-2.0.md",
-            "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.0",
+            "redirect_url": "/aspnet-core-conceptual-ppe/release-notes/aspnetcore-2.0",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/aspnetcore-2.1.md",
-            "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.1",
+            "redirect_url": "/aspnet-core-conceptual-ppe/release-notes/aspnetcore-2.1",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/choose-aspnet-framework.md",
-            "redirect_url": "/aspnet/core/fundamentals/choose-aspnet-framework",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/choose-aspnet-framework",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/getting-started.md",
-            "redirect_url": "/aspnet/core/getting-started/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/getting-started/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/spa/angular.md",
-            "redirect_url": "/aspnet/core/client-side/spa/angular",
+            "redirect_url": "/aspnet-core-conceptual-ppe/client-side/spa/angular",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/spa/index.md",
-            "redirect_url": "/aspnet/core/client-side/spa/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/client-side/spa/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/spa/react-with-redux.md",
-            "redirect_url": "/aspnet/core/client-side/spa/react-with-redux",
+            "redirect_url": "/aspnet-core-conceptual-ppe/client-side/spa/react-with-redux",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/spa/react.md",
-            "redirect_url": "/aspnet/core/client-side/spa/react",
+            "redirect_url": "/aspnet-core-conceptual-ppe/client-side/spa/react",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/razor-pages/uploading-files.md",
-            "redirect_url": "/aspnet/core/razor-pages/upload-files",
+            "redirect_url": "/aspnet-core-conceptual-ppe/razor-pages/upload-files",
             "redirect_document_id": false
         },
         {
@@ -717,12 +717,12 @@
         },
         {
             "source_path": "aspnetcore/fundamentals/configuration/platform-specific-configuration.md",
-            "redirect_url": "/aspnet/core/fundamentals/host/platform-specific-configuration",
+            "redirect_url": "/aspnet-core-conceptual-ppe/fundamentals/host/platform-specific-configuration",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/authentication/identity-primary-key-configuration.md",
-            "redirect_url": "/aspnet/core/security/authentication/customize_identity_model#change-the-primary-key-type",
+            "redirect_url": "/aspnet-core-conceptual-ppe/security/authentication/customize_identity_model#change-the-primary-key-type",
             "redirect_document_id": false
         },
         {
@@ -732,27 +732,27 @@
         },
         {
             "source_path": "aspnetcore/web-api/advanced/index.md",
-            "redirect_url": "/aspnet/core/web-api/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/web-api/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/index.md",
-            "redirect_url": "/aspnet/core/tutorials/razor-pages/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/razor-pages/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/fundamentals/servers/aspnet-core-module.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/aspnet-core-module",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/aspnet-core-module",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/spa/index.md",
-            "redirect_url": "/aspnet/core/blazor/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/index.md",
-            "redirect_url": "/aspnet/core/blazor/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/",
             "redirect_document_id": false
         },
         {
@@ -762,97 +762,97 @@
         },
         {
             "source_path": "aspnetcore/razor-components/index.md",
-            "redirect_url": "/aspnet/core/blazor/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/spa/blazor/index.md",
-            "redirect_url": "/aspnet/core/blazor/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/get-started.md",
-            "redirect_url": "/aspnet/core/blazor/get-started",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/get-started",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/spa/blazor/get-started.md",
-            "redirect_url": "/aspnet/core/blazor/get-started",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/get-started",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/hosting-models.md",
-            "redirect_url": "/aspnet/core/blazor/hosting-models",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/hosting-models",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/components.md",
-            "redirect_url": "/aspnet/core/blazor/components",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/components",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/forms-validation.md",
-            "redirect_url": "/aspnet/core/blazor/forms-validation",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/forms-validation",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/class-libraries.md",
-            "redirect_url": "/aspnet/core/blazor/class-libraries",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/class-libraries",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/layouts.md",
-            "redirect_url": "/aspnet/core/blazor/layouts",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/layouts",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/dependency-injection.md",
-            "redirect_url": "/aspnet/core/blazor/dependency-injection",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/dependency-injection",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/routing.md",
-            "redirect_url": "/aspnet/core/blazor/routing",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/routing",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/javascript-interop.md",
-            "redirect_url": "/aspnet/core/blazor/javascript-interop",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/javascript-interop",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/debug.md",
-            "redirect_url": "/aspnet/core/blazor/debug",
+            "redirect_url": "/aspnet-core-conceptual-ppe/blazor/debug",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/index.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/blazor/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/blazor.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/client-side",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/blazor/client-side",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/razor-components.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/server-side",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/blazor/server-side",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/configure-linker.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/configure-linker",
+            "redirect_url": "/aspnet-core-conceptual-ppe/host-and-deploy/blazor/configure-linker",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/using-gulp.md",
-            "redirect_url": "/aspnet/core/client-side/using-grunt",
+            "redirect_url": "/aspnet-core-conceptual-ppe/client-side/using-grunt",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/build-your-first-razor-components-app.md",
-            "redirect_url": "/aspnet/core/tutorials/build-your-first-blazor-app",
+            "redirect_url": "/aspnet-core-conceptual-ppe/tutorials/build-your-first-blazor-app",
             "redirect_document_id": false
         }
     ]
