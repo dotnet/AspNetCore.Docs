@@ -8,7 +8,7 @@ uid: security/authentication/disable-cookie
 ---
 # Disable automatic cookie authentication in ASP.NET Core
 
-By [John King](https://github.com/John0King) and 
+By [John King](https://github.com/John0King) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) specifies that access to a controller or action method is restricted to users who meet the authorization requirement. When the user is not authenticated or doesn't have access to the controller or action method:
 
@@ -29,7 +29,7 @@ The following code sends an HTTP header with name `X-Requested-With` and value `
 
 The following code sends query string with name `X-Requested-With` and value `XMLHttpRequest`:
 
-[!code-javascript[ajax-raw.js](disable-cookie/samples/CookieAjax/wwwroot/js/ajax-raw.js-qs)]
+[!code-javascript[ajax-raw.js](disable-cookie/samples/CookieAjax/wwwroot/js/ajax-raw-qs.js)]
 
 The following code uses jQuery to send an HTTP header with name `X-Requested-With` and value `XMLHttpRequest`:
 
