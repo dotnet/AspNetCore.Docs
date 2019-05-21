@@ -132,7 +132,7 @@ Newtonsoft.Json provides.
 
 ::: moniker-end
 
-### Adding XML Format Support
+### Add XML format support
 
 To add support for XML formatting, install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
 
