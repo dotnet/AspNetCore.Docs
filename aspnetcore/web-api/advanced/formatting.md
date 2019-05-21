@@ -128,7 +128,7 @@ release. Here are some reasons to continue using the Newtonsoft.Json based forma
 
 * Your application uses Newtonsoft.Json attributes (e.g. `JsonProperty`, `JsonIgnore` etc), customizes the serialization settings , or relies on features that
 Newtonsoft.Json provides.
-* Your application extensively uses <xref:Microsoft.AspNetCore.Mvc.JsonResult>. `JsonResult` is a Newtonsoft.Json specific `IActionResult` and will not work without a reference to it.
+* Extensively uses <xref:Microsoft.AspNetCore.Mvc.JsonResult>. `JsonResult` is a `Newtonsoft.Json`-specific `IActionResult` and won't work without a reference to it.
 * Your application generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
 
 ::: moniker-end
