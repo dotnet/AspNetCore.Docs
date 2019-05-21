@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 10/14/2016
+ms.date: 05/21/2019
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -121,14 +121,14 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 release. Continue using the `Newtonsoft.Json`-based formatters if your ASP.NET Core 3.0 or later app:
 
 * Uses `Newtonsoft.Json` attributes (for example, `[JsonProperty]` or `[JsonIgnore]`), customizes the serialization settings, or relies on features that `Newtonsoft.Json` provides.
-* Configures <xref:Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings>. Prior to 3.0, `JsonResult.SerializerSettings` accepts an instance of `JsonSerializerSettings` that is specific to Newtonsoft.Json.
+* Configures <xref:Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings>. Prior to 3.0, `JsonResult.SerializerSettings` accepts an instance of `JsonSerializerSettings` that is specific to `Newtonsoft.Json`.
 * Generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
 
 ::: moniker-end
 
 ### Add XML format support
 
-To add support for XML formatting, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
+To add XML formatting support, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
 
 Add the XML serializer formatters to MVC's configuration in `Startup.ConfigureServices`:
 
