@@ -24,13 +24,6 @@ Some action result types are specific to a particular format, such as `JsonResul
 
 To return data in a specific format from a controller that inherits from the `Controller` base class, use the built-in helper method `Json` to return JSON and `Content` for plain text. Your action method should return either the specific result type (for instance, `JsonResult`) or `IActionResult`.
 
-::: moniker range=">= aspnetcore-3.0"
-
-> [!NOTE]
-To use `JsonResult`, install the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` NuGet package in your project.
-
-::: moniker-end
-
 Returning JSON-formatted data:
 
 [!code-csharp[](./formatting/sample/Controllers/Api/AuthorsController.cs?highlight=3,5&range=21-26)]
