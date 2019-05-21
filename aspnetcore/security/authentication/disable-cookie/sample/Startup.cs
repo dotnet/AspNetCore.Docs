@@ -25,66 +25,53 @@ namespace CookieAjax
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase("app"));
-            //options.UseSqlite(
-            //    Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDefaultIdentity<IdentityUser>()
-            //    .AddDefaultUI(UIFramework.Bootstrap4)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            #region DisableCookie
-
+            
             services.AddAuthentication(o=>
             {
                 o.DefaultScheme = IdentityConstants.ApplicationScheme;
                 o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
             })
-                .AddIdentityCookies(idop =>
+            .AddIdentityCookies(idop =>
+            {
+                idop.ApplicationCookie.Configure(op =>
                 {
-                    idop.ApplicationCookie.Configure(op =>
+                    op.Events.OnRedirectToLogin = context =>
                     {
-                        op.Events.OnRedirectToLogin = context =>
+                        var headers = new Microsoft.AspNetCore.Http.Headers.RequestHeaders(
+                                                                    context.Request.Headers);
+                        // Browser access contains request header { Accept:text/html;}
+                        // AJAX request contain {Accept:*/* } header by default.
+                        if (!headers.Accept.ToString().Contains("html", 
+                                                        StringComparison.OrdinalIgnoreCase))
                         {
-                            var headers = new Microsoft.AspNetCore.Http.Headers.RequestHeaders(context.Request.Headers);
-                            // when most browser direct access a url, it's request header will contains  {Accept:text/html;}
-                            // but ajax call only have {Accept:*/* } by default
-                            if (!headers.Accept.ToString().Contains("html", StringComparison.OrdinalIgnoreCase))
-                            {
-                                // ajax call or some non-browser call
-                                context.Response.Headers["Location"] = context.RedirectUri;
-                                context.Response.StatusCode = 401;
-                            }
-                            else
-                            {
-                                // browse
-                                context.Response.Redirect(context.RedirectUri);
-                            }
-                            return Task.CompletedTask;
-                        };
-                    });
+                            // AJAX or other non-browser call.
+                            context.Response.Headers["Location"] = context.RedirectUri;
+                            context.Response.StatusCode = 401;
+                        }
+                        else
+                        {
+                            // UI/Browser request case.
+                            context.Response.Redirect(context.RedirectUri);
+                        }
+                        return Task.CompletedTask;
+                    };
                 });
+            });
 
             services.AddIdentityCore<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4);
 
-
-            #endregion
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
+        #endregion
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -1,5 +1,3 @@
-// using jquery
-
 $.ajax("your-api-url", {
     type: "GET",
     headers: {
