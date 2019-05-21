@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/13/2019
+ms.date: 05/21/2019
 uid: blazor/javascript-interop
 ---
 # Blazor JavaScript interop
@@ -117,7 +117,7 @@ You can capture references to HTML elements in a component using the following a
 The following example shows capturing a reference to the `username` `<input>` element:
 
 ```cshtml
-<input ref="username" ...>
+<input ref="username" ... />
 
 @functions {
     ElementRef username;
