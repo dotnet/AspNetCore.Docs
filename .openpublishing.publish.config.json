@@ -17,6 +17,20 @@
       },
       "template_folder": "_themes",
       "version": 0
+    },
+    {
+      "docset_name": "aspnet-core-conceptual-ppe",
+      "build_source_folder": "aspnetcore",
+      "build_output_subfolder": "aspnet-core-conceptual-ppe",
+      "locale": "en-us",
+      "monikers": [],
+      "moniker_ranges": [],
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes"
     }
   ],
   "notification_subscribers": [],
