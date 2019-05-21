@@ -128,7 +128,7 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 release. Continue using the `Newtonsoft.Json`-based formatters if your ASP.NET Core 3.0 or later app:
 
 * Uses `Newtonsoft.Json` attributes (for example, `[JsonProperty]` or `[JsonIgnore]`), customizes the serialization settings, or relies on features that `Newtonsoft.Json` provides.
-* Extensively uses <xref:Microsoft.AspNetCore.Mvc.JsonResult>. `JsonResult` is a `Newtonsoft.Json`-specific `IActionResult` and won't work without a reference to it.
+* Configures <xref:Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings>. Prior to 3.0, `JsonResult.SerializerSettings` accepts an instance of `JsonSerializerSettings` that is specific to Newtonsoft.Json.
 * Generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
 
 ::: moniker-end
