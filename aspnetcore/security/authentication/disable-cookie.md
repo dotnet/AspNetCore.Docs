@@ -8,29 +8,34 @@ uid: security/authentication/disable-cookie
 ---
 # Disable automatic cookie authentication in ASP.NET Core
 
-By [John King](https://github.com/John0King)
+By [John King](https://github.com/John0King) and 
 
-The `[Authorize]` Attribute will automatic challenge the current authentication scheme, and it's great for browser to direct visit, but it doesn't work well with `ajax`, you need to know the server is not authenticated or not authorized and show login or error message use javascript, in this scenario  you may want to disable automatic challenge of `Cookies` authentication scheme and return HTTP StatusCode `401` instead when it's an `ajax` call.
+The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) specifies that access to a controller or action method is restricted to users who meet the authorization requirement. When the user is not authenticated or doesn't have access to the controller or action method:
+
+* An automatic challenge is issued, redirecting the user to the sign-in page.
+
+This approach works well when using ASP.NET Controllers with views or Razor Pages, but not when using [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX). This document shows several approaches to take when a HTTP StatusCode 401 response is required for unauthenticated/unauthorized requests.
 
 Use one of the following approaches to disable automatic cookie authentication:
 
 * Send an HTTP header or query string called `X-Requested-With` with a value of `XMLHttpRequest`
 * Handle the various `CookieAuthenticationEvents` methods to do a custom check for whether it's an AJAX request.
 
-### Send an HTTP header or query string called `X-Requested-With`
+## Send an HTTP header or query string called `X-Requested-With`
 
-#### [using raw ajax](#tab/tabid-1)
+The following code sends an HTTP header with name `X-Requested-With` and value `XMLHttpRequest`:
 
 [!code-javascript[ajax-raw.js](disable-cookie/samples/CookieAjax/wwwroot/js/ajax-raw.js)]
 
-#### [using jquery ajax](#tab/tabid-2)
+The following code sends query string with name `X-Requested-With` and value `XMLHttpRequest`:
+
+[!code-javascript[ajax-raw.js](disable-cookie/samples/CookieAjax/wwwroot/js/ajax-raw.js-qs)]
+
+The following code uses jQuery to send an HTTP header with name `X-Requested-With` and value `XMLHttpRequest`:
 
 [!code-javascript[ajax-jquery.js](disable-cookie/samples/CookieAjax/wwwroot/js/ajax-jquery.js)]
 
-> [!NOTE]
-> jquery's `$.ajax()` will automatic add `X-Requested-With:XMLHttpRequest` header
-
-***
+The jQuery `$.ajax()` call will adds the `X-Requested-With:XMLHttpRequest` header.
 
 ### Configure  `CookieAuthenticationEvents` to do a custom check
 
