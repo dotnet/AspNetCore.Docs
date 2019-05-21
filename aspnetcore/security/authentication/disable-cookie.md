@@ -45,7 +45,7 @@ The following code, added to `ConfigureServices`, handles the [CookieAuthenticat
 
 The following <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents> verify the [request is from AJAX](https://github.com/aspnet/AspNetCore/blob/v2.2.5/src/Security/Authentication/Cookies/src/CookieAuthenticationEvents.cs#L103-L107) :
 
-* [CookieAuthenticationEvents.OnRedirectToLogin] (xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogin)
+* [CookieAuthenticationEvents.OnRedirectToLogin](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogin)
 * [CookieAuthenticationEvents.OnRedirectToAccessDenied](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToAccessDenied)
 * [CookieAuthenticationEvents.OnRedirectToLogout](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogout)
 * [CookieAuthenticationEvents.OnRedirectToReturnUrl](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToReturnUrl)

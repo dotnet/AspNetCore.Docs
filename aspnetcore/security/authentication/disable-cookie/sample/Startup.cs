@@ -25,12 +25,11 @@ namespace CookieAjax
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase("app"));
-            
+            #region snippet
             services.AddAuthentication(o=>
             {
                 o.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -63,6 +62,8 @@ namespace CookieAjax
                 });
             });
 
+            #endregion
+
             services.AddIdentityCore<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
@@ -70,8 +71,6 @@ namespace CookieAjax
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-        #endregion
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
