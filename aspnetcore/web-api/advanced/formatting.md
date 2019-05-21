@@ -26,7 +26,8 @@ To return data in a specific format from a controller that inherits from the `Co
 
 ::: moniker range=">= aspnetcore-3.0"
 > [!NOTE]
-To use `JsonResult`, applications must add a package reference to `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package.
+To use `JsonResult`, install the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` NuGet package in your project.
+
 ::: moniker-end
 
 Returning JSON-formatted data:
