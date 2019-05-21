@@ -74,6 +74,43 @@ public class Program
 }
 ```
 
+## Configure client options
+
+If before we saw **Server or Service Options**, now we need configure same respective parameters on **Client Options**.
+
+Grpc.Core.ChannelOptions class have some constants for most important client configurations related of server configuration, like:
+
+|ChannelOptions (Client) |  GrpcServiceOptions (Server) |
+| ------ | ------------- |
+| `MaxSendMessageLength` | `ReceiveMaxMessageSize` | 
+| `MaxReceiveMessageLength` | `SendMaxMessageSize` |
+
+And some client specific configurations like User Agent 
+
+### How to Use:
+
+#### Server
+```csharp
+services.AddGrpc(options => {
+    options.ReceiveMaxMessageSize = 2 * 1024 * 1024;    // 2 megabytes
+    options.SendMaxMessageSize = 5 * 1024 * 1024;       // 5 megabytes 
+});
+```
+
+#### Client
+```csharp
+var channel = new Channel("localhost:5001", ChannelCredentials.Insecure, new[] {
+    new ChannelOption(ChannelOptions.MaxSendMessageLength , 2 * 1024 * 1024),      // 2 megabytes
+    new ChannelOption(ChannelOptions.MaxReceiveMessageLength , 5 * 1024 * 1024)    // 5 megabytes    
+});
+```
+
+With this example: 
+* Client is able to send 2 megabytes, and server accepts up to 2 megabytes. 
+* Server response can reached 5 megabytes, and client accepts receive up to 5 megabytes.
+
+
+
 ## Additional resources
 
 * <xref:tutorials/grpc/grpc-start>
