@@ -171,7 +171,7 @@ You can write and register custom value providers that get data for model bindin
 * Create a class that implements `IValueProviderFactory`.
 * Register the factory class in `Startup.ConfigureServices`.
 
-The sample app includes a [value provider](model-binding/samples/2.x/CookieValueProvider.cs) and [factory](model-binding/samples/2.x/CookieValueProviderFactory.cs) example that gets values from cookies. Here's the registration code in `Startup.ConfigureServices`:
+The sample app includes a [value provider](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/CookieValueProvider.cs) and [factory](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/CookieValueProviderFactory.cs) example that gets values from cookies. Here's the registration code in `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=3)]
 
