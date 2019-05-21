@@ -349,9 +349,9 @@ When the button is selected in the Child component:
 @{ var message = "Default Text"; }
 
 <ChildComponent 
-    OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; }" />
+    OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
 
-@function {
+@functions {
     private string messageText;
 }
 ```
