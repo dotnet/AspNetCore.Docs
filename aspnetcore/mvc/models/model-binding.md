@@ -171,7 +171,7 @@ You can write and register custom value providers that get data for model bindin
 * Create a class that implements `IValueProviderFactory`.
 * Register the factory class in `Startup.ConfigureServices`.
 
-The sample app includes a [value provider](model-binding/samples/2.x/MyValueProvider.cs) and [factory](model-binding/samples/2.x/MyValueProviderFactory.cs) example that gets values from cookies. Here's the registration code in `Startup.ConfigureServices`:
+The sample app includes a [value provider](model-binding/samples/2.x/CookieValueProvider.cs) and [factory](model-binding/samples/2.x/CookieValueProviderFactory.cs) example that gets values from cookies. Here's the registration code in `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=3)]
 
@@ -226,7 +226,7 @@ A complex type must have a public default constructor and public writable proper
 
 For each property of the complex type, model binding looks through the sources for the name pattern *prefix.property_name*. If nothing is found it looks for just *property_name* without the prefix.
 
-For binding to a parameter, the prefix is the parameter name. For binding to a `PageModel` public property, the prefix is the public property name.
+For binding to a parameter, the prefix is the parameter name. For binding to a `PageModel` public property, the prefix is the public property name. Some attributes have a `Prefix` property that lets you override the default usage of parameter or property name.
 
 For example, suppose the complex type is the following `Instructor` class:
 
@@ -240,13 +240,17 @@ For example, suppose the complex type is the following `Instructor` class:
   }
   ```
 
-If the model to be bound is a parameter named `instructorToUpdate` in a method signature:
+### Prefix = parameter name
+
+If the model to be bound is a parameter named `instructorToUpdate`:
 
 ```csharp
 public IActionResult OnPost(int? id, Instructor instructorToUpdate)
 ```
 
 Model binding looks through the sources for the key `instructorToUpdate.ID`. If that isn't found, it looks for `ID` without a prefix. The process is repeated for each `Instructor` property.
+
+### Prefix = property name
 
 If the model is a property named `Instructor` of the controller or `PageModel` class:
 
@@ -257,6 +261,19 @@ public Instructor Instructor { get; set; }
 
 Model binding looks through the sources for the key `Instructor.ID`. If that isn't found, it looks for `ID` without a prefix. The process is repeated for each `Instructor` property.
 
+### Custom prefix
+
+If the model to be bound is a parameter named `instructorToUpdate` and a `Bind` attribute specifies `Instructor` as the prefix:
+
+```csharp
+public IActionResult OnPost(
+    int? id, [Bind(Prefix = "Instructor")] Instructor instructorToUpdate)
+```
+
+Model binding looks through the sources for the key `Instructor.ID`. If that isn't found, it looks for `ID` without a prefix. The process is repeated for each `Instructor` property.
+
+### Attributes for complex type targets
+
 Several built-in attributes are available for controlling model binding of complex types:
 
 * `[BindRequired]`
@@ -264,15 +281,39 @@ Several built-in attributes are available for controlling model binding of compl
 * `[Bind]`
 
 > [!NOTE]
-> These attributes affect model binding when posted form data is the source of values. They do not affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters). See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
+> These attributes affect model binding when posted form data is the source of values. They do not affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters).
+>
+> See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
 
 ### [BindRequired] attribute
 
-Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property.
+Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
+
+```csharp
+public class Instructor
+{
+    public int ID { get; set; }
+    [BindRequired]
+    public string LastName { get; set; }
+    public string FirstMidName { get; set; }
+    public DateTime HireDate { get; set; }
+}
+```
 
 ### [BindNever] attribute
 
-Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property.
+Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
+
+```csharp
+public class Instructor
+{
+    [BindNever]
+    public int ID { get; set; }
+    public string LastName { get; set; }
+    public string FirstMidName { get; set; }
+    public DateTime HireDate { get; set; }
+}
+```
 
 ### [Bind] attribute
 
@@ -298,7 +339,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 }
 ```
 
-The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work so well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For defense against overposting, view models are recommended rather than this attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work so well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For defense against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
 ## Collections
 

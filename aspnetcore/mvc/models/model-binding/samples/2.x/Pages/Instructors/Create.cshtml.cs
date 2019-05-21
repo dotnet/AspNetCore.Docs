@@ -18,11 +18,11 @@ namespace ModelBindingSample.Pages.Instructors
             return Page();
         }
 
-        [BindProperty]
+        //[BindProperty]
         public Instructor Instructor { get; set; }
 
         #region snippet_HandleMBError
-        public IActionResult OnPost()
+        public IActionResult OnPost([Bind(Prefix="Instructor")]Names names)
         {
             if (!ModelState.IsValid)
             {
@@ -33,5 +33,9 @@ namespace ModelBindingSample.Pages.Instructors
             return RedirectToPage("./Index");
         }
         #endregion
+    }
+    public class Names
+    {
+        public string LastName { get; set; }
     }
 }
