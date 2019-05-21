@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/13/2019
+ms.date: 05/21/2019
 uid: host-and-deploy/blazor/client-side
 ---
 # Host and deploy Blazor client-side
@@ -183,6 +183,8 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 ## Standalone deployment
 
 A *standalone deployment* serves the client-side Blazor app as a set of static files that are requested directly by clients. A web server isn't used to serve the Blazor app.
+
+Standalone deployment assets are published to the *bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder.
 
 ### IIS
 
