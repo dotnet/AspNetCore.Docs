@@ -25,6 +25,7 @@ Some action result types are specific to a particular format, such as `JsonResul
 To return data in a specific format from a controller that inherits from the `Controller` base class, use the built-in helper method `Json` to return JSON and `Content` for plain text. Your action method should return either the specific result type (for instance, `JsonResult`) or `IActionResult`.
 
 ::: moniker range=">= aspnetcore-3.0"
+
 > [!NOTE]
 To use `JsonResult`, install the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` NuGet package in your project.
 
@@ -105,7 +106,7 @@ If your application needs to support additional formats beyond the default of JS
 
 ### Configure System.Text.Json-based formatters
 
-Features for the System.Text.Json based formatters can be configured using <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions>.
+Features for the `System.Text.Json`-based formatters can be configured using <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions>.
 
 ```csharp
 services.AddMvc(options =>
@@ -114,7 +115,7 @@ services.AddMvc(options =>
 });
 ```
 
-### Adding Newtonsoft.Json based JSON Format Support
+### Add Newtonsoft.Json-based JSON format support
 
 Prior to ASP.NET Core 3.0, MVC defaulted to using JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json`-based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
 
@@ -123,13 +124,12 @@ services.AddMvc()
     .AddNewtonsoftJson();
 ```
 
-Some features may not work very well with System.Text.Json based formatters and require a reference to the Newtonsoft.Json based formatters for the ASP.NET Core 3.0
-release. Here are some reasons to continue using the Newtonsoft.Json based formatters in your ASP.NET Core 3.0 applications:
+Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters for the ASP.NET Core 3.0
+release. Continue using the `Newtonsoft.Json`-based formatters if your ASP.NET Core 3.0 or later app:
 
-* Your application uses Newtonsoft.Json attributes (e.g. `JsonProperty`, `JsonIgnore` etc), customizes the serialization settings , or relies on features that
-Newtonsoft.Json provides.
+* Uses `Newtonsoft.Json` attributes (for example, `[JsonProperty]` or `[JsonIgnore]`), customizes the serialization settings, or relies on features that `Newtonsoft.Json` provides.
 * Extensively uses <xref:Microsoft.AspNetCore.Mvc.JsonResult>. `JsonResult` is a `Newtonsoft.Json`-specific `IActionResult` and won't work without a reference to it.
-* Your application generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
+* Generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
 
 ::: moniker-end
 
@@ -137,11 +137,11 @@ Newtonsoft.Json provides.
 
 To add support for XML formatting, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
 
-Add the XmlSerializerFormatters to MVC's configuration in *Startup.cs*:
+Add the XML serializer formatters to MVC's configuration in `Startup.ConfigureServices`:
 
 [!code-csharp[](./formatting/sample/Startup.cs?name=snippet1&highlight=2)]
 
-These two approaches will serialize results using `System.Xml.Serialization.XmlSerializer`. If you prefer, you can use the `System.Runtime.Serialization.DataContractSerializer` by adding its associated formatter:
+These two approaches will serialize results using `System.Xml.Serialization.XmlSerializer`. If you prefer, you can use the `System.Runtime.Serialization.DataContractSerializer` by adding its associated formatter in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
