@@ -19,7 +19,7 @@ This approach works well when using ASP.NET Controllers with views or Razor Page
 Use one of the following approaches to disable automatic cookie authentication:
 
 * Send an HTTP header or query string called `X-Requested-With` with a value of `XMLHttpRequest`
-* Handle the various `CookieAuthenticationEvents` methods to do a custom check for whether it's an AJAX request.
+* Handle the various <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents> methods to do a custom check for whether it's an AJAX request.
 
 ## Send an HTTP header or query string called `X-Requested-With`
 
@@ -37,7 +37,7 @@ The following code uses jQuery to send an HTTP header with name `X-Requested-Wit
 
 The jQuery `$.ajax()` call will adds the `X-Requested-With:XMLHttpRequest` header.
 
-### Configure CookieAuthenticationEvents to do a custom check
+## Configure CookieAuthenticationEvents to check for AJAX requests
 
 The following code, added to `ConfigureServices`, handles the [CookieAuthenticationEvents.OnRedirectToLogin](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogin) event and verifies the request is an AJAX request:
 
