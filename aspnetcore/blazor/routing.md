@@ -18,7 +18,7 @@ Learn how to route requests in apps and about the NavLink component.
 
 Blazor server-side is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapBlazorHub` in `Startup.Configure`:
 
-[!code-cshtml[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
+[!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
 ## Route templates
 
