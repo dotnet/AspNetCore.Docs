@@ -12,16 +12,30 @@ uid: blazor/supported-platforms
 
 By [Luke Latham](https://github.com/guardrex)
 
-## Server system requirements
-
-[Blazor server-side](xref:blazor/hosting-models#server-side) supports any server platform that ASP.NET Core supports.
-
 ## Browser requirements
+
+### Blazor client-side
+
+| Browser                          | Version               |
+| -------------------------------- | :-------------------: |
+| Microsoft Edge                   | Current               |
+| Mozilla Firefox                  | Current               |
+| Google Chrome, including Android | Current               |
+| Safari, including iOS            | Current               |
+| Microsoft Internet Explorer      | Not Supported&dagger; |
+
+&dagger;Microsoft Internet Explorer doesn't support [WebAssembly](http://webassembly.org).
+
+For more information on the Blazor client-side hosting model, see <xref:blazor/hosting-models#client-side>.
+
+### Blazor server-side
 
 | Browser                          | Version |
 | -------------------------------- | :-----: |
-| Microsoft Edge                   | current |
-| Mozilla Firefox                  | current |
-| Google Chrome, including Android | current |
-| Safari, including iOS            | current |
+| Microsoft Edge                   | Current |
+| Mozilla Firefox                  | Current |
+| Google Chrome, including Android | Current |
+| Safari, including iOS            | Current |
 | Microsoft Internet Explorer      | 11      |
+
+For more information on the Blazor server-side hosting model, see <xref:blazor/hosting-models#server-side>.
