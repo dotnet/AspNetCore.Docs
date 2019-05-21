@@ -102,7 +102,7 @@ If your application needs to support additional formats beyond the default of JS
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### Configuring System.Text.Json based formatters
+### Configure System.Text.Json-based formatters
 
 Features for the System.Text.Json based formatters can be configured using <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions>.
 
