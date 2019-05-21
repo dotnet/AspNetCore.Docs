@@ -134,7 +134,7 @@ Newtonsoft.Json provides.
 
 ### Add XML format support
 
-To add support for XML formatting, install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
+To add support for XML formatting, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
 
 Add the XmlSerializerFormatters to MVC's configuration in *Startup.cs*:
 
