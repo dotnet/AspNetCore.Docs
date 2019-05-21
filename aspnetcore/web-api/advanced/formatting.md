@@ -130,11 +130,11 @@ release. Continue using the `Newtonsoft.Json`-based formatters if your ASP.NET C
 
 To add XML formatting support, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
 
-Add the XML serializer formatters to MVC's configuration in `Startup.ConfigureServices`:
+XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured in `Startup.ConfigureServices` as follows:
 
 [!code-csharp[](./formatting/sample/Startup.cs?name=snippet1&highlight=2)]
 
-These two approaches will serialize results using `System.Xml.Serialization.XmlSerializer`. If you prefer, you can use the `System.Runtime.Serialization.DataContractSerializer` by adding its associated formatter in `Startup.ConfigureServices`:
+Alternatively, XML formatters implemented using `System.Runtime.Serialization.DataContractSerializer` can be configured in `Startup.ConfigureServices` as follows:
 
 ```csharp
 services.AddMvc()
