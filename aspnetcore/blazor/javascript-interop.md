@@ -125,7 +125,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 ```
 
 > [!NOTE]
-> Do **not** use captured element references as a way of populating the DOM. Doing so may interfere with the declarative rendering model.
+> Do **not** use captured element references as a way of populating or manipulating the DOM when Blazor interacts with the elements referenced. Doing so may interfere with the declarative rendering model.
 
 As far as .NET code is concerned, an `ElementRef` is an opaque handle. The *only* thing you can do with `ElementRef` is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
 
