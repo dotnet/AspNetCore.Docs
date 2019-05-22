@@ -162,7 +162,7 @@ Consider the same 3 action filters shown in the preceding example. If the `Order
 
 The `Order` property overrides scope when determining the order in which filters will run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. For built-in filters, scope determines order unless `Order` is set to a non-zero value.
 
-## Cancellation and short circuiting
+## Cancellation and short-circuiting
 
 The filter pipeline can be short-circuited by setting the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext.Result> property on the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext> parameter provided to the filter method. For instance, the following Resource filter prevents the rest of the pipeline from executing.
 
@@ -301,7 +301,7 @@ Resource filters are useful to short-circuit most of the pipeline. For example, 
 
 Resource filter examples:
 
-* [The short circuiting resource filter](#short-circuiting-resource-filter) shown previously.
+* [The short-circuiting resource filter](#short-circuiting-resource-filter) shown previously.
 * [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/rel/2.0.0-preview2/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
 
   * Prevents model binding from accessing the form data.
@@ -448,7 +448,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> and <xref:Mic
 * An <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter> applies and short-circuits the response.
 * An exception filter handles an exception by producing an action result.
 
-Filters other than `IExceptionFilter` and `IAuthorizationFilter` don't short circuit `IAlwaysRunResultFilter` and `IAsyncAlwaysRunResultFilter`.
+Filters other than `IExceptionFilter` and `IAuthorizationFilter` don't short-circuit `IAlwaysRunResultFilter` and `IAsyncAlwaysRunResultFilter`.
 
 For example, the following filter always runs and sets an action result (<xref:Microsoft.AspNetCore.Mvc.ObjectResult>) with a *422 Unprocessable Entity* status code when content negotiation fails:
 
