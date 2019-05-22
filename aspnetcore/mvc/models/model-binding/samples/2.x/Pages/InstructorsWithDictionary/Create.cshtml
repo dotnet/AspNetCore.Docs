@@ -39,7 +39,7 @@
                             {
                                 <tr>
                                     @{
-                                        int format = 11;  // Only 1, 2, and 4 work
+                                        int format = 1;  // Only 1, 2, and 4 work
                                         if (format == 1)
                                         {
                                             <!-- parameter_name[key]=value-->
@@ -56,30 +56,6 @@
                                             <!-- parameter_name[0].Key=key&parameter_name[0].Value=value -->
                                             <!-- instructor.Courses[0].Key=1050&instructor.Courses[0].Value=Chemistry&instructor.Courses[1].Key=4022&instructor.Courses[1].Value=Microeconomics&instructor.Courses[2].Key=4041&instructor.Courses[2].Value=Macroeconomics -->
                                             <td>
-                                                <input name="instructor.Courses[@cnt].Key" type="text" value="@course.Key" />
-                                            </td>
-                                            <td>
-                                                <input name="instructor.Courses[@cnt].Value" type="text" value="@course.Value" />
-                                            </td>
-                                        }
-                                        else if (format == 3)
-                                        {
-                                            <!-- parameter_name[].Key=key&parameter_name[].Value=value -->
-                                            <!-- Model binder doesn't find these values -->
-                                            <!-- instructor.Courses[].Key=1050&instructor.Courses[].Value=Chemistry&instructor.Courses[].Key=4022&instructor.Courses[].Value=Microeconomics&instructor.Courses[].Key=4041&instructor.Courses[].Value=Macroeconomics -->
-                                            <td>
-                                                <input name="instructor.Courses[].Key" type="text" value="@course.Key" />
-                                            </td>
-                                            <td>
-                                                <input name="instructor.Courses[].Value" type="text" value="@course.Value" />
-                                            </td>
-                                        }
-                                        else if (format == 4)
-                                        {
-                                            <!-- parameter_name.index=32&parameter_name[32].Key=key&parameter_name[32].Value=value -->
-                                            <!-- instructor.index=0&instructor.Courses[0].Key=1050&instructor.Courses[0].Value=Chemistry&instructor.index=1&instructor.Courses[1].Key=4022&instructor.Courses[1].Value=Microeconomics&instructor.index=2&instructor.Courses[2].Key=4041&instructor.Courses[2].Value=Macroeconomics -->
-                                            <td>
-                                                <input name="instructor.index" type="hidden" value="@cnt" />
                                                 <input name="instructor.Courses[@cnt].Key" type="text" value="@course.Key" />
                                             </td>
                                             <td>

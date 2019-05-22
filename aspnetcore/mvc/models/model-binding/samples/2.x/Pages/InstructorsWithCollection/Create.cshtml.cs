@@ -12,7 +12,7 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
         {
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(Dictionary<string,string> selectedCourses2)
         {
             var instructor = new InstructorWithCollection();
             instructor.Courses = new List<Course>();
@@ -28,8 +28,9 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
         [BindProperty]
         public InstructorWithCollection Instructor { get; set; }
 
-        public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
+        public async Task<IActionResult> OnPostAsync(string[] selectedCourses2)
         {
+            var selectedCourses = selectedCourses2;
             var newInstructor = new InstructorWithCollection();
             if (selectedCourses != null)
             {

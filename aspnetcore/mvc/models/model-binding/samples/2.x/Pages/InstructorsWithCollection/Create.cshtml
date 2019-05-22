@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+@{ int format = 0; }
 <h2>Create</h2>
 
 <h4>Instructor</h4>
@@ -37,21 +37,48 @@
 
                                 foreach (var course in Model.AssignedCourseDataList)
                                 {
-                                    if (cnt++ % 3 == 0)
+                                    if (cnt % 3 == 0)
                                     {
                                     @:</tr><tr>
                                     }
                                     @:<td>
-                                        <input type="checkbox"
-                                               name="selectedCourses"
-                                               value="@course.CourseID"
-                                               @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
-                                        @course.CourseID @:  @course.Title
+                                        format = 3;
+                                        if (format == 1)
+                                        {
+                                            <input type="checkbox"
+                                                   name="selectedCourses"
+                                                   value="@course.CourseID"
+                                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                            @course.CourseID @:  @course.Title
+                                        }
+                                        else if (format == 2)
+                                        {
+                                            <input type="checkbox"
+                                                   name="selectedCourses[@cnt]"
+                                                   value="@course.CourseID"
+                                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                            @course.CourseID @:  @course.Title
+                                        }
+                                        else if (format == 3)
+                                        {
+                                            <input type="checkbox"
+                                                   name="selectedCourses[a-@cnt]"
+                                                   value="@course.CourseID"
+                                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                            @course.CourseID @:  @course.Title
+                                        }
+                                        cnt++;
                                     @:</td>
                                 }
                             @:</tr>
                             }
                         </table>
+                        if (format == 4)
+                        {
+                        <input type="hidden"
+                               name="selectedCourses.index"
+                               value="a-2" />
+                        }
                     </div>
                 </div>
                 <div class="form-group">
