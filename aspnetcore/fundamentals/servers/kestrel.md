@@ -159,7 +159,7 @@ Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelSer
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout>
 
-Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc6223). Defaults to 2 minutes.
+Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#section-6.5). Defaults to 2 minutes.
 
 ::: moniker range=">= aspnetcore-2.2"
 
