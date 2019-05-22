@@ -9,9 +9,7 @@ uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
 
-https://localhost:44358/Sample/HeaderWithFactory
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
+By [Kirk Larkin](https://github.com/serpent5), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
 
 *Filters* in ASP.NET Core allow code to be run before or after specific stages in the request processing pipeline.
 
@@ -87,7 +85,7 @@ Attributes allow filters to accept arguments, as shown in the preceding example.
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-<!-- `https://localhost:44358/Sample` -->
+<!-- `https://localhost:5001/Sample` -->
 
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
 
@@ -264,7 +262,7 @@ The following example shows how to pass arguments to a type using `TypeFilterAtt
 [!code-csharp[](../../mvc/controllers/filters/sample/FiltersSample/Filters/LogConstantFilter.cs?name=snippet_TypeFilter_Implementation&highlight=6)]
 
 <!-- 
-https://localhost:44358/home/hi?name=joe
+https://localhost:5001/home/hi?name=joe
 VS debug window shows 
 FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 -->
@@ -337,7 +335,7 @@ Throwing an exception in an action method:
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Controller` and `Result` plus the following properties:
 
 * <xref:System.Web.Mvc.ActionExecutedContext.Canceled> - True if the action execution was short-circuited by another filter.
-* <xref:System.Web.Mvc.ActionExecutedContext.Exception> - Non-null if the action or a subsequent action filter threw an exception. Setting this property to null:
+* <xref:System.Web.Mvc.ActionExecutedContext.Exception> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
 
   * Effectively handles the exception.
   * `Result` is executed as if it was returned from the action method.
@@ -351,10 +349,10 @@ To short-circuit, assign <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingC
 
 The framework provides an abstract <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> that can be subclassed.
 
-Action filters can be used to:
+The `OnActionExecuted` action filter can be used to:
 
 * Validate model state.
-* Return errors if the state is invalid:
+* Return an error if the state is invalid:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet)]
 
@@ -362,10 +360,12 @@ The `OnActionExecuted` method runs after the action method:
 
 * And can see and manipulate the results of the action through the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Result> property.
 * <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled> is set to true if the action execution was short-circuited by another filter.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> is set to a non-null value if the action or a subsequent action filter threw an exception. Setting `ActionExecutedContext.Exception` to null:
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> is set to a non-null value if the action or a subsequent action filter threw an exception. Setting `Exception` to null:
 
   * Effectively handles an exception.
   * `ActionExecutedContext.Result` is executed as if it were returned normally from the action method.
+
+[!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet2)]
 
 ## Exception filters
 
@@ -376,7 +376,7 @@ Exception filters:
 
 The following sample exception filter uses a custom error view to display details about exceptions that occur when the app is in development:
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/CustomExceptionFilterAttribute.cs?name=snippet_ExceptionFilter&highlight=1,14)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/CustomExceptionFilterAttribute.cs?name=snippet_ExceptionFilter&highlight=16-19)]
 
 Exception filters:
 
@@ -465,7 +465,7 @@ For example, the following filter always runs and sets an action result (<xref:M
 The preceding code can be tested by running the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample):
 
 * Invoke the F12 developer tools.
-* Navigate to `https://localhost:44358/Sample/HeaderWithFactory`
+* Navigate to `https://localhost:5001/Sample/HeaderWithFactory`
 
 The F12 developer tools display the following response headers added by the sample code:
 
