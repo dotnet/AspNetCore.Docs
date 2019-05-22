@@ -177,16 +177,16 @@ The sample app includes a [value provider](https://github.com/aspnet/AspNetCore.
 
 The code shown puts the custom value provider after all the built-in value providers.  To make it the first in the list, call `Insert(0, new CustomValueProviderFactory())` instead of `Add`.
 
-## No source for a target
+## No source for a model property
 
-By default, `ModelState.IsValid` is not set to `true` if no value is found for a target. The target is set to null or a default value:
+By default, a model state error isn't created if no value is found for a model property in posted form fields. The property is set to null or a default value:
 
 * Nullable simple types are set to `null`.
 * Non-nullable value types are set to `default(T)`. For example, a parameter `int id` is set to 0.
 * Complex Types: model binding creates an instance of a class with the default constructor without setting properties.
 * Arrays are set to `Array.Empty<T>()`, except that `byte[]` arrays are set to `null`.
 
- For information about how to change this behavior, see [[BindRequired] attribute](#bindrequired-attribute) later in this article.
+ If model state should be invalidated when nothing is found in form fields for a model property, use the [[BindRequired] attribute](#bindrequired-attribute).
 
 ## Type conversion errors
 
@@ -198,7 +198,11 @@ In a Razor page, redisplay the page with an error message:
 
 [!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-In production, client-side validation catches most bad data that would otherwise be submitted to a Razor page form. This validation makes it hard to trigger the preceding highlighted code even deliberately. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form to show how this code for redisplaying the page works.
+Client-side validation catches most bad data that would otherwise be submitted to a Razor page form. This validation makes it hard to trigger the preceding highlighted code even deliberately. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form to show how this code for redisplaying the page works.
+
+When the page is redisplayed by the preceding code, the invalid input is not shown in the form field. This is because the model property has been set to null or a default value. The invalid input does appear in an error message. But if you want to redisplay the bad data in the form field, consider making the model property a string and doing the data conversion manually.
+
+Making the model property a string and doing type conversion yourself is also the recommended strategy if you don't want type conversion errors to result in model state errors.
 
 ## Simple types
 
@@ -406,32 +410,34 @@ Used to retrieve all the values from posted form data.
 
 Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes a `JsonInputFormatter` class for handling JSON data. You can add other formatters for other content types.
 
-ASP.NET Core selects input formatters based on the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html) and the type of the target parameter, unless there's a `[Consumes]` attribute applied to the target specifying otherwise.
+ASP.NET Core selects input formatters based on the `[Consumes]` attribute. If no attribute is present, it uses the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 
-To use the built-in XML input formatter:
+To use the built-in XML input formatters:
 
 * Install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
 
-* In `Startup.ConfigureServices`, call `AddXmlSerializerFormatters`.
+* In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters*> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters*>.
 
-    ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddMvc()
-            .AddXmlSerializerFormatters();
-    }
-    ```
+  ```csharp
+  public void ConfigureServices(IServiceCollection services)
+  {
+      services.AddMvc()
+          .AddXmlSerializerFormatters();
+  }
+  ```
+
+  For more information, see [Introducing XML Serialization](https://docs.microsoft.com/en-us/dotnet/standard/serialization/introducing-xml-serialization).
     
-* Apply the `Consumes` attribute to controller classes, action methods, or handler methods that should expect XML in the request body.
+* Apply the `Consumes` attribute to controller classes or action methods that should expect XML in the request body.
 
-```csharp
-[HttpPost]
-[Consumes("application/xml")]
-public ActionResult<Pet> Create(Pet pet)
-{
-    ...
-}
-```
+  ```csharp
+  [HttpPost]
+  [Consumes("application/xml")]
+  public ActionResult<Pet> Create(Pet pet)
+  {
+      ...
+  }
+  ```
 
 ## Exclude specified types from model binding
 

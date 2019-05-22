@@ -10,15 +10,12 @@ namespace ModelBindingSample.Models
     {
         public int ID { get; set; }
 
-        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
         [Display(Name = "First Name")]
         public string FirstMidName { get; set; }
 
-        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Hire Date")]
