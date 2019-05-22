@@ -29,7 +29,9 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
 * Sets the content root.
-* Enables logging to the event log with the application name as the default source name. Set the logging level with the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file. Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
+* Enables logging to the event log with the application name as the default source name.
+  * The log level can be configured using the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file.
+  * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
 [!code-csharp[](windows-service/samples/3.x/AspNetCoreService/Program.cs?name=snippet_Program)]
 
@@ -199,12 +201,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; Path to the app's folder on the host. Don't include the app's executable in the path. A trailing slash isn't required
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Service user account.
-* `{NAME}` &ndash; Service name.
-* `{EXE FILE PATH}` &ndash; The app's executable path. Include the executable's file name with extension.
-* `{DESCRIPTION}` &ndash; Service description.
-* `{DISPLAY NAME}` &ndash; Service display name.
+* `{EXE PATH}` &ndash; Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
+* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Service user account (for example, `Contoso\ServiceUser`).
+* `{NAME}` &ndash; Service name (for example, `MyService`).
+* `{EXE FILE PATH}` &ndash; The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
+* `{DESCRIPTION}` &ndash; Service description (for example, `My sample service`).
+* `{DISPLAY NAME}` &ndash; Service display name (for example, `My Service`).
 
 ### Start a service
 
