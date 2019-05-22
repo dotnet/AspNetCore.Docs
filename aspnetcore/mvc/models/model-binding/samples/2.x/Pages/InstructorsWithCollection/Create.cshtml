@@ -4,10 +4,13 @@
 @{
     ViewData["Title"] = "Create";
 }
-@{ int format = 0; }
+@{
+    int format = 0; 
+}
+
 <h2>Create</h2>
 
-<h4>Instructor</h4>
+<h4>Instructor with Courses collection</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -42,7 +45,9 @@
                                     @:</tr><tr>
                                     }
                                     @:<td>
-                                        format = 3;
+                                        format = 1;
+                                        //format 1: "selectedCourses=1050&selectedCourses=2000
+                                        //format 2: "selectedCourses[0]=1050&selectedCourses[1]=2000
                                         if (format == 1)
                                         {
                                             <input type="checkbox"
@@ -55,14 +60,6 @@
                                         {
                                             <input type="checkbox"
                                                    name="selectedCourses[@cnt]"
-                                                   value="@course.CourseID"
-                                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
-                                            @course.CourseID @:  @course.Title
-                                        }
-                                        else if (format == 3)
-                                        {
-                                            <input type="checkbox"
-                                                   name="selectedCourses[a-@cnt]"
                                                    value="@course.CourseID"
                                                    @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
                                             @course.CourseID @:  @course.Title

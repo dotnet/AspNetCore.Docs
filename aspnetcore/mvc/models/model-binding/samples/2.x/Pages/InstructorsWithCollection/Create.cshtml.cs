@@ -28,9 +28,8 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
         [BindProperty]
         public InstructorWithCollection Instructor { get; set; }
 
-        public async Task<IActionResult> OnPostAsync(string[] selectedCourses2)
+        public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
         {
-            var selectedCourses = selectedCourses2;
             var newInstructor = new InstructorWithCollection();
             if (selectedCourses != null)
             {
@@ -41,6 +40,7 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
                 }
             }
 
+            #region snippet_TryUpdate
             if (await TryUpdateModelAsync<InstructorWithCollection>(
                 newInstructor,
                 "Instructor",
@@ -51,6 +51,7 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
             }
             PopulateAssignedCourseData(newInstructor);
             return Page();
+            #endregion
         }
     }
 }

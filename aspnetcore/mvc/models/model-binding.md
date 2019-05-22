@@ -347,47 +347,83 @@ The `[Bind]` attribute can be used to protect against overposting in *create* sc
 
 ## Collections
 
-For collection targets, model binding looks for matches to *parameter_name* or *PageModel_public_property_name*. Multiple instances of the same name in source data are translated to successive elements of the collection. For example:
+For targets that are collections of simple types, model binding looks for matches to *parameter_name* or *property_name*. If no match is found, it looks for one of the supported formats without the prefix. For example:
 
-* The parameter is `int[] selectedCourses`.
+* The parameter is an array named `selectedCourses`:
 
   ```csharp
   public IActionResult OnPost(int? id, int[] selectedCourses)
   ```
 
-* The form data is `selectedCourses=1050&selectedCourses=2000`.
+* Form or query string data can be in one of the following formats:
+   
+  ```
+  selectedCourses=1050&selectedCourses=2000 
+  ```
 
-* Model binding passes an array of two items to the selectedCourses parameter:
+  ```
+  selectedCourses[0]=1050&selectedCourses[1]=2000
+  ```
+
+  ```
+  [0]=1050&[1]=2000
+  ```
+
+  The preceding two formats use subscript numbers. If there are any gaps in subscript numbering, all items after the gap are ignored. For example, if the subscripts are 0 and 2 instead of 0 and 1, the second item is ignored.
+
+  ```
+  selectedCourses[a]=1050&selectedCourses[b]=2000&selectedCourses.index=a&selectedCourses.index=b
+  ```
+
+  ```
+  [a]=1050&[b]=2000&index=a&index=b
+  ```
+
+* The following format is supported only in query strings:
+
+  ```
+  selectedCourses[]=1050&selectedCourses[]=2000
+  ```
+
+* For all of the preceding example formats, model binding passes an array of two items to the `selectedCourses` parameter:
 
   * selectedCourses[0]=1050
   * selectedCourses[1]=2000
 
 ## Dictionaries
 
-For `Dictionary` targets, model binding looks for matches to *parameter_name* or *PageModel_public_property_name*.  The form data can be in either of two formats:
+For `Dictionary` targets, model binding looks for matches to *parameter_name* or *property_name*. If no match is found, it looks for one of the supported formats without the prefix. For example:
 
-* dictionary_name[key0]=value&dictionary_name[key1]=value&...
-* dictionary_name[0].Key=key&dictionary_name[0].Value=value&dictionary_name[1].Key=key&dictionary_name[1].Value=value&...
-
-For example:
-
-* The target parameter is `selectedCourses`:
+* The target parameter is a `Dictionary<string, string>` named `selectedCourses`:
 
   ```csharp
   public IActionResult OnPost(int? id, Dictionary<int, string> selectedCourses)
   ```
 
-* The posted form data can look like one of the following examples:
+* The posted form or query string data can look like one of the following examples:
 
   ```
-  selectedCourses[1050]=Chemistry&selectedCourses[4022]=Microeconomics&
-  selectedCourses[4041]=Macroeconomics
+  selectedCourses[1050]=Chemistry&selectedCourses[2000]=Economics
+  ```
+
+  ```
+  [1050]=Chemistry&selectedCourses[2000]=Economics
   ```
 
   ```
   selectedCourses[0].Key=1050&selectedCourses[0].Value=Chemistry&
-  selectedCourses[1].Key=4022&selectedCourses[1].Value=Microeconomics&
-  selectedCourses[2].Key=4041&selectedCourses[2].Value=Macroeconomics
+  selectedCourses[1].Key=2000&selectedCourses[1].Value=Economics
+  ```
+
+  ```
+  [0].Key=1050&[0].Value=Chemistry&[1].Key=2000&[1].Value=Economics
+  ```
+
+* The following format is supported only in query strings:
+
+  ```
+  selectedCourses[].Key=1050&selectedCourses[].Value=Chemistry&
+  selectedCourses[].Key=2000&selectedCourses[].Value=Economics
   ```
 
 ## Special data types
@@ -408,9 +444,9 @@ Used to retrieve all the values from posted form data.
 
 ## Input formatters
 
-Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes a `JsonInputFormatter` class for handling JSON data. You can add other formatters for other content types.
+Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes <xref:Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter> and <xref:Microsoft.AspNetCore.Mvc.Formatters.JsonPatchInputFormatter> classes for handling JSON data. You can add other formatters for other content types.
 
-ASP.NET Core selects input formatters based on the `[Consumes]` attribute. If no attribute is present, it uses the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
+ASP.NET Core selects input formatters based on the [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute. If no attribute is present, it uses the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 
 To use the built-in XML input formatters:
 
@@ -465,21 +501,9 @@ You can extend model binding by writing a custom model binder and using the `[Mo
 
 ## Manual model binding
 
-Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails.
+Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
 
-```csharp
-if (await TryUpdateModelAsync<Instructor>(
-    instructorToUpdate,
-    "Instructor",
-    i => i.FirstMidName, i => i.LastName,
-    i => i.HireDate, i => i.OfficeAssignment))
-{
-    ... 
-    return RedirectToPage("./Index");
-}
-...
-return Page();
-```
+[!code-csharp[](model-binding/samples/2.x/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
 ## Additional resources
 

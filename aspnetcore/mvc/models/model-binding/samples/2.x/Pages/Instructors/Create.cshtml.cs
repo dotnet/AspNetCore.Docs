@@ -34,8 +34,4 @@ namespace ModelBindingSample.Pages.Instructors
         }
         #endregion
     }
-    public class Names
-    {
-        public string LastName { get; set; }
-    }
 }
