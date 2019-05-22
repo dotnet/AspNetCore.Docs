@@ -159,7 +159,7 @@ Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelSer
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout>
 
-Gets or sets the keep-alive timeout. Defaults to 2 minutes.
+Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc6223). Defaults to 2 minutes.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -180,8 +180,6 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ```
 
 ::: moniker-end
-
-For information on the ASP.NET Core Module `requestTimeout` when hosting in IIS, see <xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element>.
 
 ### Maximum client connections
 
