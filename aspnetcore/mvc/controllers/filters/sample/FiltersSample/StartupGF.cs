@@ -1,4 +1,7 @@
-﻿using FiltersSample.Filters;
+﻿// This file, StartupGF (for Global Filters) is used only to provide a snippet showing
+// Global filters
+
+using FiltersSample.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FiltersSample
 {
-    public class Startup
+    public class StartupGF
     {
-        public Startup(IConfiguration configuration)
+        public StartupGF(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -19,10 +22,6 @@ namespace FiltersSample
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add service filters.
-            services.AddScoped<AddHeaderResultServiceFilter>();
-            services.AddScoped<SampleActionFilterAttribute>();
-
             services.AddMvc(options =>
             {
                 options.Filters.Add(new AddHeaderAttribute("GlobalAddHeader",

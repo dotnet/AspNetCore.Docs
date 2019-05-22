@@ -13,6 +13,18 @@ namespace FiltersSample.Filters
                 context.Result = new BadRequestObjectResult(context.ModelState);
             }
         }
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            var result = context.Result;
+            // Do something with Result.
+            if (context.Canceled == true)
+            {
+                // Action execution was short-circuited by another filter.
+            }
+
+            base.OnActionExecuted(context);
+        }
     }
     #endregion
 }

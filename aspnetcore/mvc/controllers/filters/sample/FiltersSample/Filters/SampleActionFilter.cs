@@ -12,6 +12,7 @@ namespace FiltersSample.Filters
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
+            var result = context.Result;
             // Do something after the action executes.
         }
     }
