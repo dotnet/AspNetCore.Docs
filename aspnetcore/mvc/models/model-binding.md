@@ -27,7 +27,7 @@ Controllers and Razor pages work with data that comes from HTTP requests. For ex
 
 Suppose you have the following action method:
 
-[!code-csharp[](model-binding/samples/2.x/Controllers/PetsController?name=snippet_DogsOnly)]
+[!code-csharp[](model-binding/samples/2.x/Controllers/PetsController.cs?name=snippet_DogsOnly)]
 
 And the app receives a request with this URL:
 
