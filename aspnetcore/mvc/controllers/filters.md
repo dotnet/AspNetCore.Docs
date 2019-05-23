@@ -59,7 +59,7 @@ Filters support both synchronous and asynchronous implementations through differ
 
 Synchronous filters can run code before (`On-Stage-Executing`) and after (`On-Stage-Executed`) their pipeline stage. For example, `OnActionExecuting` is called before the action method is called. `OnActionExecuted` is called after the action method returns.
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/SampleActionFilter.cs?name=snippet_ActionFilter)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
 
 Asynchronous filters define an `On-Stage-ExecutionAsync` method:
 
@@ -139,7 +139,36 @@ This sequence shows:
 * The method filter is nested within the controller filter.
 * The controller filter is nested within the global filter.
 
-Every controller that inherits from the `Controller` base class includes `OnActionExecuting` and `OnActionExecuted` methods. These methods wrap the filters that run for a given action:  `OnActionExecuting` is called before any of the action's filters, and `OnActionExecuted` is called after all of the action filters.
+### Controller and Razor Page level filters
+
+Every controller that inherits from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class includes[Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*),  [Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*)[Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
+`OnActionExecuted` methods. `Controller.OnActionExecuting` and `Controller.OnActionExecuted`:
+
+* Wrap the filters that run for a given action.
+* `OnActionExecuting` is called before any of the action's filters.
+* `OnActionExecuted` is called after all of the action filters.
+* `OnActionExecutionAsync` is called before any of the action's filters. Code in the filter after `Next` is invoked runs after the action method.
+
+For example, in the download sample, `MySampleActionFilter` is applied globally in startup.
+
+The `TestController`:
+
+* Applies the `SampleActionFilterAttribute` (`[SampleActionFilter]`) to the `FilterTest2` action:
+* Overrides `OnActionExecuting` and `OnActionExecuted`.
+
+[!code-csharp[](./filters/sample/FiltersSample/Controllers/TestController.cs?name=snippet&highlight=1)]
+
+Navigating to `https://localhost:5001/Test/FilterTest2` runs the following code:
+
+* `TestController.OnActionExecuting`
+  * `MySampleActionFilter.OnActionExecuting`
+    * `SampleActionFilterAttribute.OnActionExecuting`
+      * `TestController.FilterTest`
+    * `SampleActionFilterAttribute.OnActionExecuted`
+  * `MySampleActionFilter.OnActionExecuted`
+* `TestController.OnActionExecuted`
+
+For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter)
 
 ### Overriding the default order
 
@@ -319,7 +348,7 @@ Action filters:
 
 The following code shows a sample action filter:
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/SampleActionFilter.cs?name=snippet_ActionFilter)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the following properties:
 

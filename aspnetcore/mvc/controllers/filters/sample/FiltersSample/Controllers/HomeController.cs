@@ -1,5 +1,6 @@
 ﻿using FiltersSample.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System.Globalization;
 
 namespace FiltersSample.Controllers
@@ -40,11 +41,13 @@ namespace FiltersSample.Controllers
         #endregion
 
         #region snippet
+        #region snippet2
         [SampleActionFilter]
         public IActionResult FilterTest()
         {
             return Content($"From FilterTest");
         }
+        #endregion
 
         [TypeFilter(typeof(SampleActionFilterAttribute))]
         public IActionResult TypeFilterTest()

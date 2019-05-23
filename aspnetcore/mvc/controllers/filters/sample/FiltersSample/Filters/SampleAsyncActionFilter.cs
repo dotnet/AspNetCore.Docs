@@ -15,7 +15,6 @@ namespace FiltersSample.Filters
             // next() calls the action method.
             var resultContext = await next();
             // resultContext.Result is set.
-
             // Do something after the action executes.
         }
     }
