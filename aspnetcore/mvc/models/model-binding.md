@@ -92,11 +92,11 @@ For each target parameter or property, the sources are scanned in the order indi
 
 If the default behavior doesn't give the right results, you can use one of the following attributes to specify the source to use for any given target. 
 
-* [FromHeader] attribute
-* [FromQuery] attribute
-* [FromRoute] attribute
-* [FromForm] attribute
-* [FromBody] attribute
+* `[FromHeader]` attribute
+* `[FromQuery]` attribute
+* `[FromRoute]` attribute
+* `[FromForm]` attribute
+* `[FromBody]` attribute
 
 ### [FromHeader] attribute
 
@@ -153,7 +153,7 @@ Note that this behavior applies to model binding from posted form data, not to J
 
 ## Type conversion errors
 
-If a source is found but can't be converted into the target type, model state is flagged as invalid. The target is set to null or a default value, as noted in the previous section.
+If a source is found but can't be converted into the target type, model state is flagged as invalid. The target parameter or property is set to null or a default value, as noted in the previous section.
 
 In an API controller that has the `[ApiController]` attribute, invalid model state results in an automatic HTTP 400 response.
 
@@ -203,7 +203,6 @@ For example, suppose the complex type is the following `Instructor` class:
       public int ID { get; set; }
       public string LastName { get; set; }
       public string FirstName { get; set; }
-      public DateTime HireDate { get; set; }
   }
   ```
 
@@ -432,7 +431,7 @@ Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mv
 
 [!code-csharp[](model-binding/samples/2.x/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
-### [FromServices] attribute
+## [FromServices] attribute
 
 This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](xref:fundamentals/dependency-injection) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
 
