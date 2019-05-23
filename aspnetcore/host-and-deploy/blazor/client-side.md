@@ -229,7 +229,7 @@ For more information on troubleshooting deployments to IIS, see <xref:host-and-d
 
 ### Azure Storage
 
-Static file hosting provided by Azure Storage permits serverless Blazor app hosting. Custom domain names, the Azure Content Delivery Network (CDN), and HTTPS are supported.
+Azure Storage static file hosting allows serverless Blazor app hosting. Custom domain names, the Azure Content Delivery Network (CDN), and HTTPS are supported.
 
 When the blob service is enabled for static website hosting on a storage account:
 
