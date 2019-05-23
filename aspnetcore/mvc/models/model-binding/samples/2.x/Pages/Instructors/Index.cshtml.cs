@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ModelBindingSample.Pages.Instructors
 {
@@ -14,14 +15,21 @@ namespace ModelBindingSample.Pages.Instructors
         {
         }
 
+        #region snippet_SupportsGet
+        [BindProperty(Name ="ai_user", SupportsGet = true)]
+        public string ApplicationInsightsCookie { get; set; }
+        #endregion
+
         public List<Course> SelectedInstructorCourses;
 
         public List<Instructor> Instructors { get; set; }
 
-        public void OnGet(string ai_user)
+        #region snippet_FromHeader
+        public void OnGet([FromHeader(Name="Accept-Language")] string language)
+        #endregion
         {
             Instructors = _instructorsInMemoryStore;
-            ViewData["CustomValueProvider"] = ai_user; 
+            ViewData["Language"] = language;
         }
     }
 }

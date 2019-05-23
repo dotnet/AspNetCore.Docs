@@ -6,10 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ModelBindingSample.Models
 {
+    #region snippet_FromQuery
     public class Instructor
     {
         public int ID { get; set; }
 
+        [FromQuery(Name ="Note")]
+        public string NoteFromQueryString { get; set; }
+        #endregion
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 

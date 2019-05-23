@@ -7,10 +7,11 @@
 
 <h2>Instructors</h2>
 
-<p>ai_user cookie = @ViewData["CustomValueProvider"]</p>
+<p>Application Insights cookie = @Model.ApplicationInsightsCookie</p>
+<p>Language = @ViewData["Language"]</p>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a href="/Instructors/Create?note=ThisIsFromTheQueryString" >Create New</a>
 </p>
 <table class="table">
     <thead>

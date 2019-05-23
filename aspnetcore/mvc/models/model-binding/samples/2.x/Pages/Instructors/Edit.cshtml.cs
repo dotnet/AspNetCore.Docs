@@ -7,16 +7,16 @@ using System.Linq;
 
 namespace ModelBindingSample.Pages.Instructors
 {
+    #region snippet_BindProperty
     public class EditModel : InstructorsPageModel
     {
-
         public EditModel() : base()
         {
         }
 
         [BindProperty]
         public Instructor Instructor { get; set; }
-
+        #endregion
         public IActionResult OnGet(int? id)
         {
             if (id == null)

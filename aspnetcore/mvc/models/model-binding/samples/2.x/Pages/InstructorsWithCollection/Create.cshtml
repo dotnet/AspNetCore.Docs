@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Instructor.HireDate" class="control-label"></label>
-                <input asp-for="Instructor.HireDate" class="form-control" />
+                <input asp-for="Instructor.HireDate" class="form-control" value="" />
                 <span asp-validation-for="Instructor.HireDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -70,12 +70,6 @@
                             @:</tr>
                             }
                         </table>
-                        if (format == 4)
-                        {
-                        <input type="hidden"
-                               name="selectedCourses.index"
-                               value="a-2" />
-                        }
                     </div>
                 </div>
                 <div class="form-group">

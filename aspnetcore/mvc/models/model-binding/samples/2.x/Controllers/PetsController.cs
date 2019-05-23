@@ -14,8 +14,6 @@ namespace WebApiSample.Controllers
     {
         private static List<Pet> _petsInMemoryStore = new List<Pet>();
 
-        public string cvpkey2 { get; set; }
-
         public PetsController()
         {
             if (_petsInMemoryStore.Count == 0)
@@ -30,9 +28,10 @@ namespace WebApiSample.Controllers
             return _petsInMemoryStore;
         }
 
+        #region snippet_DogsOnly
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Pet> GetById(int id, bool dogsOnly)
+        #endregion
         {
             var pet = _petsInMemoryStore.FirstOrDefault(
                 p => p.Id == id &&

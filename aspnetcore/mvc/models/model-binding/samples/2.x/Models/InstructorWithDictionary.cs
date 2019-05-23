@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ModelBindingSample.Models
 {
+    #region snippet_BindNever
     public class InstructorWithDictionary
     {
+        [BindNever]
         public int ID { get; set; }
-
+        #endregion
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }

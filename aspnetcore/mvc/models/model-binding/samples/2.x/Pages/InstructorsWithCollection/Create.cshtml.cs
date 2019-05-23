@@ -12,7 +12,7 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
         {
         }
 
-        public IActionResult OnGet(Dictionary<string,string> selectedCourses2)
+        public IActionResult OnGet()
         {
             var instructor = new InstructorWithCollection();
             instructor.Courses = new List<Course>();

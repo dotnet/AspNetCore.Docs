@@ -6,20 +6,21 @@ using System.Linq;
 
 namespace ModelBindingSample.Pages.Instructors
 {
+    #region snippet_BindProperties
+    [BindProperties(SupportsGet=true)]
     public class CreateModel : InstructorsPageModel
     {
         public CreateModel() : base()
         {
         }
 
+        public Instructor Instructor { get; set; }
+        #endregion
+
         public IActionResult OnGet()
         {
-            Instructor = new Instructor();
             return Page();
         }
-
-        [BindProperty]
-        public Instructor Instructor { get; set; }
 
         #region snippet_HandleMBError
         public IActionResult OnPost()
