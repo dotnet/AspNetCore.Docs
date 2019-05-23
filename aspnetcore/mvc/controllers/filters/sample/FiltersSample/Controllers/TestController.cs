@@ -8,7 +8,6 @@ namespace FiltersSample.Controllers
     #region snippet
     public class TestController : Controller
     {
-
         [SampleActionFilter]
         public IActionResult FilterTest2()
         {
@@ -25,11 +24,6 @@ namespace FiltersSample.Controllers
         {
             // Do something after the action executes.
             base.OnActionExecuted(context);
-        }
-
-        public override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
-        {
-            return base.OnActionExecutionAsync(context, next);
         }
     }
     #endregion

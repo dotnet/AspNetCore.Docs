@@ -142,12 +142,12 @@ This sequence shows:
 ### Controller and Razor Page level filters
 
 Every controller that inherits from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class includes[Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*),  [Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*)[Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
-`OnActionExecuted` methods. `Controller.OnActionExecuting` and `Controller.OnActionExecuted`:
+`OnActionExecuted` methods. These methods:
 
 * Wrap the filters that run for a given action.
 * `OnActionExecuting` is called before any of the action's filters.
 * `OnActionExecuted` is called after all of the action filters.
-* `OnActionExecutionAsync` is called before any of the action's filters. Code in the filter after `Next` is invoked runs after the action method.
+* `OnActionExecutionAsync` is called before any of the action's filters. Code in the filter after `next` runs after the action method.
 
 For example, in the download sample, `MySampleActionFilter` is applied globally in startup.
 
@@ -156,19 +156,19 @@ The `TestController`:
 * Applies the `SampleActionFilterAttribute` (`[SampleActionFilter]`) to the `FilterTest2` action:
 * Overrides `OnActionExecuting` and `OnActionExecuted`.
 
-[!code-csharp[](./filters/sample/FiltersSample/Controllers/TestController.cs?name=snippet&highlight=1)]
+[!code-csharp[](./filters/sample/FiltersSample/Controllers/TestController.cs?name=snippet)]
 
 Navigating to `https://localhost:5001/Test/FilterTest2` runs the following code:
 
 * `TestController.OnActionExecuting`
   * `MySampleActionFilter.OnActionExecuting`
     * `SampleActionFilterAttribute.OnActionExecuting`
-      * `TestController.FilterTest`
+      * `TestController.FilterTest2`
     * `SampleActionFilterAttribute.OnActionExecuted`
   * `MySampleActionFilter.OnActionExecuted`
 * `TestController.OnActionExecuted`
 
-For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter)
+For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods)
 
 ### Overriding the default order
 
@@ -214,20 +214,6 @@ Filters can be added by type or by instance. If an instance is added, that insta
 
 * An instance is created for each request.
 * Any constructor dependencies are populated by [dependency injection](xref:fundamentals/dependency-injection) (DI).
-
-<!-- Review
-
-Should the following be removed?  Does it add value?
-
-Consider adding `MyFilter` by type:
-`Filters.Add(typeof(MyFilter));`
-
-Adding a filter by type is equivalent to `filters.Add(new TypeFilterAttribute(typeof(MyFilter)))`.
--->
-Consider adding `MyFilter` by type:
-`Filters.Add(typeof(MyFilter));`
-
-Adding a filter by type is equivalent to `filters.Add(new TypeFilterAttribute(typeof(MyFilter)))`.
 
 Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by [dependency injection](xref:fundamentals/dependency-injection) (DI). Constructor dependencies cannot be provided by DI because:
 
@@ -378,10 +364,10 @@ To short-circuit, assign <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingC
 
 The framework provides an abstract <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> that can be subclassed.
 
-The `OnActionExecuted` action filter can be used to:
+The `OnActionExecuting` action filter can be used to:
 
 * Validate model state.
-* Return an error if the state is invalid:
+* Return an error if the state is invalid.
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet)]
 
@@ -394,7 +380,7 @@ The `OnActionExecuted` method runs after the action method:
   * Effectively handles an exception.
   * `ActionExecutedContext.Result` is executed as if it were returned normally from the action method.
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet2)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet2&higlight=12-99)]
 
 ## Exception filters
 
