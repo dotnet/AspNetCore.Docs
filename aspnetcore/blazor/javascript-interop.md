@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2019
+ms.date: 05/13/2019
 uid: blazor/javascript-interop
 ---
 # Blazor JavaScript interop
@@ -28,11 +28,11 @@ For server-side apps:
 
 The following example is based on [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), an experimental JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
-Inside the `<head>` element of *wwwroot/index.html*, provide a function that uses `TextDecoder` to decode a passed array:
+Inside the `<head>` element of *wwwroot/index.html* (Blazor client-side) or *Pages/\_Host.cshtml* (Blazor server-side), provide a function that uses `TextDecoder` to decode a passed array:
 
 [!code-html[](javascript-interop/samples_snapshot/index-script.html)]
 
-JavaScript code, such as the code shown in the preceding example, can also be loaded from a JavaScript file (*.js*) with a reference to the script file in the *wwwroot/index.html* file:
+JavaScript code, such as the code shown in the preceding example, can also be loaded from a JavaScript file (*.js*) with a reference to the script file:
 
 ```html
 <script src="exampleJsInterop.js"></script>
@@ -71,9 +71,15 @@ In the client-side sample app that accompanies this topic, two JavaScript functi
 
 [!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
-Place the `<script>` tag that references the JavaScript file in the *wwwroot/index.html* file:
+Place the `<script>` tag that references the JavaScript file in the *wwwroot/index.html* file (Blazor client-side) or *Pages/\_Host.cshtml* file (Blazor server-side).
+
+*wwwroot/index.html* (Blazor client-side):
 
 [!code-html[](./common/samples/3.x/BlazorSample/wwwroot/index.html?highlight=15)]
+
+*Pages/\_Host.cshtml* (Blazor server-side):
+
+[!code-cshtml[](javascript-interop/samples_snapshot/_Host.cshtml?highlight=29)]
 
 Don't place a `<script>` tag in a component file because the `<script>` tag can't be updated dynamically.
 
