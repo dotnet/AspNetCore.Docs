@@ -50,7 +50,7 @@ In the preceding example, the model binding targets are method parameters that a
 
 ## Targets
 
-The targets that model binding tries to find values for include the following:
+Model binding tries to find values for the following kinds of targets:
 
 * Parameters of the controller action method that a request is routed to.
 * Parameters of the Razor Pages handler method that a request is routed to. 
@@ -70,7 +70,7 @@ Available in ASP.NET Core 2.1 and later.  Can be applied to a controller or `Pag
 
 ### Model binding for HTTP GET requests
 
-By default, the `[BindProperty]` and `[BindProperties]` attributes have no effect for HTTP GET requests. Typically, all an action or handler method needs for a GET request is a record ID parameter. The record ID is used to look up the item in the database, and there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
+By default, the `[BindProperty]` and `[BindProperties]` attributes have no effect for HTTP GET requests. Typically, all you need for a GET request is a record ID parameter. The record ID is used to look up the item in the database. Therefore, there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
 
 [!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Index.cshtml.cs?name=snippet_SupportsGet)]
 
@@ -100,7 +100,7 @@ If the default behavior doesn't give the right results, you can use one of the f
 
 ### [FromHeader] attribute
 
-Gets values from HTTP headers. For some headers you can't make a C# parameter or property name that matches the header name because the header name has a hyphen in it.  In these cases, provide the header name to the attribute constructor:
+Gets values from HTTP headers. For some headers, you can't make a C# parameter or property name that matches the header name because the header name has a hyphen in it.  In these cases, provide the header name to the attribute constructor:
 
 [!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Index.cshtml.cs?name=snippet_FromHeader)]
 
@@ -122,7 +122,7 @@ Gets values from posted form fields.
 
 Gets values from the request body.  The data is parsed by using input formatters specific to the content type of the request. Input formatters are explained [later in this article](#input-formatters).
 
-Don't apply `[FromBody]` to more than one one parameter per action method. The ASP.NET Core runtime delegates the responsibility of reading the request stream to the input formatter. Once the request stream is read, it's no longer available to be read again for binding other `[FromBody]` parameters.
+Don't apply `[FromBody]` to more than one parameter per action method. The ASP.NET Core runtime delegates the responsibility of reading the request stream to the input formatter. Once the request stream is read, it's no longer available to be read again for binding other `[FromBody]` parameters.
 
 ### Additional sources
 
@@ -140,7 +140,7 @@ The code shown puts the custom value provider after all the built-in value provi
 
 ## No source for a model property
 
-By default, a model state error isn't created if no value is found for a model property in posted form fields. The property is set to null or a default value:
+By default, a model state error isn't created if no value is found for a model property. The property is set to null or a default value:
 
 * Nullable simple types are set to `null`.
 * Non-nullable value types are set to `default(T)`. For example, a parameter `int id` is set to 0.
@@ -148,6 +148,8 @@ By default, a model state error isn't created if no value is found for a model p
 * Arrays are set to `Array.Empty<T>()`, except that `byte[]` arrays are set to `null`.
 
  If model state should be invalidated when nothing is found in form fields for a model property, use the [[BindRequired] attribute](#bindrequired-attribute).
+
+Note that this behavior applies to model binding from posted form data, not to JSON data in a request body. Request body data is handled by [input formatters](#input-formatters).
 
 ## Type conversion errors
 
@@ -159,11 +161,11 @@ In a Razor page, redisplay the page with an error message:
 
 [!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-Client-side validation catches most bad data that would otherwise be submitted to a Razor page form. This validation makes it hard to trigger the preceding highlighted code even deliberately. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form to show how this code for redisplaying the page works when data conversion errors occur.
+Client-side validation catches most bad data that would otherwise be submitted to a Razor Pages form. This validation makes it hard to trigger the preceding highlighted code. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form. This button shows how the code for redisplaying the page works when data conversion errors occur.
 
 When the page is redisplayed by the preceding code, the invalid input is not shown in the form field. This is because the model property has been set to null or a default value. The invalid input does appear in an error message. But if you want to redisplay the bad data in the form field, consider making the model property a string and doing the data conversion manually.
 
-Making the model property a string and doing type conversion yourself is also the recommended strategy if you don't want type conversion errors to result in model state errors.
+The same strategy is recommended if you don't want type conversion errors to result in model state errors. In that case, make the model property a string.
 
 ## Simple types
 
@@ -189,7 +191,7 @@ The simple types that the model binder can convert source strings into include t
 
 A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor. 
 
-For each property of the complex type, model binding looks through the sources for the name pattern *prefix.property_name*. If nothing is found it looks for just *property_name* without the prefix.
+For each property of the complex type, model binding looks through the sources for the name pattern *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix.
 
 For binding to a parameter, the prefix is the parameter name. For binding to a `PageModel` public property, the prefix is the public property name. Some attributes have a `Prefix` property that lets you override the default usage of parameter or property name.
 
