@@ -110,10 +110,10 @@ Use `Microsoft.AspNetCore.Components.IUriHelper` to work with URIs and navigatio
 | Member | Description |
 | ------ | ----------- |
 | `GetAbsoluteUri` | Gets the current absolute URI. |
-| `GetBaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, this corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor client-side) or *Pages/\_Host.cshtml* (Blazor server-side). |
+| `GetBaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `GetBaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor client-side) or *Pages/\_Host.cshtml* (Blazor server-side). |
 | `NavigateTo` | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
 | `OnLocationChanged` | An event that fires when the navigation location has changed. |
-| `ToAbsoluteUri` | Converts a relative URI into an absolute URI by resolving the URI relative to the current absolute URI. |
+| `ToAbsoluteUri` | Converts a relative URI into an absolute URI. |
 | `ToBaseRelativePath` | Given a base URI (for example, a URI previously returned by `GetBaseUri`), converts an absolute URI into a URI relative to the base URI prefix. |
 
 The following component navigates to the app's Counter component when the button is selected:
