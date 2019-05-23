@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,7 +37,12 @@ namespace ModelBindingSample
             services.AddMvc(options =>
             {
                 options.ValueProviderFactories.Add(new CookieValueProviderFactory());
+                options.ModelMetadataDetailsProviders.Add(
+                    new ExcludeBindingMetadataProvider(typeof(System.Version)));
+                options.ModelMetadataDetailsProviders.Add(
+                    new SuppressChildValidationMetadataProvider(typeof(System.Guid)));
             })
+            .AddXmlSerializerFormatters()
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             #endregion
 
