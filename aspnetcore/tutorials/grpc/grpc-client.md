@@ -112,7 +112,7 @@ GrpcGreeter files:
 * *Services* folder: Contains the implementation of the `Greeter` service.
 * *appSettings.json*: Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
 * *Program.cs*: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/web-host>.
-* *Startup.cs*: Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup>).
+* *Startup.cs*: Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
 
 ## Create the gRPC client in a .NET console app
 
