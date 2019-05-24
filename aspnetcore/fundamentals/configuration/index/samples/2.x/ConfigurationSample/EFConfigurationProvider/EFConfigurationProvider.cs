@@ -8,11 +8,6 @@ using ConfigurationSample.Models;
 namespace ConfigurationSample.EFConfigurationProvider
 {
     #region snippet1
-    // using System.Collections.Generic;
-    // using System.Linq;
-    // using Microsoft.EntityFrameworkCore;
-    // using Microsoft.Extensions.Configuration;
-
     public class EFConfigurationProvider : ConfigurationProvider
     {
         public EFConfigurationProvider(Action<DbContextOptionsBuilder> optionsAction)

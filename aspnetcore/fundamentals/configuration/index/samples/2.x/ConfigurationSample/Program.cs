@@ -9,8 +9,6 @@ using System.Collections.Generic;
 namespace ConfigurationSample
 {
     #region snippet_Program
-    // using Microsoft.Extensions.Configuration;
-
     public class Program
     {
         public static Dictionary<string, string> arrayDict = 

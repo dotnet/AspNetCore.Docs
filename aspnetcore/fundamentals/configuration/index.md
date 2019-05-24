@@ -22,7 +22,11 @@ App configuration in ASP.NET Core is based on key-value pairs established by *co
 * In-memory .NET objects
 * Settings files
 
-Configuration packages for common configuration provider scenarios are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+Configuration packages for common configuration provider scenarios are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Code examples that follow and in the sample app rely on using the <xref:Microsoft.Extensions.Configuration> namespace:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+```
 
 The *options pattern* is an extension of the configuration concepts described in this topic. Options uses classes to represent groups of related settings. For more information on using the options pattern, see <xref:fundamentals/configuration/options>.
 
@@ -97,8 +101,6 @@ Configuration providers that implement change detection have the ability to relo
 <xref:Microsoft.Extensions.Configuration.IConfiguration> is available in the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) container. <xref:Microsoft.Extensions.Configuration.IConfiguration> can be injected into a Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> to obtain configuration for the class:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class IndexModel : PageModel
 {
     private readonly IConfiguration _config;
@@ -163,7 +165,7 @@ This sequence of providers is put into place when you initialize a new <xref:Mic
 
 Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration providers in addition to those added automatically by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>:
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=22)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=20)]
 
 Configuration supplied to the app in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> is available during the app's startup, including `Startup.ConfigureServices`. For more information, see the [Access configuration during startup](#access-configuration-during-startup) section.
 
@@ -190,8 +192,6 @@ Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> 
 `AddCommandLine` has already been called by `CreateDefaultBuilder`. If you need to provide app configuration and still be able to override that configuration with command-line arguments, call the app's additional providers in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> and call `AddCommandLine` last.
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Program
 {
     public static void Main(string[] args)
@@ -213,8 +213,6 @@ public class Program
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var config = new ConfigurationBuilder()
     // Call additional providers here as needed.
     // Call AddCommandLine last to allow arguments to override other configuration.
@@ -270,8 +268,6 @@ Switch mappings dictionary key rules:
 Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Program
 {
     public static readonly Dictionary<string, string> _switchMappings = 
@@ -345,8 +341,6 @@ Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> 
 If you need to provide app configuration from additional environment variables, call the app's additional providers in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> and call `AddEnvironmentVariables` with the prefix.
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Program
 {
     public static void Main(string[] args)
@@ -371,8 +365,6 @@ public class Program
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var config = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .Build();
@@ -404,8 +396,6 @@ To keep the list of environment variables rendered by the app short, the app fil
 If you wish to expose all of the environment variables available to the app, change the `FilteredConfiguration` in *Pages/Index.cshtml.cs* to the following:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 FilteredConfiguration = _config.AsEnumerable();
 ```
 
@@ -414,8 +404,6 @@ FilteredConfiguration = _config.AsEnumerable();
 Environment variables loaded into the app's configuration are filtered when you supply a prefix to the `AddEnvironmentVariables` method. For example, to filter environment variables on the prefix `CUSTOM_`, supply the prefix to the configuration provider:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var config = new ConfigurationBuilder()
     .AddEnvironmentVariables("CUSTOM_")
     .Build();
@@ -473,8 +461,6 @@ Overloads permit specifying:
 Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Program
 {
     public static void Main(string[] args)
@@ -499,8 +485,6 @@ The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigura
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddIniFile("config.ini", optional: true, reloadOnChange: true)
@@ -569,8 +553,6 @@ The JSON Configuration Provider is established first. Therefore, user secrets, e
 Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration for files other than *appsettings.json* and *appsettings.{Environment}.json*:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Program
 {
     public static void Main(string[] args)
@@ -595,8 +577,6 @@ The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigura
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("config.json", optional: true, reloadOnChange: true)
@@ -641,8 +621,6 @@ The root node of the configuration file is ignored when the configuration key-va
 Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Program
 {
     public static void Main(string[] args)
@@ -667,8 +645,6 @@ The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigura
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddXmlFile("config.xml", optional: true, reloadOnChange: true)
@@ -761,8 +737,6 @@ The double-underscore (`__`) is used as a configuration key delimiter in file na
 Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Program
 {
     public static void Main(string[] args)
@@ -788,8 +762,6 @@ The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigura
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var path = Path.Combine(Directory.GetCurrentDirectory(), "path/to/files");
 var config = new ConfigurationBuilder()
     .AddKeyPerFile(directoryPath: path, optional: true)
@@ -812,8 +784,6 @@ The configuration provider can be initialized with an `IEnumerable<KeyValuePair<
 Call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> when building the host to specify the app's configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Program
 {
     public static readonly Dictionary<string, string> _dict = 
@@ -841,8 +811,6 @@ public class Program
 When creating a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> directly, call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> with the configuration:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var dict = new Dictionary<string, string>
     {
         {"MemoryCollectionKey1", "value1"},
@@ -870,8 +838,6 @@ The following example:
 * Stores the value in the `NumberConfig` property for use by the page.
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class IndexModel : PageModel
 {
     public IndexModel(IConfiguration config)
@@ -933,8 +899,6 @@ When the file is read into configuration, the following unique hierarchical keys
 To return an <xref:Microsoft.Extensions.Configuration.IConfigurationSection> containing only the key-value pairs in `section1`, call `GetSection` and supply the section name:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var configSection = _config.GetSection("section1");
 ```
 
@@ -943,8 +907,6 @@ The `configSection` doesn't have a value, only a key and a path.
 Similarly, to obtain the values for keys in `section2:subsection0`, call `GetSection` and supply the section path:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var configSection = _config.GetSection("section2:subsection0");
 ```
 
@@ -960,8 +922,6 @@ A call to [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.I
 * `subsection1`
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var configSection = _config.GetSection("section2");
 
 var children = configSection.GetChildren();
@@ -972,8 +932,6 @@ var children = configSection.GetChildren();
 Use [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to determine if a configuration section exists:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var sectionExists = _config.GetSection("section2:subsection2").Exists();
 ```
 
@@ -1025,8 +983,6 @@ The sample app has a *tvshow.xml* file containing the configuration data:
 Configuration is bound to the entire `TvShow` object graph with the `Bind` method. The bound instance is assigned to a property for rendering:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var tvShow = new TvShow();
 _config.GetSection("tvshow").Bind(tvShow);
 TvShow = tvShow;
@@ -1061,7 +1017,7 @@ Consider the configuration keys and values shown in the following table.
 
 These keys and values are loaded in the sample app using the Memory Configuration Provider:
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,25)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,23)]
 
 The array skips a value for index &num;3. The configuration binder isn't capable of binding null values or creating null entries in bound objects, which becomes clear in a moment when the result of binding this array to an object is demonstrated.
 
@@ -1072,8 +1028,6 @@ In the sample app, a POCO class is available to hold the bound configuration dat
 The configuration data is bound to the object:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 var arrayExample = new ArrayExample();
 _config.GetSection("array").Bind(arrayExample);
 ```
@@ -1109,8 +1063,6 @@ The missing configuration item for index &num;3 can be supplied before binding t
 In <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 config.AddJsonFile("missing_value.json", optional: false, reloadOnChange: false);
 ```
 
@@ -1200,15 +1152,13 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=32-33)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=30-31)]
 
 ## Access configuration during startup
 
 Inject `IConfiguration` into the `Startup` constructor to access configuration values in `Startup.ConfigureServices`. To access configuration in `Startup.Configure`, either inject `IConfiguration` directly into the method or use the instance from the constructor:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
-
 public class Startup
 {
     private readonly IConfiguration _config;
