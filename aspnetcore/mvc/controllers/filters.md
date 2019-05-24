@@ -16,7 +16,6 @@ By [Kirk Larkin](https://github.com/serpent5), [Rick Anderson](https://twitter.c
 Built-in filters handle tasks such as:
 
 * Authorization (preventing access to resources a user isn't authorized for).
-* Ensuring that all requests use HTTPS.
 * Response caching (short-circuiting the request pipeline to return a cached response).
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging.  Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
