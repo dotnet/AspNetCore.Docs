@@ -1,12 +1,14 @@
-﻿using Grpc.Core;
+﻿#region snippet2
 using System;
 using System.Threading.Tasks;
 using Greet;
+using Grpc.Core;
 
 namespace GrpcGreeterClient
 {
     class Program
     {
+        #region snippet
         static async Task Main(string[] args)
         {
             // The port number here must match the port of the gRPC server
@@ -22,5 +24,7 @@ namespace GrpcGreeterClient
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
+        #endregion
     }
 }
+#endregion
