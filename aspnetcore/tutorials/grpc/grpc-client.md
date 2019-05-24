@@ -110,11 +110,11 @@ GrpcGreeter files:
 
 * *greet.proto*: The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see <xref:grpc/index>.
 * *Services* folder: Contains the implementation of the `Greeter` service.
-* *appSettings.json*:Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
+* *appSettings.json*: Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
 * *Program.cs*: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/web-host>.
-* Startup.cs: Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
+* *Startup.cs*: Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
 
-## Create the gRPC client in a .NET console application
+## Create the gRPC client in a .NET console app
 
 ## [Visual Studio](#tab/visual-studio)
 
@@ -170,10 +170,10 @@ Install-Package Grpc.Tools
 ### Manage NuGet Packages option to install packages
 
 * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
-* Set the **Package source** to "nuget.org"
-* Enter "Grpc.Core" in the search box
-* Select the "Grpc.Core" package from the **Browse** tab and click **Install**
-* Repeat for Google.Protobuf and Grpc.Tools
+* Select the **Browse** tab.
+* Enter **Grpc.Core** in the search box.
+* Select the **Grpc.Core** package from the **Browse** tab and select **Install**.
+* Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 
@@ -187,11 +187,10 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
-* Set the **Add Packages** window's **Source** drop-down to "nuget.org"
-* Enter "Grpc.Core" in the search box
-* Select the "Grpc.Core" package from the results pane and click **Add Package**
-* Repeat for Google.Protobuf and Grpc.Tools
+* Right-click the **Packages** folder in **Solution Pad** > **Add Packages**
+* Enter **Grpc.Core** in the search box.
+* Select the **Grpc.Core** package from the results pane and select **Add Package**
+* Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
 ---
 
@@ -225,9 +224,9 @@ Right click the project and select **Tools > Edit File**.
 
 Build the client project to trigger the generation of the C# client assets.
 
-## Create  GreeterClient
+## Create the greater client
 
-Build the project to create the types in the **Greeter** namespace. These types are generated automatically by the build process.
+Build the project to create the types in the **Greeter** namespace. The `Greeter` types are generated automatically by the build process.
 
 Update the gRPC client *Program.cs* file with the following code:
 
@@ -235,21 +234,18 @@ Update the gRPC client *Program.cs* file with the following code:
 
 *Program.cs* contains the entry point and logic for the gRPC client.
 
-The GreeterClient is created by instantiating a `Channel` containing the information for creating the connection to the gRPC service and using it to construct the `GreeterClient`:
+The greater client is created by:
+
+* Instantiating a `Channel` containing the information for creating the connection to the gRPC service.
+* Using the `Channel` to construct the greater client `GreeterClient`:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
-The GreeterClient calls the asynchronous `SayHello` method:
+The `GreeterClient` calls the asynchronous `SayHello` method, and the result of the `SayHello` call is displayed:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-8)]
+[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-9)]
 
-The result of the `SayHello` call is displayed:
-
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=9)]
-
-The `Channel` used by the client should be shut down when operations have finished to release all resources:
-
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=11)]
+Shut down the `Channel` used by the client when operations have finished to release all resources.
 
 ## Test the gRPC client with the gRPC Greeter service
 
