@@ -6,6 +6,6 @@ var connection = new HubConnectionBuilder()
         logging.AddConsole();
 
         // This will set ALL logging to Debug level
-        logging.SetMinimumLevel(LogLevel.Debug)
+        logging.SetMinimumLevel(LogLevel.Debug);
     })
     .Build();
