@@ -15,13 +15,10 @@ namespace GrpcGreeterClient
             var channel = new Channel("localhost:50051", 
                                        ChannelCredentials.Insecure);
             var client = new Greeter.GreeterClient(channel);
-
             var reply = await client.SayHelloAsync(
                               new HelloRequest { Name = "GreeterClient" });
             Console.WriteLine("Greeting: " + reply.Message);
-
             await channel.ShutdownAsync();
-
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
