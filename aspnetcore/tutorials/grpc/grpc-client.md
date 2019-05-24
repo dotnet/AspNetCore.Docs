@@ -239,11 +239,11 @@ The GreeterClient is created by instantiating a `Channel` containing the informa
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
-The GreeterClient contains the unary call `SayHello` which can be invoked asynchronously:
+The GreeterClient calls the asynchronous `SayHello` method:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-8)]
 
-The results of the `SayHello` call is stored in `reply` which can then be displayed:
+The result of the `SayHello` call is displayed:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=9)]
 
