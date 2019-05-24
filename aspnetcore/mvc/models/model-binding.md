@@ -315,7 +315,7 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
-* The following format is supported only in query strings:
+* The following format is supported only in form data:
 
   ```
   selectedCourses[]=1050&selectedCourses[]=2000
@@ -355,13 +355,6 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
 
   ```
   [0].Key=1050&[0].Value=Chemistry&[1].Key=2000&[1].Value=Economics
-  ```
-
-* The following format is supported only in query strings:
-
-  ```
-  selectedCourses[].Key=1050&selectedCourses[].Value=Chemistry&
-  selectedCourses[].Key=2000&selectedCourses[].Value=Economics
   ```
 
 * For all of the preceding example formats, model binding passes a dictionary of two items to the `selectedCourses` parameter:

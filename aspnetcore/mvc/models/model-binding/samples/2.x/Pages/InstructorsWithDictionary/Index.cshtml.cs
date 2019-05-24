@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
+namespace ModelBindingSample.Pages.InstructorsWithDictionary
 {
     public class IndexModel : InstructorsPageModel
     {

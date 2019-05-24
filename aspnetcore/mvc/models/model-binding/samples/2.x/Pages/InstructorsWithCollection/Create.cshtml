@@ -5,7 +5,7 @@
     ViewData["Title"] = "Create";
 }
 @{
-    int format = 0; 
+    int format = 0;
 }
 
 <h2>Create</h2>
@@ -48,6 +48,7 @@
                                         format = 1;
                                         //format 1: "selectedCourses=1050&selectedCourses=2000
                                         //format 2: "selectedCourses[0]=1050&selectedCourses[1]=2000
+                                        //format 3: "selectedCourses[]=1050&selectedCourses[]=2000
                                         if (format == 1)
                                         {
                                             <input type="checkbox"
@@ -64,6 +65,14 @@
                                                    @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
                                             @course.CourseID @:  @course.Title
                                         }
+                                        else if (format == 3)
+                                        {
+                                            <input type="checkbox"
+                                                   name="selectedCourses[]"
+                                                   value="@course.CourseID"
+                                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                            @course.CourseID @:  @course.Title
+                                        }
                                         cnt++;
                                     @:</td>
                                 }
@@ -74,7 +83,6 @@
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
-                    <input type="submit" value="Submit with Invalid Date" class="btn btn-danger" onclick="var hireDate = document.getElementById('Instructor_HireDate');hireDate.type = 'text';hireDate.value = '2019-13-32';" />
                 </div>
             </form>
         </div>

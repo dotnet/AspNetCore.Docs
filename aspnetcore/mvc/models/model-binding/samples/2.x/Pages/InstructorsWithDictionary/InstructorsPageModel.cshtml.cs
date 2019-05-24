@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
+namespace ModelBindingSample.Pages.InstructorsWithDictionary
 {
     public class InstructorsPageModel : PageModel
     {

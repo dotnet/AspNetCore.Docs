@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
+namespace ModelBindingSample.Pages.InstructorsWithDictionary
 {
     public class EditModel : InstructorsPageModel
     {

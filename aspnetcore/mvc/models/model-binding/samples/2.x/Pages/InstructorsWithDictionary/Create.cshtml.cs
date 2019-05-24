@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
+namespace ModelBindingSample.Pages.InstructorsWithDictionary
 {
     public class CreateModel : InstructorsPageModel
     {
@@ -14,11 +14,12 @@ namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
 
         public IActionResult OnGet()
         {
+
             Instructor = new InstructorWithDictionary();
             Instructor.Courses = new Dictionary<string, string>();
-            Instructor.Courses["0"] = "New course";
-            Instructor.Courses["1"] = "New course";
-            Instructor.Courses["2"] = "New course";
+            Instructor.Courses["1000"] = "New course A";
+            Instructor.Courses["2000"] = "New course B";
+            Instructor.Courses["3000"] = "New course C";
 
             return Page();
         }
@@ -26,7 +27,7 @@ namespace ModelBindingSample.Pages.InstructorsWithCollectionWithDictionary
         [BindProperty]
         public InstructorWithDictionary Instructor { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(Dictionary<string, string> selectedCourses)
         {
             if (!ModelState.IsValid)
             {
