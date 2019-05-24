@@ -102,7 +102,7 @@ Filter attributes:
 A filter can be added to the pipeline at one of three *scopes*:
 
 * Using an attribute on an action.
-* Using an attribute on an controller.
+* Using an attribute on a controller.
 * Globally for all controllers and actions as shown in the following code:
 
 [!code-csharp[](./filters/sample/FiltersSample/StartupGF.cs?name=snippet_ConfigureServices)]
@@ -140,7 +140,7 @@ This sequence shows:
 
 ### Controller and Razor Page level filters
 
-Every controller that inherits from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class includes[Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*),  [Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*)[Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
+Every controller that inherits from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class includes [Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*),  [Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*), and [Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
 `OnActionExecuted` methods. These methods:
 
 * Wrap the filters that run for a given action.
@@ -167,7 +167,7 @@ Navigating to `https://localhost:5001/Test/FilterTest2` runs the following code:
   * `MySampleActionFilter.OnActionExecuted`
 * `TestController.OnActionExecuted`
 
-For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods)
+For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
 
 ### Overriding the default order
 
