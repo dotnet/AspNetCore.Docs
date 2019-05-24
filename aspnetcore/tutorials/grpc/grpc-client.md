@@ -1,7 +1,7 @@
 ---
-title: "Tutorial: Create a .NET Core gRPC client"
+title: Tutorial: Create a .NET Core gRPC client and server in ASP.NET Core
 author: juntaoluo
-description: This series of tutorials shows how to create a gRPC Service on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
+description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 5/30/2019
@@ -22,7 +22,7 @@ In this tutorial, you:
 > [!div class="checklist"]
 > * Create a gRPC Server.
 > * Create a gRPC client.
-> * Test the gRPC client service the gRPC Greeter service.
+> * Test the gRPC client service with the gRPC Greeter service.
 
 [!INCLUDE[](~/includes/net-core-prereqs-all-3.0.md)]
 
@@ -198,29 +198,29 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Create a **Protos** folder in the gRPC client project.
 * Copy the **Protos\greet.proto** file from the gRPC Greeter service to the gRPC client project.
-* Edit the *GrpcGreeterClient.csproj* project file.
+* Edit the *GrpcGreeterClient.csproj* project file:
 
-# [Visual Studio](#tab/visual-studio) 
+  # [Visual Studio](#tab/visual-studio) 
 
-Right-clicking the project and selecting the **Edit GrpcGreeterClient.csproj** option from the dropdown menu.
+  Right-click the project and select the **Edit GrpcGreeterClient.csproj**.
 
-# [Visual Studio Code](#tab/visual-studio-code) 
+  # [Visual Studio Code](#tab/visual-studio-code) 
 
-Select the *GrpcGreeterClient.csproj* file.
+  Select the *GrpcGreeterClient.csproj* file.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+  # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Right click the project and select **Tools > Edit File**.
+  Right click the project and select **Tools > Edit File**.
 
-------
+  ------
 
 * Add the **greet.proto** file to the `<Protobuf>` item group of the GrpcGreeterClient project file:
 
-```XML
+  ```XML
   <ItemGroup>
     <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
   </ItemGroup>
-```
+  ```
 
 Build the client project to trigger the generation of the C# client assets.
 
@@ -241,7 +241,7 @@ The greater client is created by:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
-The `GreeterClient` calls the asynchronous `SayHello` method, and the result of the `SayHello` call is displayed:
+The `GreeterClient` calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-9)]
 
@@ -263,7 +263,7 @@ Shut down the `Channel` used by the client when operations have finished to rele
 
 ---
 
-The client sends a greeting to the service with a message containing its name "GreeterClient". The service will send a message "Hello GreeterClient" as a response that is displayed in the command prompt.
+The client sends a greeting to the service with a message containing its name "GreeterClient". The service sends the message "Hello GreeterClient" as a response. The "Hello GreeterClient" response is displayed in the command prompt:
 
 ```console
 Greeting: Hello GreeterClient
@@ -290,3 +290,11 @@ info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 78.32260000000001ms 200 application/grpc
 ```
+
+### Next steps
+
+## Additional resources
+
+* <xref:grpc/index>
+* <xref:grpc/basics>
+* <xref:grpc/migration>
