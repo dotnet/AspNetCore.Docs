@@ -11,7 +11,7 @@ namespace GrpcGreeterClient
         #region snippet
         static async Task Main(string[] args)
         {
-            // The port number here must match the port of the gRPC server
+            // The port number(50051) must match the port of the gRPC server.
             var channel = new Channel("localhost:50051", 
                                        ChannelCredentials.Insecure);
             var client = new Greeter.GreeterClient(channel);
