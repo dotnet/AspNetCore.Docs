@@ -22,7 +22,7 @@ App configuration in ASP.NET Core is based on key-value pairs established by *co
 * In-memory .NET objects
 * Settings files
 
-Configuration packages for common configuration provider scenarios are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Code examples that follow and in the sample app rely on using the <xref:Microsoft.Extensions.Configuration> namespace:
+Configuration packages for common configuration provider scenarios are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Code examples that follow and in the sample app use the <xref:Microsoft.Extensions.Configuration> namespace:
 
 ```csharp
 using Microsoft.Extensions.Configuration;
