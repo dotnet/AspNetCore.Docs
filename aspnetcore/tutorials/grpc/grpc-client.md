@@ -143,7 +143,7 @@ Follow the instructions [here](/dotnet/core/tutorials/using-on-mac-vs-full-solut
 
 ---
 
-## Add required packages
+### Add required packages
 
 Add the following packages to the gRPC client project:
 
@@ -155,7 +155,7 @@ Add the following packages to the gRPC client project:
 
 Install the packages using either the Package Manager Console (PMC) or Manage NuGet Package
 
-###  PMC option to install packages
+####  PMC option to install packages
 
 * From Visual Studio, select **Tools** > **NuGet Package Manager** > **Package Manager Console**
 * From the **Package Manager Console** window, navigate to the directory in which the *GrpcGreeterClient.csproj* file exists.
@@ -167,7 +167,7 @@ Install-Package Grpc.Protobuf
 Install-Package Grpc.Tools
 ```
 
-### Manage NuGet Packages option to install packages
+#### Manage NuGet Packages option to install packages
 
 * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
 * Select the **Browse** tab.
@@ -194,7 +194,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 ---
 
-## Add greet.proto
+### Add greet.proto
 
 * Create a **Protos** folder in the gRPC client project.
 * Copy the **Protos\greet.proto** file from the gRPC Greeter service to the gRPC client project.
@@ -224,7 +224,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 Build the client project to trigger the generation of the C# client assets.
 
-## Create the greater client
+### Create the greater client
 
 Build the project to create the types in the **Greeter** namespace. The `Greeter` types are generated automatically by the build process.
 
@@ -237,11 +237,11 @@ Update the gRPC client *Program.cs* file with the following code:
 The greater client is created by:
 
 * Instantiating a `Channel` containing the information for creating the connection to the gRPC service.
-* Using the `Channel` to construct the greater client `GreeterClient`:
+* Using the `Channel` to construct the greater client (`client`):
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
-The `GreeterClient` calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
+The greater client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-9)]
 
@@ -249,12 +249,12 @@ Shut down the `Channel` used by the client when operations have finished to rele
 
 ## Test the gRPC client with the gRPC Greeter service
 
-# [Visual Studio](#tab/visual-studio)
+### [Visual Studio](#tab/visual-studio)
 
 * In the Greeter service, press Ctrl+F5 to start the server without the debugger.
 * In the GrpcGreeterClient project, press Ctrl+F5 to start the server without the debugger.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+### [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Start the Greeter service.
 * Start the client.
@@ -292,8 +292,6 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 ```
 
 ### Next steps
-
-## Additional resources
 
 * <xref:grpc/index>
 * <xref:grpc/basics>
