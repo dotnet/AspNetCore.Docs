@@ -9,9 +9,12 @@ using System.Collections.Generic;
 namespace ConfigurationSample
 {
     #region snippet_Program
+    // using Microsoft.Extensions.Configuration;
+
     public class Program
     {
-        public static Dictionary<string, string> arrayDict = new Dictionary<string, string>
+        public static Dictionary<string, string> arrayDict = 
+            new Dictionary<string, string>
             {
                 {"array:entries:0", "value0"},
                 {"array:entries:1", "value1"},
@@ -31,10 +34,14 @@ namespace ConfigurationSample
                 {
                     config.SetBasePath(Directory.GetCurrentDirectory());
                     config.AddInMemoryCollection(arrayDict);
-                    config.AddJsonFile("json_array.json", optional: false, reloadOnChange: false);
-                    config.AddJsonFile("starship.json", optional: false, reloadOnChange: false);
-                    config.AddXmlFile("tvshow.xml", optional: false, reloadOnChange: false);
-                    config.AddEFConfiguration(options => options.UseInMemoryDatabase("InMemoryDb"));
+                    config.AddJsonFile(
+                        "json_array.json", optional: false, reloadOnChange: false);
+                    config.AddJsonFile(
+                        "starship.json", optional: false, reloadOnChange: false);
+                    config.AddXmlFile(
+                        "tvshow.xml", optional: false, reloadOnChange: false);
+                    config.AddEFConfiguration(
+                        options => options.UseInMemoryDatabase("InMemoryDb"));
                     config.AddCommandLine(args);
                 })
                 .UseStartup<Startup>();

@@ -42,16 +42,22 @@ namespace ConfigurationSample.Pages
                     i => configEntryFilter.Any(prefix => kvp.Key.StartsWith(prefix))));
 
             #region snippet_starship
+            // using Microsoft.Extensions.Configuration;
+
             var starship = new Starship();
             _config.GetSection("starship").Bind(starship);
             Starship = starship;
             #endregion
 
             #region snippet_tvshow
+            // using Microsoft.Extensions.Configuration;
+
             TvShow = _config.GetSection("tvshow").Get<TvShow>();
             #endregion
 
             #region snippet_array
+            // using Microsoft.Extensions.Configuration;
+
             ArrayExample = _config.GetSection("array").Get<ArrayExample>();
             #endregion
 
