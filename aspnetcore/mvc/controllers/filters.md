@@ -22,7 +22,7 @@ Custom filters can be created to handle cross-cutting concerns. Examples of cros
 
 This document applies to Razor Pages, API controllers, and controllers with views.
 
-[View or download sample from GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+[View or download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## How filters work
 
@@ -115,14 +115,14 @@ When there are multiple filters for a particular stage of the pipeline, scope de
 
 As a result of filter nesting, the *after* code of filters runs in the reverse order of the *before* code. The filter sequence:
 
-* The *before* code of filters applied globally.
-  * The *before* code of filters applied to controllers.
-    * The *before* code of filters applied to action methods.
-    * The *after* code of filters applied to action methods.
-  * The *after* code of filters applied to controllers.
-* The *after* code of filters applied globally.
+* The *before* code of global filters.
+  * The *before* code of controller filters.
+    * The *before* code of action method filters.
+    * The *after* code of action method filters.
+  * The *after* code of controller filters.
+* The *after* code of global filters.
   
-Here's an example that illustrates the order in which filter methods are called for synchronous Action filters.
+The following example that illustrates the order in which filter methods are called for synchronous action filters.
 
 | Sequence | Filter scope | Filter method |
 |:--------:|:------------:|:-------------:|
@@ -171,7 +171,12 @@ For Razor Pages, see [Implement Razor Page filters by overriding filter methods]
 
 ### Overriding the default order
 
-The default sequence of execution can be overridden by implementing <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>. `IOrderedFilter` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter.Order> property that takes precedence over scope to determine the order of execution. A filter with a lower `Order` value will have its *before* code executed before that of a filter with a higher value of `Order`. A filter with a lower `Order` value will have its *after* code executed after that of a filter with a higher `Order` value. The `Order` property can be set with a constructor parameter:
+The default sequence of execution can be overridden by implementing <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>. `IOrderedFilter` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter.Order> property that takes precedence over scope to determine the order of execution. A filter with a lower `Order` value:
+
+* Runs the *before* code before that of a filter with a higher value of `Order`.
+* Runs the *after* code after that of a filter with a higher `Order` value.
+
+The `Order` property can be set with a constructor parameter:
 
 ```csharp
 [MyFilter(Name = "Controller Level Attribute", Order=1)]
@@ -188,11 +193,11 @@ Consider the same 3 action filters shown in the preceding example. If the `Order
 | 5 | Controller | 1  | `OnActionExecuted` |
 | 6 | Method | 0  | `OnActionExecuted` |
 
-The `Order` property overrides scope when determining the order in which filters will run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. For built-in filters, scope determines order unless `Order` is set to a non-zero value.
+The `Order` property overrides scope when determining the order in which filters run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. For built-in filters, scope determines order unless `Order` is set to a non-zero value.
 
 ## Cancellation and short-circuiting
 
-The filter pipeline can be short-circuited by setting the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext.Result> property on the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext> parameter provided to the filter method. For instance, the following Resource filter prevents the rest of the pipeline from executing.
+The filter pipeline can be short-circuited by setting the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext.Result> property on the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext> parameter provided to the filter method. For instance, the following Resource filter prevents the rest of the pipeline from executing:
 
 <a name="short-circuiting-resource-filter"></a>
 
@@ -359,7 +364,7 @@ For an `IAsyncActionFilter`, a call to the <xref:Microsoft.AspNetCore.Mvc.Filter
 * Executes any subsequent action filters and the action method.
 * Returns `ActionExecutedContext`.
 
-To short-circuit, assign <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> to a result instance and don't call the `ActionExecutionDelegate`.
+To short-circuit, assign <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> to a result instance and don't call `next` (the `ActionExecutionDelegate`).
 
 The framework provides an abstract <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> that can be subclassed.
 
@@ -427,7 +432,7 @@ The kind of result being executed depends on the action. An action returning a v
 
 Result filters are only executed for successful results - when the action or action filters produce an action result. Result filters are not executed when exception filters handle an exception.
 
-The <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting*?displayProperty=fullName> method can short-circuit execution of the action result and subsequent result filters by setting <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=fullName> to `true`. When short-circuiting, write to the response object when short-circuiting to avoid generating an empty response. Throwing an exception in `IResultFilter.OnResultExecuting` will:
+The <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting*?displayProperty=fullName> method can short-circuit execution of the action result and subsequent result filters by setting <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=fullName> to `true`. Write to the response object when short-circuiting to avoid generating an empty response. Throwing an exception in `IResultFilter.OnResultExecuting` will:
 
 * Prevent execution of the action result and subsequent filters.
 * Be treated as a failure instead of a successful result.
@@ -453,7 +458,7 @@ For an <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>, a call to `aw
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/MyAsyncResponseFilter.cs?name=snippet)]
 
-The framework provides an abstract `ResultFilterAttribute` that you can subclass. The [AddHeaderAttribute](#add-header-attribute) class shown previously is an example of a result filter attribute.
+The framework provides an abstract `ResultFilterAttribute` that can be subclassed. The [AddHeaderAttribute](#add-header-attribute) class shown previously is an example of a result filter attribute.
 
 ### IAlwaysRunResultFilter and IAsyncAlwaysRunResultFilter
 
