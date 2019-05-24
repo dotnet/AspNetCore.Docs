@@ -15,7 +15,6 @@ This document shows how to get started with gRPC services using ASP.NET Core.
 
 ## Get started with gRPC service in ASP.NET Core
 
-[!INCLUDE[View or download sample code](~/includes/grpc/download.md)]
 
 # [Visual Studio](#tab/visual-studio)
 
