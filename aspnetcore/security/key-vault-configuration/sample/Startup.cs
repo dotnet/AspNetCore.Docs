@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.KeyVault.Models;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureKeyVault;
-using System.Reflection;
 using System.Text;
 
 namespace SampleApp

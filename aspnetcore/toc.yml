@@ -92,7 +92,11 @@
     - name: Remote Procedure Call apps
       items:
         - name: Get started with gRPC service in ASP.NET Core
+          uid: tutorials/grpc/index
+        - name: Create an ASP.NET Core gRPC Greeter Service
           uid: tutorials/grpc/grpc-start
+        - name: Create a .NET Core gRPC client
+          uid: tutorials/grpc/grpc-client 
     - name: Data access
       items:
         - name: EF Core with Razor Pages
@@ -230,8 +234,9 @@
         - name: Overview
           uid: mvc/overview
         - name: Tutorial
-          uid: tutorials/first-mvc-app/index
           items:
+            - name: Overview
+              uid: tutorials/first-mvc-app/index
             - name: Get started
               uid: tutorials/first-mvc-app/start-mvc
             - name: Add a controller
@@ -272,6 +277,8 @@
       items:
         - name: Overview
           uid: blazor/index
+        - name: Supported platforms
+          uid: blazor/supported-platforms
         - name: Get started
           uid: blazor/get-started
         - name: Hosting models
@@ -324,8 +331,6 @@
               uid: client-side/libman/libman-cli
             - name: Visual Studio
               uid: client-side/libman/libman-vs
-        - name: Gulp
-          uid: client-side/using-gulp
         - name: Grunt
           uid: client-side/using-grunt
         - name: Bower
@@ -338,10 +343,6 @@
       uid: fundamentals/app-state
     - name: Layout
       uid: mvc/views/layout
-    - name: Model binding
-      uid: mvc/models/model-binding
-    - name: Model validation
-      uid: mvc/models/validation
     - name: Razor syntax
       uid: mvc/views/razor
     - name: Tag Helpers
@@ -397,10 +398,6 @@
           uid: mvc/controllers/areas
         - name: App parts
           uid: mvc/extensibility/app-parts
-        - name: Custom model binding
-          uid: mvc/advanced/custom-model-binding
-        - name: Compatibility version
-          uid: mvc/compatibility-version
 - name: Web API apps
   items:
     - name: Overview
@@ -1001,6 +998,14 @@
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Advanced
   items:
+    - name: Model binding
+      uid: mvc/models/model-binding
+    - name: Custom model binding
+      uid: mvc/advanced/custom-model-binding
+    - name: Model validation
+      uid: mvc/models/validation
+    - name: Compatibility version
+      uid: mvc/compatibility-version
     - name: Write middleware
       uid: fundamentals/middleware/write
     - name: Request and response operations

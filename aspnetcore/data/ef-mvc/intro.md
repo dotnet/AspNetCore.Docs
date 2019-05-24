@@ -33,7 +33,7 @@ In this tutorial, you:
 ## Prerequisites
 
 * [.NET Core SDK 2.2](https://www.microsoft.com/net/download)
-* [Visual Studio 2017 or 2019](https://visualstudio.microsoft.com/downloads/) with the following workloads:
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the following workloads:
   * **ASP.NET and web development** workload
   * **.NET Core cross-platform development** workload
 
@@ -90,7 +90,7 @@ Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,37-48,63)]
+[!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,34-48,63)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 

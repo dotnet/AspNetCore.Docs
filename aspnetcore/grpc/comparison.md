@@ -11,7 +11,7 @@ uid: grpc/comparison
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs (including ASP.NET Core [Web APIs](xref: web-api/index)). The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
+This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs (including ASP.NET Core [Web APIs](xref:web-api/index)). The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
 
 #### Overview
 
@@ -70,7 +70,7 @@ Propagating the deadline and cancellation through child gRPC calls helps enforce
 
 gRPC is well suited to the following scenarios:
 
-* **Microservices** &ndash; gRPC is designed low latency and high throughput communication. gRPC is great for lightweight microservices where efficiency is critical.
+* **Microservices** &ndash; gRPC is designed for low latency and high throughput communication. gRPC is great for lightweight microservices where efficiency is critical.
 * **Point-to-point real-time communication** &ndash; gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
 * **Polygot environments** &ndash; gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
 * **Network constrained environments** &ndash; gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message is always smaller than an equivalent JSON message.

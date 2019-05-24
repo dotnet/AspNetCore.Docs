@@ -5,7 +5,7 @@ description: Discover how to host and deploy Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2019
+ms.date: 05/23/2019
 uid: host-and-deploy/blazor/index
 ---
 # Host and deploy Blazor
@@ -45,3 +45,9 @@ For deployment guidance, see the following topics:
 
 * <xref:host-and-deploy/blazor/client-side>
 * <xref:host-and-deploy/blazor/server-side>
+
+## Blazor serverless hosting with Azure Storage
+
+Blazor client-side apps can be served from [Azure Storage](https://azure.microsoft.com/services/storage/) as static content directly from a storage container.
+
+For more information, see [Host and deploy Blazor client-side (Standalone deployment): Azure Storage](xref:host-and-deploy/blazor/client-side#azure-storage).

@@ -5,7 +5,7 @@ description: Understand client-side and server-side Blazor hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2019
+ms.date: 05/13/2019
 uid: blazor/hosting-models
 ---
 # Blazor hosting models
@@ -78,7 +78,7 @@ There are downsides to server-side hosting:
 * Reduced scalability: The server must manage multiple client connections and handle client state.
 * An ASP.NET Core server is required to serve the app. Deployment without a server (for example, from a CDN) isn't possible.
 
-&dagger;The *blazor.server.js* script is published to the following path: *bin/{Debug|Release}/{TARGET FRAMEWORK}/publish/{APPLICATION NAME}.App/dist/_framework*.
+&dagger;The *blazor.server.js* script is served from an embedded resource in the ASP.NET Core shared framework.
 
 ### Reconnection to the same server
 
@@ -134,7 +134,7 @@ For example, the following Razor page renders a Counter component with an initia
  
 Sometimes, you need to configure the SignalR client used by Blazor server-side apps. For example, you might want to configure logging on the SignalR client to diagnose a connection issue.
  
-To configure the SignalR client in the *wwwroot/index.htm* file:
+To configure the SignalR client in the *Pages/\_Host.cshtml* file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the *blazor.server.js* script.
 * Call `Blazor.start` and pass in a configuration object that specifies the SignalR builder.

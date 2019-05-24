@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 05/21/2019
 uid: host-and-deploy/blazor/client-side
 ---
 # Host and deploy Blazor client-side
@@ -120,13 +120,19 @@ Because browsers make requests to Internet-based hosts for client-side pages, we
 
 ## App base path
 
-The *app base path* is the virtual app root path on the server. For example, an app that resides on the Contoso server in a virtual folder at `/CoolApp/` is reached at `https://www.contoso.com/CoolApp` and has a virtual base path of `/CoolApp/`. By setting the app base path to `CoolApp/`, the app is made aware of where it virtually resides on the server. The app can use the app base path to construct URLs relative to the app root from a component that isn't in the root directory. This allows components that exist at different levels of the directory structure to build links to other resources at locations throughout the app. The app base path is also used to intercept hyperlink clicks where the `href` target of the link is within the app base path URI space&mdash;the Blazor router handles the internal navigation.
+The *app base path* is the virtual app root path on the server. For example, an app that resides on the Contoso server in a virtual folder at `/CoolApp/` is reached at `https://www.contoso.com/CoolApp` and has a virtual base path of `/CoolApp/`. By setting the app base path to the virtual path (`<base href="/CoolApp/">`), the app is made aware of where it virtually resides on the server. The app can use the app base path to construct URLs relative to the app root from a component that isn't in the root directory. This allows components that exist at different levels of the directory structure to build links to other resources at locations throughout the app. The app base path is also used to intercept hyperlink clicks where the `href` target of the link is within the app base path URI space&mdash;the Blazor router handles the internal navigation.
 
-In many hosting scenarios, the server's virtual path to the app is the root of the app. In these cases, the app base path is a forward slash (`<base href="/" />`), which is the default configuration for an app. In other hosting scenarios, such as GitHub Pages and IIS virtual directories or sub-applications, the app base path must be set to the server's virtual path to the app. To set the app's base path, add or update the `<base>` tag in *index.html* found within the `<head>` tag elements. Set the `href` attribute value to `virtual-path/` (the trailing slash is required), where `virtual-path/` is the full virtual app root path on the server for the app. In the preceding example, the virtual path is set to `CoolApp/`: `<base href="CoolApp/">`.
+In many hosting scenarios, the server's virtual path to the app is the root of the app. In these cases, the app base path is a forward slash (`<base href="/" />`), which is the default configuration for an app. In other hosting scenarios, such as GitHub Pages and IIS virtual directories or sub-applications, the app base path must be set to the server's virtual path to the app. To set the app's base path, update the `<base>` tag within the `<head>` tag elements of the *wwwroot/index.html* file. Set the `href` attribute value to `/virtual-path/` (the trailing slash is required), where `/virtual-path/` is the full virtual app root path on the server for the app. In the preceding example, the virtual path is set to `/CoolApp/`: `<base href="/CoolApp/">`.
 
-For an app with a non-root virtual path configured (for example, `<base href="CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime.
+For an app with a non-root virtual path configured (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime.
 
-To pass the path base argument with the root path (`/`) when running the app locally, execute the following command from the app's directory:
+To pass the path base argument with the root path (`/`) when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
+
+```console
+dotnet run --pathbase=/{Virtual Path (no trailing slash)}
+```
+
+For an app with a virtual base path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
 
 ```console
 dotnet run --pathbase=/CoolApp
@@ -220,6 +226,17 @@ Set the website's **Physical path** to the app's folder. The folder contains:
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the *web.config* file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
 
 For more information on troubleshooting deployments to IIS, see <xref:host-and-deploy/iis/troubleshoot>.
+
+### Azure Storage
+
+Azure Storage static file hosting allows serverless Blazor app hosting. Custom domain names, the Azure Content Delivery Network (CDN), and HTTPS are supported.
+
+When the blob service is enabled for static website hosting on a storage account:
+
+* Set the **Index document name** to `index.html`.
+* Set the **Error document path** to `index.html`. Razor Components and other non-file endpoints don't reside at physical paths in the static content stored by the blob service. When a request for one of these resources is received that the Blazor router should handle, the *404 - Not Found* error generated by the blob service routes the request to the **Error document path**. The *index.html* blob is returned, and the Blazor router loads and processes the path.
+
+For more information, see [Static website hosting in Azure Storage](/azure/storage/blobs/storage-blob-static-website).
 
 ### Nginx
 

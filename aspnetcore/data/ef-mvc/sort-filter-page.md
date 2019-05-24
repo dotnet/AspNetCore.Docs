@@ -206,10 +206,8 @@ Click the paging links in different sort orders to make sure paging works. Then 
 For the Contoso University website's **About** page, you'll display how many students have enrolled for each enrollment date. This requires grouping and simple calculations on the groups. To accomplish this, you'll do the following:
 
 * Create a view model class for the data that you need to pass to the view.
-
-* Modify the About method in the Home controller.
-
-* Modify the About view.
+* Create the About method in the Home controller.
+* Create the About view.
 
 ### Create the view model
 
@@ -234,10 +232,8 @@ Add an `About` method with the following code:
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseDbSet)]
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
-> [!NOTE]
-> In the 1.0 version of Entity Framework Core, the entire result set is returned to the client, and grouping is done on the client. In some scenarios this could create performance problems. Be sure to test performance with production volumes of data, and if necessary use raw SQL to do the grouping on the server. For information about how to use raw SQL, see [the last tutorial in this series](advanced.md).
 
-### Modify the About View
+### Create the About View
 
 Add a *Views/Home/About.cshtml* file with the following code:
 

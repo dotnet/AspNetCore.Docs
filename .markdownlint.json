@@ -44,7 +44,7 @@
     "no-space-in-code": true,
     "no-space-in-emphasis": true,
     "no-space-in-links": true,
-    "no-trailing-punctuation": true,
+    "no-trailing-punctuation": false,
     "no-trailing-spaces": false,
     "ol-prefix": {
         "style": "one_or_ordered"

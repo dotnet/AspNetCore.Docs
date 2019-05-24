@@ -108,7 +108,7 @@ Build-time compilation is supplemented by runtime compilation of Razor files. Th
 The default value is `true` for:
 
 * If the app's compatibility version is set to <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1> or earlier
-* If the app's compatibility version is set to set to <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2> or later and the app is in the Development environment <xref:Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsDevelopment*>. In other words, Razor files would not recompile in non-Development environment unless <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> is explicitly set.
+* If the app's compatibility version is set to <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2> or later and the app is in the Development environment <xref:Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsDevelopment*>. In other words, Razor files would not recompile in non-Development environment unless <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> is explicitly set.
 
 For guidance and examples of setting the app's compatibility version, see <xref:mvc/compatibility-version>.
 
@@ -127,9 +127,9 @@ Runtime compilation is enabled using the `Microsoft.AspNetCore.Mvc.Razor.Runtime
       .AddRazorRuntimeCompilation()
   ```
 
-For runtime compilation to work when deployed, apps must additionally modify their project files to set the `PreserveCompilationReferences` to `true`.
+For runtime compilation to work when deployed, apps must modify their project files to set the `PreserveCompilationReferences` to `true`:
 
-[!code-xml[](view-compilation/sample/RuntimeCompilation.csproj?highlight=3)]
+[!code-xml[](view-compilation/sample/RuntimeCompilation.csproj?highlight=4)]
 
 ::: moniker-end
 
