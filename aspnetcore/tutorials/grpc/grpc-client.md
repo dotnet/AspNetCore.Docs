@@ -237,7 +237,7 @@ Update the gRPC client *Program.cs* file with the following code:
 
 The GreeterClient is created by instantiating a `Channel` containing the information for creating the connection to the gRPC service and using it to construct the `GreeterClient`:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-5)]
+[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
 The GreeterClient contains the unary call `SayHello` which can be invoked asynchronously:
 
