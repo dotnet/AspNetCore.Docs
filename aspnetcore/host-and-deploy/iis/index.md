@@ -51,7 +51,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 **In-process hosting model**
 
-`CreateDefaultBuilder` adds IIS Integration Middleware by calling the `UseIIS` method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (*w3wp.exe* or *iisexpress.exe*). Performance tests indicate that hosting a .NET Core app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel) server.
+`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (*w3wp.exe* or *iisexpress.exe*). Performance tests indicate that hosting a .NET Core app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel) server.
 
 The in-process hosting model isn't supported for ASP.NET Core apps that target the .NET Framework.
 
@@ -59,7 +59,7 @@ The in-process hosting model isn't supported for ASP.NET Core apps that target t
 
 For out-of-process hosting with IIS, `CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and enables IIS Integration by configuring the base path and port for the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
 
-The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` adds IIS Integration Middleware by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
+The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` adds IIS Integration Middleware and [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
 
 * `UseUrls`
 * [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration)
