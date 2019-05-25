@@ -82,7 +82,8 @@ Two general approaches for uploading files are buffering and streaming.
 
 The entire file is read into an <xref:Microsoft.AspNetCore.Http.IFormFile>, which is a C# representation of the file used to process or save the file.
 
-Any single buffered file exceeding 64 KB is moved from memory to a temp file on disk.
+> [!NOTE]
+> Any single buffered file exceeding 64 KB is moved from memory to a temp file on disk.
 
 The resources (disk, memory) used by file uploads depend on the number and size of concurrent file uploads. If an app attempts to buffer too many uploads, the site crashes when it runs out of memory or disk space. If the size or frequency of file uploads is exhausting app resources, use streaming.
 
@@ -158,12 +159,6 @@ The following example (*not in the sample app*) is analogous to the prior exampl
           oReq.open("post", oFormElement.action);
           oReq.send(new FormData(oFormElement));
         }
-
-        function getCookie (name) {
-          var value = "; " + document.cookie;
-          var parts = value.split("; " + name + "=");
-          if (parts.length == 2) return parts.pop().split(";").shift();
-        }
     </script>
 }
 ```
@@ -178,7 +173,7 @@ For a `files` input element to support uploading multiple files provide the `mul
 <input asp-for="FileUpload.FormFiles" type="file" multiple>
 ```
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple file uploads for database and physical storage scenarios.
+The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
 > [!WARNING]
 > Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding the value.
@@ -227,6 +222,8 @@ public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> files)
 The path passed to the <xref:System.IO.FileStream> *must* include the file name. If the file name isn't provided, an <xref:System.UnauthorizedAccessException> is thrown at runtime.
 
 Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique are buffered in memory or on disk on the server before processing. Inside the action method, the <xref:Microsoft.AspNetCore.Http.IFormFile> contents are accessible as a <xref:System.IO.Stream>. In addition to the local file system, files can be saved to a network share or to a file storage service, such as [Azure Blob storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
+
+For another example that loops over multiple file uploads and uses safe file names and <xref:System.IO.FileStream.CopyToAsync*>, see the sample app.
 
 > [!WARNING]
 > [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) throws an <xref:System.IO.IOException> if more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following topics:
@@ -315,7 +312,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### Upload large files with streaming
 
-The following example demonstrates using JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, model binding is disabled by another custom filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`s, processing the file or storing the contents as appropriate. Once all of the sections are read, the action performs its own model binding.
+The following example demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, form model binding is disabled by another custom filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
 The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](xref:security/anti-request-forgery) to set a cookie with a request token:
 
@@ -329,7 +326,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Startup.cs?name=snippet_AddMvc&highlight=8-11,17-20)]
 
-Since model binding is disabled, the action method doesn't accept parameters. The action method works directly with the `Request` property. A `MultipartReader` is used to read each section. Key/value data is stored in a `KeyValueAccumulator`. After all of the sections are read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
+Since model binding is disabled, the action method doesn't accept parameters, and form parameters don't bind. The action method works directly with the `Request` property. A `MultipartReader` is used to read each section. Key/value data is stored in a `KeyValueAccumulator`. After the multipart sections are read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
 
 The complete `StreamingController.UploadDatabase` method for streaming to a database with EF Core:
 
