@@ -5,7 +5,7 @@ description: Learn how to configure gRPC for ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 04/09/2019
+ms.date: 5/30/2019
 uid: grpc/configuration
 ---
 # gRPC for ASP.NET Core configuration
