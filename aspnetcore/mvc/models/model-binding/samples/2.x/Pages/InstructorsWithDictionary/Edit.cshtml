@@ -46,7 +46,7 @@
                                                 @course.Key
                                             </td>
                                             <td>
-                                                <input name="instructor.Courses[@course.Key]" type="text" value="@course.Value" />
+                                                <input asp-for="Instructor.Courses[course.Key]" value="@course.Value" />
                                             </td>
                                         }
                                         else if (format == 2)
