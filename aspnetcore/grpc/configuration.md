@@ -42,9 +42,9 @@ The default Kestrel [minimum request body data rate](
 
 [!code-csharp[](~/grpc/configuration/sample/GrcpService/Program.cs?name=snippet&highlight=13-16)]
 
-## Configure client and server options
+## Configure client and server maximum send and receive options
 
-The following table shows the client `Channel` options corresponding to the server options:
+The following table shows the client `Channel` maximum send and receive options and corresponding server options:
 
 |ChannelOptions (Client) |  GrpcServiceOptions (Server) |
 | ------ | ------------- |

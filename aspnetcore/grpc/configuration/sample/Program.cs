@@ -10,9 +10,9 @@ namespace GrpcGreeterClient
         #region snippet
         static async Task Main(string[] args)
         {
-            var channel = new Channel("localhost:5001", ChannelCredentials.Insecure, new[] {
-                    new ChannelOption(ChannelOptions.MaxSendMessageLength , 2*1024*1024),
-                    new ChannelOption(ChannelOptions.MaxReceiveMessageLength , 5 *1024*1024)
+            var channel = new Channel("localhost:5001", ChannelCredentials.Insecure, new[]{
+                  new ChannelOption(ChannelOptions.MaxSendMessageLength , 2*1024*1024),
+                  new ChannelOption(ChannelOptions.MaxReceiveMessageLength , 5 *1024*1024)
             });
             var client = new Greeter.GreeterClient(channel);
             var reply = await client.SayHelloAsync(
