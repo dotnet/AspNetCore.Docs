@@ -33,72 +33,35 @@ Options for a single service override the global options provided in `AddGrpc` a
 
 ## Configure Kestrel options
 
-Kestrel server has configuration options that affect the behavior of gRPC for ASP.NET.
+Kestrel server has configuration options that affect the behavior of gRPC on ASP.NET Core.
 
 ### Request body data rate limit
 
-By default, the Kestrel server imposes a [minimum request body data rate](
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>). For client streaming and duplex streaming calls, this rate may not be satisfied and the connection may be timed out. The minimum request body data rate limit must be disabled when the gRPC service includes client streaming and duplex streaming calls:
+The default Kestrel [minimum request body data rate](
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>) is 240 bytes/second. For client streaming and duplex streaming calls, this rate may not be satisfied and the connection may be timed out. The minimum request body data rate limit should typically be disabled when the gRPC service includes client streaming and duplex streaming calls. The following code disables Kestrel minimum request body data rate:
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
+[!code-csharp[](~/grpc/configuration/sample/GrcpService/Program.cs?name=snippet&highlight=13-16)]
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-         Host.CreateDefaultBuilder(args)
-    .ConfigureWebHostDefaults(webBuilder =>
-    {
-        webBuilder.UseStartup<Startup>();
-        webBuilder.ConfigureKestrel((context, options) =>
-        {
-            options.Limits.MinRequestBodyDataRate = null;
-        });
-    });
-}
-```
+## Configure client and server options
 
-## Configure client options
-
-If before we saw **Server or Service Options**, now we need configure same respective parameters on **Client Options**.
-
-Grpc.Core.ChannelOptions class have some constants for most important client configurations related of server configuration, like:
+The following table shows the client `Channel` options corresponding to the server options:
 
 |ChannelOptions (Client) |  GrpcServiceOptions (Server) |
 | ------ | ------------- |
-| `MaxSendMessageLength` | `ReceiveMaxMessageSize` | 
+| `MaxSendMessageLength` | `ReceiveMaxMessageSize` |
 | `MaxReceiveMessageLength` | `SendMaxMessageSize` |
 
-And some client specific configurations like User Agent 
+<!-- What are important User Agent options ? 
+And some client specific configurations like 
+ -->
 
-### How to Use:
+The following code sets the server options listed in the preceding table:
 
-#### Server
-```csharp
-services.AddGrpc(options => {
-    options.ReceiveMaxMessageSize = 2 * 1024 * 1024;    // 2 megabytes
-    options.SendMaxMessageSize = 5 * 1024 * 1024;       // 5 megabytes 
-});
-```
+[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
 
-#### Client
-```csharp
-var channel = new Channel("localhost:5001", ChannelCredentials.Insecure, new[] {
-    new ChannelOption(ChannelOptions.MaxSendMessageLength , 2 * 1024 * 1024),      // 2 megabytes
-    new ChannelOption(ChannelOptions.MaxReceiveMessageLength , 5 * 1024 * 1024)    // 5 megabytes    
-});
-```
+The following code sets the client options listed in the preceding table:
 
-With this example: 
-* Client is able to send 2 megabytes, and server accepts up to 2 megabytes. 
-* Server response can reached 5 megabytes, and client accepts receive up to 5 megabytes.
-
-
-
-=======
+[!code-csharp[](~/grpc/configuration/sample/Program.cs?name=snippet&highlight=3-6)]
 
 ## Additional resources
 
