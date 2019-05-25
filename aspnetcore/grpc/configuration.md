@@ -25,11 +25,11 @@ The following table describes options for configuring gRPC services:
 
 Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`.
 
-[!code-csharp[](~grpc/configuration/sample/GrcpService/Startup.cs?name=snippet)]
+[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup.cs?name=snippet)]
 
 Options for a single service override the global options provided in `AddGrpc` and can be configured using `AddServiceOptions<TService>`:
 
-[!code-csharp[](~grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
+[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
 
 ## Configure Kestrel options
 
