@@ -18,9 +18,9 @@ The following table describes options for configuring gRPC services:
 | ------ | ------------- | ----------- |
 | `SendMaxMessageSize` | `null` | The maximum message size in bytes that can be sent from the server. Attempting to send a message that exceeds the configured maximum message size results in an exception. |
 | `ReceiveMaxMessageSize` | 4 MB | The maximum message size in bytes that can be received by the server. If the server receives a message that exceeds this limit, it throws an exception. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
-| `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a service method. The default is `false`. Setting this to `true` can leak sensitive information. |
+| `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a service method. The default is `false`. Setting `EnableDetailedErrors` to `true` can leak sensitive information. |
 | `CompressionProviders` | gzip | A collection of compression providers used to compress and decompress messages. Custom compression providers can be created and added to the collection. The default configured provider supports **gzip** compression. |
-| `ResponseCompressionAlgorithm` | `null` | The compression algorithm used to compress messages sent from the server. The algorithm must match a compression provider in `CompressionProviders`. For the algorthm to compress a response the client must indicate it supports the algorithm by sending it in the **grpc-accept-encoding** header. |
+| `ResponseCompressionAlgorithm` | `null` | The compression algorithm used to compress messages sent from the server. The algorithm must match a compression provider in `CompressionProviders`. For the algorithm to compress a response, the client must indicate it supports the algorithm by sending it in the **grpc-accept-encoding** header. |
 | `ResponseCompressionLevel` | `null` | The compress level used to compress messages sent from the server. |
 
 Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`.
@@ -55,7 +55,7 @@ The following table shows the client `Channel` maximum send and receive options 
 And some client specific configurations like 
  -->
 
-The following code sets the server options listed in the preceding table:
+The following highlighted code sets the server options listed in the preceding table:
 
 [!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
 
