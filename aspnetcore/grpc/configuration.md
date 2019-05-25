@@ -25,24 +25,11 @@ The following table describes options for configuring gRPC services:
 
 Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`.
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddGrpc(options =>
-    {
-        options.EnableDetailedErrors = true;
-    });
-}
-```
+[!code-csharp[](~grpc/configuration/sample/GrcpService/Startup.cs?name=snippet)]
 
 Options for a single service override the global options provided in `AddGrpc` and can be configured using `AddServiceOptions<TService>`:
 
-```csharp
-services.AddGrpc().AddServiceOptions<MyService>(options =>
-{
-    options.ReceiveMaxMessageSize = 10 * 1024 * 1024; // 10 megabytes
-});
-```
+[!code-csharp[](~grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
 
 ## Configure Kestrel options
 

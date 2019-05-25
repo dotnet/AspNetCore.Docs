@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace GrcpService
 {
+    #region snippet
     public class Program
     {
         public static void Main(string[] args)
@@ -21,4 +22,5 @@ namespace GrcpService
             });
         });
     }
+    #endregion
 }
