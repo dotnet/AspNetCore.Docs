@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2019
+ms.date: 05/26/2019
 uid: blazor/get-started
 ---
 # Get started with Blazor
@@ -30,19 +30,17 @@ Get started with Blazor:
 
    2.&nbsp;Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
 
-   3.&nbsp;If using the latest stable release of Visual Studio (not a preview release), enable Visual Studio to use preview SDKs: Open **Tools** > **Options** in the menu bar. Open the **Projects and Solutions** node. Open the **.NET Core** tab. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
+   3.&nbsp;Create a new project.
 
-   4.&nbsp;Create a new project.
+   4.&nbsp;Select **ASP.NET Core Web Application**. Select **Next**.
 
-   5.&nbsp;Select **ASP.NET Core Web Application**. Select **Next**.
+   5.&nbsp;Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
-   6.&nbsp;Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+   6.&nbsp;In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
 
-   7.&nbsp;In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
+   7.&nbsp;For a Blazor client-side experience, choose the **Blazor (client-side)** template. For a Blazor server-side experience, choose the **Blazor (server-side)** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-   8.&nbsp;For a Blazor client-side experience, choose the **Blazor (client-side)** template. For a Blazor server-side experience, choose the **Blazor (server-side)** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
-
-   9.&nbsp;Press **F5** to run the app.
+   8.&nbsp;Press **F5** to run the app.
 
    # [Visual Studio Code](#tab/visual-studio-code)
    
