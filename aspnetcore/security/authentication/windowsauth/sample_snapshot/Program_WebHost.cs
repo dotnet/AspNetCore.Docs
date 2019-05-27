@@ -1,3 +1,5 @@
+// using Microsoft.AspNetCore.Server.HttpSys;
+
 public class Program
 {
     public static void Main(string[] args) => 
@@ -9,7 +11,8 @@ public class Program
             .UseHttpSys(options =>
             {
                 options.Authentication.Schemes = 
-                    AuthenticationSchemes.NTLM | AuthenticationSchemes.Negotiate;
+                    AuthenticationSchemes.NTLM | 
+                    AuthenticationSchemes.Negotiate;
                 options.Authentication.AllowAnonymous = false;
             })
             .Build();
