@@ -1,212 +1,276 @@
 ---
 title: Build your first Blazor app
 author: guardrex
-description: Build a Blazor app step-by-step.
+description: Build the Galactic Planetary Atlas app step-by-step to learn about Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2019
+ms.date: 06/01/2019
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
+By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
-This tutorial shows you how to build and modify a Blazor app.
+This tutorial teaches concepts and techniques for building Blazor apps. In this tutorial, you build the *Galactic Planetary Atlas* app, an app that manages a collection of planet objects.
+
+Learn how to:
+
+> [!div class="checklist"]
+> * Create a new component.
+> * Route to a component.
+> * Display, filter, and add items using data binding and event handling.
+> * Create and use a [dependency injection (DI)](xref:fundamentals/dependency-injection) service.
+
+![Completed Galactic Planetary Atlas app running in the browser](build-your-first-blazor-app/_static/screenshot.png)
+
+## Prepare the project
 
 Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial.
 
-## Build components
+### Update the title
 
-1. Browse to each of the app's three pages in the *Pages* folder: Home, Counter, and Fetch data. These pages are implemented by the Razor component files *Index.razor*, *Counter.razor*, and *FetchData.razor*.
+If building a Blazor server-side app, open the *Pages/\_Host.cshtml* file. If building a Blazor client-side app, open the *wwwroot/index.html* file.
 
-1. On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Blazor provides a better approach using C#.
+Change the content of the `<title>` element to `Planetary Atlas`:
 
-1. Examine the implementation of the Counter component in the *Counter.razor* file.
+```html
+<title>Planetary Atlas</title>
+```
 
-   *Pages/Counter.razor*:
+### Add the app's namespace to the \_Imports.razor file
 
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/Counter1.razor)]
+*This section only applies to Blazor server-side apps.*
 
-   The UI of the Counter component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). The HTML markup and C# rendering logic are converted into a component class at build time. The name of the generated .NET class matches the file name.
+If building a Blazor server-side app, add the app's namespace to the *\_Imports.razor* file. The following [\@using](xref:mvc/views/razor#section-1) directive assumes that the app's namespace is `WebApplication`:
 
-   Members of the component class are defined in an `@functions` block. In the `@functions` block, component state (properties, fields) and methods are specified for event handling or for defining other component logic. These members are then used as part of the component's rendering logic and for handling events.
+```cshtml
+@using WebApplication
+```
 
-   When the **Click me** button is selected:
+Blazor client-side apps include the app's namespace by default in the *\_Imports.razor* file.
 
-   * The Counter component's registered `onclick` handler is called (the `IncrementCount` method).
-   * The Counter component regenerates its render tree.
-   * The new render tree is compared to the previous one.
-   * Only modifications to the Document Object Model (DOM) are applied. The displayed count is updated.
+### Provide CSS styles
 
-1. Modify the C# logic of the Counter component to make the count increment by two instead of one.
+This tutorial adds a component to the template app with new HTML elements. In order to style the added elements and the background of the `<body>` element, add the following styles to the *wwwroot/css/site.css* file:
 
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/Counter2.razor?highlight=14)]
+[!code-css[](build-your-first-blazor-app/samples_snapshot/3.x/site.css)]
 
-1. Rebuild and run the app to see the changes. Select the **Click me** button. The counter increments by two.
+The background image is provided as a courtesy of the [National Aeronautics and Space Administration (NASA)](https://www.nasa.gov/).
 
-## Use components
+Build and run the app following the guidance in the <xref:blazor/get-started> article to confirm that there are no errors.
 
-Include a component in another component using an HTML syntax.
+## Create a model for planet data
 
-1. Add the Counter component to the app's Index component by adding a `<Counter />` element to the Index component (*Index.razor*).
+Create a planet model to hold planet data. Use an `ImageUrl` property to hold an image URL. Use a `Name` property to hold the name of the planet.
 
-   If you're using Blazor client-side for this experience, a Survey Prompt component (`<SurveyPrompt>` element) is in the Index component. Replace the `<SurveyPrompt>` element with the `<Counter>` element. If you're using a Blazor server-side app for this experience, add the `<Counter>` element to the Index component:
+Create a *Models* folder. In the folder, add a planet model class (`Planet`).
 
-   *Pages/Index.razor*:
+*Models/Planet.cs*:
 
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/Index1.razor?highlight=7)]
+[!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Planet.cs)]
 
-1. Rebuild and run the app. The Index component has its own counter.
+> [!NOTE]
+> Throughout this tutorial, code examples assume that the app's namespace is `WebApplication`. If your app's namespace is different, change the namespace in the example code to match your app.
 
-## Component parameters
+## Create a service for working with planets
 
-Components can also have parameters. Component parameters are defined using non-public properties on the component class decorated with `[Parameter]`. Use attributes to specify arguments for a component in markup.
+Services registered in the app's service container are available to components throughout the app via [dependency injection (DI)](xref:fundamentals/dependency-injection).
 
-1. Update the component's `@functions` C# code:
+This app can benefit from DI by using a service that defines methods to:
 
-   * Add a `IncrementAmount` property decorated with the `[Parameter]` attribute.
-   * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
+* Return a set of planets for display.
+* Add a planet to the data source.
 
-   *Pages/Counter.razor*:
+Create an interface for the service with two methods defined:
 
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/Counter.razor?highlight=13,17)]
+* `GetPlanets` &ndash; Since the app should have the capacity to filter planets, use a `filter` string parameter in the method's signature.
+* `AddPlanet`&ndash; The `AddPlanet` method has a `Planet` parameter to receive a planet from the user.
 
-<!-- Add back when supported.
-   > [!NOTE]
-   > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
--->
+Create an *Interfaces* folder. In the folder, create an interface for the Planet Service named `IPlanetService`. An [\@using](xref:mvc/views/razor#section-1) statement for the `WebApplication.Models` namespace provides the interface with access to the `Planet` model.
 
-1. Specify an `IncrementAmount` parameter in the Index component's `<Counter>` element using an attribute. Set the value to increment the counter by ten.
+*Interfaces/IPlanetService.cs*:
 
-   *Pages/Index.razor*:
+[!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/IPlanetService.cs)]
 
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/Index2.razor?highlight=7)]
+The service requires an implementation that provides the `GetPlanets` and `AddPlanet` methods with a data source for the planets:
 
-1. Reload the Index component. The counter increments by ten each time the **Click me** button is selected. The counter in the Counter component continues to increment by one.
+* For the data source, a production app would use persistent data storage, such as an [Azure Cosmos database](https://azure.microsoft.com/free/cosmos-db/) accessed by [Entity Framework (EF) Core](/ef/core/) ([in preview for Azure Cosmos](https://github.com/aspnet/EntityFrameworkCore/issues/12086)). For this tutorial experience, the app uses a `List<Planet>` stored in the app's memory.
+* In the `GetPlanets` method, the app uses [Linq](/dotnet/csharp/programming-guide/concepts/linq/) to filter planets from the planet list (`_planets`) if the `filter` has a value.
+* In the `AddPlanet` method, the app calls [ICollection\<T>.Add(T)](xref:System.Collections.Generic.ICollection`1.Add*) to add a new planet to the list.
 
-## Route to components
+Create a *Services* folder. In the folder, create the Planet Service implementation (`PlanetService`) that implements the `IPlanetService` interface.
 
-The `@page` directive at the top of the *Counter.razor* file specifies that the Counter component is a routing endpoint. The Counter component handles requests sent to `/counter`. Without the `@page` directive, a component doesn't handle routed requests, but the component can still be used by other components.
+*Services/PlanetService.cs*:
 
-## Dependency injection
+[!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/PlanetService.cs)]
 
-Services registered in the app's service container are available to components via [dependency injection (DI)](xref:fundamentals/dependency-injection). Inject services into a component using the `@inject` directive.
+Planet names are &copy;1974-1981 [BBC](https://www.bbc.co.uk/programmes/b006q2x0). Planet images are provided as a courtesy of the [National Aeronautics and Space Administration (NASA)](https://www.nasa.gov/).
 
-Examine the directives of the FetchData component.
+The service implementation is registered in the app's DI container. Add the following namespaces to the *Startup.cs* file:
 
-If working with a Blazor server-side app, the `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes), so one instance of the service is available throughout the app. The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component.
+```csharp
+using WebApplication.Interfaces;
+using WebApplication.Services;
+```
 
-*Pages/FetchData.razor*:
+Add the service registration to the `Startup.ConfigureServices` method:
 
-[!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1.razor?highlight=3)]
+```csharp
+services.AddSingleton<IPlanetService, PlanetService>();
+```
 
-The FetchData component uses the injected service, as `ForecastService`, to retrieve an array of `WeatherForecast` objects:
+The Planet Service is ready for injection wherever it's required in the app.
 
-[!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
+For more information, see <xref:blazor/dependency-injection>.
 
-If working with a Blazor client-side app, `HttpClient` is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder:
+## Build the Planets component
 
-*Pages/FetchData.razor*:
+In the following sections, a Planets component is added to the app.
 
-[!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
+The Planets component:
 
-A [\@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
+* Obtains planets from the Planet Service.
+* Displays planets in a UI.
+* Receives filter characters from the user and filters the list of planets.
+* Receives a new planet from the user and adds it to the list of planets.
 
-[!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
+### Create the initial component
 
+The app can use the Planet Service in a component to display the planets. Namespaces for the app's interfaces and models are provided by [\@using](xref:mvc/views/razor#section-1) directives. The Planet Service (an instance of `IPlanetService`) is injected with the [\@inject](xref:mvc/views/razor#section-4) directive.
 
-## Build a todo list
+The component:
 
-Add a new component to the app that implements a simple todo list.
+* Specifies a routing endpoint at `/planets` with the [\@page](xref:blazor/components?view=aspnetcore-3.0#routing) directive. For more information, see <xref:blazor/routing>.
+* Uses the injected Planet Service to obtain the planets and store them in a field after the component is initialized in [OnInit](xref:blazor/components#lifecycle-methods).
+* Uses a [\@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop to render each planet instance as a `<figure>` with an image (`<img>`) and caption (`<figurecaption>`). For more information, see <xref:mvc/views/razor>.
 
-1. Add an empty file named *Todo.razor* to the app in the *Pages* folder:
+Create the Planets component in the *Pages* folder named *Planets.razor*.
 
-1. Provide the initial markup for the component:
+*Pages/Planets.razor*:
 
-   ```cshtml
-   @page "/todo"
+[!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/Planets_1.razor)]
 
-   <h1>Todo</h1>
-   ```
+### Provide navigation to the component
 
-1. Add the Todo component to the navigation bar.
+Update the app's navigation sidebar with the app's name and provide a link to the new component:
 
-   The NavMenu component (*Shared/NavMenu.razor*) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app. For more information, see <xref:blazor/layouts>.
-
-   Add a `<NavLink>` for the Todo component by adding the following list item markup below the existing list items in the *Shared/NavMenu.razor* file:
+1. Open the Navigation Menu component (*Shared/NavMenu.razor*).
+1. On the second line, change the text of the hyperlink to *Galactic Planetary Atlas*.
+1. Add a list item (`<li>...</li>`) for the Planets components to the unordered list `<ul>...</ul>` immediately below the list item for the Fetch Data component:
 
    ```cshtml
    <li class="nav-item px-3">
-       <NavLink class="nav-link" href="todo">
-           <span class="oi oi-list-rich" aria-hidden="true"></span> Todo
+       <NavLink class="nav-link" href="planets" Match="NavLinkMatch.All">
+           <span class="oi oi-moon" aria-hidden="true"></span> Planets
        </NavLink>
    </li>
    ```
 
-1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the Todo component works.
+   The moon icon for the NavLink component (`oi-moon` CSS class) is provided by [Open Iconic](https://useiconic.com/open), which is available by default in the Blazor template used to create the project.
 
-1. If building a Blazor server-side app, add the app's namespace to the *\_Imports.razor* file. The following `@using` statement assumes that the app's namespace is `WebApplication`:
+1. Save and close the Navigation Menu component.
 
-   ```cshtml
-   @using WebApplication
+Run the app and navigate to the Planets component to see the rendered planets.
+
+### Provide a planet filter
+
+In the Planets component (*Pages/Planets.razor*), create a `FilterPlanets` method in the [\@functions](xref:mvc/views/razor#section-5) block:
+
+```csharp
+private void FilterPlanets(UIChangeEventArgs e)
+{
+    _planets = PlanetService.GetPlanets(e.Value.ToString());
+}
+```
+
+The `FilterPlanets` method:
+
+* Receives `UIChangeEventArgs` from the browser, which includes the value of an `<input>` element when the user modifies the input.
+* The value of the change event arguments (an `object`) is converted into a `string` and passed to the `GetPlanets` method of the Planet Service.
+* The Planet Service returns the filtered list of planets, which is assigned to the `_planets` field.
+* The DOM is updated, and the filtered planets are rendered in the UI.
+
+Add an `<input>` element immediately under the 1st level heading (`<h1>`). The element's `oninput` event triggers the `FilterPlanets` method when the user changes the value of the `<input>` element:
+
+```cshtml
+<div>
+    <input oninput="@FilterPlanets" placeholder="Filter planets" />
+</div>
+```
+
+Run the app and navigate to the Planets component.
+
+To filter the planets displayed in the UI:
+
+1. Set the focus on the filter element.
+1. Type one or a few letters to filter the planets by name. The component event handler executes for every character added or removed from the filter `<input>` element.
+
+For more information, see:
+
+* [Data binding](xref:blazor/components#data-binding)
+* [Event handling](xref:blazor/components#event-handling)
+
+### Add planets
+
+Create an `AddPlanet` method in the [\@functions](xref:mvc/views/razor#section-5) block with a private field for a new `Planet`:
+
+```csharp
+private Planet _newPlanet = new Planet();
+
+private void AddPlanet()
+{
+    PlanetService.AddPlanet(_newPlanet);
+    _newPlanet = new Planet();
+}
+```
+
+The component's `AddPlanet` method:
+
+* Uses the `Planet` instance held in a `_newPlanet` field, which is bound to elements in the component.
+* Calls the Planet Service's `AddPlanet` method with the planet.
+* Resets the `_newPlanet` to a new instance of `Planet`.
+
+Below the division (`<div>...</div>`) that displays the planets, add a division to hold the elements that bind the new planet (`_newPlanet`). Provide a button with an `onclick` attribute assigned to the `AddPlanet` method. The `AddPlanet` method is executed when the button is selected in the UI:
+
+```cshtml
+<div>
+    <h2>Add Planet</h2>
+
+    <input bind="@_newPlanet.Name" placeholder="Name" />
+    <input bind="@_newPlanet.ImageUrl" placeholder="Image Url" style="width:350px" />
+
+    <button class="btn btn-primary" onclick="@AddPlanet">Add Planet</button>
+</div>
+```
+
+Run the app and navigate to the Planets component.
+
+To add a new planet:
+
+1. Clear any filter characters from the filter `<input>` to ensure that the new planet appears when added.
+1. Provide a link to an image that can be hotlinked into the app's UI. For example, use the following NASA image:
+
    ```
-   
-   Blazor client-side apps include the app's namespace by default in the *\_Imports.razor* file.
-
-1. Add a *TodoItem.cs* file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
-
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
-
-1. Return to the Todo component (*Pages/Todo.razor*):
-
-   * Add a field for the todo items in an `@functions` block. The Todo component uses this field to maintain the state of the todo list.
-   * Add unordered list markup and a `foreach` loop to render each todo item as a list item.
-
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo4.razor?highlight=5-10,12-14)]
-
-1. The app requires UI elements for adding todo items to the list. Add a text input and a button below the list:
-
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo5.razor?highlight=12-13)]
-
-1. Rebuild and run the app. When the **Add todo** button is selected, nothing happens because an event handler isn't wired up to the button.
-
-1. Add an `AddTodo` method to the Todo component and register it for button clicks using the `onclick` attribute:
-
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo6.razor?highlight=2,7-10)]
-
-   The `AddTodo` C# method is called when the button is selected.
-
-1. To get the title of the new todo item, add a `newTodo` string field and bind it to the value of the text input using the `bind` attribute:
-
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo7.razor?highlight=2)]
-
-   ```cshtml
-   <input placeholder="Something todo" bind="@newTodo" />
+   https://images-assets.nasa.gov/image/PIA19346/PIA19346~orig.jpg
    ```
 
-1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:
+1. Provide a name for the new planet. For example, type the name "Cassius" in the text box.
+1. Select the **Add Planet** button.
 
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo8.razor?highlight=19-26)]
+To learn how to validate user input, see <xref:blazor/forms-validation>.
 
-1. Rebuild and run the app. Add some todo items to the todo list to test the new code.
+### Completed Planets component
 
-1. The title text for each todo item can be made editable and a check box can help the user keep track of completed items. Add a check box input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `@todo.Title`:
+The completed Planets component (*Pages/Planets.razor*):
 
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo9.razor?highlight=5-6)]
-
-1. To verify that these values are bound, update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
-
-   ```cshtml
-   <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
-   ```
-
-1. The completed Todo component (*Pages/Todo.razor*):
-
-   [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/Todo.razor)]
-
-1. Rebuild and run the app. Add todo items to test the new code.
+[!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/Planets_final.razor)]
 
 ## Publish and deploy the app
 
 To publish the app, see <xref:host-and-deploy/blazor/index>.
+
+## Next steps
+
+* Explore the [Blazor app building workshop: Blazing Pizza](https://aka.ms/blazorworkshop).
+* Learn more on how to [create and use Razor Components](xref:blazor/components).

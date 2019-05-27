@@ -1,0 +1,59 @@
+@page "/planets"
+@using WebApplication.Interfaces
+@using WebApplication.Models
+@inject IPlanetService PlanetService
+
+<h1>Planets</h1>
+
+<div>
+    <input oninput="@FilterPlanets" placeholder="Filter planets" />
+</div>
+
+<div>
+    @foreach (var planet in _planets)
+    {
+        <figure>
+            <img alt="" src="@planet.ImageUrl" />
+            <figcaption>@planet.Name</figcaption>
+        </figure>
+    }
+</div>
+
+<div>
+    <h2>Add Planet</h2>
+
+    <input bind="@_newPlanet.Name" placeholder="Name" />
+    <input bind="@_newPlanet.ImageUrl" placeholder="Image Url" style="width:350px" />
+
+    <button class="btn btn-primary" onclick="@AddPlanet">Add Planet</button>
+</div>
+
+<div style="position:absolute;bottom:0;color:white">
+    <p>
+        Planet names are &copy;1974-1981
+        <a href="https://www.bbc.co.uk/programmes/b006q2x0">BBC</a>.
+        Planet images are courtesy of the <a href="https://www.nasa.gov/">
+            National Aeronautics and Space Administration (NASA)</a>.
+    </p>
+</div>
+
+@functions {
+    private IEnumerable<Planet> _planets;
+    private Planet _newPlanet = new Planet();
+
+    protected override void OnInit()
+    {
+        _planets = PlanetService.GetPlanets(null);
+    }
+
+    private void FilterPlanets(UIChangeEventArgs e)
+    {
+        _planets = PlanetService.GetPlanets(e.Value.ToString());
+    }
+
+    private void AddPlanet()
+    {
+        PlanetService.AddPlanet(_newPlanet);
+        _newPlanet = new Planet();
+    }
+}

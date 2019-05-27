@@ -1,0 +1,28 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://www.nasa.gov/sites/default/files/thumbnails/image/hubble_friday_06172016.jpg);
+    background-size: cover;
+}
+
+h1, h2 {
+    color: lightgray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+figure {
+    display: inline-block;
+    margin: 10px 5px;
+}
+
+figure img {
+    border: 1px solid lightgray;
+    border-radius: 10px 10px 0 0;
+    height: 100px;
+}
+
+figure figcaption {
+    border: 1px dashed blueviolet;
+    text-align: center;
+    background: lightgray;
+    font-style: italic;
+    padding: 0 5px;
+}

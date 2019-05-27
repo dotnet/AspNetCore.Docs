@@ -1,8 +1,0 @@
-@functions {
-    private WeatherForecast[] forecasts;
-
-    protected override async Task OnInitAsync()
-    {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    }
-}

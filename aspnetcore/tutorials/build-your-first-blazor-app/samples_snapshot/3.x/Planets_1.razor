@@ -1,0 +1,34 @@
+@page "/planets"
+@using WebApplication.Interfaces
+@using WebApplication.Models
+@inject IPlanetService PlanetService
+
+<h1>Planets</h1>
+
+<div>
+    @foreach (var planet in _planets)
+    {
+        <figure>
+            <img alt="" src="@planet.ImageUrl" />
+            <figcaption>@planet.Name</figcaption>
+        </figure>
+    }
+</div>
+
+<div style="position:absolute;bottom:0;color:white">
+    <p>
+        Planet names are &copy;1974-1981 
+        <a href="https://www.bbc.co.uk/programmes/b006q2x0">BBC</a>.
+        Planet images are courtesy of the <a href="https://www.nasa.gov/">
+        National Aeronautics and Space Administration (NASA)</a>.
+    </p>
+</div>
+
+@functions {
+    private IEnumerable<Planet> _planets;
+
+    protected override void OnInit()
+    {
+        _planets = PlanetService.GetPlanets(null);
+    }
+}
