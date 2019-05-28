@@ -63,7 +63,7 @@ HTTP/2 is disabled by default. For more information on configuration, see the [K
 
 ## When to use Kestrel with a reverse proxy
 
-You can use Kestrel by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
+Kestrel can be used by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
 
 Kestrel used as an edge (Internet-facing) web server:
 
@@ -154,6 +154,12 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
 
 Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class. The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
+
+The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:
+
+```csharp
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+```
 
 ### Keep-alive timeout
 
@@ -644,7 +650,7 @@ In the following *appsettings.json* example:
       "Url": "https://localhost:5002",
       "Certificate": {
         "Subject": "<subject; required>",
-        "Store": "<certificate store; defaults to My>",
+        "Store": "<certificate store; required>",
         "Location": "<location; defaults to CurrentUser>",
         "AllowInvalid": "<true or false; defaults to false>"
       }
@@ -677,7 +683,7 @@ An alternative to using **Path** and **Password** for any certificate node is to
 ```json
 "Default": {
   "Subject": "<subject; required>",
-  "Store": "<cert store; defaults to My>",
+  "Store": "<cert store; required>",
   "Location": "<location; defaults to CurrentUser>",
   "AllowInvalid": "<true or false; defaults to false>"
 }
