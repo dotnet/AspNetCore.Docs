@@ -23,7 +23,7 @@ The following table describes options for configuring gRPC services:
 | `ResponseCompressionAlgorithm` | `null` | The compression algorithm used to compress messages sent from the server. The algorithm must match a compression provider in `CompressionProviders`. For the algorithm to compress a response, the client must indicate it supports the algorithm by sending it in the **grpc-accept-encoding** header. |
 | `ResponseCompressionLevel` | `null` | The compress level used to compress messages sent from the server. |
 
-Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`.
+Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`:
 
 [!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup.cs?name=snippet)]
 
@@ -31,35 +31,7 @@ Options for a single service override the global options provided in `AddGrpc` a
 
 [!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
 
-## Configure Kestrel options
-
-Kestrel server has configuration options that affect the behavior of gRPC on ASP.NET Core.
-
-### Request body data rate limit
-
-The default Kestrel [minimum request body data rate](
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>) is 240 bytes/second. For client streaming and duplex streaming calls, this rate may not be satisfied and the connection may be timed out. The minimum request body data rate limit should typically be disabled when the gRPC service includes client streaming and duplex streaming calls. The following code disables Kestrel minimum request body data rate:
-
-[!code-csharp[](~/grpc/configuration/sample/GrcpService/Program.cs?name=snippet&highlight=13-16)]
-
-## Configure client and server maximum send and receive options
-
-The following table shows the client `Channel` maximum send and receive options and corresponding server options:
-
-|ChannelOptions (Client) |  GrpcServiceOptions (Server) |
-| ------ | ------------- |
-| `MaxSendMessageLength` | `ReceiveMaxMessageSize` |
-| `MaxReceiveMessageLength` | `SendMaxMessageSize` |
-
-<!-- What are important User Agent options ? 
-And some client specific configurations like 
- -->
-
-The following highlighted code sets the server options listed in the preceding table:
-
-[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
-
-The following code sets the client options listed in the preceding table:
+The following code sets the client maximum send and receive message size:
 
 [!code-csharp[](~/grpc/configuration/sample/Program.cs?name=snippet&highlight=3-6)]
 
