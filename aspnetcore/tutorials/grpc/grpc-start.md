@@ -5,7 +5,7 @@ description: This tutorial shows how to create a gRPC Service and gRPC client on
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 5/30/2019
-uid: tutorials/grpc/grpc-client
+uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
 
