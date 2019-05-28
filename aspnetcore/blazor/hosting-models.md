@@ -5,7 +5,7 @@ description: Understand client-side and server-side Blazor hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/13/2019
+ms.date: 05/28/2019
 uid: blazor/hosting-models
 ---
 # Blazor hosting models
@@ -58,8 +58,6 @@ The ASP.NET Core app references the app's `Startup` class to add:
 
 * Server-side services.
 * The app to the request handling pipeline.
-
-[!code-csharp[](hosting-models/samples_snapshot/Startup.cs?highlight=5,27)]
 
 The *blazor.server.js* script&dagger; establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection).
 
