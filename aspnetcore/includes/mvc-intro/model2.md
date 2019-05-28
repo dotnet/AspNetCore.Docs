@@ -1,6 +1,6 @@
 <a name="dc"></a>
-
-Add the following `MvcMovieContext` class to the *Models* folder:  
+* Add a new folder named *Data* 
+* Add the following `MvcMovieContext` class in *Data/MvcMovieContext.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Data/MvcMovieContext.cs)]
 
