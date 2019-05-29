@@ -105,27 +105,6 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 
 JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with `IJSRuntime.InvokeAsync<T>`, which returns `null`.
 
-The following JavaScript function, `testVoid`, returns [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined):
-
-```javascript
-window.jsFunctions = {
-  testVoid: function () {
-    console.log('testVoid called!');
-    return undefined;
-    // or ... return void(0);
-    // or ... return void 0;
-  }
-}
-```
-
-`InvokeAsync<T>` is called with the [object](/dotnet/csharp/language-reference/keywords/object) type, where `_jsRuntime` is an injected `IJSRuntime` instance:
-
-```csharp
-var returnValue = _jsRuntime.InvokeAsync<object>("jsFunctions.testVoid", null);
-```
-
-The `testVoid` function is executed in the browser. `returnValue` is `null` after the function executes.
-
 ## Detect when a Blazor app is prerendering
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
