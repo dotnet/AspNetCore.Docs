@@ -482,7 +482,7 @@ See [Configuration with web.config](#configuration-with-webconfig) for an exampl
 
 ## Modifying the stack size
 
-The ASP.NET Core Module can increase the stack size for managed stacks. Use the handler setting `stackSize` to configure it. By default the stackSize is set to 1MB.
+You can configure the default managed stack size using the `stackSize` setting. This value is in **bytes**. The default size is `1048576` bytes (1 MB).
 
 ```xml
 <aspNetCore processPath="dotnet"
