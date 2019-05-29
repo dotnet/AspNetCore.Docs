@@ -478,6 +478,26 @@ The handler settings can also be provided via environment variables:
 
 See [Configuration with web.config](#configuration-with-webconfig) for an example of the `aspNetCore` element in the *web.config* file.
 
+::: moniker range=">= aspnetcore-3.0"
+
+## Modifying the stack size
+
+The ASP.NET Core Module can increase the stack size for managed stacks. Use the handler setting `stackSize` to configure it. By default the stackSize is set to 1MB.
+
+```xml
+<aspNetCore processPath="dotnet"
+    arguments=".\MyApp.dll"
+    stdoutLogEnabled="false"
+    stdoutLogFile="\\?\%home%\LogFiles\stdout"
+    hostingModel="InProcess">
+  <handlerSettings>
+    <handlerSetting name="stackSize" value="2097152" />
+  </handlerSettings>
+</aspNetCore>
+```
+
+::: moniker-end
+
 ## Proxy configuration uses HTTP protocol and a pairing token
 
 ::: moniker range=">= aspnetcore-2.2"
