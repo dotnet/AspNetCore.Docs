@@ -11,7 +11,7 @@ $.ajax("/home/secureinfo", {
     })
     .fail(function (xhr) {
         if (xhr.status == 401) {
-            alert("you need to login first (handled by jquery)");
+            alert("You need to login first (handled by jquery)");
         }
         
     })
@@ -23,7 +23,7 @@ xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
         if (xhr.status == 401) {
-            alert("you need to login first (handled by XMLHttpRequest)");
+            alert("You need to login first (handled by XMLHttpRequest)");
         }
         else if (xhr.status >= 200 && xhr.status < 300) {
             $(".test-jquery").append(xhr.responseText)

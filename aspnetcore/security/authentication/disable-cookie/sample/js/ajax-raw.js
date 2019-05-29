@@ -5,10 +5,10 @@
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 401) {
-                // handle authentication here
+                // Handle authentication here.
             }
             else if (xhr.status >= 200 && xhr.status < 300) {
-                // do you business logic here
+                // Business logic here.
             }
             else {
                 console.error("request fail");

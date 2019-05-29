@@ -5,10 +5,10 @@ $.ajax("your-api-url", {
     }
 })
     .done(function (result) {
-        // do your business logic here
+        // Business logic here.
     })
     .fail(function (xhr) {
         if (xhr.status == 401) {
-            //handle authentication here
+            // Handle authentication here.
         }
     })
