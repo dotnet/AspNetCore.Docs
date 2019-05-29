@@ -840,6 +840,8 @@
           href: https://identityserver4.readthedocs.io/
         - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
           href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+        - name: Disable automatic cookie authentication
+          uid: security/authentication/disable-cookie 
         - name: Individual user accounts
           uid: security/authentication/individual
     - name: Authorization
