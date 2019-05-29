@@ -2,7 +2,7 @@
 
 ### Add a database context class
 
-Add the following `RazorPagesMovieContext` class to the *Models* folder:
+Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 

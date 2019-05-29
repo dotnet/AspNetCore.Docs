@@ -92,10 +92,6 @@
     - name: Remote Procedure Call apps
       items:
         - name: Get started with gRPC service in ASP.NET Core
-          uid: tutorials/grpc/index
-        - name: Create an ASP.NET Core gRPC Greeter Service
-          uid: tutorials/grpc/grpc-start
-        - name: Create a .NET Core gRPC client
           uid: tutorials/grpc/grpc-client 
     - name: Data access
       items:
@@ -321,7 +317,7 @@
               uid: spa/react
             - name: React with Redux
               uid: spa/react-with-redux
-            - name: JavaScriptServices
+            - name: JavaScript Services
               uid: client-side/spa-services
         - name: LibMan
           items:
@@ -533,15 +529,9 @@
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
-      uid: grpc/comparison
-    - name: Tutorials
-      items:
-        - name: Get started with gRPC service in ASP.NET Core
-          uid: tutorials/grpc/index
-        - name: Create a ASP.NET Core gRPC Greeter Service
-          uid: tutorials/grpc/grpc-start
-        - name: Create a .NET Core gRPC client
-          uid: tutorials/grpc/grpc-client
+      uid: grpc/comparison    
+    - name: Create a gRPC client and server
+      uid: tutorials/grpc/grpc-client
 - name: Test, debug, and troubleshoot
   items:
     - name: Unit testing
