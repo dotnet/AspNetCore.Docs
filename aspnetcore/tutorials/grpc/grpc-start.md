@@ -9,13 +9,13 @@ uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
 
-By [John Luo](https://github.com/juntaoluo)
+By [John Luo](https:/github.com/juntaoluo)
 
-This tutorial shows how to create a .NET Core [gRPC](https://grpc.io/docs/guides/) client and an ASP.NET Core gRPC Server.
+This tutorial shows how to create a .NET Core [gRPC](https:/grpc.io/docs/guides/) client and an ASP.NET Core gRPC Server.
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https:/github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 In this tutorial, you:
 
@@ -42,7 +42,7 @@ In this tutorial, you:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Open the [integrated terminal](https:/code.visualstudio.com/docs/editor/integrated-terminal).
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following commands:
 
@@ -92,11 +92,11 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
 ---
 
-The logs show the service listening on `http://localhost:50051`.
+The logs show the service listening on `http:/localhost:50051`.
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: http://localhost:50051
+      Now listening on: http:/localhost:50051
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
@@ -126,7 +126,7 @@ GrpcGreeter files:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Open the [integrated terminal](https:/code.visualstudio.com/docs/editor/integrated-terminal).
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following commands:
 
@@ -147,9 +147,9 @@ Follow the instructions [here](/dotnet/core/tutorials/using-on-mac-vs-full-solut
 
 Add the following packages to the gRPC client project:
 
-* [Grpc.Core](https://www.nuget.org/packages/Grpc.Core), which contains the C# API for the C-core client.
-* [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
-* [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
+* [Grpc.Core](https:/www.nuget.org/packages/Grpc.Core), which contains the C# API for the C-core client.
+* [Google.Protobuf](https:/www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
+* [Grpc.Tools](https:/www.nuget.org/packages/Grpc.Tools/), which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 
 ### [Visual Studio](#tab/visual-studio)
 
@@ -274,7 +274,7 @@ The gRPC service records the details of the successful call in the logs written 
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: http://localhost:50051
+      Now listening on: http:/localhost:50051
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
@@ -282,7 +282,7 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\GH\aspnet\docs\4\Docs\aspnetcore\tutorials\grpc\grpc-start\sample\GrpcGreeter
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
-      Request starting HTTP/2 POST http://localhost:50051/Greet.Greeter/SayHello application/grpc
+      Request starting HTTP/2 POST http:/localhost:50051/Greet.Greeter/SayHello application/grpc
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
       Executing endpoint 'gRPC - /Greet.Greeter/SayHello'
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
