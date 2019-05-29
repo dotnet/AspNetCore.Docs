@@ -1,6 +1,16 @@
 {
     "redirections": [
         {
+            "source_path": "aspnetcore/tutorials/grpc/grpc-client.md",
+            "redirect_url": "aspnetcore/tutorials/grpc/grpc-start",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/grpc/index.md",
+            "redirect_url": "aspnetcore/tutorials/grpc/grpc-start",
+            "redirect_document_id": false
+        },        
+        {
             "source_path": "aspnetcore/fundamentals/host/index.md",
             "redirect_url": "/aspnet/core/fundamentals/index#host",
             "redirect_document_id": false
