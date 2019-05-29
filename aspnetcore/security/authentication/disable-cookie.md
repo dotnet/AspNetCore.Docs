@@ -8,7 +8,7 @@ uid: security/authentication/disable-cookie
 ---
 # Disable automatic cookie authentication in ASP.NET Core
 
-By [John King](https://github.com/John0King), [Kirk Larkin](https://github.com/serpent5), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Kirk Larkin](https://github.com/serpent5), [John King](https://github.com/John0King), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute specifies that access to a controller or action method is restricted to users who meet the authorization requirement. When the user is not authenticated or doesn't have access to the controller or action method:
 
@@ -43,9 +43,8 @@ The following code, added to `ConfigureServices`, handles the [CookieAuthenticat
 
 [!code-csharp[Startup.cs](disable-cookie/sample/Startup.cs?name=snippet)]
 
-The following <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents> verify the [request is from AJAX](https://github.com/aspnet/AspNetCore/blob/v2.2.5/src/Security/Authentication/Cookies/src/CookieAuthenticationEvents.cs#L103-L107) :
+The following <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents> enable further customization of the cookie authentication process. For example, handle [CookieAuthenticationEvents.OnRedirectToAccessDenied](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToAccessDenied) to return a HTTP StatusCode 403 for AJAX requests:
 
-* [CookieAuthenticationEvents.OnRedirectToLogin](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogin)
 * [CookieAuthenticationEvents.OnRedirectToAccessDenied](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToAccessDenied)
 * [CookieAuthenticationEvents.OnRedirectToLogout](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogout)
 * [CookieAuthenticationEvents.OnRedirectToReturnUrl](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToReturnUrl)

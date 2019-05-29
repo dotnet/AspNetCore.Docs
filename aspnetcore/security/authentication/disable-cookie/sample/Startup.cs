@@ -29,45 +29,36 @@ namespace CookieAjax
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase("app"));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
             #region snippet
-            services.AddAuthentication(o=>
+            services.ConfigureApplicationCookie(options =>
             {
-                o.DefaultScheme = IdentityConstants.ApplicationScheme;
-                o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
-            })
-            .AddIdentityCookies(idop =>
-            {
-                idop.ApplicationCookie.Configure(op =>
+                options.Events.OnRedirectToLogin = context =>
                 {
-                    op.Events.OnRedirectToLogin = context =>
+                    var requestHeaders = new RequestHeaders(context.Request.Headers);
+
+                    // Browser requests typically include an Accept header media type of "text/html".
+                    if (requestHeaders.Accept?.Any(acceptValue => 
+                                                       acceptValue.MediaType.Value.Equals("text/html", 
+                                                         StringComparison.OrdinalIgnoreCase)) == true)
                     {
-                        var headers = new Microsoft.AspNetCore.Http.Headers.RequestHeaders(
-                                                                    context.Request.Headers);
-                        // Browser access contains request header { Accept:text/html;}
-                        // AJAX request contain {Accept:*/* } header by default.
-                        if (!headers.Accept.ToString().Contains("html", 
-                                                        StringComparison.OrdinalIgnoreCase))
-                        {
-                            // AJAX or other non-browser call.
-                            context.Response.Headers["Location"] = context.RedirectUri;
-                            context.Response.StatusCode = 401;
-                        }
-                        else
-                        {
-                            // UI/Browser request case.
-                            context.Response.Redirect(context.RedirectUri);
-                        }
-                        return Task.CompletedTask;
-                    };
-                });
+                        context.Response.Redirect(context.RedirectUri);
+                    }
+                    else
+                    {
+                        // Otherwise, assume this as an AJAX or other non-browser request.
+                        context.Response.Headers["Location"] = context.RedirectUri;
+                        context.Response.StatusCode = 401;
+                    }
+
+                    return Task.CompletedTask;
+                };
             });
-
             #endregion
-
-            services.AddIdentityCore<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders()
-                .AddDefaultUI(UIFramework.Bootstrap4);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
