@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/21/2019
+ms.date: 05/29/2019
 uid: blazor/javascript-interop
 ---
 # Blazor JavaScript interop
@@ -100,6 +100,31 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 1. When `TriggerJsPrompt` is executed by selecting the component's **Trigger JavaScript Prompt** button, the JavaScript `showPrompt` function provided in the *wwwroot/exampleJsInterop.js* file is called.
 1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the component. The component stores the user's name in a local variable, `name`.
 1. The string stored in `name` is incorporated into a welcome message, which is passed to a JavaScript function, `displayWelcome`, which renders the welcome message into a heading tag.
+
+## Call a void JavaScript function
+
+JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with `IJSRuntime.InvokeAsync<T>`, which returns `null`.
+
+The following JavaScript function, `testVoid`, returns [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined):
+
+```javascript
+window.jsFunctions = {
+  testVoid: function () {
+    console.log('testVoid called!');
+    return undefined;
+    // or ... return void(0);
+    // or ... return void 0;
+  }
+}
+```
+
+`InvokeAsync<T>` is called with the [object](/dotnet/csharp/language-reference/keywords/object) type, where `_jsRuntime` is an injected `IJSRuntime` instance:
+
+```csharp
+var returnValue = _jsRuntime.InvokeAsync<object>("jsFunctions.testVoid", null);
+```
+
+The `testVoid` function is executed in the browser. `returnValue` is `null` after the function executes.
 
 ## Detect when a Blazor app is prerendering
  
