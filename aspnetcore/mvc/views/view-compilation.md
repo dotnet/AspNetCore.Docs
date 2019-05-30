@@ -5,7 +5,7 @@ description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/02/2019
+ms.date: 05/30/2019
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -39,7 +39,7 @@ Razor files are compiled at both build and publish time using the [Razor SDK](xr
 ## Razor compilation
 
 ::: moniker range=">= aspnetcore-3.0"
-Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation will complement build time compilation, allowing Razor files to be updated if they are edited.
+Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they are edited.
 
 ::: moniker-end
 
