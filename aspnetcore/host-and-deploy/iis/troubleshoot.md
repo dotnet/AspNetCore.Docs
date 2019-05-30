@@ -54,7 +54,7 @@ The *502.5 Process Failure* error page is returned when a hosting or app misconf
 
 ![Browser window showing the 502.5 Process Failure page](troubleshoot/_static/process-failure-page.png)
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range="= aspnetcore-2.2"
 
 ### 500.30 In-Process Startup Failure
 
@@ -78,6 +78,86 @@ The ASP.NET Core Module fails to find the .NET Core CLR and find the in-process 
 The worker process fails. The app doesn't start.
 
 The ASP.NET Core Module fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-3.0"
+
+### 500.30 In-Process Startup Failure
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
+
+### 500.31 ANCM Failed to Find Native Dependencies
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of this startup failure most likely due to the version of `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App` not being found. For example, if the application is deployed to target 3.0 and that version doesn't exist on the machine, this error can occur. The specific error will look like the following:
+
+```
+The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
+  - The following frameworks were found:
+      2.2.1 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview5-27626-15 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27713-13 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27714-15 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27723-08 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+```
+
+To fix this error, either:
+* Install the appropriate version of dotnet on the machine.
+* Target the correct version of dotnet.
+* Publish the application as Standalone.
+
+When running in development (ASPNETCORE_ENVIRONMENT is set to Development), the specific error that occured will be written to the HTTP response. The cause of a process startup failure can also be found in the [Application Event Log](#application-event-log).
+
+### 500.32 ANCM Failed to Load dll
+
+The worker process fails. The app doesn't start.
+
+The application was likely published for a different bitness than w3wp.exe/iisexpress.exe is running as. For example, if the worker process is running as a 32-bit application and the application was published to target 64-bit, this error will occur. The first dll that will hit this error will be `hostfxr.dll`, which is responsible for starting the dotnet application.
+
+To fix this error, either:
+* Publish the application for the same bitness as the worker process
+* Publish the application as portable.
+
+### 500.33 ANCM Request Handler Load Failure
+
+The worker process fails. The app doesn't start.
+
+The application didn't reference a package or shared framework that included the native handler used by ANCM. 
+
+To fix this error, make sure Microsoft.AspNetCore.App is referenced by the application.
+
+### 500.34 ANCM Mixed Hosting Models Not Supported
+
+The worker process cannot run both an inprocess and out of process application in the same worker process.
+
+To fix this error, please target a different application pool for the second application.
+
+### 500.35 ANCM Multiple In-Process Applications in same Process
+
+The worker process cannot run two inprocess applications in the same worker process.
+
+To fix this error, please target a different application pool for the second application.
+### 500.36 ANCM Out-Of-Process Handler Load Failure
+
+The out of process request handler, aspnetcorev2_outofprocess.dll, could not be found next to the aspnetcorev2.dll.
+
+To fix this error, please confirm that the dll aspnetcorev2_outofprocess.dll in a directory with a version number next to aspnetcorev2.dll
+
+### 500.37 ANCM Failed to Start Within Startup Time Limit
+
+ANCM failed to start within the provied startup time limit. By default, the timeout is 120 seconds.
+
+This can occur if multiple inprocess applications are being started at the same time. 
+
+### 500.0 In-Process Handler Load Failure
+
+The worker process fails. The app doesn't start.
+
+The cause of a process startup failure can also be found in the [Application Event Log](#application-event-log).
 
 ::: moniker-end
 
