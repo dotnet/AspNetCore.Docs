@@ -478,6 +478,26 @@ The handler settings can also be provided via environment variables:
 
 See [Configuration with web.config](#configuration-with-webconfig) for an example of the `aspNetCore` element in the *web.config* file.
 
+::: moniker range=">= aspnetcore-3.0"
+
+## Modify the stack size
+
+Configure the managed stack size using the `stackSize` setting in bytes. The default size is `1048576` bytes (1 MB).
+
+```xml
+<aspNetCore processPath="dotnet"
+    arguments=".\MyApp.dll"
+    stdoutLogEnabled="false"
+    stdoutLogFile="\\?\%home%\LogFiles\stdout"
+    hostingModel="InProcess">
+  <handlerSettings>
+    <handlerSetting name="stackSize" value="2097152" />
+  </handlerSettings>
+</aspNetCore>
+```
+
+::: moniker-end
+
 ## Proxy configuration uses HTTP protocol and a pairing token
 
 ::: moniker range=">= aspnetcore-2.2"
