@@ -480,7 +480,7 @@ See [Configuration with web.config](#configuration-with-webconfig) for an exampl
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## Modifying the stack size
+## Modify the stack size
 
 You can configure the default managed stack size using the `stackSize` setting. This value is in **bytes**. The default size is `1048576` bytes (1 MB).
 
