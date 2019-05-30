@@ -5,7 +5,7 @@ description: Learn how to configure Windows Authentication in ASP.NET Core for I
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 05/27/2019
+ms.date: 05/29/2019
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
@@ -76,11 +76,9 @@ Depending on the hosting scenario, follow the guidance in **either** the [IIS](#
 
 ### IIS
 
-Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> in `Startup.ConfigureServices`:
+Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (<xref:Microsoft.AspNetCore.Server.IISIntegration?displayProperty=fullName> namespace) in `Startup.ConfigureServices`:
 
 ```csharp
-// using Microsoft.AspNetCore.Server.IISIntegration;
-
 services.AddAuthentication(IISDefaults.AuthenticationScheme);
 ```
 
@@ -127,25 +125,23 @@ Use **either** of the following approaches:
 
 Although [Kestrel](xref:fundamentals/servers/kestrel) doesn't support Windows Authentication, you can use [HTTP.sys](xref:fundamentals/servers/httpsys) to support self-hosted scenarios on Windows.
 
-Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> in `Startup.ConfigureServices`:
+Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (<xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> namespace) in `Startup.ConfigureServices`:
 
 ```csharp
-// using Microsoft.AspNetCore.Server.HttpSys;
-
 services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 ```
 
-Configure the app's web host to use HTTP.sys with Windows Authentication (*Program.cs*).
+Configure the app's web host to use HTTP.sys with Windows Authentication (*Program.cs*). <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> is in the <xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> namespace.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](windowsauth/sample_snapshot/Program_GenericHost.cs?highlight=15-21)]
+[!code-csharp[](windowsauth/sample_snapshot/Program_GenericHost.cs?highlight=13-19)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](windowsauth/sample_snapshot/Program_WebHost.cs?highlight=11-17)]
+[!code-csharp[](windowsauth/sample_snapshot/Program_WebHost.cs?highlight=9-15)]
 
 ::: moniker-end
 
