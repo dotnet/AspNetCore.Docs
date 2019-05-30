@@ -161,7 +161,7 @@ The endpoint that processes the error can get the original URL that generated th
 
 ## Disable status code pages
 
-To disable status code pages for an MVC controller or action method, use the [SkipStatusCodePages](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) attribute.
+To disable status code pages for an MVC controller or action method, use the [[SkipStatusCodePages]](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) attribute.
 
 To disable status code pages for specific requests in a Razor Pages handler method or in an MVC controller, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>:
 
