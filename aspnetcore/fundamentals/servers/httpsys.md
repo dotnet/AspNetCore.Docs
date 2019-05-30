@@ -5,7 +5,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/21/2019
+ms.date: 05/27/2019
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -265,7 +265,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 ## Additional resources
 
-* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#enable-windows-authentication-with-httpsys)
+* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
 * [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
 * [The host](xref:fundamentals/index#host)
