@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 05/21/2019
+ms.date: 05/29/2019
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -128,13 +128,17 @@ release. Continue using the `Newtonsoft.Json`-based formatters if your ASP.NET C
 
 ### Add XML format support
 
-To add XML formatting support, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
+::: moniker range="<= aspnetcore-2.2"
 
-XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured in `Startup.ConfigureServices` as follows:
+To add XML formatting support in ASP.NET Core 2.2 or earlier, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
+
+::: moniker-end
+
+XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
 
 [!code-csharp[](./formatting/sample/Startup.cs?name=snippet1&highlight=2)]
 
-Alternatively, XML formatters implemented using `System.Runtime.Serialization.DataContractSerializer` can be configured in `Startup.ConfigureServices` as follows:
+Alternatively, XML formatters implemented using `System.Runtime.Serialization.DataContractSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlDataContractSerializerFormatters*> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
