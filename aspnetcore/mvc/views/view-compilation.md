@@ -39,7 +39,7 @@ Razor files are compiled at both build and publish time using the [Razor SDK](xr
 ## Razor compilation
 
 ::: moniker range=">= aspnetcore-3.0"
-Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation, will complement build time compilation allowing Razor files to be updated if they are editied.
+Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation will complement build time compilation, allowing Razor files to be updated if they are edited.
 
 ::: moniker-end
 
