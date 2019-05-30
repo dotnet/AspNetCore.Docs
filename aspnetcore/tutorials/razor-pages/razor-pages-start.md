@@ -3,7 +3,7 @@ title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
 description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages, use Entity Framework Core and SQL Server for data access, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
-ms.date: 05/09/2019
+ms.date: 05/30/2019
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -15,7 +15,7 @@ This is the first tutorial of a series. [The series](xref:tutorials/razor-pages/
 
 [!INCLUDE[](~/includes/advancedRP.md)]
 
-At the end of the series you'll have an app that manages a database of movies.  
+At the end of the series, you'll have an app that manages a database of movies.  
 
 [!INCLUDE[View or download sample code](~/includes/rp/download.md)]
 
@@ -26,7 +26,7 @@ In this tutorial, you:
 > * Run the app.
 > * Examine the project files.
 
-At the end of this tutorial you'll have a working Razor Pages web app that you'll build on in later tutorials.
+At the end of this tutorial, you'll have a working Razor Pages web app that you'll build on in later tutorials.
 
 ![Home or Index page](razor-pages-start/_static/home2.2.png)
 
@@ -66,9 +66,9 @@ At the end of this tutorial you'll have a working Razor Pages web app that you'l
   * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
   * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
-  A dialog box appears with **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?**
+* After the status bar's OmniSharp flame icon turns green, a dialog asks **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?** Select **Yes**.
 
-* Select **Yes**
+  A *.vscode* directory, containing *launch.json* and *tasks.json* files, is added to the project's root directory.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
