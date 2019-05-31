@@ -182,19 +182,19 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs)]
 
-In the preceding class, the `Id` property:
-
-* Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
-* Is annotated with `[BsonId]` to designate this property as the document's primary key.
-* Is annotated with `[BsonRepresentation(BsonType.ObjectId)]` to allow passing the parameter as type `string` instead of `ObjectId`. Mongo handles the conversion from `string` to `ObjectId`.
-
-Other properties in the class are annotated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
+    In the preceding class, the `Id` property:
+    
+    * Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
+    * Is annotated with `[BsonId]` to designate this property as the document's primary key.
+    * Is annotated with `[BsonRepresentation(BsonType.ObjectId)]` to allow passing the parameter as type `string` instead of `ObjectId`. Mongo handles the conversion from `string` to `ObjectId`.
+    
+    Other properties in the class are annotated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
 
 ## Add a configuration model
 
 1. Add the MongoDB configuration values to *appsettings.json*:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-6)]
+    [!code-json[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-6)]
 
 1. Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:
 
@@ -216,7 +216,7 @@ Other properties in the class are annotated with the `[BsonElement]` attribute. 
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceClass)]
 
-    In the preceding code, `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values which were added in the [Add a configuration model](#add-a-configuration-model) section.
+    In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values which were added in the [Add a configuration model](#add-a-configuration-model) section.
 
 1. In `Startup.ConfigureServices`, register the `BookService` class with DI:
 
