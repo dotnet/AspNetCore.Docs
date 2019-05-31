@@ -83,12 +83,6 @@ The ASP.NET Core Module fails to find the out-of-process hosting request handler
 
 ::: moniker range="= aspnetcore-3.0"
 
-### 500.30 In-Process Startup Failure
-
-The worker process fails. The app doesn't start.
-
-The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
-
 ### 500.31 ANCM Failed to Find Native Dependencies
 
 The worker process fails. The app doesn't start.
@@ -153,6 +147,12 @@ To fix this error, repair your installation of the Windows Hosting Bundle (for I
 ANCM failed to start within the provied startup time limit. By default, the timeout is 120 seconds.
 
 This can occur when starting a large number of apps on the same machine. Check for CPU/Memory usage spikes on the server during startup. You may need to stagger the startup process of multiple apps.
+
+### 500.30 In-Process Startup Failure
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
 
 ### 500.0 In-Process Handler Load Failure
 
