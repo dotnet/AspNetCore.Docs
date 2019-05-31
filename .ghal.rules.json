@@ -4,6 +4,9 @@
       "(?i).*": "Source - Docs.ms"
     },
     "contentsource": {
+      "(?i).*master\/aspnetcore\/blazor.*": "Blazor",
+      "(?i).*master\/aspnetcore\/host-and-deploy\/blazor.*": "Blazor",
+      "(?i).*master\/aspnetcore\/tutorials\/*blazor*.*": "Blazor",
       "(?i).*master\/aspnetcore\/signalr.*": "SignalR",
       "(?i).*master\/aspnetcore\/tutorials\/signalr*.*": "SignalR"
     }
