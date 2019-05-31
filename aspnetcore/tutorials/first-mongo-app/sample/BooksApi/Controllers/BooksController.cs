@@ -17,10 +17,8 @@ namespace BooksApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Book>> Get()
-        {
-            return _bookService.Get();
-        }
+        public ActionResult<List<Book>> Get() =>
+            _bookService.Get();
 
         [HttpGet("{id:length(24)}", Name = "GetBook")]
         public ActionResult<Book> Get(string id)
