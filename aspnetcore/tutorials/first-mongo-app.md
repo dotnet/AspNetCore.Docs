@@ -192,7 +192,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 ## Add a configuration model
 
-1. Add the MongoDB configuration values to *appsettings.json*:
+1. Add the following database configuration values to *appsettings.json*:
 
     [!code-json[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-6)]
 
