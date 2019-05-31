@@ -4,7 +4,7 @@ author: prkhandelwal
 description: This tutorial demonstrates how to build an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 01/31/2019
+ms.date: 05/31/2019
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -175,7 +175,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 ---
 
-## Add a model
+## Add an entity model
 
 1. Add a *Models* directory to the project root.
 1. Add a `Book` class to the *Models* directory with the following code:
@@ -190,6 +190,25 @@ In the preceding class, the `Id` property:
 
 Other properties in the class are annotated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
 
+## Add a configuration model
+
+1. Add the MongoDB configuration values to *appsettings.json*:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-6)]
+
+1. Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/BookstoreDatabaseSettings.cs)]
+
+1. Add the following code to `Startup.ConfigureServices`:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureDatabaseSettings)]
+
+    In the preceding code:
+
+    * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
+    * The `IBookstoreDatabaseSettings` interface is registered in the Dependency Injection (DI) system with a singleton lifetime. When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.    
+
 ## Add a CRUD operations class
 
 1. Add a *Services* directory to the project root.
@@ -197,17 +216,13 @@ Other properties in the class are annotated with the `[BsonElement]` attribute. 
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceClass)]
 
-1. Add the MongoDB connection string to *appsettings.json*:
+    In the preceding code, `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values which were added in the [Add a configuration model](#add-a-configuration-model) section.
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-4)]
+1. In `Startup.ConfigureServices`, register the `BookService` class with DI:
 
-    The preceding `BookstoreDb` property is accessed in the `BookService` class constructor.
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=11)]
 
-1. In `Startup.ConfigureServices`, register the `BookService` class with the Dependency Injection system:
-
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=3)]
-
-    The preceding service registration is necessary to support constructor injection in consuming classes.
+    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client re-use guidelines](http://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton lifetime.
 
 The `BookService` class uses the following `MongoDB.Driver` members to perform CRUD operations against the database:
 
