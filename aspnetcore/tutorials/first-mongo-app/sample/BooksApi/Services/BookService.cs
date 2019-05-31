@@ -1,5 +1,4 @@
 ﻿#region snippet_BookServiceClass
-using BooksApi.Data;
 using BooksApi.Models;
 using MongoDB.Driver;
 using System.Collections.Generic;
@@ -12,9 +11,12 @@ namespace BooksApi.Services
         private readonly IMongoCollection<Book> _books;
 
         #region snippet_BookServiceConstructor
-        public BookService(BookstoreContext dbContext)
+        public BookService(IBookstoreDatabaseSettings settings)
         {
-            _books = dbContext.Books;
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+
+            _books = database.GetCollection<Book>(settings.BooksCollectionName);
         }
         #endregion
 

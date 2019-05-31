@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using BooksApi.Models;
+﻿using BooksApi.Models;
 using BooksApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BooksApi.Controllers
 {
