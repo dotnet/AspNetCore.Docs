@@ -38,7 +38,7 @@ This error occurs within the app's code during startup or while creating a respo
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
+The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure is usually determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
 
 ::: moniker-end
 
@@ -48,7 +48,7 @@ The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it f
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of this startup failure most likely due to the version of `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App` not being found. For example, if the application is deployed to target 3.0 and that version doesn't exist on the machine, this error can occur. The specific error will look like the following:
+The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of this startup failure most likely due to a missing native dependencies for `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App`. If the app is deployed to target 3.0 and that version doesn't exist on the machine, this error occurs. The following is an example of how this error is logged:
 
 ```
 The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
@@ -61,58 +61,61 @@ The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
 ```
 
 To fix this error, either:
-* Install the appropriate version of dotnet on the machine.
-* Target the correct version of dotnet.
-* Publish the application as Standalone.
 
-When running in development (ASPNETCORE_ENVIRONMENT is set to Development), the specific error that occured will be written to the HTTP response. The cause of a process startup failure can also be found in the [Application Event Log](#application-event-log).
+* Install the appropriate version of .NET Core on the machine.
+* Target the correct version of .NET Core.
+Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd).
+
+When running in the Development environment (`ASPNETCORE_ENVIRONMENT` is set to `Development`), the specific error that occured is written to the HTTP response. The cause of a process startup failure is also found in the [Application Event Log](#application-event-log).
 
 ### 500.32 ANCM Failed to Load dll
 
 The worker process fails. The app doesn't start.
 
-The application was likely published for a different bitness than w3wp.exe/iisexpress.exe is running as. For example, if the worker process is running as a 32-bit application and the application was published to target 64-bit, this error will occur. The first dll that will hit this error will be `hostfxr.dll`, which is responsible for starting the dotnet application.
+The app was likely published for a different bitness than the worker process (*w3wp.exe*/*iisexpress.exe*). If the worker process is running as a 32-bit app and the app was published to target 64-bit, this error occurs. The first dll that hits this error is `hostfxr.dll`, which is responsible for starting the app.
 
 To fix this error, either:
-* Publish the application for the same bitness as the worker process
-* Publish the application as portable.
+
+* Publish the app for the same bitness as the worker process.
+* Publish the app as a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-executables-fde).
 
 ### 500.33 ANCM Request Handler Load Failure
 
 The worker process fails. The app doesn't start.
 
-The application didn't reference a package or shared framework that included the native handler used by ANCM. 
+The app doesn't reference a package or shared framework that includes the native handler used by the ASP.NET Core Module.
 
-To fix this error, make sure Microsoft.AspNetCore.App is referenced by the application.
+To fix this error, confirm that the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by the app.
 
 ### 500.34 ANCM Mixed Hosting Models Not Supported
 
-The worker process cannot run both an inprocess and out of process application in the same worker process.
+A single worker process can't run both an in-process app and an out-of-process app in the same process.
 
-To fix this error, please target a different application pool for the second application.
+To fix this error, target a different application pool for the second app.
 
 ### 500.35 ANCM Multiple In-Process Applications in same Process
 
-The worker process cannot run two inprocess applications in the same worker process.
+A single worker process can't run both an in-process app and an out-of-process app in the same process.
 
-To fix this error, please target a different application pool for the second application.
+To fix this error, target a different application pool for the second app.
+
 ### 500.36 ANCM Out-Of-Process Handler Load Failure
 
-The out of process request handler, aspnetcorev2_outofprocess.dll, could not be found next to the aspnetcorev2.dll.
+The out-of-process request handler, *aspnetcorev2_outofprocess.dll*, couldn't be found next to the *aspnetcorev2.dll* file.
 
-To fix this error, please confirm that the dll aspnetcorev2_outofprocess.dll in a directory with a version number next to aspnetcorev2.dll
+To fix this error, confirm that the *aspnetcorev2_outofprocess.dll* file is in a directory with a version number next to *aspnetcorev2.dll*.
 
 ### 500.37 ANCM Failed to Start Within Startup Time Limit
 
 ANCM failed to start within the provied startup time limit. By default, the timeout is 120 seconds.
 
-This can occur if multiple inprocess applications are being started at the same time. 
+This occurs if multiple in-process apps are started at the same time.
 
 ### 500.0 In-Process Handler Load Failure
 
 The worker process fails. The app doesn't start.
 
-The cause of a process startup failure can also be found in the [Application Event Log](#application-event-log).
+The cause of a process startup failure is also found in the [Application Event Log](#application-event-log).
 
 ::: moniker-end
 
