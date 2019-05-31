@@ -93,7 +93,7 @@ The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it f
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of this startup failure most likely due to the version of `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App` not being found. For example, if the application is deployed to target 3.0 and that version doesn't exist on the machine, this error can occur. The specific error will look like the following:
+The ASP.NET Core Module attempts to start the .NET Core runtime in-process, but it fails to start. The most common cause of this startup failure is when the `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App` runtime is not installed. For example, if the application is deployed to target ASP.NET Core 3.0 and that version doesn't exist on the machine, this error can occur. An example error message is shown below:
 
 ```
 The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
@@ -105,59 +105,60 @@ The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
       3.0.0-preview6-27723-08 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
 ```
 
-To fix this error, either:
-* Install the appropriate version of dotnet on the machine.
-* Target the correct version of dotnet.
-* Publish the application as Standalone.
+The error message lists all the installed versions, as well as the version requested by the application. To fix this error, either:
+* Install the appropriate version of .NET Core on the machine.
+* Change the app to target a version of .NET Core that is present on the machine.
+* Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd).
 
-When running in development (ASPNETCORE_ENVIRONMENT is set to Development), the specific error that occured will be written to the HTTP response. The cause of a process startup failure can also be found in the [Application Event Log](#application-event-log).
+When running in development (the `ASPNETCORE_ENVIRONMENT` environment variable is set to Development), the specific error that occurred will be written to the HTTP response. The cause of a process startup failure can also be found in the [Application Event Log](#application-event-log).
 
 ### 500.32 ANCM Failed to Load dll
 
 The worker process fails. The app doesn't start.
 
-The application was likely published for a different bitness than w3wp.exe/iisexpress.exe is running as. For example, if the worker process is running as a 32-bit application and the application was published to target 64-bit, this error will occur. The first dll that will hit this error will be `hostfxr.dll`, which is responsible for starting the dotnet application.
+The most common cause for this is that the app was published for an incompatible processor architecture. For example, if the worker process is running as a 32-bit application and the application was published to target 64-bit, this error will occur.
 
 To fix this error, either:
-* Publish the application for the same bitness as the worker process
-* Publish the application as portable.
+* Re-publish the app for the same processor architecture as the worker process.
+* Publish the app as a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-executables-fde).
 
 ### 500.33 ANCM Request Handler Load Failure
 
 The worker process fails. The app doesn't start.
 
-The application didn't reference a package or shared framework that included the native handler used by ANCM. 
+The app didn't reference the `Microsoft.AspNetCore.App` framework. Only apps targeting that framework can be hosted by ANCM.
 
-To fix this error, make sure Microsoft.AspNetCore.App is referenced by the application.
+To fix this error, make sure the app is targeting the `Microsoft.AspNetCore.App` framework. Check the `.runtimeconfig.json` to verify the framework targeted by the app.
 
 ### 500.34 ANCM Mixed Hosting Models Not Supported
 
-The worker process cannot run both an inprocess and out of process application in the same worker process.
+The worker process cannot run both an in-process and out-of-process application in the same worker process.
 
-To fix this error, please target a different application pool for the second application.
+To fix this error, run apps in separate IIS application pools.
 
 ### 500.35 ANCM Multiple In-Process Applications in same Process
 
 The worker process cannot run two inprocess applications in the same worker process.
 
-To fix this error, please target a different application pool for the second application.
+To fix this error, run apps in separate IIS application pools.
+
 ### 500.36 ANCM Out-Of-Process Handler Load Failure
 
-The out of process request handler, aspnetcorev2_outofprocess.dll, could not be found next to the aspnetcorev2.dll.
+The out-of-process request handler, `aspnetcorev2_outofprocess.dll`, could not be found next to the `aspnetcorev2.dll`. This indicates a corrupted installation of the ASP.NET Core Module.
 
-To fix this error, please confirm that the dll aspnetcorev2_outofprocess.dll in a directory with a version number next to aspnetcorev2.dll
+To fix this error, repair your installation of the Windows Hosting Bundle (for IIS) or Visual Studio (for IIS Express).
 
 ### 500.37 ANCM Failed to Start Within Startup Time Limit
 
 ANCM failed to start within the provied startup time limit. By default, the timeout is 120 seconds.
 
-This can occur if multiple inprocess applications are being started at the same time. 
+This can occur when starting a large number of apps on the same machine. Check for CPU/Memory usage spikes on the server during startup. You may need to stagger the startup process of multiple apps.
 
 ### 500.0 In-Process Handler Load Failure
 
 The worker process fails. The app doesn't start.
 
-The cause of a process startup failure can also be found in the [Application Event Log](#application-event-log).
+An unknown error occurred loading ANCM components. Contact [Microsoft Support](https://support.microsoft.com/oas/default.aspx?prid=15832) (select "Developer Tools" then "ASP.NET Core") for assistance, ask on Stack Overflow, or file an issue on our [GitHub repository](https://github.com/aspnet/AspNetCore).
 
 ::: moniker-end
 
