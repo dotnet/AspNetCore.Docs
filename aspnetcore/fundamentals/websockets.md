@@ -70,7 +70,7 @@ The following settings can be configured:
 
 ## Accept WebSocket requests
 
-Somewhere later in the request life cycle (later in the `Configure` method or in an MVC action, for example) check if it's a WebSocket request and accept the WebSocket request.
+Somewhere later in the request life cycle (later in the `Configure` method or in an action method, for example) check if it's a WebSocket request and accept the WebSocket request.
 
 The following example is from later in the `Configure` method:
 
@@ -99,7 +99,7 @@ When accepting the WebSocket connection before beginning the loop, the middlewar
 
 ## WebSocket lifetime
 
-The WebSocket that is received from `AcceptWebSocketAsync` lives only as long as the middleware pipeline for the request is still running. When the middleware pipeline ends, the socket is closed. If your code continues to try to send and receive messages, a `WebSocketException` exception is raised with the following message:
+The WebSocket that is received from `AcceptWebSocketAsync` lives only as long as the middleware pipeline for the request is still running. When the middleware pipeline ends, the socket is closed. If your code continues to try to send and receive messages, the following `WebSocketException` exception is thrown:
 
 > The remote party closed the WebSocket connection without completing the close handshake.
 
@@ -107,7 +107,7 @@ The exception has an `ObjectDisposedException` inner exception with the followin
 
 > Cannot write to the response body, the response has completed. Object name: 'HttpResponseStream'.
 
-To avoid this error, don't let the request pipeline end before you're finished using the WebSocket. If you use a WebSocket from outside the request context (in a background thread or from another request) use code like the following example to make sure the request pipeline doesn't end prematurely:
+To avoid this error, don't let the request pipeline end before you're finished using the WebSocket. If you use a WebSocket in a background thread, use code like the following example:
 
 ```csharp
 app.Use(async (context, next) => {
@@ -120,9 +120,9 @@ app.Use(async (context, next) => {
 });
 ```
 
-The `await socketFinishedTcs.Task` statement keeps the the request open until the background processor calls `socketFinishedTcs.TrySetResult(null)` when it finishes with the socket.
+The `await socketFinishedTcs.Task` statement keeps the request open until the background processor is done. When it's done, the background processor calls `socketFinishedTcs.TrySetResult(null)` when it finishes with the socket. Code like this is required whenever you use a WebSocket from outside its original request context.
 
-The same WebSocket closed error can happen if you return too soon from an MVC controller action method. If you accept a socket in the action method, make sure you wait for the code that uses the socket to complete before you return from the action method.
+The `WebSocket` closed error can also happen if you return too soon from an action method. If you accept a socket in the action method, wait for the code that uses the socket to complete before returning from the action method.
 
 Never use `Task.Wait()` or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
 
