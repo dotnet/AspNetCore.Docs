@@ -5,7 +5,7 @@ description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Lea
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 06/01/2019
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
@@ -18,7 +18,7 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 Kestrel is the default web server included in ASP.NET Core project templates.
 
-Kestrel can be used:
+Use Kestrel:
 
 * By itself as an edge server processing requests directly from a network, including the Internet.
 
