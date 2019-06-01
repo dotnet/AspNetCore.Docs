@@ -116,7 +116,9 @@ To implement remote validation:
 1. In the model class, annotate the property with a `[Remote]` attribute that points to the validation action method, as shown in the following example:
 
    [!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserEmailProperty)]
-
+ 
+   The `[Remote]` attribute is in the `Microsoft.AspNetCore.Mvc` namespace and is provided by the [Microsoft.AspNetCore.Mvc.ViewFeatures](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.ViewFeatures) NuGet package. This package is not included in the `Microsoft.AspNetCore.App` metapackage.
+   
 ### Additional fields
 
 The `AdditionalFields` property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
