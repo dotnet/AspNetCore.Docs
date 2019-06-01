@@ -45,17 +45,7 @@ Install the [Microsoft.AspNetCore.WebSockets](https://www.nuget.org/packages/Mic
 
 Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 
-::: moniker range=">= aspnetcore-2.0"
-
 [!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=UseWebSockets)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-[!code-csharp[](websockets/samples/1.x/WebSocketsSample/Startup.cs?name=UseWebSockets)]
-
-::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
@@ -76,17 +66,7 @@ The following settings can be configured:
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.0"
-
 [!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=UseWebSocketsOptions)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-[!code-csharp[](websockets/samples/1.x/WebSocketsSample/Startup.cs?name=UseWebSocketsOptions)]
-
-::: moniker-end
 
 ## Accept WebSocket requests
 
@@ -94,17 +74,7 @@ Somewhere later in the request life cycle (later in the `Configure` method or in
 
 The following example is from later in the `Configure` method:
 
-::: moniker range=">= aspnetcore-2.0"
-
 [!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=AcceptWebSocket&highlight=7)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-[!code-csharp[](websockets/samples/1.x/WebSocketsSample/Startup.cs?name=AcceptWebSocket&highlight=7)]
-
-::: moniker-end
 
 A WebSocket request could come in on any URL, but this sample code only accepts requests for `/ws`.
 
@@ -123,21 +93,9 @@ The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket con
 
 The code shown earlier that accepts the WebSocket request passes the `WebSocket` object to an `Echo` method. The code receives a message and immediately sends back the same message. Messages are sent and received in a loop until the client closes the connection:
 
-::: moniker range=">= aspnetcore-2.0"
-
 [!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=Echo)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-[!code-csharp[](websockets/samples/1.x/WebSocketsSample/Startup.cs?name=Echo)]
-
-::: moniker-end
-
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
-
-::: moniker range=">= aspnetcore-2.2"
 
 ## WebSocket lifetime
 
@@ -167,6 +125,8 @@ The `await socketFinishedTcs.Task` statement keeps the the request open until th
 The same WebSocket closed error can happen if you return too soon from an MVC controller action method. If you accept a socket in the action method, make sure you wait for the code that uses the socket to complete before you return from the action method.
 
 Never use `Task.Wait()` or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
+
+::: moniker range=">= aspnetcore-2.2"
 
 ## Handle client disconnects
 
