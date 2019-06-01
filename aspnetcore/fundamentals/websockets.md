@@ -14,7 +14,9 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Andrew Stanton-Nurse](https:/
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:index#how-to-download-a-sample)). See the [Next steps](#next-steps) section for more information.
+[ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
+
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:index#how-to-download-a-sample)). [How to run](#sample-app).
 
 ## Prerequisites
 
@@ -85,29 +87,7 @@ System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed t
 Object name: 'HttpResponseStream'.
 ```
 
-If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource%601>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult%2A> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> property during the request.
-
-## Send and receive messages
-
-The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and provides a [WebSocket](/dotnet/core/api/system.net.websockets.websocket) object. Use the `WebSocket` object to send and receive messages.
-
-The code shown earlier that accepts the WebSocket request passes the `WebSocket` object to an `Echo` method. The code receives a message and immediately sends back the same message. Messages are sent and received in a loop until the client closes the connection:
-
-[!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=Echo)]
-
-When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
-
-## WebSocket lifetime
-
-The WebSocket that is received from `AcceptWebSocketAsync` lives only as long as the middleware pipeline for the request is still running. When the middleware pipeline ends, the socket is closed. If your code continues to try to send and receive messages, the following `WebSocketException` exception is thrown:
-
-> The remote party closed the WebSocket connection without completing the close handshake.
-
-The exception has an `ObjectDisposedException` inner exception with the following message:
-
-> Cannot write to the response body, the response has completed. Object name: 'HttpResponseStream'.
-
-To avoid this error, don't let the request pipeline end before you're finished using the WebSocket. If you use a WebSocket in a background thread, use code like the following example:
+If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource%601>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult%2A> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> property during the request. For example:
 
 ```csharp
 app.Use(async (context, next) => {
@@ -119,12 +99,19 @@ app.Use(async (context, next) => {
     await socketFinishedTcs.Task;
 });
 ```
-
-The `await socketFinishedTcs.Task` statement keeps the request open until the background processor is done. When it's done, the background processor calls `socketFinishedTcs.TrySetResult(null)` when it finishes with the socket. Code like this is required whenever you use a WebSocket from outside its original request context.
-
-The `WebSocket` closed error can also happen if you return too soon from an action method. If you accept a socket in the action method, wait for the code that uses the socket to complete before returning from the action method.
+The WebSocket closed exception can also happen if you return too soon from an action method. If you accept a socket in an action method, wait for the code that uses the socket to complete before returning from the action method.
 
 Never use `Task.Wait()` or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
+
+## Send and receive messages
+
+The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and provides a [WebSocket](/dotnet/core/api/system.net.websockets.websocket) object. Use the `WebSocket` object to send and receive messages.
+
+The code shown earlier that accepts the WebSocket request passes the `WebSocket` object to an `Echo` method. The code receives a message and immediately sends back the same message. Messages are sent and received in a loop until the client closes the connection:
+
+[!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=Echo)]
+
+When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -204,6 +191,3 @@ Select **Connect** to send a WebSocket request to the URL shown. Enter a test me
 
 ![Initial state of web page](websockets/_static/end.png)
 
-## Additional resources
-
-[ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
