@@ -117,7 +117,7 @@ To implement remote validation:
 
    [!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserEmailProperty)]
  
-   The `[Remote]` attribute is in the `Microsoft.AspNetCore.Mvc` namespace and is provided by the [Microsoft.AspNetCore.Mvc.ViewFeatures](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.ViewFeatures) NuGet package. This package is not included in the `Microsoft.AspNetCore.App` metapackage.
+   The `[Remote]` attribute is in the `Microsoft.AspNetCore.Mvc` namespace. Install the [Microsoft.AspNetCore.Mvc.ViewFeatures](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.ViewFeatures) NuGet package if you're not using the `Microsoft.AspNetCore.App` or `Microsoft.AspNetCore.All` metapackage.
    
 ### Additional fields
 
