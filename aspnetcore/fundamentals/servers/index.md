@@ -14,6 +14,24 @@ By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com
 
 An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as a set of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
+## Kestrel
+
+Kestrel is the default web server included in ASP.NET Core project templates.
+
+Kestrel can be used:
+
+* By itself as an edge server processing requests directly from a network, including the Internet.
+
+  ![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
+
+* With a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+
+  ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
+
+Either hosting configuration&mdash;with or without a reverse proxy server&mdash;is supported for ASP.NET Core 2.1 or later apps.
+
+For Kestrel configuration guidance and information on when to use Kestrel in a reverse proxy configuration, see <xref:fundamentals/servers/kestrel>.
+
 ::: moniker range=">= aspnetcore-2.2"
 
 # [Windows](#tab/windows)
@@ -94,24 +112,6 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 ::: moniker-end
 
-## Kestrel
-
-Kestrel is the default web server included in ASP.NET Core project templates.
-
-Kestrel can be used:
-
-* By itself as an edge server processing requests directly from a network, including the Internet.
-
-  ![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
-
-* With a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
-
-  ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
-
-Either hosting configuration&mdash;with or without a reverse proxy server&mdash;is supported for ASP.NET Core 2.1 or later apps.
-
-For Kestrel configuration guidance and information on when to use Kestrel in a reverse proxy configuration, see <xref:fundamentals/servers/kestrel>.
-
 ### Nginx with Kestrel
 
 For information on how to use Nginx on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-nginx>.
@@ -119,14 +119,6 @@ For information on how to use Nginx on Linux as a reverse proxy server for Kestr
 ### Apache with Kestrel
 
 For information on how to use Apache on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-apache>.
-
-::: moniker range=">= aspnetcore-2.2"
-
-## IIS HTTP Server
-
-IIS HTTP Server is an [in-process server](#hosting-models) for IIS and required for in-process deployments. The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) handles native IIS requests between IIS and IIS HTTP Server. For more information, see <xref:host-and-deploy/aspnet-core-module>.
-
-::: moniker-end
 
 ## HTTP.sys
 
