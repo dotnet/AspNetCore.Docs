@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebApplication.Interfaces;
 using WebApplication.Models;
 
-namespace WebApplication.Services
+namespace WebApplication.Data
 {
     public class PlanetService : IPlanetService
     {

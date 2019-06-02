@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using WebApplication.Models;
 
-namespace WebApplication.Interfaces
+namespace WebApplication.Data
 {
     interface IPlanetService
     {

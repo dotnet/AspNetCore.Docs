@@ -5,7 +5,7 @@ description: Build the Galactic Planetary Atlas app step-by-step to learn about 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/01/2019
+ms.date: 06/03/2019
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
@@ -35,12 +35,12 @@ If building a Blazor server-side app, open the *Pages/\_Host.cshtml* file. If bu
 Change the content of the `<title>` element to `Galactic Planetary Atlas`:
 
 ```html
-<title>Planetary Atlas</title>
+<title>Galactic Planetary Atlas</title>
 ```
 
 ### Add the app's namespace to the \_Imports.razor file
 
-*This section only applies to Blazor server-side apps.*
+*This section only applies to Blazor server-side apps during Preview 5.*
 
 If building a Blazor server-side app, add the app's namespace to the *\_Imports.razor* file. The following [\@using](xref:mvc/views/razor#section-1) directive assumes that the app's namespace is `WebApplication`:
 
@@ -62,7 +62,6 @@ Build and run the app to confirm that there are no errors.
 
 ## Create a model for planet data
 
-
 Create a *Models* folder. In the folder, add a planet model class (`Planet`). Use an `ImageUrl` property to hold an image URL. Use a `Name` property to hold the name of the planet.
 
 *Models/Planet.cs*:
@@ -83,7 +82,7 @@ This app can benefit from DI by using a service that defines methods to:
 
 Create an interface for the service with two methods defined:
 
-* `GetPlanets` &ndash; Since the app should have the capacity to filter planets, use a `filter` string parameter in the method's signature.
+* `GetPlanets` &ndash; Since the app should have the capacity to filter planets, use a `filter` string parameter in the method's signature that defaults to `null`.
 * `AddPlanet`&ndash; The `AddPlanet` method has a `Planet` parameter to receive a planet from the user.
 
 Create a *Data* folder. In the folder, create an interface for the Planet Service named `IPlanetService`. An [\@using](xref:mvc/views/razor#section-1) statement for the `WebApplication.Models` namespace provides the interface with access to the `Planet` model.
