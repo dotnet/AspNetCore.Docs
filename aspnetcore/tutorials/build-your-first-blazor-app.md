@@ -12,7 +12,7 @@ uid: tutorials/first-blazor-app
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
-This tutorial teaches concepts and techniques for building Blazor apps. In this tutorial, you build the *Galactic Planetary Atlas* app, an app that manages a collection of planet objects.
+This tutorial teaches concepts and techniques for building Blazor apps. In this tutorial, you build the *Galactic Planetary Atlas* app, an app that manages a list of planets.
 
 Learn how to:
 
@@ -20,7 +20,7 @@ Learn how to:
 > * Create a new component.
 > * Route to a component.
 > * Display, filter, and add items using data binding and event handling.
-> * Create and use a [dependency injection (DI)](xref:fundamentals/dependency-injection) service.
+> * Create services and use them through [dependency injection (DI)](xref:fundamentals/dependency-injection).
 
 ![Completed Galactic Planetary Atlas app running in the browser](build-your-first-blazor-app/_static/screenshot.png)
 
@@ -32,7 +32,7 @@ Follow the guidance in the <xref:blazor/get-started> article to create a Blazor 
 
 If building a Blazor server-side app, open the *Pages/\_Host.cshtml* file. If building a Blazor client-side app, open the *wwwroot/index.html* file.
 
-Change the content of the `<title>` element to `Planetary Atlas`:
+Change the content of the `<title>` element to `Galactic Planetary Atlas`:
 
 ```html
 <title>Planetary Atlas</title>
@@ -58,13 +58,12 @@ This tutorial adds a component to the template app with new HTML elements. In or
 
 The background image is provided as a courtesy of the [National Aeronautics and Space Administration (NASA)](https://www.nasa.gov/).
 
-Build and run the app following the guidance in the <xref:blazor/get-started> article to confirm that there are no errors.
+Build and run the app to confirm that there are no errors.
 
 ## Create a model for planet data
 
-Create a planet model to hold planet data. Use an `ImageUrl` property to hold an image URL. Use a `Name` property to hold the name of the planet.
 
-Create a *Models* folder. In the folder, add a planet model class (`Planet`).
+Create a *Models* folder. In the folder, add a planet model class (`Planet`). Use an `ImageUrl` property to hold an image URL. Use a `Name` property to hold the name of the planet.
 
 *Models/Planet.cs*:
 
@@ -87,9 +86,9 @@ Create an interface for the service with two methods defined:
 * `GetPlanets` &ndash; Since the app should have the capacity to filter planets, use a `filter` string parameter in the method's signature.
 * `AddPlanet`&ndash; The `AddPlanet` method has a `Planet` parameter to receive a planet from the user.
 
-Create an *Interfaces* folder. In the folder, create an interface for the Planet Service named `IPlanetService`. An [\@using](xref:mvc/views/razor#section-1) statement for the `WebApplication.Models` namespace provides the interface with access to the `Planet` model.
+Create a *Data* folder. In the folder, create an interface for the Planet Service named `IPlanetService`. An [\@using](xref:mvc/views/razor#section-1) statement for the `WebApplication.Models` namespace provides the interface with access to the `Planet` model.
 
-*Interfaces/IPlanetService.cs*:
+*Data/IPlanetService.cs*:
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/IPlanetService.cs)]
 
@@ -99,19 +98,18 @@ The service requires an implementation that provides the `GetPlanets` and `AddPl
 * In the `GetPlanets` method, the app uses [Linq](/dotnet/csharp/programming-guide/concepts/linq/) to filter planets from the planet list (`_planets`) if the `filter` has a value.
 * In the `AddPlanet` method, the app calls [ICollection\<T>.Add(T)](xref:System.Collections.Generic.ICollection`1.Add*) to add a new planet to the list.
 
-Create a *Services* folder. In the folder, create the Planet Service implementation (`PlanetService`) that implements the `IPlanetService` interface.
+In the *Data* folder, create the Planet Service implementation (`PlanetService`) that implements the `IPlanetService` interface.
 
-*Services/PlanetService.cs*:
+*Data/PlanetService.cs*:
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/PlanetService.cs)]
 
 Planet names are &copy;1974-1981 [BBC](https://www.bbc.co.uk/programmes/b006q2x0). Planet images are provided as a courtesy of the [National Aeronautics and Space Administration (NASA)](https://www.nasa.gov/).
 
-The service implementation is registered in the app's DI container. Add the following namespaces to the *Startup.cs* file:
+The service implementation is registered in the app's DI container. Add the following namespace to the *Startup.cs* file:
 
 ```csharp
-using WebApplication.Interfaces;
-using WebApplication.Services;
+using WebApplication.Data;
 ```
 
 Add the service registration to the `Startup.ConfigureServices` method:

@@ -34,7 +34,7 @@ namespace WebApplication.Services
             new Planet { ImageUrl = "https://images-assets.nasa.gov/image/PIA20068/PIA20068~orig.jpg", Name = "Voga" },
         };
 
-        public IEnumerable<Planet> GetPlanets(string filter)
+        public IEnumerable<Planet> GetPlanets(string filter = null)
         {
             if (string.IsNullOrEmpty(filter))
             {
