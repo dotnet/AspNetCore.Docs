@@ -2,12 +2,12 @@
     "redirections": [
         {
             "source_path": "aspnetcore/tutorials/grpc/grpc-client.md",
-            "redirect_url": "aspnetcore/tutorials/grpc/grpc-start",
+            "redirect_url": "/aspnet/core/tutorials/grpc/grpc-start",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/grpc/index.md",
-            "redirect_url": "aspnetcore/tutorials/grpc/grpc-start",
+            "redirect_url": "/aspnet/core/tutorials/grpc/grpc-start",
             "redirect_document_id": false
         },        
         {
