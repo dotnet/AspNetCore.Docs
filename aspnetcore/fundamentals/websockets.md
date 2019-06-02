@@ -20,7 +20,7 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
 [ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
 
-For most applications, we recommend SignalR over using WebSockets directly. SignalR provides transport fallback for environments where WebSockets is not available. It also provides a simple remote procedure call app model. And in most scenarios, SignalR has no significant performance disadvantage compared to using WebSockets directly.
+For most applications, we recommend SignalR over raw WebSockets. SignalR provides transport fallback for environments where WebSockets is not available. It also provides a simple remote procedure call app model. And in most scenarios, SignalR has no significant performance disadvantage compared to using raw WebSockets.
 
 ## Prerequisites
 
