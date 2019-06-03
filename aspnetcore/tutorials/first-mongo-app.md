@@ -201,20 +201,22 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Models/BookstoreDatabaseSettings.cs)]
 
+    The preceding `BookstoreDatabaseSettings` class will be used for storing the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
+
 1. Add the following code to `Startup.ConfigureServices`, before the call to `AddMvc`:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureDatabaseSettings)]
 
     In the preceding code:
 
-    * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
-    * The `IBookstoreDatabaseSettings` interface is registered in the Dependency Injection (DI) system with a singleton lifetime. When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
+    * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
+    * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton lifetime. When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
 
 1. Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_UsingBooksApiModels)]
 
-## Add a CRUD operations class
+## Add a CRUD operations service
 
 1. Add a *Services* directory to the project root.
 1. Add a `BookService` class to the *Services* directory with the following code:
