@@ -268,7 +268,7 @@ The preceding web API controller:
 
 1. Build and run the app.
 
-1. Navigate to `http://localhost:<port>/api/books` in your browser to test the controller's parameterless `Get` action method. The following JSON response is displayed:
+1. Navigate to `http://localhost:<port>/api/books` to test the controller's parameterless `Get` action method. The following JSON response is displayed:
 
     ```json
     [
