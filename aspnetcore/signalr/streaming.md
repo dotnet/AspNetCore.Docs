@@ -116,7 +116,7 @@ public async Task  UploadStream(IAsyncEnumerable<stream> stream)
 
 The `StreamAsync` and `StreamAsChannelAsync` methods on `HubConnection` are used to invoke server-to-client streaming methods. Pass the hub method name and arguments defined in the hub method to `StreamAsync` or `StreamAsChannelAsync`. The generic parameter on `StreamAsync<T>` and `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. An `IAsyncEnumerable<T>` or `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
 
-
+A `StreamAsync` example that returns an `IAsyncEnumerable<int>`
 ```csharp
 // Call "Cancel" on this CancellationTokenSource to send a cancellation message to
 // the server, which will trigger the corresponding token in the hub method.
@@ -132,6 +132,7 @@ await foreach (var count in stream)
 Console.WriteLine("Streaming completed");
 ```
 
+A corresponding `StreamAsyncInt` example that returns an `ChannelReader<int>`
 ```csharp
 // Call "Cancel" on this CancellationTokenSource to send a cancellation message to
 // the server, which will trigger the corresponding token in the hub method.
