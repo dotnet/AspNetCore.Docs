@@ -229,7 +229,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=9)]
 
-    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](http://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
+    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
 1. Add the following code to the top of *Startup.cs* to resolve the `BookService` reference:
 
