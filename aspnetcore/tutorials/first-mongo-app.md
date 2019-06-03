@@ -137,8 +137,9 @@ The database is ready. You can start creating the ASP.NET Core web API.
 # [Visual Studio](#tab/visual-studio)
 
 1. Go to **File** > **New** > **Project**.
-1. Select **ASP.NET Core Web Application**, name the project *BooksApi*, and click **OK**.
-1. Select the **.NET Core** target framework and **ASP.NET Core 2.2**. Select the **API** project template, and click **OK**:
+1. Select the **ASP.NET Core Web Application** project type, and click **Next**.
+1. Name the project *BooksApi*, and click **Create**.
+1. Select the **.NET Core** target framework and **ASP.NET Core 2.2**. Select the **API** project template, and click **Create**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```powershell
@@ -200,14 +201,18 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Models/BookstoreDatabaseSettings.cs)]
 
-1. Add the following code to `Startup.ConfigureServices`:
+1. Add the following code to `Startup.ConfigureServices`, before the call to `AddMvc`:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureDatabaseSettings)]
 
     In the preceding code:
 
     * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
-    * The `IBookstoreDatabaseSettings` interface is registered in the Dependency Injection (DI) system with a singleton lifetime. When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.    
+    * The `IBookstoreDatabaseSettings` interface is registered in the Dependency Injection (DI) system with a singleton lifetime. When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
+
+1. Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_UsingBooksApiModels)]
 
 ## Add a CRUD operations class
 
@@ -220,9 +225,13 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. In `Startup.ConfigureServices`, register the `BookService` class with DI:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=11)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=9)]
 
     In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client re-use guidelines](http://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton lifetime.
+
+1. Add the following code to the top of *Startup.cs* to resolve the `BookService` reference:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_UsingBooksApiServices)]
 
 The `BookService` class uses the following `MongoDB.Driver` members to perform CRUD operations against the database:
 
