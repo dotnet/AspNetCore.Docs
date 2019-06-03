@@ -155,7 +155,7 @@ Add the following packages to the gRPC client project:
 
 Install the packages using either the Package Manager Console (PMC) or Manage NuGet Package
 
-####  PMC option to install packages
+#### PMC option to install packages
 
 * From Visual Studio, select **Tools** > **NuGet Package Manager** > **Package Manager Console**
 * From the **Package Manager Console** window, navigate to the directory in which the *GrpcGreeterClient.csproj* file exists.
@@ -212,7 +212,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   Right click the project and select **Tools > Edit File**.
 
-  ------
+  ---
 
 * Add the **greet.proto** file to the `<Protobuf>` item group of the GrpcGreeterClient project file:
 
