@@ -163,7 +163,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 
  ```powershell
 Install-Package Grpc.Core
-Install-Package Grpc.Protobuf
+Install-Package Google.Protobuf
 Install-Package Grpc.Tools
 ```
 
