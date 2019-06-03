@@ -31,6 +31,8 @@ Options for a single service override the global options provided in `AddGrpc` a
 
 [!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
 
+## Configure client options
+
 The following code sets the client maximum send and receive message size:
 
 [!code-csharp[](~/grpc/configuration/sample/Program.cs?name=snippet&highlight=3-6)]
