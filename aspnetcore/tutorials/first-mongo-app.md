@@ -210,7 +210,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
     In the preceding code:
 
     * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
-    * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton lifetime. When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
+    * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes). When injected into a class, the interface instance resolves to a `BookstoreDatabaseSettings` object.
 
 1. Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
 
@@ -229,7 +229,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=9)]
 
-    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](http://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton lifetime.
+    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](http://mongodb.github.io/mongo-csharp-driver/2.7/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
 1. Add the following code to the top of *Startup.cs* to resolve the `BookService` reference:
 
