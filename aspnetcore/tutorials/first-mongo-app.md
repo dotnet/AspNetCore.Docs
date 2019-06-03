@@ -289,7 +289,7 @@ The preceding web API controller:
     ]
     ```
 
-1. Navigate to `http://localhost:<port>/api/books/5bfd996f7b8e48dc15ff215e` in your browser to test the controller's overloaded `Get` action method. The following JSON response is displayed:
+1. Navigate to `http://localhost:<port>/api/books/5bfd996f7b8e48dc15ff215e` to test the controller's overloaded `Get` action method. The following JSON response is displayed:
 
     ```json
     {
