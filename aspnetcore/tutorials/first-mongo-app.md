@@ -237,20 +237,20 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 The `BookService` class uses the following `MongoDB.Driver` members to perform CRUD operations against the database:
 
-* `MongoClient` &ndash; Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
+* [MongoClient](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoClient.htm) &ndash; Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
-* `IMongoDatabase` &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic `GetCollection<T>(collection)` method on the interface to gain access to data in a specific collection. CRUD operations can be performed against the collection after this method is called. In the `GetCollection<T>(collection)` method call:
+* [IMongoDatabase](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_IMongoDatabase.htm) &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection<TDocument>(collection)](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. CRUD operations can be performed against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
   * `collection` represents the collection name.
-  * `T` represents the CLR object type stored in the collection.
+  * `TDocument` represents the CLR object type stored in the collection.
 
-`GetCollection<T>(collection)` returns a `MongoCollection` object representing the collection. In this tutorial, the following methods are invoked on the collection:
+`GetCollection<TDocument>(collection)` returns a [MongoCollection](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoCollection.htm) object representing the collection. In this tutorial, the following methods are invoked on the collection:
 
-* `Find<T>` &ndash; Returns all documents in the collection matching the provided search criteria.
-* `InsertOne` &ndash; Inserts the provided object as a new document in the collection.
-* `ReplaceOne` &ndash; Replaces the single document matching the provided search criteria with the provided object.
-* `DeleteOne` &ndash; Deletes a single document matching the provided search criteria.
+* [DeleteOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm) &ndash; Deletes a single document matching the provided search criteria.
+* [Find\<TDocument>](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollectionExtensions_Find__1_1.htm) &ndash; Returns all documents in the collection matching the provided search criteria.
+* [InsertOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm) &ndash; Inserts the provided object as a new document in the collection.
+* [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm) &ndash; Replaces the single document matching the provided search criteria with the provided object.
 
 ## Add a controller
 
