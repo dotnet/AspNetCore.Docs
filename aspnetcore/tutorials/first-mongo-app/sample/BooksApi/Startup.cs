@@ -1,5 +1,9 @@
+#region snippet_UsingBooksApiModels
 using BooksApi.Models;
+#endregion
+#region snippet_UsingBooksApiServices
 using BooksApi.Services;
+#endregion
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
