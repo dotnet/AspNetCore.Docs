@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 06/03/2019
 uid: signalr/configuration
 ---
 # ASP.NET Core SignalR configuration
@@ -55,7 +55,7 @@ MessagePack serialization can be configured by providing a delegate to the [AddM
 
 The following table describes options for configuring SignalR hubs:
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range="<= aspnetcore-2.2"
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
@@ -67,7 +67,7 @@ The following table describes options for configuring SignalR hubs:
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0"
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
