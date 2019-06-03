@@ -214,6 +214,8 @@ Whenever data is written to the `IAsyncEnumerable` or `ChannelWriter`, the hub m
 
 If using an `IAsyncEnumerable`, he stream will end after the method returning stream items exits.
 
+[!INCLUDE[](~/includes/csharp-8-required.md)]
+
 ```csharp
 async IAsyncEnumerable<string> clientStreamData()
 {
@@ -228,7 +230,7 @@ async IAsyncEnumerable<string> clientStreamData()
 await connection.SendAsync("UploadStream", clientStreamData());
 ```
 
-Or if you're using a `ChannelWriter`, after you complete the channel with `channel.Writer.Complete()`.
+Or if you're using a `ChannelWriter`, you complete the channel with `channel.Writer.Complete()`.
 
 ```csharp
 var channel = Channel.CreateBounded<string>(10);
