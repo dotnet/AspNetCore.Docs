@@ -210,7 +210,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
     In the preceding code:
 
     * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
-    * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes). When injected into a class, the interface instance resolves to a `BookstoreDatabaseSettings` object.
+    * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes). When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
 
 1. Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
 
