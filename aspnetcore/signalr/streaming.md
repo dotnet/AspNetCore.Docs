@@ -132,7 +132,7 @@ await foreach (var count in stream)
 Console.WriteLine("Streaming completed");
 ```
 
-A corresponding `StreamAsyncInt` example that returns an `ChannelReader<int>`
+A corresponding `StreamAsChannelAsync` example that returns an `ChannelReader<int>`
 ```csharp
 // Call "Cancel" on this CancellationTokenSource to send a cancellation message to
 // the server, which will trigger the corresponding token in the hub method.
