@@ -32,7 +32,7 @@ The app starts, but an error prevents the server from fulfilling the request.
 
 This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. [Run the app in the Kudu console](#run-the-app-in-the-kudu-console) or [enable the ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) to troubleshoot the problem.
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range="= aspnetcore-2.2"
 
 ### 500.30 In-Process Startup Failure
 
@@ -48,7 +48,7 @@ The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it f
 
 The worker process fails. The app doesn't start.
 
-The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of this startup failure most likely due to a missing native dependencies for `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App`. If the app is deployed to target 3.0 and that version doesn't exist on the machine, this error occurs. The following is an example of how this error is logged:
+The ASP.NET Core Module attempts to start the .NET Core runtime in-process, but it fails to start. The most common cause of this startup failure is when the `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App` runtime isn't installed. If the app is deployed to target ASP.NET Core 3.0 and that version doesn't exist on the machine, this error occurs. An example error message follows:
 
 ```
 The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
@@ -60,56 +60,62 @@ The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
       3.0.0-preview6-27723-08 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
 ```
 
-To fix this error, either:
+The error message lists all the installed .NET Core versions and the version requested by the app. To fix this error, either:
 
 * Install the appropriate version of .NET Core on the machine.
-* Target the correct version of .NET Core.
-Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd).
+* Change the app to target a version of .NET Core that's present on the machine.
+* Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd).
 
-When running in the Development environment (`ASPNETCORE_ENVIRONMENT` is set to `Development`), the specific error that occured is written to the HTTP response. The cause of a process startup failure is also found in the [Application Event Log](#application-event-log).
+When running in development (the `ASPNETCORE_ENVIRONMENT` environment variable is set to `Development`), the specific error is written to the HTTP response. The cause of a process startup failure is also found in the [Application Event Log](#application-event-log).
 
 ### 500.32 ANCM Failed to Load dll
 
 The worker process fails. The app doesn't start.
 
-The app was likely published for a different bitness than the worker process (*w3wp.exe*/*iisexpress.exe*). If the worker process is running as a 32-bit app and the app was published to target 64-bit, this error occurs. The first dll that hits this error is `hostfxr.dll`, which is responsible for starting the app.
+The most common cause for this error is that the app is published for an incompatible processor architecture. If the worker process is running as a 32-bit app and the app was published to target 64-bit, this error occurs.
 
 To fix this error, either:
 
-* Publish the app for the same bitness as the worker process.
+* Republish the app for the same processor architecture as the worker process.
 * Publish the app as a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-executables-fde).
 
 ### 500.33 ANCM Request Handler Load Failure
 
 The worker process fails. The app doesn't start.
 
-The app doesn't reference a package or shared framework that includes the native handler used by the ASP.NET Core Module.
+The app didn't reference the `Microsoft.AspNetCore.App` framework. Only apps targeting the `Microsoft.AspNetCore.App` framework can be hosted by the ASP.NET Core Module.
 
-To fix this error, confirm that the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by the app.
+To fix this error, confirm that the app is targeting the `Microsoft.AspNetCore.App` framework. Check the `.runtimeconfig.json` to verify the framework targeted by the app.
 
 ### 500.34 ANCM Mixed Hosting Models Not Supported
 
-A single worker process can't run both an in-process app and an out-of-process app in the same process.
+The worker process can't run both an in-process app and an out-of-process app in the same process.
 
-To fix this error, target a different application pool for the second app.
+To fix this error, run apps in separate IIS application pools.
 
 ### 500.35 ANCM Multiple In-Process Applications in same Process
 
-A single worker process can't run both an in-process app and an out-of-process app in the same process.
+The worker process can't run both an in-process app and an out-of-process app in the same process.
 
-To fix this error, target a different application pool for the second app.
+To fix this error, run apps in separate IIS application pools.
 
 ### 500.36 ANCM Out-Of-Process Handler Load Failure
 
-The out-of-process request handler, *aspnetcorev2_outofprocess.dll*, couldn't be found next to the *aspnetcorev2.dll* file.
+The out-of-process request handler, *aspnetcorev2_outofprocess.dll*, isn't next to the *aspnetcorev2.dll* file. This indicates a corrupted installation of the ASP.NET Core Module.
 
-To fix this error, confirm that the *aspnetcorev2_outofprocess.dll* file is in a directory with a version number next to *aspnetcorev2.dll*.
+To fix this error, repair the installation of the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) (for IIS) or Visual Studio (for IIS Express).
 
 ### 500.37 ANCM Failed to Start Within Startup Time Limit
 
 ANCM failed to start within the provied startup time limit. By default, the timeout is 120 seconds.
 
-This occurs if multiple in-process apps are started at the same time.
+This error can occur when starting a large number of apps on the same machine. Check for CPU/Memory usage spikes on the server during startup. You may need to stagger the startup process of multiple apps.
+
+### 500.30 In-Process Startup Failure
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module attempts to start the .NET Core runtime in-process, but it fails to start. The cause of a process startup failure is usually determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
 
 ### 500.0 In-Process Handler Load Failure
 
