@@ -254,17 +254,21 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
 ## Add a controller
 
-1. Add a `BooksController` class to the *Controllers* directory with the following code:
+Add a `BooksController` class to the *Controllers* directory with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Controllers/BooksController.cs)]
+[!code-csharp[](first-mongo-app/sample/BooksApi/Controllers/BooksController.cs)]
 
-    The preceding web API controller:
+The preceding web API controller:
 
-    * Uses the `BookService` class to perform CRUD operations.
-    * Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
-    * The <xref:System.Web.Http.ApiController.CreatedAtRoute*> method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Uses the `BookService` class to perform CRUD operations.
+* Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
+* Calls <xref:System.Web.Http.ApiController.CreatedAtRoute*>, in the `Create` action method, to return an [HTTP 201](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) response. 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
+
+## Test the web API
+
 1. Build and run the app.
-1. Navigate to `http://localhost:<port>/api/books` in your browser. The following JSON response is displayed:
+
+1. Navigate to `http://localhost:<port>/api/books` in your browser to test the controller's parameterless `Get` action method. The following JSON response is displayed:
 
     ```json
     [
@@ -283,6 +287,18 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
         "author":"Robert C. Martin"
       }
     ]
+    ```
+
+1. Navigate to `http://localhost:<port>/api/books/5bfd996f7b8e48dc15ff215e` in your browser to test the controller's overloaded `Get` action method. The following JSON response is displayed:
+
+    ```json
+    {
+      "id":"5bfd996f7b8e48dc15ff215e",
+      "bookName":"Clean Code",
+      "price":43.15,
+      "category":"Computers",
+      "author":"Robert C. Martin"
+    }
     ```
 
 ## Next steps
