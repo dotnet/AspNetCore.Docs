@@ -137,9 +137,9 @@ The database is ready. You can start creating the ASP.NET Core web API.
 # [Visual Studio](#tab/visual-studio)
 
 1. Go to **File** > **New** > **Project**.
-1. Select the **ASP.NET Core Web Application** project type, and click **Next**.
-1. Name the project *BooksApi*, and click **Create**.
-1. Select the **.NET Core** target framework and **ASP.NET Core 2.2**. Select the **API** project template, and click **Create**.
+1. Select the **ASP.NET Core Web Application** project type, and select **Next**.
+1. Name the project *BooksApi*, and select **Create**.
+1. Select the **.NET Core** target framework and **ASP.NET Core 2.2**. Select the **API** project template, and select **Create**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```powershell
@@ -157,7 +157,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     A new ASP.NET Core web API project targeting .NET Core is generated and opened in Visual Studio Code.
 
-1. Click **Yes** when the *Required assets to build and debug are missing from 'BooksApi'. Add them?* notification appears.
+1. After the status bar's OmniSharp flame icon turns green, a dialog asks **Required assets to build and debug are missing from 'BooksApi'. Add them?**. Select **Yes**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```console
@@ -167,12 +167,12 @@ The database is ready. You can start creating the ASP.NET Core web API.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Go to **File** > **New Solution** > **.NET Core** > **App**.
-1. Select the **ASP.NET Core Web API** C# project template, and click **Next**.
-1. Select **.NET Core 2.2** from the **Target Framework** drop-down list, and click **Next**.
-1. Enter *BooksApi* for the **Project Name**, and click **Create**.
+1. Select the **ASP.NET Core Web API** C# project template, and select **Next**.
+1. Select **.NET Core 2.2** from the **Target Framework** drop-down list, and select **Next**.
+1. Enter *BooksApi* for the **Project Name**, and select **Create**.
 1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Add Packages**.
-1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and click **Add Package**.
-1. Click the **Accept** button in the **License Acceptance** dialog.
+1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.
+1. Select the **Accept** button in the **License Acceptance** dialog.
 
 ---
 
