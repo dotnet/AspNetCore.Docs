@@ -125,7 +125,9 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+* Right-click the *Models* folder and select **Add** > **New Item**.
+* In the **Add New Item** dialog, select the **Class** template.
+* Name the class *TodoItem*, and select **Add**.
 
 * Replace the template code with the following code:
 
