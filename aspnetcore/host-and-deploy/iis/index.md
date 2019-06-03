@@ -452,7 +452,7 @@ If a static asset's `src` attribute is set to an absolute path (for example, `sr
 
 To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
-1. Establish an app pool for the sub-app. Set the **.NET CLR Version** to **No Managed Code** because the Core Common Language Runtime (CoreCLR) for .NET Core is is booted to host the app in the worker process, not the desktop CLR (.NET CLR).
+1. Establish an app pool for the sub-app. Set the **.NET CLR Version** to **No Managed Code** because the Core Common Language Runtime (CoreCLR) for .NET Core is booted to host the app in the worker process, not the desktop CLR (.NET CLR).
 
 1. Add the root site in IIS Manager with the sub-app in a folder under the root site.
 
