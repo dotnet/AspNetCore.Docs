@@ -35,7 +35,8 @@ namespace BooksApi
 
             services.AddSingleton<BookService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         #endregion
 
