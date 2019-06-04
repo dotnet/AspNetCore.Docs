@@ -29,7 +29,7 @@ The sample app is provided in two versions:
 
 ## Worker Service template
 
-The ASP.NET Core Worker Service template provides a starting point for writing long running service apps in ASP.NET Core. To use the template as a basis for a hosted services app:
+The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a hosted services app:
 
 # [Visual Studio](#tab/visual-studio)
 

@@ -25,7 +25,7 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 ## Worker Service template
 
-The ASP.NET Core Worker Service template provides a starting point for writing long running service apps in ASP.NET Core. To use the template as a basis for a Windows Service app:
+The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a Windows Service app:
 
 1. Create a Worker Service app from the .NET Core template.
 1. Follow the guidance in the [App configuration](#app-configuration) section to update the Worker Service app so that it can run as a Windows Service.
