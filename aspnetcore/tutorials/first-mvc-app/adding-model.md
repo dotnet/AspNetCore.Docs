@@ -151,7 +151,7 @@ In this section, the following tasks are completed:
 
    The `Add-Migration` command generates code to create the initial database schema.
 
-   The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `Initial` argument is the migration name. Any name can be used, but by convention, a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
+   The database schema is based on the model specified in the `MvcMovieContext` class. The `Initial` argument is the migration name. Any name can be used, but by convention, a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
 
    The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
