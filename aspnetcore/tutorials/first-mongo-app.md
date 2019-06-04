@@ -1,10 +1,10 @@
 ---
-title: Build web APIs with ASP.NET Core and MongoDB
+title: Create a web API with ASP.NET Core and MongoDB
 author: prkhandelwal
-description: This tutorial demonstrates how to build an ASP.NET Core web API using a MongoDB NoSQL database.
+description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 06/03/2019
+ms.date: 06/04/2019
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
