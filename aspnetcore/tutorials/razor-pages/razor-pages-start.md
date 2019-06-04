@@ -46,7 +46,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
-* Select **ASP.NET Core 2.2** in the dropdown, and then select **Create**.
+* Select **ASP.NET Core 2.2** in the dropdown, **Web Application**, and then select **Create**.
 
 ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.2.png)
 
