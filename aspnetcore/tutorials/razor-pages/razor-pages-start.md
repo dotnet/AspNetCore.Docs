@@ -3,7 +3,7 @@ title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
 description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages, use Entity Framework Core and SQL Server for data access, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
-ms.date: 05/30/2019
+ms.date: 6/3/2019
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -38,9 +38,13 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * From the Visual Studio **File** menu, select **New** > **Project**.
 
-* Create a new ASP.NET Core Web Application. Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
+* Create a new ASP.NET Core Web Application.
 
   ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2.1.png)
+
+*  Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
+
+  ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
 * Select **ASP.NET Core 2.2** in the dropdown, and then select **Web Application**.
 
