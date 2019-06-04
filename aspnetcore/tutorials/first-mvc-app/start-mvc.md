@@ -42,7 +42,6 @@ At the end, you have an app that can manage and display movie data.
 
   ![new ASP.NET Core Web Application](start-mvc/_static/config.png)
 
-![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2-21.png)
 
 * Select **Web Application(Model-View-Controller)**, and then select **Create**.
 
