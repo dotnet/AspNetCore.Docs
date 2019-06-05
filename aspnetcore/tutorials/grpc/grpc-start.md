@@ -224,7 +224,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 Build the client project to trigger the generation of the C# client assets.
 
-### Create the greater client
+### Create the greeter client
 
 Build the project to create the types in the **Greeter** namespace. The `Greeter` types are generated automatically by the build process.
 
@@ -234,14 +234,14 @@ Update the gRPC client *Program.cs* file with the following code:
 
 *Program.cs* contains the entry point and logic for the gRPC client.
 
-The greater client is created by:
+The greeter client is created by:
 
 * Instantiating a `Channel` containing the information for creating the connection to the gRPC service.
-* Using the `Channel` to construct the greater client:
+* Using the `Channel` to construct the greeter client:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
-The greater client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
+The greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-9)]
 
