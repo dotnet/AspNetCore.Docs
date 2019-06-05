@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 10/25/2018
+ms.date: 06/05/2019
 uid: razor-pages/sdk
 ---
 
@@ -54,6 +54,16 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
 > The `Microsoft.AspNetCore.Razor.Design` and `Microsoft.AspNetCore.Mvc.Razor.Extensions` packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). However, the version-less `Microsoft.AspNetCore.App` package reference provides a metapackage to the app that doesn't include the latest version of `Microsoft.AspNetCore.Razor.Design`. Projects must reference a consistent version of `Microsoft.AspNetCore.Razor.Design` (or `Microsoft.AspNetCore.Mvc`) so that the latest build-time fixes for Razor are included. For more information, see [this GitHub issue](https://github.com/aspnet/Razor/issues/2553).
 
 ::: moniker-end
+
+## Razor language version
+
+The Razor parser and code generator version is controlled by the `<RazorLangVersion>` MSBuild property. If the app requires a different Razor language version than the version of the shared framework used by the app, set the version in the app's project file:
+
+```xml
+<PropertyGroup>
+  <RazorLangVersion>{VERSION}</RazorLangVersion>
+</PropertyGroup>
+```
 
 ### Properties
 
