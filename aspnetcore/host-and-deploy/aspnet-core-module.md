@@ -150,7 +150,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module
 
-For instructions on how to install the ASP.NET Core Module, see the [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) section of the <xref:xref:host-and-deploy/iis/index> article.
+For instructions on how to install the ASP.NET Core Module, see the [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) section of the <xref:host-and-deploy/iis/index> article.
 
 ## Configuration with web.config
 
