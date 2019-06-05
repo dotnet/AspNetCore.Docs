@@ -344,4 +344,3 @@ Terms:
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localization & Generics](https://github.com/hishamco/hishambinateya.com/blob/master/Posts/localization-and-generics.md)
-* [Generic Class and Localization](https://github.com/aspnet/AspNetCore.Docs/issues/8244)
