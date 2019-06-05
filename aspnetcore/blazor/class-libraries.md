@@ -144,7 +144,7 @@ The files included in the *wwwroot* folder of the Razor class library are expose
 When the app runs:
 
 * The assets stay in their original folders.
-* Any change within the class library *wwwroot* folder is reflected on the app without rebuilding.
+* Any change within the class library *wwwroot* folder is reflected in the app without rebuilding.
 
 At build time, a manifest is produced with all the static web asset locations. The manifest is read at runtime and allows the app to consume the assets from referenced projects and packages.
 
