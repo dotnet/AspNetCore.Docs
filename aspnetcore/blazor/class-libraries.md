@@ -137,7 +137,7 @@ When packing a Razor class library, all companion assets in the *wwwroot* folder
 
 ### Consume content from a referenced razor class library
 
-The files included under the *wwwroot* folder of the razor class library are exposed on the consuming app under the prefix `_content/<<libraryname>>/`. The consuming app can reference these assets within script, style, img, etc. tags.
+The files included in the *wwwroot* folder of the Razor class library are exposed to the consuming app under the prefix `_content/{LIBRARY NAME}/`. The consuming app references these assets via `<script>`, `<style>`, `<img>`, and other HTML tags.
 
 ### Multi-project development flow
 
