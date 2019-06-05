@@ -135,7 +135,7 @@ To include companion assets as part of a Razor class library, create a *wwwroot*
 
 When packing a Razor class library, all companion assets in the *wwwroot* folder are included in the package automatically and are made available to apps referencing the package.
 
-### Consume content from a referenced razor class library
+### Consume content from a referenced Razor class library
 
 The files included in the *wwwroot* folder of the Razor class library are exposed to the consuming app under the prefix `_content/{LIBRARY NAME}/`. The consuming app references these assets via `<script>`, `<style>`, `<img>`, and other HTML tags.
 
