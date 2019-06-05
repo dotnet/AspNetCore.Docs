@@ -133,7 +133,7 @@ Razor class libraries (RCL) frequently require companion static assets that can 
 
 To include companion assets as part of a razor class library, create a *wwwroot* folder in the class library and include any required files in that folder.
 
-When packing a razor class library, all companion assets in the *wwwroot* folder are included in the package automatically and are made available to apps referencing the package.
+When packing a Razor class library, all companion assets in the *wwwroot* folder are included in the package automatically and are made available to apps referencing the package.
 
 ### Consume content from a referenced razor class library
 
