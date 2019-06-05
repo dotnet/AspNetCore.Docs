@@ -5,7 +5,7 @@ description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/17/2019
+ms.date: 06/05/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -150,7 +150,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module
 
-For instructions on how to install and use the ASP.NET Core Module, see <xref:host-and-deploy/iis/index>.
+For instructions on how to install the ASP.NET Core Module, see the [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) section of the <xref:xref:host-and-deploy/iis/index> article.
 
 ## Configuration with web.config
 
