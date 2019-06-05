@@ -55,16 +55,6 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
 
 ::: moniker-end
 
-## Razor language version
-
-The Razor parser and code generator version is controlled by the `<RazorLangVersion>` MSBuild property. If the app requires a different Razor language version than the version of the shared framework used by the app, set the version in the app's project file:
-
-```xml
-<PropertyGroup>
-  <RazorLangVersion>{VERSION}</RazorLangVersion>
-</PropertyGroup>
-```
-
 ### Properties
 
 The following properties control the Razor's SDK behavior as part of a project build:
@@ -110,3 +100,13 @@ The Razor SDK defines two primary targets:
 * By default, the Razor SDK doesn't publish reference assemblies that are required to perform runtime compilation. This results in compilation failures when the application model relies on runtime compilation&mdash;for example, the app uses embedded views or changes views after the app is published. Set `CopyRefAssembliesToPublishDirectory` to `true` to continue publishing reference assemblies.
 
 * For a web app, ensure your app is targeting the `Microsoft.NET.Sdk.Web` SDK.
+
+## Razor language version
+
+The Razor parser and code generator version is controlled by the `<RazorLangVersion>` MSBuild property. In rare cases, an app requires a different Razor language version than the version of the shared framework used by the app. The version is set in the app's project file:
+
+```xml
+<PropertyGroup>
+  <RazorLangVersion>{VERSION}</RazorLangVersion>
+</PropertyGroup>
+```
