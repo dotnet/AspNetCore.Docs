@@ -26,7 +26,17 @@ The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/
 
 ## ASP.NET Core GDPR support in template-generated code
 
+::: moniker range="< aspnetcore-2.2"
+
+Razor Pages and MVC projects created with the project templates have no support out of the box for GDPR or Cookie Consent. To add these features, reference the below samples:
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
 Razor Pages and MVC projects created with the project templates include the following GDPR support:
+
+::: moniker-end
 
 * [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) are set in the `Startup` class.
 * The *\_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
