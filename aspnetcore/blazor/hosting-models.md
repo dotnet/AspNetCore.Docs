@@ -148,29 +148,7 @@ To configure the SignalR client in the *Pages/\_Host.cshtml* file:
 </script>
 ```
 
-### Improved SignalR connection lifetime handling
-
-Automatic reconnects can be enabled by calling the `withAutomaticReconnect` method on `HubConnectionBuilder`:
-
-```csharp
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
-    .withAutomaticReconnect()
-    .build();
-```
-
-Without specifying parameters, `withAutomaticReconnect` configures the client to try to reconnect, waiting 0, 2, 10, and 30 seconds between each attempt.
-
-To configure a non-default number of reconnect attempts before failure or to change the reconnect timing, `withAutomaticReconnect` accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt:
-
-```csharp
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
-    .withAutomaticReconnect([0, 0, 2000, 5000]) // defaults to [0, 2000, 10000, 30000]
-    .build();
-```
-
-### Improved disconnect and reconnect handling
+### Disconnect and reconnect handling
 
 Before starting any reconnect attempts, the `HubConnection` transitions to the `Reconnecting` state and fires its `onreconnecting` callback. This provides an opportunity to warn users that the connection was lost, disable UI elements, and mitigate confusing user scenarios that might occur due to the disconnected state:
 
