@@ -131,7 +131,7 @@ When using the `blazorlib` template, static resources are included in the NuGet 
 
 Razor class libraries (RCL) frequently require companion static assets that can be referenced by the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
 
-To include companion assets as part of a razor class library, create a *wwwroot* folder in the class library and include any required files in that folder.
+To include companion assets as part of a Razor class library, create a *wwwroot* folder in the class library and include any required files in that folder.
 
 When packing a Razor class library, all companion assets in the *wwwroot* folder are included in the package automatically and are made available to apps referencing the package.
 
