@@ -30,7 +30,7 @@ ASP.NET Core SignalR supports streaming return values of server methods. This is
 
 ::: moniker range=">= aspnetcore-3.0"
 
-A hub method automatically becomes a streaming hub method when it returns an <xref:System.Collections.Generic.IAsyncEnumerable`1>, <xref:System.Threading.Channels.ChannelReader%601> or a `Task<ChannelReader<T>>`.
+A hub method automatically becomes a streaming hub method when it returns an <xref:System.Collections.Generic.IAsyncEnumerable`1>, <xref:System.Threading.Channels.ChannelReader%601>, a`Task<IAsyncEnumerable<T>>`. or a `Task<ChannelReader<T>>`.
 
 ::: moniker-end
 
