@@ -7,6 +7,7 @@ using Grpc.Core;
 
 namespace GrpcGreeter
 {
+    #region snippet
     public class GreeterService : Greeter.GreeterBase
     {
         public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
@@ -17,4 +18,5 @@ namespace GrpcGreeter
             });
         }
     }
+    #endregion
 }
