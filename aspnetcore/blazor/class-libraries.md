@@ -150,4 +150,4 @@ At build time, a manifest is produced with all the static web asset locations. T
 
 ### Publish
 
-When the app is published, the companion assets from all referenced projects and packages get copied into the *wwwroot* folder of the published app under `_content/<<libraryname>>/`.
+When the app is published, the companion assets from all referenced projects and packages are copied into the *wwwroot* folder of the published app under `_content/{LIBRARY NAME}/`.
