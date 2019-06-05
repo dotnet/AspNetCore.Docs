@@ -29,8 +29,8 @@ The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/
 Razor Pages and MVC projects created with the project templates include the following GDPR support:
 
 * [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) are set in the `Startup` class.
-* The *_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
-* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy. The *_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
+* The *\_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
+* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy. The *\_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
 * For apps created with individual user accounts, the Manage page provides links to download and delete [personal user data](#pd).
 
 ### CookiePolicyOptions and UseCookiePolicy
@@ -43,15 +43,15 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 [!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
 
-### _CookieConsentPartial.cshtml partial view
+### \_CookieConsentPartial.cshtml partial view
 
-The *_CookieConsentPartial.cshtml* partial view:
+The *\_CookieConsentPartial.cshtml* partial view:
 
 [!code-html[](gdpr/sample/RP/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 This partial:
 
-* Obtains the state of tracking for the user. If the app is configured to require consent, the user must consent before cookies can be tracked. If consent is required, the cookie consent panel is fixed at top of the navigation bar created by the *_Layout.cshtml* file.
+* Obtains the state of tracking for the user. If the app is configured to require consent, the user must consent before cookies can be tracked. If consent is required, the cookie consent panel is fixed at top of the navigation bar created by the *\_Layout.cshtml* file.
 * Provides an HTML `<p>` element to summarize your privacy and cookie use policy.
 * Provides a link to Privacy page or view where you can detail your site's privacy policy.
 
@@ -63,7 +63,7 @@ If consent to store cookies hasn't been provided, only cookies marked essential 
 
 <a name="tempdata"></a>
 
-### TempData provider and session state cookies are not essential
+### TempData provider and session state cookies aren't essential
 
 The [TempData provider](xref:fundamentals/app-state#tempdata) cookie isn't essential. If tracking is disabled, the TempData provider isn't functional. To enable the TempData provider when tracking is disabled, mark the TempData cookie as essential in `Startup.ConfigureServices`:
 
