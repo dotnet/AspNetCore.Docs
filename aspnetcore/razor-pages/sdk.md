@@ -103,7 +103,7 @@ The Razor SDK defines two primary targets:
 
 ## Razor language version
 
-The Razor parser and code generator version is controlled by the `<RazorLangVersion>` MSBuild property. In rare cases, an app requires a different Razor language version than the version of the shared framework used by the app. The version is set in the app's project file:
+When targeting the `Microsoft.NET.Sdk.Web` SDK, the Razor language version is inferred from the the app's target framework version. For projects targeting the `Microsoft.NET.Sdk.Razor` SDK or in the rare case that the app requires a different Razor language version than the inferred value, a version can be configured by setting the property in the app's project file:
 
 ```xml
 <PropertyGroup>
