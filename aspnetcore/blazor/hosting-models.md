@@ -148,50 +148,6 @@ To configure the SignalR client in the *Pages/\_Host.cshtml* file:
 </script>
 ```
 
-### Disconnect and reconnect handling
-
-Before starting any reconnect attempts, the `HubConnection` transitions to the `Reconnecting` state and fires its `onreconnecting` callback. This provides an opportunity to warn users that the connection was lost, disable UI elements, and mitigate confusing user scenarios that might occur due to the disconnected state:
-
-```javascript
-connection.onreconnecting((error) => {
-  console.assert(connection.state === signalR.HubConnectionState.Reconnecting);
-
-  document.getElementById("messageInput").disabled = true;
-
-  const li = document.createElement("li");
-  li.textContent = `Connection lost due to error "${error}". Reconnecting.`;
-  document.getElementById("messagesList").appendChild(li);
-});
-```
-
-If the client successfully reconnects within its first four attempts, the `HubConnection` transitions back to the `Connected` state and fires `onreconnected` callback. This provides an opportunity to inform users that the connection is re-established:
-
-```javascript
-connection.onreconnected((connectionId) => {
-  console.assert(connection.state === signalR.HubConnectionState.Connected);
-
-  document.getElementById("messageInput").disabled = false;
-
-  const li = document.createElement("li");
-  li.textContent = `Connection reestablished. Connected with connectionId "${connectionId}".`;
-  document.getElementById("messagesList").appendChild(li);
-});
-```
-
-If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` transitions to the `Disconnected` state and fires its `onclosed` callback. This is an opportunity to inform users that the connection is permanently lost and to recommend refreshing the page.
-
-```javascript
-connection.onclose((error) => {
-  console.assert(connection.state === signalR.HubConnectionState.Disconnected);
-
-  document.getElementById("messageInput").disabled = true;
-
-  const li = document.createElement("li");
-  li.textContent = `Connection closed due to error "${error}". Try refreshing this page to restart the connection.`;
-  document.getElementById("messagesList").appendChild(li);
-})
-```
-
 ## Additional resources
 
 * <xref:blazor/get-started>
