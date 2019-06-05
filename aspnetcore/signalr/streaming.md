@@ -87,16 +87,16 @@ Server-to-client streaming hub methods can accept a `CancellationToken` paramete
 
 ### Client-to-server streaming
 
-A hub method automatically becomes a client-to-server streaming hub method when it accepts one or more <xref:System.Threading.Channels.ChannelReader`1>s or <xref:System.Collections.Generic.IAsyncEnumerable`1>s. The following sample shows the basics of reading streaming data sent from the client. Whenever the client writes to the <xref:System.Threading.Channels.ChannelWriter`1>, the data is written into the `ChannelReader` on the server that the hub method is reading from.
+A hub method automatically becomes a client-to-server streaming hub method when it accepts one or more objects of type <xref:System.Threading.Channels.ChannelReader%601> or <xref:System.Collections.Generic.IAsyncEnumerable%601>. The following sample shows the basics of reading streaming data sent from the client. Whenever the client writes to the <xref:System.Threading.Channels.ChannelWriter%601>, the data is written into the `ChannelReader` on the server from which the hub method is reading.
 
 [!code-csharp[Streaming upload hub method](streaming/samples/3.0/Hubs/StreamHub.cs?name=snippet2)]
 
-We have the same method below but using <xref:System.Collections.Generic.IAsyncEnumerable`1>.
+An <xref:System.Collections.Generic.IAsyncEnumerable%601> version of the method follows.
 
 [!INCLUDE[](~/includes/csharp-8-required.md)]
 
 ```csharp
-public async Task  UploadStream(IAsyncEnumerable<stream> stream) 
+public async Task UploadStream(IAsyncEnumerable<Stream> stream) 
 {
     await foreach (var item in stream)
     {
@@ -114,9 +114,10 @@ public async Task  UploadStream(IAsyncEnumerable<stream> stream)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The `StreamAsync` and `StreamAsChannelAsync` methods on `HubConnection` are used to invoke server-to-client streaming methods. Pass the hub method name and arguments defined in the hub method to `StreamAsync` or `StreamAsChannelAsync`. The generic parameter on `StreamAsync<T>` and `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. An `IAsyncEnumerable<T>` or `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
+The `StreamAsync` and `StreamAsChannelAsync` methods on `HubConnection` are used to invoke server-to-client streaming methods. Pass the hub method name and arguments defined in the hub method to `StreamAsync` or `StreamAsChannelAsync`. The generic parameter on `StreamAsync<T>` and `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. An object of type `IAsyncEnumerable<T>` or `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
 
-A `StreamAsync` example that returns an `IAsyncEnumerable<int>`
+A `StreamAsync` example that returns `IAsyncEnumerable<int>`:
+
 ```csharp
 // Call "Cancel" on this CancellationTokenSource to send a cancellation message to
 // the server, which will trigger the corresponding token in the hub method.
@@ -132,7 +133,8 @@ await foreach (var count in stream)
 Console.WriteLine("Streaming completed");
 ```
 
-A corresponding `StreamAsChannelAsync` example that returns an `ChannelReader<int>`
+A corresponding `StreamAsChannelAsync` example that returns `ChannelReader<int>`:
+
 ```csharp
 // Call "Cancel" on this CancellationTokenSource to send a cancellation message to
 // the server, which will trigger the corresponding token in the hub method.
@@ -210,9 +212,9 @@ Console.WriteLine("Streaming completed");
 
 There are two ways to invoke a client-to-server streaming hub method from the .NET client. You can either pass in an `IAsyncEnumerable<T>` or a `ChannelReader` as an argument to `SendAsync`, `InvokeAsync`, or `StreamAsChannelAsync`, depending on the hub method invoked.
 
-Whenever data is written to the `IAsyncEnumerable` or `ChannelWriter`, the hub method on the server receives a new item with the data from the client.
+Whenever data is written to the `IAsyncEnumerable` or `ChannelWriter` object, the hub method on the server receives a new item with the data from the client.
 
-If using an `IAsyncEnumerable`, he stream will end after the method returning stream items exits.
+If using an `IAsyncEnumerable` object, the stream ends after the method returning stream items exits.
 
 [!INCLUDE[](~/includes/csharp-8-required.md)]
 
@@ -230,7 +232,7 @@ async IAsyncEnumerable<string> clientStreamData()
 await connection.SendAsync("UploadStream", clientStreamData());
 ```
 
-Or if you're using a `ChannelWriter`, you complete the channel with `channel.Writer.Complete()`.
+Or if you're using a `ChannelWriter`, you complete the channel with `channel.Writer.Complete()`:
 
 ```csharp
 var channel = Channel.CreateBounded<string>(10);
