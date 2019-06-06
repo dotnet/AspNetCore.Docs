@@ -70,7 +70,7 @@ Available in ASP.NET Core 2.1 and later.  Can be applied to a controller or `Pag
 
 ### Model binding for HTTP GET requests
 
-By default, the `[BindProperty]` and `[BindProperties]` attributes have no effect for HTTP GET requests. Typically, all you need for a GET request is a record ID parameter. The record ID is used to look up the item in the database. Therefore, there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
+By default, properties are not bound for HTTP GET requests. Typically, all you need for a GET request is a record ID parameter. The record ID is used to look up the item in the database. Therefore, there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
 
 [!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Index.cshtml.cs?name=snippet_SupportsGet)]
 
@@ -86,41 +86,30 @@ By default, model binding gets data in the form of key-value pairs from the foll
 
 For each target parameter or property, the sources are scanned in the order indicated in this list. There are a few exceptions:
 
-* Form fields and request body data are used only for properties of complex types.
 * Route data and query string values are used only for simple types.
 * Uploaded files are bound only to target types that implement `IFormFile` or `IEnumerable<IFormFile>`.
 
 If the default behavior doesn't give the right results, you can use one of the following attributes to specify the source to use for any given target. 
 
-* `[FromHeader]` attribute
-* `[FromQuery]` attribute
-* `[FromRoute]` attribute
-* `[FromForm]` attribute
-* `[FromBody]` attribute
+* [[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) - Gets values from the query string. 
+* [[FromRoute]](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) - Gets values from route data.
+* [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) - Gets values from posted form fields.
+* [[FromBody]](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) - Gets values from the request body.
+* [[FromHeader]](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) - Gets values from HTTP headers.
 
-### [FromHeader] attribute
+These attributes:
 
-Gets values from HTTP headers. For some headers, you can't make a C# parameter or property name that matches the header name because the header name has a hyphen in it.  In these cases, provide the header name to the attribute constructor:
+* Are added to model properties individually (not to the model class), as in the following example:
 
-[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Index.cshtml.cs?name=snippet_FromHeader)]
+  [!code-csharp[](model-binding/samples/2.x/Models/Instructor.cs?name=snippet_FromQuery&highlight=5-6)]
 
-### [FromQuery] attribute
+* Optionally accept a model name value in the constructor. This option is provided in case the property name doesn't match the value in the request. For instance, the value in the request might be a header with a hyphen in its name, as in the following example:
 
-Gets values from the query string. The attribute must be added to model properties individually (not to the model class).
-
-[!code-csharp[](model-binding/samples/2.x/Models/Instructor.cs?name=snippet_FromQuery&highlight=5-6)]
-
-### [FromRoute] attribute
-
-Gets values from route data.
-
-### [FromForm] attribute
-
-Gets values from posted form fields.
+  [!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Index.cshtml.cs?name=snippet_FromHeader)]
 
 ### [FromBody] attribute
 
-Gets values from the request body.  The data is parsed by using input formatters specific to the content type of the request. Input formatters are explained [later in this article](#input-formatters).
+The request body data is parsed by using input formatters specific to the content type of the request. Input formatters are explained [later in this article](#input-formatters).
 
 Don't apply `[FromBody]` to more than one parameter per action method. The ASP.NET Core runtime delegates the responsibility of reading the request stream to the input formatter. Once the request stream is read, it's no longer available to be read again for binding other `[FromBody]` parameters.
 
@@ -147,9 +136,9 @@ By default, a model state error isn't created if no value is found for a model p
 * For complex Types, model binding creates an instance by using the default constructor, without setting properties.
 * Arrays are set to `Array.Empty<T>()`, except that `byte[]` arrays are set to `null`.
 
- If model state should be invalidated when nothing is found in form fields for a model property, use the [[BindRequired] attribute](#bindrequired-attribute).
+If model state should be invalidated when nothing is found in form fields for a model property, use the [[BindRequired] attribute](#bindrequired-attribute).
 
-Note that this behavior applies to model binding from posted form data, not to JSON data in a request body. Request body data is handled by [input formatters](#input-formatters).
+Note that this `[BindRequired]` behavior applies to model binding from posted form data, not to JSON or XML data in a request body. Request body data is handled by [input formatters](#input-formatters).
 
 ## Type conversion errors
 
@@ -214,7 +203,7 @@ If the model to be bound is a parameter named `instructorToUpdate`:
 public IActionResult OnPost(int? id, Instructor instructorToUpdate)
 ```
 
-Model binding starts by looking through the sources for the key `instructorToUpdate.ID`. If that isn't found, it looks for `ID` without a prefix. The process is repeated for each `Instructor` property.
+Model binding starts by looking through the sources for the key `instructorToUpdate.ID`. If that isn't found, it looks for `ID` without a prefix.
 
 ### Prefix = property name
 
@@ -366,7 +355,7 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
 
 There are some special data types that model binding can handle.
 
-### IFormFile
+### IFormFile and IFormFileCollection
 
 An uploaded file included in the HTTP request.  Also supported is `IEnumerable<IFormFile>` for multiple files.
 
@@ -380,7 +369,7 @@ Used to retrieve all the values from posted form data.
 
 ## Input formatters
 
-Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes <xref:Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter> and <xref:Microsoft.AspNetCore.Mvc.Formatters.JsonPatchInputFormatter> classes for handling JSON data. You can add other formatters for other content types.
+Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes JSON based input formatters for handling JSON data. You can add other formatters for other content types.
 
 ASP.NET Core selects input formatters based on the [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute. If no attribute is present, it uses the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 
