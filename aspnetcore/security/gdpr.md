@@ -12,6 +12,8 @@ uid: security/gdpr
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+This is a test PR. Do not merge!
+
 ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements:
 
 * The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
