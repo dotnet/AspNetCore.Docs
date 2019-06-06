@@ -999,6 +999,8 @@
       uid: fundamentals/localization
     - name: Portable Object localization
       uid: fundamentals/portable-object-localization
+    - name: Extensibility
+      uid: fundamentals/localization-extensibility
     - name: Troubleshoot
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Advanced
