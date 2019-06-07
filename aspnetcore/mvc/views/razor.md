@@ -593,6 +593,8 @@ So if MyApp/Pages/_ViewImports.cshtml contains `@namespace Hello.World` then the
 - MyApp/Pages/Index.cshtml => Hello.World
 - MyApp/Pages/MorePages/Bar.cshtml => Hello.World.MorePages
 
+If multiple import file have the `@namespace` directive then the one closest to the view in the directory chain is used.
+
 ### @section
 
 The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
