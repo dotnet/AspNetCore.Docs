@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 10/26/2018
+ms.date: 06/07/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -567,6 +567,33 @@ The code renders the following HTML:
 ```
 
 ::: moniker-end
+
+### @attribute
+
+The `@attribute` directive adds the given attribute onto the class of the generated view.
+
+```cshtml
+@attribute [Authorize]
+```
+
+> [!WARNING]
+> In 3.0.0-preview6 there is a known issue where `@attribute` directives do not work in `_Imports.razor` and `_ViewImports.cshtml`. This will be fixed in 3.0.0-preview7.
+
+### @namespace
+
+The `@namespace` directive sets the namespace of the class of the generated view.
+
+```cshtml
+@namespace Your.Namespace.Here
+```
+
+If a view imports something with a namespace directive then the original file's namespace is set relative to that namespace. 
+
+So if MyApp/Pages/_ViewImports.cshtml contains `@namespace Hello.World` then the namespace of views that import it will be set as follows:
+- MyApp/Pages/Index.cshtml => Hello.World
+- MyApp/Pages/MorePages/Bar.cshtml => Hello.World.MorePages
+
+If multiple import file have the `@namespace` directive then the one closest to the view in the directory chain is used.
 
 ### @section
 
