@@ -19,7 +19,7 @@ When packing a razor class library, all companion assets in the *wwwroot* folder
 
 ## Consume content from a referenced razor class library
 
-The files included under the *wwwroot* folder of the razor class library are exposed on the consuming app under the prefix `_content/<<libraryname>>/`. The consuming app can reference these assets within script, style, img, etc. tags.
+The files included under the *wwwroot* folder of the razor class library are exposed on the consuming app under the prefix `_content/{LIBRARY NAME}/`. The consuming app can reference these assets within script, style, img, etc. tags.
 
 ## Multi-project development flow
 
@@ -32,4 +32,4 @@ At build time, a manifest is produced with all the static web asset locations. T
 
 ## Publish
 
-When the app is published, the companion assets from all referenced projects and packages get copied into the *wwwroot* folder of the published app under `_content/<<libraryname>>/`.
+When the app is published, the companion assets from all referenced projects and packages get copied into the *wwwroot* folder of the published app under `_content/{LIBRARY NAME}/`.
