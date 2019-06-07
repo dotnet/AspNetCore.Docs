@@ -18,7 +18,7 @@ A Single Page Application (SPA) is a popular type of web application due to its 
 
 JavaScript Services is a collection of client-side technologies for ASP.NET Core. Its goal is to position ASP.NET Core as developers' preferred server-side platform for building SPAs.
 
-JavaScript Services consists of three distinct NuGet packages:
+JavaScript Services consists of two distinct NuGet packages:
 
 * [Microsoft.AspNetCore.NodeServices](https://www.nuget.org/packages/Microsoft.AspNetCore.NodeServices/) (NodeServices)
 * [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) (SpaServices)
