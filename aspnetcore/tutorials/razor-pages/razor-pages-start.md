@@ -42,7 +42,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2.1.png)
 
-* Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code code.
+* Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
 
   ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
