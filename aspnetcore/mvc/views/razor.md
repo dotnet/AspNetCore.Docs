@@ -568,6 +568,17 @@ The code renders the following HTML:
 
 ::: moniker-end
 
+### @attribute
+
+The `@attribute` directive sets the given attribute on the generated view.
+
+```cshtml
+@attribute [Serializable]
+```
+
+> [!WARNING]
+> In preview6 there is a known issue where @attribute directives do not work in `_Imports.razor` and `_ViewImports.cshtml`. This will be fixed in preview7.
+
 ### @section
 
 The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
