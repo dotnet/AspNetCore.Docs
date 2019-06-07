@@ -5,7 +5,7 @@ description: Learn about configuration for apps hosted behind proxy servers and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/06/2019
+ms.date: 06/07/2019
 uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
@@ -220,6 +220,38 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+
+## Forward the scheme for Linux and non-IIS reverse proxies
+
+.NET Core templates call <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> and <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>. These methods put a site into an infinite loop if deployed to an Azure Linux App Service, Azure Linux virtual machine (VM), or behind any other reverse proxy besides IIS. TLS is terminated by the reverse proxy, and Kestrel isn't made aware of the correct request scheme. OAuth and OIDC also fail in this configuration because they generate incorrect redirects. <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> adds and configures Forwarded Headers Middleware when running behind IIS, but there's no matching automatic configuration for Linux (Apache or Nginx integration).
+
+To forward the scheme from the proxy in these scenarios, add and configure Forwarded Headers Middleware. In `Startup.ConfigureServices`, use the following code:
+
+```csharp
+// using Microsoft.AspNetCore.HttpOverrides;
+
+if (string.Equals(
+    Environment.GetEnvironmentVariable("ASPNETCORE_FORWARDEDHEADERS_ENABLED"), 
+    "true", StringComparison.OrdinalIgnoreCase))
+{
+    services.Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | 
+            ForwardedHeaders.XForwardedProto;
+        // Only loopback proxies are allowed by default.
+        // Clear that restriction because forwarders are enabled by explicit 
+        // configuration.
+        options.KnownNetworks.Clear();
+        options.KnownProxies.Clear();
+    });
+}
+```
+
+Until new container images are provided in Azure, you must create an app setting (environment variable) for `ASPNETCORE_FORWARDEDHEADERS_ENABLED` set to `true`. For more information, see [Templates do not work in Antares Linux due to missing scheme forwarders (aspnet/AspNetCore #4135)](https://github.com/aspnet/AspNetCore/issues/4135).
+
+::: moniker-end
+
 ## Troubleshoot
 
 When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers. 
@@ -304,38 +336,6 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 > [!IMPORTANT]
 > Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
-
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
-
-## .NET Core templates fail in Azure Linux due to missing scheme forwarders
-
-.NET Core templates call <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> and <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>. These methods put a site into an infinite loop if deployed to an Azure Linux App Service, Azure Linux virtual machine (VM), or behind any other reverse proxy besides IIS. TLS is terminated by the reverse proxy, and Kestrel isn't made aware of the correct request scheme. OAuth and OIDC also fail in this configuration because they generate incorrect redirects. <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> adds and configures Forwarded Headers Middleware when running behind IIS, but there's no matching automatic configuration for Linux (Apache or Nginx integration).
-
-For Linux scenarios, add and configure Forwarded Headers Middleware to set the scheme as forwarded by the proxy.
-
-In `Startup.ConfigureServices`, use the following code:
-
-```csharp
-// using Microsoft.AspNetCore.HttpOverrides;
-
-if (string.Equals(
-    Environment.GetEnvironmentVariable("ASPNETCORE_FORWARDEDHEADERS_ENABLED"), 
-    "true", StringComparison.OrdinalIgnoreCase))
-{
-    services.Configure<ForwardedHeadersOptions>(options =>
-    {
-        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-        // Only loopback proxies are allowed by default. Clear that restriction because forwarders are
-        // being enabled by explicit configuration.
-        options.KnownNetworks.Clear();
-        options.KnownProxies.Clear();
-    });
-}
-```
-
-Until new container images are provided in Azure, you must create an app setting (environment variable) for `ASPNETCORE_FORWARDEDHEADERS_ENABLED` set to `true`. For more information, see [Templates do not work in Antares Linux due to missing scheme forwarders (aspnet/AspNetCore #4135)](https://github.com/aspnet/AspNetCore/issues/4135).
-
-::: moniker-end
 
 ## Additional resources
 
