@@ -1,146 +1,423 @@
 ---
 title: Model Binding in ASP.NET Core
 author: tdykstra
-description: Learn how model binding in ASP.NET Core MVC maps data from HTTP requests to action method parameters.
+description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: tdykstra
-ms.date: 11/13/2018
+ms.date: 05/31/2019
 uid: mvc/models/model-binding
 ---
+
 # Model Binding in ASP.NET Core
 
-By [Rachel Appel](https://github.com/rachelappel)
+This article explains what model binding is, how it works, and how to customize its behavior.
 
-## Introduction to model binding
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
-Model binding in ASP.NET Core MVC maps data from HTTP requests to action method parameters. The parameters may be simple types such as strings, integers, or floats, or they may be complex types. This is a great feature of MVC because mapping incoming data to a counterpart is an often repeated scenario, regardless of size or complexity of the data. MVC solves this problem by abstracting binding away so developers don't have to keep rewriting a slightly different version of that same code in every app. Writing your own text to type converter code is tedious, and error prone.
+## What is Model binding
 
-## How model binding works
+Controllers and Razor pages work with data that comes from HTTP requests. For example, route data may provide a record key, and posted form fields may provide values for the properties of the model. Writing code to retrieve each of these values and convert them from strings to .NET types would be tedious and error-prone. Model binding automates this process. The model binding system:
 
-When MVC receives an HTTP request, it routes it to a specific action method of a controller. It determines which action method to run based on what is in the route data, then it binds values from the HTTP request to that action method's parameters. For example, consider the following URL:
+* Retrieves data from various sources such as route data, form fields, and query strings.
+* Provides the data to controllers and Razor pages in method parameters and public properties.
+* Converts string data to .NET types.
+* Updates properties of complex types.
 
-`http://contoso.com/movies/edit/2`
+## Example
 
-Since the route template looks like this, `{controller=Home}/{action=Index}/{id?}`, `movies/edit/2` routes to the `Movies` controller, and its `Edit` action method. It also accepts an optional parameter called `id`. The code for the action method should look something like this:
+Suppose you have the following action method:
 
-```csharp
-public IActionResult Edit(int? id)
-   ```
+[!code-csharp[](model-binding/samples/2.x/Controllers/PetsController.cs?name=snippet_DogsOnly)]
 
-Note: The strings in the URL route are not case sensitive.
+And the app receives a request with this URL:
 
-MVC will try to bind request data to the action parameters by name. MVC will look for values for each parameter using the parameter name and the names of its public settable properties. In the above example, the only action parameter is named `id`, which MVC binds to the value with the same name in the route values. In addition to route values MVC will bind data from various parts of the request and it does so in a set order. Below is a list of the data sources in the order that model binding looks through them:
-
-1. `Form values`: These are form values that go in the HTTP request using the POST method. (including jQuery POST requests).
-
-2. `Route values`: The set of route values provided by [Routing](xref:fundamentals/routing)
-
-3. `Query strings`: The query string part of the URI.
-
-<!-- DocFX BUG
-The link works but generates an error when building with DocFX
-@fundamentals/routing
-[Routing](xref:fundamentals/routing)
--->
-
-Note: Form values, route data, and query strings are all stored as name-value pairs.
-
-Since model binding asked for a key named `id` and there's nothing named `id` in the form values, it moved on to the route values looking for that key. In our example, it's a match. Binding happens, and the value is converted to the integer 2. The same request using Edit(string id) would convert to the string "2".
-
-So far the example uses simple types. In MVC simple types are any .NET primitive type or type with a string type converter. If the action method's parameter were a class such as the `Movie` type, which contains both simple and complex types as properties, MVC's model binding will still handle it nicely. It uses reflection and recursion to traverse the properties of complex types looking for matches. Model binding looks for the pattern *parameter_name.property_name* to bind values to properties. If it doesn't find matching values of this form, it will attempt to bind using just the property name. For those types such as `Collection` types, model binding looks for matches to *parameter_name[index]* or just *[index]*. Model binding treats  `Dictionary` types similarly, asking for *parameter_name[key]* or just *[key]*, as long as the keys are simple types. Keys that are supported match the field names HTML and tag helpers generated for the same model type. This enables round-tripping values
-so that the form fields remain filled with the user's input for their convenience, for example, when bound data from a create or edit didn't pass validation.
-
-To make model binding possible, the class must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor, then the properties can be set.
-
-When a parameter is bound, model binding stops looking for values with that name and it moves on to bind the next parameter. Otherwise, the default model binding behavior sets parameters to their default values depending on their type:
-
-* `T[]`: With the exception of arrays of type `byte[]`, binding sets parameters of type `T[]` to `Array.Empty<T>()`. Arrays of type `byte[]` are set to `null`.
-
-* Reference Types: Binding creates an instance of a class with the default constructor without setting properties. However, model binding sets `string` parameters to `null`.
-
-* Nullable Types: Nullable types are set to `null`. In the above example, model binding sets `id` to `null` since it's of type `int?`.
-
-* Value Types: Non-nullable value types of type `T` are set to `default(T)`. For example, model binding will set a parameter `int id` to 0. Consider using model validation or nullable types rather than relying on default values.
-
-If binding fails, MVC doesn't throw an error. Every action which accepts user input should check the `ModelState.IsValid` property.
-
-Note: Each entry in the controller's `ModelState` property is a `ModelStateEntry` containing an `Errors` property. It's rarely necessary to query this collection yourself. Use `ModelState.IsValid` instead.
-
-Additionally, there are some special data types that MVC must consider when performing model binding:
-
-* `IFormFile`, `IEnumerable<IFormFile>`: One or more uploaded files that are part of the HTTP request.
-
-* `CancellationToken`: Used to cancel activity in asynchronous controllers.
-
-These types can be bound to action parameters or to properties on a class type.
-
-Once model binding is complete, [Validation](validation.md) occurs. Default model binding works great for the vast majority of development scenarios. It's also extensible so if you have unique needs you can customize the built-in behavior.
-
-## Customize model binding behavior with attributes
-
-MVC contains several attributes that you can use to direct its default model binding behavior to a different source. For example, you can specify whether binding is required for a property, or if it should never happen at all by using the `[BindRequired]` or `[BindNever]` attributes. Alternatively, you can override the default data source, and specify the model binder's data source. Below is a list of model binding attributes:
-
-* `[BindRequired]`: This attribute adds a model state error if binding cannot occur.
-
-* `[BindNever]`: Tells the model binder to never bind to this parameter.
-
-* `[FromHeader]`, `[FromQuery]`, `[FromRoute]`, `[FromForm]`: Use these to specify the exact binding source you want to apply.
-
-* `[FromServices]`: This attribute uses [dependency injection](../../fundamentals/dependency-injection.md) to bind parameters from services.
-
-* `[FromBody]`: Use the configured formatters to bind data from the request body. The formatter is selected based on content type of the request.
-
-* `[ModelBinder]`: Used to override the default model binder, binding source and name.
-
-Attributes are very helpful tools when you need to override the default behavior of model binding.
-
-## Customize model binding and validation globally
-
-The model binding and validation system's behavior is driven by [ModelMetadata](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.modelmetadata) that describes:
-
-* How a model is to be bound.
-* How validation occurs on the type and its properties.
-
-Aspects of the system's behavior can be configured globally by adding a details provider to [MvcOptions.ModelMetadataDetailsProviders](/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions.modelmetadatadetailsproviders#Microsoft_AspNetCore_Mvc_MvcOptions_ModelMetadataDetailsProviders). MVC has a few built-in details providers that allow configuring behavior such as disabling model binding or validation for certain types.
-
-To disable model binding on all models of a certain type, add an [ExcludeBindingMetadataProvider](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.excludebindingmetadataprovider) in `Startup.ConfigureServices`. For example, to disable model binding on all models of type `System.Version`:
-
-```csharp
-services.AddMvc().AddMvcOptions(options =>
-    options.ModelMetadataDetailsProviders.Add(
-        new ExcludeBindingMetadataProvider(typeof(System.Version))));
+```
+http://contoso.com/api/pets/2?DogsOnly=true
 ```
 
-To disable validation on properties of a certain type, add a [SuppressChildValidationMetadataProvider](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.suppresschildvalidationmetadataprovider) in `Startup.ConfigureServices`. For example, to disable validation on properties of type `System.Guid`:
+Model binding goes though the following steps after the routing system selects the action method:
+
+* Finds the first parameter of `GetByID`, an integer named `id`.
+* Looks through the available sources in the HTTP request and finds `id` = "2" in route data.
+* Converts the string "2" into integer 2.
+* Finds the next parameter of `GetByID`, a boolean named `dogsOnly`.
+* Looks through the sources and finds "DogsOnly=true" in the query string. Name matching is not case-sensitive.
+* Converts the string "true" into boolean `true`.
+
+The framework then calls the `GetById` method, passing in 2 for the `id` parameter, and `true` for the `dogsOnly` parameter.
+
+In the preceding example, the model binding targets are method parameters that are simple types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](xref:mvc/models/validation) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
+
+## Targets
+
+Model binding tries to find values for the following kinds of targets:
+
+* Parameters of the controller action method that a request is routed to.
+* Parameters of the Razor Pages handler method that a request is routed to. 
+* Public properties of a controller or `PageModel` class, if specified by attributes.
+
+### [BindProperty] attribute
+
+Can be applied to a public property of a controller or `PageModel` class to cause model binding to target that property:
+
+[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=7-8)]
+
+### [BindProperties] attribute
+
+Available in ASP.NET Core 2.1 and later.  Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
+
+[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Create.cshtml.cs?name=snippet_BindProperties&highlight=1-2)]
+
+### Model binding for HTTP GET requests
+
+By default, properties are not bound for HTTP GET requests. Typically, all you need for a GET request is a record ID parameter. The record ID is used to look up the item in the database. Therefore, there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
+
+[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Index.cshtml.cs?name=snippet_SupportsGet)]
+
+## Sources
+
+By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
+
+1. Form fields 
+1. The request body (For [controllers that have the [ApiController] attribute](xref:web-api/index#binding-source-parameter-inference).)
+1. Route data
+1. Query string parameters
+1. Uploaded files 
+
+For each target parameter or property, the sources are scanned in the order indicated in this list. There are a few exceptions:
+
+* Route data and query string values are used only for simple types.
+* Uploaded files are bound only to target types that implement `IFormFile` or `IEnumerable<IFormFile>`.
+
+If the default behavior doesn't give the right results, you can use one of the following attributes to specify the source to use for any given target. 
+
+* [[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) - Gets values from the query string. 
+* [[FromRoute]](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) - Gets values from route data.
+* [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) - Gets values from posted form fields.
+* [[FromBody]](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) - Gets values from the request body.
+* [[FromHeader]](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) - Gets values from HTTP headers.
+
+These attributes:
+
+* Are added to model properties individually (not to the model class), as in the following example:
+
+  [!code-csharp[](model-binding/samples/2.x/Models/Instructor.cs?name=snippet_FromQuery&highlight=5-6)]
+
+* Optionally accept a model name value in the constructor. This option is provided in case the property name doesn't match the value in the request. For instance, the value in the request might be a header with a hyphen in its name, as in the following example:
+
+  [!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Index.cshtml.cs?name=snippet_FromHeader)]
+
+### [FromBody] attribute
+
+The request body data is parsed by using input formatters specific to the content type of the request. Input formatters are explained [later in this article](#input-formatters).
+
+Don't apply `[FromBody]` to more than one parameter per action method. The ASP.NET Core runtime delegates the responsibility of reading the request stream to the input formatter. Once the request stream is read, it's no longer available to be read again for binding other `[FromBody]` parameters.
+
+### Additional sources
+
+Source data is provided to the model binding system by *value providers*. You can write and register custom value providers that get data for model binding from other sources. For example, you might want data from cookies or session state. To get data from a new source:
+
+* Create a class that implements `IValueProvider`.
+* Create a class that implements `IValueProviderFactory`.
+* Register the factory class in `Startup.ConfigureServices`.
+
+The sample app includes a [value provider](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/CookieValueProvider.cs) and [factory](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/CookieValueProviderFactory.cs) example that gets values from cookies. Here's the registration code in `Startup.ConfigureServices`:
+
+[!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=3)]
+
+The code shown puts the custom value provider after all the built-in value providers.  To make it the first in the list, call `Insert(0, new CookieValueProviderFactory())` instead of `Add`.
+
+## No source for a model property
+
+By default, a model state error isn't created if no value is found for a model property. The property is set to null or a default value:
+
+* Nullable simple types are set to `null`.
+* Non-nullable value types are set to `default(T)`. For example, a parameter `int id` is set to 0.
+* For complex Types, model binding creates an instance by using the default constructor, without setting properties.
+* Arrays are set to `Array.Empty<T>()`, except that `byte[]` arrays are set to `null`.
+
+If model state should be invalidated when nothing is found in form fields for a model property, use the [[BindRequired] attribute](#bindrequired-attribute).
+
+Note that this `[BindRequired]` behavior applies to model binding from posted form data, not to JSON or XML data in a request body. Request body data is handled by [input formatters](#input-formatters).
+
+## Type conversion errors
+
+If a source is found but can't be converted into the target type, model state is flagged as invalid. The target parameter or property is set to null or a default value, as noted in the previous section.
+
+In an API controller that has the `[ApiController]` attribute, invalid model state results in an automatic HTTP 400 response.
+
+In a Razor page, redisplay the page with an error message:
+
+[!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
+
+Client-side validation catches most bad data that would otherwise be submitted to a Razor Pages form. This validation makes it hard to trigger the preceding highlighted code. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form. This button shows how the code for redisplaying the page works when data conversion errors occur.
+
+When the page is redisplayed by the preceding code, the invalid input is not shown in the form field. This is because the model property has been set to null or a default value. The invalid input does appear in an error message. But if you want to redisplay the bad data in the form field, consider making the model property a string and doing the data conversion manually.
+
+The same strategy is recommended if you don't want type conversion errors to result in model state errors. In that case, make the model property a string.
+
+## Simple types
+
+The simple types that the model binder can convert source strings into include the following:
+
+* [Boolean](xref:System.ComponentModel.BooleanConverter)
+* [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
+* [Char](xref:System.ComponentModel.CharConverter)
+* [DateTime](xref:System.ComponentModel.DateTimeConverter)
+* [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
+* [Decimal](xref:System.ComponentModel.DecimalConverter)
+* [Double](xref:System.ComponentModel.DoubleConverter)
+* [Enum](xref:System.ComponentModel.EnumConverter)
+* [Guid](xref:System.ComponentModel.GuidConverter)
+* [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
+* [Single](xref:System.ComponentModel.SingleConverter)
+* [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
+* [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
+* [Uri](xref:System.UriTypeConverter)
+* [Version](xref:System.ComponentModel.VersionConverter)
+
+## Complex types
+
+A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor. 
+
+For each property of the complex type, model binding looks through the sources for the name pattern *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix.
+
+For binding to a parameter, the prefix is the parameter name. For binding to a `PageModel` public property, the prefix is the public property name. Some attributes have a `Prefix` property that lets you override the default usage of parameter or property name.
+
+For example, suppose the complex type is the following `Instructor` class:
+
+  ```csharp
+  public class Instructor
+  {
+      public int ID { get; set; }
+      public string LastName { get; set; }
+      public string FirstName { get; set; }
+  }
+  ```
+
+### Prefix = parameter name
+
+If the model to be bound is a parameter named `instructorToUpdate`:
 
 ```csharp
-services.AddMvc().AddMvcOptions(options =>
-    options.ModelMetadataDetailsProviders.Add(
-        new SuppressChildValidationMetadataProvider(typeof(System.Guid))));
+public IActionResult OnPost(int? id, Instructor instructorToUpdate)
 ```
 
-## Bind formatted data from the request body
+Model binding starts by looking through the sources for the key `instructorToUpdate.ID`. If that isn't found, it looks for `ID` without a prefix.
 
-Request data can come in a variety of formats including JSON, XML and many others. When you use the [FromBody] attribute to indicate that you want to bind a parameter to data in the request body, MVC uses a configured set of formatters to handle the request data based on its content type. By default MVC includes a `JsonInputFormatter` class for handling JSON data, but you can add additional formatters for handling XML and other custom formats.
+### Prefix = property name
+
+If the model to be bound is a property named `Instructor` of the controller or `PageModel` class:
+
+```csharp
+[BindProperty]
+public Instructor Instructor { get; set; }
+```
+
+Model binding starts by looking through the sources for the key `Instructor.ID`. If that isn't found, it looks for `ID` without a prefix.
+
+### Custom prefix
+
+If the model to be bound is a parameter named `instructorToUpdate` and a `Bind` attribute specifies `Instructor` as the prefix:
+
+```csharp
+public IActionResult OnPost(
+    int? id, [Bind(Prefix = "Instructor")] Instructor instructorToUpdate)
+```
+
+Model binding starts by looking through the sources for the key `Instructor.ID`. If that isn't found, it looks for `ID` without a prefix.
+
+### Attributes for complex type targets
+
+Several built-in attributes are available for controlling model binding of complex types:
+
+* `[BindRequired]`
+* `[BindNever]`
+* `[Bind]`
 
 > [!NOTE]
-> There can be at most one parameter per action decorated with `[FromBody]`. The ASP.NET Core MVC run-time delegates the responsibility of reading the request stream to the formatter. Once the request stream is read for a parameter, it's generally not possible to read the request stream again for binding other `[FromBody]` parameters.
+> These attributes affect model binding when posted form data is the source of values. They do not affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters).
+>
+> See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
 
-> [!NOTE]
-> The `JsonInputFormatter` is the default formatter and is based on [Json.NET](https://www.newtonsoft.com/json).
+### [BindRequired] attribute
 
-ASP.NET Core selects input formatters based on the [Content-Type](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html) header and the type of the parameter, unless there's an attribute applied to it specifying otherwise. If you'd like to use XML or another format you must configure it in the *Startup.cs* file, but you may first have to obtain a reference to `Microsoft.AspNetCore.Mvc.Formatters.Xml` using NuGet. Your startup code should look something like this:
+Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
+
+[!code-csharp[](model-binding/samples/2.x/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
+
+### [BindNever] attribute
+
+Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
+
+[!code-csharp[](model-binding/samples/2.x/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+
+### [Bind] attribute
+
+Can be applied to a class or a method parameter. Specifies which properties of a model should be included in model binding.
+
+In the following example, only the specified properties of the `Instructor` model are bound when any handler or action method is called:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddMvc()
-        .AddXmlSerializerFormatters();
-   }
+[Bind("LastName,FirstMidName,HireDate")]
+public class Instructor
 ```
 
-Code in the *Startup.cs* file contains a `ConfigureServices` method with a `services` argument you can use to build up services for your ASP.NET Core app. In the sample, we are adding an XML formatter as a service that MVC will provide for this app. The `options` argument passed into the `AddMvc` method allows you to add and manage filters, formatters, and other system options from MVC upon app startup. Then apply the `Consumes` attribute to controller classes or action methods to work with the format you want.
+In the following example, only the specified properties of the `Instructor` model are bound when the `OnPost` method is called:
 
-### Custom Model Binding
+```csharp
+[HttpPost]
+public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
+```
 
-You can extend model binding by writing your own custom model binders. Learn more about [custom model binding](../advanced/custom-model-binding.md).
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For defense against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+
+## Collections
+
+For targets that are collections of simple types, model binding looks for matches to *parameter_name* or *property_name*. If no match is found, it looks for one of the supported formats without the prefix. For example:
+
+* Suppose the parameter to be bound is an array named `selectedCourses`:
+
+  ```csharp
+  public IActionResult OnPost(int? id, int[] selectedCourses)
+  ```
+
+* Form or query string data can be in one of the following formats:
+   
+  ```
+  selectedCourses=1050&selectedCourses=2000 
+  ```
+
+  ```
+  selectedCourses[0]=1050&selectedCourses[1]=2000
+  ```
+
+  ```
+  [0]=1050&[1]=2000
+  ```
+
+  ```
+  selectedCourses[a]=1050&selectedCourses[b]=2000&selectedCourses.index=a&selectedCourses.index=b
+  ```
+
+  ```
+  [a]=1050&[b]=2000&index=a&index=b
+  ```
+
+* The following format is supported only in form data:
+
+  ```
+  selectedCourses[]=1050&selectedCourses[]=2000
+  ```
+
+* For all of the preceding example formats, model binding passes an array of two items to the `selectedCourses` parameter:
+
+  * selectedCourses[0]=1050
+  * selectedCourses[1]=2000
+
+  Data formats that use subscript numbers (... [0] ... [1] ...) must ensure that they are numbered sequentially starting at zero. If there are any gaps in subscript numbering, all items after the gap are ignored. For example, if the subscripts are 0 and 2 instead of 0 and 1, the second item is ignored.
+
+## Dictionaries
+
+For `Dictionary` targets, model binding looks for matches to *parameter_name* or *property_name*. If no match is found, it looks for one of the supported formats without the prefix. For example:
+
+* Suppose the target parameter is a `Dictionary<string, string>` named `selectedCourses`:
+
+  ```csharp
+  public IActionResult OnPost(int? id, Dictionary<int, string> selectedCourses)
+  ```
+
+* The posted form or query string data can look like one of the following examples:
+
+  ```
+  selectedCourses[1050]=Chemistry&selectedCourses[2000]=Economics
+  ```
+
+  ```
+  [1050]=Chemistry&selectedCourses[2000]=Economics
+  ```
+
+  ```
+  selectedCourses[0].Key=1050&selectedCourses[0].Value=Chemistry&
+  selectedCourses[1].Key=2000&selectedCourses[1].Value=Economics
+  ```
+
+  ```
+  [0].Key=1050&[0].Value=Chemistry&[1].Key=2000&[1].Value=Economics
+  ```
+
+* For all of the preceding example formats, model binding passes a dictionary of two items to the `selectedCourses` parameter:
+
+  * selectedCourses["1050"]="Chemistry"
+  * selectedCourses["2000"]="Economics"
+
+## Special data types
+
+There are some special data types that model binding can handle.
+
+### IFormFile and IFormFileCollection
+
+An uploaded file included in the HTTP request.  Also supported is `IEnumerable<IFormFile>` for multiple files.
+
+### CancellationToken
+
+Used to cancel activity in asynchronous controllers.
+
+### FormCollection
+
+Used to retrieve all the values from posted form data.
+
+## Input formatters
+
+Data in the request body can be in JSON, XML, or some other format. To parse this data, model binding uses an *input formatter* that is configured to handle a particular content type. By default, ASP.NET Core includes JSON based input formatters for handling JSON data. You can add other formatters for other content types.
+
+ASP.NET Core selects input formatters based on the [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute. If no attribute is present, it uses the [Content-Type header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
+
+To use the built-in XML input formatters:
+
+* Install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
+
+* In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters*> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters*>.
+
+  [!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=9)]
+
+* Apply the `Consumes` attribute to controller classes or action methods that should expect XML in the request body.
+
+  ```csharp
+  [HttpPost]
+  [Consumes("application/xml")]
+  public ActionResult<Pet> Create(Pet pet)
+  ```
+
+  For more information, see [Introducing XML Serialization](https://docs.microsoft.com/en-us/dotnet/standard/serialization/introducing-xml-serialization).
+
+## Exclude specified types from model binding
+
+The model binding and validation systems' behavior is driven by [ModelMetadata](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.modelmetadata). You can customize `ModelMetadata` by adding a details provider to [MvcOptions.ModelMetadataDetailsProviders](xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders). Built-in details providers are available for disabling model binding or validation for specified types.
+
+To disable model binding on all models of a specified type, add an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ExcludeBindingMetadataProvider> in `Startup.ConfigureServices`. For example, to disable model binding on all models of type `System.Version`:
+
+[!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=4-5)]
+
+To disable validation on properties of a specified type, add a <xref:Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider> in `Startup.ConfigureServices`. For example, to disable validation on properties of type `System.Guid`:
+
+[!code-csharp[](model-binding/samples/2.x/Startup.cs?name=snippet_ValueProvider&highlight=6-7)]
+
+## Custom model binders
+
+You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](xref:mvc/advanced/custom-model-binding).
+
+## Manual model binding
+
+Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
+
+[!code-csharp[](model-binding/samples/2.x/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
+
+## [FromServices] attribute
+
+This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](xref:fundamentals/dependency-injection) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
+
+## Additional resources
+
+* <xref:mvc/models/validation>
+* <xref:mvc/advanced/custom-model-binding>

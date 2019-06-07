@@ -1,10 +1,10 @@
 ---
-title: Build web APIs with ASP.NET Core and MongoDB
+title: Create a web API with ASP.NET Core and MongoDB
 author: prkhandelwal
-description: This tutorial demonstrates how to build an ASP.NET Core web API using a MongoDB NoSQL database.
+description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 01/31/2019
+ms.date: 06/04/2019
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -137,8 +137,9 @@ The database is ready. You can start creating the ASP.NET Core web API.
 # [Visual Studio](#tab/visual-studio)
 
 1. Go to **File** > **New** > **Project**.
-1. Select **ASP.NET Core Web Application**, name the project *BooksApi*, and click **OK**.
-1. Select the **.NET Core** target framework and **ASP.NET Core 2.2**. Select the **API** project template, and click **OK**:
+1. Select the **ASP.NET Core Web Application** project type, and select **Next**.
+1. Name the project *BooksApi*, and select **Create**.
+1. Select the **.NET Core** target framework and **ASP.NET Core 2.2**. Select the **API** project template, and select **Create**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```powershell
@@ -156,7 +157,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     A new ASP.NET Core web API project targeting .NET Core is generated and opened in Visual Studio Code.
 
-1. Click **Yes** when the *Required assets to build and debug are missing from 'BooksApi'. Add them?* notification appears.
+1. After the status bar's OmniSharp flame icon turns green, a dialog asks **Required assets to build and debug are missing from 'BooksApi'. Add them?**. Select **Yes**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```console
@@ -166,79 +167,108 @@ The database is ready. You can start creating the ASP.NET Core web API.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Go to **File** > **New Solution** > **.NET Core** > **App**.
-1. Select the **ASP.NET Core Web API** C# project template, and click **Next**.
-1. Select **.NET Core 2.2** from the **Target Framework** drop-down list, and click **Next**.
-1. Enter *BooksApi* for the **Project Name**, and click **Create**.
+1. Select the **ASP.NET Core Web API** C# project template, and select **Next**.
+1. Select **.NET Core 2.2** from the **Target Framework** drop-down list, and select **Next**.
+1. Enter *BooksApi* for the **Project Name**, and select **Create**.
 1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Add Packages**.
-1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and click **Add Package**.
-1. Click the **Accept** button in the **License Acceptance** dialog.
+1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.
+1. Select the **Accept** button in the **License Acceptance** dialog.
 
 ---
 
-## Add a model
+## Add an entity model
 
 1. Add a *Models* directory to the project root.
 1. Add a `Book` class to the *Models* directory with the following code:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs)]
 
-In the preceding class, the `Id` property:
+    In the preceding class, the `Id` property:
+    
+    * Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
+    * Is annotated with [[BsonId]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) to designate this property as the document's primary key.
+    * Is annotated with [[BsonRepresentation(BsonType.ObjectId)]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) to allow passing the parameter as type `string` instead of an [ObjectId](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) structure. Mongo handles the conversion from `string` to `ObjectId`.
+    
+    Other properties in the class are annotated with the [[BsonElement]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) attribute. The attribute's value represents the property name in the MongoDB collection.
 
-* Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
-* Is annotated with `[BsonId]` to designate this property as the document's primary key.
-* Is annotated with `[BsonRepresentation(BsonType.ObjectId)]` to allow passing the parameter as type `string` instead of `ObjectId`. Mongo handles the conversion from `string` to `ObjectId`.
+## Add a configuration model
 
-Other properties in the class are annotated with the `[BsonElement]` attribute. The attribute's value represents the property name in the MongoDB collection.
+1. Add the following database configuration values to *appsettings.json*:
 
-## Add a CRUD operations class
+    [!code-json[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-6)]
+
+1. Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/BookstoreDatabaseSettings.cs)]
+
+    The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
+
+1. Add the following code to `Startup.ConfigureServices`, before the call to `AddMvc`:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureDatabaseSettings)]
+
+    In the preceding code:
+
+    * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
+    * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes). When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
+
+1. Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_UsingBooksApiModels)]
+
+## Add a CRUD operations service
 
 1. Add a *Services* directory to the project root.
 1. Add a `BookService` class to the *Services* directory with the following code:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceClass)]
 
-1. Add the MongoDB connection string to *appsettings.json*:
+    In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-4)]
+1. In `Startup.ConfigureServices`, register the `BookService` class with DI:
 
-    The preceding `BookstoreDb` property is accessed in the `BookService` class constructor.
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=9)]
 
-1. In `Startup.ConfigureServices`, register the `BookService` class with the Dependency Injection system:
+    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=3)]
+1. Add the following code to the top of *Startup.cs* to resolve the `BookService` reference:
 
-    The preceding service registration is necessary to support constructor injection in consuming classes.
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_UsingBooksApiServices)]
 
 The `BookService` class uses the following `MongoDB.Driver` members to perform CRUD operations against the database:
 
-* `MongoClient` &ndash; Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
+* [MongoClient](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoClient.htm) &ndash; Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
-* `IMongoDatabase` &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic `GetCollection<T>(collection)` method on the interface to gain access to data in a specific collection. CRUD operations can be performed against the collection after this method is called. In the `GetCollection<T>(collection)` method call:
+* [IMongoDatabase](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_IMongoDatabase.htm) &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection<TDocument>(collection)](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Perform CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
   * `collection` represents the collection name.
-  * `T` represents the CLR object type stored in the collection.
+  * `TDocument` represents the CLR object type stored in the collection.
 
-`GetCollection<T>(collection)` returns a `MongoCollection` object representing the collection. In this tutorial, the following methods are invoked on the collection:
+`GetCollection<TDocument>(collection)` returns a [MongoCollection](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoCollection.htm) object representing the collection. In this tutorial, the following methods are invoked on the collection:
 
-* `Find<T>` &ndash; Returns all documents in the collection matching the provided search criteria.
-* `InsertOne` &ndash; Inserts the provided object as a new document in the collection.
-* `ReplaceOne` &ndash; Replaces the single document matching the provided search criteria with the provided object.
-* `DeleteOne` &ndash; Deletes a single document matching the provided search criteria.
+* [DeleteOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm) &ndash; Deletes a single document matching the provided search criteria.
+* [Find\<TDocument>](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollectionExtensions_Find__1_1.htm) &ndash; Returns all documents in the collection matching the provided search criteria.
+* [InsertOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm) &ndash; Inserts the provided object as a new document in the collection.
+* [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm) &ndash; Replaces the single document matching the provided search criteria with the provided object.
 
 ## Add a controller
 
-1. Add a `BooksController` class to the *Controllers* directory with the following code:
+Add a `BooksController` class to the *Controllers* directory with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Controllers/BooksController.cs)]
+[!code-csharp[](first-mongo-app/sample/BooksApi/Controllers/BooksController.cs)]
 
-    The preceding web API controller:
+The preceding web API controller:
 
-    * Uses the `BookService` class to perform CRUD operations.
-    * Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
-    * The <xref:System.Web.Http.ApiController.CreatedAtRoute*> method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Uses the `BookService` class to perform CRUD operations.
+* Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
+* Calls <xref:System.Web.Http.ApiController.CreatedAtRoute*> in the `Create` action method to return an [HTTP 201](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
+
+## Test the web API
+
 1. Build and run the app.
-1. Navigate to `http://localhost:<port>/api/books` in your browser. The following JSON response is displayed:
+
+1. Navigate to `http://localhost:<port>/api/books` to test the controller's parameterless `Get` action method. The following JSON response is displayed:
 
     ```json
     [
@@ -259,10 +289,22 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
     ]
     ```
 
+1. Navigate to `http://localhost:<port>/api/books/5bfd996f7b8e48dc15ff215e` to test the controller's overloaded `Get` action method. The following JSON response is displayed:
+
+    ```json
+    {
+      "id":"5bfd996f7b8e48dc15ff215e",
+      "bookName":"Clean Code",
+      "price":43.15,
+      "category":"Computers",
+      "author":"Robert C. Martin"
+    }
+    ```
+
 ## Next steps
 
 For more information on building ASP.NET Core web APIs, see the following resources:
 
-* [Youtube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
+* [YouTube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>

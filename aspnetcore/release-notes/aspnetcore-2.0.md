@@ -3,7 +3,8 @@ title: What's new in ASP.NET Core 2.0
 author: rick-anderson
 description: Learn about the new features in ASP.NET Core 2.0.
 ms.author: riande
-ms.date: 07/10/2017
+ms.custom: mvc
+ms.date: 05/28/2019
 uid: aspnetcore-2.0
 ---
 
@@ -71,7 +72,7 @@ For more information on authentication changes in 2.0, see the following resourc
 
 ## SPA templates
 
-Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see [Use JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
+Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](xref:client-side/spa-services#create-a-new-project). For information about how to build a SPA in ASP.NET Core, see <xref:client-side/spa-services>.
 
 ## Kestrel improvements
 

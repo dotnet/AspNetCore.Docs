@@ -100,7 +100,7 @@ Most actions have a specific return type. Unexpected conditions can occur during
 
 Consider a synchronous action in which there are two possible return types:
 
-[!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetById&highlight=8,11)]
+[!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetById&highlight=7,10)]
 
 In the preceding code, a 404 status code is returned when the product doesn't exist in the database. If the product does exist, the corresponding `Product` object is returned. Before ASP.NET Core 2.1, the `return product;` line would have been `return Ok(product);`.
 

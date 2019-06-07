@@ -5,7 +5,7 @@ description: Understand client-side and server-side Blazor hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 06/05/2019
 uid: blazor/hosting-models
 ---
 # Blazor hosting models
@@ -146,72 +146,6 @@ To configure the SignalR client in the *Pages/\_Host.cshtml* file:
     }
   });
 </script>
-```
-
-### Improved SignalR connection lifetime handling
-
-Automatic reconnects can be enabled by calling the `withAutomaticReconnect` method on `HubConnectionBuilder`:
-
-```csharp
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
-    .withAutomaticReconnect()
-    .build();
-```
-
-Without specifying parameters, `withAutomaticReconnect` configures the client to try to reconnect, waiting 0, 2, 10, and 30 seconds between each attempt.
-
-To configure a non-default number of reconnect attempts before failure or to change the reconnect timing, `withAutomaticReconnect` accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt:
-
-```csharp
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
-    .withAutomaticReconnect([0, 0, 2000, 5000]) // defaults to [0, 2000, 10000, 30000]
-    .build();
-```
-
-### Improved disconnect and reconnect handling
-
-Before starting any reconnect attempts, the `HubConnection` transitions to the `Reconnecting` state and fires its `onreconnecting` callback. This provides an opportunity to warn users that the connection was lost, disable UI elements, and mitigate confusing user scenarios that might occur due to the disconnected state:
-
-```javascript
-connection.onreconnecting((error) => {
-  console.assert(connection.state === signalR.HubConnectionState.Reconnecting);
-
-  document.getElementById("messageInput").disabled = true;
-
-  const li = document.createElement("li");
-  li.textContent = `Connection lost due to error "${error}". Reconnecting.`;
-  document.getElementById("messagesList").appendChild(li);
-});
-```
-
-If the client successfully reconnects within its first four attempts, the `HubConnection` transitions back to the `Connected` state and fires `onreconnected` callback. This provides an opportunity to inform users that the connection is re-established:
-
-```javascript
-connection.onreconnected((connectionId) => {
-  console.assert(connection.state === signalR.HubConnectionState.Connected);
-
-  document.getElementById("messageInput").disabled = false;
-
-  const li = document.createElement("li");
-  li.textContent = `Connection reestablished. Connected with connectionId "${connectionId}".`;
-  document.getElementById("messagesList").appendChild(li);
-});
-```
-
-If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` transitions to the `Disconnected` state and fires its `onclosed` callback. This is an opportunity to inform users that the connection is permanently lost and to recommend refreshing the page.
-
-```javascript
-connection.onclose((error) => {
-  console.assert(connection.state === signalR.HubConnectionState.Disconnected);
-
-  document.getElementById("messageInput").disabled = true;
-
-  const li = document.createElement("li");
-  li.textContent = `Connection closed due to error "${error}". Try refreshing this page to restart the connection.`;
-  document.getElementById("messagesList").appendChild(li);
-})
 ```
 
 ## Additional resources
