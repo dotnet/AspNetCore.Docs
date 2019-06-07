@@ -570,7 +570,7 @@ The code renders the following HTML:
 
 ### @attribute
 
-The `@attribute` directive sets the given attribute on the generated view.
+The `@attribute` directive adds the given attribute onto the class of the generated view.
 
 ```cshtml
 @attribute [Serializable]
