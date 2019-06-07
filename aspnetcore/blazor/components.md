@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/05/2019
+ms.date: 06/07/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -575,7 +575,7 @@ Razor directives are shown in the following table.
 
 | Directive | Description |
 | --------- | ----------- |
-| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. |
+| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. (An alias of `@functions`) |
 | [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. |
 | `@implements` | Implements an interface for the generated component class. |
 | [\@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |

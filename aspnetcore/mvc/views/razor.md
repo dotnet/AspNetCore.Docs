@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 10/26/2018
+ms.date: 06/07/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -573,7 +573,7 @@ The code renders the following HTML:
 The `@attribute` directive sets the given attribute on the generated view.
 
 ```cshtml
-@attribute [Serializable]
+@attribute [Authorize]
 ```
 
 > [!WARNING]
