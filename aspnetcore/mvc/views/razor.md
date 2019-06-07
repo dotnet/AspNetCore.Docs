@@ -570,14 +570,14 @@ The code renders the following HTML:
 
 ### @attribute
 
-The `@attribute` directive sets the given attribute on the generated view.
+The `@attribute` directive adds the given attribute onto the class of the generated view.
 
 ```cshtml
 @attribute [Authorize]
 ```
 
 > [!WARNING]
-> In preview6 there is a known issue where @attribute directives do not work in `_Imports.razor` and `_ViewImports.cshtml`. This will be fixed in preview7.
+> In 3.0.0-preview6 there is a known issue where `@attribute` directives do not work in `_Imports.razor` and `_ViewImports.cshtml`. This will be fixed in 3.0.0-preview7.
 
 ### @section
 
