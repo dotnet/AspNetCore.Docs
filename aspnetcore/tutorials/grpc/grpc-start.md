@@ -4,7 +4,7 @@ author: juntaoluo
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 06/05/2019
+ms.date: 08/06/2019
 uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
@@ -147,7 +147,7 @@ Follow the instructions [here](/dotnet/core/tutorials/using-on-mac-vs-full-solut
 
 Add the following packages to the gRPC client project:
 
-* [Grpc.Core](https://www.nuget.org/packages/Grpc.Core), which contains the C# API for the C-core client.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET Core client.
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
 * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 
@@ -162,7 +162,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 * Run the following commands:
 
  ```powershell
-Install-Package Grpc.Core
+Install-Package Grpc.Net.Client
 Install-Package Google.Protobuf
 Install-Package Grpc.Tools
 ```
@@ -180,7 +180,7 @@ Install-Package Grpc.Tools
 Run the following commands from the **Integrated Terminal**:
 
 ```console
-dotnet add GrpcGreeterClient.csproj package Grpc.Core
+dotnet add GrpcGreeterClient.csproj package Grpc.Net.Client
 dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
@@ -188,8 +188,8 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right-click the **Packages** folder in **Solution Pad** > **Add Packages**
-* Enter **Grpc.Core** in the search box.
-* Select the **Grpc.Core** package from the results pane and select **Add Package**
+* Enter **Grpc.Net.Client** in the search box.
+* Select the **Grpc.Net.Client** package from the results pane and select **Add Package**
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
 ---
@@ -236,8 +236,8 @@ Update the gRPC client *Program.cs* file with the following code:
 
 The Greeter client is created by:
 
-* Instantiating a `Channel` containing the information for creating the connection to the gRPC service.
-* Using the `Channel` to construct the Greeter client:
+* Instantiating a `HttpClient` containing the information for creating the connection to the gRPC service.
+* Using the `HttpClient` to construct the Greeter client:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
 
