@@ -68,6 +68,8 @@ A set of built-in input components are available to receive and validate user in
 | `<InputCheckbox>` | `<input type="checkbox">` |
 | `<InputDate>`     | `<input type="date">`     |
 
+All of the input components as well as `<EditForm>` support arbitrary attributes. Any attribute that does not match a parameter will be added to the created `<form>`, `<input>`, `<select>`, or `<textarea>`.
+
 Input components provide default behavior for validating on edit and changing their CSS class to reflect the field state. Some components include useful parsing logic. For example, `<InputDate>` and `<InputNumber>` handle unparseable values gracefully by registering them as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?`).
 
 The following `Starship` type defines validation logic using a larger set of properties and [data annotations](xref:mvc/models/validation) than the earlier `ExampleModel`:
@@ -177,5 +179,4 @@ The Validation Message component (`<ValidationMessage>`) displays validation mes
 <ValidationMessage For="@(() => starship.MaximumAccommodation)" />
 ```
 
-> [!NOTE]
-> Built-in input components have limitations that we expect to resolve in future releases. For example, you can't specify arbitrary attributes on the generated `<input>` tags. Build your own component subclasses to handle unavailable scenarios.
+All of the `<ValidationMessage>` and `<ValidationSummary>` components support arbitrary attributes. Any attribute that does not match a parameter will be added to the created `<div>` or `<ul>`.
