@@ -1,14 +1,14 @@
 ---
-title: Host and deploy Blazor
+title: Blazor hosting and deployment
 author: guardrex
 description: Discover how to host and deploy Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/23/2019
+ms.date: 06/10/2019
 uid: host-and-deploy/blazor/index
 ---
-# Host and deploy Blazor
+# Blazor hosting and deployment
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
