@@ -118,3 +118,9 @@ public class AppSettingsRequestCultureProvider : RequestCultureProvider
 ```
 
 ## Localization Resources
+
+ASP.NET Core localization APIs came up with `ResourceManagerStringLocalizer` which an implementation of `IStringLocalizer` that is using `resx` files as underlying storage for the localization resources.
+
+But you are not limited to use the `resx` files if it isn't fit your need. We Already mentioned ealier that [OrchardCore](https://github.com/orchardCMS/OrchardCore/) introduced `POStringLocalizer` which using `PO` instead, to support pluralization.
+
+We have seen many of the community projects that extends `IStringLocalizer` to create another localizers such as [EFStringLocalizer](https://github.com/aspnet/Entropy/tree/master/samples/Localization.EntityFramework), [JsonStringLocalizer](https://github.com/hishamco/My.Extensions.Localization.Json), [SqlLocalizer](https://github.com/damienbod/AspNetCoreLocalization) .. etc.
