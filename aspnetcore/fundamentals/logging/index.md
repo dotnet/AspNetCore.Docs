@@ -817,9 +817,10 @@ To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppS
 
 ::: moniker-end
 
-When you deploy to an App Service app, the application honors the settings in the [Diagnostic Logs](/azure/app-service/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When these settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
+When you deploy to an App Service app, the application honors the settings in the [App Service logs](/azure/app-service/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When the following settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
-![Azure logging settings](index/_static/azure-logging-settings.png)
+* **Application Logging (Filesystem)**
+* **Application Logging (Blob)**
 
 The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*.
 
@@ -835,14 +836,11 @@ Azure log streaming lets you view log activity in real time from:
 
 To configure Azure log streaming:
 
-* Navigate to the **Diagnostics Logs** page from your app's portal page.
+* Navigate to the **App Service logs** page from your app's portal page.
 * Set **Application Logging (Filesystem)** to **On**.
+* Choose the log **Level**.
 
-![Azure portal diagnostic logs page](index/_static/azure-diagnostic-logs.png)
-
-Navigate to the **Log Streaming** page to view app messages. They're logged by the app through the `ILogger` interface.
-
-![Azure portal application log streaming](index/_static/azure-log-streaming.png)
+Navigate to the **Log Stream** page to view app messages. They're logged by the app through the `ILogger` interface.
 
 ::: moniker range=">= aspnetcore-1.1"
 
