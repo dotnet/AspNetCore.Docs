@@ -22,7 +22,7 @@ In this tutorial, you learn how to:
 > * Perform MongoDB CRUD operations from a web API
 > * Customize JSON serialization
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mongo-app/sample/BooksApi) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mongo-app/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -228,7 +228,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-    [!code-csharp[](first-mongo-app/sample/sample_snapshot/BooksApi/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
+    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
 
     In the preceding code:
 
@@ -250,7 +250,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-    [!code-csharp[](first-mongo-app/sample/sample_snapshot/BooksApi/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
+    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
 
     In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
