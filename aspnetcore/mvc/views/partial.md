@@ -42,7 +42,7 @@ Don't use a partial view where complex rendering logic or code execution is requ
 
 A partial view is a *.cshtml* markup file maintained within the *Views* folder (MVC) or *Pages* folder (Razor Pages).
 
-In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view. An analogous capability is planned for Razor Pages in ASP.NET Core 2.2. In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> can return a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult>. Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
+In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view. In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> can return a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult>. Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
 
 Unlike MVC view or page rendering, a partial view doesn't run *_ViewStart.cshtml*. For more information on *_ViewStart.cshtml*, see <xref:mvc/views/layout>.
 
@@ -257,7 +257,7 @@ You can pass a model into a partial view. The model can be a custom object. You 
 
 The following markup in the sample app is from the *Pages/ArticlesRP/ReadRP.cshtml* page. The page contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. The `ViewDataDictionary` constructor overload is used to pass a new `ViewData` dictionary while retaining the existing `ViewData` dictionary.
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Pages/ArticlesRP/ReadRP.cshtml?name=snippet_ReadPartialViewRP&highlight=5,15-19)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Pages/ArticlesRP/ReadRP.cshtml?name=snippet_ReadPartialViewRP&highlight=5,15-20)]
 
 *Pages/Shared/_AuthorPartialRP.cshtml* is the first partial view referenced by the *ReadRP.cshtml* markup file:
 
@@ -273,7 +273,7 @@ The following markup in the sample app is from the *Pages/ArticlesRP/ReadRP.csht
 
 The following markup in the sample app shows the *Views/Articles/Read.cshtml* view. The view contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. The `ViewDataDictionary` constructor overload is used to pass a new `ViewData` dictionary while retaining the existing `ViewData` dictionary.
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=5,15-19)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=5,15-20)]
 
 *Views/Shared/_AuthorPartial.cshtml* is the first partial view referenced by the *ReadRP.cshtml* markup file:
 
