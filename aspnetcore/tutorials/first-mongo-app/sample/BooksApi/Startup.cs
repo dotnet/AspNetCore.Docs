@@ -37,10 +37,7 @@ namespace BooksApi
 
             #region snippet_AddSerializationOptions
             services.AddMvc()
-                    .AddJsonOptions(options =>
-                    {
-                        options.UseMemberCasing();
-                    })
+                    .AddJsonOptions(options => options.UseMemberCasing())
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             #endregion
         }

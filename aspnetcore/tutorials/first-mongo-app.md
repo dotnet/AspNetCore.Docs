@@ -334,7 +334,7 @@ To satisfy the preceding requirements, make the following changes:
 
 1. In `Startup.ConfigureServices`, chain the following highlighted code on to the `AddMvc` method call:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_AddSerializationOptions&highlight=2-4)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_AddSerializationOptions&highlight=2)]
 
     With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author`.
 
