@@ -35,8 +35,14 @@ namespace BooksApi
 
             services.AddSingleton<BookService>();
 
+            #region snippet_AddSerializationOptions
             services.AddMvc()
+                    .AddJsonOptions(options =>
+                    {
+                        options.UseMemberCasing();
+                    })
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            #endregion
         }
         #endregion
 

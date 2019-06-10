@@ -1,5 +1,9 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+#region snippet_NewtonsoftJsonImports
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+#endregion
 
 namespace BooksApi.Models
 {
@@ -9,16 +13,16 @@ namespace BooksApi.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
+        #region snippet_BookNameProperty
         [BsonElement("Name")]
+        [JsonProperty("Name")]
         public string BookName { get; set; }
+        #endregion
 
-        [BsonElement("Price")]
         public decimal Price { get; set; }
 
-        [BsonElement("Category")]
         public string Category { get; set; }
 
-        [BsonElement("Author")]
         public string Author { get; set; }
     }
 }
