@@ -44,7 +44,7 @@ A partial view is a *.cshtml* markup file maintained within the *Views* folder (
 
 In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view.
 
-In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> can return a partial view represented as a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult>. In ASP.NET Core 2.2 or later, a `PageModel` can call the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial*> method to produce a `PartialViewResult`.
+In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> can return a partial view represented as a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> object. In ASP.NET Core 2.2 or later, a `PageModel` can call the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial*> method to produce a `PartialViewResult` object.
 
 Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
 
