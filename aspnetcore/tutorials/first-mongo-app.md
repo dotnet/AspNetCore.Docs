@@ -228,7 +228,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-    [!code-csharp[](first-mongo-app/sample/snippets/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
+    [!code-csharp[](first-mongo-app/sample/sample_snapshot/BooksApi/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
 
     In the preceding code:
 
@@ -250,7 +250,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-    [!code-csharp[](first-mongo-app/sample/snippets/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
+    [!code-csharp[](first-mongo-app/sample/sample_snapshot/BooksApi/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
 
     In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
@@ -328,7 +328,7 @@ The preceding web API controller:
 
 There are two details to change about the JSON responses returned in the [Test the web API](#test-the-web-api) section:
 
-* The property name camel casing should be replaced with member casing.
+* The property names' default camel casing should be changed to match the Pascal casing of the CLR object's property names.
 * The `bookName` property should be returned as `Name`.
 
 To satisfy the preceding requirements, make the following changes:
