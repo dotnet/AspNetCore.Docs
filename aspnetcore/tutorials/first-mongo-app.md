@@ -344,9 +344,9 @@ To satisfy the preceding requirements, make the following changes:
 
     The `[JsonProperty]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
 
-1. Add the following code to the top of *Models/Book.cs*:
+1. Add the following code to the top of *Models/Book.cs* to resolve the `[JsonProperty]` attribute reference:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs?name=snippet_NewtonsoftJsonImports)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs?name=snippet_NewtonsoftJsonImport)]
 
 1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
 

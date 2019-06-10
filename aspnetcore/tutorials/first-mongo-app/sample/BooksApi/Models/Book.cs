@@ -1,8 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-#region snippet_NewtonsoftJsonImports
+#region snippet_NewtonsoftJsonImport
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 #endregion
 
 namespace BooksApi.Models
