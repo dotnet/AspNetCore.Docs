@@ -325,7 +325,7 @@ To activate environment variables configuration, call the <xref:Microsoft.Extens
 
 [Azure App Service](https://azure.microsoft.com/services/app-service/) permits you to set environment variables in the Azure Portal that can override app configuration using the Environment Variables Configuration Provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
-`AddEnvironmentVariables` is automatically called for environment variables prefixed with `ASPNETCORE_` when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
+`AddEnvironmentVariables` is used to load environment variables prefixed with `ASPNETCORE_` as [host configuration](#host-vs-app-configuration) when you initialize a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
 
 `CreateDefaultBuilder` also loads:
 
