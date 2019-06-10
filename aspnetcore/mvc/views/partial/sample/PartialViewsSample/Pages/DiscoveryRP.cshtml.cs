@@ -15,6 +15,5 @@ namespace PartialViewsSample.Pages
                 ViewData = ViewData,
             };
         }
-
     }
 }
