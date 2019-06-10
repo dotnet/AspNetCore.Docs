@@ -14,23 +14,23 @@ This article lists the extensibility points on the localization APIs and provide
 
 ## Extensible Points in Localization APIs
 
-ASP.NET Core localization APIs are build from ground up to be extensible, this will allow the developers to customize the localization according their needs. For instance [OrchardCore](https://github.com/orchardCMS/OrchardCore/) takes the initiative to build a `POStringLocalizer` which described in detail [Portable Object localization](fundamentals/portable-object-localization) to use `PO` files to store the localization resources.
+ASP.NET Core localization APIs are built from the ground up to be extensible, this allows developers to customize the localization according to their needs. For instance [OrchardCore](https://github.com/orchardCMS/OrchardCore/) has a `POStringLocalizer` which describes in detail using [Portable Object localization](fundamentals/portable-object-localization) to use `PO` files to store localization resources.
 
-This article lists two extensibility points that localization APIs have, including localization culture providers and localization resources baking store.
+This article lists the two main extensibility points that localization APIs have: `RequestCultureProvider` and `IStringLocalizer`.
 
 ## Localization Culture Providers
 
-ASP.NET Core localization APIs came up with four providers that can determine the current culture of the web application:
+ASP.NET Core localization APIs has four providers by defult. These determine the current culture of executing request.:
 
 1. `QueryStringRequestCultureProvider`
 2. `CookieRequestCultureProvider`
 3. `AcceptLanguageHeaderRequestCultureProvider`
 4. `CustomRequestCultureProvider`
 
-All the above providers are described in detail [Localization middleware](fundamentals/localization), but in case if non of these providers don't meet your needs, you can build a custom provider using one of the following:
+All the above providers are described in detail in the [Localization middleware](fundamentals/localization) documentation, but if non of these providers don't meet your needs you can build a custom provider using one of the following:
 ### Using `CustomRequestCultureProvider`
 
-[CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.customrequestcultureprovider?view=aspnetcore-2.1) provides a custom `RequestCultureProvider` that using a simple delegate allows you to determine the current localization culture.
+[CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.customrequestcultureprovider?view=aspnetcore-2.1) provides a custom `RequestCultureProvider` that uses a simple delegate to determine the current localization culture.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -71,9 +71,8 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
 ::: moniker-end
 
 ### Using a new implemetation of `RequestCultureProvider`
-As mentioned ealier there are four implementation of `RequestCultureProvider` out of the box, which determines the request culture information from various sources.
 
-The developer can easily use this as extensible point to create a new implementation of `RequestCultureProvider` that determines the request culture information from custom source such as configuration file, database ... etc.
+The developer can also create a new implementation of `RequestCultureProvider` that determines the request culture information from a custom source such as configuration file, database ... etc.
 
 The following example shows `AppSettingsRequestCultureProvider` which extend the `RequestCultureProvider` to determines the request culture information from `appsettings.json`.
 
@@ -119,8 +118,8 @@ public class AppSettingsRequestCultureProvider : RequestCultureProvider
 
 ## Localization Resources
 
-ASP.NET Core localization APIs came up with `ResourceManagerStringLocalizer` which an implementation of `IStringLocalizer` that is using `resx` files as underlying storage for the localization resources.
+ASP.NET Core localization provides `ResourceManagerStringLocalizer` which is an implementation of `IStringLocalizer` that is uses `resx` to store localization resources.
 
-But you are not limited to use the `resx` files if it isn't fit your need. We Already mentioned ealier that [OrchardCore](https://github.com/orchardCMS/OrchardCore/) introduced `POStringLocalizer` which using `PO` instead, to support pluralization.
+But you are not limited to using `resx` files. By implementing `IStringLocalized` you can use any data-source you want.
 
-We have seen many of the community projects that extends `IStringLocalizer` to create another localizers such as [EFStringLocalizer](https://github.com/aspnet/Entropy/tree/master/samples/Localization.EntityFramework), [JsonStringLocalizer](https://github.com/hishamco/My.Extensions.Localization.Json), [SqlLocalizer](https://github.com/damienbod/AspNetCoreLocalization) .. etc.
+Here are some examples of projects which implement `IStringLocalizer`: [EFStringLocalizer](https://github.com/aspnet/Entropy/tree/master/samples/Localization.EntityFramework), [JsonStringLocalizer](https://github.com/hishamco/My.Extensions.Localization.Json), [SqlLocalizer](https://github.com/damienbod/AspNetCoreLocalization) .. etc.
