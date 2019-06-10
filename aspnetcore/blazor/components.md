@@ -123,14 +123,14 @@ Data binding to both components and DOM elements is accomplished with the `@bind
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    @bind="@_italicsCheck" />
+    @bind="_italicsCheck" />
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
 
 The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
 
-Using `@bind` with a `CurrentValue` property (`<input @bind="@CurrentValue" />`) is essentially equivalent to the following:
+Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue" 
@@ -152,7 +152,7 @@ Unlike `onchange`, `oninput` fires for every character that is input into the te
 Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
-<input @bind="@StartDate" @bind:format="yyyy-MM-dd" />
+<input @bind="StartDate" @bind:format="yyyy-MM-dd" />
 
 @code {
     [Parameter]
@@ -160,7 +160,7 @@ Data binding works with <xref:System.DateTime> format strings. Other format expr
 }
 ```
 
-The `@bind-value:format` attribute specifies the date format to apply to the `value` of the `input` element. The format is also used to parse the value when an `onchange` event occurs.
+The `@bind:format` attribute specifies the date format to apply to the `value` of the `input` element. The format is also used to parse the value when an `onchange` event occurs.
 
 **Component parameters**
 
@@ -177,7 +177,7 @@ Parent component:
 
 <p>ParentYear: @ParentYear</p>
 
-<ChildComponent @bind-Year="@ParentYear" />
+<ChildComponent @bind-Year="ParentYear" />
 
 <button class="btn btn-primary" @onclick="@ChangeTheYear">
     Change Year to 1986
@@ -238,13 +238,16 @@ If the value of the `ParentYear` property is changed by selecting the button in 
 
 The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-By convention, `<ChildComponent @bind-Year="@ParentYear" />` is essentially equivalent to writing,
+By convention, `<ChildComponent @bind-Year="ParentYear" />` is essentially equivalent to writing,
 
 ```cshtml
-<ChildComponent @bind-Year="@ParentYear" @bind-Year:event="YearChanged" />
+<ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
 ```
 
-In general, a property can be bound to a corresponding event handler using `@bind-property:event` attribute.
+In general, a property can be bound to a corresponding event handler using `@bind-property:event` attribute. For example, the property `MyProp` can be bound to `MyEventHandler` using the following two attributes,
+```cshtml
+<FooComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
+```
 
 ## Event handling
 
