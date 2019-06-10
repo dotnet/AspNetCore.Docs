@@ -21,7 +21,7 @@ In this tutorial, you learn how to:
 > * Define a MongoDB collection and schema
 > * Perform MongoDB CRUD operations from a web API
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mongo-app/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mongo-app/sample/BooksApi) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -225,9 +225,9 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
 
-1. Add the following code to `Startup.ConfigureServices`, before the call to `AddMvc`:
+1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureDatabaseSettings)]
+    [!code-csharp[](first-mongo-app/sample/snippets/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
 
     In the preceding code:
 
@@ -247,9 +247,9 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
-1. In `Startup.ConfigureServices`, register the `BookService` class with DI:
+1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=9)]
+    [!code-csharp[](first-mongo-app/sample/snippets/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
 
     In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
@@ -334,7 +334,7 @@ To satisfy the preceding requirements, make the following changes:
 
 1. In `Startup.ConfigureServices`, chain the following highlighted code on to the `AddMvc` method call:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_AddSerializationOptions&highlight=2)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=12)]
 
     With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author`.
 
