@@ -69,7 +69,7 @@ The main reason for including all of the app's interdependent resources in one o
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Two hosts are available: Generic Host and Web Host. Generic Host is recommended, and Web Host is available only for backwards compatibility.
+Two hosts are available: the Generic Host and the Web Host. The Generic Host is recommended, and the Web Host is available only for backwards compatibility.
 
 The code to create a host is in `Program.Main`:
 
@@ -87,7 +87,7 @@ For more information, see <xref:fundamentals/host/generic-host>.
 
 ::: moniker range="< aspnetcore-3.0"
 
-Two hosts are available: Web Host and Generic Host. In ASP.NET Core 2.x, Generic Host is only for non-web scenarios.
+Two hosts are available: the Web Host and the Generic Host. In ASP.NET Core 2.x, the Generic Host is only for non-web scenarios.
 
 The code to create a host is in `Program.Main`:
 
@@ -105,7 +105,7 @@ For more information, see <xref:fundamentals/host/web-host>.
 
 ### Non-web scenarios
 
-Generic Host allows other types of apps to use cross-cutting framework extensions, such as logging, dependency injection (DI), configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/hosted-services>.
+The Generic Host allows other types of apps to use cross-cutting framework extensions, such as logging, dependency injection (DI), configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/hosted-services>.
 
 ## Servers
 
