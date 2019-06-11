@@ -171,7 +171,7 @@ Instructions for joining a Linux or macOS machine to a Windows domain are availa
 > [!NOTE]
 > When following the guidance in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) article, replace `python-software-properties` with `python3-software-properties` if needed.
 
-Once the Linux or macOS machine is joined to the domain, additional steps are required to provide a keytab file with the SPNs:
+Once the Linux or macOS machine is joined to the domain, additional steps are required to provide a [keytab file](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) with the SPNs:
 
 * On the domain controller, add new web service SPNs to the machine account:
   * `setspn -S HTTP/mywebservice.mydomain.com mymachine`
@@ -179,7 +179,7 @@ Once the Linux or macOS machine is joined to the domain, additional steps are re
 * Use [ktpass](/windows-server/administration/windows-commands/ktpass) to generate a keytab file:
   * `ktpass -princ HTTP/mywebservice.mydomain.com@MYDOMAIN.COM -pass myKeyTabFilePassword -mapuser MYDOMAIN\mymachine$ -pType KRB5_NT_PRINCIPAL -out c:\temp\mymachine.HTTP.keytab -crypto AES256-SHA1`
   * Some fields must be specified in uppercase as indicated.
-* Copy the keytab file to the Linux machine.
+* Copy the keytab file to the Linux or macOS machine.
 * Select the keytab file via an environment variable: `export KRB5_KTNAME=/tmp/mymachine.HTTP.keytab`
 * Invoke `klist` to show the SPNs currently available for use.
 
