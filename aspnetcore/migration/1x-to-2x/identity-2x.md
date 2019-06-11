@@ -156,6 +156,15 @@ Make the following changes in *Startup.cs*:
     });
     ```
 
+- Replace the `PostLogoutRedirectUri` property in the `OpenIdConnectOptions` action with `SignedOutRedirectUri`:
+
+    ```csharp
+    .AddOpenIdConnect(options =>
+    {
+        options.SignedOutRedirectUri = "https://contoso.com";
+    });
+    ```
+    
 ### Facebook authentication
 
 Make the following changes in *Startup.cs*:

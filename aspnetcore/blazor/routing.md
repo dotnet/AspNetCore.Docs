@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2019
+ms.date: 05/14/2019
 uid: blazor/routing
 ---
 # Blazor routing
@@ -18,7 +18,7 @@ Learn how to route requests in apps and about the NavLink component.
 
 Blazor server-side is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapBlazorHub` in `Startup.Configure`:
 
-[!code-cshtml[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
+[!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
 ## Route templates
 
@@ -51,7 +51,7 @@ The following example sets a component defined in *Pages/MyFallbackRazorComponen
 ```
 
 > [!IMPORTANT]
-> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/client-side#app-base-path>.
+> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor client-side) or *Pages/\_Host.cshtml* file (Blazor server-side) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/client-side#app-base-path>.
 
 ## Route parameters
 
@@ -102,3 +102,37 @@ There are two `NavLinkMatch` options:
 * `NavLinkMatch.Prefix` &ndash; Specifies that the NavLink should be active when it matches any prefix of the current URL.
 
 In the preceding example, the Home NavLink (`href=""`) matches all URLs and always receives the `active` CSS class. The second NavLink only receives the `active` class when the user visits the Blazor Route component (`href="BlazorRoute"`).
+
+## URI and navigation state helpers
+
+Use `Microsoft.AspNetCore.Components.IUriHelper` to work with URIs and navigation in C# code. `IUriHelper` provides the event and methods shown in the following table.
+
+| Member | Description |
+| ------ | ----------- |
+| `GetAbsoluteUri` | Gets the current absolute URI. |
+| `GetBaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `GetBaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor client-side) or *Pages/\_Host.cshtml* (Blazor server-side). |
+| `NavigateTo` | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
+| `OnLocationChanged` | An event that fires when the navigation location has changed. |
+| `ToAbsoluteUri` | Converts a relative URI into an absolute URI. |
+| `ToBaseRelativePath` | Given a base URI (for example, a URI previously returned by `GetBaseUri`), converts an absolute URI into a URI relative to the base URI prefix. |
+
+The following component navigates to the app's Counter component when the button is selected:
+
+```cshtml
+@page "/navigate"
+@using Microsoft.AspNetCore.Components
+@inject IUriHelper UriHelper
+
+<h1>Navigate in Code Example</h1>
+
+<button class="btn btn-primary" onclick="@NavigateToCounterComponent">
+    Navigate to the Counter component
+</button>
+
+@functions {
+    private void NavigateToCounterComponent()
+    {
+        UriHelper.NavigateTo("counter");
+    }
+}
+```

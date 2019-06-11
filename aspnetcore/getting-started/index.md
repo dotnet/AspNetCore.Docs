@@ -1,21 +1,21 @@
 ---
 title: Get started with ASP.NET Core
 author: rick-anderson
-description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core. 
+description: A short tutorial that creates and runs a basic Hello World app using ASP.NET Core. 
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2019
+ms.date: 5/15/2019
 uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
 
-This tutorial shows how to use the .NET Core command-line interface to create an ASP.NET Core web app.
+This tutorial shows how to use the .NET Core command-line interface to create and run an ASP.NET Core web app.
 
 You'll learn how to:
 
 > [!div class="checklist"]
 > * Create a web app project.
-> * Enable local HTTPS.
+> * Trust the development certificate.
 > * Run the app.
 > * Edit a Razor page.
 
@@ -35,7 +35,7 @@ Open a command shell, and enter the following command:
 dotnet new webapp -o aspnetcoreapp
 ```
 
-## Enable local HTTPS
+### Trust the development certificate
 
 Trust the HTTPS development certificate:
 
@@ -64,6 +64,8 @@ The preceding command displays the following message:
 This command might prompt you for your password to install the certificate on the system keychain. Enter your password if you agree to trust the development certificate.
 
 # [Linux](#tab/linux)
+
+For Windows Subsystem for Linux, see [Trust HTTPS certificate from Windows Subsystem for Linux](xref:security/enforcing-ssl#wsl).
 
 See the documentation for your Linux distribution on how to trust the HTTPS development certificate.
 
@@ -96,7 +98,7 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create a web app project.
-> * Enable local HTTPS.
+> * Trust the development certificate.
 > * Run the project.
 > * Make a change.
 

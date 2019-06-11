@@ -307,3 +307,12 @@ The tag helpers provide several properties to retrieve content.
 [!code-csharp[](../../views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinkerCopy.cs?highlight=5,6,10&range=8-21)]
 
 * Multiple calls to `GetChildContentAsync` returns the same value and doesn't re-execute the `TagHelper` body unless you pass in a false parameter indicating not to use the cached result.
+
+## Load minified partial view TagHelper
+
+In production environments, performance can be improved by loading minified partial views. To take advantage of minified partial view in production:
+
+* Create/set up a pre-build process that minifies partial views.
+* Use the following code to load  minified partial views in non-development environments.
+
+[!code-csharp[](authoring/sample/AuthoringTagHelpers/src/MinifiedVersionTagHelper.cs?name=snippet)]

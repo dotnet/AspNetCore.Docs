@@ -28,7 +28,7 @@ In this tutorial, learn how to:
 The following are required for this walkthrough:
 
 * [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (any edition)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## Create the Azure Active Directory B2C tenant
 
@@ -56,7 +56,7 @@ After the app is registered, the list of apps in the tenant is displayed. Select
 
 Nothing more can be configured in the Azure AD B2C tenant at this time, but leave the browser window open. There is more configuration after the ASP.NET Core app is created.
 
-## Create an ASP.NET Core app in Visual Studio 2017
+## Create an ASP.NET Core app in Visual Studio
 
 The Visual Studio Web Application template can be configured to use the Azure AD B2C tenant for authentication.
 

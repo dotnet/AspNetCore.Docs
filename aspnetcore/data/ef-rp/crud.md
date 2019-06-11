@@ -8,10 +8,6 @@ uid: data/ef-rp/crud
 ---
 # Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
 
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
-
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
@@ -122,7 +118,7 @@ In the preceding code, `TryUpdateModelAsync<Student>` tries to update the `empty
 In the preceding sample:
 
 * The second argument (`"student", // Prefix`) is the prefix uses to look up values. It's not case sensitive.
-* The posted form values are converted to the types in the `Student` model using [model binding](xref:mvc/models/model-binding#how-model-binding-works).
+* The posted form values are converted to the types in the `Student` model using [model binding](xref:mvc/models/model-binding).
 
 <a id="overpost"></a>
 
@@ -241,7 +237,7 @@ Verify the Razor Page contains the correct `@page` directive. For example, The S
 
 Each Razor Page must include the `@page` directive.
 
-::: moniker-end
+
 
 ## Additional resources
 

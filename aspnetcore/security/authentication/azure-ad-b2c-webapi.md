@@ -31,7 +31,7 @@ In this tutorial, learn how to:
 The following are required for this walkthrough:
 
 * [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (any edition)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 * [Postman](https://www.getpostman.com/postman)
 
 ## Create the Azure Active Directory B2C tenant
@@ -59,7 +59,7 @@ Use the following values:
 
 After the API is registered, the list of apps and APIs in the tenant is displayed. Select the API that was previously registered. Select the **Copy** icon to the right of the **Application ID** field to copy it to the clipboard. Select **Published scopes** and verify the default *user_impersonation* scope is present.
 
-## Create an ASP.NET Core app in Visual Studio 2017
+## Create an ASP.NET Core app in Visual Studio
 
 The Visual Studio Web Application template can be configured to use the Azure AD B2C tenant for authentication.
 

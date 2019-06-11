@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 05/19/2019
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
@@ -146,6 +146,14 @@ Add a new component to the app that implements a simple todo list.
 
 1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the Todo component works.
 
+1. If building a Blazor server-side app, add the app's namespace to the *\_Imports.razor* file. The following `@using` statement assumes that the app's namespace is `WebApplication`:
+
+   ```cshtml
+   @using WebApplication
+   ```
+   
+   Blazor client-side apps include the app's namespace by default in the *\_Imports.razor* file.
+
 1. Add a *TodoItem.cs* file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
@@ -174,7 +182,7 @@ Add a new component to the app that implements a simple todo list.
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo7.razor?highlight=2)]
 
    ```cshtml
-   <input placeholder="Something todo" bind="@newTodo">
+   <input placeholder="Something todo" bind="@newTodo" />
    ```
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:

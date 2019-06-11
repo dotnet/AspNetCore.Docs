@@ -221,6 +221,8 @@ dotnet new webapp --no-https
 
 ::: moniker range=">= aspnetcore-2.1"
 
+<a name="trust"></a>
+
 ## Trust the ASP.NET Core HTTPS development certificate on Windows and macOS
 
 .NET Core SDK includes a HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces output similar to the following:
@@ -251,6 +253,19 @@ dotnet dev-certs https --help
 See [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/6199).
 
 ::: moniker-end
+
+<a name="wsl"></a>
+
+## Trust HTTPS certificate from Windows Subsystem for Linux
+
+The Windows Subsystem for Linux (WSL) generates a HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
+
+* Run the following command to export the WSL generated certificate:
+  `dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>`
+* In a WSL window, run the following command:
+  `ASPNETCORE_Kestrel__Certificates__Default__Password="<cryptic-password>" ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/user-name/.aspnet/https/aspnetapp.pfx dotnet watch run`
+
+  The preceding command sets the environment variables so Linux uses the Windows trusted certificate.
 
 ## Additional information
 
