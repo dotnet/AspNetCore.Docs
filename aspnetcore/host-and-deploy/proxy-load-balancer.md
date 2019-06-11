@@ -337,7 +337,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 > [!IMPORTANT]
 > Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
 
-## Certificate Forwarding 
+## Certificate forwarding 
 
 ### On Azure
 
