@@ -82,8 +82,6 @@ The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a ho
 * Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
-Notice that the code to configure the host is separated from the code that calls the `Build` and `Run` methods. This division is required for [Entity Framework Core migrations](https://docs.microsoft.com/ef/core/managing-schemas/migrations/). Migrations expects to find a `CreateHostBuilder` method that it can call at design time to configure the host without running the app.
-
 For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/web-host>.
 
 ::: moniker-end
