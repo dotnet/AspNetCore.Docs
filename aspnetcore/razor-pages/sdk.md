@@ -55,6 +55,8 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
 
 ::: moniker-end
 
+* Note that the package references need to be included directly in the project containing razor views. If a downstream dependency includes required packages you still need to explicitly reference the above dependencies.
+
 ### Properties
 
 The following properties control the Razor's SDK behavior as part of a project build:
