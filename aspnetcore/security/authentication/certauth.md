@@ -194,41 +194,6 @@ Complete the following steps In IIS Manager:
 
 ![Client certificate settings in IIS](README-IISConfig.png)
 
-### Azure
+### Azure and Custom web proxies
 
-See the [Azure documentation](/azure/app-service/app-service-web-configure-tls-mutual-auth) 
-to configure Azure Web Apps. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
-
-```csharp
-app.UseCertificateHeaderForwarding();
-```
-
-### Custom web proxies
-
-If you're using a proxy that isn't IIS or Azure's Web Apps Application Request Routing, configure your proxy to forward the certificate it received in an HTTP header. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
-
-```csharp
-app.UseCertificateForwarding();
-```
-
-You'll also need to configure the Certificate Forwarding middleware to specify the header name. In your app's `Startup.ConfigureServices` method, add the following code to configure the header from which the forwarding middleware builds a certificate:
-
-```csharp
-services.AddCertificateForwarding(options =>
-    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME");
-```
-
-Finally, if your proxy is doing something weird to pass the header on, rather than base-64 encoding it (as is the case with Nginx), override the converter option to be a `Func` that will perform the optional conversion. Consider the following example in `Startup.ConfigureServices`:
-
-```csharp
-services.AddCertificateForwarding(options =>
-{
-    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
-    options.HeaderConverter = (headerValue) => 
-    {
-        var clientCertificate = 
-           /* some weird conversion logic to create an X509Certificate2 */
-        return clientCertificate;
-    }
-});
-```
+See the [host and deploy documentation](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-3.0#certificate-forwarding) for how to configure the certificate forwarding middleware.
