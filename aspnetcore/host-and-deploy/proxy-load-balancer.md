@@ -367,7 +367,7 @@ You'll also need to configure the Certificate Forwarding middleware to specify t
 
 ```csharp
 services.AddCertificateForwarding(options =>
-    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME");
+    options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
 ```
 
 Finally, if the proxy is doing something other than base64 encoding the certificate (as is the case with Nginx), set the `HeaderConverter` option. Consider the following example in `Startup.ConfigureServices`:
