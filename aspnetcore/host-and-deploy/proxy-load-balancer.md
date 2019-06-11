@@ -337,7 +337,9 @@ services.Configure<ForwardedHeadersOptions>(options =>
 > [!IMPORTANT]
 > Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
 
-## Certificate Forwarding on Azure
+## Certificate Forwarding 
+
+### On Azure
 
 See the [Azure documentation](/azure/app-service/app-service-web-configure-tls-mutual-auth) 
 to configure Azure Web Apps. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
@@ -353,7 +355,7 @@ services.AddCertificateForwarding(options =>
     options.CertificateHeader = "X-ARR-ClientCert");
 ```
 
-### Certificate Forwarding with custom web proxies
+### With custom web proxies
 
 If you're using a proxy that isn't IIS or Azure's Web Apps Application Request Routing, configure your proxy to forward the certificate it received in an HTTP header. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
 
