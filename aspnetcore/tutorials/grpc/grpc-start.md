@@ -239,13 +239,11 @@ The Greeter client is created by:
 * Instantiating a `HttpClient` containing the information for creating the connection to the gRPC service.
 * Using the `HttpClient` to construct the Greeter client:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-6)]
+[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-9)]
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-9)]
-
-Shut down the `Channel` used by the client when operations have finished to release all resources.
+[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=10-12)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
