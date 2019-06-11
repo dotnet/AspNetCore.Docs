@@ -17,12 +17,12 @@ uid: security/authentication/certauth
 
 Acquire an HTTPS certificate, apply it, and [configure your host](#configure-your-host-to-require-certificates) to require certificates.
 
-In your web app, add a reference to the package. Then in the `Startup.ConfigureServices` method, call
+In your web app, add a reference to the package. Then in the `Startup.Configure` method, call
 `app.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).UseCertificateAuthentication(...);` with your options, providing a delegate for `OnValidateCertificate` to validate the client certificate sent with requests. Turn that information into a `ClaimsPrincipal`, set it on the `context.Principal` property, and call `context.Success()`.
 
 If you change your scheme name in the options for the authentication handler, change the scheme name in `AddAuthentication` to ensure it's used on every request that ends in an endpoint requiring authorization.
 
-If authentication fails, this handler returns a `403 (Forbidden)` response rather a `401 (Unauthorized)`, as you might expect. The reasoning is that the authentication should happen during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to actually upgrade the connection from an anonymous connection to one with a certificate.
+If authentication fails, this handler returns a `403 (Forbidden)` response rather a `401 (Unauthorized)`, as you might expect. The reasoning is that the authentication should happen during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to upgrade the connection from an anonymous connection to one with a certificate.
 
 Also add `app.UseAuthentication();` in the `Startup.Configure` method. Otherwise, nothing will ever get called. For example:
 
@@ -59,7 +59,7 @@ This check validates that the certificate presented by the client has the Client
 
 ### ValidateValidityPeriod
 
-This check validates that the certificate is within its validity period. As the handler runs on every request, this ensures that a certificate that was valid when it was presented hasn't expired during its current session.
+This check validates that the certificate is within its validity period. On each request, the handler ensures that a certificate that was valid when it was presented hasn't expired during its current session.
 
 ### RevocationFlag
 
@@ -171,7 +171,7 @@ Conceptually, the validation of the certificate is an authorization concern. Add
 
 ### Kestrel
 
-In *Program.cs*, configure `UseKestrel` as follows:
+In *Program.cs*, configure Kestrel as follows:
 
 ```csharp
 public static IWebHost BuildWebHost(string[] args) =>
@@ -186,7 +186,7 @@ public static IWebHost BuildWebHost(string[] args) =>
         .Build();
 ```
 
-You must set the `ClientCertificateValidation` delegate to `CertificateValidator.DisableChannelValidation` in order to stop Kestrel from using the default operating system certificate validation routine and, instead, letting the authentication handler perform the validation.
+Set the `ClientCertificateValidation` delegate to `CertificateValidator.DisableChannelValidation` to prevent Kestrel from using the default operating system certificate validation routine. The authentication handler performs the validation instead.
 
 ### IIS
 
@@ -215,14 +215,14 @@ If you're using a proxy that isn't IIS or Azure's Web Apps Application Request R
 app.UseCertificateForwarding();
 ```
 
-You'll also need to configure the Certificate Forwarding middleware to specify the header name. In your app's `Startup.ConfigureServices` method, add the following code to configure the header from which the forwarding middleware will build a certificate:
+You'll also need to configure the Certificate Forwarding middleware to specify the header name. In your app's `Startup.ConfigureServices` method, add the following code to configure the header from which the forwarding middleware builds a certificate:
 
 ```csharp
 services.AddCertificateForwarding(options =>
     options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME");
 ```
 
-Finally, if your proxy is doing something weird to pass the header on, rather than base-64 encoding it (looking at you nginx (╯°□°）╯︵ ┻━┻), you can override the converter option to be a `Func` that will perform the optional conversion. Consider the following example in `Startup.ConfigureServices`:
+Finally, if your proxy is doing something weird to pass the header on, rather than base-64 encoding it (as is the case with Nginx), override the converter option to be a `Func` that will perform the optional conversion. Consider the following example in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddCertificateForwarding(options =>
