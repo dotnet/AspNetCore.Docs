@@ -370,7 +370,7 @@ services.AddCertificateForwarding(options =>
     options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME");
 ```
 
-Finally, if your proxy is doing something weird to pass the header on, rather than base-64 encoding it (as is the case with Nginx), override the converter option to be a `Func` that will perform the optional conversion. Consider the following example in `Startup.ConfigureServices`:
+Finally, if the proxy is doing something other than base64 encoding the certificate (as is the case with Nginx), set the `HeaderConverter` option. Consider the following example in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddCertificateForwarding(options =>
