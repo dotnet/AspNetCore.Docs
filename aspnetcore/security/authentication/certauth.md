@@ -17,14 +17,12 @@ uid: security/authentication/certauth
 
 Acquire an HTTPS certificate, apply it, and [configure your host](#configure-your-host-to-require-certificates) to require certificates.
 
-In your web app, add a reference to the package. Then in the `Startup.Configure` method, call
-`app.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).UseCertificateAuthentication(...);` with your options, providing a delegate for `OnValidateCertificate` to validate the client certificate sent with requests. Turn that information into a `ClaimsPrincipal`, set it on the `context.Principal` property, and call `context.Success()`.
-
-If you change your scheme name in the options for the authentication handler, change the scheme name in `AddAuthentication` to ensure it's used on every request that ends in an endpoint requiring authorization.
+In your web app, add a reference to the `Microsoft.AspNetCore.Authentication.Certificate` package. Then in the `Startup.Configure` method, call
+`app.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).UseCertificateAuthentication(...);` with your options, providing a delegate for `OnCertificateValidated` to do any supplementary validation on the client certificate sent with requests. Turn that information into a `ClaimsPrincipal`, set it on the `context.Principal` property, and call `context.Success()`.
 
 If authentication fails, this handler returns a `403 (Forbidden)` response rather a `401 (Unauthorized)`, as you might expect. The reasoning is that the authentication should happen during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to upgrade the connection from an anonymous connection to one with a certificate.
 
-Also add `app.UseAuthentication();` in the `Startup.Configure` method. Otherwise, nothing will ever get called. For example:
+Also add `app.UseAuthentication();` in the `Startup.Configure` method. Otherwise, the HttpContext.User will not be set to `ClaimsPrincipal` created from the certificate. For example:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -49,9 +47,9 @@ The preceding example demonstrates the default way to add certificate authentica
 
 The `CertificateAuthenticationOptions` handler has some built-in validations that are the minimum validations you should perform on a certificate. Each of these settings is enabled by default.
 
-### ValidateCertificateChain
+### AllowedCertificateTypes = Chained, SelfSigned, or All (Chained | SelfSigned)
 
-This check validates that the issuer for the certificate is trusted by the application host operating system. If you're going to accept self-signed certificates, you must disable this check.
+This check validates that only the appropriate certificate type is allowed.
 
 ### ValidateCertificateUse
 
@@ -77,14 +75,14 @@ Revocation checks are only performed when the certificate is chained to a root c
 
 ### Can I configure my app to require a certificate only on certain paths?
 
-This isn't possible. Remember the certificate exchange is done that the start of the HTTPS conversation, it's done by the host, not the app. Kestrel, IIS, Azure Web Apps don't have any configuration for this sort of thing.
+This isn't possible. Remember the certificate exchange is done that the start of the HTTPS conversation, it's done by the server before the first request is received on that connection so it's not possible to scope based on any request fields.
 
 ## Handler events
 
 The handler has two events:
 
 * `OnAuthenticationFailed` &ndash; Called if an exception happens during authentication and allows you to react.
-* `OnValidateCertificate` &ndash; Called after the certificate has been validated, passed validation, but before the default principal has been created. This event allows you to perform your own validation. Examples include:
+* `OnCertificateValidated` &ndash; Called after the certificate has been validated, passed validation and a default principal has been created. This event allows you to perform your own validation and augment or replace the principal. For examples include:
   * Determining if the certificate is known to your services.
   * Constructing your own principal. Consider the following example in `Startup.ConfigureServices`:
 
@@ -95,7 +93,7 @@ services.AddAuthentication(
     {
         options.Events = new CertificateAuthenticationEvents
         {
-            OnValidateCertificate = context =>
+            OnCertificateValidated = context =>
             {
                 var claims = new[]
                 {
@@ -185,8 +183,6 @@ public static IWebHost BuildWebHost(string[] args) =>
         })
         .Build();
 ```
-
-Set the `ClientCertificateValidation` delegate to `CertificateValidator.DisableChannelValidation` to prevent Kestrel from using the default operating system certificate validation routine. The authentication handler performs the validation instead.
 
 ### IIS
 
