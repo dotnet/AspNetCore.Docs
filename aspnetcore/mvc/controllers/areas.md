@@ -3,7 +3,7 @@ title: Areas in ASP.NET Core
 author: rick-anderson
 description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 ms.author: riande
-ms.date: 05/06/2019
+ms.date: 05/10/2019
 uid: mvc/controllers/areas
 ---
 # Areas in ASP.NET Core
@@ -163,9 +163,9 @@ For the preceding code:
 
 ### Import namespace and Tag Helpers with _ViewImports file
 
-A *_ViewImports* file can be added to each area *Pages* folder to import the namespace and Tag Helpers to each Razor Page in the folder.
+A *_ViewImports.cshtml* file can be added to each area *Pages* folder to import the namespace and Tag Helpers to each Razor Page in the folder.
 
-Consider the *Services* area of the sample code, which doesn't contain a *_ViewImports* file. The following markup shows the */Services/Manage/About* Razor Page:
+Consider the *Services* area of the sample code, which doesn't contain a *_ViewImports.cshtml* file. The following markup shows the */Services/Manage/About* Razor Page:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
@@ -174,7 +174,7 @@ In the preceding markup:
 * The fully qualified domain name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
-In the sample download, the Products area contains the following *_ViewImports* file:
+In the sample download, the Products area contains the following *_ViewImports.cshtml* file:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
@@ -192,4 +192,4 @@ To share a common layout for the entire app, move the *_ViewStart.cshtml* to the
 
 ### Publishing Areas
 
-All `*.cshtml` and `wwwroot/**` files are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the.csproj* file.
+All *.cshtml files and files within the *wwwroot* directory are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj file.

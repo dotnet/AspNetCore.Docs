@@ -5,7 +5,7 @@ description: Learn how to access the GDPR extension points in a ASP.NET Core web
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/29/2018
+ms.date: 06/05/2019
 uid: security/gdpr
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core
@@ -24,13 +24,13 @@ The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-## ASP.NET Core GDPR support in template generated code
+## ASP.NET Core GDPR support in template-generated code
 
 Razor Pages and MVC projects created with the project templates include the following GDPR support:
 
-* [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) are set in `Startup`.
-* The *_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper).
-* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy. The *_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
+* [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) are set in the `Startup` class.
+* The *\_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
+* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy. The *\_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
 * For apps created with individual user accounts, the Manage page provides links to download and delete [personal user data](#pd).
 
 ### CookiePolicyOptions and UseCookiePolicy
@@ -43,29 +43,29 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 [!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
 
-### _CookieConsentPartial.cshtml partial view
+### \_CookieConsentPartial.cshtml partial view
 
-The *_CookieConsentPartial.cshtml* partial view:
+The *\_CookieConsentPartial.cshtml* partial view:
 
 [!code-html[](gdpr/sample/RP/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 This partial:
 
-* Obtains the state of tracking for the user. If the app is configured to require consent, the user must consent before cookies can be tracked. If consent is required, the cookie consent panel is fixed at top of the navigation bar created by the *_Layout.cshtml* file.
+* Obtains the state of tracking for the user. If the app is configured to require consent, the user must consent before cookies can be tracked. If consent is required, the cookie consent panel is fixed at top of the navigation bar created by the *\_Layout.cshtml* file.
 * Provides an HTML `<p>` element to summarize your privacy and cookie use policy.
 * Provides a link to Privacy page or view where you can detail your site's privacy policy.
 
 ## Essential cookies
 
-If consent has not been given, only cookies marked essential are sent to the browser. The following code makes a cookie essential:
+If consent to store cookies hasn't been provided, only cookies marked essential are sent to the browser. The following code makes a cookie essential:
 
 [!code-csharp[Main](gdpr/sample/RP/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
 
 <a name="tempdata"></a>
 
-## Tempdata provider and session state cookies are not essential
+### TempData provider and session state cookies aren't essential
 
-The [Tempdata provider](xref:fundamentals/app-state#tempdata) cookie isn't essential. If tracking is disabled, the Tempdata provider isn't functional. To enable the Tempdata provider when tracking is disabled, mark the TempData cookie as essential in `Startup.ConfigureServices`:
+The [TempData provider](xref:fundamentals/app-state#tempdata) cookie isn't essential. If tracking is disabled, the TempData provider isn't functional. To enable the TempData provider when tracking is disabled, mark the TempData cookie as essential in `Startup.ConfigureServices`:
 
 [!code-csharp[Main](gdpr/sample/RP/Startup.cs?name=snippet1)]
 

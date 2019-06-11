@@ -91,12 +91,8 @@
           uid: tutorials/signalr-typescript-webpack
     - name: Remote Procedure Call apps
       items:
-        - name: Get started with gRPC service in ASP.NET Core
-          uid: tutorials/grpc/index
-        - name: Create an ASP.NET Core gRPC Greeter Service
+        - name: Get started with gRPC service
           uid: tutorials/grpc/grpc-start
-        - name: Create a .NET Core gRPC client
-          uid: tutorials/grpc/grpc-client 
     - name: Data access
       items:
         - name: EF Core with Razor Pages
@@ -277,6 +273,8 @@
       items:
         - name: Overview
           uid: blazor/index
+        - name: Supported platforms
+          uid: blazor/supported-platforms
         - name: Get started
           uid: blazor/get-started
         - name: Hosting models
@@ -319,7 +317,7 @@
               uid: spa/react
             - name: React with Redux
               uid: spa/react-with-redux
-            - name: JavaScriptServices
+            - name: JavaScript Services
               uid: client-side/spa-services
         - name: LibMan
           items:
@@ -329,8 +327,6 @@
               uid: client-side/libman/libman-cli
             - name: Visual Studio
               uid: client-side/libman/libman-vs
-        - name: Gulp
-          uid: client-side/using-gulp
         - name: Grunt
           uid: client-side/using-grunt
         - name: Bower
@@ -534,14 +530,6 @@
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
       uid: grpc/comparison
-    - name: Tutorials
-      items:
-        - name: Get started with gRPC service in ASP.NET Core
-          uid: tutorials/grpc/index
-        - name: Create a ASP.NET Core gRPC Greeter Service
-          uid: tutorials/grpc/grpc-start
-        - name: Create a .NET Core gRPC client
-          uid: tutorials/grpc/grpc-client
 - name: Test, debug, and troubleshoot
   items:
     - name: Unit testing

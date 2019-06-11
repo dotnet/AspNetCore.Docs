@@ -114,6 +114,8 @@ namespace KestrelSample
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
+                    options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+                    options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
                 });
                 #endregion
 #elif Port0

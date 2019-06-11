@@ -204,7 +204,11 @@ The name of the connection string is passed in to the context by calling a metho
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+Examine the `Up` method.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Examine the `Up` method.
 
 ---
 

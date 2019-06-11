@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2019
+ms.date: 06/05/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -46,6 +46,12 @@ Component members can then be used as part of the component's rendering logic us
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
 
+Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed into the *Shared* folder or a custom folder added to the project. To use a custom folder, either add the custom folder's namespace to the parent component or to the app's *\_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
+
+```cshtml
+@using WebApplication.Components
+```
+
 ## Integrate components into Razor Pages and MVC apps
 
 Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered&dagger; at the same time. 
@@ -69,37 +75,41 @@ For more information on how components are rendered and component state is manag
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
 
-The following markup in *Index.razor* renders a `HeadingComponent` instance, which exists in another file, *HeadingComponent.razor*:
+The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.razor?name=snippet_HeadingComponent)]
+
+*Components/HeadingComponent.razor*:
+
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
 
 ## Component parameters
 
 Components can have *component parameters*, which are defined using *non-public* properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
 
-In the following example, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`:
+In the following example, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`.
 
-*Parent component*:
+*Pages/ParentComponent.razor*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=5-6)]
 
-*Child component*:
+*Components/ChildComponent.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=11-12)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=11-12)]
 
 ## Child content
 
 Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component. For example, a `ParentComponent` can provide content for rendering by a Child component by placing the content inside `<ChildComponent>` tags.
 
-*Parent component*:
+*Pages/ParentComponent.razor*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
 
 The Child component has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the child component's markup where the content should be rendered. In the following example, the value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
-*Child component*:
+*Components/ChildComponent.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=3,14-15)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
 > The property receiving the `RenderFragment` content must be named `ChildContent` by convention.
@@ -110,18 +120,18 @@ Data binding to both components and DOM elements is accomplished with the `bind`
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    bind="@_italicsCheck">
+    bind="@_italicsCheck" />
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
 
 The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
 
-Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue">`) is essentially equivalent to the following:
+Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue" 
-    onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)">
+    onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
 ```
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `bind` handles a few cases where type conversions are performed. In principle, `bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
@@ -129,7 +139,7 @@ When the component is rendered, the `value` of the input element comes from the 
 In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what to bind to:
 
 ```cshtml
-<input type="text" bind-value-oninput="@CurrentValue">
+<input type="text" bind-value-oninput="@CurrentValue" />
 ```
 
 Unlike `onchange`, `oninput` fires for every character that is input into the text box.
@@ -139,7 +149,7 @@ Unlike `onchange`, `oninput` fires for every character that is input into the te
 Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
-<input bind="@StartDate" format-value="yyyy-MM-dd">
+<input bind="@StartDate" format-value="yyyy-MM-dd" />
 
 @functions {
     [Parameter]
@@ -255,7 +265,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 The following code calls the `CheckboxChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" onchange="@CheckboxChanged">
+<input type="checkbox" class="form-check-input" onchange="@CheckboxChanged" />
 
 @functions {
     private void CheckboxChanged()
@@ -330,7 +340,7 @@ A common scenario with nested components is the desire to run a parent component
 
 The Child component in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's Parent component. The `EventCallback` is typed with `UIMouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=5-7,17-18)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
 The Parent component sets the child's `EventCallback<T>` to its `ShowMessage` method:
 
@@ -349,9 +359,9 @@ When the button is selected in the Child component:
 @{ var message = "Default Text"; }
 
 <ChildComponent 
-    OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; }" />
+    OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
 
-@function {
+@functions {
     private string messageText;
 }
 ```
@@ -580,7 +590,7 @@ Attributes are conditionally rendered based on the .NET value. If the value is `
 In the following example, `IsCompleted` determines if `checked` is rendered in the control's markup:
 
 ```cshtml
-<input type="checkbox" checked="@IsCompleted">
+<input type="checkbox" checked="@IsCompleted" />
 
 @functions {
     [Parameter]
@@ -591,13 +601,13 @@ In the following example, `IsCompleted` determines if `checked` is rendered in t
 If `IsCompleted` is `true`, the check box is rendered as:
 
 ```html
-<input type="checkbox" checked>
+<input type="checkbox" checked />
 ```
 
 If `IsCompleted` is `false`, the check box is rendered as:
 
 ```html
-<input type="checkbox">
+<input type="checkbox" />
 ```
 
 **Additional information on Razor**
@@ -889,7 +899,7 @@ Consider the following Pet Details component, which can be manually built into a
 }
 ```
 
-In the following example, the loop in the `CreateComponent` method generates three Pet Details components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.**
+In the following example, the loop in the `CreateComponent` method generates three Pet Details components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.** For more information, see the [Sequence numbers relate to code line numbers and not execution order](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) section.
 
 *Built Content component*:
 
@@ -923,3 +933,93 @@ In the following example, the loop in the `CreateComponent` method generates thr
     }
 }
 ```
+
+### Sequence numbers relate to code line numbers and not execution order
+
+Blazor `.razor` files are always compiled. This is potentially a great advantage for `.razor` because the compile step can be used to inject information that improve app performance at runtime.
+
+A key example of these improvements involve *sequence numbers*. Sequence numbers indicate to the runtime which outputs came from which distinct and ordered lines of code. The runtime uses this information to generate efficient tree diffs in linear time, which is far faster than is normally possible for a general tree diff algorithm.
+
+Consider the following simple `.razor` file:
+
+```cshtml
+@if (someFlag)
+{
+    <text>First</text>
+}
+
+Second
+```
+
+This compiles to something like the following:
+
+```csharp
+if (someFlag)
+{
+    builder.AddContent(0, "First");
+}
+
+builder.AddContent(1, "Second");
+```
+
+When this code executes for the first time, if `someFlag` is `true`, the builder receives:
+
+| Sequence | Type      | Data   |
+| :------: | --------- | :----: |
+| 0        | Text node | First  |
+| 1        | Text node | Second |
+
+Now imagine that `someFlag` becomes `false`, and we render again. This time, the builder receives:
+
+| Sequence | Type       | Data   |
+| :------: | ---------- | :----: |
+| 1        | Text node  | Second |
+
+When the runtime performs a diff, it sees that the item at sequence `0` was removed, so it generates the following trivial *edit script*:
+
+* Remove the first text node.
+
+#### What goes wrong if you generate sequence numbers programmatically
+
+Imagine instead that you wrote the following rendertree builder logic:
+
+```csharp
+var seq = 0;
+
+if (someFlag)
+{
+    builder.AddContent(seq++, "First");
+}
+
+builder.AddContent(seq++, "Second");
+```
+
+Now the first output would be:
+
+| Sequence | Type      | Data   |
+| :------: | --------- | :--- : |
+| 0        | Text node | First  |
+| 1        | Text node | Second |
+
+This outcome is identical to the prior case, so no negative issues exist. On the second render when `someFlag` is `false`, the output is:
+
+| Sequence | Type      | Data   |
+| :------: | --------- | ------ |
+| 0        | Text node | Second |
+
+This time, the diff algorithm sees that *two* changes have occurred, and the algorithm generates the following edit script:
+
+* Change the value of the first text node to `Second`.
+* Remove the second text node.
+
+Generating the sequence numbers has lost all the useful information about where the `if/else` branches and loops were present in the original code. This results in a diff **twice as long** as before.
+
+This is a trivial example. In more realistic cases with complex and deeply nested structures, and especially with loops, the performance cost is more severe. Instead of immediately identifying which loop blocks or branches have been inserted or removed, the diff algorithm has to recurse deeply into the render trees and usually build far longer edit scripts because it is misinformed about how the old and new structures relate to each other.
+
+#### Guidance and conclusions
+
+* App performance suffers if sequence numbers are generated dynamically.
+* The framework can't create its own sequence numbers automatically at runtime because the necessary information doesn't exist unless it's captured at compile time.
+* Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers.
+* If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
+* Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring `.razor` files.
