@@ -30,13 +30,13 @@ In a future release of Visual Studio, you'll have the option to add an Azure Sig
 
 ## SignalR configuration
 
-SignalR for Blazor server-side apps is configured by ASP.NET Core for the most common scenarios. Consulting the SignalR documentation usually isn't necessary. For custom and advanced scenarios, consult the SignalR articles in the [Additional resources](#additional-resources) section.
+SignalR is configured by ASP.NET Core for the most common Blazor server-side scenarios. For custom and advanced scenarios, consult the SignalR articles in the [Additional resources](#additional-resources) section.
 
 ## Additional resources
 
 * <xref:signalr/introduction>
-* [Azure SignalR Service Documentation](/azure/azure-signalr/) &ndash; Build web apps for real-time scenarios using the Azure SignalR Service. Applies to Blazor server-side apps.
-* [Quickstart: Create a chat room by using SignalR Service](/azure/azure-signalr/signalr-quickstart-dotnet-core) &ndash; Applies to Blazor server-side apps.
+* [Azure SignalR Service Documentation](/azure/azure-signalr/)
+* [Quickstart: Create a chat room by using SignalR Service](/azure/azure-signalr/signalr-quickstart-dotnet-core)
 * <xref:host-and-deploy/index>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service)
