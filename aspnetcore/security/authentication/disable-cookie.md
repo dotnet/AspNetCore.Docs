@@ -10,9 +10,12 @@ uid: security/authentication/disable-cookie
 
 By [Kirk Larkin](https://github.com/serpent5), [John King](https://github.com/John0King), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute specifies that access to a controller or action method is restricted to users who meet the authorization requirement. When the user is not authenticated or doesn't have access to the controller or action method:
+The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute specifies that access to a controller or action method is restricted to users who meet the authorization requirement. When the user:
 
-* An automatic challenge is issued, redirecting the user to the sign-in page.
+* Is not authenticated or doesn't have access to the controller or action method.
+* Cookie authentication is used:
+
+    * An automatic challenge is issued, redirecting the user to the sign-in page.
 
 This approach works well when using ASP.NET Controllers with views or Razor Pages, but not when using [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX). This document shows several approaches to take when a HTTP StatusCode 401 response is required for unauthenticated/unauthorized requests.
 
