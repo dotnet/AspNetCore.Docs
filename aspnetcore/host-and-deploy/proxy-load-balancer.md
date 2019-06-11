@@ -337,6 +337,52 @@ services.Configure<ForwardedHeadersOptions>(options =>
 > [!IMPORTANT]
 > Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
 
+## Certificate Forwarding on Azure
+
+See the [Azure documentation](/azure/app-service/app-service-web-configure-tls-mutual-auth) 
+to configure Azure Web Apps. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
+
+```csharp
+app.UseCertificateForwarding();
+```
+
+You'll also need to configure the Certificate Forwarding middleware to specify the header name that Azure uses. In your app's `Startup.ConfigureServices` method, add the following code to configure the header from which the middleware builds a certificate:
+
+```csharp
+services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "X-ARR-ClientCert");
+```
+
+### Certificate Forwarding with custom web proxies
+
+If you're using a proxy that isn't IIS or Azure's Web Apps Application Request Routing, configure your proxy to forward the certificate it received in an HTTP header. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
+
+```csharp
+app.UseCertificateForwarding();
+```
+
+You'll also need to configure the Certificate Forwarding middleware to specify the header name. In your app's `Startup.ConfigureServices` method, add the following code to configure the header from which the middleware builds a certificate:
+
+```csharp
+services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME");
+```
+
+Finally, if your proxy is doing something weird to pass the header on, rather than base-64 encoding it (as is the case with Nginx), override the converter option to be a `Func` that will perform the optional conversion. Consider the following example in `Startup.ConfigureServices`:
+
+```csharp
+services.AddCertificateForwarding(options =>
+{
+    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
+    options.HeaderConverter = (headerValue) => 
+    {
+        var clientCertificate = 
+           /* some weird conversion logic to create an X509Certificate2 */
+        return clientCertificate;
+    }
+});
+```
+
 ## Additional resources
 
 * <xref:host-and-deploy/web-farm>
