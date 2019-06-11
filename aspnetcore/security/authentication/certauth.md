@@ -11,11 +11,11 @@ uid: security/authentication/certauth
 
 `Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
 
-[Configure your host](#hostConfiguration) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
+[Configure your host](#configure-your-host-to-require-certificates) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
 
 ## Get started
 
-Acquire an HTTPS certificate, apply it, and [configure your host](#hostConfiguration) to require certificates.
+Acquire an HTTPS certificate, apply it, and [configure your host](#configure-your-host-to-require-certificates) to require certificates.
 
 In your web app, add a reference to the package. Then in the `Startup.ConfigureServices` method, call
 `app.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).UseCertificateAuthentication(...);` with your options, providing a delegate for `OnValidateCertificate` to validate the client certificate sent with requests. Turn that information into a `ClaimsPrincipal`, set it on the `context.Principal` property, and call `context.Success()`.
@@ -167,7 +167,7 @@ services.AddAuthentication(
 
 Conceptually, the validation of the certificate is an authorization concern. Adding a check on, for example, an issuer or thumbprint in an authorization policy, rather than inside `OnCertificateValidated`, is perfectly acceptable.
 
-## <a name="hostConfiguration"></a>Configuring your host to require certificates
+## Configure your host to require certificates
 
 ### Kestrel
 
