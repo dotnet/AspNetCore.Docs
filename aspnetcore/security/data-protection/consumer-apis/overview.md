@@ -3,7 +3,7 @@ title: Consumer APIs overview for ASP.NET Core
 author: rick-anderson
 description: Receive a brief overview of the various consumer APIs available within the ASP.NET Core data protection library.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 06/11/2019
 uid: security/data-protection/consumer-apis/overview
 ---
 # Consumer APIs overview for ASP.NET Core
@@ -26,7 +26,7 @@ The concept of same vs. different `IDataProtector` ties back to the concept of p
 
 ## Consuming these interfaces
 
-For a DI-aware component, the intended usage is that the component take an `IDataProtectionProvider` parameter in its constructor and that the DI system automatically provides this service when the component is instantiated.
+For a DI-aware component, the intended usage is that the component takes an `IDataProtectionProvider` parameter in its constructor and that the DI system automatically provides this service when the component is instantiated.
 
 > [!NOTE]
 > Some applications (such as console applications or ASP.NET 4.x applications) might not be DI-aware so cannot use the mechanism described here. For these scenarios consult the [Non DI Aware Scenarios](xref:security/data-protection/configuration/non-di-scenarios) document for more information on getting an instance of an `IDataProtection` provider without going through DI.
