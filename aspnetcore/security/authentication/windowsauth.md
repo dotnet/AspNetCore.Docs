@@ -151,9 +151,9 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
 Add Authentication Middleware by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> in `Startup.Configure`:
 
  ```csharp
-    app.UseAuthentication();
+app.UseAuthentication();
 
-    app.UseMvc();
+app.UseMvc();
 ```
 
 For more information on middleware, see <xref:fundamentals/middleware/index>.
