@@ -6,7 +6,7 @@ ms.author: riande
 ms.date: 5/22/2019
 uid: security/authentication/disable-cookie
 ---
-# Disable automatic cookie authentication in ASP.NET Core
+# Disable cookie authentication redirects in ASP.NET Core
 
 By [Kirk Larkin](https://github.com/serpent5), [John King](https://github.com/John0King), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
