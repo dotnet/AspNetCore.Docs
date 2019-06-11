@@ -194,6 +194,6 @@ Complete the following steps In IIS Manager:
 
 ![Client certificate settings in IIS](README-IISConfig.png)
 
-### Azure and Custom web proxies
+### Azure and custom web proxies
 
-See the [host and deploy documentation](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-3.0#certificate-forwarding) for how to configure the certificate forwarding middleware.
+See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
