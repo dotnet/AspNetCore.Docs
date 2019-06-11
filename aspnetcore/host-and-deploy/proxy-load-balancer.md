@@ -355,7 +355,7 @@ services.AddCertificateForwarding(options =>
     options.CertificateHeader = "X-ARR-ClientCert");
 ```
 
-### With custom web proxies
+### With other web proxies
 
 If you're using a proxy that isn't IIS or Azure's Web Apps Application Request Routing, configure your proxy to forward the certificate it received in an HTTP header. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
 
