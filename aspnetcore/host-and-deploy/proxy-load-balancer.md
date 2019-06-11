@@ -379,7 +379,7 @@ services.AddCertificateForwarding(options =>
     options.HeaderConverter = (headerValue) => 
     {
         var clientCertificate = 
-           /* some weird conversion logic to create an X509Certificate2 */
+           /* some conversion logic to create an X509Certificate2 */
         return clientCertificate;
     }
 });
