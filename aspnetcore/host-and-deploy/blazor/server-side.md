@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor server-side app using ASP.NET
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/06/2019
+ms.date: 06/11/2019
 uid: host-and-deploy/blazor/server-side
 ---
 # Host and deploy Blazor server-side
@@ -22,14 +22,21 @@ With the [server-side hosting model](xref:blazor/hosting-models#server-side), Bl
 
 A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes the **Blazor (server-side)** project template (`blazorserverside` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
 
-## SignalR and Azure resources
+## Connection scale out
+
+Blazor server-side apps require one active SignalR connection for each user. A production Blazor server-side deployment requires a solution for supporting as many concurrent connections as required by the app. The Azure SignalR Service handles scaling connections and is recommended as a scaling solution when deploying to Azure App Service. For more information, see <xref:signalr/publish-to-azure-web-app>.
+
+In a future release of Visual Studio, you'll have the option to add an Azure SignalR Service dependency to an app on publish.
+
+## SignalR configuration
+
+SignalR for Blazor server-side apps is configured by ASP.NET Core for the most common scenarios. Consulting the SignalR documentation usually isn't necessary. For custom and advanced scenarios, consult the SignalR articles in the [Additional resources](#additional-resources) section.
+
+## Additional resources
 
 * <xref:signalr/introduction>
 * [Azure SignalR Service Documentation](/azure/azure-signalr/) &ndash; Build web apps for real-time scenarios using the Azure SignalR Service. Applies to Blazor server-side apps.
 * [Quickstart: Create a chat room by using SignalR Service](/azure/azure-signalr/signalr-quickstart-dotnet-core) &ndash; Applies to Blazor server-side apps.
-
-## Additional resources
-
 * <xref:host-and-deploy/index>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service)
