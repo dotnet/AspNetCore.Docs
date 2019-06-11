@@ -82,7 +82,7 @@ The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a ho
 * Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
-For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/web-host>.
+For more information, see <xref:fundamentals/host/generic-host>.
 
 ::: moniker-end
 
