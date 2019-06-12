@@ -95,7 +95,7 @@ In ASP.NET Core 2.2 or later, a handler method can alternatively call the <xref:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Within a Razor file, there are several ways to reference a partial view. We recommend that apps use one of the following asynchronous rendering approaches:
+Within a markup file, there are several ways to reference a partial view. We recommend that apps use one of the following asynchronous rendering approaches:
 
 * [Partial Tag Helper](#partial-tag-helper)
 * [Asynchronous HTML Helper](#asynchronous-html-helper)
