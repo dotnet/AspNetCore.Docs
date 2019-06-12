@@ -11,7 +11,7 @@
 
 <p><b>@messageText</b></p>
 
-@functions {
+@code {
     private string messageText;
 
     private void ShowMessage(UIMouseEventArgs e)
@@ -41,7 +41,7 @@
 
 &lt;p&gt;&lt;b&gt;@@messageText&lt;/b&gt;&lt;/p&gt;
     
-@@functions {
+@@code {
     private string messageText;
 
     private void ShowMessage(UIMouseEventArgs e)
@@ -56,10 +56,10 @@
     &lt;div class="panel-heading"&gt;@@Title&lt;/div&gt;
     &lt;div class="panel-body"&gt;@@ChildContent&lt;/div&gt;
 
-    &lt;button class="btn btn-primary" onclick="@@OnClick"&gt;Trigger a Parent component method&lt;/button&gt;
+    &lt;button class="btn btn-primary" @@onclick="@@OnClick"&gt;Trigger a Parent component method&lt;/button&gt;
 &lt;/div&gt;
 
-@@functions {
+@@code {
     [Parameter]
     private string Title { get; set; }
 

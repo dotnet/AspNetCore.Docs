@@ -4,7 +4,7 @@
 
 <h1>Blazor is @Text!</h1>
 
-@functions {
+@code {
     [Parameter]
     private string Text { get; set; } = "fantastic";
 }
@@ -24,7 +24,7 @@
 
 &lt;h1&gt;Blazor is @@Text!&lt;/h1&gt;
 
-@@functions {
+@@code {
     [Parameter]
     private string Text { get; set; } = "fantastic";
 }</code></pre>

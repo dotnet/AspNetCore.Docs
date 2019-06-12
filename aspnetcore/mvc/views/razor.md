@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 10/26/2018
+ms.date: 06/12/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -568,9 +568,39 @@ The code renders the following HTML:
 
 ::: moniker-end
 
+### @attribute
+
+The `@attribute` directive adds the given attribute to the class of the generated page or view. The following example adds the `[Authorize]` attribute:
+
+```cshtml
+@attribute [Authorize]
+```
+
+> [!WARNING]
+> In ASP.NET Core 3.0 Preview 6 release, there's a known issue where `@attribute` directives don't work in *\_Imports.razor* and *\_ViewImports.cshtml* files. This will be addressed in the Preview 7 release.
+
+### @namespace
+
+The `@namespace` directive sets the namespace of the class of the generated page or view:
+
+```cshtml
+@namespace Your.Namespace.Here
+```
+
+If a page or view imports API with an `@namespace` directive, the original file's namespace is set relative to that namespace. 
+
+If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of pages or views that import the `Hello.World` namespace is set as shown in the following table.
+
+| Page (or view)                     | Namespace               |
+| ---------------------------------- | ----------------------- |
+| *MyApp/Pages/Index.cshtml*         | `Hello.World`           |
+| *MyApp/Pages/MorePages/Bar.cshtml* | `Hello.World.MorePages` |
+
+If multiple import files have the `@namespace` directive, the file closest to the page or view in the directory chain is used.
+
 ### @section
 
-The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
+The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
 
 ## Templated Razor delegates
 

@@ -21,7 +21,7 @@
             _italicsCheck field.
         *@
         <input type="checkbox" id="italicsCheck" 
-               bind="@_italicsCheck" />
+               @bind="@_italicsCheck" />
         <label class="form-check-label" 
             for="italicsCheck">Use italics</label>
     </div>
@@ -30,12 +30,12 @@
         When the form is submitted, the onclick event executes 
         the UpdateHeading method.
     *@
-    <button type="button" class="btn btn-primary" onclick="@UpdateHeading">
+    <button type="button" class="btn btn-primary" @onclick="@UpdateHeading">
         Update heading
     </button>
 </form>
 
-@functions {
+@code {
     private static TextInfo _tinfo = CultureInfo.CurrentCulture.TextInfo;
     private string _headingText = 
         _tinfo.ToTitleCase("welcome to blazor!");
