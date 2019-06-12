@@ -591,7 +591,7 @@ If a view imports API with an `@namespace` directive, the original file's namesp
 
 If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of views that import it is set as shown in the following table.
 
-| View                               | Namespace               |
+| Page (or view)                     | Namespace               |
 | ---------------------------------- | ----------------------- |
 | *MyApp/Pages/Index.cshtml*         | `Hello.World`           |
 | *MyApp/Pages/MorePages/Bar.cshtml* | `Hello.World.MorePages` |
