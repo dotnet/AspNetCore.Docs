@@ -19,7 +19,7 @@ Get started with Blazor:
 1. Install the Blazor templates by running the following command in a command shell:
 
    ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview5-19227-01
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview6.19307.2
    ```
 
 1. Follow the guidance for your choice of tooling:
