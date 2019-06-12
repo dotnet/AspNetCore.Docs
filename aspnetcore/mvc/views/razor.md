@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 06/07/2019
+ms.date: 06/12/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -570,30 +570,33 @@ The code renders the following HTML:
 
 ### @attribute
 
-The `@attribute` directive adds the given attribute onto the class of the generated view.
+The `@attribute` directive adds the given attribute to the class of the generated view. The following example adds the `[Authorize]` attribute to the view:
 
 ```cshtml
 @attribute [Authorize]
 ```
 
 > [!WARNING]
-> In 3.0.0-preview6 there is a known issue where `@attribute` directives do not work in `_Imports.razor` and `_ViewImports.cshtml`. This will be fixed in 3.0.0-preview7.
+> In ASP.NET Core 3.0 Preview 6 release, there's a known issue where `@attribute` directives don't work in *\_Imports.razor* and *\_ViewImports.cshtml* files. This will be addressed in the Preview 7 release.
 
 ### @namespace
 
-The `@namespace` directive sets the namespace of the class of the generated view.
+The `@namespace` directive sets the namespace of the class of the generated view:
 
 ```cshtml
 @namespace Your.Namespace.Here
 ```
 
-If a view imports something with a namespace directive then the original file's namespace is set relative to that namespace. 
+If a view imports API with an `@namespace` directive, the original file's namespace is set relative to that namespace. 
 
-So if MyApp/Pages/_ViewImports.cshtml contains `@namespace Hello.World` then the namespace of views that import it will be set as follows:
-- MyApp/Pages/Index.cshtml => Hello.World
-- MyApp/Pages/MorePages/Bar.cshtml => Hello.World.MorePages
+If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of views that import it is set as shown in the following table.
 
-If multiple import file have the `@namespace` directive then the one closest to the view in the directory chain is used.
+| View                               | Namespace               |
+| ---------------------------------- | ----------------------- |
+| *MyApp/Pages/Index.cshtml*         | `Hello.World`           |
+| *MyApp/Pages/MorePages/Bar.cshtml* | `Hello.World.MorePages` |
+
+If multiple import files have the `@namespace` directive, the file closest to the view in the directory chain is used.
 
 ### @section
 
