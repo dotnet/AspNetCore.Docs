@@ -4,7 +4,7 @@ author: ardalis
 description: Discover how to use partial views to break up large markup files and reduce the duplication of common markup across web pages in ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2019
+ms.date: 06/12/2019
 uid: mvc/views/partial
 ---
 # Partial views in ASP.NET Core
@@ -42,11 +42,7 @@ Don't use a partial view where complex rendering logic or code execution is requ
 
 A partial view is a *.cshtml* markup file maintained within the *Views* folder (MVC) or *Pages* folder (Razor Pages).
 
-In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view.
-
-In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> can return a partial view represented as a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> object. In ASP.NET Core 2.2 or later, a `PageModel` can call the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial*> method to produce a `PartialViewResult` object.
-
-Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
+In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view. In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> can return a partial view represented as a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> object. Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
 
 Unlike MVC view or page rendering, a partial view doesn't run *_ViewStart.cshtml*. For more information on *_ViewStart.cshtml*, see <xref:mvc/views/layout>.
 
@@ -58,7 +54,7 @@ Partial view file names often begin with an underscore (`_`). This naming conven
 
 A partial view is a *.cshtml* markup file maintained within the *Views* folder.
 
-A controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view.
+A controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view. Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
 
 Unlike MVC view rendering, a partial view doesn't run *_ViewStart.cshtml*. For more information on *_ViewStart.cshtml*, see <xref:mvc/views/layout>.
 
@@ -68,9 +64,38 @@ Partial view file names often begin with an underscore (`_`). This naming conven
 
 ## Reference a partial view
 
+::: moniker range=">= aspnetcore-2.0"
+
+### Use a partial view in a Razor Pages PageModel
+
+In ASP.NET Core 2.0 or 2.1, the following handler method renders the *\_AuthorPartialRP.cshtml* partial view to the response:
+
+```csharp
+public IActionResult OnGetPartial()
+{
+    return new PartialViewResult
+    {
+        ViewName = "_AuthorPartialRP",
+        ViewData = ViewData,
+    };
+}
+```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+In ASP.NET Core 2.2 or later, a handler method can alternatively call the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial*> method to produce a `PartialViewResult` object:
+
+[!code-cshtml[](partial/sample/PartialViewsSample/Pages/DiscoveryRP.cshtml.cs?name=snippet_OnGetPartial)]
+
+::: moniker-end
+
+### Use a partial view in a markup file
+
 ::: moniker range=">= aspnetcore-2.1"
 
-Within a markup file, there are several ways to reference a partial view. We recommend that apps use one of the following asynchronous rendering approaches:
+Within a Razor file, there are several ways to reference a partial view. We recommend that apps use one of the following asynchronous rendering approaches:
 
 * [Partial Tag Helper](#partial-tag-helper)
 * [Asynchronous HTML Helper](#asynchronous-html-helper)
