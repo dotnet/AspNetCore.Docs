@@ -19,7 +19,7 @@ In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code 
 When EF Code First is used to automatically create a database, Code First:
 
 * Adds a table to the database to  track the schema of the database.
-* Verify the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
+* Verifies the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
 
 ## Add a Rating Property to the Movie Model
 
