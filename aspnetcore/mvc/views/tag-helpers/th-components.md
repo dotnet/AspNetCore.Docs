@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn what Tag Helper Components are and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
-ms.date: 04/06/2019
+ms.date: 06/12/2019
 uid: mvc/views/tag-helpers/th-components
 ---
 # Tag Helper Components in ASP.NET Core
@@ -56,16 +56,16 @@ The preceding code binds a [Bootstrap tooltip widget](https://getbootstrap.com/d
 
 A Tag Helper Component must be added to the app's Tag Helper Components collection. There are three ways to add to the collection:
 
-- [Tag Helper Components in ASP.NET Core](#tag-helper-components-in-aspnet-core)
-  - [Use cases](#use-cases)
-    - [Inject into HTML head element](#inject-into-html-head-element)
-    - [Inject into HTML body element](#inject-into-html-body-element)
-  - [Register a Component](#register-a-component)
-    - [Registration via services container](#registration-via-services-container)
-    - [Registration via Razor file](#registration-via-razor-file)
-    - [Registration via Page Model or controller](#registration-via-page-model-or-controller)
-  - [Create a Component](#create-a-component)
-  - [Additional resources](#additional-resources)
+* [Tag Helper Components in ASP.NET Core](#tag-helper-components-in-aspnet-core)
+  * [Use cases](#use-cases)
+    * [Inject into HTML head element](#inject-into-html-head-element)
+    * [Inject into HTML body element](#inject-into-html-body-element)
+  * [Register a Component](#register-a-component)
+    * [Registration via services container](#registration-via-services-container)
+    * [Registration via Razor file](#registration-via-razor-file)
+    * [Registration via Page Model or controller](#registration-via-page-model-or-controller)
+  * [Create a Component](#create-a-component)
+  * [Additional resources](#additional-resources)
 
 ### Registration via services container
 
