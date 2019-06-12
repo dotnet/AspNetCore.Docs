@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/07/2019
+ms.date: 06/12/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -160,7 +160,7 @@ Data binding works with <xref:System.DateTime> format strings. Other format expr
 }
 ```
 
-The `@bind:format` attribute specifies the date format to apply to the `value` of the `input` element. The format is also used to parse the value when an `onchange` event occurs.
+The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
 
 **Component parameters**
 
@@ -244,7 +244,8 @@ By convention, `<ChildComponent @bind-Year="ParentYear" />` is essentially equiv
 <ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
 ```
 
-In general, a property can be bound to a corresponding event handler using `@bind-property:event` attribute. For example, the property `MyProp` can be bound to `MyEventHandler` using the following two attributes,
+In general, a property can be bound to a corresponding event handler using `@bind-property:event` attribute. For example, the property `MyProp` can be bound to `MyEventHandler` using the following two attributes:
+
 ```cshtml
 <FooComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
 ```
