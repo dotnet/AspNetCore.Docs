@@ -31,7 +31,7 @@ The UI for a component is defined using HTML. Dynamic rendering logic (for examp
 Members of the component class are defined in an `@code` block (more than one `@code` block is permissible). In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.
 
 > [!NOTE]
-> In previous versions @functions blocks were used for the same purpose. This will still work, and you might see it in legacy code, but we recommend using the more clearly named @code directive going forward.
+> In previous versions of ASP.NET Core, `@functions` blocks were used for the same purpose as `@code` blocks. `@functions` blocks continue to work, but we recommend using the `@code` directive going forward.
 
 Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
@@ -582,7 +582,7 @@ Razor directives are shown in the following table.
 
 | Directive | Description |
 | --------- | ----------- |
-| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. (An alias of `@functions`) |
+| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. `@code` is an alias of `@functions`. `@code` is recommended over `@functions`. |
 | [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. |
 | `@implements` | Implements an interface for the generated component class. |
 | [\@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |
