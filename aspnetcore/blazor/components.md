@@ -582,8 +582,8 @@ Razor directives are shown in the following table.
 
 | Directive | Description |
 | --------- | ----------- |
-| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. `@code` is an alias of `@functions`. `@code` is recommended over `@functions`. |
-| [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. |
+| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. `@code` is an alias of `@functions`. `@code` is recommended over `@functions`. More than one `@code` block is permissible. |
+| [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. Choose `@code` over `@functions` for C# code blocks. |
 | `@implements` | Implements an interface for the generated component class. |
 | [\@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |
 | [\@inject](xref:mvc/views/razor#section-4) | Enables service injection from the [service container](xref:fundamentals/dependency-injection). For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection). |
