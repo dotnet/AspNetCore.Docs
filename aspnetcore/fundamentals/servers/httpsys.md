@@ -161,7 +161,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
-   The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys. For more information, see <xref:fundamentals/host/web-host>.
+   The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys.
 
    HTTP.sys uses the [HTTP Server API UrlPrefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
