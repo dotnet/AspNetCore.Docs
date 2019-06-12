@@ -589,7 +589,7 @@ The `@namespace` directive sets the namespace of the class of the generated page
 
 If a page or view imports API with an `@namespace` directive, the original file's namespace is set relative to that namespace. 
 
-If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of pages or views that import it is set as shown in the following table.
+If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of pages or views that import the `Hello.World` namespace is set as shown in the following table.
 
 | Page (or view)                     | Namespace               |
 | ---------------------------------- | ----------------------- |
