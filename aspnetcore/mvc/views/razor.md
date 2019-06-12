@@ -570,7 +570,7 @@ The code renders the following HTML:
 
 ### @attribute
 
-The `@attribute` directive adds the given attribute to the class of the generated view. The following example adds the `[Authorize]` attribute to the view:
+The `@attribute` directive adds the given attribute to the class of the generated page or view. The following example adds the `[Authorize]` attribute:
 
 ```cshtml
 @attribute [Authorize]
@@ -581,26 +581,26 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 ### @namespace
 
-The `@namespace` directive sets the namespace of the class of the generated view:
+The `@namespace` directive sets the namespace of the class of the generated page or view:
 
 ```cshtml
 @namespace Your.Namespace.Here
 ```
 
-If a view imports API with an `@namespace` directive, the original file's namespace is set relative to that namespace. 
+If a page or view imports API with an `@namespace` directive, the original file's namespace is set relative to that namespace. 
 
-If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of views that import it is set as shown in the following table.
+If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of pages or views that import it is set as shown in the following table.
 
 | Page (or view)                     | Namespace               |
 | ---------------------------------- | ----------------------- |
 | *MyApp/Pages/Index.cshtml*         | `Hello.World`           |
 | *MyApp/Pages/MorePages/Bar.cshtml* | `Hello.World.MorePages` |
 
-If multiple import files have the `@namespace` directive, the file closest to the view in the directory chain is used.
+If multiple import files have the `@namespace` directive, the file closest to the page or view in the directory chain is used.
 
 ### @section
 
-The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
+The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
 
 ## Templated Razor delegates
 
