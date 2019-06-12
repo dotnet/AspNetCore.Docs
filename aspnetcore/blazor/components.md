@@ -31,7 +31,7 @@ The UI for a component is defined using HTML. Dynamic rendering logic (for examp
 Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` block is permissible.
 
 > [!NOTE]
-> In previous versions of ASP.NET Core, `@functions` blocks were used for the same purpose as `@code` blocks. `@functions` blocks continue to work, but we recommend using the `@code` directive going forward.
+> In previous versions of ASP.NET Core, `@functions` blocks were used for the same purpose as `@code` blocks. `@functions` blocks continue to work, but we recommend using the `@code` directive.
 
 Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
