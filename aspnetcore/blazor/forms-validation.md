@@ -128,7 +128,7 @@ The following form validates user input using the validation defined in the `Sta
     <p>
         <label for="classification">Primary Classification: </label>
         <InputSelect id="classification" @bind-Value="@starship.Classification">
-            <option value"">Select classification ...</option>
+            <option value="">Select classification ...</option>
             <option value="Defense">Defense</option>
             <option value="Exploration">Exploration</option>
             <option value="Diplomacy">Diplomacy</option>

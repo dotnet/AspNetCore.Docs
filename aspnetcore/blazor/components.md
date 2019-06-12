@@ -410,6 +410,80 @@ While capturing component references use a similar syntax to [capturing element 
 > [!NOTE]
 > Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. This causes child components to rerender at the correct times automatically.
 
+## Use @key to control the preservation of elements and components
+
+When rendering a list of elements or components and the elements or components subsequently change, Blazor's diffing algorithm must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
+
+Consider the following example:
+
+```csharp
+@foreach (var person in People)
+{
+    <DetailsEditor Details="@person.Details" />
+}
+
+@code {
+    [Parameter]
+    private IEnumerable<Person> People { get; set; }
+}
+```
+
+The contents of the `People` collection may change with inserted, deleted, or re-ordered entries. When the component rerenders, the `<DetailsEditor>` component may change to receive different `Details` parameter values. This may cause more complex rerendering than expected. In some cases, rerendering can lead to visible behavior differences, such as lost element focus.
+
+The mapping process can be controlled with the `@key` directive attribute. `@key` causes the diffing algorithm to guarantee preservation of elements or components based on the key's value:
+
+```csharp
+@foreach (var person in People)
+{
+    <DetailsEditor @key="@person" Details="@person.Details" />
+}
+
+@code {
+    [Parameter]
+    private IEnumerable<Person> People { get; set; }
+}
+```
+
+When the `People` collection changes, the diffing algorithm retains the association between `<DetailsEditor>` instances and `person` instances:
+
+* If a `Person` is deleted from the `People` list, only the corresponding `<DetailsEditor>` instance is removed from the UI. Other instances are left unchanged.
+* If a `Person` is inserted at some position in the list, one new `<DetailsEditor>` instance is inserted at that corresponding position. Other instances are left unchanged.
+* If `Person` entries are re-ordered, the corresponding `<DetailsEditor>` instances are preserved and re-ordered in the UI.
+
+In some scenarios, use of `@key` minimizes the complexity of rerendering and avoids potential issues with stateful parts of the DOM changing, such as focus position.
+
+> [!IMPORTANT]
+> Keys are local to each container element or component. Keys are *not* compared globally across the document.
+
+### When to use @key
+
+Typically, it makes sense to use `@key` whenever a list is rendered (for example, in a `@foreach` block) and a suitable value exists to define the `@key`.
+
+You can also use `@key` to prevent Blazor from preserving an element or component subtree when an object changes:
+
+```cshtml
+<div @key="@currentPerson">
+    ... content that depends on @currentPerson ...
+</div>
+```
+
+If `@currentPerson` changes, the `@key` attribute directive forces Blazor to discard the entire `<div>` and its descendants and rebuild the subtree within the UI with new elements and components. This can be useful if you need to guarantee that no UI state is preserved when `@currentPerson` changes.
+
+### When not to use @key
+
+There's a performance cost when diffing with `@key`. The performance cost isn't large, but only specify `@key` if controlling the element or component preservation rules benefit the app.
+
+Even if `@key` isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using `@key` is control over *how* model instances are mapped to the preserved component instances, instead of the diffing algorithm selecting the mapping.
+
+### What values to use for @key
+
+Generally, it makes sense to supply one of the following kinds of value for `@key`:
+
+* Model object instances (for example, a `Person` instance as in the earlier example). This ensures preservation based on object reference equality.
+* Unique identifiers (for example, primary key values of type `int`, `string`, or `Guid`).
+
+Avoid supplying a value that can clash unexpectedly. If `@key="@someObject.GetHashCode()"` is supplied, unexpected clashes may occur because the hash codes of unrelated objects can be the same. If clashing `@key` values are requested within the same parent, the `@key` values won't be honored.
+
 ## Lifecycle methods
 
 `OnInitAsync` and `OnInit` execute code to initialize the component. To perform an asynchronous operation, use `OnInitAsync` and the `await` keyword on the operation:
