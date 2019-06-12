@@ -24,9 +24,7 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 ## Connection scale out
 
-Blazor server-side apps require one active SignalR connection for each user. A production Blazor server-side deployment requires a solution for supporting as many concurrent connections as required by the app. The Azure SignalR Service handles scaling connections and is recommended as a scaling solution when deploying to Azure App Service. For more information, see <xref:signalr/publish-to-azure-web-app>.
-
-In a future release of Visual Studio, you'll have the option to add an Azure SignalR Service dependency to an app on publish.
+Blazor server-side apps require one active SignalR connection for each user. A production Blazor server-side deployment requires a solution for supporting as many concurrent connections as required by the app. The [Azure SignalR Service](/azure/azure-signalr/) handles the scaling of connections and is recommended as a scaling solution for Blazor server-side apps. For more information, see <xref:signalr/publish-to-azure-web-app>.
 
 ## SignalR configuration
 
