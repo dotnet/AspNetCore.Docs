@@ -28,10 +28,7 @@ Components can be authored using the *.cshtml* file extension as long as the fil
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
-Members of the component class are defined in an `@code` block (more than one `@code` block is permissible). In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.
-
-> [!NOTE]
-> In previous versions @functions blocks were used for the same purpose. This will still work, and you might see it in legacy code, but we recommend using the more clearly named @code directive going forward.
+Members of the component class are defined in an `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.
 
 Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
@@ -41,7 +38,7 @@ Component members can then be used as part of the component's rendering logic us
 ```cshtml
 <h1 style="font-style:@_headingFontStyle">@_headingText</h1>
 
-@code {
+@functions {
     private string _headingFontStyle = "italic";
     private string _headingText = "Put on your new Blazor!";
 }
@@ -154,7 +151,7 @@ Data binding works with <xref:System.DateTime> format strings. Other format expr
 ```cshtml
 <input @bind="StartDate" @bind:format="yyyy-MM-dd" />
 
-@code {
+@functions {
     [Parameter]
     private DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
 }
@@ -183,7 +180,7 @@ Parent component:
     Change Year to 1986
 </button>
 
-@code {
+@functions {
     [Parameter]
     private int ParentYear { get; set; } = 1978;
 
@@ -201,7 +198,7 @@ Child component:
 
 <p>Year: @Year</p>
 
-@code {
+@functions {
     [Parameter]
     private int Year { get; set; }
 
@@ -261,7 +258,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
     Update heading
 </button>
 
-@code {
+@functions {
     private void UpdateHeading(UIMouseEventArgs e)
     {
         ...
@@ -274,7 +271,7 @@ The following code calls the `CheckboxChanged` method when the check box is chan
 ```cshtml
 <input type="checkbox" class="form-check-input" @onchange="@CheckboxChanged" />
 
-@code {
+@functions {
     private void CheckboxChanged()
     {
         ...
@@ -289,7 +286,7 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
     Update heading
 </button>
 
-@code {
+@functions {
     private async Task UpdateHeading(UIMouseEventArgs e)
     {
         ...
@@ -327,7 +324,7 @@ It's often convenient to close over additional values, such as when iterating ov
     </button>
 }
 
-@code {
+@functions {
     private string message = "Select a button to learn its position.";
 
     private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
@@ -368,7 +365,7 @@ When the button is selected in the Child component:
 <ChildComponent 
     OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
 
-@code {
+@functions {
     private string messageText;
 }
 ```
@@ -390,7 +387,7 @@ Component references provide a way to reference a component instance so that you
 ```cshtml
 <MyLoginDialog @ref="loginDialog" ... />
 
-@code {
+@functions {
     private MyLoginDialog loginDialog;
 
     private void OnSomething()
@@ -496,7 +493,7 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 
 ...
 
-@code {
+@functions {
     public void Dispose()
     {
         ...
@@ -582,7 +579,6 @@ Razor directives are shown in the following table.
 
 | Directive | Description |
 | --------- | ----------- |
-| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. (An alias of `@functions`) |
 | [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. |
 | `@implements` | Implements an interface for the generated component class. |
 | [\@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |
@@ -590,8 +586,6 @@ Razor directives are shown in the following table.
 | `@layout` | Specifies a layout component. Layout components are used to avoid code duplication and inconsistency. |
 | [\@page](xref:razor-pages/index#razor-pages) | Specifies that the component should handle requests directly. The `@page` directive can be specified with a route and optional parameters. Unlike Razor Pages, the `@page` directive doesn't need to be the first directive at the top of the file. For more information, see [Routing](xref:blazor/routing). |
 | [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. This also brings all the components defined in that namespace into scope. |
-| [\@namespace](xref:mvc/views/razor#section-6) | Sets the namespace of the generated component class. |
-| [\@attribute](xref:mvc/views/razor#section-7) | Adds an attribute to the generated component class. |
 
 **Conditional attributes**
 
@@ -602,7 +596,7 @@ In the following example, `IsCompleted` determines if `checked` is rendered in t
 ```cshtml
 <input type="checkbox" checked="@IsCompleted" />
 
-@code {
+@functions {
     [Parameter]
     private bool IsCompleted { get; set; }
 }
@@ -636,7 +630,7 @@ The following example shows using the `MarkupString` type to add a block of stat
 ```html
 @((MarkupString)myMarkup)
 
-@code {
+@functions {
     private string myMarkup = 
         "<p class='markup'>This is a <em>markup string</em>.</p>";
 }
@@ -774,7 +768,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
     </div>
 </div>
 
-@code {
+@functions {
     private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }
 ```
@@ -817,7 +811,7 @@ In the sample app, the Cascading Values Parameters Theme component binds the `Th
     </button>
 </p>
 
-@code {
+@functions {
     private int currentCount = 0;
 
     [CascadingParameter] protected ThemeInfo ThemeInfo { get; set; }
@@ -902,7 +896,7 @@ Consider the following Pet Details component, which can be manually built into a
 
 <p>@PetDetailsQuote<p>
 
-@code
+@functions
 {
     [Parameter]
     string PetDetailsQuote { get; set; }
@@ -924,7 +918,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
     Create three Pet Details components
 </button>
 
-@code {
+@functions {
     private RenderFragment CustomRender { get; set; }
     
     private RenderFragment CreateComponent() => builder =>

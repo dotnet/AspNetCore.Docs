@@ -25,17 +25,16 @@ namespace BooksApi
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet_ConfigureDatabaseSettings
             services.Configure<BookstoreDatabaseSettings>(
                 Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
 
             services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
-            #endregion
 
             services.AddSingleton<BookService>();
 
             services.AddMvc()
+                    .AddJsonOptions(options => options.UseMemberCasing())
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         #endregion

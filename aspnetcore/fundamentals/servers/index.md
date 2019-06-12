@@ -2,9 +2,10 @@
 title: Web server implementations in ASP.NET Core
 author: guardrex
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/24/2019
+ms.date: 06/01/2019
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
@@ -13,6 +14,24 @@ By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com
 
 An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as a set of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
+## Kestrel
+
+Kestrel is the default web server included in ASP.NET Core project templates.
+
+Use Kestrel:
+
+* By itself as an edge server processing requests directly from a network, including the Internet.
+
+  ![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
+
+* With a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+
+  ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
+
+Either hosting configuration&mdash;with or without a reverse proxy server&mdash;is supported for ASP.NET Core 2.1 or later apps.
+
+For Kestrel configuration guidance and information on when to use Kestrel in a reverse proxy configuration, see <xref:fundamentals/servers/kestrel>.
+
 ::: moniker range=">= aspnetcore-2.2"
 
 # [Windows](#tab/windows)
@@ -20,56 +39,23 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 ASP.NET Core ships with the following:
 
 * [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation.
-* IIS HTTP Server is an [in-process server](#in-process-hosting-model) for IIS.
+* IIS HTTP Server is an [in-process server](#hosting-models) for IIS.
 * [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
 
 When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), the app either runs:
 
-* In the same process as the IIS worker process (the [in-process hosting model](#in-process-hosting-model)) with the [IIS HTTP Server](#iis-http-server). *In-process* is the recommended configuration.
-* In a process separate from the IIS worker process (the [out-of-process hosting model](#out-of-process-hosting-model)) with the [Kestrel server](#kestrel).
+* In the same process as the IIS worker process (the [in-process hosting model](#hosting-models)) with the IIS HTTP Server. *In-process* is the recommended configuration.
+* In a process separate from the IIS worker process (the [out-of-process hosting model](#hosting-models)) with the [Kestrel server](#kestrel).
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is a native IIS module that handles native IIS requests between IIS and the in-process IIS HTTP Server or Kestrel. For more information, see <xref:host-and-deploy/aspnet-core-module>.
 
 ## Hosting models
 
-### In-process hosting model
-
 Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
-The ASP.NET Core Module:
+Using out-of-process hosting, ASP.NET Core apps run in a process separate from the IIS worker process, and the module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
-* Performs app initialization.
-  * Loads the [CoreCLR](/dotnet/standard/glossary#coreclr).
-  * Calls `Program.Main`.
-* Handles the lifetime of the IIS native request.
-
-The in-process hosting model isn't supported for ASP.NET Core apps that target the .NET Framework.
-
-The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and an app hosted in-process:
-
-![ASP.NET Core Module](_static/ancm-inprocess.png)
-
-A request arrives from the web to the kernel-mode HTTP.sys driver. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module receives the native request and passes it to IIS HTTP Server (`IISHttpServer`). IIS HTTP Server is an in-process server implementation for IIS that converts the request from native to managed.
-
-After the IIS HTTP Server processes the request, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. The app's response is passed back to IIS through IIS HTTP Server. IIS sends the response to the client that initiated the request.
-
-In-process hosting is opt-in for existing apps, but [dotnet new](/dotnet/core/tools/dotnet-new) templates default to the in-process hosting model for all IIS and IIS Express scenarios.
-
-### Out-of-process hosting model
-
-Because ASP.NET Core apps run in a process separate from the IIS worker process, the module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
-
-The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and an app hosted out-of-process:
-
-![ASP.NET Core Module](_static/ancm-outofprocess.png)
-
-Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
-
-The module specifies the port via an environment variable at startup, and the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
-
-After Kestrel picks up the request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
-
-For IIS and ASP.NET Core Module configuration guidance, see the following topics:
+For more information and configuration guidance, see the following topics:
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/aspnet-core-module>
@@ -126,42 +112,6 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 ::: moniker-end
 
-## Kestrel
-
-Kestrel is the default web server included in ASP.NET Core project templates.
-
-::: moniker range=">= aspnetcore-2.0"
-
-Kestrel can be used:
-
-* By itself as an edge server processing requests directly from a network, including the Internet.
-
-  ![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
-
-* With a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
-
-  ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
-
-Either hosting configuration&mdash;with or without a reverse proxy server&mdash;is supported for ASP.NET Core 2.1 or later apps.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-If the app only accepts requests from an internal network, Kestrel can be used by itself.
-
-![Kestrel communicates directly with the internal network](kestrel/_static/kestrel-to-internal.png)
-
-If the app is exposed to the Internet, Kestrel must use a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
-
-![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
-
-The most important reason for using a reverse proxy for public-facing edge server deployments that are exposed directly the Internet is security. The 1.x versions of Kestrel don't include important security features to defend against attacks from the Internet. This includes, but isn't limited to, appropriate timeouts, request size limits, and concurrent connection limits.
-
-::: moniker-end
-
-For Kestrel configuration guidance and information on when to use Kestrel in a reverse proxy configuration, see <xref:fundamentals/servers/kestrel>.
-
 ### Nginx with Kestrel
 
 For information on how to use Nginx on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-nginx>.
@@ -169,14 +119,6 @@ For information on how to use Nginx on Linux as a reverse proxy server for Kestr
 ### Apache with Kestrel
 
 For information on how to use Apache on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-apache>.
-
-::: moniker range=">= aspnetcore-2.2"
-
-## IIS HTTP Server
-
-IIS HTTP Server is an [in-process server](#in-process-hosting-model) for IIS and required for in-process deployments. The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) handles native IIS requests between IIS and IIS HTTP Server. For more information, see <xref:host-and-deploy/aspnet-core-module>.
-
-::: moniker-end
 
 ## HTTP.sys
 
