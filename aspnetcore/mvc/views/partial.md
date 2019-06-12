@@ -71,14 +71,12 @@ Partial view file names often begin with an underscore (`_`). This naming conven
 In ASP.NET Core 2.0 or 2.1, the following handler method renders the *\_AuthorPartialRP.cshtml* partial view to the response:
 
 ```csharp
-public IActionResult OnGetPartial()
-{
-    return new PartialViewResult
+public IActionResult OnGetPartial() =>
+    new PartialViewResult
     {
         ViewName = "_AuthorPartialRP",
         ViewData = ViewData,
     };
-}
 ```
 
 ::: moniker-end
