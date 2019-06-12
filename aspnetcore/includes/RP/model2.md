@@ -12,7 +12,7 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 ### Add a database connection string
 
-Add a connection string to the *appsettings.json* file:
+Add a connection string to the *appsettings.json* file as shown in the following highlighted code:
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
