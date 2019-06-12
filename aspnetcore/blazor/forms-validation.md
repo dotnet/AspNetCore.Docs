@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 06/12/2019
 uid: blazor/forms-validation
 ---
 # Blazor forms and validation
@@ -67,6 +67,8 @@ A set of built-in input components are available to receive and validate user in
 | `<InputNumber>`   | `<input type="number">`   |
 | `<InputCheckbox>` | `<input type="checkbox">` |
 | `<InputDate>`     | `<input type="date">`     |
+
+All of the input components, including `<EditForm>`, support arbitrary attributes. Any attribute that doesn't match a parameter is added to the generated `<form>`, `<input>`, `<select>`, or `<textarea>` element.
 
 Input components provide default behavior for validating on edit and changing their CSS class to reflect the field state. Some components include useful parsing logic. For example, `<InputDate>` and `<InputNumber>` handle unparseable values gracefully by registering them as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?`).
 
@@ -177,5 +179,4 @@ The Validation Message component (`<ValidationMessage>`) displays validation mes
 <ValidationMessage For="@(() => starship.MaximumAccommodation)" />
 ```
 
-> [!NOTE]
-> Built-in input components have limitations that we expect to resolve in future releases. For example, you can't specify arbitrary attributes on the generated `<input>` tags. Build your own component subclasses to handle unavailable scenarios.
+The `<ValidationMessage>` and `<ValidationSummary>` components support arbitrary attributes. Any attribute that doesn't match a parameter is added to the generated `<div>` or `<ul>` element.
