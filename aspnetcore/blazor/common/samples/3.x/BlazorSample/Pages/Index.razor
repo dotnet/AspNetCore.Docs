@@ -40,7 +40,7 @@
         @@*
             A check box sets the font style and is bound to the _italicsCheck field.
         *@@
-        &lt;input type="checkbox" id="italicsCheck" bind="@@_italicsCheck" /&gt;
+        &lt;input type="checkbox" id="italicsCheck" @@bind="@@_italicsCheck" /&gt;
         &lt;label class="form-check-label" for="italicsCheck"&gt;Use italics&lt;/label&gt;
     &lt;/div&gt;
 
@@ -48,12 +48,12 @@
         When the form is submitted, the onclick event executes
         the UpdateHeading method.
     *@@
-    &lt;button type="button" class="btn btn-primary" onclick="@@UpdateHeading"&gt;
+    &lt;button type="button" class="btn btn-primary" @@onclick="@@UpdateHeading"&gt;
         Update heading
     &lt;/button&gt;
 &lt;/form&gt;
 
-@@functions {
+@@code {
     private static TextInfo _tinfo = CultureInfo.CurrentCulture.TextInfo;
     private string _headingText = _tinfo.ToTitleCase("welcome to blazor!");
     private string _headingFontStyle = "normal";

@@ -37,12 +37,12 @@ A form is defined using the `<EditForm>` component. The following form demonstra
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <InputText id="name" bind-Value="@exampleModel.Name" />
+    <InputText id="name" @bind-Value="@exampleModel.Name" />
 
     <button type="submit">Submit</button>
 </EditForm>
 
-@functions {
+@code {
     private ExampleModel exampleModel = new ExampleModel();
 
     private void HandleValidSubmit()
@@ -52,7 +52,7 @@ A form is defined using the `<EditForm>` component. The following form demonstra
 }
 ```
 
-* The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@functions` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>`.
+* The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>`.
 * The Data Annotations Validator component (`<DataAnnotationsValidator>`) attaches validation support using data annotations.
 * The Validation Summary component (`<ValidationSummary>`) summarizes validation messages.
 * `HandleValidSubmit` is triggered when the form successfully submits (passes validation).
@@ -117,15 +117,15 @@ The following form validates user input using the validation defined in the `Sta
 
     <p>
         <label for="identifier">Identifier: </label>
-        <InputText id="identifier" bind-Value="@starship.Identifier" />
+        <InputText id="identifier" @bind-Value="@starship.Identifier" />
     </p>
     <p>
         <label for="description">Description (optional): </label>
-        <InputTextArea Id="description" bind-Value="@starship.Description" />
+        <InputTextArea Id="description" @bind-Value="@starship.Description" />
     </p>
     <p>
         <label for="classification">Primary Classification: </label>
-        <InputSelect id="classification" bind-Value="@starship.Classification">
+        <InputSelect id="classification" @bind-Value="@starship.Classification">
             <option value"">Select classification ...</option>
             <option value="Defense">Defense</option>
             <option value="Exploration">Exploration</option>
@@ -135,15 +135,15 @@ The following form validates user input using the validation defined in the `Sta
     <p>
         <label for="accommodation">Maximum Accommodation: </label>
         <InputNumber id="accommodation" 
-            bind-Value="@starship.MaximumAccommodation" />
+            @bind-Value="@starship.MaximumAccommodation" />
     </p>
     <p>
         <label for="valid">Engineering Approval: </label>
-        <InputCheckbox id="valid" bind-Value="@starship.IsValidatedDesign" />
+        <InputCheckbox id="valid" @bind-Value="@starship.IsValidatedDesign" />
     </p>
     <p>
         <label for="productionDate">Production Date: </label>
-        <InputDate Id="productionDate" bind-Value="@starship.ProductionDate" />
+        <InputDate Id="productionDate" @bind-Value="@starship.ProductionDate" />
     </p>
 
     <button type="submit">Submit</button>
@@ -155,7 +155,7 @@ The following form validates user input using the validation defined in the `Sta
     </p>
 </EditForm>
 
-@functions {
+@code {
     private Starship starship = new Starship();
 
     private void HandleValidSubmit()

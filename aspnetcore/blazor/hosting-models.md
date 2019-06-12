@@ -118,7 +118,7 @@ For example, the following Razor page renders a Counter component with an initia
  
 @(await Html.RenderComponentAsync<Counter>(new { InitialCount = InitialCount }))
  
-@functions {
+@code {
     [BindProperty(SupportsGet=true)]
     public int InitialCount { get; set; }
 }
