@@ -8,7 +8,7 @@
         <h4>Greetings from the first tab!</h4>
 
         <label>
-            <input type="checkbox" bind="@showThirdTab" />
+            <input type="checkbox" @bind="@showThirdTab" />
             Toggle third tab
         </label>
     </Tab>
@@ -49,7 +49,7 @@ namespace BlazorSample.UIInterfaces
         &lt;h4&gt;Greetings from the first tab!&lt;/h4&gt;
 
         &lt;label&gt;
-            &lt;input type="checkbox" bind="@@showThirdTab" /&gt;
+            &lt;input type="checkbox" @@bind="@@showThirdTab" /&gt;
             Toggle third tab
         &lt;/label&gt;
     &lt;/Tab&gt;
@@ -66,7 +66,7 @@ namespace BlazorSample.UIInterfaces
     }
 &lt;/TabSet&gt;
     
-@@functions
+@@code
 {
     private bool showThirdTab;
 }</code></pre>
@@ -89,7 +89,7 @@ namespace BlazorSample.UIInterfaces
     @@ActiveTab?.ChildContent
 &lt;/div&gt;
 
-@@functions {
+@@code {
     [Parameter]
     private RenderFragment ChildContent { get; set; }
 
@@ -130,12 +130,12 @@ namespace BlazorSample.UIInterfaces
 @@implements ITab
 
 &lt;li&gt;
-    &lt;a onclick="@@Activate" class="nav-link @@TitleCssClass" role="button"&gt;
+    &lt;a @@onclick="@@Activate" class="nav-link @@TitleCssClass" role="button"&gt;
         @@Title
     &lt;/a&gt;
 &lt;/li&gt;
 
-@@functions {
+@@code {
     [CascadingParameter] private TabSet ContainerTabSet { get; set; }
 
     [Parameter]
@@ -162,7 +162,7 @@ namespace BlazorSample.UIInterfaces
     }
 }</code></pre>
 
-@functions
+@code
 {
     private bool showThirdTab;
 }

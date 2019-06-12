@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/07/2019
+ms.date: 06/12/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -119,30 +119,30 @@ The Child component has a `ChildContent` property that represents a `RenderFragm
 
 ## Data binding
 
-Data binding to both components and DOM elements is accomplished with the `bind` attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
+Data binding to both components and DOM elements is accomplished with the `@bind` attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    bind="@_italicsCheck" />
+    @bind="_italicsCheck" />
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
 
 The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
 
-Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue" />`) is essentially equivalent to the following:
+Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue" 
-    onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
+    @onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
 ```
 
-When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `bind` handles a few cases where type conversions are performed. In principle, `bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
+When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what to bind to:
+In addition to `onchange`, the property can be bound using other events like `oninput` by adding a `@bind` attribute with an `event` parameter:
 
 ```cshtml
-<input type="text" bind-value-oninput="@CurrentValue" />
+<input type="text" @bind-value="@CurrentValue" @bind-value:event="oninput" />
 ```
 
 Unlike `onchange`, `oninput` fires for every character that is input into the text box.
@@ -152,7 +152,7 @@ Unlike `onchange`, `oninput` fires for every character that is input into the te
 Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
-<input bind="@StartDate" format-value="yyyy-MM-dd" />
+<input @bind="StartDate" @bind:format="yyyy-MM-dd" />
 
 @code {
     [Parameter]
@@ -160,11 +160,11 @@ Data binding works with <xref:System.DateTime> format strings. Other format expr
 }
 ```
 
-The `format-value` attribute specifies the date format to apply to the `value` of the `input` element. The format is also used to parse the value when an `onchange` event occurs.
+The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
 
 **Component parameters**
 
-Binding also recognizes component parameters, where `bind-{property}` can bind a property value across components.
+Binding also recognizes component parameters, where `@bind-{property}` can bind a property value across components.
 
 The following component uses `ChildComponent` and binds the `ParentYear` parameter from the parent to the `Year` parameter on the child component:
 
@@ -177,9 +177,9 @@ Parent component:
 
 <p>ParentYear: @ParentYear</p>
 
-<ChildComponent bind-Year="@ParentYear" />
+<ChildComponent @bind-Year="ParentYear" />
 
-<button class="btn btn-primary" onclick="@ChangeTheYear">
+<button class="btn btn-primary" @onclick="@ChangeTheYear">
     Change Year to 1986
 </button>
 
@@ -238,22 +238,26 @@ If the value of the `ParentYear` property is changed by selecting the button in 
 
 The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-By convention, `<ChildComponent bind-Year="@ParentYear" />` is essentially equivalent to writing,
+By convention, `<ChildComponent @bind-Year="ParentYear" />` is essentially equivalent to writing,
 
 ```cshtml
-<ChildComponent bind-Year-YearChanged="@ParentYear" />
+<ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
 ```
 
-In general, a property can be bound to a corresponding event handler using `bind-property-event` attribute.
+In general, a property can be bound to a corresponding event handler using `@bind-property:event` attribute. For example, the property `MyProp` can be bound to `MyEventHandler` using the following two attributes:
+
+```cshtml
+<FooComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
+```
 
 ## Event handling
 
-Razor components provide event handling features. For an HTML element attribute named `on<event>` (for example, `onclick`, `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name always starts with `on`.
+Razor components provide event handling features. For an HTML element attribute named `on<event>` (for example, `onclick`, `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name always starts with `@on`.
 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
 ```cshtml
-<button class="btn btn-primary" onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="@UpdateHeading">
     Update heading
 </button>
 
@@ -268,7 +272,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 The following code calls the `CheckboxChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" onchange="@CheckboxChanged" />
+<input type="checkbox" class="form-check-input" @onchange="@CheckboxChanged" />
 
 @code {
     private void CheckboxChanged()
@@ -281,7 +285,7 @@ The following code calls the `CheckboxChanged` method when the check box is chan
 Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>. There's no need to manually call `StateHasChanged()`. Exceptions are logged when they occur.
 
 ```cshtml
-<button class="btn btn-primary" onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="@UpdateHeading">
     Update heading
 </button>
 
@@ -305,7 +309,7 @@ The list of supported event arguments is:
 Lambda expressions can also be used:
 
 ```cshtml
-<button onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
+<button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
 ```
 
 It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`UIMouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
@@ -318,7 +322,7 @@ It's often convenient to close over additional values, such as when iterating ov
     var buttonNumber = i;
 
     <button class="btn btn-primary"
-            onclick="@(e => UpdateHeading(e, buttonNumber))">
+            @onclick="@(e => UpdateHeading(e, buttonNumber))">
         Button #@i
     </button>
 }
@@ -381,10 +385,10 @@ Prefer the strongly typed `EventCallback<T>`, which provides better error feedba
 
 ## Capture references to components
 
-Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `ref` attribute to the child component and then define a field with the same name and the same type as the child component.
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `@ref` attribute to the child component and then define a field with the same name and the same type as the child component.
 
 ```cshtml
-<MyLoginDialog ref="loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" ... />
 
 @code {
     private MyLoginDialog loginDialog;
@@ -802,13 +806,13 @@ In the sample app, the Cascading Values Parameters Theme component binds the `Th
 <p>Current count: @currentCount</p>
 
 <p>
-    <button class="btn" onclick="@IncrementCount">
+    <button class="btn" @onclick="@IncrementCount">
         Increment Counter (Unthemed)
     </button>
 </p>
 
 <p>
-    <button class="btn @ThemeInfo.ButtonClass" onclick="@IncrementCount">
+    <button class="btn @ThemeInfo.ButtonClass" @onclick="@IncrementCount">
         Increment Counter (Themed)
     </button>
 </p>
@@ -916,7 +920,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 @CustomRender
 
-<button type="button" onclick="@RenderComponent">
+<button type="button" @onclick="@RenderComponent">
     Create three Pet Details components
 </button>
 

@@ -1,10 +1,10 @@
 @inject IJSRuntime JSRuntime
 @using JsInteropClasses
 
-<input ref="username" />
-<button onclick="@SetFocus">Set focus on username</button>
+<input @ref="username" />
+<button @onclick="@SetFocus">Set focus on username</button>
 
-@functions {
+@code {
     private ElementRef username;
 
     public async Task SetFocus()

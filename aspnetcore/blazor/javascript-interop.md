@@ -115,15 +115,15 @@ Some [JavaScript interop](xref:blazor/javascript-interop) scenarios require refe
 
 You can capture references to HTML elements in a component using the following approach:
 
-* Add a `ref` attribute to the HTML element.
-* Define a field of type `ElementRef` whose name matches the value of the `ref` attribute.
+* Add a `@ref` attribute to the HTML element.
+* Define a field of type `ElementRef` whose name matches the value of the `@ref` attribute.
 
 The following example shows capturing a reference to the `username` `<input>` element:
 
 ```cshtml
-<input ref="username" ... />
+<input @ref="username" ... />
 
-@functions {
+@code {
     ElementRef username;
 }
 ```

@@ -3,12 +3,12 @@
 @implements ITab
 
 <li>
-    <a onclick="@Activate" class="nav-link @TitleCssClass" role="button">
+    <a @onclick="@Activate" class="nav-link @TitleCssClass" role="button">
         @Title
     </a>
 </li>
 
-@functions {
+@code {
     [CascadingParameter]
     private TabSet ContainerTabSet { get; set; }
 
