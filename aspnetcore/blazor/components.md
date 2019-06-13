@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/12/2019
+ms.date: 06/13/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -1107,3 +1107,72 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 * Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers.
 * If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
 * Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring `.razor` files.
+
+## Component rendering modes
+
+There are four ways to render an initial component hierarchy into an app:
+
+### Attached rendering
+
+Attached rendering creates a component hierarchy and renders its contents into static HTML. The app preserves the rendered components in memory until the JavaScript Blazor server-side library boots up and resumes rendering on the client.
+
+Attached rendering is the most powerful approach for rendering a component. Attached rendering enables prerendering a root component passing in an initial set of parameters and maintaining state until the client reconnects and is able to interact with the app. Attached rendering incurs additional expense:
+
+* The component hierarchy must be kept in memory whether the client connects to the app or not.
+* Sticky sessions are required.
+
+When a component is rendered as attached, the component is instantiated and passed an initial set of parameters. The renderer waits for the initial call to `IComponent.SetParametersAsync` to complete and then produces HTML based on the current state of the component. The whole component hierarchy is maintained in memory for a limited amount of time, and a pair of HTML comments are emitted around the produced markup to delimit the area where the component was rendered.
+
+When the browser loads the *blazor.server.js* script, the page is scanned for components that were prerendered and reconnects to them, producing updates to the UI and enabling interactivity.
+Lifecycle methods, such as `OnAfterRenderAsync`, only run when the component is successfully rendered using the client-side renderer and is interactive. Scenarios that require JavaScript interoperability are available in `OnAfterRenderAsync`.
+
+```csharp
+await Html.RenderComponentAsync<App>()
+```
+
+```csharp
+await Html.RenderComponentAsync<App>(new { Title= "My awesome app!" });
+```
+
+### Static rendering
+
+Static rendering creates a component hierarchy and renders its contents into static HTML. The component hierarchy is then disposed.
+
+Static rendering is suitable for when you don't need interactivity (for example, printed media or reusing a component as part of an MVC app).
+
+When a component is rendered statically, the component is instantiated and passed an initial set of parameters. The static renderer waits for the initial call to `IComponent.SetParametersAsync` to complete and then produces HTML based on the current state of the component. After producing the initial markup, the component hierarchy is disposed. For the most common case (components extending `ComponentBase`), the render waits until after `OnInitAsync` and `OnParametersSetAsync` have run before producing the markup representing the component.
+
+Other lifecycle methods, such as `OnAfterRenderAsync`, don't run when the component is being rendered statically, and scenarios that require JavaScript interoperability aren't available.
+
+
+```csharp
+await Html.RenderStaticComponentAsync<App>()
+```
+
+```csharp
+await Html.RenderStaticComponentAsync<App>(new { Title= "My awesome app!" });
+```
+
+### Dynamic rendering
+
+When the JavaScript Blazor server-side library boots up, the library creates the initial hierarchy and renders the component into the page where a marker element was placed.
+
+Dynamic rendering is the default approach to rendering a component. When the client bootstraps the app after the initial request, the component is rendered at the marker element and the UI is updated (client- or server-side). Dynamic rendering has the disadvantage that there's no meaningful content in the first response and no parameters can be passed in.
+
+In this mode, rendering is always started on the client. When the client connects to the server, the client requests rendering of specific components. It isn't possible to pass parameters to the root component, and the client starts the render process.
+
+```cshtml
+<app></app>
+```
+
+### Detached rendering
+
+Detached rendering is a combination of static and dynamic rendering. The initial markup is produced by a static renderer. The component hierarchy is destroyed, and a marker element is included on the page where the markup should appear. When the JavaScript Blazor server- or client-side library boots up, the library recreates the initial component hierarchy and renders the content on the client replacing the statically-rendered content at the marker element.
+
+Detached rendering is less powerful than attached rendering. Detached rendering enables prerendering a root component, but we don't recommended passing parameters. When the client connects back to the server, the initial set of parameters isn't available because the root component is rendered again from scratch. This mode is best suited when you're prerendering in a Blazor client-side app, where the state can't be transferred from the initial server-side render to the client.
+
+In this mode, the component is rendered statically on the server initially. The browser rerenders the entire component either by connecting to the server and rendering the entire component or by rerendering the component on the client-side. This is the combination of rendering strategies that Blazor client-side uses for prerendering.
+
+```cshtml
+<app>@(await Html.RenderStaticComponent<App>())</app>
+```
