@@ -74,7 +74,7 @@ When an app uses the [Generic Host](xref:fundamentals/host/generic-host), enviro
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range=">= aspnetcore-2.0 <= aspnetcore-2.2"
 
 When an app builds the host using [WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder), environment variables that configure the host use the `ASPNETCORE_` prefix. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
