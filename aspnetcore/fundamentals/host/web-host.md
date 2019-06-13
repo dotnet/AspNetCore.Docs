@@ -13,27 +13,21 @@ By [Luke Latham](https://github.com/guardrex)
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
 
-::: moniker range="<= aspnetcore-1.1"
+::: moniker range=">= aspnetcore-3.0"
 
-For the 1.1 version of this topic, download [ASP.NET Core Web Host (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Web-Host_1.1.pdf).
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
-
-This article covers the ASP.NET Core Web Host (<xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>), which is for hosting web apps. For information about the .NET Generic Host ([IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder)), see <xref:fundamentals/host/generic-host>.
+This article covers the ASP.NET Core Web Host. The Web Host remains available only for backward compatibility. The Generic Host is recommended for all app types. For more information, see [the Host section of the Fundamentals overview](xref:fundamentals/index#host).
 
 ::: moniker-end
 
-::: moniker range="> aspnetcore-2.2"
+::: moniker range="<= aspnetcore-2.2"
 
-This article covers the ASP.NET Core Web Host ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)). In ASP.NET Core 3.0, Generic Host replaces Web Host. For more information, see [The host](xref:fundamentals/index#host).
+This article covers the ASP.NET Core Web Host, which is for hosting web apps. For information about the .NET Generic Host, which can be used with other kinds of apps [the Host section of the Fundamentals overview](xref:fundamentals/index#host).
 
 ::: moniker-end
 
 ## Set up a host
 
-Create a host using an instance of [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). This is typically performed in the app's entry point, the `Main` method. The builder method name, `CreateWebHostBuilder`, is special name that identifies the builder method to external components, such as [Entity Framework](/ef/core/).
+Create a host using an instance of [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). This is typically performed in the app's entry point, the `Main` method.
 
 In the project templates, `Main` is located in *Program.cs*. A typical app calls [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) to start setting up a host:
 
@@ -50,6 +44,8 @@ public class Program
             .UseStartup<Startup>();
 }
 ```
+
+The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBuilder`. This separation from the code that calls `Run` on the builder object is required if you use [Entity Framework Core tools](https://docs.microsoft.com/ef/core/miscellaneous/cli/). The tools expect to find a `CreateWebHostBuilder`  method that they can call at design time to configure the host without running the app. An alternative is to implement `IDesignTimeDbContextFactory`.  For more information, see [Design-time DbContext Creation](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dbcontext-creation).
 
 `CreateDefaultBuilder` performs the following tasks:
 
