@@ -111,7 +111,7 @@ info: Microsoft.Hosting.Lifetime[0]
 * *greet.proto*: The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
 * *Services* folder: Contains the implementation of the `Greeter` service.
 * *appSettings.json*: Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
-* *Program.cs*: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/web-host>.
+* *Program.cs*: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
 * *Startup.cs*: Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
 
 ## Create the gRPC client in a .NET console app
