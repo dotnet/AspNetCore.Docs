@@ -959,7 +959,7 @@
       uid: security/ip-safelist
     - name: Application security - OWASP
       href: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DotNet_Security_Cheat_Sheet.md
-    - name: Blazor security and Identity
+    - name: Blazor
       uid: blazor/security/index
 - name: Performance
   items:
