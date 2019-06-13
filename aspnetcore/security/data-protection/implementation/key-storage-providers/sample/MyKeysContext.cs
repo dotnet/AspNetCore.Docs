@@ -8,7 +8,7 @@ namespace WebApp1
     {
         // A recommended constructor overload when using EF Core 
         // with dependency injection.
-        public MyKeysContext(DbContextOptions<ApplicationDbContext> options) 
+        public MyKeysContext(DbContextOptions<MyKeysContext> options) 
             : base(options) { }
 
         // This maps to the table that stores keys.
