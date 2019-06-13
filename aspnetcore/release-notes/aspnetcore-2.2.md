@@ -13,7 +13,7 @@ This article highlights the most significant changes in ASP.NET Core 2.2, with l
 
 ## OpenAPI Analyzers & Conventions
 
-OpenAPI (formerly known as Swagger) is a language-agnostic specification for describing REST APIs. The OpenAPI ecosystem has tools that allow for discovering, testing, and producing client code using the specification. Support for generating and visualizing OpenAPI documents in ASP.NET Core MVC is provided via community driven projects such as [NSwag](https://github.com/RSuter/NSwag), and [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). ASP.NET Core 2.2 provides improved tooling and runtime experiences for creating OpenAPI documents.
+OpenAPI (formerly known as Swagger) is a language-agnostic specification for describing REST APIs. The OpenAPI ecosystem has tools that allow for discovering, testing, and producing client code using the specification. Support for generating and visualizing OpenAPI documents in ASP.NET Core MVC is provided via community driven projects such as [NSwag](https://github.com/RicoSuter/NSwag), and [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). ASP.NET Core 2.2 provides improved tooling and runtime experiences for creating OpenAPI documents.
 
 For more information, see the following resources:
 
@@ -47,7 +47,7 @@ For more information, see [Health checks in ASP.NET Core](xref:host-and-deploy/h
 
 ## HTTP/2 in Kestrel
 
-ASP.NET Core 2.2 adds support for HTTP/2. 
+ASP.NET Core 2.2 adds support for HTTP/2.
 
 HTTP/2 is a major revision of the HTTP protocol. Some of the notable features of HTTP/2 are support for header compression and fully multiplexed streams over a single connection. While HTTP/2 preserves HTTP’s semantics (HTTP headers, methods, etc) it's a breaking change from HTTP/1.x on how this data is framed and sent over the wire.
 
