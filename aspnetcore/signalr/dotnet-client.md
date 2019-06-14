@@ -43,7 +43,7 @@ The <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> can be configured t
 HubConnection connection= new HubConnectionBuilder()
     .WithUrl(new Uri("http://127.0.0.1:5000/chatHub"))
     .WithAutomaticReconnect()
-    .Build();;
+    .Build();
 ```
 
 Without any parameters, `WithAutomaticReconnect()` configures the client to wait 0, 2, 10, and 30 seconds respectively before trying each reconnect attempt, stopping after four failed attempts.
