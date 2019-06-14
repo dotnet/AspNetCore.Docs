@@ -1,14 +1,14 @@
 ---
-title: Host and deploy Blazor client-side
+title: Host and deploy ASP.NET Core Blazor client-side
 author: guardrex
 description: Learn how to host and deploy a Blazor app using ASP.NET Core, Content Delivery Networks (CDN), file servers, and GitHub Pages.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/21/2019
+ms.date: 06/14/2019
 uid: host-and-deploy/blazor/client-side
 ---
-# Host and deploy Blazor client-side
+# Host and deploy ASP.NET Core Blazor client-side
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
