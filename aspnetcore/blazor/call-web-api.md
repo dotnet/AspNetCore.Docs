@@ -1,14 +1,14 @@
 ---
-title: Call a web API
+title: Call a web API from ASP.NET Core Blazor
 author: guardrex
 description: Learn how to call a web API from a Blazor app using JSON helpers, including making cross-origin resource sharing (CORS) requests.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/20/2019
+ms.date: 06/14/2019
 uid: blazor/call-web-api
 ---
-# Call a web API
+# Call a web API from ASP.NET Core Blazor
 
 By [Luke Latham](https://github.com/guardrex)
 
