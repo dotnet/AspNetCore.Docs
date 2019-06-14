@@ -22,6 +22,7 @@ No API can prevent a client from sending sensitive data on the first request.
 
 > [!WARNING]
 > ## API projects
+>
 > Do **not** use [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) on Web APIs that receive sensitive information. `RequireHttpsAttribute` uses HTTP status codes to redirect browsers from HTTP to HTTPS. API clients may not understand or obey redirects from HTTP to HTTPS. Such clients may send information over HTTP. Web APIs should either:
 >
 > * Not listen on HTTP.
