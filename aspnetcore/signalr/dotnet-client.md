@@ -48,7 +48,7 @@ HubConnection connection= new HubConnectionBuilder()
 
 Without any parameters, `WithAutomaticReconnect()` configures the client to wait 0, 2, 10, and 30 seconds respectively before trying each reconnect attempt, stopping after four failed attempts.
 
-Before starting any reconnect attempts, the `HubConnection` will transition to the `HubConnectionState.Reconnecting` state and fire the `Reconnecting` event instead of transitioning to the `Disconnected` state and triggering the `Closed` callback like a `HubConnection` without automatic reconnect configured. This provides an opportunity to warn users that the connection has been lost and to disable UI elements. Non-interactive apps can start queuing or dropping messages instead.
+Before starting any reconnect attempts, the `HubConnection` will transition to the `HubConnectionState.Reconnecting` state and fire the `Reconnecting` event.  This provides an opportunity to warn users that the connection has been lost and to disable UI elements. Non-interactive apps can start queuing or dropping messages.
 
 ```csharp
 connection.Reconnecting += error =>
@@ -116,7 +116,7 @@ connection.Closed += error =>
 {
     Debug.Assert(connection.State == HubConnectionState.Disconnected);
 
-    // Notify users the connection has been closed, manually try to restart the connection, etc...
+    // Notify users the connection has been closed or manually try to restart the connection.
 
     return Task.CompletedTask;
 };
@@ -139,7 +139,7 @@ If the first reconnect attempt fails, the second reconnect attempt will also sta
 
 If the second reconnect attempt fails, the third reconnect attempt will start in 10 seconds which is again like the default configuration.
 
-The custom behavior then diverges again from the default behavior by stopping after the third reconnect attempt failure instead of trying one more reconnect attempt in another 30 seconds like it would in the default configuration.
+The custom behavior then diverges again from the default behavior by stopping after the third reconnect attempt failure. In the default configuration there would be one more reconnect attempt in another 30 seconds.
 
 If you want even more control over the timing and number of automatic reconnect attempts, `WithAutomaticReconnect` accepts an object implementing the `IRetryPolicy` interface, which has a single method named `NextRetryDelay`.
 
