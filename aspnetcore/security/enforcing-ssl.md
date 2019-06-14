@@ -18,11 +18,29 @@ This document shows how to:
 
 No API can prevent a client from sending sensitive data on the first request.
 
+::: moniker range="< aspnetcore-3.0"
+
 > [!WARNING]
+> ## API projects
 > Do **not** use [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) on Web APIs that receive sensitive information. `RequireHttpsAttribute` uses HTTP status codes to redirect browsers from HTTP to HTTPS. API clients may not understand or obey redirects from HTTP to HTTPS. Such clients may send information over HTTP. Web APIs should either:
 >
 > * Not listen on HTTP.
 > * Close the connection with status code 400 (Bad Request) and not serve the request.
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+> [!WARNING]
+> ## API projects
+> Do **not** use [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) on Web APIs that receive sensitive information. `RequireHttpsAttribute` uses HTTP status codes to redirect browsers from HTTP to HTTPS. API clients may not understand or obey redirects from HTTP to HTTPS. Such clients may send information over HTTP. Web APIs should either:
+>
+> * Not listen on HTTP.
+> * Close the connection with status code 400 (Bad Request) and not serve the request.
+>
+> ## HSTS and API projects
+> The default API projects don't include [HSTS](#hsts) because HSTS is generally a browser only instruction. Other callers, such as phone or desktop apps will **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks. The secure approach is to configure API projects to only listen to and respond over HTTPS.
+
+::: moniker-end
 
 ## Require HTTPS
 
@@ -154,6 +172,8 @@ Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) i
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
+<a name="hsts"></a>
 
 ## HTTP Strict Transport Security Protocol (HSTS)
 
