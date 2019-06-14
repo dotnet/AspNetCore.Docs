@@ -38,6 +38,7 @@ No API can prevent a client from sending sensitive data on the first request.
 > * Close the connection with status code 400 (Bad Request) and not serve the request.
 >
 > ## HSTS and API projects
+>
 > The default API projects don't include [HSTS](#hsts) because HSTS is generally a browser only instruction. Other callers, such as phone or desktop apps will **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks. The secure approach is to configure API projects to only listen to and respond over HTTPS.
 
 ::: moniker-end
