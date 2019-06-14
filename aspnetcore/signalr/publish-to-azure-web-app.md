@@ -51,12 +51,22 @@ If an HTTP *502.2 - Bad Gateway* error occurs during a preview release, see [Dep
 
 ## Configure the app in Azure App Service
 
-[ARR Affinity](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) is required (the default is **On**). Enable [WebSockets](xref:fundamentals/websockets) to allow the WebSockets transport to function (the default is **Off**).
+*This section only applies to apps not using the Azure SignalR Service.*
+
+> [!NOTE]
+> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
+
+For apps hosted without the Azure SignalR Service, enable:
+
+* [ARR Affinity](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) to route requests from a user back to the same App Service instance. The default setting is **On**.
+* [Web Sockets](xref:fundamentals/websockets) to allow the Web Sockets transport to function. The default setting is **Off**.
 
 1. In the Azure portal, navigate to the web app in **App Services**.
 1. Open **Configuration** > **General settings**.
 1. Set **Web sockets** to **On**.
 1. Verify that **ARR affinity** is set to **On**.
+
+## App Service Plan limits
 
 Web Sockets and other transports are limited based on the App Service Plan selected. For more information, see the *Azure Cloud Services limits* and *App Service limits* sections of the [Azure subscription and service limits, quotas, and constraints](/azure/azure-subscription-service-limits#app-service-limits) article.
 
