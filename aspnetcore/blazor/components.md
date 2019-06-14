@@ -536,6 +536,18 @@ protected override void OnAfterRender()
 }
 ```
 
+### Complete asynchronous actions before rendering
+
+Asynchronous actions performed in lifecycle events may not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
+
+In the Fetch Data component of the Blazor templates, `OnInitAsync` is overridden to asychronously receive forecast data (`forecasts`). When `forecasts` is `null`, a loading message is displayed to the user. After the `Task` returned by `OnInitAsync` completes, the component is rerendered with the updated state.
+
+*Pages/FetchData.razor*:
+
+[!code-cshtml[](components/samples_snapshot/3.x/FetchData.razor?highlight=9-18,21-26)]
+
+### Execute code before parameters are set
+
 `SetParameters` can be overridden to execute code before parameters are set:
 
 ```csharp
@@ -548,6 +560,8 @@ public override void SetParameters(ParameterCollection parameters)
 ```
 
 If `base.SetParameters` isn't invoked, the custom code can interpret the incoming parameters value in any way required. For example, the incoming parameters aren't required to be assigned to the properties on the class.
+
+### Suppress refreshing of the UI
 
 `ShouldRender` can be overridden to suppress refreshing of the UI. If the implementation returns `true`, the UI is refreshed. Even if `ShouldRender` is overridden, the component is always initially rendered.
 
