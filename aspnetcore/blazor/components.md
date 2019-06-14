@@ -1,5 +1,5 @@
 ---
-title: Create and use Razor components
+title: Create and use ASP.NET Core Razor components
 author: guardrex
 description: Learn how to create and use Razor components, including how to bind to data, handle events, and manage component life cycles.
 monikerRange: '>= aspnetcore-3.0'
@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 06/12/2019
 uid: blazor/components
 ---
-# Create and use Razor components
+# Create and use ASP.NET Core Razor components
 
 By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Morné Zaayman](https://github.com/MorneZaayman)
 
