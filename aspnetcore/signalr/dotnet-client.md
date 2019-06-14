@@ -147,7 +147,7 @@ If you want even more control over the timing and number of automatic reconnect 
 
 `NextRetryDelay` must return either a TimeSpan representing the time to wait before the next reconnect attempt or `null` if the `HubConnection` should stop reconnecting.
 
-```javascript
+```csharp
 public class RandomRetryPolicy : IRetryPolicy
 {
     private readonly Random _random = new Random();
@@ -167,8 +167,10 @@ public class RandomRetryPolicy : IRetryPolicy
         }
     }
 }
+```
 
-HubConnection connection= new HubConnectionBuilder()
+```csharp
+HubConnection connection = new HubConnectionBuilder()
     .WithUrl(new Uri("http://127.0.0.1:5000/chatHub"))
     .WithAutomaticReconnect(new RandomRetryPolicy())
     .Build();
