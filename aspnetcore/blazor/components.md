@@ -379,9 +379,9 @@ Invoke an `EventCallback` or `EventCallback<T>` with `InvokeAsync` and await the
 await callback.InvokeAsync(arg);
 ```
 
-Use `EventCallback` and `EventCallback<T>` for event handling and binding component parameters. Don't use `EventCallback` and `EventCallback<T>` for child content&mdash;continue to use `RenderFragment` and `RenderFragment<T>` for child content.
+Use `EventCallback` and `EventCallback<T>` for event handling and binding component parameters.
 
-Prefer the strongly typed `EventCallback<T>`, which provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
+Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallback<T>` provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
 
 ## Capture references to components
 
