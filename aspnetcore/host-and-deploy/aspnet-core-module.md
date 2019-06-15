@@ -5,7 +5,7 @@ description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/17/2019
+ms.date: 06/05/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -134,7 +134,7 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
 
-The module specifies the port via an environment variable at startup, and the IIS Integration Middleware configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
+The module specifies the port via an environment variable at startup, and the [IIS Integration Middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
 
 After Kestrel picks up the request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
 
@@ -150,7 +150,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module
 
-For instructions on how to install and use the ASP.NET Core Module, see <xref:host-and-deploy/iis/index>.
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
 ## Configuration with web.config
 
@@ -477,6 +477,26 @@ The handler settings can also be provided via environment variables:
 ::: moniker-end
 
 See [Configuration with web.config](#configuration-with-webconfig) for an example of the `aspNetCore` element in the *web.config* file.
+
+::: moniker range=">= aspnetcore-3.0"
+
+## Modify the stack size
+
+Configure the managed stack size using the `stackSize` setting in bytes. The default size is `1048576` bytes (1 MB).
+
+```xml
+<aspNetCore processPath="dotnet"
+    arguments=".\MyApp.dll"
+    stdoutLogEnabled="false"
+    stdoutLogFile="\\?\%home%\LogFiles\stdout"
+    hostingModel="InProcess">
+  <handlerSettings>
+    <handlerSetting name="stackSize" value="2097152" />
+  </handlerSettings>
+</aspNetCore>
+```
+
+::: moniker-end
 
 ## Proxy configuration uses HTTP protocol and a pairing token
 

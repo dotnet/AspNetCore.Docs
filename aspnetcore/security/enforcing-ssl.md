@@ -18,11 +18,32 @@ This document shows how to:
 
 No API can prevent a client from sending sensitive data on the first request.
 
+::: moniker range="< aspnetcore-3.0"
+
 > [!WARNING]
+> ## API projects
+>
 > Do **not** use [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) on Web APIs that receive sensitive information. `RequireHttpsAttribute` uses HTTP status codes to redirect browsers from HTTP to HTTPS. API clients may not understand or obey redirects from HTTP to HTTPS. Such clients may send information over HTTP. Web APIs should either:
 >
 > * Not listen on HTTP.
 > * Close the connection with status code 400 (Bad Request) and not serve the request.
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+> [!WARNING]
+> ## API projects
+>
+> Do **not** use [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) on Web APIs that receive sensitive information. `RequireHttpsAttribute` uses HTTP status codes to redirect browsers from HTTP to HTTPS. API clients may not understand or obey redirects from HTTP to HTTPS. Such clients may send information over HTTP. Web APIs should either:
+>
+> * Not listen on HTTP.
+> * Close the connection with status code 400 (Bad Request) and not serve the request.
+>
+> ## HSTS and API projects
+>
+> The default API projects don't include [HSTS](#hsts) because HSTS is generally a browser only instruction. Other callers, such as phone or desktop apps, do **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks. The secure approach is to configure API projects to only listen to and respond over HTTPS.
+
+::: moniker-end
 
 ## Require HTTPS
 
@@ -155,6 +176,8 @@ Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) i
 
 ::: moniker range=">= aspnetcore-2.1"
 
+<a name="hsts"></a>
+
 ## HTTP Strict Transport Security Protocol (HSTS)
 
 Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that's specified by a web app through the use of a response header. When a [browser that supports HSTS](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support) receives this header:
@@ -220,6 +243,8 @@ dotnet new webapp --no-https
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
+<a name="trust"></a>
 
 ## Trust the ASP.NET Core HTTPS development certificate on Windows and macOS
 

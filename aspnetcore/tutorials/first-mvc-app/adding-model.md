@@ -151,7 +151,7 @@ In this section, the following tasks are completed:
 
    The `Add-Migration` command generates code to create the initial database schema.
 
-   The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `Initial` argument is the migration name. Any name can be used, but by convention, a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
+   The database schema is based on the model specified in the `MvcMovieContext` class. The `Initial` argument is the migration name. Any name can be used, but by convention, a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
 
    The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
@@ -175,7 +175,7 @@ The scaffolding tool automatically created a DB context and registered it with t
 
 Examine the following `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=14-15)]
 
 The `MvcMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`MvcMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model:
 

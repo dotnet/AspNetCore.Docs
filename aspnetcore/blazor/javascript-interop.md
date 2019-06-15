@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/21/2019
+ms.date: 05/29/2019
 uid: blazor/javascript-interop
 ---
 # Blazor JavaScript interop
@@ -101,6 +101,10 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the component. The component stores the user's name in a local variable, `name`.
 1. The string stored in `name` is incorporated into a welcome message, which is passed to a JavaScript function, `displayWelcome`, which renders the welcome message into a heading tag.
 
+## Call a void JavaScript function
+
+JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with `IJSRuntime.InvokeAsync<object>`, which returns `null`.
+
 ## Detect when a Blazor app is prerendering
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
@@ -111,15 +115,15 @@ Some [JavaScript interop](xref:blazor/javascript-interop) scenarios require refe
 
 You can capture references to HTML elements in a component using the following approach:
 
-* Add a `ref` attribute to the HTML element.
-* Define a field of type `ElementRef` whose name matches the value of the `ref` attribute.
+* Add a `@ref` attribute to the HTML element.
+* Define a field of type `ElementRef` whose name matches the value of the `@ref` attribute.
 
 The following example shows capturing a reference to the `username` `<input>` element:
 
 ```cshtml
-<input ref="username" ... />
+<input @ref="username" ... />
 
-@functions {
+@code {
     ElementRef username;
 }
 ```
@@ -166,7 +170,7 @@ The method is called directly on the object. The following example assumes that 
 
 ### Static .NET method call
 
-To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support server-side scenarios. To invoke a .NET method from JavaScript, the .NET method must be public, static, and have the the `[JSInvokable]` attribute. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
+To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support server-side scenarios. To invoke a .NET method from JavaScript, the .NET method must be public, static, and have the `[JSInvokable]` attribute. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
 
 The sample app includes a C# method to return an array of `int`s. The `JSInvokable` attribute is applied to the method.
 

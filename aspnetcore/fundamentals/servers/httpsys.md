@@ -5,7 +5,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/21/2019
+ms.date: 05/27/2019
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -80,7 +80,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 1. A package reference in the project file isn't required when using the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) ([nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)) (ASP.NET Core 2.1 or later). When not using the `Microsoft.AspNetCore.App` metapackage, add a package reference to [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
 
-2. Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building Web Host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>:
+2. Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>:
 
    [!code-csharp[](httpsys/sample/Program.cs?name=snippet1&highlight=4-12)]
 
@@ -161,7 +161,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
-   The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys. For more information, see <xref:fundamentals/host/web-host>.
+   The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys.
 
    HTTP.sys uses the [HTTP Server API UrlPrefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
@@ -265,7 +265,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 ## Additional resources
 
-* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#enable-windows-authentication-with-httpsys)
+* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
 * [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
 * [The host](xref:fundamentals/index#host)

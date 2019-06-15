@@ -97,7 +97,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 The preceding code:
 
 * Uses the C# optional-parameter feature to indicate that the `numTimes` parameter defaults to 1 if no value is passed for that parameter. <!-- remove for simplified -->
-* Uses`HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
+* Uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
 * Uses [Interpolated Strings](/dotnet/articles/csharp/language-reference/keywords/interpolated-strings) in `$"Hello {name}, NumTimes is: {numTimes}"`. <!-- remove for simplified -->
 
 Run the app and browse to:

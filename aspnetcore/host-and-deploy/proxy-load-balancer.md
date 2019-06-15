@@ -5,7 +5,7 @@ description: Learn about configuration for apps hosted behind proxy servers and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 06/11/2019
 uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
@@ -47,11 +47,11 @@ Not all network appliances add the `X-Forwarded-For` and `X-Forwarded-Proto` hea
 
 ## IIS/IIS Express and ASP.NET Core Module
 
-Forwarded Headers Middleware is enabled by default by IIS Integration Middleware when the app is run behind IIS and the ASP.NET Core Module. Forwarded Headers Middleware is activated to run first in the middleware pipeline with a restricted configuration specific to the ASP.NET Core Module due to trust concerns with forwarded headers (for example, [IP spoofing](https://www.iplocation.net/ip-spoofing)). The middleware is configured to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers and is restricted to a single localhost proxy. If additional configuration is required, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options).
+Forwarded Headers Middleware is enabled by default by [IIS Integration Middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) when the app is hosted [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind IIS and the ASP.NET Core Module. Forwarded Headers Middleware is activated to run first in the middleware pipeline with a restricted configuration specific to the ASP.NET Core Module due to trust concerns with forwarded headers (for example, [IP spoofing](https://www.iplocation.net/ip-spoofing)). The middleware is configured to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers and is restricted to a single localhost proxy. If additional configuration is required, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options).
 
 ## Other proxy server and load balancer scenarios
 
-Outside of using IIS Integration Middleware, Forwarded Headers Middleware isn't enabled by default. Forwarded Headers Middleware must be enabled for an app to process forwarded headers with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>. After enabling the middleware if no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default [ForwardedHeadersOptions.ForwardedHeaders](xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders) are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders).
+Outside of using [IIS Integration](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) when hosting [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model), Forwarded Headers Middleware isn't enabled by default. Forwarded Headers Middleware must be enabled for an app to process forwarded headers with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>. After enabling the middleware if no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default [ForwardedHeadersOptions.ForwardedHeaders](xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders) are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders).
 
 Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers in `Startup.ConfigureServices`. Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> method in `Startup.Configure` before calling other middleware:
 
@@ -220,6 +220,38 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+
+## Forward the scheme for Linux and non-IIS reverse proxies
+
+.NET Core templates call <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> and <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>. These methods put a site into an infinite loop if deployed to an Azure Linux App Service, Azure Linux virtual machine (VM), or behind any other reverse proxy besides IIS. TLS is terminated by the reverse proxy, and Kestrel isn't made aware of the correct request scheme. OAuth and OIDC also fail in this configuration because they generate incorrect redirects. <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> adds and configures Forwarded Headers Middleware when running behind IIS, but there's no matching automatic configuration for Linux (Apache or Nginx integration).
+
+To forward the scheme from the proxy in non-IIS scenarios, add and configure Forwarded Headers Middleware. In `Startup.ConfigureServices`, use the following code:
+
+```csharp
+// using Microsoft.AspNetCore.HttpOverrides;
+
+if (string.Equals(
+    Environment.GetEnvironmentVariable("ASPNETCORE_FORWARDEDHEADERS_ENABLED"), 
+    "true", StringComparison.OrdinalIgnoreCase))
+{
+    services.Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | 
+            ForwardedHeaders.XForwardedProto;
+        // Only loopback proxies are allowed by default.
+        // Clear that restriction because forwarders are enabled by explicit 
+        // configuration.
+        options.KnownNetworks.Clear();
+        options.KnownProxies.Clear();
+    });
+}
+```
+
+Until new container images are provided in Azure, you must create an app setting (environment variable) for `ASPNETCORE_FORWARDEDHEADERS_ENABLED` set to `true`. For more information, see [Templates do not work in Antares Linux due to missing scheme forwarders (aspnet/AspNetCore #4135)](https://github.com/aspnet/AspNetCore/issues/4135).
+
+::: moniker-end
+
 ## Troubleshoot
 
 When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers. 
@@ -304,6 +336,54 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 > [!IMPORTANT]
 > Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
+
+## Certificate forwarding 
+
+### On Azure
+
+See the [Azure documentation](/azure/app-service/app-service-web-configure-tls-mutual-auth) 
+to configure Azure Web Apps. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
+
+```csharp
+app.UseCertificateForwarding();
+```
+
+You'll also need to configure the Certificate Forwarding middleware to specify the header name that Azure uses. In your app's `Startup.ConfigureServices` method, add the following code to configure the header from which the middleware builds a certificate:
+
+```csharp
+services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "X-ARR-ClientCert");
+```
+
+### With other web proxies
+
+If you're using a proxy that isn't IIS or Azure's Web Apps Application Request Routing, configure your proxy to forward the certificate it received in an HTTP header. In your app's `Startup.Configure` method, add the following code before the call to `app.UseAuthentication();`:
+
+```csharp
+app.UseCertificateForwarding();
+```
+
+You'll also need to configure the Certificate Forwarding middleware to specify the header name. In your app's `Startup.ConfigureServices` method, add the following code to configure the header from which the middleware builds a certificate:
+
+```csharp
+services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
+```
+
+Finally, if the proxy is doing something other than base64 encoding the certificate (as is the case with Nginx), set the `HeaderConverter` option. Consider the following example in `Startup.ConfigureServices`:
+
+```csharp
+services.AddCertificateForwarding(options =>
+{
+    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
+    options.HeaderConverter = (headerValue) => 
+    {
+        var clientCertificate = 
+           /* some conversion logic to create an X509Certificate2 */
+        return clientCertificate;
+    }
+});
+```
 
 ## Additional resources
 

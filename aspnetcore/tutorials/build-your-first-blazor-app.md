@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2019
+ms.date: 06/12/2019
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
@@ -30,7 +30,7 @@ Follow the guidance in the <xref:blazor/get-started> article to create a Blazor 
 
    The UI of the Counter component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). The HTML markup and C# rendering logic are converted into a component class at build time. The name of the generated .NET class matches the file name.
 
-   Members of the component class are defined in an `@functions` block. In the `@functions` block, component state (properties, fields) and methods are specified for event handling or for defining other component logic. These members are then used as part of the component's rendering logic and for handling events.
+   Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) and methods are specified for event handling or for defining other component logic. These members are then used as part of the component's rendering logic and for handling events.
 
    When the **Click me** button is selected:
 
@@ -63,7 +63,7 @@ Include a component in another component using an HTML syntax.
 
 Components can also have parameters. Component parameters are defined using non-public properties on the component class decorated with `[Parameter]`. Use attributes to specify arguments for a component in markup.
 
-1. Update the component's `@functions` C# code:
+1. Update the component's `@code` C# code:
 
    * Add a `IncrementAmount` property decorated with the `[Parameter]` attribute.
    * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
@@ -146,21 +146,13 @@ Add a new component to the app that implements a simple todo list.
 
 1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the Todo component works.
 
-1. If building a Blazor server-side app, add the app's namespace to the *\_Imports.razor* file. The following `@using` statement assumes that the app's namespace is `WebApplication`:
-
-   ```cshtml
-   @using WebApplication
-   ```
-   
-   Blazor client-side apps include the app's namespace by default in the *\_Imports.razor* file.
-
 1. Add a *TodoItem.cs* file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
 
 1. Return to the Todo component (*Pages/Todo.razor*):
 
-   * Add a field for the todo items in an `@functions` block. The Todo component uses this field to maintain the state of the todo list.
+   * Add a field for the todo items in an `@code` block. The Todo component uses this field to maintain the state of the todo list.
    * Add unordered list markup and a `foreach` loop to render each todo item as a list item.
 
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo4.razor?highlight=5-10,12-14)]
@@ -171,7 +163,7 @@ Add a new component to the app that implements a simple todo list.
 
 1. Rebuild and run the app. When the **Add todo** button is selected, nothing happens because an event handler isn't wired up to the button.
 
-1. Add an `AddTodo` method to the Todo component and register it for button clicks using the `onclick` attribute:
+1. Add an `AddTodo` method to the Todo component and register it for button clicks using the `@onclick` attribute:
 
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo6.razor?highlight=2,7-10)]
 
@@ -182,7 +174,7 @@ Add a new component to the app that implements a simple todo list.
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo7.razor?highlight=2)]
 
    ```cshtml
-   <input placeholder="Something todo" bind="@newTodo" />
+   <input placeholder="Something todo" @bind="@newTodo" />
    ```
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:

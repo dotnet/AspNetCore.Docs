@@ -1,7 +1,7 @@
 <input placeholder="Something todo" />
-<button onclick="@AddTodo">Add todo</button>
+<button @onclick="@AddTodo">Add todo</button>
 
-@functions {
+@code {
     private IList<TodoItem> todos = new List<TodoItem>();
 
     private void AddTodo()

@@ -16,11 +16,12 @@ This article is an overview of key topics for understanding how to develop ASP.N
 
 The `Startup` class is where:
 
-* Any services required by the app are configured.
+* Services required by the app are configured.
 * The request handling pipeline is defined.
 
-* Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. *Services* are components that are used by the app. For example, an Entity Framework Core context object is a service.
-* Code to configure the request handling pipeline is added to the `Startup.Configure` method. The pipeline is composed as a series of *middleware* components. For example, a middleware might handle requests for static files or redirect HTTP requests to HTTPS. Each middleware performs asynchronous operations on an `HttpContext` and then either invokes the next middleware in the pipeline or terminates the request.
+*Services* are components that are used by the app. For example, a logging component is a service. Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method.
+
+The request handling pipeline is composed as a series of *middleware* components. For example, a middleware might handle requests for static files or redirect HTTP requests to HTTPS. Each middleware performs asynchronous operations on an `HttpContext` and then either invokes the next middleware in the pipeline or terminates the request. Code to configure the request handling pipeline is added to the `Startup.Configure` method.
 
 Here's a sample `Startup` class:
 
@@ -54,9 +55,7 @@ ASP.NET Core includes a rich set of built-in middleware, and you can write custo
 
 For more information, see <xref:fundamentals/middleware/index>.
 
-<a id="host"/>
-
-## The host
+## Host
 
 An ASP.NET Core app builds a *host* on startup. The host is an object that encapsulates all of the app's resources, such as:
 
@@ -68,61 +67,45 @@ An ASP.NET Core app builds a *host* on startup. The host is an object that encap
 
 The main reason for including all of the app's interdependent resources in one object is lifetime management: control over app startup and graceful shutdown.
 
-The code to create a host is in `Program.Main` and follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern). Methods are called to configure each resource that is part of the host. A builder method is called to pull it all together and instantiate the host object.
-
 ::: moniker range=">= aspnetcore-3.0"
 
-`CreateHostBuilder` is special name that identifies the builder method to external components, such as [Entity Framework](/ef/core/).
+Two hosts are available: the Generic Host and the Web Host. The Generic Host is recommended, and the Web Host is available only for backwards compatibility.
 
-In ASP.NET Core 3.0 or later, Generic Host (`Host` class) or Web Host (`WebHost` class) can be used in a web app. Generic Host is recommended, and Web Host is available for backwards compatibility.
+The code to create a host is in `Program.Main`:
 
-The framework provides the `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods to set up a host with commonly used options, such as the following:
+[!code-csharp[](index/snapshots/3.x/Program1.cs)]
+
+The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
-Here's sample code that builds a host. The methods that set up the host with commonly used options are highlighted:
-
-[!code-csharp[](index/snapshots/3.x/Program1.cs?highlight=9-10)]
-
-For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/web-host>.
+For more information, see <xref:fundamentals/host/generic-host>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-`CreateWebHostBuilder` is special name that identifies the builder method to external components, such as [Entity Framework](/ef/core/).
+Two hosts are available: the Web Host and the Generic Host. In ASP.NET Core 2.x, the Generic Host is only for non-web scenarios.
 
-ASP.NET Core 2.x uses Web Host (`WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` to set up a host with commonly used options, such as the following:
+The code to create a host is in `Program.Main`:
+
+[!code-csharp[](index/snapshots/2.x/Program1.cs)]
+
+The `CreateDefaultBuilder` method configures a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
-
-Here's sample code that builds a host:
-
-[!code-csharp[](index/snapshots/2.x/Program1.cs?highlight=9)]
 
 For more information, see <xref:fundamentals/host/web-host>.
 
 ::: moniker-end
 
-### Advanced host scenarios
+### Non-web scenarios
 
-::: moniker range=">= aspnetcore-3.0"
-
-Generic Host is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host (`Host` class) allows other types of apps to use cross-cutting framework extensions, such as logging, DI, configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host>.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-Web Host is designed to include an HTTP server implementation, which isn't required for other kinds of .NET apps. Starting in ASP.NET Core 2.1, the Generic Host (`Host` class) is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host allows other types of apps to use cross-cutting framework extensions, such as logging, DI, configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host>.
-
-::: moniker-end
-
-You can also use the host to run background tasks. For more information, see <xref:fundamentals/host/hosted-services>.
+The Generic Host allows other types of apps to use cross-cutting framework extensions, such as logging, dependency injection (DI), configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/hosted-services>.
 
 ## Servers
 

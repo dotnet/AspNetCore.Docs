@@ -32,28 +32,22 @@ At the end, you have an app that can manage and display movie data.
 
 # [Visual Studio](#tab/visual-studio)
 
-From Visual Studio welcome screen, select  **New**.
+* From the Visual Studio select **Create a new project**.
 
-![File > New > Project](start-mvc/_static/alt_new_project.png)
+* Selecct **ASP.NET Core Web Application** and then select **Next**.
 
-Complete the **New Project** dialog:
+![new ASP.NET Core Web Application](start-mvc/_static/np_2.1.png)
 
-* In the left pane, select **.NET Core**
-* In the center pane, select **ASP.NET Core Web Application (.NET Core)**
-* Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
-* select **OK**
+* Name the project **MvcMovie** and select **Create**. It's important to name the project **MvcMovie** so when you copy code, the namespace will match.
 
-![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2-21.png)
+  ![new ASP.NET Core Web Application](start-mvc/_static/config.png)
 
-Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
-* In the version selector drop-down box select **ASP.NET Core 2.2**
-* Select **Web Application (Model-View-Controller)**
-* select **OK**.
+* Select **Web Application(Model-View-Controller)**, and then select **Create**.
 
 ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
 
-Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
+Visual Studio used the default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

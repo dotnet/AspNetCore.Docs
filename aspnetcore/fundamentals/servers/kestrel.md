@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/17/2019
+ms.date: 05/28/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -63,7 +63,7 @@ HTTP/2 is disabled by default. For more information on configuration, see the [K
 
 ## When to use Kestrel with a reverse proxy
 
-You can use Kestrel by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
+Kestrel can be used by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
 
 Kestrel used as an edge (Internet-facing) web server:
 
@@ -154,6 +154,12 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
 
 Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class. The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
+
+The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:
+
+```csharp
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+```
 
 ### Keep-alive timeout
 
@@ -273,7 +279,7 @@ You can override the setting on a specific request in middleware:
 
 An exception is thrown if you attempt to configure the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
-When an app is run [out-of-process](xref:fundamentals/servers/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.
+When an app is run [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.
 
 ### Minimum request body data rate
 
@@ -644,7 +650,7 @@ In the following *appsettings.json* example:
       "Url": "https://localhost:5002",
       "Certificate": {
         "Subject": "<subject; required>",
-        "Store": "<certificate store; defaults to My>",
+        "Store": "<certificate store; required>",
         "Location": "<location; defaults to CurrentUser>",
         "AllowInvalid": "<true or false; defaults to false>"
       }
@@ -677,7 +683,7 @@ An alternative to using **Path** and **Password** for any certificate node is to
 ```json
 "Default": {
   "Subject": "<subject; required>",
-  "Store": "<cert store; defaults to My>",
+  "Store": "<cert store; required>",
   "Location": "<location; defaults to CurrentUser>",
   "AllowInvalid": "<true or false; defaults to false>"
 }

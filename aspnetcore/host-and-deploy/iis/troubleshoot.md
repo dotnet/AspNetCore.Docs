@@ -5,7 +5,7 @@ description: Learn how to diagnose problems with Internet Information Services (
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 05/28/2019
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -54,7 +54,7 @@ The *502.5 Process Failure* error page is returned when a hosting or app misconf
 
 ![Browser window showing the 502.5 Process Failure page](troubleshoot/_static/process-failure-page.png)
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range="= aspnetcore-2.2"
 
 ### 500.30 In-Process Startup Failure
 
@@ -78,6 +78,93 @@ The ASP.NET Core Module fails to find the .NET Core CLR and find the in-process 
 The worker process fails. The app doesn't start.
 
 The ASP.NET Core Module fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+### 500.31 ANCM Failed to Find Native Dependencies
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module attempts to start the .NET Core runtime in-process, but it fails to start. The most common cause of this startup failure is when the `Microsoft.NETCore.App` or `Microsoft.AspNetCore.App` runtime isn't installed. If the app is deployed to target ASP.NET Core 3.0 and that version doesn't exist on the machine, this error occurs. An example error message follows:
+
+```
+The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
+  - The following frameworks were found:
+      2.2.1 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview5-27626-15 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27713-13 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27714-15 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27723-08 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+```
+
+The error message lists all the installed .NET Core versions and the version requested by the app. To fix this error, either:
+
+* Install the appropriate version of .NET Core on the machine.
+* Change the app to target a version of .NET Core that's present on the machine.
+* Publish the app as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd).
+
+When running in development (the `ASPNETCORE_ENVIRONMENT` environment variable is set to `Development`), the specific error is written to the HTTP response. The cause of a process startup failure is also found in the [Application Event Log](#application-event-log).
+
+### 500.32 ANCM Failed to Load dll
+
+The worker process fails. The app doesn't start.
+
+The most common cause for this error is that the app is published for an incompatible processor architecture. If the worker process is running as a 32-bit app and the app was published to target 64-bit, this error occurs.
+
+To fix this error, either:
+
+* Republish the app for the same processor architecture as the worker process.
+* Publish the app as a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-executables-fde).
+
+### 500.33 ANCM Request Handler Load Failure
+
+The worker process fails. The app doesn't start.
+
+The app didn't reference the `Microsoft.AspNetCore.App` framework. Only apps targeting the `Microsoft.AspNetCore.App` framework can be hosted by the ASP.NET Core Module.
+
+To fix this error, confirm that the app is targeting the `Microsoft.AspNetCore.App` framework. Check the `.runtimeconfig.json` to verify the framework targeted by the app.
+
+### 500.34 ANCM Mixed Hosting Models Not Supported
+
+The worker process can't run both an in-process app and an out-of-process app in the same process.
+
+To fix this error, run apps in separate IIS application pools.
+
+### 500.35 ANCM Multiple In-Process Applications in same Process
+
+The worker process can't run both an in-process app and an out-of-process app in the same process.
+
+To fix this error, run apps in separate IIS application pools.
+
+### 500.36 ANCM Out-Of-Process Handler Load Failure
+
+The out-of-process request handler, *aspnetcorev2_outofprocess.dll*, isn't next to the *aspnetcorev2.dll* file. This indicates a corrupted installation of the ASP.NET Core Module.
+
+To fix this error, repair the installation of the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) (for IIS) or Visual Studio (for IIS Express).
+
+### 500.37 ANCM Failed to Start Within Startup Time Limit
+
+ANCM failed to start within the provied startup time limit. By default, the timeout is 120 seconds.
+
+This error can occur when starting a large number of apps on the same machine. Check for CPU/Memory usage spikes on the server during startup. You may need to stagger the startup process of multiple apps.
+
+### 500.30 In-Process Startup Failure
+
+The worker process fails. The app doesn't start.
+
+The ASP.NET Core Module attempts to start the .NET Core runtime in-process, but it fails to start. The cause of a process startup failure is usually determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
+
+### 500.0 In-Process Handler Load Failure
+
+The worker process fails. The app doesn't start.
+
+An unknown error occurred loading ASP.NET Core Module components. Take one of the following actions:
+
+* Contact [Microsoft Support](https://support.microsoft.com/oas/default.aspx?prid=15832) (select **Developer Tools** then **ASP.NET Core**).
+* Ask a question on Stack Overflow.
+* File an issue on our [GitHub repository](https://github.com/aspnet/AspNetCore).
 
 ::: moniker-end
 
@@ -241,13 +328,13 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 
 1. Create a folder to hold crash dump files at `c:\dumps`. The app pool must have write access to the folder.
 1. Run the [EnableDumps PowerShell script](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/EnableDumps.ps1):
-   * If the app uses the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model), run the script for *w3wp.exe*:
+   * If the app uses the [in-process hosting model](xref:host-and-deploy/iis/index#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
      .\EnableDumps w3wp.exe c:\dumps
      ```
 
-   * If the app uses the [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
+   * If the app uses the [out-of-process hosting model](xref:host-and-deploy/iis/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\EnableDumps dotnet.exe c:\dumps
@@ -255,13 +342,13 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 
 1. Run the app under the conditions that cause the crash to occur.
 1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/DisableDumps.ps1):
-   * If the app uses the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model), run the script for *w3wp.exe*:
+   * If the app uses the [in-process hosting model](xref:host-and-deploy/iis/index#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
      .\DisableDumps w3wp.exe
      ```
 
-   * If the app uses the [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
+   * If the app uses the [out-of-process hosting model](xref:host-and-deploy/iis/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\DisableDumps dotnet.exe

@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2019
+ms.date: 06/05/2019
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -78,7 +78,7 @@ Infrastructure components, such as the test web host and in-memory test server (
 
 The `Microsoft.AspNetCore.Mvc.Testing` package handles the following tasks:
 
-* Copies the dependencies file (*\*.deps*) from the SUT into the test project's *bin* folder.
+* Copies the dependencies file (*\*.deps*) from the SUT into the test project's *bin* directory.
 * Sets the content root to the SUT's project root so that static files and pages/views are found when the tests are executed.
 * Provides the [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) class to streamline bootstrapping the SUT with `TestServer`.
 
@@ -121,6 +121,8 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
 [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
+
+By default, non-essential cookies aren't preserved across requests when the [GDPR consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
 
 ### Test a secure endpoint
 
@@ -305,7 +307,7 @@ Call the [UseSolutionRelativeContentRoot](/dotnet/api/microsoft.aspnetcore.testh
 
 ## Disable shadow copying
 
-Shadow copying causes the tests to execute in a different folder than the output folder. For tests to work properly, shadow copying must be disabled. The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) uses xUnit and disables shadow copying for xUnit by including an *xunit.runner.json* file with the correct configuration setting. For more information, see [Configuring xUnit with JSON](https://xunit.github.io/docs/configuring-with-json.html).
+Shadow copying causes the tests to execute in a different directory than the output directory. For tests to work properly, shadow copying must be disabled. The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) uses xUnit and disables shadow copying for xUnit by including an *xunit.runner.json* file with the correct configuration setting. For more information, see [Configuring xUnit with JSON](https://xunit.github.io/docs/configuring-with-json.html).
 
 Add the *xunit.runner.json* file to root of the test project with the following content:
 
@@ -323,12 +325,12 @@ After the tests of the `IClassFixture` implementation are executed, [TestServer]
 
 The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) is composed of two apps:
 
-| App | Project folder | Description |
-| --- | -------------- | ----------- |
+| App | Project directory | Description |
+| --- | ----------------- | ----------- |
 | Message app (the SUT) | *src/RazorPagesProject* | Allows a user to add, delete one, delete all, and analyze messages. |
 | Test app | *tests/RazorPagesProject.Tests* | Used to integration test the SUT. |
 
-The tests can be run using the built-in test features of an IDE, such as [Visual Studio](https://visualstudio.microsoft.com). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesProject.Tests* folder:
+The tests can be run using the built-in test features of an IDE, such as [Visual Studio](https://visualstudio.microsoft.com). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesProject.Tests* directory:
 
 ```console
 dotnet test
@@ -351,10 +353,10 @@ Although the app doesn't use the repository pattern and isn't an effective examp
 
 ### Test app organization
 
-The test app is a console app inside the *tests/RazorPagesProject.Tests* folder.
+The test app is a console app inside the *tests/RazorPagesProject.Tests* directory.
 
-| Test app folder | Description |
-| --------------- | ----------- |
+| Test app directory | Description |
+| ------------------ | ----------- |
 | *BasicTests* | *BasicTests.cs* contains test methods for routing, accessing a secure page by an unauthenticated user, and obtaining a GitHub user profile and checking the profile's user login. |
 | *IntegrationTests* | *IndexPageTests.cs* contains the integration tests for the Index page using custom `WebApplicationFactory` class. |
 | *Helpers/Utilities* | <ul><li>*Utilities.cs* contains the `InitializeDbForTests` method used to seed the database with test data.</li><li>*HtmlHelpers.cs* provides a method to return an AngleSharp `IHtmlDocument` for use by the test methods.</li><li>*HttpClientExtensions.cs* provide overloads for `SendAsync` to submit requests to the SUT.</li></ul> |
