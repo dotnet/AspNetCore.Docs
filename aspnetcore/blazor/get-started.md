@@ -1,14 +1,14 @@
 ---
-title: Get started with Blazor
+title: Get started with ASP.NET Core Blazor
 author: guardrex
 description: Get started with Blazor by building a Blazor app with the tooling of your choice.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/05/2019
+ms.date: 06/14/2019
 uid: blazor/get-started
 ---
-# Get started with Blazor
+# Get started with ASP.NET Core Blazor
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
