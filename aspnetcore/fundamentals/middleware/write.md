@@ -21,33 +21,28 @@ Middleware is generally encapsulated in a class and exposed with an extension me
 
 The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
-You can test the middleware by passing in the culture. For example, `http://localhost:7997/?culture=no`.
+You can test the middleware by passing in the culture. For example, `https://localhost:5001/?culture=no`.
 
 The following code moves the middleware delegate to a class:
 
 [!code-csharp[](index/snapshot/Culture/RequestCultureMiddleware.cs)]
 
-::: moniker range="< aspnetcore-2.0"
+The middleware class must include:
 
-The middleware `Task` method's name must be `Invoke`. In ASP.NET Core 2.0 or later, the name can be either `Invoke` or `InvokeAsync`.
+* A public constructor with a parameter of type <xref:Microsoft.AspNetCore.Http.RequestDelegate>.
+* A public method named `Invoke` or `InvokeAsync`. This method must:
+  * Return a `Task`.
+  * Accept a first parameter of type <xref:Microsoft.AspNetCore.Http.HttpContext>.
+  
+Any additional constructor and `Invoke`/`InvokeAsync` parameters will be populated by [dependency injection (DI)](xref:fundamentals/dependency-injection).
 
-::: moniker-end
-
-## Middleware extension method
-
-The following extension method exposes the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
-
-[!code-csharp[](index/snapshot/Culture/RequestCultureMiddlewareExtensions.cs)]
-
-The following code calls the middleware from `Startup.Configure`:
-
-[!code-csharp[](index/snapshot/Culture/Startup.cs?name=snippet1&highlight=5)]
+## Middleware dependencies
 
 Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See the [Per-request dependencies](#per-request-dependencies) section if you need to share services with middleware within a request.
 
 Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. [UseMiddleware&lt;T&gt;](/dotnet/api/microsoft.aspnetcore.builder.usemiddlewareextensions.usemiddleware#Microsoft_AspNetCore_Builder_UseMiddlewareExtensions_UseMiddleware_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Type_System_Object___) can also accept additional parameters directly.
 
-## Per-request dependencies
+### Per-request dependencies
 
 Because middleware is constructed at app startup, not per-request, *scoped* lifetime services used by middleware constructors aren't shared with other dependency-injected types during each request. If you must share a *scoped* service between your middleware and other types, add these services to the `Invoke` method's signature. The `Invoke` method can accept additional parameters that are populated by DI:
 
@@ -69,6 +64,16 @@ public class CustomMiddleware
     }
 }
 ```
+
+## Middleware extension method
+
+The following extension method exposes the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
+
+[!code-csharp[](index/snapshot/Culture/RequestCultureMiddlewareExtensions.cs)]
+
+The following code calls the middleware from `Startup.Configure`:
+
+[!code-csharp[](index/snapshot/Culture/Startup.cs?name=snippet1&highlight=5)]
 
 ## Additional resources
 
