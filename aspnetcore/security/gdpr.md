@@ -28,7 +28,7 @@ The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/
 
 ::: moniker range="< aspnetcore-2.2"
 
-Razor Pages and MVC projects created with the project templates have no support out of the box for GDPR or Cookie Consent. To add these features, reference the below samples:
+Razor Pages and MVC projects created with the project templates have no support for GDPR or cookie consent. To add GDPR, copy the code generated in the ASP.NET Core 2.2 templates.
 
 ::: moniker-end
 
