@@ -59,7 +59,7 @@ The *\_CookieConsentPartial.cshtml* partial view:
 
 [!code-html[](gdpr/sample/RP/Pages/Shared/_CookieConsentPartial.cshtml)]
 
-This partial:
+Above partial view:
 
 * Obtains the state of tracking for the user. If the app is configured to require consent, the user must consent before cookies can be tracked. If consent is required, the cookie consent panel is fixed at top of the navigation bar created by the *\_Layout.cshtml* file.
 * Provides an HTML `<p>` element to summarize your privacy and cookie use policy.
