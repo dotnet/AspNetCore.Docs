@@ -145,7 +145,7 @@ In addition to handling `onchange` events with `@bind` syntax, a property or fie
 <input @bind-value="CurrentValue" @bind-value:event="oninput" />
 ```
 
-Unlike `onchange`, `oninput` fires for every character changed in the text box.
+Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
 **Format strings**
 
