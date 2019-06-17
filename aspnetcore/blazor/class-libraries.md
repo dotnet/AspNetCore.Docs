@@ -1,14 +1,14 @@
 ---
-title: Razor components class libraries
+title: ASP.NET Core Razor components class libraries
 author: guardrex
 description: Discover how components can be included in Blazor apps from an external component library.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/09/2019
+ms.date: 06/14/2019
 uid: blazor/class-libraries
 ---
-# Razor components class libraries
+# ASP.NET Core Razor components class libraries
 
 By [Simon Timms](https://github.com/stimms)
 
