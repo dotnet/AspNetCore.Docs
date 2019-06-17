@@ -33,7 +33,7 @@ namespace SampleApp
     }
 
     #region snippet1
-    public class PrefixKeyVaultSecretManager : IKeyVaultSecretManager
+    public class PrefixKeyVaultSecretManager : DefaultKeyVaultSecretManager
     {
         private readonly string _prefix;
 
@@ -55,9 +55,7 @@ namespace SampleApp
             // dashes in any name with the KeyDelimiter, which is the 
             // delimiter used in configuration (usually a colon). Azure 
             // Key Vault doesn't allow a colon in secret names.
-            return secret.SecretIdentifier.Name
-                .Substring(_prefix.Length)
-                .Replace("--", ConfigurationPath.KeyDelimiter);
+            return base.GetKey(secret).Substring(_prefix.Length);
         }
     }
     #endregion
