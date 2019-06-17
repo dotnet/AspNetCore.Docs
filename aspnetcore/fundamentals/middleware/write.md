@@ -35,7 +35,7 @@ The middleware class must include:
   * Return a `Task`.
   * Accept a first parameter of type <xref:Microsoft.AspNetCore.Http.HttpContext>.
   
-Additional constructor and `Invoke`/`InvokeAsync` parameters are populated by [dependency injection (DI)](xref:fundamentals/dependency-injection).
+Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populated by [dependency injection (DI)](xref:fundamentals/dependency-injection).
 
 ## Middleware dependencies
 
