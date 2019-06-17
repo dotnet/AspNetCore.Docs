@@ -123,14 +123,14 @@ Data binding to both components and DOM elements is accomplished with the `@bind
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    @bind="@_italicsCheck" />
+    @bind="_italicsCheck" />
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
 
 The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
 
-Using `@bind` with a `CurrentValue` property (`<input @bind="@CurrentValue" />`) is essentially equivalent to the following:
+Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue" 
