@@ -459,6 +459,12 @@ Any folders in the path (*logs* in the preceding example) are created by the mod
 
 ::: moniker-end
 
+::: moniker range="< aspnetcore-3.0"
+
+Folders in the path provided to the `<handlerSetting>` value (*logs* in the preceding example) aren't created by the module automatically and should pre-exist in the deployment. The app pool must have write access to the location where the logs are written (use `IIS AppPool\<app_pool_name>` to provide write permission).
+
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.2"
 
 Debug level (`debugLevel`) values can include both the level and the location.
