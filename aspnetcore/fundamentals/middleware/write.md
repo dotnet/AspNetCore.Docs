@@ -2,9 +2,10 @@
 title: Write custom ASP.NET Core middleware
 author: rick-anderson
 description: Learn how to write custom ASP.NET Core middleware.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/14/2019
+ms.date: 06/17/2019
 uid: fundamentals/middleware/write
 ---
 # Write custom ASP.NET Core middleware
@@ -21,7 +22,7 @@ Middleware is generally encapsulated in a class and exposed with an extension me
 
 The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
-You can test the middleware by passing in the culture. For example, `https://localhost:5001/?culture=no`.
+Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=no`.
 
 The following code moves the middleware delegate to a class:
 
@@ -34,15 +35,15 @@ The middleware class must include:
   * Return a `Task`.
   * Accept a first parameter of type <xref:Microsoft.AspNetCore.Http.HttpContext>.
   
-Any additional constructor and `Invoke`/`InvokeAsync` parameters will be populated by [dependency injection (DI)](xref:fundamentals/dependency-injection).
+Additional constructor and `Invoke`/`InvokeAsync` parameters are populated by [dependency injection (DI)](xref:fundamentals/dependency-injection).
 
 ## Middleware dependencies
 
-Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See the [Per-request dependencies](#per-request-dependencies) section if you need to share services with middleware within a request.
+Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See the [Per-request middleware dependencies](#per-request-middleware-dependencies) section if you need to share services with middleware within a request.
 
 Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. [UseMiddleware&lt;T&gt;](/dotnet/api/microsoft.aspnetcore.builder.usemiddlewareextensions.usemiddleware#Microsoft_AspNetCore_Builder_UseMiddlewareExtensions_UseMiddleware_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Type_System_Object___) can also accept additional parameters directly.
 
-### Per-request dependencies
+## Per-request middleware dependencies
 
 Because middleware is constructed at app startup, not per-request, *scoped* lifetime services used by middleware constructors aren't shared with other dependency-injected types during each request. If you must share a *scoped* service between your middleware and other types, add these services to the `Invoke` method's signature. The `Invoke` method can accept additional parameters that are populated by DI:
 
