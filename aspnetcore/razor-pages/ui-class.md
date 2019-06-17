@@ -98,7 +98,7 @@ Create the RCL project:
 * Name the app **RazorUIClassLib** > **OK**.
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
-* Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
+* Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/\_Message.cshtml*.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -113,16 +113,16 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 The preceding commands:
 
 * Creates the `RazorUIClassLib` Razor Class Library (RCL).
-* Creates a Razor _Message page, and adds it to the RCL. The `-np` parameter creates the page without a `PageModel`.
-* Creates a [_ViewStart.cshtml](xref:mvc/views/layout#running-code-before-each-view) file and adds it to the RCL.
+* Creates a Razor \_Message page, and adds it to the RCL. The `-np` parameter creates the page without a `PageModel`.
+* Creates a [\_ViewStart.cshtml](xref:mvc/views/layout#running-code-before-each-view) file and adds it to the RCL.
 
-The *_ViewStart.cshtml* file is required to use the layout of the Razor Pages project (which is added in the next section).
+The *\_ViewStart.cshtml* file is required to use the layout of the Razor Pages project (which is added in the next section).
 
 ---
 
 ### Add Razor files and folders to the project
 
-* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
+* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/\_Message.cshtml* with the following code:
 
 [!code-cshtml[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
 
@@ -130,13 +130,13 @@ The *_ViewStart.cshtml* file is required to use the layout of the Razor Pages pr
 
 [!code-cshtml[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml)]
 
-`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including the `@addTagHelper` directive, you can add a *_ViewImports.cshtml* file. For example:
+`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including the `@addTagHelper` directive, you can add a *\_ViewImports.cshtml* file. For example:
 
 ```console
 dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
 ```
 
-For more information on *_ViewImports.cshtml*, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives)
+For more information on *\_ViewImports.cshtml*, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives)
 
 * Build the class library to verify there are no compiler errors:
 
@@ -201,7 +201,7 @@ When a view, partial view, or Razor Page is found in both the web app and the Ra
 
 In the sample download, rename *WebApp1/Areas/MyFeature2* to *WebApp1/Areas/MyFeature* to test precedence.
 
-Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
+Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/\_Message.cshtml* partial view to *WebApp1/Areas/MyFeature/Pages/Shared/\_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
 
 <a name="afs"></a>
 
@@ -212,7 +212,7 @@ To reference RCL content as though it is part of the web app's *Pages* folder, c
 * *RazorUIClassLib/Pages*
 * *RazorUIClassLib/Pages/Shared*
 
-Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.cshtml* and *_Footer.cshtml*. The `<partial>` tags could be added to *_Layout.cshtml* file:
+Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *\_Header.cshtml* and *\_Footer.cshtml*. The `<partial>` tags could be added to *\_Layout.cshtml* file:
 
 ```cshtml
 <body>
