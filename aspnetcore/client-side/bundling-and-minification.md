@@ -280,6 +280,8 @@ The *gulpfile.js* file reads the *bundleconfig.json* file for the inputs, output
 If Visual Studio and/or the Bundler & Minifier extension aren't available, convert manually.
 
 Add a *package.json* file, with the following `devDependencies`, to the project root:
+> [!WARNING]
+> Gulp-uglify does not support ES2015 and after. Use [gulp-terser](https://www.npmjs.com/package/gulp-terser) instead of  gulp-uglify if you need javascript ES2015 and after.
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
 
