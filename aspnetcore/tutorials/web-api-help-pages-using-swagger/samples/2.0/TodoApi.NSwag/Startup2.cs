@@ -27,13 +27,13 @@ namespace TodoApi
                     document.Info.Title = "ToDo API";
                     document.Info.Description = "A simple ASP.NET Core web API";
                     document.Info.TermsOfService = "None";
-                    document.Info.Contact = new NSwag.SwaggerContact
+                    document.Info.Contact = new NSwag.OpenApiContact
                     {
                         Name = "Shayne Boyer",
                         Email = string.Empty,
                         Url = "https://twitter.com/spboyer"
                     };
-                    document.Info.License = new NSwag.SwaggerLicense
+                    document.Info.License = new NSwag.OpenApiLicense
                     {
                         Name = "Use under LICX",
                         Url = "https://example.com/license"
@@ -49,7 +49,7 @@ namespace TodoApi
         {
             app.UseStaticFiles();
 
-            app.UseSwagger();
+            app.UseOpenApi();
             app.UseSwaggerUi3();
 
             app.UseMvc();

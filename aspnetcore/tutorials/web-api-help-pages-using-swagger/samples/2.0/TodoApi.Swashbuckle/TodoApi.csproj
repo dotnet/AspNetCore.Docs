@@ -5,6 +5,12 @@
     <ProjectUISubcaption>Swashbuckle - ASP.NET Core 2.0</ProjectUISubcaption>
   </PropertyGroup>
 
+  <!-- <snippet_NoDocumentGeneration> -->
+  <PropertyGroup>
+    <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
+  </PropertyGroup>
+  <!-- </snippet_NoDocumentGeneration> -->
+
   <!-- <snippet_SuppressWarnings> -->
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>

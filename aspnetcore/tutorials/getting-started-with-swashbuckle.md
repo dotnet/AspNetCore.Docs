@@ -69,7 +69,7 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore
 
 ## Add and configure Swagger middleware
 
-Import the following namespace to use the `Info` class:
+Import the following namespace to use the `OpenApiInfo` class:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_InfoClassNamespace)]
 

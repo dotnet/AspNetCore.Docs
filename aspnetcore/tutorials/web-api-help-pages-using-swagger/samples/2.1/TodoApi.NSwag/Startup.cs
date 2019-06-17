@@ -15,7 +15,7 @@ namespace TodoApi
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt => 
+            services.AddDbContext<TodoContext>(opt =>
                 opt.UseInMemoryDatabase("TodoList"));
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -31,7 +31,7 @@ namespace TodoApi
             app.UseStaticFiles();
 
             // Register the Swagger generator and the Swagger UI middlewares
-            app.UseSwagger();
+            app.UseOpenApi();
             app.UseSwaggerUi3();
 
             app.UseMvc();
