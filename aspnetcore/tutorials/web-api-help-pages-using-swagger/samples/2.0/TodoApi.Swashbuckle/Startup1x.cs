@@ -1,12 +1,11 @@
 ﻿// This is the Startup.cs file for an ASP.NET Core 1.x app.
+using System;
+using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.IO;
-using System.Reflection;
 using TodoApi.Models;
 
 namespace TodoApi

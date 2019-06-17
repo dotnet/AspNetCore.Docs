@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-#region snippet_StartupConfigureImports
-using NJsonSchema;
-using NSwag.AspNetCore;
-#endregion
 using TodoApi.Models;
 
 namespace TodoApi

@@ -85,11 +85,7 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 
 ## Add and configure Swagger middleware
 
- Add and configure Swagger in your ASP.NET Core app by performing the following steps in the `Startup` class:
-
-* Import the following namespaces:
-
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_StartupConfigureImports)]
+Add and configure Swagger in your ASP.NET Core app by performing the following steps in the `Startup` class:
 
 * In the `ConfigureServices` method, register the required Swagger services:
 
