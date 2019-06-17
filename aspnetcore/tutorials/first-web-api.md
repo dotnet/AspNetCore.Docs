@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Create a web API with ASP.NET Core"
 author: rick-anderson
-description: Build a web API with ASP.NET Core MVC
+description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/4/2019
