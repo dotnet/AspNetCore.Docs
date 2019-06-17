@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 09/07/2018
+ms.date: 06/17/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -221,3 +221,5 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
   <partial name="_Footer">
 </body>
 ```
+
+[!INCLUDE[](~/includes/razor-class-lib-static-assets.md)]

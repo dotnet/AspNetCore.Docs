@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 06/17/2019
 uid: blazor/class-libraries
 ---
 # ASP.NET Core Razor components class libraries
@@ -69,15 +69,6 @@ dotnet new blazorlib -o MyComponentLib1
 
 Component libraries using the `blazorlib` template can include static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (*.dll*), which allows consumption of the components without having to worry about how to include their resources. Any files included in the `content` directory are marked as an embedded resource.
 
-## Static assets not supported for server-side apps
-
-In ASP.NET Core 3.0 Preview, Blazor server-side apps can't consume static assets from either a Razor class library (`razorclasslib`) or a Blazor library (`blazorlib`).
-
-As a temporary workaround, you can try [BlazorEmbedLibrary](https://www.nuget.org/packages/BlazorEmbedLibrary/).
-
-> [!NOTE]
-> [BlazorEmbedLibrary](https://www.nuget.org/packages/BlazorEmbedLibrary/) isn't maintained or supported by Microsoft.
-
 ## Consume a library component
 
 In order to consume components defined in a library in another project, use either of the following approaches:
@@ -125,29 +116,10 @@ Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/
 dotnet nuget publish
 ```
 
-When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources. Note that [static assets aren't supported for server-side apps](#static-assets-not-supported-for-server-side-apps), including when a Blazor library (`blazorlib`) is referenced by a server-side app.
+When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.
 
-## Create a Razor class library with static assets
+[!INCLUDE[](~/includes/razor-class-lib-static-assets.md)]
 
-Razor class libraries (RCL) frequently require companion static assets that can be referenced by the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
+## Additional resources
 
-To include companion assets as part of a Razor class library, create a *wwwroot* folder in the class library and include any required files in that folder.
-
-When packing a Razor class library, all companion assets in the *wwwroot* folder are included in the package automatically and are made available to apps referencing the package.
-
-### Consume content from a referenced Razor class library
-
-The files included in the *wwwroot* folder of the Razor class library are exposed to the consuming app under the prefix `_content/{LIBRARY NAME}/`. The consuming app references these assets via `<script>`, `<style>`, `<img>`, and other HTML tags.
-
-### Multi-project development flow
-
-When the app runs:
-
-* The assets stay in their original folders.
-* Any change within the class library *wwwroot* folder is reflected in the app without rebuilding.
-
-At build time, a manifest is produced with all the static web asset locations. The manifest is read at runtime and allows the app to consume the assets from referenced projects and packages.
-
-### Publish
-
-When the app is published, the companion assets from all referenced projects and packages are copied into the *wwwroot* folder of the published app under `_content/{LIBRARY NAME}/`.
+* <xref:razor-pages/ui-class>
