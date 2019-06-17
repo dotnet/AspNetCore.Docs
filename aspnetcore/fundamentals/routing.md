@@ -139,7 +139,12 @@ URL matching is the process by which routing dispatches an incoming request to a
 
 ::: moniker range=">= aspnetcore-3.0"
 
-When a Routing Middleware executes, it sets an endpoint (`Endpoint`) and route values to a feature on the <xref:Microsoft.AspNetCore.Http.HttpContext>. Middleware running after the Routing Middleware can see the endpoint and can take actions based on the middleware. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
+When a Routing Middleware executes, it sets an endpoint (`Endpoint`) and route values to a feature on the <xref:Microsoft.AspNetCore.Http.HttpContext>. For the current request:
+
+* `HttpContext.GetEndpoint` gets the endpoint.
+* `HttpRequest.RouteValues` gets the collection of route values.
+
+Middleware running after the Routing Middleware can see the endpoint and take action. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
 
 ::: moniker-end
 
