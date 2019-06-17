@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how ASP.NET Core routing is responsible for mapping request URIs to endpoint selectors and dispatching incoming requests to endpoints.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 06/17/2019
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -134,6 +134,16 @@ Routing is connected to the [middleware](xref:fundamentals/middleware/index) pip
 ::: moniker range=">= aspnetcore-2.2"
 
 URL matching is the process by which routing dispatches an incoming request to an *endpoint*. This process is based on data in the URL path but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an app.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+When a Routing Middleware executes, it sets an endpoint (`Endpoint`) and route values to a feature on the <xref:Microsoft.AspNetCore.Http.HttpContext>. Middleware running after the Routing Middleware can see the endpoint and can take actions based on the middleware. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
 
 The routing system in endpoint routing is responsible for all dispatching decisions. Since the middleware applies policies based on the selected endpoint, it's important that any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
