@@ -142,7 +142,7 @@ When the component is rendered, the `value` of the input element comes from the 
 In addition to `onchange`, the property can be bound using other events like `oninput` by adding a `@bind` attribute with an `event` parameter:
 
 ```cshtml
-<input @bind-value="@CurrentValue" @bind-value:event="oninput" />
+<input @bind-value="CurrentValue" @bind-value:event="oninput" />
 ```
 
 Unlike `onchange`, `oninput` fires for every character that is input into the text box.
