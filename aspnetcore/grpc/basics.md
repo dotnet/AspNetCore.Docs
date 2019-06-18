@@ -32,7 +32,7 @@ For example, consider the *greet.proto* file used in [Get started with gRPC serv
 
 The *.proto* file is included in a project by adding it to the `<Protobuf>` item group:
 
-[!code-xml[](~/tutorials//grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-11)]
+[!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-11)]
 
 ## C# Tooling support for .proto files
 
