@@ -39,7 +39,7 @@ gRPC requires the following packages:
 
 gRPC is enabled with the `AddGrpc` method:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=6)]
+[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7)]
 
 Each gRPC service is added to the routing pipeline through the `MapGrpcService` method:
 
