@@ -128,3 +128,4 @@ When targeting the `Microsoft.NET.Sdk.Web` SDK, the Razor language version is in
 ## Additional resources
 
 * [Additions to the csproj format for .NET Core](/dotnet/core/tools/csproj)
+* [Common MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items)
