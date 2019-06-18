@@ -299,13 +299,24 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
 
 For some events, event-specific event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
-The list of supported event arguments is:
+Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
 
-* UIEventArgs
-* UIChangeEventArgs
-* UIKeyboardEventArgs
-* UIMouseEventArgs
+| Event Class | Description |
+| ----------- | ----------- |
+| `UIChangeEventArgs` | Supplies information about an `<input>` change event. |
+| `UIKeyboardEventArgs` | Supplies information about a keyboard event. |
+| `UIMouseEventArgs` | Supplies information about a mouse event. |
+| `UIPointerEventArgs` | Supplies information about a mouse pointer event. |
+| `UIWheelEventArgs` | Supplies information about a mouse wheel event. |
+| `UIProgressEventArgs` | Supplies information about a progress event. |
+| `UITouchEventArgs` | Supplies information about a touch event. `UITouchPoint` represents a single contact point on a touch-sensitive device. |
+| `UIClipboardEventArgs` | Supplies information about an clipboard event. |
+| `UIDragEventArgs` | Supplies information about an drag event. `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item.  |
+| `UIErrorEventArgs` | Supplies information about an error event. |
+| `UIFocusEventArgs` | Supplies information about a focus event. Doesn't include support for `relatedTarget`. |
 
+For information on the properties of these events and event handling behavior, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
+  
 Lambda expressions can also be used:
 
 ```cshtml
