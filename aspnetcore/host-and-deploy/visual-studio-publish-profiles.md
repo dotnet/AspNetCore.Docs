@@ -73,7 +73,7 @@ The Web SDK imports the [Razor SDK](xref:razor-pages/sdk). As a result, files ma
 
 ::: moniker-end
 
-To explicitly add a file to the publish list, add the file directly in the *.csproj* file as shown in [Include Files](#include-files).
+To explicitly add a file to the publish list, add the file directly in the *.csproj* file as shown in the [Include Files](#include-files) section.
 
 When selecting the **Publish** button in Visual Studio or when publishing from the command line:
 
