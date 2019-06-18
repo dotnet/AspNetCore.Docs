@@ -315,7 +315,7 @@ Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Com
 | Progress | `UIProgressEventArgs` |
 | Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties of these events and event handling behavior, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
+For information on the properties and event handling behavior of the events in the preceding table, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
   
 Lambda expressions can also be used:
 
