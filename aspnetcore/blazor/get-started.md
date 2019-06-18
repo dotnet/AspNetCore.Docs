@@ -68,6 +68,8 @@ Get started with Blazor:
 
    6\. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
 
+   7\. In a browser, navigate to `https://localhost:5001`.
+
    <!--
 
    # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -108,9 +110,9 @@ Get started with Blazor:
 
    For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-   ---
+   In a browser, navigate to `https://localhost:5001`.
 
-In a browser, navigate to `https://localhost:5001`.
+   ---
 
 Multiple pages are available from tabs in the sidebar:
 
@@ -135,7 +137,7 @@ Each time the **Click me** button is selected:
 
 The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
 
-Add a component to another component using HTML syntax. For example, a Counter component can be added to the app's homepage by adding a `<Counter />` element to the Index component.
+Add a component to another component using HTML syntax. For example, add the Counter component to the app's homepage by adding a `<Counter />` element to the Index component.
 
 *Pages/Index.razor*:
 
