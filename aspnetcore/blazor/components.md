@@ -667,11 +667,11 @@ Razor directives are shown in the following table.
 | [\@namespace](xref:mvc/views/razor#section-6) | Sets the namespace of the generated component class. |
 | [\@attribute](xref:mvc/views/razor#section-7) | Adds an attribute to the generated component class. |
 
-**Conditional attributes**
+**Conditional HTML element attributes**
 
-Attributes are conditionally rendered based on the .NET value. If the value is `false` or `null`,  the attribute isn't rendered. If the value is `true`, the attribute is rendered minimized.
+HTML element attributes are conditionally rendered based on the .NET value. If the value is `false` or `null`, the attribute isn't rendered. If the value is `true`, the attribute is rendered minimized.
 
-In the following example, `IsCompleted` determines if `checked` is rendered in the control's markup:
+In the following example, `IsCompleted` determines if `checked` is rendered in the element's markup:
 
 ```cshtml
 <input type="checkbox" checked="@IsCompleted" />
