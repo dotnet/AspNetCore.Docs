@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 06/05/2019
+ms.date: 06/18/2019
 uid: razor-pages/sdk
 ---
 
@@ -13,10 +13,24 @@ uid: razor-pages/sdk
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+## Overview
+
 The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
 * Standardizes the experience around building, packaging, and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based projects.
 * Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor files.
+
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+
+The Razor SDK includes a `<Content>` element with an `Include` attribute set to the `**\*.cshtml` globbing pattern. Matching files are published.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+The Razor SDK includes `<Content>` elements with `Include` attributes set to the `**\*.cshtml` and `**\*.razor` globbing patterns. Matching files are published.
+
+::: moniker-end
 
 ## Prerequisites
 
@@ -32,7 +46,7 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
 
   ```xml
   <Project SDK="Microsoft.NET.Sdk.Razor">
-    ...
+    <!-- omitted for brevity -->
   </Project>
   ```
 
@@ -67,7 +81,7 @@ The properties and items in the following table are used to configure inputs and
 | Items | Description |
 | ----- | ----------- |
 | `RazorGenerate` | Item elements (*.cshtml* files) that are inputs to code generation targets. |
-| `RazorCompile` | Item elements (*.cs* files) that are inputs to  Razor compilation targets. Use this ItemGroup to specify additional files to be compiled into the Razor assembly. |
+| `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this ItemGroup to specify additional files to be compiled into the Razor assembly. |
 | `RazorTargetAssemblyAttribute` | Item elements used to code generate attributes for the Razor assembly. For example:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
 | `RazorEmbeddedResource` | Item elements added as embedded resources to the generated Razor assembly. |
 
@@ -110,3 +124,7 @@ When targeting the `Microsoft.NET.Sdk.Web` SDK, the Razor language version is in
   <RazorLangVersion>{VERSION}</RazorLangVersion>
 </PropertyGroup>
 ```
+
+## Additional resources
+
+* [Additions to the csproj format for .NET Core](/dotnet/core/tools/csproj)
