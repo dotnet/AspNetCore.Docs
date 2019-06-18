@@ -288,7 +288,7 @@ If you want to use `<AuthorizeView>` or a cascaded parameter of type `Task<Authe
 </CascadingAuthenticationState>
 ```
 
-### Customize the display
+### Customize the response with the Router component
 
 The Router component (`<Router>`) allows the app to specify custom content if:
 

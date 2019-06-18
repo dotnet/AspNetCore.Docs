@@ -42,16 +42,27 @@ Multiple route templates can be applied to a component. The following component 
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
-`<Router>` supports setting a fallback component to render when a requested route isn't resolved. Enable this opt-in scenario by setting the `FallbackComponent` parameter to the type of the fallback component class.
-
-The following example sets a component defined in *Pages/MyFallbackRazorComponent.razor* as the fallback component for a `<Router>`:
-
-```cshtml
-<Router ... FallbackComponent="typeof(Pages.MyFallbackRazorComponent)" />
-```
-
 > [!IMPORTANT]
 > To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor client-side) or *Pages/\_Host.cshtml* file (Blazor server-side) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/client-side#app-base-path>.
+
+## Provide custom content when content isn't found
+
+The Router component (`<Router>`) allows the app to specify custom content if content isn't found for the requested route.
+
+In the *App.razor* file, set custom content in the `<NotFoundConent>` element of the Router component:
+
+```cshtml
+<CascadingAuthenticationState>
+    <Router AppAssembly="typeof(Startup).Assembly">
+        <NotFoundContent>
+            <h1>Sorry</h1>
+            <p>Sorry, there's nothing at this address.</p> b
+        </NotFoundContent>
+    </Router>
+</CascadingAuthenticationState>
+```
+
+The content of `<NotFoundContent>` can include arbitrary items, such as other interactive components.
 
 ## Route parameters
 
