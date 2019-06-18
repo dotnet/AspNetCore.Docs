@@ -396,7 +396,10 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 ## Include files
 
-The following markup includes an *images* folder outside the project directory to the *wwwroot/images* folder of the publish site:
+The following markup:
+
+* Includes an *images* folder outside the project directory to the *wwwroot/images* folder of the publish site.
+* Can be added to the *.csproj* file or the publish profile. If it's added to the *.csproj* file, it's included in each publish profile in the project.
 
 ```xml
 <ItemGroup>
@@ -406,8 +409,6 @@ The following markup includes an *images* folder outside the project directory t
   </DotnetPublishFiles>
 </ItemGroup>
 ```
-
-The markup can be added to the *.csproj* file or the publish profile. If it's added to the *.csproj* file, it's included in each publish profile in the project.
 
 The following highlighted markup shows how to:
 
@@ -448,7 +449,7 @@ MSBuild file.
 </Project>
 ```
 
-See the [WebSDK Readme](https://github.com/aspnet/websdk) for more deployment samples.
+See the [Web SDK repository Readme](https://github.com/aspnet/websdk) for more deployment samples.
 
 ## Run a target before or after publishing
 
@@ -487,6 +488,6 @@ Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console
 ## Additional resources
 
 * [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifies deployment of web apps and websites to IIS servers.
-* [https://github.com/aspnet/websdk](https://github.com/aspnet/websdk/issues): File issues and request features for deployment.
+* [Web SDK GitHub repository](https://github.com/aspnet/websdk/issues): File issues and request features for deployment.
 * [Publish an ASP.NET Web App to an Azure VM from Visual Studio](/azure/virtual-machines/windows/publish-web-app-from-visual-studio)
 * <xref:host-and-deploy/iis/transform-webconfig>
