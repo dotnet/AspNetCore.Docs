@@ -340,7 +340,7 @@ When publishing ASP.NET Core web apps, the following assets are included:
   * `**\*.json` (for example, *appsettings.json*)
   * `wwwroot\**`
 
-`msbuild` supports [globbing patterns](https://gruntjs.com/configuring-tasks#globbing-patterns). For example, the following `<Content>` element excludes all text (*.txt*) files from the *wwwroot/content* folder and its subfolders.
+MSBuild supports [globbing patterns](https://gruntjs.com/configuring-tasks#globbing-patterns). For example, the following `<Content>` element excludes all text (*.txt*) files from the *wwwroot\content* folder and its subfolders.
 
 ```xml
 <ItemGroup>
