@@ -8,7 +8,6 @@ ms.custom: "mvc, seodec18"
 ms.date: 06/18/2019
 uid: razor-pages/sdk
 ---
-
 # ASP.NET Core Razor SDK
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -36,7 +35,7 @@ The Razor SDK includes `<Content>` elements with `Include` attributes set to the
 
 [!INCLUDE[](~/includes/2.1-SDK.md)]
 
-## Using the Razor SDK
+## Use the Razor SDK
 
 Most web apps aren't required to explicitly reference the Razor SDK.
 
@@ -81,7 +80,7 @@ The properties and items in the following table are used to configure inputs and
 | Items | Description |
 | ----- | ----------- |
 | `RazorGenerate` | Item elements (*.cshtml* files) that are inputs to code generation targets. |
-| `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this ItemGroup to specify additional files to be compiled into the Razor assembly. |
+| `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this `ItemGroup` to specify additional files to be compiled into the Razor assembly. |
 | `RazorTargetAssemblyAttribute` | Item elements used to code generate attributes for the Razor assembly. For example:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
 | `RazorEmbeddedResource` | Item elements added as embedded resources to the generated Razor assembly. |
 
