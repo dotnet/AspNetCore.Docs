@@ -1,14 +1,14 @@
 ---
-title: Blazor JavaScript interop
+title: ASP.NET Core Blazor JavaScript interop
 author: guardrex
 description: Learn how to invoke JavaScript functions from .NET and .NET methods from JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/29/2019
+ms.date: 06/14/2019
 uid: blazor/javascript-interop
 ---
-# Blazor JavaScript interop
+# ASP.NET Core Blazor JavaScript interop
 
 By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
@@ -115,15 +115,15 @@ Some [JavaScript interop](xref:blazor/javascript-interop) scenarios require refe
 
 You can capture references to HTML elements in a component using the following approach:
 
-* Add a `ref` attribute to the HTML element.
-* Define a field of type `ElementRef` whose name matches the value of the `ref` attribute.
+* Add a `@ref` attribute to the HTML element.
+* Define a field of type `ElementRef` whose name matches the value of the `@ref` attribute.
 
 The following example shows capturing a reference to the `username` `<input>` element:
 
 ```cshtml
-<input ref="username" ... />
+<input @ref="username" ... />
 
-@functions {
+@code {
     ElementRef username;
 }
 ```

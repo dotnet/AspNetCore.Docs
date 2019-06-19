@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use the published .NET Core Docker images from the Docker Registry. Pull images and build your own images.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/09/2019
+ms.date: 06/18/2019
 uid: host-and-deploy/docker/building-net-docker-images
 ---
 
@@ -135,7 +135,7 @@ In some scenarios, you might want to deploy an app to a container by copying to 
 
 * Navigate to the project folder at *dotnet-docker/samples/aspnetapp/aspnetapp*.
 
-* Run the [dotnet publish](https://docs.microsoft.com/dotnet/core/tools/dotnet-publish.md) command:
+* Run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command:
 
   ```console
   dotnet publish -c Release -o published

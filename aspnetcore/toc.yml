@@ -70,6 +70,9 @@
               uid: tutorials/first-mvc-app/validation
             - name: Examine the Details and Delete methods
               uid: tutorials/first-mvc-app/details
+        - name: Blazor
+          displayName: tutorial
+          uid: tutorials/first-blazor-app
     - name: Web API apps
       items:
         - name: Create a web API
@@ -166,10 +169,10 @@
       uid: fundamentals/middleware/index
     - name: Host
       items:
-      - name: Web Host
-        uid: fundamentals/host/web-host
       - name: Generic Host
         uid: fundamentals/host/generic-host
+      - name: Web Host
+        uid: fundamentals/host/web-host
     - name: Servers
       uid: fundamentals/servers/index
     - name: Configuration
@@ -829,6 +832,8 @@
           href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Individual user accounts
           uid: security/authentication/individual
+        - name: Configure certificate authentication
+          uid: security/authentication/certauth
     - name: Authorization
       items:
         - name: Overview

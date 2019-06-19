@@ -1,14 +1,14 @@
 ---
-title: Blazor routing
+title: ASP.NET Core Blazor routing
 author: guardrex
 description: Learn how to route requests in apps and about the NavLink component.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2019
+ms.date: 06/14/2019
 uid: blazor/routing
 ---
-# Blazor routing
+# ASP.NET Core Blazor routing
 
 By [Luke Latham](https://github.com/guardrex)
 
@@ -125,11 +125,11 @@ The following component navigates to the app's Counter component when the button
 
 <h1>Navigate in Code Example</h1>
 
-<button class="btn btn-primary" onclick="@NavigateToCounterComponent">
+<button class="btn btn-primary" @onclick="@NavigateToCounterComponent">
     Navigate to the Counter component
 </button>
 
-@functions {
+@code {
     private void NavigateToCounterComponent()
     {
         UriHelper.NavigateTo("counter");

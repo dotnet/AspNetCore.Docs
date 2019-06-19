@@ -1,14 +1,14 @@
 ---
-title: Blazor forms and validation
+title: ASP.NET Core Blazor forms and validation
 author: guardrex
 description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 06/14/2019
 uid: blazor/forms-validation
 ---
-# Blazor forms and validation
+# ASP.NET Core Blazor forms and validation
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
@@ -37,12 +37,12 @@ A form is defined using the `<EditForm>` component. The following form demonstra
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <InputText id="name" bind-Value="@exampleModel.Name" />
+    <InputText id="name" @bind-Value="@exampleModel.Name" />
 
     <button type="submit">Submit</button>
 </EditForm>
 
-@functions {
+@code {
     private ExampleModel exampleModel = new ExampleModel();
 
     private void HandleValidSubmit()
@@ -52,7 +52,7 @@ A form is defined using the `<EditForm>` component. The following form demonstra
 }
 ```
 
-* The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@functions` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>`.
+* The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>`.
 * The Data Annotations Validator component (`<DataAnnotationsValidator>`) attaches validation support using data annotations.
 * The Validation Summary component (`<ValidationSummary>`) summarizes validation messages.
 * `HandleValidSubmit` is triggered when the form successfully submits (passes validation).
@@ -67,6 +67,8 @@ A set of built-in input components are available to receive and validate user in
 | `<InputNumber>`   | `<input type="number">`   |
 | `<InputCheckbox>` | `<input type="checkbox">` |
 | `<InputDate>`     | `<input type="date">`     |
+
+All of the input components, including `<EditForm>`, support arbitrary attributes. Any attribute that doesn't match a parameter is added to the generated `<form>`, `<input>`, `<select>`, or `<textarea>` element.
 
 Input components provide default behavior for validating on edit and changing their CSS class to reflect the field state. Some components include useful parsing logic. For example, `<InputDate>` and `<InputNumber>` handle unparseable values gracefully by registering them as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?`).
 
@@ -117,16 +119,16 @@ The following form validates user input using the validation defined in the `Sta
 
     <p>
         <label for="identifier">Identifier: </label>
-        <InputText id="identifier" bind-Value="@starship.Identifier" />
+        <InputText id="identifier" @bind-Value="@starship.Identifier" />
     </p>
     <p>
         <label for="description">Description (optional): </label>
-        <InputTextArea Id="description" bind-Value="@starship.Description" />
+        <InputTextArea Id="description" @bind-Value="@starship.Description" />
     </p>
     <p>
         <label for="classification">Primary Classification: </label>
-        <InputSelect id="classification" bind-Value="@starship.Classification">
-            <option value"">Select classification ...</option>
+        <InputSelect id="classification" @bind-Value="@starship.Classification">
+            <option value="">Select classification ...</option>
             <option value="Defense">Defense</option>
             <option value="Exploration">Exploration</option>
             <option value="Diplomacy">Diplomacy</option>
@@ -135,15 +137,15 @@ The following form validates user input using the validation defined in the `Sta
     <p>
         <label for="accommodation">Maximum Accommodation: </label>
         <InputNumber id="accommodation" 
-            bind-Value="@starship.MaximumAccommodation" />
+            @bind-Value="@starship.MaximumAccommodation" />
     </p>
     <p>
         <label for="valid">Engineering Approval: </label>
-        <InputCheckbox id="valid" bind-Value="@starship.IsValidatedDesign" />
+        <InputCheckbox id="valid" @bind-Value="@starship.IsValidatedDesign" />
     </p>
     <p>
         <label for="productionDate">Production Date: </label>
-        <InputDate Id="productionDate" bind-Value="@starship.ProductionDate" />
+        <InputDate Id="productionDate" @bind-Value="@starship.ProductionDate" />
     </p>
 
     <button type="submit">Submit</button>
@@ -155,7 +157,7 @@ The following form validates user input using the validation defined in the `Sta
     </p>
 </EditForm>
 
-@functions {
+@code {
     private Starship starship = new Starship();
 
     private void HandleValidSubmit()
@@ -177,5 +179,4 @@ The Validation Message component (`<ValidationMessage>`) displays validation mes
 <ValidationMessage For="@(() => starship.MaximumAccommodation)" />
 ```
 
-> [!NOTE]
-> Built-in input components have limitations that we expect to resolve in future releases. For example, you can't specify arbitrary attributes on the generated `<input>` tags. Build your own component subclasses to handle unavailable scenarios.
+The `<ValidationMessage>` and `<ValidationSummary>` components support arbitrary attributes. Any attribute that doesn't match a parameter is added to the generated `<div>` or `<ul>` element.

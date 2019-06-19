@@ -4,7 +4,7 @@ author: prkhandelwal
 description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 06/04/2019
+ms.date: 06/10/2019
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -20,6 +20,7 @@ In this tutorial, you learn how to:
 > * Create a MongoDB database
 > * Define a MongoDB collection and schema
 > * Perform MongoDB CRUD operations from a web API
+> * Customize JSON serialization
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mongo-app/sample) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -181,7 +182,29 @@ The database is ready. You can start creating the ASP.NET Core web API.
 1. Add a *Models* directory to the project root.
 1. Add a `Book` class to the *Models* directory with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs)]
+    ```csharp
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
+    
+    namespace BooksApi.Models
+    {
+        public class Book
+        {
+            [BsonId]
+            [BsonRepresentation(BsonType.ObjectId)]
+            public string Id { get; set; }
+    
+            [BsonElement("Name")]
+            public string BookName { get; set; }
+    
+            public decimal Price { get; set; }
+    
+            public string Category { get; set; }
+    
+            public string Author { get; set; }
+        }
+    }
+    ```
 
     In the preceding class, the `Id` property:
     
@@ -189,7 +212,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
     * Is annotated with [[BsonId]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) to designate this property as the document's primary key.
     * Is annotated with [[BsonRepresentation(BsonType.ObjectId)]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) to allow passing the parameter as type `string` instead of an [ObjectId](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) structure. Mongo handles the conversion from `string` to `ObjectId`.
     
-    Other properties in the class are annotated with the [[BsonElement]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) attribute. The attribute's value represents the property name in the MongoDB collection.
+    The `BookName` property is annotated with the [[BsonElement]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) attribute. The attribute's value of `Name` represents the property name in the MongoDB collection.
 
 ## Add a configuration model
 
@@ -203,9 +226,9 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
 
-1. Add the following code to `Startup.ConfigureServices`, before the call to `AddMvc`:
+1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureDatabaseSettings)]
+    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
 
     In the preceding code:
 
@@ -225,9 +248,9 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
-1. In `Startup.ConfigureServices`, register the `BookService` class with DI:
+1. Add the following highlighted code to `Startup.ConfigureServices`:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=9)]
+    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
 
     In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
@@ -241,7 +264,7 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
-* [IMongoDatabase](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_IMongoDatabase.htm) &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection<TDocument>(collection)](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Perform CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
+* [IMongoDatabase](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_IMongoDatabase.htm) &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection\<TDocument>(collection)](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Perform CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
   * `collection` represents the collection name.
   * `TDocument` represents the CLR object type stored in the collection.
 
@@ -300,6 +323,33 @@ The preceding web API controller:
       "author":"Robert C. Martin"
     }
     ```
+
+## Configure JSON serialization options
+
+There are two details to change about the JSON responses returned in the [Test the web API](#test-the-web-api) section:
+
+* The property names' default camel casing should be changed to match the Pascal casing of the CLR object's property names.
+* The `bookName` property should be returned as `Name`.
+
+To satisfy the preceding requirements, make the following changes:
+
+1. In `Startup.ConfigureServices`, chain the following highlighted code on to the `AddMvc` method call:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=12)]
+
+    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author`.
+
+1. In *Models/Book.cs*, annotate the `BookName` property with the following [[JsonProperty]](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) attribute:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs?name=snippet_BookNameProperty&highlight=2)]
+
+    The `[JsonProperty]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
+
+1. Add the following code to the top of *Models/Book.cs* to resolve the `[JsonProperty]` attribute reference:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs?name=snippet_NewtonsoftJsonImport)]
+
+1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
 
 ## Next steps
 

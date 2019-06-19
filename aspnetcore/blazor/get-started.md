@@ -1,14 +1,14 @@
 ---
-title: Get started with Blazor
+title: Get started with ASP.NET Core Blazor
 author: guardrex
 description: Get started with Blazor by building a Blazor app with the tooling of your choice.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/05/2019
+ms.date: 06/18/2019
 uid: blazor/get-started
 ---
-# Get started with Blazor
+# Get started with ASP.NET Core Blazor
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
@@ -19,14 +19,14 @@ Get started with Blazor:
 1. Install the Blazor templates by running the following command in a command shell:
 
    ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview5-19227-01
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview6.19307.2
    ```
 
 1. Follow the guidance for your choice of tooling:
 
    # [Visual Studio](#tab/visual-studio)
 
-   1\. Install the latest [Visual Studio preview](https://visualstudio.com/preview) with the **ASP.NET and web development** workload.
+   1\. Install the latest [Visual Studio preview](https://visualstudio.com/vs/preview) with the **ASP.NET and web development** workload.
 
    2\. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
 
@@ -68,6 +68,8 @@ Get started with Blazor:
 
    6\. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
 
+   7\. In a browser, navigate to `https://localhost:5001`.
+
    <!--
 
    # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -108,9 +110,9 @@ Get started with Blazor:
 
    For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-   ---
+   In a browser, navigate to `https://localhost:5001`.
 
-In a browser, navigate to `https://localhost:5001`.
+   ---
 
 Multiple pages are available from tabs in the sidebar:
 
@@ -135,7 +137,7 @@ Each time the **Click me** button is selected:
 
 The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
 
-Add a component to another component using HTML syntax. For example, a Counter component can be added to the app's homepage by adding a `<Counter />` element to the Index component.
+Add a component to another component using HTML syntax. For example, add the Counter component to the app's homepage by adding a `<Counter />` element to the Index component.
 
 *Pages/Index.razor*:
 
@@ -143,7 +145,7 @@ Add a component to another component using HTML syntax. For example, a Counter c
 
 Run the app. The homepage has its own counter provided by the Counter component.
 
-Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the Counter component, update the component's `@functions` block:
+Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the Counter component, update the component's `@code` block:
 
 * Add a property for `IncrementAmount` with a `[Parameter]` attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.

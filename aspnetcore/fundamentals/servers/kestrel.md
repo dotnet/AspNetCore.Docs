@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/17/2019
+ms.date: 06/18/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -189,7 +189,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ### Maximum client connections
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>  
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentUpgradedConnections>
 
 The maximum number of concurrent open TCP connections can be set for the entire app with the following code:
@@ -279,11 +279,11 @@ You can override the setting on a specific request in middleware:
 
 An exception is thrown if you attempt to configure the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
-When an app is run [out-of-process](xref:fundamentals/servers/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.
+When an app is run [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.
 
 ### Minimum request body data rate
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>  
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate>
 
 Kestrel checks every second if data is arriving at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate isn't checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
@@ -633,7 +633,7 @@ In the following *appsettings.json* example:
 ```json
 {
 "Kestrel": {
-  "EndPoints": {
+  "Endpoints": {
     "Http": {
       "Url": "http://localhost:5000"
     },
@@ -753,13 +753,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 listenOptions.UseHttps(httpsOptions =>
                 {
                     var localhostCert = CertificateLoader.LoadFromStoreCert(
-                        "localhost", "My", StoreLocation.CurrentUser, 
+                        "localhost", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var exampleCert = CertificateLoader.LoadFromStoreCert(
-                        "example.com", "My", StoreLocation.CurrentUser, 
+                        "example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var subExampleCert = CertificateLoader.LoadFromStoreCert(
-                        "sub.example.com", "My", StoreLocation.CurrentUser, 
+                        "sub.example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var certs = new Dictionary<string, X509Certificate2>(
                         StringComparer.OrdinalIgnoreCase);
@@ -796,13 +796,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 listenOptions.UseHttps(httpsOptions =>
                 {
                     var localhostCert = CertificateLoader.LoadFromStoreCert(
-                        "localhost", "My", StoreLocation.CurrentUser, 
+                        "localhost", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var exampleCert = CertificateLoader.LoadFromStoreCert(
-                        "example.com", "My", StoreLocation.CurrentUser, 
+                        "example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var subExampleCert = CertificateLoader.LoadFromStoreCert(
-                        "sub.example.com", "My", StoreLocation.CurrentUser, 
+                        "sub.example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var certs = new Dictionary<string, X509Certificate2>(
                         StringComparer.OrdinalIgnoreCase);
@@ -1009,13 +1009,13 @@ private class TlsFilterAdapter : IConnectionAdapter
     {
         var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
 
-        // Throw NotSupportedException for any cipher algorithm that you don't 
-        // wish to support. Alternatively, define and compare 
-        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher 
+        // Throw NotSupportedException for any cipher algorithm that you don't
+        // wish to support. Alternatively, define and compare
+        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher
         // suites.
         //
-        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null 
-        // indicates that no cipher algorithm supported by Kestrel matches the 
+        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null
+        // indicates that no cipher algorithm supported by Kestrel matches the
         // requested algorithm(s).
         if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
         {
@@ -1050,7 +1050,7 @@ In the following *appsettings.json* example, a default connection protocol (HTTP
 ```json
 {
   "Kestrel": {
-    "EndPointDefaults": {
+    "EndpointDefaults": {
       "Protocols": "Http1AndHttp2"
     }
   }
@@ -1062,7 +1062,7 @@ The following configuration file example establishes a connection protocol for a
 ```json
 {
   "Kestrel": {
-    "EndPoints": {
+    "Endpoints": {
       "HttpsDefaultCert": {
         "Url": "https://localhost:5001",
         "Protocols": "Http1AndHttp2"
@@ -1088,7 +1088,7 @@ For ASP.NET Core 2.1 or later projects that use the [Microsoft.AspNetCore.App me
 * Add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
 
     ```xml
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv"
                       Version="<LATEST_VERSION>" />
     ```
 

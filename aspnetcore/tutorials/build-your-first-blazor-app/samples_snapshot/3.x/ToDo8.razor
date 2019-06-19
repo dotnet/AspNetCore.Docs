@@ -9,10 +9,10 @@
     }
 </ul>
 
-<input placeholder="Something todo" bind="@newTodo" />
-<button onclick="@AddTodo">Add todo</button>
+<input placeholder="Something todo" @bind="@newTodo" />
+<button @onclick="@AddTodo">Add todo</button>
 
-@functions {
+@code {
     private IList<TodoItem> todos = new List<TodoItem>();
     private string newTodo;
 
