@@ -412,10 +412,8 @@ The following example's `<ItemGroup>` element demonstrates copying a folder loca
 The preceding markup:
 
 * Can be added to the *.csproj* file or the publish profile. If it's added to the *.csproj* file, it's included in each publish profile in the project.
-* Declares a `<_CustomFiles>` item to store files matching the `Include` attribute's globbing pattern. The *images* folder referenced in the pattern is located outside of the project directory. A [reserved property](/visualstudio/msbuild/msbuild-reserved-and-well-known-properties), named `$(MSBuildProjectDirectory)`, resolves to the project file's absolute path.
-* Uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the Web SDK. The item accepts a list of files. The item's definition contains:
-  * An `<DestinationRelativePath>` element whose inner text is empty. The inner text is overridden in the markup and uses [well-known item metadata](/visualstudio/msbuild/msbuild-well-known-item-metadata) such as `%(RecursiveDir)`. The inner text represents the *wwwroot/images* folder of the publish site.
-  * An `<Exclude>` element whose inner text is `False`. No override is provided in the markup because file inclusion is the intent.
+* Declares a `_CustomFiles` item to store files matching the `Include` attribute's globbing pattern. The *images* folder referenced in the pattern is located outside of the project directory. A [reserved property](/visualstudio/msbuild/msbuild-reserved-and-well-known-properties), named `$(MSBuildProjectDirectory)`, resolves to the project file's absolute path.
+* Uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the Web SDK. The item accepts a list of files. By default, the item's `<DestinationRelativePath>` element is empty. The default value is overridden in the markup and uses [well-known item metadata](/visualstudio/msbuild/msbuild-well-known-item-metadata) such as `%(RecursiveDir)`. The inner text represents the *wwwroot/images* folder of the published site.
 
 ### Selective file inclusion
 
@@ -457,7 +455,14 @@ MSBuild file.
 </Project>
 ```
 
-The preceding example uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the .NET Core SDK. The item's definition contains a `<CopyToPublishDirectory>` element whose inner text is `Always`. No `<CopyToPublishDirectory>` override is provided in the markup because file inclusion in the publish directory is the intent.
+The preceding example uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the .NET Core SDK. The item's default behavior is to always copy the files provided in the `Include` attribute to the published site. Override the default behavior by including a `<CopyToPublishDirectory>` child element with inner text of either `Never` or `PreserveNewest`. For example:
+
+```xml
+<ResolvedFileToPublish Include="..\ReadMe2.md">
+  <RelativePath>wwwroot\ReadMe2.md</RelativePath>
+  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+</ResolvedFileToPublish>
+```
 
 See the [Web SDK repository Readme](https://github.com/aspnet/websdk) for more deployment samples.
 
