@@ -39,7 +39,7 @@ to view the available httprepl commands:
 dotnet httprepl --help
 ```
 
-The following sections outline the available CLI commands:
+The preceding command displays output similar to the following:
 ```console
 Usage: dotnet httprepl [<BASE_ADDRESS>] [options]
 
@@ -89,6 +89,8 @@ ui             Displays the swagger UI page, if available, in the default browse
 
 Use help <COMMAND> to learn more details about individual commands. e.g. `help get`
 ```
+
+The following sections outline the available CLI commands.
 ## <Command heading here>
 
 
