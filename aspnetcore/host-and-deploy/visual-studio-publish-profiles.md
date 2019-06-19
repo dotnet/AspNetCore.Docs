@@ -421,7 +421,7 @@ The preceding markup:
 
 The following example's `<ItemGroup>` element demonstrates:
 
-* Copying a file located outside of the project into the publish site's *wwwroot* folder. The file name of *ReadMe2.md* is maintained.
+* Copying a file located outside of the project into the published site's *wwwroot* folder. The file name of *ReadMe2.md* is maintained.
 * Excluding the *wwwroot\Content* folder.
 * Excluding *Views\Home\About2.cshtml*.
 
