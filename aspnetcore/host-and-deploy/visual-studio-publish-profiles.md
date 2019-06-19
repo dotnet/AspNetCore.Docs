@@ -5,7 +5,7 @@ description: Learn how to create publish profiles in Visual Studio and use them 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/18/2019
+ms.date: 06/19/2019
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles for ASP.NET Core app deployment
@@ -400,17 +400,18 @@ The following markup:
 
 * Includes an *images* folder outside the project directory to the *wwwroot/images* folder of the publish site.
 * Can be added to the *.csproj* file or the publish profile. If it's added to the *.csproj* file, it's included in each publish profile in the project.
+* Uses the `DotNetPublishFiles` [item definition](/visualstudio/msbuild/item-definitions) provided by a targets file in the Web SDK.
 
 ```xml
 <ItemGroup>
   <_CustomFiles Include="$(MSBuildProjectDirectory)/../images/**/*" />
-  <DotnetPublishFiles Include="@(_CustomFiles)">
+  <DotNetPublishFiles Include="@(_CustomFiles)">
     <DestinationRelativePath>wwwroot/images/%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
-  </DotnetPublishFiles>
+  </DotNetPublishFiles>
 </ItemGroup>
 ```
 
-The following highlighted markup shows how to:
+The `<ItemGroup>` element in the following markup shows how to:
 
 * Copy a file from outside the project into the *wwwroot* folder.
 * Exclude the *wwwroot\Content* folder.
@@ -444,7 +445,6 @@ MSBuild file.
 
     <Content Update="wwwroot\Content\**\*" CopyToPublishDirectory="Never" />
     <Content Update="Views\Home\About2.cshtml" CopyToPublishDirectory="Never" />
-
   </ItemGroup>
 </Project>
 ```
