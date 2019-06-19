@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 1/11/2019
+ms.date: 06/19/2019
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -38,7 +38,9 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-Add the Google service to `Startup.ConfigureServices`.
+Add the Google service to `Startup.ConfigureServices`:
+
+[!code-csharp[](~/security/authentication/social/social-code/StartupGoogle.cs?name=snippet_ConfigureServices&highlight=32-40)]
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
@@ -52,7 +54,7 @@ Add the Google service to `Startup.ConfigureServices`.
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-See the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
+See the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
 ## Change the default callback URI
 
@@ -62,7 +64,7 @@ The URI segment `/signin-google` is set as the default callback of the Google au
 
 * If the sign-in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
 * If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate results in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
-* If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
+* If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Select **Apply Migrations** to create the database, and refresh the page to continue past the error.
 
 ## Next steps
 
