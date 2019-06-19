@@ -14,7 +14,7 @@ By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson]
 
 This document focuses on using Visual Studio 2017 or later to create and use publish profiles. The publish profiles created with Visual Studio can be run from MSBuild and Visual Studio. See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on publishing to Azure.
 
-The `dotnet new mvc` command produces a project file containing the following top-level `<Project>` element:
+The `dotnet new mvc` command produces a project file containing the following root-level [\<Project> element](/visualstudio/msbuild/project-element-msbuild):
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -77,7 +77,7 @@ dotnet new mvc
 dotnet publish
 ```
 
-The [dotnet publish](/dotnet/core/tools/dotnet-publish) command produces output similar to the following:
+The [dotnet publish](/dotnet/core/tools/dotnet-publish) command produces a variation of the following output:
 
 ```console
 C:\Webs\Web1>dotnet publish
@@ -396,11 +396,9 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 ## Include files
 
-The following markup:
+### Simple file inclusion 
 
-* Includes an *images* folder outside the project directory to the *wwwroot/images* folder of the publish site.
-* Can be added to the *.csproj* file or the publish profile. If it's added to the *.csproj* file, it's included in each publish profile in the project.
-* Uses the `DotNetPublishFiles` [item definition](/visualstudio/msbuild/item-definitions) provided by a targets file in the Web SDK.
+The following example's `<ItemGroup>` element demonstrates copying a folder located outside of the project directory to a folder of the publish site. Any files added to the following markup's `<ItemGroup>` are included by default.
 
 ```xml
 <ItemGroup>
@@ -411,11 +409,21 @@ The following markup:
 </ItemGroup>
 ```
 
-The `<ItemGroup>` element in the following markup shows how to:
+The preceding markup:
 
-* Copy a file from outside the project into the *wwwroot* folder.
-* Exclude the *wwwroot\Content* folder.
-* Exclude *Views\Home\About2.cshtml*.
+* Can be added to the *.csproj* file or the publish profile. If it's added to the *.csproj* file, it's included in each publish profile in the project.
+* Declares a `<_CustomFiles>` item to store files matching the `Include` attribute's globbing pattern. The *images* folder referenced in the pattern is located outside of the project directory. A [reserved property](/visualstudio/msbuild/msbuild-reserved-and-well-known-properties), named `$(MSBuildProjectDirectory)`, resolves to the project file's absolute path.
+* Uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the Web SDK. The item accepts a list of files. The item's definition contains:
+  * An `<DestinationRelativePath>` element whose inner text is empty. The inner text is overridden in the markup and uses [well-known item metadata](/visualstudio/msbuild/msbuild-well-known-item-metadata) such as `%(RecursiveDir)`. The inner text represents the *wwwroot/images* folder of the publish site.
+  * An `<Exclude>` element whose inner text is `False`. No override is provided in the markup because file inclusion is the intent.
+
+### Selective file inclusion
+
+The following example's `<ItemGroup>` element demonstrates:
+
+* Copying a file located outside of the project into the publish site's *wwwroot* folder. The file name of *ReadMe2.md* is maintained.
+* Excluding the *wwwroot\Content* folder.
+* Excluding *Views\Home\About2.cshtml*.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -439,8 +447,8 @@ MSBuild file.
     <DeleteExistingFiles>False</DeleteExistingFiles>
   </PropertyGroup>
   <ItemGroup>
-    <ResolvedFileToPublish Include="..\ReadMe2.MD">
-      <RelativePath>wwwroot\ReadMe2.MD</RelativePath>
+    <ResolvedFileToPublish Include="..\ReadMe2.md">
+      <RelativePath>wwwroot\ReadMe2.md</RelativePath>
     </ResolvedFileToPublish>
 
     <Content Update="wwwroot\Content\**\*" CopyToPublishDirectory="Never" />
@@ -448,6 +456,8 @@ MSBuild file.
   </ItemGroup>
 </Project>
 ```
+
+The preceding example uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the .NET Core SDK. The item's definition contains a `<CopyToPublishDirectory>` element whose inner text is `Always`. No `<CopyToPublishDirectory>` override is provided in the markup because file inclusion in the publish directory is the intent.
 
 See the [Web SDK repository Readme](https://github.com/aspnet/websdk) for more deployment samples.
 
