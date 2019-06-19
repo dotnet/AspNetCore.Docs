@@ -398,7 +398,7 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 ### General file inclusion
 
-The following example's `<ItemGroup>` element demonstrates copying a folder located outside of the project directory to a folder of the publish site. Any files added to the following markup's `<ItemGroup>` are included by default.
+The following example's `<ItemGroup>` element demonstrates copying a folder located outside of the project directory to a folder of the published site. Any files added to the following markup's `<ItemGroup>` are included by default.
 
 ```xml
 <ItemGroup>
