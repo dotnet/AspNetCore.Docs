@@ -97,4 +97,4 @@ The following sections outline the available CLI commands.
 
 ## Additional resources
 
-* <Additional resource link here>
+* [HTTPRepl GitHub repository](https://github.com/aspnet/AspLabs)
