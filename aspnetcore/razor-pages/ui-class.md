@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 06/17/2019
+ms.date: 06/19/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -12,7 +12,7 @@ uid: razor-pages/ui-class
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, [View components](xref:mvc/views/view-components), and data models can be built into a Razor Class Library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](xref:blazor/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor Class Library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
@@ -222,4 +222,27 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *\_Header.csh
 </body>
 ```
 
-[!INCLUDE[](~/includes/razor-class-lib-static-assets.md)]
+## Create a Razor class library with static assets
+
+Razor class libraries (RCL) frequently require companion static assets that can be referenced by the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
+
+To include companion assets as part of a Razor class library, create a *wwwroot* folder in the class library and include any required files in that folder.
+
+When packing a Razor class library, all companion assets in the *wwwroot* folder are included in the package automatically and are made available to apps referencing the package.
+
+### Consume content from a referenced Razor class library
+
+The files included in the *wwwroot* folder of the Razor class library are exposed to the consuming app under the prefix `_content/{LIBRARY NAME}/`. The consuming app references these assets via `<script>`, `<style>`, `<img>`, and other HTML tags.
+
+### Multi-project development flow
+
+When the app runs:
+
+* The assets stay in their original folders.
+* Any change within the class library *wwwroot* folder is reflected in the app without rebuilding.
+
+At build time, a manifest is produced with all the static web asset locations. The manifest is read at runtime and allows the app to consume the assets from referenced projects and packages.
+
+### Publish
+
+When the app is published, the companion assets from all referenced projects and packages are copied into the *wwwroot* folder of the published app under `_content/{LIBRARY NAME}/`.

@@ -5,14 +5,14 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 06/19/2019
 uid: blazor/class-libraries
 ---
 # ASP.NET Core Razor components class libraries
 
 By [Simon Timms](https://github.com/stimms)
 
-Components can be shared in Razor class libraries across projects. Components can be included from:
+Components can be shared in [Razor class libraries (RCLs)](xref:razor-pages/ui-class) across projects. A *Razor components class library* can be included from:
 
 * Another project in the solution.
 * A NuGet package.
@@ -118,7 +118,9 @@ dotnet nuget publish
 
 When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.
 
-[!INCLUDE[](~/includes/razor-class-lib-static-assets.md)]
+## Create a Razor components class library with static assets
+
+An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-a-razor-class-library-with-static-assets>.
 
 ## Additional resources
 
