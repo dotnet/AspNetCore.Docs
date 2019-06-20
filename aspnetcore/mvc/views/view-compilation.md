@@ -5,7 +5,7 @@ description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/30/2019
+ms.date: 06/20/2019
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -119,12 +119,12 @@ For guidance and examples of setting the app's compatibility version, see <xref:
 Runtime compilation is enabled using the `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation` package. To enable runtime compilation, apps must:
 
 * Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
-* Update the application's `ConfigureServices` to include a call to `AddRazorRuntimeCompilation`:
+* Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`:
 
   ```csharp
   services
       .AddControllersWithViews()
-      .AddRazorRuntimeCompilation()
+      .AddRazorRuntimeCompilation();
   ```
 
 ::: moniker-end
