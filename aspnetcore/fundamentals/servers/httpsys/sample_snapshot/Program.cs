@@ -17,11 +17,6 @@ namespace HttpSysSample
                 .UseStartup<Startup>()
                 .UseHttpSys(options =>
                 {
-                    options.Authentication.Schemes = AuthenticationSchemes.None;
-                    options.Authentication.AllowAnonymous = true;
-                    options.MaxConnections = null;
-                    options.MaxRequestBodySize = 30000000;
-                    // Server local IP address: 10.0.0.4
                     options.UrlPrefixes.Add("https://10.0.0.4:443");
                 });
         #endregion

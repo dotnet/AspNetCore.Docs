@@ -17,7 +17,7 @@ namespace HttpSysSample
                 .UseStartup<Startup>()
                 .UseHttpSys(options =>
                 {
-                    // The following options are set to default values.
+                    options.AllowSynchronousIO = true;
                     options.Authentication.Schemes = AuthenticationSchemes.None;
                     options.Authentication.AllowAnonymous = true;
                     options.MaxConnections = null;
