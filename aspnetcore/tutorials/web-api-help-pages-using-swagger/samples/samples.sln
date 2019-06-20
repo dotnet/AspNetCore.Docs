@@ -5,15 +5,15 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.0", "2.0", "{2725557C-26F6-4862-884A-DEE669A46327}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "samples\2.0\TodoApi.NSwag\TodoApi.csproj", "{938A4A36-3F69-4D06-BA11-23333181E48B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "2.0\TodoApi.NSwag\TodoApi.csproj", "{938A4A36-3F69-4D06-BA11-23333181E48B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "samples\2.0\TodoApi.Swashbuckle\TodoApi.csproj", "{4BC95ABB-D3BF-4E47-9D71-28EF8325FD8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "2.0\TodoApi.Swashbuckle\TodoApi.csproj", "{4BC95ABB-D3BF-4E47-9D71-28EF8325FD8C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1", "2.1", "{AEFA2811-67ED-4605-8C93-1645479F764A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "samples\2.1\TodoApi.NSwag\TodoApi.csproj", "{10DDA2BF-14D2-41A7-9BC4-F0179A272574}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "2.1\TodoApi.NSwag\TodoApi.csproj", "{10DDA2BF-14D2-41A7-9BC4-F0179A272574}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "samples\2.1\TodoApi.Swashbuckle\TodoApi.csproj", "{DF75D4B8-44B5-4603-9617-26BD11EDE76B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "2.1\TodoApi.Swashbuckle\TodoApi.csproj", "{DF75D4B8-44B5-4603-9617-26BD11EDE76B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
