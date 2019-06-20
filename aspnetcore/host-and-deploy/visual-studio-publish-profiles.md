@@ -425,7 +425,7 @@ The highlighted markup in the following example demonstrates:
 * Excluding the *wwwroot\Content* folder.
 * Excluding *Views\Home\About2.cshtml*.
 
-[!code-xml[](visual-studio-publish-profiles/samples/WebApp1.pubxml?highlight=18-23)]
+[!code-xml[](visual-studio-publish-profiles/samples/Web1.pubxml?highlight=18-23)]
 
 The preceding example uses the `ResolvedFileToPublish` item, whose default behavior is to always copy the files provided in the `Include` attribute to the published site. Override the default behavior by including a `<CopyToPublishDirectory>` child element with inner text of either `Never` or `PreserveNewest`. For example:
 
