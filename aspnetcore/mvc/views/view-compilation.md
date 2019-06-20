@@ -119,11 +119,11 @@ For guidance and examples of setting the app's compatibility version, see <xref:
 Runtime compilation is enabled using the `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation` package. To enable runtime compilation, apps must:
 
 * Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
-* Update the application's `ConfigureServices` to include a call to `AddMvcRazorRuntimeCompilation`:
+* Update the application's `ConfigureServices` to include a call to `AddRazorRuntimeCompilation`:
 
   ```csharp
   services
-      .AddMvc()
+      .AddControllersWithViews()
       .AddRazorRuntimeCompilation()
   ```
 
